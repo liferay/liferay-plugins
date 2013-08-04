@@ -76,7 +76,8 @@ public class CalendarBookingApprovalWorkflowImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		int status = CalendarBookingWorkflowConstants.toStatus(transitionName);
+		int status = CalendarBookingWorkflowConstants.getLabelStatus(
+			transitionName);
 
 		if (status == CalendarBookingWorkflowConstants.STATUS_PENDING) {
 			CalendarBooking calendarBooking =

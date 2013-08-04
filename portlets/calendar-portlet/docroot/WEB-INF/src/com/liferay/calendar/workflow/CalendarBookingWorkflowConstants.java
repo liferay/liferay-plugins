@@ -30,7 +30,7 @@ public class CalendarBookingWorkflowConstants extends WorkflowConstants {
 
 	public static final int STATUS_MAYBE = 9;
 
-	public static String toLabel(int status) {
+	public static String getStatusLabel(int status) {
 		if (status == STATUS_APPROVED) {
 			return LABEL_ACCEPTED;
 		}
@@ -41,11 +41,11 @@ public class CalendarBookingWorkflowConstants extends WorkflowConstants {
 			return LABEL_MAYBE;
 		}
 		else {
-			return WorkflowConstants.toLabel(status);
+			return WorkflowConstants.getStatusLabel(status);
 		}
 	}
 
-	public static int toStatus(String label) {
+	public static int getLabelStatus(String label) {
 		if (label.equals(LABEL_ACCEPTED)) {
 			return STATUS_APPROVED;
 		}
@@ -56,7 +56,7 @@ public class CalendarBookingWorkflowConstants extends WorkflowConstants {
 			return STATUS_MAYBE;
 		}
 		else {
-			return WorkflowConstants.toStatus(label);
+			return WorkflowConstants.getLabelStatus(label);
 		}
 	}
 
