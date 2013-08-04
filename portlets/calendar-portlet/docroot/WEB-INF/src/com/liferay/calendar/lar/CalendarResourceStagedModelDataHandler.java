@@ -85,6 +85,7 @@ public class CalendarResourceStagedModelDataHandler
 		return false;
 	}
 
+	@Override
 	protected void doExportStagedModel(
 			PortletDataContext portletDataContext,
 			CalendarResource calendarResource)
@@ -222,7 +223,7 @@ public class CalendarResourceStagedModelDataHandler
 			PortletDataContext portletDataContext,
 			CalendarResource calendarResource,
 			CalendarResource importedCalendarResource)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		Map<Long, Long> calendarIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
