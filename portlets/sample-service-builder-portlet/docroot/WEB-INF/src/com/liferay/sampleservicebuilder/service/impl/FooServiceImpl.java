@@ -39,8 +39,4 @@ public class FooServiceImpl extends FooServiceBaseImpl {
 		return GroupServiceUtil.getUserSitesGroups();
 	}
 
-	/*public List<User> getUsers(long companyId) throws SystemException {
-		return UserUtil.findByCompanyId(companyId);
-	}*/
-
 }
