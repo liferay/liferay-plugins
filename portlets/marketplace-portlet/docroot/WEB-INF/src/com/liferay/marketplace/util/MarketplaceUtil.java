@@ -51,7 +51,7 @@ public class MarketplaceUtil {
 		}
 
 		String clientId = ExpandoValueLocalServiceUtil.getData(
-			companyId, User.class.getName(), "MP", "client-id", userId,
+			companyId, User.class.getName(), "MP", "clientId", userId,
 			"default-client-id");
 
 		byte[] encodedClientIdBytes = xor(
@@ -64,7 +64,7 @@ public class MarketplaceUtil {
 		throws SystemException {
 
 		int count = ExpandoValueLocalServiceUtil.getColumnValuesCount(
-			companyId, User.class.getName(), "MP", "client-id");
+			companyId, User.class.getName(), "MP", "clientId");
 
 		if (count <= 0) {
 			return false;
@@ -77,7 +77,7 @@ public class MarketplaceUtil {
 		throws PortalException, SystemException {
 
 		String clientId = ExpandoValueLocalServiceUtil.getData(
-			user.getCompanyId(), User.class.getName(), "MP", "client-id",
+			user.getCompanyId(), User.class.getName(), "MP", "clientId",
 			user.getUserId(), StringPool.BLANK);
 
 		if (Validator.isNull(clientId)) {
