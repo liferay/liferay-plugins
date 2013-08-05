@@ -7,12 +7,12 @@
 		<version>6.1.0+</version>
 	</compatibility>
 	<theme id="so-strata" name="Social Office Strata Theme - Beta">
-		<color-scheme id="classic" name="Social Office Classic">
+		<color-scheme id="classic" name="Classic">
 			<css-class>so-classic</css-class>
 		</color-scheme>
-		<color-scheme id="strata" name="Social Office Strata">
+		<color-scheme id="strata" name="Strata">
 			<default-cs>true</default-cs>
-			<css-class>normal</css-class>
+			<css-class>so-strata</css-class>
 		</color-scheme>
 	</theme>
 </look-and-feel>
