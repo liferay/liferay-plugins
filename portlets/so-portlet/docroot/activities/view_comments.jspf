@@ -28,13 +28,13 @@ if (activitySet.getActivityCount() > 1 ) {
 
 MBMessageDisplay messageDisplay = MBMessageLocalServiceUtil.getDiscussionMessageDisplay(user.getUserId(), themeDisplay.getScopeGroupId(), className, classPK, WorkflowConstants.STATUS_APPROVED);
 
-MBThread thread = messageDisplay.getThread();
 MBTreeWalker treeWalker = messageDisplay.getTreeWalker();
-MBMessage rootMessage = treeWalker.getRoot();
+
 List<MBMessage> messages = treeWalker.getMessages();
-int messagesCount = messages.size() - 1;
 
 messages = ListUtil.sort(messages, new MessageCreateDateComparator(true));
+
+int messagesCount = messages.size() - 1;
 %>
 
 <span class="view-comments">
@@ -94,18 +94,24 @@ messages = ListUtil.sort(messages, new MessageCreateDateComparator(true));
 
 	<portlet:actionURL name="updateComment" var="updateCommentURL" />
 
-	<%
-	String formName = "fm" + activitySet.getActivitySetId();
-	%>
-
-	<aui:form action="<%= updateCommentURL %>" method="post" name="<%= formName %>">
+	<aui:form action="<%= updateCommentURL %>" method="post" name='<%= "fm" + activitySet.getActivitySetId() %>'>
 		<aui:input name="mvcPath" type="hidden" value="/activities/view.jsp" />
 		<aui:input name="redirect" type="hidden" value="<%= HtmlUtil.escape(currentURL) %>" />
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
 		<aui:input name="className" type="hidden" value="<%= className %>" />
 		<aui:input name="classPK" type="hidden" value="<%= classPK %>" />
 		<aui:input name="messageId" type="hidden" value="" />
+
+		<%
+		MBMessage rootMessage = treeWalker.getRoot();
+		%>
+
 		<aui:input name="parentMessageId" type="hidden" value="<%= rootMessage.getMessageId() %>" />
+
+		<%
+		MBThread thread = messageDisplay.getThread();
+		%>
+
 		<aui:input name="threadId" type="hidden" value="<%= thread.getThreadId() %>" />
 
 		<div>
@@ -147,7 +153,7 @@ messages = ListUtil.sort(messages, new MessageCreateDateComparator(true));
 		commentsList.append(commentEntry);
 	}
 
-	var form = A.one('#<portlet:namespace /><%= formName %>');
+	var form = A.one('#<portlet:namespace />fm<%= activitySet.getActivitySetId() %>');
 
 	if (form) {
 		form.on(
