@@ -74,15 +74,16 @@ public class ActivitiesPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String body = ParamUtil.getString(actionRequest, "body");
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
 		String className = ParamUtil.getString(actionRequest, "className");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 		long messageId = ParamUtil.getLong(actionRequest, "messageId");
+		long threadId = ParamUtil.getLong(actionRequest, "threadId");
 		long parentMessageId = ParamUtil.getLong(
 			actionRequest, "parentMessageId");
-		long threadId = ParamUtil.getLong(actionRequest, "threadId");
 		String subject = ParamUtil.getString(actionRequest, "subject");
+		String body = ParamUtil.getString(actionRequest, "body");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
