@@ -1,0 +1,5 @@
+<web>
+	<link target="/plugin.context.name">
+		<dir name="plugin.webapp.docroot" />
+	</link>
+</web>
