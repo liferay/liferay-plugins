@@ -18,8 +18,14 @@
 	}
 
 	.reminder-type {
-		margin-right: 6px;
+		margin: 0 6px 11px 0;
+		padding: 4px 6px;
 	}
+}
+
+.calendar-create-event-btn-row {
+	margin: 0 0 1em 0;
+	text-align: center;
 }
 
 .calendar-list-empty-message {
@@ -481,15 +487,4 @@
 
 .simple-color-picker-item:hover, .simple-color-picker-item-selected {
 	@include transition(border-color 0s);
-}
-
-.calendar-booking-reminders .reminder-type {
-	display: inline-block;
-	margin-bottom: 11px;
-	padding: 4px 6px;
-}
-
-.calendar-create-event-btn-row {
-	margin: 0 0 1em 0;
-	text-align: center;
 }

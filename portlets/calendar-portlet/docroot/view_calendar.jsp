@@ -71,10 +71,7 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 
 			<c:if test="<%= (userDefaultCalendar != null) && CalendarPermission.contains(permissionChecker, userDefaultCalendar, ActionKeys.MANAGE_BOOKINGS) %>">
 				<aui:button-row cssClass="calendar-create-event-btn-row">
-					<aui:button cssClass="btn calendar-create-event-btn"
-						icon="icon-plus"
-						onClick='<%= renderResponse.getNamespace() + \"onCreateEventClick();\" %>'
-						primary="true" value="new-calendar-booking" />
+					<aui:button onClick='<%= renderResponse.getNamespace() + \"onCreateEventClick();\" %>' primary="true" value="new-calendar-booking" />
 				</aui:button-row>
 			</c:if>
 
