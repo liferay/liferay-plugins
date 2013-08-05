@@ -134,6 +134,8 @@ int messagesCount = messages.size() - 1;
 					'<span class="post-date">' + '{modifiedDate}' + '</span>' +
 					'<span class="edit-comment">' +
 						'<a data-messageId="' + '{messageId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "edit") %></a>' +
+					'</span>' +
+					'<span class="delete-comment">' +
 						'<a data-messageId="' + '{messageId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "delete") %></a>' +
 					'</span>' +
 				'</div>' +
@@ -150,7 +152,7 @@ int messagesCount = messages.size() - 1;
 			}
 		);
 
-		commentsList.append(commentEntry);
+		commentsList.append(commentEntryHtml);
 	}
 
 	var form = A.one('#<portlet:namespace />fm<%= activitySet.getActivitySetId() %>');
@@ -167,6 +169,10 @@ int messagesCount = messages.size() - 1;
 				var commentsContainer = currentTarget.ancestor('.comments-container');
 
 				var form = commentsContainer.one('form');
+
+				var cmdNode = form.one('#<portlet:namespace /><%= Constants.CMD %>');
+
+				cmdNode.val('<%= Constants.ADD %>');
 
 				A.io.request(
 					form.attr('action'),
