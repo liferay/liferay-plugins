@@ -19,8 +19,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.portal.service.ServiceContextFactory" %><%@
-page import="com.liferay.portal.kernel.util.ListUtil" %><%@
+<%@ page import="com.liferay.portal.kernel.util.ListUtil" %><%@
+page import="com.liferay.portal.service.ServiceContextFactory" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessageDisplay" %><%@
 page import="com.liferay.portlet.messageboards.model.MBThread" %><%@
