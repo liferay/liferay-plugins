@@ -201,6 +201,42 @@ ECJ was automatically installed. Please rerun your task.
 		</java>
 	</target>
 
+	<target name="setup-jrebel">
+		<copy 
+			file="${sdk.dir}/tools/jrebel/rebel_ftl.xml" 
+			tofile="${plugin.classes.dir}/rebel.xml"
+			overwrite="true"
+		/>
+
+		<var name="plugin.compilation.classes.dir" value="${basedir}/${plugin.classes.dir}" />
+
+		<if>
+			<not>
+				<equals arg1="${jrebel.plugin.classes.dir}" arg2="" />
+			</not>
+			<then>
+				<var name="plugin.compilation.classes.dir" value="${jrebel.plugin.classes.dir}" />
+			</then>
+		</if>
+
+		<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.classes.dir" value="${plugin.compilation.classes.dir}" />
+
+		<if>
+			<available file="docroot" type="dir" />
+			<then>
+				<loadfile property="plugin.webapp.configuration" srcFile="${sdk.dir}/tools/jrebel/rebel_web_ftl.xml" />
+
+				<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.webapp.dir.configuration" value="${plugin.webapp.configuration}" />
+
+				<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.context.name" value="${plugin.name}" />
+				<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.webapp.docroot" value="${basedir}/docroot" />
+			</then>
+			<else>
+				<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.webapp.dir.configuration" value="" />
+			</else>
+		</if>
+	</target>
+
 	<target name="sort-xml-attributes">
 		<java
 			classname="com.liferay.portal.tools.XMLAttributesSorter"
