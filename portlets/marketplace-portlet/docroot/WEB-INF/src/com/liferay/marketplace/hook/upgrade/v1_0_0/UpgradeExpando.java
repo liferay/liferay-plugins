@@ -12,14 +12,13 @@
  * details.
  */
 
-package com.liferay.marketplace.hook.events;
+package com.liferay.marketplace.hook.upgrade.v1_0_0;
 
-import com.liferay.portal.kernel.events.ActionException;
-import com.liferay.portal.kernel.events.SimpleAction;
-import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.model.User;
-import com.liferay.portlet.expando.DuplicateColumnNameException;
-import com.liferay.portlet.expando.DuplicateTableNameException;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.expando.NoSuchTableException;
+import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
@@ -28,36 +27,37 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 /**
  * @author Peter Shin
  */
-public class StartupAction extends SimpleAction {
+public class UpgradeExpando extends UpgradeProcess {
 
 	@Override
-	public void run(String[] ids) throws ActionException {
-		try {
-			doRun(GetterUtil.getLong(ids[0]));
-		}
-		catch (Exception e) {
-			throw new ActionException(e);
+	protected void doUpgrade() throws Exception {
+		for (long companyId : PortalUtil.getCompanyIds()) {
+			updateMPExpandoColumns(companyId);
 		}
 	}
 
-	protected void doRun(long companyId) throws Exception {
-		ExpandoTable table = null;
+	protected void updateMPExpandoColumns(long companyId) throws Exception {
+		ExpandoTable expandoTable = null;
 
 		try {
-			table = ExpandoTableLocalServiceUtil.addTable(
+			expandoTable = ExpandoTableLocalServiceUtil.getTable(
 				companyId, User.class.getName(), "MP");
 		}
-		catch (DuplicateTableNameException dtne) {
-			table = ExpandoTableLocalServiceUtil.getTable(
-				companyId, User.class.getName(), "MP");
+		catch (NoSuchTableException nste) {
+			return;
 		}
 
-		try {
-			ExpandoColumnLocalServiceUtil.addColumn(
-				table.getTableId(), "clientId", ExpandoColumnConstants.STRING);
+		ExpandoColumn expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
+			companyId, User.class.getName(), expandoTable.getName(),
+			"client-id");
+
+		if (expandoColumn == null) {
+			return;
 		}
-		catch (DuplicateColumnNameException dcne) {
-		}
+
+		ExpandoColumnLocalServiceUtil.updateColumn(
+			expandoColumn.getColumnId(), "clientId",
+			ExpandoColumnConstants.STRING);
 	}
 
 }

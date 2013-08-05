@@ -254,8 +254,8 @@ public class StorePortlet extends MVCPortlet {
 		}
 
 		ExpandoValueLocalServiceUtil.addValue(
-			themeDisplay.getCompanyId(), User.class.getName(), "MP",
-			"client-id", themeDisplay.getUserId(), decodedClientId);
+			themeDisplay.getCompanyId(), User.class.getName(), "MP", "clientId",
+			themeDisplay.getUserId(), decodedClientId);
 
 		jsonObject.put("message", "success");
 
