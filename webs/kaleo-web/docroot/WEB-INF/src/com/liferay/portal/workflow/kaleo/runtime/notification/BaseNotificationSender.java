@@ -113,36 +113,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			int roleType, ExecutionContext executionContext)
 		throws Exception {
 
-		List<User> users = null;
-
-		if (roleType == RoleConstants.TYPE_REGULAR) {
-			users = UserLocalServiceUtil.getRoleUsers(roleId);
-		}
-		else {
-			users = new ArrayList<User>();
-
-			KaleoInstanceToken kaleoInstanceToken =
-				executionContext.getKaleoInstanceToken();
-
-			List<UserGroupRole> userGroupRoles =
-				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-					kaleoInstanceToken.getGroupId(), roleId);
-
-			for (UserGroupRole userGroupRole : userGroupRoles) {
-				users.add(userGroupRole.getUser());
-			}
-
-			List<UserGroupGroupRole> userGroupGroupRoles =
-				UserGroupGroupRoleLocalServiceUtil.
-					getUserGroupGroupRolesByGroupAndRole(
-						kaleoInstanceToken.getGroupId(), roleId);
-
-			for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
-				users.addAll(
-					UserLocalServiceUtil.getUserGroupUsers(
-						userGroupGroupRole.getUserGroupId()));
-			}
-		}
+		List<User> users = getRoleUsers(roleId, roleType, executionContext);
 
 		for (User user : users) {
 			if (user.isActive()) {
@@ -239,6 +210,41 @@ public abstract class BaseNotificationSender implements NotificationSender {
 		}
 
 		return notificationRecipients;
+	}
+
+	protected List<User> getRoleUsers(
+			long roleId, int roleType, ExecutionContext executionContext)
+		throws Exception {
+
+		if (roleType == RoleConstants.TYPE_REGULAR) {
+			return UserLocalServiceUtil.getRoleUsers(roleId);
+		}
+
+		List<User> users = new ArrayList<User>();
+
+		KaleoInstanceToken kaleoInstanceToken =
+			executionContext.getKaleoInstanceToken();
+
+		List<UserGroupRole> userGroupRoles =
+			UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
+				kaleoInstanceToken.getGroupId(), roleId);
+
+		for (UserGroupRole userGroupRole : userGroupRoles) {
+			users.add(userGroupRole.getUser());
+		}
+
+		List<UserGroupGroupRole> userGroupGroupRoles =
+			UserGroupGroupRoleLocalServiceUtil.
+				getUserGroupGroupRolesByGroupAndRole(
+					kaleoInstanceToken.getGroupId(), roleId);
+
+		for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
+			users.addAll(
+				UserLocalServiceUtil.getUserGroupUsers(
+					userGroupGroupRole.getUserGroupId()));
+		}
+
+		return users;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
