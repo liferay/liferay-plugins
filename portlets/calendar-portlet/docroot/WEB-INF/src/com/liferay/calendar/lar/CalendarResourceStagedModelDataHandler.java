@@ -141,7 +141,7 @@ public class CalendarResourceStagedModelDataHandler
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			calendarResource, CalendarPortletDataHandler.NAMESPACE);
 
-		long classPK = getClassPk(portletDataContext, calendarResource, userId);
+		long classPK = getClassPK(portletDataContext, calendarResource, userId);
 
 		CalendarResource importedCalendarResource = null;
 
@@ -191,7 +191,7 @@ public class CalendarResourceStagedModelDataHandler
 					calendarResource.isActive(), serviceContext);
 		}
 
-		updateCalendarDependencies(
+		updateCalendars(
 			portletDataContext, calendarResource, importedCalendarResource);
 
 		portletDataContext.importClassedModel(
@@ -199,7 +199,7 @@ public class CalendarResourceStagedModelDataHandler
 			CalendarPortletDataHandler.NAMESPACE);
 	}
 
-	protected long getClassPk(
+	protected long getClassPK(
 		PortletDataContext portletDataContext,
 		CalendarResource calendarResource, long userId) {
 
@@ -219,7 +219,7 @@ public class CalendarResourceStagedModelDataHandler
 		return classPK;
 	}
 
-	protected void updateCalendarDependencies(
+	protected void updateCalendars(
 			PortletDataContext portletDataContext,
 			CalendarResource calendarResource,
 			CalendarResource importedCalendarResource)

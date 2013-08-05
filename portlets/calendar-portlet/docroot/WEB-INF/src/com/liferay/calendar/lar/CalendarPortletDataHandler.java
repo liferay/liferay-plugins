@@ -102,35 +102,36 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 		Element rootElement = addExportDataRootElement(portletDataContext);
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "calendars")) {
-			ActionableDynamicQuery resourceActionableDynamicQuery =
-				getCalendarResourceActionableDynamicQuery(
-					portletDataContext,
-					StagedModelType.REFERRER_CLASS_NAME_ID_ALL);
-
-			resourceActionableDynamicQuery.performActions();
-
 			ActionableDynamicQuery calendarActionableDynamicQuery =
 				new CalendarExportActionableDynamicQuery(portletDataContext);
 
 			calendarActionableDynamicQuery.performActions();
+
+			ActionableDynamicQuery calendarResourceActionableDynamicQuery =
+				getCalendarResourceActionableDynamicQuery(
+					portletDataContext,
+					StagedModelType.REFERRER_CLASS_NAME_ID_ALL);
+
+			calendarResourceActionableDynamicQuery.performActions();
 		}
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "bookings")) {
-			ActionableDynamicQuery bookingActionableDynamicQuery =
+			ActionableDynamicQuery calendarBookingActionableDynamicQuery =
 				new CalendarBookingExportActionableDynamicQuery(
 					portletDataContext);
 
-			bookingActionableDynamicQuery.performActions();
+			calendarBookingActionableDynamicQuery.performActions();
 		}
 
 		if (portletDataContext.getBooleanParameter(
 				NAMESPACE, "notification-templates")) {
 
-			ActionableDynamicQuery notificationTemplateActionableDynamicQuery =
-				new CalendarNotificationTemplateExportActionableDynamicQuery(
-					portletDataContext);
+			ActionableDynamicQuery
+				calendarNotificationTemplateActionableDynamicQuery =
+					new CalendarNotificationTemplateExportActionableDynamicQuery(
+						portletDataContext);
 
-			notificationTemplateActionableDynamicQuery.performActions();
+			calendarNotificationTemplateActionableDynamicQuery.performActions();
 		}
 
 		return getExportDataRootElementString(rootElement);
@@ -147,17 +148,6 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 			portletDataContext.getScopeGroupId());
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "calendars")) {
-			Element resourcesElement =
-				portletDataContext.getImportDataGroupElement(
-					CalendarResource.class);
-
-			List<Element> resourceElements = resourcesElement.elements();
-
-			for (Element resourceElement : resourceElements) {
-				StagedModelDataHandlerUtil.importStagedModel(
-					portletDataContext, resourceElement);
-			}
-
 			Element calendarsElement =
 				portletDataContext.getImportDataGroupElement(Calendar.class);
 
@@ -167,36 +157,49 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 				StagedModelDataHandlerUtil.importStagedModel(
 					portletDataContext, calendarElement);
 			}
+
+			Element calendarResourcesElement =
+				portletDataContext.getImportDataGroupElement(
+					CalendarResource.class);
+
+			List<Element> calendarResourceElements =
+				calendarResourcesElement.elements();
+
+			for (Element calendarResourceElement : calendarResourceElements) {
+				StagedModelDataHandlerUtil.importStagedModel(
+					portletDataContext, calendarResourceElement);
+			}
 		}
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "bookings")) {
-			Element bookingsElement =
+			Element calendarBookingsElement =
 				portletDataContext.getImportDataGroupElement(
 					CalendarBooking.class);
 
-			List<Element> bookingElements = bookingsElement.elements();
+			List<Element> calendarBookingElements =
+				calendarBookingsElement.elements();
 
-			for (Element bookingElement : bookingElements) {
+			for (Element calendarBookingElement : calendarBookingElements) {
 				StagedModelDataHandlerUtil.importStagedModel(
-					portletDataContext, bookingElement);
+					portletDataContext, calendarBookingElement);
 			}
 		}
 
 		if (portletDataContext.getBooleanParameter(
 				NAMESPACE, "notification-templates")) {
 
-			Element notificationTemplatesElement =
+			Element calendarNotificationTemplatesElement =
 				portletDataContext.getImportDataGroupElement(
 					CalendarNotificationTemplate.class);
 
-			List<Element> notificationTemplateElements =
-				notificationTemplatesElement.elements();
+			List<Element> calendarNotificationTemplateElements =
+				calendarNotificationTemplatesElement.elements();
 
-			for (Element notificationTemplateElement :
-					notificationTemplateElements) {
+			for (Element calendarNotificationTemplateElement :
+					calendarNotificationTemplateElements) {
 
 				StagedModelDataHandlerUtil.importStagedModel(
-					portletDataContext, notificationTemplateElement);
+					portletDataContext, calendarNotificationTemplateElement);
 			}
 		}
 
@@ -214,23 +217,24 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 
 		calendarActionableDynamicQuery.performCount();
 
+		ActionableDynamicQuery calendarBookingActionableDynamicQuery =
+			new CalendarBookingExportActionableDynamicQuery(portletDataContext);
+
+		calendarBookingActionableDynamicQuery.performCount();
+
+		ActionableDynamicQuery
+			calendarNotificationTemplateActionableDynamicQuery =
+				new CalendarNotificationTemplateExportActionableDynamicQuery(
+					portletDataContext);
+
+		calendarNotificationTemplateActionableDynamicQuery.performCount();
+
 		ActionableDynamicQuery calendarResourceActionableDynamicQuery =
 			getCalendarResourceActionableDynamicQuery(
 				portletDataContext,
 				PortalUtil.getClassNameId(CalendarResource.class));
 
 		calendarResourceActionableDynamicQuery.performCount();
-
-		ActionableDynamicQuery bookingActionableDynamicQuery =
-			new CalendarBookingExportActionableDynamicQuery(portletDataContext);
-
-		bookingActionableDynamicQuery.performCount();
-
-		ActionableDynamicQuery notificationTemplateActionableDynamicQuery =
-			new CalendarNotificationTemplateExportActionableDynamicQuery(
-				portletDataContext);
-
-		notificationTemplateActionableDynamicQuery.performCount();
 	}
 
 	protected ActionableDynamicQuery getCalendarResourceActionableDynamicQuery(
