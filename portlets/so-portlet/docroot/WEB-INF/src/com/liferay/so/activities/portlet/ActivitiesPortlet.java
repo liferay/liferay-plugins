@@ -136,6 +136,10 @@ public class ActivitiesPortlet extends MVCPortlet {
 
 				jsonObject.put(
 					"userName", HtmlUtil.escape(mbMessage.getUserName()));
+
+				jsonObject.put(
+					"userPortraitURL", HtmlUtil.escape(
+						user.getPortraitURL(themeDisplay)));
 			}
 
 			jsonObject.put("success", Boolean.TRUE);
