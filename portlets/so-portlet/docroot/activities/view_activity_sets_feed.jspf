@@ -66,14 +66,38 @@
 							<span><%= activityFeedEntry.getLink() %></span>
 						</c:if>
 
+						<%
+						String className = activitySet.getClassName();
+						long classPK = activitySet.getClassPK();
+
+						if (activitySet.getActivityCount() > 1 ) {
+							className = SocialActivitySet.class.getName();
+							classPK = activitySet.getActivitySetId();
+						}
+
+						MBMessageDisplay messageDisplay = MBMessageLocalServiceUtil.getDiscussionMessageDisplay(user.getUserId(), themeDisplay.getScopeGroupId(), className, classPK, WorkflowConstants.STATUS_APPROVED);
+
+						MBTreeWalker treeWalker = messageDisplay.getTreeWalker();
+
+						List<MBMessage> messages = treeWalker.getMessages();
+
+						messages = ListUtil.sort(messages, new MessageCreateDateComparator(true));
+
+						int messagesCount = messages.size() - 1;
+						%>
+
+						<span class="view-comments action">
+							<a href="javascript:;"><%= messagesCount > 0 ? messagesCount : StringPool.BLANK %> <liferay-ui:message key='<%= messagesCount > 1 ? "comments" : "comment" %>' /></a>
+						</span>
+
 						<span class="toggle-action aui-helper-hidden">
 							<a class="toggle-entry" data-entryId="<%= activitySet.getActivitySetId() %>" href="javascript:;">
 								<span><liferay-ui:message key="view-more" /></span>
 							</a>
 						</span>
-
-						<%@ include file="/activities/view_comments.jspf" %>
 					</div>
+
+					<%@ include file="/activities/view_comments.jspf" %>
 				</div>
 			</div>
 		</div>
