@@ -114,7 +114,7 @@
 				</span>
 			</div>
 
-			<aui:input cssClass="comment-form" label="" name="body" />
+			<aui:input cssClass="comment-form" label="" name="body" placeholder='<%= LanguageUtil.get(pageContext, "leave-a-comment") %>'/>
 
 			<aui:input name="submit" type="hidden" value="post" />
 		</div>
