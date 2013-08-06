@@ -17,6 +17,7 @@
 
 package com.liferay.so.activities.portlet;
 
+import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -123,7 +124,9 @@ public class ActivitiesPortlet extends MVCPortlet {
 
 				jsonObject.put(
 					"modifiedDate",
-					dateFormatDateTime.format(mbMessage.getModifiedDate()));
+					Time.getRelativeTimeDescription(
+						mbMessage.getModifiedDate().getTime(),
+						themeDisplay.getLocale(), themeDisplay.getTimeZone()));
 
 				User user = UserLocalServiceUtil.fetchUser(
 					mbMessage.getUserId());
