@@ -209,6 +209,10 @@
 										messagesCount +
 										(messagesCount > 1 ? ' <%= UnicodeLanguageUtil.get(pageContext, "comments") %>' : ' <%= UnicodeLanguageUtil.get(pageContext, "comment") %>')
 									);
+
+									var textInput = commentsContainer.one('.comment-form .aui-field-input-text');
+
+									textInput.attr('value', '');
 								}
 							}
 						},
