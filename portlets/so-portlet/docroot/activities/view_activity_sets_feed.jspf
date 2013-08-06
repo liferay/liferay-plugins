@@ -63,7 +63,7 @@
 				<div class="activity-footer">
 					<div class="activity-footer-toolbar">
 						<c:if test="<%= Validator.isNotNull(activityFeedEntry.getLink()) %>">
-							<span><%= activityFeedEntry.getLink() %></span>
+							<span class="action"><%= activityFeedEntry.getLink() %></span>
 						</c:if>
 
 						<%
@@ -90,7 +90,7 @@
 							<a href="javascript:;"><%= messagesCount > 0 ? messagesCount : StringPool.BLANK %> <liferay-ui:message key='<%= messagesCount > 1 ? "comments" : "comment" %>' /></a>
 						</span>
 
-						<span class="toggle-action aui-helper-hidden">
+						<span class="toggle action aui-helper-hidden">
 							<a class="toggle-entry" data-entryId="<%= activitySet.getActivitySetId() %>" href="javascript:;">
 								<span><liferay-ui:message key="view-more" /></span>
 							</a>
