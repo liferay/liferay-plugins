@@ -16,15 +16,11 @@
 	}
 
 	.lfr-form-row {
-		.aui-field {
+		.field {
 			margin-left: 2em;
-
-			&.optional-control {
-				margin: 1.3em;
-			}
 		}
 
-		.aui-field.options, .validation .aui-field {
+		.field.options, .validation .field {
 			clear: both;
 			display: block;
 		}
@@ -45,7 +41,7 @@
 		clear: left;
 	}
 
-	.label-name .aui-field-wrapper-content {
+	.label-name .field-wrapper-content {
 		margin-top: 0;
 	}
 

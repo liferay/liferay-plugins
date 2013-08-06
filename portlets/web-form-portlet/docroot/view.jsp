@@ -64,14 +64,14 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 				<liferay-ui:error key='<%= "error" + fieldLabel %>' message="<%= fieldValidationErrorMessage %>" />
 
 				<c:if test="<%= Validator.isNotNull(fieldValidationScript) %>">
-					<div class="aui-helper-hidden" id="<portlet:namespace/>validationError<%= fieldName %>">
+					<div class="hide" id="<portlet:namespace/>validationError<%= fieldName %>">
 						<span class="portlet-msg-error"><%= fieldValidationErrorMessage %></span>
 					</div>
 				</c:if>
 			</c:if>
 
 			<c:if test="<%= !fieldOptional %>">
-				<div class="aui-helper-hidden" id="<portlet:namespace/>fieldOptionalError<%= fieldName %>">
+				<div class="hide" id="<portlet:namespace/>fieldOptionalError<%= fieldName %>">
 					<span class="portlet-msg-error"><liferay-ui:message key="this-field-is-mandatory" /></span>
 				</div>
 			</c:if>
