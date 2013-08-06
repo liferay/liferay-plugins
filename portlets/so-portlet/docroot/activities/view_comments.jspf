@@ -26,12 +26,20 @@
 		%>
 
 			<div class="comment-entry">
+				<div class="user-portrait">
+					<span class="avatar">
+
+						<%
+						User messageUser = UserLocalServiceUtil.getUser(message.getUserId());
+						%>
+
+						<a href="<%= messageUser.getDisplayURL(themeDisplay) %>">
+							<img alt="<%= messageUser.getFullName() %>" src="<%= messageUser.getPortraitURL(themeDisplay) %>" />
+						</a>
+					</span>
+				</div>
+
 				<div class="comment-body">
-
-					<%
-					User messageUser = UserLocalServiceUtil.getUser(message.getUserId());
-					%>
-
 					<c:choose>
 						<c:when test="<%= Validator.isNotNull(messageUser.getDisplayURL(themeDisplay)) %>">
 							<span class="user-name"><a href="<%= messageUser.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(message.getUserName()) %></a></span>
@@ -91,6 +99,19 @@
 		<aui:input name="threadId" type="hidden" value="<%= thread.getThreadId() %>" />
 
 		<div>
+			<div class="user-portrait">
+				<span class="avatar">
+
+					<%
+						User currentUser = themeDisplay.getUser();
+					%>
+
+					<a href="<%= currentUser.getDisplayURL(themeDisplay) %>">
+						<img alt="<%= currentUser.getFullName() %>" src="<%= currentUser.getPortraitURL(themeDisplay) %>" />
+					</a>
+				</span>
+			</div>
+
 			<aui:input cssClass="comment-form" label="" name="body" />
 
 			<aui:input name="submit" type="hidden" value="post" />
@@ -102,6 +123,13 @@
 	var addNewComment = function(commentsList, responseData) {
 		var commentEntryTemplate =
 			'<div class="comment-entry">' +
+				'<div class="user-portrait">' +
+					'<span class="avatar">' +
+						'<a href="' + '{userDisplayURL}' + '">' +
+							'<img alt="' + '{userName}' + '" src="' + '{userPortraitURL}' + '" />' +
+						'</a>' +
+					'</span>' +
+				'</div>' +
 				'<div class="comment-body">' +
 					'<span class="user-name"><a href="' + '{userDisplayURL}' + '">' + '{userName}' + '</a></span>' +
 					'<span class="message">' + '{body}' + '</span>' +
@@ -124,7 +152,8 @@
 				messageId: responseData.messageId,
 				modifiedDate: responseData.modifiedDate,
 				userDisplayURL: responseData.userDisplayURL ? responseData.userDisplayURL : '',
-				userName: responseData.userName
+				userName: responseData.userName,
+				userPortraitURL: responseData.userPortraitURL
 			}
 		);
 
