@@ -178,7 +178,7 @@
 	}
 }
 
-.aui-dialog-iframe-popup {
+.aui-dialog-iframe-popup .so-announcements-portlet {
 	select {
 		margin: 0;
 	}
@@ -203,6 +203,10 @@
 
 	.distribution-scope-container {
 		display: inline;
+
+		.aui-field-content:after {
+			display: none;
+		}
 	}
 
 	#_1_WAR_soannouncementsportlet_ocerSearchContainerSearchContainer td.last {
