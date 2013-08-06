@@ -181,12 +181,12 @@
 
 	.activity-footer-toolbar {
 		background: #EAEAEA;
-		padding: 0 1em;
+		padding: .5em 1em;
 
-		span {
+		.action {
 			border-left: 1px solid #2571AD;
 			display: inline-block;
-			line-height: 2.5em;
+			height: 16px;
 			padding: 0 .5em 0 .6em;
 
 			&:first-child {
@@ -197,6 +197,84 @@
 
 		a {
 			font-size: .9em;
+		}
+	}
+
+	.comments-container .user-portrait {
+		height: 32px;
+		width: 32px;
+
+		.avatar {
+			height: 32px;
+		}
+
+		img {
+			max-width: 32px;
+		}
+	}
+
+	.comment-entry, .comments-container .aui-form {
+		background: #EAEAEA;
+		border-top: 1px solid #FFF;
+		overflow: hidden;
+		padding: 2px;
+	}
+
+	.comment-entry {
+		.comment-body, .comment-info {
+			line-height: 1.3em;
+			margin-left: 36px;
+
+			span {
+				margin-right: .5em;
+			}
+		}
+
+		.user-name {
+			font-weight: bold;
+		}
+
+		.post-date {
+			color: #999;
+		}
+
+		.comment-info {
+			margin-top: 2px;
+		}
+	}
+
+	.comment-form {
+		.aui-field-content {
+			overflow: hidden;
+		}
+
+		.aui-field-element {
+			border: 1px solid #C7D0DA;
+			display: block;
+			margin: 2px;
+
+			&:hover {
+				border-color: #2571AD;
+			}
+
+			&:focus {
+				outline-color: #E59700;
+			}
+		}
+
+		.aui-field-input-text {
+			border-width: 0;
+			padding: 5px 0;
+			text-indent: 5px;
+			width: 100%;
+
+			&:hover {
+				border-color: transparent;
+			}
+
+			&:focus {
+				outline-color: transparent;
+			}
 		}
 	}
 
@@ -226,6 +304,19 @@
 
 /* ---------- Extras ---------- */
 
-.so-portlet-activities .toggler-content-collapsed .activity-footer-toolbar {
-	@include box-shadow(0 -1px 15px -5px rgba(0, 0, 0, .8));
+.so-portlet-activities {
+	.toggler-content-collapsed .activity-footer-toolbar {
+		@include box-shadow(0 -1px 15px -5px rgba(0, 0, 0, .8));
+	}
+
+	.comment-form {
+		.aui-field-element {
+			@include border-radius(5px);
+			@include box-shadow(0 1px 3px #C9C9C9 inset);
+		}
+
+		.aui-field-input-text {
+			@include box-shadow(none);
+		}
+	}
 }
