@@ -141,7 +141,7 @@
 
 				var currentTarget = event.currentTarget;
 
-				var activityFooterToolbar = currentTarget.ancestor('.activity-footer-toolbar');
+				var activityFooter = currentTarget.ancestor('.activity-footer');
 				var commentsContainer = currentTarget.ancestor('.comments-container');
 
 				var form = commentsContainer.one('form');
@@ -158,13 +158,13 @@
 								var responseData = this.get('responseData');
 
 								if (responseData.success) {
-									commentsContainer.removeClass('.aui-helper-hidden');
-
 									var commentsList = commentsContainer.one('.comments-list');
+
+									commentsList.removeClass('aui-helper-hidden');
 
 									addNewComment(commentsList, responseData);
 
-									var viewComments = activityFooterToolbar.one('.view-comments a');
+									var viewComments = activityFooter.one('.view-comments a');
 
 									var viewCommentsHtml = viewComments.get('innerHTML');
 

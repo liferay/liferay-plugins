@@ -46,9 +46,9 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 		function(event) {
 			var currentTarget = event.currentTarget;
 
-			var viewComments = currentTarget.ancestor();
+			var activityFooterToolbar = currentTarget.ancestor('.activity-footer-toolbar');
 
-			var commentsContainer = viewComments.siblings('.comments-container');
+			var commentsContainer = activityFooterToolbar.siblings('.comments-container');
 
 			var commentsList = commentsContainer.one('.comments-list');
 
@@ -63,7 +63,7 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 			if (confirm('<%= UnicodeLanguageUtil.get(pageContext,"are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
 				var currentTarget = event.currentTarget;
 
-				var activityFooterToolbar = currentTarget.ancestor('.activity-footer-toolbar');
+				var activityFooter = currentTarget.ancestor('.activity-footer');
 				var commentEntry = currentTarget.ancestor('.comment-entry')
 				var commentsContainer = currentTarget.ancestor('.comments-container');
 
@@ -89,7 +89,7 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 								if (responseData.success) {
 									commentEntry.remove();
 
-									var viewComments = activityFooterToolbar.one('.view-comments a');
+									var viewComments = activityFooter.one('.view-comments a');
 
 									var viewCommentsHtml = viewComments.get('innerHTML');
 
