@@ -171,13 +171,13 @@ public class DefaultTaskManagerImpl
 				assigneeClassName, assigneeClassPK, workflowContext,
 				serviceContext);
 
+		workflowContext.put(WorkflowConstants.CONTEXT_TASK_COMMENTS, comment);
+
 		ExecutionContext executionContext = new ExecutionContext(
 			kaleoTaskInstanceToken.getKaleoInstanceToken(),
 			kaleoTaskInstanceToken, workflowContext, serviceContext);
 
 		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
-
-		workflowContext.put(WorkflowConstants.CONTEXT_TASK_COMMENTS, comment);
 
 		ActionExecutorUtil.executeKaleoActions(
 			KaleoNode.class.getName(), kaleoTask.getKaleoNodeId(),
