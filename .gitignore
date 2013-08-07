@@ -4,6 +4,7 @@
 *.iml
 *.ipr
 *.iws
+*.processed
 *.swp
 .ant_targets
 .ant-targets-build.xml
