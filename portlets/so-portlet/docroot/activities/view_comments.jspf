@@ -21,8 +21,8 @@
 	<div class="aui-helper-hidden comments-list">
 
 		<%
-		for (int i = 1; i < messages.size(); i++) {
-			MBMessage message = messages.get(i);
+		for (int i = 1; i < mbMessages.size(); i++) {
+			MBMessage mbMessage = mbMessages.get(i);
 		%>
 
 			<div class="comment-entry">
@@ -30,43 +30,53 @@
 					<span class="avatar">
 
 						<%
-						User messageUser = UserLocalServiceUtil.getUser(message.getUserId());
+						User mbMessageUser = UserLocalServiceUtil.fetchUser(activitySet.getUserId());
+
+						String mbMessageUserDisplayURL = StringPool.BLANK;
+						String mbMessageUserFullName = StringPool.BLANK;
+						String mbMessageUserPortraitURL = StringPool.BLANK;
+
+						if (activitySetUser != null) {
+							mbMessageUserDisplayURL = mbMessageUser.getDisplayURL(themeDisplay);
+							mbMessageUserFullName = mbMessageUser.getFullName();
+							mbMessageUserPortraitURL = mbMessageUser.getPortraitURL(themeDisplay);
+						}
 						%>
 
-						<a href="<%= messageUser.getDisplayURL(themeDisplay) %>">
-							<img alt="<%= messageUser.getFullName() %>" src="<%= messageUser.getPortraitURL(themeDisplay) %>" />
+						<a href="<%= mbMessageUserDisplayURL %>">
+							<img alt="<%= mbMessageUserFullName %>" src="<%= mbMessageUserPortraitURL %>" />
 						</a>
 					</span>
 				</div>
 
 				<div class="comment-body">
 					<c:choose>
-						<c:when test="<%= Validator.isNotNull(messageUser.getDisplayURL(themeDisplay)) %>">
-							<span class="user-name"><a href="<%= messageUser.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(message.getUserName()) %></a></span>
+						<c:when test="<%= Validator.isNotNull(mbMessageUser.getDisplayURL(themeDisplay)) %>">
+							<span class="user-name"><a href="<%= mbMessageUser.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(mbMessage.getUserName()) %></a></span>
 						</c:when>
 						<c:otherwise>
-							<span class="user-name"><%= HtmlUtil.escape(message.getUserName()) %></span>
+							<span class="user-name"><%= HtmlUtil.escape(mbMessage.getUserName()) %></span>
 						</c:otherwise>
 					</c:choose>
 
-					<span class="message"><%= HtmlUtil.escape(message.getBody()) %></span>
+					<span class="message"><%= HtmlUtil.escape(mbMessage.getBody()) %></span>
 				</div>
 
 				<div class="comment-info">
 					<span class="post-date">
-						<%= Time.getRelativeTimeDescription(message.getModifiedDate().getTime(), locale, themeDisplay.getTimeZone()) %>
+						<%= Time.getRelativeTimeDescription(mbMessage.getModifiedDate(), locale, timeZone) %>
 					</span>
 
-					<c:if test="<%= DateUtil.compareTo(message.getCreateDate(), message.getModifiedDate()) != 0 %>">
+					<c:if test="<%= DateUtil.compareTo(mbMessage.getCreateDate(), mbMessage.getModifiedDate()) != 0 %>">
 						<span class="edit-notice"><liferay-ui:message key="modified" /></span>
 					</c:if>
 
-					<c:if test="<%= message.getUserId() == user.getUserId() %>">
+					<c:if test="<%= mbMessage.getUserId() == user.getUserId() %>">
 						<span class="edit-comment">
-							<a data-messageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="edit" /></a>
+							<a data-mbMessageId="<%= mbMessage.getMessageId() %>" href="javascript:;"><liferay-ui:message key="edit" /></a>
 						</span>
 						<span class="delete-comment">
-							<a data-messageId="<%= message.getMessageId() %>" href="javascript:;"><liferay-ui:message key="delete" /></a>
+							<a data-mbMessageId="<%= mbMessage.getMessageId() %>" href="javascript:;"><liferay-ui:message key="delete" /></a>
 						</span>
 					</c:if>
 				</div>
@@ -86,30 +96,30 @@
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
 		<aui:input name="className" type="hidden" value="<%= className %>" />
 		<aui:input name="classPK" type="hidden" value="<%= classPK %>" />
-		<aui:input name="messageId" type="hidden" value="" />
+		<aui:input name="mbMessageId" type="hidden" value="" />
 
 		<%
-		MBMessage rootMessage = treeWalker.getRoot();
+		MBMessage rootMBMessage = mbTreeWalker.getRoot();
 		%>
 
-		<aui:input name="parentMessageId" type="hidden" value="<%= rootMessage.getMessageId() %>" />
+		<aui:input name="parentMBMessageId" type="hidden" value="<%= rootMBMessage.getMessageId() %>" />
 
 		<%
-		MBThread thread = messageDisplay.getThread();
+		MBThread mbThread = mbMessageDisplay.getThread();
 		%>
 
-		<aui:input name="threadId" type="hidden" value="<%= thread.getThreadId() %>" />
+		<aui:input name="mbThreadId" type="hidden" value="<%= mbThread.getThreadId() %>" />
 
 		<div>
 			<div class="user-portrait">
 				<span class="avatar">
 
 					<%
-						User currentUser = themeDisplay.getUser();
+					User user = themeDisplay.getUser();
 					%>
 
-					<a href="<%= currentUser.getDisplayURL(themeDisplay) %>">
-						<img alt="<%= currentUser.getFullName() %>" src="<%= currentUser.getPortraitURL(themeDisplay) %>" />
+					<a href="<%= user.getDisplayURL(themeDisplay) %>">
+						<img alt="<%= user.getFullName() %>" src="<%= user.getPortraitURL(themeDisplay) %>" />
 					</a>
 				</span>
 			</div>
@@ -139,10 +149,10 @@
 				'<div class="comment-info">' +
 					'<span class="post-date">' + '{modifiedDate}' + '</span>' +
 					'<span class="edit-comment">' +
-						'<a data-messageId="' + '{messageId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "edit") %></a>' +
+						'<a data-mbMessageId="' + '{mbMessageId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "edit") %></a>' +
 					'</span>' +
 					'<span class="delete-comment">' +
-						'<a data-messageId="' + '{messageId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "delete") %></a>' +
+						'<a data-mbMessageId="' + '{mbMessageId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "delete") %></a>' +
 					'</span>' +
 				'</div>' +
 			'</div>';
@@ -151,7 +161,7 @@
 			commentEntryTemplate,
 			{
 				body: responseData.body,
-				messageId: responseData.messageId,
+				messageId: responseData.mbMessageId,
 				modifiedDate: responseData.modifiedDate,
 				userDisplayURL: responseData.userDisplayURL ? responseData.userDisplayURL : '',
 				userName: responseData.userName,
