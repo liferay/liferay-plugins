@@ -113,11 +113,6 @@
 		<div>
 			<div class="user-portrait">
 				<span class="avatar">
-
-					<%
-					User user = themeDisplay.getUser();
-					%>
-
 					<a href="<%= user.getDisplayURL(themeDisplay) %>">
 						<img alt="<%= user.getFullName() %>" src="<%= user.getPortraitURL(themeDisplay) %>" />
 					</a>

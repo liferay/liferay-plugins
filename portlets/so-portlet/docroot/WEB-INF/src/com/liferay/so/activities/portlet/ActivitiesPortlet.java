@@ -78,7 +78,7 @@ public class ActivitiesPortlet extends MVCPortlet {
 		String className = ParamUtil.getString(actionRequest, "className");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
 		long mbMessageId = ParamUtil.getLong(actionRequest, "mbMessageId");
-		long mbThreadId = ParamUtil.getLong(actionRequest, "smbThreadId");
+		long mbThreadId = ParamUtil.getLong(actionRequest, "mbThreadId");
 		long parentMBMessageId = ParamUtil.getLong(
 			actionRequest, "parentMBMessageId");
 		String body = ParamUtil.getString(actionRequest, "body");
