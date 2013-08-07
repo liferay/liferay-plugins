@@ -225,9 +225,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		Locale defaultLocale = LocaleUtil.getDefault();
 		String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 
-		String title = ParamUtil.getString(
-			actionRequest, "title" + StringPool.UNDERLINE + defaultLanguageId);
-
 		boolean sendAsEmail = GetterUtil.getBoolean(
 			getParameter(actionRequest, "sendAsEmail"));
 		String subject = getParameter(actionRequest, "subject");
@@ -237,10 +234,6 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 
 		boolean saveToFile = GetterUtil.getBoolean(
 			getParameter(actionRequest, "saveToFile"));
-
-		if (Validator.isNull(title)) {
-			SessionErrors.add(actionRequest, "titleRequired");
-		}
 
 		if (!sendAsEmail && !saveToDatabase && !saveToFile) {
 			SessionErrors.add(actionRequest, "handlingRequired");

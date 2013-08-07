@@ -54,8 +54,6 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 	<liferay-ui:panel-container extended="<%= Boolean.TRUE %>" id="webFormConfiguration" persistState="<%= true %>">
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="webFormGeneral" persistState="<%= true %>" title="form-information">
 			<aui:fieldset>
-				<liferay-ui:error key="titleRequired" message="please-enter-a-title" />
-
 				<aui:field-wrapper cssClass="lfr-input-text-container" label="title">
 					<liferay-ui:input-localized name="title" xml="<%= titleXml %>" />
 				</aui:field-wrapper>
