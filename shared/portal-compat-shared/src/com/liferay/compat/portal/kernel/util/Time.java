@@ -30,6 +30,12 @@ import java.util.TimeZone;
 public class Time extends com.liferay.portal.kernel.util.Time {
 
 	public static String getRelativeTimeDescription(
+		Date date, Locale locale, TimeZone timeZone) {
+
+		return getRelativeTimeDescription(date.getTime(), locale, timeZone);
+	}
+
+	public static String getRelativeTimeDescription(
 		long milliseconds, Locale locale, TimeZone timeZone) {
 
 		Format timeFormat = FastDateFormatFactoryUtil.getTime(locale, timeZone);
