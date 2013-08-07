@@ -62,7 +62,7 @@ if (entry.getPriority() > 0) {
 	<div class="entry-data">
 		<div class="entry-header">
 			<div class="entry-time">
-				<%= Time.getRelativeTimeDescription(entry.getDisplayDate().getTime(), locale, themeDisplay.getTimeZone()) %>
+				<%= Time.getRelativeTimeDescription(entry.getDisplayDate(), locale, timeZone) %>
 			</div>
 
 			<div class="entry-action">
