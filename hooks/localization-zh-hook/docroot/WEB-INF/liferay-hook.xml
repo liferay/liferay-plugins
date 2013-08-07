@@ -3,10 +3,7 @@
 
 <hook>
 	<portal-properties>portal.properties</portal-properties>
-	<language-properties>content/Language.properties</language-properties>
-	<language-properties>content/Language_en.properties</language-properties>
-	<language-properties>content/Language_zh_CN.properties</language-properties>
-	<language-properties>content/Language_zh_TW.properties</language-properties>
+	<language-properties>content/Language*.properties</language-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<service>
 		<service-type>com.liferay.portal.service.CompanyLocalService</service-type>
