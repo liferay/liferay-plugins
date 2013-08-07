@@ -20,9 +20,9 @@ package com.liferay.so.activities.portlet;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.User;
@@ -35,8 +35,6 @@ import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
-
-import java.text.Format;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -79,11 +77,10 @@ public class ActivitiesPortlet extends MVCPortlet {
 
 		String className = ParamUtil.getString(actionRequest, "className");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		long messageId = ParamUtil.getLong(actionRequest, "messageId");
-		long threadId = ParamUtil.getLong(actionRequest, "threadId");
-		long parentMessageId = ParamUtil.getLong(
-			actionRequest, "parentMessageId");
-		String subject = ParamUtil.getString(actionRequest, "subject");
+		long mbMessageId = ParamUtil.getLong(actionRequest, "mbMessageId");
+		long mbThreadId = ParamUtil.getLong(actionRequest, "smbThreadId");
+		long parentMBMessageId = ParamUtil.getLong(
+			actionRequest, "parentMBMessageId");
 		String body = ParamUtil.getString(actionRequest, "body");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -99,50 +96,43 @@ public class ActivitiesPortlet extends MVCPortlet {
 			if (cmd.equals(Constants.DELETE)) {
 				MBMessageServiceUtil.deleteDiscussionMessage(
 					groupId, className, classPK, className, classPK,
-					themeDisplay.getUserId(), messageId);
+					themeDisplay.getUserId(), mbMessageId);
 			}
-			else if (cmd.equals(Constants.EDIT) && (messageId > 0)) {
+			else if (cmd.equals(Constants.EDIT) && (mbMessageId > 0)) {
 				mbMessage = MBMessageServiceUtil.updateDiscussionMessage(
 					className, classPK, className, classPK,
-					themeDisplay.getUserId(), messageId, subject, body,
-					serviceContext);
+					themeDisplay.getUserId(), mbMessageId, StringPool.BLANK,
+					body, serviceContext);
 			}
 			else {
 				mbMessage = MBMessageServiceUtil.addDiscussionMessage(
 					groupId, className, classPK, className, classPK,
-					themeDisplay.getUserId(), threadId, parentMessageId,
-					subject, body, serviceContext);
+					themeDisplay.getUserId(), mbThreadId, parentMBMessageId,
+					StringPool.BLANK, body, serviceContext);
 			}
 
 			if (mbMessage != null) {
 				jsonObject.put("body", HtmlUtil.escape(mbMessage.getBody()));
-				jsonObject.put("messageId", mbMessage.getMessageId());
-
-				Format dateFormatDateTime =
-					FastDateFormatFactoryUtil.getDateTime(
-						themeDisplay.getLocale(), themeDisplay.getTimeZone());
-
+				jsonObject.put("mbMessageId", mbMessage.getMessageId());
 				jsonObject.put(
 					"modifiedDate",
 					Time.getRelativeTimeDescription(
-						mbMessage.getModifiedDate().getTime(),
-						themeDisplay.getLocale(), themeDisplay.getTimeZone()));
+						mbMessage.getModifiedDate(), themeDisplay.getLocale(),
+						themeDisplay.getTimeZone()));
 
 				User user = UserLocalServiceUtil.fetchUser(
 					mbMessage.getUserId());
 
 				if (user != null) {
-					String userDisplayURL = user.getDisplayURL(themeDisplay);
-
-					jsonObject.put("userDisplayURL", userDisplayURL);
+					jsonObject.put(
+						"userDisplayURL", user.getDisplayURL(themeDisplay));
+					jsonObject.put(
+						"userPortraitURL",
+						HtmlUtil.escape(user.getPortraitURL(themeDisplay)));
 				}
 
 				jsonObject.put(
 					"userName", HtmlUtil.escape(mbMessage.getUserName()));
-
-				jsonObject.put(
-					"userPortraitURL", HtmlUtil.escape(
-						user.getPortraitURL(themeDisplay)));
 			}
 
 			jsonObject.put("success", Boolean.TRUE);

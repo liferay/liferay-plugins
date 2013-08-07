@@ -75,19 +75,19 @@
 							classPK = activitySet.getActivitySetId();
 						}
 
-						MBMessageDisplay messageDisplay = MBMessageLocalServiceUtil.getDiscussionMessageDisplay(user.getUserId(), themeDisplay.getScopeGroupId(), className, classPK, WorkflowConstants.STATUS_APPROVED);
+						MBMessageDisplay mbMessageDisplay = MBMessageLocalServiceUtil.getDiscussionMessageDisplay(user.getUserId(), themeDisplay.getScopeGroupId(), className, classPK, WorkflowConstants.STATUS_APPROVED);
 
-						MBTreeWalker treeWalker = messageDisplay.getTreeWalker();
+						MBTreeWalker mbTreeWalker = mbMessageDisplay.getTreeWalker();
 
-						List<MBMessage> messages = treeWalker.getMessages();
+						List<MBMessage> mbMessages = mbTreeWalker.getMessages();
 
-						messages = ListUtil.sort(messages, new MessageCreateDateComparator(true));
+						mbMessages = ListUtil.sort(mbMessages, new MessageCreateDateComparator(true));
 
-						int messagesCount = messages.size() - 1;
+						int mbMessagesCount = mbMessages.size() - 1;
 						%>
 
 						<span class="view-comments action">
-							<a href="javascript:;"><%= messagesCount > 0 ? messagesCount : StringPool.BLANK %> <liferay-ui:message key='<%= messagesCount > 1 ? "comments" : "comment" %>' /></a>
+							<a href="javascript:;"><%= mbMessagesCount > 0 ? mbMessagesCount : StringPool.BLANK %> <liferay-ui:message key='<%= mbMessagesCount > 1 ? "comments" : "comment" %>' /></a>
 						</span>
 
 						<span class="toggle action aui-helper-hidden">

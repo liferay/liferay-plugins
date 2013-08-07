@@ -73,11 +73,11 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 				cmdInput.val('<%= Constants.DELETE %>');
 
-				var messageId = currentTarget.getAttribute('data-messageId');
+				var mbMessageId = currentTarget.getAttribute('data-mbMessageId');
 
-				var messageIdInput = form.one('#<portlet:namespace />messageId');
+				var mbMessageIdInput = form.one('#<portlet:namespace />mbMessageId');
 
-				messageIdInput.val(messageId);
+				mbMessageIdInput.val(mbMessageId);
 
 				A.io.request(
 					form.attr('action'),
@@ -118,9 +118,9 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 		function(event) {
 			var currentTarget = event.currentTarget;
 
-			var messageId = currentTarget.getAttribute('data-messageId');
+			var mbMessageId = currentTarget.getAttribute('data-mbMessageId');
 
-			var editForm = A.one('#<portlet:namespace />fm1' + messageId);
+			var editForm = A.one('#<portlet:namespace />fm1' + mbMessageId);
 
 			var commentEntry = currentTarget.ancestor('.comment-entry');
 
@@ -145,9 +145,9 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 				cmdInput.val('<%= Constants.EDIT %>');
 
-				var messageIdInput = editForm.one('#<portlet:namespace />messageId');
+				var mbMessageIdInput = editForm.one('#<portlet:namespace />mbMessageId');
 
-				messageIdInput.val(messageId);
+				mbMessageIdInput.val(mbMessageId);
 
 				var commentBody = commentEntry.one('.comment-body');
 
