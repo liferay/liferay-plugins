@@ -49,3 +49,9 @@
 		width: 200px;
 	}
 }
+
+.web-form-portlet {
+	.description {
+		margin-bottom: 2em;
+	}
+}
