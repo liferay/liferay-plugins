@@ -2,7 +2,7 @@
 <!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_2_0.dtd">
 
 <hook>
-	<language-properties>content/Language.properties</language-properties>
+	<language-properties>content/Language*.properties</language-properties>
 	<servlet-filter>
 		<servlet-filter-name>Plugins Security Manager Filter</servlet-filter-name>
 		<servlet-filter-impl>com.liferay.pluginssecuritymanager.hook.filter.PluginsSecurityManagerFilter</servlet-filter-impl>
