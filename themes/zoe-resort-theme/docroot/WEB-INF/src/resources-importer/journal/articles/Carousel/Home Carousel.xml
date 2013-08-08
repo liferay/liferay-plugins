@@ -2,10 +2,10 @@
 
 <root available-locales="en_US" default-locale="en_US">
 	<dynamic-element instance-id="E6KvgQoU" name="width" type="text" index-type="">
-		<dynamic-content><![CDATA[640]]></dynamic-content>
+		<dynamic-content><![CDATA[585]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="d8phHqbq" name="height" type="text" index-type="">
-		<dynamic-content><![CDATA[290]]></dynamic-content>
+		<dynamic-content><![CDATA[310]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element instance-id="qTEG2sA3" name="duration" type="list" index-type="">
 		<dynamic-content><![CDATA[5]]></dynamic-content>
