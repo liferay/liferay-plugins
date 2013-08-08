@@ -19,6 +19,7 @@ package com.liferay.so.announcements.portlet;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -39,6 +40,7 @@ import java.util.Calendar;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletURL;
 
 /**
  * @author Raymond Augé
@@ -101,8 +103,16 @@ public class AnnouncementsPortlet extends MVCPortlet {
 				SessionMessages.add(actionRequest, "announcementUpdated");
 			}
 
-			jsonObject.put(
-				"redirect", ParamUtil.getString(actionRequest, "redirect"));
+			LiferayPortletResponse liferayPortletResponse =
+				(LiferayPortletResponse)actionResponse;
+
+			PortletURL portletURL = liferayPortletResponse.createRenderURL();
+
+			portletURL.setParameter("mvcPath", "/manage_entries.jsp");
+			portletURL.setParameter("distributionScope",
+				ParamUtil.getString(actionRequest, "distributionScope"));
+
+			jsonObject.put("redirect", portletURL.toString());
 			jsonObject.put("success", true);
 		}
 		catch (Exception e) {
