@@ -75,19 +75,18 @@
 							classPK = activitySet.getActivitySetId();
 						}
 
-						MBMessageDisplay mbMessageDisplay = MBMessageLocalServiceUtil.getDiscussionMessageDisplay(user.getUserId(), themeDisplay.getScopeGroupId(), className, classPK, WorkflowConstants.STATUS_APPROVED);
+						int commentsCount = 0;
 
-						MBTreeWalker mbTreeWalker = mbMessageDisplay.getTreeWalker();
-
-						List<MBMessage> mbMessages = mbTreeWalker.getMessages();
-
-						mbMessages = ListUtil.sort(mbMessages, new MessageCreateDateComparator(true));
-
-						int mbMessagesCount = mbMessages.size() - 1;
+						if (className.equals(MicroblogsEntry.class.getName())) {
+							commentsCount = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, classPK);
+						}
+						else {
+							commentsCount = MBMessageLocalServiceUtil.getDiscussionMessagesCount(className, classPK, WorkflowConstants.STATUS_APPROVED);
+						}
 						%>
 
 						<span class="view-comments action">
-							<a href="javascript:;"><%= mbMessagesCount > 0 ? mbMessagesCount : StringPool.BLANK %> <liferay-ui:message key='<%= mbMessagesCount > 1 ? "comments" : "comment" %>' /></a>
+							<a href="javascript:;"><%= commentsCount > 0 ? commentsCount : StringPool.BLANK %> <liferay-ui:message key='<%= commentsCount > 1 ? "comments" : "comment" %>' /></a>
 						</span>
 
 						<span class="toggle action aui-helper-hidden">

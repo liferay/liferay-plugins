@@ -40,6 +40,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageDisplay;
+import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.model.MBTreeWalker;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
@@ -225,9 +226,6 @@ public class ActivitiesPortlet extends MVCPortlet {
 		String className = ParamUtil.getString(actionRequest, "className");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
 		long mbMessageId = ParamUtil.getLong(actionRequest, "entryId");
-		long mbThreadId = ParamUtil.getLong(actionRequest, "mbThreadId");
-		long parentMBMessageId = ParamUtil.getLong(
-			actionRequest, "parentMBMessageId");
 		String body = ParamUtil.getString(actionRequest, "body");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -252,10 +250,22 @@ public class ActivitiesPortlet extends MVCPortlet {
 					body, serviceContext);
 			}
 			else {
+				MBMessageDisplay mbMessageDisplay =
+					MBMessageLocalServiceUtil.getDiscussionMessageDisplay(
+						themeDisplay.getUserId(), groupId, className, classPK,
+						WorkflowConstants.STATUS_APPROVED);
+
+				MBThread thread = mbMessageDisplay.getThread();
+
+				MBTreeWalker mbTreeWalker = mbMessageDisplay.getTreeWalker();
+
+				MBMessage rootMessage = mbTreeWalker.getRoot();
+
 				mbMessage = MBMessageServiceUtil.addDiscussionMessage(
 					groupId, className, classPK, className, classPK,
-					themeDisplay.getUserId(), mbThreadId, parentMBMessageId,
-					StringPool.BLANK, body, serviceContext);
+					themeDisplay.getUserId(), thread.getThreadId(),
+					rootMessage.getMessageId(), StringPool.BLANK, body,
+					serviceContext);
 			}
 
 			if (mbMessage != null) {
