@@ -52,7 +52,41 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 			var commentsList = commentsContainer.one('.comments-list');
 
-			commentsList.toggleClass('aui-helper-hidden');
+			var commentEntry = commentsList.one('.comment-entry');
+
+			if (commentEntry) {
+				commentsList.toggleClass('aui-helper-hidden');
+			}
+			else {
+				var uri = '<liferay-portlet:resourceURL id="getComments"></liferay-portlet:resourceURL>';
+
+				uri = Liferay.Util.addParams('activitySetId=' + currentTarget.getAttribute('data-activitySetId'), uri) || uri;
+
+				A.io.request(
+					uri,
+					{
+						after: {
+							success: function(event, id, obj) {
+								var responseData = this.get('responseData');
+
+								if (responseData) {
+									var commentsCount = responseData.commentsCount;
+
+									var comments = responseData.comments;
+
+									A.Array.map(
+										comments,
+										function(comment) {
+											Liferay.SO.Activities.addNewComment(commentsList, comment);
+										}
+									)
+								}
+							}
+						},
+						dataType: 'json',
+					}
+				);
+			}
 		},
 		'.view-comments a'
 	);

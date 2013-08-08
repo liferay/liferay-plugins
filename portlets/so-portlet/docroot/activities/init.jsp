@@ -19,17 +19,13 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.portal.kernel.util.ListUtil" %><%@
+<%@ page import="com.liferay.microblogs.model.MicroblogsEntry" %><%@
+page import="com.liferay.microblogs.model.MicroblogsEntryConstants" %><%@
+page import="com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
 page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
-page import="com.liferay.portal.kernel.util.Time" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
-page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
-page import="com.liferay.portlet.messageboards.model.MBMessageDisplay" %><%@
-page import="com.liferay.portlet.messageboards.model.MBThread" %><%@
-page import="com.liferay.portlet.messageboards.model.MBTreeWalker" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
-page import="com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator" %><%@
 page import="com.liferay.portlet.social.model.SocialActivity" %><%@
 page import="com.liferay.portlet.social.model.SocialActivitySet" %><%@
 page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %><%@
