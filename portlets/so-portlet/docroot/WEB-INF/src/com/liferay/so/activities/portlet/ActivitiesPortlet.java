@@ -79,7 +79,7 @@ public class ActivitiesPortlet extends MVCPortlet {
 
 		String className = ParamUtil.getString(actionRequest, "className");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		long mbMessageId = ParamUtil.getLong(actionRequest, "mbMessageId");
+		long mbMessageId = ParamUtil.getLong(actionRequest, "entryId");
 		long mbThreadId = ParamUtil.getLong(actionRequest, "mbThreadId");
 		long parentMBMessageId = ParamUtil.getLong(
 			actionRequest, "parentMBMessageId");
@@ -130,14 +130,14 @@ public class ActivitiesPortlet extends MVCPortlet {
 	}
 
 	protected JSONObject getJSONObject(
-			long mbMessageId, String body, Date modifiedDate, long userId,
+			long entryId, String body, Date modifiedDate, long userId,
 			String userName, ThemeDisplay themeDisplay)
 		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("body", HtmlUtil.escape(body));
-		jsonObject.put("mbMessageId", mbMessageId);
+		jsonObject.put("entryId", entryId);
 		jsonObject.put(
 			"modifiedDate",
 			Time.getRelativeTimeDescription(
