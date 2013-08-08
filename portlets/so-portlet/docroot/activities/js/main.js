@@ -5,6 +5,46 @@ AUI().use(
 		Liferay.namespace('SO');
 
 		Liferay.SO.Activities = {
+			addNewComment: function(commentsList, responseData) {
+				var commentEntryTemplate =
+					'<div class="comment-entry">' +
+						'<div class="user-portrait">' +
+							'<span class="avatar">' +
+								'<a href={userDisplayURL}>' +
+									'<img alt={userName} src={userPortraitURL} />' +
+								'</a>' +
+							'</span>' +
+						'</div>' +
+						'<div class="comment-body">' +
+							'<span class="user-name"><a href={userDisplayURL}>{userName}</a></span>' +
+							'<span class="message">{body}</span>' +
+						'</div>' +
+						'<div class="comment-info">' +
+							'<span class="post-date">{modifiedDate} </span>' +
+							'<span class="edit-comment">' +
+								'<a data-entryId={entryId} href="javascript:;">' + Liferay.Language.get('edit') + '</a>' +
+							'</span>' +
+							'<span class="delete-comment">' +
+								'<a data-entryId={entryId} href="javascript:;">' + Liferay.Language.get('delete') + '</a>' +
+							'</span>' +
+						'</div>' +
+					'</div>';
+
+				var commentEntryHtml = A.Lang.sub(
+					commentEntryTemplate,
+					{
+						body: responseData.body,
+						entryId: responseData.entryId,
+						modifiedDate: responseData.modifiedDate,
+						userDisplayURL: responseData.userDisplayURL ? responseData.userDisplayURL : '',
+						userName: responseData.userName,
+						userPortraitURL: responseData.userPortraitURL
+					}
+				);
+
+				commentsList.append(commentEntryHtml);
+			},
+
 			toggleEntry: function(event, portletNamespace) {
 				var entryId = event.currentTarget.attr('data-entryId');
 
