@@ -98,18 +98,6 @@
 		<aui:input name="classPK" type="hidden" value="<%= classPK %>" />
 		<aui:input name="entryId" type="hidden" value="" />
 
-		<%
-		MBMessage rootMBMessage = mbTreeWalker.getRoot();
-		%>
-
-		<aui:input name="parentMBMessageId" type="hidden" value="<%= rootMBMessage.getMessageId() %>" />
-
-		<%
-		MBThread mbThread = mbMessageDisplay.getThread();
-		%>
-
-		<aui:input name="mbThreadId" type="hidden" value="<%= mbThread.getThreadId() %>" />
-
 		<div>
 			<div class="user-portrait">
 				<span class="avatar">
