@@ -41,9 +41,6 @@ $toolbar-bg: #DCE3EA;
 	}
 
 	.contacts-search {
-		float: left;
-		width: 30%;
-
 		.contacts-search-content {
 			height: 28px;
 			padding: 5px 0;
@@ -425,9 +422,8 @@ $toolbar-bg: #DCE3EA;
 			float: right;
 			margin: 5px;
 
-			input {
-				background: #E9E8E8 url(@theme_image_path@/common/add.png) no-repeat 5px 4px;
-				padding-left: 25px;
+			.aui-icon-add {
+				background-image: url(@theme_image_path@/common/add.png);
 			}
 		}
 	}
