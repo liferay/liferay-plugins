@@ -129,9 +129,11 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</div>
 
 				<c:if test="<%= !showOnlySiteMembers %>">
-					<div class="add-contact">
-						<aui:button value="add-contact" />
-					</div>
+					<button type="button" class="add-contact aui-buttonitem-content yui3-widget aui-component aui-buttonitem aui-state-default aui-buttonitem-icon-label" value="add-contact">
+						<span class="aui-buttonitem-icon aui-icon aui-icon-add"></span>
+						<span class="aui-buttonitem-label">Add Page</span>
+
+					</button>
 				</c:if>
 			</aui:layout>
 
@@ -543,7 +545,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						);
 					</c:when>
 					<c:otherwise>
-						A.one('.contacts-portlet .add-contact input').on(
+						A.one('.contacts-portlet button.add-contact').on(
 							'click',
 							function(event) {
 								contactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "add-contact") %>', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
