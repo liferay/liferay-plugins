@@ -131,8 +131,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 				<c:if test="<%= !showOnlySiteMembers %>">
 					<button type="button" class="add-contact aui-buttonitem-content yui3-widget aui-component aui-buttonitem aui-state-default aui-buttonitem-icon-label" id="<portlet:namespace/>add-contact" value="add-contact">
 						<span class="aui-buttonitem-icon aui-icon aui-icon-add"></span>
-						<span class="aui-buttonitem-label">Add Page</span>
 
+						<span class="aui-buttonitem-label">
+							<%= LanguageUtil.get(pageContext, "add-contact") %>
+						</span>
 					</button>
 				</c:if>
 			</aui:layout>
