@@ -21,8 +21,10 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupGroupRole;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.service.UserGroupGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
@@ -34,6 +36,7 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -208,6 +211,8 @@ public class EmailNotificationSender implements NotificationSender {
 			}
 		}
 		else {
+			List<User> users = new ArrayList<User>();
+
 			KaleoInstanceToken kaleoInstanceToken =
 				executionContext.getKaleoInstanceToken();
 
@@ -216,11 +221,26 @@ public class EmailNotificationSender implements NotificationSender {
 					kaleoInstanceToken.getGroupId(), roleId);
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
-				User user = userGroupRole.getUser();
+				users.add(userGroupRole.getUser());
+			}
 
+			List<UserGroupGroupRole> userGroupGroupRoles =
+				UserGroupGroupRoleLocalServiceUtil.
+					getUserGroupGroupRolesByGroupAndRole(
+						kaleoInstanceToken.getGroupId(), roleId);
+
+			for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
+				List<User> userGroupUsers =
+					UserLocalServiceUtil.getUserGroupUsers(
+						userGroupGroupRole.getUserGroupId());
+				users.addAll(userGroupUsers);
+			}
+
+			for (User user : users) {
 				if (user.isActive()) {
-					InternetAddress internetAddress = new InternetAddress(
-						user.getEmailAddress(), user.getFullName());
+					InternetAddress internetAddress =
+						new InternetAddress(
+							user.getEmailAddress(), user.getFullName());
 
 					internetAddresses.add(internetAddress);
 				}
