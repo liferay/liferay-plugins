@@ -278,8 +278,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		KBArticle kbArticle = kbArticleLocalService.getLatestKBArticle(
 			resourcePrimKey, status);
 
-		String name = HtmlUtil.escape(kbArticle.getTitle());
-		String description = HtmlUtil.escape(kbArticle.getTitle());
+		String name = kbArticle.getTitle();
+		String description = kbArticle.getTitle();
 
 		String feedURL = KnowledgeBaseUtil.getKBArticleURL(
 			themeDisplay.getPlid(), resourcePrimKey, status,
