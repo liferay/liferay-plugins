@@ -63,8 +63,6 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 								var responseData = this.get('responseData');
 
 								if (responseData) {
-									var commentsCount = responseData.commentsCount;
-
 									var comments = responseData.comments;
 
 									A.Array.map(
