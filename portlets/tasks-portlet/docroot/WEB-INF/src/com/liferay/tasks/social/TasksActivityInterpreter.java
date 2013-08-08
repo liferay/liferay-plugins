@@ -131,12 +131,12 @@ public class TasksActivityInterpreter extends BaseSocialActivityInterpreter {
 	protected boolean hasPermissions(
 			PermissionChecker permissionChecker, SocialActivity activity,
 			String actionId, ServiceContext serviceContext)
-		throws SystemException {
+		throws Exception {
 
 		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(
 			activity.getClassPK());
 
-		if (Validator.isNull(tasksEntry)) {
+		if (tasksEntry == null) {
 			return false;
 		}
 
