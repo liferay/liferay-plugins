@@ -21,35 +21,131 @@ import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.MicroblogsEntryServiceUtil;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.model.MBMessageDisplay;
+import com.liferay.portlet.messageboards.model.MBTreeWalker;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
+import com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator;
+import com.liferay.portlet.social.model.SocialActivitySet;
+import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
 
 /**
  * @author Matthew Kong
  */
 public class ActivitiesPortlet extends MVCPortlet {
+
+	public void getMBComments(
+			SocialActivitySet activitySet, ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		String className = activitySet.getClassName();
+		long classPK = activitySet.getClassPK();
+
+		if (activitySet.getActivityCount() > 1 ) {
+			className = SocialActivitySet.class.getName();
+			classPK = activitySet.getActivitySetId();
+		}
+
+		MBMessageDisplay mbMessageDisplay =
+			MBMessageLocalServiceUtil.getDiscussionMessageDisplay(
+				themeDisplay.getUserId(), activitySet.getGroupId(), className,
+				classPK, WorkflowConstants.STATUS_APPROVED);
+
+		MBTreeWalker mbTeeWalker = mbMessageDisplay.getTreeWalker();
+
+		List<MBMessage> mbMessages = mbTeeWalker.getMessages();
+
+		mbMessages = ListUtil.sort(
+			mbMessages, new MessageCreateDateComparator(true));
+
+		for (int i = 1; i < mbMessages.size(); i++) {
+			MBMessage mbMessage = mbMessages.get(i);
+
+			JSONObject messageJSONObject = getJSONObject(
+				mbMessage.getMessageId(), mbMessage.getBody(),
+				mbMessage.getModifiedDate(), mbMessage.getUserId(),
+				mbMessage.getUserName(), themeDisplay);
+
+			jsonArray.put(messageJSONObject);
+		}
+
+		jsonObject.put("comments", jsonArray);
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
+	}
+
+	public void getMicroblogsComments(
+			SocialActivitySet activitySet, ResourceRequest resourceRequest,
+			ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		List<MicroblogsEntry> microblogsEntries =
+			MicroblogsEntryLocalServiceUtil.
+				getReceiverMicroblogsEntryMicroblogsEntries(
+					MicroblogsEntryConstants.TYPE_REPLY,
+					activitySet.getClassPK(), QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, null);
+
+		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
+			JSONObject microblogsEntryJSONObject = getJSONObject(
+				microblogsEntry.getMicroblogsEntryId(),
+				microblogsEntry.getContent(), microblogsEntry.getModifiedDate(),
+				microblogsEntry.getUserId(), microblogsEntry.getUserName(),
+				themeDisplay);
+
+			jsonArray.put(microblogsEntryJSONObject);
+		}
+
+		jsonObject.put("comments", jsonArray);
+		jsonObject.put("commentsCount", microblogsEntries.size());
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
+	}
 
 	@Override
 	public void processAction(
@@ -70,6 +166,46 @@ public class ActivitiesPortlet extends MVCPortlet {
 				else {
 					updateMBComment(actionRequest, actionResponse);
 				}
+			}
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
+
+	@Override
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws PortletException {
+
+		try {
+			String resourceID = resourceRequest.getResourceID();
+
+			if (resourceID.equals("getComments")) {
+				long activitySetId = ParamUtil.getLong(
+					resourceRequest, "activitySetId");
+
+				SocialActivitySet activitySet =
+					SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
+						activitySetId);
+
+				if (activitySet == null) {
+					return;
+				}
+
+				String className = activitySet.getClassName();
+
+				if (className.equals(MicroblogsEntry.class.getName())) {
+					getMicroblogsComments(
+						activitySet, resourceRequest, resourceResponse);
+				}
+				else {
+					getMBComments(
+						activitySet, resourceRequest, resourceResponse);
+				}
+			}
+			else {
+				super.serveResource(resourceRequest, resourceResponse);
 			}
 		}
 		catch (Exception e) {
