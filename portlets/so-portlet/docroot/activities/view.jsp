@@ -98,11 +98,11 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 				cmdInput.val('<%= Constants.DELETE %>');
 
-				var entryId = currentTarget.getAttribute('data-entryId');
+				var mbMessageIdOrMicroblogsEntryId = currentTarget.getAttribute('data-mbMessageIdOrMicroblogsEntryId');
 
-				var entryIdInput = form.one('#<portlet:namespace />entryId');
+				var mbMessageIdOrMicroblogsEntryIdInput = form.one('#<portlet:namespace />mbMessageIdOrMicroblogsEntryId');
 
-				entryIdInput.val(entryId);
+				mbMessageIdOrMicroblogsEntryIdInput.val(mbMessageIdOrMicroblogsEntryId);
 
 				A.io.request(
 					form.attr('action'),
@@ -143,9 +143,9 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 		function(event) {
 			var currentTarget = event.currentTarget;
 
-			var entryId = currentTarget.getAttribute('data-entryId');
+			var mbMessageIdOrMicroblogsEntryId = currentTarget.getAttribute('data-mbMessageIdOrMicroblogsEntryId');
 
-			var editForm = A.one('#<portlet:namespace />fm1' + entryId);
+			var editForm = A.one('#<portlet:namespace />fm1' + mbMessageIdOrMicroblogsEntryId);
 
 			var commentEntry = currentTarget.ancestor('.comment-entry');
 
@@ -163,16 +163,16 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 				editForm.removeClass('aui-helper-hidden');
 
-				editForm.set('id','<portlet:namespace />fm1' + entryId);
-				editForm.set('name','<portlet:namespace />fm1' + entryId);
+				editForm.set('id','<portlet:namespace />fm1' + mbMessageIdOrMicroblogsEntryId);
+				editForm.set('name','<portlet:namespace />fm1' + mbMessageIdOrMicroblogsEntryId);
 
 				var cmdInput = editForm.one('#<portlet:namespace /><%= Constants.CMD %>');
 
 				cmdInput.val('<%= Constants.EDIT %>');
 
-				var entryIdInput = editForm.one('#<portlet:namespace />entryId');
+				var mbMessageIdOrMicroblogsEntryIdInput = editForm.one('#<portlet:namespace />mbMessageIdOrMicroblogsEntryId');
 
-				entryIdInput.val(entryId);
+				mbMessageIdOrMicroblogsEntryIdInput.val(mbMessageIdOrMicroblogsEntryId);
 
 				var commentBody = commentEntry.one('.comment-body');
 
