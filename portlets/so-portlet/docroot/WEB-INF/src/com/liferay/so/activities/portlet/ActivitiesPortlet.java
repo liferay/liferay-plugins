@@ -17,6 +17,10 @@
 
 package com.liferay.so.activities.portlet;
 
+import com.liferay.microblogs.model.MicroblogsEntry;
+import com.liferay.microblogs.model.MicroblogsEntryConstants;
+import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
+import com.liferay.microblogs.service.MicroblogsEntryServiceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
@@ -57,10 +61,15 @@ public class ActivitiesPortlet extends MVCPortlet {
 
 		try {
 			if (actionName.equals("updateComment")) {
-				updateComment(actionRequest, actionResponse);
-			}
-			else {
-				super.processAction(actionRequest, actionResponse);
+				String className = ParamUtil.getString(
+					actionRequest, "className");
+
+				if (className.equals(MicroblogsEntry.class.getName())) {
+					updateMicroblogsComment(actionRequest, actionResponse);
+				}
+				else {
+					updateMBComment(actionRequest, actionResponse);
+				}
 			}
 		}
 		catch (Exception e) {
@@ -68,7 +77,7 @@ public class ActivitiesPortlet extends MVCPortlet {
 		}
 	}
 
-	public void updateComment(
+	public void updateMBComment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -118,6 +127,71 @@ public class ActivitiesPortlet extends MVCPortlet {
 					mbMessage.getMessageId(), mbMessage.getBody(),
 					mbMessage.getModifiedDate(), mbMessage.getUserId(),
 					mbMessage.getUserName(), themeDisplay);
+			}
+
+			jsonObject.put("success", Boolean.TRUE);
+		}
+		catch (Exception e) {
+			jsonObject.put("success", Boolean.FALSE);
+		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void updateMicroblogsComment(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
+
+		long classPK = ParamUtil.getLong(actionRequest, "classPK");
+		long microblogsEntryId = ParamUtil.getLong(actionRequest, "entryId");
+		String body = ParamUtil.getString(actionRequest, "body");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		try {
+			MicroblogsEntry microblogsEntry = null;
+
+			if (cmd.equals(Constants.DELETE)) {
+				MicroblogsEntryServiceUtil.deleteMicroblogsEntry(classPK);
+			}
+			else if (classPK > 0) {
+				ServiceContext serviceContext =
+					ServiceContextFactory.getInstance(
+						MicroblogsEntry.class.getName(), actionRequest);
+
+				MicroblogsEntry currentMicroblogsEntry =
+					MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(classPK);
+
+				if (cmd.equals(Constants.EDIT) && (microblogsEntryId > 0)) {
+					microblogsEntry =
+						MicroblogsEntryServiceUtil.updateMicroblogsEntry(
+							microblogsEntryId, body,
+							currentMicroblogsEntry.getSocialRelationType(),
+							serviceContext);
+				}
+				else {
+					microblogsEntry =
+						MicroblogsEntryServiceUtil.addMicroblogsEntry(
+							themeDisplay.getUserId(), body,
+							MicroblogsEntryConstants.TYPE_REPLY,
+							currentMicroblogsEntry.getUserId(), classPK,
+							currentMicroblogsEntry.getSocialRelationType(),
+							serviceContext);
+				}
+			}
+
+			if (microblogsEntry != null) {
+				jsonObject = getJSONObject(
+					microblogsEntry.getMicroblogsEntryId(),
+					microblogsEntry.getContent(),
+					microblogsEntry.getModifiedDate(),
+					microblogsEntry.getUserId(), microblogsEntry.getUserName(),
+					themeDisplay);
 			}
 
 			jsonObject.put("success", Boolean.TRUE);
