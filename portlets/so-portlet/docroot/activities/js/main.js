@@ -22,10 +22,10 @@ AUI().use(
 						'<div class="comment-info">' +
 							'<span class="post-date">{modifiedDate} </span>' +
 							'<span class="edit-comment">' +
-								'<a data-entryId={entryId} href="javascript:;">' + Liferay.Language.get('edit') + '</a>' +
+								'<a data-mbMessageIdOrMicroblogsEntryId={mbMessageIdOrMicroblogsEntryId} href="javascript:;">' + Liferay.Language.get('edit') + '</a>' +
 							'</span>' +
 							'<span class="delete-comment">' +
-								'<a data-entryId={entryId} href="javascript:;">' + Liferay.Language.get('delete') + '</a>' +
+								'<a data-mbMessageIdOrMicroblogsEntryId={mbMessageIdOrMicroblogsEntryId} href="javascript:;">' + Liferay.Language.get('delete') + '</a>' +
 							'</span>' +
 						'</div>' +
 					'</div>';
@@ -34,7 +34,7 @@ AUI().use(
 					commentEntryTemplate,
 					{
 						body: responseData.body,
-						entryId: responseData.entryId,
+						mbMessageIdOrMicroblogsEntryId: responseData.mbMessageIdOrMicroblogsEntryId,
 						modifiedDate: responseData.modifiedDate,
 						userDisplayURL: responseData.userDisplayURL ? responseData.userDisplayURL : '',
 						userName: responseData.userName,

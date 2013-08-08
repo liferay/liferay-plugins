@@ -225,7 +225,8 @@ public class ActivitiesPortlet extends MVCPortlet {
 
 		String className = ParamUtil.getString(actionRequest, "className");
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		long mbMessageId = ParamUtil.getLong(actionRequest, "entryId");
+		long mbMessageId = ParamUtil.getLong(
+			actionRequest, "mbMessageIdOrMicroblogsEntryId");
 		String body = ParamUtil.getString(actionRequest, "body");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -294,7 +295,8 @@ public class ActivitiesPortlet extends MVCPortlet {
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 
 		long classPK = ParamUtil.getLong(actionRequest, "classPK");
-		long microblogsEntryId = ParamUtil.getLong(actionRequest, "entryId");
+		long microblogsEntryId = ParamUtil.getLong(
+			actionRequest, "mbMessageIdOrMicroblogsEntryId");
 		String body = ParamUtil.getString(actionRequest, "body");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -350,14 +352,15 @@ public class ActivitiesPortlet extends MVCPortlet {
 	}
 
 	protected JSONObject getJSONObject(
-			long entryId, String body, Date modifiedDate, long userId,
-			String userName, ThemeDisplay themeDisplay)
+			long mbMessageIdOrMicroblogsEntryId, String body, Date modifiedDate,
+			long userId, String userName, ThemeDisplay themeDisplay)
 		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("body", HtmlUtil.escape(body));
-		jsonObject.put("entryId", entryId);
+		jsonObject.put(
+			"mbMessageIdOrMicroblogsEntryId", mbMessageIdOrMicroblogsEntryId);
 		jsonObject.put(
 			"modifiedDate",
 			Time.getRelativeTimeDescription(

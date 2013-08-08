@@ -28,7 +28,7 @@
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
 		<aui:input name="className" type="hidden" value="<%= className %>" />
 		<aui:input name="classPK" type="hidden" value="<%= classPK %>" />
-		<aui:input name="entryId" type="hidden" value="" />
+		<aui:input name="mbMessageIdOrMicroblogsEntryId" type="hidden" value="" />
 
 		<div>
 			<div class="user-portrait">
