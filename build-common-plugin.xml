@@ -686,7 +686,7 @@ Please find a solution that does not require portal-impl.jar.
 				<resourcecontains resource="docroot/WEB-INF/liferay-hook.xml" substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" />
 			</and>
 			<then>
-				<pathconvert pathsep="${line.separator}&#x9;" property="language.properties">
+				<pathconvert pathsep="${line.separator}&#x9;" property="language.properties.elements">
 					<fileset dir="docroot/WEB-INF/src/content">
 						<include name="Language*.properties" />
 					</fileset>
@@ -705,7 +705,7 @@ Please find a solution that does not require portal-impl.jar.
 				<copy file="docroot/WEB-INF/liferay-hook.xml" overwrite="true" tofile="docroot/WEB-INF/liferay-hook.xml.processed">
 					<filterchain>
 						<tokenfilter>
-							<replacestring from="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" to="${language.properties}" />
+							<replacestring from="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" to="${language.properties.elements}" />
 						</tokenfilter>
 					</filterchain>
 				</copy>
@@ -1337,9 +1337,11 @@ Please find a solution that does not require portal-impl.jar.
 		<if>
 			<available file="docroot/WEB-INF/liferay-hook.xml.processed" />
 			<then>
-				<move file="docroot/WEB-INF/liferay-hook.xml" tofile="docroot/WEB-INF/liferay-hook.xml.tmp" />
-				<move file="docroot/WEB-INF/liferay-hook.xml.processed" tofile="docroot/WEB-INF/liferay-hook.xml" />
+				<property name="liferay-hook.xml.excludes" value="WEB-INF/liferay-hook.xml*" />
 			</then>
+			<else>
+				<property name="liferay-hook.xml.excludes" value="" />
+			</else>
 		</if>
 
 		<if>
@@ -1348,15 +1350,27 @@ Please find a solution that does not require portal-impl.jar.
 				<zip
 					basedir="${docroot.dir}"
 					destfile="${plugin.file}"
-					excludes="**/META-INF/context.xml,**/WEB-INF/liferay-hook.xml.tmp,${plugins.war.excludes}"
-				/>
+					excludes="**/META-INF/context.xml,${liferay-hook.xml.excludes},${plugins.war.excludes}"
+				>
+					<zipfileset
+						dir="${docroot.dir}"
+						fullpath="WEB-INF/liferay-hook.xml"
+						includes="WEB-INF/liferay-hook.xml.processed"
+					/>
+				</zip>
 			</then>
 			<else>
 				<zip
 					basedir="${docroot.dir}"
 					destfile="${plugin.file}"
-					excludes="**/WEB-INF/liferay-hook.xml.tmp,${plugins.war.excludes}"
-				/>
+					excludes="${liferay-hook.xml.excludes},${plugins.war.excludes}"
+				>
+					<zipfileset
+						dir="${docroot.dir}"
+						fullpath="WEB-INF/liferay-hook.xml"
+						includes="WEB-INF/liferay-hook.xml.processed"
+					/>
+				</zip>
 			</else>
 		</if>
 
@@ -1368,18 +1382,15 @@ Please find a solution that does not require portal-impl.jar.
 				<zip destfile="${plugin.src.file}">
 					<zipfileset
 						dir="${docroot.dir}"
-						excludes="**/WEB-INF/liferay-hook.xml.tmp"
+						excludes="${liferay-hook.xml.excludes}"
 						prefix="${plugin.name}-src-${plugin.full.version}"
 					/>
+					<zipfileset
+						dir="${docroot.dir}"
+						fullpath="${plugin.name}-src-${plugin.full.version}/WEB-INF/liferay-hook.xml"
+						includes="WEB-INF/liferay-hook.xml.processed"
+					/>
 				</zip>
-			</then>
-		</if>
-
-		<if>
-			<available file="docroot/WEB-INF/liferay-hook.xml.tmp" />
-			<then>
-				<move file="docroot/WEB-INF/liferay-hook.xml" tofile="docroot/WEB-INF/liferay-hook.xml.processed" />
-				<move file="docroot/WEB-INF/liferay-hook.xml.tmp" tofile="docroot/WEB-INF/liferay-hook.xml" />
 			</then>
 		</if>
 	</target>
