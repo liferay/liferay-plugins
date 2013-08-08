@@ -73,10 +73,10 @@
 
 					<c:if test="<%= mbMessage.getUserId() == user.getUserId() %>">
 						<span class="edit-comment">
-							<a data-mbMessageId="<%= mbMessage.getMessageId() %>" href="javascript:;"><liferay-ui:message key="edit" /></a>
+							<a data-entryId="<%= mbMessage.getMessageId() %>" href="javascript:;"><liferay-ui:message key="edit" /></a>
 						</span>
 						<span class="delete-comment">
-							<a data-mbMessageId="<%= mbMessage.getMessageId() %>" href="javascript:;"><liferay-ui:message key="delete" /></a>
+							<a data-entryId="<%= mbMessage.getMessageId() %>" href="javascript:;"><liferay-ui:message key="delete" /></a>
 						</span>
 					</c:if>
 				</div>
@@ -96,7 +96,7 @@
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
 		<aui:input name="className" type="hidden" value="<%= className %>" />
 		<aui:input name="classPK" type="hidden" value="<%= classPK %>" />
-		<aui:input name="mbMessageId" type="hidden" value="" />
+		<aui:input name="entryId" type="hidden" value="" />
 
 		<%
 		MBMessage rootMBMessage = mbTreeWalker.getRoot();
@@ -144,10 +144,10 @@
 				'<div class="comment-info">' +
 					'<span class="post-date">' + '{modifiedDate}' + '</span>' +
 					'<span class="edit-comment">' +
-						'<a data-mbMessageId="' + '{mbMessageId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "edit") %></a>' +
+						'<a data-entryId="' + '{entryId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "edit") %></a>' +
 					'</span>' +
 					'<span class="delete-comment">' +
-						'<a data-mbMessageId="' + '{mbMessageId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "delete") %></a>' +
+						'<a data-entryId="' + '{entryId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "delete") %></a>' +
 					'</span>' +
 				'</div>' +
 			'</div>';
@@ -156,7 +156,7 @@
 			commentEntryTemplate,
 			{
 				body: responseData.body,
-				messageId: responseData.mbMessageId,
+				messageId: responseData.entryId,
 				modifiedDate: responseData.modifiedDate,
 				userDisplayURL: responseData.userDisplayURL ? responseData.userDisplayURL : '',
 				userName: responseData.userName,
