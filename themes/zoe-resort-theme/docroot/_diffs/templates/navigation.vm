@@ -5,38 +5,41 @@
 
 	<ul>
 		#foreach ($nav_item in $nav_items)
-			#set ($order = "")
-
-			#set ($selected_attr = "")
-
-			#if ($nav_item.isSelected())
-				#set ($order = "$order selected")
-
-				#set ($selected_attr = "aria-selected=\"true\"")
-			#end
+			#set ($nav_item_attr_has_popup="")
+			#set ($nav_item_attr_selected="")
+			#set ($nav_item_css_class = "")
 
 			#if ($velocityCount == 1)
-				#set ($order = "$order first")
+				#set ($nav_item_class = "first")
+			#elseif (!$velocityHasNext)
+				#set ($nav_item_class = "last")
 			#end
 
-			#if (!$velocityHasNext)
-				#set ($order = "$order last")
+			#if ($nav_item.isSelected())
+				#set ($nav_item_attr_selected="aria-selected='true'")
+				#set ($nav_item_class = "$nav_item_class selected")
 			#end
 
-			<li $selected_attr class="$order">
-				<a href="$nav_item.getURL()" $nav_item.getTarget()>
-					<span>$nav_item.icon() $nav_item.getName()</span>
-				</a>
+			#if ($nav_item.hasChildren())
+				#set ($nav_item_attr_has_popup="aria-haspopup='true'")
+			#end
+
+			<li class="$nav_item_css_class" id="layout_$nav_item.getLayoutId()" $nav_item_attr_selected role="presentation">
+				<a href="$nav_item.getURL()" $nav_item_attr_has_popup $nav_item.getTarget() role="menuitem"><span>$nav_item.icon() $nav_item.getName()</span></a>
 
 				#if ($nav_item.hasChildren())
-					<ul class="child-menu">
+					<ul class="child-menu" role="menu">
 						#foreach ($nav_child in $nav_item.getChildren())
+							#set ($nav_child_attr_selected="")
+							#set ($nav_child_css_class = "false")
+
 							#if ($nav_child.isSelected())
-								<li aria-selected="true" class="selected">
-							#else
-								<li>
+								#set ($nav_child_attr_selected="aria-selected='true'")
+								#set ($nav_child_css_class = "selected")
 							#end
-								<a href="$nav_child.getURL()" $nav_child.getTarget()>$nav_child.getName()</a>
+
+							<li class="$nav_child_css_class" id="layout_$nav_child.getLayoutId()" $nav_child_attr_selected role="presentation">
+								<a href="$nav_child.getURL()" $nav_child.getTarget() role="menuitem">$nav_child.getName()</a>
 							</li>
 						#end
 					</ul>
