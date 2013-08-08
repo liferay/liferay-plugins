@@ -48,6 +48,7 @@ page import="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" %><%@
 page import="com.liferay.portal.kernel.search.SearchEngineUtil" %><%@
 page import="com.liferay.portal.kernel.util.FileUtil" %><%@
 page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
+page import="com.liferay.portal.kernel.util.LocaleUtil" %><%@
 page import="com.liferay.portal.kernel.util.OSDetector" %><%@
 page import="com.liferay.portal.kernel.util.PortalClassLoaderUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
@@ -98,7 +99,6 @@ page import="java.sql.Statement" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.List" %><%@
-page import="java.util.Locale" %><%@
 page import="java.util.Map" %>
 
 <%@ page import="javax.crypto.Cipher" %><%@

@@ -88,7 +88,7 @@ private String _getLanguage(Locale locale) {
 
 	// See http://docs.opensocial.org/display/OSREF/Gadgets+XML+Reference
 
-	if (language.equals(Locale.CHINESE.getLanguage())) {
+	if (language.equals(LocaleUtil.CHINESE.getLanguage())) {
 		language = language + StringPool.DASH + locale.getCountry();
 	}
 

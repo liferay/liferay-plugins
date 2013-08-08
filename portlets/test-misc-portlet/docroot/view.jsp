@@ -115,7 +115,7 @@ private static String _getPortletDescription(
 
 	Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
 
-	return PortalUtil.getPortletDescription(portlet, servletContext, Locale.US);
+	return PortalUtil.getPortletDescription(portlet, servletContext, LocaleUtil.US);
 }
 
 private static String _getPortletTitle(
@@ -123,7 +123,7 @@ private static String _getPortletTitle(
 
 	Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
 
-	return PortalUtil.getPortletTitle(portlet, servletContext, Locale.US);
+	return PortalUtil.getPortletTitle(portlet, servletContext, LocaleUtil.US);
 }
 
 private static final String _PORTLET_TITLE_DEFAULT = "Test Misc Localized Title";

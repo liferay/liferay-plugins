@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -42,7 +43,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * @author Brian Wing Shun Chan
@@ -143,7 +143,7 @@ public class FeedLocalServiceImpl extends FeedLocalServiceBaseImpl {
 				JSONObject statusJSONObject = jsonArray.getJSONObject(i);
 
 				SimpleDateFormat sdf = new SimpleDateFormat(
-					"EEE MMM d hh:mm:ss Z yyyy", Locale.US);
+					"EEE MMM d hh:mm:ss Z yyyy", LocaleUtil.US);
 
 				Date createDate = null;
 
