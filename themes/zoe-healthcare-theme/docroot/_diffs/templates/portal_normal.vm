@@ -7,8 +7,6 @@
 <head>
 	<title>$the_title - $company_name</title>
 
-	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
-
 	$theme.include($top_head_include)
 </head>
 
@@ -22,7 +20,7 @@ $theme.include($body_top_include)
 	#dockbar()
 #end
 
-<div id="wrapper">
+<div class="container-fluid" id="wrapper">
 	<header id="banner" role="banner">
 		<div id="heading">
 			<h1 class="site-title">
@@ -80,65 +78,57 @@ $theme.include($body_top_include)
 
 #if ($theme_settings.display-footer != "false")
 	<footer id="footer" role="contentinfo">
-		<div id="footerContent">
-			<div class="aui-layout-content">
-				<div class="aui-column aui-column-first aui-w50" id="footerSection1">
-					<div class="aui-column-content aui-column-content-first">
-						#if ($footer_section_1)
-							$footer_section_1
-						#end
-					</div>
-				</div>
+		<div class="row-fluid" id="footerContent">
+			<div class="span6" id="footerSection1">
+				#if ($footer_section_1)
+					$footer_section_1
+				#end
+			</div>
 
-				<div class="aui-column aui-w25" id="footerSection2">
-					<div class="aui-column-content">
-						#if ($theme_settings.footer-section-2-article-id)
-							#if ($footer_section_2)
-								$footer_section_2
+			<div class="span3" id="footerSection2">
+				#if ($theme_settings.footer-section-2-article-id)
+					#if ($footer_section_2)
+						$footer_section_2
+					#end
+				#else
+					<div id="footerNavigation">
+						<h3>$theme_settings.footer-nav-title</h3>
+
+						<ul>
+							#foreach ($nav_item in $nav_items)
+								#set ($nav_item_class = "item-${velocityCount}")
+
+								#set ($selected_attr = "")
+
+								#if ($velocityCount == 1)
+									#set ($nav_item_class = "$nav_item_class first")
+								#end
+
+								#if (!$velocityHasNext)
+									#set ($nav_item_class = "$nav_item_class last")
+								#end
+
+								#if ($nav_item.isSelected())
+									#set ($nav_item_class = "$nav_item_class selected")
+
+									#set ($selected_attr = "aria-selected=\"true\"")
+								#end
+
+								<li $selected_attr class="$nav_item_class">
+									<a href="$nav_item.getURL()" $nav_item.getTarget()>
+										<span>$nav_item.icon() $nav_item.getName()</span>
+									</a>
+								</li>
 							#end
-						#else
-							<div id="footerNavigation">
-								<h3>$theme_settings.footer-nav-title</h3>
-
-								<ul>
-									#foreach ($nav_item in $nav_items)
-										#set ($nav_item_class = "item-${velocityCount}")
-
-										#set ($selected_attr = "")
-
-										#if ($velocityCount == 1)
-											#set ($nav_item_class = "$nav_item_class first")
-										#end
-
-										#if (!$velocityHasNext)
-											#set ($nav_item_class = "$nav_item_class last")
-										#end
-
-										#if ($nav_item.isSelected())
-											#set ($nav_item_class = "$nav_item_class selected")
-
-											#set ($selected_attr = "aria-selected=\"true\"")
-										#end
-
-										<li $selected_attr class="$nav_item_class">
-											<a href="$nav_item.getURL()" $nav_item.getTarget()>
-												<span>$nav_item.icon() $nav_item.getName()</span>
-											</a>
-										</li>
-									#end
-								</ul>
-							</div>
-						#end
+						</ul>
 					</div>
-				</div>
+				#end
+			</div>
 
-				<div class="aui-column aui-column-last aui-w25" id="footerSection3">
-					<div class="aui-column-content aui-column-content-last">
-						#if ($footer_section_3)
-							$footer_section_3
-						#end
-					</div>
-				</div>
+			<div class="span3" id="footerSection3">
+				#if ($footer_section_3)
+					$footer_section_3
+				#end
 			</div>
 		</div>
 	</footer>
