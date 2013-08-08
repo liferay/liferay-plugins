@@ -54,12 +54,12 @@ $theme.include($body_top_include)
 						#if ($page_group.getType() == 1)
 							#set ($join_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
 
-							$join_url.setWindowState("normal")
 							$join_url.setParameter("struts_action", "/sites_admin/edit_site_assignments")
 							$join_url.setParameter("cmd", "group_users")
 							$join_url.setParameter("redirect", $community_default_url)
 							$join_url.setParameter("groupId", "$page_group.getGroupId()")
 							$join_url.setParameter("addUserIds", "$user_id")
+							$join_url.setWindowState("normal")
 
 							<a class="aui-button button action request member-button" href="$join_url" id="memberButton">
 								<span class="aui-button-content"><span class="aui-button-label">#language("join-site")</span></span>
@@ -67,10 +67,10 @@ $theme.include($body_top_include)
 						#elseif (($page_group.getType() == 2) && !$membership_request)
 							#set ($membership_request_url = $portletURLFactory.create($request, "174", $page.getPlid(), "ACTION_PHASE"))
 
-							$membership_request_url.setWindowState("normal")
 							$membership_request_url.setParameter("struts_action", "/sites_admin/post_membership_request")
 							$membership_request_url.setParameter("redirect", $community_default_url)
 							$membership_request_url.setParameter("groupId", "$page_group.getGroupId()")
+							$membership_request_url.setWindowState("normal")
 
 							#set ($arguments = [$user_name, $community_name])
 
