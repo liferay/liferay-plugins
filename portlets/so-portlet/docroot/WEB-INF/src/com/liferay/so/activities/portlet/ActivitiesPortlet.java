@@ -36,6 +36,8 @@ import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
 
+import java.util.Date;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
@@ -112,27 +114,10 @@ public class ActivitiesPortlet extends MVCPortlet {
 			}
 
 			if (mbMessage != null) {
-				jsonObject.put("body", HtmlUtil.escape(mbMessage.getBody()));
-				jsonObject.put("mbMessageId", mbMessage.getMessageId());
-				jsonObject.put(
-					"modifiedDate",
-					Time.getRelativeTimeDescription(
-						mbMessage.getModifiedDate(), themeDisplay.getLocale(),
-						themeDisplay.getTimeZone()));
-
-				User user = UserLocalServiceUtil.fetchUser(
-					mbMessage.getUserId());
-
-				if (user != null) {
-					jsonObject.put(
-						"userDisplayURL", user.getDisplayURL(themeDisplay));
-					jsonObject.put(
-						"userPortraitURL",
-						HtmlUtil.escape(user.getPortraitURL(themeDisplay)));
-				}
-
-				jsonObject.put(
-					"userName", HtmlUtil.escape(mbMessage.getUserName()));
+				jsonObject = getJSONObject(
+					mbMessage.getMessageId(), mbMessage.getBody(),
+					mbMessage.getModifiedDate(), mbMessage.getUserId(),
+					mbMessage.getUserName(), themeDisplay);
 			}
 
 			jsonObject.put("success", Boolean.TRUE);
@@ -142,6 +127,35 @@ public class ActivitiesPortlet extends MVCPortlet {
 		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	protected JSONObject getJSONObject(
+			long mbMessageId, String body, Date modifiedDate, long userId,
+			String userName, ThemeDisplay themeDisplay)
+		throws Exception {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("body", HtmlUtil.escape(body));
+		jsonObject.put("mbMessageId", mbMessageId);
+		jsonObject.put(
+			"modifiedDate",
+			Time.getRelativeTimeDescription(
+				modifiedDate, themeDisplay.getLocale(),
+				themeDisplay.getTimeZone()));
+
+		User user = UserLocalServiceUtil.fetchUser(userId);
+
+		if (user != null) {
+			jsonObject.put("userDisplayURL", user.getDisplayURL(themeDisplay));
+			jsonObject.put(
+				"userPortraitURL",
+				HtmlUtil.escape(user.getPortraitURL(themeDisplay)));
+		}
+
+		jsonObject.put("userName", HtmlUtil.escape(userName));
+
+		return jsonObject;
 	}
 
 }
