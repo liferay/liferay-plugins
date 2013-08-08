@@ -256,16 +256,16 @@ public class ActivitiesPortlet extends MVCPortlet {
 						themeDisplay.getUserId(), groupId, className, classPK,
 						WorkflowConstants.STATUS_APPROVED);
 
-				MBThread thread = mbMessageDisplay.getThread();
+				MBThread mbThread = mbMessageDisplay.getThread();
 
 				MBTreeWalker mbTreeWalker = mbMessageDisplay.getTreeWalker();
 
-				MBMessage rootMessage = mbTreeWalker.getRoot();
+				MBMessage rootMBMessage = mbTreeWalker.getRoot();
 
 				mbMessage = MBMessageServiceUtil.addDiscussionMessage(
 					groupId, className, classPK, className, classPK,
-					themeDisplay.getUserId(), thread.getThreadId(),
-					rootMessage.getMessageId(), StringPool.BLANK, body,
+					themeDisplay.getUserId(), mbThread.getThreadId(),
+					mbRootMessage.getMessageId(), StringPool.BLANK, body,
 					serviceContext);
 			}
 
@@ -308,12 +308,12 @@ public class ActivitiesPortlet extends MVCPortlet {
 				MicroblogsEntryServiceUtil.deleteMicroblogsEntry(classPK);
 			}
 			else if (classPK > 0) {
+				MicroblogsEntry currentMicroblogsEntry =
+					MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(classPK);
+
 				ServiceContext serviceContext =
 					ServiceContextFactory.getInstance(
 						MicroblogsEntry.class.getName(), actionRequest);
-
-				MicroblogsEntry currentMicroblogsEntry =
-					MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(classPK);
 
 				if (cmd.equals(Constants.EDIT) && (microblogsEntryId > 0)) {
 					microblogsEntry =

@@ -67,6 +67,8 @@
 						</c:if>
 
 						<%
+						int commentsCount = 0;
+
 						String className = activitySet.getClassName();
 						long classPK = activitySet.getClassPK();
 
@@ -74,8 +76,6 @@
 							className = SocialActivitySet.class.getName();
 							classPK = activitySet.getActivitySetId();
 						}
-
-						int commentsCount = 0;
 
 						if (className.equals(MicroblogsEntry.class.getName())) {
 							commentsCount = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, classPK);
