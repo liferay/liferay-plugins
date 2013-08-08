@@ -1344,8 +1344,8 @@ AUI.add(
 								calendarId: 1,
 								color: 1,
 								content: 1,
-								endTime: 1,
-								startTime: 1
+								endDate: 1,
+								startDate: 1
 							};
 
 							var persist = true;
