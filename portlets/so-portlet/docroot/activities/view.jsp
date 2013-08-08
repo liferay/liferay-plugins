@@ -131,8 +131,8 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 				editForm.removeClass('aui-helper-hidden');
 
-				editForm.set('id','<portlet:namespace />fm1' + messageId);
-				editForm.set('name','<portlet:namespace />fm1' + messageId);
+				editForm.set('id','<portlet:namespace />fm1' + mbMessageId);
+				editForm.set('name','<portlet:namespace />fm1' + mbMessageId);
 
 				var cmdInput = editForm.one('#<portlet:namespace /><%= Constants.CMD %>');
 
