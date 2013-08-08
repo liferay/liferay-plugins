@@ -127,46 +127,6 @@
 </div>
 
 <aui:script use="aui-base">
-	var addNewComment = function(commentsList, responseData) {
-		var commentEntryTemplate =
-			'<div class="comment-entry">' +
-				'<div class="user-portrait">' +
-					'<span class="avatar">' +
-						'<a href="' + '{userDisplayURL}' + '">' +
-							'<img alt="' + '{userName}' + '" src="' + '{userPortraitURL}' + '" />' +
-						'</a>' +
-					'</span>' +
-				'</div>' +
-				'<div class="comment-body">' +
-					'<span class="user-name"><a href="' + '{userDisplayURL}' + '">' + '{userName}' + '</a></span>' +
-					'<span class="message">' + '{body}' + '</span>' +
-				'</div>' +
-				'<div class="comment-info">' +
-					'<span class="post-date">' + '{modifiedDate}' + '</span>' +
-					'<span class="edit-comment">' +
-						'<a data-entryId="' + '{entryId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "edit") %></a>' +
-					'</span>' +
-					'<span class="delete-comment">' +
-						'<a data-entryId="' + '{entryId}' + '" href="javascript:;"><%= UnicodeLanguageUtil.get(pageContext, "delete") %></a>' +
-					'</span>' +
-				'</div>' +
-			'</div>';
-
-		var commentEntryHtml = A.Lang.sub(
-			commentEntryTemplate,
-			{
-				body: responseData.body,
-				messageId: responseData.entryId,
-				modifiedDate: responseData.modifiedDate,
-				userDisplayURL: responseData.userDisplayURL ? responseData.userDisplayURL : '',
-				userName: responseData.userName,
-				userPortraitURL: responseData.userPortraitURL
-			}
-		);
-
-		commentsList.append(commentEntryHtml);
-	}
-
 	var form = A.one('#<portlet:namespace />fm<%= activitySet.getActivitySetId() %>');
 
 	if (form) {
@@ -198,7 +158,7 @@
 
 									commentsList.removeClass('aui-helper-hidden');
 
-									addNewComment(commentsList, responseData);
+									Liferay.SO.Activities.addNewComment(commentsList, responseData);
 
 									var viewComments = activityFooter.one('.view-comments a');
 
