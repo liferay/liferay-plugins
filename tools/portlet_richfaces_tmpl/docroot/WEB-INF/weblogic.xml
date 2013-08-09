@@ -17,4 +17,7 @@
 	<wls:library-ref>
 		<wls:library-name>jsf</wls:library-name>
 	</wls:library-ref>
+	<wls:library-ref>
+		<wls:library-name>richfaces</wls:library-name>
+	</wls:library-ref>
 </wls:weblogic-web-app>
