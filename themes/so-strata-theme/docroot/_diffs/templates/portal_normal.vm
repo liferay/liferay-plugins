@@ -161,7 +161,7 @@ $theme.include($body_bottom_include)
 			window,
 			'_2_changeLogo',
 			function(logoURL) {
-				A.all('#_SO_THEME_avatar, #content .avatar img, .user-fullname.user-portrait img').attr('src', logoURL);
+				A.all('#${themeId}avatar, #content .avatar img, .user-fullname.user-portrait img').attr('src', logoURL);
 			},
 			['aui-base']
 		);
@@ -170,7 +170,7 @@ $theme.include($body_bottom_include)
 			'liferay-logo-selector',
 			'aui-base',
 			function(A) {
-				var editPortraitButton = A.one('#_SO_THEME_editPortraitButton');
+				var editPortraitButton = A.one('#${themeId}editPortraitButton');
 
 				var editPortrait = null;
 
@@ -181,13 +181,13 @@ $theme.include($body_bottom_include)
 							if (!editPortrait) {
 								editPortrait = new Liferay.LogoSelector(
 									{
-										boundingBox: '#_SO_THEME_taglibLogoSelector',
-										contentBox: '#_SO_THEME_taglibLogoSelectorContent',
+										boundingBox: '#${themeId}taglibLogoSelector',
+										contentBox: '#${themeId}taglibLogoSelectorContent',
 										defaultLogoURL: '$current_user_profile_portrait_url',
 										editLogoURL: '$current_user_edit_profile_portrait_url',
-										logoDisplaySelector: '#_SO_THEME_avatar',
+										logoDisplaySelector: '#${themeId}avatar',
 										portletNamespace: '',
-										randomNamespace: '_SO_THEME_'
+										randomNamespace: '${themeId}'
 									}
 								);
 							}

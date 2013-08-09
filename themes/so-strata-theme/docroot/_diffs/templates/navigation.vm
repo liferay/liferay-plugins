@@ -1,12 +1,12 @@
 <div class="$nav_css_class" id="navigation">
 	#if ($is_profile_page)
-		<div class="avatar" id="_SO_THEME_taglibLogoSelector" style="background-image: url($current_user.getPortraitURL($themeDisplay))">
-			<div id="_SO_THEME_taglibLogoSelectorContent">
-				<img alt="$current_user.getFullName()" id="_SO_THEME_avatar" src="$current_user_profile_portrait_url">
+		<div class="avatar" id="${themeId}taglibLogoSelector" style="background-image: url($current_user.getPortraitURL($themeDisplay))">
+			<div id="${themeId}taglibLogoSelectorContent">
+				<img alt="$current_user.getFullName()" id="${themeId}avatar" src="$current_user_profile_portrait_url">
 			</div>
 
 			#if ($show_edit_profile_button)
-				<span class="aui-button edit-portrait" id="_SO_THEME_editPortraitButton">
+				<span class="aui-button edit-portrait" id="${themeId}editPortraitButton">
 					<button class="aui-button-content">
 						<span class="aui-buttonitem-label">$languageUtil.get($locale, "edit-profile-picture")</span>
 					</button>
