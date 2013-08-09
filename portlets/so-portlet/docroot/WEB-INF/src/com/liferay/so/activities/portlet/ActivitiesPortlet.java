@@ -265,7 +265,7 @@ public class ActivitiesPortlet extends MVCPortlet {
 				mbMessage = MBMessageServiceUtil.addDiscussionMessage(
 					groupId, className, classPK, className, classPK,
 					themeDisplay.getUserId(), mbThread.getThreadId(),
-					mbRootMessage.getMessageId(), StringPool.BLANK, body,
+					rootMBMessage.getMessageId(), StringPool.BLANK, body,
 					serviceContext);
 			}
 
