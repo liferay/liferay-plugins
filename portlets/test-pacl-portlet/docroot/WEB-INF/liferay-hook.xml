@@ -3,13 +3,7 @@
 
 <hook>
 	<portal-properties>portal.properties</portal-properties>
-	<language-properties>content/Language_en.properties</language-properties>
-	<language-properties>content/Language_en_GB.properties</language-properties>
-	<language-properties>content/Language_en_US.properties</language-properties>
-	<language-properties>content/Language_es.properties</language-properties>
-	<language-properties>content/Language_it.properties</language-properties>
-	<language-properties>content/Language_pt_BR.properties</language-properties>
-	<language-properties>content/Language_pt_PT.properties</language-properties>
+	<language-properties>content/Language*.properties</language-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<indexer-post-processor>
 		<indexer-class-name>com.liferay.portal.model.Organization</indexer-class-name>
