@@ -161,7 +161,7 @@ $theme.include($body_bottom_include)
 			window,
 			'_2_changeLogo',
 			function(logoURL) {
-				A.all('#${themeId}avatar, #content .avatar img, .user-fullname.user-portrait img').attr('src', logoURL);
+				A.all('#${themeNamespace}avatar, #content .avatar img, .user-fullname.user-portrait img').attr('src', logoURL);
 			},
 			['aui-base']
 		);
@@ -170,7 +170,7 @@ $theme.include($body_bottom_include)
 			'liferay-logo-selector',
 			'aui-base',
 			function(A) {
-				var editPortraitButton = A.one('#${themeId}editPortraitButton');
+				var editPortraitButton = A.one('#${themeNamespace}editPortraitButton');
 
 				var editPortrait = null;
 
@@ -181,13 +181,13 @@ $theme.include($body_bottom_include)
 							if (!editPortrait) {
 								editPortrait = new Liferay.LogoSelector(
 									{
-										boundingBox: '#${themeId}taglibLogoSelector',
-										contentBox: '#${themeId}taglibLogoSelectorContent',
+										boundingBox: '#${themeNamespace}taglibLogoSelector',
+										contentBox: '#${themeNamespace}taglibLogoSelectorContent',
 										defaultLogoURL: '$current_user_profile_portrait_url',
 										editLogoURL: '$current_user_edit_profile_portrait_url',
-										logoDisplaySelector: '#${themeId}avatar',
+										logoDisplaySelector: '#${themeNamespace}avatar',
 										portletNamespace: '',
-										randomNamespace: '${themeId}'
+										randomNamespace: '${themeNamespace}'
 									}
 								);
 							}
