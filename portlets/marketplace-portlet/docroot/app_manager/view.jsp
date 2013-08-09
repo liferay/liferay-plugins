@@ -49,9 +49,9 @@ portletURL.setParameter("toolbarItem", toolbarItem);
 
 <c:choose>
 	<c:when test='<%= toolbarItem.equals("install") %>'>
-		<%@ include file="/app_manager/install_apps.jsp" %>
+		<%@ include file="/app_manager/install_apps.jspf" %>
 	</c:when>
 	<c:otherwise>
-		<%@ include file="/app_manager/manage.jsp" %>
+		<%@ include file="/app_manager/manage.jspf" %>
 	</c:otherwise>
 </c:choose>
