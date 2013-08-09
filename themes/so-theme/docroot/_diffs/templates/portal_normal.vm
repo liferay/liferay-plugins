@@ -112,10 +112,10 @@ $theme.include($body_top_include)
 			#if ($page_group.isUser())
 				<div class="$user_detail_class">
 					<div class="profile-image">
-						<div class="taglib-logo-selector" id="_SO_THEME_taglibLogoSelector">
-							<div class="taglib-logo-selector-content" id="_SO_THEME_taglibLogoSelectorContent">
+						<div class="taglib-logo-selector" id="${themeId}taglibLogoSelector">
+							<div class="taglib-logo-selector-content" id="${themeId}taglibLogoSelectorContent">
 								<a href="$current_user_profile_url">
-									<img alt="$current_user_name" class="avatar" id="_SO_THEME_avatar" src="$current_user_profile_portrait_url">
+									<img alt="$current_user_name" class="avatar" id="${themeId}avatar" src="$current_user_profile_portrait_url">
 								</a>
 
 								#if ($show_edit_profile_button)
@@ -181,18 +181,18 @@ $theme.include($bottom_include)
 			function(A) {
 				editPortrait = new Liferay.LogoSelector(
 					{
-						boundingBox: '#_SO_THEME_taglibLogoSelector',
-						contentBox: '#_SO_THEME_taglibLogoSelectorContent',
+						boundingBox: '#${themeId}taglibLogoSelector',
+						contentBox: '#${themeId}taglibLogoSelectorContent',
 						defaultLogoURL: '$current_user_profile_portrait_url',
 						editLogoURL: '$current_user_edit_profile_portrait_url',
-						logoDisplaySelector: '#_SO_THEME_avatar',
+						logoDisplaySelector: '#${themeId}avatar',
 						portletNamespace: '',
-						randomNamespace: '_SO_THEME_'
+						randomNamespace: '${themeId}'
 					}
 				);
 
 				window['_2_changeLogo'] = function(logoURL) {
-					var avatarDialog = A.one('#_SO_THEME_avatar');
+					var avatarDialog = A.one('#${themeId}avatar');
 
 					if (avatarDialog) {
 						avatarDialog.attr('src', logoURL);
