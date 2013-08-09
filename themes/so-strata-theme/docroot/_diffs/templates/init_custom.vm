@@ -17,6 +17,7 @@
 
 #if ($is_signed_in)
 	#set ($liferay_toggle_controls = $sessionClicks.get($request, "liferay_toggle_controls", ""))
+	#set ($themeId = "_" + $themeDisplay.getThemeId() + "_")
 
 	#if ($liferay_toggle_controls == "")
 		$sessionClicks.put($request, "liferay_toggle_controls", "hidden")
