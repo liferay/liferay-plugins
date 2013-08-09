@@ -690,7 +690,6 @@ Please find a solution that does not require portal-impl.jar.
 					<fileset dir="docroot/WEB-INF/src/content">
 						<include name="Language*.properties" />
 					</fileset>
-
 					<mapper>
 						<chainedmapper>
 							<flattenmapper />
