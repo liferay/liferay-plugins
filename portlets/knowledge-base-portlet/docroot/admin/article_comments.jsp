@@ -44,7 +44,7 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 
 			<liferay-ui:error exception="<%= KBCommentContentException.class %>" message="please-enter-valid-content" />
 
-			<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
+			<aui:model-context model="<%= KBComment.class %>" />
 
 			<aui:fieldset>
 				<c:if test="<%= enableKBArticleKBComments && themeDisplay.isSignedIn() %>">
