@@ -82,11 +82,13 @@ html > body.lfr-dockbar-pinned {
 	z-index: 301;
 
 	&, a {
-		color: #FFF;
-		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-		font-size: 13px;
-		font-weight: 400;
-		text-decoration: none;
+		&, &:hover, &:visited, &:active {
+			color: #FFF;
+			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-size: 13px;
+			font-weight: 400;
+			text-decoration: none;
+		}
 	}
 
 	.so-logo {
@@ -490,10 +492,14 @@ html > body.lfr-dockbar-pinned {
 				}
 			}
 
-			ul.site-list, li {
-				background-color: transparent;
-				border: none;
-				display: block;
+			ul.site-list {
+				&, li {
+					background-color: transparent;
+					border-width: 0;
+					display: block;
+					margin: 0;
+					padding: 0
+				}
 			}
 		}
 
