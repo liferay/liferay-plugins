@@ -200,4 +200,17 @@ ECJ was automatically installed. Please rerun your task.
 			<jvmarg value="-Dplugins.env.dir=." />
 		</java>
 	</target>
+
+	<target name="sort-attributes-xml">
+		<java
+			classname="com.liferay.portal.tools.XMLAttributesSorter"
+			classpathref="portal.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Xmx512m" />
+			<jvmarg value="-Xss2048k" />
+			<arg value="sort.xml.file.name=${sort.xml.file.name}" />
+		</java>
+	</target>
 </project>
