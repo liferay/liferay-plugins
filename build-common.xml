@@ -201,7 +201,7 @@ ECJ was automatically installed. Please rerun your task.
 		</java>
 	</target>
 
-	<target name="sort-attributes-xml">
+	<target name="sort-xml-attributes">
 		<java
 			classname="com.liferay.portal.tools.XMLAttributesSorter"
 			classpathref="portal.classpath"
