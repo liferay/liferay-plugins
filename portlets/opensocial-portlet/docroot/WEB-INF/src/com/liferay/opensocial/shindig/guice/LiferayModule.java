@@ -31,8 +31,8 @@ import org.apache.shindig.social.opensocial.spi.ActivityService;
 import org.apache.shindig.social.opensocial.spi.AlbumService;
 import org.apache.shindig.social.opensocial.spi.AppDataService;
 import org.apache.shindig.social.opensocial.spi.MediaItemService;
-import org.apache.shindig.social.opensocial.spi.MessageService.NotImplementedMessageService;
 import org.apache.shindig.social.opensocial.spi.MessageService;
+import org.apache.shindig.social.opensocial.spi.MessageService.NotImplementedMessageService;
 import org.apache.shindig.social.opensocial.spi.PersonService;
 import org.apache.shindig.social.sample.oauth.SampleOAuthDataStore;
 

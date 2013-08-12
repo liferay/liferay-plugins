@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.mobile.device.VersionableName;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.util.HashMap;
-import java.util.Map.Entry;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * @author Milen Dyankov
