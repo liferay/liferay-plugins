@@ -141,12 +141,12 @@ ECJ was automatically installed. Please rerun your task.
 			</or>
 			<then>
 				<subant target="create">
-					<fileset dir="${sdk.dir}/${plugin.type}s" includes="build.xml"/>
+					<fileset dir="${sdk.dir}/${plugin.type}s" includes="build.xml" />
 				</subant>
 			</then>
 			<else>
 				<subant target="create">
-					<fileset dir="${sdk.dir}/${plugin.type}" includes="build.xml"/>
+					<fileset dir="${sdk.dir}/${plugin.type}" includes="build.xml" />
 				</subant>
 			</else>
 		</if>

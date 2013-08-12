@@ -2,7 +2,7 @@
 <!DOCTYPE project>
 
 <project name="plugins-security-manager-portlet" basedir="." default="deploy">
-	<import file="../build-common-portlet.xml"/>
+	<import file="../build-common-portlet.xml" />
 
 	<target name="build-lang">
 		<antcall target="build-lang-cmd">
