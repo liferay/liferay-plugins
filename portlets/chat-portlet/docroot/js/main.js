@@ -105,6 +105,12 @@ AUI().use(
 				return now() - instance._getOffset();
 			},
 
+			getUserImagePath: function(userId) {
+				var instance = this;
+
+				return themeDisplay.getPathImage() + '/user_portrait?img_id=' + userId;
+			},
+
 			_convertToClientTimestamp: function(time) {
 				var instance = this;
 
@@ -113,12 +119,6 @@ AUI().use(
 				time += instance._getOffset();
 
 				return time;
-			},
-
-			getUserImagePath: function(userId) {
-				var instance = this;
-
-				return themeDisplay.getPathImage() + '/user_portrait?img_id=' + userId;
 			},
 
 			_getOffset: function() {
