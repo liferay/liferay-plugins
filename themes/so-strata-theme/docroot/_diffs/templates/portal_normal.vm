@@ -106,7 +106,7 @@ $theme.include($body_top_include)
 				<h2 class="page-title">
 					#if ($the_title == "Dashboard")
 						<a class="avatar" href="$current_user_profile_url" style="background-image: url($user.getPortraitURL($themeDisplay))">
-							<img src="$user.getPortraitURL($themeDisplay)" alt="$user.getFullName()">
+							<img alt="$user.getFullName()" src="$user.getPortraitURL($themeDisplay)">
 						</a>
 
 						<span>$current_user.getFullName()'s</span>
