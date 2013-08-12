@@ -115,6 +115,7 @@ public class AnnouncementsPortlet extends MVCPortlet {
 				ParamUtil.getString(actionRequest, "distributionScope"));
 
 			jsonObject.put("redirect", portletURL.toString());
+
 			jsonObject.put("success", true);
 		}
 		catch (Exception e) {
