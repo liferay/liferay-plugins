@@ -129,12 +129,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</div>
 
 				<c:if test="<%= !showOnlySiteMembers %>">
-					<button type="button" class="add-contact aui-buttonitem-content yui3-widget aui-component aui-buttonitem aui-state-default aui-buttonitem-icon-label" id="<portlet:namespace/>add-contact" value="add-contact">
+					<button class="add-contact aui-buttonitem-content yui3-widget aui-component aui-buttonitem aui-state-default aui-buttonitem-icon-label" id="<portlet:namespace/>add-contact" type="button" value="add-contact">
 						<span class="aui-buttonitem-icon aui-icon aui-icon-add"></span>
 
-						<span class="aui-buttonitem-label">
-							<%= LanguageUtil.get(pageContext, "add-contact") %>
-						</span>
+						<span class="aui-buttonitem-label"><liferay-ui:message key="add-contact" /></span>
 					</button>
 				</c:if>
 			</aui:layout>
