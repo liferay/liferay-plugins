@@ -5,7 +5,7 @@
 		height: 600px;
 	}
 
-	.aui-tree-view-editor {
+	.tree-view-editor {
 		background: #FFF;
 		height: 100%;
 	}
@@ -22,44 +22,44 @@
 		width: 80%;
 	}
 
-	.aui-tree-view-editor .aui-tree-node, .aui-tree-label {
+	.tree-view-editor .tree-node, .tree-label {
 		cursor: pointer;
 	}
 
-	.aui-tree-view-editor {
-		.aui-tree-node-selected {
+	.tree-view-editor {
+		.tree-node-selected {
 			background: #F0FCFF;
 
-			.aui-tree-label {
+			.tree-label {
 				font-weight: normal;
 			}
 		}
 
-		.aui-tree-label:hover {
+		.tree-label:hover {
 			color: #06C;
 		}
 
-		.aui-tree-node {
-			.aui-tree-node-loaded {
+		.tree-node {
+			.tree-node-loaded {
 				color: #06C;
 				font-weight: bold;
 				text-decoration: underline;
 			}
 
-			.aui-tree-node-loaded .aui-tree-label {
+			.tree-node-loaded .tree-label {
 				font-weight: bold;
 			}
 		}
 	}
 
-	.aui-tabview-list .aui-tab-content .gadget-editor-tab-close, .aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon, .gadget-editor-tree-node-contextmenuicon-open {
+	.tabview-list .tab-content .gadget-editor-tab-close, .tree-node-content:hover .gadget-editor-tree-node-contextmenuicon, .gadget-editor-tree-node-contextmenuicon-open {
 		background-repeat: no-repeat;
 		float: right;
 		height: 16px;
 		width: 16px;
 	}
 
-	.aui-tree-node-content:hover .gadget-editor-tree-node-contextmenuicon {
+	.tree-node-content:hover .gadget-editor-tree-node-contextmenuicon {
 		background-image: url(../images/tool.png);
 	}
 }
@@ -68,7 +68,7 @@
 	background: #EEF0F2;
 }
 
-.aui-editable {
+.editable {
 	z-index: 1;
 }
 
@@ -91,22 +91,22 @@
 		background-image: url(../images/tool.png);
 	}
 
-	.aui-panel-bd {
+	.panel-bd {
 		background: #FFFFFF;
 		overflow: auto;
 	}
 
-	.aui-tabview-list {
-		.aui-tab-content:hover {
+	.tabview-list {
+		.tab-content:hover {
 			background: #D3D3D3;
 		}
 
-		.aui-tab-active .aui-tab-content:hover {
+		.tab-active .tab-content:hover {
 			background: none;
 			color: #D3D3D3;
 		}
 
-		.aui-tab-content {
+		.tab-content {
 			.gadget-editor-tab-close {
 				background-image: url(../images/close.png);
 
@@ -119,7 +119,7 @@
 		}
 	}
 
-	.aui-tabview-list, .aui-tabview-list-content {
+	.tabview-list, .tabview-list-content {
 		margin-bottom: 0px;
 	}
 
@@ -127,71 +127,71 @@
 		padding-top: 8px;
 	}
 
-	.aui-gadget {
+	.gadget {
 		height: 100%;
 		width: 100%;
 	}
 }
 
-.aui-icon-gadgeteditor-addfile, .aui-icon-gadgeteditor-addfolder, .aui-icon-gadgeteditor-close, .aui-icon-gadgeteditor-delete, .aui-icon-gadgeteditor-disk, .aui-icon-gadgeteditor-refresh, .aui-icon-gadgeteditor-rename, .aui-icon-gadgeteditor-tool, .aui-icon-gadgeteditor-url {
+.icon-gadgeteditor-addfile, .icon-gadgeteditor-addfolder, .icon-gadgeteditor-close, .icon-gadgeteditor-delete, .icon-gadgeteditor-disk, .icon-gadgeteditor-refresh, .icon-gadgeteditor-rename, .icon-gadgeteditor-tool, .icon-gadgeteditor-url {
 	background-repeat: no-repeat;
 	height: 16px;
 	width: 16px;
 }
 
-.aui-toolbar-item {
-	.aui-icon-gadgeteditor-addfile {
+.toolbar-item {
+	.icon-gadgeteditor-addfile {
 		background-image: url(../images/add_file.png);
 	}
 
-	.aui-icon-gadgeteditor-addfolder {
+	.icon-gadgeteditor-addfolder {
 		background-image: url(../images/add_folder.png);
 	}
 
-	.aui-icon-gadgeteditor-close {
+	.icon-gadgeteditor-close {
 		background-image: url(../images/close.png);
 	}
 
-	.aui-icon-gadgeteditor-delete {
+	.icon-gadgeteditor-delete {
 		background-image: url(../images/delete.png);
 	}
 
-	.aui-icon-gadgeteditor-disk {
+	.icon-gadgeteditor-disk {
 		background-image: url(../images/disk.png);
 	}
 
-	.aui-icon-gadgeteditor-publish {
+	.icon-gadgeteditor-publish {
 		background-image: url(../images/publish.png);
 	}
 
-	.aui-icon-gadgeteditor-refresh {
+	.icon-gadgeteditor-refresh {
 		background-image: url(../images/refresh.png);
 	}
 
-	.aui-icon-gadgeteditor-rename {
+	.icon-gadgeteditor-rename {
 		background-image: url(../images/rename.png);
 	}
 
-	.aui-icon-gadgeteditor-tool {
+	.icon-gadgeteditor-tool {
 		background-image: url(../images/disk_dirty.png);
 	}
 
-	.aui-icon-gadgeteditor-url {
+	.icon-gadgeteditor-url {
 		background-image: url(../images/url.png);
 	}
 }
 
-.aui-resize-handle-l {
+.resize-handle-l {
 	cursor: col-resize;
 	left: 0;
 }
 
-.aui-resize-handle-t {
+.resize-handle-t {
 	cursor: row-resize;
 	left: 0;
 }
 
-.ie .opensocial-portlet-editor .aui-tabview-list .aui-tab-content .gadget-editor-tab-close {
+.ie .opensocial-portlet-editor .tabview-list .tab-content .gadget-editor-tab-close {
 	@include opacity(0.2);
 
 	&:hover {
