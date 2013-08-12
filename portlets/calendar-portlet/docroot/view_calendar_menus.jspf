@@ -16,8 +16,6 @@
 
 <%
 String backURL = PortalUtil.getCurrentURL(request);
-
-String editCalendarBookingURL = ParamUtil.getString(request, "editCalendarBookingURL");
 %>
 
 <aui:script use="liferay-calendar-simple-menu,liferay-calendar-simple-color-picker">
