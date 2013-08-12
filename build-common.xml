@@ -202,38 +202,33 @@ ECJ was automatically installed. Please rerun your task.
 	</target>
 
 	<target name="setup-jrebel">
-		<copy 
-			file="${sdk.dir}/tools/jrebel/rebel_ftl.xml" 
-			tofile="${plugin.classes.dir}/rebel.xml"
-			overwrite="true"
-		/>
+		<property name="jrebel.plugin.classes.dir" value="${basedir}/${plugin.classes.dir}" />
 
-		<var name="plugin.compilation.classes.dir" value="${basedir}/${plugin.classes.dir}" />
+		<echo file="${jrebel.plugin.classes.dir}/rebel.xml"><![CDATA[<?xml version="1.0"?>
 
-		<if>
-			<not>
-				<equals arg1="${jrebel.plugin.classes.dir}" arg2="" />
-			</not>
-			<then>
-				<var name="plugin.compilation.classes.dir" value="${jrebel.plugin.classes.dir}" />
-			</then>
-		</if>
-
-		<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.classes.dir" value="${plugin.compilation.classes.dir}" />
+<application
+	xmlns="http://www.zeroturnaround.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zeroturnaround.com http://www.zeroturnaround.com/alderaan/rebel-2_0.xsd"
+>
+	<classpath>
+		<dir name="${jrebel.plugin.classes.dir}" />
+	</classpath>
+</application>]]></echo>
 
 		<if>
 			<available file="docroot" type="dir" />
 			<then>
-				<loadfile property="plugin.webapp.configuration" srcFile="${sdk.dir}/tools/jrebel/rebel_web_ftl.xml" />
-
-				<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.webapp.dir.configuration" value="${plugin.webapp.configuration}" />
-
-				<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.context.name" value="${plugin.name}" />
-				<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.webapp.docroot" value="${basedir}/docroot" />
+				<replace file="${jrebel.plugin.classes.dir}/rebel.xml">
+					<replacetoken><![CDATA[</application>]]></replacetoken>
+					<replacevalue><![CDATA[	<web>
+		<link target="/${plugin.name}">
+			<dir name="${basedir}/docroot" />
+		</link>
+	</web>
+</application>]]></replacevalue>
+				</replace>
 			</then>
-			<else>
-				<replace file="${plugin.classes.dir}/rebel.xml" token="plugin.webapp.dir.configuration" value="" />
-			</else>
 		</if>
 	</target>
 
