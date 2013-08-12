@@ -86,9 +86,7 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 
 			SocialActivitySet activitySet = null;
 
-			if ((activityType == _ACTIVITY_KEY_ADD_MESSAGE) ||
-				(activityType == _ACTIVITY_KEY_REPLY_MESSAGE)) {
-
+			if (activityType == _ACTIVITY_KEY_REPLY_MESSAGE) {
 				activitySet =
 					SocialActivitySetLocalServiceUtil.getUserActivitySet(
 						activity.getGroupId(), activity.getUserId(),

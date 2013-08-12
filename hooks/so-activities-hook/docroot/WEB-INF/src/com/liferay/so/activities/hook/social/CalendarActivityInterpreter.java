@@ -46,13 +46,7 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-			if (activity.getType() == _ACTIVITY_KEY_ADD_EVENT) {
-				activitySet =
-					SocialActivitySetLocalServiceUtil.getUserActivitySet(
-						activity.getGroupId(), activity.getUserId(),
-						activity.getClassNameId(), activity.getType());
-			}
-			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_EVENT) {
+			if (activity.getType() == _ACTIVITY_KEY_UPDATE_EVENT) {
 				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
