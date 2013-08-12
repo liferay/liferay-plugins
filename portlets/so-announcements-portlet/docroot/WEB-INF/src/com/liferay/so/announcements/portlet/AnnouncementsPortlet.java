@@ -109,7 +109,8 @@ public class AnnouncementsPortlet extends MVCPortlet {
 			PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
 			portletURL.setParameter("mvcPath", "/manage_entries.jsp");
-			portletURL.setParameter("distributionScope",
+			portletURL.setParameter(
+				"distributionScope",
 				ParamUtil.getString(actionRequest, "distributionScope"));
 
 			jsonObject.put("redirect", portletURL.toString());
