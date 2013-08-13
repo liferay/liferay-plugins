@@ -42,6 +42,15 @@
 		<css-class-wrapper>so-portlet-dockbar-notifications</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
+	<portlet>
+		<portlet-name>8</portlet-name>
+		<icon>/user_bar/icon.png</icon>
+		<use-default-template>false</use-default-template>
+		<header-portlet-css>/user_bar/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/user_bar/js/main.js</footer-portlet-javascript>
+		<css-class-wrapper>user-bar-portlet</css-class-wrapper>
+		<system>true</system>
+	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>
