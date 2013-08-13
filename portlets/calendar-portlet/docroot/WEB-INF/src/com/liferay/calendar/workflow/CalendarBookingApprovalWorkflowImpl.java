@@ -72,12 +72,9 @@ public class CalendarBookingApprovalWorkflowImpl
 
 	@Override
 	public void invokeTransition(
-			long userId, long calendarBookingId, String transitionName,
+			long userId, long calendarBookingId, int status,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
-
-		int status = CalendarBookingWorkflowConstants.getLabelStatus(
-			transitionName);
 
 		if (status == CalendarBookingWorkflowConstants.STATUS_PENDING) {
 			CalendarBooking calendarBooking =
@@ -101,6 +98,18 @@ public class CalendarBookingApprovalWorkflowImpl
 			CalendarBookingLocalServiceUtil.updateStatus(
 				userId, calendarBookingId, status, serviceContext);
 		}
+	}
+
+	@Override
+	public void invokeTransition(
+			long userId, long calendarBookingId, String transitionName,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		int status = CalendarBookingWorkflowConstants.getLabelStatus(
+			transitionName);
+
+		invokeTransition(userId, calendarBookingId, status, serviceContext);
 	}
 
 	@Override

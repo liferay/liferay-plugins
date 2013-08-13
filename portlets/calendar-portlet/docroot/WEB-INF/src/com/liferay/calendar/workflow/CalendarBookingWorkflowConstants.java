@@ -22,6 +22,12 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
  */
 public class CalendarBookingWorkflowConstants extends WorkflowConstants {
 
+	public static final String ACTION_ACCEPT = "accept";
+
+	public static final String ACTION_DECLINE = "decline";
+
+	public static final String ACTION_MAYBE = "maybe";
+
 	public static final String LABEL_ACCEPTED = "accepted";
 
 	public static final String LABEL_DECLINED = "declined";
