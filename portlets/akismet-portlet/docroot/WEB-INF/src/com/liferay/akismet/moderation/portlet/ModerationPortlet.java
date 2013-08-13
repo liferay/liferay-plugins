@@ -113,7 +113,9 @@ public class ModerationPortlet extends MVCPortlet {
 				themeDisplay.getUserId(), mbMessageId,
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
 
-			AkismetUtil.submitHam(mbMessage);
+			if (AkismetUtil.isMessageBoardsEnabled(mbMessage.getCompanyId())) {
+				AkismetUtil.submitHam(mbMessage);
+			}
 		}
 	}
 
