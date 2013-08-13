@@ -16,11 +16,42 @@ $blue: #0E50A9;
 	}
 }
 
+@mixin menu-mix {
+	background-color: #FFF;
+
+	@include border-radius(4px);
+	@include box-shadow(0 1px 3px rgba(0,0,0, .78));
+}
+
+.portlet-dockbar {
+	overflow: hidden;
+}
+
+#dockbar {
+	@include transition-property(margin, opacity);
+	@include transition-duration(.5s);
+}
+
+body.show-dockbar, html > body.lfr-dockbar-pinned {
+	.portlet-dockbar {
+		overflow: visible;
+	}
+
+	#dockbar {
+		margin-top: 0;
+
+		@include opacity(1);
+	}
+}
+
 html > body.lfr-dockbar-pinned {
 	padding-top: 74px;
 
 	#dockbar {
+		position: fixed;
 		top: 42px;
+
+		@include box-shadow(0 7px 9px -8px rgba(0, 0, 0, 0.5));
 	}
 
 	#user-bar {
@@ -28,15 +59,15 @@ html > body.lfr-dockbar-pinned {
 		position: fixed;
 		right: 0;
 		top: 0;
-		z-index: 301;
 	}
 }
 
 #user-bar {
 	background: #32363A url(@portal_ctx@/user_bar/images/user_bar_default_bg.png) repeat-x;
+	font: 13px/1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: 200;
 	position: relative;
-	z-index: 2;
+	z-index: 1000;
 
 	@include background-image(linear-gradient(bottom, #252D31 0, #32363A 100%));
 
@@ -46,6 +77,10 @@ html > body.lfr-dockbar-pinned {
 		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 		font-weight: 400;
 		text-decoration: none;
+	}
+
+	&.user-bar-active {
+		z-index: 1001;
 	}
 
 	#so_logo {
@@ -71,7 +106,7 @@ html > body.lfr-dockbar-pinned {
 		@include transition-duration(.5s);
 	}
 
-	li.selected a, a:hover, li:hover a {
+	li.selected a, a:hover, li:hover a, .hover a {
 		background: rgba(0,0,0, .48);
 		text-decoration: none;
 
@@ -83,6 +118,7 @@ html > body.lfr-dockbar-pinned {
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		vertical-align: middle;
 	}
 
 	li a {
@@ -94,8 +130,10 @@ html > body.lfr-dockbar-pinned {
 	}
 
 	.user-menu {
-		float: right;
 		padding: .5em;
+		position: absolute;
+		right: 0;
+		top: 0;
 
 		.avatar {
 			display: inline-block;
@@ -112,9 +150,52 @@ html > body.lfr-dockbar-pinned {
 			}
 		}
 
+		.has-submenu {
+			overflow: hidden;
+		}
+
 		.child-menu {
+			height: 0;
 			left: auto;
+			min-width: 150px;
+			opacity: 0;
+			position: absolute;
 			right: 0;
+			top: 100%;
+			margin-top: -100px;
+			z-index: 3;
+
+			li {
+				display: block;
+			}
+
+			a {
+				background-color: transparent;
+				color: $default-text-color;
+				display: block;
+
+				@include box-shadow(none);
+				@include text-shadow(none);
+
+				&:hover {
+					background-color: rgba(0, 0, 0, 0.6);
+					color: #FFF;
+				}
+			}
+
+			@include menu-mix;
+			@include transition-duration(.5s);
+			@include transition-property(height, opacity);
+		}
+
+		.hover {
+			overflow: visible;
+
+			.child-menu {
+				margin-top: 0;
+				height: auto;
+				opacity: 1;
+			}
 		}
 
 		.config-icon {
@@ -139,13 +220,13 @@ html > body.lfr-dockbar-pinned {
 	.user-notification-events {
 		color: $default-text-color;
 		right: 0;
-		top: 100%;
+		top: 120%;
 		width: 350px;
 
 		@include clear-both;
 
 		.aui-menu-content {
-			background: #FFF;
+			@include menu-mix;
 		}
 
 		.user-notification-event-content {
@@ -181,29 +262,20 @@ html > body.lfr-dockbar-pinned {
 			padding: 0.125em 0.5em;
 		}
 
-/*		div.request, div.user-notification-event-footer {
+		div.request, div.user-notification-event-footer {
 			a {
 				display: inline-block;
 
 				@include border-radius(4px);
-				@include button-default;
-
-				&:hover, &:focus {
-					@include button-hover;
-				}
-
-				&:active {
-					@include button-active;
-				}
 			}
-		}*/
+		}
 
 		.request {
 			text-align: right;
 		}
 	}
 
-	.notifications {
+	#notificationsMenu {
 		position: relative;
 
 		.notification-count {
@@ -215,7 +287,7 @@ html > body.lfr-dockbar-pinned {
 		}
 
 		.user-notification-events-icon {
-			background: rgba(255,255,255, 1);
+			background: rgba(255, 255, 255, 1);
 
 			@include border-radius(20px);
 
@@ -229,9 +301,8 @@ html > body.lfr-dockbar-pinned {
 		}
 	}
 
-
 	.so-portlet-sites {
-		display: none;
+		display: block;
 		margin-left: -300px;
 		max-width: 450px;
 		min-width: 350px;
@@ -249,15 +320,15 @@ html > body.lfr-dockbar-pinned {
 			display: none;
 		}
 
-		.portlet-content {
-			background: #FFF;
+		.portlet-body {
 			left: 0;
-			margin: -2em 0 0;
+			margin: -1.675em 0 0;
 			padding: 3.4em 0 0;
+			position: absolute;
 			right: 0;
 			visibility: hidden;
 
-			@include border-radius(4px);
+			@include menu-mix;
 
 			a, a:hover, li.has-menu:hover a {
 				background-color: transparent;
@@ -296,6 +367,7 @@ html > body.lfr-dockbar-pinned {
 				text-indent: .5em;
 				width: 20%;
 
+				@include border-radius(4px);
 				@include box-shadow(0 1px 2px rgba(0,0,0, .4) inset);
 				@include transition-duration(.5s);
 				@include transition-property(width);
@@ -312,20 +384,19 @@ html > body.lfr-dockbar-pinned {
 
 		.search-focus {
 			visibility: visible;
-			z-index: 4;
 
 			.search {
 				width: auto;
 
 				.search-input {
 					background: #FFF;
+					border: 1px solid $default-border-color;
 					color: $default-text-color;
 					cursor: text;
 					text-shadow: none;
-					width: 99%;
+					width: 97%;
 
 					@include box-shadow(0 1px 2px rgba(0,0,0, 0) inset);
-					@include default-border;
 				}
 			}
 
@@ -335,7 +406,7 @@ html > body.lfr-dockbar-pinned {
 		}
 
 		.sites-tabs {
-			border-top: 1px solid $default-border-color;
+			border-top: 1px solid rgba(0,0,0, .1);
 			float: none;
 			padding: 1em;
 
@@ -355,7 +426,7 @@ html > body.lfr-dockbar-pinned {
 				padding: 0.55em 2.5em;
 
 				&:hover {
-					background-color: $default-border-color;
+					background-color: rgba(0,0,0, .1);
 				}
 			}
 
