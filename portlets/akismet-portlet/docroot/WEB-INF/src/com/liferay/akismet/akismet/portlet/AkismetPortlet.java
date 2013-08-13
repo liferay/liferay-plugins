@@ -51,6 +51,8 @@ public class AkismetPortlet extends MVCPortlet {
 			actionRequest, "messageBoardsEnabled");
 		int reportableTime = ParamUtil.getInteger(
 			actionRequest, "reportableTime");
+		boolean wikiEnabled = ParamUtil.getBoolean(
+			actionRequest, "wikiEnabled");
 
 		PortletPreferences preferences =
 			PrefsPortletPropsUtil.getPortletPreferences(
@@ -66,6 +68,9 @@ public class AkismetPortlet extends MVCPortlet {
 		preferences.setValue(
 			PortletPropsKeys.AKISMET_MESSAGE_BOARDS_CHECK_ENABLED,
 			String.valueOf(messageBoardsEnabled));
+		preferences.setValue(
+			PortletPropsKeys.AKISMET_WIKI_CHECK_ENABLED,
+			String.valueOf(wikiEnabled));
 		preferences.setValue(
 			PortletPropsKeys.AKISMET_REPORTABLE_TIME,
 			String.valueOf(reportableTime));

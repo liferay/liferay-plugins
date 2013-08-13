@@ -26,6 +26,8 @@
 
 		<aui:input label="enabled-for-discussions" name="discussionsEnabled" type="checkbox" value="<%= AkismetUtil.isDiscussionsEnabled(company.getCompanyId()) %>" />
 
+		<aui:input label="enabled-for-wiki" name="wikiEnabled" type="checkbox" value="<%= AkismetUtil.isWikiEnabled(company.getCompanyId()) %>" />
+
 		<aui:input label="api-key" name="apiKey" type="text" value="<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_API_KEY) %>" />
 
 		<aui:input helpMessage="reportable-time-help" label="reportable-time" name="reportableTime" type="text" value="<%= PrefsPortletPropsUtil.getString(company.getCompanyId(), PortletPropsKeys.AKISMET_REPORTABLE_TIME) %>" />
