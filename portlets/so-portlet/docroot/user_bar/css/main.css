@@ -1,0 +1,419 @@
+@import "compass/css3";
+
+$default-border-color: #C9C9C9;
+$default-text-color: #202020;
+$blue: #0E50A9;
+
+@mixin default-border {
+	border: 1px solid $default-border-color;
+}
+
+@mixin clear-both {
+	&:after {
+		content: "";
+		clear: both;
+		display: block;
+	}
+}
+
+html > body.lfr-dockbar-pinned {
+	padding-top: 74px;
+
+	#dockbar {
+		top: 42px;
+	}
+
+	#user-bar {
+		left: 0;
+		position: fixed;
+		right: 0;
+		top: 0;
+		z-index: 301;
+	}
+}
+
+#user-bar {
+	background: #32363A url(@portal_ctx@/user_bar/images/user_bar_default_bg.png) repeat-x;
+	font-weight: 200;
+	position: relative;
+	z-index: 2;
+
+	@include background-image(linear-gradient(bottom, #252D31 0, #32363A 100%));
+
+	&, a {
+		color: #FFF;
+		font-size: 13px;
+		font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		font-weight: 400;
+		text-decoration: none;
+	}
+
+	#so_logo {
+		display: inline-block;
+		margin-bottom: -7px;
+		padding: 6px 3px 6px 8px;
+		vertical-align: middle;
+
+		&, &:hover {
+			background-color: transparent;
+
+			@include box-shadow(none);
+		}
+	}
+
+	a {
+		background: rgba(0,0,0, 0);
+		padding: 0.25em .8em;
+		text-shadow: 0 1px 2px rgba(0,0,0, .75);
+
+		@include border-radius(4px);
+		@include transition-property(background-color);
+		@include transition-duration(.5s);
+	}
+
+	li.selected a, a:hover, li:hover a {
+		background: rgba(0,0,0, .48);
+		text-decoration: none;
+
+		@include box-shadow(0 1px 2px rgba(0,0,0, .75));
+	}
+
+	ul, li {
+		display: inline-block;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	li a {
+		display: block;
+	}
+
+	.has-submenu {
+		position: relative;
+	}
+
+	.user-menu {
+		float: right;
+		padding: .5em;
+
+		.avatar {
+			display: inline-block;
+			height: 24px;
+			margin: -5px 10px -4px -5px;
+			overflow: hidden;
+			padding: 0;
+			vertical-align: middle;
+			width: 24px;
+
+			img {
+				max-width: 24px;
+				min-height: 24px;
+			}
+		}
+
+		.child-menu {
+			left: auto;
+			right: 0;
+		}
+
+		.config-icon {
+			padding: .25em 6px;
+
+			img {
+				vertical-align: bottom;
+			}
+		}
+	}
+
+	.user-notification-events a, .user-notification-events a:hover, li:hover .user-notification-events a {
+		background: transparent;
+		box-shadow: none;
+		color: $blue;
+		display: inline;
+		font-weight: normal;
+		padding: 0;
+		text-shadow: none;
+	}
+
+	.user-notification-events {
+		color: $default-text-color;
+		right: 0;
+		top: 100%;
+		width: 350px;
+
+		@include clear-both;
+
+		.aui-menu-content {
+			background: #FFF;
+		}
+
+		.user-notification-event-content {
+			border-bottom: 1px solid $default-border-color;
+		}
+
+		.user-notification-event-sender {
+			float: left;
+			position: relative;
+		}
+
+		.thumbnail {
+			display: block;
+			overflow: hidden;
+			width: 45px;
+			height: 45px;
+
+			img {
+				max-width: 45px;
+				min-height: 45px;
+			}
+		}
+
+		.icon {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+		}
+
+		.notification-entry {
+			color: $default-text-color;
+			margin-left: 45px;
+			padding: 0.125em 0.5em;
+		}
+
+/*		div.request, div.user-notification-event-footer {
+			a {
+				display: inline-block;
+
+				@include border-radius(4px);
+				@include button-default;
+
+				&:hover, &:focus {
+					@include button-hover;
+				}
+
+				&:active {
+					@include button-active;
+				}
+			}
+		}*/
+
+		.request {
+			text-align: right;
+		}
+	}
+
+	.notifications {
+		position: relative;
+
+		.notification-count {
+			color: #202020;
+			background: transparent;
+			padding: 0;
+			text-shadow: none;
+			margin: 0 -0.1em;
+		}
+
+		.user-notification-events-icon {
+			background: rgba(255,255,255, 1);
+
+			@include border-radius(20px);
+
+			&:hover {
+				background: rgba(0,0,0, .8);
+
+				.notification-count {
+					color: #FFF;
+				}
+			}
+		}
+	}
+
+
+	.so-portlet-sites {
+		display: none;
+		margin-left: -300px;
+		max-width: 450px;
+		min-width: 350px;
+		position: relative;
+		right: 0;
+		top: 0;
+		vertical-align: middle;
+		width: 400px;
+
+		.portlet {
+			border-width: 0;
+		}
+
+		.portlet-topper {
+			display: none;
+		}
+
+		.portlet-content {
+			background: #FFF;
+			left: 0;
+			margin: -2em 0 0;
+			padding: 3.4em 0 0;
+			right: 0;
+			visibility: hidden;
+
+			@include border-radius(4px);
+
+			a, a:hover, li.has-menu:hover a {
+				background-color: transparent;
+				color: $default-text-color;
+				font-weight: normal;
+				text-shadow: none;
+
+				@include border-radius(0);
+				@include box-shadow(none);
+			}
+		}
+
+		.search {
+			display: block;
+			float: none;
+			left: 0;
+			margin-bottom: 0;
+			padding: 0 .75em;
+			position: absolute;
+			right: 0;
+			text-align: right;
+			top: .65em;
+			visibility: visible;
+			width: auto;
+			z-index: 2;
+
+			.search-input {
+				background: rgba(0,0,0, .40);
+				border: 1px solid #1C2125;
+				cursor: pointer;
+				color: #FFF;
+				display: block;
+				float: right;
+				text-align: left;
+				text-shadow: 0 1px 2px rgba(0,0,0, .75);
+				text-indent: .5em;
+				width: 20%;
+
+				@include box-shadow(0 1px 2px rgba(0,0,0, .4) inset);
+				@include transition-duration(.5s);
+				@include transition-property(width);
+			}
+
+			input[type=image] {
+				display: none;
+			}
+		}
+
+		.sites-tabs, .sites-list-container, .control-container {
+			display: none;
+		}
+
+		.search-focus {
+			visibility: visible;
+			z-index: 4;
+
+			.search {
+				width: auto;
+
+				.search-input {
+					background: #FFF;
+					color: $default-text-color;
+					cursor: text;
+					text-shadow: none;
+					width: 99%;
+
+					@include box-shadow(0 1px 2px rgba(0,0,0, 0) inset);
+					@include default-border;
+				}
+			}
+
+			.sites-tabs, .sites-list-container, .control-container {
+				display: block;
+			}
+		}
+
+		.sites-tabs {
+			border-top: 1px solid $default-border-color;
+			float: none;
+			padding: 1em;
+
+			select {
+				display: block;
+				width: 100%;
+			}
+		}
+
+		.site-list-container {
+			.name a {
+				background-image: url(../images/common/site_icon.png);
+				background-repeat: no-repeat;
+				background-position: 8px center;
+				border-top: 1px solid $default-border-color;
+				display: block;
+				padding: 0.55em 2.5em;
+
+				&:hover {
+					background-color: $default-border-color;
+				}
+			}
+
+			.social-office-enabled a {
+				background-image: url(../images/custom/so_site_icon.png);
+			}
+
+			span.action a {
+				background: transparent url(../images/custom/star.png) 0 0 no-repeat;
+				margin-top: 8px;
+			}
+
+			span.favorite a {
+				background: transparent url(../images/custom/star_empty.png) 0 0 no-repeat;
+			}
+
+			ul.site-list, li {
+				background: transparent;
+				border: none;
+				display: block;
+			}
+		}
+
+		.control-container {
+			.aui-toolbar-content {
+				display: block;
+			}
+
+			button {
+				width: 50%;
+			}
+		}
+	}
+}
+
+#dashboardNav {
+	position: relative;
+	z-index: 3;
+}
+
+@media (max-width:860px) {
+	#user-bar {
+		a {
+			padding: 0.25em .7em;
+		}
+
+		.user-info a {
+			padding: 0;
+
+			.avatar {
+				margin: 0;
+
+				@include border-radius(4px);
+			}
+		}
+
+		.full-name {
+			display: none;
+		}
+	}
+}
