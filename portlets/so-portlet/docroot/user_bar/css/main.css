@@ -484,6 +484,7 @@ html > body.lfr-dockbar-pinned {
 
 			span.action {
 				position: relative;
+				z-index: 1;
 
 				a {
 					font-size: 0;
