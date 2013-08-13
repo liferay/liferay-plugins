@@ -23,7 +23,7 @@
 boolean socialOfficeUser = false;
 
 try {
-	socialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
+	socialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER, themeDisplay.getUserId(), true);
 }
 catch (NoSuchRoleException nsre) {
 
@@ -88,7 +88,7 @@ catch (NoSuchRoleException nsre) {
 
 			<ul class="user-toolbar">
 				<li class="go-to">
-					<liferay-portlet:runtime portletName="5_WAR_soportlet" />
+					<liferay-portlet:runtime portletName="<%= PortletKeys.SO_SITES %>" />
 				</li>
 				<li class="notifications-menu" id="<portlet:namespace/>notificationsMenu">
 					<liferay-util:include page="/dockbar_notifications/view.jsp" servletContext="<%= application %>" />
@@ -113,18 +113,18 @@ catch (NoSuchRoleException nsre) {
 							<a href="<%= profileURL %>"><liferay-ui:message key="my-profile" /></a>
 						</li>
 						<li>
-							<a href="<%= themeDisplay.getURLMyAccount().toString() %>"><liferay-ui:message key="my-account" /></a>
+							<a href="<%= themeDisplay.getURLMyAccount() %>"><liferay-ui:message key="my-account" /></a>
 						</li>
 
 						<c:if test="<%= themeDisplay.isShowControlPanelIcon() %>">
 							<li>
-								<a href="<%= themeDisplay.getURLControlPanel().toString() %>"><liferay-ui:message key="control-panel" /></a>
+								<a href="<%= themeDisplay.getURLControlPanel() %>"><liferay-ui:message key="control-panel" /></a>
 							</li>
 						</c:if>
 
 						<c:if test="<%= themeDisplay.isShowSignOutIcon() %>">
 							<li>
-								<a href="<%= themeDisplay.getURLSignOut().toString() %>"><liferay-ui:message key="sign-out" /></a>
+								<a href="<%= themeDisplay.getURLSignOut() %>"><liferay-ui:message key="sign-out" /></a>
 							</li>
 						</c:if>
 					</ul>

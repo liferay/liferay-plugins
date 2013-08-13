@@ -74,8 +74,7 @@ else {
 		<div style="clear: both;"><!-- --></div>
 	</div>
 
-	<ul class="directory-list">
-	</ul>
+	<ul class="directory-list"></ul>
 
 	<aui:button-row>
 		<div class="directory-navigation buttons-left">
