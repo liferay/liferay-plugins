@@ -51,6 +51,7 @@
 
 	.activity-body, .grouped-activity-body-container {
 		border: 1px solid #E7E7E7;
+		margin: .8em 0 0;
 
 		span {
 			line-height: 1em;
@@ -84,7 +85,6 @@
 	}
 
 	.activity-body {
-		margin: .8em 0 0;
 		padding: .6em .9em;
 
 		&.document {
