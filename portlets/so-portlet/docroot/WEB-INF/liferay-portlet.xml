@@ -28,6 +28,7 @@
 		<footer-portlet-javascript>/sites/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>so-portlet-sites</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
+		<system>true</system>
 	</portlet>
 	<portlet>
 		<portlet-name>6</portlet-name>
@@ -46,9 +47,9 @@
 		<portlet-name>8</portlet-name>
 		<icon>/user_bar/icon.png</icon>
 		<use-default-template>false</use-default-template>
-		<header-portlet-css>/user_bar/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>/user_bar/js/main.js</footer-portlet-javascript>
+		<header-portlet-javascript>/user_bar/js/main.js</header-portlet-javascript>
 		<css-class-wrapper>so-portlet-user-bar</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 		<system>true</system>
 	</portlet>
 	<role-mapper>
