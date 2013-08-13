@@ -139,7 +139,8 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 		String groupName,
 		com.liferay.portlet.social.model.SocialActivity activity) {
 
-		if (activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
+		if ((activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
+			(activity.getType() == SocialActivityConstants.TYPE_ADD_COMMENT)) {
 			return "commented-on-a-blog-entry";
 		}
 		else if (activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
@@ -156,7 +157,9 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 	protected String getTitlePattern(
 		String groupName, SocialActivitySet activitySet) {
 
-		if (activitySet.getType() == _ACTIVITY_KEY_ADD_COMMENT) {
+		if ((activitySet.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
+			(activitySet.getType() ==
+				SocialActivityConstants.TYPE_ADD_COMMENT)) {
 			return "commented-on-x-blog-entries";
 		}
 		else if (activitySet.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
