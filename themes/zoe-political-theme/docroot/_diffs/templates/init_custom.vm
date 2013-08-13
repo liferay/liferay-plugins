@@ -1,4 +1,6 @@
-#set($color_scheme = $theme_display.getColorScheme().getCssClass())
+#set ($css_class = "${css_class} dockbar-split")
+
+#set ($color_scheme = $theme_display.getColorScheme().getCssClass())
 
 ## ---------- Logo ---------- ##
 
