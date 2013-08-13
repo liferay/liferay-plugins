@@ -205,7 +205,9 @@ public class ModerationPortlet extends MVCPortlet {
 
 			// Akismet
 
-			AkismetUtil.submitHam(wikiPage);
+			if (AkismetUtil.isWikiEnabled(wikiPage.getCompanyId())) {
+				AkismetUtil.submitHam(wikiPage);
+			}
 		}
 
 		if (!wikiPageLinks.isEmpty()) {
