@@ -17,7 +17,7 @@
 	background-color: transparent;
 }
 
-.dockbar .user-notification-events {
+.user-notification-events {
 	.user-notification-event-content {
 		color: #2C2F34;
 		cursor: pointer;
