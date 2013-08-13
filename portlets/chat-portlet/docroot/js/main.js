@@ -99,7 +99,7 @@ AUI().use(
 				return hour + ':' + minute + ' ' + meridian;
 			},
 
-			getServerCurrentTimestamp: function() {
+			getCurrentTimestamp: function() {
 				var instance = this;
 
 				return now() - instance._getOffset();
@@ -354,7 +354,7 @@ AUI().use(
 
 					instance._unreadMessages = 0;
 
-					instance.set('lastReadTime', Liferay.Chat.Util.getServerCurrentTimestamp());
+					instance.set('lastReadTime', Liferay.Chat.Util.getCurrentTimestamp());
 					DOC.title = instance._originalPageTitle;
 				},
 
@@ -540,7 +540,7 @@ AUI().use(
 
 					if (event.type == 'keyup') {
 						if (instance.get('typedTo') == userId) {
-							var currentTime = Liferay.Chat.Util.getServerCurrentTimestamp();
+							var currentTime = Liferay.Chat.Util.getCurrentTimestamp();
 
 							if (currentTime - instance._lastTypedTime > instance._typingDelay) {
 								instance.send(
@@ -569,7 +569,7 @@ AUI().use(
 				_sendChat: function(content) {
 					var instance = this;
 
-					var createDate = Liferay.Chat.Util.getServerCurrentTimestamp();
+					var createDate = Liferay.Chat.Util.getCurrentTimestamp();
 					var userId = instance._panelId;
 
 					var escapedHTML = Liferay.Util.escapeHTML(content);
