@@ -161,6 +161,13 @@ public class CalendarBookingServiceUtil {
 				   .getChildCalendarBookings(parentCalendarBookingId, status);
 	}
 
+	public static void invokeTransition(long calendarBookingId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().invokeTransition(calendarBookingId, status, serviceContext);
+	}
+
 	public static void invokeTransition(long calendarBookingId,
 		java.lang.String transitionName,
 		com.liferay.portal.service.ServiceContext serviceContext)

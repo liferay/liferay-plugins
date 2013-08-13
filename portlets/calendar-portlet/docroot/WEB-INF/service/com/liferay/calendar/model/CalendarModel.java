@@ -547,6 +547,12 @@ public interface CalendarModel extends BaseModel<Calendar>, StagedGroupedModel {
 	@Override
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext);
 
+	public String[] getAvailableLanguageIds();
+
+	public String getDefaultLanguageId();
+
+	public void prepareLocalizedFieldsForImport() throws LocaleException;
+
 	public void prepareLocalizedFieldsForImport(Locale defaultImportLocale)
 		throws LocaleException;
 

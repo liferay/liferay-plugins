@@ -361,6 +361,10 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByResourceBlockId(resourceBlockId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarBooking> list = findByResourceBlockId(resourceBlockId,
 				count - 1, count, orderByComparator);
 
@@ -866,6 +870,10 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	public CalendarBooking fetchByUuid_Last(String uuid,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarBooking> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
@@ -1690,6 +1698,10 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarBooking> list = findByUuid_C(uuid, companyId, count - 1,
 				count, orderByComparator);
 
@@ -2226,6 +2238,10 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCalendarId(calendarId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarBooking> list = findByCalendarId(calendarId, count - 1,
 				count, orderByComparator);
 
@@ -2725,6 +2741,10 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		long calendarResourceId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByCalendarResourceId(calendarResourceId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarBooking> list = findByCalendarResourceId(calendarResourceId,
 				count - 1, count, orderByComparator);
@@ -3234,6 +3254,10 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		long parentCalendarBookingId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByParentCalendarBookingId(parentCalendarBookingId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarBooking> list = findByParentCalendarBookingId(parentCalendarBookingId,
 				count - 1, count, orderByComparator);
@@ -3995,6 +4019,10 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_S(calendarResourceId, status);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarBooking> list = findByC_S(calendarResourceId, status,
 				count - 1, count, orderByComparator);
 
@@ -4524,6 +4552,10 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		int status, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByP_S(parentCalendarBookingId, status);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarBooking> list = findByP_S(parentCalendarBookingId, status,
 				count - 1, count, orderByComparator);

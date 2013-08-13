@@ -316,8 +316,7 @@ public interface CalendarNotificationTemplateLocalService
 			com.liferay.portal.kernel.exception.SystemException;
 
 	public void deleteCalendarNotificationTemplates(long calendarId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplate(

@@ -1261,6 +1261,22 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	@Override
+	public java.lang.String[] getAvailableLanguageIds() {
+		return _calendarBooking.getAvailableLanguageIds();
+	}
+
+	@Override
+	public java.lang.String getDefaultLanguageId() {
+		return _calendarBooking.getDefaultLanguageId();
+	}
+
+	@Override
+	public void prepareLocalizedFieldsForImport()
+		throws com.liferay.portal.LocaleException {
+		_calendarBooking.prepareLocalizedFieldsForImport();
+	}
+
+	@Override
 	public void prepareLocalizedFieldsForImport(
 		java.util.Locale defaultImportLocale)
 		throws com.liferay.portal.LocaleException {

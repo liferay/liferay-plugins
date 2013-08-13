@@ -369,6 +369,10 @@ public class CalendarNotificationTemplatePersistenceImpl
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarNotificationTemplate> list = findByUuid(uuid, count - 1,
 				count, orderByComparator);
 
@@ -1199,6 +1203,10 @@ public class CalendarNotificationTemplatePersistenceImpl
 		throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarNotificationTemplate> list = findByUuid_C(uuid, companyId,
 				count - 1, count, orderByComparator);
 
@@ -1739,6 +1747,10 @@ public class CalendarNotificationTemplatePersistenceImpl
 		long calendarId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByCalendarId(calendarId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarNotificationTemplate> list = findByCalendarId(calendarId,
 				count - 1, count, orderByComparator);

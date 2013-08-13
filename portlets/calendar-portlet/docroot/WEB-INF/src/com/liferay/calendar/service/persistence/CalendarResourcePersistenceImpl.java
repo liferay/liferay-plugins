@@ -362,6 +362,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByResourceBlockId(resourceBlockId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarResource> list = findByResourceBlockId(resourceBlockId,
 				count - 1, count, orderByComparator);
 
@@ -867,6 +871,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	public CalendarResource fetchByUuid_Last(String uuid,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarResource> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
@@ -1690,6 +1698,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarResource> list = findByUuid_C(uuid, companyId, count - 1,
 				count, orderByComparator);
 
@@ -2223,6 +2235,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	public CalendarResource fetchByGroupId_Last(long groupId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByGroupId(groupId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarResource> list = findByGroupId(groupId, count - 1, count,
 				orderByComparator);
@@ -3019,6 +3035,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByActive(active);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarResource> list = findByActive(active, count - 1, count,
 				orderByComparator);
 
@@ -3549,6 +3569,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	public CalendarResource fetchByG_C_Last(long groupId, String code,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_C(groupId, code);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarResource> list = findByG_C(groupId, code, count - 1,
 				count, orderByComparator);
@@ -5004,6 +5028,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_A(groupId, active);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarResource> list = findByG_A(groupId, active, count - 1,
 				count, orderByComparator);
 
@@ -6108,6 +6136,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		boolean active, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByG_N_A(groupId, name, active);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarResource> list = findByG_N_A(groupId, name, active,
 				count - 1, count, orderByComparator);
@@ -7673,6 +7705,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		throws SystemException {
 		int count = countByC_C_A(companyId, code, active);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<CalendarResource> list = findByC_C_A(companyId, code, active,
 				count - 1, count, orderByComparator);
 
@@ -8264,6 +8300,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		boolean active, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByC_N_A(companyId, name, active);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<CalendarResource> list = findByC_N_A(companyId, name, active,
 				count - 1, count, orderByComparator);
