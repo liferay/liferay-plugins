@@ -16,17 +16,14 @@
 							var buttonTitle = A.one('#[@NAMESPACE@]button-title');
 							var buttonUrl = A.one('#[@NAMESPACE@]button-url');
 							var displayButton = A.one('#[@NAMESPACE@]display-buttonCheckbox');
-							var displayButtonInput = A.one('#[@NAMESPACE@]display-button');
 
-							var buttonTitleField = buttonTitle.ancestor('.aui-field');
-							var buttonTitleFieldContent = buttonTitle.ancestor('.aui-field-content');
-							var buttonUrlField = buttonUrl.ancestor('.aui-field');
-							var buttonUrlFieldContent = buttonUrl.ancestor('.aui-field-content');
+							var buttonTitleField = buttonTitle.ancestor('.control-group');
+							var buttonUrlField = buttonUrl.ancestor('.control-group');
 
 							var globalCheck = displayButton.attr('checked');
 
-							buttonTitleFieldContent.setStyle('padding-left', '20px');
-							buttonUrlFieldContent.setStyle('padding-left', '20px');
+							buttonTitleField.setStyle('paddingLeft', '20px');
+							buttonUrlField.setStyle('paddingLeft', '20px');
 
 							buttonTitleField.toggle(globalCheck);
 							buttonUrlField.toggle(globalCheck);
