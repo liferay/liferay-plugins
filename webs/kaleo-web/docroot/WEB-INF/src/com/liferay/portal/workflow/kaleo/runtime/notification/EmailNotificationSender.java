@@ -233,14 +233,14 @@ public class EmailNotificationSender implements NotificationSender {
 				List<User> userGroupUsers =
 					UserLocalServiceUtil.getUserGroupUsers(
 						userGroupGroupRole.getUserGroupId());
+
 				users.addAll(userGroupUsers);
 			}
 
 			for (User user : users) {
 				if (user.isActive()) {
-					InternetAddress internetAddress =
-						new InternetAddress(
-							user.getEmailAddress(), user.getFullName());
+					InternetAddress internetAddress = new InternetAddress(
+						user.getEmailAddress(), user.getFullName());
 
 					internetAddresses.add(internetAddress);
 				}
