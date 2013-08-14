@@ -858,6 +858,9 @@
 		<field>
 			<name>NAMESPACE</name>
 		</field>
+		<field>
+			<name>RESOURCE_NAME</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>CheckAttachmentsMessageListener</name>

@@ -404,9 +404,184 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>CalendarBookingStagedModelDataHandler</name>
+		<type>com.liferay.calendar.lar.CalendarBookingStagedModelDataHandler</type>
+		<author><![CDATA[Andrea Di Giorgi]]></author>
+		<author><![CDATA[Daniel Kocsis]]></author>
+		<method>
+			<name>deleteStagedModel</name>
+			<param>
+				<name>uuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>extraData</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getDisplayName</name>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doExportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doImportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>CLASS_NAMES</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarNotificationTemplateStagedModelDataHandler</name>
+		<type>com.liferay.calendar.lar.CalendarNotificationTemplateStagedModelDataHandler</type>
+		<author><![CDATA[Andrea Di Giorgi]]></author>
+		<author><![CDATA[Daniel Kocsis]]></author>
+		<method>
+			<name>deleteStagedModel</name>
+			<param>
+				<name>uuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>extraData</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doExportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarNotificationTemplate</name>
+				<type>com.liferay.calendar.model.CalendarNotificationTemplate</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doImportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarNotificationTemplate</name>
+				<type>com.liferay.calendar.model.CalendarNotificationTemplate</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>CLASS_NAMES</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>CalendarPortletDataHandler</name>
 		<type>com.liferay.calendar.lar.CalendarPortletDataHandler</type>
 		<author><![CDATA[Marcellus Tavares]]></author>
+		<author><![CDATA[Andrea Di Giorgi]]></author>
 		<method>
 			<name>CalendarPortletDataHandler</name>
 		</method>
@@ -494,25 +669,15 @@
 			</throws>
 		</method>
 		<method>
-			<name>exportCalendar</name>
+			<name>doPrepareManifestSummary</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>calendarsElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarBookingsElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendar</name>
-				<type>com.liferay.calendar.model.Calendar</type>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -522,197 +687,114 @@
 			</throws>
 		</method>
 		<method>
-			<name>exportCalendarBooking</name>
+			<name>getCalendarResourceActionableDynamicQuery</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>calendarBookingsElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarBooking</name>
-				<type>com.liferay.calendar.model.CalendarBooking</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>exportCalendarResource</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarsElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarBookingsElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarResourcesElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarResource</name>
-				<type>com.liferay.calendar.model.CalendarResource</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>getCalendarBookingPath</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarBooking</name>
-				<type>com.liferay.calendar.model.CalendarBooking</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getCalendarPath</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendar</name>
-				<type>com.liferay.calendar.model.Calendar</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getCalendarResourcePath</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarResource</name>
-				<type>com.liferay.calendar.model.CalendarResource</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getImportCalendarBookingPath</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarBookingId</name>
+				<name>referrerClassNameId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-		</method>
-		<method>
-			<name>getImportCalendarPath</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>importCalendar</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
 			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>NAMESPACE</name>
+		</field>
+		<field>
+			<name>RESOURCE_NAME</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarResourceStagedModelDataHandler</name>
+		<type>com.liferay.calendar.lar.CalendarResourceStagedModelDataHandler</type>
+		<author><![CDATA[Andrea Di Giorgi]]></author>
+		<author><![CDATA[Daniel Kocsis]]></author>
 		<method>
-			<name>importCalendarBooking</name>
+			<name>deleteStagedModel</name>
 			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarBookingElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>importCalendarBooking</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>path</name>
+				<name>uuid</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>calendarBookingElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
+				<name>groupId</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>calendarBooking</name>
-				<type>com.liferay.calendar.model.CalendarBooking</type>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>extraData</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getDisplayName</name>
+			<param>
+				<name>calendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>countStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doExportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -722,15 +804,154 @@
 			</throws>
 		</method>
 		<method>
-			<name>importCalendarResource</name>
+			<name>doImportStagedModel</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>calendarResourceElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
+				<name>calendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getClassPK</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>updateCalendars</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>importedCalendarResource</name>
+				<type>com.liferay.calendar.model.CalendarResource</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>CLASS_NAMES</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>CalendarStagedModelDataHandler</name>
+		<type>com.liferay.calendar.lar.CalendarStagedModelDataHandler</type>
+		<author><![CDATA[Andrea Di Giorgi]]></author>
+		<author><![CDATA[Daniel Kocsis]]></author>
+		<method>
+			<name>deleteStagedModel</name>
+			<param>
+				<name>uuid</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>extraData</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getDisplayName</name>
+			<param>
+				<name>calendar</name>
+				<type>com.liferay.calendar.model.Calendar</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doExportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendar</name>
+				<type>com.liferay.calendar.model.Calendar</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doImportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendar</name>
+				<type>com.liferay.calendar.model.Calendar</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -740,7 +961,7 @@
 			</throws>
 		</method>
 		<field>
-			<name>NAMESPACE</name>
+			<name>CLASS_NAMES</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -971,6 +1192,12 @@
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>getStagedModelType</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 		<method>
 			<name>isGroup</name>
@@ -6839,6 +7066,19 @@
 			</throws>
 		</method>
 		<method>
+			<name>deleteCalendarNotificationTemplates</name>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>fetchCalendarNotificationTemplate</name>
 			<param>
 				<name>calendarId</name>
@@ -7010,6 +7250,7 @@
 		<author><![CDATA[Fabio Pezzutto]]></author>
 		<author><![CDATA[Bruno Basto]]></author>
 		<author><![CDATA[Marcellus Tavares]]></author>
+		<author><![CDATA[Andrea Di Giorgi]]></author>
 		<method>
 			<name>addCalendarResource</name>
 			<param>
@@ -12962,10 +13203,10 @@
 		<author><![CDATA[Michael C. Han]]></author>
 		<author><![CDATA[Eduardo Lundgren]]></author>
 		<method>
-			<name>toLabel</name>
+			<name>getLabelStatus</name>
 			<param>
-				<name>status</name>
-				<type>int</type>
+				<name>label</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -12973,10 +13214,10 @@
 			</return>
 		</method>
 		<method>
-			<name>toStatus</name>
+			<name>getStatusLabel</name>
 			<param>
-				<name>label</name>
-				<type>java.lang.String</type>
+				<name>status</name>
+				<type>int</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>

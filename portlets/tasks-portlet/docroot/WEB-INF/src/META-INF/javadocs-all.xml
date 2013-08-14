@@ -1567,6 +1567,11 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<field>
 			<name>_CLASS_NAMES</name>

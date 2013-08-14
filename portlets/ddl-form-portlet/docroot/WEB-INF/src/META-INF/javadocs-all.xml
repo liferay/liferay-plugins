@@ -205,6 +205,9 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>RESOURCE_NAME</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>DDLFormPortlet</name>

@@ -206,6 +206,51 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>UpgradeProcess_1_0_0</name>
+		<type>com.liferay.marketplace.hook.upgrade.UpgradeProcess_1_0_0</type>
+		<author><![CDATA[Peter Shin]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeExpando</name>
+		<type>com.liferay.marketplace.hook.upgrade.v1_0_0.UpgradeExpando</type>
+		<author><![CDATA[Peter Shin]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateMPExpandoColumns</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>HotDeployMessageListener</name>
 		<type>com.liferay.marketplace.messaging.HotDeployMessageListener</type>
 		<author><![CDATA[Ryan Park]]></author>

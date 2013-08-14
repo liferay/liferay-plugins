@@ -314,7 +314,7 @@
 			</throws>
 		</method>
 		<method>
-			<name>getUserPlacesGroups</name>
+			<name>getUserSitesGroups</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>

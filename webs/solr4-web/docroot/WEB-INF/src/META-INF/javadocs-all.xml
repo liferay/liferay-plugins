@@ -388,6 +388,9 @@
 			</return>
 		</method>
 		<field>
+			<name>_UNSCORED_FIELDS_BOOST</name>
+		</field>
+		<field>
 			<name>_log</name>
 		</field>
 		<field>

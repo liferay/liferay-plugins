@@ -1649,6 +1649,11 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<field>
 			<name>_ACTIVITY_KEY_ADD_ENTRY</name>
@@ -2074,6 +2079,9 @@
 		<field>
 			<name>SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS</name>
 		</field>
+		<field>
+			<name>SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>PortletPropsValues</name>
@@ -2081,6 +2089,9 @@
 		<author><![CDATA[Jonathan Lee]]></author>
 		<field>
 			<name>SOCIAL_ACTIVITY_INTERPRETER_PORTLET_IDS</name>
+		</field>
+		<field>
+			<name>SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW</name>
 		</field>
 	</javadoc>
 </javadocs>
