@@ -47,7 +47,6 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
 			if ((activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
-				(activity.getType() == _ACTIVITY_KEY_ADD_ENTRY) ||
 				(activity.getType() ==
 					SocialActivityConstants.TYPE_ADD_COMMENT)) {
 

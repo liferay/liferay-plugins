@@ -165,7 +165,6 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySet activitySet = null;
 
 			if ((activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
-				(activity.getType() == _ACTIVITY_KEY_ADD_PAGE) ||
 				(activity.getType() ==
 					SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
