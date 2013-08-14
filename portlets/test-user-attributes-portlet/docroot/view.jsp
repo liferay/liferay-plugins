@@ -15,9 +15,14 @@
 --%>
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
-<%@ page import="java.util.HashMap" %>
-<%@ page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %><%@ 
+page import="java.util.Map" %>
+
+<%@ page import="javax.portlet.PortletRequest" %>
+
+<portlet:defineObjects/>
 
 <liferay-theme:defineObjects />
 
@@ -56,7 +61,7 @@ expectedValues.put("user.name.full", user.getFullName());
 Map userInfo = (Map)renderRequest.getAttribute(PortletRequest.USER_INFO);
 
 if (userInfo != null) {
-	for (Map.Entry entry : expectedValues.entrySet()) {
+	for (Map.Entry<String, Object> entry : expectedValues.entrySet()) {
 		String key = entry.getKey();
 		String expectedValue = String.valueOf(entry.getValue());
 
