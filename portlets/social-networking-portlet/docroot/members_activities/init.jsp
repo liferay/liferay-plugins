@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-int max = GetterUtil.getInteger(preferences.getValue("max", "10"));
+int max = GetterUtil.getInteger(portletPreferences.getValue("max", "10"));
 
 boolean enableRSS = !PortalUtil.isRSSFeedsEnabled() ? false : GetterUtil.getBoolean(portletPreferences.getValue("enableRss", null), true);
 int rssDelta = GetterUtil.getInteger(portletPreferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
