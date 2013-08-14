@@ -1472,6 +1472,7 @@
 		>
 			<liferay-ui:search-container-results
 				results="<%= foos %>"
+				resultsVar="searchContainerResults"
 				total="1"
 			/>
 
