@@ -23,11 +23,6 @@
 	}
 }
 
-.calendar-create-event-btn-row {
-	margin: 0 0 1em 0;
-	text-align: center;
-}
-
 .calendar-list-empty-message {
 	color: #666;
 	margin-top: 4px;
@@ -102,7 +97,7 @@
 		padding: 2px 4px;
 	}
 
-	.scheduler-event-recorder-popover {
+	.popover.scheduler-event-recorder-popover {
 		max-width: none;
 	}
 
@@ -114,6 +109,15 @@
 				line-height: 30px;
 			}
 		}
+	}
+
+	.calendar-portlet-column-grid .scheduler-base-views {
+		position: absolute;
+	}
+
+	.calendar-create-event-btn-row {
+		margin: 0 0 1em 0;
+		text-align: center;
 	}
 }
 
@@ -140,10 +144,6 @@
 	height: 80%;
 	vertical-align: middle;
 	width: 80%;
-}
-
-.calendar-portlet-column-grid .scheduler-base-views {
-	position: absolute;
 }
 
 .calendar-portlet-confirmation-text {
