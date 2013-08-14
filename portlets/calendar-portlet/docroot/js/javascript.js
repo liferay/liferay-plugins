@@ -396,7 +396,7 @@ AUI.add(
 							orderByComparator: null,
 							parentCalendarBookingId: -1,
 							recurring: true,
-							start: Workflow.STATUS_APPROVED,
+							start: -1,
 							startTime: startDate.getTime(),
 							statuses: status.join(',')
 						}
