@@ -69,11 +69,11 @@ public class AkismetPortlet extends MVCPortlet {
 			PortletPropsKeys.AKISMET_MESSAGE_BOARDS_CHECK_ENABLED,
 			String.valueOf(messageBoardsEnabled));
 		preferences.setValue(
-			PortletPropsKeys.AKISMET_WIKI_CHECK_ENABLED,
-			String.valueOf(wikiEnabled));
-		preferences.setValue(
 			PortletPropsKeys.AKISMET_REPORTABLE_TIME,
 			String.valueOf(reportableTime));
+		preferences.setValue(
+			PortletPropsKeys.AKISMET_WIKI_CHECK_ENABLED,
+			String.valueOf(wikiEnabled));
 
 		preferences.store();
 
