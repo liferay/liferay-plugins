@@ -103,10 +103,8 @@ page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.Date" %><%@
-page import="java.util.HashMap" %><%@
 page import="java.util.Iterator" %><%@
 page import="java.util.List" %><%@
-page import="java.util.Map" %><%@
 page import="java.util.TimeZone" %>
 
 <%@ page import="javax.portlet.PortletURL" %>

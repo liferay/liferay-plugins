@@ -41,8 +41,6 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 	title="<%= calendarBooking.getTitle(locale) %>"
 />
 
-<liferay-ui:error key="invalidNewStatus" message="the-new-status-is-invalid"  />
-
 <aui:fieldset>
 	<dl class="property-list">
 		<dt>
@@ -158,60 +156,37 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 
 <portlet:actionURL name="invokeTransition" var="invokeTransitionURL" />
 
-<%
-Map<String, Object> data = null;
-%>
-
 <aui:form action="<%= invokeTransitionURL %>" method="post" name="fm">
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBooking.getCalendarBookingId() %>" />
-	<aui:input name="newStatus" type="hidden" />
+	<aui:input name="status" type="hidden" />
 
 	<aui:fieldset>
 		<aui:button-row>
-			<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.MANAGE_BOOKINGS) && calendarBooking.getStatus() != CalendarBookingWorkflowConstants.STATUS_APPROVED %>">
 
-				<%
-				data = new HashMap<String, Object>();
-				data.put("status", CalendarBookingWorkflowConstants.STATUS_APPROVED);
-				%>
+			<%
+			boolean hasManageBookingsPermission = CalendarPermission.contains(permissionChecker, calendar, ActionKeys.MANAGE_BOOKINGS);
+			%>
 
-				<aui:button cssClass="transition-button" data="<%= data %>" type="submit"  value="<%= CalendarBookingWorkflowConstants.ACTION_ACCEPT %>" />
+			<c:if test="<%= hasManageBookingsPermission && (calendarBooking.getStatus() != CalendarBookingWorkflowConstants.STATUS_APPROVED) %>">
+				<aui:button onClick='<%= renderResponse.getNamespace() + "invokeTransition(" + CalendarBookingWorkflowConstants.STATUS_APPROVED + ");" %>' value="accept" />
 			</c:if>
 
-			<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.MANAGE_BOOKINGS) && calendarBooking.getStatus() != CalendarBookingWorkflowConstants.STATUS_MAYBE %>">
-
-				<%
-				data = new HashMap<String, Object>();
-				data.put("status", CalendarBookingWorkflowConstants.STATUS_MAYBE);
-				%>
-
-				<aui:button cssClass="transition-button" data="<%= data %>" type="submit" value="<%= CalendarBookingWorkflowConstants.ACTION_MAYBE %>" />
+			<c:if test="<%= hasManageBookingsPermission && (calendarBooking.getStatus() != CalendarBookingWorkflowConstants.STATUS_MAYBE) %>">
+				<aui:button onClick='<%= renderResponse.getNamespace() + "invokeTransition(" + CalendarBookingWorkflowConstants.STATUS_MAYBE + ");" %>' value="maybe" />
 			</c:if>
 
-			<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.MANAGE_BOOKINGS) && calendarBooking.getStatus() != CalendarBookingWorkflowConstants.STATUS_DENIED %>">
-
-				<%
-				data = new HashMap<String, Object>();
-				data.put("status", CalendarBookingWorkflowConstants.STATUS_DENIED);
-				%>
-
-				<aui:button cssClass="transition-button" data="<%= data %>" type="submit" value="<%= CalendarBookingWorkflowConstants.ACTION_DECLINE %>" />
+			<c:if test="<%= hasManageBookingsPermission && (calendarBooking.getStatus() != CalendarBookingWorkflowConstants.STATUS_DENIED) %>">
+				<aui:button onClick='<%= renderResponse.getNamespace() + "invokeTransition(" + CalendarBookingWorkflowConstants.STATUS_DENIED + ");" %>' value="decline" />
 			</c:if>
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>
 
-<aui:script use="aui-base,liferay-scheduler">
-A.one("#<portlet:namespace />fm").delegate(
-	'click',
-	function(event) {
-		var instance = this;
+<aui:script>
+	function <portlet:namespace />invokeTransition(status) {
+		document.<portlet:namespace />fm.<portlet:namespace />status.value = status;
 
-		var result = Liferay.Util.getAttributes(event.currentTarget, 'data-');
-
-		A.one('#<portlet:namespace/>newStatus').set('value', result['status']);
-	},
-	'.transition-button'
-);
+		submitForm(document.<portlet:namespace />fm);
+	}
 </aui:script>

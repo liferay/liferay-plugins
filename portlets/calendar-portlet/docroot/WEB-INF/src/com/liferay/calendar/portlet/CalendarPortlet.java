@@ -153,19 +153,14 @@ public class CalendarPortlet extends MVCPortlet {
 		throws Exception {
 
 		long calendarBookingId = ParamUtil.getLong(
-				actionRequest, "calendarBookingId");
-		int status = ParamUtil.getInteger(actionRequest, "newStatus");
+			actionRequest, "calendarBookingId");
+		int status = ParamUtil.getInteger(actionRequest, "status");
 
-		if (Validator.isNotNull(status)) {
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-					CalendarBooking.class.getName(), actionRequest);
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			CalendarBooking.class.getName(), actionRequest);
 
-			CalendarBookingServiceUtil.invokeTransition(
-					calendarBookingId, status, serviceContext);
-		}
-		else {
-			SessionErrors.add(actionRequest, "invalidNewStatus");
-		}
+		CalendarBookingServiceUtil.invokeTransition(
+			calendarBookingId, status, serviceContext);
 	}
 
 	public void moveCalendarBookingToTrash(
