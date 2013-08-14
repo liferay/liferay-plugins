@@ -90,6 +90,15 @@
 		display: none;
 	}
 
+	.calendar-create-event-btn-row {
+		margin: 0 0 1em 0;
+		text-align: center;
+	}
+
+	.calendar-portlet-column-grid .scheduler-base-views {
+		position: absolute;
+	}
+
 	.scheduler-event-content, .scheduler-event-title {
 		font-family: inherit;
 		font-size: inherit;
@@ -109,15 +118,6 @@
 				line-height: 30px;
 			}
 		}
-	}
-
-	.calendar-portlet-column-grid .scheduler-base-views {
-		position: absolute;
-	}
-
-	.calendar-create-event-btn-row {
-		margin: 0 0 1em 0;
-		text-align: center;
 	}
 }
 
