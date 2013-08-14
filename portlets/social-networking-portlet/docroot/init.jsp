@@ -123,6 +123,4 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 NumberFormat numberFormat = NumberFormat.getNumberInstance(locale);
 NumberFormat percentFormat = NumberFormat.getPercentInstance(locale);
-
-int max = GetterUtil.getInteger(portletPreferences.getValue("max", "10"));
 %>
