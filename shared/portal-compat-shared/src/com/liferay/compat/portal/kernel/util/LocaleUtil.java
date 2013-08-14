@@ -94,8 +94,16 @@ public class LocaleUtil {
 	public static Locale fromLanguageId(
 		String languageId, boolean validate, boolean useDefault) {
 
+		if (languageId == null) {
+			if (useDefault) {
+				return US;
+			}
+
+			return null;
+		}
+
 		return com.liferay.portal.kernel.util.LocaleUtil.fromLanguageId(
-			languageId, validate, useDefault);
+			languageId, validate);
 	}
 
 	public static Locale[] fromLanguageIds(List<String> languageIds) {
