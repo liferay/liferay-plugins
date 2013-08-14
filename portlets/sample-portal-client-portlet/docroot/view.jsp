@@ -17,12 +17,12 @@
 <%@ page import="com.liferay.client.soap.portal.model.OrganizationSoap" %>
 <%@ page import="com.liferay.client.soap.portal.service.http.OrganizationServiceSoap" %>
 <%@ page import="com.liferay.client.soap.portal.service.http.OrganizationServiceSoapServiceLocator" %>
+<%@ page import="com.liferay.compat.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.model.Company" %>
 <%@ page import="com.liferay.portal.model.CompanyConstants" %>
 <%@ page import="com.liferay.portal.model.User" %>
 <%@ page import="com.liferay.portal.service.UserLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="java.net.URL" %>
 

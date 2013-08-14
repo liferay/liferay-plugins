@@ -18,8 +18,6 @@
 
 <%@ page import="java.util.Date" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %>
-
 <portlet:defineObjects />
 
 <%
