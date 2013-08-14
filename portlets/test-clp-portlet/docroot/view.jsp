@@ -78,7 +78,7 @@ for (Status status : statuses) {
 			<%= status.isAwake() %>
 		</td>
 		<td>
-			<%= status.getActivePanelId() %>
+			<%= status.getActivePanelIds() %>
 		</td>
 		<td>
 			<%= status.getMessage() %>
