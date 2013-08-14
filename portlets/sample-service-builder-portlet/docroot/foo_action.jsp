@@ -27,6 +27,8 @@ if (row != null) {
 else {
 	foo = (Foo)request.getAttribute("edit_foo.jsp-foo");
 }
+
+boolean view = ParamUtil.getBoolean(request, "view", true);
 %>
 
 <liferay-ui:icon-menu showExpanded="<%= row == null %>" showWhenSingleIcon="<%= row == null %>">
