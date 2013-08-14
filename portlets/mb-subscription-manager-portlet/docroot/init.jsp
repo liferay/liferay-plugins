@@ -27,6 +27,7 @@
 <%@ page import="com.liferay.compat.portal.util.PortalUtil" %><%@
 page import="com.liferay.mbsubscriptionmanager.util.PortletKeys" %><%@
 page import="com.liferay.mbsubscriptionmanager.util.SubscriptionManagerUtil" %><%@
+page import="com.liferay.portal.kernel.dao.search.DisplayTerms" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.RowChecker" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
