@@ -61,6 +61,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		super(announcementsEntryLocalService);
 	}
 
+	@Override
 	public AnnouncementsEntry addEntry(
 			long userId, long classNameId, long classPK, String title,
 			String content, String url, String type, int displayDateMonth,
