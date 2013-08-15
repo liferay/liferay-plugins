@@ -106,6 +106,7 @@ html > body.lfr-dockbar-pinned {
 
 	.dashboard-nav {
 		position: relative;
+		z-index: 2;
 	}
 
 	a {
@@ -156,7 +157,6 @@ html > body.lfr-dockbar-pinned {
 		position: absolute;
 		right: 0;
 		top: 0;
-		z-index: 1;
 
 		.avatar {
 			display: inline-block;
@@ -390,6 +390,7 @@ html > body.lfr-dockbar-pinned {
 			position: absolute;
 			right: 0;
 			visibility: hidden;
+			z-index: 1;
 
 			a, a:hover, li.has-menu:hover a {
 				background-color: transparent;
@@ -517,6 +518,7 @@ html > body.lfr-dockbar-pinned {
 
 	.so-portlet-sites .portlet-body.search-focus {
 		visibility: visible;
+		z-index: 3;
 
 		.search {
 			width: auto;
