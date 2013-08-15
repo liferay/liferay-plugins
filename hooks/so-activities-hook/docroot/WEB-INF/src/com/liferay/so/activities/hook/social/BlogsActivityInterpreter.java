@@ -51,9 +51,9 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 					SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
 				activitySet =
-					SocialActivitySetLocalServiceUtil.getUserActivitySet(
-						activity.getGroupId(), activity.getUserId(),
-						activity.getClassNameId(), activity.getType());
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
+						activity.getClassNameId(), activity.getClassPK(),
+						activity.getType());
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
 				activitySet =
@@ -86,7 +86,11 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
+		if ((activitySet.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
+			(activitySet.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) ||
+			(activitySet.getType() ==
+				SocialActivityConstants.TYPE_ADD_COMMENT)) {
+
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
@@ -136,8 +140,7 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 
 	@Override
 	protected String getTitlePattern(
-		String groupName,
-		com.liferay.portlet.social.model.SocialActivity activity) {
+		String groupName, SocialActivity activity) {
 
 		if ((activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
 			(activity.getType() == SocialActivityConstants.TYPE_ADD_COMMENT)) {
@@ -162,7 +165,7 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 			(activitySet.getType() ==
 				SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
-			return "commented-on-x-blog-entries";
+			return "commented-on-a-blog-entry";
 		}
 		else if (activitySet.getType() == _ACTIVITY_KEY_ADD_ENTRY) {
 			return "wrote-x-new-blog-entries";

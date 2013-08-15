@@ -169,9 +169,9 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 					SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
 				activitySet =
-					SocialActivitySetLocalServiceUtil.getUserActivitySet(
-						activity.getGroupId(), activity.getUserId(),
-						activity.getClassNameId(), activity.getType());
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
+						activity.getClassNameId(), activity.getClassPK(),
+						activity.getType());
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
 				activitySet =
@@ -204,7 +204,11 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
+		if ((activitySet.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
+			(activitySet.getType() == _ACTIVITY_KEY_UPDATE_PAGE) ||
+			(activitySet.getType() ==
+				SocialActivityConstants.TYPE_ADD_COMMENT)) {
+
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
@@ -382,9 +386,17 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		int activityCount = activitySet.getActivityCount();
 		String nodeTitle = getNodeTitle(
 			activitySet.getClassPK(), activitySet.getGroupId(), serviceContext);
+
+		if ((activitySet.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
+			(activitySet.getType() ==
+				SocialActivityConstants.TYPE_ADD_COMMENT)) {
+
+			return new Object[] {nodeTitle};
+		}
+
+		int activityCount = activitySet.getActivityCount();
 
 		return new Object[] {activityCount, nodeTitle};
 	}
@@ -424,7 +436,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			(activitySet.getType() ==
 				SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
-			titlePattern = "commented-on-x-wiki-pages";
+			titlePattern = "commented-on-a-wiki-page";
 		}
 		else if (activitySet.getType() == _ACTIVITY_KEY_ADD_PAGE) {
 			titlePattern = "created-x-new-wiki-pages";
