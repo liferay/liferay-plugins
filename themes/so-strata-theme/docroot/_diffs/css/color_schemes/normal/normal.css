@@ -265,18 +265,21 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 
 /* ---------- Layout ---------- */
 
-.portlet-column-content {
+.portlet-column {
 	border: solid $defaultBorderColor;
 	border-width: 0 1px;
 	margin: 0 0 0 -1px;
-	padding: 0;
+
+	&, .portlet-column-content {
+		padding: 0;
+	}
 }
 
-.portlet-column-content-only, .ltr .portlet-column-content-last, .rtl .portlet-column-content-first {
+.portlet-column-only, .ltr .portlet-column-last, .rtl .portlet-column-first {
 	border-right-width: 0;
 }
 
-.portlet-column-last .portlet-column-content {
+.portlet-column-last .portlet-column {
 	border-left-width: 0;
 }
 
