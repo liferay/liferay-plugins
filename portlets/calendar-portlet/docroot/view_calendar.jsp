@@ -447,7 +447,8 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 							editCalendarBookingURL,
 							{
 								activeView: activeViewName,
-								calendarId: calendarId
+								calendarId: calendarId,
+								titleCurrentValue: ''
 							}
 						)
 					}
