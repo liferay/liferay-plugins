@@ -982,6 +982,20 @@ div#navigation {
 			margin: 0 -1px;
 		}
 
+		.lfr-actions {
+			&, .lfr-trigger, &.aui-state-active .lfr-trigger {
+				background: transparent none;
+				border-width: 0;
+
+				@include box-shadow(none);
+			}
+
+			.lfr-trigger strong {
+				min-width: 0;
+				width: auto;
+			}
+		}
+
 		table .lfr-actions {
 			.lfr-trigger strong {
 				min-width: 0;
