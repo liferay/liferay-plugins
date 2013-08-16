@@ -34,6 +34,17 @@ a {
 
 /* ---------- Forms Custom ---------- */
 
+.aui-panel-hd .aui-toolbar-content {
+	padding: 0.125em;
+
+	.aui-state-default {
+		background: transparent none;
+		border-width: 0;
+
+		@include box-shadow(none);
+	}
+}
+
 .aui-panel-hd, .lfr-panel.lfr-extended .lfr-panel-titlebar {
 	@include normal-gradient;
 
