@@ -2136,9 +2136,11 @@ div#navigation {
 /* ---------- Invite Members ---------- */
 
 .so-portlet-invite-members {
-	.invite-members {
-		margin: 1em;
-	}
+	background-color: $controlBgColor;
+	border: 1px solid $defaultBorderColor;
+	border-width: 1px 0;
+	margin-top: -1px;
+	padding: 0.8em 1em;
 }
 
 /* ---------- SO Portlet Sites ---------- */
