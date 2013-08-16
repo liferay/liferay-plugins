@@ -9,7 +9,6 @@
 		<friendly-url-mapping>private_messaging</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/privatemessaging/portlet/private-messaging-friendly-url-routes.xml</friendly-url-routes>
 		<header-portlet-css>/css/main.css</header-portlet-css>
-		<footer-portlet-javascript>/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>private-messaging-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
