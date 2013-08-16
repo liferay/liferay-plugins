@@ -6,6 +6,10 @@ AUI.add(
 				var instance = this;
 
 				instance.namespace = params.namespace;
+				instance.newMessageURL = params.newMessageURL;
+				instance.deleteMessagesURL = params.deleteMessagesURL;
+				instance.markMessagesAsReadURL = params.markMessagesAsReadURL;
+				instance.markMessagesAsUnreadURL = params.markMessagesAsUnreadURL;
 
 				instance.checkAll = A.one('#' + instance.namespace + 'checkAll');
 				instance.userThreadsSearchContainer = A.one('#' + instance.namespace + 'userThreadsSearchContainer');
@@ -21,7 +25,7 @@ AUI.add(
 				var instance = this;
 
 				A.io.request(
-					instance._getActionURL('deleteMessages').toString(),
+					instance.deleteMessagesURL,
 					{
 						data: {
 							mbThreadIds: mbThreadIds
@@ -41,7 +45,7 @@ AUI.add(
 				var instance = this;
 
 				A.io.request(
-					instance._getActionURL('markMessagesAsRead').toString(),
+					instance.markMessagesAsReadURL,
 					{
 						data: {
 							mbThreadIds: mbThreadIds
@@ -61,7 +65,7 @@ AUI.add(
 				var instance = this;
 
 				A.io.request(
-					instance._getActionURL('markMessagesAsUnread').toString(),
+					instance.markMessagesAsUnreadURL,
 					{
 						data: {
 							mbThreadIds: mbThreadIds
@@ -80,18 +84,6 @@ AUI.add(
 			newMessage: function(mbThreadId) {
 				var instance = this;
 
-				var redirectURL = new Liferay.PortletURL.createRenderURL();
-
-				redirectURL.setWindowState('NORMAL');
-
-				var portletURL = new Liferay.PortletURL.createResourceURL();
-
-				portletURL.setPortletId('1_WAR_privatemessagingportlet');
-				portletURL.setWindowState('EXCLUSIVE');
-
-				portletURL.setParameter('mvcPath', '/new_message.jsp');
-				portletURL.setParameter('redirect', redirectURL.toString());
-
 				new A.Dialog(
 					{
 						align: Liferay.Util.Window.ALIGN_CENTER,
@@ -105,7 +97,7 @@ AUI.add(
 					A.Plugin.IO,
 					{
 						data: {mbThreadId: mbThreadId},
-						uri: portletURL.toString()
+						uri: instance.newMessageURL
 					}
 				).render();
 			},
@@ -180,6 +172,7 @@ AUI.add(
 				);
 			},
 
+			//deprecated
 			_getActionURL: function(name) {
 				var instance = this;
 

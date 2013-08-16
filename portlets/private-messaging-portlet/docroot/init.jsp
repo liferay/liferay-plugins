@@ -30,6 +30,7 @@
 
 <%@ page import="com.liferay.compat.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
+page import="com.liferay.portal.kernel.portlet.LiferayPortletURL" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.util.CharPool" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
@@ -48,7 +49,9 @@ page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.model.CompanyConstants" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
+page import="com.liferay.portal.theme.ThemeDisplay" %><%@
 page import="com.liferay.portal.util.PortletKeys" %><%@
+page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.documentlibrary.store.DLStoreUtil" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
@@ -60,8 +63,10 @@ page import="com.liferay.privatemessaging.util.PrivateMessagingUtil" %>
 
 <%@ page import="java.util.List" %>
 
-<%@ page import="javax.portlet.PortletURL" %><%@
-page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.PortletRequest" %><%@
+page import="javax.portlet.PortletURL" %><%@
+page import="javax.portlet.WindowState" %><%@
+page import="javax.portlet.WindowStateException" %>
 
 <portlet:defineObjects />
 
@@ -72,5 +77,19 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("MMMMM
 %>
 
 <%!
+private LiferayPortletURL _getActionURL(String action, long plid, HttpServletRequest request, ThemeDisplay themeDisplay) throws WindowStateException {
+	LiferayPortletURL actionURL = PortletURLFactoryUtil.create(request, "1_WAR_privatemessagingportlet", plid, PortletRequest.ACTION_PHASE);
+
+	if (themeDisplay.isStateMaximized()) {
+		actionURL.setWindowState(LiferayWindowState.MAXIMIZED);
+	} else {
+		actionURL.setWindowState(LiferayWindowState.NORMAL);
+	}
+
+	actionURL.setParameter("javax.portlet.action", action);
+
+	return actionURL;
+}
+
 public static final boolean LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED));
 %>

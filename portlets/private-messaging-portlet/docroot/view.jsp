@@ -21,6 +21,21 @@
 
 <%
 long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
+
+LiferayPortletURL redirectURL = PortletURLFactoryUtil.create(request, "1_WAR_privatemessagingportlet", layout.getPlid(), PortletRequest.RENDER_PHASE);
+
+redirectURL.setWindowState(LiferayWindowState.NORMAL);
+
+LiferayPortletURL newMessageURL = PortletURLFactoryUtil.create(request, "1_WAR_privatemessagingportlet", layout.getPlid(), PortletRequest.RESOURCE_PHASE);
+
+newMessageURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+
+newMessageURL.setParameter("mvcPath", "/new_message.jsp");
+newMessageURL.setParameter("redirect", redirectURL.toString());
+
+LiferayPortletURL deleteMessagesURL = _getActionURL("deleteMessages", layout.getPlid(), request, themeDisplay);
+LiferayPortletURL markMessagesAsReadURL = _getActionURL("markMessagesAsRead", layout.getPlid(), request, themeDisplay);
+LiferayPortletURL markMessagesAsUnreadURL = _getActionURL("markMessagesAsUnread", layout.getPlid(), request, themeDisplay);
 %>
 
 <div class="private-messaging-container">
@@ -44,7 +59,11 @@ long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 <aui:script use="liferay-plugin-privatemessaging">
 	Liferay.PrivateMessaging.init(
 		{
-			namespace: '<portlet:namespace />'
+			deleteMessagesURL: '<%= deleteMessagesURL.toString() %>',
+			markMessagesAsReadURL: '<%= markMessagesAsReadURL.toString() %>',
+			markMessagesAsUnreadURL: '<%= markMessagesAsUnreadURL.toString() %>',
+			namespace: '<portlet:namespace />',
+			newMessageURL: '<%= newMessageURL.toString() %>'
 		}
 	);
 </aui:script>
