@@ -181,6 +181,9 @@ AUI.add(
 
 						instance._defaultMessageError = config.defaultMessageError;
 						instance._defaultMessageSuccess = config.defaultMessageSuccess;
+						
+						instance._deleteEntryURL = config.deleteEntryURL;
+						instance._editEntryURL = config.editEntryURL;
 
 						instance._maxResultCount = config.maxResultCount;
 
@@ -519,14 +522,9 @@ AUI.add(
 						var confirmMessageText = Lang.sub(Liferay.Language.get('are-you-sure-you-want-to-delete-x-from-your-contacts'), [contact.fullName]);
 
 						if (confirm(confirmMessageText)) {
-							var actionURL = new Liferay.PortletURL.createActionURL();
-
-							actionURL.setParameter('javax.portlet.action', 'deleteEntry');
-							actionURL.setPortletId('1_WAR_contactsportlet');
-							actionURL.setWindowState('NORMAL');
 
 							A.io.request(
-								actionURL.toString(),
+								instance._deleteEntryURL,
 								{
 									after: {
 										failure: function(event, id, obj) {
@@ -547,15 +545,21 @@ AUI.add(
 					_editEntry: function(contact) {
 						var instance = this;
 
-						var portletURL = new Liferay.PortletURL.createRenderURL();
+						var portletURL = instance._editEntryURL;
 
-						portletURL.setParameter('mvcPath', '/contacts_center/edit_entry.jsp');
-						portletURL.setParameter('redirect', contact.redirect);
-						portletURL.setParameter('entryId', contact.entryId);
-						portletURL.setPortletId('1_WAR_contactsportlet');
-						portletURL.setWindowState('EXCLUSIVE');
+						A.Object.each(
+							{
+								redirect: contact.redirect,
+								entryId: contact.entryId
+							},
+							function(item, index, collection) {
+								if (item) {
+									portletURL = portletURL + '&' + instance._namespace + encodeURIComponent(index) + '=' + encodeURIComponent(item);
+								}
+							}
+						);
 
-						instance.showPopup(Liferay.Language.get('update-contact'), portletURL.toString());
+						instance.showPopup(Liferay.Language.get('update-contact'), portletURL);
 					},
 
 					_getRequestTemplate: function(filterBy) {

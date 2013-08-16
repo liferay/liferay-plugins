@@ -67,6 +67,18 @@ else {
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(WindowState.NORMAL);
+
+LiferayPortletURL deleteEntryURL = PortletURLFactoryUtil.create(request, "1_WAR_contactsportlet", layout.getPlid(), PortletRequest.ACTION_PHASE);
+
+deleteEntryURL.setWindowState(WindowState.NORMAL);
+
+deleteEntryURL.setParameter("javax.portlet.action", "deleteEntry");
+
+LiferayPortletURL editEntryURL = PortletURLFactoryUtil.create(request, "1_WAR_contactsportlet", layout.getPlid(), PortletRequest.RENDER_PHASE);
+
+editEntryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+
+editEntryURL.setParameter("mvcPath", "/contacts_center/edit_entry.jsp");
 %>
 
 <c:choose>
@@ -381,6 +393,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 					contactsSearchInput: '#<portlet:namespace />name',
 					defaultMessageError: '<liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" />',
 					defaultMessageSuccess: '<liferay-ui:message key="your-request-completed-successfully" unicode="<%= true %>" />',
+					deleteEntryURL: '<%= deleteEntryURL.toString() %>',
+					editEntryURL: '<%= editEntryURL.toString() %>',
 					getSelectedContactsURL: '<portlet:resourceURL id="getSelectedContacts" />',
 					maxResultCount: <%= ContactsConstants.MAX_RESULT_COUNT %>,
 					namespace: '<portlet:namespace />',
