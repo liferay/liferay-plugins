@@ -307,6 +307,10 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 		margin-bottom: -1px;
 		max-width: 33.333%;
 
+		span, a {
+			padding: 0.4em 25px 0.4em 0.75em;
+		}
+
 		span {
 			display: block;
 		}
@@ -315,9 +319,9 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 			color: $defaultTextColor;
 			display: block;
 			font-weight: normal;
+			margin: -0.4em -25px -0.4em -0.75em;
 			margin-left: -5px;
 			overflow: hidden;
-			padding: 0.4em 25px 0.4em 0.75em;
 			text-overflow: ellipsis;
 			white-space: pre;
 			width: 87%;
