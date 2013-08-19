@@ -1325,6 +1325,8 @@ AUI.add(
 
 						Scheduler.superclass._afterActiveViewChange.apply(this, arguments);
 
+						Liferay.Store('calendar-portlet-active-view', event.newVal.get('name'));
+
 						instance.load();
 					},
 
