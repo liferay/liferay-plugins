@@ -67,6 +67,7 @@ import net.fortuna.ical4j.model.parameter.CuType;
 import net.fortuna.ical4j.model.parameter.PartStat;
 import net.fortuna.ical4j.model.parameter.Role;
 import net.fortuna.ical4j.model.parameter.Rsvp;
+import net.fortuna.ical4j.model.parameter.XParameter;
 import net.fortuna.ical4j.model.property.Action;
 import net.fortuna.ical4j.model.property.Attendee;
 import net.fortuna.ical4j.model.property.CalScale;
@@ -83,6 +84,7 @@ import net.fortuna.ical4j.model.property.Summary;
 import net.fortuna.ical4j.model.property.Trigger;
 import net.fortuna.ical4j.model.property.Uid;
 import net.fortuna.ical4j.model.property.Version;
+import net.fortuna.ical4j.model.property.XProperty;
 
 /**
  * @author Marcellus Tavares
@@ -628,6 +630,15 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 			calendarBooking.getDescription(user.getLocale()));
 
 		propertyList.add(description);
+
+		// X-ALT-DESC
+
+		XProperty xProperty = new XProperty(
+			"X-ALT-DESC", calendarBooking.getDescription(user.getLocale()));
+
+		xProperty.getParameters().add(new XParameter("FMTTYPE", "text/html"));
+
+		propertyList.add(xProperty);
 
 		// Location
 
