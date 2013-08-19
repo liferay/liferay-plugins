@@ -25,12 +25,9 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
+import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.model.SocialActivitySet;
-import com.liferay.so.activities.service.SocialActivityLocalServiceUtil;
 import com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil;
-
-import java.util.List;
 
 /**
  * @author Matthew Kong
@@ -81,23 +78,37 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivitySet activitySet, ServiceContext serviceContext)
-		throws Exception {
+	protected long getActivitySetId(long activityId) {
+		try {
+			SocialActivitySet activitySet = null;
 
-		List<com.liferay.so.activities.model.SocialActivity> activities =
-			SocialActivityLocalServiceUtil.getActivitySetActivities(
-				activitySet.getActivitySetId(), 0, 1);
+			SocialActivity activity =
+				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-		if (!activities.isEmpty()) {
-			com.liferay.so.activities.model.SocialActivity activity =
-				activities.get(0);
+			if (activity.getType() == _ACTIVITY_KEY_REPLY_ENTRY) {
+				MicroblogsEntry microblogsEntry =
+					MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
+						activity.getClassPK());
 
-			return doInterpret(
-				activity.getPortalSocialActivity(), serviceContext);
+				if (microblogsEntry == null) {
+					return 0;
+				}
+
+				activitySet =
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
+						activity.getClassNameId(),
+						microblogsEntry.getReceiverMicroblogsEntryId(),
+						activity.getType());
+			}
+
+			if ((activitySet != null) && !isExpired(activitySet)) {
+				return activitySet.getActivitySetId();
+			}
+		}
+		catch (Exception e) {
 		}
 
-		return null;
+		return 0;
 	}
 
 	@Override
