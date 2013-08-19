@@ -27,12 +27,9 @@ if (row != null) {
 else {
 	foo = (Foo)request.getAttribute("edit_foo.jsp-foo");
 }
-
-boolean view = ParamUtil.getBoolean(request, "view", true);
 %>
 
 <liferay-ui:icon-menu showExpanded="<%= row == null %>" showWhenSingleIcon="<%= row == null %>">
-	<c:if test="<%= !view %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="mvcPath" value="/edit_foo.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -43,7 +40,6 @@ boolean view = ParamUtil.getBoolean(request, "view", true);
 			image="edit"
 			url="<%= editURL %>"
 		/>
-	</c:if>
 
 	<portlet:renderURL var="redirectURL">
 		<portlet:param name="mvcPath" value="/view.jsp" />
