@@ -1472,7 +1472,6 @@
 		>
 			<liferay-ui:search-container-results
 				results="<%= foos %>"
-				resultsVar="searchContainerResults"
 				total="1"
 			/>
 
@@ -2778,11 +2777,11 @@ String dbType = db.getType();
 <p>
 
 	<%
-	Map<String, Boolean> results = TestPACLUtil.testCurrentThread(themeDisplay.getUserId());
+	Map<String, Boolean> testPACLUtilResults = TestPACLUtil.testCurrentThread(themeDisplay.getUserId());
 	%>
 
-	PortalServiceUtil#getBuildNumber=<%= _assertTrue(results.get("PortalServiceUtil#getBuildNumber")) %><br />
-	UserLocalServiceUtil#getUser=<%= _assertTrue(results.get("UserLocalServiceUtil#getUser")) %>
+	PortalServiceUtil#getBuildNumber=<%= _assertTrue(testPACLUtilResults.get("PortalServiceUtil#getBuildNumber")) %><br />
+	UserLocalServiceUtil#getUser=<%= _assertTrue(testPACLUtilResults.get("UserLocalServiceUtil#getUser")) %>
 </p>
 
 <p>
@@ -2792,11 +2791,11 @@ String dbType = db.getType();
 <p>
 
 	<%
-	results = TestPACLUtil.testMessageBusThread(themeDisplay.getUserId());
+	testPACLUtilResults = TestPACLUtil.testMessageBusThread(themeDisplay.getUserId());
 	%>
 
-	PortalServiceUtil#getBuildNumber=<%= _assertTrue(results.get("PortalServiceUtil#getBuildNumber")) %><br />
-	UserLocalServiceUtil#getUser=<%= _assertTrue(results.get("UserLocalServiceUtil#getUser")) %>
+	PortalServiceUtil#getBuildNumber=<%= _assertTrue(testPACLUtilResults.get("PortalServiceUtil#getBuildNumber")) %><br />
+	UserLocalServiceUtil#getUser=<%= _assertTrue(testPACLUtilResults.get("UserLocalServiceUtil#getUser")) %>
 </p>
 
 <p>
@@ -2806,11 +2805,11 @@ String dbType = db.getType();
 <p>
 
 	<%
-	results = TestPACLUtil.testNewThread(themeDisplay.getUserId());
+	testPACLUtilResults = TestPACLUtil.testNewThread(themeDisplay.getUserId());
 	%>
 
-	PortalServiceUtil#getBuildNumber=<%= _assertTrue(results.get("PortalServiceUtil#getBuildNumber")) %><br />
-	UserLocalServiceUtil#getUser=<%= _assertTrue(results.get("UserLocalServiceUtil#getUser")) %>
+	PortalServiceUtil#getBuildNumber=<%= _assertTrue(testPACLUtilResults.get("PortalServiceUtil#getBuildNumber")) %><br />
+	UserLocalServiceUtil#getUser=<%= _assertTrue(testPACLUtilResults.get("UserLocalServiceUtil#getUser")) %>
 </p>
 
 <p>
