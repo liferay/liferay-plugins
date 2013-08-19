@@ -34,5 +34,7 @@ page import="com.liferay.portlet.social.service.SocialActivitySetLocalServiceUti
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "all");
 
+int delta = 10;
+
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 %>

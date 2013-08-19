@@ -14,13 +14,13 @@ AUI.add(
 			EDGE_PROXIMITY = 'edgeProximity',
 			LAST_STATE = 'lastState',
 			MAX_COORDINATE = 'maxCoordinate',
-			
+
 			AVAILABLE = '-available',
 			EDGE = '-edge',
 			START = '-start',
 
 			SCROLL = NAME;
-		
+
 		var Scroll = A.Component.create(
 			{
 				NAME: NAME,
@@ -99,7 +99,7 @@ AUI.add(
 						var edgeProximityY = isPercentage ? (maxCoordinateY * edgeProximity) : edgeProximity;
 
 						var scrolledDown = (scrollTop > lastState.scrollTop);
-						
+
 						var availableScrollY = (scrollTop - maxCoordinateY);
 
 						var state = {

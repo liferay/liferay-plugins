@@ -17,44 +17,46 @@
  */
 --%>
 
+<%@ include file="/activities/init.jsp" %>
+
 <%
+Group group = themeDisplay.getScopeGroup();
+
 List<SocialActivitySet> results = null;
 int total = 0;
+
+int start = ParamUtil.getInteger(request, "start", 0);
+int end = start + delta;
 %>
 
 <c:choose>
 	<c:when test="<%= group.isUser() %>">
-		<liferay-ui:tabs
-			names="all,connections,following,my-sites,me"
-			url="<%= portletURL.toString() %>"
-			value="<%= tabs1 %>"
-		/>
 
 		<%
 		if (!layout.isPublicLayout()) {
 			if (tabs1.equals("connections")) {
-				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
+				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
 				total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
 			}
 			else if (tabs1.equals("following")) {
-				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
+				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
 				total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
 			}
 			else if (tabs1.equals("me")) {
-				results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+				results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
 				total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
 			}
 			else if (tabs1.equals("my-sites")) {
-				results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+				results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(group.getClassPK(), start, end);
 				total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(group.getClassPK());
 			}
 			else {
-				results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+				results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(group.getClassPK(), start, end);
 				total = SocialActivitySetLocalServiceUtil.getUserViewableActivitySetsCount(group.getClassPK());
 			}
 		}
 		else {
-			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
 			total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
 		}
 		%>
@@ -63,23 +65,17 @@ int total = 0;
 	<c:otherwise>
 
 		<%
-		results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+		results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), start, end);
 		total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
 		%>
 
 	</c:otherwise>
 </c:choose>
 
-<%
-searchContainer.setResults(results);
-searchContainer.setTotal(total);
-%>
-
 <%@ include file="/activities/view_activity_sets_feed.jspf" %>
 
-<c:if test="<%= (!results.isEmpty()) %>">
-	<liferay-ui:search-paginator
-		searchContainer="<%= searchContainer %>"
-		type="article"
-	/>
+<c:if test="<%= (results.isEmpty()) %>">
+	<div class="no-activities">
+		<liferay-ui:message key="there-are-no-activities" />
+	</div>
 </c:if>
