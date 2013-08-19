@@ -18,8 +18,8 @@
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
-<%@ page import="java.util.HashMap" %><%@ 
-page import="java.util.Map" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="java.util.Map" %>
 
 <%@ page import="javax.portlet.PortletRequest" %>
 
