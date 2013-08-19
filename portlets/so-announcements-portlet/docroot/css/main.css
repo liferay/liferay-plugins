@@ -176,6 +176,10 @@
 	.announcement-collapsed .entry-footer-toolbar {
 		border-top: 1px solid #EFEFEF;
 	}
+
+	.taglib-page-iterator {
+		margin-top: 1em;
+	}
 }
 
 .aui-dialog-iframe-popup .so-announcements-portlet {
