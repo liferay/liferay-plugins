@@ -40,7 +40,6 @@ page import="com.liferay.portal.kernel.notifications.Channel" %><%@
 page import="com.liferay.portal.kernel.notifications.ChannelHubManagerUtil" %><%@
 page import="com.liferay.portal.kernel.notifications.NotificationEvent" %><%@
 page import="com.liferay.portal.kernel.notifications.UnknownChannelException" %><%@
-page import="com.liferay.portal.kernel.portlet.LiferayPortletResponse" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.servlet.SessionMessages" %><%@
 page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %><%@
@@ -81,8 +80,8 @@ page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.social.model.SocialActivityFeedEntry" %><%@
 page import="com.liferay.portlet.social.model.SocialRelationConstants" %><%@
 page import="com.liferay.portlet.social.model.SocialRequestConstants" %><%@
-page import="com.liferay.portlet.usersadmin.util.UsersAdminUtil" %><%@
 page import="com.liferay.portlet.social.service.SocialActivityInterpreterLocalServiceUtil" %><%@
+page import="com.liferay.portlet.usersadmin.util.UsersAdminUtil" %><%@
 page import="com.liferay.so.invitemembers.util.InviteMembersConstants" %><%@
 page import="com.liferay.so.model.ProjectsEntry" %><%@
 page import="com.liferay.so.model.impl.ProjectsEntryImpl" %><%@
@@ -104,8 +103,7 @@ page import="java.util.Iterator" %><%@
 page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %>
 
-<%@ page import="javax.portlet.PortletMode" %><%@
-page import="javax.portlet.PortletRequest" %><%@
+<%@ page import="javax.portlet.PortletRequest" %><%@
 page import="javax.portlet.PortletURL" %><%@
 page import="javax.portlet.WindowState" %>
 
