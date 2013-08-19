@@ -30,16 +30,16 @@ else {
 %>
 
 <liferay-ui:icon-menu showExpanded="<%= row == null %>" showWhenSingleIcon="<%= row == null %>">
-		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcPath" value="/edit_foo.jsp" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="fooId" value="<%= String.valueOf(foo.getFooId()) %>" />
-		</portlet:renderURL>
+	<portlet:renderURL var="editURL">
+		<portlet:param name="mvcPath" value="/edit_foo.jsp" />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="fooId" value="<%= String.valueOf(foo.getFooId()) %>" />
+	</portlet:renderURL>
 
-		<liferay-ui:icon
-			image="edit"
-			url="<%= editURL %>"
-		/>
+	<liferay-ui:icon
+		image="edit"
+		url="<%= editURL %>"
+	/>
 
 	<portlet:renderURL var="redirectURL">
 		<portlet:param name="mvcPath" value="/view.jsp" />
