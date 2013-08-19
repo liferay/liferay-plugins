@@ -41,29 +41,14 @@
 				<tpl if="status != Liferay.CalendarWorkflow.STATUS_DRAFT">
 					<tr class="calendar-portlet-event-recorder-status-row">
 						<td>
-							<liferay-ui:message key="attend" />
+							<liferay-ui:message key="attend" />?
 						</td>
 						<td>
-							<tpl if="acceptActive">
-								<a class="calendar-event-answer" href="javascript:void(0);" id="calendarEventAnswerAccept"><liferay-ui:message key="yes" /></a>
-							</tpl>
-							<tpl if="!acceptActive">
-								<span class="calendar-event-answer" id="calendarEventAnswerAccept"><liferay-ui:message key="yes" /></span>
-							</tpl>
+							<a class="calendar-event-answer calendar-event-answer-{acceptLinkEnabled}" data-status="{workflowStatus.STATUS_APPROVED}" href="javascript:void(0);"><liferay-ui:message key="yes" /></a>
 							&mdash;
-							<tpl if="maybeActive">
-								<a class="calendar-event-answer" href="javascript:void(0);" id="calendarEventAnswerMaybe"><liferay-ui:message key="maybe" /></a>
-							</tpl>
-							<tpl if="!maybeActive">
-								<span class="calendar-event-answer" id="calendarEventAnswerMaybe"><liferay-ui:message key="maybe" /></span>
-							</tpl>
+							<a class="calendar-event-answer" data-enabled="{maybeLinkEnabled}" data-status="{workflowStatus.STATUS_MAYBE}" href="javascript:void(0);"><liferay-ui:message key="maybe" /></a>
 							&mdash;
-							<tpl if="declineActive">
-								<a class="calendar-event-answer" href="javascript:void(0);" id="calendarEventAnswerDecline"><liferay-ui:message key="no" /></a>
-							</tpl>
-							<tpl if="!declineActive">
-								<span class="calendar-event-answer" id="calendarEventAnswerDecline"><liferay-ui:message key="no" /></span>
-							</tpl>
+							<a class="calendar-event-answer" data-enabled="{declineLinkEnabled}" data-status="{workflowStatus.STATUS_DECLINE}" href="javascript:void(0);"><liferay-ui:message key="no" /></a>
 						</td>
 					</tr>
 				</tpl>

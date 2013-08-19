@@ -1576,6 +1576,14 @@ AUI.add(
 				NAME: 'scheduler-event-recorder',
 
 				prototype: {
+					initializer: function() {
+						var instance = this;
+
+						var popoverBB = instance.popover.get('boundingBox');
+
+						popoverBB.delegate('click', instance._handleEventAnswer, '.calendar-event-answer', instance);
+					},
+
 					getTemplateData: function() {
 						var instance = this;
 
@@ -1601,17 +1609,18 @@ AUI.add(
 							templateData,
 							{
 								allDay: schedulerEvent.get('allDay'),
+								acceptLinkEnabled: instance._hasWorkflowStatusPermission(schedulerEvent, CalendarWorkflow.STATUS_APPROVED),
 								availableCalendars: availableCalendars,
 								calendar: calendar,
 								calendarIds: AObject.keys(availableCalendars),
+								declineLinkEnabled: instance._hasWorkflowStatusPermission(schedulerEvent, CalendarWorkflow.STATUS_DENIED),
 								editing: editing,
 								endTime: templateData.endDate,
-								acceptActive: instance._canChangeToStatus(schedulerEvent, CalendarWorkflow.STATUS_APPROVED),
-								declineActive: instance._canChangeToStatus(schedulerEvent, CalendarWorkflow.STATUS_DENIED),
-								maybeActive: instance._canChangeToStatus(schedulerEvent, CalendarWorkflow.STATUS_MAYBE),
+								maybeLinkEnabled: instance._hasWorkflowStatusPermission(schedulerEvent, CalendarWorkflow.STATUS_MAYBE),
 								permissions: permissions,
 								startTime: templateData.startDate,
-								status: schedulerEvent.get('status')
+								status: schedulerEvent.get('status'),
+								workflowStatus: CalendarWorkflow
 							}
 						);
 					},
@@ -1637,8 +1646,6 @@ AUI.add(
 
 						var templateData = instance.getTemplateData();
 
-						var schedulerEvent = instance.get('event');
-
 						if (A.instanceOf(bodyTemplate, A.Template) && A.instanceOf(headerTemplate, A.Template)) {
 							instance.popover.setStdModContent('body', bodyTemplate.parse(templateData));
 							instance.popover.setStdModContent('header', headerTemplate.parse(templateData));
@@ -1662,25 +1669,20 @@ AUI.add(
 							],
 							'header'
 						);
-
-						var popoverBB = instance.popover.get('boundingBox');
-
-						popoverBB.delegate('click', instance._handleEventAnswer, '#calendarEventAnswerAccept', instance, CalendarWorkflow.STATUS_APPROVED);
-						popoverBB.delegate('click', instance._handleEventAnswer, '#calendarEventAnswerDecline', instance, CalendarWorkflow.STATUS_DENIED);
-						popoverBB.delegate('click', instance._handleEventAnswer, '#calendarEventAnswerMaybe', instance, CalendarWorkflow.STATUS_MAYBE);
 					},
 
-					_handleEventAnswer: function(event, newStatus) {
+					_handleEventAnswer: function(event) {
 						var instance = this;
 
-						var schedulerEvent = instance.get('event')
+						var currentTarget = event.currentTarget;
 
-						if (instance._canChangeToStatus(schedulerEvent, newStatus)) {
-							var schedulerEvent = instance.get('event');
+						var schedulerEvent = instance.get('event');
 
-							if (schedulerEvent) {
-								CalendarUtil.invokeTransition(schedulerEvent, newStatus);
-							}
+						var enabledLink = currentTarget.hasClass('calendar-event-answer-true');
+						var statusData = currentTarget.getData('status');
+
+						if (schedulerEvent && A.DataType.Boolean.parse(enabledLink) && instance._hasWorkflowStatusPermission(schedulerEvent, statusData)) {
+							CalendarUtil.invokeTransition(schedulerEvent, statusData);
 						}
 					},
 
@@ -1766,22 +1768,6 @@ AUI.add(
 						event.domEvent.preventDefault();
 					},
 
-					_canChangeToStatus: function(schedulerEvent, newStatus) {
-						if (schedulerEvent) {
-							var calendarId = schedulerEvent.get('calendarId');
-
-							var calendar = CalendarUtil.availableCalendars[calendarId];
-
-							var permissions = calendar.get('permissions');
-
-							var status = schedulerEvent.get('status');
-
-							return permissions.MANAGE_BOOKINGS && (status !== newStatus) && (status !== CalendarWorkflow.STATUS_DRAFT);
-						}
-
-						return false;
-					},
-
 					_hasDeleteButton: function(permissions, calendar, status) {
 						return permissions.MANAGE_BOOKINGS && calendar;
 					},
@@ -1792,6 +1778,26 @@ AUI.add(
 
 					_hasSaveButton: function(permissions, calendar, status) {
 						return permissions.MANAGE_BOOKINGS;
+					},
+
+					_hasWorkflowStatusPermission: function(schedulerEvent, newStatus) {
+						var instance = this;
+
+						var hasPermission = false;
+
+						if (schedulerEvent) {
+							var calendarId = schedulerEvent.get('calendarId');
+
+							var calendar = CalendarUtil.availableCalendars[calendarId];
+
+							var permissions = calendar.get('permissions');
+
+							var status = schedulerEvent.get('status');
+
+							hasPermission = permissions.MANAGE_BOOKINGS && (status !== newStatus) && (status !== CalendarWorkflow.STATUS_DRAFT);
+						}
+
+						return hasPermission;
 					},
 
 					_afterPopoverVisibleChange: function(event) {
@@ -2022,6 +2028,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-io', 'aui-scheduler', 'aui-toolbar', 'autocomplete', 'autocomplete-highlighters', 'dd-plugin', 'liferay-calendar-message-util', 'liferay-calendar-recurrence-util', 'liferay-node', 'liferay-portlet-url', 'liferay-store', 'resize-plugin']
+		requires: ['aui-datatype', 'aui-io', 'aui-scheduler', 'aui-toolbar', 'autocomplete', 'autocomplete-highlighters', 'dd-plugin', 'liferay-calendar-message-util', 'liferay-calendar-recurrence-util', 'liferay-node', 'liferay-portlet-url', 'liferay-store', 'resize-plugin']
 	}
 );
