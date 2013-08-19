@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/WEB-INF/jsp/ams/controllers/init.jsp" %>
+<%@ include file="/WEB-INF/jsp/ams/controllers/init.jspf" %>
 
 <%@ page import="com.liferay.ams.model.Asset" %>
 <%@ page import="com.liferay.ams.service.AssetLocalServiceUtil" %>
