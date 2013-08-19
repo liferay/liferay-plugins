@@ -1,6 +1,9 @@
 @import "compass";
 
 .so-portlet-activities {
+	display: block;
+	width: 100%;
+
 	.activity-item {
 		border-bottom: 1px solid #E7E7E7;
 		min-height: 45px;
@@ -281,6 +284,26 @@
 	.toggler-content-collapsed .activity-footer-toolbar {
 		border-top: 1px solid #EFEFEF;
 		margin-top: -2px;
+	}
+	
+	.loading-bar {
+		display: block;
+		background-image: url(@theme_image_path@/aui/loading_indicator.gif);
+		background-position: 45% center;
+		background-repeat: no-repeat;
+		font-style: italic;
+		height: 100px;
+		margin-left: 25px;
+		width: 100%;
+	}
+
+	.loading-bar.loaded {
+		visibility: hidden;
+	}
+
+	.no-activities {
+		padding: 5px;
+		text-align: center;
 	}
 }
 

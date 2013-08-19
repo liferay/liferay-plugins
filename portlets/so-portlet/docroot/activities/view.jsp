@@ -25,14 +25,99 @@ Group group = themeDisplay.getScopeGroup();
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("tabs1", tabs1);
-
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
 %>
 
-<%@ include file="/activities/view_activity_sets.jspf" %>
+<c:if test="<%= group.isUser() %>">
+	<liferay-ui:tabs
+		names="all,connections,following,my-sites,me"
+		url="<%= portletURL.toString() %>"
+		value="<%= tabs1 %>"
+	/>
+</c:if>
 
-<aui:script use="aui-base">
+<div class="social-activities"></div>
+<div class="loading-bar"></div>
+
+<aui:script use="aui-base,aui-io-request,aui-parse-content,liferay-so-scroll">
 	var activities = A.one('#p_p_id<portlet:namespace />');
+	var body = A.one('body');
+
+	var loadingBar = activities.one('.loading-bar');
+	var socialActivities = activities.one('.social-activities');
+
+	socialActivities.plug(A.Plugin.ParseContent);
+
+	var win = A.getWin();
+
+	win.plug(
+		Liferay.SO.Scroll,
+		{
+			edgeProximity: .4
+		}
+	);
+
+	var loading = false;
+	var start = 0;
+
+	var loadNewContent = function() {
+		loadingBar.removeClass('loaded');
+
+		loading = true;
+
+		setTimeout(
+			function() {
+				<portlet:renderURL var="viewActivitySetsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+					<portlet:param name="mvcPath" value="/activities/view_activity_sets.jsp" />
+					<portlet:param name="tabs1" value="<%= tabs1 %>" />
+				</portlet:renderURL>
+
+				var uri = '<%= viewActivitySetsURL %>';
+
+				uri = Liferay.Util.addParams('start=' + start, uri) || uri;
+
+				A.io.request(
+					uri,
+					{
+						after: {
+							success: function(event, id, obj) {
+								var responseData = this.get('responseData');
+
+								socialActivities.append(responseData);
+
+								start = start + <%= delta %>;
+
+								loadingBar.addClass('loaded');
+
+								loading = false;
+
+								if (body.height() < win.height()) {
+									loadNewContent();
+								}
+							}
+						}
+					}
+				);
+			},
+			1000
+		);
+	}
+
+	if (socialActivities && !loading) {
+		loadNewContent();
+	}
+
+	win.scroll.on(
+		'bottom-edge',
+		function(event) {
+			if (activities.one('.no-activities')) {
+				loading = true;
+			}
+
+			if (!loading) {
+				loadNewContent();
+			}
+		}
+	);
 
 	activities.delegate(
 		'click',
