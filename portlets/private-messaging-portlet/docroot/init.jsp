@@ -68,8 +68,6 @@ page import="javax.portlet.WindowState" %>
 <liferay-theme:defineObjects />
 
 <%
-String currentURL = PortalUtil.getCurrentURL(request);
-
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("MMMMM d 'at' h:mm a", locale, timeZone);
 %>
 

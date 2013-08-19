@@ -40,3 +40,11 @@ long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 		</c:otherwise>
 	</c:choose>
 </div>
+
+<aui:script use="liferay-plugin-privatemessaging">
+	Liferay.PrivateMessaging.init(
+		{
+			namespace: '<portlet:namespace />'
+		}
+	);
+</aui:script>
