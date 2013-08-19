@@ -31,7 +31,7 @@ int end = start + delta;
 
 <c:choose>
 	<c:when test="<%= group.isUser() %>">
-		
+
 		<%
 		if (!layout.isPublicLayout()) {
 			if (tabs1.equals("connections")) {
@@ -63,7 +63,6 @@ int end = start + delta;
 		<%
 		results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
 		total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
-		
 		%>
 
 	</c:otherwise>
