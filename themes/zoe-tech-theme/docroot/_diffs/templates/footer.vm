@@ -1,15 +1,15 @@
 <footer id="footerWrapper" role="contentinfo">
-	<div class="aui-layout-content" id="footerContent">
-		<div class="aui-column aui-column-first aui-w25" id="footerSection1">
-			<div class="aui-column-content aui-column-content-first">
+	<div class="layout-content" id="footerContent">
+		<div class="column column-first span3" id="footerSection1">
+			<div class="column-content column-content-first">
 				#if ($footer_section_1)
 					$footer_section_1
 				#end
 			</div>
 		</div>
 
-		<div class="aui-column aui-w25" id="footerSection2">
-			<div class="aui-column-content">
+		<div class="column span3" id="footerSection2">
+			<div class="column-content">
 				#if ($theme_settings.footer-section-2-article-id)
 					#if ($footer_section_2)
 						$footer_section_2
@@ -46,16 +46,16 @@
 			</div>
 		</div>
 
-		<div class="aui-column aui-w25" id="footerSection3">
-			<div class="aui-column-content">
+		<div class="column span3" id="footerSection3">
+			<div class="column-content">
 				#if ($footer_section_3)
 					$footer_section_3
 				#end
 			</div>
 		</div>
 
-		<div class="aui-column aui-column-last aui-w25" id="footerSection4">
-			<div class="aui-column-content aui-column-content-last">
+		<div class="column column-last span3" id="footerSection4">
+			<div class="column-content column-content-last">
 				#if ($footer_section_4)
 					$footer_section_4
 				#end
