@@ -30,9 +30,16 @@ IPInfo ipInfo = IPGeocoderUtil.getIPInfo(originalRequest.getRemoteAddr());
 
 <c:choose>
 	<c:when test="<%= ipInfo != null %>">
-		IP: <%= ipInfo.getIpAddress() %><br />
+		IP: <%= ipInfo.getIpAddress() %><br /><br />
+
 		Latitude: <%= ipInfo.getLatitude() %><br />
-		Longitude: <%= ipInfo.getLongitude() %>
+		Longitude: <%= ipInfo.getLongitude() %><br /><br />
+
+		Country: <%= ipInfo.getCountryName() %><br />
+		Country Code: <%= ipInfo.getCountryCode() %><br />
+		Region: <%= ipInfo.getRegion() %><br />
+		City: <%= ipInfo.getCity() %><br />
+		Postal Code: <%= ipInfo.getPostalCode() %>
 	</c:when>
 	<c:otherwise>
 		<div class="portlet-msg-error">

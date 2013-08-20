@@ -19,10 +19,32 @@ package com.liferay.ipgeocoder.model;
  */
 public class IPInfo {
 
-	public IPInfo(String ipAddress, float latitude, float longitude) {
+	public IPInfo(
+		String ipAddress, float latitude, float longitude, String countryName,
+		String countryCode, String region, String city, String postalCode) {
+
 		_ipAddress = ipAddress;
+
 		_latitude = latitude;
 		_longitude = longitude;
+
+		_countryName = countryName;
+		_countryCode = countryCode;
+		_region = region;
+		_city = city;
+		_postalCode = postalCode;
+	}
+
+	public String getCity() {
+		return _city;
+	}
+
+	public String getCountryCode() {
+		return _countryCode;
+	}
+
+	public String getCountryName() {
+		return _countryName;
 	}
 
 	public String getIpAddress() {
@@ -37,8 +59,21 @@ public class IPInfo {
 		return _longitude;
 	}
 
+	public String getPostalCode() {
+		return _postalCode;
+	}
+
+	public String getRegion() {
+		return _region;
+	}
+
+	private String _city;
+	private String _countryCode;
+	private String _countryName;
 	private String _ipAddress;
 	private float _latitude;
 	private float _longitude;
+	private String _postalCode;
+	private String _region;
 
 }

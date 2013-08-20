@@ -26,6 +26,33 @@ public class IPInfo {
 		_location = location;
 	}
 
+	public String getCity() {
+		if (_location == null) {
+			return null;
+		}
+		else {
+			return _location.city;
+		}
+	}
+
+	public String getCountryCode() {
+		if (_location == null) {
+			return null;
+		}
+		else {
+			return _location.countryCode;
+		}
+	}
+
+	public String getCountryName() {
+		if (_location == null) {
+			return null;
+		}
+		else {
+			return _location.countryName;
+		}
+	}
+
 	public String getIpAddress() {
 		return _ipAddress;
 	}
@@ -45,6 +72,24 @@ public class IPInfo {
 		}
 		else {
 			return _location.longitude;
+		}
+	}
+
+	public String getPostalCode() {
+		if (_location == null) {
+			return null;
+		}
+		else {
+			return _location.postalCode;
+		}
+	}
+
+	public String getRegion() {
+		if (_location == null) {
+			return null;
+		}
+		else {
+			return _location.region;
 		}
 	}
 

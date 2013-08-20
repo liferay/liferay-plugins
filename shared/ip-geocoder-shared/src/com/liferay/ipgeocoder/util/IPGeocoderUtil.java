@@ -44,7 +44,18 @@ public class IPGeocoderUtil {
 		float longitude = GetterUtil.getFloat(
 			ipInfoJSON.getString("longitude"));
 
-		return new IPInfo(ipAddress, latitude, longitude);
+		String countryName = GetterUtil.getString(
+			ipInfoJSON.getString("countryName"));
+		String countryCode = GetterUtil.getString(
+			ipInfoJSON.getString("countryCode"));
+		String region = GetterUtil.getString(ipInfoJSON.getString("region"));
+		String city = GetterUtil.getString(ipInfoJSON.getString("city"));
+		String postalCode = GetterUtil.getString(
+			ipInfoJSON.getString("postalCode"));
+
+		return new IPInfo(
+			ipAddress, latitude, longitude, countryName, countryCode, region,
+			city, postalCode);
 	}
 
 }
