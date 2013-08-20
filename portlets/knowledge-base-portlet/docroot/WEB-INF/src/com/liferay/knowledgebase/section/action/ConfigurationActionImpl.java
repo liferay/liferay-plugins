@@ -16,8 +16,8 @@ package com.liferay.knowledgebase.section.action;
 
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -47,7 +47,7 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		String[] kbArticlesSections = actionRequest.getParameterValues(
 			"kbArticlesSections");
 
-		if (Validator.isNull(kbArticlesSections)) {
+		if (ArrayUtil.isEmpty(kbArticlesSections)) {
 			SessionErrors.add(actionRequest, "kbArticlesSections");
 		}
 

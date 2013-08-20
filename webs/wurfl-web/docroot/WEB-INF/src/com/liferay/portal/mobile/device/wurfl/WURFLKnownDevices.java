@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.mobile.device.Capability;
 import com.liferay.portal.kernel.mobile.device.KnownDevices;
 import com.liferay.portal.kernel.mobile.device.NoKnownDevices;
 import com.liferay.portal.kernel.mobile.device.VersionableName;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.HashMap;
@@ -178,7 +179,7 @@ public class WURFLKnownDevices implements KnownDevices {
 	}
 
 	protected void updateDevicesIds(Device device, String... capabilityNames) {
-		if ((capabilityNames == null) || (capabilityNames.length == 0)) {
+		if (ArrayUtil.isEmpty(capabilityNames)) {
 			return;
 		}
 

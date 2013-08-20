@@ -16,6 +16,7 @@ package com.liferay.socialnetworking.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -73,13 +74,13 @@ public class MeetupsEntryLocalServiceImpl
 		meetupsEntry.setMaxAttendees(maxAttendees);
 		meetupsEntry.setPrice(price);
 
-		if ((thumbnail != null) && (thumbnail.length > 0)) {
+		if (ArrayUtil.isNotEmpty(thumbnail)) {
 			meetupsEntry.setThumbnailId(counterLocalService.increment());
 		}
 
 		meetupsEntryPersistence.update(meetupsEntry);
 
-		if ((thumbnail != null) && (thumbnail.length > 0)) {
+		if (ArrayUtil.isNotEmpty(thumbnail)) {
 			ImageLocalServiceUtil.updateImage(
 				meetupsEntry.getThumbnailId(), thumbnail);
 		}
@@ -155,7 +156,7 @@ public class MeetupsEntryLocalServiceImpl
 
 		meetupsEntryPersistence.update(meetupsEntry);
 
-		if ((thumbnail != null) && (thumbnail.length > 0)) {
+		if (ArrayUtil.isNotEmpty(thumbnail)) {
 			ImageLocalServiceUtil.updateImage(
 				meetupsEntry.getThumbnailId(), thumbnail);
 		}

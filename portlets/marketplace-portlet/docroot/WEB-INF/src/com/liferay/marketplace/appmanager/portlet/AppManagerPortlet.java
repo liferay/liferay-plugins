@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadException;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -81,7 +82,7 @@ public class AppManagerPortlet extends MVCPortlet {
 
 		byte[] bytes = FileUtil.getBytes(file);
 
-		if ((bytes == null) || (bytes.length == 0)) {
+		if (ArrayUtil.isEmpty(bytes)) {
 			SessionErrors.add(actionRequest, UploadException.class.getName());
 		}
 		else {

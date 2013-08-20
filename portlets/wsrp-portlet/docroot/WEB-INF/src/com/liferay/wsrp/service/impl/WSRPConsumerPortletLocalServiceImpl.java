@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -443,7 +444,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 				QName[] qNames = parameterDescription.getNames();
 
-				if ((qNames == null) || (qNames.length == 0)) {
+				if (ArrayUtil.isEmpty(qNames)) {
 					continue;
 				}
 

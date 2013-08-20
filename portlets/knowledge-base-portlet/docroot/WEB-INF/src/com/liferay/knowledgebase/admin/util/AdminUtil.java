@@ -48,7 +48,7 @@ import net.htmlparser.jericho.Source;
 public class AdminUtil {
 
 	public static String[] escapeSections(String[] sections) {
-		if (Validator.isNull(sections)) {
+		if (ArrayUtil.isEmpty(sections)) {
 			return new String[0];
 		}
 

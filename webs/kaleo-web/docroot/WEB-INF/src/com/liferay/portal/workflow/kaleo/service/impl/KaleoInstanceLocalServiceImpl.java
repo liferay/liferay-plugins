@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.staging.StagingUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Validator;
@@ -341,11 +342,11 @@ public class KaleoInstanceLocalServiceImpl
 			dynamicQuery.add(userIdProperty.eq(userId));
 		}
 
-		if ((assetClassNames != null) && (assetClassNames.length > 0)) {
+		if (ArrayUtil.isNotEmpty(assetClassNames)) {
 			dynamicQuery.add(getAssetClassNames(assetClassNames));
 		}
 
-		if ((assetClassPKs != null) && (assetClassPKs.length > 0)) {
+		if (ArrayUtil.isNotEmpty(assetClassPKs)) {
 			dynamicQuery.add(getAssetClassPKs(assetClassPKs));
 		}
 

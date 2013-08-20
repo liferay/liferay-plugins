@@ -250,7 +250,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		File[] files = dlDocumentsDir.listFiles();
 
-		if (Validator.isNull(files)) {
+		if (ArrayUtil.isEmpty(files)) {
 			return;
 		}
 
@@ -306,7 +306,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		File[] files = folder.listFiles();
 
-		if (Validator.isNull(files)) {
+		if (ArrayUtil.isEmpty(files)) {
 			return folderId;
 		}
 

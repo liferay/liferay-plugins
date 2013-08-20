@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -292,9 +293,7 @@ public class CalendarFinderImpl
 			qPos.add(companyId);
 			qPos.add(groupIds);
 
-			if ((calendarResourceIds != null) &&
-				(calendarResourceIds.length > 0)) {
-
+			if (ArrayUtil.isNotEmpty(calendarResourceIds)) {
 				qPos.add(calendarResourceIds);
 			}
 
@@ -376,9 +375,7 @@ public class CalendarFinderImpl
 			qPos.add(companyId);
 			qPos.add(groupIds);
 
-			if ((calendarResourceIds != null) &&
-				(calendarResourceIds.length > 0)) {
-
+			if (ArrayUtil.isNotEmpty(calendarResourceIds)) {
 				qPos.add(calendarResourceIds);
 			}
 
@@ -396,9 +393,7 @@ public class CalendarFinderImpl
 	}
 
 	protected String getCalendarResourceIds(long[] calendarResourceIds) {
-		if ((calendarResourceIds == null) ||
-			(calendarResourceIds.length == 0)) {
-
+		if (ArrayUtil.isEmpty(calendarResourceIds)) {
 			return StringPool.BLANK;
 		}
 

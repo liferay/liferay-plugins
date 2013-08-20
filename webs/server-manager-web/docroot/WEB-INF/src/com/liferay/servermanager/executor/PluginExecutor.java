@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.SystemProperties;
@@ -265,7 +266,7 @@ public class PluginExecutor extends BaseExecutor {
 				}
 			);
 
-			if ((tempContextDirs != null) && (tempContextDirs.length > 0)) {
+			if (ArrayUtil.isNotEmpty(tempContextDirs)) {
 				Arrays.sort(
 					tempContextDirs,
 					new Comparator<File>() {
