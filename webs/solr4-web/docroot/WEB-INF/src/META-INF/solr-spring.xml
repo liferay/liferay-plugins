@@ -45,10 +45,10 @@
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 		<property name="spellCheckIndexWriter" ref="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter" />
 	</bean>
-	<bean id="com.liferay.portal.search.solr.SolrQuerySuggester" class="com.liferay.portal.search.solr.suggest.SolrQuerySuggester">
+	<bean id="com.liferay.portal.search.solr.SolrQuerySuggester" class="com.liferay.portal.search.solr.SolrQuerySuggester">
 		<property name="distanceThreshold" value="0.6f" />
 		<property name="NGramQueryBuilder">
-			<bean class="com.liferay.portal.search.solr.suggest.NGramQueryBuilderImpl" />
+			<bean class="com.liferay.portal.search.solr.NGramQueryBuilderImpl" />
 		</property>
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>

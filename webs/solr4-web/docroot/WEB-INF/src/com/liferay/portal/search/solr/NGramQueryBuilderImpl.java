@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.suggest;
+package com.liferay.portal.search.solr;
 
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.NGramHolder;

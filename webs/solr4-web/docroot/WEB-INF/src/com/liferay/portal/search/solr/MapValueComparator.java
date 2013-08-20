@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.solr.suggest;
+package com.liferay.portal.search.solr;
 
 import java.util.Comparator;
 import java.util.Map;
