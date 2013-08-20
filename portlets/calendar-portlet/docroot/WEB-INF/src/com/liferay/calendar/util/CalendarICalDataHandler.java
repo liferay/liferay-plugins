@@ -631,12 +631,12 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		propertyList.add(description);
 
-		// X-ALT-DESC
-
 		XProperty xProperty = new XProperty(
 			"X-ALT-DESC", calendarBooking.getDescription(user.getLocale()));
 
-		xProperty.getParameters().add(new XParameter("FMTTYPE", "text/html"));
+		ParameterList parameters = xProperty.getParameters();
+
+		parameters.add(new XParameter("FMTTYPE", "text/html"));
 
 		propertyList.add(xProperty);
 
