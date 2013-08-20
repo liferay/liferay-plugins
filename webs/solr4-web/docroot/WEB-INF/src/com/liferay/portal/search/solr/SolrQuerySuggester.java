@@ -75,15 +75,15 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		String localizedFieldName = DocumentImpl.getLocalizedName(
 			searchContext.getLanguageId(), Field.SPELL_CHECK_WORD);
 
-		List<String> keywordTokens = TokenizerUtil.tokenize(
+		List<String> keywords = TokenizerUtil.tokenize(
 			localizedFieldName, searchContext.getKeywords(),
 			searchContext.getLanguageId());
 
-		for (String keywordToken : keywordTokens) {
+		for (String keyword : keywords) {
 			List<String> keywordSuggestions = suggestKeywords(
-				searchContext, maxSuggestions, keywordToken);
+				searchContext, maxSuggestions, keyword);
 
-			suggestions.put(keywordToken, keywordSuggestions);
+			suggestions.put(keyword, keywordSuggestions);
 		}
 
 		return suggestions;
@@ -217,20 +217,21 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 			SearchContext searchContext, int maxSuggestions, String token)
 		throws SearchException {
 
-		Set<WeightedWord> suggestionSet = suggestKeywords(searchContext, token);
+		Set<WeightedWord> suggestionsSet = suggestKeywords(
+			searchContext, token);
 
-		maxSuggestions = Math.min(maxSuggestions, suggestionSet.size());
+		maxSuggestions = Math.min(maxSuggestions, suggestionsSet.size());
 
-		Iterator<WeightedWord> suggestionsIterator = suggestionSet.iterator();
+		Iterator<WeightedWord> suggestionsIterator = suggestionsSet.iterator();
 
-		List<String> suggestionList = new ArrayList<String>(maxSuggestions);
+		List<String> suggestionsList = new ArrayList<String>(maxSuggestions);
 
 		int counter = 0;
 
 		while (suggestionsIterator.hasNext()) {
 			WeightedWord weightedWord = suggestionsIterator.next();
 
-			suggestionList.add(weightedWord.getWord());
+			suggestionsList.add(weightedWord.getWord());
 
 			counter++;
 
@@ -239,7 +240,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 			}
 		}
 
-		return suggestionList;
+		return suggestionsList;
 	}
 
 	protected Set<WeightedWord> suggestKeywords(
