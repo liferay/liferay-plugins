@@ -34,26 +34,27 @@ import org.apache.solr.client.solrj.SolrServer;
 public class SolrSpellCheckIndexWriter
 	extends BaseGenericSpellCheckIndexWriter {
 
-	public static final long GLOBAL_GROUP_ID = 0L;
-
 	@Override
 	public void clearQuerySuggestionDictionaryIndexes(
 			SearchContext searchContext)
 		throws SearchException {
 
-		StringBundler sb = getDeleteQuery(searchContext, QUERY_SUGGESTION_TYPE);
+		String deleteQuery = createDeleteQuery(
+			searchContext, QUERY_SUGGESTION_TYPE);
 
 		try {
-			_solrServer.deleteByQuery(sb.toString());
+			_solrServer.deleteByQuery(deleteQuery);
 
 			if (_commit) {
 				_solrServer.commit();
 			}
 		}
 		catch (Exception e) {
-			_log.error(e, e);
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
 
-			throw new SearchException(e.getMessage());
+			throw new SearchException(e.getMessage(), e);
 		}
 	}
 
@@ -61,19 +62,22 @@ public class SolrSpellCheckIndexWriter
 	public void clearSpellCheckerDictionaryIndexes(SearchContext searchContext)
 		throws SearchException {
 
-		StringBundler sb = getDeleteQuery(searchContext, SPELL_CHECKER_TYPE);
+		String deleteQuery = createDeleteQuery(
+			searchContext, SPELL_CHECKER_TYPE);
 
 		try {
-			_solrServer.deleteByQuery(sb.toString());
+			_solrServer.deleteByQuery(deleteQuery);
 
 			if (_commit) {
 				_solrServer.commit();
 			}
 		}
 		catch (Exception e) {
-			_log.error(e, e);
+			if (_log.isDebugEnabled()) {
+				_log.debug(e, e);
+			}
 
-			throw new SearchException(e.getMessage());
+			throw new SearchException(e.getMessage(), e);
 		}
 
 	}
@@ -94,7 +98,6 @@ public class SolrSpellCheckIndexWriter
 	}
 
 	protected StringBundler addTypeQuery(StringBundler sb, String type) {
-
 		sb.append(Field.TYPE);
 		sb.append(StringPool.COLON);
 		sb.append(type);
@@ -102,7 +105,7 @@ public class SolrSpellCheckIndexWriter
 		return sb;
 	}
 
-	protected StringBundler getDeleteQuery(
+	protected String createDeleteQuery(
 		SearchContext searchContext, String type) {
 
 		StringBundler sb = new StringBundler(14);
@@ -111,15 +114,18 @@ public class SolrSpellCheckIndexWriter
 		sb.append(Field.COMPANY_ID);
 		sb.append(StringPool.COLON);
 		sb.append(searchContext.getCompanyId());
+
 		addQuerySeparator(sb);
+
 		sb.append(Field.PORTLET_ID);
 		sb.append(StringPool.COLON);
 		sb.append(PortletKeys.SEARCH);
+
 		addQuerySeparator(sb);
 
 		addTypeQuery(sb, type);
 
-		return sb;
+		return sb.toString();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
