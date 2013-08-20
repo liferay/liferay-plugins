@@ -16,12 +16,15 @@ package com.liferay.portal.search.solr.suggest;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.CollatorUtil;
+import com.liferay.portal.kernel.search.BaseQuerySuggester;
+import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.QuerySuggester;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.StringDistanceCalculatorUtil;
+import com.liferay.portal.kernel.search.SuggestionConstants;
 import com.liferay.portal.kernel.search.TokenizerUtil;
+import com.liferay.portal.kernel.search.WeightedWord;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -29,11 +32,12 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.Set;
+import java.util.TreeSet;
 
-import org.apache.lucene.search.spell.StringDistance;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.SolrServer;
@@ -46,11 +50,11 @@ import org.apache.solr.common.SolrDocumentList;
 * @author David Gonzalez
 * @author Michael C. Han
 */
-public class SolrQuerySuggester implements QuerySuggester {
+public class SolrQuerySuggester extends BaseQuerySuggester {
 
-	public static float INFINITE_WEIGHT = 100f;
-
-	public static int QUERY_RESULTS = 50;
+	public void setDistanceThreshold(float distanceThreshold) {
+		_distanceThreshold = distanceThreshold;
+	}
 
 	public void setNGramQueryBuilder(NGramQueryBuilder nGramQueryBuilder) {
 		_nGramQueryBuilder = nGramQueryBuilder;
@@ -58,28 +62,6 @@ public class SolrQuerySuggester implements QuerySuggester {
 
 	public void setSolrServer(SolrServer solrServer) {
 		_solrServer = solrServer;
-	}
-
-	public void setStringDistance(StringDistance stringDistance) {
-		_stringDistance = stringDistance;
-	}
-
-	public void setThreshold(float threshold) {
-		_threshold = threshold;
-	}
-
-	@Override
-	public String spellCheckKeywords(SearchContext searchContext)
-		throws SearchException {
-
-		Map<String, List<String>> mapSuggestions = spellCheckKeywords(
-			searchContext, 1);
-
-		List<String> tokens = TokenizerUtil.tokenize(
-			Field.SPELL_CHECK_WORD, searchContext.getKeywords(),
-			searchContext.getLanguageId());
-
-		return CollatorUtil.collate(mapSuggestions, tokens);
 	}
 
 	@Override
@@ -90,15 +72,18 @@ public class SolrQuerySuggester implements QuerySuggester {
 		Map<String, List<String>> suggestions =
 			new HashMap<String, List<String>>();
 
-		List<String> originals = TokenizerUtil.tokenize(
-			Field.SPELL_CHECK_WORD, searchContext.getKeywords(),
+		String localizedFieldName = DocumentImpl.getLocalizedName(
+			searchContext.getLanguageId(), Field.SPELL_CHECK_WORD);
+
+		List<String> keywordTokens = TokenizerUtil.tokenize(
+			localizedFieldName, searchContext.getKeywords(),
 			searchContext.getLanguageId());
 
-		for (String original : originals) {
-			List<String> similarTokens = suggestTokenSimilars(
-				searchContext, maxSuggestions, original);
+		for (String keywordToken : keywordTokens) {
+			List<String> keywordSuggestions = suggestKeywords(
+				searchContext, maxSuggestions, keywordToken);
 
-			suggestions.put(original, similarTokens);
+			suggestions.put(keywordToken, keywordSuggestions);
 		}
 
 		return suggestions;
@@ -108,9 +93,8 @@ public class SolrQuerySuggester implements QuerySuggester {
 	public String[] suggestKeywordQueries(SearchContext searchContext, int max)
 		throws SearchException {
 
-		SolrQuery solrQuery = new SolrQuery();
+		StringBundler sb = new StringBundler(8);
 
-		StringBundler sb = new StringBundler(6);
 		sb.append("start");
 		sb.append(searchContext.getKeywords().length());
 		sb.append(StringPool.COLON);
@@ -118,11 +102,14 @@ public class SolrQuerySuggester implements QuerySuggester {
 		sb.append(searchContext.getKeywords());
 		sb.append(StringPool.QUOTE);
 
-		solrQuery.setQuery(sb.toString());
-		solrQuery.setRows(max);
+		SolrQuery solrQuery = new SolrQuery();
+
 		solrQuery.setFilterQueries(
 			getFilterQueries(
-				searchContext, QUERY_SUGGESTION_TYPE));
+				searchContext, SuggestionConstants.QUERY_SUGGESTION_TYPE));
+
+		solrQuery.setQuery(sb.toString());
+		solrQuery.setRows(max);
 
 		try {
 			QueryResponse queryResponse = _solrServer.query(solrQuery);
@@ -135,6 +122,7 @@ public class SolrQuerySuggester implements QuerySuggester {
 
 			for (int i = 0; i < numDocuments; i++) {
 				SolrDocument solrDocument = solrDocumentList.get(i);
+
 				results[i] = (String)solrDocument.getFieldValue(
 					Field.KEYWORD_SEARCH);
 			}
@@ -153,10 +141,11 @@ public class SolrQuerySuggester implements QuerySuggester {
 	protected String[] getFilterQueries(
 		SearchContext searchContext, String type) {
 
-		List<String> filterQueries = new ArrayList<String>();
+		List<String> filterQueries = new ArrayList<String>(4);
 
 		String companyIdFilterQuery = getFilterQuery(
 			Field.COMPANY_ID, searchContext.getCompanyId());
+
 		filterQueries.add(companyIdFilterQuery);
 
 		long[] groupIds = getGroupIdsForSuggestions(searchContext);
@@ -170,15 +159,14 @@ public class SolrQuerySuggester implements QuerySuggester {
 
 		String localeFilterQuery = getFilterQuery(
 			Field.LANGUAGE_ID, searchContext.getLanguageId());
+
 		filterQueries.add(localeFilterQuery);
 
 		String suggestionFilterQuery = getFilterQuery(Field.TYPE, type);
 
 		filterQueries.add(suggestionFilterQuery);
 
-		String[] arrayFilterQueries = new String[filterQueries.size()];
-
-		return filterQueries.toArray(arrayFilterQueries);
+		return filterQueries.toArray(new String[filterQueries.size()]);
 	}
 
 	protected String getFilterQuery(String field, long value) {
@@ -186,23 +174,21 @@ public class SolrQuerySuggester implements QuerySuggester {
 	}
 
 	protected String getFilterQuery(String field, long[] values) {
-		StringBundler stringBundler = new StringBundler(6 * values.length - 2);
+		StringBundler sb = new StringBundler(6 * values.length - 2);
 
-		for (int i = 0; i < values.length - 1; i ++) {
-			stringBundler.append(field);
-			stringBundler.append(StringPool.COLON);
-			stringBundler.append(values[i]);
-			stringBundler.append(StringPool.SPACE);
-			stringBundler.append("OR");
-			stringBundler.append(StringPool.SPACE);
+		for (int i = 0; i < values.length; i ++) {
+			sb.append(field);
+			sb.append(StringPool.COLON);
+			sb.append(values[i]);
+			sb.append(StringPool.SPACE);
+
+			if (i < (values.length - 1)) {
+				sb.append("OR");
+				sb.append(StringPool.SPACE);
+			}
 		}
 
-		stringBundler.append(field);
-		stringBundler.append(StringPool.COLON);
-		stringBundler.append(values[values.length - 1]);
-		stringBundler.append(StringPool.SPACE);
-
-		return stringBundler.toString();
+		return sb.toString();
 	}
 
 	protected String getFilterQuery(String field, String value) {
@@ -216,7 +202,7 @@ public class SolrQuerySuggester implements QuerySuggester {
 
 		long[] groupIds = searchContext.getGroupIds();
 
-		long globalGroupId = SolrSpellCheckIndexWriter.GLOBAL_GROUP_ID;
+		long globalGroupId = _GLOBAL_GROUP_ID;
 
 		// add global scope, if we're not having it included already
 
@@ -227,17 +213,47 @@ public class SolrQuerySuggester implements QuerySuggester {
 		return groupIds;
 	}
 
-	protected void searchTokenSimilars(
-			SearchContext searchContext, String token, SolrQuery solrQuery,
-			Map<String, Float> words)
+	protected List<String> suggestKeywords(
+			SearchContext searchContext, int maxSuggestions, String token)
 		throws SearchException {
 
-		solrQuery.addFilterQuery(
-			getFilterQueries(
-				searchContext, SPELL_CHECKER_TYPE));
+		Set<WeightedWord> suggestionSet = suggestKeywords(searchContext, token);
+
+		maxSuggestions = Math.min(maxSuggestions, suggestionSet.size());
+
+		Iterator<WeightedWord> suggestionsIterator = suggestionSet.iterator();
+
+		List<String> suggestionList = new ArrayList<String>(maxSuggestions);
+
+		int counter = 0;
+
+		while (suggestionsIterator.hasNext()) {
+			WeightedWord weightedWord = suggestionsIterator.next();
+
+			suggestionList.add(weightedWord.getWord());
+
+			counter++;
+
+			if (counter >= maxSuggestions) {
+				break;
+			}
+		}
+
+		return suggestionList;
+	}
+
+	protected Set<WeightedWord> suggestKeywords(
+			SearchContext searchContext, String token)
+		throws SearchException {
 
 		try {
-			solrQuery.setRows(QUERY_RESULTS);
+			SolrQuery solrQuery = _nGramQueryBuilder.getNGramQuery(token);
+
+			solrQuery.addFilterQuery(
+				getFilterQueries(
+					searchContext, SuggestionConstants.SPELL_CHECKER_TYPE));
+
+			solrQuery.setRows(_MAX_QUERY_RESULTS);
 
 			QueryResponse queryResponse = _solrServer.query(
 				solrQuery, SolrRequest.METHOD.POST);
@@ -246,6 +262,11 @@ public class SolrQuerySuggester implements QuerySuggester {
 
 			int numResults = solrDocumentList.size();
 
+			Set<WeightedWord> sortedWords = new TreeSet<WeightedWord>();
+
+			Map<String, WeightedWord> weightedWordMap =
+				new HashMap<String, WeightedWord>();
+
 			for (int i = 0; i < numResults; i++) {
 				SolrDocument solrDocument = solrDocumentList.get(i);
 
@@ -253,75 +274,60 @@ public class SolrQuerySuggester implements QuerySuggester {
 					Field.SPELL_CHECK_WORD)).get(0);
 
 				String strWeight = ((List<String>)solrDocument.get(
-					Field.SPELL_CHECK_WORD)).get(0);
+					Field.PRIORITY)).get(0);
 
 				float weight = Float.parseFloat(strWeight);
 
 				if (suggestion.equals(token)) {
-					weight = INFINITE_WEIGHT;
-					words.put(token, weight);
-					continue;
+					weight = _INFINITE_WEIGHT;
+				}
+				else {
+					String lowerCaseToken = token.toLowerCase();
+					String lowerCaseSuggestion = suggestion.toLowerCase();
+
+					float distance = StringDistanceCalculatorUtil.getDistance(
+						lowerCaseToken, lowerCaseSuggestion);
+
+					if (distance >= _distanceThreshold) {
+						weight = weight + distance;
+					}
 				}
 
-				String lowerCaseToken = token.toLowerCase();
-				String lowerCaseSuggestion = suggestion.toLowerCase();
+				WeightedWord weightedWord = weightedWordMap.get(suggestion);
 
-				float distance = _stringDistance.getDistance(
-					lowerCaseToken, lowerCaseSuggestion);
+				if (weightedWord == null) {
+					weightedWord = new WeightedWord(suggestion, weight);
 
-				if (distance >= _threshold) {
-					float normalizedWeight = weight + distance;
+					weightedWordMap.put(suggestion, weightedWord);
 
-					if (words.containsKey(suggestion)) {
-						float existingWeight = words.get(suggestion);
-
-						if (normalizedWeight < existingWeight) {
-							continue;
-						}
-					}
-
-					words.put(suggestion, normalizedWeight);
+					sortedWords.add(weightedWord);
+				}
+				else if (weight > weightedWord.getWeight()) {
+					weightedWord.setWeight(weight);
 				}
 			}
+
+			return sortedWords;
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
 				_log.debug("Unable to execute Solr query", e);
 			}
 
-			throw new SearchException(e.getMessage());
+			throw new SearchException(e.getMessage(), e);
 		}
 	}
 
-	protected List<String> suggestTokenSimilars(
-			SearchContext searchContext, int maxSuggestions, String token)
-		throws SearchException {
-
-		SolrQuery solrQuery = _nGramQueryBuilder.getNGramQuery(token);
-
-		Map<String, Float> words = new HashMap<String, Float>();
-
-		searchTokenSimilars(searchContext, token, solrQuery, words);
-
-		MapValueComparator valueComparator = new MapValueComparator(words);
-		TreeMap<String, Float> sortedWords = new TreeMap<String, Float>(
-			valueComparator);
-		sortedWords.putAll(words);
-
-		List<String> listWords = new ArrayList(sortedWords.keySet());
-
-		return listWords.subList(0, Math.min(maxSuggestions, listWords.size()));
-	}
-
-	protected static final String QUERY_SUGGESTION_TYPE = "querySuggestion";
-
-	protected static final String SPELL_CHECKER_TYPE = "spellChecker";
+	private static final long _GLOBAL_GROUP_ID = 0l;
 
 	private static Log _log = LogFactoryUtil.getLog(SolrQuerySuggester.class);
 
+	private static float _INFINITE_WEIGHT = 100f;
+
+	private static int _MAX_QUERY_RESULTS = 50;
+
+	private float _distanceThreshold;
 	private NGramQueryBuilder _nGramQueryBuilder;
 	private SolrServer _solrServer;
-	private StringDistance _stringDistance;
-	private float _threshold;
 
 }

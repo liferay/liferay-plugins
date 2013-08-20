@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.search.BaseGenericSpellCheckIndexWriter;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.SuggestionConstants;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.util.PortletKeys;
@@ -40,7 +41,7 @@ public class SolrSpellCheckIndexWriter
 		throws SearchException {
 
 		String deleteQuery = createDeleteQuery(
-			searchContext, QUERY_SUGGESTION_TYPE);
+			searchContext, SuggestionConstants.QUERY_SUGGESTION_TYPE);
 
 		try {
 			_solrServer.deleteByQuery(deleteQuery);
@@ -63,7 +64,7 @@ public class SolrSpellCheckIndexWriter
 		throws SearchException {
 
 		String deleteQuery = createDeleteQuery(
-			searchContext, SPELL_CHECKER_TYPE);
+			searchContext, SuggestionConstants.SPELL_CHECKER_TYPE);
 
 		try {
 			_solrServer.deleteByQuery(deleteQuery);

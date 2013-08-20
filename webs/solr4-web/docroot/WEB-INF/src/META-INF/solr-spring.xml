@@ -46,14 +46,11 @@
 		<property name="spellCheckIndexWriter" ref="com.liferay.portal.search.solr.SolrSpellCheckIndexWriter" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.SolrQuerySuggester" class="com.liferay.portal.search.solr.suggest.SolrQuerySuggester">
+		<property name="distanceThreshold" value="0.6f" />
 		<property name="NGramQueryBuilder">
 			<bean class="com.liferay.portal.search.solr.suggest.NGramQueryBuilderImpl" />
 		</property>
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
-		<property name="stringDistance">
-			<bean id="org.apache.lucene.search.spell.StringDistance" class="org.apache.lucene.search.spell.LevensteinDistance" />
-		</property>
-		<property name="threshold" value="0.6f" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.SolrSearchEngineImpl" class="com.liferay.portal.kernel.search.BaseSearchEngine">
 		<property name="clusteredWrite" value="false" />
