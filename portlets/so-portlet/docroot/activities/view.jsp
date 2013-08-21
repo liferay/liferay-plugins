@@ -91,7 +91,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 								loading = false;
 
-								if (body.height() < win.height()) {
+								if ((body.height() < win.height()) && !activities.one('.no-activities')) {
 									loadNewContent();
 								}
 							}
