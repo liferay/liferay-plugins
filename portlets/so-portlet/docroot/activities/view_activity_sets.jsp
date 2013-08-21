@@ -25,7 +25,7 @@ Group group = themeDisplay.getScopeGroup();
 List<SocialActivitySet> results = null;
 int total = 0;
 
-int start = ParamUtil.getInteger(request, "start", 0);
+int start = ParamUtil.getInteger(request, "start");
 int end = start + _DELTA;
 %>
 
