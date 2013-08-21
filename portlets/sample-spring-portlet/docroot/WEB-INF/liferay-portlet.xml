@@ -4,17 +4,22 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>welcome</portlet-name>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
 	</portlet>
 	<portlet>
 		<portlet-name>pets</portlet-name>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
 	</portlet>
 	<portlet>
 		<portlet-name>upload</portlet-name>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
 	</portlet>
 	<portlet>
 		<portlet-name>mode</portlet-name>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
 	</portlet>
 	<portlet>
 		<portlet-name>petsites</portlet-name>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
 	</portlet>
 </liferay-portlet-app>
