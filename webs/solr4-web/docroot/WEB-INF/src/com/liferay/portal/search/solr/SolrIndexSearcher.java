@@ -57,6 +57,7 @@ import java.util.regex.Pattern;
 
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrQuery.ORDER;
+import org.apache.solr.client.solrj.SolrQuery.SortClause;
 import org.apache.solr.client.solrj.SolrRequest.METHOD;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.response.FacetField;
@@ -469,7 +470,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 					order = ORDER.desc;
 				}
 
-				solrQuery.addSortField(sortFieldName, order);
+				solrQuery.addSort(new SortClause(sortFieldName, order));
 			}
 		}
 
