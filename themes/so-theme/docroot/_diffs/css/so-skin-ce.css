@@ -1074,9 +1074,8 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 
 	.lfr-meta-actions {
-		margin-top: -36px;
+		margin-bottom: 1em;
 		padding: 4px;
-		position: absolute;
 		right: 0;
 		width: auto;
 
