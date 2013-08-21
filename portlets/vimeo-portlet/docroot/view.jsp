@@ -26,13 +26,19 @@
 			sb.append("autoplay=1&amp;");
 		}
 
-		sb.append("clip_id=" + id);
-		sb.append("&amp;color=" + playerColorHex);
-		sb.append("&amp;fullscreen=" + enableFullscreenBinary);
+		sb.append("clip_id=");
+		sb.append(id);
+		sb.append("&amp;color=");
+		sb.append(playerColorHex);
+		sb.append("&amp;fullscreen=");
+		sb.append(enableFullscreenBinary);
 		sb.append("&amp;server=vimeo.com");
-		sb.append("&amp;show_byline=" + showBylineBinary);
-		sb.append("&amp;show_portrait=" + showPortraitBinary);
-		sb.append("&amp;show_title=" + showTitleBinary);
+		sb.append("&amp;show_byline=");
+		sb.append(showBylineBinary);
+		sb.append("&amp;show_portrait=");
+		sb.append(showPortraitBinary);
+		sb.append("&amp;show_title=");
+		sb.append(showTitleBinary);
 		%>
 
 		<liferay-ui:flash
