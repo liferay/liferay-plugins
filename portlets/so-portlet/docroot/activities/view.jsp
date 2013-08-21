@@ -36,6 +36,7 @@ portletURL.setParameter("tabs1", tabs1);
 </c:if>
 
 <div class="social-activities"></div>
+
 <div class="loading-bar"></div>
 
 <aui:script use="aui-base,aui-io-request,aui-parse-content,liferay-so-scroll">
@@ -84,7 +85,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 								socialActivities.append(responseData);
 
-								start = start + <%= delta %>;
+								start = start + <%= _DELTA %>;
 
 								loadingBar.addClass('loaded');
 

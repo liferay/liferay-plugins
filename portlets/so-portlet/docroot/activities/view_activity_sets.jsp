@@ -26,7 +26,7 @@ List<SocialActivitySet> results = null;
 int total = 0;
 
 int start = ParamUtil.getInteger(request, "start", 0);
-int end = start + delta;
+int end = start + _DELTA;
 %>
 
 <c:choose>
