@@ -32,6 +32,7 @@ import org.apache.solr.client.solrj.SolrQuery;
  */
 public class NGramQueryBuilderImpl implements NGramQueryBuilder {
 
+	@Override
 	public SolrQuery getNGramQuery(String token) throws SearchException {
 
 		NGramHolder nGramHolder = NGramHolderBuilderUtil.buildNGramHolder(

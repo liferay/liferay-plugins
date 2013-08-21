@@ -27,6 +27,7 @@ public class MapValueComparator implements Comparator<String> {
 		_baseValues = baseValues;
 	}
 
+	@Override
 	public int compare(String string1, String string2) {
 		Float baseValue1 = _baseValues.get(string1);
 

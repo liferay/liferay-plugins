@@ -22,6 +22,7 @@ import java.util.TreeSet;
  */
 public class LoadBalancedSolrServerSelector implements SolrServerSelector {
 
+	@Override
 	public SolrServerWrapper select(
 		List<SolrServerWrapper> solrServerWrappers) {
 
