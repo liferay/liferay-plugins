@@ -40,22 +40,30 @@ public class IPGeocoderUtil {
 			return null;
 		}
 
-		float latitude = GetterUtil.getFloat(ipInfoJSON.getString("latitude"));
-		float longitude = GetterUtil.getFloat(
-			ipInfoJSON.getString("longitude"));
-
+		String city = GetterUtil.getString(ipInfoJSON.getString("city"));
 		String countryName = GetterUtil.getString(
 			ipInfoJSON.getString("countryName"));
 		String countryCode = GetterUtil.getString(
 			ipInfoJSON.getString("countryCode"));
-		String region = GetterUtil.getString(ipInfoJSON.getString("region"));
-		String city = GetterUtil.getString(ipInfoJSON.getString("city"));
+		float latitude = GetterUtil.getFloat(ipInfoJSON.getString("latitude"));
+		float longitude = GetterUtil.getFloat(
+			ipInfoJSON.getString("longitude"));
 		String postalCode = GetterUtil.getString(
 			ipInfoJSON.getString("postalCode"));
+		String region = GetterUtil.getString(ipInfoJSON.getString("region"));
 
-		return new IPInfo(
-			ipAddress, latitude, longitude, countryName, countryCode, region,
-			city, postalCode);
+		IPInfo ipInfo = new IPInfo();
+
+		ipInfo.setCity(city);
+		ipInfo.setCountryCode(countryCode);
+		ipInfo.setCountryName(countryName);
+		ipInfo.setIpAddress(ipAddress);
+		ipInfo.setLatitude(latitude);
+		ipInfo.setLongitude(longitude);
+		ipInfo.setPostalCode(postalCode);
+		ipInfo.setRegion(region);
+
+		return ipInfo;
 	}
 
 }
