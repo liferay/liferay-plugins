@@ -13,6 +13,7 @@
 
 package com.liferay.portal.mobile.device.wurfl;
 
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.mobile.device.Capability;
@@ -178,7 +179,7 @@ public class WURFLKnownDevices implements KnownDevices {
 	}
 
 	protected void updateDevicesIds(Device device, String... capabilityNames) {
-		if ((capabilityNames == null) || (capabilityNames.length == 0)) {
+		if (ArrayUtil.isEmpty(capabilityNames)) {
 			return;
 		}
 

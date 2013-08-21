@@ -23,6 +23,114 @@ import java.util.List;
  */
 public class ArrayUtil extends com.liferay.portal.kernel.util.ArrayUtil {
 
+	public static boolean isEmpty(boolean[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isEmpty(byte[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isEmpty(char[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isEmpty(double[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isEmpty(float[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isEmpty(int[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isEmpty(long[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isEmpty(Object[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isEmpty(short[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static boolean isNotEmpty(boolean[] array) {
+		return !isEmpty(array);
+	}
+
+	public static boolean isNotEmpty(byte[] array) {
+		return !isEmpty(array);
+	}
+
+	public static boolean isNotEmpty(char[] array) {
+		return !isEmpty(array);
+	}
+
+	public static boolean isNotEmpty(double[] array) {
+		return !isEmpty(array);
+	}
+
+	public static boolean isNotEmpty(float[] array) {
+		return !isEmpty(array);
+	}
+
+	public static boolean isNotEmpty(int[] array) {
+		return !isEmpty(array);
+	}
+
+	public static boolean isNotEmpty(long[] array) {
+		return !isEmpty(array);
+	}
+
+	public static boolean isNotEmpty(Object[] array) {
+		return !isEmpty(array);
+	}
+
+	public static boolean isNotEmpty(short[] array) {
+		return !isEmpty(array);
+	}
+
 	public static long[] toLongArray(Collection<Long> collection) {
 		long[] newArray = new long[collection.size()];
 

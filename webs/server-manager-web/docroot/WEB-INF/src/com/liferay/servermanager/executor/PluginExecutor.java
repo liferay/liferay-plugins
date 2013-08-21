@@ -14,6 +14,7 @@
 
 package com.liferay.servermanager.executor;
 
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.deploy.auto.context.AutoDeploymentContext;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -265,7 +266,7 @@ public class PluginExecutor extends BaseExecutor {
 				}
 			);
 
-			if ((tempContextDirs != null) && (tempContextDirs.length > 0)) {
+			if (ArrayUtil.isNotEmpty(tempContextDirs)) {
 				Arrays.sort(
 					tempContextDirs,
 					new Comparator<File>() {

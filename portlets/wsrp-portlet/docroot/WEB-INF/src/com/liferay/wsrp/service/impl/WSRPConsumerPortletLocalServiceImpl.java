@@ -14,6 +14,7 @@
 
 package com.liferay.wsrp.service.impl;
 
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.cluster.Clusterable;
@@ -443,7 +444,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 				QName[] qNames = parameterDescription.getNames();
 
-				if ((qNames == null) || (qNames.length == 0)) {
+				if (ArrayUtil.isEmpty(qNames)) {
 					continue;
 				}
 

@@ -16,6 +16,7 @@ package com.liferay.compat.util.bridges.alloy;
 
 import com.liferay.compat.portal.kernel.bean.ConstantsBeanFactoryUtil;
 import com.liferay.compat.portal.kernel.scheduler.SchedulerEngineHelperUtil;
+import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.compat.portal.kernel.util.ServiceBeanMethodInvocationFactoryUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
@@ -751,7 +752,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			searchContext.setKeywords(keywords);
 		}
 
-		if ((sorts != null) && (sorts.length > 0)) {
+		if (ArrayUtil.isNotEmpty(sorts)) {
 			searchContext.setSorts(sorts);
 		}
 

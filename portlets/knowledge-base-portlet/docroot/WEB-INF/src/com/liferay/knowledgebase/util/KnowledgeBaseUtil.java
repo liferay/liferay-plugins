@@ -215,7 +215,7 @@ public class KnowledgeBaseUtil {
 	}
 
 	public static Long[][] getParams(Long[] params) {
-		if ((params == null) || (params.length == 0)) {
+		if (ArrayUtil.isEmpty(params)) {
 			return null;
 		}
 
