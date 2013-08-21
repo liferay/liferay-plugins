@@ -285,7 +285,7 @@
 		border-top: 1px solid #EFEFEF;
 		margin-top: -2px;
 	}
-	
+
 	.loading-bar {
 		display: block;
 		background-image: url(@theme_image_path@/aui/loading_indicator.gif);

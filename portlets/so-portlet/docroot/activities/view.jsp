@@ -40,7 +40,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 <aui:script use="aui-base,aui-io-request,aui-parse-content,liferay-so-scroll">
 	var activities = A.one('#p_p_id<portlet:namespace />');
-	var body = A.one('body');
+	var body = A.getBody();
 
 	var loadingBar = activities.one('.loading-bar');
 	var socialActivities = activities.one('.social-activities');
@@ -52,7 +52,7 @@ portletURL.setParameter("tabs1", tabs1);
 	win.plug(
 		Liferay.SO.Scroll,
 		{
-			edgeProximity: .4
+			edgeProximity: 0.4
 		}
 	);
 
@@ -133,7 +133,7 @@ portletURL.setParameter("tabs1", tabs1);
 			var commentEntry = commentsList.one('.comment-entry');
 
 			if (commentEntry) {
-				commentsList.toggleClass('aui-helper-hidden');
+				commentsList.toggle();
 			}
 			else {
 				var uri = '<liferay-portlet:resourceURL id="getComments"></liferay-portlet:resourceURL>';
@@ -148,14 +148,12 @@ portletURL.setParameter("tabs1", tabs1);
 								var responseData = this.get('responseData');
 
 								if (responseData) {
-									var comments = responseData.comments;
-
-									A.Array.map(
-										comments,
-										function(comment) {
-											Liferay.SO.Activities.addNewComment(commentsList, comment);
+									A.Array.each(
+										responseData.comments,
+										function(item, index, collection) {
+											Liferay.SO.Activities.addNewComment(commentsList, item);
 										}
-									)
+									);
 								}
 							}
 						},
@@ -183,7 +181,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				cmdInput.val('<%= Constants.DELETE %>');
 
-				var mbMessageIdOrMicroblogsEntryId = currentTarget.getAttribute('data-mbMessageIdOrMicroblogsEntryId');
+				var mbMessageIdOrMicroblogsEntryId = currentTarget.attr('data-mbMessageIdOrMicroblogsEntryId');
 
 				var mbMessageIdOrMicroblogsEntryIdInput = form.one('#<portlet:namespace />mbMessageIdOrMicroblogsEntryId');
 
@@ -201,14 +199,24 @@ portletURL.setParameter("tabs1", tabs1);
 
 									var viewComments = activityFooter.one('.view-comments a');
 
-									var viewCommentsHtml = viewComments.get('innerHTML');
+									var viewCommentsHtml = viewComments.html();
 
-									var messagesCount = parseInt(viewCommentsHtml) - 1;
+									var messagesCount = A.Lang.toInt(viewCommentsHtml) - 1;
 
-									viewComments.html(
-										(messagesCount > 0 ? messagesCount : '') +
-										(messagesCount > 1 ? ' <%= UnicodeLanguageUtil.get(pageContext, "comments") %>' : ' <%= UnicodeLanguageUtil.get(pageContext, "comment") %>')
-									);
+									var commentText = '';
+
+									if (messagesCount > 0) {
+										commentText += messagesCount;
+									}
+
+									if (messagesCount > 1) {
+										commentText += ' <%= UnicodeLanguageUtil.get(pageContext, "comments") %>';
+									}
+									else {
+										commentText += ' <%= UnicodeLanguageUtil.get(pageContext, "comment") %>';
+									}
+
+									viewComments.html(commentText);
 								}
 							}
 						},
@@ -236,20 +244,24 @@ portletURL.setParameter("tabs1", tabs1);
 
 			var message = commentEntry.one('.comment-body .message');
 
-			message.toggleClass('aui-helper-hidden');
+			message.toggle();
 
 			if (editForm) {
-				editForm.toggleClass('aui-helper-hidden');
+				editForm.toggle();
 			}
 			else {
 				var commentsContainer = currentTarget.ancestor('.comments-container');
 
 				editForm = commentsContainer.one('form').cloneNode(true);
 
-				editForm.removeClass('aui-helper-hidden');
+				editForm.show();
 
-				editForm.set('id','<portlet:namespace />fm1' + mbMessageIdOrMicroblogsEntryId);
-				editForm.set('name','<portlet:namespace />fm1' + mbMessageIdOrMicroblogsEntryId);
+				editForm.attr(
+					{
+						id: '<portlet:namespace />fm1' + mbMessageIdOrMicroblogsEntryId,
+						name: '<portlet:namespace />fm1' + mbMessageIdOrMicroblogsEntryId
+					}
+				);
 
 				var cmdInput = editForm.one('#<portlet:namespace /><%= Constants.CMD %>');
 
@@ -282,9 +294,8 @@ portletURL.setParameter("tabs1", tabs1);
 
 											postDate.html(responseData.modifiedDate);
 
-											editForm.toggleClass('aui-helper-hidden');
-
-											message.toggleClass('aui-helper-hidden');
+											editForm.toggle();
+											message.toggle();
 										}
 									}
 								},
@@ -298,7 +309,7 @@ portletURL.setParameter("tabs1", tabs1);
 				);
 			}
 
-			var messageHtml = message.get('innerHTML');
+			var messageHtml = message.html();
 
 			var bodyInput = editForm.one('#<portlet:namespace />body');
 
@@ -310,7 +321,7 @@ portletURL.setParameter("tabs1", tabs1);
 	activities.delegate(
 		'click',
 		function(event) {
-			Liferay.SO.Activities.toggleEntry(event,'<portlet:namespace />');
+			Liferay.SO.Activities.toggleEntry(event, '<portlet:namespace />');
 		},
 		'.toggle-entry'
 	);
