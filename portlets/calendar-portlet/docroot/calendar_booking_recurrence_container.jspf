@@ -164,8 +164,6 @@ if (recurrence != null) {
 								monthValue="<%= untilJCalendar.get(java.util.Calendar.MONTH) %>"
 								name="untilDate"
 								yearParam="untilDateYear"
-								yearRangeEnd="<%= startTimeJCalendar.get(java.util.Calendar.YEAR) + 5 %>"
-								yearRangeStart="<%= startTimeJCalendar.get(java.util.Calendar.YEAR) - 5 %>"
 								yearValue="<%= untilJCalendar.get(java.util.Calendar.YEAR) %>"
 							/>
 						</div>
