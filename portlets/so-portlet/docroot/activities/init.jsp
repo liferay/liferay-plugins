@@ -30,7 +30,9 @@ page import="com.liferay.so.activities.service.SocialActivitySetLocalServiceUtil
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "all");
 
-int delta = 10;
-
 Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
+%>
+
+<%!
+private static final int _DELTA = 10;
 %>
