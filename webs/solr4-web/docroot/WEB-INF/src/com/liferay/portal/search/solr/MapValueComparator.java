@@ -23,25 +23,25 @@ import java.util.Map;
  */
 public class MapValueComparator implements Comparator<String> {
 
-	public MapValueComparator(Map<String, Float> baseValues) {
-		_baseValues = baseValues;
+	public MapValueComparator(Map<String, Float> values) {
+		_values = values;
 	}
 
 	@Override
 	public int compare(String string1, String string2) {
-		Float baseValue1 = _baseValues.get(string1);
+		Float value1 = _values.get(string1);
 
-		Float baseValue2 = _baseValues.get(string2);
-
-		if (baseValue1 == null) {
-			baseValue1 = 0f;
+		if (value1 == null) {
+			value1 = 0f;
 		}
 
-		if (baseValue2 == null) {
-			baseValue2 = 0f;
+		Float value2 = _values.get(string2);
+
+		if (value2 == null) {
+			value2 = 0f;
 		}
 
-		if (baseValue1 >= baseValue2) {
+		if (value1 >= value2) {
 			return -1;
 		}
 		else {
@@ -49,6 +49,6 @@ public class MapValueComparator implements Comparator<String> {
 		}
 	}
 
-	private Map<String, Float> _baseValues;
+	private Map<String, Float> _values;
 
 }

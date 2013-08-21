@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.solr.client.solrj.SolrQuery;
 
@@ -33,105 +34,105 @@ import org.apache.solr.client.solrj.SolrQuery;
 public class NGramQueryBuilderImpl implements NGramQueryBuilder {
 
 	@Override
-	public SolrQuery getNGramQuery(String token) throws SearchException {
-
-		NGramHolder nGramHolder = NGramHolderBuilderUtil.buildNGramHolder(
-			token);
-
-		Map<String, List<String>> nGrams = nGramHolder.getNGrams();
-		Map<String, String> nGramEnds = nGramHolder.getNGramEnds();
-		Map<String, String> nGramStarts = nGramHolder.getNGramStarts();
-
-		StringBundler stringBundler = new StringBundler(10);
-
-		addNGramsListQuery(stringBundler, nGrams);
-
-		if (!nGrams.isEmpty()) {
-			addOrQuerySeparator(stringBundler);
-		}
-
-		addNGramsQuery(stringBundler, nGramEnds);
-
-		if (!nGramEnds.isEmpty()) {
-			addOrQuerySeparator(stringBundler);
-		}
-
-		addNGramsQuery(stringBundler, nGramStarts);
-
-		if (!nGramStarts.isEmpty()) {
-			addOrQuerySeparator(stringBundler);
-		}
-
-		stringBundler.append(Field.SPELL_CHECK_WORD);
-		stringBundler.append(StringPool.COLON);
-		stringBundler.append(token);
-
+	public SolrQuery getNGramQuery(String input) throws SearchException {
 		SolrQuery solrQuery = new SolrQuery();
 
-		solrQuery.setQuery(stringBundler.toString());
+		StringBundler sb = new StringBundler(10);
+
+		NGramHolder nGramHolder = NGramHolderBuilderUtil.buildNGramHolder(
+			input);
+
+		Map<String, List<String>> nGrams = nGramHolder.getNGrams();
+
+		addNGramsListQuery(sb, nGrams);
+
+		if (!nGrams.isEmpty()) {
+			addOrQuerySeparator(sb);
+		}
+
+		Map<String, String> nGramEnds = nGramHolder.getNGramEnds();
+
+		addNGramsQuery(sb, nGramEnds);
+
+		if (!nGramEnds.isEmpty()) {
+			addOrQuerySeparator(sb);
+		}
+
+		Map<String, String> nGramStarts = nGramHolder.getNGramStarts();
+
+		addNGramsQuery(sb, nGramStarts);
+
+		if (!nGramStarts.isEmpty()) {
+			addOrQuerySeparator(sb);
+		}
+
+		sb.append(Field.SPELL_CHECK_WORD);
+		sb.append(StringPool.COLON);
+		sb.append(input);
+
+		solrQuery.setQuery(sb.toString());
 
 		return solrQuery;
 	}
 
 	protected void addNGramsListQuery(
-		StringBundler stringBundler, Map<String, List<String>> nGrams) {
+		StringBundler sb, Map<String, List<String>> nGrams) {
 
-		Iterator<Map.Entry<String, List<String>>> nGramEntriesIterator =
-			nGrams.entrySet().iterator();
+		Set<Map.Entry<String, List<String>>> set = nGrams.entrySet();
 
-		while (nGramEntriesIterator.hasNext()) {
-			Map.Entry<String, List<String>> nGramEntries =
-				nGramEntriesIterator.next();
+		Iterator<Map.Entry<String, List<String>>> iterator = set.iterator();
 
-			String fieldName = nGramEntries.getKey();
+		while (iterator.hasNext()) {
+			Map.Entry<String, List<String>> entry = iterator.next();
 
-			Iterator<String> nGramValuesIterator =
-				nGramEntries.getValue().iterator();
+			String fieldName = entry.getKey();
+			List<String> fieldValues = entry.getValue();
 
-			while (nGramValuesIterator.hasNext()) {
-				addQuery(stringBundler, fieldName, nGramValuesIterator.next());
+			Iterator<String> fieldValuesIterator = fieldValues.iterator();
 
-				if (nGramValuesIterator.hasNext() ||
-					nGramEntriesIterator.hasNext()) {
-						addOrQuerySeparator(stringBundler);
+			while (fieldValuesIterator.hasNext()) {
+				addQuery(sb, fieldName, fieldValuesIterator.next());
+
+				if (fieldValuesIterator.hasNext() || iterator.hasNext()) {
+					addOrQuerySeparator(sb);
 				}
 			}
 		}
 	}
 
 	protected void addNGramsQuery(
-		StringBundler stringBundler, Map<String, String> nGrams) {
+		StringBundler sb, Map<String, String> nGrams) {
 
-		Iterator<Map.Entry<String, String>> nGramEntriesIterator =
-			nGrams.entrySet().iterator();
+		Set<Map.Entry<String, String>> set = nGrams.entrySet();
 
-		while (nGramEntriesIterator.hasNext()) {
-			Map.Entry<String, String> nGramEntry = nGramEntriesIterator.next();
+		Iterator<Map.Entry<String, String>> iterator = set.iterator();
 
-			String fieldName = nGramEntry.getKey();
+		while (iterator.hasNext()) {
+			Map.Entry<String, String> entry = iterator.next();
 
-			String fieldValue = nGramEntry.getValue();
+			String fieldName = entry.getKey();
+			String fieldValue = entry.getValue();
 
-			addQuery(stringBundler, fieldName, fieldValue);
+			addQuery(sb, fieldName, fieldValue);
 
-			if (nGramEntriesIterator.hasNext()) {
-				addOrQuerySeparator(stringBundler);
+			if (iterator.hasNext()) {
+				addOrQuerySeparator(sb);
 			}
 		}
 	}
 
-	protected void addOrQuerySeparator(StringBundler stringBundler) {
-		stringBundler.append(StringPool.SPACE);
-		stringBundler.append("OR");
-		stringBundler.append(StringPool.SPACE);
+	protected void addOrQuerySeparator(StringBundler sb) {
+		sb.append(_OR_QUERY_SEPARATOR);
 	}
 
 	protected void addQuery(
-		StringBundler stringBundler, String fieldName, String fieldValue) {
+		StringBundler sb, String fieldName, String fieldValue) {
 
-		stringBundler.append(fieldName);
-		stringBundler.append(StringPool.COLON);
-		stringBundler.append(fieldValue);
+		sb.append(fieldName);
+		sb.append(StringPool.COLON);
+		sb.append(fieldValue);
 	}
+
+	private static final String _OR_QUERY_SEPARATOR = " OR ";
 
 }

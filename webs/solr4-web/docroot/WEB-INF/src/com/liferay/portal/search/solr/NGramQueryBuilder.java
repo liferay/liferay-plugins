@@ -23,6 +23,6 @@ import org.apache.solr.client.solrj.SolrQuery;
  */
 public interface NGramQueryBuilder {
 
-	public SolrQuery getNGramQuery(String token) throws SearchException;
+	public SolrQuery getNGramQuery(String input) throws SearchException;
 
 }

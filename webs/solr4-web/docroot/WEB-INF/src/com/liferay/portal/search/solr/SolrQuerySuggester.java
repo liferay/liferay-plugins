@@ -66,7 +66,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 	@Override
 	public Map<String, List<String>> spellCheckKeywords(
-			SearchContext searchContext, int maxSuggestions)
+			SearchContext searchContext, int max)
 		throws SearchException {
 
 		Map<String, List<String>> suggestions =
@@ -81,7 +81,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 		for (String keyword : keywords) {
 			List<String> keywordSuggestions = suggestKeywords(
-				searchContext, maxSuggestions, keyword);
+				searchContext, max, keyword);
 
 			suggestions.put(keyword, keywordSuggestions);
 		}
