@@ -1643,10 +1643,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 /* Faceted Search */
 
 .portlet-search {
-	.portlet-topper {
-		display: none;
-	}
-
 	.aui-form fieldset.aui-fieldset {
 		border-bottom: 1px solid $gray-dark;
 	}
@@ -2377,6 +2373,10 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	.createpage {
 		color: $red;
 	}
+}
+
+.page-maximized .portlet-search .portlet-topper {
+	display: none;
 }
 
 /* ---------- Internet Explorer ---------- */
