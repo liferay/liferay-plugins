@@ -76,6 +76,13 @@ int end = start + _DELTA;
 
 <c:if test="<%= (results.isEmpty()) %>">
 	<div class="no-activities">
-		<liferay-ui:message key="there-are-no-activities" />
+		<c:choose>
+			<c:when test="<%= total == 0 %>">
+				<liferay-ui:message key="there-are-no-activities" />
+			</c:when>
+			<c:otherwise>
+				<liferay-ui:message key="there-are-no-more-activities" />
+			</c:otherwise>
+		</c:choose>
 	</div>
 </c:if>
