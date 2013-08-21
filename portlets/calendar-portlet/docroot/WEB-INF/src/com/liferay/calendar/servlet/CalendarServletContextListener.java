@@ -76,10 +76,11 @@ public class CalendarServletContextListener
 				CalendarImporterLocalServiceUtil.importCalEvents();
 
 				if (_log.isInfoEnabled()) {
-					StringBundler sb = new StringBundler(5);
+					StringBundler sb = new StringBundler(6);
 
 					sb.append("Calendar events synchronization takes ");
-					sb.append(stopWatch.getTime() + " ms. Set the property ");
+					sb.append(stopWatch.getTime());
+					sb.append(" ms. Set the property ");
 					sb.append("\"calendar.sync.calevents.on.startup\" ");
 					sb.append("to \"false\" to disable calendar events ");
 					sb.append("synchronization.");

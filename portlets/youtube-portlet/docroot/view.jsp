@@ -30,14 +30,17 @@
 			sb.append("&amp;border=1");
 		}
 
-		sb.append("&amp;cc_load_policy=" + closedCaptioning);
+		sb.append("&amp;cc_load_policy=");
+		sb.append(closedCaptioning);
 
 		if (Validator.isNotNull(borderColor)) {
-			sb.append("&amp;color1=" + borderColorHex);
+			sb.append("&amp;color1=");
+			sb.append(borderColorHex);
 		}
 
 		if (Validator.isNotNull(playerColor)) {
-			sb.append("&amp;color2=" + playerColorHex);
+			sb.append("&amp;color2=");
+			sb.append(playerColorHex);
 		}
 
 		if (!enableKeyboardControls) {
@@ -56,7 +59,8 @@
 			sb.append("&amp;hd=1");
 		}
 
-		sb.append("&amp;iv_load_policy=" + annotations);
+		sb.append("&amp;iv_load_policy=");
+		sb.append(annotations);
 
 		if (loop) {
 			sb.append("&amp;loop=1");
@@ -75,7 +79,8 @@
 		}
 
 		if (Validator.isNotNull(startTime)) {
-			sb.append("&amp;start=" + startTime);
+			sb.append("&amp;start=");
+			sb.append(startTime);
 		}
 		%>
 
