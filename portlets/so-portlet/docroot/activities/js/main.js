@@ -222,9 +222,9 @@ AUI().use(
 				var body = entry.one('.grouped-activity-body');
 				var bodyContainer = entry.one('.grouped-activity-body-container');
 				var control = entry.one('.toggle-entry');
-				var subEntryHeight = entry.one('.activity-subentry').outerHeight();
+				var subentryHeight = entry.one('.activity-subentry').outerHeight();
 
-				var minHeight = subEntryHeight * 3;
+				var minHeight = subentryHeight * 3;
 
 				var bodyHeight = minHeight;
 
