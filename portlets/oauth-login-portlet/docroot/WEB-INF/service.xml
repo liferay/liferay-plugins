@@ -33,6 +33,7 @@
 		<column name="accessTokenExtractorType" type="int" />
 		<column name="requestTokenURL" type="String" />
 		<column name="requestTokenVerb" type="int" />
+		<column name="signatureServiceType" type="int" />
 		<column name="redirectURL" type="String" />
 		<column name="socialAccountIdURL" type="String" />
 		<column name="socialAccountIdURLVerb" type="int" />

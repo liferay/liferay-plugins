@@ -46,9 +46,10 @@ public class OAuthConnectionLocalServiceImpl
 			String key, String secret, String scope, String authorizeURL,
 			String accessTokenURL, int accessTokenVerb,
 			int accessTokenExtractorType, String requestTokenURL,
-			int requestTokenVerb, String redirectURL, String socialAccountIdURL,
-			int socialAccountIdURLVerb, String socialAccountIdField,
-			int socialAccountIdType, String socialAccountIdScript, File icon,
+			int requestTokenVerb, int signatureServiceType, String redirectURL,
+			String socialAccountIdURL, int socialAccountIdURLVerb,
+			String socialAccountIdField, int socialAccountIdType,
+			String socialAccountIdScript, File icon,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -88,6 +89,7 @@ public class OAuthConnectionLocalServiceImpl
 		oAuthConnection.setAccessTokenExtractorType(accessTokenExtractorType);
 		oAuthConnection.setRequestTokenURL(requestTokenURL);
 		oAuthConnection.setRequestTokenVerb(requestTokenVerb);
+		oAuthConnection.setSignatureServiceType(signatureServiceType);
 		oAuthConnection.setRedirectURL(redirectURL);
 		oAuthConnection.setSocialAccountIdURL(socialAccountIdURL);
 		oAuthConnection.setSocialAccountIdURLVerb(socialAccountIdURLVerb);
@@ -129,7 +131,8 @@ public class OAuthConnectionLocalServiceImpl
 			String description, int oAuthVersion, String key, String secret,
 			String scope, String authorizeURL, String accessTokenURL,
 			int accessTokenVerb, int accessTokenExtractorType,
-			String requestTokenURL, int requestTokenVerb, String redirectURL,
+			String requestTokenURL, int requestTokenVerb,
+			int signatureServiceType, String redirectURL,
 			String socialAccountIdURL, int socialAccountIdURLVerb,
 			String socialAccountIdField, int socialAccountIdType,
 			String socialAccountIdScript, File icon,
@@ -168,6 +171,7 @@ public class OAuthConnectionLocalServiceImpl
 		oAuthConnection.setAccessTokenExtractorType(accessTokenExtractorType);
 		oAuthConnection.setRequestTokenURL(requestTokenURL);
 		oAuthConnection.setRequestTokenVerb(requestTokenVerb);
+		oAuthConnection.setSignatureServiceType(signatureServiceType);
 		oAuthConnection.setRedirectURL(redirectURL);
 		oAuthConnection.setSocialAccountIdURL(socialAccountIdURL);
 		oAuthConnection.setSocialAccountIdURLVerb(socialAccountIdURLVerb);
