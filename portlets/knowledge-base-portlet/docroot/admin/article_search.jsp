@@ -55,8 +55,6 @@ KBArticleDisplayTerms displayTerms = (KBArticleDisplayTerms)searchContainer.getD
 					monthParam="<%= displayTerms.START_DATE_MONTH %>"
 					monthValue="<%= displayTerms.getStartDateMonth() %>"
 					yearParam="<%= displayTerms.START_DATE_YEAR %>"
-					yearRangeEnd="<%= displayTerms.getYearRangeEnd() %>"
-					yearRangeStart="<%= displayTerms.getYearRangeStart() %>"
 					yearValue="<%= displayTerms.getStartDateYear() %>"
 				/>
 
@@ -67,8 +65,6 @@ KBArticleDisplayTerms displayTerms = (KBArticleDisplayTerms)searchContainer.getD
 					monthParam="<%= displayTerms.END_DATE_MONTH %>"
 					monthValue="<%= displayTerms.getEndDateMonth() %>"
 					yearParam="<%= displayTerms.END_DATE_YEAR %>"
-					yearRangeEnd="<%= displayTerms.getYearRangeEnd() %>"
-					yearRangeStart="<%= displayTerms.getYearRangeStart() %>"
 					yearValue="<%= displayTerms.getEndDateYear() %>"
 				/>
 			</span>
