@@ -197,14 +197,9 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 	protected long[] getGroupIdsForSuggestions(SearchContext searchContext) {
 
-		// when suggestion queries, always use the current-site scope AND global
-		// scope as groupIds
-
 		long[] groupIds = searchContext.getGroupIds();
 
 		long globalGroupId = _GLOBAL_GROUP_ID;
-
-		// add global scope, if we're not having it included already
 
 		if (!ArrayUtil.contains(groupIds, globalGroupId)) {
 			groupIds = ArrayUtil.append(groupIds, globalGroupId);
@@ -214,28 +209,28 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 	}
 
 	protected List<String> suggestKeywords(
-			SearchContext searchContext, int maxSuggestions, String token)
+			SearchContext searchContext, int max, String input)
 		throws SearchException {
 
 		Set<WeightedWord> suggestionsSet = suggestKeywords(
-			searchContext, token);
+			searchContext, input);
 
-		maxSuggestions = Math.min(maxSuggestions, suggestionsSet.size());
+		max = Math.min(max, suggestionsSet.size());
 
-		Iterator<WeightedWord> suggestionsIterator = suggestionsSet.iterator();
+		Iterator<WeightedWord> iterator = suggestionsSet.iterator();
 
-		List<String> suggestionsList = new ArrayList<String>(maxSuggestions);
+		List<String> suggestionsList = new ArrayList<String>(max);
 
 		int counter = 0;
 
-		while (suggestionsIterator.hasNext()) {
-			WeightedWord weightedWord = suggestionsIterator.next();
+		while (iterator.hasNext()) {
+			WeightedWord weightedWord = iterator.next();
 
 			suggestionsList.add(weightedWord.getWord());
 
 			counter++;
 
-			if (counter >= maxSuggestions) {
+			if (counter >= max) {
 				break;
 			}
 		}
@@ -244,11 +239,11 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 	}
 
 	protected Set<WeightedWord> suggestKeywords(
-			SearchContext searchContext, String token)
+			SearchContext searchContext, String input)
 		throws SearchException {
 
 		try {
-			SolrQuery solrQuery = _nGramQueryBuilder.getNGramQuery(token);
+			SolrQuery solrQuery = _nGramQueryBuilder.getNGramQuery(input);
 
 			solrQuery.addFilterQuery(
 				getFilterQueries(
@@ -279,15 +274,15 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 				float weight = Float.parseFloat(strWeight);
 
-				if (suggestion.equals(token)) {
+				if (suggestion.equals(input)) {
 					weight = _INFINITE_WEIGHT;
 				}
 				else {
-					String lowerCaseToken = token.toLowerCase();
+					String lowerCaseInput = input.toLowerCase();
 					String lowerCaseSuggestion = suggestion.toLowerCase();
 
 					float distance = StringDistanceCalculatorUtil.getDistance(
-						lowerCaseToken, lowerCaseSuggestion);
+						lowerCaseInput, lowerCaseSuggestion);
 
 					if (distance >= _distanceThreshold) {
 						weight = weight + distance;
