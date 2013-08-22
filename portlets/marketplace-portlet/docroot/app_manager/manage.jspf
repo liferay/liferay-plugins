@@ -54,15 +54,13 @@ portletURL.setParameter("category", category);
 		}
 
 		for (App app : apps) {
-			String[] contextNames = app.getContextNames();
-
 			List<LayoutTemplate> layoutTemplates = new ArrayList<LayoutTemplate>();
 			List<Portlet> portlets = new ArrayList<Portlet>();
 			List<Theme> themes = new ArrayList<Theme>();
 
 			boolean displayActions = true;
 
-			for (String contextName : contextNames) {
+			for (String contextName : app.getContextNames()) {
 				ServletContext servletContext = ServletContextPool.get(contextName);
 
 				List<LayoutTemplate> servletContextLayoutTemplates = (List<LayoutTemplate>)servletContext.getAttribute(WebKeys.PLUGIN_LAYOUT_TEMPLATES);
