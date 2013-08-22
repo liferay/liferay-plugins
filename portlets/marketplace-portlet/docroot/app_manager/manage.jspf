@@ -20,6 +20,8 @@ String category = ParamUtil.getString(request, "category");
 portletURL.setParameter("category", category);
 %>
 
+<liferay-ui:error exception="<%= RequiredPluginPackageException.class %>" message="unable-to-uninstall-app-or-plugin-because-it-is-required" />
+
 <div class="row">
 	<div class="span3">
 		<div class="alert-container"></div>
@@ -57,6 +59,8 @@ portletURL.setParameter("category", category);
 			List<LayoutTemplate> layoutTemplates = new ArrayList<LayoutTemplate>();
 			List<Portlet> portlets = new ArrayList<Portlet>();
 			List<Theme> themes = new ArrayList<Theme>();
+
+			boolean displayActions = true;
 
 			for (String contextName : contextNames) {
 				ServletContext servletContext = ServletContextPool.get(contextName);
@@ -102,6 +106,13 @@ portletURL.setParameter("category", category);
 
 				if (servletContextThemes != null) {
 					themes.addAll(servletContextThemes);
+				}
+
+				if (contextName.equals(PortalUtil.getPathContext())) {
+					displayActions = false;
+				}
+				else if (DeployManagerUtil.isRequiredDeploymentContext(contextName)) {
+					displayActions = false;
 				}
 			}
 
@@ -172,7 +183,7 @@ portletURL.setParameter("category", category);
 					</div>
 				</div>
 
-				<c:if test='<%= !ArrayUtil.contains(contextNames, PortalUtil.getPathContext()) && !ArrayUtil.contains(contextNames, "marketplace-portlet") %>'>
+				<c:if test="<%= displayActions %>">
 					<div class="app-actions">
 						<liferay-ui:icon-menu>
 							<liferay-portlet:actionURL name="updatePluginSettings" var="activateURL">
