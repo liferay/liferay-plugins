@@ -153,6 +153,17 @@ a {
 	}
 }
 
+.aui-search-bar, .lfr-search-combobox {
+	.aui-field-content, .aui-button-content {
+		display: inline;
+		vertical-align: top;
+	}
+
+	.aui-button-input {
+		padding: 0.37em 0.70em 0.38em;
+	}
+}
+
 .hidden-accessible, #navigation h1 {
 	@include hidden-accessible;
 }
@@ -945,18 +956,8 @@ div#navigation {
 			width: auto;
 		}
 
-		.aui-field-input-text {
-			@include border-radius(4px 0 0 4px);
-
-			padding: 4px 4px 5px;
-		}
-
 		.aui-button-input {
 			border-left-width: 0;
-
-			@include border-radius(0 4px 4px 0);
-
-			padding: 4px 0.4em;
 		}
 	}
 
