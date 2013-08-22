@@ -234,6 +234,10 @@ input, textarea {
 	}
 }
 
+.rtl .lfr-header-row .lfr-actions.show-arrow.direction-down .lfr-trigger strong a {
+	padding: 0 20px 0 4px;
+}
+
 .aui-menu-content, .lfr-menu-list ul {
 	@include menu-style;
 
