@@ -17,6 +17,9 @@
 
 package com.liferay.so.invitemembers.portlet;
 
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -26,6 +29,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
@@ -38,15 +42,21 @@ import com.liferay.portal.service.permission.LayoutPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.so.invitemembers.util.InviteMembersUtil;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
 import com.liferay.so.util.PortletKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
+import java.util.List;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.PortletException;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
+import javax.portlet.ResourceRequest;
+import javax.portlet.ResourceResponse;
 import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,6 +65,55 @@ import javax.servlet.http.HttpServletRequest;
  * @author Ryan Park
  */
 public class InviteMembersPortlet extends MVCPortlet {
+
+	public void getAvailableUsers(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		int end = ParamUtil.getInteger(resourceRequest, "end");
+		String keywords = ParamUtil.getString(resourceRequest, "keywords");
+		int start = ParamUtil.getInteger(resourceRequest, "start");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put(
+			"count",
+			InviteMembersUtil.getAvailableUsersCount(
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				keywords));
+
+		JSONObject optionsJSONObject = JSONFactoryUtil.createJSONObject();
+
+		optionsJSONObject.put("end", end);
+		optionsJSONObject.put("keywords", keywords);
+		optionsJSONObject.put("start", start);
+
+		jsonObject.put("options", optionsJSONObject);
+
+		List<User> users =
+			InviteMembersUtil.getAvailableUsers(
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				keywords, start, end);
+
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
+		for (User user : users) {
+			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+
+			userJSONObject.put("userEmailAddress", user.getEmailAddress());
+			userJSONObject.put("userFullName", user.getFullName());
+			userJSONObject.put("userId", user.getUserId());
+
+			jsonArray.put(userJSONObject);
+		}
+
+		jsonObject.put("users", jsonArray);
+
+		writeJSON(resourceRequest, resourceResponse, jsonObject);
+	}
 
 	public void sendInvites(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -67,6 +126,26 @@ public class InviteMembersPortlet extends MVCPortlet {
 			if (_log.isWarnEnabled()) {
 				_log.warn(e, e);
 			}
+		}
+	}
+
+	@Override
+	public void serveResource(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws PortletException {
+
+		try {
+			String resourceID = resourceRequest.getResourceID();
+
+			if (resourceID.equals("getAvailableUsers")) {
+				getAvailableUsers(resourceRequest, resourceResponse);
+			}
+			else {
+				super.serveResource(resourceRequest, resourceResponse);
+			}
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
 		}
 	}
 
