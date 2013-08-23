@@ -23,6 +23,7 @@
 page import="com.liferay.microblogs.model.MicroblogsEntryConstants" %><%@
 page import="com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
+page import="com.liferay.portlet.documentlibrary.model.DLFileEntry" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
 page import="com.liferay.portlet.social.model.SocialActivity" %><%@
 page import="com.liferay.portlet.social.model.SocialActivitySet" %><%@

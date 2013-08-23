@@ -38,6 +38,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageDisplay;
 import com.liferay.portlet.messageboards.model.MBThread;
@@ -80,7 +81,9 @@ public class ActivitiesPortlet extends MVCPortlet {
 		String className = activitySet.getClassName();
 		long classPK = activitySet.getClassPK();
 
-		if (activitySet.getActivityCount() > 1 ) {
+		if ((activitySet.getActivityCount() > 1 ) &&
+			className.equals(DLFileEntry.class.getName())) {
+
 			className = SocialActivitySet.class.getName();
 			classPK = activitySet.getActivitySetId();
 		}
