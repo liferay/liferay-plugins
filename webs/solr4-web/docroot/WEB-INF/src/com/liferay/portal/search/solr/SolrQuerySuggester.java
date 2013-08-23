@@ -227,7 +227,12 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		while (descendingIterator.hasNext()) {
 			WeightedWord weightedWord = descendingIterator.next();
 
-			suggestionsList.add(weightedWord.getWord());
+			if (weightedWord.getWeight() != 0) {
+				suggestionsList.add(weightedWord.getWord());
+			}
+			else {
+				suggestionsList.add(input);
+			}
 
 			counter++;
 
