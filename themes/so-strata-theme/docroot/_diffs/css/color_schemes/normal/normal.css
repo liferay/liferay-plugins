@@ -409,20 +409,33 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 	}
 
 	.avatar {
-		background: none 50% 50% no-repeat;
-		background-size: cover;
 		display: inline-block;
 		margin: -0.62em 0.5em -0.55em -0.86em;
-		overflow: hidden;
 		vertical-align: middle;
 
 		&, img {
 			height: 55px;
 			width: 55px;
 		}
+	}
+}
+
+#banner, #navigation {
+	.avatar {
+		background: none 50% 50% no-repeat;
+		background-size: cover;
+		overflow: hidden;
 
 		img {
 			visibility: hidden;
+		}
+	}
+}
+
+.ie {
+	#banner, #navigation {
+		.avatar img {
+			visibility: visible;
 		}
 	}
 }
@@ -480,14 +493,11 @@ div#navigation {
 
 	.avatar {
 		display: block;
-		height: 155px;
 		overflow: hidden;
 		position: relative;
-		width: 155px;
 
-		img {
-			height: auto;
-			min-height: 155px;
+		&, img {
+			height: 155px;
 			width: 155px;
 		}
 
