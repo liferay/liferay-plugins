@@ -217,14 +217,15 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 		max = Math.min(max, suggestionsSet.size());
 
-		Iterator<WeightedWord> iterator = suggestionsSet.iterator();
+		Iterator<WeightedWord> descendingIterator =
+			((TreeSet<WeightedWord>)suggestionsSet).descendingIterator();
 
 		List<String> suggestionsList = new ArrayList<String>(max);
 
 		int counter = 0;
 
-		while (iterator.hasNext()) {
-			WeightedWord weightedWord = iterator.next();
+		while (descendingIterator.hasNext()) {
+			WeightedWord weightedWord = descendingIterator.next();
 
 			suggestionsList.add(weightedWord.getWord());
 
