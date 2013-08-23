@@ -81,21 +81,37 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
-	protected SocialActivityFeedEntry doInterpret(
-			SocialActivitySet activitySet, ServiceContext serviceContext)
-		throws Exception {
+	protected long getActivitySetId(long activityId) {
+		try {
+			SocialActivitySet activitySet = null;
 
-		List<SocialActivity> activities =
-			SocialActivityLocalServiceUtil.getActivitySetActivities(
-				activitySet.getActivitySetId(), 0, 1);
+			SocialActivity activity =
+				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-		if (!activities.isEmpty()) {
-			SocialActivity activity = activities.get(0);
+			if (activity.getType() == _ACTIVITY_KEY_REPLY_ENTRY) {
+				MicroblogsEntry microblogsEntry =
+					MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
+						activity.getClassPK());
 
-			return doInterpret(activity, serviceContext);
+				if (microblogsEntry == null) {
+					return 0;
+				}
+
+				activitySet =
+					SocialActivitySetLocalServiceUtil.getClassActivitySet(
+						activity.getClassNameId(),
+						microblogsEntry.getReceiverMicroblogsEntryId(),
+						activity.getType());
+			}
+
+			if ((activitySet != null) && !isExpired(activitySet)) {
+				return activitySet.getActivitySetId();
+			}
+		}
+		catch (Exception e) {
 		}
 
-		return null;
+		return 0;
 	}
 
 	@Override
