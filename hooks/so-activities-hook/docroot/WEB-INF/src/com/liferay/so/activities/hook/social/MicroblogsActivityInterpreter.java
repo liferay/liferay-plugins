@@ -18,6 +18,8 @@ import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
 import com.liferay.microblogs.util.MicroblogsUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -26,6 +28,7 @@ import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
 
 import java.util.List;
 
@@ -36,6 +39,45 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 
 	public String[] getClassNames() {
 		return _CLASS_NAMES;
+	}
+
+	@Override
+	public void updateActivitySet(long activityId)
+		throws PortalException, SystemException {
+
+		SocialActivity activity =
+			SocialActivityLocalServiceUtil.fetchSocialActivity(activityId);
+
+		if ((activity == null) || (activity.getActivitySetId() > 0)) {
+			return;
+		}
+
+		long activitySetId = getActivitySetId(activityId);
+
+		if (activitySetId > 0) {
+			SocialActivitySetLocalServiceUtil.incrementActivityCount(
+				activitySetId, activityId);
+		}
+		else {
+			SocialActivitySet activitySet =
+				SocialActivitySetLocalServiceUtil.addActivitySet(activityId);
+
+			if (activity.getType() == _ACTIVITY_KEY_REPLY_ENTRY) {
+				MicroblogsEntry microblogsEntry =
+					MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
+						activity.getClassPK());
+
+				if (microblogsEntry == null) {
+					return;
+				}
+
+				activitySet.setClassPK(
+					microblogsEntry.getReceiverMicroblogsEntryId());
+
+				SocialActivitySetLocalServiceUtil.updateSocialActivitySet(
+					activitySet);
+			}
+		}
 	}
 
 	@Override
