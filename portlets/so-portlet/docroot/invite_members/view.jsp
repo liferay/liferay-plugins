@@ -34,12 +34,12 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 		<a class="invite-members" href="javascript:;" onClick="<portlet:namespace />openInviteMembers('<%= inviteURL %>');"><liferay-ui:message key="invite-members-to-this-site" /></a>
 
-		<aui:script position="inline" use="aui-base,aui-dialog,aui-io-plugin,liferay-soffice-invitemembers">
+		<aui:script position="inline" use="aui-base,aui-dialog,aui-io-plugin,liferay-so-invite-members">
 			Liferay.provide(
 				window,
 				'<portlet:namespace />openInviteMembers',
 				function(url) {
-					if (A.one('#so-invitemembers-container')) {
+					if (A.one('#<portlet:namespace />inviteMembersContainer')) {
 						return;
 					}
 
@@ -81,7 +81,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 						}
 					).render();
 				},
-				['aui-base', 'aui-dialog', 'aui-io-plugin', 'liferay-soffice-invitemembers']
+				['aui-base', 'aui-dialog', 'aui-io-plugin', 'liferay-so-invite-members']
 			);
 		</aui:script>
 	</c:when>

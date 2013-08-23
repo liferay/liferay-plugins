@@ -1,5 +1,32 @@
+	AUI.add(
+	'liferay-so-invite-members-list',
+	function(A) {
+		var InviteMembersList = A.Base.create(
+			'inviteMembersList',
+			A.Base,
+			[A.AutoCompleteBase],
+			{
+				initializer: function(config) {
+					this._listNode = A.one(config.listNode);
+
+					this._bindUIACBase();
+					this._syncUIACBase();
+				}
+			}
+		);
+
+		Liferay.namespace('SO');
+
+		Liferay.SO.InviteMembersList = InviteMembersList;
+	},
+	'',
+	{
+		requires: ['aui-base', 'autocomplete-base', 'node-core']
+	}
+);
+
 AUI.add(
-	'liferay-soffice-invitemembers',
+	'liferay-so-invite-members',
 	function(A) {
 		var InviteMembers = function() {
 			InviteMembers.superclass.constructor.apply(this, arguments);
@@ -24,7 +51,7 @@ AUI.add(
 				initializer: function(params) {
 					var instance = this;
 
-					instance._inviteMembersContainer = A.one('#so-invitemembers-container');
+					instance._inviteMembersContainer = A.one('#' + instance.get('portletNamespace') + 'inviteMembersContainer');
 
 					if (!instance._inviteMembersContainer) {
 						return;
@@ -99,13 +126,6 @@ AUI.add(
 						},
 						'#so-add-email-address'
 					);
-
-					new A.LiveSearch(
-						{
-							input: '#invite-user-search',
-							nodes: '#so-invitemembers-container .search .user'
-						}
-					);
 				},
 
 				_addMemberEmail: function() {
@@ -179,6 +199,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-dialog', 'aui-io', 'aui-live-search']
+		requires: ['aui-base', 'aui-dialog', 'aui-io']
 	}
 );
