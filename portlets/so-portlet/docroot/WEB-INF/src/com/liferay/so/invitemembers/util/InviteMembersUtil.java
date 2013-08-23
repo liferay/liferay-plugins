@@ -43,8 +43,7 @@ public class InviteMembersUtil {
 			new CustomSQLParam(
 				CustomSQLUtil.get(
 					"com.liferay.portal.service.persistence.UserFinder." +
-						"filterByUsersGroupsGroupId"),
-				groupId));
+						"filterByUsersGroupsGroupId"), groupId));
 
 		return UserLocalServiceUtil.search(
 			companyId, keywords, WorkflowConstants.STATUS_APPROVED, usersParams,
@@ -62,8 +61,7 @@ public class InviteMembersUtil {
 			new CustomSQLParam(
 				CustomSQLUtil.get(
 					"com.liferay.portal.service.persistence.UserFinder." +
-						"filterByUsersGroupsGroupId"),
-				groupId));
+						"filterByUsersGroupsGroupId"), groupId));
 
 		return UserLocalServiceUtil.searchCount(
 			companyId, keywords, WorkflowConstants.STATUS_APPROVED,
