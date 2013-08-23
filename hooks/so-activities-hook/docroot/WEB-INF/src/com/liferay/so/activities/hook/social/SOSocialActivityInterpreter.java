@@ -245,7 +245,7 @@ public abstract class SOSocialActivityInterpreter
 	}
 
 	protected String getTitle(
-			long groupId, long userId, long displayDate,
+			long activitySetId, long groupId, long userId, long displayDate,
 			ServiceContext serviceContext)
 		throws Exception {
 
@@ -273,12 +273,36 @@ public abstract class SOSocialActivityInterpreter
 
 		String userName = getUserName(userId, serviceContext);
 
+		int otherUsersCount = 0;
+
+		if (activitySetId > 0) {
+			List<Long> userIds = getActivitySetUserIds(activitySetId);
+
+			otherUsersCount = userIds.size() - 1;
+		}
+
 		if ((groupId != serviceContext.getScopeGroupId()) && (groupId > 0)) {
 			String groupName = getGroupName(groupId, serviceContext);
 
-			Object[] userArguments = new Object[] {userName, groupName};
+			if (otherUsersCount > 0) {
+				Object[] userArguments =
+					new Object[] {userName, otherUsersCount, groupName};
 
-			sb.append(serviceContext.translate("x-in-x", userArguments));
+				sb.append(
+					serviceContext.translate(
+						"x-and-x-others-in-x", userArguments));
+			}
+			else {
+				Object[] userArguments = new Object[] {userName, groupName};
+
+				sb.append(serviceContext.translate("x-in-x", userArguments));
+			}
+		}
+		else if (otherUsersCount > 0) {
+			Object userArguments = new Object[] {userName, otherUsersCount};
+
+			sb.append(
+				serviceContext.translate("x-and-x-others", userArguments));
 		}
 		else {
 			sb.append(userName);
@@ -298,7 +322,7 @@ public abstract class SOSocialActivityInterpreter
 
 		sb.append(
 			getTitle(
-				activity.getGroupId(), activity.getUserId(),
+				0, activity.getGroupId(), activity.getUserId(),
 				activity.getCreateDate(), serviceContext));
 		sb.append("<div class=\"activity-action\">");
 
@@ -322,8 +346,9 @@ public abstract class SOSocialActivityInterpreter
 
 		sb.append(
 			getTitle(
-				activitySet.getGroupId(), activitySet.getUserId(),
-				activitySet.getModifiedDate(), serviceContext));
+				activitySet.getActivitySetId(), activitySet.getGroupId(),
+				activitySet.getUserId(), activitySet.getModifiedDate(),
+				serviceContext));
 		sb.append("<div class=\"activity-action\">");
 
 		String titlePattern = getTitlePattern(null, activitySet);
