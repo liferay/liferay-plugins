@@ -14,7 +14,12 @@
 
 package com.liferay.so.activities.hook.social;
 
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -89,6 +94,22 @@ public abstract class SOSocialActivityInterpreter
 		}
 
 		return new SocialActivityFeedEntry(link, title, body);
+	}
+
+	protected List<Long> getActivitySetUserIds(long activitySetId)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+			SocialActivity.class);
+
+		dynamicQuery.setProjection(
+			ProjectionFactoryUtil.distinct(
+				ProjectionFactoryUtil.property("userId")));
+
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.eq("activitySetId", activitySetId));
+
+		return SocialActivityLocalServiceUtil.dynamicQuery(dynamicQuery);
 	}
 
 	protected AssetRenderer getAssetRenderer(String className, long classPK)
