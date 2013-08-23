@@ -43,61 +43,16 @@
 		Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		%>
 
-		<div id="so-invitemembers-container">
+		<div id="<portlet:namespace />inviteMembersContainer">
 			<div class="user-search-wrapper">
 				<h2>
 					<liferay-ui:message key="find-members" />
 				</h2>
 
-				<input id="invite-user-search" name="<portlet:namespace />userName" type="text" />
+				<input class="invite-user-search" id="<portlet:namespace />inviteUserSearch" name="<portlet:namespace />userName" type="text" />
 
 				<div class="search">
-					<div class="list">
-
-						<%
-						LinkedHashMap usersParams = new LinkedHashMap();
-
-						List<User> users = UserLocalServiceUtil.search(layout.getCompanyId(), StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, usersParams, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new UserFirstNameComparator(true));
-
-						User defaultUser = UserLocalServiceUtil.getDefaultUser(layout.getCompanyId());
-
-						List<User> inviteUsers = new ArrayList<User>();
-
-						for (User curUser : users) {
-							if (!GroupLocalServiceUtil.hasUserGroup(curUser.getUserId(), layout.getGroupId()) && !curUser.equals(defaultUser)) {
-								inviteUsers.add(curUser);
-							}
-						}
-
-						if (!inviteUsers.isEmpty()) {
-							for (User curUser : inviteUsers) {
-						%>
-
-								<div class="user" data-userId="<%= curUser.getUserId() %>">
-									<span class="name">
-										<%= HtmlUtil.escape(curUser.getFullName()) %>
-									</span>
-
-									<span class="email">
-										<%= curUser.getEmailAddress() %>
-									</span>
-								</div>
-
-						<%
-							}
-						}
-						else {
-						%>
-
-							<div>
-								<liferay-ui:message key="there-are-no-users-to-invite" />
-							</div>
-
-						<%
-						}
-						%>
-
-					</div>
+					<div class="list"></div>
 				</div>
 			</div>
 
@@ -203,3 +158,165 @@
 		</div>
 	</c:otherwise>
 </c:choose>
+
+<aui:script use="aui-base,datasource-io,datatype-number,liferay-so-invite-members-list">
+	var inviteMembersContainer = A.one('#<portlet:namespace />inviteMembersContainer');
+
+	var invitedMembersList = inviteMembersContainer.one('.user-invited .list');
+	var searchList = inviteMembersContainer.one('.search .list');
+
+	var pageDelta = 50;
+
+	var createDataSource = function(url) {
+		return new A.DataSource.IO(
+			{
+				ioConfig: {
+					method: "post"
+				},
+				on: {
+					request: function(event) {
+						var data = event.request;
+
+						event.cfg.data = {
+							end: data.end || pageDelta,
+							keywords: data.keywords || '',
+							start: data.start || 0
+						}
+					}
+				},
+				source: url
+			}
+		);
+	}
+
+	var inviteMemberList = new Liferay.SO.InviteMembersList(
+		{
+			inputNode: '#<portlet:namespace />inviteMembersContainer #<portlet:namespace />inviteUserSearch',
+			listNode: '#<portlet:namespace />inviteMembersContainer .search .list',
+			minQueryLength: 0,
+			requestTemplate: function(query) {
+				return {
+					end: pageDelta,
+					keywords: query,
+					start: 0
+				}
+			},
+			resultTextLocator: function(response) {
+				var result = '';
+
+				if (typeof response.toString != 'undefined') {
+					result = response.toString();
+				}
+				else if (typeof response.responseText != 'undefined') {
+					result = response.responseText;
+				}
+
+				return result;
+			},
+			source: createDataSource('<portlet:resourceURL id="getAvailableUsers" />')
+		}
+	);
+
+	var renderResults = function(responseData) {
+		var count = responseData.count;
+		var options = responseData.options;
+		var results = responseData.users;
+
+		var buffer = [];
+
+		if (results.length == 0) {
+			if (options.start == 0) {
+				buffer.push(
+					'<div class="empty"><liferay-ui:message key="there-are-no-users-to-invite" unicode="<%= true %>" /></div>'
+				);
+			}
+		}
+		else {
+			buffer.push(
+				A.Array.map(
+					results,
+					function(result) {
+						var userTemplate =
+							'<div class="{cssClass}" data-userId="{userId}">' +
+								'<span class="name">{userFullName}</span>'+
+								'<span class="email">{userEmailAddress}</span>' +
+							'</div>';
+
+						var invited = invitedMembersList.one('[data-userId="' + result.userId + '"]');
+
+						return A.Lang.sub(
+							userTemplate,
+							{
+								cssClass: invited ? "invited user" : "user",
+								userEmailAddress: result.userEmailAddress,
+								userFullName: result.userFullName,
+								userId: result.userId
+							}
+						);
+					}
+				).join('')
+			);
+
+			if (count > results.length) {
+				buffer.push(
+					'<div class="more-results">' +
+						'<a href="javascript:;" data-end="' + options.end + '"><liferay-ui:message key="view-more" unicode="<%= true %>" /></a>' +
+					'</div>'
+				);
+			}
+		}
+
+		return buffer;
+	}
+
+	var showMoreResults = function(responseData) {
+		var moreResults = searchList.one('.more-results');
+
+		moreResults.remove();
+
+		searchList.append(renderResults(responseData).join(''));
+	}
+
+	var updateInviteMemberList = function(event) {
+		var responseData = A.JSON.parse(event.data.responseText);
+
+		searchList.html(renderResults(responseData).join(''));
+	}
+
+	inviteMemberList.on('results', updateInviteMemberList);
+
+	searchList.delegate(
+		'click',
+		function(event) {
+			var node = event.currentTarget;
+
+			var start = A.DataType.Number.parse(node.getAttribute('data-end'));
+
+			var end = start + pageDelta;
+
+			var inviteUserSearch = inviteMembersContainer.one('#<portlet:namespace />inviteUserSearch');
+
+			A.io.request(
+				'<portlet:resourceURL id="getAvailableUsers" />',
+				{
+					after: {
+						success: function(event, id, obj) {
+							var responseData = this.get('responseData');
+
+							showMoreResults(responseData);
+						}
+					},
+					data: {
+						end: end,
+						keywords: inviteUserSearch.get('value'),
+						start: start
+					},
+					dataType: 'json'
+				}
+			);
+		},
+		'.more-results a'
+	);
+
+	inviteMemberList.sendRequest();
+</aui:script>

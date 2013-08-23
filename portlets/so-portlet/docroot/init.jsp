@@ -74,7 +74,6 @@ page import="com.liferay.portal.service.UserNotificationEventLocalServiceUtil" %
 page import="com.liferay.portal.service.permission.GroupPermissionUtil" %><%@
 page import="com.liferay.portal.service.permission.PortalPermissionUtil" %><%@
 page import="com.liferay.portal.util.comparator.RoleNameComparator" %><%@
-page import="com.liferay.portal.util.comparator.UserFirstNameComparator" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
 page import="com.liferay.portlet.social.model.SocialActivityFeedEntry" %><%@
 page import="com.liferay.portlet.social.model.SocialRelationConstants" %><%@
@@ -98,7 +97,6 @@ page import="com.liferay.so.util.RoleConstants" %>
 page import="java.util.Calendar" %><%@
 page import="java.util.Date" %><%@
 page import="java.util.Iterator" %><%@
-page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletRequest" %><%@

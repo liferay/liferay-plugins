@@ -532,27 +532,22 @@ portletURL.setWindowState(WindowState.NORMAL);
 			<c:if test="<%= !userPublicPage %>">
 				var contactsCenterHome = A.one('.contacts-portlet .contacts-center-home');
 
-				<c:choose>
-					<c:when test="<%= showOnlySiteMembers %>">
-						contactsCenterHome.one('.admins').on(
-							'click',
-							function(event) {
-								contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_ADMINS %>');
+				<c:if test="<%= !showOnlySiteMembers %>">
+					var addContact = A.one('#<portlet:namespace/>add-contact');
 
-								contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-							},
-							'a'
-						);
-					</c:when>
-					<c:otherwise>
-						A.one('#<portlet:namespace/>add-contact').on(
+					if (addContact) {
+						addContact.on(
 							'click',
 							function(event) {
 								contactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "add-contact") %>', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
 							}
 						);
+					}
 
-						contactsCenterHome.one('.contacts').on(
+					var contacts = contactsCenterHome.one('.contacts');
+
+					if (contacts) {
+						contacts.on(
 							'click',
 							function(event) {
 								contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>');
@@ -561,40 +556,52 @@ portletURL.setWindowState(WindowState.NORMAL);
 							},
 							'a'
 						);
-					</c:otherwise>
-				</c:choose>
+					}
+				</c:if>
 
-				contactsCenterHome.one('.connections').on(
-					'click',
-					function(event) {
-						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>');
+				var connections = contactsCenterHome.one('.connections');
 
-						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-					},
-					'a'
-				);
+				if (connections) {
+					connections.on(
+						'click',
+						function(event) {
+							contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>');
 
-				contactsCenterHome.one('.followings').on(
-					'click',
-					function(event) {
-						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>');
+							contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+						},
+						'a'
+					);
+				}
 
-						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-					},
-					'a'
-				);
+				var following = contactsCenterHome.one('.followings');
 
-				contactsCenterHome.one('.all').on(
-					'click',
-					function(event) {
-						contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_DEFAULT %>');
+				if (following) {
+					following.on(
+						'click',
+						function(event) {
+							contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>');
 
-						searchInput.set('value', '');
+							contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+						},
+						'a'
+					);
+				}
 
-						contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
-					},
-					'a'
-				);
+				var all = contactsCenterHome.one('.all');
+
+				if (all) {
+					all.on(
+						'click',
+						function(event) {
+							contactFilterSelect.set('value', '<%= ContactsConstants.FILTER_BY_DEFAULT %>');
+
+							searchInput.set('value', '');
+
+							contactsCenter.updateContacts(searchInput.get('value'), contactFilterSelect.get('value'));
+						},
+						'a'
+					);
+				}
 			</c:if>
 		</aui:script>
 	</c:otherwise>

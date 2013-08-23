@@ -21,6 +21,17 @@
 		width: 205px;
 		overflow-x: hidden;
 		overflow-y: auto;
+
+		.more-results a {
+			display: block;
+			margin: 5px;
+			padding: 2px;
+			text-align: center;
+
+			&:hover {
+				background-color: #CCE6F7;
+			}
+		}
 	}
 
 	.user-search-wrapper {
@@ -43,7 +54,7 @@
 		margin-bottom: 1em;
 	}
 
-	#invite-user-search {
+	.invite-user-search {
 		width: 203px;
 	}
 
