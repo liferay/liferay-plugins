@@ -31,4 +31,18 @@
 				Group_.name ASC
 		]]>
 	</sql>
+	<sql id="com.liferay.portal.service.persistence.UserFinder.filterByUsersGroupsGroupId">
+		<![CDATA[
+			WHERE (
+				User_.userId NOT IN (
+					SELECT
+						DISTINCT users_groups.userId
+					FROM
+						users_groups
+					WHERE
+						users_groups.groupId = ?
+				)
+			)
+		]]>
+	</sql>
 </custom-sql>
