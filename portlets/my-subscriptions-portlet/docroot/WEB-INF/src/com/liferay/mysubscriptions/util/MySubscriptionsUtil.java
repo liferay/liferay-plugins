@@ -77,6 +77,11 @@ public class MySubscriptionsUtil {
 				classPK, PortletKeys.MESSAGE_BOARDS);
 		}
 
+		if (className.equals("com.liferay.knowledgebase.model.KBArticle")) {
+			return PortalUtil.getLayoutFullURL(
+				classPK, PortletKeys.KNOWLEDGE_BASE_DISPLAY);
+		}
+
 		if (className.equals(WikiNode.class.getName())) {
 			long plid = PortalUtil.getPlidFromPortletId(
 				themeDisplay.getScopeGroupId(), PortletKeys.WIKI);
@@ -134,6 +139,9 @@ public class MySubscriptionsUtil {
 			WikiNode wikiNode = WikiNodeLocalServiceUtil.getWikiNode(classPK);
 
 			return wikiNode.getName();
+		}
+		else if (className.equals("com.liferay.knowledgebase.model.KBArticle")) {
+			title = "Knowledge Base Articles at ";
 		}
 
 		try {
