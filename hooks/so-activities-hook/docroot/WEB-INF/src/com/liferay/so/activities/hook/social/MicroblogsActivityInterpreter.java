@@ -122,16 +122,16 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
-		String userDisplayURL = StringPool.BLANK;
-		String userFullName = StringPool.BLANK;
-		String userPortraitURL = StringPool.BLANK;
-
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(classPK);
 
 		if (microblogsEntry == null) {
 			return StringPool.BLANK;
 		}
+
+		String userDisplayURL = StringPool.BLANK;
+		String userFullName = StringPool.BLANK;
+		String userPortraitURL = StringPool.BLANK;
 
 		User user = UserLocalServiceUtil.fetchUser(microblogsEntry.getUserId());
 
