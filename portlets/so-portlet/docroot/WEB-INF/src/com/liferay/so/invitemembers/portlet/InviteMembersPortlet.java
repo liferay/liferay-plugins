@@ -70,14 +70,14 @@ public class InviteMembersPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		int end = ParamUtil.getInteger(resourceRequest, "end");
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		jsonObject.put(
 			"count",

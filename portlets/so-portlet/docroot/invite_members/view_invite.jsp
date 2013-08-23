@@ -189,7 +189,7 @@
 		);
 	}
 
-	var inviteMemberList = new Liferay.SO.InviteMembersList(
+	var inviteMembersList = new Liferay.SO.InviteMembersList(
 		{
 			inputNode: '#<portlet:namespace />inviteMembersContainer #<portlet:namespace />inviteUserSearch',
 			listNode: '#<portlet:namespace />inviteMembersContainer .search .list',
@@ -277,13 +277,13 @@
 		searchList.append(renderResults(responseData).join(''));
 	}
 
-	var updateInviteMemberList = function(event) {
+	var updateInviteMembersList = function(event) {
 		var responseData = A.JSON.parse(event.data.responseText);
 
 		searchList.html(renderResults(responseData).join(''));
 	}
 
-	inviteMemberList.on('results', updateInviteMemberList);
+	inviteMembersList.on('results', updateInviteMembersList);
 
 	searchList.delegate(
 		'click',
@@ -318,5 +318,5 @@
 		'.more-results a'
 	);
 
-	inviteMemberList.sendRequest();
+	inviteMembersList.sendRequest();
 </aui:script>
