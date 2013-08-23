@@ -21,16 +21,16 @@ import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
-
-import java.util.List;
 
 /**
  * @author Matthew Kong
@@ -114,45 +114,129 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 		return 0;
 	}
 
+	protected String getBody(
+			long classPK, int type, ServiceContext serviceContext)
+		throws Exception {
+
+		if (type == _ACTIVITY_KEY_ADD_ENTRY) {
+			return StringPool.BLANK;
+		}
+
+		String userDisplayURL = StringPool.BLANK;
+		String userFullName = StringPool.BLANK;
+		String userPortraitURL = StringPool.BLANK;
+
+		MicroblogsEntry microblogsEntry =
+			MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(classPK);
+
+		if (microblogsEntry == null) {
+			return StringPool.BLANK;
+		}
+
+		User user = UserLocalServiceUtil.fetchUser(microblogsEntry.getUserId());
+
+		if (user != null) {
+			userDisplayURL = user.getDisplayURL(
+				serviceContext.getThemeDisplay());
+			userFullName = user.getFullName();
+			userPortraitURL = user.getPortraitURL(
+				serviceContext.getThemeDisplay());
+		}
+
+		StringBundler sb = new StringBundler(12);
+
+		sb.append("<div class=\"activity-body-container\">");
+		sb.append("<div class=\"activity-body\">");
+		sb.append("<div class=\"user-portrait\"><span class=\"avatar\">");
+		sb.append("<a href=\"");
+		sb.append(userDisplayURL);
+		sb.append("\"><img alt=\"");
+		sb.append(userFullName);
+		sb.append("\" src=");
+		sb.append(userPortraitURL);
+		sb.append("\"/></a></span></div>");
+		sb.append(
+			MicroblogsUtil.getTaggedContent(microblogsEntry, serviceContext));
+		sb.append("</div></div>");
+
+		return sb.toString();
+	}
+
+	@Override
+	protected String getBody(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		return getBody(
+			activity.getClassPK(), activity.getType(), serviceContext);
+	}
+
+	@Override
+	protected String getBody(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		return getBody(
+			activitySet.getClassPK(), activitySet.getType(), serviceContext);
+	}
+
+	protected String getTitle(
+			long activitySetId, long classPK, long groupId, long userId,
+			long displayDate, int activityType, ServiceContext serviceContext)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(
+			getTitle(
+				activitySetId, groupId, userId, displayDate, serviceContext));
+		sb.append("<div class=\"activity-action\">");
+
+		if (activityType == _ACTIVITY_KEY_ADD_ENTRY) {
+			MicroblogsEntry microblogsEntry =
+				MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(classPK);
+
+			sb.append(
+				MicroblogsUtil.getTaggedContent(
+					microblogsEntry, serviceContext));
+		}
+		else if (activityType == _ACTIVITY_KEY_REPLY_ENTRY) {
+			sb.append(
+				serviceContext.translate("commented-on-a-microblog-entry"));
+		}
+		else if (activityType == _ACTIVITY_KEY_REPOST_ENTRY) {
+			sb.append(serviceContext.translate("reposted-a-microblog-entry"));
+		}
+		else {
+			return StringPool.BLANK;
+		}
+
+		sb.append("</div>");
+
+		return sb.toString();
+	}
+
 	@Override
 	protected String getTitle(
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		StringBundler sb = new StringBundler(8);
+		return getTitle(
+			0, activity.getClassPK(), activity.getGroupId(),
+			activity.getUserId(), activity.getCreateDate(), activity.getType(),
+			serviceContext );
+	}
 
-		sb.append(
-			getTitle(
-				activity.getGroupId(), activity.getUserId(),
-				activity.getCreateDate(), serviceContext));
-		sb.append("<div class=\"activity-action\">");
+	@Override
+	protected String getTitle(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
 
-		MicroblogsEntry microblogsEntry =
-			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
-				activity.getClassPK());
-
-		String receiverUserName = getUserName(
-			activity.getReceiverUserId(), serviceContext);
-
-		if (activity.getReceiverUserId() > 0) {
-			if (microblogsEntry.getType() == _ACTIVITY_KEY_REPLY_ENTRY) {
-				sb.append("@");
-				sb.append(receiverUserName);
-				sb.append(": ");
-			}
-			else if (microblogsEntry.getType() == _ACTIVITY_KEY_REPOST_ENTRY) {
-				sb.append(serviceContext.translate("reposted-from"));
-				sb.append(" ");
-				sb.append(receiverUserName);
-				sb.append(": ");
-			}
-		}
-
-		sb.append(
-			MicroblogsUtil.getTaggedContent(microblogsEntry, serviceContext));
-		sb.append("</div>");
-
-		return sb.toString();
+		return getTitle(
+			activitySet.getActivitySetId(), activitySet.getClassPK(),
+			activitySet.getGroupId(), activitySet.getUserId(),
+			activitySet.getModifiedDate(), activitySet.getType(),
+			serviceContext);
 	}
 
 	@Override
@@ -168,6 +252,12 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 		return MicroblogsEntryPermission.contains(
 			permissionChecker, microblogsEntry, ActionKeys.VIEW);
 	}
+
+	/**
+	 * {@link
+	 * com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys#ADD_ENTRY}
+	 */
+	private static final int _ACTIVITY_KEY_ADD_ENTRY = 1;
 
 	/**
 	 * {@link
