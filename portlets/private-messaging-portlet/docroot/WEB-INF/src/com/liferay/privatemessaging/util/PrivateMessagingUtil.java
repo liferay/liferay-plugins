@@ -68,8 +68,16 @@ public class PrivateMessagingUtil {
 		if (type.equals("site")) {
 			params.put("inherit", Boolean.TRUE);
 
-			List<Group> groups = GroupLocalServiceUtil.getUserGroups(
-				userId, true);
+			LinkedHashMap<String, Object> groupParams =
+				new LinkedHashMap<String, Object>();
+
+			groupParams.put("inherit", Boolean.FALSE);
+			groupParams.put("site", Boolean.TRUE);
+			groupParams.put("usersGroups", userId);
+
+			List<Group> groups = GroupLocalServiceUtil.search(
+				user.getCompanyId(), groupParams, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
 
 			params.put(
 				"usersGroups",
