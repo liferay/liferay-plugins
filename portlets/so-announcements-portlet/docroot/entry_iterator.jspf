@@ -20,11 +20,7 @@
 <%
 total = AnnouncementsEntryLocalServiceUtil.getEntriesCount(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue);
 
-searchContainer.setTotal(total);
-
-results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, searchContainer.getStart(), searchContainer.getEnd());
-
-searchContainer.setResults(results);
+results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, start, end);
 
 for (int i = 0; i < results.size(); i++) {
 	AnnouncementsEntry entry = results.get(i);
@@ -45,7 +41,3 @@ for (int i = 0; i < results.size(); i++) {
 <%
 }
 %>
-
-<c:if test="<%= results.isEmpty() %>">
-	<span><%= LanguageUtil.get(pageContext, searchContainer.getEmptyResultsMessage()) %></span>
-</c:if>

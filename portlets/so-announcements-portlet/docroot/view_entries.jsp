@@ -54,12 +54,6 @@
 
 	int flagValue = AnnouncementsFlagConstants.NOT_HIDDEN;
 
-	PortletURL portletURL = renderResponse.createRenderURL();
-
-	portletURL.setParameter("mvcPath", "/view.jsp");
-
-	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", pageDelta, portletURL, null, "there-are-no-unread-entries");
-
 	List<AnnouncementsEntry> results = null;
 	int total = 0;
 	%>
@@ -67,16 +61,10 @@
 	<%@ include file="/entry_iterator.jspf" %>
 </div>
 
-<c:if test="<%= total > 0 %>">
-	<liferay-ui:search-paginator id="pageIteratorTop" searchContainer="<%= searchContainer %>" type="article" />
-</c:if>
-
 <%
 flagValue = AnnouncementsFlagConstants.HIDDEN;
 
-searchContainer = new SearchContainer(renderRequest, null, null, "cur2", pageDelta, portletURL, null, "there-are-no-read-entries");
-
-results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, searchContainer.getStart(), searchContainer.getEnd());
+results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, start, end);
 %>
 
 <c:if test="<%= themeDisplay.isSignedIn() && !results.isEmpty() %>">
@@ -87,10 +75,6 @@ results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes
 
 		<div class="content aui-toggler-content aui-toggler-content-collapsed">
 			<%@ include file="/entry_iterator.jspf" %>
-
-			<c:if test="<%= total > 0 %>">
-				<liferay-ui:search-paginator id="pageIteratorBottom" searchContainer="<%= searchContainer %>" type="article" />
-			</c:if>
 		</div>
 	</div>
 
