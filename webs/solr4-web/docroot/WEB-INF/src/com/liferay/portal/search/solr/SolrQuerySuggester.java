@@ -321,7 +321,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 	private static float _INFINITE_WEIGHT = 100f;
 
-	private static int _MAX_QUERY_RESULTS = 50;
+	private static int _MAX_QUERY_RESULTS = 10000;
 
 	private float _distanceThreshold;
 	private NGramQueryBuilder _nGramQueryBuilder;
