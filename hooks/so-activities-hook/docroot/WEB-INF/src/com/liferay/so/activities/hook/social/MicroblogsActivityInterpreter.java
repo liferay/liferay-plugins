@@ -104,7 +104,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 						activity.getType());
 			}
 
-			if ((activitySet != null) && !isExpired(activitySet)) {
+			if ((activitySet != null) && !isExpired(activitySet, true)) {
 				return activitySet.getActivitySetId();
 			}
 		}

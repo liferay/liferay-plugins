@@ -398,12 +398,21 @@ public abstract class SOSocialActivityInterpreter
 			activity.getClassPK(), ActionKeys.VIEW);
 	}
 
-	protected boolean isExpired(SocialActivitySet activitySet) {
+	protected boolean isExpired(
+		SocialActivitySet activitySet, boolean comment) {
+
 		long age = System.currentTimeMillis() - activitySet.getCreateDate();
 
 		long timeWindow =
 			Time.MINUTE *
 				PortletPropsValues.SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW;
+
+		if (comment) {
+			timeWindow =
+				Time.MINUTE *
+					PortletPropsValues.
+						SOCIAL_ACTIVITY_SETS_COMMENTS_BUNDLING_TIME_WINDOW;
+		}
 
 		if (age > timeWindow) {
 			return true;

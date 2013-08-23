@@ -88,14 +88,18 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 
 			SocialActivitySet activitySet = null;
 
+			boolean comment = false;
+
 			if (activityType == _ACTIVITY_KEY_REPLY_MESSAGE) {
 				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getClassNameId(), activity.getClassPK(),
 						activity.getType());
+
+				comment = true;
 			}
 
-			if ((activitySet != null) && !isExpired(activitySet)) {
+			if ((activitySet != null) && !isExpired(activitySet, comment)) {
 				return activitySet.getActivitySetId();
 			}
 		}
@@ -116,7 +120,7 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 
 	@Override
 	protected String getBody(
-		SocialActivitySet activitySet, ServiceContext serviceContext)
+			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
 		if (activitySet.getType() == _ACTIVITY_KEY_REPLY_MESSAGE) {

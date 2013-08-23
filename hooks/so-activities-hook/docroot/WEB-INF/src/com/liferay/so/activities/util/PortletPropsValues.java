@@ -31,4 +31,10 @@ public class PortletPropsValues {
 			PortletProps.get(
 				PortletPropsKeys.SOCIAL_ACTIVITY_SETS_BUNDLING_TIME_WINDOW));
 
+	public static final int SOCIAL_ACTIVITY_SETS_COMMENTS_BUNDLING_TIME_WINDOW =
+		GetterUtil.getInteger(
+			PortletProps.get(
+				PortletPropsKeys.
+					SOCIAL_ACTIVITY_SETS_COMMENTS_BUNDLING_TIME_WINDOW));
+
 }
