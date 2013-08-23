@@ -5,9 +5,9 @@ AUI.add(
 		var isString = Lang.isString;
 		var isValue = Lang.isValue;
 
-		var AUTO = 'auto';
-
 		var ACTIVE_EDITABLE = 'activeEditable';
+
+		var AUTO = 'auto';
 
 		var BOUNDING_BOX = 'boundingBox';
 
@@ -31,9 +31,9 @@ AUI.add(
 
 		var LABEL = 'label';
 
-		var NEW_NODE = 'newNode';
-
 		var NEW_FOLDER = 'New Folder';
+
+		var NEW_NODE = 'newNode';
 
 		var OWNER_TREE = 'ownerTree';
 
@@ -142,8 +142,8 @@ AUI.add(
 
 						var children = instance.getChildren();
 
-						var folderChildren = [];
 						var fileEntryChildren = [];
+						var folderChildren = [];
 
 						A.Array.each(
 							children,
@@ -157,8 +157,8 @@ AUI.add(
 							}
 						);
 
-						folderChildren.sort(arraySort);
 						fileEntryChildren.sort(arraySort);
+						folderChildren.sort(arraySort);
 
 						A.Array.each(
 							folderChildren,
@@ -200,8 +200,8 @@ AUI.add(
 
 					entryId: {
 						value: '',
-						setter: function(v) {
-							return String(v);
+						setter: function(value) {
+							return String(value);
 						}
 					},
 
@@ -323,8 +323,8 @@ AUI.add(
 
 						var children = instance.getChildren();
 
-						var folderChildren = [];
 						var fileEntryChildren = [];
+						var folderChildren = [];
 
 						var ownerTree = instance.get(OWNER_TREE);
 
@@ -340,14 +340,14 @@ AUI.add(
 							}
 						);
 
-						folderChildren.sort(arraySort);
 						fileEntryChildren.sort(arraySort);
+						folderChildren.sort(arraySort);
 
 						A.Array.each(
 							folderChildren,
 							function(item, index, collection) {
 								if (index != 0) {
-									ownerTree.insertAfter(item, collection[index-1]);
+									ownerTree.insertAfter(item, collection[index - 1]);
 								}
 							}
 						);
@@ -361,7 +361,7 @@ AUI.add(
 									}
 								}
 								else {
-									ownerTree.insertAfter(item, collection[index-1]);
+									ownerTree.insertAfter(item, collection[index - 1]);
 								}
 							}
 						);
@@ -610,9 +610,6 @@ AUI.add(
 
 						var editable = new EditableEditor(
 							{
-								eventType: '',
-								entryId: instance.get(ENTRY_ID),
-								node: instance.get('labelEl'),
 								after: {
 									startEditing: function(event) {
 										ownerTree.set(ACTIVE_EDITABLE, event.target);
@@ -621,6 +618,9 @@ AUI.add(
 										ownerTree.set(ACTIVE_EDITABLE, null);
 									}
 								},
+								entryId: instance.get(ENTRY_ID),
+								eventType: '',
+								node: instance.get('labelEl'),
 								on: {
 									startEditing: function(event) {
 										var editable = event.target;
@@ -821,6 +821,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-editable', 'aui-tree-view', 'aui-tree-node', 'aui-overlay-manager', 'aui-toolbar', 'aui-overlay-context']
+		requires: ['aui-editable', 'aui-overlay-context', 'aui-overlay-manager', 'aui-toolbar', 'aui-tree-node', 'aui-tree-view']
 	}
 );
