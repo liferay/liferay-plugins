@@ -302,24 +302,22 @@ public abstract class SOSocialActivityInterpreter
 			String groupName = getGroupName(groupId, serviceContext);
 
 			if (otherUsersCount > 0) {
-				Object[] userArguments =
-					new Object[] {userName, otherUsersCount, groupName};
-
 				sb.append(
 					serviceContext.translate(
-						"x-and-x-others-in-x", userArguments));
+						"x-and-x-others-in-x",
+						new Object[] {userName, otherUsersCount, groupName}));
 			}
 			else {
-				Object[] userArguments = new Object[] {userName, groupName};
-
-				sb.append(serviceContext.translate("x-in-x", userArguments));
+				sb.append(
+					serviceContext.translate(
+						"x-in-x", new Object[] {userName, groupName}));
 			}
 		}
 		else if (otherUsersCount > 0) {
-			Object userArguments = new Object[] {userName, otherUsersCount};
-
 			sb.append(
-				serviceContext.translate("x-and-x-others", userArguments));
+				serviceContext.translate(
+					"x-and-x-others",
+					new Object[] {userName, otherUsersCount}));
 		}
 		else {
 			sb.append(userName);

@@ -129,31 +129,31 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
-		String userDisplayURL = StringPool.BLANK;
-		String userFullName = StringPool.BLANK;
-		String userPortraitURL = StringPool.BLANK;
-
-		User user = UserLocalServiceUtil.fetchUser(microblogsEntry.getUserId());
-
-		if (user != null) {
-			userDisplayURL = user.getDisplayURL(
-				serviceContext.getThemeDisplay());
-			userFullName = user.getFullName();
-			userPortraitURL = user.getPortraitURL(
-				serviceContext.getThemeDisplay());
-		}
-
 		StringBundler sb = new StringBundler(12);
 
 		sb.append("<div class=\"activity-body-container\">");
 		sb.append("<div class=\"activity-body\">");
 		sb.append("<div class=\"user-portrait\"><span class=\"avatar\">");
 		sb.append("<a href=\"");
-		sb.append(userDisplayURL);
+
+		User user = UserLocalServiceUtil.fetchUser(microblogsEntry.getUserId());
+
+		if (user != null) {
+			sb.append(user.getDisplayURL(serviceContext.getThemeDisplay()));
+		}
+
 		sb.append("\"><img alt=\"");
-		sb.append(userFullName);
+
+		if (user != null) {
+			sb.append(user.getFullName());
+		}
+
 		sb.append("\" src=");
-		sb.append(userPortraitURL);
+
+		if (user != null) {
+			sb.append(user.getPortraitURL(serviceContext.getThemeDisplay()));
+		}
+
 		sb.append("\"/></a></span></div>");
 		sb.append(
 			MicroblogsUtil.getTaggedContent(microblogsEntry, serviceContext));
