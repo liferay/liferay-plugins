@@ -184,6 +184,9 @@ public class SitesPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		boolean directory = ParamUtil.getBoolean(resourceRequest, "directory");
 		int end = ParamUtil.getInteger(resourceRequest, "end", 10);
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
@@ -203,9 +206,6 @@ public class SitesPortlet extends MVCPortlet {
 		optionsJSONObject.put("start", start);
 
 		jsonObject.put("options", optionsJSONObject);
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
 
 		List<Group> groups = null;
 		int groupsCount = 0;
