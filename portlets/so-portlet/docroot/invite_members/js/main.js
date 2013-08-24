@@ -1,4 +1,4 @@
-	AUI.add(
+AUI.add(
 	'liferay-so-invite-members-list',
 	function(A) {
 		var InviteMembersList = A.Base.create(
