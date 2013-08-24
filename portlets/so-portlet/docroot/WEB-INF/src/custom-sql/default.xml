@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 
 <custom-sql>
+	<sql id="com.liferay.portal.service.persistence.UserFinder.filterByUsersGroupsGroupId">
+		<![CDATA[
+			WHERE (
+				User_.userId NOT IN (
+					SELECT
+						DISTINCT users_groups.userId
+					FROM
+						users_groups
+					WHERE
+						users_groups.groupId = ?
+				)
+			)
+		]]>
+	</sql>
 	<sql id="com.liferay.so.service.persistence.FavoriteSiteFinder.countByU_N">
 		<![CDATA[
 			SELECT
@@ -29,20 +43,6 @@
 				(lower(Group_.name) LIKE ? OR lower(Group_.name) LIKE ? OR ? IS NULL)
 			ORDER BY
 				Group_.name ASC
-		]]>
-	</sql>
-	<sql id="com.liferay.portal.service.persistence.UserFinder.filterByUsersGroupsGroupId">
-		<![CDATA[
-			WHERE (
-				User_.userId NOT IN (
-					SELECT
-						DISTINCT users_groups.userId
-					FROM
-						users_groups
-					WHERE
-						users_groups.groupId = ?
-				)
-			)
 		]]>
 	</sql>
 </custom-sql>
