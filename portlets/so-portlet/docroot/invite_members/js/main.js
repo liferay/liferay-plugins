@@ -1,31 +1,4 @@
 AUI.add(
-	'liferay-so-invite-members-list',
-	function(A) {
-		var InviteMembersList = A.Base.create(
-			'inviteMembersList',
-			A.Base,
-			[A.AutoCompleteBase],
-			{
-				initializer: function(config) {
-					this._listNode = A.one(config.listNode);
-
-					this._bindUIACBase();
-					this._syncUIACBase();
-				}
-			}
-		);
-
-		Liferay.namespace('SO');
-
-		Liferay.SO.InviteMembersList = InviteMembersList;
-	},
-	'',
-	{
-		requires: ['aui-base', 'autocomplete-base', 'node-core']
-	}
-);
-
-AUI.add(
 	'liferay-so-invite-members',
 	function(A) {
 		var InviteMembers = function() {
@@ -200,5 +173,32 @@ AUI.add(
 	'',
 	{
 		requires: ['aui-base', 'aui-dialog', 'aui-io']
+	}
+);
+
+AUI.add(
+	'liferay-so-invite-members-list',
+	function(A) {
+		var InviteMembersList = A.Base.create(
+			'inviteMembersList',
+			A.Base,
+			[A.AutoCompleteBase],
+			{
+				initializer: function(config) {
+					this._listNode = A.one(config.listNode);
+
+					this._bindUIACBase();
+					this._syncUIACBase();
+				}
+			}
+		);
+
+		Liferay.namespace('SO');
+
+		Liferay.SO.InviteMembersList = InviteMembersList;
+	},
+	'',
+	{
+		requires: ['aui-base', 'autocomplete-base', 'node-core']
 	}
 );
