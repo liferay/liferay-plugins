@@ -25,6 +25,10 @@ if (portletPlid == 0) {
 }
 
 PortletURL portletURL = PortletURLFactoryUtil.create(request, portletId, portletPlid, PortletRequest.RENDER_PHASE);
+
+if (portletPlid == 0) {
+	portletURL.setParameter("mvcPath", "/view.jsp");
+	portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 }
 %>
 
