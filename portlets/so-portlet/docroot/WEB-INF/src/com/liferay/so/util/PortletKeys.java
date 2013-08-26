@@ -24,6 +24,8 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
 	public static final String SO_ACTIVITIES = "1_WAR_soportlet";
 
+	public static final String SO_ANNOUNCEMENTS = "1_WAR_soannouncementsportlet";
+
 	public static final String SO_DOCKBAR_NOTIFICATION = "7_WAR_soportlet";
 
 	public static final String SO_EXPERTISE = "4_WAR_soportlet";
