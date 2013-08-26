@@ -42,42 +42,52 @@ public class HttpServletResponseAdapterImpl
 		_portletResponse = portletResponse;
 	}
 
+	@Override
 	public void addCookie(Cookie cookie) {
 		_portletResponse.addProperty(cookie);
 	}
 
+	@Override
 	public void addDateHeader(String name, long value) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void addHeader(String name, String value) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void addIntHeader(String name, int value) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public boolean containsHeader(String name) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String encodeRedirectUrl(String url) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String encodeRedirectURL(String url) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String encodeUrl(String url) {
 		return getPortletResponse().encodeURL(url);
 	}
 
+	@Override
 	public String encodeURL(String url) {
 		return getPortletResponse().encodeURL(url);
 	}
 
+	@Override
 	public void flushBuffer() throws IOException {
 		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
@@ -88,6 +98,7 @@ public class HttpServletResponseAdapterImpl
 		mimeResponse.flushBuffer();
 	}
 
+	@Override
 	public int getBufferSize() {
 		if (!(_portletResponse instanceof ClientDataRequest)) {
 			return 0;
@@ -98,6 +109,7 @@ public class HttpServletResponseAdapterImpl
 		return mimeResponse.getBufferSize();
 	}
 
+	@Override
 	public String getCharacterEncoding() {
 		if (!(_portletResponse instanceof MimeResponse)) {
 			return null;
@@ -108,6 +120,7 @@ public class HttpServletResponseAdapterImpl
 		return mimeResponse.getCharacterEncoding();
 	}
 
+	@Override
 	public String getContentType() {
 		if (!(_portletResponse instanceof MimeResponse)) {
 			return null;
@@ -118,22 +131,27 @@ public class HttpServletResponseAdapterImpl
 		return mimeResponse.getContentType();
 	}
 
+	@Override
 	public String getHeader(String name) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Collection<String> getHeaderNames() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Collection<String> getHeaders(String name) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Locale getLocale() {
 		return _locale;
 	}
 
+	@Override
 	public ServletOutputStream getOutputStream() {
 		if (_servletOutputStream == null) {
 			if (!(_portletResponse instanceof MimeResponse)) {
@@ -147,14 +165,17 @@ public class HttpServletResponseAdapterImpl
 		return _servletOutputStream;
 	}
 
+	@Override
 	public PortletResponse getPortletResponse() {
 		return _portletResponse;
 	}
 
+	@Override
 	public int getStatus() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public PrintWriter getWriter() throws IOException {
 		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
@@ -165,6 +186,7 @@ public class HttpServletResponseAdapterImpl
 		return mimeResponse.getWriter();
 	}
 
+	@Override
 	public boolean isCommitted() {
 		if (!(_portletResponse instanceof MimeResponse)) {
 			return true;
@@ -175,6 +197,7 @@ public class HttpServletResponseAdapterImpl
 		return mimeResponse.isCommitted();
 	}
 
+	@Override
 	public void reset() {
 		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
@@ -185,6 +208,7 @@ public class HttpServletResponseAdapterImpl
 		mimeResponse.reset();
 	}
 
+	@Override
 	public void resetBuffer() {
 		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
@@ -195,30 +219,37 @@ public class HttpServletResponseAdapterImpl
 		mimeResponse.resetBuffer();
 	}
 
+	@Override
 	public void sendError(int status) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void sendError(int status, String message) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void sendRedirect(String location) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void setBufferSize(int bufferSize) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void setCharacterEncoding(String encoding) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void setContentLength(int contentLength) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void setContentType(String contentType) {
 		if (!(_portletResponse instanceof MimeResponse)) {
 			throw new UnsupportedOperationException();
@@ -229,18 +260,22 @@ public class HttpServletResponseAdapterImpl
 		mimeResponse.setContentType(contentType);
 	}
 
+	@Override
 	public void setDateHeader(String name, long date) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void setHeader(String name, String value) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void setIntHeader(String name, int value) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void setLocale(Locale locale) {
 		if (!(_portletResponse instanceof MimeResponse)) {
 			return;
@@ -251,10 +286,12 @@ public class HttpServletResponseAdapterImpl
 		resourceResponse.setLocale(locale);
 	}
 
+	@Override
 	public void setStatus(int status) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void setStatus(int status, String message) {
 		throw new UnsupportedOperationException();
 	}

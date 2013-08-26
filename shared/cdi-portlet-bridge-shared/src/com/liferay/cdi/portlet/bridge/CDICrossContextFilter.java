@@ -29,9 +29,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class CDICrossContextFilter implements Filter {
 
+	@Override
 	public void destroy() {
 	}
 
+	@Override
 	public void doFilter(
 			ServletRequest servletRequest, ServletResponse servletResponse,
 			FilterChain filterChain)
@@ -47,6 +49,7 @@ public class CDICrossContextFilter implements Filter {
 		filterChain.doFilter(servletRequest, servletResponse);
 	}
 
+	@Override
 	public void init(FilterConfig filterConfig) {
 	}
 

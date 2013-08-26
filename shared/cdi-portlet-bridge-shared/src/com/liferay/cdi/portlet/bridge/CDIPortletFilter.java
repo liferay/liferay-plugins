@@ -38,13 +38,16 @@ import javax.xml.stream.events.XMLEvent;
 public class CDIPortletFilter
 	implements ActionFilter, EventFilter, RenderFilter, ResourceFilter {
 
+	@Override
 	public boolean accept(XMLEvent xmlEvent) {
 		return false;
 	}
 
+	@Override
 	public void destroy() {
 	}
 
+	@Override
 	public void doFilter(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			FilterChain filterChain)
@@ -62,6 +65,7 @@ public class CDIPortletFilter
 		filterChain.doFilter(actionRequest, actionResponse);
 	}
 
+	@Override
 	public void doFilter(
 			RenderRequest renderRequest, RenderResponse renderResponse,
 			FilterChain filterChain)
@@ -79,6 +83,7 @@ public class CDIPortletFilter
 		filterChain.doFilter(renderRequest, renderResponse);
 	}
 
+	@Override
 	public void doFilter(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse,
 			FilterChain filterChain)
@@ -97,6 +102,7 @@ public class CDIPortletFilter
 		filterChain.doFilter(resourceRequest, resourceResponse);
 	}
 
+	@Override
 	public void init(FilterConfig filterConfig) {
 	}
 

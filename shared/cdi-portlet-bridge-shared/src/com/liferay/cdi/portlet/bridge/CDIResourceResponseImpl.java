@@ -37,88 +37,109 @@ public class CDIResourceResponseImpl extends CDIResourceResponse {
 		_httpServletResponseAdapter = httpServletResponseAdapter;
 	}
 
+	@Override
 	public void addCookie(Cookie cookie) {
 		_httpServletResponseAdapter.addCookie(cookie);
 	}
 
+	@Override
 	public void addDateHeader(String name, long value) {
 		_httpServletResponseAdapter.addDateHeader(name, value);
 	}
 
+	@Override
 	public void addHeader(String name, String value) {
 		_httpServletResponseAdapter.addHeader(name, value);
 	}
 
+	@Override
 	public void addIntHeader(String name, int value) {
 		_httpServletResponseAdapter.addIntHeader(name, value);
 	}
 
+	@Override
 	public boolean containsHeader(String name) {
 		return _httpServletResponseAdapter.containsHeader(name);
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public String encodeRedirectUrl(String url) {
 		return _httpServletResponseAdapter.encodeRedirectUrl(url);
 	}
 
+	@Override
 	public String encodeRedirectURL(String url) {
 		return _httpServletResponseAdapter.encodeRedirectURL(url);
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public String encodeUrl(String url) {
 		return _httpServletResponseAdapter.encodeUrl(url);
 	}
 
+	@Override
 	public String getHeader(String name) {
 		return _httpServletResponseAdapter.getHeader(name);
 	}
 
+	@Override
 	public Collection<String> getHeaderNames() {
 		return _httpServletResponseAdapter.getHeaderNames();
 	}
 
+	@Override
 	public Collection<String> getHeaders(String name) {
 		return _httpServletResponseAdapter.getHeaders(name);
 	}
 
+	@Override
 	public ServletOutputStream getOutputStream() throws IOException {
 		return _httpServletResponseAdapter.getOutputStream();
 	}
 
+	@Override
 	public int getStatus() {
 		return _httpServletResponseAdapter.getStatus();
 	}
 
+	@Override
 	public void sendError(int status) throws IOException {
 		_httpServletResponseAdapter.sendError(status);
 	}
 
+	@Override
 	public void sendError(int status, String message) throws IOException {
 		_httpServletResponseAdapter.sendError(status, message);
 	}
 
+	@Override
 	public void sendRedirect(String location) throws IOException {
 		_httpServletResponseAdapter.sendRedirect(location);
 	}
 
+	@Override
 	public void setDateHeader(String name, long value) {
 		_httpServletResponseAdapter.setDateHeader(name, value);
 	}
 
+	@Override
 	public void setHeader(String name, String value) {
 		_httpServletResponseAdapter.setHeader(name, value);
 	}
 
+	@Override
 	public void setIntHeader(String name, int value) {
 		_httpServletResponseAdapter.setIntHeader(name, value);
 	}
 
+	@Override
 	public void setStatus(int status) {
 		_httpServletResponseAdapter.setStatus(status);
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public void setStatus(int status, String message) {
 		_httpServletResponseAdapter.setStatus(status, message);

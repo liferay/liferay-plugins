@@ -29,46 +29,57 @@ public class PortletSessionWrapper implements PortletSession {
 		_portletSession = portletSession;
 	}
 
+	@Override
 	public Object getAttribute(String name) {
 		return _portletSession.getAttribute(name);
 	}
 
+	@Override
 	public Object getAttribute(String name, int value) {
 		return _portletSession.getAttribute(name, value);
 	}
 
+	@Override
 	public Map<String, Object> getAttributeMap() {
 		return _portletSession.getAttributeMap();
 	}
 
+	@Override
 	public Map<String, Object> getAttributeMap(int scope) {
 		return _portletSession.getAttributeMap(scope);
 	}
 
+	@Override
 	public Enumeration<String> getAttributeNames() {
 		return _portletSession.getAttributeNames();
 	}
 
+	@Override
 	public Enumeration<String> getAttributeNames(int scope) {
 		return _portletSession.getAttributeNames(scope);
 	}
 
+	@Override
 	public long getCreationTime() {
 		return _portletSession.getCreationTime();
 	}
 
+	@Override
 	public String getId() {
 		return _portletSession.getId();
 	}
 
+	@Override
 	public long getLastAccessedTime() {
 		return _portletSession.getLastAccessedTime();
 	}
 
+	@Override
 	public int getMaxInactiveInterval() {
 		return _portletSession.getMaxInactiveInterval();
 	}
 
+	@Override
 	public PortletContext getPortletContext() {
 		return _portletSession.getPortletContext();
 	}
@@ -77,30 +88,37 @@ public class PortletSessionWrapper implements PortletSession {
 		return _portletSession;
 	}
 
+	@Override
 	public void invalidate() {
 		_portletSession.invalidate();
 	}
 
+	@Override
 	public boolean isNew() {
 		return _portletSession.isNew();
 	}
 
+	@Override
 	public void removeAttribute(String name) {
 		_portletSession.removeAttribute(name);
 	}
 
+	@Override
 	public void removeAttribute(String name, int value) {
 		_portletSession.removeAttribute(name, value);
 	}
 
+	@Override
 	public void setAttribute(String name, Object value) {
 		_portletSession.setAttribute(name, value);
 	}
 
+	@Override
 	public void setAttribute(String name, Object value, int scope) {
 		_portletSession.setAttribute(name, value, scope);
 	}
 
+	@Override
 	public void setMaxInactiveInterval(int maxInactiveInterval) {
 		_portletSession.setMaxInactiveInterval(maxInactiveInterval);
 	}
