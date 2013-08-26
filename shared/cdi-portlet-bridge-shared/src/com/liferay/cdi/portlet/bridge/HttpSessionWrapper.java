@@ -28,14 +28,17 @@ public class HttpSessionWrapper implements HttpSession {
 		_httpSession = httpSession;
 	}
 
+	@Override
 	public Object getAttribute(String name) {
 		return _httpSession.getAttribute(name);
 	}
 
+	@Override
 	public Enumeration<String> getAttributeNames() {
 		return _httpSession.getAttributeNames();
 	}
 
+	@Override
 	public long getCreationTime() {
 		return _httpSession.getCreationTime();
 	}
@@ -44,60 +47,74 @@ public class HttpSessionWrapper implements HttpSession {
 		return _httpSession;
 	}
 
+	@Override
 	public String getId() {
 		return _httpSession.getId();
 	}
 
+	@Override
 	public long getLastAccessedTime() {
 		return _httpSession.getLastAccessedTime();
 	}
 
+	@Override
 	public int getMaxInactiveInterval() {
 		return _httpSession.getMaxInactiveInterval();
 	}
 
+	@Override
 	public ServletContext getServletContext() {
 		return _httpSession.getServletContext();
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public javax.servlet.http.HttpSessionContext getSessionContext() {
 		return _httpSession.getSessionContext();
 	}
 
+	@Override
 	public Object getValue(String name) {
 		return _httpSession.getAttribute(name);
 	}
 
+	@Override
 	@SuppressWarnings("deprecation")
 	public String[] getValueNames() {
 		return _httpSession.getValueNames();
 	}
 
+	@Override
 	public void invalidate() {
 		_httpSession.invalidate();
 	}
 
+	@Override
 	public boolean isNew() {
 		return _httpSession.isNew();
 	}
 
+	@Override
 	public void putValue(String name, Object value) {
 		_httpSession.setAttribute(name, value);
 	}
 
+	@Override
 	public void removeAttribute(String name) {
 		_httpSession.removeAttribute(name);
 	}
 
+	@Override
 	public void removeValue(String name) {
 		_httpSession.removeAttribute(name);
 	}
 
+	@Override
 	public void setAttribute(String name, Object value) {
 		_httpSession.setAttribute(name, value);
 	}
 
+	@Override
 	public void setMaxInactiveInterval(int maxInactiveInterval) {
 		_httpSession.setMaxInactiveInterval(maxInactiveInterval);
 	}

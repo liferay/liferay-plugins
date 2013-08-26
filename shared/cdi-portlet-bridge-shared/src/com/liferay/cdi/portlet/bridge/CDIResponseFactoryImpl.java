@@ -26,6 +26,7 @@ import javax.portlet.ResourceResponse;
  */
 public class CDIResponseFactoryImpl implements CDIResponseFactory {
 
+	@Override
 	public CDIActionResponse getCDIActionResponse(
 		ActionResponse actionResponse, Locale locale) {
 
@@ -36,6 +37,7 @@ public class CDIResponseFactoryImpl implements CDIResponseFactory {
 			actionResponse, httpServletResponseAdapter);
 	}
 
+	@Override
 	public CDIEventResponse getCDIEventResponse(
 		EventResponse eventResponse, Locale locale) {
 
@@ -46,6 +48,7 @@ public class CDIResponseFactoryImpl implements CDIResponseFactory {
 			eventResponse, httpServletResponseAdapter);
 	}
 
+	@Override
 	public CDIRenderResponse getCDIRenderResponse(
 		RenderResponse renderResponse, Locale locale) {
 
@@ -56,6 +59,7 @@ public class CDIResponseFactoryImpl implements CDIResponseFactory {
 			renderResponse, httpServletResponseAdapter);
 	}
 
+	@Override
 	public CDIResourceResponse getCDIResourceResponse(
 		ResourceResponse resourceResponse, Locale locale) {
 

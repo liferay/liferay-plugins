@@ -51,26 +51,32 @@ public class HttpServletRequestAdapterImpl
 		_portletRequest = portletRequest;
 	}
 
+	@Override
 	public boolean authenticate(HttpServletResponse httpServletResponse) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public AsyncContext getAsyncContext() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Object getAttribute(String name) {
 		return _portletRequest.getAttribute(name);
 	}
 
+	@Override
 	public Enumeration<String> getAttributeNames() {
 		return _portletRequest.getAttributeNames();
 	}
 
+	@Override
 	public String getAuthType() {
 		return _portletRequest.getAuthType();
 	}
 
+	@Override
 	public String getCharacterEncoding() {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
@@ -82,6 +88,7 @@ public class HttpServletRequestAdapterImpl
 		return clientDataRequest.getCharacterEncoding();
 	}
 
+	@Override
 	public int getContentLength() {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
@@ -93,6 +100,7 @@ public class HttpServletRequestAdapterImpl
 		return clientDataRequest.getContentLength();
 	}
 
+	@Override
 	public String getContentType() {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
@@ -104,34 +112,42 @@ public class HttpServletRequestAdapterImpl
 		return clientDataRequest.getContentType();
 	}
 
+	@Override
 	public String getContextPath() {
 		return _portletRequest.getContextPath();
 	}
 
+	@Override
 	public Cookie[] getCookies() {
 		return _portletRequest.getCookies();
 	}
 
+	@Override
 	public long getDateHeader(String name) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public DispatcherType getDispatcherType() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getHeader(String name) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Enumeration<String> getHeaderNames() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Enumeration<String> getHeaders(String name) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public ServletInputStream getInputStream() {
 		if (_servletInputStream == null) {
 			if (!(_portletRequest instanceof ClientDataRequest)) {
@@ -148,32 +164,39 @@ public class HttpServletRequestAdapterImpl
 		return _servletInputStream;
 	}
 
+	@Override
 	public int getIntHeader(String name) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getLocalAddr() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Locale getLocale() {
 		return _portletRequest.getLocale();
 	}
 
+	@Override
 	public Enumeration<Locale> getLocales() {
 		return _portletRequest.getLocales();
 	}
 
+	@Override
 	public String getLocalName() {
 		Locale locale = _portletRequest.getLocale();
 
 		return locale.getDisplayName();
 	}
 
+	@Override
 	public int getLocalPort() {
 		return _portletRequest.getServerPort();
 	}
 
+	@Override
 	public String getMethod() {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
@@ -185,50 +208,62 @@ public class HttpServletRequestAdapterImpl
 		return clientDataRequest.getMethod();
 	}
 
+	@Override
 	public String getParameter(String name) {
 		return _portletRequest.getParameter(name);
 	}
 
+	@Override
 	public Map<String, String[]> getParameterMap() {
 		return _portletRequest.getParameterMap();
 	}
 
+	@Override
 	public Enumeration<String> getParameterNames() {
 		return _portletRequest.getParameterNames();
 	}
 
+	@Override
 	public String[] getParameterValues(String name) {
 		return _portletRequest.getParameterValues(name);
 	}
 
+	@Override
 	public Part getPart(String name) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public Collection<Part> getParts() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getPathInfo() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getPathTranslated() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public PortletRequest getPortletRequest() {
 		return _portletRequest;
 	}
 
+	@Override
 	public String getProtocol() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getQueryString() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public BufferedReader getReader() throws IOException {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
 			throw new UnsupportedOperationException();
@@ -240,62 +275,77 @@ public class HttpServletRequestAdapterImpl
 		return clientDataRequest.getReader();
 	}
 
+	@Override
 	public String getRealPath(String path) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getRemoteAddr() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getRemoteHost() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public int getRemotePort() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getRemoteUser() {
 		return _portletRequest.getRemoteUser();
 	}
 
+	@Override
 	public RequestDispatcher getRequestDispatcher(String path) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getRequestedSessionId() {
 		return _portletRequest.getRequestedSessionId();
 	}
 
+	@Override
 	public String getRequestURI() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public StringBuffer getRequestURL() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getScheme() {
 		return _portletRequest.getScheme();
 	}
 
+	@Override
 	public String getServerName() {
 		return _portletRequest.getServerName();
 	}
 
+	@Override
 	public int getServerPort() {
 		return _portletRequest.getServerPort();
 	}
 
+	@Override
 	public ServletContext getServletContext() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public String getServletPath() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public HttpSession getSession() {
 		if (_portletSession == null) {
 			_portletSession = new CDISessionImpl(
@@ -305,6 +355,7 @@ public class HttpServletRequestAdapterImpl
 		return _portletSession;
 	}
 
+	@Override
 	public HttpSession getSession(boolean create) {
 		if (_portletSession == null) {
 			PortletSession portletSession = _portletRequest.getPortletSession(
@@ -318,58 +369,72 @@ public class HttpServletRequestAdapterImpl
 		return _portletSession;
 	}
 
+	@Override
 	public Principal getUserPrincipal() {
 		return _portletRequest.getUserPrincipal();
 	}
 
+	@Override
 	public boolean isAsyncStarted() {
 		return false;
 	}
 
+	@Override
 	public boolean isAsyncSupported() {
 		return false;
 	}
 
+	@Override
 	public boolean isRequestedSessionIdFromCookie() {
 		return false;
 	}
 
+	@Override
 	public boolean isRequestedSessionIdFromUrl() {
 		return false;
 	}
 
+	@Override
 	public boolean isRequestedSessionIdFromURL() {
 		return false;
 	}
 
+	@Override
 	public boolean isRequestedSessionIdValid() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public boolean isSecure() {
 		return _portletRequest.isSecure();
 	}
 
+	@Override
 	public boolean isUserInRole(String role) {
 		return _portletRequest.isUserInRole(role);
 	}
 
+	@Override
 	public void login(String username, String password) {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void logout() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public void removeAttribute(String name) {
 		_portletRequest.removeAttribute(name);
 	}
 
+	@Override
 	public void setAttribute(String name, Object value) {
 		_portletRequest.setAttribute(name, value);
 	}
 
+	@Override
 	public void setCharacterEncoding(String encoding)
 		throws UnsupportedEncodingException {
 
@@ -383,10 +448,12 @@ public class HttpServletRequestAdapterImpl
 		clientDataRequest.setCharacterEncoding(encoding);
 	}
 
+	@Override
 	public AsyncContext startAsync() {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
 	public AsyncContext startAsync(
 		ServletRequest servletRequest, ServletResponse servletResponse) {
 
