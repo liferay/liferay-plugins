@@ -164,6 +164,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 			SocialActivitySet activitySet = null;
 
+			boolean comment = false;
+
 			if ((activity.getType() == _ACTIVITY_KEY_ADD_COMMENT) ||
 				(activity.getType() ==
 					SocialActivityConstants.TYPE_ADD_COMMENT)) {
@@ -172,6 +174,8 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getClassNameId(), activity.getClassPK(),
 						activity.getType());
+
+				comment = true;
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_PAGE) {
 				activitySet =
@@ -180,7 +184,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 						activity.getClassPK(), activity.getType());
 			}
 
-			if ((activitySet != null) && !isExpired(activitySet)) {
+			if ((activitySet != null) && !isExpired(activitySet, comment)) {
 				return activitySet.getActivitySetId();
 			}
 		}

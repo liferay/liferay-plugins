@@ -53,7 +53,7 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 						activity.getClassPK(), activity.getType());
 			}
 
-			if ((activitySet != null) && !isExpired(activitySet)) {
+			if ((activitySet != null) && !isExpired(activitySet, false)) {
 				return activitySet.getActivitySetId();
 			}
 		}

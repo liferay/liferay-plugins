@@ -43,6 +43,8 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 		try {
 			SocialActivitySet activitySet = null;
 
+			boolean comment = false;
+
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
@@ -54,6 +56,8 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getClassNameId(), activity.getClassPK(),
 						activity.getType());
+
+				comment = true;
 			}
 			else if (activity.getType() == _ACTIVITY_KEY_UPDATE_ENTRY) {
 				activitySet =
@@ -62,7 +66,7 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 						activity.getClassPK(), activity.getType());
 			}
 
-			if ((activitySet != null) && !isExpired(activitySet)) {
+			if ((activitySet != null) && !isExpired(activitySet, comment)) {
 				return activitySet.getActivitySetId();
 			}
 		}
