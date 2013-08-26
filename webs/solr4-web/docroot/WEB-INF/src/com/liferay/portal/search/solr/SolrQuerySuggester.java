@@ -212,13 +212,13 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 			SearchContext searchContext, int max, String input)
 		throws SearchException {
 
-		Set<WeightedWord> suggestionsSet = suggestKeywords(
+		TreeSet<WeightedWord> suggestionsSet = suggestKeywords(
 			searchContext, input);
 
 		max = Math.min(max, suggestionsSet.size());
 
 		Iterator<WeightedWord> descendingIterator =
-			((TreeSet<WeightedWord>)suggestionsSet).descendingIterator();
+			suggestionsSet.descendingIterator();
 
 		List<String> suggestionsList = new ArrayList<String>(max);
 
@@ -244,7 +244,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		return suggestionsList;
 	}
 
-	protected Set<WeightedWord> suggestKeywords(
+	protected TreeSet<WeightedWord> suggestKeywords(
 			SearchContext searchContext, String input)
 		throws SearchException {
 
@@ -264,7 +264,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 			int numResults = solrDocumentList.size();
 
-			Set<WeightedWord> sortedWords = new TreeSet<WeightedWord>();
+			TreeSet<WeightedWord> sortedWords = new TreeSet<WeightedWord>();
 
 			Map<String, WeightedWord> weightedWordMap =
 				new HashMap<String, WeightedWord>();
@@ -326,7 +326,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 	private static float _INFINITE_WEIGHT = 100f;
 
-	private static int _MAX_QUERY_RESULTS = 10000;
+	private static int _MAX_QUERY_RESULTS = 500;
 
 	private float _distanceThreshold;
 	private NGramQueryBuilder _nGramQueryBuilder;
