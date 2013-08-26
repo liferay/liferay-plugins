@@ -45,8 +45,9 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 	public void updateActivitySet(long activityId)
 		throws PortalException, SystemException {
 
-		SocialActivity activity =
-			SocialActivityLocalServiceUtil.fetchSocialActivity(activityId);
+		com.liferay.so.activities.model.SocialActivity activity =
+			com.liferay.so.activities.service.SocialActivityLocalServiceUtil.
+				fetchSocialActivity(activityId);
 
 		if ((activity == null) || (activity.getActivitySetId() > 0)) {
 			return;

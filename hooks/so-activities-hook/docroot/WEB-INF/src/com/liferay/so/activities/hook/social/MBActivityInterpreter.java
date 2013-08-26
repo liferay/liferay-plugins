@@ -205,14 +205,16 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 		throws Exception {
 
 		if (activitySet.getType() == _ACTIVITY_KEY_REPLY_MESSAGE) {
-			List<SocialActivity> activities =
+			List<com.liferay.so.activities.model.SocialActivity> activities =
 				SocialActivityLocalServiceUtil.getActivitySetActivities(
 					activitySet.getActivitySetId(), 0, 1);
 
-			SocialActivity activity = activities.get(0);
+			com.liferay.so.activities.model.SocialActivity activity =
+				activities.get(0);
 
 			return getTitleArguments(
-				groupName, activity, link, title, serviceContext);
+				groupName, activity.getPortalSocialActivity(), link, title,
+				serviceContext);
 		}
 
 		return super.getTitleArguments(
