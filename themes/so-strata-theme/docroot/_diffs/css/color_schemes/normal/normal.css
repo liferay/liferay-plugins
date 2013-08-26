@@ -477,10 +477,8 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 		}
 	}
 
-	&.focus {
-		.search-controls {
-			display: block;
-		}
+	&.focus .search-controls {
+		display: block;
 	}
 }
 
@@ -508,10 +506,8 @@ div#navigation {
 			visibility: hidden;
 		}
 
-		&:hover {
-			.edit-portrait {
-				visibility: visible;
-			}
+		&:hover .edit-portrait {
+			visibility: visible;
 		}
 	}
 
@@ -1707,12 +1703,14 @@ div#navigation {
 		border-bottom-width: 0;
 	}
 
-	.contacts-profile .lfr-contact-grid-item {
-		padding-top: 20px;
-	}
+	.contacts-profile {
+		.lfr-contact-grid-item {
+			padding-top: 20px;
+		}
 
-	.contacts-profile .user-information-column-1 {
-		float: none;
+		.user-information-column-1 {
+			float: none;
+		}
 	}
 
 	.lfr-app-column-view .contacts-profile .lfr-contact-grid-item {
