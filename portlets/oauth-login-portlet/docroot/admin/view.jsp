@@ -16,4 +16,58 @@
 
 <%@ include file="/admin/init.jsp" %>
 
-This is the <b>Admin Portlet</b> portlet in View mode.
+<portlet:renderURL var="editOAuthConnectionURL">
+	<portlet:param name="mvcPath" value="/admin/edit_oauth_connection.jsp" />
+	<portlet:param name="redirect" value="<%= currentURL %>" />
+</portlet:renderURL>
+
+<aui:button-row>
+	<aui:button href="<%= editOAuthConnectionURL %>" value="add-oauth-connection" />
+</aui:button-row>
+
+<liferay-ui:search-container
+	emptyResultsMessage="there-are-no-oauth-connection"
+>
+
+	<liferay-ui:search-container-results
+		results="<%= OAuthConnectionLocalServiceUtil.getOAuthConnections(searchContainer.getStart(), searchContainer.getEnd()) %>"
+		total="<%= OAuthConnectionLocalServiceUtil.getOAuthConnectionsCount() %>"
+	/>
+
+	<liferay-ui:search-container-row
+		className="com.liferay.oauthlogin.model.OAuthConnection"
+		modelVar="oAuthConnection"
+	>
+
+		<portlet:renderURL var="rowURL">
+			<portlet:param name="mvcPath" value="/admin/edit_oauth_connection.jsp" />
+			<portlet:param name="oAuthConnectionId" value="<%= String.valueOf(oAuthConnection.getOAuthConnectionId()) %>" />
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+		</portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="id"
+			value="<%= String.valueOf(oAuthConnection.getOAuthConnectionId()) %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="name"
+			value="<%= oAuthConnection.getName() %>"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="enabled"
+			value="<%= String.valueOf(oAuthConnection.getEnabled()) %>"
+		/>
+
+		<liferay-ui:search-container-column-jsp
+			align="right"
+			path="/admin/oauth_connection_action.jsp"
+		/>
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>
