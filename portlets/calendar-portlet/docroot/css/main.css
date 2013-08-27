@@ -123,6 +123,12 @@
 
 .calendar-event-answer {
 	font-weight: bold;
+
+	&.calendar-event-answer-false, &.calendar-event-answer-false:hover {
+		color: #555;
+		cursor: default;
+		text-decoration: none;
+	}
 }
 
 .calendar-portlet-availability {

@@ -46,9 +46,9 @@
 						<td>
 							<a class="calendar-event-answer calendar-event-answer-{acceptLinkEnabled}" data-status="{workflowStatus.STATUS_APPROVED}" href="javascript:void(0);"><liferay-ui:message key="yes" /></a>
 							&mdash;
-							<a class="calendar-event-answer" data-enabled="{maybeLinkEnabled}" data-status="{workflowStatus.STATUS_MAYBE}" href="javascript:void(0);"><liferay-ui:message key="maybe" /></a>
+							<a class="calendar-event-answer calendar-event-answer-{maybeLinkEnabled}" data-status="{workflowStatus.STATUS_MAYBE}" href="javascript:void(0);"><liferay-ui:message key="maybe" /></a>
 							&mdash;
-							<a class="calendar-event-answer" data-enabled="{declineLinkEnabled}" data-status="{workflowStatus.STATUS_DECLINE}" href="javascript:void(0);"><liferay-ui:message key="no" /></a>
+							<a class="calendar-event-answer calendar-event-answer-{declineLinkEnabled}" data-status="{workflowStatus.STATUS_DENIED}" href="javascript:void(0);"><liferay-ui:message key="no" /></a>
 						</td>
 					</tr>
 				</tpl>

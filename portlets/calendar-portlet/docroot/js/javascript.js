@@ -418,7 +418,7 @@ AUI.add(
 			},
 
 			getStatusLabel: function(statusId) {
-				var status = String.valueOf(statusId);
+				var status = STR_BLANK;
 
 				if (CalendarWorkflow.STATUS_APPROVED === statusId) {
 					status = Liferay.Language.get('accepted');
@@ -1678,10 +1678,11 @@ AUI.add(
 
 						var schedulerEvent = instance.get('event');
 
-						var enabledLink = currentTarget.hasClass('calendar-event-answer-true');
-						var statusData = currentTarget.getData('status');
+						var linkEnabled = A.DataType.Boolean.parse(currentTarget.hasClass('calendar-event-answer-true'));
 
-						if (schedulerEvent && A.DataType.Boolean.parse(enabledLink) && instance._hasWorkflowStatusPermission(schedulerEvent, statusData)) {
+						var statusData = Lang.toInt(currentTarget.getData('status'));
+
+						if (schedulerEvent && linkEnabled) {
 							CalendarUtil.invokeTransition(schedulerEvent, statusData);
 						}
 					},
