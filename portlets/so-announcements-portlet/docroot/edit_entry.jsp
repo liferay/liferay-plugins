@@ -281,10 +281,6 @@ if (entry == null) {
 							}
 							else {
 								Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
-
-								var topWindow = Liferay.Util.getTop();
-
-								topWindow.document.location.reload();
 							}
 						}
 					}
