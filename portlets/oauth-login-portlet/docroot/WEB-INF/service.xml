@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.oauthlogin">
+	<author>Andy Yang</author>
+	<namespace>OAuthLogin</namespace>
+	<entity name="OAuthConnection" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="oAuthConnectionId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="modifiedDate" type="Date" />
+
+		<!-- Other fields -->
+
+		<column name="enabled" type="boolean" />
+		<column name="name" type="String" />
+		<column name="description" type="String" />
+		<column name="iconId" type="long" />
+		<column name="oAuthVersion" type="int" />
+		<column name="key" type="String" />
+		<column name="secret" type="String" />
+		<column name="scope" type="String" />
+		<column name="authorizeURL" type="String" />
+		<column name="accessTokenURL" type="String" />
+		<column name="accessTokenVerb" type="int" />
+		<column name="accessTokenExtractorType" type="int" />
+		<column name="requestTokenURL" type="String" />
+		<column name="requestTokenVerb" type="int" />
+		<column name="signatureServiceType" type="int" />
+		<column name="redirectURL" type="String" />
+		<column name="socialAccountIdURL" type="String" />
+		<column name="socialAccountIdURLVerb" type="int" />
+		<column name="socialAccountIdField" type="String" />
+		<column name="socialAccountIdType" type="int" />
+		<column name="socialAccountIdScript" type="String" />
+
+		<!-- Order -->
+
+		<order by="desc">
+			<order-column name="createDate" />
+		</order>
+
+		<!--  Finder methods -->
+
+		<finder name="Enabled" return-type="Collection">
+			<finder-column name="enabled" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Image" />
+	</entity>
+	<exceptions>
+		<exception>AccessTokenURL</exception>
+		<exception>AuthorizeURL</exception>
+		<exception>RedirectURL</exception>
+		<exception>RequestTokenURL</exception>
+		<exception>OAuthConnectionName</exception>
+		<exception>SocialAccountIdURL</exception>
+	</exceptions>
+</service-builder>

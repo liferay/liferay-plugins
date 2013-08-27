@@ -1,0 +1,1 @@
+create index IX_C7A76E83 on OAuthLogin_OAuthConnection (enabled);

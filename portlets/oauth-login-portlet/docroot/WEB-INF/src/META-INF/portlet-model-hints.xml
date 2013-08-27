@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<hint-collection name="URL">
+		<hint name="max-length">4000</hint>
+	</hint-collection>
+	<model name="com.liferay.oauthlogin.model.OAuthConnection">
+		<field name="oAuthConnectionId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="enabled" type="boolean" />
+		<field name="name" type="String">
+			<validator name="required" />
+		</field>
+		<field name="description" type="String">
+			<hint name="max-length">300</hint>
+		</field>
+		<field name="iconId" type="long" />
+		<field name="oAuthVersion" type="int" />
+		<field name="key" type="String" />
+		<field name="secret" type="String" />
+		<field name="scope" type="String" />
+		<field name="authorizeURL" type="String">
+			<hint-collection name="URL" />
+			<validator name="url" />
+		</field>
+		<field name="accessTokenURL" type="String">
+			<hint-collection name="URL" />
+			<validator name="url" />
+		</field>
+		<field name="accessTokenVerb" type="int" />
+		<field name="accessTokenExtractorType" type="int" />
+		<field name="requestTokenURL" type="String">
+			<hint-collection name="URL" />
+			<validator name="url" />
+		</field>
+		<field name="requestTokenVerb" type="int" />
+		<field name="signatureServiceType" type="int" />
+		<field name="redirectURL" type="String">
+			<hint-collection name="URL" />
+			<validator name="url" />
+		</field>
+		<field name="socialAccountIdURL" type="String">
+			<hint-collection name="URL" />
+			<validator name="url" />
+		</field>
+		<field name="socialAccountIdURLVerb" type="int" />
+		<field name="socialAccountIdField" type="String" />
+		<field name="socialAccountIdType" type="int" />
+		<field name="socialAccountIdScript" type="String" />
+	</model>
+</model-hints>
