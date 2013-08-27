@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.oauthlogin.model.OAuthConnection" />
+	<class name="com.liferay.oauthlogin.model.impl.OAuthConnectionImpl" table="OAuthLogin_OAuthConnection">
+		<cache usage="read-write" />
+		<id name="oAuthConnectionId" type="long" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor">
+			<generator class="assigned" />
+		</id>
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+		<property name="enabled" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="iconId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="oAuthVersion" access="com.liferay.portal.dao.orm.hibernate.CamelCasePropertyAccessor" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="key" type="com.liferay.portal.dao.orm.hibernate.StringType" column="key_" />
+		<property name="secret" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="scope" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="authorizeURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="accessTokenURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="accessTokenVerb" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="accessTokenExtractorType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="requestTokenURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="requestTokenVerb" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="signatureServiceType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="redirectURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="socialAccountIdURL" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="socialAccountIdURLVerb" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="socialAccountIdField" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="socialAccountIdType" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="socialAccountIdScript" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>
