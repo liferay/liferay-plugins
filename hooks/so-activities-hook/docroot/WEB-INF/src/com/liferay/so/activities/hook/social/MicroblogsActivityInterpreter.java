@@ -192,23 +192,33 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 				activitySetId, groupId, userId, displayDate, serviceContext));
 		sb.append("<div class=\"activity-action\">");
 
-		if (activityType == _ACTIVITY_KEY_ADD_ENTRY) {
-			MicroblogsEntry microblogsEntry =
-				MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(classPK);
-
-			sb.append(
-				MicroblogsUtil.getTaggedContent(
-					microblogsEntry, serviceContext));
-		}
-		else if (activityType == _ACTIVITY_KEY_REPLY_ENTRY) {
+		if (activityType == _ACTIVITY_KEY_REPLY_ENTRY) {
 			sb.append(
 				serviceContext.translate("commented-on-a-microblog-entry"));
 		}
-		else if (activityType == _ACTIVITY_KEY_REPOST_ENTRY) {
-			sb.append(serviceContext.translate("reposted-a-microblog-entry"));
-		}
 		else {
-			return StringPool.BLANK;
+			MicroblogsEntry microblogsEntry =
+				MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(classPK);
+
+			if (microblogsEntry == null) {
+				return StringPool.BLANK;
+			}
+
+			if (activityType == _ACTIVITY_KEY_ADD_ENTRY) {
+				sb.append(
+					MicroblogsUtil.getTaggedContent(
+						microblogsEntry, serviceContext));
+			}
+			else if (activityType == _ACTIVITY_KEY_REPOST_ENTRY) {
+				sb.append(
+					serviceContext.translate(
+						"reposted-a-microblog-entry-from-x",
+						getUserName(
+							microblogsEntry.getUserId(), serviceContext)));
+			}
+			else {
+				return StringPool.BLANK;
+			}
 		}
 
 		sb.append("</div>");
@@ -224,7 +234,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 		return getTitle(
 			0, activity.getClassPK(), activity.getGroupId(),
 			activity.getUserId(), activity.getCreateDate(), activity.getType(),
-			serviceContext );
+			serviceContext);
 	}
 
 	@Override
