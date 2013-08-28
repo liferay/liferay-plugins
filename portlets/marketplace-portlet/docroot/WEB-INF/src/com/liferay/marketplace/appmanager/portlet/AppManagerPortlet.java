@@ -68,61 +68,65 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AppManagerPortlet extends MVCPortlet {
 
-	public void installLocalApp(
+	public void installApp(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
 
-		String fileName = GetterUtil.getString(
-			uploadPortletRequest.getFileName("file"));
+		String installMethod = ParamUtil.getString(
+			uploadPortletRequest, "installMethod");
 
-		File file = uploadPortletRequest.getFile("file");
+		if (installMethod.equals("local")) {
+			String fileName = GetterUtil.getString(
+				uploadPortletRequest.getFileName("file"));
 
-		byte[] bytes = FileUtil.getBytes(file);
+			File file = uploadPortletRequest.getFile("file");
 
-		if (ArrayUtil.isEmpty(bytes)) {
-			SessionErrors.add(actionRequest, UploadException.class.getName());
+			byte[] bytes = FileUtil.getBytes(file);
+
+			if (ArrayUtil.isEmpty(bytes)) {
+				SessionErrors.add(
+					actionRequest, UploadException.class.getName());
+			}
+			else {
+				String deployDir = PrefsPropsUtil.getString(
+					PropsKeys.AUTO_DEPLOY_DEPLOY_DIR);
+
+				FileUtil.copyFile(
+					file.toString(), deployDir + StringPool.SLASH + fileName);
+
+				SessionMessages.add(actionRequest, "pluginUploaded");
+			}
 		}
 		else {
-			String deployDir = PrefsPropsUtil.getString(
-				PropsKeys.AUTO_DEPLOY_DEPLOY_DIR);
+			try {
+				String url = ParamUtil.getString(uploadPortletRequest, "url");
 
-			FileUtil.copyFile(
-				file.toString(), deployDir + StringPool.SLASH + fileName);
+				URL urlObj = new URL(url);
 
-			SessionMessages.add(actionRequest, "pluginUploaded");
+				String host = urlObj.getHost();
+
+				if (host.endsWith("sf.net") ||
+					host.endsWith("sourceforge.net")) {
+
+					doInstallSourceForgeApp(
+						urlObj.getPath(), uploadPortletRequest, actionRequest);
+				}
+				else {
+					doInstallRemoteApp(
+						url, uploadPortletRequest, actionRequest, true);
+				}
+			}
+			catch (MalformedURLException murle) {
+				SessionErrors.add(actionRequest, "invalidUrl", murle);
+			}
 		}
 
 		String redirect = ParamUtil.getString(uploadPortletRequest, "redirect");
 
 		actionResponse.sendRedirect(redirect);
-	}
-
-	public void installRemoteApp(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		try {
-			String url = ParamUtil.getString(actionRequest, "url");
-
-			URL urlObj = new URL(url);
-
-			String host = urlObj.getHost();
-
-			if (host.endsWith("sf.net") || host.endsWith("sourceforge.net")) {
-				doInstallSourceForgeApp(urlObj.getPath(), actionRequest);
-			}
-			else {
-				doInstallRemoteApp(url, actionRequest, true);
-			}
-		}
-		catch (MalformedURLException murle) {
-			SessionErrors.add(actionRequest, "invalidUrl", murle);
-		}
-
-		sendRedirect(actionRequest, actionResponse);
 	}
 
 	public void uninstallApp(
@@ -248,13 +252,14 @@ public class AppManagerPortlet extends MVCPortlet {
 	}
 
 	protected int doInstallRemoteApp(
-			String url, ActionRequest actionRequest, boolean failOnError)
+			String url, UploadPortletRequest uploadPortletRequest,
+			ActionRequest actionRequest, boolean failOnError)
 		throws Exception {
 
 		int responseCode = HttpServletResponse.SC_OK;
 
 		String deploymentContext = ParamUtil.getString(
-			actionRequest, "deploymentContext");
+			uploadPortletRequest, "deploymentContext");
 
 		try {
 			String fileName = null;
@@ -280,7 +285,7 @@ public class AppManagerPortlet extends MVCPortlet {
 			options.setPost(false);
 
 			String progressId = ParamUtil.getString(
-				actionRequest, Constants.PROGRESS_ID);
+				uploadPortletRequest, Constants.PROGRESS_ID);
 
 			options.setProgressId(progressId);
 
@@ -324,7 +329,8 @@ public class AppManagerPortlet extends MVCPortlet {
 	}
 
 	protected void doInstallSourceForgeApp(
-			String path, ActionRequest actionRequest)
+			String path, UploadPortletRequest uploadPortletRequest,
+			ActionRequest actionRequest)
 		throws Exception {
 
 		String[] sourceForgeMirrors = PropsUtil.getArray(
@@ -341,7 +347,7 @@ public class AppManagerPortlet extends MVCPortlet {
 				}
 
 				int responseCode = doInstallRemoteApp(
-					url, actionRequest, failOnError);
+					url, uploadPortletRequest, actionRequest, failOnError);
 
 				if (responseCode == HttpServletResponse.SC_OK) {
 					return;

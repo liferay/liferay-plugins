@@ -14,39 +14,48 @@
  */
 --%>
 
-<div class="row">
-	<div class="span6">
-		<portlet:actionURL name="installLocalApp" var="installLocalAppURL" />
+<portlet:actionURL name="installApp" var="installAppURL" />
 
-		<aui:form action="<%= installLocalAppURL %>" enctype="multipart/form-data" method="post" name="fm1">
-			<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
+<aui:form action="<%= installAppURL %>" cssClass="install-apps" enctype="multipart/form-data" method="post" name="fm1">
+	<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
 
-			<aui:fieldset label="file-upload">
-				<liferay-ui:success key="pluginUploaded" message="the-plugin-was-uploaded-successfully-and-is-now-being-installed" />
+	<aui:fieldset label="install">
+		<liferay-ui:success key="pluginUploaded" message="the-plugin-was-uploaded-successfully-and-is-now-being-installed" />
 
-				<liferay-ui:error exception="<%= UploadException.class %>" message="an-unexpected-error-occurred-while-uploading-your-file" />
+		<liferay-ui:success key="pluginDownloaded" message="the-plugin-was-downloaded-successfully-and-is-now-being-installed" />
 
-				<aui:input label="lpkg-or-war-file" name="file" type="file" />
+		<div class="install-method local">
+			<liferay-ui:error exception="<%= UploadException.class %>" message="an-unexpected-error-occurred-while-uploading-your-file" />
 
-				<aui:button type="submit" value="install" />
-			</aui:fieldset>
-		</aui:form>
-	</div>
-	<div class="span6">
-		<portlet:actionURL name="installRemoteApp" var="installRemoteAppURL" />
+			<aui:input label="file-upload-lpkg-or-war-file" name="installMethod" type="radio" value="local" />
 
-		<aui:form action="<%= installRemoteAppURL %>" method="post" name="fm2">
-			<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
+			<aui:input cssClass="file-input" label="" name="file" type="file" />
+		</div>
 
-			<aui:fieldset label="url">
-				<liferay-ui:success key="pluginDownloaded" message="the-plugin-was-downloaded-successfully-and-is-now-being-installed" />
+		<div class="install-method remote">
+			<liferay-ui:error key="invalidUrl" message="please-enter-a-valid-url" />
 
-				<liferay-ui:error key="invalidUrl" message="please-enter-a-valid-url" />
+			<aui:input label="url" name="installMethod" type="radio" value="remote" />
 
-				<aui:input name="url" type="text" />
+			<aui:input cssClass="file-input" label="" name="url" type="text" />
+		</div>
 
-				<aui:button type="submit" value="install" />
-			</aui:fieldset>
-		</aui:form>
-	</div>
-</div>
+		<aui:button type="submit" value="install" />
+	</aui:fieldset>
+</aui:form>
+
+<aui:script use="aui-base">
+	A.one('.marketplace-portlet .install-method.local .file-input').on(
+		'change',
+		function(event) {
+			A.one('.marketplace-portlet .install-method.local input[type=radio]').attr('checked', true);
+		}
+	);
+
+	A.one('.marketplace-portlet .install-method.remote .file-input').on(
+		'click',
+		function(event) {
+			A.one('.marketplace-portlet .install-method.remote input[type=radio]').attr('checked', true);
+		}
+	);
+</aui:script>

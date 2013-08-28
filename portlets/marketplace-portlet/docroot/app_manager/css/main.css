@@ -96,4 +96,8 @@
 			}
 		}
 	}
+
+	.install-apps .control-group {
+		margin-left: 20px;
+	}
 }
