@@ -322,6 +322,32 @@ portletURL.setParameter("tabs1", tabs1);
 	activities.delegate(
 		'click',
 		function(event) {
+			var currentTarget = event.currentTarget;
+
+			var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcPath" value="/activities/repost_microblogs_entry.jsp" /><portlet:param name="mvcPath" value="/activities/repost_microblogs_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';
+
+			uri = Liferay.Util.addParams('microblogsEntryId=' + currentTarget.getAttribute('data-microblogsEntryId'), uri) || uri;
+
+			Liferay.Util.openWindow(
+				{
+					cache: false,
+					dialog: {
+						align: Liferay.Util.Window.ALIGN_CENTER,
+						modal: true,
+						width: 400
+					},
+					id: '<portlet:namespace />Dialog',
+					title: '<%= UnicodeLanguageUtil.get(pageContext, "repost") %>',
+					uri: uri
+				}
+			);
+		},
+		'.repost a'
+	);
+
+	activities.delegate(
+		'click',
+		function(event) {
 			Liferay.SO.Activities.toggleEntry(event, '<portlet:namespace />');
 		},
 		'.toggle-entry'

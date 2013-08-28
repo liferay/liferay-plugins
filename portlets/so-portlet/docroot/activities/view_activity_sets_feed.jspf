@@ -83,6 +83,12 @@ for (SocialActivitySet activitySet : results) {
 					}
 					%>
 
+					<c:if test="<%= className.equals(MicroblogsEntry.class.getName()) && (activitySet.getUserId() != user.getUserId()) %>">
+						<span class="repost action">
+							<a data-microblogsEntryId="<%= classPK %>" href="javascript:;"><liferay-ui:message key="repost" /></a>
+						</span>
+					</c:if>
+
 					<span class="view-comments action">
 						<a data-activitySetId="<%= activitySet.getActivitySetId() %>" href="javascript:;"><%= commentsCount > 0 ? commentsCount : StringPool.BLANK %> <liferay-ui:message key='<%= commentsCount > 1 ? "comments" : "comment" %>' /></a>
 					</span>
