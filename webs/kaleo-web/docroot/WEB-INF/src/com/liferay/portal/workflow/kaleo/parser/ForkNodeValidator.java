@@ -25,11 +25,14 @@ import com.liferay.portal.workflow.kaleo.definition.Transition;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Michael C. Han
  * @author Marcellus Tavares
+ * @author Norbert Kocsis
  */
 public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 
@@ -51,28 +54,70 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 		traverse(fork);
 	}
 
-	protected List<Node> getUnvisitedTargetNodes(
-		List<Node> targetNodes, Collection<Transition> outgoingTransitions) {
+	protected List<Node> getUnvisitedNodes(
+		List<Node> nodes, Collection<Transition> transitions, boolean target) {
 
-		List<Node> unvisitedTargetNodes = new ArrayList<Node>();
+		List<Node> unvisitedNodes = new ArrayList<Node>();
 
-		for (Transition outgoingTransition : outgoingTransitions) {
-			Node targetNode = outgoingTransition.getTargetNode();
+		for (Transition transition : transitions) {
+			Node node = transition.getSourceNode();
 
-			if (!targetNodes.contains(targetNode)) {
-				unvisitedTargetNodes.add(targetNode);
+			if (target) {
+				node = transition.getTargetNode();
+			}
+
+			if (!nodes.contains(node)) {
+				unvisitedNodes.add(node);
 			}
 		}
 
-		return unvisitedTargetNodes;
+		return unvisitedNodes;
+	}
+
+	protected List<Node> reverseTraverse(
+		Fork fork, Join join, Map<Join, Fork> joinForkMap) {
+
+		List<Node> sourceNodes = new ArrayList<Node>();
+
+		sourceNodes.add(join);
+
+		for (Transition transition : join.getIncomingTransitions()) {
+			sourceNodes.add(transition.getSourceNode());
+		}
+
+		for (int i = 1; i < sourceNodes.size(); i++) {
+			Node sourceNode = sourceNodes.get(i);
+
+			NodeType nodeType = sourceNode.getNodeType();
+
+			if (nodeType.equals(NodeType.FORK) &&
+				Validator.equals(fork, sourceNode)) {
+
+				continue;
+			}
+			else if (nodeType.equals(NodeType.JOIN) ||
+					 nodeType.equals(NodeType.JOIN_XOR)) {
+
+				sourceNode = joinForkMap.get((Join)sourceNode);
+
+				sourceNodes.set(i, sourceNode);
+			}
+
+			List<Node> unvisitedSourceNodes = getUnvisitedNodes(
+				sourceNodes, sourceNode.getIncomingTransitions(), false);
+
+			sourceNodes.addAll(unvisitedSourceNodes);
+		}
+
+		return sourceNodes;
 	}
 
 	protected Join traverse(Fork fork) throws WorkflowException {
 		Join join = null;
 
-		int joinIncomingTransitions = fork.getOutgoingTransitionsCount();
-
 		List<Node> targetNodes = new ArrayList<Node>();
+
+		Map<Join, Fork> joinForkMap = new HashMap<Join, Fork>();
 
 		targetNodes.add(fork);
 
@@ -88,12 +133,10 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 			if (nodeType.equals(NodeType.FORK)) {
 				Join localJoin = traverse((Fork)targetNode);
 
-				List<Node> unvisitedTargetNodes = getUnvisitedTargetNodes(
-					targetNodes, localJoin.getOutgoingTransitionsList());
+				joinForkMap.put(localJoin, (Fork)targetNode);
 
-				if (unvisitedTargetNodes.size() > 1) {
-					joinIncomingTransitions += unvisitedTargetNodes.size() - 1;
-				}
+				List<Node> unvisitedTargetNodes = getUnvisitedNodes(
+					targetNodes, localJoin.getOutgoingTransitionsList(), true);
 
 				targetNodes.addAll(unvisitedTargetNodes);
 			}
@@ -110,12 +153,8 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 				}
 			}
 			else {
-				List<Node> unvisitedTargetNodes = getUnvisitedTargetNodes(
-					targetNodes, targetNode.getOutgoingTransitionsList());
-
-				if (unvisitedTargetNodes.size() > 1) {
-					joinIncomingTransitions += unvisitedTargetNodes.size() - 1;
-				}
+				List<Node> unvisitedTargetNodes = getUnvisitedNodes(
+					targetNodes, targetNode.getOutgoingTransitionsList(), true);
 
 				targetNodes.addAll(unvisitedTargetNodes);
 			}
@@ -125,12 +164,15 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 			throw new WorkflowException(
 				"No matching join found for fork " + fork.getName());
 		}
-		else if (join.getIncomingTransitionsCount() !=
-					joinIncomingTransitions) {
+
+		List<Node> sourceNodes = reverseTraverse(fork, join, joinForkMap);
+
+		if ((sourceNodes.size() != targetNodes.size()) ||
+			!sourceNodes.containsAll(targetNodes)) {
 
 			throw new WorkflowException(
-				"Incorrect number of incoming transitions for join " +
-					join.getName());
+				"There are errors between fork " + fork.getName() +
+					" and join " + join.getName());
 		}
 
 		return join;
