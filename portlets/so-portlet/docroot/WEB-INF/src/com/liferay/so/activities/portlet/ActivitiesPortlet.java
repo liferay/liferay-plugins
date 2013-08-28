@@ -160,7 +160,10 @@ public class ActivitiesPortlet extends MVCPortlet {
 			actionRequest, ActionRequest.ACTION_NAME);
 
 		try {
-			if (actionName.equals("updateComment")) {
+			if (actionName.equals("repostMicroblogsEntry")) {
+				repostMicroblogsEntry(actionRequest, actionResponse);
+			}
+			else if (actionName.equals("updateComment")) {
 				String className = ParamUtil.getString(
 					actionRequest, "className");
 
@@ -175,6 +178,31 @@ public class ActivitiesPortlet extends MVCPortlet {
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
+	}
+
+	public void repostMicroblogsEntry(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long microblogsEntryId = ParamUtil.getLong(
+			actionRequest, "microblogsEntryId");
+
+		MicroblogsEntry microblogsEntry =
+			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
+				microblogsEntryId);
+
+		ServiceContext serviceContext =
+			ServiceContextFactory.getInstance(
+				MicroblogsEntry.class.getName(), actionRequest);
+
+		MicroblogsEntryServiceUtil.addMicroblogsEntry(
+			themeDisplay.getUserId(), microblogsEntry.getContent(),
+			MicroblogsEntryConstants.TYPE_REPOST, microblogsEntry.getUserId(),
+			microblogsEntry.getMicroblogsEntryId(),
+			microblogsEntry.getSocialRelationType(), serviceContext);
 	}
 
 	@Override
