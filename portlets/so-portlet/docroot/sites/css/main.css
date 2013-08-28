@@ -135,12 +135,12 @@
 			}
 
 			.favorite a {
-				background: url(@portal_ctx@/sites/images/star_empty.png) no-repeat 0 50%;
+				background: url(../images/star_empty.png) no-repeat 0 50%;
 				float: right;
 			}
 
 			.unfavorite a {
-				background: url(@portal_ctx@/sites/images/star.png) no-repeat 0 50%;
+				background: url(../images/star.png) no-repeat 0 50%;
 				float: right;
 			}
 
