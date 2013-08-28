@@ -180,6 +180,29 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			activitySet.getClassPK(), activitySet.getType(), serviceContext);
 	}
 
+	@Override
+	protected String getLink(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		return wrapLink(
+			getLinkURL(
+				activity.getClassName(), activity.getClassPK(), serviceContext),
+			serviceContext.translate("view-microblogs"));
+	}
+
+	@Override
+	protected String getLink(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		return wrapLink(
+			getLinkURL(
+				activitySet.getClassName(), activitySet.getClassPK(),
+				serviceContext),
+			serviceContext.translate("view-microblogs"));
+	}
+
 	protected String getTitle(
 			long activitySetId, long classPK, long groupId, long userId,
 			long displayDate, int activityType, ServiceContext serviceContext)
