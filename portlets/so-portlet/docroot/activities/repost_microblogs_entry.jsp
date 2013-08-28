@@ -62,7 +62,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 		</div>
 
 		<aui:button-row>
-			<aui:button onClick='<%= renderResponse.getNamespace() + "saveEntry();" %>' value="post" />
+			<aui:button onClick='<%= renderResponse.getNamespace() + "saveEntry();" %>' value="repost" />
 
 			<aui:button onClick='<%= renderResponse.getNamespace() + "closeEntry();" %>' value="cancel" />
 		</aui:button-row>
@@ -84,7 +84,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 			{
 				after: {
 					success: function(event, id, obj) {
-						Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
+						<portlet:namespace />closeEntry();
 
 						var topWindow = Liferay.Util.getTop();
 
