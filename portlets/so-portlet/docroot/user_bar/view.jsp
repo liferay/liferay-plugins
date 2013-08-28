@@ -156,6 +156,7 @@ catch (NoSuchRoleException nsre) {
 	<aui:script use="aui-base,liferay-so-user-menu">
 		var userBar = A.one('#<portlet:namespace/>userBar');
 
+		var sitesPortlet = userBar.one('.so-portlet-sites .portlet-body');
 		var searchInput = userBar.one('.search input');
 
 		var goToString = '<liferay-ui:message key="go-to" /> ' + '\u25BE';
@@ -165,16 +166,16 @@ catch (NoSuchRoleException nsre) {
 		searchInput.on(
 			'click',
 			function(event) {
-				searchInput.set('value', '');
+				if (searchInput.get('value') == goToString) {
+					searchInput.set('value', '');
+				}
 			}
 		);
 
-		searchInput.on(
-			'blur',
+		sitesPortlet.on(
+			'mouseleave',
 			function(event) {
-				var sitesPortlet = userBar.one('.so-portlet-sites .portlet-body');
-
-				if (!sitesPortlet.hasClass('search-focus')) {
+				if (!sitesPortlet.hasClass('search-focus') || (searchInput.get('value') == "")) {
 					searchInput.set('value', goToString);
 				}
 			}
