@@ -114,11 +114,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 		throws Exception {
 
 		CalendarBooking calendarBooking =
-			calendarBookingPersistence.fetchByPrimaryKey(calendarBookingId);
-
-		if (calendarBooking == null) {
-			return null;
-		}
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
 		CalendarPermission.check(
 			getPermissionChecker(), calendarBooking.getCalendar(),
