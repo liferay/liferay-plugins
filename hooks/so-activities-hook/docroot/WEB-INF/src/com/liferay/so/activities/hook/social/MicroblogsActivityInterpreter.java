@@ -129,6 +129,16 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			return StringPool.BLANK;
 		}
 
+		if (microblogsEntry.getReceiverMicroblogsEntryId() > 0) {
+			microblogsEntry =
+				MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
+					microblogsEntry.getReceiverMicroblogsEntryId());
+
+			if (microblogsEntry == null) {
+				return StringPool.BLANK;
+			}
+		}
+
 		StringBundler sb = new StringBundler(12);
 
 		sb.append("<div class=\"activity-body-container\">");
