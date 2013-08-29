@@ -26,7 +26,7 @@ Calendar calendar = (Calendar)row.getObject();
 	<c:if test="<%= CalendarPermission.contains(permissionChecker, calendar, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="backURL" value="<%= currentURL %>" />
 			<portlet:param name="calendarId" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
 			<portlet:param name="calendarResourceId" value="<%= String.valueOf(calendar.getCalendarResourceId()) %>" />
 		</portlet:renderURL>
