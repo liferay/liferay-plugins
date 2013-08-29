@@ -34,9 +34,10 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			ActionResponse actionResponse)
 		throws Exception {
 
-		String tabs2 = ParamUtil.getString(actionRequest, "tabs2");
+		String configurationTab = ParamUtil.getString(
+			actionRequest, "configurationTab");
 
-		if (tabs2.equals("user-settings")) {
+		if (configurationTab.equals("user-settings")) {
 			updateUserSettings(actionRequest, actionResponse);
 		}
 

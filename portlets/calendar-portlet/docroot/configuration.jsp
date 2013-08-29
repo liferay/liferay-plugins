@@ -17,13 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs2 = ParamUtil.getString(request, "tabs2", "user-settings");
+String configurationTab = ParamUtil.getString(request, "configurationTab", "user-settings");
 
 String redirect = ParamUtil.getString(request, "redirect");
 %>
 
 <liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
-	<portlet:param name="tabs2" value="<%= tabs2 %>" />
+	<portlet:param name="configurationTab" value="<%= configurationTab %>" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 </liferay-portlet:renderURL>
 
@@ -31,25 +31,25 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 <aui:form action="<%= actionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
+	<aui:input name="configurationTab" type="hidden" value="<%= configurationTab %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 
 	<%
-	String tabs2Names = "user-settings";
+	String configurationTabNames = "user-settings";
 
 	if (PortalUtil.isRSSFeedsEnabled()) {
-		tabs2Names += ",rss";
+		configurationTabNames += ",rss";
 	}
 	%>
 
 	<liferay-ui:tabs
-		names="<%= tabs2Names %>"
-		param="tabs2"
+		names="<%= configurationTabNames %>"
+		param="configurationTab"
 		url="<%= portletURL %>"
 	/>
 
 	<c:choose>
-		<c:when test='<%= tabs2.equals("user-settings") %>'>
+		<c:when test='<%= configurationTab.equals("user-settings") %>'>
 			<aui:fieldset>
 				<aui:select label="time-format" name="isoTimeFormat">
 					<aui:option label="am-pm" selected="<%= !isoTimeFormat %>" value="<%= false %>" />
@@ -80,7 +80,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 				<aui:input label="use-global-timezone" name="usePortalTimeZone" type="checkbox" value="<%= usePortalTimeZone %>" />
 			</aui:fieldset>
 		</c:when>
-		<c:when test='<%= tabs2.equals("rss") %>'>
+		<c:when test='<%= configurationTab.equals("rss") %>'>
 			<liferay-ui:rss-settings
 				delta="<%= rssDelta %>"
 				displayStyle="<%= rssDisplayStyle %>"

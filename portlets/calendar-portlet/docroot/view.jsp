@@ -17,23 +17,26 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "calendar");
+String resourceCalendarTab = ParamUtil.getString(request, "resourceCalendarTab", "calendar");
 
 PortletURL portletURL = renderResponse.createRenderURL();
 
-portletURL.setParameter("tabs1", tabs1);
+portletURL.setParameter("resourceCalendarTab", resourceCalendarTab);
 %>
 
-<liferay-ui:tabs
-	names='<%= themeDisplay.isSignedIn() ? "calendar,resources" : "calendar" %>'
-	url="<%= portletURL.toString() %>"
-/>
+<c:if test="<%= themeDisplay.isSignedIn() %>">
+	<liferay-ui:tabs
+		names='<%= "calendar,resources" %>'
+		param="resourceCalendarTab"
+		url="<%= portletURL.toString() %>"
+	/>
+</c:if>
 
 <c:choose>
-	<c:when test='<%= tabs1.equals("calendar") %>'>
+	<c:when test='<%= resourceCalendarTab.equals("calendar") %>'>
 		<liferay-util:include page="/view_calendar.jsp" servletContext="<%= application %>" />
 	</c:when>
-	<c:when test='<%= tabs1.equals("resources") %>'>
+	<c:when test='<%= resourceCalendarTab.equals("resources") %>'>
 		<liferay-util:include page="/view_calendar_resources.jsp" servletContext="<%= application %>" />
 	</c:when>
 </c:choose>
