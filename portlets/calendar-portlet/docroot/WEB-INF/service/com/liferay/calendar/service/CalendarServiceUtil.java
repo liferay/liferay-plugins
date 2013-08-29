@@ -85,6 +85,11 @@ public class CalendarServiceUtil {
 		return getService().deleteCalendar(calendarId);
 	}
 
+	public static java.lang.String exportCalendar(long calendarId,
+		java.lang.String type) throws java.lang.Exception {
+		return getService().exportCalendar(calendarId, type);
+	}
+
 	public static com.liferay.calendar.model.Calendar fetchCalendar(
 		long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -97,6 +102,11 @@ public class CalendarServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getCalendar(calendarId);
+	}
+
+	public static void importCalendar(long calendarId, java.lang.String data,
+		java.lang.String type) throws java.lang.Exception {
+		getService().importCalendar(calendarId, data, type);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.Calendar> search(

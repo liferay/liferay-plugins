@@ -3731,6 +3731,10 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	private static final String _FINDER_COLUMN_G_C_D_CALENDARRESOURCEID_2 = "calendar.calendarResourceId = ? AND ";
 	private static final String _FINDER_COLUMN_G_C_D_DEFAULTCALENDAR_2 = "calendar.defaultCalendar = ?";
 
+	public CalendarPersistenceImpl() {
+		setModelClass(Calendar.class);
+	}
+
 	/**
 	 * Caches the calendar in the entity cache if it is enabled.
 	 *

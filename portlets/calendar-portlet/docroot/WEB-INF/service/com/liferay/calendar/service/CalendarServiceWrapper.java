@@ -79,6 +79,12 @@ public class CalendarServiceWrapper implements CalendarService,
 	}
 
 	@Override
+	public java.lang.String exportCalendar(long calendarId,
+		java.lang.String type) throws java.lang.Exception {
+		return _calendarService.exportCalendar(calendarId, type);
+	}
+
+	@Override
 	public com.liferay.calendar.model.Calendar fetchCalendar(long calendarId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -90,6 +96,12 @@ public class CalendarServiceWrapper implements CalendarService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _calendarService.getCalendar(calendarId);
+	}
+
+	@Override
+	public void importCalendar(long calendarId, java.lang.String data,
+		java.lang.String type) throws java.lang.Exception {
+		_calendarService.importCalendar(calendarId, data, type);
 	}
 
 	@Override

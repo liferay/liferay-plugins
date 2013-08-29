@@ -2328,6 +2328,10 @@ public class CalendarNotificationTemplatePersistenceImpl
 	private static final String _FINDER_COLUMN_C_NT_NTT_NOTIFICATIONTEMPLATETYPE_3 =
 		"(calendarNotificationTemplate.notificationTemplateType IS NULL OR calendarNotificationTemplate.notificationTemplateType = '')";
 
+	public CalendarNotificationTemplatePersistenceImpl() {
+		setModelClass(CalendarNotificationTemplate.class);
+	}
+
 	/**
 	 * Caches the calendar notification template in the entity cache if it is enabled.
 	 *

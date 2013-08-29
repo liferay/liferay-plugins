@@ -352,6 +352,11 @@ public class CalendarLocalServiceUtil {
 			enableRatings, serviceContext);
 	}
 
+	public static java.lang.String exportCalendar(long calendarId,
+		java.lang.String type) throws java.lang.Exception {
+		return getService().exportCalendar(calendarId, type);
+	}
+
 	public static java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
 		long groupId, long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -365,6 +370,11 @@ public class CalendarLocalServiceUtil {
 		return getService()
 				   .getCalendarResourceCalendars(groupId, calendarResourceId,
 			defaultCalendar);
+	}
+
+	public static void importCalendar(long calendarId, java.lang.String data,
+		java.lang.String type) throws java.lang.Exception {
+		getService().importCalendar(calendarId, data, type);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.Calendar> search(

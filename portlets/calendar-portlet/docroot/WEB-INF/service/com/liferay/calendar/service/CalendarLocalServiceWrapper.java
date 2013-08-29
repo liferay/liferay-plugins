@@ -366,6 +366,12 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	}
 
 	@Override
+	public java.lang.String exportCalendar(long calendarId,
+		java.lang.String type) throws java.lang.Exception {
+		return _calendarLocalService.exportCalendar(calendarId, type);
+	}
+
+	@Override
 	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
 		long groupId, long calendarResourceId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -379,6 +385,12 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarLocalService.getCalendarResourceCalendars(groupId,
 			calendarResourceId, defaultCalendar);
+	}
+
+	@Override
+	public void importCalendar(long calendarId, java.lang.String data,
+		java.lang.String type) throws java.lang.Exception {
+		_calendarLocalService.importCalendar(calendarId, data, type);
 	}
 
 	@Override

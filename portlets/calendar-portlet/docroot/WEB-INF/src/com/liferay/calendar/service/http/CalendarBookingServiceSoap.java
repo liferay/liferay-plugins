@@ -126,6 +126,22 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
+	public static java.lang.String exportCalendarBooking(
+		long calendarBookingId, java.lang.String type)
+		throws RemoteException {
+		try {
+			java.lang.String returnValue = CalendarBookingServiceUtil.exportCalendarBooking(calendarBookingId,
+					type);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.calendar.model.CalendarBookingSoap fetchCalendarBooking(
 		long calendarBookingId) throws RemoteException {
 		try {

@@ -109,6 +109,21 @@ public class CalendarServiceSoap {
 		}
 	}
 
+	public static java.lang.String exportCalendar(long calendarId,
+		java.lang.String type) throws RemoteException {
+		try {
+			java.lang.String returnValue = CalendarServiceUtil.exportCalendar(calendarId,
+					type);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.calendar.model.CalendarSoap fetchCalendar(
 		long calendarId) throws RemoteException {
 		try {
@@ -129,6 +144,18 @@ public class CalendarServiceSoap {
 			com.liferay.calendar.model.Calendar returnValue = CalendarServiceUtil.getCalendar(calendarId);
 
 			return com.liferay.calendar.model.CalendarSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void importCalendar(long calendarId, java.lang.String data,
+		java.lang.String type) throws RemoteException {
+		try {
+			CalendarServiceUtil.importCalendar(calendarId, data, type);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

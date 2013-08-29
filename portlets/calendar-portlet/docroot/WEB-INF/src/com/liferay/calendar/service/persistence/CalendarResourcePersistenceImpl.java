@@ -8587,6 +8587,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	private static final String _FINDER_COLUMN_C_N_A_NAME_3 = "(calendarResource.name IS NULL OR calendarResource.name LIKE '') AND ";
 	private static final String _FINDER_COLUMN_C_N_A_ACTIVE_2 = "calendarResource.active = ?";
 
+	public CalendarResourcePersistenceImpl() {
+		setModelClass(CalendarResource.class);
+	}
+
 	/**
 	 * Caches the calendar resource in the entity cache if it is enabled.
 	 *

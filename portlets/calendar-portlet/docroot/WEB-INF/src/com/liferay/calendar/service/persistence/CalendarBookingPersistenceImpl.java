@@ -4798,6 +4798,10 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	private static final String _FINDER_COLUMN_P_S_PARENTCALENDARBOOKINGID_2 = "calendarBooking.parentCalendarBookingId = ? AND ";
 	private static final String _FINDER_COLUMN_P_S_STATUS_2 = "calendarBooking.status = ?";
 
+	public CalendarBookingPersistenceImpl() {
+		setModelClass(CalendarBooking.class);
+	}
+
 	/**
 	 * Caches the calendar booking in the entity cache if it is enabled.
 	 *
