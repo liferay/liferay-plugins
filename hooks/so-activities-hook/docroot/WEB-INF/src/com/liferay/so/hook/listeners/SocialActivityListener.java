@@ -46,8 +46,14 @@ public class SocialActivityListener extends BaseModelListener<SocialActivity> {
 		throws ModelListenerException {
 
 		try {
-			SocialActivityLocalServiceUtil.deleteActivity(
-				activity.getActivityId());
+			com.liferay.so.activities.model.SocialActivity soActivity =
+				SocialActivityLocalServiceUtil.fetchSocialActivity(
+					activity.getActivityId());
+
+			if (soActivity != null) {
+				SocialActivityLocalServiceUtil.deleteActivity(
+					activity.getActivityId());
+			}
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
