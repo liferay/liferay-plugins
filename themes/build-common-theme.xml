@@ -12,9 +12,9 @@
 			newenvironment="true"
 		>
 			<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+			<arg value="sass.portal.common.dir=${app.server.portal.dir}/html/css/common" />
 			<arg value="sass.dir=/" />
 			<arg value="saas.docroot.dir=${basedir}/docroot" />
-			<arg value="sass.portal.common.dir=${app.server.portal.dir}/html/css/common" />
 		</java>
 	</target>
 
