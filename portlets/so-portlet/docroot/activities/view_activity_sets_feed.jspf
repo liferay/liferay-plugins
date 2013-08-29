@@ -59,48 +59,50 @@ for (SocialActivitySet activitySet : results) {
 			<%= activityFeedEntry.getBody() %>
 
 			<div class="activity-footer">
-				<div class="activity-footer-toolbar">
-					<c:if test="<%= Validator.isNotNull(activityFeedEntry.getLink()) %>">
-						<span class="action"><%= activityFeedEntry.getLink() %></span>
-					</c:if>
+				<c:if test="<%= !Validator.equals(activitySet.getClassName(), MBMessage.class.getName()) %>">
+					<div class="activity-footer-toolbar">
+						<c:if test="<%= Validator.isNotNull(activityFeedEntry.getLink()) %>">
+							<span class="action"><%= activityFeedEntry.getLink() %></span>
+						</c:if>
 
-					<%
-					int commentsCount = 0;
+						<%
+						int commentsCount = 0;
 
-					String className = activitySet.getClassName();
-					long classPK = activitySet.getClassPK();
+						String className = activitySet.getClassName();
+						long classPK = activitySet.getClassPK();
 
-					if ((activitySet.getActivityCount() > 1 ) && className.equals(DLFileEntry.class.getName())) {
-						className = SocialActivitySet.class.getName();
-						classPK = activitySet.getActivitySetId();
-					}
+						if ((activitySet.getActivityCount() > 1 ) && className.equals(DLFileEntry.class.getName())) {
+							className = SocialActivitySet.class.getName();
+							classPK = activitySet.getActivitySetId();
+						}
 
-					if (className.equals(MicroblogsEntry.class.getName())) {
-						commentsCount = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, classPK);
-					}
-					else {
-						commentsCount = MBMessageLocalServiceUtil.getDiscussionMessagesCount(className, classPK, WorkflowConstants.STATUS_APPROVED);
-					}
-					%>
+						if (className.equals(MicroblogsEntry.class.getName())) {
+							commentsCount = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, classPK);
+						}
+						else {
+							commentsCount = MBMessageLocalServiceUtil.getDiscussionMessagesCount(className, classPK, WorkflowConstants.STATUS_APPROVED);
+						}
+						%>
 
-					<c:if test="<%= className.equals(MicroblogsEntry.class.getName()) && (activitySet.getUserId() != user.getUserId()) %>">
-						<span class="repost action">
-							<a data-microblogsEntryId="<%= classPK %>" href="javascript:;"><liferay-ui:message key="repost" /></a>
+						<c:if test="<%= className.equals(MicroblogsEntry.class.getName()) && (activitySet.getUserId() != user.getUserId()) %>">
+							<span class="repost action">
+								<a data-microblogsEntryId="<%= classPK %>" href="javascript:;"><liferay-ui:message key="repost" /></a>
+							</span>
+						</c:if>
+
+						<span class="view-comments action">
+							<a data-activitySetId="<%= activitySet.getActivitySetId() %>" href="javascript:;"><%= commentsCount > 0 ? commentsCount : StringPool.BLANK %> <liferay-ui:message key='<%= commentsCount > 1 ? "comments" : "comment" %>' /></a>
 						</span>
-					</c:if>
 
-					<span class="view-comments action">
-						<a data-activitySetId="<%= activitySet.getActivitySetId() %>" href="javascript:;"><%= commentsCount > 0 ? commentsCount : StringPool.BLANK %> <liferay-ui:message key='<%= commentsCount > 1 ? "comments" : "comment" %>' /></a>
-					</span>
+						<span class="toggle action aui-helper-hidden">
+							<a class="toggle-entry" data-entryId="<%= activitySet.getActivitySetId() %>" href="javascript:;">
+								<span><liferay-ui:message key="view-more" /></span>
+							</a>
+						</span>
+					</div>
 
-					<span class="toggle action aui-helper-hidden">
-						<a class="toggle-entry" data-entryId="<%= activitySet.getActivitySetId() %>" href="javascript:;">
-							<span><liferay-ui:message key="view-more" /></span>
-						</a>
-					</span>
-				</div>
-
-				<%@ include file="/activities/view_comments.jspf" %>
+					<%@ include file="/activities/view_comments.jspf" %>
+				</c:if>
 			</div>
 		</div>
 	</div>
