@@ -24,10 +24,12 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("tabs1", tabs1);
 %>
 
-<liferay-ui:tabs
-	names='<%= themeDisplay.isSignedIn() ? "calendar,resources" : "calendar" %>'
-	url="<%= portletURL.toString() %>"
-/>
+<c:if test="<%= themeDisplay.isSignedIn() %>">
+	<liferay-ui:tabs
+		names="calendar,resources"
+		url="<%= portletURL.toString() %>"
+	/>
+</c:if>
 
 <c:choose>
 	<c:when test='<%= tabs1.equals("calendar") %>'>
