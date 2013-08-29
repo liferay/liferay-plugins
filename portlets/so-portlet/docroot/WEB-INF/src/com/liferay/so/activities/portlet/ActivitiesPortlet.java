@@ -336,7 +336,8 @@ public class ActivitiesPortlet extends MVCPortlet {
 			MicroblogsEntry microblogsEntry = null;
 
 			if (cmd.equals(Constants.DELETE)) {
-				MicroblogsEntryServiceUtil.deleteMicroblogsEntry(classPK);
+				MicroblogsEntryServiceUtil.deleteMicroblogsEntry(
+					microblogsEntryId);
 			}
 			else if (classPK > 0) {
 				MicroblogsEntry currentMicroblogsEntry =
