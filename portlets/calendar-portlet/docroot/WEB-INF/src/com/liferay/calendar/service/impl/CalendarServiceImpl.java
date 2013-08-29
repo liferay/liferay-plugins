@@ -58,6 +58,17 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	}
 
 	@Override
+	public String exportCalendar(long calendarId, String type)
+		throws Exception {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId,
+			ActionKeys.VIEW_BOOKING_DETAILS);
+
+		return calendarLocalService.exportCalendar(calendarId, type);
+	}
+
+	@Override
 	public Calendar deleteCalendar(long calendarId)
 		throws PortalException, SystemException {
 
@@ -91,6 +102,16 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 			getPermissionChecker(), calendarId, ActionKeys.VIEW);
 
 		return calendarLocalService.getCalendar(calendarId);
+	}
+
+	@Override
+	public void importCalendar(long calendarId, String data, String type)
+		throws Exception {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId, ActionKeys.UPDATE);
+
+		calendarLocalService.importCalendar(calendarId, data, type);
 	}
 
 	@Override

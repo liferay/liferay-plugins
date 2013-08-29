@@ -25,6 +25,9 @@ import com.liferay.calendar.recurrence.Recurrence;
 import com.liferay.calendar.recurrence.RecurrenceSerializer;
 import com.liferay.calendar.service.base.CalendarBookingLocalServiceBaseImpl;
 import com.liferay.calendar.social.CalendarActivityKeys;
+import com.liferay.calendar.util.CalendarDataFormat;
+import com.liferay.calendar.util.CalendarDataHandler;
+import com.liferay.calendar.util.CalendarDataHandlerFactory;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.NotificationUtil;
 import com.liferay.calendar.util.PortletPropsValues;
@@ -352,6 +355,19 @@ public class CalendarBookingLocalServiceImpl
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			calendarBookingLocalService.deleteCalendarBooking(calendarBooking);
 		}
+	}
+
+	@Override
+	public String exportCalendarBooking(long calendarBookingId, String type)
+		throws Exception {
+
+		CalendarDataFormat calendarDataFormat = CalendarDataFormat.parse(type);
+
+		CalendarDataHandler calendarDataHandler =
+			CalendarDataHandlerFactory.getCalendarDataHandler(
+				calendarDataFormat);
+
+		return calendarDataHandler.exportCalendarBooking(calendarBookingId);
 	}
 
 	@Override

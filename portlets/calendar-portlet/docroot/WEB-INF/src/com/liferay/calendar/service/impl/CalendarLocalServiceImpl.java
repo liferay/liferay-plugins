@@ -18,6 +18,9 @@ import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.RequiredCalendarException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.service.base.CalendarLocalServiceBaseImpl;
+import com.liferay.calendar.util.CalendarDataFormat;
+import com.liferay.calendar.util.CalendarDataHandler;
+import com.liferay.calendar.util.CalendarDataHandlerFactory;
 import com.liferay.calendar.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -137,6 +140,19 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 	}
 
 	@Override
+	public String exportCalendar(long calendarId, String type)
+		throws Exception {
+
+		CalendarDataFormat calendarDataFormat = CalendarDataFormat.parse(type);
+
+		CalendarDataHandler calendarDataHandler =
+			CalendarDataHandlerFactory.getCalendarDataHandler(
+				calendarDataFormat);
+
+		return calendarDataHandler.exportCalendar(calendarId);
+	}
+
+	@Override
 	public Calendar fetchCalendar(long calendarId) throws SystemException {
 		return calendarPersistence.fetchByPrimaryKey(calendarId);
 	}
@@ -163,6 +179,19 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		return calendarPersistence.findByG_C_D(
 			groupId, calendarResourceId, defaultCalendar);
+	}
+
+	@Override
+	public void importCalendar(long calendarId, String data, String type)
+		throws Exception {
+
+		CalendarDataFormat calendarDataFormat = CalendarDataFormat.parse(type);
+
+		CalendarDataHandler calendarDataHandler =
+			CalendarDataHandlerFactory.getCalendarDataHandler(
+				calendarDataFormat);
+
+		calendarDataHandler.importCalendar(calendarId, data);
 	}
 
 	@Override

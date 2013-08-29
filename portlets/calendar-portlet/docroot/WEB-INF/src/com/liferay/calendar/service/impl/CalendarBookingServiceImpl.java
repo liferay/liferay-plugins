@@ -110,6 +110,25 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	@Override
+	public String exportCalendarBooking(long calendarBookingId, String type)
+		throws Exception {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.fetchByPrimaryKey(calendarBookingId);
+
+		if (calendarBooking == null) {
+			return null;
+		}
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarBooking.getCalendar(),
+			ActionKeys.VIEW_BOOKING_DETAILS);
+
+		return calendarBookingLocalService.exportCalendarBooking(
+			calendarBookingId, type);
+	}
+
+	@Override
 	public CalendarBooking fetchCalendarBooking(long calendarBookingId)
 		throws PortalException, SystemException {
 
