@@ -224,7 +224,7 @@ if (recurrence != null) {
 							{
 								on: {
 									click: function() {
-										this.hide();
+										window.<portlet:namespace />recurrenceDialog.hide();
 									}
 								},
 								label: '<liferay-ui:message key="done" />'
