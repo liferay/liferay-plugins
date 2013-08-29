@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "general");
+String tabs2 = ParamUtil.getString(request, "tabs2", "general");
 
 String redirect = ParamUtil.getString(request, "redirect");
 
@@ -28,7 +28,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 <liferay-portlet:renderURL var="portletURL">
 	<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
-	<portlet:param name="tabs1" value="<%= tabs1 %>" />
+	<portlet:param name="tabs2" value="<%= tabs2 %>" />
 	<portlet:param name="redirect" value="<%= redirect %>" />
 	<portlet:param name="calendarId" value="<%= (calendar != null) ? String.valueOf(calendar.getCalendarId()) : StringPool.BLANK %>" />
 	<portlet:param name="calendarResourceId" value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>" />
@@ -36,14 +36,15 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 <liferay-ui:tabs
 	names='<%= (calendar == null) ? "general" : "general,notification-templates" %>'
+	param="tabs2"
 	url="<%= portletURL %>"
 />
 
 <c:choose>
-	<c:when test='<%= tabs1.equals("general") %>'>
+	<c:when test='<%= tabs2.equals("general") %>'>
 		<%@ include file="/edit_calendar_general.jspf" %>
 	</c:when>
-	<c:when test='<%= tabs1.equals("notification-templates") %>'>
+	<c:when test='<%= tabs2.equals("notification-templates") %>'>
 		<%@ include file="/edit_calendar_notification_templates.jspf" %>
 	</c:when>
 </c:choose>

@@ -15,12 +15,12 @@
 --%>
 
 <%
-String tabs2 = ParamUtil.getString(request, "tabs2", "invite-email");
+String tabs3 = ParamUtil.getString(request, "tabs3", "invite-email");
 
-String[] tabs2Values = StringUtil.split(tabs2, StringPool.DASH);
+String[] tabs3Values = StringUtil.split(tabs3, StringPool.DASH);
 
-NotificationTemplateType notificationTemplateType = NotificationTemplateType.parse(tabs2Values[0]);
-NotificationType notificationType = NotificationType.parse(tabs2Values[1]);
+NotificationTemplateType notificationTemplateType = NotificationTemplateType.parse(tabs3Values[0]);
+NotificationType notificationType = NotificationType.parse(tabs3Values[1]);
 
 CalendarNotificationTemplate calendarNotificationTemplate = CalendarNotificationTemplateLocalServiceUtil.fetchCalendarNotificationTemplate(calendar.getCalendarId(), notificationType, notificationTemplateType);
 
@@ -45,7 +45,7 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 
 <liferay-ui:tabs
 	names="invite-email,reminder-email"
-	param="tabs2"
+	param="tabs3"
 	url="<%= portletURL %>"
 />
 
@@ -54,8 +54,8 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 <aui:form action="<%= updateCalendarNotificationTemplateURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarNotificationTemplate();" %>'>
 	<aui:input name="mvcPath" type="hidden" value="/edit_calendar.jsp" />
 	<aui:input name="calendarNotificationTemplateId" type="hidden" value="<%= calendarNotificationTemplateId %>" />
-	<aui:input name="tabs1" type="hidden" value="<%= tabs1 %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
+	<aui:input name="tabs3" type="hidden" value="<%= tabs3 %>" />
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	<aui:input name="calendarId" type="hidden" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
 	<aui:input name="calendarResourceId" type="hidden" value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>" />
