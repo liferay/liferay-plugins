@@ -3,7 +3,8 @@ AUI.add(
 	function(A) {
 		var UserMenu = function(config) {
 			var hideClass = config.hideClass;
-			var hideOn = config.hideOn || 'mouseleave';
+			var hideOn = config.hideOn || 'close-menus';
+			var preventDefault = config.preventDefault || false;
 			var showClass = config.showClass;
 			var showOn = config.showOn || 'click';
 
@@ -11,8 +12,15 @@ AUI.add(
 
 			var target = A.one(config.target) || node;
 
+			A.on(
+				'close-menus',
+				function(event) {
+					target.fire('close-menus', event);
+				}
+			);
+
 			target.on(
-				hideOn,
+				'hideOn|close-menus',
 				function(event) {
 					if (hideClass && !target.hasClass(hideClass)) {
 						target.addClass(hideClass);
@@ -21,8 +29,13 @@ AUI.add(
 					if (showClass && target.hasClass(showClass)) {
 						target.removeClass(showClass);
 					}
+				}
+			);
 
-					trigger.blur();
+			target.on(
+				'click',
+				function(event) {
+					event.stopPropagation();
 				}
 			);
 
@@ -31,10 +44,19 @@ AUI.add(
 			trigger.on(
 				showOn,
 				function(event) {
-					event.preventDefault();
+					if (preventDefault) {
+						event.preventDefault();
+					}
+
+					A.fire('close-menus', event);
 
 					if (hideClass && target.hasClass(hideClass)) {
-						target.removeClass(hideClass);
+						setTimeout(
+							function() {
+								target.removeClass(hideClass);
+							},
+							10
+						);
 					}
 
 					if (showClass && !target.hasClass(showClass)) {

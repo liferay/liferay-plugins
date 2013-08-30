@@ -522,7 +522,7 @@ html > body.lfr-dockbar-pinned {
 		}
 	}
 
-	.so-portlet-sites .portlet-body.search-focus {
+	.search-focus .so-portlet-sites .portlet-body {
 		visibility: visible;
 		z-index: 3;
 
