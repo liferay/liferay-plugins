@@ -67,7 +67,7 @@
 		function(event) {
 			event.preventDefault();
 
-			if (confirm('<%= LanguageUtil.get(pageContext,"are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
+			if (confirm('<%= UnicodeLanguageUtil.get(pageContext,"are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
 				var entry = event.currentTarget.ancestor('.entry');
 
 				var entryId = entry.attr('data-entryId');
@@ -127,9 +127,7 @@
 	}
 
 	function <portlet:namespace />handleEntry(entryId) {
-		var A = AUI();
-
-		var entry = A.one('#<portlet:namespace />' + entryId);
+		var entry = AUI().one('#<portlet:namespace />' + entryId);
 
 		if (entry) {
 			var container = entry.get('parentNode');
