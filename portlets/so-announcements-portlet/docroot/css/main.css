@@ -10,10 +10,13 @@
 		margin-bottom: 1em;
 	}
 
-	.entry-item {
-		border-bottom: 1px solid #C8C9CA;
-		min-height: 45px;
-		padding: 1em;
+	.entry {
+		margin-bottom: 1.2em;
+		padding-bottom: 0.5em;
+
+		&.last {
+			padding-bottom: 0;
+		}
 	}
 
 	.user-portrait {
@@ -50,6 +53,11 @@
 		font-size: .9em;
 		line-height: .9em;
 		margin-left: 1em;
+	}
+
+	.entry-scope {
+		color: #555;
+		display: block;
 	}
 
 	.entry-body {
@@ -127,7 +135,7 @@
 		}
 	}
 
-	.read-entries {
+	.read-entries-container .entries {
 		margin-top: 1em;
 
 		.header {
@@ -159,26 +167,27 @@
 		}
 	}
 
-	.entry {
-		margin-bottom: 1.2em;
-		padding-bottom: 0.5em;
-
-		&.last {
-			padding-bottom: 0;
-		}
-	}
-
-	.entry-scope {
-		color: #555;
-		display: block;
-	}
-
 	.announcement-collapsed .entry-footer-toolbar {
 		border-top: 1px solid #EFEFEF;
 	}
 
-	.taglib-page-iterator {
+	.navigation {
 		margin-top: 1em;
+		text-align: center;
+
+		span {
+			margin: 0 1em;
+		}
+
+		.left-nav {
+			float: left;
+			margin-left: .5em;
+		}
+
+		.right-nav {
+			float: right;
+			margin-right: .5em;
+		}
 	}
 }
 
