@@ -78,7 +78,7 @@
 				</li>
 			</c:if>
 
-			<c:if test="<%= Validator.isNull(facebook) && Validator.isNull(mySpace) && Validator.isNull(twitter) %>">
+			<c:if test="<%= Validator.isNull(facebook) && Validator.isNull(twitter) %>">
 				<li class="action-field aui-component aui-settings-field lfr-token" data-sectionId="socialNetwork" data-title="<%= LanguageUtil.get(pageContext, "social-network") %>">
 					<div class="aui-settings-field-content">
 						<span class="settings-label"><liferay-ui:message key="social-network" /></span>

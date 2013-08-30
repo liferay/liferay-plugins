@@ -304,15 +304,14 @@ if (websites.isEmpty()) {
 
 <%
 String facebook = contact2.getFacebookSn();
-String mySpace = contact2.getMySpaceSn();
 String twitter = contact2.getTwitterSn();
 
-if (Validator.isNull(facebook) && Validator.isNull(mySpace) && Validator.isNull(twitter)) {
+if (Validator.isNull(facebook) && Validator.isNull(twitter)) {
 	incompleteProfile = true;
 }
 %>
 
-<c:if test="<%= showSocialNetwork && (Validator.isNotNull(facebook) || Validator.isNotNull(mySpace) || Validator.isNotNull(twitter)) %>">
+<c:if test="<%= showSocialNetwork && (Validator.isNotNull(facebook) || Validator.isNotNull(twitter)) %>">
 	<div class="section field-group lfr-user-social-network" data-sectionId="socialNetwork" data-title="<%= LanguageUtil.get(pageContext, "social-network") %>">
 		<h3><liferay-ui:message key="social-network" />:</h3>
 
@@ -322,14 +321,6 @@ if (Validator.isNull(facebook) && Validator.isNull(mySpace) && Validator.isNull(
 					<span class="property-type"><liferay-ui:message key="facebook" /></span>
 
 					<span class="property"><%= HtmlUtil.escape(facebook) %></span>
-				</li>
-			</c:if>
-
-			<c:if test="<%= Validator.isNotNull(mySpace) %>">
-				<li>
-					<span class="property-type"><liferay-ui:message key="myspace" /></span>
-
-					<span class="property"><%= HtmlUtil.escape(mySpace) %></span>
 				</li>
 			</c:if>
 
