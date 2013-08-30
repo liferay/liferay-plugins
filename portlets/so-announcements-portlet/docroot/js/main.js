@@ -13,9 +13,9 @@ AUI().use(
 			},
 
 			toggleEntry: function(event) {
-				var entryId = event.currentTarget.attr('data-entryId');
+				var entry = event.currentTarget.ancestor('.entry');
 
-				var entry = A.one('#' + instance._namespace + entryId);
+				var entryId = entry.attr('data-entryId');
 
 				var content = entry.one('.entry-content');
 				var contentContainer = entry.one('.entry-content-container');

@@ -45,7 +45,7 @@ if (entry.getPriority() > 0) {
 }
 %>
 
-<div class="entry<%= className %>" id="<portlet:namespace /><%= entry.getEntryId() %>">
+<div class="entry<%= className %>" data-entryId="<%= entry.getEntryId() %>" id="<portlet:namespace /><%= entry.getEntryId() %>">
 	<div class="user-portrait">
 		<span class="avatar">
 
