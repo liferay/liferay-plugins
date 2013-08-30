@@ -31,11 +31,22 @@
 	</div>
 </c:if>
 
+<div class="unread-entries-container" id="<portlet:namespace />unreadEntriesContainer"></div>
+
+<div class="read-entries-container" id="<portlet:namespace />readEntriesContainer"></div>
+
 <aui:script use="aui-base">
 	Liferay.Announcements.init(
 		{
 			namespace: '<portlet:namespace />',
 			viewEntriesURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/view_entries.jsp" /></portlet:renderURL>'
+		}
+	);
+
+	AUI().ready(
+		function() {
+			Liferay.Announcements.updateEntries(false, null);
+			Liferay.Announcements.updateEntries(true, null);
 		}
 	);
 
@@ -95,10 +106,12 @@
 			{
 				entryId : entryId,
 				value: <%= AnnouncementsFlagConstants.HIDDEN %>
+			},
+			function() {
+				Liferay.Announcements.updateEntries(false, null);
+				Liferay.Announcements.updateEntries(true, null);
 			}
 		);
-
-		Liferay.Portlet.refresh('#p_p_id<portlet:namespace />');
 	}
 
 	function <portlet:namespace />openWindow(url, title, modal, width) {
@@ -110,7 +123,8 @@
 					modal: modal,
 					on: {
 						close: function() {
-							Liferay.Portlet.refresh('#p_p_id<portlet:namespace />');
+							Liferay.Announcements.updateEntries(false, null);
+							Liferay.Announcements.updateEntries(true, null);
 						}
 					},
 					width: width
@@ -134,11 +148,13 @@
 					'/announcementsflag/delete-flag',
 					{
 						flagId: response.flagId
+					},
+					function() {
+						Liferay.Announcements.updateEntries(false, null);
+						Liferay.Announcements.updateEntries(true, null);
 					}
 				);
 			}
 		);
-
-		Liferay.Portlet.refresh('#p_p_id<portlet:namespace />');
 	}
 </aui:script>
