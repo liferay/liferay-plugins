@@ -52,6 +52,19 @@ AUI().use(
 				);
 			},
 
+			transitionEntry: function(id) {
+				var entry = A.one(id);
+
+				entry.transition(
+					{
+						opacity: {
+							duration: .5,
+							value: 0
+						}
+					}
+				);
+			},
+
 			updateEntries: function(readEntries, start) {
 				var instance = this;
 
