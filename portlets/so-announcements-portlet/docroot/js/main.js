@@ -5,10 +5,17 @@ AUI().use(
 		Liferay.namespace('Announcements');
 
 		Liferay.Announcements = {
-			toggleEntry: function(event, portletNamespace) {
+			init: function(config) {
+				var instance = this;
+
+				instance._namespace = config.namespace;
+				instance._viewEntriesURL = config.viewEntriesURL;
+			},
+
+			toggleEntry: function(event) {
 				var entryId = event.currentTarget.attr('data-entryId');
 
-				var entry = A.one('#' + portletNamespace + entryId);
+				var entry = A.one('#' + instance._namespace + entryId);
 
 				var content = entry.one('.entry-content');
 				var contentContainer = entry.one('.entry-content-container');
