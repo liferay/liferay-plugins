@@ -97,7 +97,8 @@
 										function() {
 											Liferay.Announcements.updateEntries(false, null);
 											Liferay.Announcements.updateEntries(true, null);
-										},200
+										},
+										200
 									);
 								}
 
@@ -143,7 +144,8 @@
 						else {
 							<portlet:namespace />unmarkEntry(entryId);
 						}
-					},200
+					},
+					200
 				);
 			}
 		}

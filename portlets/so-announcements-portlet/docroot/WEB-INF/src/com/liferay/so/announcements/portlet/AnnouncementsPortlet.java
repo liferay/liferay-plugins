@@ -64,9 +64,10 @@ public class AnnouncementsPortlet extends MVCPortlet {
 			jsonObject.put("success", true);
 		}
 		catch (Exception e) {
-			String message = "the-announcement-was-unable-to-be-deleted";
-
-			jsonObject.put("message", translate(actionRequest, message));
+			jsonObject.put(
+				"message",
+				translate(
+					actionRequest, "the-announcement-could-not-be-deleted"));
 			jsonObject.put("success", false);
 		}
 

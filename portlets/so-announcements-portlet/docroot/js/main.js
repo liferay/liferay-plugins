@@ -102,12 +102,13 @@ AUI().use(
 						node.plug(
 							A.Plugin.IO,
 							{
-							autoLoad: false
+								autoLoad: false
 							}
 						);
 					}
 
 					node.io.set('uri', url);
+
 					node.io.start();
 				}
 			}
