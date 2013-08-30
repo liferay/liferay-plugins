@@ -353,6 +353,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoDefinition> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
@@ -880,6 +884,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	public KaleoDefinition fetchByC_N_Last(long companyId, String name,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_N(companyId, name);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoDefinition> list = findByC_N(companyId, name, count - 1,
 				count, orderByComparator);
@@ -1437,6 +1445,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	public KaleoDefinition fetchByC_A_Last(long companyId, boolean active,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_A(companyId, active);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoDefinition> list = findByC_A(companyId, active, count - 1,
 				count, orderByComparator);
@@ -2304,6 +2316,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		throws SystemException {
 		int count = countByC_N_A(companyId, name, active);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoDefinition> list = findByC_N_A(companyId, name, active,
 				count - 1, count, orderByComparator);
 
@@ -2585,6 +2601,10 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 	private static final String _FINDER_COLUMN_C_N_A_NAME_2 = "kaleoDefinition.name = ? AND ";
 	private static final String _FINDER_COLUMN_C_N_A_NAME_3 = "(kaleoDefinition.name IS NULL OR kaleoDefinition.name = '') AND ";
 	private static final String _FINDER_COLUMN_C_N_A_ACTIVE_2 = "kaleoDefinition.active = ?";
+
+	public KaleoDefinitionPersistenceImpl() {
+		setModelClass(KaleoDefinition.class);
+	}
 
 	/**
 	 * Caches the kaleo definition in the entity cache if it is enabled.

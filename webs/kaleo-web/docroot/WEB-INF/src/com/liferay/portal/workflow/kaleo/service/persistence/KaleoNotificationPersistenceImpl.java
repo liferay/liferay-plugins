@@ -350,6 +350,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoNotification> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
@@ -847,6 +851,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoNotification> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1384,6 +1392,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKCN_KCPK(kaleoClassName, kaleoClassPK);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoNotification> list = findByKCN_KCPK(kaleoClassName,
 				kaleoClassPK, count - 1, count, orderByComparator);
@@ -2010,6 +2022,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 		int count = countByKCN_KCPK_ET(kaleoClassName, kaleoClassPK,
 				executionType);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoNotification> list = findByKCN_KCPK_ET(kaleoClassName,
 				kaleoClassPK, executionType, count - 1, count, orderByComparator);
 
@@ -2327,6 +2343,10 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_1 = "kaleoNotification.executionType IS NULL";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_2 = "kaleoNotification.executionType = ?";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3 = "(kaleoNotification.executionType IS NULL OR kaleoNotification.executionType = '')";
+
+	public KaleoNotificationPersistenceImpl() {
+		setModelClass(KaleoNotification.class);
+	}
 
 	/**
 	 * Caches the kaleo notification in the entity cache if it is enabled.

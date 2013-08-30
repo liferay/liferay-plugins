@@ -351,6 +351,10 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoInstance> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
@@ -845,6 +849,10 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 	public KaleoInstance fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoInstance> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1363,6 +1371,10 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		boolean completed, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKDI_C(kaleoDefinitionId, completed);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoInstance> list = findByKDI_C(kaleoDefinitionId, completed,
 				count - 1, count, orderByComparator);
@@ -1984,6 +1996,10 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		int count = countByC_KDN_KDV_CD(companyId, kaleoDefinitionName,
 				kaleoDefinitionVersion, completionDate);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoInstance> list = findByC_KDN_KDV_CD(companyId,
 				kaleoDefinitionName, kaleoDefinitionVersion, completionDate,
 				count - 1, count, orderByComparator);
@@ -2316,6 +2332,10 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 		"kaleoInstance.kaleoDefinitionVersion = ? AND ";
 	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_1 = "kaleoInstance.completionDate IS NULL";
 	private static final String _FINDER_COLUMN_C_KDN_KDV_CD_COMPLETIONDATE_2 = "kaleoInstance.completionDate = ?";
+
+	public KaleoInstancePersistenceImpl() {
+		setModelClass(KaleoInstance.class);
+	}
 
 	/**
 	 * Caches the kaleo instance in the entity cache if it is enabled.

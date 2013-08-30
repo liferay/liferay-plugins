@@ -345,6 +345,10 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoLog> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
@@ -837,6 +841,10 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoLog> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1333,6 +1341,10 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog fetchByKaleoInstanceId_Last(long kaleoInstanceId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoLog> list = findByKaleoInstanceId(kaleoInstanceId, count - 1,
 				count, orderByComparator);
@@ -1837,6 +1849,10 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		long kaleoTaskInstanceTokenId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoLog> list = findByKaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId,
 				count - 1, count, orderByComparator);
@@ -2367,6 +2383,10 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	public KaleoLog fetchByKITI_T_Last(long kaleoInstanceTokenId, String type,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKITI_T(kaleoInstanceTokenId, type);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoLog> list = findByKITI_T(kaleoInstanceTokenId, type,
 				count - 1, count, orderByComparator);
@@ -3012,6 +3032,10 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 		int count = countByKCN_KCPK_KITI_T(kaleoClassName, kaleoClassPK,
 				kaleoInstanceTokenId, type);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoLog> list = findByKCN_KCPK_KITI_T(kaleoClassName,
 				kaleoClassPK, kaleoInstanceTokenId, type, count - 1, count,
 				orderByComparator);
@@ -3344,6 +3368,10 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_1 = "kaleoLog.type IS NULL";
 	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_2 = "kaleoLog.type = ?";
 	private static final String _FINDER_COLUMN_KCN_KCPK_KITI_T_TYPE_3 = "(kaleoLog.type IS NULL OR kaleoLog.type = '')";
+
+	public KaleoLogPersistenceImpl() {
+		setModelClass(KaleoLog.class);
+	}
 
 	/**
 	 * Caches the kaleo log in the entity cache if it is enabled.

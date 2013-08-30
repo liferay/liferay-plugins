@@ -666,6 +666,22 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	}
 
 	@Override
+	public java.lang.String[] getAvailableLanguageIds() {
+		return _kaleoDefinition.getAvailableLanguageIds();
+	}
+
+	@Override
+	public java.lang.String getDefaultLanguageId() {
+		return _kaleoDefinition.getDefaultLanguageId();
+	}
+
+	@Override
+	public void prepareLocalizedFieldsForImport()
+		throws com.liferay.portal.LocaleException {
+		_kaleoDefinition.prepareLocalizedFieldsForImport();
+	}
+
+	@Override
 	public void prepareLocalizedFieldsForImport(
 		java.util.Locale defaultImportLocale)
 		throws com.liferay.portal.LocaleException {

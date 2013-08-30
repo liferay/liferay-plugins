@@ -349,6 +349,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoCondition> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
@@ -846,6 +850,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoCondition> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
 
@@ -1292,6 +1300,10 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 	}
 
 	private static final String _FINDER_COLUMN_KALEONODEID_KALEONODEID_2 = "kaleoCondition.kaleoNodeId = ?";
+
+	public KaleoConditionPersistenceImpl() {
+		setModelClass(KaleoCondition.class);
+	}
 
 	/**
 	 * Caches the kaleo condition in the entity cache if it is enabled.

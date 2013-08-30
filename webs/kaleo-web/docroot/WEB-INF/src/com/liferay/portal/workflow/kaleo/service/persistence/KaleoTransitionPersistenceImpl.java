@@ -350,6 +350,10 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTransition> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
@@ -848,6 +852,10 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTransition> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
 
@@ -1342,6 +1350,10 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 	public KaleoTransition fetchByKaleoNodeId_Last(long kaleoNodeId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoNodeId(kaleoNodeId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoTransition> list = findByKaleoNodeId(kaleoNodeId, count - 1,
 				count, orderByComparator);
@@ -2084,6 +2096,10 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 	private static final String _FINDER_COLUMN_KNI_DT_KALEONODEID_2 = "kaleoTransition.kaleoNodeId = ? AND ";
 	private static final String _FINDER_COLUMN_KNI_DT_DEFAULTTRANSITION_2 = "kaleoTransition.defaultTransition = ?";
+
+	public KaleoTransitionPersistenceImpl() {
+		setModelClass(KaleoTransition.class);
+	}
 
 	/**
 	 * Caches the kaleo transition in the entity cache if it is enabled.

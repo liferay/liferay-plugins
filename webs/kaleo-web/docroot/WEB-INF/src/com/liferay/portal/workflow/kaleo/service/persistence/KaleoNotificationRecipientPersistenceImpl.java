@@ -352,6 +352,10 @@ public class KaleoNotificationRecipientPersistenceImpl
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoNotificationRecipient> list = findByCompanyId(companyId,
 				count - 1, count, orderByComparator);
 
@@ -851,6 +855,10 @@ public class KaleoNotificationRecipientPersistenceImpl
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoNotificationRecipient> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1357,6 +1365,10 @@ public class KaleoNotificationRecipientPersistenceImpl
 		throws SystemException {
 		int count = countByKaleoNotificationId(kaleoNotificationId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoNotificationRecipient> list = findByKaleoNotificationId(kaleoNotificationId,
 				count - 1, count, orderByComparator);
 
@@ -1588,6 +1600,10 @@ public class KaleoNotificationRecipientPersistenceImpl
 
 	private static final String _FINDER_COLUMN_KALEONOTIFICATIONID_KALEONOTIFICATIONID_2 =
 		"kaleoNotificationRecipient.kaleoNotificationId = ?";
+
+	public KaleoNotificationRecipientPersistenceImpl() {
+		setModelClass(KaleoNotificationRecipient.class);
+	}
 
 	/**
 	 * Caches the kaleo notification recipient in the entity cache if it is enabled.

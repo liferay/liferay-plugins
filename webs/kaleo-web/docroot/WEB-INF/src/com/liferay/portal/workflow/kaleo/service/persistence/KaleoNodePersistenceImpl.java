@@ -346,6 +346,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoNode> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
@@ -838,6 +842,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 	public KaleoNode fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoNode> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1352,6 +1360,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_KDI(companyId, kaleoDefinitionId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoNode> list = findByC_KDI(companyId, kaleoDefinitionId,
 				count - 1, count, orderByComparator);
 
@@ -1591,6 +1603,10 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 
 	private static final String _FINDER_COLUMN_C_KDI_COMPANYID_2 = "kaleoNode.companyId = ? AND ";
 	private static final String _FINDER_COLUMN_C_KDI_KALEODEFINITIONID_2 = "kaleoNode.kaleoDefinitionId = ?";
+
+	public KaleoNodePersistenceImpl() {
+		setModelClass(KaleoNode.class);
+	}
 
 	/**
 	 * Caches the kaleo node in the entity cache if it is enabled.

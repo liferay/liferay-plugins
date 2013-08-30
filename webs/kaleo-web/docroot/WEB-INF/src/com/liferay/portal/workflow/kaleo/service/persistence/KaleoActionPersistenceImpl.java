@@ -347,6 +347,10 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoAction> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
@@ -840,6 +844,10 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	public KaleoAction fetchByKaleoDefinitionId_Last(long kaleoDefinitionId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoAction> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1373,6 +1381,10 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKCN_KCPK(kaleoClassName, kaleoClassPK);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoAction> list = findByKCN_KCPK(kaleoClassName, kaleoClassPK,
 				count - 1, count, orderByComparator);
@@ -1997,6 +2009,10 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 		int count = countByKCN_KCPK_ET(kaleoClassName, kaleoClassPK,
 				executionType);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoAction> list = findByKCN_KCPK_ET(kaleoClassName,
 				kaleoClassPK, executionType, count - 1, count, orderByComparator);
 
@@ -2314,6 +2330,10 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_1 = "kaleoAction.executionType IS NULL";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_2 = "kaleoAction.executionType = ?";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ET_EXECUTIONTYPE_3 = "(kaleoAction.executionType IS NULL OR kaleoAction.executionType = '')";
+
+	public KaleoActionPersistenceImpl() {
+		setModelClass(KaleoAction.class);
+	}
 
 	/**
 	 * Caches the kaleo action in the entity cache if it is enabled.

@@ -352,6 +352,10 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTaskAssignmentInstance> list = findByCompanyId(companyId,
 				count - 1, count, orderByComparator);
 
@@ -852,6 +856,10 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoTaskAssignmentInstance> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1357,6 +1365,10 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		long kaleoInstanceId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoTaskAssignmentInstance> list = findByKaleoInstanceId(kaleoInstanceId,
 				count - 1, count, orderByComparator);
@@ -1869,6 +1881,10 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 		throws SystemException {
 		int count = countBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTaskAssignmentInstance> list = findBykaleoTaskInstanceTokenId(kaleoTaskInstanceTokenId,
 				count - 1, count, orderByComparator);
 
@@ -2102,6 +2118,10 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 
 	private static final String _FINDER_COLUMN_KALEOTASKINSTANCETOKENID_KALEOTASKINSTANCETOKENID_2 =
 		"kaleoTaskAssignmentInstance.kaleoTaskInstanceTokenId = ?";
+
+	public KaleoTaskAssignmentInstancePersistenceImpl() {
+		setModelClass(KaleoTaskAssignmentInstance.class);
+	}
 
 	/**
 	 * Caches the kaleo task assignment instance in the entity cache if it is enabled.

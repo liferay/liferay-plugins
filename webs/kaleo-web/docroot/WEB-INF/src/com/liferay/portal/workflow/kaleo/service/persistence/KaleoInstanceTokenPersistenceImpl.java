@@ -352,6 +352,10 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoInstanceToken> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
@@ -849,6 +853,10 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoInstanceToken> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1353,6 +1361,10 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		long kaleoInstanceId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
 				count - 1, count, orderByComparator);
@@ -1876,6 +1888,10 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		long parentKaleoInstanceTokenId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByC_PKITI(companyId, parentKaleoInstanceTokenId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoInstanceToken> list = findByC_PKITI(companyId,
 				parentKaleoInstanceTokenId, count - 1, count, orderByComparator);
@@ -2457,6 +2473,10 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		int count = countByC_PKITI_CD(companyId, parentKaleoInstanceTokenId,
 				completionDate);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoInstanceToken> list = findByC_PKITI_CD(companyId,
 				parentKaleoInstanceTokenId, completionDate, count - 1, count,
 				orderByComparator);
@@ -2742,6 +2762,10 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 		"kaleoInstanceToken.parentKaleoInstanceTokenId = ? AND ";
 	private static final String _FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_1 = "kaleoInstanceToken.completionDate IS NULL";
 	private static final String _FINDER_COLUMN_C_PKITI_CD_COMPLETIONDATE_2 = "kaleoInstanceToken.completionDate = ?";
+
+	public KaleoInstanceTokenPersistenceImpl() {
+		setModelClass(KaleoInstanceToken.class);
+	}
 
 	/**
 	 * Caches the kaleo instance token in the entity cache if it is enabled.

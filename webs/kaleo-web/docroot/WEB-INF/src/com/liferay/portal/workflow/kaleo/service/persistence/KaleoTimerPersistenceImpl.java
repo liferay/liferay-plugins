@@ -386,6 +386,10 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		throws SystemException {
 		int count = countByKCN_KCPK(kaleoClassName, kaleoClassPK);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTimer> list = findByKCN_KCPK(kaleoClassName, kaleoClassPK,
 				count - 1, count, orderByComparator);
 
@@ -991,6 +995,10 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		int count = countByKCN_KCPK_Blocking(kaleoClassName, kaleoClassPK,
 				blocking);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTimer> list = findByKCN_KCPK_Blocking(kaleoClassName,
 				kaleoClassPK, blocking, count - 1, count, orderByComparator);
 
@@ -1280,6 +1288,10 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		"(kaleoTimer.kaleoClassName IS NULL OR kaleoTimer.kaleoClassName = '') AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_KALEOCLASSPK_2 = "kaleoTimer.kaleoClassPK = ? AND ";
 	private static final String _FINDER_COLUMN_KCN_KCPK_BLOCKING_BLOCKING_2 = "kaleoTimer.blocking = ?";
+
+	public KaleoTimerPersistenceImpl() {
+		setModelClass(KaleoTimer.class);
+	}
 
 	/**
 	 * Caches the kaleo timer in the entity cache if it is enabled.

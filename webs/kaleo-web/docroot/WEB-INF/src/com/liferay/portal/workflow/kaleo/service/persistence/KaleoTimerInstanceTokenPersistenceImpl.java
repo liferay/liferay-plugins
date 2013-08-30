@@ -356,6 +356,10 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		throws SystemException {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTimerInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
 				count - 1, count, orderByComparator);
 
@@ -1125,6 +1129,10 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKITI_C(kaleoInstanceTokenId, completed);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTimerInstanceToken> list = findByKITI_C(kaleoInstanceTokenId,
 				completed, count - 1, count, orderByComparator);
 
@@ -1691,6 +1699,10 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByKITI_C_B(kaleoInstanceTokenId, completed, blocking);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTimerInstanceToken> list = findByKITI_C_B(kaleoInstanceTokenId,
 				completed, blocking, count - 1, count, orderByComparator);
 
@@ -1948,6 +1960,10 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 	private static final String _FINDER_COLUMN_KITI_C_B_KALEOINSTANCETOKENID_2 = "kaleoTimerInstanceToken.kaleoInstanceTokenId = ? AND ";
 	private static final String _FINDER_COLUMN_KITI_C_B_COMPLETED_2 = "kaleoTimerInstanceToken.completed = ? AND ";
 	private static final String _FINDER_COLUMN_KITI_C_B_BLOCKING_2 = "kaleoTimerInstanceToken.blocking = ?";
+
+	public KaleoTimerInstanceTokenPersistenceImpl() {
+		setModelClass(KaleoTimerInstanceToken.class);
+	}
 
 	/**
 	 * Caches the kaleo timer instance token in the entity cache if it is enabled.

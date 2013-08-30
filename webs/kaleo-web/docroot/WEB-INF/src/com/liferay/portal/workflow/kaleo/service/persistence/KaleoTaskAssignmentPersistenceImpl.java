@@ -350,6 +350,10 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTaskAssignment> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
@@ -847,6 +851,10 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoTaskAssignment> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1384,6 +1392,10 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		long kaleoClassPK, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKCN_KCPK(kaleoClassName, kaleoClassPK);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoTaskAssignment> list = findByKCN_KCPK(kaleoClassName,
 				kaleoClassPK, count - 1, count, orderByComparator);
@@ -2010,6 +2022,10 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 		int count = countByKCN_KCPK_ACN(kaleoClassName, kaleoClassPK,
 				assigneeClassName);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTaskAssignment> list = findByKCN_KCPK_ACN(kaleoClassName,
 				kaleoClassPK, assigneeClassName, count - 1, count,
 				orderByComparator);
@@ -2328,6 +2344,10 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_1 = "kaleoTaskAssignment.assigneeClassName IS NULL";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_2 = "kaleoTaskAssignment.assigneeClassName = ?";
 	private static final String _FINDER_COLUMN_KCN_KCPK_ACN_ASSIGNEECLASSNAME_3 = "(kaleoTaskAssignment.assigneeClassName IS NULL OR kaleoTaskAssignment.assigneeClassName = '')";
+
+	public KaleoTaskAssignmentPersistenceImpl() {
+		setModelClass(KaleoTaskAssignment.class);
+	}
 
 	/**
 	 * Caches the kaleo task assignment in the entity cache if it is enabled.

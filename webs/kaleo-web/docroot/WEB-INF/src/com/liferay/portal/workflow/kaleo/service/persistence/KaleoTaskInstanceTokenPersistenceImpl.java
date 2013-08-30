@@ -350,6 +350,10 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTaskInstanceToken> list = findByCompanyId(companyId,
 				count - 1, count, orderByComparator);
 
@@ -847,6 +851,10 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		long kaleoDefinitionId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByKaleoDefinitionId(kaleoDefinitionId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KaleoTaskInstanceToken> list = findByKaleoDefinitionId(kaleoDefinitionId,
 				count - 1, count, orderByComparator);
@@ -1352,6 +1360,10 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		throws SystemException {
 		int count = countByKaleoInstanceId(kaleoInstanceId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KaleoTaskInstanceToken> list = findByKaleoInstanceId(kaleoInstanceId,
 				count - 1, count, orderByComparator);
 
@@ -1827,6 +1839,10 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 
 	private static final String _FINDER_COLUMN_KII_KTI_KALEOINSTANCEID_2 = "kaleoTaskInstanceToken.kaleoInstanceId = ? AND ";
 	private static final String _FINDER_COLUMN_KII_KTI_KALEOTASKID_2 = "kaleoTaskInstanceToken.kaleoTaskId = ?";
+
+	public KaleoTaskInstanceTokenPersistenceImpl() {
+		setModelClass(KaleoTaskInstanceToken.class);
+	}
 
 	/**
 	 * Caches the kaleo task instance token in the entity cache if it is enabled.
