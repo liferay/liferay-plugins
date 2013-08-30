@@ -65,6 +65,14 @@ AUI().use(
 				}
 
 				if (node) {
+					var entries = node.one('.entries');
+
+					if (entries) {
+						var start = (start == null) ? entries.attr('data-start') : start;
+
+						url = Liferay.Util.addParams('start=' + start, url) || url;
+					}
+
 					if (!node.io) {
 						node.plug(
 							A.Plugin.IO,
