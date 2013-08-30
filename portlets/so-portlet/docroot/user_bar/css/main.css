@@ -498,9 +498,15 @@ html > body.lfr-dockbar-pinned {
 				&, li {
 					background-color: transparent;
 					border-width: 0;
+					color: $defaultTextColor;
 					display: block;
 					margin: 0;
 					padding: 0
+				}
+
+				.empty, .empty:hover {
+					border-width: 1px 0 0;
+					padding: 0.5em 1em 0.5em 2em;
 				}
 			}
 		}
