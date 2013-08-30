@@ -52,13 +52,25 @@ public class AnnouncementsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
 		long entryId = ParamUtil.getLong(actionRequest, "entryId");
 
-		AnnouncementsEntryServiceUtil.deleteEntry(entryId);
+		try {
+			AnnouncementsEntryServiceUtil.deleteEntry(entryId);
 
-		SessionMessages.add(actionRequest, "announcementDeleted");
+			SessionMessages.add(actionRequest, "announcementDeleted");
 
-		sendRedirect(actionRequest, actionResponse);
+			jsonObject.put("success", true);
+		}
+		catch (Exception e) {
+			String message = "the-announcement-was-unable-to-be-deleted";
+
+			jsonObject.put("message", translate(actionRequest, message));
+			jsonObject.put("success", false);
+		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	@Override
