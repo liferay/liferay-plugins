@@ -19,83 +19,84 @@
 
 <%@ include file="/init.jsp" %>
 
-<div class="unread-entries" id="unreadEntries">
-
-	<%
-	LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
-
-	if (customizeAnnouncementsDisplayed) {
-		long[] selectedScopeGroupIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
-		long[] selectedScopeOrganizationIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
-		long[] selectedScopeRoleIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
-		long[] selectedScopeUserGroupIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
-
-		if (selectedScopeGroupIdsArray.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(Group.class.getName()), selectedScopeGroupIdsArray);
-		}
-
-		if (selectedScopeOrganizationIdsArray.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(Organization.class.getName()), selectedScopeOrganizationIdsArray);
-		}
-
-		if (selectedScopeRoleIdsArray.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(Role.class.getName()), selectedScopeRoleIdsArray);
-		}
-
-		if (selectedScopeUserGroupIdsArray.length != 0) {
-			scopes.put(PortalUtil.getClassNameId(UserGroup.class.getName()), selectedScopeUserGroupIdsArray);
-		}
-	}
-	else {
-		scopes = AnnouncementsUtil.getAnnouncementScopes(user.getUserId());
-	}
-
-	scopes.put(new Long(0), new long[] {0});
-
-	int flagValue = AnnouncementsFlagConstants.NOT_HIDDEN;
-
-	List<AnnouncementsEntry> results = null;
-	int total = 0;
-	%>
-
-	<%@ include file="/entry_iterator.jspf" %>
-</div>
-
 <%
-flagValue = AnnouncementsFlagConstants.HIDDEN;
+boolean readEntries = ParamUtil.getBoolean(request, "readEntries", true);
 
-results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, start, end);
+int flagValue = AnnouncementsFlagConstants.NOT_HIDDEN;;
+
+if (readEntries) {
+	flagValue = AnnouncementsFlagConstants.HIDDEN;
+}
+
+LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<Long, long[]>();
+
+if (customizeAnnouncementsDisplayed) {
+	long[] selectedScopeGroupIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
+	long[] selectedScopeOrganizationIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
+	long[] selectedScopeRoleIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
+	long[] selectedScopeUserGroupIdsArray = GetterUtil.getLongValues(StringUtil.split(selectedScopeGroupIds));
+
+	if (selectedScopeGroupIdsArray.length != 0) {
+		scopes.put(PortalUtil.getClassNameId(Group.class.getName()), selectedScopeGroupIdsArray);
+	}
+
+	if (selectedScopeOrganizationIdsArray.length != 0) {
+		scopes.put(PortalUtil.getClassNameId(Organization.class.getName()), selectedScopeOrganizationIdsArray);
+	}
+
+	if (selectedScopeRoleIdsArray.length != 0) {
+		scopes.put(PortalUtil.getClassNameId(Role.class.getName()), selectedScopeRoleIdsArray);
+	}
+
+	if (selectedScopeUserGroupIdsArray.length != 0) {
+		scopes.put(PortalUtil.getClassNameId(UserGroup.class.getName()), selectedScopeUserGroupIdsArray);
+	}
+}
+else {
+	scopes = AnnouncementsUtil.getAnnouncementScopes(user.getUserId());
+}
+
+scopes.put(new Long(0), new long[] {0});
+
+List<AnnouncementsEntry> results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, start, end);
 %>
 
-<c:if test="<%= themeDisplay.isSignedIn() && !results.isEmpty() %>">
-	<div class="read-entries" id="readEntries">
-		<div class="header">
-			<span><%= LanguageUtil.get(pageContext, "read-entries") %></span>
-		</div>
+<div class="entries <%= readEntries ? "read-entries" : "unread-entries" %>" data-start="<%= start %>">
+	<c:choose>
+		<c:when test="<%= readEntries %>">
+			<c:if test="<%= themeDisplay.isSignedIn() && !results.isEmpty() %>">
+				<div class="header">
+					<span><%= LanguageUtil.get(pageContext, "read-entries") %></span>
+				</div>
 
-		<div class="content aui-toggler-content aui-toggler-content-collapsed">
-			<%@ include file="/entry_iterator.jspf" %>
-		</div>
-	</div>
+				<div class="content aui-toggler-content aui-toggler-content-collapsed">
+					<%@ include file="/entry_iterator.jspf" %>
+				</div>
 
-	<aui:script>
-		AUI().ready(
-			'aui-toggler',
-			function(A) {
-				new A.Toggler(
-					{
-						animated: true,
-						container: '#readEntries',
-						content: '#readEntries .content',
-						expanded: false,
-						header: '#readEntries .header',
-						transition: {
-							duration: 0.5,
-							easing: 'ease-in-out'
+				<aui:script>
+					AUI().ready(
+						'aui-toggler',
+						function(A) {
+							new A.Toggler(
+								{
+									animated: true,
+									container: '#<portlet:namespace />readEntriesContainer .entries',
+									content: '#<portlet:namespace />readEntriesContainer .entries .content',
+									expanded: <%= expanded %>,
+									header: '#<portlet:namespace />readEntriesContainer .entries .header',
+									transition: {
+										duration: 0.5,
+										easing: 'ease-in-out'
+									}
+								}
+							);
 						}
-					}
-				);
-			}
-		);
-	</aui:script>
-</c:if>
+					);
+				</aui:script>
+			</c:if>
+		</c:when>
+		<c:otherwise>
+			<%@ include file="/entry_iterator.jspf" %>
+		</c:otherwise>
+	</c:choose>
+</div>
