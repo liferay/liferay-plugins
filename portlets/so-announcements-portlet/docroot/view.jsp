@@ -23,6 +23,8 @@
 <liferay-ui:success key="announcementDeleted" message="the-announcement-was-successfully-deleted" />
 <liferay-ui:success key="announcementUpdated" message="the-announcement-was-successfully-updated" />
 
+<div id="<portlet:namespace />errorMessage"></div>
+
 <c:if test="<%= (permissionChecker.isGroupAdmin(layout.getGroupId()) || permissionChecker.isGroupOwner(layout.getGroupId())) && (!group.isUser() || permissionChecker.isOmniadmin()) %>">
 	<div class="admin-actions">
 		<aui:button onClick='<%= renderResponse.getNamespace() + "addEntry()" %>' value="add-entry" />
@@ -79,14 +81,26 @@
 					{
 						after: {
 							success: function(event, id, obj) {
-								Liferay.Announcements.transitionEntry('#<portlet:namespace />' + entryId);
+								var responseData = this.get('responseData');
 
-								setTimeout(
-									function() {
-										Liferay.Announcements.updateEntries(false, null);
-										Liferay.Announcements.updateEntries(true, null);
-									},200
-								);
+								if (!responseData.success) {
+									var message = A.one('#<portlet:namespace />errorMessage');
+
+									if (message) {
+										message.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+									}
+								}
+								else {
+									Liferay.Announcements.transitionEntry('#<portlet:namespace />' + entryId);
+
+									setTimeout(
+										function() {
+											Liferay.Announcements.updateEntries(false, null);
+											Liferay.Announcements.updateEntries(true, null);
+										},200
+									);
+								}
+
 							}
 						},
 						dataType: 'json',
