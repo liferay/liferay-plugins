@@ -164,10 +164,10 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			sb.append(user.getPortraitURL(serviceContext.getThemeDisplay()));
 		}
 
-		sb.append("\"/></a></span></div>");
+		sb.append("\"/></a></span></div><span class=\"microblog-content\">");
 		sb.append(
 			MicroblogsUtil.getTaggedContent(microblogsEntry, serviceContext));
-		sb.append("</div></div>");
+		sb.append("</span></div></div>");
 
 		return sb.toString();
 	}
@@ -247,7 +247,8 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 					serviceContext.translate(
 						"reposted-a-microblog-entry-from-x",
 						getUserName(
-							microblogsEntry.getUserId(), serviceContext)));
+							microblogsEntry.getReceiverUserId(),
+							serviceContext)));
 			}
 			else {
 				return StringPool.BLANK;
