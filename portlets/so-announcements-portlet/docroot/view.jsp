@@ -32,12 +32,19 @@
 </c:if>
 
 <aui:script use="aui-base">
+	Liferay.Announcements.init(
+		{
+			namespace: '<portlet:namespace />',
+			viewEntriesURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/view_entries.jsp" /></portlet:renderURL>'
+		}
+	);
+
 	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
 
 	announcementEntries.delegate(
 		'click',
 		function(event) {
-			Liferay.Announcements.toggleEntry(event,'<portlet:namespace />');
+			Liferay.Announcements.toggleEntry(event);
 		},
 		'.toggle-entry'
 	);

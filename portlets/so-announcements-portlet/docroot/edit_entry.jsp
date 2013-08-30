@@ -328,7 +328,7 @@ if (entry == null) {
 	announcementEntries.delegate(
 		'click',
 		function(event) {
-			Liferay.Announcements.toggleEntry(event,'<portlet:namespace />');
+			Liferay.Announcements.toggleEntry(event);
 		},
 		'.toggle-entry'
 	);
