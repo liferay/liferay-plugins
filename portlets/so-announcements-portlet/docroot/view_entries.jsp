@@ -58,6 +58,18 @@ else {
 
 scopes.put(new Long(0), new long[] {0});
 
+int start = ParamUtil.getInteger(request, "start", 0);
+
+int end = ParamUtil.getInteger(request, "end", start + pageDelta);
+
+int total = AnnouncementsEntryLocalServiceUtil.getEntriesCount(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue);
+
+if ((start >= total) && (start != 0)) {
+	start -= pageDelta;
+
+	end = start + pageDelta;
+}
+
 List<AnnouncementsEntry> results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, start, end);
 %>
 
@@ -100,3 +112,32 @@ List<AnnouncementsEntry> results = AnnouncementsEntryLocalServiceUtil.getEntries
 		</c:otherwise>
 	</c:choose>
 </div>
+
+<aui:script use="aui-base">
+	<c:choose>
+		<c:when test="<%= readEntries %>">
+			var container = A.one('#<portlet:namespace />readEntriesContainer');
+		</c:when>
+		<c:otherwise>
+			var container = A.one('#<portlet:namespace />unreadEntriesContainer');
+		</c:otherwise>
+	</c:choose>
+
+	container.delegate(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			if (container) {
+				var navLink = event.currentTarget;
+
+				var navParent = navLink.ancestor();
+
+				var start = navParent.hasClass('left-nav') ? '<%= String.valueOf(start - pageDelta) %>' : '<%= String.valueOf(start + pageDelta) %>';
+
+				Liferay.Announcements.updateEntries(<%= readEntries %>, start);
+			}
+		},
+		'.navigation span a'
+	);
+</aui:script>
