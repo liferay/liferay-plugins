@@ -36,27 +36,33 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 		</div>
 	</c:when>
 	<c:otherwise>
-		<div class="microblogs-entry">
+		<div class="so-portlet-activities">
+			<div class="activity-item microblogs-entry">
 
 				<%
 				User receiverUser = UserLocalServiceUtil.getUserById(microblogsEntry.getUserId());
 				%>
 
-				<span class="thumbnail">
-					<a href="<%= receiverUser.getDisplayURL(themeDisplay) %>"><img alt="<%= receiverUser.getFullName() %>" src="<%= receiverUser.getPortraitURL(themeDisplay) %>" /></a>
-				</span>
-
-			<div class="entry-bubble">
-				<div class="user-name">
-					<span><%= receiverUser.getFullName() %></span> <span class="small">(<%= receiverUser.getScreenName() %>)</span>
+				<div class="user-portrait">
+					<span class="avatar">
+						<a href="<%= receiverUser.getDisplayURL(themeDisplay) %>"><img alt="<%= receiverUser.getFullName() %>" src="<%= receiverUser.getPortraitURL(themeDisplay) %>" /></a>
+					</span>
 				</div>
 
-				<div class="content">
-					<span><%= HtmlUtil.escape(microblogsEntry.getContent()) %></span>
-				</div>
+				<div class="activity-data">
+					<div class="activity-header">
+						<div class="activity-time">
+							<%= Time.getRelativeTimeDescription(microblogsEntry.getModifiedDate(), themeDisplay.getLocale(), themeDisplay.getTimeZone()) %>
+						</div>
 
-				<div class="footer">
-					<span class="modified-date"><%= microblogsEntry.getModifiedDate() %></span>
+						<div class="activity-user-name">
+							<%= receiverUser.getFullName() %>
+						</div>
+					</div>
+
+					<div class="activity-action">
+						<%= HtmlUtil.escape(microblogsEntry.getContent()) %>
+					</div>
 				</div>
 			</div>
 		</div>

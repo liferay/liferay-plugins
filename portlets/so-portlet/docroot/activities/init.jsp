@@ -19,7 +19,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<%@ page import="com.liferay.microblogs.model.MicroblogsEntry" %><%@
+<%@ page import="com.liferay.compat.portal.kernel.util.Time" %><%@
+page import="com.liferay.microblogs.model.MicroblogsEntry" %><%@
 page import="com.liferay.microblogs.model.MicroblogsEntryConstants" %><%@
 page import="com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
