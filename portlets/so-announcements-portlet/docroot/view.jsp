@@ -59,6 +59,43 @@
 		},
 		'.toggle-entry'
 	);
+
+	announcementEntries.delegate(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			if (confirm('<%= LanguageUtil.get(pageContext,"are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
+				var entry = event.currentTarget.ancestor('.entry');
+
+				var entryId = entry.attr('data-entryId');
+
+				var uri = '<liferay-portlet:actionURL name="deleteEntry"></liferay-portlet:actionURL>';
+
+				uri = Liferay.Util.addParams('entryId=' + entryId, uri)
+
+				A.io.request(
+					uri,
+					{
+						after: {
+							success: function(event, id, obj) {
+								Liferay.Announcements.transitionEntry('#<portlet:namespace />' + entryId);
+
+								setTimeout(
+									function() {
+										Liferay.Announcements.updateEntries(false, null);
+										Liferay.Announcements.updateEntries(true, null);
+									},200
+								);
+							}
+						},
+						dataType: 'json',
+					}
+				);
+			}
+		},
+		'.delete-entry a'
+	);
 </aui:script>
 
 <aui:script>
