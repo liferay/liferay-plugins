@@ -95,7 +95,9 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 
 				targetNodes.addAll(unvisitedTargetNodes);
 			}
-			else if (targetNode.getNodeType().equals(NodeType.JOIN)) {
+			else if (targetNode.getNodeType().equals(NodeType.JOIN) ||
+					 targetNode.getNodeType().equals(NodeType.JOIN_XOR)) {
+
 				if (Validator.isNull(join)) {
 					join = (Join)targetNode;
 				}

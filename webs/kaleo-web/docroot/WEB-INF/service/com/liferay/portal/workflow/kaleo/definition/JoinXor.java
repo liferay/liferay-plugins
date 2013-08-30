@@ -17,7 +17,7 @@ package com.liferay.portal.workflow.kaleo.definition;
 /**
  * @author Michael C. Han
  */
-public class JoinXor extends Node {
+public class JoinXor extends Join {
 
 	public JoinXor(String name, String description) {
 		super(NodeType.JOIN_XOR, name, description);

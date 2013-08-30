@@ -31,6 +31,7 @@ import com.liferay.portal.workflow.kaleo.definition.DelayDuration;
 import com.liferay.portal.workflow.kaleo.definition.DurationScale;
 import com.liferay.portal.workflow.kaleo.definition.Fork;
 import com.liferay.portal.workflow.kaleo.definition.Join;
+import com.liferay.portal.workflow.kaleo.definition.JoinXor;
 import com.liferay.portal.workflow.kaleo.definition.Node;
 import com.liferay.portal.workflow.kaleo.definition.Notification;
 import com.liferay.portal.workflow.kaleo.definition.NotificationAware;
@@ -109,6 +110,14 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 			definition.addNode(join);
 		}
 
+		List<Element> joinXorElements = rootElement.elements("join-xor");
+
+		for (Element joinXorElement : joinXorElements) {
+			JoinXor joinXor = parseJoinXor(joinXorElement);
+
+			definition.addNode(joinXor);
+		}
+
 		List<Element> stateElements = rootElement.elements("state");
 
 		for (Element stateElement : stateElements) {
@@ -127,7 +136,7 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		parseTransitions(
 			definition, conditionElements, forkElements, joinElements,
-			stateElements, taskElements);
+			joinXorElements, stateElements, taskElements);
 
 		return definition;
 	}
@@ -351,6 +360,27 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 		parseTimerElements(timersElement, join);
 
 		return join;
+	}
+
+	protected JoinXor parseJoinXor(Element joinXorElement) {
+		String name = joinXorElement.elementText("name");
+		String description = joinXorElement.elementText("description");
+
+		JoinXor joinXor = new JoinXor(name, description);
+
+		String metadata = joinXorElement.elementText("metadata");
+
+		joinXor.setMetadata(metadata);
+
+		Element actionsElement = joinXorElement.element("actions");
+
+		parseActionsElement(actionsElement, joinXor);
+
+		Element timersElement = joinXorElement.element("timers");
+
+		parseTimerElements(timersElement, joinXor);
+
+		return joinXor;
 	}
 
 	protected void parseNotificationElements(
@@ -670,7 +700,8 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 	protected void parseTransitions(
 		Definition definition, List<Element> conditionElements,
 		List<Element> forkElements, List<Element> joinElements,
-		List<Element> stateElements, List<Element> taskElements) {
+		List<Element> joinXorElements, List<Element> stateElements,
+		List<Element> taskElements) {
 
 		for (Element conditionElement : conditionElements) {
 			parseTransition(definition, conditionElement);
@@ -682,6 +713,10 @@ public class XMLWorkflowModelParser implements WorkflowModelParser {
 
 		for (Element joinElement : joinElements) {
 			parseTransition(definition, joinElement);
+		}
+
+		for (Element joinXorElement : joinXorElements) {
+			parseTransition(definition, joinXorElement);
 		}
 
 		for (Element stateElement : stateElements) {

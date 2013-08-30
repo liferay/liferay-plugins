@@ -23,4 +23,8 @@ public class Join extends Node {
 		super(NodeType.JOIN, name, description);
 	}
 
+	protected Join(NodeType nodeType, String name, String description) {
+		super(nodeType, name, description);
+	}
+
 }
