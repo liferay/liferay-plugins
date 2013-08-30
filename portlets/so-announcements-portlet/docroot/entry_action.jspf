@@ -65,7 +65,7 @@
 		</c:if>
 
 		<span class="toggle action hide">
-			<a class="toggle-entry" data-entryId="<%= entry.getEntryId() %>" href="javascript:;">
+			<a class="toggle-entry" href="javascript:;">
 				<span><liferay-ui:message key="view-more" /></span>
 			</a>
 		</span>
