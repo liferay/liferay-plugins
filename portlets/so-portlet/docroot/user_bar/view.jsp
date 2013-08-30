@@ -154,12 +154,21 @@ catch (NoSuchRoleException nsre) {
 	</liferay-util:body-top>
 
 	<aui:script use="aui-base,liferay-so-user-menu">
+		var body = A.one('body');
+
 		var userBar = A.one('#<portlet:namespace/>userBar');
 
 		var sitesPortlet = userBar.one('.so-portlet-sites .portlet-body');
 		var searchInput = userBar.one('.search input');
 
 		var goToString = '<liferay-ui:message key="go-to" /> ' + '\u25BE';
+
+		body.on(
+			'click',
+			function(event) {
+				A.fire('close-menus');
+			}
+		);
 
 		searchInput.set('value', goToString);
 
@@ -172,10 +181,10 @@ catch (NoSuchRoleException nsre) {
 			}
 		);
 
-		sitesPortlet.on(
-			'mouseleave',
+		A.on(
+			'close-menus',
 			function(event) {
-				if (!sitesPortlet.hasClass('search-focus') || (searchInput.get('value') == "")) {
+				if (!userBar.one('.go-to').hasClass('search-focus') || (searchInput.get('value') == "")) {
 					searchInput.set('value', goToString);
 				}
 			}
@@ -186,18 +195,21 @@ catch (NoSuchRoleException nsre) {
 		toggleDockbar.on(
 			'click',
 			function(event) {
+				event.preventDefault();
+
 				var body = A.one('body');
 
 				body.toggleClass('show-dockbar');
+
+				A.fire('close-menus', event);
 			}
-		)
+		);
 
 		new Liferay.SO.UserMenu(
 			{
 				node: '#<portlet:namespace/>userBar .go-to',
 				showClass: 'search-focus',
 				showOn: 'focus',
-				target: '#<portlet:namespace/>userBar .so-portlet-sites .portlet-body',
 				trigger: '#<portlet:namespace/>userBar .go-to .search input'
 			}
 		);
@@ -213,6 +225,7 @@ catch (NoSuchRoleException nsre) {
 
 		new Liferay.SO.UserMenu(
 			{
+				preventDefault: true,
 				node: '#<portlet:namespace/>userBar .user-menu',
 				showClass: 'menu-active',
 				trigger: '#<portlet:namespace/>userBar .user-info'
