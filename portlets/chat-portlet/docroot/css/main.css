@@ -141,8 +141,11 @@ html body {
 
 	.search-buddies-field {
 		background: url(@theme_image_path@/common/search.png) no-repeat 5px 50%;
+
+		@include box-sizing(border-box);
+
 		padding-left: 25px;
-		width: 80%;
+		width: 100%;
 	}
 
 	&.loading.selected {
