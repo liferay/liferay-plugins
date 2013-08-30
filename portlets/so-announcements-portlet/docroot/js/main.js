@@ -50,6 +50,33 @@ AUI().use(
 						height: contentHeight
 					}
 				);
+			},
+
+			updateEntries: function(readEntries, start) {
+				var instance = this;
+
+				var url = Liferay.Util.addParams('readEntries=' + readEntries, instance._viewEntriesURL) || instance._viewEntriesURL;
+
+				if (readEntries) {
+					var node = AUI().one('#' + instance._namespace + 'readEntriesContainer');
+				}
+				else {
+					var node = AUI().one('#' + instance._namespace + 'unreadEntriesContainer');
+				}
+
+				if (node) {
+					if (!node.io) {
+						node.plug(
+							A.Plugin.IO,
+							{
+							autoLoad: false
+							}
+						);
+					}
+
+					node.io.set('uri', url);
+					node.io.start();
+				}
 			}
 		};
 	}
