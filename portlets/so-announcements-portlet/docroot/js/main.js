@@ -58,6 +58,18 @@ AUI().use(
 				var url = Liferay.Util.addParams('readEntries=' + readEntries, instance._viewEntriesURL) || instance._viewEntriesURL;
 
 				if (readEntries) {
+					var header = A.one('#' + instance._namespace + 'readEntriesContainer .entries .header');
+
+					if (header) {
+						var expanded = 'false';
+
+						if (header.hasClass('aui-toggler-header-expanded')) {
+							expanded = 'true';
+						}
+
+						url = Liferay.Util.addParams('expanded=' + expanded, url) || url;
+					}
+
 					var node = AUI().one('#' + instance._namespace + 'readEntriesContainer');
 				}
 				else {

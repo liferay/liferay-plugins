@@ -81,7 +81,11 @@ List<AnnouncementsEntry> results = AnnouncementsEntryLocalServiceUtil.getEntries
 					<span><%= LanguageUtil.get(pageContext, "read-entries") %></span>
 				</div>
 
-				<div class="content aui-toggler-content aui-toggler-content-collapsed">
+				<%
+				boolean expanded = ParamUtil.getBoolean(request, "expanded", Boolean.FALSE);
+				%>
+
+				<div class="content aui-toggler-content aui-toggler-content-<%= expanded ? "expanded" : "collapsed" %>">
 					<%@ include file="/entry_iterator.jspf" %>
 				</div>
 
