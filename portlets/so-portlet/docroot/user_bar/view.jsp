@@ -30,6 +30,12 @@ catch (NoSuchRoleException nsre) {
 	// This exception should never be thrown except while SO is being uninstalled
 
 }
+
+Group layoutGroup = null;
+
+if (layout != null) {
+	layoutGroup = layout.getGroup();
+}
 %>
 
 <c:if test="<%= themeDisplay.isSignedIn() && socialOfficeUser %>">
@@ -129,15 +135,18 @@ catch (NoSuchRoleException nsre) {
 						</c:if>
 					</ul>
 				</li>
-				<li class="config-item">
-					<a class="config-icon" href="javascript:;" id="<portlet:namespace/>toggleDockbar">
-						<img alt="<liferay-ui:message key="configuration" /> <liferay-ui:message key="icon" />" height="15" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" width="15" />
 
-						<span class="aui-helper-hidden">
-							<liferay-ui:message key="toggle" /> <liferay-ui:message key="javax.portlet.title.145" />
-						</span>
-					</a>
-				</li>
+				<c:if test="<%= !layoutGroup.isControlPanel() %>">
+					<li class="config-item">
+						<a class="config-icon" href="javascript:;" id="<portlet:namespace/>toggleDockbar">
+							<img alt="<liferay-ui:message key="configuration" /> <liferay-ui:message key="icon" />" height="15" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" width="15" />
+
+							<span class="aui-helper-hidden">
+								<liferay-ui:message key="toggle" /> <liferay-ui:message key="javax.portlet.title.145" />
+							</span>
+						</a>
+					</li>
+				</c:if>
 			</ul>
 		</div>
 	</liferay-util:body-top>
