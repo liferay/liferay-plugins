@@ -40,7 +40,7 @@ $defaultTextColor: #202020;
 	}
 }
 
-body.show-dockbar, html > body.lfr-dockbar-pinned {
+body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	.portlet-dockbar {
 		overflow: visible;
 	}
