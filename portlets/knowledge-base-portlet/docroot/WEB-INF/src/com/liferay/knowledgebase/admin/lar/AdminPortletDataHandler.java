@@ -169,12 +169,10 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 		List<FileEntry> attachmentsFileEntries =
 			kbArticle.getAttachmentsFileEntries();
-		String dependentFileNamePrefix = "kbarticles/attachments/";
 
 		for (FileEntry fileEntry : attachmentsFileEntries) {
 			String path = getModelPath(
-				kbArticle,
-				dependentFileNamePrefix.concat(fileEntry.getTitle()));
+				kbArticle, "kbarticles/attachments/" + fileEntry.getTitle());
 
 			Element fileElement = kbArticleAttachmentsElement.addElement(
 				"file");
@@ -218,17 +216,15 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			resourcePrimKey, WorkflowConstants.STATUS_APPROVED,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			new KBArticleModifiedDateComparator(true));
-		String dependentFileNamePrefix = "kbarticles/versions/";
 
 		for (KBArticle kbArticle : kbArticles) {
 			Element curKBArticleElement = versionsElement.addElement(
 				"kb-article");
 
-			String fileName = String.valueOf(kbArticle.getKbArticleId()).concat(
-				".xml");
+			String fileName = kbArticle.getKbArticleId() + ".xml";
 
 			String path = getModelPath(
-				kbArticle, dependentFileNamePrefix.concat(fileName));
+				kbArticle, "kbarticles/versions/" + fileName);
 
 			curKBArticleElement.addAttribute("path", path);
 
