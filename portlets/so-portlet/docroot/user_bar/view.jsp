@@ -30,12 +30,6 @@ catch (NoSuchRoleException nsre) {
 	// This exception should never be thrown except while SO is being uninstalled
 
 }
-
-Group layoutGroup = null;
-
-if (layout != null) {
-	layoutGroup = layout.getGroup();
-}
 %>
 
 <c:if test="<%= themeDisplay.isSignedIn() && socialOfficeUser %>">
@@ -136,7 +130,15 @@ if (layout != null) {
 					</ul>
 				</li>
 
-				<c:if test="<%= !layoutGroup.isControlPanel() %>">
+				<%
+				Group layoutGroup = null;
+
+				if (layout != null) {
+					layoutGroup = layout.getGroup();
+				}
+				%>
+
+				<c:if test="<%= (layoutGroup != null) || !layoutGroup.isControlPanel() %>">
 					<li class="config-item">
 						<a class="config-icon" href="javascript:;" id="<portlet:namespace/>toggleDockbar">
 							<img alt="<liferay-ui:message key="configuration" /> <liferay-ui:message key="icon" />" height="15" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" width="15" />
