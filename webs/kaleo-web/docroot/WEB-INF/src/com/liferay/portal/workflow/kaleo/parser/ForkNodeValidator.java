@@ -83,7 +83,9 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 		for (int i = 1; i < targetNodes.size(); i++) {
 			Node targetNode = targetNodes.get(i);
 
-			if (targetNode.getNodeType().equals(NodeType.FORK)) {
+			NodeType nodeType = targetNode.getNodeType();
+
+			if (nodeType.equals(NodeType.FORK)) {
 				Join localJoin = traverse((Fork)targetNode);
 
 				List<Node> unvisitedTargetNodes = getUnvisitedTargetNodes(
@@ -95,8 +97,8 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 
 				targetNodes.addAll(unvisitedTargetNodes);
 			}
-			else if (targetNode.getNodeType().equals(NodeType.JOIN) ||
-					 targetNode.getNodeType().equals(NodeType.JOIN_XOR)) {
+			else if (nodeType.equals(NodeType.JOIN) ||
+					 nodeType.equals(NodeType.JOIN_XOR)) {
 
 				if (Validator.isNull(join)) {
 					join = (Join)targetNode;
