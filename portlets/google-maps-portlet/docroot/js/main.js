@@ -255,20 +255,19 @@ AUI.add(
 
 						A.Get.script(googleMapsURL);
 					},
-					
+
 					_isDirectionFilled: function() {
 						var instance = this;
-						
+
+						var isDirectionFilled = false;
+
 						if (instance.get(STR_DIRECTION_ADDRESS)) {
-							
-							var directionsAddress = instance.byId(STR_DIRECTION_ADDRESS).val();
-							
-							if (directionsAddress) {
-								return true;
+							if (instance.byId(STR_DIRECTION_ADDRESS).val()) {
+								isDirectionFilled = true;
 							}
 						}
-						
-						return false;
+
+						return isDirectionFilled;
 					},
 
 					_isGoogleMapLoaded: function() {
@@ -328,7 +327,7 @@ AUI.add(
 						var instance = this;
 
 						event.preventDefault();
-						
+
 						if (instance._isDirectionFilled()) {
 							instance._getDirections();
 						}
