@@ -124,28 +124,24 @@ String assetTagName = ParamUtil.getString(request, "tag");
 			</c:if>
 		</div>
 
-		<div class="article-search">
-			<liferay-portlet:renderURL varImpl="searchURL">
-				<portlet:param name="mvcPath" value="/display/search.jsp" />
-			</liferay-portlet:renderURL>
+		<div class="navbar-search pull-right">
+			<div class="form-search">
+				<liferay-portlet:renderURL varImpl="searchURL">
+					<portlet:param name="mvcPath" value="/display/search.jsp" />
+				</liferay-portlet:renderURL>
 
-			<aui:form action="<%= searchURL %>" method="get" name="searchFm">
-				<liferay-portlet:renderURLParams varImpl="searchURL" />
+				<aui:form action="<%= searchURL %>" method="get" name="searchFm">
+					<liferay-portlet:renderURLParams varImpl="searchURL" />
 
-				<aui:fieldset>
-					<span class="aui-search-bar">
-						<aui:input inlineField="<%= true %>" label="" name="keywords" size="30" title="search-articles" type="text" />
-
-						<aui:button type="submit" value="search" />
-					</span>
-				</aui:fieldset>
-			</aui:form>
+					<liferay-ui:input-search />
+				</aui:form>
+			</div>
 		</div>
 	</div>
 </div>
 
 <c:if test='<%= !mvcPath.equals("/display/view.jsp") && ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) %>'>
-	<div class="portlet-msg-info">
+	<div class="alert alert-info">
 		<liferay-portlet:renderURL var="viewPRPKBArticlesURL">
 			<portlet:param name="mvcPath" value="/display/view.jsp" />
 		</liferay-portlet:renderURL>

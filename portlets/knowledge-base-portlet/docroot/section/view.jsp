@@ -105,7 +105,7 @@
 		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
 		%>
 
-		<div class="portlet-msg-info">
+		<div class="alert alert-info">
 			<%= LanguageUtil.format(pageContext, "please-input-a-list-of-comma-delimited-words-for-portlet-property-x-to-enable-this-portlet", "admin.kb.article.sections", false) %>
 		</div>
 	</c:otherwise>

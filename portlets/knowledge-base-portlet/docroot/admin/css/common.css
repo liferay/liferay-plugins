@@ -1,14 +1,14 @@
 /* ---------- Configuration ---------- */
 
 .portlet-configuration {
-	.kb-block-labels .aui-field-label {
+	.kb-block-labels .field-label {
 		display: block;
 	}
 
 	.kb-field-wrapper {
 		margin: 10px 0;
 
-		.aui-field-wrapper-content {
+		.field-wrapper-content {
 			margin: 0;
 		}
 	}
@@ -22,19 +22,19 @@
 /* ---------- Portal ---------- */
 
 .knowledge-base-portlet {
-	.aui-field-inline {
+	.field-inline {
 		display: inline-block;
 	}
 
-	.aui-fieldset {
+	.fieldset {
 		padding: 0;
 
-		.lfr-search-container .aui-field-content {
+		.lfr-search-container .field-content {
 			margin: 0;
 		}
 	}
 
-	.aui-tagselector-content {
+	.tagselector-content {
 		margin-bottom: 0;
 	}
 
@@ -108,7 +108,7 @@
 		margin: 5px 0 0;
 	}
 
-	.kb-block-labels .aui-field-label {
+	.kb-block-labels .field-label {
 		display: block;
 	}
 
@@ -183,7 +183,7 @@
 		.kb-article-comments, .kb-template-comments {
 			margin: 15px -7px 0;
 
-			.aui-field-content {
+			.field-content {
 				margin: 0;
 			}
 
@@ -246,7 +246,7 @@
 	.kb-field-wrapper {
 		margin: 10px 0;
 
-		.aui-field-wrapper-content {
+		.field-wrapper-content {
 			margin: 0;
 		}
 	}

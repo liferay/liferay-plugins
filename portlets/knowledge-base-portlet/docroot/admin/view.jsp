@@ -203,7 +203,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				searchContainer.setEmptyResultsMessage(null);
 				%>
 
-				<div class="portlet-msg-info">
+				<div class="alert alert-info">
 					<liferay-portlet:renderURL var="viewKBArticleURL">
 						<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(parentResourcePrimKey) %>" />
