@@ -9,6 +9,10 @@
 		}
 	}
 
+	.get-directions {
+		margin-top: -12px;
+	}
+
 	.google-maps-link {
 		padding-top: 1em;
 		text-align: right;

@@ -454,6 +454,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-dialog', 'aui-io-request', 'get', 'liferay-portlet-base']
+		requires: ['get', 'liferay-portlet-base']
 	}
 );
