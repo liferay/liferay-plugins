@@ -231,7 +231,7 @@ if (recurrence != null) {
 							}
 						]
 					},
-					visible: true,
+					visible: visible,
 					width: 600
 				},
 				title: '<liferay-ui:message key="repeat" />'
