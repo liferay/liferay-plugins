@@ -39,7 +39,7 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 %>
 
 <liferay-ui:header
-	backURL="<%= backURL %>"
+	backURL="<%= redirect %>"
 	title="<%= calendar.getName(locale) %>"
 />
 
@@ -56,8 +56,7 @@ String notificationTemplateBody = BeanPropertiesUtil.getString(calendarNotificat
 	<aui:input name="calendarNotificationTemplateId" type="hidden" value="<%= calendarNotificationTemplateId %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="tabs3" type="hidden" value="<%= tabs3 %>" />
-	<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	<aui:input name="calendarId" type="hidden" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
 	<aui:input name="calendarResourceId" type="hidden" value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>" />
 	<aui:input name="notificationType" type="hidden" value="<%= notificationType.getValue() %>" />

@@ -65,7 +65,6 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -261,17 +260,10 @@ public class CalendarPortlet extends MVCPortlet {
 				CalendarResourceServiceUtil.getCalendarResource(
 					calendarResourceId);
 
-			Calendar calendar = CalendarServiceUtil.addCalendar(
+			CalendarServiceUtil.addCalendar(
 				calendarResource.getGroupId(), calendarResourceId, nameMap,
 				descriptionMap, color, defaultCalendar, enableComments,
 				enableRatings, serviceContext);
-
-			String redirect = actionRequest.getParameter("redirect");
-			redirect = HttpUtil.addParameter(
-					redirect, actionResponse.getNamespace()+"calendarId",
-					calendar.getCalendarId());
-
-			actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 		}
 		else {
 			CalendarServiceUtil.updateCalendar(
