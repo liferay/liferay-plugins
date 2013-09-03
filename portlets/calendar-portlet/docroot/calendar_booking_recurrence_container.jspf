@@ -210,8 +210,7 @@ if (recurrence != null) {
 								recurrenceContainerNode.show();
 							}
 
-							window.<portlet:namespace />updateSummary(summaryNode);
-							window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview');
+							window.<portlet:namespace />updateSummaries();
 						}
 					},
 					bodyContent: recurrenceContainerNode,
@@ -266,7 +265,7 @@ if (recurrence != null) {
 				untilDateDatePicker.set('disabled', false);
 			}
 
-			window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview');
+			window.<portlet:namespace />updateSummaries();
 		},
 		'select,input'
 	);
@@ -284,6 +283,17 @@ if (recurrence != null) {
 		}
 	);
 
+	untilDateDatePicker.on(
+		'selectionChange',
+		function(event) {
+			var date = event.newSelection[0];
+
+			if (date) {
+				window.<portlet:namespace />updateSummaries(date);
+			}
+		}
+	);
+
 	summaryNode.on(
 		'click',
 		function(event) {
@@ -293,11 +303,15 @@ if (recurrence != null) {
 		}
 	);
 
-	window.<portlet:namespace />getSummary = function() {
+	window.<portlet:namespace />getSummary = function(date) {
 		var intervalNode = A.one('#<portlet:namespace />interval');
 		var weekdays = A.all('#<portlet:namespace />view<%= Frequency.WEEKLY %> input:checked');
 
 		var selectedWeekdays = [];
+
+		if (!date) {
+			date = untilDateDatePicker.getDate();
+		}
 
 		if (weekdays.size()) {
 			selectedWeekdays = weekdays.getAttribute('data-weekday');
@@ -310,7 +324,7 @@ if (recurrence != null) {
 			endValue: endValue,
 			frequency: frequencyNode.val(),
 			interval: intervalNode.val(),
-			untilDate: untilDateDatePicker.getDate(),
+			untilDate: date,
 			weekdays: selectedWeekdays
 		}
 
@@ -325,15 +339,20 @@ if (recurrence != null) {
 		}
 	};
 
-	window.<portlet:namespace />updateSummary = function(element) {
+	window.<portlet:namespace />updateSummary = function(element, date) {
 		var previewNode = A.one(element);
 
 		if (previewNode) {
-			previewNode.html(window.<portlet:namespace />getSummary());
+			previewNode.html(window.<portlet:namespace />getSummary(date));
 		}
 	};
 
+	window.<portlet:namespace />updateSummaries = function(date) {
+		window.<portlet:namespace />updateSummary(summaryNode, date);
+		window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview', date);
+	}
+
 	<c:if test="<%= recurring %>">
-		window.<portlet:namespace />updateSummary(summaryNode);
+		window.<portlet:namespace />updateSummaries();
 	</c:if>
 </aui:script>
