@@ -74,8 +74,10 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 		return unvisitedNodes;
 	}
 
-	protected List<Node> reverseTraverse(
-		Fork fork, Join join, Map<Join, Fork> joinForkMap) {
+	protected void reverseTraverse(
+			Fork fork, Join join, List<Node> targetNodes,
+			Map<Join, Fork> joinForkMap)
+		throws WorkflowException {
 
 		List<Node> sourceNodes = new ArrayList<Node>();
 
@@ -109,7 +111,13 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 			sourceNodes.addAll(unvisitedSourceNodes);
 		}
 
-		return sourceNodes;
+		if ((sourceNodes.size() != targetNodes.size()) ||
+			!sourceNodes.containsAll(targetNodes)) {
+
+			throw new WorkflowException(
+				"There are errors between fork " + fork.getName() +
+					" and join " + join.getName());
+		}
 	}
 
 	protected Join traverse(Fork fork) throws WorkflowException {
@@ -165,15 +173,7 @@ public class ForkNodeValidator extends BaseNodeValidator<Fork> {
 				"No matching join found for fork " + fork.getName());
 		}
 
-		List<Node> sourceNodes = reverseTraverse(fork, join, joinForkMap);
-
-		if ((sourceNodes.size() != targetNodes.size()) ||
-			!sourceNodes.containsAll(targetNodes)) {
-
-			throw new WorkflowException(
-				"There are errors between fork " + fork.getName() +
-					" and join " + join.getName());
-		}
+		reverseTraverse(fork, join, targetNodes, joinForkMap);
 
 		return join;
 	}
