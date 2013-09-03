@@ -82,7 +82,7 @@ List<AnnouncementsEntry> results = AnnouncementsEntryLocalServiceUtil.getEntries
 				</div>
 
 				<%
-				boolean expanded = ParamUtil.getBoolean(request, "expanded", Boolean.FALSE);
+				boolean expanded = ParamUtil.getBoolean(request, "expanded");
 				%>
 
 				<div class="content aui-toggler-content aui-toggler-content-<%= expanded ? "expanded" : "collapsed" %>">
