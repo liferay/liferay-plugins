@@ -391,6 +391,11 @@ public class ActivitiesPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("body", HtmlUtil.escape(body));
+
+		if ((userId <= 0) || (userId != themeDisplay.getUserId())) {
+			jsonObject.put("commentControlsClass", "aui-helper-hidden");
+		}
+
 		jsonObject.put(
 			"mbMessageIdOrMicroblogsEntryId", mbMessageIdOrMicroblogsEntryId);
 		jsonObject.put(

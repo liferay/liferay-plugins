@@ -198,10 +198,10 @@ AUI().use(
 			'</div>' +
 			'<div class="comment-info">' +
 				'<span class="post-date">{modifiedDate} </span>' +
-				'<span class="edit-comment">' +
+				'<span class="edit-comment {commentControlsClass}">' +
 					'<a data-mbMessageIdOrMicroblogsEntryId={mbMessageIdOrMicroblogsEntryId} href="javascript:;">' + Liferay.Language.get('edit') + '</a>' +
 				'</span>' +
-				'<span class="delete-comment">' +
+				'<span class="delete-comment {commentControlsClass}">' +
 					'<a data-mbMessageIdOrMicroblogsEntryId={mbMessageIdOrMicroblogsEntryId} href="javascript:;">' + Liferay.Language.get('delete') + '</a>' +
 				'</span>' +
 			'</div>' +
