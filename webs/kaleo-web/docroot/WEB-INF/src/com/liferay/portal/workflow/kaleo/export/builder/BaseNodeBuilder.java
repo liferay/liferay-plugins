@@ -133,7 +133,6 @@ public abstract class BaseNodeBuilder
 				else {
 					recipient = new UserRecipient();
 				}
-
 			}
 
 			notification.addRecipients(recipient);

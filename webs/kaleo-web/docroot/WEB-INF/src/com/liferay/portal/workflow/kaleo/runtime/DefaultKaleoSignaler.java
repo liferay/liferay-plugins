@@ -90,7 +90,6 @@ public class DefaultKaleoSignaler
 		for (PathElement remainingPathElement : remainingPathElements) {
 			_singleDestinationMessageSender.send(remainingPathElement);
 		}
-
 	}
 
 	@Override

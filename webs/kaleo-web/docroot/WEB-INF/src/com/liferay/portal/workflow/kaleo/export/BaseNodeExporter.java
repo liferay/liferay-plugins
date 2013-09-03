@@ -393,7 +393,6 @@ public abstract class BaseNodeExporter implements NodeExporter {
 					String.valueOf(outgoingTransition.isDefault()));
 			}
 		}
-
 	}
 
 	protected void populateRoleElement(
