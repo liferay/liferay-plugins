@@ -84,7 +84,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 			"There are errors between fork fork and join join", error);
 
 		inputStream = getResource(
-				"/META-INF/definitions/incoming-transitions-join-5.xml");
+			"/META-INF/definitions/incoming-transitions-join-5.xml");
 
 		error = assertInvalid(inputStream);
 
@@ -92,12 +92,12 @@ public class KaleoDefinitionTestCase extends TestCase {
 			"There are errors between fork fork and join fork Join", error);
 
 		inputStream = getResource(
-				"/META-INF/definitions/incoming-transitions-join-6.xml");
+			"/META-INF/definitions/incoming-transitions-join-6.xml");
 
 		assertValid(inputStream);
 
 		inputStream = getResource(
-				"/META-INF/definitions/incoming-transitions-join-7.xml");
+			"/META-INF/definitions/incoming-transitions-join-7.xml");
 
 		assertValid(inputStream);
 	}
