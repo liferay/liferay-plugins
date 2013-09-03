@@ -37,6 +37,24 @@
 			</param>
 		</method>
 		<method>
+			<name>getCity</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getCountryCode</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getCountryName</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getIpAddress</name>
 			<return>
 				<comment><![CDATA[]]></comment>
@@ -50,6 +68,18 @@
 		</method>
 		<method>
 			<name>getLongitude</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getPostalCode</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getRegion</name>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>

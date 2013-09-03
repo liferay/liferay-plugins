@@ -37,25 +37,7 @@
 		<type>com.liferay.marketplace.appmanager.portlet.AppManagerPortlet</type>
 		<author><![CDATA[Ryan Park]]></author>
 		<method>
-			<name>installLocalApp</name>
-			<param>
-				<name>actionRequest</name>
-				<type>javax.portlet.ActionRequest</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>actionResponse</name>
-				<type>javax.portlet.ActionResponse</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>installRemoteApp</name>
+			<name>installApp</name>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
@@ -134,6 +116,11 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
+				<name>uploadPortletRequest</name>
+				<type>com.liferay.portal.kernel.upload.UploadPortletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>
 				<comment><![CDATA[]]></comment>
@@ -157,6 +144,11 @@
 			<param>
 				<name>path</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>uploadPortletRequest</name>
+				<type>com.liferay.portal.kernel.upload.UploadPortletRequest</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>

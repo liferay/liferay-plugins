@@ -134,5 +134,8 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>_KNOWLEDGE_BASE_MODEL_CLASSNAME</name>
+		</field>
 	</javadoc>
 </javadocs>

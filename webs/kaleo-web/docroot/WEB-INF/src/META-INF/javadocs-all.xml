@@ -5429,6 +5429,17 @@
 			</return>
 		</method>
 		<method>
+			<name>parseJoinXor</name>
+			<param>
+				<name>joinXorElement</name>
+				<type>com.liferay.portal.kernel.xml.Element</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>parseNotificationElements</name>
 			<param>
 				<name>notificationElements</name>
@@ -5563,6 +5574,11 @@
 			</param>
 			<param>
 				<name>joinElements</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>joinXorElements</name>
 				<type>java.util.List</type>
 				<comment><![CDATA[]]></comment>
 			</param>

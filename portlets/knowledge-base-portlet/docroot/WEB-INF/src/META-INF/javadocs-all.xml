@@ -9676,27 +9676,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>PortletKeys</name>
-		<type>com.liferay.knowledgebase.util.PortletKeys</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<author><![CDATA[Peter Shin]]></author>
-		<field>
-			<name>KNOWLEDGE_BASE_ARTICLE</name>
-		</field>
-		<field>
-			<name>KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE</name>
-		</field>
-		<field>
-			<name>KNOWLEDGE_BASE_DISPLAY</name>
-		</field>
-		<field>
-			<name>KNOWLEDGE_BASE_SEARCH</name>
-		</field>
-		<field>
-			<name>KNOWLEDGE_BASE_SECTION</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>PortletPropsKeys</name>
 		<type>com.liferay.knowledgebase.util.PortletPropsKeys</type>
 		<author><![CDATA[Peter Shin]]></author>

@@ -66,6 +66,18 @@
 			</return>
 		</method>
 		<method>
+			<name>getLevelsRequiredDeploymentContexts</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getLevelsRequiredDeploymentWARFileNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getWrappedDeployManager</name>
 			<return>
 				<comment><![CDATA[]]></comment>
@@ -73,6 +85,17 @@
 		</method>
 		<method>
 			<name>isDeployed</name>
+			<param>
+				<name>context</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>isRequiredDeploymentContext</name>
 			<param>
 				<name>context</name>
 				<type>java.lang.String</type>
