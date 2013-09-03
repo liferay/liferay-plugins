@@ -607,14 +607,6 @@ AUI.add(
 					_createDialog: function(title, bodyContent, options) {
 						var instance = this;
 
-						var dialog = {
-							bodyContent: bodyContent,
-							centered: true,
-							height: 250,
-							modal: true,
-							width: 400
-						};
-
 						if (options) {
 							if ('buttons' in options) {
 								dialog['toolbars.footer'] = options['buttons'];
@@ -639,7 +631,18 @@ AUI.add(
 
 						return Liferay.Util.Window.getWindow(
 							{
-								dialog: dialog,
+								dialog: {
+									bodyContent: bodyContent,
+									buttons: buttons,
+									centered: true,
+									close: close,
+									destroyOnClose: true,
+									draggable: true,
+									height: 200,
+									modal: modal,
+									resizable: false,
+									width: 500
+								},
 								title: title
 							}
 						);

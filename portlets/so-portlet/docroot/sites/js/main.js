@@ -188,9 +188,9 @@ AUI().use(
 
 				var popup = instance.getPopup();
 
-				popup.titleNode.html(title);
-
 				popup.show();
+
+				popup.titleNode.html(title);
 
 				popup.io.set('uri', url);
 				popup.io.set('data', data);

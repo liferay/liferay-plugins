@@ -34,7 +34,7 @@ AUI.add(
 			addAccount: function() {
 				var instance = this;
 
-				instance.modal = Liferay.Util.Window.getWindow(
+				Liferay.Util.Window.getWindow(
 					{
 						dialog: {
 							centered: true,
@@ -128,7 +128,7 @@ AUI.add(
 			editAccount: function(accountId) {
 				var instance = this;
 
-				instance.modal = Liferay.Util.Window.getWindow(
+				var dialog = Liferay.Util.Window.getWindow(
 					{
 						dialog: {
 							centered: true,
@@ -407,7 +407,7 @@ AUI.add(
 			passwordPrompt: function(accountId, inboxFolderId) {
 				var instance = this;
 
-				instance.modal = Liferay.Util.Window.getWindow(
+				Liferay.Util.Window.getWindow(
 					{
 						dialog: {
 							centered: true,
