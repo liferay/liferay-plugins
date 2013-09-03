@@ -20,6 +20,13 @@ AUI.add(
 			);
 
 			target.on(
+				'click',
+				function(event) {
+					event.stopPropagation();
+				}
+			);
+
+			target.on(
 				'hideOn|close-menus',
 				function(event) {
 					if (hideClass && !target.hasClass(hideClass)) {
@@ -29,13 +36,6 @@ AUI.add(
 					if (showClass && target.hasClass(showClass)) {
 						target.removeClass(showClass);
 					}
-				}
-			);
-
-			target.on(
-				'click',
-				function(event) {
-					event.stopPropagation();
 				}
 			);
 
