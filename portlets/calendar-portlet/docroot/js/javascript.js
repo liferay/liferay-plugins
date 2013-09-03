@@ -608,7 +608,7 @@ AUI.add(
 						allDay: allDay,
 						calendarBookingId: calendarBooking.calendarBookingId,
 						calendarId: calendarBooking.calendarId,
-						content: calendarBooking.titleCurrentValue,
+						content: Liferay.Util.escapeHTML(calendarBooking.titleCurrentValue),
 						description: calendarBooking.descriptionCurrentValue,
 						endDate: endDate,
 						firstReminder: calendarBooking.firstReminder,
