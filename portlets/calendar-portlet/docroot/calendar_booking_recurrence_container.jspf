@@ -310,7 +310,7 @@ if (recurrence != null) {
 			endValue: endValue,
 			frequency: frequencyNode.val(),
 			interval: intervalNode.val(),
-			untilDate: untilDateDatePicker.calendar.get('selectedDates.0'),
+			untilDate: untilDateDatePicker.getDate(),
 			weekdays: selectedWeekdays
 		}
 
