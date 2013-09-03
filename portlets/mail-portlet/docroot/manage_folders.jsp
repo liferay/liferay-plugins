@@ -57,7 +57,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 
 	</table>
 
-	<aui:script use="aui-io-deprecated">
+	<aui:script>
 		var <portlet:namespace />onIOFailure = function(event, id, obj) {
 			Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 		}
@@ -151,9 +151,9 @@ long accountId = ParamUtil.getLong(request, "accountId");
 							cssClass: 'mail-dialog',
 							destroyOnClose: true,
 							modal: true,
-							title: '<liferay-ui:message key="rename-folder" />',
 							width: 600
-						}
+						},
+						title: '<liferay-ui:message key="rename-folder" />'
 					}
 				).plug(
 					A.Plugin.IO,
@@ -168,7 +168,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 					}
 				).render();
 			},
-			['aui-io-deprecated']
+			['aui-io-deprecated', 'liferay-util-window']
 		);
 	</aui:script>
 </c:if>
