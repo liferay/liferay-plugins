@@ -112,7 +112,6 @@ public class FavoriteSiteFinderImpl
 			qPos.add(name);
 
 			return (List<Object[]>)QueryUtil.list(q, getDialect(), start, end);
-
 		}
 		catch (Exception e) {
 			throw new SystemException(e);
