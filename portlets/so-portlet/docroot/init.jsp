@@ -85,7 +85,6 @@ page import="com.liferay.so.model.ProjectsEntry" %><%@
 page import="com.liferay.so.model.impl.ProjectsEntryImpl" %><%@
 page import="com.liferay.so.service.MemberRequestLocalServiceUtil" %><%@
 page import="com.liferay.so.service.ProjectsEntryLocalServiceUtil" %><%@
-page import="com.liferay.so.service.SocialOfficeServiceUtil" %><%@
 page import="com.liferay.so.sites.util.SitesUtil" %><%@
 page import="com.liferay.so.util.GroupConstants" %><%@
 page import="com.liferay.so.util.PortletKeys" %><%@
