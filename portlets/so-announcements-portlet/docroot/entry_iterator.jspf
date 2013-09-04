@@ -44,7 +44,7 @@ for (int i = 0; i < results.size(); i++) {
 
 <c:if test="<%= total > pageDelta %>">
 	<div class="navigation">
-		<span class="left-nav <%= (start == 0) ? "aui-helper-hidden" : "previous" %>">
+		<span class="left-nav <%= (start == 0) ? "hide" : "previous" %>">
 			<a href="javascript:;"><liferay-ui:message key="previous" /></a>
 		</span>
 
@@ -52,7 +52,7 @@ for (int i = 0; i < results.size(); i++) {
 			<liferay-ui:message arguments="<%= new Object[] {(start + 1), ((total >= end) ? end : total), total} %>" key="showing-x-x-of-x-results" />
 		</span>
 
-		<span class="right-nav <%= (total <= end) ? "aui-helper-hidden" : "next" %>">
+		<span class="right-nav <%= (total <= end) ? "hide" : "next" %>">
 			<a href="javascript:;"><liferay-ui:message key="next" /></a>
 		</span>
 	</div>
