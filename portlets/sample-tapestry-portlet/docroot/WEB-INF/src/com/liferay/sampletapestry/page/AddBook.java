@@ -48,7 +48,6 @@ public abstract class AddBook
 		view.setBooks(bookList.getBooks());
 
 		return view;
-
 	}
 
 	public abstract Book getBook();

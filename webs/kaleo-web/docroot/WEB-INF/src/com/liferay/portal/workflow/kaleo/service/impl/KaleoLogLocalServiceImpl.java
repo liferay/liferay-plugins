@@ -356,12 +356,11 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 		if ((logTypes == null) || logTypes.isEmpty()) {
 			return kaleoLogPersistence.countByKaleoInstanceId(kaleoInstanceId);
 		}
-		else {
-			DynamicQuery dynamicQuery = buildKaleoInstanceDynamicQuery(
-				kaleoInstanceId, logTypes);
 
-			return (int)dynamicQueryCount(dynamicQuery);
-		}
+		DynamicQuery dynamicQuery = buildKaleoInstanceDynamicQuery(
+			kaleoInstanceId, logTypes);
+
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	public List<KaleoLog> getKaleoTaskInstanceTokenKaleoLogs(
