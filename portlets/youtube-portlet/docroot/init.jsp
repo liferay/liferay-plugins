@@ -45,6 +45,7 @@ boolean enableRelatedVideos = GetterUtil.getBoolean(portletPreferences.getValue(
 boolean enableSearch = GetterUtil.getBoolean(portletPreferences.getValue("enableSearch", "false"));
 boolean hd = GetterUtil.getBoolean(portletPreferences.getValue("hd", "false"));
 String height = portletPreferences.getValue("height", "360");
+String inputTime = portletPreferences.getValue("inputTime", StringPool.BLANK);
 boolean loop = GetterUtil.getBoolean(portletPreferences.getValue("loop", "false"));
 String playerColor = portletPreferences.getValue("playerColor", StringPool.BLANK);
 boolean showInfo = GetterUtil.getBoolean(portletPreferences.getValue("showInfo", "true"));
@@ -64,4 +65,20 @@ String presetSize = width + "x" + height;
 String imageURL = HttpUtil.getProtocol(request) + "://img.youtube.com/vi/" + id + "/0.jpg";
 String swfURL = HttpUtil.getProtocol(request) + "://www.youtube.com/v/";
 String watchURL = HttpUtil.getProtocol(request) + "://www.youtube.com/watch?v=";
+
+if(Validator.isNotNull(inputTime)) {
+	String minutes = "0";
+	String seconds = "0";
+	StringBuilder sb = new StringBuilder();
+	for(int i =0;i < inputTime.length();i++) {
+		if(inputTime.charAt(i) == ':') {
+			minutes = sb.toString();
+			sb.delete(0,i);
+			continue;
+		}
+		sb.append(inputTime.charAt(i));
+	}
+	seconds = sb.toString();
+	startTime = String.valueOf(Integer.parseInt(minutes)*60 + Integer.parseInt(seconds));
+}
 %>

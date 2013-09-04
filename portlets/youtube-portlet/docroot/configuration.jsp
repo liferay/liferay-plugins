@@ -80,7 +80,7 @@
 					</div>
 
 					<div class="aui-field-row">
-						<aui:input cssClass="start-time" inlineField="true" label="start-time" name="preferences--startTime--" value="<%= startTime %>" />
+						<aui:input cssClass="input-time" inlineField="true" label="start-time" name="preferences--inputTime--" value="<%= inputTime %>" />
 
 						<aui:select cssClass="annotations" inlineField="true" label="annotations" name="annotations" value="<%= annotations %>">
 							<aui:option label="show-by-default" selected="<%= annotations == 1 %>" value="1" />
@@ -207,7 +207,7 @@
 	var presetSizeNode = A.one('#<portlet:namespace />presetSize');
 	var showInfoNode = A.one('#<portlet:namespace />showInfo');
 	var showThickerBorderNode = A.one('#<portlet:namespace />showThickerBorder');
-	var startTimeNode = A.one('#<portlet:namespace />startTime');
+	var startTimeNode = A.one('#<portlet:namespace />inputTime');
 	var urlNode = A.one('#<portlet:namespace />url');
 	var widthNode = A.one('#<portlet:namespace />width');
 
