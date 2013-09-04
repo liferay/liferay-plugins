@@ -176,6 +176,10 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 	}
 
 	protected String getFilterQuery(String field, long[] values) {
+		if (ArrayUtil.isEmpty(values)) {
+			return StringPool.BLANK;
+		}
+
 		StringBundler sb = new StringBundler(6 * values.length - 2);
 
 		for (int i = 0; i < values.length; i ++) {
