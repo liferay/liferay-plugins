@@ -56,8 +56,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 
 		String error = assertInvalid(inputStream);
 
-		assertEquals(
-			"There are errors between fork fork and join join", error);
+		assertEquals("There are errors between fork fork and join join", error);
 
 		inputStream = getResource(
 			"/META-INF/definitions/incoming-transitions-join-2.xml");
@@ -80,8 +79,7 @@ public class KaleoDefinitionTestCase extends TestCase {
 
 		error = assertInvalid(inputStream);
 
-		assertEquals(
-			"There are errors between fork fork and join join", error);
+		assertEquals("There are errors between fork fork and join join", error);
 
 		inputStream = getResource(
 			"/META-INF/definitions/incoming-transitions-join-5.xml");
