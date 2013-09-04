@@ -34,10 +34,10 @@ page import="com.liferay.portal.kernel.util.Validator" %>
 <portlet:defineObjects />
 
 <%
-int annotations = GetterUtil.getInteger(portletPreferences.getValue("annotations", StringPool.BLANK), 1);
+boolean annotations = GetterUtil.getBoolean(portletPreferences.getValue("annotations", "true"));
 boolean autoplay = GetterUtil.getBoolean(portletPreferences.getValue("autoplay", "false"));
 String borderColor = portletPreferences.getValue("borderColor", StringPool.BLANK);
-int closedCaptioning = GetterUtil.getInteger(portletPreferences.getValue("closedCaptioning", StringPool.BLANK), 0);
+boolean closedCaptioning = GetterUtil.getBoolean(portletPreferences.getValue("closedCaptioning", "false"));
 boolean enableEnhancedGenieMenu = GetterUtil.getBoolean(portletPreferences.getValue("enableEnhancedGenieMenu", "false"));
 boolean enableFullscreen = GetterUtil.getBoolean(portletPreferences.getValue("enableFullscreen", "false"));
 boolean enableKeyboardControls = GetterUtil.getBoolean(portletPreferences.getValue("enableKeyboardControls", "true"));
