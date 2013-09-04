@@ -76,7 +76,7 @@ AUI().use(
 					if (header) {
 						var expanded = 'false';
 
-						if (header.hasClass('aui-toggler-header-expanded')) {
+						if (header.hasClass('toggler-header-expanded')) {
 							expanded = 'true';
 						}
 
