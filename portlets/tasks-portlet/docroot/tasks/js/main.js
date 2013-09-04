@@ -17,6 +17,12 @@ AUI().use(
 				instance._taskListURL = param.taskListURL;
 			},
 
+			initUpcomingTasks: function(param) {
+				var instance = this;
+
+				instance._upcomingTasksListURL = param.upcomingTasksListURL;
+			},
+
 			clearFilters: function() {
 				var instance = this;
 
@@ -104,6 +110,14 @@ AUI().use(
 				var instance = this;
 
 				instance._taskList = A.one('.tasks-portlet .list-wrapper');
+
+				if (!instance._taskList) {
+					instance._taskList = A.one('.upcoming-tasks-portlet .tasks-entries-container');
+
+					if (!url) {
+						url = instance._upcomingTasksListURL;
+					}
+				}
 
 				if (!instance._taskList.io) {
 					instance._taskList.plug(
