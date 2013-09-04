@@ -77,20 +77,15 @@
 						<aui:input cssClass="enable-enhanced-genie-menu" helpMessage="enhanced-genie-menu-help" inlineField="true" label="enable-enhanced-genie-menu" name="preferences--enableEnhancedGenieMenu--" type="checkbox" value="<%= enableEnhancedGenieMenu %>" />
 
 						<aui:input cssClass="enable-search" inlineField="true" label="enable-search" name="preferences--enableSearch--" type="checkbox" value="<%= enableSearch %>" />
+
+						<aui:input cssClass="annotations" inlineField="true" label="annotations" name="preferences--annotations--" type="checkbox" value="<%= annotations %>" />
+
+						<aui:input cssClass="closedCaptioning" inlineField="true" label="closed-captioning" name="preferences--closedCaptioning--" type="checkbox" value="<%= closedCaptioning %>" />
 					</div>
 
 					<div class="aui-field-row">
 						<aui:input cssClass="input-time" inlineField="true" label="start-time" name="preferences--inputTime--" value="<%= inputTime %>" />
 
-						<aui:select cssClass="annotations" inlineField="true" label="annotations" name="annotations" value="<%= annotations %>">
-							<aui:option label="show-by-default" selected="<%= annotations == 1 %>" value="1" />
-							<aui:option label="do-not-show-by-default" selected="<%= annotations == 3 %>" value="3" />
-						</aui:select>
-
-						<aui:select cssClass="closed-captioning" inlineField="true" label="closed-captioning" name="preferences--closedCaptioning--">
-							<aui:option label="show-by-default" selected="<%= closedCaptioning == 1 %>" value="1" />
-							<aui:option label="do-not-show-by-default" selected="<%= closedCaptioning == 0 %>" value="0" />
-						</aui:select>
 					</div>
 				</liferay-ui:panel>
 			</liferay-ui:panel-container>

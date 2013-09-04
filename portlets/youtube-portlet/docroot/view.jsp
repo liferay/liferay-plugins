@@ -29,9 +29,12 @@
 		if (showThickerBorder) {
 			sb.append("&amp;border=1");
 		}
-
-		sb.append("&amp;cc_load_policy=");
-		sb.append(closedCaptioning);
+		if(closedCaptioning){
+			sb.append("&amp;cc_load_policy=" + 1);
+		}
+		else {
+			sb.append("&amp;cc_load_policy=" + 0);
+		}
 
 		if (Validator.isNotNull(borderColor)) {
 			sb.append("&amp;color1=");
@@ -59,8 +62,12 @@
 			sb.append("&amp;hd=1");
 		}
 
-		sb.append("&amp;iv_load_policy=");
-		sb.append(annotations);
+		if(annotations) {
+			sb.append("&amp;iv_load_policy=" + 1);
+		}
+		else {
+			sb.append("&amp;iv_load_policy=" + 3);
+		}
 
 		if (loop) {
 			sb.append("&amp;loop=1&amp;playlist=" + id);
