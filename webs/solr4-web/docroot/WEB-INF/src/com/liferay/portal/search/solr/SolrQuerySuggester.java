@@ -105,7 +105,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 		solrQuery.setFilterQueries(
 			getFilterQueries(
-				searchContext, SuggestionConstants.QUERY_SUGGESTION_TYPE));
+				searchContext, SuggestionConstants.TYPE_QUERY_SUGGESTION));
 
 		solrQuery.setQuery(sb.toString());
 		solrQuery.setRows(max);
@@ -252,7 +252,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 			solrQuery.addFilterQuery(
 				getFilterQueries(
-					searchContext, SuggestionConstants.SPELL_CHECKER_TYPE));
+					searchContext, SuggestionConstants.TYPE_SPELL_CHECKER));
 
 			solrQuery.setRows(_MAX_QUERY_RESULTS);
 

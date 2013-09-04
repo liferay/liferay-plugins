@@ -40,8 +40,8 @@ public class SolrSpellCheckIndexWriter
 			SearchContext searchContext)
 		throws SearchException {
 
-		String deleteQuery = createDeleteQuery(
-			searchContext, SuggestionConstants.QUERY_SUGGESTION_TYPE);
+		String deleteQuery = buildDeleteQuery(
+			searchContext, SuggestionConstants.TYPE_QUERY_SUGGESTION);
 
 		try {
 			_solrServer.deleteByQuery(deleteQuery);
@@ -63,8 +63,8 @@ public class SolrSpellCheckIndexWriter
 	public void clearSpellCheckerDictionaryIndexes(SearchContext searchContext)
 		throws SearchException {
 
-		String deleteQuery = createDeleteQuery(
-			searchContext, SuggestionConstants.SPELL_CHECKER_TYPE);
+		String deleteQuery = buildDeleteQuery(
+			searchContext, SuggestionConstants.TYPE_SPELL_CHECKER);
 
 		try {
 			_solrServer.deleteByQuery(deleteQuery);
@@ -80,7 +80,6 @@ public class SolrSpellCheckIndexWriter
 
 			throw new SearchException(e.getMessage(), e);
 		}
-
 	}
 
 	public void setCommit(boolean commit) {
@@ -91,22 +90,18 @@ public class SolrSpellCheckIndexWriter
 		_solrServer = solrServer;
 	}
 
-	protected StringBundler addQuerySeparator(StringBundler sb) {
+	protected void addQuerySeparator(StringBundler sb) {
 		sb.append(StringPool.SPACE);
 		sb.append(StringPool.PLUS);
-
-		return sb;
 	}
 
-	protected StringBundler addTypeQuery(StringBundler sb, String type) {
+	protected void addQueryType(StringBundler sb, String type) {
 		sb.append(Field.TYPE);
 		sb.append(StringPool.COLON);
 		sb.append(type);
-
-		return sb;
 	}
 
-	protected String createDeleteQuery(
+	protected String buildDeleteQuery(
 		SearchContext searchContext, String type) {
 
 		StringBundler sb = new StringBundler(14);
@@ -124,7 +119,7 @@ public class SolrSpellCheckIndexWriter
 
 		addQuerySeparator(sb);
 
-		addTypeQuery(sb, type);
+		addQueryType(sb, type);
 
 		return sb.toString();
 	}
