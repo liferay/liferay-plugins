@@ -92,22 +92,27 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 	public String[] suggestKeywordQueries(SearchContext searchContext, int max)
 		throws SearchException {
 
-		StringBundler sb = new StringBundler(6);
-
-		sb.append("start");
-		sb.append(searchContext.getKeywords().length());
-		sb.append(StringPool.COLON);
-		sb.append(StringPool.QUOTE);
-		sb.append(searchContext.getKeywords());
-		sb.append(StringPool.QUOTE);
-
 		SolrQuery solrQuery = new SolrQuery();
 
 		solrQuery.setFilterQueries(
 			getFilterQueries(
 				searchContext, SuggestionConstants.TYPE_QUERY_SUGGESTION));
 
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("start");
+		
+		String keywords = searchContext.getKeywords();
+
+		sb.append(keywords.length());
+
+		sb.append(StringPool.COLON);
+		sb.append(StringPool.QUOTE);
+		sb.append(keywords);
+		sb.append(StringPool.QUOTE);
+
 		solrQuery.setQuery(sb.toString());
+
 		solrQuery.setRows(max);
 
 		try {
@@ -115,11 +120,9 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 			SolrDocumentList solrDocumentList = queryResponse.getResults();
 
-			int numDocuments = solrDocumentList.size();
+			String[] results = new String[solrDocumentList.size()];
 
-			String[] results = new String[numDocuments];
-
-			for (int i = 0; i < numDocuments; i++) {
+			for (int i = 0; i < solrDocumentList.size(); i++) {
 				SolrDocument solrDocument = solrDocumentList.get(i);
 
 				results[i] = (String)solrDocument.getFieldValue(
