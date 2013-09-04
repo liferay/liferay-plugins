@@ -23,122 +23,123 @@ long assetCategoryId = ParamUtil.getLong(request, "categoryId");
 String assetTagName = ParamUtil.getString(request, "tag");
 %>
 
-<div class="top-links-container">
-	<div class="top-links">
-		<div class="top-links-navigation">
+<aui:nav-bar>
+	<aui:nav>
+
+		<%
+		String label = "knowledge-base-home";
+
+		PortletURL portletURL = renderResponse.createRenderURL();
+
+		portletURL.setParameter("mvcPath", "/display/view.jsp");
+
+		if ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
+			portletURL.setParameter("categoryId", StringPool.BLANK);
+			portletURL.setParameter("tag", StringPool.BLANK);
+		}
+
+		boolean selected = false;
+
+		if (mvcPath.equals("/display/view.jsp") && (assetCategoryId == 0) && Validator.isNull(assetTagName)) {
+			selected = true;
+		}
+		%>
+
+		<aui:nav-item
+			cssClass='<%= selected ? "active" : StringPool.BLANK %>'
+			href="<%= portletURL.toString() %>"
+			label="<%= label %>"
+			selected="<%= selected %>"
+		/>
+
+		<%
+		label = "recent-articles";
+
+		portletURL = renderResponse.createRenderURL();
+
+		portletURL.setParameter("mvcPath", "/display/view_recent_articles.jsp");
+
+		if ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
+			portletURL.setParameter("categoryId", StringPool.BLANK);
+			portletURL.setParameter("tag", StringPool.BLANK);
+		}
+
+		selected = mvcPath.equals("/display/view_recent_articles.jsp");
+		%>
+
+		<aui:nav-item
+			cssClass='<%= selected ? "active" : StringPool.BLANK %>'
+			href="<%= portletURL.toString() %>"
+			label="<%= label %>"
+			selected="<%= selected %>"
+		/>
+
+		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
 
 			<%
-			String viewURL = StringPool.BLANK;
+			label = "administrator";
 
-			if (!mvcPath.equals("/display/view.jsp") || (assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
-				PortletURL portletURL = renderResponse.createRenderURL();
+			portletURL = renderResponse.createRenderURL();
 
-				portletURL.setParameter("mvcPath", "/display/view.jsp");
+			portletURL.setParameter("mvcPath", "/display/view_admin_panel.jsp");
+			portletURL.setParameter("status", String.valueOf(WorkflowConstants.STATUS_ANY));
 
-				if ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
-					portletURL.setParameter("categoryId", StringPool.BLANK);
-					portletURL.setParameter("tag", StringPool.BLANK);
-				}
-
-				viewURL = portletURL.toString();
+			if ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
+				portletURL.setParameter("categoryId", StringPool.BLANK);
+				portletURL.setParameter("tag", StringPool.BLANK);
 			}
+
+			selected = mvcPath.equals("/display/view_admin_panel.jsp");
 			%>
 
-			<liferay-ui:icon
-				cssClass="top-link"
-				image="../aui/home"
-				label="<%= true %>"
-				message="knowledge-base-home"
-				method="get"
-				url="<%= viewURL %>"
+			<aui:nav-item
+				cssClass='<%= selected ? "active" : StringPool.BLANK %>'
+				href="<%= portletURL.toString() %>"
+				label="<%= label %>"
+				selected="<%= selected %>"
 			/>
+		</c:if>
+
+		<c:if test="<%= themeDisplay.isSignedIn() %>">
 
 			<%
-			String viewRecentKBArticlesURL = StringPool.BLANK;
+			label = "my-subscriptions";
 
-			if (!mvcPath.equals("/display/view_recent_articles.jsp")) {
-				PortletURL portletURL = renderResponse.createRenderURL();
+			portletURL = renderResponse.createRenderURL();
 
-				portletURL.setParameter("mvcPath", "/display/view_recent_articles.jsp");
+			portletURL.setParameter("mvcPath", "/display/view_subscribed_articles.jsp");
 
-				viewRecentKBArticlesURL = portletURL.toString();
+			if ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) {
+				portletURL.setParameter("categoryId", StringPool.BLANK);
+				portletURL.setParameter("tag", StringPool.BLANK);
 			}
+
+			selected = mvcPath.equals("/display/view_subscribed_articles.jsp");
 			%>
 
-			<liferay-ui:icon
-				cssClass='<%= !themeDisplay.isSignedIn() ? "top-link last" : "top-link" %>'
-				image="../aui/clock"
-				label="<%= true %>"
-				message="recent-articles"
-				method="get"
-				url="<%= viewRecentKBArticlesURL %>"
+			<aui:nav-item
+				cssClass='<%= selected ? "active" : StringPool.BLANK %>'
+				href="<%= portletURL.toString() %>"
+				label="<%= label %>"
+				selected="<%= selected %>"
 			/>
+		</c:if>
+	</aui:nav>
 
-			<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
+	<div class="navbar-search pull-right">
+		<div class="form-search">
+			<liferay-portlet:renderURL varImpl="searchURL">
+				<portlet:param name="mvcPath" value="/display/search.jsp" />
+			</liferay-portlet:renderURL>
 
-				<%
-				String viewAdminPanelURL = StringPool.BLANK;
+			<aui:form action="<%= searchURL %>" method="get" name="searchFm">
+				<liferay-portlet:renderURLParams varImpl="searchURL" />
 
-				if (!mvcPath.equals("/display/view_admin_panel.jsp")) {
-					PortletURL portletURL = renderResponse.createRenderURL();
-
-					portletURL.setParameter("mvcPath", "/display/view_admin_panel.jsp");
-					portletURL.setParameter("status", String.valueOf(WorkflowConstants.STATUS_ANY));
-
-					viewAdminPanelURL = portletURL.toString();
-				}
-				%>
-
-				<liferay-ui:icon
-					cssClass='<%= !themeDisplay.isSignedIn() ? "top-link last" : "top-link" %>'
-					image="../aui/person"
-					label="<%= true %>"
-					message="administrator"
-					method="get"
-					url="<%= viewAdminPanelURL %>"
-				/>
-			</c:if>
-
-			<c:if test="<%= themeDisplay.isSignedIn() %>">
-
-				<%
-				String viewSubscribedKBArticlesURL = StringPool.BLANK;
-
-				if (!mvcPath.equals("/display/view_subscribed_articles.jsp")) {
-					PortletURL portletURL = renderResponse.createRenderURL();
-
-					portletURL.setParameter("mvcPath", "/display/view_subscribed_articles.jsp");
-
-					viewSubscribedKBArticlesURL = portletURL.toString();
-				}
-				%>
-
-				<liferay-ui:icon
-					cssClass="top-link last"
-					image="../aui/signal-diag"
-					label="<%= true %>"
-					message="my-subscriptions"
-					method="get"
-					url="<%= viewSubscribedKBArticlesURL %>"
-				/>
-			</c:if>
-		</div>
-
-		<div class="navbar-search pull-right">
-			<div class="form-search">
-				<liferay-portlet:renderURL varImpl="searchURL">
-					<portlet:param name="mvcPath" value="/display/search.jsp" />
-				</liferay-portlet:renderURL>
-
-				<aui:form action="<%= searchURL %>" method="get" name="searchFm">
-					<liferay-portlet:renderURLParams varImpl="searchURL" />
-
-					<liferay-ui:input-search />
-				</aui:form>
-			</div>
+				<liferay-ui:input-search />
+			</aui:form>
 		</div>
 	</div>
-</div>
+</aui:nav-bar>
 
 <c:if test='<%= !mvcPath.equals("/display/view.jsp") && ((assetCategoryId > 0) || Validator.isNotNull(assetTagName)) %>'>
 	<div class="alert alert-info">
