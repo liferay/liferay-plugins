@@ -120,16 +120,16 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 			SolrDocumentList solrDocumentList = queryResponse.getResults();
 
-			String[] results = new String[solrDocumentList.size()];
+			String[] querySuggestions = new String[solrDocumentList.size()];
 
 			for (int i = 0; i < solrDocumentList.size(); i++) {
 				SolrDocument solrDocument = solrDocumentList.get(i);
 
-				results[i] = (String)solrDocument.getFieldValue(
+				querySuggestions[i] = (String)solrDocument.getFieldValue(
 					Field.KEYWORD_SEARCH);
 			}
 
-			return results;
+			return querySuggestions;
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
