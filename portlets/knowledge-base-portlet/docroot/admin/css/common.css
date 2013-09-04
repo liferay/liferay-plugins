@@ -112,6 +112,11 @@
 		display: block;
 	}
 
+	.kb-bulk-action-button-holder {
+		margin-bottom: 15px;
+		margin-top: 15px;
+	}
+
 	.kb-column-no-wrap {
 		white-space: nowrap;
 	}

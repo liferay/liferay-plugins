@@ -231,7 +231,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			</c:if>
 
 			<c:if test="<%= (total > 0) && (AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) || AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES)) %>">
-				<aui:button-row>
+				<aui:button-row cssClass="kb-bulk-action-button-holder">
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.DELETE_KB_ARTICLES) %>">
 						<aui:button onClick='<%= renderResponse.getNamespace() + "deleteKBArticles();" %>' value="delete" />
 					</c:if>

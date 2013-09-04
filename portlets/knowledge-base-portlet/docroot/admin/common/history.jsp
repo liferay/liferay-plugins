@@ -197,7 +197,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				<%= AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "content") %>
 			</div>
 
-			<aui:button-row>
+			<aui:button-row cssClass="kb-bulk-action-button-holder">
 				<aui:button type="submit" value="compare-versions" />
 			</aui:button-row>
 
