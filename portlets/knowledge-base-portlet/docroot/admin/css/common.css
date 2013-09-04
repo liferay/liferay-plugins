@@ -34,6 +34,14 @@
 		}
 	}
 
+	.table-cell .control-group {
+		margin-bottom: 0;
+
+		.field {
+			margin-bottom: 0;
+		}
+	}
+
 	.tagselector-content {
 		margin-bottom: 0;
 	}
@@ -250,6 +258,10 @@
 		.field-wrapper-content {
 			margin: 0;
 		}
+	}
+
+	.kb-new-parent .control-group-inline {
+		margin-bottom: 0;
 	}
 
 	.kb-panel-separator {

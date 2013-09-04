@@ -93,10 +93,10 @@ String dirName = ParamUtil.getString(request, "dirName");
 			</div>
 		</aui:field-wrapper>
 
-		<c:if test="<%= Validator.isNotNull(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) %>">
+		<c:if test="<%= Validator.isNotNull(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) || (parentResourcePrimKey == KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
 			<aui:model-context bean="<%= null %>" model="<%= KBArticle.class %>" />
 
-			<aui:select cssClass='<%= (parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) ? "hide" : StringPool.BLANK %>' ignoreRequestValue="<%= true %>" multiple="<%= true %>" name="sections">
+			<aui:select ignoreRequestValue="<%= true %>" multiple="<%= true %>" name="sections">
 
 				<%
 				Map<String, String> sectionsMap = new TreeMap<String, String>();
