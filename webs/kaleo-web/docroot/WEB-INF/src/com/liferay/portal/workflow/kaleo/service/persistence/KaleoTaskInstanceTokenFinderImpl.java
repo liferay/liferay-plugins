@@ -598,15 +598,14 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 			return sb.toString();
 		}
-		else {
-			StringBundler sb = new StringBundler(3);
 
-			sb.append("AND ((");
-			sb.append("KaleoTaskAssignmentInstance.assigneeClassName = ?) ");
-			sb.append("AND (KaleoTaskAssignmentInstance.assigneeClassPK = ?))");
+		StringBundler sb = new StringBundler(3);
 
-			return sb.toString();
-		}
+		sb.append("AND ((");
+		sb.append("KaleoTaskAssignmentInstance.assigneeClassName = ?) ");
+		sb.append("AND (KaleoTaskAssignmentInstance.assigneeClassPK = ?))");
+
+		return sb.toString();
 	}
 
 	protected String getTaskName(

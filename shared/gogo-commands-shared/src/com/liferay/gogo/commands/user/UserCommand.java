@@ -31,7 +31,7 @@ import com.liferay.portal.service.UserLocalService;
 		AbstractCommand.OSGI_COMMAND_FUNCTION + "=user",
 		AbstractCommand.OSGI_COMMAND_SCOPE + "=liferay"
 	},
-	provide=Object.class)
+	provide = Object.class)
 public class UserCommand extends AbstractCommand {
 
 	@Override

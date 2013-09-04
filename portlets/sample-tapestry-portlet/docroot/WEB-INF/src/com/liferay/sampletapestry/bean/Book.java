@@ -49,7 +49,7 @@ public class Book implements Serializable {
 	}
 
 	public void setDescription(String description) {
-		_description= description;
+		_description = description;
 	}
 
 	public void setRecommended(boolean recommended) {

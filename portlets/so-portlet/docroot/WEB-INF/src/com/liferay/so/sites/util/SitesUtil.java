@@ -118,26 +118,25 @@ public class SitesUtil {
 
 			return groups;
 		}
-		else {
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
 
-			params.put("active", Boolean.TRUE);
-			params.put("pageCount", Boolean.TRUE);
+		LinkedHashMap<String, Object> params =
+			new LinkedHashMap<String, Object>();
 
-			List<Integer> types = new ArrayList<Integer>();
+		params.put("active", Boolean.TRUE);
+		params.put("pageCount", Boolean.TRUE);
 
-			types.add(GroupConstants.TYPE_SITE_OPEN);
-			types.add(GroupConstants.TYPE_SITE_RESTRICTED);
+		List<Integer> types = new ArrayList<Integer>();
 
-			params.put("types", types);
+		types.add(GroupConstants.TYPE_SITE_OPEN);
+		types.add(GroupConstants.TYPE_SITE_RESTRICTED);
 
-			List<Group> groups = GroupLocalServiceUtil.search(
-				companyId, keywords, null, params, true, start, end,
-				new GroupNameComparator(true));
+		params.put("types", types);
 
-			return groups;
-		}
+		List<Group> groups = GroupLocalServiceUtil.search(
+			companyId, keywords, null, params, true, start, end,
+			new GroupNameComparator(true));
+
+		return groups;
 	}
 
 	protected static int doGetVisibleSitesCount(
