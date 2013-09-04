@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.search.SuggestionConstants;
 import com.liferay.portal.kernel.search.TokenizerUtil;
 import com.liferay.portal.kernel.search.WeightedWord;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -101,7 +102,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		StringBundler sb = new StringBundler(6);
 
 		sb.append("start");
-		
+
 		String keywords = searchContext.getKeywords();
 
 		sb.append(keywords.length());
@@ -202,13 +203,10 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 	}
 
 	protected long[] getGroupIdsForSuggestions(SearchContext searchContext) {
-
 		long[] groupIds = searchContext.getGroupIds();
 
-		long globalGroupId = _GLOBAL_GROUP_ID;
-
-		if (!ArrayUtil.contains(groupIds, globalGroupId)) {
-			groupIds = ArrayUtil.append(groupIds, globalGroupId);
+		if (!ArrayUtil.contains(groupIds, _GLOBAL_GROUP_ID)) {
+			groupIds = ArrayUtil.append(groupIds, _GLOBAL_GROUP_ID);
 		}
 
 		return groupIds;
@@ -223,15 +221,14 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 		max = Math.min(max, suggestionsSet.size());
 
-		Iterator<WeightedWord> descendingIterator =
-			suggestionsSet.descendingIterator();
-
 		List<String> suggestionsList = new ArrayList<String>(max);
 
-		int counter = 0;
+		int count = 0;
 
-		while (descendingIterator.hasNext()) {
-			WeightedWord weightedWord = descendingIterator.next();
+		Iterator<WeightedWord> iterator = suggestionsSet.descendingIterator();
+
+		while (iterator.hasNext()) {
+			WeightedWord weightedWord = iterator.next();
 
 			if (weightedWord.getWeight() != 0) {
 				suggestionsList.add(weightedWord.getWord());
@@ -240,9 +237,9 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 				suggestionsList.add(input);
 			}
 
-			counter++;
+			count++;
 
-			if (counter >= max) {
+			if (count >= max) {
 				break;
 			}
 		}
@@ -255,6 +252,11 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		throws SearchException {
 
 		try {
+			Map<String, WeightedWord> weightedWordsMap =
+				new HashMap<String, WeightedWord>();
+			TreeSet<WeightedWord> weightedWordsSet =
+				new TreeSet<WeightedWord>();
+
 			SolrQuery solrQuery = _nGramQueryBuilder.getNGramQuery(input);
 
 			solrQuery.addFilterQuery(
@@ -268,54 +270,49 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 
 			SolrDocumentList solrDocumentList = queryResponse.getResults();
 
-			int numResults = solrDocumentList.size();
-
-			TreeSet<WeightedWord> sortedWords = new TreeSet<WeightedWord>();
-
-			Map<String, WeightedWord> weightedWordMap =
-				new HashMap<String, WeightedWord>();
-
-			for (int i = 0; i < numResults; i++) {
+			for (int i = 0; i < solrDocumentList.size(); i++) {
 				SolrDocument solrDocument = solrDocumentList.get(i);
 
-				String suggestion = ((List<String>)solrDocument.get(
-					Field.SPELL_CHECK_WORD)).get(0);
+				List<String> suggestions = (List<String>)solrDocument.get(
+					Field.SPELL_CHECK_WORD);
 
-				String strWeight = ((List<String>)solrDocument.get(
-					Field.PRIORITY)).get(0);
+				String suggestion = suggestions.get(0);
 
-				float weight = Float.parseFloat(strWeight);
+				List<String> weights = (List<String>)solrDocument.get(
+					Field.PRIORITY);
+
+				float weight = GetterUtil.getFloat(weights.get(0));
 
 				if (suggestion.equals(input)) {
 					weight = _INFINITE_WEIGHT;
 				}
 				else {
-					String lowerCaseInput = input.toLowerCase();
-					String lowerCaseSuggestion = suggestion.toLowerCase();
+					String inputLowerCase = input.toLowerCase();
+					String suggestionLowerCase = suggestion.toLowerCase();
 
 					float distance = StringDistanceCalculatorUtil.getDistance(
-						lowerCaseInput, lowerCaseSuggestion);
+						inputLowerCase, suggestionLowerCase);
 
 					if (distance >= _distanceThreshold) {
 						weight = weight + distance;
 					}
 				}
 
-				WeightedWord weightedWord = weightedWordMap.get(suggestion);
+				WeightedWord weightedWord = weightedWordsMap.get(suggestion);
 
 				if (weightedWord == null) {
 					weightedWord = new WeightedWord(suggestion, weight);
 
-					weightedWordMap.put(suggestion, weightedWord);
+					weightedWordsMap.put(suggestion, weightedWord);
 
-					sortedWords.add(weightedWord);
+					weightedWordsSet.add(weightedWord);
 				}
 				else if (weight > weightedWord.getWeight()) {
 					weightedWord.setWeight(weight);
 				}
 			}
 
-			return sortedWords;
+			return weightedWordsSet;
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {
@@ -326,13 +323,13 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		}
 	}
 
-	private static final long _GLOBAL_GROUP_ID = 0l;
+	private static final long _GLOBAL_GROUP_ID = 0;
+
+	private static final float _INFINITE_WEIGHT = 100f;
+
+	private static final int _MAX_QUERY_RESULTS = 500;
 
 	private static Log _log = LogFactoryUtil.getLog(SolrQuerySuggester.class);
-
-	private static float _INFINITE_WEIGHT = 100f;
-
-	private static int _MAX_QUERY_RESULTS = 500;
 
 	private float _distanceThreshold;
 	private NGramQueryBuilder _nGramQueryBuilder;
