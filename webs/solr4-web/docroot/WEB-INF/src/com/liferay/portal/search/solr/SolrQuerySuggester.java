@@ -92,7 +92,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 	public String[] suggestKeywordQueries(SearchContext searchContext, int max)
 		throws SearchException {
 
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(6);
 
 		sb.append("start");
 		sb.append(searchContext.getKeywords().length());
