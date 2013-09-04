@@ -125,7 +125,7 @@ AUI.add(
 
 		var Editor = A.Component.create(
 			{
-				NAME: 'gadget-editor',
+				AUGMENTS: [Liferay.PortletBase],
 
 				ATTRS: {
 					baseRenderURL: {
@@ -139,6 +139,8 @@ AUI.add(
 					resourceURL: {},
 					rootFolderId: {}
 				},
+
+				NAME: 'gadget-editor',
 
 				prototype: {
 					initializer: function() {
@@ -731,19 +733,21 @@ AUI.add(
 					_createDialog: function(title, bodyContent, modal, close, buttons) {
 						var instance = this;
 
-						return new A.Dialog(
+						return Liferay.Util.Window.getWindow(
 							{
-								bodyContent: bodyContent,
-								buttons: buttons,
-								centered: true,
-								close: close,
-								destroyOnClose: true,
-								draggable: true,
-								height: 200,
-								modal: modal,
-								resizable: false,
-								title: title,
-								width: 500
+								dialog: {
+									bodyContent: bodyContent,
+									buttons: buttons,
+									centered: true,
+									close: close,
+									destroyOnClose: true,
+									draggable: true,
+									height: 200,
+									modal: modal,
+									resizable: false,
+									width: 500
+								},
+								title: title
 							}
 						);
 					},
@@ -1652,11 +1656,13 @@ AUI.add(
 								io: {
 									cfg: {
 										data: function(node) {
-											return {
-												folderId: node.get(ENTRY_ID),
-												getFileEntries: true,
-												repositoryId: instance.get(REPOSITORY_ID)
-											};
+											return instance.ns(
+												{
+													folderId: node.get(ENTRY_ID),
+													getFileEntries: true,
+													repositoryId: instance.get(REPOSITORY_ID)
+												}
+											);
 										},
 										on: {
 											failure: function(event) {
@@ -1952,7 +1958,7 @@ AUI.add(
 
 						var io = instance._getIORequest(name, callback);
 
-						io.set('data', data);
+						io.set('data', instance.ns(data));
 
 						io.start();
 
@@ -2145,6 +2151,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-dialog', 'aui-form', 'aui-loading-mask', 'aui-panel', 'aui-resize', 'aui-toolbar', 'gadget-editor-tabs', 'gadget-editor-tree', 'liferay-open-social-gadget', 'liferay-util-window', 'stylesheet']
+		requires: ['aui-form-deprecated', 'aui-loading-mask-deprecated', 'aui-panel-deprecated', 'aui-resize-deprecated', 'aui-toolbar', 'gadget-editor-tabs', 'gadget-editor-tree', 'liferay-open-social-gadget', 'liferay-portlet-base', 'liferay-util-window', 'stylesheet']
 	}
 );

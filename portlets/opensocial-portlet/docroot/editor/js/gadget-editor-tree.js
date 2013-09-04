@@ -597,7 +597,7 @@ AUI.add(
 									instance._contextMenuOverlay.hide();
 								}
 							},
-							'.aui-buttonitem'
+							'.buttonitem'
 						);
 					},
 
@@ -683,7 +683,7 @@ AUI.add(
 
 							instance._closeContextMenuButton.set(DISABLED, !fileEntryLoaded);
 
-							instance.get(CONTENT_BOX).toggleClass('aui-tree-node-loaded', fileEntryLoaded);
+							instance.get(CONTENT_BOX).toggleClass('tree-node-loaded', fileEntryLoaded);
 						}
 					},
 
@@ -821,6 +821,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-editable', 'aui-overlay-context', 'aui-overlay-manager', 'aui-toolbar', 'aui-tree-node', 'aui-tree-view']
+		requires: ['aui-editable-deprecated', 'aui-overlay-context-deprecated', 'aui-overlay-manager-deprecated', 'aui-toolbar', 'aui-tree-node', 'aui-tree-view']
 	}
 );

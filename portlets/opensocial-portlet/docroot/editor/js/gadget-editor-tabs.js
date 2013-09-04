@@ -5,7 +5,7 @@ AUI.add(
 
 		var ACTIVE_TAB = 'activeTab';
 
-		var AUI_TAB_LABEL = 'aui-tab-label';
+		var AUI_TAB_LABEL = 'tab-label';
 
 		var BOUNDING_BOX = 'boundingBox';
 
