@@ -36,29 +36,17 @@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%
 boolean annotations = GetterUtil.getBoolean(portletPreferences.getValue("annotations", "true"));
 boolean autoplay = GetterUtil.getBoolean(portletPreferences.getValue("autoplay", "false"));
-String borderColor = portletPreferences.getValue("borderColor", StringPool.BLANK);
 boolean closedCaptioning = GetterUtil.getBoolean(portletPreferences.getValue("closedCaptioning", "false"));
-boolean enableEnhancedGenieMenu = GetterUtil.getBoolean(portletPreferences.getValue("enableEnhancedGenieMenu", "false"));
-boolean enableFullscreen = GetterUtil.getBoolean(portletPreferences.getValue("enableFullscreen", "false"));
 boolean enableKeyboardControls = GetterUtil.getBoolean(portletPreferences.getValue("enableKeyboardControls", "true"));
-boolean enableRelatedVideos = GetterUtil.getBoolean(portletPreferences.getValue("enableRelatedVideos", "false"));
-boolean enableSearch = GetterUtil.getBoolean(portletPreferences.getValue("enableSearch", "false"));
-boolean hd = GetterUtil.getBoolean(portletPreferences.getValue("hd", "false"));
 String height = portletPreferences.getValue("height", "360");
 String inputTime = portletPreferences.getValue("inputTime", StringPool.BLANK);
 boolean loop = GetterUtil.getBoolean(portletPreferences.getValue("loop", "false"));
-String playerColor = portletPreferences.getValue("playerColor", StringPool.BLANK);
-boolean showInfo = GetterUtil.getBoolean(portletPreferences.getValue("showInfo", "true"));
-boolean showThickerBorder = GetterUtil.getBoolean(portletPreferences.getValue("showThickerBorder", "false"));
 boolean showThumbnail = GetterUtil.getBoolean(portletPreferences.getValue("showThumbnail", "false"));
 String startTime = portletPreferences.getValue("startTime", StringPool.BLANK);
 String url = portletPreferences.getValue("url", StringPool.BLANK);
 String width = portletPreferences.getValue("width", "480");
 
 String id = url.replaceAll("^.*?v=([a-zA-Z0-9_-]+).*$", "$1");
-
-String borderColorHex = "0x" + borderColor.replaceAll("#", "").replaceAll("^(.)(.)(.)$", "$1$1$2$2$3$3").toLowerCase();
-String playerColorHex = "0x" + playerColor.replaceAll("#", "").replaceAll("^(.)(.)(.)$", "$1$1$2$2$3$3").toLowerCase();
 
 String presetSize = width + "x" + height;
 
