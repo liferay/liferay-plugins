@@ -1,6 +1,7 @@
 /commons-logging.jar
 /log4j.jar
 /microblogs-portlet-service.jar
+/so-activities-shared.jar
 /tasks-portlet-service.jar
 /util-bridges.jar
 /util-java.jar
