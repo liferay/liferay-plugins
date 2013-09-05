@@ -29,9 +29,6 @@
 		if(closedCaptioning){
 			sb.append("&amp;cc_load_policy=" + 1);
 		}
-		else {
-			sb.append("&amp;cc_load_policy=" + 0);
-		}
 
 		if (!enableKeyboardControls) {
 			sb.append("&amp;disablekb=1");
@@ -48,7 +45,7 @@
 			sb.append("&amp;loop=1&amp;playlist=" + id);
 		}
 
-		if (Validator.isNotNull(inputTime)) {
+		if (Validator.isNotNull(startTime)) {
 			sb.append("&amp;start=" + startTime);
 		}
 		%>
