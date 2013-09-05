@@ -305,7 +305,6 @@ public class CalendarPortlet extends MVCPortlet {
 			actionRequest, "startTime");
 		java.util.Calendar endTimeJCalendar = getJCalendar(
 			actionRequest, "endTime");
-		long oldStartTime = ParamUtil.getLong(actionRequest, "oldStartTime");
 		boolean allDay = ParamUtil.getBoolean(actionRequest, "allDay");
 		String recurrence = getRecurrence(actionRequest);
 		long[] reminders = getReminders(actionRequest);
@@ -348,19 +347,22 @@ public class CalendarPortlet extends MVCPortlet {
 				calendarBooking = CalendarBookingServiceUtil.getCalendarBooking(
 					calendarBookingId);
 
+				long oldStartTime = calendarBooking.getStartTime();
+
 				long duration =
 					(endTimeJCalendar.getTimeInMillis() -
 						startTimeJCalendar.getTimeInMillis());
 				long offset =
 					(startTimeJCalendar.getTimeInMillis() - oldStartTime);
 
-				CalendarBookingServiceUtil.updateCalendarBooking(
-					calendarBookingId, calendarId, childCalendarIds, titleMap,
-					descriptionMap, location,
-					(calendarBooking.getStartTime() + offset),
-					(calendarBooking.getStartTime() + offset + duration),
-					allDay, recurrence, reminders[0], remindersType[0],
-					reminders[1], remindersType[1], status, serviceContext);
+				calendarBooking =
+					CalendarBookingServiceUtil.updateCalendarBooking(
+						calendarBookingId, calendarId, childCalendarIds, titleMap,
+						descriptionMap, location,
+						(calendarBooking.getStartTime() + offset),
+						(calendarBooking.getStartTime() + offset + duration),
+						allDay, recurrence, reminders[0], remindersType[0],
+						reminders[1], remindersType[1], status, serviceContext);
 			}
 		}
 
