@@ -176,7 +176,7 @@
 			<hint name="max-length">50</hint>
 		</field>
 		<field name="comment" type="String">
-			<hint-collection name="TEXTAREA" />
+			<hint-collection name="CLOB" />
 		</field>
 		<field name="startDate" type="Date" />
 		<field name="endDate" type="Date" />
