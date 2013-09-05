@@ -1370,7 +1370,7 @@ AUI.add(
 										function() {
 											CalendarUtil.updateEventInstance(schedulerEvent, false);
 
-											this.close();
+											this.hide();
 										},
 										function() {
 											CalendarUtil.updateEventInstance(
@@ -1381,7 +1381,7 @@ AUI.add(
 												}
 											);
 
-											this.close();
+											this.hide();
 										},
 										function() {
 											CalendarUtil.getEvent(
@@ -1433,12 +1433,12 @@ AUI.add(
 												}
 											);
 
-											this.close();
+											this.hide();
 										},
 										function() {
 											instance.load();
 
-											this.close();
+											this.hide();
 										}
 									);
 								}
