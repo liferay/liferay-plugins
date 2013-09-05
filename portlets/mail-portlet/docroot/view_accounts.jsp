@@ -32,18 +32,14 @@ MailManager mailManager = MailManager.getInstance(request);
 		<c:if test="<%= !mailAccounts.isEmpty() %>">
 			<aui:column>
 
-				<ul class="aui-tabview-list">
+				<ul class="nav nav-tabs">
 
 					<%
 					for (Account mailAccount : mailAccounts) {
 					%>
 
-						<li class="aui-tab <%= (mailAccount.getAccountId() == accountId) ? "aui-tab-active" : "" %>">
-							<span class="aui-tab-content">
-								<span class="aui-tab-label">
-									<aui:a cssClass="folders-link" data-accountId="<%= mailAccount.getAccountId() %>" data-inboxFolderId="<%= mailAccount.getInboxFolderId() %>" href="javascript:;" label="<%= mailAccount.getAddress() %>" />
-								</span>
-							</span>
+						<li class="tab <%= (mailAccount.getAccountId() == accountId) ? "active" : "" %>">
+							<aui:a cssClass="folders-link" data-accountId="<%= mailAccount.getAccountId() %>" data-inboxFolderId="<%= mailAccount.getInboxFolderId() %>" href="javascript:;" label="<%= mailAccount.getAddress() %>" />
 						</li>
 
 					<%

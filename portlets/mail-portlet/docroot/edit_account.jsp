@@ -27,7 +27,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 <aui:layout cssClass="mail-status" />
 
 <aui:form name="dialogFm" onSubmit="event.preventDefault();">
-	<aui:fieldset column="<%= true %>" cssClass="aui-w50" label="general">
+	<aui:fieldset column="<%= true %>" cssClass="w50" label="general">
 		<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
 		<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
 		<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
@@ -41,7 +41,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 		<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
 	</aui:fieldset>
 
-	<aui:fieldset column="<%= true %>" cssClass="aui-w50" label="folders">
+	<aui:fieldset column="<%= true %>" cssClass="w50" label="folders">
 		<aui:select label="inbox" name="inboxFolderId">
 
 			<%
@@ -90,7 +90,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 	<a class="synchronize-account" href="javascript:;"><liferay-ui:message key="synchronize-account" /></a> <liferay-ui:icon-help message="synchronizing-accounts-with-a-large-number-of-messages-may-take-minutes-to-complete" />
 </div>
 
-<aui:script use="aui-io">
+<aui:script use="aui-io-deprecated">
 	var form = A.one('#<portlet:namespace />dialogFm');
 
 	form.on(
@@ -136,7 +136,12 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/delete_account',
 				{
-					data: {accountId: <%= accountId %>},
+					data: Liferay.Util.ns(
+						'<portlet:namespace />',
+						{
+							accountId: <%= accountId %>
+						}
+					),
 					dataType: 'json',
 					method: 'POST',
 					on: {
@@ -166,7 +171,12 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/synchronize_account',
 				{
-					data: {accountId: <%= accountId %>},
+					data: Liferay.Util.ns(
+						'<portlet:namespace />',
+						{
+							accountId: <%= accountId %>
+						}
+					),
 					dataType: 'json',
 					method: 'POST',
 					on: {

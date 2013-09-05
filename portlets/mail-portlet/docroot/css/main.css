@@ -114,7 +114,7 @@
 		}
 	}
 
-	.recipient-fields .aui-field-input {
+	.recipient-fields .field-input {
 		width: 95%;
 	}
 
@@ -124,7 +124,7 @@
 		text-decoration: underline;
 	}
 
-	.add-folder-container .aui-field-content, .search .aui-field-content {
+	.add-folder-container .field-content, .search .field-content {
 		display: inline-block;
 	}
 }

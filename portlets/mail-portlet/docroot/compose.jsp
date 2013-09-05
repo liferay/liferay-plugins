@@ -124,7 +124,7 @@ else {
 	}
 </aui:script>
 
-<aui:script use="aui-base,aui-io,aui-io-upload">
+<aui:script use="aui-base,aui-io-deprecated,aui-io-upload">
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.one('.send-message').on(

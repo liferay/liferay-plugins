@@ -34,14 +34,16 @@ AUI.add(
 			addAccount: function() {
 				var instance = this;
 
-				new A.Dialog(
+				Liferay.Util.Window.getWindow(
 					{
-						centered: true,
-						cssClass: 'mail-dialog',
-						destroyOnClose: true,
-						modal: true,
-						title: Liferay.Language.get('add-account'),
-						width: 600
+						dialog: {
+							centered: true,
+							cssClass: 'mail-dialog',
+							destroyOnClose: true,
+							modal: true,
+							width: 600
+						},
+						title: Liferay.Language.get('add-account')
 					}
 				).plug(
 					A.Plugin.IO,
@@ -61,10 +63,13 @@ AUI.add(
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/check_messages',
 					{
-						data: {
-							accountId: instance.accountId,
-							folderId: folderId
-						},
+						data: Liferay.Util.ns(
+							instance.namespace,
+							{
+								accountId: instance.accountId,
+								folderId: folderId
+							}
+						),
 						dataType: 'json',
 						method: 'POST',
 						on: {
@@ -94,7 +99,12 @@ AUI.add(
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/delete_messages',
 					{
-						data: {messageIds: messageIds},
+						data: Liferay.Util.ns(
+							instance.namespace,
+							{
+								messageIds: messageIds
+							}
+						),
 						dataType: 'json',
 						method: 'POST',
 						on: {
@@ -118,19 +128,26 @@ AUI.add(
 			editAccount: function(accountId) {
 				var instance = this;
 
-				var dialog = new A.Dialog(
+				Liferay.Util.Window.getWindow(
 					{
-						centered: true,
-						cssClass: 'mail-dialog',
-						destroyOnClose: true,
-						modal: true,
-						title: Liferay.Language.get('edit-account'),
-						width: 600
+						dialog: {
+							centered: true,
+							cssClass: 'mail-dialog',
+							destroyOnClose: true,
+							modal: true,
+							width: 600
+						},
+						title: Liferay.Language.get('edit-account')
 					}
 				).plug(
 					A.Plugin.IO,
 					{
-						data: {accountId: accountId},
+						data: Liferay.Util.ns(
+							instance.namespace,
+							{
+								accountId: accountId
+							}
+						),
 						uri: themeDisplay.getLayoutURL() + '/-/mail/edit_account'
 					}
 				).render();
@@ -144,11 +161,14 @@ AUI.add(
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/flag_messages',
 					{
-						data: {
-							flag: flag,
-							messageIds: messageIds,
-							value: value
-						},
+						data: Liferay.Util.ns(
+							instance.namespace,
+							{
+								flag: flag,
+								messageIds: messageIds,
+								value: value
+							}
+						),
 						dataType: 'json',
 						method: 'POST',
 						on: {
@@ -170,7 +190,15 @@ AUI.add(
 			loadAccounts: function(accountId) {
 				var instance = this;
 
-				instance.accountsContainer.io.set('data', {accountId: accountId});
+				instance.accountsContainer.io.set(
+					'data',
+					Liferay.Util.ns(
+						instance.namespace,
+						{
+							accountId: accountId
+						}
+					)
+				);
 
 				instance.accountsContainer.io.start();
 			},
@@ -183,10 +211,12 @@ AUI.add(
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/password_saved',
 					{
-						data: {
-							accountId: accountId,
-							inboxFolderId: inboxFolderId
-						},
+						data: Liferay.Util.ns(
+							instance.namespace, {
+								accountId: accountId,
+								inboxFolderId: inboxFolderId
+							}
+						),
 						method: 'POST',
 						on: {
 							failure: function(event, id, obj) {
@@ -218,12 +248,15 @@ AUI.add(
 
 				instance.composeContainer.io.set(
 					'data',
-					{
-						accountId: accountId,
-						messageId: messageId,
-						messageType: messageType,
-						replyMessageId: replyMessageId
-					}
+					Liferay.Util.ns(
+						instance.namespace,
+						{
+							accountId: accountId,
+							messageId: messageId,
+							messageType: messageType,
+							replyMessageId: replyMessageId
+						}
+					)
 				);
 
 				instance.composeContainer.io.start();
@@ -235,7 +268,15 @@ AUI.add(
 				if (accountId > 0) {
 					instance.controlContainer.show();
 
-					instance.foldersContainer.io.set('data', {accountId: accountId});
+					instance.foldersContainer.io.set(
+						'data',
+						Liferay.Util.ns(
+							instance.namespace,
+							{
+								accountId: accountId
+							}
+						)
+					);
 
 					instance.foldersContainer.io.start();
 				}
@@ -246,7 +287,15 @@ AUI.add(
 
 				instance._displayContainer(instance.manageFoldersContainer);
 
-				instance.manageFoldersContainer.io.set('data', {accountId: accountId});
+				instance.manageFoldersContainer.io.set(
+					'data',
+					Liferay.Util.ns(
+						instance.namespace,
+						{
+							accountId: accountId
+						}
+					)
+				);
 
 				instance.manageFoldersContainer.io.start();
 			},
@@ -263,13 +312,16 @@ AUI.add(
 
 				instance.messageContainer.io.set(
 					'data',
-					{
-						folderId: folderId,
-						messageNumber: messageNumber,
-						orderByField: orderByField,
-						orderByType: orderByType,
-						keywords: keywords
-					}
+					Liferay.Util.ns(
+						instance.namespace,
+						{
+							folderId: folderId,
+							messageNumber: messageNumber,
+							orderByField: orderByField,
+							orderByType: orderByType,
+							keywords: keywords
+						}
+					)
 				);
 
 				instance.messageContainer.io.start();
@@ -297,13 +349,16 @@ AUI.add(
 
 				instance.messagesContainer.io.set(
 					'data',
-					{
-						folderId: folderId,
-						pageNumber: pageNumber,
-						orderByField: orderByField,
-						orderByType: orderByType,
-						keywords: keywords
-					}
+					Liferay.Util.ns(
+						instance.namespace,
+						{
+							folderId: folderId,
+							keywords: keywords,
+							orderByField: orderByField,
+							orderByType: orderByType,
+							pageNumber: pageNumber
+						}
+					)
 				);
 
 				instance.messagesContainer.io.start();
@@ -319,10 +374,12 @@ AUI.add(
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/move_messages',
 					{
-						data: {
-							folderId: folderId,
-							messageIds: messageIds
-						},
+						data: Liferay.Util.ns(
+							instance.namespace, {
+								folderId: folderId,
+								messageIds: messageIds
+							}
+						),
 						dataType: 'json',
 						method: 'POST',
 						on: {
@@ -345,22 +402,27 @@ AUI.add(
 			passwordPrompt: function(accountId, inboxFolderId) {
 				var instance = this;
 
-				new A.Dialog(
+				Liferay.Util.Window.getWindow(
 					{
-						centered: true,
-						cssClass: 'mail-dialog',
-						destroyOnClose: true,
-						modal: true,
-						title: Liferay.Language.get('password'),
-						width: 600
+						dialog: {
+							centered: true,
+							cssClass: 'mail-dialog',
+							destroyOnClose: true,
+							modal: true,
+							width: 600
+						},
+						title: Liferay.Language.get('password')
 					}
 				).plug(
 					A.Plugin.IO,
 					{
-						data: {
-							accountId: accountId,
-							inboxFolderId: inboxFolderId
-						},
+						data: Liferay.Util.ns(
+							instance.namespace,
+							{
+								accountId: accountId,
+								inboxFolderId: inboxFolderId
+							}
+						),
 						uri: themeDisplay.getLayoutURL() + '/-/mail/password_prompt'
 					}
 				).render();
@@ -393,13 +455,13 @@ AUI.add(
 			setStatus: function(type, message, indefinite) {
 				var instance = this;
 
-				var messageType = 'portlet-msg-error';
+				var messageType = 'alert alert-error';
 
 				if (type == 'success') {
-					messageType = 'portlet-msg-success';
+					messageType = 'alert alert-success';
 				}
 				else if (type == 'info') {
-					messageType = 'portlet-msg-info';
+					messageType = 'alert alert-info';
 				}
 
 				var statusContainers = A.all('.mail-status').html('<table style="margin: 0 auto;"><tr><td>&nbsp;</td><td><span class="message ' + messageType + '">' + message + '</span></td><td>&nbsp;</td></tr></table>');
@@ -423,7 +485,12 @@ AUI.add(
 					A.Plugin.IO,
 					{
 						autoLoad: true,
-						data: {accountId: instance.accountId},
+						data: Liferay.Util.ns(
+							instance.namespace,
+							{
+								accountId: instance.accountId
+							}
+						),
 						method: 'POST',
 						showLoading: false,
 						uri: themeDisplay.getLayoutURL() + '/-/mail/view_accounts'
@@ -747,6 +814,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-datatype', 'aui-dialog', 'aui-io']
+		requires: ['aui-base', 'aui-datatype', 'liferay-util-window', 'aui-io-deprecated']
 	}
 );

@@ -61,7 +61,8 @@ MailManager mailManager = MailManager.getInstance(request);
 		</aui:column>
 		<aui:column cssClass="search">
 			<aui:input name="keywords" value="<%= keywords %>" />
-
+		</aui:column>
+		<aui:column cssClass="search">
 			<aui:button cssClass="search-messages" value="search" />
 		</aui:column>
 	</aui:layout>
@@ -69,14 +70,14 @@ MailManager mailManager = MailManager.getInstance(request);
 	<br />
 
 	<aui:layout>
-		<aui:column>
+		<aui:column first="true">
 			<liferay-ui:message key="select" />:
 
 			<a class="select-all" href="javascript:;"><liferay-ui:message key="all" /></a>
 
 			<a class="select-none" href="javascript:;"><liferay-ui:message key="none" /></a>
 		</aui:column>
-		<aui:column cssClass="pagination">
+		<aui:column last="true">
 			<c:if test="<%= messagesDisplay.getPageNumber() > 2 %>">
 				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
 			</c:if>
@@ -189,10 +190,20 @@ MailManager mailManager = MailManager.getInstance(request);
 						}
 
 						if (mailAccount.getDraftFolderId() == folderId) {
-							date = dateFormatDateTime.format(message.getModifiedDate());
+							if (message.getModifiedDate() != null) {
+								date = dateFormatDateTime.format(message.getModifiedDate());
+							}
+							else {
+								date = StringPool.DASH;
+							}
 						}
 						else {
-							date = dateFormatDateTime.format(message.getSentDate());
+							if (message.getSentDate() != null) {
+								date = dateFormatDateTime.format(message.getSentDate());
+							}
+							else {
+								date = StringPool.DASH;
+							}
 						}
 
 						String rowCssClass = "results-row no-hover";
