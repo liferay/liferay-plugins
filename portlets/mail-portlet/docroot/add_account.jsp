@@ -155,7 +155,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 
 </liferay-ui:tabs>
 
-<aui:script use="aui-io">
+<aui:script use="aui-io-deprecated">
 	A.all('.mail-dialog form.account-form').on(
 		'submit',
 		function(event) {

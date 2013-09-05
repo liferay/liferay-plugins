@@ -57,7 +57,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 
 	</table>
 
-	<aui:script use="aui-io">
+	<aui:script use="aui-io-deprecated">
 		var <portlet:namespace />onIOFailure = function(event, id, obj) {
 			Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 		}
@@ -83,10 +83,13 @@ long accountId = ParamUtil.getLong(request, "accountId");
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/add_folder',
 					{
-						data: {
-							accountId: <%= accountId %>,
-							displayName: displayName
-						},
+						data: Liferay.Util.ns(
+							'<portlet:namespace />',
+							{
+								accountId: <%= accountId %>,
+								displayName: displayName
+							}
+						),
 						dataType: 'json',
 						method: 'POST',
 						on: {
@@ -112,7 +115,12 @@ long accountId = ParamUtil.getLong(request, "accountId");
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/delete_folder',
 					{
-						data: {folderId: folderId},
+						data: Liferay.Util.ns(
+							'<portlet:namespace />',
+							{
+								folderId: folderId
+							}
+						),
 						dataType: 'json',
 						method: 'POST',
 						on: {
@@ -141,7 +149,12 @@ long accountId = ParamUtil.getLong(request, "accountId");
 				).plug(
 					A.Plugin.IO,
 					{
-						data: {folderId: folderId},
+						data: Liferay.Util.ns(
+							'<portlet:namespace />',
+							{
+								folderId: folderId
+							}
+						),
 						uri: themeDisplay.getLayoutURL() + '/-/mail/edit_folder'
 					}
 				).render();

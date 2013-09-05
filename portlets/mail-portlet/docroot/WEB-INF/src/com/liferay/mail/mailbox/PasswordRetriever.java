@@ -45,10 +45,11 @@ public class PasswordRetriever {
 		if (account.isSavePassword()) {
 			return account.getPasswordDecrypted();
 		}
+		else {
+			HttpSession session = _request.getSession();
 
-		HttpSession session = _request.getSession();
-
-		return (String)session.getAttribute(encodeKey(accountId));
+			return (String)session.getAttribute(encodeKey(accountId));
+		}
 	}
 
 	public void removePassword(long accountId) {

@@ -34,7 +34,7 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-io">
+<aui:script use="aui-io-deprecated">
 	var A = AUI();
 
 	var form = A.one('#<portlet:namespace />dialogFm');
