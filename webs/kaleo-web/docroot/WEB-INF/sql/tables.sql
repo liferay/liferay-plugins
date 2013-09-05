@@ -115,7 +115,7 @@ create table KaleoLog (
 	currentAssigneeClassName VARCHAR(200) null,
 	currentAssigneeClassPK LONG,
 	type_ VARCHAR(50) null,
-	comment_ STRING null,
+	comment_ TEXT null,
 	startDate DATE null,
 	endDate DATE null,
 	duration LONG,
