@@ -67,8 +67,7 @@
 					</div>
 
 					<div class="aui-field-row">
-						<aui:input cssClass="input-time" inlineField="true" label="start-time" name="preferences--inputTime--" value="<%= inputTime %>" />
-
+						<aui:input cssClass="start-time" inlineField="true" label="start-time" name="preferences--startTime--" value="<%= startTime %>" />
 					</div>
 				</liferay-ui:panel>
 			</liferay-ui:panel-container>
@@ -168,7 +167,7 @@
 	var enableKeyboardControlsNode = A.one('#<portlet:namespace />enableKeyboardControls');
 	var heightNode = A.one('#<portlet:namespace />height');
 	var presetSizeNode = A.one('#<portlet:namespace />presetSize');
-	var startTimeNode = A.one('#<portlet:namespace />inputTime');
+	var startTimeNode = A.one('#<portlet:namespace />startTime');
 	var urlNode = A.one('#<portlet:namespace />url');
 	var widthNode = A.one('#<portlet:namespace />width');
 
