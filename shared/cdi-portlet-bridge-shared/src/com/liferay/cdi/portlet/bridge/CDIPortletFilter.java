@@ -18,30 +18,25 @@ import java.io.IOException;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
+import javax.portlet.EventRequest;
+import javax.portlet.EventResponse;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 import javax.portlet.filter.ActionFilter;
+import javax.portlet.filter.EventFilter;
 import javax.portlet.filter.FilterChain;
 import javax.portlet.filter.FilterConfig;
 import javax.portlet.filter.RenderFilter;
 import javax.portlet.filter.ResourceFilter;
-
-import javax.xml.stream.EventFilter;
-import javax.xml.stream.events.XMLEvent;
 
 /**
  * @author Neil Griffin
  */
 public class CDIPortletFilter
 	implements ActionFilter, EventFilter, RenderFilter, ResourceFilter {
-
-	@Override
-	public boolean accept(XMLEvent xmlEvent) {
-		return false;
-	}
 
 	@Override
 	public void destroy() {
@@ -63,6 +58,24 @@ public class CDIPortletFilter
 			actionResponse, actionRequest.getLocale());
 
 		filterChain.doFilter(actionRequest, actionResponse);
+	}
+
+	@Override
+	public void doFilter(
+			EventRequest eventRequest, EventResponse eventResponse,
+			FilterChain filterChain)
+			throws IOException, PortletException {
+
+		CDIRequestFactory cdiRequestFactory = getCDIRequestFactory();
+
+		eventRequest = cdiRequestFactory.getCDIEventRequest(eventRequest);
+
+		CDIResponseFactory cdiResponseFactory = getCDIResponseFactory();
+
+		eventResponse = cdiResponseFactory.getCDIEventResponse(
+				eventResponse, eventRequest.getLocale());
+
+		filterChain.doFilter(eventRequest, eventResponse);
 	}
 
 	@Override
