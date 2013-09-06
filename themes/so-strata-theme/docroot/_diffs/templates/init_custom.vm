@@ -27,7 +27,7 @@
 	#end
 
 	#set ($is_user_dashboard = ($page_group.getGroupId() == $current_user.getGroupId()))
-	#set ($nav_css_class = $nav_css_class + "sort-pages modify-pages")
+	#set ($nav_css_class = $nav_css_class + "sort-pages modify-pages ")
 	#set ($user_group = $user.getGroup())
 
 	#set ($layoutLocalService = $serviceLocator.findService("com.liferay.portal.service.LayoutLocalService"))
