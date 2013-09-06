@@ -293,7 +293,7 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 
 .portlet-column {
 	border: solid $defaultBorderColor;
-	border-width: 0 1px;
+	border-width: 0 1px 0 0;
 	margin: 0 0 0 -1px;
 
 	&, .portlet-column-content {
@@ -339,7 +339,6 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 			overflow: hidden;
 			text-overflow: ellipsis;
 			white-space: pre;
-			width: 87%;
 
 			&:hover {
 				color: $blue;
