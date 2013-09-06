@@ -25,6 +25,7 @@ import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
+import com.liferay.so.activities.util.SocialActivityKeyConstants;
 
 import java.text.Format;
 
@@ -46,7 +47,9 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivity activity =
 				SocialActivityLocalServiceUtil.getActivity(activityId);
 
-			if (activity.getType() == _ACTIVITY_KEY_UPDATE_EVENT) {
+			if (activity.getType() ==
+					SocialActivityKeyConstants.CALENDAR_UPDATE_EVENT) {
+
 				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
 						activity.getUserId(), activity.getClassNameId(),
@@ -77,7 +80,9 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		if (activitySet.getType() ==_ACTIVITY_KEY_UPDATE_EVENT) {
+		if (activitySet.getType() ==
+				SocialActivityKeyConstants.CALENDAR_UPDATE_EVENT) {
+
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
@@ -128,10 +133,14 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 	protected String getTitlePattern(
 		String groupName, SocialActivity activity) {
 
-		if (activity.getType() == _ACTIVITY_KEY_ADD_EVENT) {
+		if (activity.getType() ==
+				SocialActivityKeyConstants.CALENDAR_ADD_EVENT) {
+
 			return "added-a-new-calendar-event";
 		}
-		else if (activity.getType() == _ACTIVITY_KEY_UPDATE_EVENT) {
+		else if (activity.getType() ==
+					SocialActivityKeyConstants.CALENDAR_UPDATE_EVENT) {
+
 			return "updated-a-calendar-event";
 		}
 
@@ -142,27 +151,19 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 	protected String getTitlePattern(
 		String groupName, SocialActivitySet activitySet) {
 
-		if (activitySet.getType() == _ACTIVITY_KEY_ADD_EVENT) {
+		if (activitySet.getType() ==
+				SocialActivityKeyConstants.CALENDAR_ADD_EVENT) {
+
 			return "added-x-new-calendar-events";
 		}
-		else if (activitySet.getType() == _ACTIVITY_KEY_UPDATE_EVENT) {
+		else if (activitySet.getType() ==
+					SocialActivityKeyConstants.CALENDAR_UPDATE_EVENT) {
+
 			return "made-x-updates-to-a-calendar-event";
 		}
 
 		return StringPool.BLANK;
 	}
-
-	/**
-	 * {@link
-	 * com.liferay.portlet.calendar.social.CalendarActivityKeys#ADD_EVENT}
-	 */
-	private static final int _ACTIVITY_KEY_ADD_EVENT = 1;
-
-	/**
-	 * {@link
-	 * com.liferay.portlet.calendar.social.CalendarActivityKeys#UPDATE_EVENT}
-	 */
-	private static final int _ACTIVITY_KEY_UPDATE_EVENT = 2;
 
 	private static final String[] _CLASS_NAMES = {CalEvent.class.getName()};
 
