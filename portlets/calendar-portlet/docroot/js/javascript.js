@@ -1001,7 +1001,7 @@ AUI.add(
 
 						var node = instance.get('node');
 
-						node.attr('data-endDate', instance._formatDate(val, '%d-%m-%y %H:%M'));
+						node.attr('data-endDate', instance._formatDate(val, '%m-%d-%Y %l:%M %p'));
 					},
 
 					_uiSetLoading: function(val) {
@@ -1015,7 +1015,7 @@ AUI.add(
 
 						var node = instance.get('node');
 
-						node.attr('data-startDate', instance._formatDate(val, '%d-%m-%y %H:%M'));
+						node.attr('data-startDate', instance._formatDate(val, '%m-%d-%Y %l:%M %p'));
 					},
 
 					_uiSetStatus: function(val) {
