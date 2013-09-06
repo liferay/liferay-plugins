@@ -53,6 +53,7 @@ public class HttpServletRequestAdapterImpl
 
 	public HttpServletRequestAdapterImpl(PortletRequest portletRequest) {
 		_portletRequest = portletRequest;
+
 		_httpServletRequest = PortalUtil.getHttpServletRequest(portletRequest);
 	}
 
@@ -280,6 +281,9 @@ public class HttpServletRequestAdapterImpl
 		return clientDataRequest.getReader();
 	}
 
+	/**
+	 * @deprecated As of 6.2.0
+	 */
 	@Override
 	public String getRealPath(String path) {
 		return _httpServletRequest.getRealPath(path);
@@ -394,6 +398,9 @@ public class HttpServletRequestAdapterImpl
 		return _httpServletRequest.isRequestedSessionIdFromCookie();
 	}
 
+	/**
+	 * @deprecated As of 6.2.0
+	 */
 	@Override
 	public boolean isRequestedSessionIdFromUrl() {
 		return _httpServletRequest.isRequestedSessionIdFromUrl();
