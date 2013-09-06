@@ -64,7 +64,7 @@ public class CDIPortletFilter
 	public void doFilter(
 			EventRequest eventRequest, EventResponse eventResponse,
 			FilterChain filterChain)
-			throws IOException, PortletException {
+		throws IOException, PortletException {
 
 		CDIRequestFactory cdiRequestFactory = getCDIRequestFactory();
 
@@ -73,7 +73,7 @@ public class CDIPortletFilter
 		CDIResponseFactory cdiResponseFactory = getCDIResponseFactory();
 
 		eventResponse = cdiResponseFactory.getCDIEventResponse(
-				eventResponse, eventRequest.getLocale());
+			eventResponse, eventRequest.getLocale());
 
 		filterChain.doFilter(eventRequest, eventResponse);
 	}
