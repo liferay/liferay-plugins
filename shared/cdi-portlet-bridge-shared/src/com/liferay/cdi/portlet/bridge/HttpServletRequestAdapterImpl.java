@@ -14,6 +14,8 @@
 
 package com.liferay.cdi.portlet.bridge;
 
+import com.liferay.portal.util.PortalUtil;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -33,10 +35,12 @@ import javax.servlet.AsyncContext;
 import javax.servlet.DispatcherType;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
@@ -49,6 +53,7 @@ public class HttpServletRequestAdapterImpl
 
 	public HttpServletRequestAdapterImpl(PortletRequest portletRequest) {
 		_portletRequest = portletRequest;
+		_httpServletRequest = PortalUtil.getHttpServletRequest(portletRequest);
 	}
 
 	@Override
@@ -79,7 +84,7 @@ public class HttpServletRequestAdapterImpl
 	@Override
 	public String getCharacterEncoding() {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
-			throw new UnsupportedOperationException();
+			return _httpServletRequest.getCharacterEncoding();
 		}
 
 		ClientDataRequest clientDataRequest =
@@ -91,7 +96,7 @@ public class HttpServletRequestAdapterImpl
 	@Override
 	public int getContentLength() {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
-			throw new UnsupportedOperationException();
+			return _httpServletRequest.getContentLength();
 		}
 
 		ClientDataRequest clientDataRequest =
@@ -103,7 +108,7 @@ public class HttpServletRequestAdapterImpl
 	@Override
 	public String getContentType() {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
-			throw new UnsupportedOperationException();
+			return _httpServletRequest.getContentType();
 		}
 
 		ClientDataRequest clientDataRequest =
@@ -124,34 +129,34 @@ public class HttpServletRequestAdapterImpl
 
 	@Override
 	public long getDateHeader(String name) {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getDateHeader(name);
 	}
 
 	@Override
 	public DispatcherType getDispatcherType() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getDispatcherType();
 	}
 
 	@Override
 	public String getHeader(String name) {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getHeader(name);
 	}
 
 	@Override
 	public Enumeration<String> getHeaderNames() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getHeaderNames();
 	}
 
 	@Override
 	public Enumeration<String> getHeaders(String name) {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getHeaders(name);
 	}
 
 	@Override
-	public ServletInputStream getInputStream() {
+	public ServletInputStream getInputStream() throws IOException {
 		if (_servletInputStream == null) {
 			if (!(_portletRequest instanceof ClientDataRequest)) {
-				throw new UnsupportedOperationException();
+				return _httpServletRequest.getInputStream();
 			}
 
 			ClientDataRequest clientDataRequest =
@@ -166,12 +171,12 @@ public class HttpServletRequestAdapterImpl
 
 	@Override
 	public int getIntHeader(String name) {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getIntHeader(name);
 	}
 
 	@Override
 	public String getLocalAddr() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getLocalAddr();
 	}
 
 	@Override
@@ -199,7 +204,7 @@ public class HttpServletRequestAdapterImpl
 	@Override
 	public String getMethod() {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
-			throw new UnsupportedOperationException();
+			return _httpServletRequest.getMethod();
 		}
 
 		ClientDataRequest clientDataRequest =
@@ -229,23 +234,23 @@ public class HttpServletRequestAdapterImpl
 	}
 
 	@Override
-	public Part getPart(String name) {
-		throw new UnsupportedOperationException();
+	public Part getPart(String name) throws IOException, ServletException {
+		return _httpServletRequest.getPart(name);
 	}
 
 	@Override
-	public Collection<Part> getParts() {
-		throw new UnsupportedOperationException();
+	public Collection<Part> getParts() throws IOException, ServletException {
+		return _httpServletRequest.getParts();
 	}
 
 	@Override
 	public String getPathInfo() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getPathInfo();
 	}
 
 	@Override
 	public String getPathTranslated() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getPathTranslated();
 	}
 
 	@Override
@@ -255,18 +260,18 @@ public class HttpServletRequestAdapterImpl
 
 	@Override
 	public String getProtocol() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getProtocol();
 	}
 
 	@Override
 	public String getQueryString() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getQueryString();
 	}
 
 	@Override
 	public BufferedReader getReader() throws IOException {
 		if (!(_portletRequest instanceof ClientDataRequest)) {
-			throw new UnsupportedOperationException();
+			return _httpServletRequest.getReader();
 		}
 
 		ClientDataRequest clientDataRequest =
@@ -277,22 +282,22 @@ public class HttpServletRequestAdapterImpl
 
 	@Override
 	public String getRealPath(String path) {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getRealPath(path);
 	}
 
 	@Override
 	public String getRemoteAddr() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getRemoteAddr();
 	}
 
 	@Override
 	public String getRemoteHost() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getRemoteHost();
 	}
 
 	@Override
 	public int getRemotePort() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getRemotePort();
 	}
 
 	@Override
@@ -302,7 +307,7 @@ public class HttpServletRequestAdapterImpl
 
 	@Override
 	public RequestDispatcher getRequestDispatcher(String path) {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getRequestDispatcher(path);
 	}
 
 	@Override
@@ -312,12 +317,12 @@ public class HttpServletRequestAdapterImpl
 
 	@Override
 	public String getRequestURI() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getRequestURI();
 	}
 
 	@Override
 	public StringBuffer getRequestURL() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getRequestURL();
 	}
 
 	@Override
@@ -337,12 +342,12 @@ public class HttpServletRequestAdapterImpl
 
 	@Override
 	public ServletContext getServletContext() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getServletContext();
 	}
 
 	@Override
 	public String getServletPath() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.getServletPath();
 	}
 
 	@Override
@@ -386,22 +391,22 @@ public class HttpServletRequestAdapterImpl
 
 	@Override
 	public boolean isRequestedSessionIdFromCookie() {
-		return false;
+		return _httpServletRequest.isRequestedSessionIdFromCookie();
 	}
 
 	@Override
 	public boolean isRequestedSessionIdFromUrl() {
-		return false;
+		return _httpServletRequest.isRequestedSessionIdFromUrl();
 	}
 
 	@Override
 	public boolean isRequestedSessionIdFromURL() {
-		return false;
+		return _httpServletRequest.isRequestedSessionIdFromURL();
 	}
 
 	@Override
 	public boolean isRequestedSessionIdValid() {
-		throw new UnsupportedOperationException();
+		return _httpServletRequest.isRequestedSessionIdValid();
 	}
 
 	@Override
@@ -460,6 +465,7 @@ public class HttpServletRequestAdapterImpl
 		throw new UnsupportedOperationException();
 	}
 
+	private HttpServletRequest _httpServletRequest;
 	private PortletRequest _portletRequest;
 	private CDISession _portletSession;
 	private ServletInputStream _servletInputStream;
