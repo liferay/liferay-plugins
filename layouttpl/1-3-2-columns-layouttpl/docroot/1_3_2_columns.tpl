@@ -20,11 +20,11 @@
 	</div>
 
 	<div class="portlet-layout row-fluid">
-		<div class="portlet-column portlet-column-first span8" id="column-5">
+		<div class="portlet-column portlet-column-first span6" id="column-5">
 			$processor.processColumn("column-5", "portlet-column-content portlet-column-content-first")
 		</div>
 
-		<div class="portlet-column portlet-column-last span4" id="column-6">
+		<div class="portlet-column portlet-column-last span6" id="column-6">
 			$processor.processColumn("column-6", "portlet-column-content portlet-column-content-last")
 		</div>
 	</div>
