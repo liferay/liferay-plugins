@@ -176,14 +176,16 @@
 			{
 				cache: false,
 				dialog: {
-					align: Liferay.Util.Window.ALIGN_CENTER,
-					modal: modal,
-					on: {
-						close: function() {
-							Liferay.Announcements.updateEntries(false, null);
-							Liferay.Announcements.updateEntries(true, null);
+					after: {
+						visibleChange: function(event) {
+							if(!event.currentTarget.get('visible')) {
+								Liferay.Announcements.updateEntries(false, null);
+								Liferay.Announcements.updateEntries(true, null);
+							}
 						}
 					},
+					align: Liferay.Util.Window.ALIGN_CENTER,
+					modal: modal,
 					width: width
 				},
 				id: '<portlet:namespace />Dialog',
