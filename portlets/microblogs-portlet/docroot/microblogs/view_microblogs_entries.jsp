@@ -44,7 +44,7 @@ PortletURL microblogsEntriesURL = (PortletURL)request.getAttribute(WebKeys.MICRO
 	}
 	%>
 
-	<div class="portlet-msg-info">
+	<div class="alert alert-info">
 		<%= message %>
 	</div>
 </c:if>
