@@ -120,7 +120,7 @@ AUI.add(
 							secondReminder: schedulerEvent.get('secondReminder'),
 							secondReminderType: schedulerEvent.get('secondReminderType'),
 							startTime: startDate.getTime(),
-							titleMap: instance.getLocalizationMap(schedulerEvent.get('content'))
+							titleMap: instance.getLocalizationMap(Liferay.Util.unescapeHTML(schedulerEvent.get('content')))
 						}
 					},
 					{
@@ -608,7 +608,7 @@ AUI.add(
 						allDay: allDay,
 						calendarBookingId: calendarBooking.calendarBookingId,
 						calendarId: calendarBooking.calendarId,
-						content: Liferay.Util.escapeHTML(calendarBooking.titleCurrentValue),
+						content: calendarBooking.titleCurrentValue,
 						description: calendarBooking.descriptionCurrentValue,
 						endDate: endDate,
 						firstReminder: calendarBooking.firstReminder,
@@ -692,7 +692,7 @@ AUI.add(
 							secondReminderType: schedulerEvent.get('secondReminderType'),
 							startTime: startDate.getTime(),
 							status: schedulerEvent.get('status'),
-							titleMap: instance.getLocalizationMap(schedulerEvent.get('content')),
+							titleMap: instance.getLocalizationMap(Liferay.Util.unescapeHTML(schedulerEvent.get('content'))),
 							userId: USER_ID
 						}
 					},
@@ -753,7 +753,7 @@ AUI.add(
 							secondReminderType: schedulerEvent.get('secondReminderType'),
 							startTime: instance.toUTC(schedulerEvent.get('startDate')).getTime(),
 							status: schedulerEvent.get('status'),
-							titleMap: instance.getLocalizationMap(schedulerEvent.get('content')),
+							titleMap: instance.getLocalizationMap(Liferay.Util.unescapeHTML(schedulerEvent.get('content'))),
 							userId: USER_ID
 						}
 					},
@@ -844,6 +844,16 @@ AUI.add(
 					calendarId: {
 						setter: toInt,
 						value: 0
+					},
+
+					content: {
+						getter: function(val) {
+							if (val) {
+								val = Liferay.Util.escapeHTML(val);
+							}
+
+							return val;
+						}
 					},
 
 					description: {
