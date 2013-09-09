@@ -39,7 +39,7 @@ if (entry == null) {
 
 <div id="<portlet:namespace />errorMessage"></div>
 
-<aui:form method="post" name='<%= renderResponse.getNamespace() + "fm" %>' onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry();" %>' useNamespace="false">
+<aui:form method="post" name='fm' onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="entryId" type="hidden" value="<%= entryId %>" />
 	<aui:input name="alert" type="hidden" value="<%= portletName.equals(PortletKeys.ALERTS) %>" />
@@ -187,8 +187,8 @@ if (entry == null) {
 </div>
 
 <aui:script>
-	function initEditor() {
-		var ckEditor = CKEDITOR.instances["editor"];
+	function <portlet:namespace />initEditor() {
+		var ckEditor = CKEDITOR.instances["<portlet:namespace />editor"];
 
 		ckEditor.resize("100%", "200");
 
@@ -208,7 +208,7 @@ if (entry == null) {
 			preview.removeClass('aui-helper-hidden');
 		}
 
-		var priority = A.one('#priority')._node.selectedIndex;
+		var priority = A.one('#<portlet:namespace />priority')._node.selectedIndex;
 
 		if (priority == 1) {
 			preview.addClass('important-entry');
@@ -218,27 +218,27 @@ if (entry == null) {
 		}
 
 		if (<%= entry != null %>) {
-			var scope = A.one('#scope').get('value');;
+			var scope = A.one('#<portlet:namespace />scope').get('value');;
 		}
 		else {
-			var optValue = A.one('select[name="distributionScope"]').get('value');
+			var optValue = A.one('select[name="<portlet:namespace />distributionScope"]').get('value');
 			var scope = A.one('option[value=' + optValue + ']').get('text');
 		}
 
 		A.one('#<portlet:namespace />scope').html(scope);
 
-		var url = A.one('#url').get('value');
+		var url = A.one('#<portlet:namespace />url').get('value');
 
 		if (url.length != 0) {
-			var title = '<a href="' + url + '">' + A.one('#title').get('value') + '</a>';
+			var title = '<a href="' + url + '">' + A.one('#<portlet:namespace />title').get('value') + '</a>';
 		}
 		else {
-			var title = A.one('#title').get('value');
+			var title = A.one('#<portlet:namespace />title').get('value');
 		}
 
 		A.one('#<portlet:namespace />title').html(title);
 
-		var content = window.editor.getHTML();
+		var content = window.<portlet:namespace />editor.getHTML();
 
 		var previewContent = A.one('#<portlet:namespace />entryContent');
 
@@ -265,7 +265,7 @@ if (entry == null) {
 
 		var form = document.<portlet:namespace />fm;
 
-		form.content.value = window.editor.getHTML();
+		form.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
 		form.target = '';
 
 		var uri = '<liferay-portlet:actionURL name="saveEntry"><portlet:param name="redirect" value="<%= currentURL %>" /></liferay-portlet:actionURL>';
