@@ -23,7 +23,6 @@
 			<span class="action edit-entry">
 				<portlet:renderURL var="editURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value="/edit_entry.jsp" />
-					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
 				</portlet:renderURL>
 
