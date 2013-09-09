@@ -16,7 +16,7 @@ $microblogs-border-color: #C7D0DA;
 		padding: 10px 11px;
 		position: relative;
 
-		.aui-field-text {
+		.field-text {
 			display: block;
 			padding: 0 5px;
 
@@ -28,19 +28,19 @@ $microblogs-border-color: #C7D0DA;
 			}
 		}
 
-		.aui-field-text-focused textarea {
+		.field-text-focused textarea {
 			height: auto;
 		}
 
-		.aui-button-holder {
+		.button-holder {
 			margin: 5px 0 0;
 		}
 
-		.aui-field-select {
+		.field-select {
 			display: inline-block;
 			float: left;
 
-			.aui-field-element {
+			.field-element {
 				position: static;
 			}
 		}
@@ -241,7 +241,7 @@ $microblogs-border-color: #C7D0DA;
 		}
 	}
 
-	.aui-field-input-text {
+	.field-input-text {
 		background: none transparent;
 		border-width: 0;
 		line-height: 1.5em;

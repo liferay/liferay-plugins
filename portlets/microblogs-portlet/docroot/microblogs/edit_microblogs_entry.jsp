@@ -85,7 +85,7 @@ if (comment) {
 
 	<c:choose>
 		<c:when test="<%= microblogsEntry == null %>">
-			<div class="portlet-msg-error">
+			<div class="alert alert-error">
 				<liferay-ui:message key="entry-could-not-be-found" />
 			</div>
 		</c:when>
@@ -166,7 +166,7 @@ if (comment) {
 		<aui:input label="" name="content" type="hidden" />
 	</c:if>
 
-	<aui:button-row cssClass='<%= !repost ? "aui-helper-hidden" : StringPool.BLANK %>'>
+	<aui:button-row cssClass='<%= !repost ? "hide" : StringPool.BLANK %>'>
 		<c:if test="<%= !comment && !repost %>">
 
 			<%
@@ -198,7 +198,7 @@ if (comment) {
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-base,aui-event-input,aui-template,aui-form-textarea,autocomplete,autocomplete-filters">
+<aui:script use="aui-base,aui-event-input,aui-template-deprecated,aui-form-textarea-deprecated,autocomplete,autocomplete-filters">
 	var MAP_MATCHED_USERS = {
 		screenName: function(str, match) {
 			return '[@' + MAP_USERS[str] + ']';
@@ -230,7 +230,7 @@ if (comment) {
 			var contentInput = event.currentTarget;
 
 			var countdown = form.one('.microblogs-countdown');
-			var submitButton = form.one('.aui-button-submit');
+			var submitButton = form.one('.button-submit');
 
 			var remaining = (150 - contentInput.val().length);
 
@@ -241,7 +241,7 @@ if (comment) {
 			countdown.html(remaining);
 
 			submitButton.one('.microblogs-button-input').attr('disabled', disabled);
-			submitButton.toggleClass('aui-button-disabled', disabled);
+			submitButton.toggleClass('button-disabled', disabled);
 
 			submitButton.toggleClass('microblogs-button-input-disabled', error);
 			countdown.toggleClass('microblogs-countdown-warned', error);
@@ -273,7 +273,7 @@ if (comment) {
 			contentTextarea.on(
 				'focus',
 				function(contentTextarea) {
-					var buttonContainer = form.one('.aui-button-holder');
+					var buttonContainer = form.one('.button-holder');
 
 					buttonContainer.show();
 

@@ -147,7 +147,7 @@ portletURL.setParameter("tabs1", tabs1);
 	<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="article" />
 </div>
 
-<aui:script use="aui-base,aui-io">
+<aui:script use="aui-base,aui-io-deprecated">
 	AUI().ready(
 		function() {
 			Liferay.Microblogs.init(
