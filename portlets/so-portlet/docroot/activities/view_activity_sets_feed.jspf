@@ -132,7 +132,7 @@ for (SocialActivitySet activitySet : results) {
 			var body = entry.one('.grouped-activity-body');
 
 			if (body.outerHeight() > (subentry.outerHeight() * 3)) {
-				var toggle = entry.one('.toggle-action');
+				var toggle = entry.one('.toggle');
 
 				toggle.removeClass('aui-helper-hidden');
 
