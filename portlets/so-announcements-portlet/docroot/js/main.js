@@ -68,7 +68,7 @@ AUI().use(
 			updateEntries: function(readEntries, start) {
 				var instance = this;
 
-				var url = Liferay.Util.addParams('readEntries=' + readEntries, instance._viewEntriesURL) || instance._viewEntriesURL;
+				var url = Liferay.Util.addParams(instance._namespace + 'readEntries=' + readEntries, instance._viewEntriesURL) || instance._viewEntriesURL;
 
 				if (readEntries) {
 					var header = A.one('#' + instance._namespace + 'readEntriesContainer .entries .header');
@@ -80,7 +80,7 @@ AUI().use(
 							expanded = 'true';
 						}
 
-						url = Liferay.Util.addParams('expanded=' + expanded, url) || url;
+						url = Liferay.Util.addParams(instance._namespace + 'expanded=' + expanded, url) || url;
 					}
 
 					var node = AUI().one('#' + instance._namespace + 'readEntriesContainer');
@@ -95,7 +95,7 @@ AUI().use(
 					if (entries) {
 						var start = (start == null) ? entries.attr('data-start') : start;
 
-						url = Liferay.Util.addParams('start=' + start, url) || url;
+						url = Liferay.Util.addParams(instance._namespace + 'start=' + start, url) || url;
 					}
 
 					if (!node.io) {
