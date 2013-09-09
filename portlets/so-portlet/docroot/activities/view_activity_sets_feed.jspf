@@ -94,9 +94,16 @@ for (SocialActivitySet activitySet : results) {
 						%>
 
 						<c:if test="<%= className.equals(MicroblogsEntry.class.getName()) && (activitySet.getUserId() != user.getUserId()) %>">
-							<span class="repost action">
-								<a data-microblogsEntryId="<%= classPK %>" href="javascript:;"><liferay-ui:message key="repost" /></a>
-							</span>
+
+							<%
+							MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(classPK);
+							%>
+
+							<c:if test="<%= (microblogsEntry != null) && (microblogsEntry.getSocialRelationType() == MicroblogsEntryConstants.TYPE_EVERYONE) %>">
+								<span class="repost action">
+									<a data-microblogsEntryId="<%= classPK %>" href="javascript:;"><liferay-ui:message key="repost" /></a>
+								</span>
+							</c:if>
 						</c:if>
 
 						<span class="view-comments action">
