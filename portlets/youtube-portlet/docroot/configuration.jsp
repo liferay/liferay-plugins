@@ -47,7 +47,6 @@
 
 			<liferay-ui:panel-container extended="<%= false %>" persistState="<%= true %>">
 				<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= false %>" persistState="<%= true %>" title="advanced-options">
-
 					<aui:input cssClass="show-thumbnail" inlineField="true" label="show-thumbnail" name="preferences--showThumbnail--" type="checkbox" value="<%= showThumbnail %>" />
 
 					<div class="aui-field-row">
