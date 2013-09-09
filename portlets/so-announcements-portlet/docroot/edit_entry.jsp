@@ -168,6 +168,8 @@ if (entry == null) {
 				<div class="edit-actions">
 					<span class="toggle action hide">
 						<a class="toggle-entry" data-entryId="preview" href="javascript:;">
+							<i class="icon-expand-alt"></i>
+
 							<span><liferay-ui:message key="view-more" /></span>
 						</a>
 					</span>
