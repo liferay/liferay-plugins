@@ -15,6 +15,7 @@
 package com.liferay.so.activities.hook.social;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
+import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
 import com.liferay.microblogs.util.MicroblogsUtil;
@@ -301,6 +302,20 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
 				activity.getClassPK());
+
+		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
+			MicroblogsEntry receiverMicroblogsEntry =
+				MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
+					microblogsEntry.getReceiverMicroblogsEntryId());
+
+			if ((receiverMicroblogsEntry == null) ||
+				!MicroblogsEntryPermission.contains(
+					permissionChecker, receiverMicroblogsEntry,
+					ActionKeys.VIEW)) {
+
+				return false;
+			}
+		}
 
 		return MicroblogsEntryPermission.contains(
 			permissionChecker, microblogsEntry, ActionKeys.VIEW);
