@@ -158,7 +158,7 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 		addEntryURL.setWindowState(LiferayWindowState.POP_UP);
 		%>
 
-		var addEntryURL = "<%= addEntryURL.toString() %>&distributionScope=" + optValue;
+		var addEntryURL = "<%= addEntryURL.toString() %>&<portlet:namespace />distributionScope=" + optValue;
 
 		window.location = addEntryURL;
 	}
