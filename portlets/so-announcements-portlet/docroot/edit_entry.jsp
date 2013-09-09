@@ -189,7 +189,7 @@ if (entry == null) {
 	}
 
 	function <portlet:namespace />closeEntry() {
-		Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
+		Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 	}
 
 	function <portlet:namespace />previewEntry() {
@@ -282,7 +282,7 @@ if (entry == null) {
 								window.location.href = responseData.redirect;
 							}
 							else {
-								Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
+								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 							}
 						}
 					}
