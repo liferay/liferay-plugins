@@ -1,5 +1,6 @@
 AUI().use(
 	'aui-base',
+	'aui-io-plugin',
 	'transition',
 	function(A) {
 		Liferay.namespace('Announcements');
