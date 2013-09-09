@@ -26,27 +26,29 @@
 			sb.append("&amp;autoplay=1");
 		}
 
-		if(closedCaptioning){
-			sb.append("&amp;cc_load_policy=" + 1);
+		if (closedCaptioning) {
+			sb.append("&amp;cc_load_policy=1");
 		}
 
 		if (!enableKeyboardControls) {
 			sb.append("&amp;disablekb=1");
 		}
 
-		if(annotations) {
-			sb.append("&amp;iv_load_policy=" + 1);
+		if (annotations) {
+			sb.append("&amp;iv_load_policy=1");
 		}
 		else {
-			sb.append("&amp;iv_load_policy=" + 3);
+			sb.append("&amp;iv_load_policy=3");
 		}
 
 		if (loop) {
-			sb.append("&amp;loop=1&amp;playlist=" + id);
+			sb.append("&amp;loop=1&amp;playlist=");
+			sb.append(id);
 		}
 
 		if (Validator.isNotNull(startTime)) {
-			sb.append("&amp;start=" + startTime);
+			sb.append("&amp;start=");
+			sb.append(startTime);
 		}
 		%>
 
