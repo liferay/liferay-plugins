@@ -163,7 +163,7 @@ html > body.lfr-dockbar-pinned {
 		.avatar {
 			display: inline-block;
 			height: 24px;
-			margin: -5px 10px -4px -5px;
+			margin: -5px 5px -4px -5px;
 			overflow: hidden;
 			padding: 0;
 			vertical-align: middle;
@@ -214,6 +214,14 @@ html > body.lfr-dockbar-pinned {
 			}
 		}
 
+		.full-name {
+			display: inline-block;
+			max-width: 8.25em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
 		.config-icon {
 			padding: 0.25em 6px;
 
@@ -239,7 +247,7 @@ html > body.lfr-dockbar-pinned {
 
 		font-size: 1em;
 		right: 0;
-		top: 120%;
+		top: 135%;
 		width: 350px;
 
 		.aui-menu-content {
@@ -352,6 +360,8 @@ html > body.lfr-dockbar-pinned {
 			background: rgba(255, 255, 255, 1);
 
 			@include border-radius(20px);
+
+			padding: 0 0.55em;
 
 			&:hover {
 				background: rgba(0,0,0, 0.8);
