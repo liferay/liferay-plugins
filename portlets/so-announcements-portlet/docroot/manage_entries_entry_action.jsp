@@ -34,10 +34,9 @@ AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 		</portlet:renderURL>
 
 		<a href="<%= editURL %>">
-			<liferay-ui:icon
-				image="edit"
-				label="<%= true %>"
-			/>
+			<i class="icon-edit"></i>
+
+			<span><liferay-ui:message key="edit" /></span>
 		</a>
 	</span>
 </c:if>
@@ -49,9 +48,10 @@ AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 			<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
 		</liferay-portlet:actionURL>
 
-		<liferay-ui:icon-delete
-			label="<%= true %>"
-			url="<%= deleteURL %>"
-		/>
+		<a href="<%= deleteURL.toString() %>">
+			<i class="icon-remove"></i>
+
+			<span><liferay-ui:message key="delete" /></span>
+		</a>
 	</span>
 </c:if>

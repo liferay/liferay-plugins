@@ -32,14 +32,14 @@ AUI().use(
 					contentHeight = content.getComputedStyle('height');
 
 					if (control) {
-						control.html(Liferay.Language.get('view-less'));
+						control.html('<i class="icon-collapse-alt"></i><span> ' + Liferay.Language.get('view-less') + '</span>');
 					}
 				}
 				else {
 					entry.addClass('announcement-collapsed');
 
 					if (control) {
-						control.html(Liferay.Language.get('view-more'));
+						control.html('<i class="icon-expand-alt"></i><span> ' + Liferay.Language.get('view-more') + '</span>');
 					}
 				}
 

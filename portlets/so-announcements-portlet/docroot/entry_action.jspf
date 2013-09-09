@@ -28,31 +28,34 @@
 				</portlet:renderURL>
 
 				<a href="javascript:<portlet:namespace />editEntry('<%= editURL.toString() %>');">
-					<liferay-ui:icon
-						image="edit"
-						label="<%= true %>"
-					/>
+					<i class="icon-edit"></i>
+
+					<span><liferay-ui:message key="edit" /></span>
 				</a>
 			</span>
 		</c:if>
 
 		<c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.DELETE) %>">
 			<span class="action delete-entry">
-				<liferay-ui:icon-delete
-					label="<%= true %>"
-					url="javascript:;"
-				/>
+				<a href="javascript:;">
+					<i class="icon-remove"></i>
+
+					<span><liferay-ui:message key="delete" /></span>
+				</a>
 			</span>
 		</c:if>
 
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			<span class="action control-entry">
 				<a href="javascript:<portlet:namespace />handleEntry(<%= entry.getEntryId() %>);">
-					<liferay-ui:icon
-						image='<%= (flagValue == AnnouncementsFlagConstants.HIDDEN) ? "checked" : "unchecked" %>'
-						label="<%= false %>"
-						message=""
-					/>
+					<c:choose>
+						<c:when test="<%= flagValue == AnnouncementsFlagConstants.HIDDEN %>">
+							<i class="icon-unchecked"></i>
+						</c:when>
+						<c:otherwise>
+							<i class="icon-check"></i>
+						</c:otherwise>
+					</c:choose>
 
 					<liferay-ui:message key='<%= (flagValue == AnnouncementsFlagConstants.HIDDEN) ? "mark-as-unread" : "mark-as-read" %>' />
 				</a>
@@ -61,6 +64,8 @@
 
 		<span class="toggle action hide">
 			<a class="toggle-entry" href="javascript:;">
+				<i class="icon-expand-alt"></i>
+
 				<span><liferay-ui:message key="view-more" /></span>
 			</a>
 		</span>
