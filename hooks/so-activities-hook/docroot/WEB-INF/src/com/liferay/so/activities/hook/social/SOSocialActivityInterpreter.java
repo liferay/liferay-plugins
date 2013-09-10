@@ -29,8 +29,10 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
@@ -404,6 +406,12 @@ public abstract class SOSocialActivityInterpreter
 			PermissionChecker permissionChecker, SocialActivity activity,
 			String actionId, ServiceContext serviceContext)
 		throws Exception {
+
+		Group group = GroupLocalServiceUtil.fetchGroup(activity.getGroupId());
+
+		if ((group != null) && group.isUser()) {
+			return false;
+		}
 
 		return permissionChecker.hasPermission(
 			activity.getGroupId(), activity.getClassName(),

@@ -19,9 +19,11 @@ import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -286,6 +288,12 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 			PermissionChecker permissionChecker, SocialActivity activity,
 			String actionId, ServiceContext serviceContext)
 		throws Exception {
+
+		Group group = GroupLocalServiceUtil.fetchGroup(activity.getGroupId());
+
+		if ((group != null) && group.isUser()) {
+			return false;
+		}
 
 		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(
 			activity.getClassPK());
