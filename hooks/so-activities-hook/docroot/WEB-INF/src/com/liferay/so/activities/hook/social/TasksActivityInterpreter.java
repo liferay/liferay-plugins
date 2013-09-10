@@ -170,17 +170,27 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(serviceContext.translate("assigned-to"));
 		sb.append(": </strong>");
 
-		User assigneeUser = UserLocalServiceUtil.fetchUser(
-			tasksEntry.getAssigneeUserId());
+		if (tasksEntry.getAssigneeUserId() > 0) {
+			String assigneeDisplayURL = null;
 
-		String assigneeDisplayURL = assigneeUser.getDisplayURL(
-			serviceContext.getThemeDisplay());
+			User assigneeUser = UserLocalServiceUtil.fetchUser(
+				tasksEntry.getAssigneeUserId());
 
-		String assigneeUserLink = wrapLink(
-			assigneeDisplayURL,
-			HtmlUtil.escape(tasksEntry.getAssigneeFullName()));
+			if (assigneeUser != null) {
+				assigneeDisplayURL = assigneeUser.getDisplayURL(
+					serviceContext.getThemeDisplay());
+			}
 
-		sb.append(assigneeUserLink);
+			String assigneeUserLink = wrapLink(
+				assigneeDisplayURL,
+				HtmlUtil.escape(tasksEntry.getAssigneeFullName()));
+
+			sb.append(assigneeUserLink);
+		}
+		else {
+			sb.append(serviceContext.translate("unassigned"));
+		}
+
 		sb.append("</span><span class=\"tasks-entry-due-date\"><strong>");
 		sb.append(serviceContext.translate("due-date"));
 		sb.append(": </strong>");
