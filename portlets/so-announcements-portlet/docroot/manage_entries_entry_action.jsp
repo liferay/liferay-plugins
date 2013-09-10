@@ -48,7 +48,7 @@ AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 			<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
 		</liferay-portlet:actionURL>
 
-		<a href="<%= deleteURL.toString() %>">
+		<a href="<%= deleteURL %>">
 			<i class="icon-remove"></i>
 
 			<span><liferay-ui:message key="delete" /></span>
