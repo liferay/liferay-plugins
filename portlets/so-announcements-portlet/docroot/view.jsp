@@ -178,7 +178,7 @@
 				dialog: {
 					after: {
 						visibleChange: function(event) {
-							if(!event.currentTarget.get('visible')) {
+							if (!event.currentTarget.get('visible')) {
 								Liferay.Announcements.updateEntries(false, null);
 								Liferay.Announcements.updateEntries(true, null);
 							}
