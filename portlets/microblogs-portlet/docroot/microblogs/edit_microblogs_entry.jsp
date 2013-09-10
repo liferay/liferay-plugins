@@ -146,7 +146,7 @@ if (comment) {
 			</span>
 		</c:if>
 
-		<div class="autocomplete textarea" id="<portlet:namespace />autocomplete<%= microblogsEntryId %>">
+		<div class="autocomplete inactive" id="<portlet:namespace />autocomplete<%= microblogsEntryId %>">
 			<div id="<portlet:namespace />autocompleteContent<%= microblogsEntryId %>">
 				<span class="placeholder-text" id="<portlet:namespace />placeholderText<%= microblogsEntryId %>">
 					<c:choose>
@@ -166,7 +166,21 @@ if (comment) {
 		<aui:input label="" name="content" type="hidden" />
 	</c:if>
 
-	<aui:button-row cssClass='<%= !repost ? "hide" : StringPool.BLANK %>'>
+	<span class="microblogs-countdown-holder">
+		<c:if test="<%= !repost %>">
+			<span class="microblogs-countdown">150</span>
+		</c:if>
+	</span>
+
+	<%
+	String rowCssClass = "button-holder";
+
+	if (!repost) {
+		rowCssClass += " hide";
+	}
+	%>
+
+	<aui:row cssClass="<%= rowCssClass %>">
 		<c:if test="<%= !comment && !repost %>">
 
 			<%
@@ -177,25 +191,23 @@ if (comment) {
 			}
 			%>
 
-			<aui:select inlineLabel="true" label="viewable-by" name="socialRelationType">
-				<aui:option label="everyone" selected="<%= socialRelationType == MicroblogsEntryConstants.TYPE_EVERYONE %>" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
-				<aui:option label="connections" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
-				<aui:option label="followers" selected="<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>" value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
-			</aui:select>
+			<aui:col width="<%= 80 %>">
+				<aui:select inlineLabel="true" label="viewable-by" name="socialRelationType">
+					<aui:option label="everyone" selected="<%= socialRelationType == MicroblogsEntryConstants.TYPE_EVERYONE %>" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
+					<aui:option label="connections" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
+					<aui:option label="followers" selected="<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>" value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
+				</aui:select>
+			</aui:col>
 		</c:if>
 
-		<span class="button-holder-right">
-			<c:if test="<%= !repost %>">
-				<span class="microblogs-countdown">150</span>
-			</c:if>
-
-			<aui:button disabled="<%= !repost ? true : false %>" inputCssClass="microblogs-button-input" name="submit" type="submit" value="post" />
+		<aui:col width="<%= 20 %>">
+			<aui:button cssClass="pull-right" disabled="<%= !repost ? true : false %>" name="submit" type="submit" value="post" />
 
 			<c:if test="<%= repost %>">
 				<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
 			</c:if>
-		</span>
-	</aui:button-row>
+		</aui:col>
+	</aui:row>
 </aui:form>
 
 <aui:script use="aui-base,aui-event-input,aui-template-deprecated,aui-form-textarea-deprecated,autocomplete,autocomplete-filters">
@@ -230,21 +242,20 @@ if (comment) {
 			var contentInput = event.currentTarget;
 
 			var countdown = form.one('.microblogs-countdown');
-			var submitButton = form.one('.button-submit');
+			var submitButton = form.one('#<portlet:namespace/>submit');
 
 			var remaining = (150 - contentInput.val().length);
 
-			var error = (remaining < 0);
-
-			var disabled = ((remaining == 150) || (contentInput.get('value') == "") || error);
+			var disabled = ((remaining == 150) || (contentInput.get('value') == "") || (remaining < 0));
 
 			countdown.html(remaining);
 
-			submitButton.one('.microblogs-button-input').attr('disabled', disabled);
-			submitButton.toggleClass('button-disabled', disabled);
+			submitButton.attr('disabled', disabled);
 
-			submitButton.toggleClass('microblogs-button-input-disabled', error);
-			countdown.toggleClass('microblogs-countdown-warned', error);
+			submitButton.toggleClass('disabled', disabled);
+			submitButton.toggleClass('btn-warning', disabled);
+
+			countdown.toggleClass('microblogs-countdown-warned', disabled);
 		};
 
 		var createTextarea = function(divId) {
@@ -268,11 +279,13 @@ if (comment) {
 				}
 			).render(autocompleteContent);
 
-			var contentTextarea = A.one('#<portlet:namespace />contentInput<%= microblogsEntryId %> textarea');
+			var contentTextarea = autocompleteContent.one('textarea');
 
 			contentTextarea.on(
 				'focus',
 				function(contentTextarea) {
+					autocomplete.removeClass('inactive');
+
 					var buttonContainer = form.one('.button-holder');
 
 					buttonContainer.show();
@@ -430,7 +443,7 @@ if (comment) {
 				autocomplete.on(
 					'click',
 					function(event) {
-						var contentInput = A.one('#<portlet:namespace/>contentInput<%= microblogsEntryId %>');
+						var contentInput = A.one('#<portlet:namespace/>autocompleteContent<%= microblogsEntryId %> textarea');
 						var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= microblogsEntryId %>');
 
 						if (!contentInput) {
@@ -454,7 +467,7 @@ if (comment) {
 
 			<c:if test="<%= !repost %>">
 				var content = form.one('input[name="<portlet:namespace />content"]');
-				var contentInput = A.one('#<portlet:namespace />contentInput<%= microblogsEntryId %> textarea');
+				var contentInput = A.one('#<portlet:namespace />autocompleteContent<%= microblogsEntryId %> textarea');
 
 				var contentInputValue = contentInput.val();
 
