@@ -127,6 +127,11 @@
 			<finder-column name="parentCalendarBookingId" />
 			<finder-column name="status" />
 		</finder>
+		<finder name="C_CS" return-type="Collection">
+			<finder-column name="calendarId" />
+			<finder-column name="status" arrayable-operator="OR" />
+		</finder>
+
 
 		<!-- References -->
 
