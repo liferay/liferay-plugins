@@ -1,6 +1,6 @@
 @import "compass";
 
-$microblogs-border-color: #C7D0DA;
+$microblogs-border-color: #EAEAEA;
 
 .microblogs-portlet {
 	.taglib-header {
@@ -12,7 +12,6 @@ $microblogs-border-color: #C7D0DA;
 	}
 
 	.microblogs-entry-form {
-		border-bottom: 1px solid $microblogs-border-color;
 		padding: 10px 11px;
 		position: relative;
 
@@ -33,7 +32,7 @@ $microblogs-border-color: #C7D0DA;
 		}
 
 		.button-holder {
-			margin: 5px 0 0;
+			margin: 5px 0 0 5px;
 		}
 
 		.field-select {
@@ -45,14 +44,18 @@ $microblogs-border-color: #C7D0DA;
 			}
 		}
 
-		.button-holder-right {
+		.microblogs-countdown-holder {
 			float: right;
 			line-height: 1em;
 		}
 
 		.microblogs-countdown {
 			background: #CFD8E1;
+
+			@include border-radius(3px);
+
 			color: #FFF;
+			opacity: 0.5;
 			padding: 2px;
 			position: absolute;
 			right: 14px;
@@ -60,7 +63,7 @@ $microblogs-border-color: #C7D0DA;
 		}
 
 		.microblogs-countdown-warned {
-			background: #F00;
+			background: #F89406;
 		}
 
 		&.reply {
@@ -74,6 +77,13 @@ $microblogs-border-color: #C7D0DA;
 		height: 18px;
 		padding: 8px;
 		position: relative;
+
+	}
+
+	.autocomplete.inactive {
+		border: 1px solid #EAEAEA;
+
+		@include border-radius(3px);
 	}
 
 	.microblogs-entry {
@@ -180,7 +190,7 @@ $microblogs-border-color: #C7D0DA;
 			display: inline;
 		}
 
-		.microblogs-entry-form .button-holder-right {
+		.microblogs-entry-form .microblogs-countdown-holder {
 			float: none;
 			margin-left: 35px;
 		}
@@ -227,7 +237,6 @@ $microblogs-border-color: #C7D0DA;
 		span {
 			background-color: #97D1FF;
 			font-weight: normal;
-			margin: -2px -2px 0;
 			padding: 2px 2px 0;
 			visibility: visible;
 			zoom: 1;
