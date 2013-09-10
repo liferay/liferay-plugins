@@ -75,7 +75,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 		<form action="<portlet:actionURL name="updateJira" />" method="post" name="<portlet:namespace />fm">
 		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 
-		<div class="portlet-msg-info">
+		<div class="alert alert-info">
 			<%= LanguageUtil.format(pageContext, "set-your-login-for-x-to-track-your-jira-activity", "http://support.liferay.com") %>
 		</div>
 
@@ -92,9 +92,22 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 
 		<br />
 
-		<input type="submit" value="<liferay-ui:message key="save" />" />
+		<aui:button-row>
+			<aui:button cssClass="btn-primary" type="setup" value="save" />
 
-		<input onClick="location.href = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" />';" type="button" value="<liferay-ui:message key="cancel" />" />
+			<aui:button id="cancelJiraSetup" name="cancelJiraSetup" value="cancel" />
+		</aui:button-row>
+
+		<aui:script use="aui-base">
+			A.one('#<portlet:namespace />cancelJiraSetup').on(
+				'click',
+				function(event) {
+					event.preventDefault();
+
+					A.config.win.location = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" />';
+				}
+			);
+		</aui:script>
 
 		</form>
 	</c:otherwise>
