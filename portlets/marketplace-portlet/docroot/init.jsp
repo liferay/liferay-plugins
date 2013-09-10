@@ -47,6 +47,7 @@ page import="com.liferay.portal.model.Plugin" %><%@
 page import="com.liferay.portal.model.PluginSetting" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.Theme" %><%@
+page import="com.liferay.portal.service.CompanyLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.PluginSettingLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
