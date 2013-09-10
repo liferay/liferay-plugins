@@ -16,11 +16,11 @@
 
 <%@ include file="/init.jsp" %>
 
-<form action="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" />" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
+<form action="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" />" class="stock-options-form" method="post" name="<portlet:namespace />fm" onSubmit="submitForm(this); return false;">
 
 <c:choose>
 	<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
-		<table class="lfr-table">
+		<table class="lfr-table ">
 
 		<%
 		for (int i = 0; i < symbols.length; i++) {
@@ -38,13 +38,13 @@
 					</td>
 					<td align="right">
 						<c:if test="<%= stocks.getChange() < 0 %>">
-							<span class="portlet-msg-error">
+							<span class="alert alert-error">
 								<%= stocks.isChangeAvailable() ? decimalFormat.format(stocks.getChange()) : LanguageUtil.get(pageContext, "not-available") %>
 							</span>
 						</c:if>
 
 						<c:if test="<%= stocks.getChange() > 0 %>">
-							<span class="portlet-msg-success">
+							<span class="alert alert-success">
 								+<%= stocks.isChangeAvailable() ? decimalFormat.format(stocks.getChange()) : LanguageUtil.get(pageContext, "not-available") %>
 							</span>
 						</c:if>
@@ -105,7 +105,7 @@
 
 		<input maxlength="10" name="<portlet:namespace />symbol" size="10" type="text" value="<%= symbol %>" />
 
-		<select name="<portlet:namespace />time" onChange="submitForm(document.<portlet:namespace />fm);">
+		<select class="stock-options" name="<portlet:namespace />time" onChange="submitForm(document.<portlet:namespace />fm);">
 			<option <%= (time == 1) ? "selected" : "" %> value="1">1 <liferay-ui:message key="day" /></option>
 			<option <%= (time == 2) ? "selected" : "" %> value="2">2 <liferay-ui:message key="days" /></option>
 			<option <%= (time == 3) ? "selected" : "" %> value="3">5 <liferay-ui:message key="days" /></option>
@@ -141,13 +141,13 @@
 
 						<c:if test="<%= stocks.isChangeAvailable() && stocks.isPreviousCloseAvailable() %>">
 							<c:if test="<%= stocks.getChange() < 0 %>">
-								<span class="portlet-msg-error">
+								<span class="alert alert-error">
 								<strong><%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose() * 100) %>%</strong>
 								</span>
 							</c:if>
 
 							<c:if test="<%= stocks.getChange() > 0 %>">
-								<span class="portlet-msg-success">
+								<span class="alert alert-success">
 								<strong>+<%= decimalFormat.format(stocks.getChange()) %> / <%= decimalFormat.format(stocks.getChange() / stocks.getPreviousClose() * 100) %>%</strong>
 								</span>
 							</c:if>
