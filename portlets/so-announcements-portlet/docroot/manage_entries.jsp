@@ -180,7 +180,6 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 								else {
 									Liferay.Portlet.refresh('#p_p_id<portlet:namespace />');
 								}
-
 							}
 						},
 						dataType: 'json',
@@ -206,13 +205,13 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 		addEntryURL.setWindowState(LiferayWindowState.POP_UP);
 		%>
 
-		var addEntryURL = "<%= addEntryURL.toString() %>&<portlet:namespace />distributionScope=" + optValue;
+		var addEntryURL = Liferay.Util.addParams('<portlet:namespace />distributionScope=' + optValue, '<%= addEntryURL.toString() %>');
 
 		window.location = addEntryURL;
 	}
 
 	function <portlet:namespace />selectDistributionScope(distributionScope) {
-		var url = "<%= portletURL.toString() %>&<portlet:namespace />distributionScope=" + distributionScope;
+		var url = Liferay.Util.addParams('<portlet:namespace />distributionScope=' + distributionScope, '<%= portletURL.toString() %>');
 
 		submitForm(document.<portlet:namespace />fm, url);
 	}
