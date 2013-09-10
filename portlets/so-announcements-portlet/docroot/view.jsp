@@ -52,7 +52,7 @@
 		}
 	);
 
-	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
+	var announcementEntries = A.one('#p_p_id<portlet:namespace /> .portlet-content-container');
 
 	announcementEntries.delegate(
 		'click',
