@@ -17,11 +17,11 @@ package com.liferay.so.activities.hook.social;
 import com.liferay.compat.portal.service.ServiceContext;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
@@ -148,13 +148,17 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"forum-page-content\">");
 
-		AssetRenderer assetRenderer = getAssetRenderer(className, classPK);
+		MBMessage mbMessage = MBMessageLocalServiceUtil.getMBMessage(classPK);
+
+		String body = mbMessage.getBody();
+
+		if (mbMessage.isFormatBBCode()) {
+			body = BBCodeTranslatorUtil.getHTML(body);
+		}
 
 		sb.append(
 			StringUtil.shorten(
-				HtmlUtil.escape(
-					assetRenderer.getSearchSummary(
-						serviceContext.getLocale())), 200));
+				HtmlUtil.escape(HtmlUtil.extractText(body)), 200));
 
 		sb.append("</div></div>");
 
