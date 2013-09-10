@@ -7,6 +7,7 @@
 		<icon>/icon.png</icon>
 		<preferences-owned-by-group>false</preferences-owned-by-group>
 		<maximize-edit>true</maximize-edit>
+		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>stocks-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>
