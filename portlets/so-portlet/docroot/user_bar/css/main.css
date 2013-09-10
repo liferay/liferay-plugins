@@ -241,10 +241,9 @@ html > body.lfr-dockbar-pinned {
 	}
 
 	.user-notification-events {
-		color: $defaultTextColor;
-
 		@include clear-both;
 
+		color: $defaultTextColor;
 		font-size: 1em;
 		right: 0;
 		top: 135%;
