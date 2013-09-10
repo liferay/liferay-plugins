@@ -682,32 +682,39 @@ Please find a solution that does not require portal-impl.jar.
 
 		<if>
 			<and>
+				<available file="docroot/WEB-INF/liferay-hook.xml" />
 				<available file="docroot/WEB-INF/src/content" />
-				<resourcecontains resource="docroot/WEB-INF/liferay-hook.xml" substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" />
 			</and>
 			<then>
-				<pathconvert pathsep="${line.separator}&#x9;" property="language.properties.elements">
-					<fileset dir="docroot/WEB-INF/src/content">
-						<include name="Language*.properties" />
-					</fileset>
-					<mapper>
-						<chainedmapper>
-							<flattenmapper />
-							<globmapper
-								from="Language*.properties"
-								to="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;"
-							/>
-						</chainedmapper>
-					</mapper>
-				</pathconvert>
+				<loadfile property="liferay-hook.xml.content" srcFile="docroot/WEB-INF/liferay-hook.xml" />
 
-				<copy file="docroot/WEB-INF/liferay-hook.xml" overwrite="true" tofile="docroot/WEB-INF/liferay-hook.xml.processed">
-					<filterchain>
-						<tokenfilter>
-							<replacestring from="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" to="${language.properties.elements}" />
-						</tokenfilter>
-					</filterchain>
-				</copy>
+				<if>
+					<contains string="${liferay-hook.xml.content}" substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" />
+					<then>
+						<pathconvert pathsep="${line.separator}&#x9;" property="language.properties.elements">
+							<fileset dir="docroot/WEB-INF/src/content">
+								<include name="Language*.properties" />
+							</fileset>
+							<mapper>
+								<chainedmapper>
+									<flattenmapper />
+									<globmapper
+										from="Language*.properties"
+										to="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;"
+									/>
+								</chainedmapper>
+							</mapper>
+						</pathconvert>
+
+						<copy file="docroot/WEB-INF/liferay-hook.xml" overwrite="true" tofile="docroot/WEB-INF/liferay-hook.xml.processed">
+							<filterchain>
+								<tokenfilter>
+									<replacestring from="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" to="${language.properties.elements}" />
+								</tokenfilter>
+							</filterchain>
+						</copy>
+					</then>
+				</if>
 			</then>
 		</if>
 
