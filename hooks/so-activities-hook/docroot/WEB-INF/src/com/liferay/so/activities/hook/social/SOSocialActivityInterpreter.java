@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -35,6 +36,8 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
+import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.social.model.BaseSocialActivityInterpreter;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
@@ -230,16 +233,27 @@ public abstract class SOSocialActivityInterpreter
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
+		String className = activity.getClassName();
+
 		String title = getPageTitle(
-			activity.getClassName(), activity.getClassPK(), serviceContext);
+			className, activity.getClassPK(), serviceContext);
 
 		AssetRenderer assetRenderer = getAssetRenderer(
-			activity.getClassName(), activity.getClassPK());
+			className, activity.getClassPK());
 
-		String body = StringUtil.shorten(
-			HtmlUtil.escape(
-				assetRenderer.getSearchSummary(
-					serviceContext.getLocale())), 200);
+		String body = assetRenderer.getSummary(serviceContext.getLocale());
+
+		if (className.equals(MBMessage.class.getName())) {
+			MBMessage mbMessage = MBMessageLocalServiceUtil.getMBMessage(
+				activity.getClassPK());
+
+			if (mbMessage.isFormatBBCode()) {
+				body = HtmlUtil.extractText(
+					BBCodeTranslatorUtil.getHTML(mbMessage.getBody()));
+			}
+		}
+
+		body = StringUtil.shorten(HtmlUtil.escape(body), 200);
 
 		return new SocialActivityFeedEntry(title, body);
 	}
