@@ -14,12 +14,17 @@
 
 package com.liferay.marketplace.util;
 
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**
  * @author Ryan Park
  */
 public class PortletPropsValues {
+
+	public static final boolean DISABLE_MARKETPLACE_STORE =
+		GetterUtil.getBoolean(
+			PortletProps.get(PortletPropsKeys.DISABLE_MARKETPLACE_STORE));
 
 	public static final String MARKETPLACE_URL_LOGOUT = PortletProps.get(
 		PortletPropsKeys.MARKETPLACE_URL_LOGOUT);
