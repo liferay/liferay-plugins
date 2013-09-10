@@ -1,7 +1,7 @@
 AUI().use(
 	'aui-base',
-	'liferay-util-window',
 	'aui-io-plugin-deprecated',
+	'liferay-util-window',
 	function(A) {
 		Liferay.namespace('Microblogs');
 
@@ -49,8 +49,8 @@ AUI().use(
 								modal: true,
 								resizable: false,
 								width: 475
+							}
 						}
-					}
 					).plug(
 						A.Plugin.IO,
 						{
