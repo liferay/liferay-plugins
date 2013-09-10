@@ -247,7 +247,7 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 			titlePattern = "replied-to-x-forum-post";
 		}
 		else if (activity.getType() ==
-					SocialActivityKeyConstants.MB_REPLY_MESSAGE) {
+					SocialActivityKeyConstants.MB_ADD_MESSAGE) {
 
 			titlePattern = "wrote-a-new-forum-post";
 		}
