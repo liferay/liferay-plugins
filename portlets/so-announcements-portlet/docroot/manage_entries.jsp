@@ -47,6 +47,8 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 	<liferay-ui:success key="announcementDeleted" message="the-announcement-was-successfully-deleted" />
 	<liferay-ui:success key="announcementUpdated" message="the-announcement-was-successfully-updated" />
 
+	<div id="<portlet:namespace />errorMessage"></div>
+
 	<aui:fieldset cssClass="distribution-scope-container">
 
 		<%
@@ -143,6 +145,52 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 		<liferay-ui:search-iterator searchContainer="<%= searchContainer %>" />
 	</c:if>
 </aui:form>
+
+<aui:script use="aui-base">
+	var announcementEntries = A.one('#p_p_id<portlet:namespace />');
+
+	announcementEntries.delegate(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			if (confirm('<%= UnicodeLanguageUtil.get(pageContext,"are-you-sure-you-want-to-delete-the-selected-entry") %>')) {
+				var deleteNode = event.currentTarget.ancestor('.delete-entry');
+
+				var entryId = deleteNode.attr('data-entryId');
+
+				var uri = '<liferay-portlet:actionURL name="deleteEntry"><portlet:param name="redirect" value="<%= currentURL %>" /></liferay-portlet:actionURL>';
+
+				uri = Liferay.Util.addParams('<portlet:namespace />entryId=' + entryId, uri)
+
+				A.io.request(
+					uri,
+					{
+						after: {
+							success: function(event, id, obj) {
+								var responseData = this.get('responseData');
+
+								if (!responseData.success) {
+									var message = A.one('#<portlet:namespace />errorMessage');
+
+									if (message) {
+										message.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+									}
+								}
+								else {
+									Liferay.Portlet.refresh('#p_p_id<portlet:namespace />');
+								}
+
+							}
+						},
+						dataType: 'json',
+					}
+				);
+			}
+		},
+		'.delete-entry a'
+	);
+</aui:script>
 
 <aui:script>
 	function <portlet:namespace />manageAddEntry() {

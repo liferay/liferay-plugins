@@ -43,15 +43,10 @@ AnnouncementsEntry entry = (AnnouncementsEntry)row.getObject();
 </c:if>
 
 <c:if test="<%= permissionChecker.hasPermission(entry.getGroupId(), AnnouncementsEntry.class.getName(), entry.getClassPK(), ActionKeys.DELETE) %>">
-	<span class="action delete-entry">
-		<liferay-portlet:actionURL name="deleteEntry" var="deleteURL">
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-		</liferay-portlet:actionURL>
-
+	<span class="action delete-entry" data-entryId="<%= String.valueOf(entry.getEntryId()) %>">
 		<liferay-ui:icon-delete
 			label="<%= true %>"
-			url="<%= deleteURL %>"
+			url="javascript:;"
 		/>
 	</span>
 </c:if>
