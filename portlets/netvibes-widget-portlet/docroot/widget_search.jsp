@@ -23,7 +23,7 @@ int category = ParamUtil.getInteger(request, "category");
 String region = ParamUtil.getString(request, "region", "all");
 %>
 
-<table class="lfr-table">
+<table class="lfr-table netvibes-search-wrapper">
 <tr>
 	<td>
 		<label for="<portlet:namespace/>sort"><strong>Sort</strong></label>
@@ -76,9 +76,9 @@ String region = ParamUtil.getString(request, "region", "all");
 </tr>
 <tr>
 	<td colspan="3">
-		<input name="<portlet:namespace/>query" size="30" type="text" value="<%= query %>" />
+		<input class="input-medium search-query" name="<portlet:namespace/>query" type="text" value="<%= query %>" />
 
-		<input onClick="<portlet:namespace />search();" type="button" value="<liferay-ui:message key="search" />" />
+		<input class="btn btn-primary" onClick="<portlet:namespace />search();" type="button" value="<liferay-ui:message key="search" />" />
 	</td>
 </tr>
 </table>
