@@ -704,7 +704,7 @@ public class FileSystemImporter extends BaseImporter {
 	protected String getJournalId(String fileName) {
 		String id = FileUtil.stripExtension(fileName);
 
-		id = id.toUpperCase();
+		id = StringUtil.toUpperCase(id);
 
 		return StringUtil.replace(id, StringPool.SPACE, StringPool.DASH);
 	}

@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.DocumentException;
@@ -322,7 +323,7 @@ public class BundleServletContext extends LiferayServletContext {
 				path, false, path, this, bundleFilterChain);
 		}
 
-		String extension = FileUtil.getExtension(path).toLowerCase();
+		String extension = StringUtil.toLowerCase(FileUtil.getExtension(path));
 
 		boolean extensionMapping = false;
 

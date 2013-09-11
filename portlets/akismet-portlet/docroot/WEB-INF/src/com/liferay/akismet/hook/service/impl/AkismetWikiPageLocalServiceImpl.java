@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.NotificationThreadLocal;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -247,7 +248,8 @@ public class AkismetWikiPageLocalServiceImpl
 		Map<String, String> headers = serviceContext.getHeaders();
 
 		String referrer = headers.get("referer");
-		String userAgent = headers.get(HttpHeaders.USER_AGENT.toLowerCase());
+		String userAgent = headers.get(
+			StringUtil.toLowerCase(HttpHeaders.USER_AGENT));
 
 		String userIP = serviceContext.getRemoteAddr();
 

@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -128,7 +129,8 @@ public class AkismetUtil {
 			return false;
 		}
 
-		String userAgent = headers.get(HttpHeaders.USER_AGENT.toLowerCase());
+		String userAgent = headers.get(
+			StringUtil.toLowerCase(HttpHeaders.USER_AGENT));
 
 		if (Validator.isNull(userAgent)) {
 			return false;

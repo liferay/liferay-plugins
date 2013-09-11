@@ -59,7 +59,8 @@ public class StocksPortlet extends MVCPortlet {
 		PortletPreferences preferences = actionRequest.getPreferences();
 
 		String[] symbols = StringUtil.split(
-			ParamUtil.getString(actionRequest, "symbols").toUpperCase(),
+			StringUtil.toUpperCase(
+				ParamUtil.getString(actionRequest, "symbols")),
 			StringPool.SPACE);
 
 		Arrays.sort(symbols);

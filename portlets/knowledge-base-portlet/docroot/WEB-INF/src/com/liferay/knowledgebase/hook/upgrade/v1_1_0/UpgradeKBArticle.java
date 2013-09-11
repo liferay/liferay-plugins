@@ -100,7 +100,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 			return;
 		}
 
-		String dataTypeUpperCase = dataType.toUpperCase();
+		String dataTypeUpperCase = StringUtil.toUpperCase(dataType);
 
 		StringBundler sb = new StringBundler(6);
 

@@ -308,7 +308,7 @@ public class V2MarkupServiceImpl
 
 		if (itemBinary != null) {
 			if (Validator.isNotNull(contentType) &&
-				contentType.toLowerCase().startsWith("text")) {
+				StringUtil.toLowerCase(contentType).startsWith("text")) {
 
 				String content = new String(itemBinary);
 

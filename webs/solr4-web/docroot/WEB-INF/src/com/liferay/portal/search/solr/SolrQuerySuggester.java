@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
@@ -287,8 +288,9 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 					weight = _INFINITE_WEIGHT;
 				}
 				else {
-					String inputLowerCase = input.toLowerCase();
-					String suggestionLowerCase = suggestion.toLowerCase();
+					String inputLowerCase = StringUtil.toLowerCase(input);
+					String suggestionLowerCase = StringUtil.toLowerCase(
+						suggestion);
 
 					float distance = StringDistanceCalculatorUtil.getDistance(
 						inputLowerCase, suggestionLowerCase);

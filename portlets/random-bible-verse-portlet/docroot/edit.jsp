@@ -41,7 +41,7 @@ Map bibles = RBVUtil.getBibles();
 				Bible bible = (Bible)entry.getValue();
 			%>
 
-				<option <%= language.equals(bible.getLanguage()) ? "selected" : "" %> value="<%= bible.getLanguage() %>"><%= LanguageUtil.get(pageContext, bible.getLanguageName().toLowerCase()) %></option>
+				<option <%= language.equals(bible.getLanguage()) ? "selected" : "" %> value="<%= bible.getLanguage() %>"><%= LanguageUtil.get(pageContext, StringUtil.toLowerCase(bible.getLanguageName())) %></option>
 
 			<%
 			}

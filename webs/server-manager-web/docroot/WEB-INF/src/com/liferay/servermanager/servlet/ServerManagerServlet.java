@@ -120,7 +120,7 @@ public class ServerManagerServlet extends HttpServlet {
 
 			String path = request.getPathInfo();
 
-			path = path.toLowerCase();
+			path = StringUtil.toLowerCase(path);
 
 			if (path.startsWith(StringPool.SLASH)) {
 				path = path.substring(1);

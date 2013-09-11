@@ -985,7 +985,7 @@ public class IMAPAccessor {
 			}
 		}
 		else if (Validator.isNull(fileName)) {
-			String contentType = part.getContentType().toLowerCase();
+			String contentType = StringUtil.toLowerCase(part.getContentType());
 
 			if (contentType.startsWith(ContentTypes.TEXT_PLAIN)) {
 				bodyPlain.append(

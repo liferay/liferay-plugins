@@ -16,6 +16,7 @@ package com.liferay.marketplace.util.comparator;
 
 import com.liferay.marketplace.model.App;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * @author Ryan Park
@@ -41,8 +42,8 @@ public class AppTitleComparator extends OrderByComparator {
 		App app1 = (App)obj1;
 		App app2 = (App)obj2;
 
-		int value = app1.getTitle().toLowerCase().compareTo(
-			app2.getTitle().toLowerCase());
+		int value = StringUtil.toLowerCase(app1.getTitle()).compareTo(
+			StringUtil.toLowerCase(app2.getTitle()));
 
 		if (_asc) {
 			return value;
