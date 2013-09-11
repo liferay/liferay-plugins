@@ -42,6 +42,8 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void doRun(long companyId) throws Exception {
+		boolean strict = PortletPreferencesThreadLocal.isStrict();
+
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
 
@@ -54,7 +56,7 @@ public class StartupAction extends SimpleAction {
 			InstanceUtil.initInstance(companyId);
 		}
 		finally {
-			PortletPreferencesThreadLocal.setStrict(true);
+			PortletPreferencesThreadLocal.setStrict(strict);
 		}
 	}
 
