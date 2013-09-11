@@ -66,16 +66,16 @@ public class ServerManagerServlet extends HttpServlet {
 
 		String method = request.getMethod();
 
-		if (method.equalsIgnoreCase(HttpMethods.DELETE)) {
+		if (StringUtil.equalsIgnoreCase(method, HttpMethods.DELETE)) {
 			executor.executeDelete(request, responseJSONObject, arguments);
 		}
-		else if (method.equalsIgnoreCase(HttpMethods.GET)) {
+		else if (StringUtil.equalsIgnoreCase(method, HttpMethods.GET)) {
 			executor.executeRead(request, responseJSONObject, arguments);
 		}
-		else if (method.equalsIgnoreCase(HttpMethods.POST)) {
+		else if (StringUtil.equalsIgnoreCase(method, HttpMethods.POST)) {
 			executor.executeCreate(request, responseJSONObject, arguments);
 		}
-		else if (method.equalsIgnoreCase(HttpMethods.PUT)) {
+		else if (StringUtil.equalsIgnoreCase(method, HttpMethods.PUT)) {
 			executor.executeUpdate(request, responseJSONObject, arguments);
 		}
 	}

@@ -1667,7 +1667,9 @@ public class ConsumerPortlet extends GenericPortlet {
 				String name = clientAttribute.getName();
 				String value = clientAttribute.getValue();
 
-				if (name.equalsIgnoreCase(HttpHeaders.CONTENT_DISPOSITION)) {
+				if (StringUtil.equalsIgnoreCase(
+						name, HttpHeaders.CONTENT_DISPOSITION)) {
+
 					resourceResponse.setProperty(
 						HttpHeaders.CONTENT_DISPOSITION, value);
 

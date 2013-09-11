@@ -152,7 +152,7 @@ public class WebFormPortlet extends MVCPortlet {
 				break;
 			}
 
-			if (fieldType.equalsIgnoreCase("paragraph")) {
+			if (StringUtil.equalsIgnoreCase(fieldType, "paragraph")) {
 				continue;
 			}
 

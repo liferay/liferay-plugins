@@ -18,6 +18,7 @@ import com.liferay.chat.service.EntryLocalServiceUtil;
 import com.liferay.chat.util.PortletPropsValues;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -47,7 +48,9 @@ public class JabberMessageListener implements MessageListener {
 
 			String resource = JabberUtil.getResource(from);
 
-			if (resource.equalsIgnoreCase(PortletPropsValues.JABBER_RESOURCE)) {
+			if (StringUtil.equalsIgnoreCase(
+					resource, PortletPropsValues.JABBER_RESOURCE)) {
+
 				return;
 			}
 
