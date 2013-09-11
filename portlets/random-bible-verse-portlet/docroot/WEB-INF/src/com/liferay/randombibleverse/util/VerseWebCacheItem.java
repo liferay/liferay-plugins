@@ -41,7 +41,7 @@ public class VerseWebCacheItem implements WebCacheItem {
 		try {
 			Verse verse = null;
 
-			if (_language.equalsIgnoreCase("fi")) {
+			if (StringUtil.equalsIgnoreCase(_language, "fi")) {
 				verse = _getUskonkirjat(verse);
 			}
 			else {

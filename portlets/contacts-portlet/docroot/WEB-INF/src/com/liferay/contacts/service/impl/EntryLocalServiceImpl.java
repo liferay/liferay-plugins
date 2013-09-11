@@ -25,6 +25,7 @@ import com.liferay.contacts.service.base.EntryLocalServiceBaseImpl;
 import com.liferay.portal.ContactFullNameException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.User;
@@ -138,7 +139,9 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		if (entryId > 0) {
 			Entry entry = entryPersistence.findByPrimaryKey(entryId);
 
-			if (!emailAddress.equalsIgnoreCase(entry.getEmailAddress())) {
+			if (!StringUtil.equalsIgnoreCase(
+					emailAddress, entry.getEmailAddress())) {
+
 				validateEmailAddress(userId, emailAddress);
 			}
 		}

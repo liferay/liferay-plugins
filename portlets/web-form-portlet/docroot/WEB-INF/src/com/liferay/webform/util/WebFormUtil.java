@@ -90,7 +90,7 @@ public class WebFormUtil {
 				"fieldType" + i, StringPool.BLANK);
 
 			while ((i == 1) || Validator.isNotNull(fieldLabel)) {
-				if (!fieldType.equalsIgnoreCase("paragraph")) {
+				if (!StringUtil.equalsIgnoreCase(fieldType, "paragraph")) {
 					ExpandoColumnLocalServiceUtil.addColumn(
 						expandoTable.getTableId(), fieldLabel,
 						ExpandoColumnConstants.STRING);

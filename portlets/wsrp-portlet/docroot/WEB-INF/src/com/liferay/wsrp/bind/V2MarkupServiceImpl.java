@@ -216,10 +216,11 @@ public class V2MarkupServiceImpl
 			String name = ExtensionHelperUtil.getNameAttribute(clientAttribute);
 			String value = clientAttribute.getValue();
 
-			if (name.equalsIgnoreCase(HttpHeaders.ACCEPT_ENCODING) ||
-				name.equalsIgnoreCase(HttpHeaders.CONTENT_LENGTH) ||
-				name.equalsIgnoreCase(HttpHeaders.CONTENT_TYPE) ||
-				name.equalsIgnoreCase(HttpHeaders.COOKIE)) {
+			if (StringUtil.equalsIgnoreCase(
+					name, HttpHeaders.ACCEPT_ENCODING) ||
+				StringUtil.equalsIgnoreCase(name, HttpHeaders.CONTENT_LENGTH) ||
+				StringUtil.equalsIgnoreCase(name, HttpHeaders.CONTENT_TYPE) ||
+				StringUtil.equalsIgnoreCase(name, HttpHeaders.COOKIE)) {
 
 				continue;
 			}
@@ -626,9 +627,11 @@ public class V2MarkupServiceImpl
 			for (Cookie cookie : forwardCookies) {
 				String cookieName = cookie.getName();
 
-				if (!cookieName.equalsIgnoreCase("cookie_support") &&
-					!cookieName.equalsIgnoreCase("guest_language_id") &&
-					!cookieName.equalsIgnoreCase("jsessionid")) {
+				if (!StringUtil.equalsIgnoreCase(
+						cookieName, "cookie_support") &&
+					!StringUtil.equalsIgnoreCase(
+						cookieName, "guest_language_id") &&
+					!StringUtil.equalsIgnoreCase(cookieName, "jsessionid")) {
 
 					if (Validator.isNull(cookie.getDomain())) {
 						cookie.setDomain(request.getServerName());
