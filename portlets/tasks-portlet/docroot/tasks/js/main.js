@@ -65,18 +65,19 @@ AUI().use(
 
 				if (!instance._popup) {
 					instance._popup = Liferay.Util.Window.getWindow(
-{
-dialog: {
-							align: {
-								node: null,
-								points: ['tc', 'tc']
-							},
-							constrain2view: true,
-							cssClass: 'tasks-dialog',
-							modal: true,
-							resizable: false,
-							width: 600
-						}}
+						{
+							dialog: {
+								align: {
+									node: null,
+									points: ['tc', 'tc']
+								},
+								constrain2view: true,
+								cssClass: 'tasks-dialog',
+								modal: true,
+								resizable: false,
+								width: 600
+							}
+						}
 					).plug(
 						A.Plugin.IO,
 						{autoLoad: false}
