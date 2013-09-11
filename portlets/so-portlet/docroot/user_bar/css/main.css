@@ -592,5 +592,26 @@ html > body.lfr-dockbar-pinned {
 }
 
 .ie7 {
+	.so-portlet-user-bar {
+		.dashboard-nav, .user-toolbar {
+			@include clear-both;
 
+			li {
+				display: block;
+				float: left;
+
+				li {
+					float: none;
+				}
+			}
+		}
+
+		.user-toolbar .go-to .portlet-body {
+			margin-top: -0.75em;
+
+			input {
+				color: $defaultTextColor;
+			}
+		}
+	}
 }
