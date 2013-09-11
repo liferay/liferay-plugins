@@ -15,7 +15,6 @@
 				<a class="portlet-icon-back" href="$portlet_back_url">#language ("return-to-full-page")</a>
 			#else
 				$theme.portletIconOptions()
-				$theme.portletIconClose()
 			#end
 		</menu>
 	</header>
