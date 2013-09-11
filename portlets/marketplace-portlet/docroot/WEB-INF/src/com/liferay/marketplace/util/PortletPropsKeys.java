@@ -19,8 +19,8 @@ package com.liferay.marketplace.util;
  */
 public interface PortletPropsKeys {
 
-	public static final String DISABLE_MARKETPLACE_STORE =
-		"disable.marketplace.store";
+	public static final String MARKETPLACE_STORE_ENABLED =
+		"marketplace.store.enabled";
 
 	public static final String MARKETPLACE_URL_LOGOUT =
 		"marketplace.url.logout";

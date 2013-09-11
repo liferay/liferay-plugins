@@ -30,7 +30,7 @@ public class StoreControlPanelEntry extends BaseControlPanelEntry {
 			PermissionChecker permissionChecker, Group group, Portlet portlet)
 		throws Exception {
 
-		if (PortletPropsValues.DISABLE_MARKETPLACE_STORE) {
+		if (PortletPropsValues.MARKETPLACE_STORE_ENABLED) {
 			return false;
 		}
 
