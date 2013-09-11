@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Address;
 import com.liferay.portal.model.Contact;
@@ -121,7 +122,7 @@ public class ContactsUtil {
 
 			ListType listType = address.getType();
 
-			sb.append(listType.getName().toUpperCase());
+			sb.append(StringUtil.toUpperCase(listType.getName()));
 
 			sb.append(StringPool.COLON);
 			sb.append(StringPool.SEMICOLON);
@@ -196,7 +197,7 @@ public class ContactsUtil {
 
 			ListType listType = emailAddress.getType();
 
-			sb.append(listType.getName().toUpperCase());
+			sb.append(StringUtil.toUpperCase(listType.getName()));
 
 			sb.append(StringPool.COLON);
 			sb.append(emailAddress.getAddress());
@@ -316,7 +317,7 @@ public class ContactsUtil {
 
 			ListType listType = phone.getType();
 
-			sb.append(listType.getName().toUpperCase());
+			sb.append(StringUtil.toUpperCase(listType.getName()));
 
 			sb.append(StringPool.COLON);
 			sb.append(phone.getNumber());
@@ -339,7 +340,7 @@ public class ContactsUtil {
 
 			ListType listType = website.getType();
 
-			sb.append(listType.getName().toUpperCase());
+			sb.append(StringUtil.toUpperCase(listType.getName()));
 
 			sb.append(StringPool.COLON);
 

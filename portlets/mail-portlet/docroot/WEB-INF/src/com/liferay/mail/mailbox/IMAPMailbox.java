@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.util.mail.InternetAddressUtil;
@@ -542,7 +543,8 @@ public class IMAPMailbox extends BaseMailbox {
 		List<String> words = new ArrayList<String>();
 
 		for (Locale locale : locales) {
-			String translation = LanguageUtil.get(locale, type).toLowerCase();
+			String translation = StringUtil.toLowerCase(
+				LanguageUtil.get(locale, type));
 
 			words.addAll(ListUtil.toList(translation.split(StringPool.SPACE)));
 		}
@@ -552,7 +554,8 @@ public class IMAPMailbox extends BaseMailbox {
 
 		for (String word : words) {
 			for (Folder folder : folders) {
-				String folderName = folder.getDisplayName().toLowerCase();
+				String folderName = StringUtil.toLowerCase(
+					folder.getDisplayName());
 
 				if (folderName.contains(word)) {
 					return folder.getFolderId();

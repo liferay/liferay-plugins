@@ -16,6 +16,7 @@ package com.liferay.knowledgebase.util.comparator;
 
 import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * @author Peter Shin
@@ -42,8 +43,8 @@ public class KBTemplateTitleComparator extends OrderByComparator {
 		KBTemplate kbTemplate1 = (KBTemplate)obj1;
 		KBTemplate kbTemplate2 = (KBTemplate)obj2;
 
-		int value = kbTemplate1.getTitle().toLowerCase().compareTo(
-			kbTemplate2.getTitle().toLowerCase());
+		int value = StringUtil.toLowerCase(kbTemplate1.getTitle()).compareTo(
+			StringUtil.toLowerCase(kbTemplate2.getTitle()));
 
 		if (_ascending) {
 			return value;

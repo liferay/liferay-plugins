@@ -390,7 +390,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 			Set<String> mimeTypePortletModes = new HashSet<String>();
 
 			for (String portletMode : markupType.getModes()) {
-				portletMode = portletMode.toLowerCase();
+				portletMode = StringUtil.toLowerCase(portletMode);
 
 				if (portletMode.startsWith("wsrp:")) {
 					portletMode = portletMode.substring(5);
@@ -405,7 +405,7 @@ public class WSRPConsumerPortletLocalServiceImpl
 			Set<String> mimeTypeWindowStates = new HashSet<String>();
 
 			for (String windowState : markupType.getWindowStates()) {
-				windowState = windowState.toLowerCase();
+				windowState = StringUtil.toLowerCase(windowState);
 
 				if (windowState.startsWith("wsrp:")) {
 					windowState = windowState.substring(5);

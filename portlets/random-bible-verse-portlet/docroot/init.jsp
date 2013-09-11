@@ -25,6 +25,7 @@
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
+page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.randombibleverse.model.Bible" %><%@
 page import="com.liferay.randombibleverse.model.Verse" %><%@
 page import="com.liferay.randombibleverse.util.RBVUtil" %>

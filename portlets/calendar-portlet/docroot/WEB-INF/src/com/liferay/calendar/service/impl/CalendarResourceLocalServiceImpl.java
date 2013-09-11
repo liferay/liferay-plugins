@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.SystemEventConstants;
@@ -77,7 +78,7 @@ public class CalendarResourceLocalServiceImpl
 		}
 		else {
 			code = code.trim();
-			code = code.toUpperCase();
+			code = StringUtil.toUpperCase(code);
 		}
 
 		Date now = new Date();

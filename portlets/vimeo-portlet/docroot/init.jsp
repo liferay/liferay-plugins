@@ -28,6 +28,7 @@ page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.HttpUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringBundler" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
+page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %>
 
 <portlet:defineObjects />
@@ -46,7 +47,7 @@ String width = portletPreferences.getValue("width", "480");
 String id = url.replaceAll(".*vimeo\\.com\\/([0-9]+).*", "$1");
 
 String enableFullscreenBinary = enableFullscreen ? "1" : "0";
-String playerColorHex = playerColor.replaceAll("#", "").toLowerCase();
+String playerColorHex = StringUtil.toLowerCase(playerColor.replaceAll("#", ""));
 String presetSize = width + "x" + height;
 String showBylineBinary = showByline ? "1" : "0";
 String showPortraitBinary = showPortrait ? "1" : "0";
