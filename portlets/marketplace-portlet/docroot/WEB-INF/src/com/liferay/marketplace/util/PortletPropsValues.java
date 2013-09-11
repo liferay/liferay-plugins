@@ -22,9 +22,9 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final boolean DISABLE_MARKETPLACE_STORE =
+	public static final boolean MARKETPLACE_STORE_ENABLED =
 		GetterUtil.getBoolean(
-			PortletProps.get(PortletPropsKeys.DISABLE_MARKETPLACE_STORE));
+			PortletProps.get(PortletPropsKeys.MARKETPLACE_STORE_ENABLED), true);
 
 	public static final String MARKETPLACE_URL_LOGOUT = PortletProps.get(
 		PortletPropsKeys.MARKETPLACE_URL_LOGOUT);
