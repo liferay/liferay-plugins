@@ -248,6 +248,7 @@ html > body.lfr-dockbar-pinned {
 		right: 0;
 		top: 135%;
 		width: 350px;
+		z-index: 2;
 
 		.aui-menu-content {
 			background-image: none;
@@ -588,4 +589,8 @@ html > body.lfr-dockbar-pinned {
 			display: none;
 		}
 	}
+}
+
+.ie7 {
+
 }
