@@ -263,7 +263,7 @@
 		}
 	}
 
-	.aui-layout {
+	.layout {
 		margin-bottom: 1em;
 	}
 
@@ -272,7 +272,7 @@
 		padding: 1px 0 1px 20px;
 	}
 
-	.aui-fieldset {
+	.fieldset {
 		.due-date-label {
 			margin-top: 10px;
 		}
@@ -290,11 +290,11 @@
 		overflow: hidden;
 		padding: 0.5em;
 
-		.aui-button-submit {
+		.button-submit {
 			margin-right: 3px;
 		}
 
-		.aui-button, .task-action-button, .task-action-spacer {
+		.button, .task-action-button, .task-action-spacer {
 			float: left;
 		}
 	}

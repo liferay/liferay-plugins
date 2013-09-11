@@ -28,7 +28,7 @@ long priority = BeanParamUtil.getLong(tasksEntry, request, "priority", TasksEntr
 long assigneeUserId = BeanParamUtil.getLong(tasksEntry, request, "assigneeUserId");
 
 boolean addDueDate = false;
-String dueDateClassName = "aui-helper-hidden";
+String dueDateClassName = "hide";
 String dueDateToggleText = LanguageUtil.get(pageContext, "add-due-date");
 
 if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
@@ -42,7 +42,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 
 <c:choose>
 	<c:when test="<%= (tasksEntry == null) && (tasksEntryId > 0) %>">
-		<span class="portlet-msg-error"><liferay-ui:message key="task-could-not-be-found" /></span>
+		<span class="alert alert-error"><liferay-ui:message key="task-could-not-be-found" /></span>
 	</c:when>
 	<c:otherwise>
 		<aui:form action="<%= updateTasksEntryURL %>" method="post" name="fm1" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm();" %>'>
@@ -122,9 +122,9 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 				String taglibAddDueDateOnClick = renderResponse.getNamespace() + "displayInputDate();";
 				%>
 
-				<label class="aui-field-label due-date-label"><%= LanguageUtil.get(pageContext, "due-date") %></label>
+				<label class="field-label due-date-label"><%= LanguageUtil.get(pageContext, "due-date") %></label>
 
-				<a class="aui-field-content due-date-toggle" href="#" id="toggleDueDate" onClick="<%= taglibAddDueDateOnClick %>"><%= dueDateToggleText %></a>
+				<a class="field-content due-date-toggle" href="#" id="toggleDueDate" onClick="<%= taglibAddDueDateOnClick %>"><%= dueDateToggleText %></a>
 
 				<aui:input id="addDueDate" name="addDueDate" type="hidden" value="<%= addDueDate %>" />
 
@@ -202,10 +202,10 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 				}
 			}
 
-			var dueDate = A.one('#<portlet:namespace />fm1 .aui-field-date');
+			var dueDate = A.one('#<portlet:namespace />fm1 .field-date');
 
 			if (dueDate) {
-				dueDate.toggleClass('aui-helper-hidden');
+				dueDate.toggleClass('hide');
 			}
 		},
 		['aui-base']

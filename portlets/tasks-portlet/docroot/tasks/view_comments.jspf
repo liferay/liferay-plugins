@@ -95,7 +95,7 @@ List<MBMessage> messages = treeWalker.getMessages();
 		<liferay-ui:icon image="reply" label="<%= true %>" message="add-comment" url="javascript:Liferay.Tasks.toggleCommentForm();" />
 	</div>
 
-	<div class="form aui-helper-hidden">
+	<div class="form hide">
 		<div>
 			<textarea class="comment-form" name="<portlet:namespace />body" onKeyUp="document.getElementById('<portlet:namespace />postButton').disabled = (this.value == '');" wrap="soft"></textarea>
 		</div>

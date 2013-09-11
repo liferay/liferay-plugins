@@ -64,8 +64,9 @@ AUI().use(
 				var instance = this;
 
 				if (!instance._popup) {
-					instance._popup = new A.Dialog(
-						{
+					instance._popup = Liferay.Util.Window.getWindow(
+{
+dialog: {
 							align: {
 								node: null,
 								points: ['tc', 'tc']
@@ -75,7 +76,7 @@ AUI().use(
 							modal: true,
 							resizable: false,
 							width: 600
-						}
+						}}
 					).plug(
 						A.Plugin.IO,
 						{autoLoad: false}

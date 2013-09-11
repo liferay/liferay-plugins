@@ -54,7 +54,7 @@ portletURL.setParameter("tabs2", tabs2);
 	<div style="clear: both;"><!-- --></div>
 </div>
 
-<div class="filter-wrapper aui-helper-hidden">
+<div class="filter-wrapper hide">
 	<%@ include file="/tasks/view_tasks_filter.jspf" %>
 </div>
 
