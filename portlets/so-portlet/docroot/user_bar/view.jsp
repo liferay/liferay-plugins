@@ -169,10 +169,6 @@ catch (NoSuchRoleException nsre) {
 			}
 		);
 
-		anItem = userBar.one('.dashboard-nav li a');
-
-		console.log();
-
 		searchInput.set('value', goToString);
 
 		searchInput.on(
