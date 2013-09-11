@@ -52,6 +52,8 @@ import java.util.Map;
 public class InstanceUtil implements PortletPropsKeys {
 
 	public static void initInstance(long companyId) {
+		boolean strict = PortletPreferencesThreadLocal.isStrict();
+
 		try {
 			PortletPreferencesThreadLocal.setStrict(false);
 
@@ -62,7 +64,7 @@ public class InstanceUtil implements PortletPropsKeys {
 			_log.error(e, e);
 		}
 		finally {
-			PortletPreferencesThreadLocal.setStrict(true);
+			PortletPreferencesThreadLocal.setStrict(strict);
 		}
 	}
 
