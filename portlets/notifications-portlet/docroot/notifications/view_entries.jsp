@@ -133,12 +133,12 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 </c:if>
 
 <c:if test="<%= !fullView %>">
-	<li class="bottom clearfix message user-notification">
+	<li class="bottom message user-notification">
 		<liferay-portlet:renderURL portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 			<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 		</liferay-portlet:renderURL>
 
-		<span class="pull-right"><a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" /></a></span>
+		<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" /></a>
 	</li>
 </c:if>
 

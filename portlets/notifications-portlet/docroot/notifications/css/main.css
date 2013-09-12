@@ -2,22 +2,19 @@
 
 .dockbar-user-notifications, .notifications-portlet {
 	.user-notifications-count {
-		background-color: #F03D25;
-		border: 1px solid #F83722;
-		border-bottom-color: #C0311E;
-		border-top-color: #E23923;
-		font-size: 9px;
-		font-weight: bold;
-		left: 55%;
-		line-height: 12px;
-		overflow: hidden;
-		padding: 0 2px;
-		position: absolute;
-		top: 55%;
+		background-color: #0066B3;
+		border: 1px solid #0066B3;
+		padding: 2px 6px;
+
+		&.alert {
+			background-color: #FAA732;
+			border: 1px solid #FAA732;
+			color: #FFF;
+		}
 	}
 
 	.dropdown-menu {
-		width: 400px;
+		width: 350px;
 	}
 
 	.user-notifications-list {
@@ -79,15 +76,12 @@
 				float: left;
 				position: relative;
 
-				.user-thumbnail {
-					border: 0;
-					height: 45px;
-					overflow: hidden;
-					width: 45px;
+				.user-thumbnail img {
+					@include border-radius(50%);
+					@include box-shadow(0 0 0 2px #5594E0);
 
-					img {
-						width: 45px;
-					}
+					margin: 5px 10px 0 0;
+					width: 30px;	
 				}
 
 				.portlet-icon {
@@ -108,7 +102,7 @@
 			}
 
 			.content {
-				margin-left: 65px;
+				margin-left: 40px;
 			}
 		}
 	}
@@ -174,7 +168,7 @@
 			}
 
 			&.unread {
-				background-color: #EFF1F7
+				background-color: #FAFAFA;
 			}
 		}
 
@@ -190,7 +184,7 @@
 
 .dockbar-user-notifications {
 	.user-notifications-count {
-		@include border-radius(2px);
+		@include border-radius(4px);
 	}
 }
 
