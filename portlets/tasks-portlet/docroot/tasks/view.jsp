@@ -81,6 +81,7 @@ portletURL.setParameter("tabs2", tabs2);
 			Liferay.Tasks.init(
 				{
 					currentTab: '<%= HtmlUtil.escape(tabs1) %>',
+					namespace: '<portlet:namespace />',
 					taskListURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/view_tasks.jsp" /></portlet:renderURL>'
 				}
 			);

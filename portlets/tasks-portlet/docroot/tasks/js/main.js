@@ -14,6 +14,7 @@ AUI().use(
 				instance._setupProgressBar();
 
 				instance._currentTab = param.currentTab;
+				instance._namespace = param.namespace;
 				instance._taskListURL = param.taskListURL;
 			},
 
