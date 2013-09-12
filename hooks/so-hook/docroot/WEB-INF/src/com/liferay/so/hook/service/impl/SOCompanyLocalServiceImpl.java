@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.CompanyLocalServiceWrapper;
-import com.liferay.portlet.PortletPreferencesThreadLocal;
 import com.liferay.so.util.InstanceUtil;
 
 /**
@@ -40,22 +39,13 @@ public class SOCompanyLocalServiceImpl extends CompanyLocalServiceWrapper {
 
 		Company company = super.checkCompany(webId);
 
-		boolean strict = PortletPreferencesThreadLocal.isStrict();
+		InstanceUtil.initRuntime(company.getCompanyId());
 
-		try {
-			PortletPreferencesThreadLocal.setStrict(false);
-
-			InstanceUtil.initRuntime(company.getCompanyId());
-
-			if (InstanceUtil.isInitialized(company.getCompanyId())) {
-				return company;
-			}
-
-			InstanceUtil.initInstance(company.getCompanyId());
+		if (InstanceUtil.isInitialized(company.getCompanyId())) {
+			return company;
 		}
-		finally {
-			PortletPreferencesThreadLocal.setStrict(strict);
-		}
+
+		InstanceUtil.initInstance(company.getCompanyId());
 
 		return company;
 	}

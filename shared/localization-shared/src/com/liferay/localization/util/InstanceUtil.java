@@ -35,7 +35,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.persistence.UserActionableDynamicQuery;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.PortletPreferencesThreadLocal;
 import com.liferay.portlet.expando.DuplicateColumnNameException;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
@@ -52,19 +51,12 @@ import java.util.Map;
 public class InstanceUtil implements PortletPropsKeys {
 
 	public static void initInstance(long companyId) {
-		boolean strict = PortletPreferencesThreadLocal.isStrict();
-
 		try {
-			PortletPreferencesThreadLocal.setStrict(false);
-
 			_localizeRoleNames(companyId);
 			_localizeUsers(companyId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
-		}
-		finally {
-			PortletPreferencesThreadLocal.setStrict(strict);
 		}
 	}
 
