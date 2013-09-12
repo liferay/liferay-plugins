@@ -132,12 +132,12 @@ AUI().use(
 				if (!url) {
 					url = instance._taskListURL;
 
-					var data = {
-						assetTagIds: instance._getAssetTagIds(),
-						groupId: instance._getGroupId(),
-						tabs1: instance._currentTab,
-						tabs2: showAll ? 'all' : 'open'
-					};
+					var data = {};
+
+					data[instance._namespace + 'assetTagIds'] = instance._getAssetTagIds();
+					data[instance._namespace + 'groupId'] = instance._getGroupId();
+					data[instance._namespace + 'tabs1'] = instance._currentTab;
+					data[instance._namespace + 'tabs2'] = showAll ? 'all' : 'open';
 
 					instance._taskList.io.set('data', data);
 				}
