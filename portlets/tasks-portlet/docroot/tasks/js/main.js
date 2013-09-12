@@ -54,7 +54,7 @@ AUI().use(
 
 				popup.show();
 
-				popup.set('title', title);
+				popup.titleNode.html(title);
 
 				popup.io.set('uri', url);
 				popup.io.start();
