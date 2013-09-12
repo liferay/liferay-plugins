@@ -401,6 +401,13 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	@Override
+	public List<CalendarBooking> getCalendarBookings(long calendarId, int[] statusIds)
+		throws SystemException {
+
+		return calendarBookingPersistence.findByC_CS(calendarId, statusIds);
+	}
+
+	@Override
 	public List<CalendarBooking> getCalendarBookings(
 			long calendarId, long startTime, long endTime)
 		throws SystemException {
@@ -440,14 +447,6 @@ public class CalendarBookingLocalServiceImpl
 
 		return dynamicQuery(dynamicQuery);
 	}
-
-	@Override
-	public List<CalendarBooking> getCalendarBookings(long calendarId, int[] statusIds)
-		throws SystemException {
-
-		return calendarBookingPersistence.findByC_CS(calendarId, statusIds);
-	}
-
 
 	@Override
 	public int getCalendarBookingsCount(
