@@ -20,7 +20,7 @@
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= mailManager != null %>">
+<c:if test="<%= Validator.isNotNull(mailManager) %>">
 
 	<%
 	long folderId = ParamUtil.getLong(request, "folderId");
@@ -33,20 +33,23 @@ MailManager mailManager = MailManager.getInstance(request);
 	MessagesDisplay messagesDisplay = mailManager.getMessagesDisplay(folderId, pageNumber, messagesPerPage, orderByField, orderByType, keywords);
 	%>
 
-	<aui:layout>
-		<aui:column>
-			<aui:button cssClass="delete-messages" value="delete" />
-		</aui:column>
-		<aui:column>
-			<aui:select cssClass="flag-messages" name="flagMessages" showEmptyOption="true">
-				<aui:option value="4,true"><liferay-ui:message key="flag-as-important" /></aui:option>
-				<aui:option value="4,false"><liferay-ui:message key="remove-flag" /></aui:option>
-				<aui:option value="6,true"><liferay-ui:message key="mark-as-read" /></aui:option>
-				<aui:option value="6,false"><liferay-ui:message key="mark-as-unread" /></aui:option>
-			</aui:select>
-		</aui:column>
-		<aui:column>
-			<aui:select cssClass="move-messages" name="moveMessages" showEmptyOption="true">
+	<aui:nav-bar>
+		<aui:nav>
+			<aui:nav-item dropdown="<%= true %>" label="select">
+				<aui:nav-item cssClass="select-all" label="all" />
+				<aui:nav-item cssClass="select-none" label="none" />
+			</aui:nav-item>
+
+			<aui:nav-item cssClass="delete-messages" iconClass="icon-remove" label="delete" />
+
+			<aui:nav-item dropdown="<%= true %>" label="flag">
+				<aui:nav-item cssClass="flag-messages" label="flag-as-important" data-flagType="4" data-flagToggle="true" />
+				<aui:nav-item cssClass="flag-messages" label="remove-flag" data-flagType="4" data-flagToggle="false" />
+				<aui:nav-item cssClass="flag-messages" label="mark-as-read" data-flagType="6" data-flagToggle="true" />
+				<aui:nav-item cssClass="flag-messages" label="mark-as-unread" data-flagType="6" data-flagToggle="false" />
+			</aui:nav-item>
+
+			<aui:nav-item dropdown="<%= true %>" label="move">
 
 				<%
 				Folder folder = FolderLocalServiceUtil.getFolder(folderId);
@@ -57,42 +60,14 @@ MailManager mailManager = MailManager.getInstance(request);
 				%>
 
 				<%@ include file="/select_folder.jspf" %>
-			</aui:select>
-		</aui:column>
-		<aui:column cssClass="search">
-			<aui:input name="keywords" value="<%= keywords %>" />
-		</aui:column>
-		<aui:column cssClass="search">
-			<aui:button cssClass="search-messages" value="search" />
-		</aui:column>
-	</aui:layout>
 
-	<br />
+			</aui:nav-item>
 
-	<aui:layout>
-		<aui:column first="true">
-			<liferay-ui:message key="select" />:
-
-			<a class="select-all" href="javascript:;"><liferay-ui:message key="all" /></a>
-
-			<a class="select-none" href="javascript:;"><liferay-ui:message key="none" /></a>
-		</aui:column>
-		<aui:column last="true">
-			<c:if test="<%= messagesDisplay.getPageNumber() > 2 %>">
-				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
-			</c:if>
-
-			<c:if test="<%= messagesDisplay.getPageNumber() > 1 %>">
-				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber - 1 %>" href="javascript:;" label="&lt; Newer" />
-			</c:if>
-
-			<liferay-ui:message arguments='<%= new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), messagesDisplay.getMessageCount()} %>' key="x-of-x" />
-
-			<c:if test="<%= messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() %>">
-				<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber + 1 %>" href="javascript:;" label="Older &gt;" />&nbsp;
-			</c:if>
-		</aui:column>
-	</aui:layout>
+			<div class="form-search pull-right navbar-search search-messages">
+				<liferay-ui:input-search id="keywords" placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "search-messages") %>' />
+			</div>
+		</aui:nav>
+	</aui:nav-bar>
 
 	<br />
 
@@ -110,7 +85,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			</aui:layout>
 		</c:when>
 		<c:otherwise>
-			<table class="message-list">
+			<table class="table table-condensed table-bordered table-hover">
 				<thead>
 					<tr>
 						<th class="check"></th>
@@ -172,7 +147,7 @@ MailManager mailManager = MailManager.getInstance(request);
 
 					for (Message message : messages) {
 						String address = StringPool.BLANK;
-						String date = StringPool.BLANK;
+						String date = StringPool.DASH;
 
 						if (mailAccount.getSentFolderId() == folderId) {
 							address = message.getTo();
@@ -190,23 +165,17 @@ MailManager mailManager = MailManager.getInstance(request);
 						}
 
 						if (mailAccount.getDraftFolderId() == folderId) {
-							if (message.getModifiedDate() != null) {
+							if (Validator.isNotNull(message.getModifiedDate())) {
 								date = dateFormatDateTime.format(message.getModifiedDate());
-							}
-							else {
-								date = StringPool.DASH;
 							}
 						}
 						else {
-							if (message.getSentDate() != null) {
+							if (Validator.isNotNull(message.getSentDate())) {
 								date = dateFormatDateTime.format(message.getSentDate());
-							}
-							else {
-								date = StringPool.DASH;
 							}
 						}
 
-						String rowCssClass = "results-row no-hover";
+						String rowCssClass = "results-row";
 
 						if (!message.hasFlag(MailConstants.FLAG_SEEN)) {
 							rowCssClass += " unread";
@@ -214,10 +183,6 @@ MailManager mailManager = MailManager.getInstance(request);
 
 						if (message.hasFlag(MailConstants.FLAG_FLAGGED)) {
 							rowCssClass += " important";
-						}
-
-						if ((messageNumber % 2) == 0) {
-							rowCssClass += " alt";
 						}
 					%>
 
@@ -258,6 +223,24 @@ MailManager mailManager = MailManager.getInstance(request);
 
 				</tbody>
 			</table>
+
+			<br />
+
+			<div class="pull-right">
+				<c:if test="<%= messagesDisplay.getPageNumber() > 2 %>">
+					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
+				</c:if>
+
+				<c:if test="<%= messagesDisplay.getPageNumber() > 1 %>">
+					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber - 1 %>" href="javascript:;" label="&lt; Newer" />
+				</c:if>
+
+				<liferay-ui:message arguments='<%= new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), messagesDisplay.getMessageCount()} %>' key="x-of-x" />
+
+				<c:if test="<%= messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() %>">
+					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber + 1 %>" href="javascript:;" label="Older &gt;" />&nbsp;
+				</c:if>
+			</div>
 		</c:otherwise>
 	</c:choose>
 </c:if>

@@ -20,7 +20,7 @@ List<Folder> folders = FolderLocalServiceUtil.getFolders(accountId);
 for (Folder curFolder : folders) {
 %>
 
-	<aui:option selected="<%= selectedFolderId == curFolder.getFolderId() %>" value="<%= curFolder.getFolderId() %>"><%= curFolder.getDisplayName() %></aui:option>
+	<aui:nav-item cssClass="move-messages" label="<%= curFolder.getDisplayName() %>" />
 
 <%
 }

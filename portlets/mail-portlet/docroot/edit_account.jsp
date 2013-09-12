@@ -27,7 +27,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 <aui:layout cssClass="mail-status" />
 
 <aui:form name="dialogFm" onSubmit="event.preventDefault();">
-	<aui:fieldset column="<%= true %>" cssClass="w50" label="general">
+	<aui:fieldset column="<%= true %>" cssClass="span6" label="general">
 		<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
 		<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
 		<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
@@ -41,7 +41,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 		<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
 	</aui:fieldset>
 
-	<aui:fieldset column="<%= true %>" cssClass="w50" label="folders">
+	<aui:fieldset column="<%= true %>" cssClass="span6" label="folders">
 		<aui:select label="inbox" name="inboxFolderId">
 
 			<%
@@ -105,7 +105,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 				{
 					dataType: 'json',
 					form: {
-						id: form.getDOM()
+						id: form.getDOMNode()
 					},
 					on: {
 						failure: function(event, id, obj) {
@@ -115,8 +115,6 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 							var responseData = this.get('responseData');
 
 							Liferay.Mail.setStatus(responseData.status, responseData.message);
-
-							A.DialogManager.closeByChild(form);
 						}
 					}
 				}
@@ -155,8 +153,6 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
 							if (responseData.status == 'success') {
 								Liferay.Mail.reset();
-
-								A.DialogManager.closeByChild(form);
 							}
 						}
 					}

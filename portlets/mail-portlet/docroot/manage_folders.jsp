@@ -22,7 +22,7 @@ MailManager mailManager = MailManager.getInstance(request);
 long accountId = ParamUtil.getLong(request, "accountId");
 %>
 
-<c:if test="<%= mailManager != null %>">
+<c:if test="<%= Validator.isNotNull(mailManager) %>">
 	<div class="add-folder-container">
 		<aui:input name="displayName" value="" />
 
@@ -110,7 +110,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 
 				Liferay.Mail.setStatus('info', '<liferay-ui:message key="deleting-folder" />', true);
 
-				var folderId = event.currentTarget.getAttribute('data-folderId');
+				var folderId = event.currentTarget.getData('folderId');
 
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/delete_folder',
@@ -135,7 +135,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 		A.all('.mail-portlet .rename-folder').on(
 			'click',
 			function(event) {
-				var folderId = event.currentTarget.getAttribute('data-folderId');
+				var folderId = event.currentTarget.getData('folderId');
 
 				new A.Dialog(
 					{

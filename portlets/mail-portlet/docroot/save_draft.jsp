@@ -28,6 +28,6 @@ String body = ParamUtil.getString(request, "body");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= mailManager != null %>">
+<c:if test="<%= Validator.isNotNull(mailManager) %>">
 	<%= mailManager.saveDraft(accountId, messageId, to, cc, bcc, subject, body, null) %>
 </c:if>

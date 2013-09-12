@@ -80,8 +80,8 @@ else {
 	<aui:input name="messageId" type="hidden" value="<%= messageId %>" />
 	<aui:input name="attachmentCount" type="hidden" value="0" />
 
-	<aui:layout>
-		<aui:column columnWidth="60" cssClass="recipient-fields">
+	<div class="row-fluid">
+		<div class="recipient-fields span7">
 			<aui:input name="to" value="<%= to %>" />
 
 			<aui:input name="cc" value="<%= cc %>" />
@@ -89,8 +89,9 @@ else {
 			<aui:input name="bcc" />
 
 			<aui:input name="subject" value="<%= subject %>" />
-		</aui:column>
-		<aui:column columnWidth="40">
+		</div>
+
+		<div class="span5">
 			<aui:field-wrapper label="attachments">
 				<div class="attachments"></div>
 
@@ -98,8 +99,8 @@ else {
 					<a class="add-attachment" href="javascript:;"><liferay-ui:message key="add-attachment" /></a>
 				</div>
 			</aui:field-wrapper>
-		</aui:column>
-	</aui:layout>
+		</div>
+	</div>
 
 	<div class="body-editor">
 		<aui:field-wrapper label="body">
@@ -142,7 +143,7 @@ else {
 				{
 					dataType: 'json',
 					form: {
-						id: form.getDOM(),
+						id: form.getDOMNode(),
 						upload: true
 					},
 					method: 'POST',
@@ -179,7 +180,7 @@ else {
 				{
 					dataType: 'json',
 					form: {
-						id: form.getDOM()
+						id: form.getDOMNode()
 					},
 					on: {
 						failure: function(event, id, obj) {
