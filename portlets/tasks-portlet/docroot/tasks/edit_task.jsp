@@ -202,10 +202,12 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 				}
 			}
 
-			var dueDate = A.one('#<portlet:namespace />fm1 .field-date');
+			var inputDate = A.one('#<portlet:namespace />fm1 .lfr-input-date');
+			var inputTime = A.one('#<portlet:namespace />fm1 .lfr-input-time');
 
-			if (dueDate) {
-				dueDate.toggleClass('hide');
+			if (inputDate && inputTime) {
+				inputDate.toggleClass('hide');
+				inputTime.toggleClass('hide');
 			}
 		},
 		['aui-base']
