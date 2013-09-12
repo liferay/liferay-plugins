@@ -6,6 +6,10 @@
 		font-weight: bold;
 	}
 
+	.alert-error {
+		display: inline-block;
+	}
+
 	.admin-actions {
 		margin-bottom: 1em;
 	}
@@ -116,17 +120,14 @@
 			border-left: 1px solid #2571AD;
 			display: inline-block;
 			height: 16px;
+			line-height: 1em;
 			margin: .5em 0;
-			padding: 0 .6em 0 .5em;
+			padding: 0 .6em 0 .8em;
 			vertical-align: middle;
 
 			&:first-child {
 				border-left-width: 0;
 				padding-left: 0;
-			}
-
-			img {
-				height: 16px;
 			}
 		}
 
@@ -196,30 +197,39 @@
 		margin: 0;
 	}
 
-	.display-date, .distribution-scope, .expiration-date, .priority, .type, .title, .url {
-		.field-content {
-			display: inline-block;
-		}
-	}
+	.control-group {
+		display: inline-block;
+		margin-right: 1em;
+		position: relative;
 
-	.display-date, .distribution-scope, .title, .type {
-		.field-content {
-			margin-right: 1em;
+		&:last-child {
+			margin-right: 0;
 		}
-	}
 
-	.title, .url {
-		.field-input-text {
+		&.field-wrapper {
+			display: block;
+			margin-right: 0;
+		}
+
+		.title, .url {
 			width: 350px;
 		}
+
+		.form-validator-stack {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+
+	.date-container .control-group {
+		float: left;
+		margin-bottom: 0;
 	}
 
 	.distribution-scope-container {
 		display: inline;
-
-		.field-content:after {
-			display: none;
-		}
+		min-width: inherit;
 	}
 
 	#_1_WAR_soannouncementsportlet_ocerSearchContainerSearchContainer td.last {
@@ -233,28 +243,12 @@
 }
 
 .portlet-configuration {
-	.modified-notice {
-		color: #090;
-		font-weight: bold;
+	.accordion-group .accordion-heading .accordion-toggle {
+		display: inline-block;
 	}
 
-	#displaySettingsPanel .field-label {
-		display: inline;
-		margin-right: 1em;
-	}
-
-	#announcementsDisplayedPanel {
-		.customize-announcements-displayed {
-			display: block;
-			margin-bottom: 1em;
-
-			.choice-label {
-				font-weight: bold;
-			}
-		}
-		.nav.nav-tabs {
-			margin-top: 1em;
-		}
+	.taglib-move-boxes .control-group {
+		min-width: 200px;
 	}
 }
 
