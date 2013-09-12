@@ -37,14 +37,16 @@
 	</div>
 
 	<div class="user-notifications-list-container">
-		<div class="loading-mask"></div>
+		<ul class="user-notifications-list">
+			<div class="loading-mask"></div>
+		</ul>
 	</div>
 </div>
 
 <aui:script use="aui-base,aui-io-plugin-deprecated">
 	var userNotifications = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %>');
 
-	var userNotificationsList = userNotifications.one('.user-notifications-list-container');
+	var userNotificationsList = userNotifications.one('.user-notifications-list-container .user-notifications-list');
 
 	var renderUserNotificationsList = function(uri) {
 		if (userNotificationsList) {
@@ -106,4 +108,14 @@
 			}
 		)
 	}
+
+	userNotificationsList.delegate(
+		'click',
+		function(event) {
+			event.preventDefault();
+
+			Liferay.Notifications.viewNotification(event);
+		},
+		'.user-notification .user-notification-link'
+	);
 </aui:script>
