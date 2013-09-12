@@ -17,12 +17,13 @@
 <%@ include file="/init.jsp" %>
 
 <%
+int newUserNotificationsCount = UserNotificationEventLocalServiceUtil.getDeliveredUserNotificationEventsCount(themeDisplay.getUserId(), false);
 int unreadUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
 %>
 
 <li class="dockbar-user-notifications dropdown toggle-controls" id="<portlet:namespace />userNotifications">
 	<a class="dropdown-toggle user-notification-link" href="javascript:;">
-		<span class="user-notifications-count" id="<portlet:namespace />userNotificationsCount"><%= unreadUserNotificationsCount %></span>
+		<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>' id="<portlet:namespace />userNotificationsCount"><%= unreadUserNotificationsCount %></span>
 	</a>
 
 	<ul class="dropdown-menu user-notifications-list"></ul>
@@ -33,11 +34,12 @@ int unreadUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArch
 		var userNotificationsCount = userNotifications.one('#<portlet:namespace />userNotificationsCount');
 
 		var onPollerUpdate = function(response, chunkId) {
-			var newUserNotificationsCount = Number(response.count);
+			var newUserNotificationsCount = Number(response.newUserNotificationsCount);
+			var unreadUserNotificationsCount = Number(response.unreadUserNotificationsCount);
 
-			if (newUserNotificationsCount) {
-				userNotificationsCount.toggleClass('alert', (newUserNotificationsCount > 0));
-			}
+			userNotificationsCount.toggleClass('alert', (newUserNotificationsCount > 0));
+
+			userNotificationsCount.setHTML(unreadUserNotificationsCount);
 		}
 
 		A.on(
@@ -104,6 +106,8 @@ int unreadUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArch
 						userNotificationsList.io.start();
 
 						A.io.request('<liferay-portlet:actionURL name="setDelivered" />');
+
+						userNotificationsCount.removeClass('alert');
 					}
 
 				}
