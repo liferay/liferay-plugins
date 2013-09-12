@@ -20,7 +20,6 @@ package com.liferay.so.hook.events;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portlet.PortletPreferencesThreadLocal;
 import com.liferay.so.util.InstanceUtil;
 
 /**
@@ -42,22 +41,13 @@ public class StartupAction extends SimpleAction {
 	}
 
 	protected void doRun(long companyId) throws Exception {
-		boolean strict = PortletPreferencesThreadLocal.isStrict();
+		InstanceUtil.initRuntime(companyId);
 
-		try {
-			PortletPreferencesThreadLocal.setStrict(false);
-
-			InstanceUtil.initRuntime(companyId);
-
-			if (InstanceUtil.isInitialized(companyId)) {
-				return;
-			}
-
-			InstanceUtil.initInstance(companyId);
+		if (InstanceUtil.isInitialized(companyId)) {
+			return;
 		}
-		finally {
-			PortletPreferencesThreadLocal.setStrict(strict);
-		}
+
+		InstanceUtil.initInstance(companyId);
 	}
 
 }

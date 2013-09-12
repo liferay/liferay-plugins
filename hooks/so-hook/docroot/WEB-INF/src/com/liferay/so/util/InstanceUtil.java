@@ -42,7 +42,6 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
-import com.liferay.portlet.PortletPreferencesThreadLocal;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
@@ -63,11 +62,7 @@ import java.util.Map;
 public class InstanceUtil {
 
 	public static void initInstance(long companyId) {
-		boolean strict = PortletPreferencesThreadLocal.isStrict();
-
 		try {
-			PortletPreferencesThreadLocal.setStrict(false);
-
 			setupRole(companyId);
 
 			setupExpando(companyId);
@@ -78,9 +73,6 @@ public class InstanceUtil {
 		}
 		catch (Exception e) {
 			_log.error(e, e);
-		}
-		finally {
-			PortletPreferencesThreadLocal.setStrict(strict);
 		}
 	}
 
