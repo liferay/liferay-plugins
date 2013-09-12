@@ -23,6 +23,6 @@ String displayName = ParamUtil.getString(request, "displayName");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= mailManager != null %>">
+<c:if test="<%= Validator.isNotNull(mailManager) %>">
 	<%= mailManager.addFolder(accountId, displayName) %>
 </c:if>

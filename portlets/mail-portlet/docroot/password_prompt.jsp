@@ -54,7 +54,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				{
 					dataType: 'json',
 					form: {
-						id: form.getDOM()
+						id: form.getDOMNode()
 					},
 					method: 'POST',
 					on: {
@@ -68,8 +68,6 @@ MailManager mailManager = MailManager.getInstance(request);
 
 							if (responseData.status == 'success') {
 								Liferay.Mail.loadAccount(<%= accountId %>, <%= inboxFolderId %>);
-
-								A.DialogManager.closeByChild(form);
 							}
 						}
 					}

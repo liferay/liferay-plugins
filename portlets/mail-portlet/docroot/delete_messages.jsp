@@ -22,6 +22,6 @@ long[] messageIds = ParamUtil.getLongValues(request, "messageIds");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= mailManager != null %>">
+<c:if test="<%= Validator.isNotNull(mailManager) %>">
 	<%= mailManager.deleteMessages(messageIds) %>
 </c:if>

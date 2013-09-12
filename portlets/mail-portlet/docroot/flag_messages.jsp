@@ -24,6 +24,6 @@ boolean value = ParamUtil.getBoolean(request, "value");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= mailManager != null %>">
+<c:if test="<%= Validator.isNotNull(mailManager) %>">
 	<%= mailManager.flagMessages(messageIds, flag, value) %>
 </c:if>

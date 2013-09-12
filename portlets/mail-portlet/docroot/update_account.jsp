@@ -47,7 +47,7 @@ if (useLocalPartAsLogin) {
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= mailManager != null %>">
+<c:if test="<%= Validator.isNotNull(mailManager) %>">
 	<c:choose>
 		<c:when test="<%= accountId == 0 %>">
 			<%= mailManager.addAccount(address, personalName, protocol, incomingHostName, incomingPort, incomingSecure, outgoingHostName, outgoingPort, outgoingSecure, login, password, savePassword, signature, useSignature, folderPrefix, defaultSender) %>

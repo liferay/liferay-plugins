@@ -21,7 +21,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 
 MailManager mailManager = MailManager.getInstance(request);
 
-if (mailManager != null) {
+if (Validator.isNotNull(mailManager)) {
 	mailManager.synchronizeAccount(accountId);
 }
 %>

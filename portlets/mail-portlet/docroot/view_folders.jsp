@@ -22,12 +22,11 @@ long accountId = ParamUtil.getLong(request, "accountId");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= mailManager != null %>">
-	<liferay-ui:icon
-		image="../mail/compose"
-	/>
+<c:if test="<%= Validator.isNotNull(mailManager) %>">
 
-	<aui:a cssClass="compose-message" data-messageId="0" data-messageType="new" data-replyMessageId="0" href="javascript:;"><liferay-ui:message key="compose-email" /></aui:a>
+	<aui:a cssClass="compose-message icon icon-envelope" data-messageId="0" data-messageType="new" data-replyMessageId="0" href="javascript: ;" >
+		<liferay-ui:message key="compose" />
+	</aui:a>
 
 	<br /><br />
 
@@ -37,29 +36,27 @@ MailManager mailManager = MailManager.getInstance(request);
 	List<Folder> folders = mailManager.getFolders(accountId, true, true);
 
 	for (Folder folder : folders) {
-		String folderImage = "../common/folder";
+		String folderIcon = "icon-folder-open";
 
 		if (folder.getFolderId() == mailAccount.getInboxFolderId()) {
-			folderImage = "../common/home";
+			folderIcon = "icon-inbox";
 		}
 		else if (folder.getFolderId() == mailAccount.getDraftFolderId()) {
-			folderImage = "../mail/edit_draft";
+			folderIcon = "icon-pencil";
 		}
 		else if (folder.getFolderId() == mailAccount.getSentFolderId()) {
-			folderImage = "../mail/forward";
+			folderIcon = "icon-folder-close";
 		}
 		else if (folder.getFolderId() == mailAccount.getTrashFolderId()) {
-			folderImage = "../common/delete";
+			folderIcon = "icon-trash";
 		}
 	%>
 
-		<aui:layout>
-			<liferay-ui:icon
-				image="<%= folderImage %>"
-			/>
+		<aui:a cssClass='<%= "messages-link icon " + folderIcon %>' data-accountId="<%= accountId %>" data-folderId="<%= folder.getFolderId() %>" data-keywords="" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="desc" data-pageNumber="1" href="javascript:;">
+			<%= folder.getDisplayName() + " (" + MessageLocalServiceUtil.getFolderUnreadMessagesCount(folder.getFolderId()) + ")" %>
+		</aui:a>
 
-			<aui:a cssClass="messages-link" data-accountId="<%= accountId %>" data-folderId="<%= folder.getFolderId() %>" data-keywords="" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="desc" data-pageNumber="1" href="javascript:;" label='<%= folder.getDisplayName() + " (" + MessageLocalServiceUtil.getFolderUnreadMessagesCount(folder.getFolderId()) + ")" %>' />
-		</aui:layout>
+		<br/>
 
 	<%
 	}
@@ -67,17 +64,9 @@ MailManager mailManager = MailManager.getInstance(request);
 
 	<br />
 
-	<liferay-ui:icon
-		image="../mail/edit_folder"
-	/>
-
-	<aui:a cssClass="manage-folders" href="javascript:;"><liferay-ui:message key="manage-folders" /></aui:a>
+	<aui:a cssClass="icon icon-cogs manage-folders" href="javascript:;"><liferay-ui:message key="manage-folders" /></aui:a>
 
 	<br />
 
-	<liferay-ui:icon
-		image="../mail/edit_folder"
-	/>
-
-	<aui:a cssClass="edit-account" href="javascript:;"><liferay-ui:message key="edit-account" /></aui:a>
+	<aui:a cssClass="edit-account icon icon-cog" href="javascript:;"><liferay-ui:message key="edit-account" /></aui:a>
 </c:if>

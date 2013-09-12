@@ -170,7 +170,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 				{
 					dataType: 'json',
 					form: {
-						id: form.getDOM()
+						id: form.getDOMNode()
 					},
 					method: 'POST',
 					on: {
@@ -185,8 +185,6 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 
 							if (responseData.status == 'success') {
 								Liferay.Mail.loadAccounts(Liferay.Mail.accountId);
-
-								A.DialogManager.closeByChild(form);
 							}
 						}
 					}

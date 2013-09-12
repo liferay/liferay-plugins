@@ -22,7 +22,7 @@ long folderId = ParamUtil.getLong(request, "folderId");
 Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 %>
 
-<aui:layout cssClass="mail-status" />
+<div class="mail-status"></div>
 
 <aui:form name="dialogFm" onSubmit="event.preventDefault();">
 	<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
@@ -51,7 +51,7 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 				{
 					dataType: 'json',
 					form: {
-						id: form.getDOM()
+						id: form.getDOMNode()
 					},
 					on: {
 						failure: function(event, id, obj) {
@@ -64,8 +64,6 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
 							if (responseData.status == 'success') {
 								Liferay.Mail.loadFolders(Liferay.Mail.accountId);
-
-								A.DialogManager.closeByChild(form);
 							}
 						}
 					}

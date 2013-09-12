@@ -20,7 +20,7 @@
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= mailManager != null %>">
+<c:if test="<%= Validator.isNotNull(mailManager) %>">
 
 	<%
 	long folderId = ParamUtil.getLong(request, "folderId");
@@ -40,45 +40,45 @@ MailManager mailManager = MailManager.getInstance(request);
 	}
 
 	int pageNumber = (int)(Math.ceil(messageNumber / (double)messagesPerPage));
+
+	Folder folder = FolderLocalServiceUtil.getFolder(folderId);
+
+	String folderName = folder.getDisplayName();
+
+	if (Validator.isNotNull(keywords)) {
+		folderName = LanguageUtil.get(pageContext, "search-results");
+	}
 	%>
 
-	<aui:layout>
-		<aui:column>
+	<div class="row-fluid">
+		<aui:nav-bar>
+			<aui:nav>
+				<aui:nav-item cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' iconClass="icon-arrow-left" />
 
-			<%
-			Folder folder = FolderLocalServiceUtil.getFolder(folderId);
+				<aui:nav-item cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" label="reply" iconClass="icon-reply" />
 
-			String folderName = folder.getDisplayName();
+				<aui:nav-item cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" label="reply-all" iconClass="icon-reply-all" />
 
-			if (Validator.isNotNull(keywords)) {
-				folderName = LanguageUtil.get(pageContext, "search-results");
-			}
-			%>
+				<aui:nav-item cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" label="forward" iconClass="icon-share-alt" />
 
-			<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
-		</aui:column>
-		<aui:column cssClass="compose-message-container">
-			<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" value="reply" />
+				<aui:nav-item cssClass="delete-message" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" label="delete" iconClass="icon-trash" />
+			</aui:nav>
 
-			<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" value="reply-all" />
+			<div class="pull-right">
+				<div class="message-count">
+					<c:if test="<%= messageNumber > 1 %>">
+						<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber - 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;">&lt; <liferay-ui:message key="newer" /></aui:a>
+					</c:if>
 
-			<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" value="forward" />
-		</aui:column>
-		<aui:column>
-			<aui:button cssClass="delete-message" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" value="delete" />
-		</aui:column>
-		<aui:column cssClass="message-count">
-			<c:if test="<%= messageNumber > 1 %>">
-				<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber - 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;">&lt; <liferay-ui:message key="newer" /></aui:a>
-			</c:if>
+					<liferay-ui:message arguments="<%= new Object[] {messageNumber, messageCount} %>" key="x-of-x" />
 
-			<liferay-ui:message arguments="<%= new Object[] {messageNumber, messageCount} %>" key="x-of-x" />
-
-			<c:if test="<%= messageNumber < messageCount %>">
-				<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber + 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;"><liferay-ui:message key="older" /> &gt;</aui:a>
-			</c:if>
-		</aui:column>
-	</aui:layout>
+					<c:if test="<%= messageNumber < messageCount %>">
+						<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber + 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;"><liferay-ui:message key="older" /> &gt;</aui:a>
+					</c:if>
+				</div>
+			</div>
+		</aui:nav-bar>
+	</div>
 
 	<c:choose>
 		<c:when test="<%= Validator.isNotNull(message.getSubject()) %>">
@@ -125,7 +125,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			</td>
 			<td>
 				<c:choose>
-					<c:when test="<%= message.getSentDate() != null %>">
+					<c:when test="<%= Validator.isNotNull(message.getSentDate()) %>">
 						<%= dateFormatDateTime.format(message.getSentDate()) %>
 					</c:when>
 					<c:otherwise>
@@ -143,13 +143,15 @@ MailManager mailManager = MailManager.getInstance(request);
 		</c:if>
 	</div>
 
-	<aui:button-row>
-		<aui:button cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" value="reply" />
+	<aui:nav-bar>
+		<aui:nav>
+			<aui:nav-item cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" label="reply" iconClass="icon-reply" />
 
-		<aui:button cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" value="reply-all" />
+			<aui:nav-item cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" label="reply-all" iconClass="icon-reply-all" />
 
-		<aui:button cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" value="forward" />
-	</aui:button-row>
+			<aui:nav-item cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" label="forward" iconClass="icon-share-alt" />
+		</aui:nav>
+	</aui:nav-bar>
 
 	<c:if test="<%= Validator.isNull(message.getBody()) %>">
 		<aui:script>

@@ -21,32 +21,25 @@ MailManager mailManager = MailManager.getInstance(request);
 %>
 
 <c:choose>
-	<c:when test="<%= mailManager != null %>">
+	<c:when test="<%= Validator.isNotNull(mailManager) %>">
 		<div id="accountsContainer"></div>
 
-		<aui:layout cssClass="mail-status">
-		</aui:layout>
+		<div class="mail-status"></div>
 
-		<div id="mailContainer">
-			<aui:layout>
-				<aui:column columnWidth="20">
-					<div class="hide" id="controlContainer">
-						<div id="foldersContainer"></div>
-					</div>
-				</aui:column>
+		<div class="row-fluid" id="mailContainer">
+			<div class="hide span3" id="controlContainer">
+				<div id="foldersContainer"></div>
+			</div>
 
-				<aui:column columnWidth="80">
-					<div id="contentContainer">
-						<div class="hide" id="manageFoldersContainer"></div>
+			<div class="span9" id="contentContainer">
+				<div class="hide" id="manageFoldersContainer"></div>
 
-						<div id="messagesContainer"></div>
+				<div id="messagesContainer"></div>
 
-						<div class="hide" id="messageContainer"></div>
+				<div class="hide" id="messageContainer"></div>
 
-						<div class="hide" id="composeContainer"></div>
-					</div>
-				</aui:column>
-			</aui:layout>
+				<div class="hide" id="composeContainer"></div>
+			</div>
 		</div>
 
 		<%
@@ -55,7 +48,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		long initialAccountId = 0;
 		long initialFolderId = 0;
 
-		if (initialAccount != null) {
+		if (Validator.isNotNull(initialAccount)) {
 			initialAccountId = initialAccount.getAccountId();
 			initialFolderId = initialAccount.getInboxFolderId();
 		}
