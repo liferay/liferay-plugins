@@ -1,6 +1,6 @@
 AUI().use(
 	'aui-base',
-	'aui-io-plugin',
+	'aui-io-plugin-deprecated',
 	'liferay-util-window',
 	function(A) {
 		Liferay.namespace('Tasks');
