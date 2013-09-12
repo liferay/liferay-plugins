@@ -40,6 +40,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.net.URI;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -94,13 +95,13 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 	@Override
 	public String exportCalendar(long calendarId) throws Exception {
 
-		int[] statusIds  =
+		int[] statusIds =
 			{CalendarBookingWorkflowConstants.STATUS_APPROVED,
 				CalendarBookingWorkflowConstants.STATUS_MAYBE,
 				CalendarBookingWorkflowConstants.STATUS_PENDING};
 
 		List<CalendarBooking> calendarBookings =
-			CalendarBookingLocalServiceUtil.getCalendarBookings(calendarId,statusIds);
+			CalendarBookingLocalServiceUtil.getCalendarBookings(calendarId, statusIds);
 
 		net.fortuna.ical4j.model.Calendar iCalCalendar = toICalCalendar(
 			calendarBookings);
