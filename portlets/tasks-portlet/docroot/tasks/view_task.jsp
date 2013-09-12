@@ -172,7 +172,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 										}
 									},
 									data: {
-										tasksEntryId: <%= tasksEntry.getTasksEntryId() %>
+										<portlet:namespace />tasksEntryId: <%= tasksEntry.getTasksEntryId() %>
 									}
 								}
 							);
@@ -194,9 +194,9 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 										}
 									},
 									data: {
-										tasksEntryId: <%= tasksEntry.getTasksEntryId() %>,
-										resolverUserId: <%= user.getUserId() %>,
-										status: status
+										<portlet:namespace />tasksEntryId: <%= tasksEntry.getTasksEntryId() %>,
+										<portlet:namespace />resolverUserId: <%= user.getUserId() %>,
+										<portlet:namespace />status: status
 									}
 								}
 							);
