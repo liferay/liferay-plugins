@@ -327,6 +327,7 @@ AUI().use(
 				instance._popupTrigger.append(instance._unreadMessagesContainer);
 			}
 
+			// Would be better to hide messagesContaine by default, later given methods will show it.
 			instance._unreadMessagesContainer.hide();
 
 			if (options.statusMessage) {
@@ -950,7 +951,7 @@ AUI().use(
 						var entry = entryCache.entries[i];
 
 						var incomingEntry = (entry.fromUserId == userId);
-
+						// When we create a new chat panel every cached entries will be added to it as well.
 						chat.update(
 							{
 								cache: entry.flag,
@@ -971,6 +972,8 @@ AUI().use(
 				return chat;
 			},
 
+			// _createPanelsForNewMessages is called only initial phase.
+			// This function creates new panels when response contains unread messages.
 			_createPanelsForNewMessages: function() {
 				var instance = this;
 
@@ -1231,12 +1234,15 @@ AUI().use(
 
 					instance._restoreMinimizedPanels();
 
+					// In initial phase we would create every panels if response contains unread messages.
 					instance._createPanelsForNewMessages();
 
 					instance._chatContainer.one('.chat-tabs > .buddy-list').removeClass('loading');
 
 					instance._initialRequest = false;
 				}
+				// Logic separation between initial and update phases
+				// _updateConversations is responsible for updating message lists and creating new panels in update phase
 				else {
 					instance._updateConversations(entries);
 				}
@@ -1369,6 +1375,7 @@ AUI().use(
 
 					var entryProcessed = (entryIds.indexOf('|' + entry.entryId) > -1);
 
+					// Unnecessary to check initialRequest because the function is only called in update phase
 					if (!entryProcessed) {
 						var userId = entry.toUserId;
 						var incoming = false;
