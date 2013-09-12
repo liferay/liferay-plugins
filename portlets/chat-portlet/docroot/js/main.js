@@ -327,6 +327,8 @@ AUI().use(
 				instance._popupTrigger.append(instance._unreadMessagesContainer);
 			}
 
+			instance._unreadMessagesContainer.hide();
+
 			if (options.statusMessage) {
 				instance._statusMessage.text(options.statusMessage);
 			}
@@ -944,32 +946,58 @@ AUI().use(
 				if (instance._entryCache && instance._entryCache[userId]) {
 					var entryCache = instance._entryCache[userId];
 
-					for (var i in entryCache) {
-						var entry = entryCache[i];
+					for (var i in entryCache.entries) {
+						var entry = entryCache.entries[i];
 
 						var incomingEntry = (entry.fromUserId == userId);
 
-						if (entry.flag || !incomingEntry) {
-							chat.update(
-								{
-									cache: true,
-									content: entry.content,
-									createDate: entry.createDate,
-									incoming: incomingEntry
-								}
-							);
-						}
+						chat.update(
+							{
+								cache: entry.flag,
+								content: entry.content,
+								createDate: entry.createDate,
+								incoming: incomingEntry
+							}
+						);
+
+						entry.flag = 1;
 					}
 				}
 
 				if (options.open) {
 					chat.show();
 				}
-				else {
-					chat.setAsRead();
-				}
 
 				return chat;
+			},
+
+			_createPanelsForNewMessages: function() {
+				var instance = this;
+
+				var entryCache = instance._entryCache;
+
+				for (var userId in entryCache) {
+					var chat = instance._chatSessions[userId];
+
+					var userEntryCache = entryCache[userId];
+
+					if (!chat && userEntryCache.newMessages) {
+						var buddy = instance._buddies[userId];
+
+						if (buddy) {
+							chat = instance._createChatSession(
+								{
+									fullName: buddy.fullName,
+									portraitId: buddy.portraitId,
+									statusMessage: buddy.statusMessage,
+									userId: userId
+								}
+							);
+						}
+
+						userEntryCache.newMessages = false;
+					}
+				}
 			},
 
 			_createSettingsPanel: function() {
@@ -1098,13 +1126,18 @@ AUI().use(
 					var entry = entries[i];
 
 					var userId = entry.toUserId;
+					var incoming = false;
 
 					if (userId == currentUserId) {
 						userId = entry.fromUserId;
+						incoming = true;
 					}
 
 					if (!entryCache[userId]) {
-						entryCache[userId] = {};
+						entryCache[userId] = {
+							entries: {},
+							newMessages: false
+						};
 					}
 
 					var userEntryCache = entryCache[userId];
@@ -1112,9 +1145,13 @@ AUI().use(
 					var entryProcessed = (entryIds.indexOf('|' + entry.entryId) > -1);
 
 					if (!entryProcessed) {
-						userEntryCache[entry.entryId] = entry;
+						userEntryCache.entries[entry.entryId] = entry;
 
 						instance._entryIds.push(entry.entryId);
+
+						if (!entry.flag && incoming) {
+							userEntryCache.newMessages = true;
+						}
 					}
 				}
 			},
@@ -1194,10 +1231,15 @@ AUI().use(
 
 					instance._restoreMinimizedPanels();
 
-					instance._chatContainer.one('.chat-tabs > .buddy-list').removeClass('loading');
-				}
+					instance._createPanelsForNewMessages();
 
-				instance._updateConversations(entries);
+					instance._chatContainer.one('.chat-tabs > .buddy-list').removeClass('loading');
+
+					instance._initialRequest = false;
+				}
+				else {
+					instance._updateConversations(entries);
+				}
 			},
 
 			_restoreMinimizedPanels: function() {
@@ -1327,7 +1369,7 @@ AUI().use(
 
 					var entryProcessed = (entryIds.indexOf('|' + entry.entryId) > -1);
 
-					if (!entryProcessed || (instance._initialRequest && !entry.flag)) {
+					if (!entryProcessed) {
 						var userId = entry.toUserId;
 						var incoming = false;
 
@@ -1370,8 +1412,6 @@ AUI().use(
 				}
 
 				instance._loadCache(entries);
-
-				instance._initialRequest = false;
 			},
 
 			_updatePresence: function() {
