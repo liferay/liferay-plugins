@@ -84,10 +84,10 @@ AUI().use(
 						url = Liferay.Util.addParams(instance._namespace + 'expanded=' + expanded, url) || url;
 					}
 
-					var node = AUI().one('#' + instance._namespace + 'readEntriesContainer');
+					var node = A.one('#' + instance._namespace + 'readEntriesContainer');
 				}
 				else {
-					var node = AUI().one('#' + instance._namespace + 'unreadEntriesContainer');
+					var node = A.one('#' + instance._namespace + 'unreadEntriesContainer');
 				}
 
 				if (node) {
