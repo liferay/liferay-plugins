@@ -72,6 +72,32 @@ public class UpgradeSocial extends UpgradeProcess {
 		}
 	}
 
+	protected void addSOSocialActivity(long activityId, long activitySetId)
+		throws Exception {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"insert into SO_SocialActivity (activityId, activitySetId) " +
+					"values (?, ?)");
+
+			ps.setLong(1, activityId);
+			ps.setLong(2, activitySetId);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Unable to add SO_SocialActivity " + activityId, e);
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps);
+		}
+	}
+
 	@Override
 	protected void doUpgrade() throws Exception {
 		migrateActivities();
@@ -117,12 +143,13 @@ public class UpgradeSocial extends UpgradeProcess {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
 			ps = con.prepareStatement(
-				"select groupId, companyId, userId, createDate, classNameId, " +
-					"classPK, type_ from SocialActivity");
+				"select activityId, groupId, companyId, userId, createDate, " +
+					"classNameId, classPK, type_ from SocialActivity");
 
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
+				long activityId = rs.getLong("activityId");
 				long groupId = rs.getLong("groupId");
 				long companyId = rs.getLong("companyId");
 				long userId = rs.getLong("userId");
@@ -136,6 +163,7 @@ public class UpgradeSocial extends UpgradeProcess {
 				addActivitySet(
 					activitySetId, groupId, companyId, userId, createDate,
 					classNameId, classPK, type_);
+				addSOSocialActivity(activityId, activitySetId);
 			}
 		}
 		finally {
