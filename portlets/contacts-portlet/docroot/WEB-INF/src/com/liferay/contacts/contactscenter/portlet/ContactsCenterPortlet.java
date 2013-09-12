@@ -145,6 +145,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			if (type == SocialRelationConstants.TYPE_UNI_ENEMY) {
 				SocialRelationLocalServiceUtil.deleteRelations(
 					themeDisplay.getUserId(), userId);
+
+				SocialRelationLocalServiceUtil.deleteRelations(
+					userId, themeDisplay.getUserId());
 			}
 			else if (blocked) {
 				continue;
