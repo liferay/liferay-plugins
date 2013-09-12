@@ -72,43 +72,44 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 		</c:choose>
 	</c:when>
 	<c:otherwise>
-		<form action="<portlet:actionURL name="updateJira" />" method="post" name="<portlet:namespace />fm">
-		<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
+		<liferay-portlet:actionURL name="updateJira" var="updateJiraURL" />
 
-		<div class="alert alert-info">
-			<%= LanguageUtil.format(pageContext, "set-your-login-for-x-to-track-your-jira-activity", "http://support.liferay.com") %>
-		</div>
+		<aui:form action="<%= updateJiraURL %>" method="post" name="<portlet:namespace />fm">
+			<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 
-		<table class="lfr-table">
-		<tr>
-			<td>
-				<liferay-ui:message key="jira-login" />
-			</td>
-			<td>
-				<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= jiraUserId %>" />
-			</td>
-		</tr>
-		</table>
+			<div class="alert alert-info">
+				<%= LanguageUtil.format(pageContext, "set-your-login-for-x-to-track-your-jira-activity", "http://support.liferay.com") %>
+			</div>
 
-		<br />
+			<table class="lfr-table">
+			<tr>
+				<td>
+					<liferay-ui:message key="jira-login" />
+				</td>
+				<td>
+					<input class="lfr-input-text" name="<portlet:namespace />jiraUserId" style="width: 150px;" type="text" value="<%= jiraUserId %>" />
+				</td>
+			</tr>
+			</table>
 
-		<aui:button-row>
-			<aui:button cssClass="btn-primary" type="setup" value="save" />
+			<br />
 
-			<aui:button id="cancelJiraSetup" name="cancelJiraSetup" value="cancel" />
-		</aui:button-row>
+			<aui:button-row>
+				<aui:button cssClass="btn-primary" type="setup" value="save" />
 
-		<aui:script use="aui-base">
-			A.one('#<portlet:namespace />cancelJiraSetup').on(
-				'click',
-				function(event) {
-					event.preventDefault();
+				<aui:button id="cancelJiraSetup" name="cancelJiraSetup" value="cancel" />
+			</aui:button-row>
 
-					A.config.win.location = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" />';
-				}
-			);
-		</aui:script>
+			<aui:script use="aui-base">
+				A.one('#<portlet:namespace />cancelJiraSetup').on(
+					'click',
+					function(event) {
+						event.preventDefault();
 
-		</form>
+						A.config.win.location = '<portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>" />';
+					}
+				);
+			</aui:script>
+		</aui:form>
 	</c:otherwise>
 </c:choose>
