@@ -20,7 +20,7 @@
 
 <c:choose>
 	<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
-		<table class="lfr-table ">
+		<table class="lfr-table">
 
 		<%
 		for (int i = 0; i < symbols.length; i++) {
