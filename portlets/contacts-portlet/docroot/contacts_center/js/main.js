@@ -582,18 +582,19 @@ AUI.add(
 							var contactsPortlet = A.one('.contacts-portlet');
 
 							instance._popup = Liferay.Util.Window.getWindow(
-{
-dialog: {
-									align: {
-										node: contactsPortlet,
-										points: ['tc', 'tc']
-									},
-									constrain2view: true,
-									cssClass: 'contact-dialog',
-									modal: true,
-									resizable: false,
-									width: 500
-								}}
+								{
+									dialog: {
+										align: {
+											node: contactsPortlet,
+											points: ['tc', 'tc']
+										},
+										constrain2view: true,
+										cssClass: 'contact-dialog',
+										modal: true,
+										resizable: false,
+										width: 500
+									}
+								}
 							).plug(
 								A.Plugin.IO,
 								{
@@ -713,17 +714,19 @@ dialog: {
 								children: [
 									{
 										on: {
-										click: function(event) {
-											instance._editEntry(contact);
-										}},
+											click: function(event) {
+												instance._editEntry(contact);
+											}
+										},
 										icon: 'edit',
 										label: Liferay.Language.get('edit')
 									},
 									{
 										on: {
-										click: function(event) {
-											instance._deleteEntry(contact);
-										}},
+											click: function(event) {
+												instance._deleteEntry(contact);
+											}
+										},
 										icon: 'delete',
 										label: Liferay.Language.get('delete')
 									}

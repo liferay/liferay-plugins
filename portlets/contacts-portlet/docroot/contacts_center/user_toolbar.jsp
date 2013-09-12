@@ -183,15 +183,16 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 		var uri = '<liferay-portlet:renderURL portletName="1_WAR_privatemessagingportlet" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/new_message.jsp" /><portlet:param name="redirect" value="<%= redirectURL %>" /></liferay-portlet:renderURL>';
 
 		Liferay.Util.Window.getWindow(
-{
-dialog: {
-				align: Liferay.Util.Window.ALIGN_CENTER,
-				cssClass: 'private-messaging-portlet',
-				destroyOnClose: true,
-				modal: true,
-				title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>',
-				width: 600
-			}}
+			{
+				dialog: {
+					align: Liferay.Util.Window.ALIGN_CENTER,
+					cssClass: 'private-messaging-portlet',
+					destroyOnClose: true,
+					modal: true,
+					width: 600
+				},
+				title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>'
+			}
 		).plug(
 			A.Plugin.IO,
 			{

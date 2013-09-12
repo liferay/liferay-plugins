@@ -361,20 +361,21 @@ request.setAttribute("view_user.jsp-user", user2);
 				}
 
 				var dialog = Liferay.Util.Window.getWindow(
-{
-dialog: {
-						align: {
-							node: null,
-							points: ['tc', 'tc']
+					{
+						dialog: {
+							align: {
+								node: null,
+								points: ['tc', 'tc']
+							},
+							constrain2view: true,
+							cssClass: 'profile-dialog',
+							destroyOnClose: true,
+							modal: true,
+							resizable: false,
+							width: 500
 						},
-						constrain2view: true,
-						cssClass: 'profile-dialog',
-						destroyOnClose: true,
-						modal: true,
-						resizable: false,
-						title: node.getAttribute('data-title'),
-						width: 500
-					}}
+						title: node.getAttribute('data-title')
+					}
 				).plug(
 					A.Plugin.IO,
 					{
