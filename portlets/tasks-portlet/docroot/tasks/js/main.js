@@ -1,7 +1,7 @@
 AUI().use(
 	'aui-base',
-	'aui-dialog',
 	'aui-io-plugin',
+	'liferay-util-window',
 	function(A) {
 		Liferay.namespace('Tasks');
 
