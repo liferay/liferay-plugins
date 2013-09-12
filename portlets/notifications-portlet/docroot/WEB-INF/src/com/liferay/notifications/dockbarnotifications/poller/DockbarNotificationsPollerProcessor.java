@@ -29,23 +29,34 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
-		setNewUserNotificationsCount(pollerRequest, pollerResponse);
+		setUserNotificationsCount(pollerRequest, pollerResponse);
 	}
 
 	@Override
 	protected void doSend(PollerRequest pollerRequest) throws Exception {
 	}
 
-	protected void setNewUserNotificationsCount(
+	protected void setUserNotificationsCount(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
-		int count =
+		int newUserNotificationsCount =
 			UserNotificationEventLocalServiceUtil.
 				getDeliveredUserNotificationEventsCount(
 					pollerRequest.getUserId(), false);
 
-		pollerResponse.setParameter("count", String.valueOf(count));
+		pollerResponse.setParameter(
+			"newUserNotificationsCount",
+			String.valueOf(newUserNotificationsCount));
+
+		int unreadUserNotificationsCount =
+			UserNotificationEventLocalServiceUtil.
+				getArchivedUserNotificationEventsCount(
+					pollerRequest.getUserId(), false);
+
+		pollerResponse.setParameter(
+			"unreadUserNotificationsCount",
+			String.valueOf(unreadUserNotificationsCount));
 	}
 
 }
