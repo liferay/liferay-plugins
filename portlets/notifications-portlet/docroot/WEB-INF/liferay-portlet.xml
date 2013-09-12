@@ -5,6 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<header-portlet-css>/notifications/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/notifications/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>notifications-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
@@ -13,6 +14,7 @@
 		<poller-processor-class>com.liferay.notifications.dockbarnotifications.poller.DockbarNotificationsPollerProcessor</poller-processor-class>
 		<use-default-template>false</use-default-template>
 		<header-portlet-css>/notifications/css/main.css</header-portlet-css>
+		<footer-portlet-javascript>/notifications/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>notifications-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 	</portlet>
