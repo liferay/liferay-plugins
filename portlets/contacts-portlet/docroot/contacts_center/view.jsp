@@ -129,17 +129,17 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</div>
 
 				<c:if test="<%= !showOnlySiteMembers %>">
-					<button class="add-contact aui-buttonitem-content yui3-widget aui-component aui-buttonitem aui-state-default aui-buttonitem-icon-label" id="<portlet:namespace/>add-contact" type="button" value="add-contact">
-						<span class="aui-buttonitem-icon aui-icon aui-icon-add"></span>
+					<button class="add-contact buttonitem-content yui3-widget component buttonitem state-default buttonitem-icon-label" id="<portlet:namespace/>add-contact" type="button" value="add-contact">
+						<span class="buttonitem-icon icon icon-add"></span>
 
-						<span class="aui-buttonitem-label"><liferay-ui:message key="add-contact" /></span>
+						<span class="buttonitem-label"><liferay-ui:message key="add-contact" /></span>
 					</button>
 				</c:if>
 			</aui:layout>
 
 			<aui:layout cssClass="contacts-result-container lfr-app-column-view">
 				<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">
-					<div class="lfr-search-column contacts-search aui-search-bar">
+					<div class="lfr-search-column contacts-search search-bar">
 						<aui:input cssClass="search-input" id="name" label="" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
 					</div>
 
@@ -286,7 +286,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				<aui:column columnWidth="70" cssClass="contacts-container">
 					<div id="<portlet:namespace/>userToolbarButtons"><!-- --></div>
 
-					<div class="aui-helper-hidden" id="<portlet:namespace/>contactCenterToolbarButtons">
+					<div class="hide" id="<portlet:namespace/>contactCenterToolbarButtons">
 						<liferay-util:include page="/contacts_center/contacts_center_toolbar.jsp" servletContext="<%= application %>" />
 					</div>
 
@@ -370,7 +370,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 			</aui:layout>
 		</aui:form>
 
-		<aui:script use="aui-dialog,aui-io,aui-io-plugin,datatype-number,liferay-contacts-center,liferay-form">
+		<aui:script use="liferay-util-window,aui-io-deprecated,aui-io-plugin-deprecated,datatype-number,liferay-contacts-center,liferay-form">
 			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
 
 			var contactsCenter = new Liferay.ContactsCenter(

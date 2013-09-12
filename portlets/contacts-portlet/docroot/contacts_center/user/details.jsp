@@ -27,7 +27,7 @@ User selUser = (User)request.getAttribute("user.selUser");
 
 <h3><liferay-ui:message key="details" /></h3>
 
-<aui:fieldset column="<%= true %>" cssClass="aui-w50">
+<aui:fieldset column="<%= true %>" cssClass="w50">
 	<aui:input name="screenName" />
 
 	<aui:input bean="<%= user %>" model="<%= User.class %>" name="emailAddress">
@@ -45,7 +45,7 @@ User selUser = (User)request.getAttribute("user.selUser");
 	<aui:input name="jobTitle" />
 </aui:fieldset>
 
-<aui:fieldset column="<%= true %>" cssClass="aui-w50">
+<aui:fieldset column="<%= true %>" cssClass="w50">
 	<div class="user-profile-image" id="<portlet:namespace />userProfileImage">
 		<c:if test="<%= selUser != null %>">
 

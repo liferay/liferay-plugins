@@ -50,7 +50,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 						</div>
 					</div>
 
-					<aui:script position="inline" use="aui-dialog,aui-io-plugin,aui-toolbar">
+					<aui:script position="inline" use="liferay-util-window,aui-io-plugin-deprecated,aui-toolbar">
 						var buttonRow = A.one('#<portlet:namespace />entryToolbar');
 
 						var contactsToolbarChildren = [];
@@ -63,9 +63,10 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 
 						contactsToolbarChildren.push(
 							{
-								handler: function(event) {
+								on: {
+								click: function(event) {
 									Liferay.ContactsCenter.showPopup('<%= UnicodeLanguageUtil.get(pageContext, "update-contact") %>', '<%= viewEntryURL %>');
-								},
+								}},
 								icon: 'edit',
 								id: '<portlet:namespace />edit',
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "edit") %>'
@@ -74,7 +75,8 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 
 						contactsToolbarChildren.push(
 							{
-								handler: function(event) {
+								on: {
+								click: function(event) {
 									var confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x-from-your-contacts", entry.getFullName()) %>';
 
 									if (confirm(confirmMessage)) {
@@ -95,7 +97,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 											}
 										);
 									}
-								},
+								}},
 								icon: 'delete',
 								id: '<portlet:namespace />delete',
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "delete") %>'
@@ -152,9 +154,10 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 
 							contactsToolbarChildren.push(
 								{
-									handler: function(event) {
+									on: {
+									click: function(event) {
 										Liferay.ContactsCenter._setVisibleSelectedUsersView();
-									},
+									}},
 									icon: 'back',
 									id: '<portlet:namespace />backSelection',
 									label: '<%= UnicodeLanguageUtil.get(pageContext, "back-to-selection") %>'

@@ -52,7 +52,7 @@ if (entryId > 0) {
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-io-request">
+<aui:script use="aui-io-request-deprecated">
 	Liferay.Util.focusFormField(document.<portlet:namespace />addEntry.<portlet:namespace />fullName);
 
 	var form = A.one('#<portlet:namespace />addEntry');
@@ -61,7 +61,7 @@ if (entryId > 0) {
 		var errorMessage = A.one('#<portlet:namespace/>errorMessage');
 
 		if (errorMessage) {
-			errorMessage.html('<span class="portlet-msg-error"><liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" /></span>');
+			errorMessage.html('<span class="alert alert-error"><liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" /></span>');
 		}
 	}
 
@@ -96,7 +96,7 @@ if (entryId > 0) {
 								var message = A.one('#<portlet:namespace />errorMessage');
 
 								if (message) {
-									message.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+									message.html('<span class="alert alert-error">' + responseData.message + '</span>');
 								}
 							}
 							else {

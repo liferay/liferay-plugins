@@ -13,7 +13,7 @@ $toolbar-bg: #DCE3EA;
 		clear: both;
 	}
 
-	.aui-column-content, .aui-column-content-center {
+	.column-content, .column-content-center {
 		padding: 0;
 	}
 
@@ -46,7 +46,7 @@ $toolbar-bg: #DCE3EA;
 			padding: 5px 0;
 			position: relative;
 
-			.aui-field-label {
+			.field-label {
 				display: none;
 			}
 
@@ -133,7 +133,7 @@ $toolbar-bg: #DCE3EA;
 			}
 		}
 
-		.portlet-msg-success {
+		.alert.alert-success {
 			border-width: 0 0 1px;
 			margin: 0;
 		}
@@ -253,11 +253,11 @@ $toolbar-bg: #DCE3EA;
 			font-weight: bold;
 		}
 
-		.aui-column-content {
+		.column-content {
 			padding: 10px;
 		}
 
-		.aui-column:before {
+		.column:before {
 			border-width: 0;
 		}
 
@@ -286,7 +286,7 @@ $toolbar-bg: #DCE3EA;
 				border-bottom: 1px solid #C9C9C9;
 				padding: 5px;
 
-				.aui-field-input {
+				.field-input {
 					width: 208px;
 				}
 			}
@@ -306,51 +306,51 @@ $toolbar-bg: #DCE3EA;
 					overflow: visible;
 				}
 
-				.aui-icon-remove-coworker {
+				.icon-remove-coworker {
 					background-image: url(@theme_image_path@/social/remove_coworker.png);
 				}
 
-				.aui-icon-add-coworker {
+				.icon-add-coworker {
 					background-image: url(@theme_image_path@/social/add_coworker.png);
 				}
 
-				.aui-icon-back {
+				.icon-back {
 					background-image: url(@theme_image_path@/common/back.png);
 				}
 
-				.aui-icon-block {
+				.icon-block {
 					background-image: url(@theme_image_path@/social/block.png);
 				}
 
-				.aui-icon-delete {
+				.icon-delete {
 					background-image: url(@theme_image_path@/common/delete.png);
 				}
 
-				.aui-icon-edit {
+				.icon-edit {
 					background-image: url(@theme_image_path@/common/edit.png);
 				}
 
-				.aui-icon-export {
+				.icon-export {
 					background-image: url(@theme_image_path@/common/export.png);
 				}
 
-				.aui-icon-follow {
+				.icon-follow {
 					background-image: url(@theme_image_path@/social/follow.png);
 				}
 
-				.aui-icon-send-message {
+				.icon-send-message {
 					background-image: url(@theme_image_path@/mail/compose.png);
 				}
 
-				.aui-icon-unblock {
+				.icon-unblock {
 					background-image: url(@theme_image_path@/social/unblock.png);
 				}
 
-				.aui-icon-unfollow {
+				.icon-unfollow {
 					background-image: url(@theme_image_path@/social/unfollow.png);
 				}
 
-				.aui-icon-user {
+				.icon-user {
 					background-image: url(@theme_image_path@/common/user_icon.png);
 				}
 			}
@@ -422,7 +422,7 @@ $toolbar-bg: #DCE3EA;
 			float: right;
 			margin: 5px;
 
-			.aui-icon-add {
+			.icon-add {
 				background-image: url(@theme_image_path@/common/add.png);
 			}
 		}
@@ -581,7 +581,7 @@ $toolbar-bg: #DCE3EA;
 		margin: 20px 65px;
 		padding: 4px 4px 0;
 
-		.portlet-msg-info {
+		.alert.alert-info {
 			background-color: transparent;
 			border-width: 0;
 			margin: 0;
@@ -645,7 +645,7 @@ $toolbar-bg: #DCE3EA;
 		width: 90%;
 	}
 
-	.aui-field-text {
+	.field-text {
 		display: block;
 		margin-bottom: 10px;
 	}
@@ -656,16 +656,16 @@ $toolbar-bg: #DCE3EA;
 		padding: 5px 1px;
 	}
 
-	.addresses .aui-field {
+	.addresses .field {
 		float: none;
 		width: auto;
 	}
 
-	.aui-field.primary-ctrl {
+	.field.primary-ctrl {
 		margin: 1.8em 0;
 	}
 
-	.aui-field-select .aui-field-content {
+	.field-select .field-content {
 		margin: 10px 0;
 	}
 
@@ -682,7 +682,7 @@ $toolbar-bg: #DCE3EA;
 		clear: both;
 		overflow: hidden;
 
-		.aui-field {
+		.field {
 			float: left;
 		}
 
@@ -704,7 +704,7 @@ $toolbar-bg: #DCE3EA;
 /* ---------- Extras ---------- */
 
 .contacts-portlet {
-	.contacts-container .portlet-msg-success {
+	.contacts-container .alert.alert-success {
 		@include border-radius(0);
 	}
 
