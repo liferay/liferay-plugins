@@ -64,9 +64,10 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 						contactsToolbarChildren.push(
 							{
 								on: {
-								click: function(event) {
-									Liferay.ContactsCenter.showPopup('<%= UnicodeLanguageUtil.get(pageContext, "update-contact") %>', '<%= viewEntryURL %>');
-								}},
+									click: function(event) {
+										Liferay.ContactsCenter.showPopup('<%= UnicodeLanguageUtil.get(pageContext, "update-contact") %>', '<%= viewEntryURL %>');
+									}
+								},
 								icon: 'edit',
 								id: '<portlet:namespace />edit',
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "edit") %>'
@@ -76,28 +77,29 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 						contactsToolbarChildren.push(
 							{
 								on: {
-								click: function(event) {
-									var confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x-from-your-contacts", entry.getFullName()) %>';
+									click: function(event) {
+										var confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x-from-your-contacts", entry.getFullName()) %>';
 
-									if (confirm(confirmMessage)) {
-										A.io.request(
-											'<portlet:actionURL name="deleteEntry" />',
-											{
-												after: {
-													failure: function(event, id, obj) {
-														Liferay.ContactsCenter.showMessage(false);
+										if (confirm(confirmMessage)) {
+											A.io.request(
+												'<portlet:actionURL name="deleteEntry" />',
+												{
+													after: {
+														failure: function(event, id, obj) {
+															Liferay.ContactsCenter.showMessage(false);
+														},
+														success: function(event, id, obj) {
+															location.href = '<%= HtmlUtil.escape(redirect) %>';
+														}
 													},
-													success: function(event, id, obj) {
-														location.href = '<%= HtmlUtil.escape(redirect) %>';
+													data: {
+														entryId: <%= entryId %>
 													}
-												},
-												data: {
-													entryId: <%= entryId %>
 												}
-											}
-										);
+											);
+										}
 									}
-								}},
+								},
 								icon: 'delete',
 								id: '<portlet:namespace />delete',
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "delete") %>'
@@ -155,9 +157,10 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 							contactsToolbarChildren.push(
 								{
 									on: {
-									click: function(event) {
-										Liferay.ContactsCenter._setVisibleSelectedUsersView();
-									}},
+										click: function(event) {
+											Liferay.ContactsCenter._setVisibleSelectedUsersView();
+										}
+									},
 									icon: 'back',
 									id: '<portlet:namespace />backSelection',
 									label: '<%= UnicodeLanguageUtil.get(pageContext, "back-to-selection") %>'
