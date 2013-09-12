@@ -92,28 +92,28 @@ request.setAttribute("view_user.jsp-user", user2);
 							%>
 
 							<liferay-ui:icon
-								cssClass='<%= showConnectedRequestedIcon ? "disabled" : "disabled aui-helper-hidden" %>'
+								cssClass='<%= showConnectedRequestedIcon ? "disabled" : "disabled hide" %>'
 								image="../social/coworker"
 								label="<%= true %>"
 								message="connection-requested"
 							/>
 
 							<liferay-ui:icon
-								cssClass='<%= showConnectedIcon ? "connected" : "connected aui-helper-hidden" %>'
+								cssClass='<%= showConnectedIcon ? "connected" : "connected hide" %>'
 								image="../social/coworker"
 								label="<%= true %>"
 								message="connected"
 							/>
 
 							<liferay-ui:icon
-								cssClass='<%= showFollowingIcon ? "following" : "following aui-helper-hidden" %>'
+								cssClass='<%= showFollowingIcon ? "following" : "following hide" %>'
 								image="../social/following"
 								label="<%= true %>"
 								message="following"
 							/>
 
 							<liferay-ui:icon
-								cssClass='<%= showBlockIcon ? "block" : "block aui-helper-hidden" %>'
+								cssClass='<%= showBlockIcon ? "block" : "block hide" %>'
 								image="../social/block"
 								label="<%= true %>"
 								message="blocked"
@@ -360,8 +360,9 @@ request.setAttribute("view_user.jsp-user", user2);
 					uri = Liferay.Util.addParams('extension=' + node.getAttribute('data-extension'), uri) || uri;
 				}
 
-				var dialog = new A.Dialog(
-					{
+				var dialog = Liferay.Util.Window.getWindow(
+{
+dialog: {
 						align: {
 							node: null,
 							points: ['tc', 'tc']
@@ -373,7 +374,7 @@ request.setAttribute("view_user.jsp-user", user2);
 						resizable: false,
 						title: node.getAttribute('data-title'),
 						width: 500
-					}
+					}}
 				).plug(
 					A.Plugin.IO,
 					{

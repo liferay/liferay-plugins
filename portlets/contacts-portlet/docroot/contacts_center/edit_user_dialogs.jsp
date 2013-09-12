@@ -133,7 +133,7 @@ if (selUser != null) {
 								var message = A.one('#<portlet:namespace />errorMessage');
 
 								if (message) {
-									message.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+									message.html('<span class="alert alert-error">' + responseData.message + '</span>');
 								}
 							}
 							else {

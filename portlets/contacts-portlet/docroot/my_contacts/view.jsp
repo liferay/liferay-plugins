@@ -47,7 +47,7 @@ Group group = themeDisplay.getScopeGroup();
 
 		<c:choose>
 			<c:when test="<%= users.isEmpty() %>">
-				<div class="portlet-msg-info">
+				<div class="alert alert-info">
 					<liferay-ui:message arguments="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>" key="x-has-no-contacts" />
 				</div>
 			</c:when>
@@ -88,7 +88,7 @@ Group group = themeDisplay.getScopeGroup();
 		</c:choose>
 	</c:when>
 	<c:otherwise>
-		<div class="portlet-msg-error">
+		<div class="alert alert-error">
 			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-user-page" />
 		</div>
 	</c:otherwise>
