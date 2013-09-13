@@ -61,7 +61,7 @@ try {
 					<c:when test="<%= (themeDisplay.isSignedIn() || multipleSubmissions) && permissionChecker.hasPermission(scopeGroupId, DDLRecordSet.class.getName(), recordSetId, ActionKeys.VIEW) %>">
 						<c:choose>
 							<c:when test="<%= !permissionChecker.hasPermission(scopeGroupId, DDLRecordSet.class.getName(), recordSetId, ActionKeys.ADD_RECORD) %>">
-								<div class="portlet-msg-info">
+								<div class="alert alert-info">
 									<liferay-ui:message key="you-do-not-have-the-required-permissions" />
 								</div>
 							</c:when>
