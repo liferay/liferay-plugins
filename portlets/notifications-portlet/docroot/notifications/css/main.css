@@ -178,6 +178,35 @@
 			}
 		}
 	}
+
+	.manage-notifications {
+		padding: 5px;
+
+		.title {
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		.notification-deliveries {
+			caption {
+				font-size: 14px;
+				font-weight: bold;
+				margin-bottom: 10px;
+				text-align: left;
+			}
+
+			table {
+				thead th {
+					font-size: 14px;
+				}
+
+				td {
+					font-size: 14px;
+				}
+			}
+		}
+	}
 }
 
 /* ---------- Extras ---------- */
