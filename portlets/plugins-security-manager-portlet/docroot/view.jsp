@@ -16,7 +16,7 @@
 
 <%@ include file="/init.jsp" %>
 
-<div class="portlet-msg-alert">
+<div class="alert">
 	<c:choose>
 		<c:when test="<%= !PluginsSecurityManagerUtil.isAllowed() %>">
 			<liferay-ui:message key="the-plugins-security-manager-is-not-active" />
