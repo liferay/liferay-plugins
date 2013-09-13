@@ -40,7 +40,7 @@ IPInfo ipInfo = IPGeocoderUtil.getIPInfo(originalRequest.getRemoteAddr());
 		Region: <%= ipInfo.getRegion() %>
 	</c:when>
 	<c:otherwise>
-		<div class="portlet-msg-error">
+		<div class="alert alert-error">
 			<a href="http://www.maxmind.com/app/geolitecity" target="_blank"><liferay-ui:message key="install-and-configure-maxmind-geoip-city-or-geolite-city-to-enable-this-portlet" /></a>
 		</div>
 	</c:otherwise>
