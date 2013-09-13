@@ -401,10 +401,11 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	@Override
-	public List<CalendarBooking> getCalendarBookings(long calendarId, int[] statusIds)
+	public List<CalendarBooking> getCalendarBookings(
+			long calendarId, int[] statuses)
 		throws SystemException {
 
-		return calendarBookingPersistence.findByC_CS(calendarId, statusIds);
+		return calendarBookingPersistence.findByC_S(calendarId, statuses);
 	}
 
 	@Override
