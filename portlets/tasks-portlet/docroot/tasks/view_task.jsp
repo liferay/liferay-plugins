@@ -212,6 +212,6 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 
 		<liferay-ui:tabs names="comments" />
 
-		<%@ include file="/tasks/view_comments.jsp" %>
+		<%@ include file="/tasks/view_comments.jspf" %>
 	</c:otherwise>
 </c:choose>
