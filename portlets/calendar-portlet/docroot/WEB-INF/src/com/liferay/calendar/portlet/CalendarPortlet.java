@@ -357,8 +357,8 @@ public class CalendarPortlet extends MVCPortlet {
 
 				calendarBooking =
 					CalendarBookingServiceUtil.updateCalendarBooking(
-						calendarBookingId, calendarId, childCalendarIds, titleMap,
-						descriptionMap, location,
+						calendarBookingId, calendarId, childCalendarIds,
+						titleMap, descriptionMap, location,
 						(calendarBooking.getStartTime() + offset),
 						(calendarBooking.getStartTime() + offset + duration),
 						allDay, recurrence, reminders[0], remindersType[0],

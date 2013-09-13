@@ -283,17 +283,6 @@ if (recurrence != null) {
 		}
 	);
 
-	untilDateDatePicker.on(
-		'selectionChange',
-		function(event) {
-			var date = event.newSelection[0];
-
-			if (date) {
-				window.<portlet:namespace />updateSummaries(date);
-			}
-		}
-	);
-
 	summaryNode.on(
 		'click',
 		function(event) {
@@ -303,15 +292,18 @@ if (recurrence != null) {
 		}
 	);
 
-	window.<portlet:namespace />getSummary = function(date) {
+	untilDateDatePicker.after(
+		'selectionChange',
+		function(event) {
+			window.<portlet:namespace />updateSummaries();
+		}
+	);
+
+	window.<portlet:namespace />getSummary = function() {
 		var intervalNode = A.one('#<portlet:namespace />interval');
 		var weekdays = A.all('#<portlet:namespace />view<%= Frequency.WEEKLY %> input:checked');
 
 		var selectedWeekdays = [];
-
-		if (!date) {
-			date = untilDateDatePicker.getDate();
-		}
 
 		if (weekdays.size()) {
 			selectedWeekdays = weekdays.getAttribute('data-weekday');
@@ -324,7 +316,7 @@ if (recurrence != null) {
 			endValue: endValue,
 			frequency: frequencyNode.val(),
 			interval: intervalNode.val(),
-			untilDate: date,
+			untilDate: untilDateDatePicker.getDate(),
 			weekdays: selectedWeekdays
 		}
 
@@ -339,17 +331,17 @@ if (recurrence != null) {
 		}
 	};
 
-	window.<portlet:namespace />updateSummary = function(element, date) {
+	window.<portlet:namespace />updateSummary = function(element) {
 		var previewNode = A.one(element);
 
 		if (previewNode) {
-			previewNode.html(window.<portlet:namespace />getSummary(date));
+			previewNode.html(window.<portlet:namespace />getSummary());
 		}
 	};
 
-	window.<portlet:namespace />updateSummaries = function(date) {
-		window.<portlet:namespace />updateSummary(summaryNode, date);
-		window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview', date);
+	window.<portlet:namespace />updateSummaries = function() {
+		window.<portlet:namespace />updateSummary(summaryNode);
+		window.<portlet:namespace />updateSummary('#<portlet:namespace />summaryPreview');
 	}
 
 	<c:if test="<%= recurring %>">
