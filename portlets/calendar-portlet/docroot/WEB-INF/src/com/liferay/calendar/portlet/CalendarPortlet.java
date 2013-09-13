@@ -347,13 +347,12 @@ public class CalendarPortlet extends MVCPortlet {
 				calendarBooking = CalendarBookingServiceUtil.getCalendarBooking(
 					calendarBookingId);
 
-				long oldStartTime = calendarBooking.getStartTime();
-
 				long duration =
 					(endTimeJCalendar.getTimeInMillis() -
 						startTimeJCalendar.getTimeInMillis());
 				long offset =
-					(startTimeJCalendar.getTimeInMillis() - oldStartTime);
+					(startTimeJCalendar.getTimeInMillis() -
+						calendarBooking.getStartTime());
 
 				calendarBooking =
 					CalendarBookingServiceUtil.updateCalendarBooking(
