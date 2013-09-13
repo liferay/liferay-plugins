@@ -94,8 +94,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 	@Override
 	public String exportCalendar(long calendarId) throws Exception {
-
-		int[] statuses = new int[] {
+		int[] statuses = {
 			CalendarBookingWorkflowConstants.STATUS_APPROVED,
 			CalendarBookingWorkflowConstants.STATUS_MAYBE,
 			CalendarBookingWorkflowConstants.STATUS_PENDING
