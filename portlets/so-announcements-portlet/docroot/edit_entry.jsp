@@ -308,11 +308,11 @@ if (entry == null) {
 		function(date, checked) {
 			var A = AUI();
 
-			document.<portlet:namespace />fm[date + "Hour"].disabled = checked;
-			document.<portlet:namespace />fm[date + "Minute"].disabled = checked;
-			document.<portlet:namespace />fm[date + "AmPm"].disabled = checked;
+			document.<portlet:namespace />fm["<portlet:namespace />" + date + "Hour"].disabled = checked;
+			document.<portlet:namespace />fm["<portlet:namespace />" + date + "Minute"].disabled = checked;
+			document.<portlet:namespace />fm["<portlet:namespace />" + date + "AmPm"].disabled = checked;
 
-			var calendarWidget = A.Widget.getByNode(document.<portlet:namespace />fm[date + "Month"]);
+			var calendarWidget = A.Widget.getByNode(document.<portlet:namespace />fm["<portlet:namespace />" + date + "Month"]);
 
 			if (calendarWidget) {
 				calendarWidget.set('disabled', checked);
