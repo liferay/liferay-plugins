@@ -19,7 +19,7 @@
 <div class="manage-notifications">
 	<aui:row>
 		<div class="title">
-			<span>How would you like to receive Notifications?</span>
+			<span><liferay-ui:message key="how-would-you-like-to-receive-notifications" /></span>
 		</div>
 
 		<%
@@ -44,9 +44,7 @@
 
 					<tr>
 						<td class="span8">
-							<span>
-								<liferay-ui:message key="<%= userNotificationDefinition.getDescription() %>" />
-							</span>
+							<liferay-ui:message key="<%= userNotificationDefinition.getDescription() %>" />
 						</td>
 
 						<%
@@ -82,7 +80,7 @@
 	</aui:row>
 </div>
 
-<aui:script use="aui-base,aui-io-plugin-deprecated">
+<aui:script use="aui-base,aui-io-request">
 	var userNotifications = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %>');
 
 	var notificationDelivery = userNotifications.one('.manage-notifications .notification-deliveries');
@@ -99,7 +97,7 @@
 					'<portlet:actionURL name="updateUserNotificationDelivery" />',
 					{
 						data: {
-							<portlet:namespace />isDeliver: currentTarget.attr('checked'),
+							<portlet:namespace />deliver: currentTarget.attr('checked'),
 							<portlet:namespace />userNotificationDeliveryId: currentTarget.attr('data-userNotificationDeliveryId')
 						}
 					}

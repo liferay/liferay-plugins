@@ -134,8 +134,7 @@ public class NotificationsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		boolean isDeliver = ParamUtil.getBoolean(
-			actionRequest, "isDeliver", true);
+		boolean deliver = ParamUtil.getBoolean(actionRequest, "deliver", true);
 		long userNotificationDeliveryId = ParamUtil.getLong(
 			actionRequest, "userNotificationDeliveryId");
 
@@ -144,7 +143,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		try {
 			UserNotificationDeliveryLocalServiceUtil.
 				updateUserNotificationDelivery(
-					userNotificationDeliveryId, isDeliver);
+					userNotificationDeliveryId, deliver);
 
 			jsonObject.put("success", Boolean.TRUE);
 		}

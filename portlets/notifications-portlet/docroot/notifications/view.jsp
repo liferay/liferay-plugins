@@ -92,7 +92,7 @@
 
 				unreadNav.addClass('selected');
 			}
-		)
+		);
 	}
 
 	var allNotificationsNav = userNotificationsSidebar.one('.all-notifications');
@@ -113,7 +113,7 @@
 
 				allNotificationsNav.addClass('selected');
 			}
-		)
+		);
 	}
 
 	var manageNav = userNotificationsSidebar.one('.manage');
@@ -132,7 +132,7 @@
 
 				manageNav.addClass('selected');
 			}
-		)
+		);
 	}
 
 	userNotificationsList.delegate(
