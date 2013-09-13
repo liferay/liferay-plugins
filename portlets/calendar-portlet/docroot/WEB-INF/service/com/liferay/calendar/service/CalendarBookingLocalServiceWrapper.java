@@ -444,6 +444,14 @@ public class CalendarBookingLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
+		long calendarId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.getCalendarBookings(calendarId,
+			statuses);
+	}
+
+	@Override
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
 		long calendarId, long startTime, long endTime)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _calendarBookingLocalService.getCalendarBookings(calendarId,
