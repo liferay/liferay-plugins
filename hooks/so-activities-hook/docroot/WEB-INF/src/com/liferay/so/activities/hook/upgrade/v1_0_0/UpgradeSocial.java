@@ -87,6 +87,8 @@ public class UpgradeSocial extends UpgradeProcess {
 
 			ps.setLong(1, activityId);
 			ps.setLong(2, activitySetId);
+
+			ps.executeUpdate();
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
