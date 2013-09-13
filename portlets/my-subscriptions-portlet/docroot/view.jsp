@@ -133,7 +133,7 @@
 					title: title,
 					uri: url
 				}
-			).render();
+			)
 		},
 		['liferay-util-window']
 	);
