@@ -12,26 +12,29 @@
  * details.
  */
 
-package com.liferay.portal.workflow.kaleo.hook.upgrade;
+package com.liferay.portal.workflow.kaleo.hook.upgrade.v1_2_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.workflow.kaleo.hook.upgrade.v1_2_0.UpgradeKaleoLog;
-import com.liferay.portal.workflow.kaleo.hook.upgrade.v1_2_0.UpgradeKaleoNotificationRecipient;
+import com.liferay.portal.workflow.kaleo.hook.upgrade.v1_2_0.util.KaleoLogTable;
+
+import java.sql.SQLException;
 
 /**
- * @author Michael C. Han
+ * @author Kenneth Chang
  */
-public class UpgradeProcess_1_2_0 extends UpgradeProcess {
-
-	@Override
-	public int getThreshold() {
-		return 120;
-	}
+public class UpgradeKaleoLog extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeKaleoLog.class);
-		upgrade(UpgradeKaleoNotificationRecipient.class);
+		try {
+			runSQL("alter_column_type KaleoLog comment TEXT null");
+		}
+		catch (SQLException sqle) {
+			upgradeTable(
+				KaleoLogTable.TABLE_NAME, KaleoLogTable.TABLE_COLUMNS,
+				KaleoLogTable.TABLE_SQL_CREATE,
+				KaleoLogTable.TABLE_SQL_ADD_INDEXES);
+		}
 	}
 
 }
