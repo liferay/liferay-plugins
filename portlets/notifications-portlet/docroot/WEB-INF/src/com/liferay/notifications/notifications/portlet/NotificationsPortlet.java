@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.UserNotificationEvent;
+import com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -84,6 +85,9 @@ public class NotificationsPortlet extends MVCPortlet {
 			else if (actionName.equals("setDelivered")) {
 				setDelivered(actionRequest, actionResponse);
 			}
+			else if (actionName.equals("updateUserNotificationDelivery")) {
+				updateUserNotificationDelivery(actionRequest, actionResponse);
+			}
 			else {
 				super.processAction(actionRequest, actionResponse);
 			}
@@ -124,6 +128,29 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void updateUserNotificationDelivery(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		boolean isDeliver = ParamUtil.getBoolean(
+			actionRequest, "isDeliver", true);
+		long userNotificationDeliveryId = ParamUtil.getLong(
+			actionRequest, "userNotificationDeliveryId");
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		try {
+			UserNotificationDeliveryLocalServiceUtil.
+				updateUserNotificationDelivery(
+					userNotificationDeliveryId, isDeliver);
+
+			jsonObject.put("success", Boolean.TRUE);
+		}
+		catch (Exception e) {
+			jsonObject.put("success", Boolean.FALSE);
+		}
 	}
 
 }
