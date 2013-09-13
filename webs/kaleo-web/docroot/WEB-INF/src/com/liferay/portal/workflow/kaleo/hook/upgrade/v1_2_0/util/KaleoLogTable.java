@@ -21,6 +21,8 @@ import java.sql.Types;
  */
 public class KaleoLogTable {
 
+	public static final String TABLE_NAME = "KaleoLog";
+
 	public static final Object[][] TABLE_COLUMNS = {
 		{"kaleoLogId", Types.BIGINT},
 		{"groupId", Types.BIGINT},
@@ -54,19 +56,17 @@ public class KaleoLogTable {
 		{"workflowContext", Types.CLOB}
 	};
 
-	public static final String TABLE_NAME = "KaleoLog";
-
-	public static final String[] TABLE_SQL_ADD_INDEXES = {
-		"create index IX_73B5F4DE on KaleoLog (companyId)",
-		"create index IX_E66A153A on KaleoLog (kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type_)",
-		"create index IX_6C64B7D4 on KaleoLog (kaleoDefinitionId)",
-		"create index IX_5BC6AB16 on KaleoLog (kaleoInstanceId)",
-		"create index IX_470B9FF8 on KaleoLog (kaleoInstanceTokenId, type_)",
-		"create index IX_B0CDCA38 on KaleoLog (kaleoTaskInstanceTokenId)"
-	};
-
 	public static final String TABLE_SQL_CREATE = "create table KaleoLog (kaleoLogId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(200) null,createDate DATE null,modifiedDate DATE null,kaleoClassName VARCHAR(200) null,kaleoClassPK LONG,kaleoDefinitionId LONG,kaleoInstanceId LONG,kaleoInstanceTokenId LONG,kaleoTaskInstanceTokenId LONG,kaleoNodeName VARCHAR(200) null,terminalKaleoNode BOOLEAN,kaleoActionId LONG,kaleoActionName VARCHAR(200) null,kaleoActionDescription STRING null,previousKaleoNodeId LONG,previousKaleoNodeName VARCHAR(200) null,previousAssigneeClassName VARCHAR(200) null,previousAssigneeClassPK LONG,currentAssigneeClassName VARCHAR(200) null,currentAssigneeClassPK LONG,type_ VARCHAR(50) null,comment_ TEXT null,startDate DATE null,endDate DATE null,duration LONG,workflowContext TEXT null)";
 
 	public static final String TABLE_SQL_DROP = "drop table KaleoLog";
+
+	public static final String[] TABLE_SQL_ADD_INDEXES = {
+			"create index IX_73B5F4DE on KaleoLog (companyId)",
+			"create index IX_E66A153A on KaleoLog (kaleoClassName, kaleoClassPK, kaleoInstanceTokenId, type_)",
+			"create index IX_6C64B7D4 on KaleoLog (kaleoDefinitionId)",
+			"create index IX_5BC6AB16 on KaleoLog (kaleoInstanceId)",
+			"create index IX_470B9FF8 on KaleoLog (kaleoInstanceTokenId, type_)",
+			"create index IX_B0CDCA38 on KaleoLog (kaleoTaskInstanceTokenId)"
+	};
 
 }
