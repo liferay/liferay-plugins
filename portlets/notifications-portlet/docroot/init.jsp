@@ -27,6 +27,8 @@
 <%@ page import="com.liferay.notifications.util.PortletKeys" %><%@
 page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
+page import="com.liferay.portal.kernel.notifications.UserNotificationDefinition" %><%@
+page import="com.liferay.portal.kernel.notifications.UserNotificationDeliveryType" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationFeedEntry" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationManagerUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
@@ -34,6 +36,7 @@ page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
+page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.model.UserNotificationEvent" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
@@ -44,7 +47,8 @@ page import="com.liferay.portal.util.PortalUtil" %>
 
 <%@ page import="java.text.Format" %>
 
-<%@ page import="java.util.List" %>
+<%@ page import="java.util.List" %><%@
+page import="java.util.Map" %>
 
 <portlet:defineObjects />
 
