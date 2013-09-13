@@ -64,7 +64,7 @@ JSONArray groupCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 JSONArray userCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDisplay, userCalendars);
 JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDisplay, otherCalendars);
 
-boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, "calendar-portlet-column-options-visible", "false"));
+boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, "calendar-portlet-column-options-visible", "true"));
 %>
 
 <aui:container cssClass="calendar-portlet-column-parent">
