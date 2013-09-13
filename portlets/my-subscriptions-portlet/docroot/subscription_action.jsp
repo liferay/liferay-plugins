@@ -37,10 +37,12 @@ AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.
 	}
 	%>
 
-	<liferay-ui:icon
-		image="view"
-		url="<%= viewURL %>"
-	/>
+	<c:if test="<%= viewURL != null %>">
+		<liferay-ui:icon
+			image="view"
+			url="<%= viewURL %>"
+		/>
+	</c:if>
 
 	<%
 	String displayPopupHREF = null;
