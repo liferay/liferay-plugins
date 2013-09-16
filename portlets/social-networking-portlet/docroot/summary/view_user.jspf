@@ -20,7 +20,7 @@
 			<%= HtmlUtil.escape(user2.getFullName()) %>
 		</h2>
 
-		<aui:col cssClass="user-container" span="<%= 2 %>">
+		<aui:col cssClass="user-container">
 			<img alt="<liferay-ui:message key="user-portrait" />" class="user-profile-image" src="<%= user2.getPortraitURL(themeDisplay) %>" />
 
 			<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
@@ -43,7 +43,7 @@
 			</c:if>
 		</aui:col>
 
-		<aui:col cssClass="actions-container" span="<%= 10 %>">
+		<aui:col cssClass="actions-container">
 			<c:choose>
 				<c:when test="<%= SocialRelationLocalServiceUtil.hasRelation(user.getUserId(), user2.getUserId(), SocialRelationConstants.TYPE_BI_FRIEND) %>">
 
