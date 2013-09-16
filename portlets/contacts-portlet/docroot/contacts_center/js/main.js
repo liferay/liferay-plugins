@@ -181,7 +181,7 @@ AUI.add(
 
 						instance._defaultMessageError = config.defaultMessageError;
 						instance._defaultMessageSuccess = config.defaultMessageSuccess;
-						
+
 						instance._deleteEntryURL = config.deleteEntryURL;
 						instance._editEntryURL = config.editEntryURL;
 

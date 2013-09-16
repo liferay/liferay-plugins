@@ -80,13 +80,14 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("MMMMM
 private LiferayPortletURL _getActionURL(String action, long plid, HttpServletRequest request, ThemeDisplay themeDisplay) throws WindowStateException {
 	LiferayPortletURL actionURL = PortletURLFactoryUtil.create(request, "1_WAR_privatemessagingportlet", plid, PortletRequest.ACTION_PHASE);
 
+	actionURL.setParameter("javax.portlet.action", action);
+
 	if (themeDisplay.isStateMaximized()) {
 		actionURL.setWindowState(LiferayWindowState.MAXIMIZED);
-	} else {
+	}
+	else {
 		actionURL.setWindowState(LiferayWindowState.NORMAL);
 	}
-
-	actionURL.setParameter("javax.portlet.action", action);
 
 	return actionURL;
 }

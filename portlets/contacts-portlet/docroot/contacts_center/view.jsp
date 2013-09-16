@@ -70,15 +70,13 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 LiferayPortletURL deleteEntryURL = PortletURLFactoryUtil.create(request, "1_WAR_contactsportlet", layout.getPlid(), PortletRequest.ACTION_PHASE);
 
-deleteEntryURL.setWindowState(WindowState.NORMAL);
-
 deleteEntryURL.setParameter("javax.portlet.action", "deleteEntry");
+deleteEntryURL.setWindowState(WindowState.NORMAL);
 
 LiferayPortletURL editEntryURL = PortletURLFactoryUtil.create(request, "1_WAR_contactsportlet", layout.getPlid(), PortletRequest.RENDER_PHASE);
 
-editEntryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
 editEntryURL.setParameter("mvcPath", "/contacts_center/edit_entry.jsp");
+editEntryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 %>
 
 <c:choose>

@@ -28,10 +28,9 @@ redirectURL.setWindowState(LiferayWindowState.NORMAL);
 
 LiferayPortletURL newMessageURL = PortletURLFactoryUtil.create(request, "1_WAR_privatemessagingportlet", layout.getPlid(), PortletRequest.RESOURCE_PHASE);
 
-newMessageURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
 newMessageURL.setParameter("mvcPath", "/new_message.jsp");
 newMessageURL.setParameter("redirect", redirectURL.toString());
+newMessageURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 LiferayPortletURL deleteMessagesURL = _getActionURL("deleteMessages", layout.getPlid(), request, themeDisplay);
 LiferayPortletURL markMessagesAsReadURL = _getActionURL("markMessagesAsRead", layout.getPlid(), request, themeDisplay);
