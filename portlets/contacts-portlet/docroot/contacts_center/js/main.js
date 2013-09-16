@@ -468,12 +468,12 @@ AUI.add(
 											filterBy: data.filterBy || filterBy,
 											keywords: data.keywords || '',
 											start: data.start || 0
-										}
+										};
 									}
 								},
 								source: url
 							}
-						)
+						);
 					},
 
 					_createContactList: function(config) {
@@ -493,7 +493,7 @@ AUI.add(
 								requestTemplate: function(query) {
 									return {
 										keywords: query
-									}
+									};
 								},
 								resultTextLocator: function(response) {
 									var result = '';
@@ -545,7 +545,10 @@ AUI.add(
 					_editEntry: function(contact) {
 						var instance = this;
 
+						var namespace = instance._namespace;
 						var portletURL = instance._editEntryURL;
+
+						var params = [];
 
 						A.Object.each(
 							{
@@ -554,10 +557,12 @@ AUI.add(
 							},
 							function(item, index, collection) {
 								if (item) {
-									portletURL = portletURL + '&' + instance._namespace + encodeURIComponent(index) + '=' + encodeURIComponent(item);
+									params.push(namespace + encodeURIComponent(index) + '=' + encodeURIComponent(item));
 								}
 							}
 						);
+
+						portletURL = Liferay.Util.addParams(params.join('&'), portletURL);
 
 						instance.showPopup(Liferay.Language.get('update-contact'), portletURL);
 					},
@@ -571,7 +576,7 @@ AUI.add(
 								filterBy: filterBy,
 								keywords: query,
 								start: 0
-							}
+							};
 						};
 					},
 
@@ -1114,6 +1119,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-dialog','aui-io-plugin','aui-toolbar','autocomplete-base','datasource-io','json-parse','liferay-portlet-base','liferay-portlet-url']
+		requires: ['aui-dialog', 'aui-io-plugin', 'aui-toolbar', 'autocomplete-base', 'datasource-io', 'json-parse', 'liferay-portlet-base', 'liferay-portlet-url']
 	}
 );

@@ -5,16 +5,19 @@ AUI.add(
 			init: function(params) {
 				var instance = this;
 
-				instance.namespace = params.namespace;
+				var namespace = params.namespace;
+
+				instance.namespace = namespace;
+
 				instance.newMessageURL = params.newMessageURL;
 				instance.deleteMessagesURL = params.deleteMessagesURL;
 				instance.markMessagesAsReadURL = params.markMessagesAsReadURL;
 				instance.markMessagesAsUnreadURL = params.markMessagesAsUnreadURL;
 
-				instance.checkAll = A.one('#' + instance.namespace + 'checkAll');
-				instance.userThreadsSearchContainer = A.one('#' + instance.namespace + 'userThreadsSearchContainer');
+				instance.checkAll = A.one('#' + namespace + 'checkAll');
+				instance.userThreadsSearchContainer = A.one('#' + namespace + 'userThreadsSearchContainer');
 
-				instance.privateMessagingContainer = A.one('#p_p_id' + params.namespace + ' .private-messaging-container');
+				instance.privateMessagingContainer = A.one('#p_p_id' + namespace + ' .private-messaging-container');
 
 				if (instance.privateMessagingContainer) {
 					instance._assignEvents();
@@ -96,7 +99,9 @@ AUI.add(
 				).plug(
 					A.Plugin.IO,
 					{
-						data: {mbThreadId: mbThreadId},
+						data: {
+							mbThreadId: mbThreadId
+						},
 						uri: instance.newMessageURL
 					}
 				).render();
@@ -148,9 +153,9 @@ AUI.add(
 					function(event) {
 						var checkBox = event.target;
 
-						var  privateMessages = instance.privateMessagingContainer.all('input[type=checkbox]');
+						var privateMessages = instance.privateMessagingContainer.all('input[type=checkbox]');
 
-						privateMessages.set('checked', checkBox.get('checked'));
+						privateMessages.attr('checked', checkBox.get('checked'));
 					},
 					'.check-all'
 				);
@@ -170,25 +175,6 @@ AUI.add(
 					},
 					'.results-row input[type=checkbox]'
 				);
-			},
-
-			//deprecated
-			_getActionURL: function(name) {
-				var instance = this;
-
-				var windowState = 'NORMAL';
-
-				if (themeDisplay.isStateMaximized()) {
-					windowState = 'MAXIMIZED';
-				}
-
-				var portletURL = new Liferay.PortletURL.createActionURL();
-
-				portletURL.setParameter('javax.portlet.action', name);
-				portletURL.setPortletId('1_WAR_privatemessagingportlet');
-				portletURL.setWindowState(windowState);
-
-				return portletURL;
 			},
 
 			_getSelectedMessageIds: function() {
