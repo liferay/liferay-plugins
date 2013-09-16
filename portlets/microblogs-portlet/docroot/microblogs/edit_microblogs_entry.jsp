@@ -68,7 +68,14 @@ if ((microblogsEntry != null) && !edit) {
 	}
 }
 
-String formName = "fm" + microblogsEntryId;
+String formId = String.valueOf(microblogsEntryId);
+
+if (edit) {
+	formId += "edit";
+}
+
+String formName = "fm" + formId;
+
 String formCssClass = "microblogs-entry-form";
 
 boolean comment = GetterUtil.getBoolean((String)request.getAttribute("view_comments.jsp-comment"), false);
@@ -146,9 +153,9 @@ if (comment) {
 			</span>
 		</c:if>
 
-		<div class="autocomplete inactive" id="<portlet:namespace />autocomplete<%= microblogsEntryId %>">
-			<div id="<portlet:namespace />autocompleteContent<%= microblogsEntryId %>">
-				<span class="placeholder-text" id="<portlet:namespace />placeholderText<%= microblogsEntryId %>">
+		<div class="autocomplete inactive" id="<portlet:namespace />autocomplete<%= formId %>">
+			<div id="<portlet:namespace />autocompleteContent<%= formId %>">
+				<span class="placeholder-text" id="<portlet:namespace />placeholderText<%= formId %>">
 					<c:choose>
 						<c:when test="<%= comment %>">
 							<liferay-ui:message key="leave-a-comment" />
@@ -160,7 +167,7 @@ if (comment) {
 				</span>
 			</div>
 
-			<div class="highlighter-content <%= comment || edit || repost ? StringPool.BLANK : "textbox" %>" id="<portlet:namespace />highlighterContent<%= microblogsEntryId %>"></div>
+			<div class="highlighter-content <%= comment || edit || repost ? StringPool.BLANK : "textbox" %>" id="<portlet:namespace />highlighterContent<%= formId %>"></div>
 		</div>
 
 		<aui:input label="" name="content" type="hidden" />
@@ -259,9 +266,9 @@ if (comment) {
 		};
 
 		var createTextarea = function(divId) {
-			var autocomplete = A.one('#<portlet:namespace/>autocomplete<%= microblogsEntryId %>');
-			var autocompleteContent = A.one('#<portlet:namespace />autocompleteContent<%= microblogsEntryId %>');
-			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= microblogsEntryId %>');
+			var autocomplete = A.one('#<portlet:namespace/>autocomplete<%= formId %>');
+			var autocompleteContent = A.one('#<portlet:namespace />autocompleteContent<%= formId %>');
+			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= formId %>');
 
 			var inputValue = '<%= ((microblogsEntry != null) && (edit)) ? StringUtil.replace(HtmlUtil.escapeJS(microblogsEntry.getContent()), "\'", "\\'") : StringPool.BLANK %>';
 
@@ -274,7 +281,7 @@ if (comment) {
 			var textarea = new A.Textarea(
 				{
 					autoSize: true,
-					id: '<portlet:namespace />contentInput<%= microblogsEntryId %>',
+					id: '<portlet:namespace />contentInput<%= formId %>',
 					value: inputValue
 				}
 			).render(autocompleteContent);
@@ -290,7 +297,7 @@ if (comment) {
 
 					buttonContainer.show();
 
-					var placeholderText = A.one('#<portlet:namespace />placeholderText<%= microblogsEntryId %>');
+					var placeholderText = A.one('#<portlet:namespace />placeholderText<%= formId %>');
 
 					if (placeholderText) {
 						placeholderText.remove();
@@ -361,7 +368,7 @@ if (comment) {
 		var updateHighlightDivContent = function(event) {
 			var inputValue = event.inputValue;
 
-			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= microblogsEntryId %>');
+			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= formId %>');
 
 			var query = inputValue.match(REGEX_USER_NAME);
 
@@ -383,8 +390,8 @@ if (comment) {
 		var updateHighlightDivSize = function(event) {
 			var contentInput = event.currentTarget;
 
-			var autocomplete = A.one('#<portlet:namespace/>autocomplete<%= microblogsEntryId %>');
-			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= microblogsEntryId %>');
+			var autocomplete = A.one('#<portlet:namespace/>autocomplete<%= formId %>');
+			var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= formId %>');
 
 			var contentInputHeight = contentInput.height();
 
@@ -421,7 +428,7 @@ if (comment) {
 					maxResults: 5,
 					on: {
 						clear: function() {
-							var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= microblogsEntryId %>');
+							var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= formId %>');
 
 							highlighterContent.html('');
 						},
@@ -438,13 +445,13 @@ if (comment) {
 
 		<c:choose>
 			<c:when test="<%= !edit %>">
-				var autocomplete = A.one('#<portlet:namespace/>autocomplete<%= microblogsEntryId %>');
+				var autocomplete = A.one('#<portlet:namespace/>autocomplete<%= formId %>');
 
 				autocomplete.on(
 					'click',
 					function(event) {
-						var contentInput = A.one('#<portlet:namespace/>autocompleteContent<%= microblogsEntryId %> textarea');
-						var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= microblogsEntryId %>');
+						var contentInput = A.one('#<portlet:namespace/>autocompleteContent<%= formId %> textarea');
+						var highlighterContent = A.one('#<portlet:namespace/>highlighterContent<%= formId %>');
 
 						if (!contentInput) {
 							highlighterContent.removeClass('textbox');
@@ -467,7 +474,7 @@ if (comment) {
 
 			<c:if test="<%= !repost %>">
 				var content = form.one('input[name="<portlet:namespace />content"]');
-				var contentInput = A.one('#<portlet:namespace />autocompleteContent<%= microblogsEntryId %> textarea');
+				var contentInput = A.one('#<portlet:namespace />autocompleteContent<%= formId %> textarea');
 
 				var contentInputValue = contentInput.val();
 
