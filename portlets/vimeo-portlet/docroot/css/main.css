@@ -1,45 +1,54 @@
 @import "compass";
 
 .portlet-configuration {
-	#preview {
-		background: #d0d0d0 url(../images/preview_bg.png) no-repeat center center;
+	.preview {
+		background-color: #d0d0d0;
 		float: right;
+		font-size: 164px;
 		height: 30.5em;
+		text-align: center;
+
+		.preview-play {
+			display: inline-block;
+			position: relative;
+			top: 50%;
+			margin-top: -82px;
+		}
 	}
 
 	select {
 		padding: 4px;
 	}
 
-	.aui-field-inline {
+	.field-inline {
 		vertical-align: text-top;
 	}
 
-	.aui-field-label {
+	.field-label {
 		vertical-align: bottom;
 	}
 
-	.aui-field-row .aui-field-content {
+	.field-row .field-content {
 		margin-right: 1em;
 	}
 
-	.aui-field-input-choice {
+	.field-input-choice {
 		margin-right: 0.3em;
 	}
 
-	.url .aui-field-input {
+	.url .field-input {
 		width: 30em;
 	}
 
-	.height .aui-field-input, .start-time .aui-field-input, .width .aui-field-input {
+	.height .field-input, .start-time .field-input, .width .field-input {
 		width: 4.9em;
 	}
 
-	.aui-colorpicker-trigger {
+	.colorpicker-trigger {
 		vertical-align: top;
 	}
 
-	.aui-field-text .aui-field-label, .aui-field-select .aui-field-label {
+	.field-text .field-label, .field-select .field-label {
 		display: block;
 	}
 
@@ -47,7 +56,7 @@
 		border-width: 0;
 	}
 
-	.annotations .aui-field-input, .closed-captioning .aui-field-input {
+	.annotations .field-input, .closed-captioning .field-input {
 		width: 11em;
 	}
 
