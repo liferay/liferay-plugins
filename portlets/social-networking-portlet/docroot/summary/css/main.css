@@ -37,6 +37,12 @@
 			font-size: 14px;
 		}
 
+		.user-container {
+			margin-right: 30px;
+			max-width: 180px;
+			width: auto;
+		}
+
 		.user-profile-image {
 			max-width: 180px;
 		}
@@ -48,7 +54,7 @@
 
 		.actions-container {
 			margin: 5px 0;
-			padding-left: 10px;
+			width: auto;
 		}
 
 		.add-as-friend {
