@@ -238,37 +238,36 @@ if (recurrence != null) {
 		);
 	};
 
-	recurrenceContainerNode.delegate(
-		'change',
-		function(event) {
-			var target = event.target;
+	var onInputChange = function(event) {
+		var target = event.target;
 
-			if (target.test('#<portlet:namespace />frequency')) {
-				window.<portlet:namespace />toggleView('<%= Frequency.WEEKLY %>', (target.val() == '<%= Frequency.WEEKLY %>'));
-			}
+		if (target.test('#<portlet:namespace />frequency')) {
+			window.<portlet:namespace />toggleView('<%= Frequency.WEEKLY %>', (target.val() == '<%= Frequency.WEEKLY %>'));
+		}
 
-			var endValue = endsRadioNodes.filter(':checked').val()[0];
+		var endValue = endsRadioNodes.filter(':checked').val()[0];
 
-			if ((endValue == 'never') || (endValue == 'on')) {
-				countNode.set('disabled', true);
-			}
-			else {
-				countNode.set('disabled', false);
-			}
+		if ((endValue == 'never') || (endValue == 'on')) {
+			countNode.set('disabled', true);
+		}
+		else {
+			countNode.set('disabled', false);
+		}
 
-			countNode.selectText();
+		countNode.selectText();
 
-			if ((endValue == 'never') || (endValue == 'after')) {
-				untilDateDatePicker.set('disabled', true);
-			}
-			else {
-				untilDateDatePicker.set('disabled', false);
-			}
+		if ((endValue == 'never') || (endValue == 'after')) {
+			untilDateDatePicker.set('disabled', true);
+		}
+		else {
+			untilDateDatePicker.set('disabled', false);
+		}
 
-			window.<portlet:namespace />updateSummaries();
-		},
-		'select,input'
-	);
+		window.<portlet:namespace />updateSummaries();
+	};
+
+	recurrenceContainerNode.delegate('change', onInputChange, 'select,input');
+	recurrenceContainerNode.delegate('keypress', onInputChange, 'select');
 
 	repeatCheckboxNode.on(
 		'change',
