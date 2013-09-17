@@ -88,6 +88,24 @@ to = sb.toString() + to;
 			<liferay-ui:message key="attachments" />
 		</label>
 
+		<%
+		long fileMaxSize = PrefsPropsUtil.getLong(PropsKeys.DL_FILE_MAX_SIZE);
+
+		if (fileMaxSize == 0) {
+			fileMaxSize = PrefsPropsUtil.getLong(PropsKeys.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE);
+		}
+
+		fileMaxSize /= 1024;
+		%>
+
+		<aui:field-wrapper>
+			<c:if test="<%= fileMaxSize != 0 %>">
+				<div class="portlet-msg-info">
+					<%= LanguageUtil.format(pageContext, "upload-documents-no-larger-than-x-k", String.valueOf(fileMaxSize), false) %>
+				</div>
+			</c:if>
+		</aui:field-wrapper>
+
 		<aui:input label="" name="msgFile1" type="file" />
 
 		<aui:input label="" name="msgFile2" type="file" />
