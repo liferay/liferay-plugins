@@ -21,7 +21,7 @@
 <bean:define id="emailAddress" name="subscribeForm" property="emailAddress" type="java.lang.String" />
 
 <logic:messagesPresent>
-	<span class="portlet-msg-error">
+	<span class="alert alert-error">
 	<html:errors />
 	</span>
 </logic:messagesPresent>
