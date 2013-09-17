@@ -17,7 +17,7 @@
 <%@ include file="/html/portlet/sample_struts_portlet/init.jsp" %>
 
 <logic:messagesPresent>
-	<span class="portlet-msg-error">
+	<span class="alert alert-error">
 	<html:errors />
 	</span>
 </logic:messagesPresent>
