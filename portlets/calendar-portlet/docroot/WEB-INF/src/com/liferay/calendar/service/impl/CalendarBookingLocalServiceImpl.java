@@ -726,9 +726,7 @@ public class CalendarBookingLocalServiceImpl
 		// Workflow
 
 		calendarBookingApprovalWorkflow.invokeTransition(
-			userId, calendarBookingId,
-			CalendarBookingWorkflowConstants.getStatusLabel(status),
-			serviceContext);
+			userId, calendarBookingId, status, serviceContext);
 
 		return calendarBooking;
 	}

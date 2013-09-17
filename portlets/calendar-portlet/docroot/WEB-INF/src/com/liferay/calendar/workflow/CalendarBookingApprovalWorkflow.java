@@ -37,11 +37,6 @@ public interface CalendarBookingApprovalWorkflow {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException;
 
-	public void invokeTransition(
-			long userId, long calendarBookingId, String transitionName,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException;
-
 	public void startWorkflow(
 			long userId, long calendarBookingId, ServiceContext serviceContext)
 		throws PortalException, SystemException;

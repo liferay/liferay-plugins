@@ -101,25 +101,13 @@ public class CalendarBookingApprovalWorkflowImpl
 	}
 
 	@Override
-	public void invokeTransition(
-			long userId, long calendarBookingId, String transitionName,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		int status = CalendarBookingWorkflowConstants.getLabelStatus(
-			transitionName);
-
-		invokeTransition(userId, calendarBookingId, status, serviceContext);
-	}
-
-	@Override
 	public void startWorkflow(
 			long userId, long calendarBookingId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		invokeTransition(
 			userId, calendarBookingId,
-			CalendarBookingWorkflowConstants.LABEL_PENDING, serviceContext);
+			CalendarBookingWorkflowConstants.STATUS_PENDING, serviceContext);
 	}
 
 	protected boolean isAutoApproveCalendarBooking(
