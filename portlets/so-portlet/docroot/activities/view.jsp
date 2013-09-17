@@ -352,4 +352,15 @@ portletURL.setParameter("tabs1", tabs1);
 		},
 		'.toggle-entry'
 	);
+
+	Liferay.on(
+		'sessionExpired',
+		function(event) {
+			var reload = function() {
+				window.location.reload();
+			};
+
+			loadNewContent = reload;
+		}
+	);
 </aui:script>
