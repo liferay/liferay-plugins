@@ -71,7 +71,7 @@
 		%>
 
 		<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
-		<input name="saveLastPath" type="hidden" value="<%= false %>" />
+		<input name="<portlet:namespace />saveLastPath" type="hidden" value="<%= false %>" />
 		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 		<input name="<portlet:namespace />rememberMe" type="hidden" value="<%= rememberMe %>" />
 
