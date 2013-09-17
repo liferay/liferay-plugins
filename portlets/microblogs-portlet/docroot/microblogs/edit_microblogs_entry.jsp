@@ -71,7 +71,7 @@ if ((microblogsEntry != null) && !edit) {
 String formId = String.valueOf(microblogsEntryId);
 
 if (edit) {
-	formId += "edit";
+	formId = "Edit" + formId;
 }
 
 String formName = "fm" + formId;
