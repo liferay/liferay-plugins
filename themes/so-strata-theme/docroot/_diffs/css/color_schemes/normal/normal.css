@@ -586,6 +586,10 @@ div#navigation {
 	@include box-shadow(-4px 0 15px -7px rgba(0,0,0, 0.6));
 }
 
+.aui-dialog-iframe-popup #main-content {
+	float: none;
+}
+
 .aui-tabview-list {
 	@include default-border;
 
@@ -1294,14 +1298,6 @@ div#navigation {
 		font-size: 1em;
 		margin: 0.5em 0 1em;
 		width: 110px;
-	}
-
-	.user-portrait {
-		left: 65px;
-	}
-
-	.activity-data {
-		margin-left: 110px;
 	}
 }
 
