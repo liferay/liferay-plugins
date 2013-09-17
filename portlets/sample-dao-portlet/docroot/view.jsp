@@ -51,7 +51,7 @@ if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
 %>
 
 	<input name="<%= Constants.CMD %>" type="hidden" value="<%= HtmlUtil.escape(cmd) %>" />
-	<input name="foodItemId" type="hidden" value="<%= foodItemId %>" />
+	<input name="<portlet:namespace />foodItemId" type="hidden" value="<%= foodItemId %>" />
 
 	<table class="lfr-table">
 
@@ -77,7 +77,7 @@ if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
 			Name
 		</td>
 		<td>
-			<input name="name" type="text" value="<%= name %>">
+			<input name="<portlet:namespace />name" type="text" value="<%= name %>">
 		</td>
 	</tr>
 	<tr>
@@ -85,7 +85,7 @@ if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
 			Points
 		</td>
 		<td>
-			<input name="points" type="text" value="<%= points %>">
+			<input name="<portlet:namespace />points" type="text" value="<%= points %>">
 		</td>
 	</tr>
 	</table>
@@ -112,7 +112,7 @@ else {
 %>
 
 	<input name="<%= Constants.CMD %>" type="hidden" value="" />
-	<input name="foodItemId" type="hidden" value="" />
+	<input name="<portlet:namespace />foodItemId" type="hidden" value="" />
 
 	<input onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" /></portlet:renderURL>';" type="button" value="Add" />
 
@@ -152,7 +152,7 @@ else {
 				<%= foodItem.getPoints() %>
 			</td>
 			<td>
-				<input onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EDIT %>" /><portlet:param name="foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" type="button" value="Edit" />
+				<input onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EDIT %>" /><portlet:param name="<portlet:namespace />foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" type="button" value="Edit" />
 
 				<input onClick="document.<portlet:namespace />fm.<%= Constants.CMD %>.value = '<%= Constants.DELETE %>'; document.<portlet:namespace />fm.foodItemId.value = '<%= foodItem.getFoodItemId() %>'; document.<portlet:namespace />fm.submit();" type="button" value="Delete" />
 			</td>
