@@ -77,6 +77,8 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("MMMMM
 %>
 
 <%!
+public static final boolean LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED));
+
 private LiferayPortletURL _getActionURL(String action, long plid, HttpServletRequest request, ThemeDisplay themeDisplay) throws WindowStateException {
 	LiferayPortletURL actionURL = PortletURLFactoryUtil.create(request, "1_WAR_privatemessagingportlet", plid, PortletRequest.ACTION_PHASE);
 
@@ -91,6 +93,4 @@ private LiferayPortletURL _getActionURL(String action, long plid, HttpServletReq
 
 	return actionURL;
 }
-
-public static final boolean LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED));
 %>

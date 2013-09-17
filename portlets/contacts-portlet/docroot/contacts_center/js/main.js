@@ -552,8 +552,8 @@ AUI.add(
 
 						A.Object.each(
 							{
-								redirect: contact.redirect,
-								entryId: contact.entryId
+								entryId: contact.entryId,
+								redirect: contact.redirect
 							},
 							function(item, index, collection) {
 								if (item) {

@@ -67,16 +67,6 @@ else {
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setWindowState(WindowState.NORMAL);
-
-LiferayPortletURL deleteEntryURL = PortletURLFactoryUtil.create(request, "1_WAR_contactsportlet", layout.getPlid(), PortletRequest.ACTION_PHASE);
-
-deleteEntryURL.setParameter("javax.portlet.action", "deleteEntry");
-deleteEntryURL.setWindowState(WindowState.NORMAL);
-
-LiferayPortletURL editEntryURL = PortletURLFactoryUtil.create(request, "1_WAR_contactsportlet", layout.getPlid(), PortletRequest.RENDER_PHASE);
-
-editEntryURL.setParameter("mvcPath", "/contacts_center/edit_entry.jsp");
-editEntryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 %>
 
 <c:choose>
@@ -391,8 +381,25 @@ editEntryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 					contactsSearchInput: '#<portlet:namespace />name',
 					defaultMessageError: '<liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" />',
 					defaultMessageSuccess: '<liferay-ui:message key="your-request-completed-successfully" unicode="<%= true %>" />',
-					deleteEntryURL: '<%= deleteEntryURL.toString() %>',
-					editEntryURL: '<%= editEntryURL.toString() %>',
+
+					<%
+					LiferayPortletURL deleteEntryURL = PortletURLFactoryUtil.create(request, "1_WAR_contactsportlet", layout.getPlid(), PortletRequest.ACTION_PHASE);
+
+					deleteEntryURL.setParameter("javax.portlet.action", "deleteEntry");
+					deleteEntryURL.setWindowState(WindowState.NORMAL);
+					%>
+
+					deleteEntryURL: '<%= deleteEntryURL %>',
+
+					<%
+					LiferayPortletURL editEntryURL = PortletURLFactoryUtil.create(request, "1_WAR_contactsportlet", layout.getPlid(), PortletRequest.RENDER_PHASE);
+
+					editEntryURL.setParameter("mvcPath", "/contacts_center/edit_entry.jsp");
+					editEntryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+					%>
+
+					editEntryURL: '<%= editEntryURL %>',
+
 					getSelectedContactsURL: '<portlet:resourceURL id="getSelectedContacts" />',
 					maxResultCount: <%= ContactsConstants.MAX_RESULT_COUNT %>,
 					namespace: '<portlet:namespace />',
