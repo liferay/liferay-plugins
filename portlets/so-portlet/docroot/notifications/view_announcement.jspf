@@ -18,13 +18,13 @@
 --%>
 
 <%
-long portletPlid = PortalUtil.getPlidFromPortletId(notificationEventJSONObject.getLong("groupId"), false, portletId);
+long portletPlid = PortalUtil.getPlidFromPortletId(notificationEventJSONObject.getLong("groupId"), false, PortletKeys.SO_ANNOUNCEMENTS);
 
 if (portletPlid == 0) {
-	portletPlid = PortalUtil.getPlidFromPortletId(user.getGroupId(), true, portletId);
+	portletPlid = PortalUtil.getPlidFromPortletId(user.getGroupId(), true, PortletKeys.SO_ANNOUNCEMENTS);
 }
 
-PortletURL portletURL = PortletURLFactoryUtil.create(request, portletId, portletPlid, PortletRequest.RENDER_PHASE);
+PortletURL portletURL = PortletURLFactoryUtil.create(request, PortletKeys.SO_ANNOUNCEMENTS, portletPlid, PortletRequest.RENDER_PHASE);
 
 if (portletPlid == 0) {
 	portletURL.setParameter("mvcPath", "/view.jsp");
@@ -39,7 +39,7 @@ if (portletPlid == 0) {
 		</span>
 
 		<span class="portlet-icon">
-			<liferay-portlet:icon-portlet portlet="<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId) %>" />
+			<liferay-portlet:icon-portlet portlet="<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), PortletKeys.ANNOUNCEMENTS) %>" />
 		</span>
 	</div>
 

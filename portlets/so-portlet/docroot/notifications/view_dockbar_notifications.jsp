@@ -79,7 +79,7 @@ while (iterator.hasNext()) {
 		%>
 
 			<c:choose>
-				<c:when test="<%= portletId.equals(PortletKeys.ANNOUNCEMENTS) %>">
+				<c:when test="<%= portletId.equals(PortletKeys.ANNOUNCEMENTS) || portletId.equals(PortletKeys.SO_ANNOUNCEMENTS) %>">
 					<%@ include file="/notifications/view_announcement.jspf" %>
 				</c:when>
 				<c:when test="<%= portletId.equals(PortletKeys.SO_INVITE_MEMBERS) %>">
