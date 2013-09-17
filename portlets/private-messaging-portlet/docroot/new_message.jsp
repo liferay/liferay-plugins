@@ -150,6 +150,11 @@ to = sb.toString() + to;
 			A.io.request(
 				'<liferay-portlet:resourceURL id="checkData"><liferay-portlet:param name="redirect" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" /></liferay-portlet:resourceURL>',
 				{
+					dataType: 'json',
+					form: {
+						id: form.getDOM(),
+						upload: true
+					},
 					on: {
 						complete: function(event, id, obj) {
 							var responseText = obj.responseText;
@@ -170,11 +175,6 @@ to = sb.toString() + to;
 
 							loadingMask.hide();
 						}
-					},
-					dataType: 'json',
-					form: {
-						id: form.getDOM(),
-						upload: true
 					}
 				}
 			);
