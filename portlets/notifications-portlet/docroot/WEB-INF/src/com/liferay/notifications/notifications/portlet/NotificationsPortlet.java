@@ -134,9 +134,10 @@ public class NotificationsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		boolean deliver = ParamUtil.getBoolean(actionRequest, "deliver", true);
 		long userNotificationDeliveryId = ParamUtil.getLong(
 			actionRequest, "userNotificationDeliveryId");
+
+		boolean deliver = ParamUtil.getBoolean(actionRequest, "deliver", true);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 

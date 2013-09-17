@@ -29,11 +29,13 @@
 				<span class="count"><%= unreadUserNotificationsCount %></span>
 			</a>
 		</div>
+
 		<div class="nav">
 			<a class="all-notifications clearfix" href="javascript:;">
 				<span class="title"><liferay-ui:message key="all-notifications" /></span>
 			</a>
 		</div>
+
 		<div class="nav">
 			<a class="manage clearfix" href="javascript:;">
 				<span class="title"><liferay-ui:message key="manage" /></span>
