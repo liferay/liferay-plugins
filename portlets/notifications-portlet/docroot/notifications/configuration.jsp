@@ -25,9 +25,8 @@
 		<%
 		Map<String, List<UserNotificationDefinition>> userNotificationDefinitionsMap = UserNotificationManagerUtil.getUserNotificationDefinitions();
 
-		for (Map.Entry<String, List<UserNotificationDefinition>> userNotificationDefinitionsMapEntry : userNotificationDefinitionsMap.entrySet()) {
-
-			String portletId = userNotificationDefinitionsMapEntry.getKey();
+		for (Map.Entry<String, List<UserNotificationDefinition>> entry : userNotificationDefinitionsMap.entrySet()) {
+			String portletId = entry.getKey();
 
 			Portlet portlet = PortletLocalServiceUtil.getPortletById(portletId);
 		%>
@@ -37,7 +36,7 @@
 				<tbody>
 
 				<%
-				List<UserNotificationDefinition> userNotificationDefinitions = userNotificationDefinitionsMapEntry.getValue();
+				List<UserNotificationDefinition> userNotificationDefinitions = entry.getValue();
 
 				for (UserNotificationDefinition userNotificationDefinition : userNotificationDefinitions) {
 				%>
