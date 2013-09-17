@@ -70,68 +70,50 @@
 		boolean rememberMe = ParamUtil.getBoolean(request, "rememberMe");
 		%>
 
-		<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
-		<input name="<portlet:namespace />saveLastPath" type="hidden" value="<%= false %>" />
-		<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-		<input name="<portlet:namespace />rememberMe" type="hidden" value="<%= rememberMe %>" />
+		<portlet:actionURL var="loginURL" />
 
-		<liferay-ui:error exception="<%= AuthException.class %>" message="authentication-failed" />
-		<liferay-ui:error exception="<%= CookieNotSupportedException.class %>" message="authentication-failed-please-enable-browser-cookies" />
-		<liferay-ui:error exception="<%= NoSuchUserException.class %>" message="please-enter-a-valid-login" />
-		<liferay-ui:error exception="<%= PasswordExpiredException.class %>" message="your-password-has-expired" />
-		<liferay-ui:error exception="<%= UserEmailAddressException.class %>" message="please-enter-a-valid-login" />
-		<liferay-ui:error exception="<%= UserLockoutException.class %>" message="this-account-has-been-locked" />
-		<liferay-ui:error exception="<%= UserPasswordException.class %>" message="please-enter-a-valid-password" />
-		<liferay-ui:error exception="<%= UserScreenNameException.class %>" message="please-enter-a-valid-screen-name" />
+		<aui:form action="<%= loginURL %>" method="post" name="fm">
+			<aui:input name="saveLastPath" type="hidden" value="<%= false %>" />
+			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+			<aui:input name="rememberMe" type="hidden" value="<%= rememberMe %>" />
 
-		<table class="lfr-table">
-		<tr>
-			<td>
-				<liferay-ui:message key="login" />
-			</td>
-			<td>
-				<input name="<portlet:namespace />login" style="width: 120px;" type="text" value="<%= HtmlUtil.escape(login) %>" />
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="password" />
-			</td>
-			<td>
-				<input id="<portlet:namespace />password" name="<portlet:namespace />password" style="width: 120px;" type="password" value="" />
+			<liferay-ui:error exception="<%= AuthException.class %>" message="authentication-failed" />
+			<liferay-ui:error exception="<%= CookieNotSupportedException.class %>" message="authentication-failed-please-enable-browser-cookies" />
+			<liferay-ui:error exception="<%= NoSuchUserException.class %>" message="please-enter-a-valid-login" />
+			<liferay-ui:error exception="<%= PasswordExpiredException.class %>" message="your-password-has-expired" />
+			<liferay-ui:error exception="<%= UserEmailAddressException.class %>" message="please-enter-a-valid-login" />
+			<liferay-ui:error exception="<%= UserLockoutException.class %>" message="this-account-has-been-locked" />
+			<liferay-ui:error exception="<%= UserPasswordException.class %>" message="please-enter-a-valid-password" />
+			<liferay-ui:error exception="<%= UserScreenNameException.class %>" message="please-enter-a-valid-screen-name" />
 
-				<span id="<portlet:namespace />passwordCapsLockSpan" style="display: none;"><liferay-ui:message key="caps-lock-is-on" /></span>
-			</td>
-		</tr>
-
-		<c:if test='<%= company.isAutoLogin() && !GetterUtil.getBoolean(PropsUtil.get("session.disabled")) %>'>
+			<table class="lfr-table">
 			<tr>
 				<td>
-					<span style="font-size: xx-small;">
-					<liferay-ui:message key="remember-me" />
-					</span>
-				</td>
-				<td>
-					<input <%= rememberMe ? "checked" : "" %> type="checkbox"
-						onClick="
-							if (this.checked) {
-								document.<portlet:namespace />fm.<portlet:namespace />rememberMe.value = 'on';
-							}
-							else {
-								document.<portlet:namespace />fm.<portlet:namespace />rememberMe.value = 'off';
-							}"
-					>
+					<aui:input name="login" style="width: 120px;" type="text" value="<%= HtmlUtil.escape(login) %>" />
 				</td>
 			</tr>
-		</c:if>
+			<tr>
+				<td>
+					<aui:input name="password" style="width: 120px;" type="password" value="" />
 
-		</table>
+					<span id="<portlet:namespace />passwordCapsLockSpan" style="display: none;"><liferay-ui:message key="caps-lock-is-on" /></span>
+				</td>
+			</tr>
 
-		<br />
+			<c:if test='<%= company.isAutoLogin() && !GetterUtil.getBoolean(PropsUtil.get("session.disabled")) %>'>
+				<tr>
+					<td>
+						<aui:input checked="<%= rememberMe %>" name="rememberMe" type="checkbox" />
+					</td>
+				</tr>
+			</c:if>
 
-		<input type="submit" value="<liferay-ui:message key="sign-in" />" />
+			</table>
 
-		</form>
+			<br />
+
+			<input type="submit" value="<liferay-ui:message key="sign-in" />" />
+		</aui:form>
 
 		<c:if test="<%= renderRequest.getWindowState().equals(WindowState.MAXIMIZED) %>">
 			<aui:script>
