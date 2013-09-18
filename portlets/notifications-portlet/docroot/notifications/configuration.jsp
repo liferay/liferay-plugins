@@ -19,7 +19,13 @@
 <div class="manage-notifications">
 	<aui:row>
 		<div class="title">
-			<span><liferay-ui:message key="how-would-you-like-to-receive-notifications" /></span>
+			<div class="notification-delivery">
+				<span><liferay-ui:message key="notification-delivery" /></span>
+			</div>
+
+			<div class="receive-notification">
+				<span><liferay-ui:message key="receive-notification-when" /></span>
+			</div>
 		</div>
 
 		<%
