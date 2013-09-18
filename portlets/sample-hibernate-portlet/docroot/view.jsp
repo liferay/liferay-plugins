@@ -17,6 +17,7 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
+<%@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
@@ -31,151 +32,133 @@
 
 <portlet:defineObjects />
 
-<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
-
 <%
-String cmd = ParamUtil.getString(request, Constants.CMD);
+WindowState windowState = renderRequest.getWindowState();
+%>
 
-if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
-	long foodItemId = 0;
-	String name = "";
-	int points = 0;
+<liferay-portlet:actionURL var="actionURL" />
 
-	if (cmd.equals(Constants.EDIT)) {
-		foodItemId = ParamUtil.getLong(request, "foodItemId");
+<aui:form action="<%= actionURL %>" method="post" name="fm">
+
+	<%
+	String cmd = ParamUtil.getString(request, Constants.CMD);
+
+	if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
+		long foodItemId = 0;
+		String name = null;
+		int points = 0;
+
+		if (cmd.equals(Constants.EDIT)) {
+			foodItemId = ParamUtil.getLong(request, "foodItemId");
+		}
+	%>
+
+		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= HtmlUtil.escape(cmd) %>" />
+		<aui:input name="foodItemId" type="hidden" value="<%= foodItemId %>" />
+
+		<table class="lfr-table">
+
+		<%
+		if (cmd.equals(Constants.EDIT)) {
+		%>
+
+			<tr>
+				<td>
+					Food Item ID
+				</td>
+				<td>
+					<%= foodItemId %>
+				</td>
+			</tr>
+
+		<%
+		}
 
 		FoodItem foodItem = FoodItemUtil.getFoodItem(foodItemId);
+		%>
 
-		name = foodItem.getName();
-		points = foodItem.getPoints();
-	}
-%>
+		<aui:model-context bean="<%= foodItem %>" model="<%= FoodItem.class %>" />
 
-	<input name="<%= Constants.CMD %>" type="hidden" value="<%= HtmlUtil.escape(cmd) %>" />
-	<input name="<portlet:namespace />foodItemId" type="hidden" value="<%= foodItemId %>" />
+		<aui:fieldset>
+			<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="name" type="text" />
 
-	<table class="lfr-table">
+			<aui:input label="Points" name="points" type="text" />
+		</aui:fieldset>
+		</table>
+
+		<br />
+
+		<aui:button name="saveButton" type="submit" value="Save" />
 
 	<%
-	if (cmd.equals(Constants.EDIT)) {
+	}
+	else {
 	%>
 
+		<aui:input name="<%= Constants.CMD %>" type="hidden" value="" />
+		<aui:input name="foodItemId" type="hidden" value="" />
+
+		<input onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" /></portlet:renderURL>';"  type="button" value="Add" />
+
+		<br /><br />
+
+		<table border="1" cellpadding="4" cellspacing="0" width="100%">
 		<tr>
 			<td>
-				Food Item ID
+				<strong>Food Item ID</strong>
 			</td>
 			<td>
-				<%= foodItemId %>
+				<strong>Name</strong>
+			</td>
+			<td>
+				<strong>Points</strong>
+			</td>
+			<td>
+				<strong>Action</strong>
 			</td>
 		</tr>
 
-	<%
-	}
-	%>
+		<%
+		List foodItems = FoodItemUtil.getFoodItems();
 
-	<tr>
-		<td>
-			Name
-		</td>
-		<td>
-			<input name="<portlet:namespace />name" type="text" value="<%= name %>">
-		</td>
-	</tr>
-	<tr>
-		<td>
-			Points
-		</td>
-		<td>
-			<input name="<portlet:namespace />points" type="text" value="<%= points %>">
-		</td>
-	</tr>
-	</table>
+		for (int i = 0; i < foodItems.size(); i++) {
+			FoodItem foodItem = (FoodItem)foodItems.get(i);
+		%>
 
-	<br />
+			<tr>
+				<td>
+					<%= foodItem.getFoodItemId() %>
+				</td>
+				<td>
+					<%= foodItem.getName() %>
+				</td>
+				<td>
+					<%= foodItem.getPoints() %>
+				</td>
+				<td>
+					<input onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EDIT %>" /><portlet:param name="foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" type="button" value="Edit" />
 
-	<input type="submit" value="Save" />
+					<input onClick="document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= Constants.DELETE %>'; document.<portlet:namespace />fm.<portlet:namespace />foodItemId.value = '<%= foodItem.getFoodItemId() %>'; document.<portlet:namespace />fm.submit();" type="button" value="Delete" />
+				</td>
+			</tr>
 
-	<%
-	if (renderRequest.getWindowState().equals(WindowState.MAXIMIZED)) {
-	%>
+		<%
+		}
+		%>
 
-		<aui:script>
-			document.<portlet:namespace />fm.name.focus();
-		</aui:script>
+		</table>
 
-	<%
-	}
-	%>
+		<br />
 
-<%
-}
-else {
-%>
+		You can also access the list of food items via the following URLs in the XSL Content portlet.
 
-	<input name="<%= Constants.CMD %>" type="hidden" value="" />
-	<input name="<portlet:namespace />foodItemId" type="hidden" value="" />
+		<br /><br />
 
-	<input onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" /></portlet:renderURL>';"  type="button" value="Add" />
-
-	<br /><br />
-
-	<table border="1" cellpadding="4" cellspacing="0" width="100%">
-	<tr>
-		<td>
-			<strong>Food Item ID</strong>
-		</td>
-		<td>
-			<strong>Name</strong>
-		</td>
-		<td>
-			<strong>Points</strong>
-		</td>
-		<td>
-			<strong>Action</strong>
-		</td>
-	</tr>
-
-	<%
-	List foodItems = FoodItemUtil.getFoodItems();
-
-	for (int i = 0; i < foodItems.size(); i++) {
-		FoodItem foodItem = (FoodItem)foodItems.get(i);
-	%>
-
-		<tr>
-			<td>
-				<%= foodItem.getFoodItemId() %>
-			</td>
-			<td>
-				<%= foodItem.getName() %>
-			</td>
-			<td>
-				<%= foodItem.getPoints() %>
-			</td>
-			<td>
-				<input onClick="self.location = '<portlet:renderURL><portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EDIT %>" /><portlet:param name="foodItemId" value="<%= String.valueOf(foodItem.getFoodItemId()) %>" /></portlet:renderURL>';" type="button" value="Edit" />
-
-				<input onClick="document.<portlet:namespace />fm.<%= Constants.CMD %>.value = '<%= Constants.DELETE %>'; document.<portlet:namespace />fm.foodItemId.value = '<%= foodItem.getFoodItemId() %>'; document.<portlet:namespace />fm.submit();" type="button" value="Delete" />
-			</td>
-		</tr>
+		<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/servlet/test?<%= Constants.CMD %>=getFoodItemXml<br />
+		<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/view.xsl
 
 	<%
 	}
 	%>
 
-	</table>
-
-	<br />
-
-	You can also access the list of food items via the following URLs in the XSL Content portlet.
-
-	<br /><br />
-
-	<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/servlet/test?<%= Constants.CMD %>=getFoodItemXml<br />
-	<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/view.xsl
-
-<%
-}
-%>
-
-</form>
+</aui:form>
