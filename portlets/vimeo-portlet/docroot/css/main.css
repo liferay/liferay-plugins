@@ -2,7 +2,7 @@
 
 .portlet-configuration {
 	.preview {
-		background-color: #d0d0d0;
+		background-color: #D0D0D0;
 		float: right;
 		font-size: 164px;
 		height: 30.5em;
@@ -59,16 +59,10 @@
 	.annotations .field-input, .closed-captioning .field-input {
 		width: 11em;
 	}
-
-	.invisible {
-		visibility: hidden;
-	}
 }
 
 /* ---------- Extras ---------- */
 
-.portlet-configuration {
-	#preview {
-		@include border-radius(4px);
-	}
+.portlet-configuration #preview {
+	@include border-radius(4px);
 }

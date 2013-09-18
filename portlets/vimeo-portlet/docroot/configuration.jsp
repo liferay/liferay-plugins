@@ -107,7 +107,7 @@
 	function presetChange(e) {
 		if (this.val().indexOf('x') < 0) {
 			A.one('#<portlet:namespace />height').ancestor('.control-group').removeClass('invisible');
-		    A.one('#<portlet:namespace />width').ancestor('.control-group').removeClass('invisible');
+			A.one('#<portlet:namespace />width').ancestor('.control-group').removeClass('invisible');
 
 			return;
 		}
