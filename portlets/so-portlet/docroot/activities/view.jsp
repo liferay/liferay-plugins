@@ -158,7 +158,7 @@ portletURL.setParameter("tabs1", tabs1);
 								}
 							}
 						},
-						dataType: 'json',
+						dataType: 'json'
 					}
 				);
 			}
