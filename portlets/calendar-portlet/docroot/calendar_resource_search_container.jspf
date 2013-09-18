@@ -44,7 +44,7 @@
 		<liferay-ui:search-container-column-text
 			name="name"
 			orderable="<%= true %>"
-			value="<%= resource.getName(locale) %>"
+			value="<%= HtmlUtil.escape(resource.getName(locale)) %>"
 		/>
 
 		<liferay-ui:search-container-column-text
