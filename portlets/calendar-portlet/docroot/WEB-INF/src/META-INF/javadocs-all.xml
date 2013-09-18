@@ -2118,6 +2118,32 @@
 			</throws>
 		</method>
 		<method>
+			<name>getEditCalendarURL</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendar</name>
+				<type>com.liferay.calendar.model.Calendar</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getJCalendar</name>
 			<param>
 				<name>portletRequest</name>
@@ -2783,6 +2809,27 @@
 			<param>
 				<name>calendarId</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getCalendarBookings</name>
+			<param>
+				<name>calendarId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>statuses</name>
+				<type>int[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>

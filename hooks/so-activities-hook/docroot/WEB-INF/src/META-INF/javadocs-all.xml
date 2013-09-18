@@ -178,18 +178,6 @@
 			</return>
 		</method>
 		<field>
-			<name>_ACTIVITY_KEY_ADD_COMMENT</name>
-			<comment><![CDATA[{@link com.liferay.portlet.blogs.social.BlogsActivityKeys#ADD_COMMENT}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.blogs.social.BlogsActivityKeys#ADD_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.blogs.social.BlogsActivityKeys#UPDATE_ENTRY}]]></comment>
-		</field>
-		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
 	</javadoc>
@@ -374,14 +362,6 @@
 			</return>
 		</method>
 		<field>
-			<name>_ACTIVITY_KEY_ADD_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#ADD_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.bookmarks.social.BookmarksActivityKeys#UPDATE_ENTRY}]]></comment>
-		</field>
-		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
 	</javadoc>
@@ -507,14 +487,6 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_EVENT</name>
-			<comment><![CDATA[{@link com.liferay.portlet.calendar.social.CalendarActivityKeys#ADD_EVENT}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_EVENT</name>
-			<comment><![CDATA[{@link com.liferay.portlet.calendar.social.CalendarActivityKeys#UPDATE_EVENT}]]></comment>
-		</field>
 		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
@@ -766,14 +738,6 @@
 			</throws>
 		</method>
 		<field>
-			<name>_ACTIVITY_KEY_ADD_FILE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.documentlibrary.social.DLActivityKeys#ADD_FILE_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_FILE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.portlet.documentlibrary.social.DLActivityKeys#UPDATE_FILE_ENTRY}]]></comment>
-		</field>
-		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
 	</javadoc>
@@ -999,14 +963,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_MESSAGE</name>
-			<comment><![CDATA[{@link com.liferay.portlet.messageboards.social.MBActivityKeys#ADD_MESSAGE}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_REPLY_MESSAGE</name>
-			<comment><![CDATA[{@link com.liferay.portlet.messageboards.social.MBActivityKeys#REPLY_MESSAGE}]]></comment>
-		</field>
 		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
@@ -1279,18 +1235,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys#ADD_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_REPLY_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys#REPLY_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_REPOST_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys#REPOST_ENTRY}]]></comment>
-		</field>
 		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
@@ -1928,22 +1872,6 @@
 			</throws>
 		</method>
 		<field>
-			<name>_ACTIVITY_KEY_ADD_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.tasks.social.TasksActivityKeys#ADD_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_REOPEN_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.tasks.social.TasksActivityKeys#REOPEN_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_RESOLVE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.tasks.social.TasksActivityKeys#RESOLVE_ENTRY}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_ENTRY</name>
-			<comment><![CDATA[{@link com.liferay.tasks.social.TasksActivityKeys#UPDATE_ENTRY}]]></comment>
-		</field>
-		<field>
 			<name>_CLASS_NAMES</name>
 		</field>
 	</javadoc>
@@ -2325,18 +2253,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_COMMENT</name>
-			<comment><![CDATA[{@link com.liferay.portlet.wiki.social.WikiActivityKeys#ADD_COMMENT}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_ADD_PAGE</name>
-			<comment><![CDATA[{@link com.liferay.portlet.wiki.social.WikiActivityKeys#ADD_PAGE}]]></comment>
-		</field>
-		<field>
-			<name>_ACTIVITY_KEY_UPDATE_PAGE</name>
-			<comment><![CDATA[{@link com.liferay.portlet.wiki.social.WikiActivityKeys#UPDATE_PAGE}]]></comment>
-		</field>
 		<field>
 			<name>_CLASS_NAMES</name>
 		</field>

@@ -3765,6 +3765,19 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>UpgradeKaleoLog</name>
+		<type>com.liferay.portal.workflow.kaleo.hook.upgrade.v1_2_0.UpgradeKaleoLog</type>
+		<author><![CDATA[Kenneth Chang]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>UpgradeKaleoNotificationRecipient</name>
 		<type>com.liferay.portal.workflow.kaleo.hook.upgrade.v1_2_0.UpgradeKaleoNotificationRecipient</type>
 		<author><![CDATA[Michael C. Han]]></author>
@@ -3776,6 +3789,26 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+	</javadoc>
+	<javadoc>
+		<name>KaleoLogTable</name>
+		<type>com.liferay.portal.workflow.kaleo.hook.upgrade.v1_2_0.util.KaleoLogTable</type>
+		<author><![CDATA[Kenneth Chang]]></author>
+		<field>
+			<name>TABLE_COLUMNS</name>
+		</field>
+		<field>
+			<name>TABLE_NAME</name>
+		</field>
+		<field>
+			<name>TABLE_SQL_ADD_INDEXES</name>
+		</field>
+		<field>
+			<name>TABLE_SQL_CREATE</name>
+		</field>
+		<field>
+			<name>TABLE_SQL_DROP</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>DefaultPortalKaleoManager</name>
@@ -5110,6 +5143,7 @@
 		<type>com.liferay.portal.workflow.kaleo.parser.ForkNodeValidator</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<author><![CDATA[Marcellus Tavares]]></author>
+		<author><![CDATA[Norbert Kocsis]]></author>
 		<method>
 			<name>doValidate</name>
 			<param>
@@ -5129,20 +5163,53 @@
 			</throws>
 		</method>
 		<method>
-			<name>getUnvisitedTargetNodes</name>
+			<name>getUnvisitedNodes</name>
+			<param>
+				<name>nodes</name>
+				<type>java.util.List</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>transitions</name>
+				<type>java.util.Collection</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>target</name>
+				<type>boolean</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>reverseTraverse</name>
+			<param>
+				<name>fork</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Fork</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>join</name>
+				<type>com.liferay.portal.workflow.kaleo.definition.Join</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<param>
 				<name>targetNodes</name>
 				<type>java.util.List</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>outgoingTransitions</name>
-				<type>java.util.Collection</type>
+				<name>joinForkMap</name>
+				<type>java.util.Map</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-			<return>
+			<throws>
+				<name>WorkflowException</name>
+				<type>com.liferay.portal.kernel.workflow.WorkflowException</type>
 				<comment><![CDATA[]]></comment>
-			</return>
+			</throws>
 		</method>
 		<method>
 			<name>traverse</name>
