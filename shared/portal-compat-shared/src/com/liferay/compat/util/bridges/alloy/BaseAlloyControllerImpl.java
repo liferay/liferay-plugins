@@ -795,6 +795,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return search(null, keywords, sorts);
 	}
 
+	protected void setAlloyServiceInvokerClass(Class<?> clazz) {
+		alloyServiceInvoker = new AlloyServiceInvoker(clazz.getName());
+	}
+
 	protected void setPermissioned(boolean permissioned) {
 		this.permissioned = permissioned;
 	}
