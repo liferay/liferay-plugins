@@ -176,17 +176,16 @@ public class NotificationUtil {
 
 			NotificationType notificationType = null;
 
-			long diff = (startTime - nowTime) / _CHECK_INTERVAL;
+			long timeToEvent = startTime - nowTime;
 
-			if (diff ==
-					(calendarBooking.getFirstReminder() / _CHECK_INTERVAL)) {
+			if (_isInCheckInterval(
+					timeToEvent, calendarBooking.getFirstReminder())) {
 
 				notificationType =
 					calendarBooking.getFirstReminderNotificationType();
 			}
-			else if (diff ==
-						(calendarBooking.getSecondReminder() /
-							_CHECK_INTERVAL)) {
+			else if (_isInCheckInterval(
+						timeToEvent, calendarBooking.getSecondReminder())) {
 
 				notificationType =
 					calendarBooking.getSecondReminderNotificationType();
@@ -296,6 +295,14 @@ public class NotificationUtil {
 		}
 
 		return notificationRecipients;
+	}
+
+	private static boolean _isInCheckInterval(
+			long timeToEvent, long intervalStart) {
+
+		long intervalEnd = intervalStart + _CHECK_INTERVAL;
+
+		return (intervalStart <= timeToEvent) && (timeToEvent < intervalEnd);
 	}
 
 	private static final long _CHECK_INTERVAL =
