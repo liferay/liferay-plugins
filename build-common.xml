@@ -221,7 +221,7 @@ ECJ was automatically installed. Please rerun your task.
 			<then>
 				<replace file="${jrebel.plugin.classes.dir}/rebel.xml">
 					<replacetoken><![CDATA[</application>]]></replacetoken>
-					<replacevalue><![CDATA[	<web>
+					<replacevalue expandProperties="true"><![CDATA[	<web>
 		<link target="/${plugin.name}">
 			<dir name="${basedir}/docroot" />
 		</link>
