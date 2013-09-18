@@ -47,10 +47,10 @@ import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
 
 /**
-* @author Daniela Zapata Riesco
-* @author David Gonzalez
-* @author Michael C. Han
-*/
+ * @author Daniela Zapata Riesco
+ * @author David Gonzalez
+ * @author Michael C. Han
+ */
 public class SolrQuerySuggester extends BaseQuerySuggester {
 
 	public void setDistanceThreshold(float distanceThreshold) {

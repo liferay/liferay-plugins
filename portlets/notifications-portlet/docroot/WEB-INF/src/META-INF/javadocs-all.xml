@@ -37,7 +37,7 @@
 			</throws>
 		</method>
 		<method>
-			<name>setNewUserNotificationsCount</name>
+			<name>setUserNotificationsCount</name>
 			<param>
 				<name>pollerRequest</name>
 				<type>com.liferay.portal.kernel.poller.PollerRequest</type>
@@ -97,6 +97,24 @@
 		</method>
 		<method>
 			<name>setDelivered</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateUserNotificationDelivery</name>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>

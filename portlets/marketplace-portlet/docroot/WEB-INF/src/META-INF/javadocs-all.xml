@@ -1289,6 +1289,28 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>PortletPropsKeys</name>
+		<type>com.liferay.marketplace.util.PortletPropsKeys</type>
+		<author><![CDATA[Ryan Park]]></author>
+		<field>
+			<name>MARKETPLACE_STORE_ENABLED</name>
+		</field>
+		<field>
+			<name>MARKETPLACE_URL_LOGOUT</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsValues</name>
+		<type>com.liferay.marketplace.util.PortletPropsValues</type>
+		<author><![CDATA[Ryan Park]]></author>
+		<field>
+			<name>MARKETPLACE_STORE_ENABLED</name>
+		</field>
+		<field>
+			<name>MARKETPLACE_URL_LOGOUT</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>AppTitleComparator</name>
 		<type>com.liferay.marketplace.util.comparator.AppTitleComparator</type>
 		<author><![CDATA[Ryan Park]]></author>
