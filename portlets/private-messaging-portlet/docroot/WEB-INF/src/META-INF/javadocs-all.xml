@@ -325,6 +325,29 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<method>
+			<name>writeJSON</name>
+			<param>
+				<name>portletRequest</name>
+				<type>javax.portlet.PortletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>mimeResponse</name>
+				<type>javax.portlet.MimeResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>json</name>
+				<type>java.lang.Object</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>IOException</name>
+				<type>java.io.IOException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>_log</name>
 		</field>
