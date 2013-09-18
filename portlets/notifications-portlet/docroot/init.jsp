@@ -38,10 +38,12 @@ page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.User" %><%@
+page import="com.liferay.portal.model.UserNotificationDelivery" %><%@
 page import="com.liferay.portal.model.UserNotificationEvent" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
+page import="com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil" %><%@
 page import="com.liferay.portal.service.UserNotificationEventLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %>
 
