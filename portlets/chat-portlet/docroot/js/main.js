@@ -944,8 +944,10 @@ AUI().use(
 				if (instance._entryCache && instance._entryCache[userId]) {
 					var entryCache = instance._entryCache[userId];
 
-					for (var i in entryCache.entries) {
-						var entry = entryCache.entries[i];
+					var entries = entryCache.entries;
+
+					for (var i in entries) {
+						var entry = entries[i];
 
 						var incomingEntry = (entry.fromUserId == userId);
 
@@ -1121,12 +1123,12 @@ AUI().use(
 				for (var i = 0; i < entriesLength; i++) {
 					var entry = entries[i];
 
-					var userId = entry.toUserId;
 					var incoming = false;
+					var userId = entry.toUserId;
 
 					if (userId == currentUserId) {
-						userId = entry.fromUserId;
 						incoming = true;
+						userId = entry.fromUserId;
 					}
 
 					if (!entryCache[userId]) {
@@ -1138,12 +1140,14 @@ AUI().use(
 
 					var userEntryCache = entryCache[userId];
 
-					var entryProcessed = (entryIds.indexOf('|' + entry.entryId) > -1);
+					var entryId = entry.entryId;
+
+					var entryProcessed = (entryIds.indexOf('|' + entryId) > -1);
 
 					if (!entryProcessed) {
-						userEntryCache.entries[entry.entryId] = entry;
+						userEntryCache.entries[entryId] = entry;
 
-						instance._entryIds.push(entry.entryId);
+						instance._entryIds.push(entryId);
 
 						if (!userEntryCache.newMessages && !entry.flag && incoming) {
 							userEntryCache.newMessages = true;
