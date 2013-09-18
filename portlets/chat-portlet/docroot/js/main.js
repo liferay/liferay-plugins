@@ -309,10 +309,6 @@ AUI().use(
 			instance._chatOutput = instance._panel.one('.panel-output');
 			instance._statusMessage = instance._panel.one('.panel-profile');
 
-			if (options.statusMessage) {
-				instance._statusMessage.text(options.statusMessage);
-			}
-
 			instance._lastMessageTime = 0;
 			instance._lastTypedTime = 0;
 			instance._typingDelay = 5000;
@@ -329,6 +325,10 @@ AUI().use(
 			if (!instance._unreadMessagesContainer) {
 				instance._unreadMessagesContainer = A.Node.create('<div class="hide unread" />');
 				instance._popupTrigger.append(instance._unreadMessagesContainer);
+			}
+
+			if (options.statusMessage) {
+				instance._statusMessage.text(options.statusMessage);
 			}
 
 			instance._chatInput.on('keyup', instance._keystroke, instance);
