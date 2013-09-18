@@ -45,8 +45,6 @@ WindowState windowState = renderRequest.getWindowState();
 
 	if (cmd.equals(Constants.ADD) || cmd.equals(Constants.EDIT)) {
 		long foodItemId = 0;
-		String name = null;
-		int points = 0;
 
 		if (cmd.equals(Constants.EDIT)) {
 			foodItemId = ParamUtil.getLong(request, "foodItemId");
