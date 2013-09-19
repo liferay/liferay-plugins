@@ -323,7 +323,7 @@ AUI().use(
 			instance._unreadMessagesContainer = instance._panel.one('.unread');
 
 			if (!instance._unreadMessagesContainer) {
-				instance._unreadMessagesContainer = A.Node.create('<div class="hide unread" />');
+				instance._unreadMessagesContainer = A.Node.create('<div class="aui-helper-hidden unread" />');
 				instance._popupTrigger.append(instance._unreadMessagesContainer);
 			}
 
