@@ -298,11 +298,15 @@ public class NotificationUtil {
 	}
 
 	private static boolean _isInCheckInterval(
-			long timeToEvent, long intervalStart) {
+		long timeToEvent, long intervalStart) {
 
 		long intervalEnd = intervalStart + _CHECK_INTERVAL;
 
-		return (intervalStart <= timeToEvent) && (timeToEvent < intervalEnd);
+		if ((intervalStart <= timeToEvent) && (timeToEvent < intervalEnd)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private static final long _CHECK_INTERVAL =
