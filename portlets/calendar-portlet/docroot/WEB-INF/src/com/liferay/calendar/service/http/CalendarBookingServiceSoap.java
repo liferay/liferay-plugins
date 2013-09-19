@@ -265,21 +265,6 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static void invokeTransition(long calendarBookingId,
-		java.lang.String transitionName,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			CalendarBookingServiceUtil.invokeTransition(calendarBookingId,
-				transitionName, serviceContext);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static void moveCalendarBookingToTrash(long calendarBookingId)
 		throws RemoteException {
 		try {
