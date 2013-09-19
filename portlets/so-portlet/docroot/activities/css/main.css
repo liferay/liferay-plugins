@@ -1,11 +1,13 @@
 @import "compass";
 
+$default-border-color: #E7E7E7;
+
 .so-portlet-activities {
 	display: block;
 	width: 100%;
 
 	.activity-item {
-		border-bottom: 1px solid #E7E7E7;
+		border-bottom: 1px solid $default-border-color;
 		min-height: 45px;
 		padding: 1em;
 	}
@@ -33,7 +35,7 @@
 	}
 
 	.activity-header {
-		margin-bottom: .4em;
+		margin-bottom: 0.4em;
 
 		a {
 			font-weight: bold;
@@ -43,19 +45,19 @@
 	.activity-time {
 		color: #999;
 		float: right;
-		font-size: .9em;
-		line-height: .9em;
+		font-size: 0.9em;
+		line-height: 0.9em;
 		margin-left: 1em;
 	}
 
 	.activity-action {
 		color: #333333;
-		margin-bottom: .8em;
+		margin-bottom: 0.8em;
 	}
 
 	.activity-body, .grouped-activity-body-container {
-		border: 1px solid #E7E7E7;
-		margin: .8em 0 0;
+		border: 1px solid $default-border-color;
+		margin: 0.8em 0 0;
 
 		span {
 			line-height: 1em;
@@ -73,7 +75,7 @@
 			display: block;
 			font-weight: bold;
 			overflow: hidden;
-			padding-bottom: .4em;
+			padding-bottom: 0.4em;
 
 			.event-title {
 				float: left;
@@ -89,7 +91,7 @@
 	}
 
 	.activity-body {
-		padding: .6em .9em;
+		padding: 0.6em 0.9em;
 
 		&.document {
 			min-height: 75px;
@@ -108,7 +110,7 @@
 			}
 
 			.document-container {
-				margin: .6em .9em .6em 85px;
+				margin: 0.6em 0.9em 0.6em 85px;
 			}
 
 			.title {
@@ -131,10 +133,10 @@
 		overflow: hidden;
 
 		.activity-subentry {
-			border-bottom: 1px solid #E7E7E7;
+			border-bottom: 1px solid $default-border-color;
 			height: 2.5em;
 			overflow: hidden;
-			padding: 0 .9em;
+			padding: 0 0.9em;
 
 			&:last-child {
 				border-bottom-width: 0;
@@ -170,7 +172,7 @@
 			.microblog-content {
 				display: block;
 				line-height: 1.5em;
-				padding: .75em .75em .75em 45px;
+				padding: 0.75em 0.75em 0.75em 45px;
 			}
 		}
 	}
@@ -182,7 +184,7 @@
 			}
 
 			&.low {
-				border-left: 6px solid #E7E7E7;
+				border-left: 6px solid $default-border-color;
 			}
 
 			&.normal {
@@ -191,7 +193,7 @@
 
 			.activity-body {
 				border-left-width: 0;
-				padding: .3em .9em;
+				padding: 0.3em 0.9em;
 			}
 		}
 
@@ -202,13 +204,13 @@
 
 	.activity-footer-toolbar {
 		background: #EAEAEA;
-		padding: .5em 1em;
+		padding: 0.5em 1em;
 
 		.action {
 			border-left: 1px solid #2571AD;
 			display: inline-block;
 			height: 16px;
-			padding: 0 .5em 0 .6em;
+			padding: 0 0.5em 0 0.6em;
 
 			&:first-child {
 				border-left-width: 0;
@@ -217,7 +219,7 @@
 		}
 
 		a {
-			font-size: .9em;
+			font-size: 0.9em;
 		}
 	}
 
@@ -249,7 +251,7 @@
 			margin-left: 36px;
 
 			span {
-				margin-right: .5em;
+				margin-right: 0.5em;
 			}
 		}
 
@@ -273,6 +275,10 @@
 
 		.aui-field-element {
 			border: 1px solid #C7D0DA;
+
+			@include border-radius(5px);
+			@include box-shadow(0 1px 3px #C9C9C9 inset);
+
 			display: block;
 			margin: 2px;
 
@@ -287,6 +293,9 @@
 
 		.aui-field-input-text {
 			border-width: 0;
+
+			@include box-shadow(none);
+
 			padding: 5px 0;
 			text-indent: 5px;
 			width: 100%;
@@ -295,14 +304,15 @@
 
 	.toggler-content-collapsed .activity-footer-toolbar {
 		border-top: 1px solid #EFEFEF;
+
+		@include box-shadow(0 -1px 15px -5px rgba(0, 0, 0, 0.8));
+
 		margin-top: -2px;
 	}
 
 	.loading-bar {
 		display: block;
-		background-image: url(@theme_image_path@/aui/loading_indicator.gif);
-		background-position: 45% center;
-		background-repeat: no-repeat;
+		background: transparent url(@theme_image_path@/aui/loading_indicator.gif) 45% center no-repeat;
 		font-style: italic;
 		height: 100px;
 		margin-left: 25px;
@@ -334,24 +344,5 @@
 
 	.tasks-portlet-activity .grouped-activity-body-container {
 		height: 126px;
-	}
-}
-
-/* ---------- Extras ---------- */
-
-.so-portlet-activities {
-	.toggler-content-collapsed .activity-footer-toolbar {
-		@include box-shadow(0 -1px 15px -5px rgba(0, 0, 0, .8));
-	}
-
-	.comment-form {
-		.aui-field-element {
-			@include border-radius(5px);
-			@include box-shadow(0 1px 3px #C9C9C9 inset);
-		}
-
-		.aui-field-input-text {
-			@include box-shadow(none);
-		}
 	}
 }
