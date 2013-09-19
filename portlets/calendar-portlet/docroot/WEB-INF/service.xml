@@ -54,7 +54,7 @@
 			<finder-column name="defaultCalendar" />
 		</finder>
 	</entity>
-	<entity name="CalendarBooking" uuid="true" local-service="true" remote-service="true">
+	<entity name="CalendarBooking" uuid="true" local-service="true" remote-service="true" trash-enabled="true">
 
 		<!-- PK fields -->
 
