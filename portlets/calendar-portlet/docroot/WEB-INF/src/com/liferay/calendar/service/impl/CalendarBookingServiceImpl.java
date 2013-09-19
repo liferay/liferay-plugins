@@ -252,23 +252,6 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	@Override
-	public void invokeTransition(
-			long calendarBookingId, String transitionName,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
-
-		CalendarPermission.check(
-			getPermissionChecker(), calendarBooking.getCalendarId(),
-			ActionKeys.MANAGE_BOOKINGS);
-
-		calendarBookingApprovalWorkflow.invokeTransition(
-			getUserId(), calendarBookingId, transitionName, serviceContext);
-	}
-
-	@Override
 	public void moveCalendarBookingToTrash(long calendarBookingId)
 		throws PortalException, SystemException {
 
