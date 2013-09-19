@@ -174,15 +174,6 @@ public class CalendarBookingServiceUtil {
 		getService().invokeTransition(calendarBookingId, status, serviceContext);
 	}
 
-	public static void invokeTransition(long calendarBookingId,
-		java.lang.String transitionName,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		getService()
-			.invokeTransition(calendarBookingId, transitionName, serviceContext);
-	}
-
 	public static void moveCalendarBookingToTrash(long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
