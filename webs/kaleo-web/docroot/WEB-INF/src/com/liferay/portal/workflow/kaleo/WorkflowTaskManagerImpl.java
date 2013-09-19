@@ -228,6 +228,14 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 						kaleoTaskAssignment.getAssigneeClassPK());
 
 					pooledActors.addAll(userIds);
+
+					List<User> users =
+						UserLocalServiceUtil.getInheritedRoleUsers(
+							kaleoTaskAssignment.getAssigneeClassPK());
+
+					for (User user : users) {
+						pooledActors.add(user.getUserId());
+					}
 				}
 			}
 

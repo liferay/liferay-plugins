@@ -216,32 +216,35 @@ public abstract class BaseNotificationSender implements NotificationSender {
 			long roleId, int roleType, ExecutionContext executionContext)
 		throws Exception {
 
-		if (roleType == RoleConstants.TYPE_REGULAR) {
-			return UserLocalServiceUtil.getRoleUsers(roleId);
-		}
-
 		List<User> users = new ArrayList<User>();
 
-		KaleoInstanceToken kaleoInstanceToken =
-			executionContext.getKaleoInstanceToken();
+		if (roleType == RoleConstants.TYPE_REGULAR) {
+			users.addAll(UserLocalServiceUtil.getRoleUsers(roleId));
 
-		List<UserGroupRole> userGroupRoles =
-			UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
-				kaleoInstanceToken.getGroupId(), roleId);
-
-		for (UserGroupRole userGroupRole : userGroupRoles) {
-			users.add(userGroupRole.getUser());
+			users.addAll(UserLocalServiceUtil.getInheritedRoleUsers(roleId));
 		}
+		else {
+			KaleoInstanceToken kaleoInstanceToken =
+				executionContext.getKaleoInstanceToken();
 
-		List<UserGroupGroupRole> userGroupGroupRoles =
-			UserGroupGroupRoleLocalServiceUtil.
-				getUserGroupGroupRolesByGroupAndRole(
+			List<UserGroupRole> userGroupRoles =
+				UserGroupRoleLocalServiceUtil.getUserGroupRolesByGroupAndRole(
 					kaleoInstanceToken.getGroupId(), roleId);
 
-		for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
-			users.addAll(
-				UserLocalServiceUtil.getUserGroupUsers(
-					userGroupGroupRole.getUserGroupId()));
+			for (UserGroupRole userGroupRole : userGroupRoles) {
+				users.add(userGroupRole.getUser());
+			}
+
+			List<UserGroupGroupRole> userGroupGroupRoles =
+				UserGroupGroupRoleLocalServiceUtil.
+					getUserGroupGroupRolesByGroupAndRole(
+						kaleoInstanceToken.getGroupId(), roleId);
+
+			for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
+				users.addAll(
+					UserLocalServiceUtil.getUserGroupUsers(
+						userGroupGroupRole.getUserGroupId()));
+			}
 		}
 
 		return users;
