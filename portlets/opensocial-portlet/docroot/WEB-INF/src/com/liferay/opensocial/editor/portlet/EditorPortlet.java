@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
@@ -180,7 +181,8 @@ public class EditorPortlet extends AdminPortlet {
 
 		byte[] bytes = content.getBytes(StringPool.UTF8);
 
-		ServiceContext serviceContext = new ServiceContext();
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			resourceRequest);
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
@@ -219,7 +221,8 @@ public class EditorPortlet extends AdminPortlet {
 
 		String folderName = ParamUtil.getString(resourceRequest, "folderName");
 
-		ServiceContext serviceContext = new ServiceContext();
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			resourceRequest);
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
@@ -441,10 +444,8 @@ public class EditorPortlet extends AdminPortlet {
 
 		byte[] bytes = content.getBytes(StringPool.UTF8);
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setCreateDate(fileEntry.getCreateDate());
-		serviceContext.setModifiedDate(fileEntry.getModifiedDate());
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			resourceRequest);
 
 		DLAppServiceUtil.updateFileEntry(
 			fileEntryId, fileEntry.getTitle(), resourceRequest.getContentType(),
@@ -469,10 +470,8 @@ public class EditorPortlet extends AdminPortlet {
 
 		byte[] bytes = null;
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setCreateDate(fileEntry.getCreateDate());
-		serviceContext.setModifiedDate(fileEntry.getModifiedDate());
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			resourceRequest);
 
 		DLAppServiceUtil.updateFileEntry(
 			fileEntryId, fileEntryTitle, resourceRequest.getContentType(),
@@ -494,10 +493,8 @@ public class EditorPortlet extends AdminPortlet {
 
 		String folderName = ParamUtil.getString(resourceRequest, "folderName");
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setCreateDate(folder.getCreateDate());
-		serviceContext.setModifiedDate(folder.getModifiedDate());
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			resourceRequest);
 
 		DLAppServiceUtil.updateFolder(
 			folderId, folderName, folder.getDescription(), serviceContext);

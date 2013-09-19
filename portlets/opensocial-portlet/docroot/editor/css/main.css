@@ -1,10 +1,6 @@
 @import "compass";
 
 .opensocial-portlet-editor {
-	.gadget-editor-content {
-		height: 600px;
-	}
-
 	.tree-view-editor {
 		background: #FFF;
 		height: 100%;
@@ -22,73 +18,61 @@
 		width: 80%;
 	}
 
-	.tree-view-editor .tree-node, .tree-label {
-		cursor: pointer;
-	}
-
 	.tree-view-editor {
-		.tree-node-selected {
-			background: #F0FCFF;
-
-			.tree-label {
-				font-weight: normal;
-			}
-		}
-
-		.tree-label:hover {
-			color: #06C;
-		}
-
 		.tree-node {
 			.tree-node-loaded {
 				color: #06C;
 				font-weight: bold;
-				text-decoration: underline;
+			}
+
+			.tree-label:hover {
+				color: #06C;
 			}
 
 			.tree-node-loaded .tree-label {
 				font-weight: bold;
 			}
 		}
-	}
 
-	.tabview-list .tab-content .gadget-editor-tab-close, .tree-node-content:hover .gadget-editor-tree-node-contextmenuicon, .gadget-editor-tree-node-contextmenuicon-open {
-		background-repeat: no-repeat;
-		float: right;
-		height: 16px;
-		width: 16px;
-	}
+		.tree-node-selected {
+			background: #E4F5FC;
 
-	.tree-node-content:hover .gadget-editor-tree-node-contextmenuicon {
-		background-image: url(../images/tool.png);
-	}
-}
+			.tree-label {
+				font-weight: normal;
+			}
+		}
 
-.gadget-editor-contextmenu-toolbar {
-	background: #EEF0F2;
-}
+		.tree-node-content:hover .gadget-editor-tree-node-contextmenuicon, .gadget-editor-tree-node-contextmenuicon-open {
+			background-repeat: no-repeat;
+			color: #555;
+			float: right;
+			margin-right: 4px;
+			text-decoration: none;
+		}
 
-.editable {
-	z-index: 1;
-}
+		.tree-node-content {
+			.gadget-editor-tree-node-contextmenuicon {
+				display: none;
+			}
 
-.opensocial-portlet-editor {
-	.main-editor-column-resize {
-		padding-left: 8px;
-	}
+			.gadget-editor-tree-node-contextmenuicon-open {
+				display: inline;
 
-	.main-editor-column-resize-proxy {
-		border-width: 0;
-		border-left: 1px dashed black;
-	}
+				@include opacity(0.5);
+			}
 
-	.preview-panel-resize-proxy {
-		border-width: 0;
-		border-top: 1px dashed black;
-	}
+			&:hover {
+				.gadget-editor-tree-node-contextmenuicon {
+					display: inline;
 
-	.gadget-editor-tree-node-contextmenuicon-open {
-		background-image: url(../images/tool.png);
+					@include opacity(0.5);
+
+					&:hover {
+						@include opacity(1);
+					}
+				}
+			}
+		}
 	}
 
 	.panel-bd {
@@ -96,35 +80,25 @@
 		overflow: auto;
 	}
 
-	.tabview-list {
-		.tab-content:hover {
-			background: #D3D3D3;
-		}
+	.nav-tabs {
+		margin-bottom: 0px;
 
-		.tab-active .tab-content:hover {
-			background: none;
-			color: #D3D3D3;
-		}
+		.tab {
+			cursor: pointer;
 
-		.tab-content {
 			.gadget-editor-tab-close {
-				background-image: url(../images/close.png);
+				color: #555;
+				margin-left: 4px;
 
-				@include opacity(0.4);
+				@include opacity(0.5);
 
 				&:hover {
 					@include opacity(1);
+
+					text-decoration: none
 				}
 			}
 		}
-	}
-
-	.tabview-list, .tabview-list-content {
-		margin-bottom: 0px;
-	}
-
-	.preview-panel {
-		padding-top: 8px;
 	}
 
 	.gadget {
@@ -133,62 +107,18 @@
 	}
 }
 
-.icon-gadgeteditor-addfile, .icon-gadgeteditor-addfolder, .icon-gadgeteditor-close, .icon-gadgeteditor-delete, .icon-gadgeteditor-disk, .icon-gadgeteditor-refresh, .icon-gadgeteditor-rename, .icon-gadgeteditor-tool, .icon-gadgeteditor-url {
-	background-repeat: no-repeat;
-	height: 16px;
-	width: 16px;
-}
+.gadget-editor-contextmenu-toolbar {
+	background: #EEF0F2;
+	box-shadow: 4px 4px 8px #888888;
 
-.toolbar-item {
-	.icon-gadgeteditor-addfile {
-		background-image: url(../images/add_file.png);
-	}
-
-	.icon-gadgeteditor-addfolder {
-		background-image: url(../images/add_folder.png);
-	}
-
-	.icon-gadgeteditor-close {
-		background-image: url(../images/close.png);
-	}
-
-	.icon-gadgeteditor-delete {
-		background-image: url(../images/delete.png);
-	}
-
-	.icon-gadgeteditor-disk {
-		background-image: url(../images/disk.png);
-	}
-
-	.icon-gadgeteditor-publish {
-		background-image: url(../images/publish.png);
-	}
-
-	.icon-gadgeteditor-refresh {
-		background-image: url(../images/refresh.png);
-	}
-
-	.icon-gadgeteditor-rename {
-		background-image: url(../images/rename.png);
-	}
-
-	.icon-gadgeteditor-tool {
-		background-image: url(../images/disk_dirty.png);
-	}
-
-	.icon-gadgeteditor-url {
-		background-image: url(../images/url.png);
+	.btn {
+		width: 100%;
+		text-align: left;
 	}
 }
 
-.resize-handle-l {
-	cursor: col-resize;
-	left: 0;
-}
-
-.resize-handle-t {
-	cursor: row-resize;
-	left: 0;
+.editable {
+	z-index: 10;
 }
 
 .ie .opensocial-portlet-editor .tabview-list .tab-content .gadget-editor-tab-close {
@@ -199,30 +129,4 @@
 
 		zoom: 1;
 	}
-}
-
-.CodeMirror {
-	background-color: #FFFFFF;
-	font-family: monospace;
-	font-size: 12px;
-}
-
-.CodeMirror-lines:hover {
-	cursor: text;
-}
-
-.CodeMirror-matchingbracket {
-	color: #FF0000 !important;
-}
-
-.CodeMirror-scroll {
-	height: 100%;
-}
-
-.codemirror-activeline {
-	background: #F0FCFF !important;
-}
-
-.codemirror-searched {
-	background: #FFFF00;
 }

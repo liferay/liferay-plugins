@@ -15,7 +15,9 @@ AUI.add(
 
 		var CONTENT_BOX = 'contentBox';
 
-		var CSS_CONTEXT_MENU_OPEN = 'gadget-editor-tree-node-contextmenuicon-open';
+		var CSS_CONTEXT_MENU = 'gadget-editor-tree-node-contextmenuicon icon-sort-down icon-large';
+
+		var CSS_CONTEXT_MENU_OPEN = 'gadget-editor-tree-node-contextmenuicon-open icon-sort-down icon-large';
 
 		var DISABLED = 'disabled';
 
@@ -399,40 +401,40 @@ AUI.add(
 						event.target.get(EDITABLE).set(ENTRY_ID, event.newVal);
 					},
 
-					_renderButtonItems: function(isLeaf) {
+					_renderButtons: function(isLeaf) {
 						var instance = this;
 
 						if (isLeaf) {
-							var closeContextMenuButton = new A.ButtonItem(
+							var closeContextMenuButton = new A.Button(
 								{
 									cssClass: 'close-file-entry',
 									disabled: true,
-									icon: 'gadgeteditor-close',
+									icon: 'icon-remove',
 									label: 'Close'
 								}
 							);
 
-							var publishMenuButton = new A.ButtonItem(
+							var publishMenuButton = new A.Button(
 								{
 									cssClass: 'publish',
 									disabled: !instance.get(OWNER_TREE).get('publishGadgetPermission'),
-									icon: 'gadgeteditor-publish',
+									icon: 'icon-bullhorn',
 									label: 'Publish'
 								}
 							);
 
-							var showURLContextMenuButton = new A.ButtonItem(
+							var showURLContextMenuButton = new A.Button(
 								{
 									cssClass: 'show-url',
-									icon: 'gadgeteditor-url',
+									icon: 'icon-link',
 									label: 'Show URL'
 								}
 							);
 
-							var unpublishMenuButton = new A.ButtonItem(
+							var unpublishMenuButton = new A.Button(
 								{
 									cssClass: 'unpublish',
-									icon: 'gadgeteditor-publish',
+									icon: 'icon-bullhorn',
 									label: 'Unpublish'
 								}
 							);
@@ -448,10 +450,10 @@ AUI.add(
 							instance._unpublishMenuButton = unpublishMenuButton;
 						}
 						else {
-							var newFolderContextMenuButton = new A.ButtonItem(
+							var newFolderContextMenuButton = new A.Button(
 								{
 									cssClass: 'add-folder',
-									icon: 'gadgeteditor-addfolder',
+									icon: 'icon-folder-close',
 									label: NEW_FOLDER
 								}
 							);
@@ -461,20 +463,20 @@ AUI.add(
 							instance._newFolderContextMenuButton = newFolderContextMenuButton;
 						}
 
-						var deleteContextMenuButton = new A.ButtonItem(
+						var deleteContextMenuButton = new A.Button(
 							{
 								cssClass: 'delete-entry',
 								disabled: instance.get(IS_ROOT_NODE),
-								icon: 'gadgeteditor-delete',
+								icon: 'icon-remove',
 								label: 'Delete'
 							}
 						);
 
-						var renameContextMenuButton = new A.ButtonItem(
+						var renameContextMenuButton = new A.Button(
 							{
 								cssClass: 'rename-entry',
 								disabled: instance.get(IS_ROOT_NODE),
-								icon: 'gadgeteditor-rename',
+								icon: 'icon-pencil',
 								label: 'Rename'
 							}
 						);
@@ -491,7 +493,7 @@ AUI.add(
 
 						var isLeaf = instance.isLeaf();
 
-						instance._renderButtonItems(isLeaf);
+						instance._renderButtons(isLeaf);
 
 						if (isLeaf) {
 							instance._renderFileEntryContextMenu();
@@ -506,7 +508,7 @@ AUI.add(
 
 						var contextMenuIcon = A.Node.create(TPL_ICON_CONTEXT_MENU);
 
-						contextMenuIcon.addClass('gadget-editor-tree-node-contextmenuicon');
+						contextMenuIcon.addClass(CSS_CONTEXT_MENU);
 
 						instance.get(CONTENT_BOX).append(contextMenuIcon);
 
@@ -529,6 +531,15 @@ AUI.add(
 
 										if (!overlayContext.get(RENDERED)) {
 											contextMenu.render();
+
+											A.Array.each(
+												contextMenu.get('children')[0],
+												function(item, index, collection) {
+													if (A.instanceOf(item, A.Button)) {
+														item.render();
+													}
+												}
+											);
 
 											overlayContext.render();
 										}
@@ -597,7 +608,7 @@ AUI.add(
 									instance._contextMenuOverlay.hide();
 								}
 							},
-							'.buttonitem'
+							'button'
 						);
 					},
 
@@ -657,18 +668,21 @@ AUI.add(
 						instance._updatePublishButtons();
 
 						var children = [
-							instance._closeContextMenuButton,
-							instance._renameContextMenuButton,
-							instance._deleteContextMenuButton,
-							instance._publishMenuButton,
-							instance._unpublishMenuButton,
-							instance._showURLContextMenuButton
+							[
+								'',
+								'vertical',
+								instance._closeContextMenuButton,
+								instance._renameContextMenuButton,
+								instance._deleteContextMenuButton,
+								instance._publishMenuButton,
+								instance._unpublishMenuButton,
+								instance._showURLContextMenuButton
+							]
 						];
 
 						var contextMenu = new A.Toolbar(
 							{
 								children: children,
-								orientation: 'vertical'
 							}
 						);
 
@@ -691,15 +705,18 @@ AUI.add(
 						var instance = this;
 
 						var children = [
-							instance._newFolderContextMenuButton,
-							instance._renameContextMenuButton,
-							instance._deleteContextMenuButton
+							[
+								'',
+								'vertical',
+								instance._newFolderContextMenuButton,
+								instance._renameContextMenuButton,
+								instance._deleteContextMenuButton
+							]
 						];
 
 						var contextMenu = new A.Toolbar(
 							{
 								children: children,
-								orientation: 'vertical'
 							}
 						);
 
@@ -771,10 +788,6 @@ AUI.add(
 						EditableEditor.superclass._defStartEditingFn.apply(this, arguments);
 
 						var inputField = instance._comboBox._field;
-
-						inputField.set('width', AUTO);
-
-						inputField.fire('adjustSize');
 					}
 				}
 			}
