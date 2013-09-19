@@ -35,17 +35,17 @@ Object[][] jiraProjectRowsArray = new Object[][] {
 		jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId
 	},
 	new Object[] {
-		"open", request.getContextPath() + "/jira/images/status_open.png",
+		"open", PortalUtil.getPathContext(request) + "/jira/images/status_open.png",
 		jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&resolution=-1",
 		new Integer(assignedIssuesOpenCount), new Integer(assignedIssuesTotalCount)
 	},
 	new Object[] {
-		"closed", request.getContextPath() + "/jira/images/status_closed.png",
+		"closed", PortalUtil.getPathContext(request) + "/jira/images/status_closed.png",
 		jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
 		new Integer(assignedIssuesClosedCount), new Integer(assignedIssuesTotalCount)
 	},
 	new Object[] {
-		"last-week", request.getContextPath() + "/jira/images/calendar.png",
+		"last-week", PortalUtil.getPathContext(request) + "/jira/images/calendar.png",
 		jiraURL + "&assigneeSelect=specificuser&assignee=" + jiraUserId + "&updated:previous=-1w",
 		new Integer(assignedIssuesLastWeekCount), new Integer(assignedIssuesTotalCount)
 	},
@@ -54,17 +54,17 @@ Object[][] jiraProjectRowsArray = new Object[][] {
 		jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId
 	},
 	new Object[] {
-		"open", request.getContextPath() + "/jira/images/status_open.png",
+		"open", PortalUtil.getPathContext(request) + "/jira/images/status_open.png",
 		jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&resolution=-1",
 		new Integer(reporterIssuesOpenCount), new Integer(reporterIssuesTotalCount)
 	},
 	new Object[] {
-		"closed", request.getContextPath() + "/jira/images/status_closed.png",
+		"closed", PortalUtil.getPathContext(request) + "/jira/images/status_closed.png",
 		jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&status=" + JIRAConstants.STATUS_CLOSED,
 		new Integer(reporterIssuesClosedCount), new Integer(reporterIssuesTotalCount)
 	},
 	new Object[] {
-		"last-week", request.getContextPath() + "/jira/images/calendar.png",
+		"last-week", PortalUtil.getPathContext(request) + "/jira/images/calendar.png",
 		jiraURL + "&reporterSelect=specificuser&reporter=" + jiraUserId + "&updated:previous=-1w",
 		new Integer(reporterIssuesLastWeekCount), new Integer(reporterIssuesTotalCount)
 	}

@@ -14,10 +14,12 @@
  */
 --%>
 
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+
 <div style="text-align: center;">
-	<object data="<%= request.getContextPath() %>/hello_laszlo.lzx?lzt=swf" height="15" type="application/x-shockwave-flash" width="100%">
+	<object data="<%= PortalUtil.getPathContext(request) %>/hello_laszlo.lzx?lzt=swf" height="15" type="application/x-shockwave-flash" width="100%">
 		<param name="menu" value="false" />
-		<param name="movie" value="<%= request.getContextPath() %>/hello_laszlo.lzx?lzt=swf" />
+		<param name="movie" value="<%= PortalUtil.getPathContext(request) %>/hello_laszlo.lzx?lzt=swf" />
 		<param name="quality" value="high" />
 		<param name="salign" value="LT" />
 		<param name="scale" value="noscale" />

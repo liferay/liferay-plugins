@@ -87,13 +87,13 @@
 			sb.append("<a href=\"");
 			sb.append(link);
 			sb.append("\"><img border=\"0\" src=\"");
-			sb.append(request.getContextPath());
+			sb.append(PortalUtil.getPathContext(request));
 			sb.append("/icons/svn.png\" />SVN</a><br />");
 
 			sb.append("<a href=\"http://issues.liferay.com/browse/");
 			sb.append(jiraIssue.getKey());
 			sb.append("\"><img border=\"0\" src=\"");
-			sb.append(request.getContextPath());
+			sb.append(PortalUtil.getPathContext(request));
 			sb.append("/icons/jira.png\" />JIRA</a>");
 
 			comments = sb.toString();

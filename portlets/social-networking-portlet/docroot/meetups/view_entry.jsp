@@ -63,7 +63,7 @@ portletURL.setParameter("meetupsEntryId", String.valueOf(meetupsEntryId));
 String thumbnailURL = null;
 
 if (meetupsEntry.getThumbnailId() == 0) {
-	thumbnailURL = request.getContextPath() + "/meetups/images/calendar.png";
+	thumbnailURL = PortalUtil.getPathContext(request) + "/meetups/images/calendar.png";
 }
 else {
 	thumbnailURL = themeDisplay.getPathImage() + "/meetups?img_id=" + meetupsEntry.getThumbnailId() + "&t=" + WebServerServletTokenUtil.getToken(meetupsEntry.getThumbnailId());

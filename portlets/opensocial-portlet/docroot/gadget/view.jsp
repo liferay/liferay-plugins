@@ -68,7 +68,7 @@ JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDispla
 			requiresPubsub: <%= requiresPubsub %>,
 			scrolling: <%= modulePrefs.getScrolling() %>,
 			secureToken: '<%= secureToken %>',
-			serverBase: '<%= renderRequest.getContextPath() %>/gadgets/',
+			serverBase: '<%= PortalUtil.getPathContext(renderRequest) %>/gadgets/',
 			specUrl: '<%= gadget.getUrl() %>',
 			store: new Liferay.OpenSocial.Store.Expando(
 				{

@@ -39,7 +39,7 @@ catch (NoSuchRoleException nsre) {
 	%>
 
 	<liferay-util:html-top>
-		<link href="<%= PortalUtil.getStaticResourceURL(request, request.getContextPath() + "/user_bar/css/main.css", portlet.getTimestamp()) %>" rel="stylesheet" type="text/css" />
+		<link href="<%= PortalUtil.getStaticResourceURL(request, PortalUtil.getPathContext(request) + "/user_bar/css/main.css", portlet.getTimestamp()) %>" rel="stylesheet" type="text/css" />
 	</liferay-util:html-top>
 
 	<liferay-util:body-top>
@@ -56,7 +56,7 @@ catch (NoSuchRoleException nsre) {
 			</liferay-portlet:actionURL>
 
 			<a class="so-logo" href="<%= dashboardURL %>">
-				<img alt="<liferay-ui:message key="social-office" /> <liferay-ui:message key="logo" />" height="32" src="<%= request.getContextPath() + "/user_bar/images/so_logo.png" %>" width="32" />
+				<img alt="<liferay-ui:message key="social-office" /> <liferay-ui:message key="logo" />" height="32" src="<%= PortalUtil.getPathContext(request) + "/user_bar/images/so_logo.png" %>" width="32" />
 			</a>
 
 			<nav>
@@ -141,7 +141,7 @@ catch (NoSuchRoleException nsre) {
 				<c:if test="<%= (layoutGroup != null) || !layoutGroup.isControlPanel() %>">
 					<li class="config-item">
 						<a class="config-icon" href="javascript:;" id="<portlet:namespace/>toggleDockbar">
-							<img alt="<liferay-ui:message key="configuration" /> <liferay-ui:message key="icon" />" height="15" src="<%= request.getContextPath() + "/user_bar/images/cog.png" %>" width="15" />
+							<img alt="<liferay-ui:message key="configuration" /> <liferay-ui:message key="icon" />" height="15" src="<%= PortalUtil.getPathContext(request) + "/user_bar/images/cog.png" %>" width="15" />
 
 							<span class="aui-helper-hidden">
 								<liferay-ui:message key="toggle" /> <liferay-ui:message key="javax.portlet.title.145" />

@@ -24,6 +24,8 @@
 <%@ taglib uri="http://struts.apache.org/tags-nested" prefix="nested" %>
 <%@ taglib uri="http://struts.apache.org/tags-tiles" prefix="tiles" %>
 
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+
 <%@ page import="java.util.Enumeration" %><%@
 page import="java.util.HashMap" %><%@
 page import="java.util.Iterator" %><%@

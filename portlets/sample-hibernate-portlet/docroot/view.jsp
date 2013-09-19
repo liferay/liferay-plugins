@@ -23,6 +23,7 @@
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.samplehibernate.model.FoodItem" %>
 <%@ page import="com.liferay.samplehibernate.util.FoodItemUtil" %>
 
@@ -152,8 +153,8 @@ WindowState windowState = renderRequest.getWindowState();
 
 		<br /><br />
 
-		<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/servlet/test?<%= Constants.CMD %>=getFoodItemXml<br />
-		<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/view.xsl
+		<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= PortalUtil.getPathContext(request) %>/servlet/test?<%= Constants.CMD %>=getFoodItemXml<br />
+		<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= PortalUtil.getPathContext(request) %>/view.xsl
 
 	<%
 	}

@@ -23,7 +23,7 @@ if (windowState.equals(WindowState.MAXIMIZED)) {
 	int cur = ParamUtil.getInteger(request, "cur", 1);
 %>
 
-	<img alt="large" src="<%= request.getContextPath() %>/photo_gallery/photo_<%= cur %>_large.jpg" /><br />
+	<img alt="large" src="<%= PortalUtil.getPathContext(request) %>/photo_gallery/photo_<%= cur %>_large.jpg" /><br />
 
 	<%
 	if (cur == 1) {
@@ -48,7 +48,7 @@ else {
 %>
 
 	<a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" />">
-	<img alt="thumbnail" src="<%= request.getContextPath() %>/photo_gallery/photo_1_thumbnail.jpg" />
+	<img alt="thumbnail" src="<%= PortalUtil.getPathContext(request) %>/photo_gallery/photo_1_thumbnail.jpg" />
 	</a>
 
 <%

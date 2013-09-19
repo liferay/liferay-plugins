@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 import com.liferay.wsrp.util.Constants;
@@ -133,7 +134,7 @@ public class WSDLServlet extends HttpServlet {
 		sb.append(hostname);
 		sb.append(StringPool.COLON);
 		sb.append(port);
-		sb.append(request.getContextPath());
+		sb.append(PortalUtil.getPathContext(request));
 
 		return sb.toString();
 	}
