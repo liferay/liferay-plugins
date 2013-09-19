@@ -17,6 +17,7 @@ package com.liferay.tich.util;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.webcache.WebCacheException;
@@ -39,31 +40,20 @@ public class EventsWebCacheItem implements WebCacheItem {
 			String text = HttpUtil.URLtoString(
 				"http://www.studylight.org/his/tich");
 
-			int x = text.indexOf("<table cellpadding=3 cellspacing=3>");
-			x = text.indexOf("<tr>", x);
+			int x = text.indexOf("<div class=\"border_bottom_medium\"");
+			int y = text.indexOf("<p class=\"small\">", x);
 
-			int y = text.indexOf("<tr><td align=center", x);
+			text = HtmlUtil.stripHtml(text.substring(x, y));
 
-			text = HtmlUtil.stripComments(text.substring(x, y)).trim();
+			String[] entries = StringUtil.split(
+				text, "\n" + StringPool.DOUBLE_SPACE + "\n\t");
 
-			String[] array = StringUtil.split(text, "<tr>");
+			for (String entry : entries) {
+				String[] entryArray = StringUtil.split(entry, "\n\t");
 
-			for (int i = 0; i < array.length; i++) {
-				x = array[i].indexOf("<b>");
-				y = array[i].indexOf("</b>");
-
-				if ((x != -1) && (y != -1)) {
-					int year = GetterUtil.getInteger(
-						StringUtil.extractDigits(array[i].substring(x + 3, y)));
-
-					String description = HtmlUtil.extractText(
-						array[i].substring(y, array[i].length())).trim();
-
-					if (description.startsWith("- ")) {
-						description = description.substring(2);
-					}
-
-					Event event = new Event(year, description);
+				if (entryArray.length > 1) {
+					Event event = new Event(
+						GetterUtil.getInteger(entryArray[0]), entryArray[1]);
 
 					events.add(event);
 				}
