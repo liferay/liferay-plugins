@@ -290,14 +290,6 @@
 			padding: 5px 0;
 			text-indent: 5px;
 			width: 100%;
-
-			&:hover {
-				border-color: transparent;
-			}
-
-			&:focus {
-				outline-color: transparent;
-			}
 		}
 	}
 
