@@ -14,6 +14,8 @@
  */
 --%>
 
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
@@ -24,7 +26,7 @@
 <div id="<portlet:namespace />json"></div>
 
 <liferay-util:html-bottom>
-	<script src="<%= request.getContextPath() %>/servlet/do?id=<portlet:namespace />json&callback=<portlet:namespace />printJSON" type="text/javascript"></script>
+	<script src="<%= PortalUtil.getPathContext(request) %>/servlet/do?id=<portlet:namespace />json&callback=<portlet:namespace />printJSON" type="text/javascript"></script>
 </liferay-util:html-bottom>
 
 <aui:script position="inline">

@@ -30,4 +30,4 @@
 
 <br />
 
-<img hspace="0" src="<%= request.getContextPath() %>/html/image/struts-power.gif" vspace="0">
+<img hspace="0" src="<%= PortalUtil.getPathContext(request) %>/html/image/struts-power.gif" vspace="0">
