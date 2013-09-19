@@ -615,3 +615,28 @@ html > body.lfr-dockbar-pinned {
 		}
 	}
 }
+
+.ie8 {
+	.so-portlet-user-bar {
+		.search-input {
+			background: #181c1f;
+		}
+
+		.notifications-menu {
+			margin-top: 0.2em;			
+			.notification-count {
+				margin: 0px 0.1em;
+			}
+		}
+
+		.user-toolbar {
+			.full-name {
+				display: inline;
+			}
+		}
+
+		.config-item {
+			float: right;
+		}
+	}
+}
