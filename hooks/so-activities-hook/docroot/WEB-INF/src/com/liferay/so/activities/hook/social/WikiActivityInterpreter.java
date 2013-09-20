@@ -316,6 +316,10 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
 				socialActivity.getActivitySetId());
 
+		if (Validator.isNull(activitySet.getExtraData())) {
+			return null;
+		}
+
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
 			activitySet.getExtraData());
 
@@ -335,6 +339,10 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		if (activitySet.getType() !=
 				SocialActivityKeyConstants.WIKI_UPDATE_PAGE) {
 
+			return null;
+		}
+
+		if (Validator.isNull(activitySet.getExtraData())) {
 			return null;
 		}
 
