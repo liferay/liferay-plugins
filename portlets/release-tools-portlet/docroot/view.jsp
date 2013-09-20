@@ -29,6 +29,8 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.Set" %>
 <%@ page import="java.util.TreeSet" %>
+<%@ page import="java.util.regex.Matcher" %>
+<%@ page import="java.util.regex.Pattern" %>
 
 <portlet:defineObjects />
 
@@ -43,12 +45,13 @@ String content = null;
 if (Validator.isNotNull(url)) {
 	content = HttpUtil.URLtoString(url);
 
-	int x = content.indexOf("var sourceforge_project_name =");
-	x = content.indexOf("'", x) + 1;
+	Pattern pattern = Pattern.compile("\"project\": \"(\\S+)\"");
 
-	int y = content.indexOf("'", x);
+	Matcher matcher = pattern.matcher(content);
 
-	projectName = content.substring(x, y);
+	if (matcher.find()) {
+		projectName = matcher.group(1);
+	}
 }
 %>
 
@@ -97,17 +100,12 @@ An example URL is: <em>http://sourceforge.net/project/showfiles.php?group_id=492
 	<%
 	Set sfPlugins = new TreeSet();
 
-	for (int i = 1;; i++) {
-		int x = content.indexOf("pkg0_1rel0_" + i);
+	Pattern pattern = Pattern.compile("<tr title=\"(\\S+)\" class=\"file \">");
 
-		if (x == -1) {
-			break;
-		}
+	Matcher matcher = pattern.matcher(content);
 
-		x = content.indexOf("return false;\">", x);
-		int y = content.indexOf("</a>", x);
-
-		String fileName = content.substring(x + 15, y);
+	while (matcher.find()) {
+		String fileName = matcher.group(1);
 
 		String directDownloadURL = "http://downloads.sourceforge.net/" + projectName + "/" + fileName;
 
