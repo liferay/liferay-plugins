@@ -955,12 +955,12 @@
 </p>
 
 <p>
-	en_UK=<%= _assertEquals(LanguageUtil.get(Locale.UK, "stars"), "David Beckham") %><br />
-	en_US=<%= _assertEquals(LanguageUtil.get(Locale.US, "stars"), "Stars") %><br />
-	es_ES=<%= _assertEquals(LanguageUtil.get(new Locale("es"), "stars"), "Estrellas") %><br />
-	it_IT=<%= _assertEquals(LanguageUtil.get(Locale.ITALY, "stars"), "Stelle") %><br />
-	pt_BR=<%= _assertEquals(LanguageUtil.get(new Locale("pt", "BR"), "stars"), "Ricardo Kaka") %><br />
-	pt_PT=<%= _assertEquals(LanguageUtil.get(new Locale("pt", "PT"), "stars"), "Cristiano Ronaldo") %>
+	en_UK=<%= _assertEquals(LanguageUtil.get(LocaleUtil.UK, "stars"), "David Beckham") %><br />
+	en_US=<%= _assertEquals(LanguageUtil.get(LocaleUtil.US, "stars"), "Stars") %><br />
+	es_ES=<%= _assertEquals(LanguageUtil.get(LocaleUtil.SPAIN, "stars"), "Estrellas") %><br />
+	it_IT=<%= _assertEquals(LanguageUtil.get(LocaleUtil.ITALY, "stars"), "Stelle") %><br />
+	pt_BR=<%= _assertEquals(LanguageUtil.get(LocaleUtil.BRAZIL, "stars"), "Ricardo Kaka") %><br />
+	pt_PT=<%= _assertEquals(LanguageUtil.get(LocaleUtil.PORTUGAL, "stars"), "Cristiano Ronaldo") %>
 </p>
 
 <p>
@@ -968,7 +968,7 @@
 </p>
 
 <p>
-	locales.beta=<%= _assertFalse(LanguageUtil.isBetaLocale(Locale.US)) %><br />
+	locales.beta=<%= _assertFalse(LanguageUtil.isBetaLocale(LocaleUtil.US)) %><br />
 
 	<%
 	String phoneNumber = PhoneNumberFormatUtil.format("123");
