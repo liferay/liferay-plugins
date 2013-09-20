@@ -131,6 +131,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 			<a class="calendar-portlet-recurrence-summary" href="javascript:;" id="<portlet:namespace />summary"></a>
 		</aui:field-wrapper>
+
+		<aui:input name="description" />
 	</aui:fieldset>
 
 	<aui:fieldset>
@@ -152,8 +154,6 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					%>
 
 				</aui:select>
-
-				<aui:input name="description" />
 
 				<aui:input name="location" />
 
