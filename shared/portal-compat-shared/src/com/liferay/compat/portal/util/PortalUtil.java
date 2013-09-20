@@ -17,6 +17,7 @@ package com.liferay.compat.portal.util;
 import com.liferay.compat.portal.kernel.portlet.DynamicActionRequest;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
+import com.liferay.portal.kernel.util.ContextPathUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -29,6 +30,8 @@ import java.lang.reflect.Method;
 import java.util.Enumeration;
 
 import javax.portlet.PortletRequest;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Brian Wing Shun Chan
@@ -76,6 +79,20 @@ public class PortalUtil extends com.liferay.portal.util.PortalUtil {
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	public static String getPathContext(HttpServletRequest request) {
+		return getPathContext(request.getContextPath());
+	}
+
+	public static String getPathContext(PortletRequest portletRequest) {
+		return getPathContext(portletRequest.getContextPath());
+	}
+
+	public static String getPathContext(String contextPath) {
+		String pathProxy = getPathProxy();
+
+		return pathProxy.concat(ContextPathUtil.getContextPath(contextPath));
 	}
 
 	public static UploadPortletRequest getUploadPortletRequest(

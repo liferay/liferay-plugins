@@ -18,6 +18,7 @@
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 
+<%@ page import="com.liferay.compat.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
