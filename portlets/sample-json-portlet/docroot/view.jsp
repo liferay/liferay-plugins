@@ -19,8 +19,6 @@
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.compat.portal.util.PortalUtil" %>
-
 <portlet:defineObjects />
 
 <div id="<portlet:namespace />json"></div>
