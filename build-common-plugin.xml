@@ -1227,7 +1227,7 @@ Please find a solution that does not require portal-impl.jar.
 			<available file="test/integration" type="dir" />
 			<then>
 				<resourcecount property="test.integration.count">
-					<fileset dir="test-classes/integration" includes="**/${class}.class" />
+					<fileset dir="test-classes/integration" includes="**/${test.class}.class" />
 				</resourcecount>
 			</then>
 		</if>
@@ -1236,7 +1236,7 @@ Please find a solution that does not require portal-impl.jar.
 			<available file="test/unit" type="dir" />
 			<then>
 				<resourcecount property="test.unit.count">
-					<fileset dir="test-classes/unit" includes="**/${class}.class" />
+					<fileset dir="test-classes/unit" includes="**/${test.class}.class" />
 				</resourcecount>
 			</then>
 		</if>
@@ -1255,17 +1255,17 @@ Please find a solution that does not require portal-impl.jar.
 			<else>
 				<if>
 					<not>
-						<isset property="class" />
+						<isset property="test.class" />
 					</not>
 					<then>
-						<fail>Missing class argument. Use "ant test-class -Dclass=TestClassName".</fail>
+						<fail>Use "ant test-class -Dtest.class=StringUtilTest".</fail>
 					</then>
 					<elseif>
 						<not>
 							<isset property="test.type" />
 						</not>
 						<then>
-							<fail>Class ${class} cannot be found.</fail>
+							<fail>Test class ${test.class} cannot be found.</fail>
 						</then>
 					</elseif>
 				</if>
@@ -1296,7 +1296,7 @@ Please find a solution that does not require portal-impl.jar.
 					<formatter type="brief" usefile="false" />
 					<formatter type="xml" />
 					<batchtest todir="test-results/${test.type}">
-						<fileset dir="test-classes/${test.type}" includes="**/${class}.class">
+						<fileset dir="test-classes/${test.type}" includes="**/${test.class}.class">
 							<filename regex="${junit.test.excludes}" negate="true" />
 						</fileset>
 					</batchtest>
@@ -1306,7 +1306,7 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="test-integration" depends="compile,compile-test-integration">
-		<property name="class" value="*Test" />
+		<property name="test.class" value="*Test" />
 
 		<ant target="test-cmd" inheritrefs="true">
 			<property name="junit.forkmode" value="once" />
@@ -1315,7 +1315,7 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="test-unit" depends="compile,compile-test-unit">
-		<property name="class" value="*Test" />
+		<property name="test.class" value="*Test" />
 
 		<ant target="test-cmd" inheritrefs="true">
 			<property name="junit.forkmode" value="perTest" />
