@@ -23,9 +23,6 @@ import java.util.Map;
  */
 public class NotificationMessageGeneratorFactory {
 
-	public static Map<String, NotificationMessageGenerator>
-		_notificationMessageGenerators;
-
 	public static NotificationMessageGenerator getNotificationMessageGenerator(
 			String templateLanguage)
 		throws WorkflowException {
@@ -47,5 +44,8 @@ public class NotificationMessageGeneratorFactory {
 
 		_notificationMessageGenerators = notificationMessageGenerators;
 	}
+
+	private static Map<String, NotificationMessageGenerator>
+		_notificationMessageGenerators;
 
 }

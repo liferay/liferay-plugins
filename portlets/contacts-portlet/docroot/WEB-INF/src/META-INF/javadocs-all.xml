@@ -1450,6 +1450,9 @@
 			<name>DISPLAY_STYLE_FULL_LABEL</name>
 		</field>
 		<field>
+			<name>FILTER_BY_ADMINS</name>
+		</field>
+		<field>
 			<name>FILTER_BY_DEFAULT</name>
 		</field>
 		<field>

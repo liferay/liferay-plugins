@@ -16,11 +16,13 @@
 
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.compat.portal.util.PortalUtil" %>
+
 <div align="center">
 	<liferay-ui:flash
 		align="center"
 		height="100"
-		movie='<%= request.getContextPath() + "/view.swf" %>'
+		movie='<%= PortalUtil.getPathContext(request) + "/view.swf" %>'
 		width="100"
 		wmode="transparent"
 	/>

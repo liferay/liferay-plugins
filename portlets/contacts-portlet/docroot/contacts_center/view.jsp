@@ -111,7 +111,6 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 										<%
 										for (Group curGroup : groups) {
-
 											String filterByGroupId = ContactsConstants.FILTER_BY_GROUP + curGroup.getGroupId();
 										%>
 

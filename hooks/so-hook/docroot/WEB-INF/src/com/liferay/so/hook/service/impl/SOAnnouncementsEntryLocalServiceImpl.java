@@ -61,6 +61,24 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		super(announcementsEntryLocalService);
 	}
 
+	public AnnouncementsEntry addEntry(
+			long userId, long classNameId, long classPK, String title,
+			String content, String url, String type, int displayDateMonth,
+			int displayDateDay, int displayDateYear, int displayDateHour,
+			int displayDateMinute, boolean autoDisplayDate,
+			int expirationDateMonth, int expirationDateDay,
+			int expirationDateYear, int expirationDateHour,
+			int expirationDateMinute, int priority, boolean alert)
+		throws PortalException, SystemException {
+
+		return addEntry(
+			userId, classNameId, classPK, title, content, url, type,
+			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
+			displayDateMinute, expirationDateMonth, expirationDateDay,
+			expirationDateYear, expirationDateHour, expirationDateMinute,
+			priority, alert);
+	}
+
 	@Override
 	public AnnouncementsEntry addEntry(
 			long plid, long classNameId, long classPK, String title,

@@ -53,12 +53,10 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 		return MicroblogsEntry.class.getName();
 	}
 
-	@Override
 	public long getClassPK() {
 		return _entry.getMicroblogsEntryId();
 	}
 
-	@Override
 	public long getGroupId() {
 		try {
 			Group group = GroupLocalServiceUtil.getCompanyGroup(
@@ -72,12 +70,10 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 		return 0;
 	}
 
-	@Override
 	public String getSummary(Locale locale) {
 		return HtmlUtil.stripHtml(_entry.getContent());
 	}
 
-	@Override
 	public String getTitle(Locale locale) {
 		return HtmlUtil.stripHtml(_entry.getContent());
 	}
@@ -121,17 +117,14 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 		return null;
 	}
 
-	@Override
 	public long getUserId() {
 		return _entry.getUserId();
 	}
 
-	@Override
 	public String getUserName() {
 		return _entry.getUserName();
 	}
 
-	@Override
 	public String getUuid() {
 		return null;
 	}
@@ -148,7 +141,6 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 		return false;
 	}
 
-	@Override
 	public String render(
 			RenderRequest renderRequest, RenderResponse renderResponse,
 			String template)

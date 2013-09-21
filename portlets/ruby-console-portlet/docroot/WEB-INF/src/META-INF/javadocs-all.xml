@@ -10,22 +10,14 @@
 			<param>
 				<name>resourceRequest</name>
 				<type>javax.portlet.ResourceRequest</type>
-				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>resourceResponse</name>
 				<type>javax.portlet.ResourceResponse</type>
-				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>PortletException</name>
-				<type>javax.portlet.PortletException</type>
-				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
@@ -33,22 +25,18 @@
 			<param>
 				<name>consoleInput</name>
 				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletRequest</name>
 				<type>javax.portlet.PortletRequest</type>
-				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
 				<name>portletResponse</name>
 				<type>javax.portlet.PortletResponse</type>
-				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
 				<name>IOException</name>
 				<type>java.io.IOException</type>
-				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>

@@ -3,4 +3,17 @@
 
 <project name="portal-compat-hook" basedir="." default="deploy">
 	<import file="../build-common-hook.xml" />
+
+	<target name="update-from-portal">
+		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portal/layout/view/portlet.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portal/layout/view/common.jspf"
+			/>
+		</copy>
+	</target>
 </project>

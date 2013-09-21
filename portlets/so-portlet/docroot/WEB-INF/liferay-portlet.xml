@@ -27,6 +27,7 @@
 		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<preferences-unique-per-layout>false</preferences-unique-per-layout>
 		<preferences-owned-by-group>true</preferences-owned-by-group>
+		<use-default-template>false</use-default-template>
 		<header-portlet-css>/sites/css/main.css</header-portlet-css>
 		<header-portlet-javascript>/sites/js/main.js</header-portlet-javascript>
 		<footer-portal-javascript>/html/js/liferay/service.js</footer-portal-javascript>

@@ -18,6 +18,7 @@
 
 <%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 
+<%@ page import="com.liferay.compat.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Constants" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
@@ -171,8 +172,8 @@ else {
 
 	<br /><br />
 
-	<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/servlet/test?<%= Constants.CMD %>=getFoodItemXml<br />
-	<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= request.getContextPath() %>/view.xsl
+	<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= PortalUtil.getPathContext(request) %>/servlet/test?<%= Constants.CMD %>=getFoodItemXml<br />
+	<%= HttpUtil.getProtocol(request) %>://<%= request.getServerName() %>:<%= request.getServerPort() %><%= PortalUtil.getPathContext(request) %>/view.xsl
 
 <%
 }

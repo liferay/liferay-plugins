@@ -36,7 +36,7 @@ JIRAIssue jiraIssue = (JIRAIssue)objArray[2];
 		<liferay-ui:icon
 			label="<%= true %>"
 			message="SVN"
-			src='<%= request.getContextPath() + "/icons/svn.png" %>'
+			src='<%= PortalUtil.getPathContext(request) + "/icons/svn.png" %>'
 			target="_blank"
 			url="<%= taglibSVNURL %>"
 		/>
@@ -50,7 +50,7 @@ JIRAIssue jiraIssue = (JIRAIssue)objArray[2];
 			<liferay-ui:icon
 				label="<%= true %>"
 				message="JIRA"
-				src='<%= request.getContextPath() + "/icons/jira.png" %>'
+				src='<%= PortalUtil.getPathContext(request) + "/icons/jira.png" %>'
 				target="_blank"
 				url="<%= taglibJIRAURL %>"
 			/>

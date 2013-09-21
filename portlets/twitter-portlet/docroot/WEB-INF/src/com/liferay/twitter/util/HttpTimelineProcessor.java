@@ -15,7 +15,6 @@
 package com.liferay.twitter.util;
 
 import com.liferay.compat.portal.kernel.servlet.HttpHeaders;
-import com.liferay.compat.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -31,6 +30,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import java.text.Format;
 
 import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -124,7 +124,7 @@ public class HttpTimelineProcessor implements TimelineProcessor {
 		HttpTimelineProcessor.class);
 
 	private Format _dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
-		"EEE MMM d hh:mm:ss Z yyyy", LocaleUtil.US);
+		"EEE MMM d hh:mm:ss Z yyyy", Locale.US);
 	private Pattern _pattern = Pattern.compile(
 		"data-item-id=\"([0-9]+)\".*?data-user-id=\"([0-9]+)\".*?data-time=\"" +
 			"([0-9]+)\".*?<p class=\"js-tweet-text tweet-text\">(.*?)</p>",

@@ -51,22 +51,18 @@ public class TasksEntryAssetRenderer extends BaseAssetRenderer {
 		return TasksEntry.class.getName();
 	}
 
-	@Override
 	public long getClassPK() {
 		return _entry.getTasksEntryId();
 	}
 
-	@Override
 	public long getGroupId() {
 		return _entry.getGroupId();
 	}
 
-	@Override
 	public String getSummary(Locale locale) {
 		return _entry.getTitle();
 	}
 
-	@Override
 	public String getTitle(Locale locale) {
 		return _entry.getTitle();
 	}
@@ -101,17 +97,14 @@ public class TasksEntryAssetRenderer extends BaseAssetRenderer {
 		return null;
 	}
 
-	@Override
 	public long getUserId() {
 		return _entry.getUserId();
 	}
 
-	@Override
 	public String getUserName() {
 		return _entry.getUserName();
 	}
 
-	@Override
 	public String getUuid() {
 		return null;
 	}
@@ -122,7 +115,6 @@ public class TasksEntryAssetRenderer extends BaseAssetRenderer {
 			permissionChecker, _entry, ActionKeys.VIEW);
 	}
 
-	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse,
 		String template) {
