@@ -14,8 +14,8 @@
 
 package com.liferay.mail.util;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.util.portlet.PortletProps;
 
 /**

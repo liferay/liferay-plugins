@@ -14,10 +14,10 @@
 
 package com.liferay.samplehibernate.servlet;
 
+import com.liferay.compat.portal.kernel.servlet.HttpHeaders;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.samplehibernate.FoodItemComponentImpl;

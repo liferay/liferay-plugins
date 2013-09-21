@@ -14,10 +14,10 @@
 
 package com.liferay.socialcoding.model.impl;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.socialcoding.model.JIRAIssue;
 import com.liferay.socialcoding.model.SVNRepository;

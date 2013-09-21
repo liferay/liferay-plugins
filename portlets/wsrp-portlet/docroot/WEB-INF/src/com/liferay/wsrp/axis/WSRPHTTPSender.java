@@ -14,12 +14,12 @@
 
 package com.liferay.wsrp.axis;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InitialThreadLocal;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.util.CookieUtil;
 import com.liferay.util.axis.SimpleHTTPSender;

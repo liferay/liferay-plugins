@@ -14,12 +14,12 @@
 
 package com.liferay.socialnetworking.hook.upgrade.v1_0_0;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.upgrade.util.UpgradeTable;
 import com.liferay.portal.kernel.upgrade.util.UpgradeTableFactoryUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.socialnetworking.hook.upgrade.v1_0_0.util.MeetupsEntryTable;
 import com.liferay.socialnetworking.hook.upgrade.v1_0_0.util.MeetupsRegistrationTable;
 import com.liferay.socialnetworking.hook.upgrade.v1_0_0.util.WallEntryTable;

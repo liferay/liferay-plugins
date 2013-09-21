@@ -15,8 +15,8 @@
 package com.liferay.netvibeswidget.action;
 
 import com.liferay.compat.portal.kernel.portlet.DefaultConfigurationAction;
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;

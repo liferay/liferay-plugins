@@ -14,6 +14,7 @@
 
 package com.liferay.mail.service.impl;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.mail.NoSuchMessageException;
 import com.liferay.mail.model.Attachment;
 import com.liferay.mail.model.Folder;
@@ -30,7 +31,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 

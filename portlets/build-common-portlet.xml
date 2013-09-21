@@ -21,7 +21,7 @@
 
 		<antcall target="build-common-plugin.war" />
 
-		<loadfile property="portlet.xml.content" srcFile="docroot/WEB-INF/portlet.xml" /> 
+		<loadfile property="portlet.xml.content" srcFile="docroot/WEB-INF/portlet.xml" />
 
 		<if>
 			<contains string="${portlet.xml.content}" substring="com.liferay.compat.util.bridges.alloy.AlloyPortlet" />

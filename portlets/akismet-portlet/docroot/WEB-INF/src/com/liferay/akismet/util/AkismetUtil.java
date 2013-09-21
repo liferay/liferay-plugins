@@ -16,6 +16,7 @@ package com.liferay.akismet.util;
 
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
+import com.liferay.compat.portal.kernel.servlet.HttpHeaders;
 import com.liferay.compat.portal.kernel.util.Time;
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringBundler;

@@ -17,12 +17,12 @@ package com.liferay.chat.service.persistence;
 import com.liferay.chat.model.Entry;
 import com.liferay.chat.model.EntryConstants;
 import com.liferay.chat.model.impl.EntryImpl;
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 

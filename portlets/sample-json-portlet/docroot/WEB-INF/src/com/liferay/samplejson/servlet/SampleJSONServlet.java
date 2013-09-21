@@ -14,8 +14,8 @@
 
 package com.liferay.samplejson.servlet;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 import java.io.PrintWriter;

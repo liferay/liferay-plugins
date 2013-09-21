@@ -14,9 +14,9 @@
 
 package com.liferay.mysubscriptions.portlet;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;

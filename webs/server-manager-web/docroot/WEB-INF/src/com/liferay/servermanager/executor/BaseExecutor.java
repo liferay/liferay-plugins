@@ -14,8 +14,8 @@
 
 package com.liferay.servermanager.executor;
 
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.servermanager.util.JSONKeys;
 
 import java.util.ArrayList;

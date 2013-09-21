@@ -16,6 +16,7 @@ package com.liferay.sampledrools.action;
 
 import com.liferay.compat.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
+import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.bi.rules.RulesEngineException;
 import com.liferay.portal.kernel.bi.rules.RulesEngineUtil;
 import com.liferay.portal.kernel.bi.rules.RulesLanguage;
@@ -29,7 +30,6 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import javax.portlet.ActionRequest;
