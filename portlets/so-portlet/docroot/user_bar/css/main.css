@@ -591,52 +591,47 @@ html > body.lfr-dockbar-pinned {
 	}
 }
 
-.ie7 {
-	.so-portlet-user-bar {
-		.dashboard-nav, .user-toolbar {
-			@include clear-both;
+.ie7 .so-portlet-user-bar {
+	.dashboard-nav, .user-toolbar {
+		@include clear-both;
+
+		li {
+			display: block;
+			float: left;
 
 			li {
-				display: block;
-				float: left;
-
-				li {
-					float: none;
-				}
+				float: none;
 			}
 		}
+	}
 
-		.user-toolbar .go-to .portlet-body {
-			margin-top: -0.75em;
+	.user-toolbar .go-to .portlet-body {
+		margin-top: -0.75em;
 
-			input {
-				color: $defaultTextColor;
-			}
+		input {
+			color: $defaultTextColor;
 		}
 	}
 }
 
-.ie8 {
-	.so-portlet-user-bar {
-		.search-input {
-			background: #181c1f;
-		}
+.ie8 .so-portlet-user-bar {
+	.search-input {
+		background: #181C1F;
+	}
 
-		.notifications-menu {
-			margin-top: 0.2em;			
-			.notification-count {
-				margin: 0px 0.1em;
-			}
-		}
+	.notifications-menu {
+		margin-top: 0.2em;
 
-		.user-toolbar {
-			.full-name {
-				display: inline;
-			}
+		.notification-count {
+			margin: 0 0.1em;
 		}
+	}
 
-		.config-item {
-			float: right;
-		}
+	.user-toolbar .full-name {
+		display: inline;
+	}
+
+	.config-item {
+		float: right;
 	}
 }
