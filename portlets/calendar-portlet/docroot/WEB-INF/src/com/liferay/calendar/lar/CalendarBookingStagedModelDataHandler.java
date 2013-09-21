@@ -84,8 +84,8 @@ public class CalendarBookingStagedModelDataHandler
 
 		portletDataContext.addClassedModel(
 			calendarBookingElement,
-			ExportImportPathUtil.getModelPath(calendarBooking), calendarBooking,
-			CalendarPortletDataHandler.NAMESPACE);
+			ExportImportPathUtil.getModelPath(calendarBooking),
+			calendarBooking);
 	}
 
 	@Override
@@ -142,7 +142,7 @@ public class CalendarBookingStagedModelDataHandler
 		}
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			calendarBooking, CalendarPortletDataHandler.NAMESPACE);
+			calendarBooking);
 
 		CalendarBooking importedCalendarBooking = null;
 
@@ -207,8 +207,7 @@ public class CalendarBookingStagedModelDataHandler
 		}
 
 		portletDataContext.importClassedModel(
-			calendarBooking, importedCalendarBooking,
-			CalendarPortletDataHandler.NAMESPACE);
+			calendarBooking, importedCalendarBooking);
 	}
 
 }

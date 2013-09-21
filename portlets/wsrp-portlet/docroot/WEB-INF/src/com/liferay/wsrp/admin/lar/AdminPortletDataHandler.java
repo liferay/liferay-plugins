@@ -178,7 +178,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			"wsrp-consumer");
 
 		portletDataContext.addClassedModel(
-			wsrpConsumerElement, path, wsrpConsumer, NAMESPACE);
+			wsrpConsumerElement, path, wsrpConsumer);
 
 		if (portletDataContext.getBooleanParameter(
 				NAMESPACE, "wsrp-consumer-portlets")) {
@@ -218,7 +218,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			wsrpConsumerPortletsElement.addElement("wsrp-consumer-portlet");
 
 		portletDataContext.addClassedModel(
-			wsrpConsumerPortletElement, path, wsrpConsumerPortlet, NAMESPACE);
+			wsrpConsumerPortletElement, path, wsrpConsumerPortlet);
 	}
 
 	protected void exportWSRPProducer(
@@ -236,7 +236,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			"wsrp-producer");
 
 		portletDataContext.addClassedModel(
-			wsrpProducerElement, path, wsrpProducer, NAMESPACE);
+			wsrpProducerElement, path, wsrpProducer);
 	}
 
 	protected String getWSRPConsumerPath(
@@ -306,7 +306,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		catch (NoSuchConsumerException nsce) {
 			ServiceContext serviceContext =
 				portletDataContext.createServiceContext(
-					wsrpConsumerElement, wsrpConsumer, NAMESPACE);
+					wsrpConsumerElement, wsrpConsumer);
 
 			serviceContext.setUuid(wsrpConsumer.getUuid());
 
@@ -343,7 +343,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		catch (NoSuchConsumerPortletException nscpe) {
 			ServiceContext serviceContext =
 				portletDataContext.createServiceContext(
-					wsrpConsumerPortletElement, wsrpConsumerPortlet, NAMESPACE);
+					wsrpConsumerPortletElement, wsrpConsumerPortlet);
 
 			serviceContext.setUuid(wsrpConsumerPortlet.getUuid());
 
@@ -437,7 +437,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		catch (NoSuchProducerException nspe) {
 			ServiceContext serviceContext =
 				portletDataContext.createServiceContext(
-					wsrpProducerElement, wsrpProducer, NAMESPACE);
+					wsrpProducerElement, wsrpProducer);
 
 			serviceContext.setUuid(wsrpProducer.getUuid());
 

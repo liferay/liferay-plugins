@@ -75,7 +75,7 @@ public class CalendarStagedModelDataHandler
 
 		portletDataContext.addClassedModel(
 			calendarElement, ExportImportPathUtil.getModelPath(calendar),
-			calendar, CalendarPortletDataHandler.NAMESPACE);
+			calendar);
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class CalendarStagedModelDataHandler
 			calendar.getCalendarResourceId());
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			calendar, CalendarPortletDataHandler.NAMESPACE);
+			calendar);
 
 		Calendar importedCalendar = null;
 
@@ -142,8 +142,7 @@ public class CalendarStagedModelDataHandler
 				calendar.isEnableRatings(), serviceContext);
 		}
 
-		portletDataContext.importClassedModel(
-			calendar, importedCalendar, CalendarPortletDataHandler.NAMESPACE);
+		portletDataContext.importClassedModel(calendar, importedCalendar);
 	}
 
 }
