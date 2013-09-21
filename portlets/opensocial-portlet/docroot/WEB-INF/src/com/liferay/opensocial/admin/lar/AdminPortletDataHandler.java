@@ -35,8 +35,6 @@ import javax.portlet.PortletPreferences;
  */
 public class AdminPortletDataHandler extends BasePortletDataHandler {
 
-	public static final String NAMESPACE = "opensocial";
-
 	public AdminPortletDataHandler() {
 		setDataLevel(DataLevel.SITE);
 		setDeletionSystemEventStagedModelTypes(
@@ -121,8 +119,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 		Element gadgetElement = gadgetsElement.addElement("gadget");
 
-		portletDataContext.addClassedModel(
-			gadgetElement, path, gadget, NAMESPACE);
+		portletDataContext.addClassedModel(gadgetElement, path, gadget);
 	}
 
 	protected String getGadgetPath(
@@ -158,8 +155,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		}
 		catch (NoSuchGadgetException nsge) {
 			ServiceContext serviceContext =
-				portletDataContext.createServiceContext(
-					gadgetElement, gadget, NAMESPACE);
+				portletDataContext.createServiceContext(gadgetElement, gadget);
 
 			serviceContext.setUuid(gadget.getUuid());
 

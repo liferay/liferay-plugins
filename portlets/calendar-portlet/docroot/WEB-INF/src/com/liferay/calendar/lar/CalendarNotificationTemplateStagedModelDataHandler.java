@@ -92,7 +92,7 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		portletDataContext.addClassedModel(
 			calendarNotificationTemplateElement,
 			ExportImportPathUtil.getModelPath(calendarNotificationTemplate),
-			calendarNotificationTemplate, CalendarPortletDataHandler.NAMESPACE);
+			calendarNotificationTemplate);
 	}
 
 	@Override
@@ -129,7 +129,7 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 				calendarNotificationTemplate.getNotificationTemplateType());
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			calendarNotificationTemplate, CalendarPortletDataHandler.NAMESPACE);
+			calendarNotificationTemplate);
 
 		CalendarNotificationTemplate importedCalendarNotificationTemplate =
 			null;
@@ -181,8 +181,7 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		}
 
 		portletDataContext.importClassedModel(
-			calendarNotificationTemplate, importedCalendarNotificationTemplate,
-			CalendarPortletDataHandler.NAMESPACE);
+			calendarNotificationTemplate, importedCalendarNotificationTemplate);
 	}
 
 }
