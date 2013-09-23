@@ -2,6 +2,7 @@ AUI.add(
 	'opensocial-editor',
 	function(A) {
 		var Lang = A.Lang;
+		var AArray = A.Array;
 
 		var ACE_EDITOR = 'aceEditor';
 
@@ -68,6 +69,8 @@ AUI.add(
 		var REPOSITORY_ID = 'repositoryId';
 
 		var ROOT_FOLDER_ID = 'rootFolderId';
+
+		var STR_EMPTY = '';
 
 		var TPL_EDITOR = '<div id="editorPortlet">' +
 			'<div id="gadgetEditorToolbar"></div>' +
@@ -187,16 +190,13 @@ AUI.add(
 
 						var entryId = object.get(ENTRY_ID);
 
-						if (entryId != '') {
-							var item;
+						if (entryId != STR_EMPTY) {
+							var item = {};
 
 							var containsKey = instance._indexMap.has(entryId);
 
 							if (containsKey) {
 								item = instance._indexMap.getValue(entryId);
-							}
-							else {
-								item = {};
 							}
 
 							var addEntry = true;
@@ -427,9 +427,7 @@ AUI.add(
 						var tab = instance._getTabFromDataSet(entryId);
 
 						if (tab && tab.get(IS_DIRTY)) {
-							var error = 'Save the gadget before publishing.';
-
-							instance._showErrorDialog(error);
+							instance._showErrorDialog(Liferay.Language.get('save-the-gadget-before-publishing'));
 						}
 						else {
 							var node = instance._getNodeFromDataSet(entryId);
@@ -449,7 +447,7 @@ AUI.add(
 									dialogIframe: {
 										uri: uri
 									},
-									title: 'Publish Gadget',
+									title: Liferay.Language.get('publish-gadget'),
 									uri: uri
 								}
 							);
@@ -491,7 +489,7 @@ AUI.add(
 
 						var bodyContent = Lang.sub(TPL_URL_DISPLAY, [node.get(LABEL), node.get(FILE_ENTRY_URL)]);
 
-						instance._createDialog('URL', bodyContent, null).render();
+						instance._createDialog('URL', bodyContent, null);
 					},
 
 					_afterTreeNodeUnpublish: function(event) {
@@ -503,7 +501,7 @@ AUI.add(
 
 						var gadgetId = node.get(GADGET_ID);
 
-						instance._showConfirmationDialog('Are you sure you want to unpublish the gadget "' + node.get(LABEL) + '"?', instance._unpublishGadget, node, gadgetId);
+						instance._showConfirmationDialog(Liferay.Language.get('are-you-sure-you-want-to-unpublish-the-gadget') + ' "' + node.get(LABEL) + '"?', instance._unpublishGadget, node, gadgetId);
 					},
 
 					_afterTreeViewAppend: function(event) {
@@ -521,7 +519,7 @@ AUI.add(
 						else {
 							var treeViewEditor = instance._treeViewEditor;
 
-							A.Array.each(
+							AArray.each(
 								data,
 								function(item, index, collection) {
 									var node = new A.TreeNodeEditor(
@@ -637,9 +635,7 @@ AUI.add(
 									destroyOnHide: true,
 									height: height,
 									modal: modal,
-									toolbars: {
-										footer: buttons
-									},
+									'toolbars.footer': buttons,
 									width: width
 								},
 								title: title
@@ -769,7 +765,7 @@ AUI.add(
 
 						var entryId = event.entryId;
 
-						var unpublish = '';
+						var unpublish = STR_EMPTY;
 
 						var node = instance._getNodeFromDataSet(entryId);
 
@@ -949,7 +945,7 @@ AUI.add(
 								else {
 									var children = node.getChildren(true);
 
-									A.Array.each(
+									AArray.each(
 										children,
 										function(item, index, collection) {
 											if (item.isLeaf()) {
@@ -1044,7 +1040,7 @@ AUI.add(
 						var duplicateLabel = false;
 
 						do {
-							duplicateLabel = A.Array.some(
+							duplicateLabel = AArray.some(
 								children,
 								function(item, index, collection) {
 									if (item.isLeaf() == leafNode && item.get(LABEL).toLowerCase() == label.toLowerCase()) {
@@ -1072,7 +1068,7 @@ AUI.add(
 
 						var node = null;
 
-						if (entryId != '') {
+						if (entryId != STR_EMPTY) {
 							var item = instance._indexMap.getValue(entryId);
 
 							node = item && item.node;
@@ -1667,7 +1663,7 @@ AUI.add(
 								on: {
 									click: function(event) {
 										if (callback) {
-											callback.apply(instance, A.Array(args, 2, true));
+											callback.apply(instance, AArray(args, 2, true));
 										}
 
 										instance._confirmationDialog.destroy();
@@ -1685,7 +1681,7 @@ AUI.add(
 							}
 						];
 
-						var confirmationDialog = instance._createDialog('Confirm', message, buttons).render();
+						var confirmationDialog = instance._createDialog('Confirm', message, buttons);
 
 						instance._confirmationDialog = confirmationDialog;
 					},
@@ -1702,7 +1698,7 @@ AUI.add(
 							bodyContent = Lang.sub(TPL_ERROR_MESSAGE, error);
 						}
 
-						instance._createDialog('Error', bodyContent, null).render();
+						instance._createDialog('Error', bodyContent, null);
 					},
 
 					_showSearchDialog: function() {
@@ -1777,7 +1773,7 @@ AUI.add(
 							width: 400
 						};
 
-						instance._searchDialog = instance._createDialog('Search', form.get(BOUNDING_BOX), buttons, options).render();
+						instance._searchDialog = instance._createDialog('Search', form.get(BOUNDING_BOX), buttons, options);
 					},
 
 					_unpublishGadget: function(node, gadgetId) {

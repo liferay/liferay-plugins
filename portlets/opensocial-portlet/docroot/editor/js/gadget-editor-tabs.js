@@ -2,6 +2,7 @@ AUI.add(
 	'gadget-editor-tabs',
 	function(A) {
 		var Lang = A.Lang;
+		var AArray = A.Array;
 
 		var ACE_EDITOR = 'aceEditor';
 
@@ -17,7 +18,7 @@ AUI.add(
 
 		var IS_DIRTY = 'isDirty';
 
-		var LABEL = 'label';
+		var STR_EMPTY = '';
 
 		var TPL_CLOSE_BUTTON = '<a class="gadget-editor-tab-close icon-remove" href="javascript:;"></a>';
 
@@ -32,16 +33,6 @@ AUI.add(
 				NAME: 'tab-view-editor',
 
 				prototype: {
-					_addTab: function(tab) {
-						var instance = this;
-
-						tab.addTarget(instance);
-
-						tab.fire('add');
-
-						TabViewEditor.superclass.add.apply(instance, arguments);
-					},
-
 					addExistingDocument: function(entryId, label, editorContent) {
 						var instance = this;
 
@@ -81,7 +72,7 @@ AUI.add(
 							{
 								active: true,
 								contentNode: contentNode,
-								editorContent: '',
+								editorContent: STR_EMPTY,
 								entryId: entryId,
 								isDirty: false,
 								isNew: true,
@@ -104,7 +95,7 @@ AUI.add(
 						var tab = instance.getTabById(id);
 
 						if (tab) {
-							if (instance.size() == 1) {
+							if (instance.size() === 1) {
 								instance.addNewTab();
 							}
 
@@ -125,7 +116,7 @@ AUI.add(
 
 						instance.some(
 							function(item, index, collection) {
-								if (item.get(ID) == id) {
+								if (item.get(ID) === id) {
 									tab = item;
 
 									return true;
@@ -161,6 +152,24 @@ AUI.add(
 
 						instance.selectChild(index);
 					},
+
+					_addTab: function(tab) {
+						var instance = this;
+
+						tab.addTarget(instance);
+
+						tab.fire('add');
+
+						TabViewEditor.superclass.add.apply(instance, arguments);
+					},
+
+					_validateAceEditor: function(value) {
+						return (value instanceof A.AceEditor);
+					},
+
+					_validateDirtyIndicatorNode: function(value) {
+						return (value instanceof A.Node);
+					}
 				}
 			}
 		);
@@ -170,25 +179,36 @@ AUI.add(
 		var TabEditor = A.Component.create(
 			{
 				ATTRS: {
-					aceEditor: {},
-					dirtyIndicatorNode: {},
-					fileName: '',
+					aceEditor: {
+						validator: '_validateAceEditor'
+					},
+					dirtyIndicatorNode: {
+						validator: '_validateDirtyIndicatorNode'
+					},
+					fileName: {
+						validator: Lang.isString
+					},
 					entryId: {
-						setter: function(v) {
-							return String(v);
+						setter: function(value) {
+							return String(value);
 						},
-						value: ''
+						value: STR_EMPTY
 					},
 					isDirty: {
+						validator: Lang.isBoolean,
 						value: false
 					},
 					isNew: {
+						validator: Lang.isBoolean,
 						value: true
 					},
 					isRendered: {
+						validator: Lang.isBoolean,
 						value: false
 					},
-					label: ''
+					label: {
+						validator: Lang.isString
+					}
 				},
 
 				EXTENDS: A.Tab,
@@ -209,11 +229,29 @@ AUI.add(
 						var instance = this;
 
 						instance._editorModes = {
-							css: ['css'],
-							gadget: ['xml'],
-							html: ['html', 'htm', 'shtml', 'shtm', 'xhtml'],
-							javascript: ['js'],
-							xml: ['xsml', 'xsl', 'xsd', 'kml', 'wsdl']
+							css: {
+								'css': 1
+							},
+							gadget: {
+								'xml': 1
+							},
+							html: {
+								'html': 1,
+								'htm': 1,
+								'shtml': 1,
+								'shtm': 1,
+								'xhtml': 1
+							},
+							javascript: {
+								'js': 1
+							},
+							xml: {
+								'xsml': 1,
+								'xsl': 1,
+								'xsd': 1,
+								'kml': 1,
+								'wsdl': 1
+							}
 						};
 
 						instance._createEditor(instance.get('panelNode'), config.editorContent);
@@ -245,27 +283,23 @@ AUI.add(
 					updateEditorMode: function(fileName) {
 						var instance = this;
 
-						var mode;
+						var mode = 'ace/mode/text';
 
 						var extension = fileName.substr(fileName.lastIndexOf('.') + 1);
 
-						if (A.Array.indexOf(instance._editorModes.css, extension) != -1) {
+						var editorModes = instance._editorModes;
+
+						if (editorModes.css[extension]) {
 							mode = 'ace/mode/css';
 						}
-						else if (A.Array.indexOf(instance._editorModes.gadget, extension) != -1) {
+						else if (editorModes.gadget[extension] || editorModes.html[extension]) {
 							mode = 'ace/mode/html';
 						}
-						else if (A.Array.indexOf(instance._editorModes.html, extension) != -1) {
-							mode = 'ace/mode/html';
-						}
-						else if (A.Array.indexOf(instance._editorModes.javascript, extension) != -1) {
+						else if (editorModes.javascript[extension]) {
 							mode = 'ace/mode/javascript';
 						}
-						else if (A.Array.indexOf(instance._editorModes.xml, extension) != -1) {
+						else if (editorModes.xml[extension]) {
 							mode = 'ace/mode/xml';
-						}
-						else {
-							mode = 'ace/mode/text';
 						}
 
 						instance.get(ACE_EDITOR).getEditor().getSession().setMode(mode);
@@ -299,12 +333,6 @@ AUI.add(
 						return aceEditor;
 					},
 
-					_hideIsDirtyIndicator: function() {
-						var instance = this;
-
-						instance.get(DIRTY_INDICATOR_NODE).hide();
-					},
-
 					_onCloseButtonClick: function(event) {
 						var instance = this;
 
@@ -321,12 +349,7 @@ AUI.add(
 					_onIsDirtyChange: function(event) {
 						var instance = this;
 
-						if (event.newVal) {
-							instance._showIsDirtyIndicator();
-						}
-						else {
-							instance._hideIsDirtyIndicator();
-						}
+						instance.get(DIRTY_INDICATOR_NODE).toggleView(event.newVal);
 					},
 
 					_onLabelChange: function(event) {
@@ -357,22 +380,11 @@ AUI.add(
 
 						var dirtyIndicatorNode = A.Node.create(TPL_DIRTY_INDICATOR);
 
-						if (instance.get(IS_DIRTY)) {
-							dirtyIndicatorNode.show();
-						}
-						else {
-							dirtyIndicatorNode.hide();
-						}
+						dirtyIndicatorNode.toggleView(instance.get(IS_DIRTY));
 
 						instance.get(CONTENT_BOX).prepend(dirtyIndicatorNode);
 
 						instance.set(DIRTY_INDICATOR_NODE, dirtyIndicatorNode);
-					},
-
-					_showIsDirtyIndicator: function() {
-						var instance = this;
-
-						instance.get(DIRTY_INDICATOR_NODE).show();
 					}
 				}
 			}
