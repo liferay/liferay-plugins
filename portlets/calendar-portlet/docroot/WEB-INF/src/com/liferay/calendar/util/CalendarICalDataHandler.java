@@ -605,18 +605,24 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		// Dates
 
-		boolean isMultipleDayEvent = calendarBooking.getDuration() > Time.DAY;
+		boolean isMultipleDayEvent = false;
 
-		if (calendarBooking.isAllDay() && isMultipleDayEvent) {
+		if (calendarBooking.getDuration() > Time.DAY) {
+			isMultipleDayEvent = true;
+		}
+
+		if (isMultipleDayEvent && calendarBooking.isAllDay()) {
 			DtStart dtStart = new DtStart(
 				new Date(calendarBooking.getStartTime()));
 
 			propertyList.add(dtStart);
 
-			java.util.Calendar end = JCalendarUtil.getJCalendar(
+			java.util.Calendar endJCalendar = JCalendarUtil.getJCalendar(
 				calendarBooking.getEndTime());
-			end.add(java.util.Calendar.DAY_OF_MONTH, 1);
-			DtEnd dtEnd = new DtEnd(new Date(end.getTime()));
+
+			endJCalendar.add(java.util.Calendar.DAY_OF_MONTH, 1);
+
+			DtEnd dtEnd = new DtEnd(new Date(endJCalendar.getTime()));
 
 			propertyList.add(dtEnd);
 		}
