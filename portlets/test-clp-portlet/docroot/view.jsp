@@ -29,65 +29,67 @@ There are <%= statuses.size() %> statuses.
 
 <br /><br />
 
-<table border="1" cellpadding="4" cellspacing="0" width="100%">
-<tr>
-	<td>
-		<strong>Status ID</strong>
-	</td>
-	<td>
-		<strong>User ID</strong>
-	</td>
-	<td>
-		<strong>Modified Date</strong>
-	</td>
-	<td>
-		<strong>Online</strong>
-	</td>
-	<td>
-		<strong>Awake</strong>
-	</td>
-	<td>
-		<strong>Active Panel ID</strong>
-	</td>
-	<td>
-		<strong>Message</strong>
-	</td>
-	<td>
-		<strong>Play Sound</strong>
-	</td>
-</tr>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>
+				Status ID
+			</th>
+			<th>
+				User ID
+			</th>
+			<th>
+				Modified Date
+			</th>
+			<th>
+				Online
+			</th>
+			<th>
+				Awake
+			</th>
+			<th>
+				Active Panel ID
+			</th>
+			<th>
+				Message
+			</th>
+			<th>
+				Play Sound
+			</th>
+		</tr>
+	</thead>
 
 <%
 for (Status status : statuses) {
 %>
-
-	<tr>
-		<td>
-			<%= status.getStatusId() %>
-		</td>
-		<td>
-			<%= status.getUserId() %>
-		</td>
-		<td>
-			<%= status.getModifiedDate() %>
-		</td>
-		<td>
-			<%= status.isOnline() %>
-		</td>
-		<td>
-			<%= status.isAwake() %>
-		</td>
-		<td>
-			<%= status.getActivePanelIds() %>
-		</td>
-		<td>
-			<%= status.getMessage() %>
-		</td>
-		<td>
-			<%= status.isPlaySound() %>
-		</td>
-	</tr>
-
+	<tbody>
+		<tr>
+			<td>
+				<%= status.getStatusId() %>
+			</td>
+			<td>
+				<%= status.getUserId() %>
+			</td>
+			<td>
+				<%= status.getModifiedDate() %>
+			</td>
+			<td>
+				<%= status.isOnline() %>
+			</td>
+			<td>
+				<%= status.isAwake() %>
+			</td>
+			<td>
+				<%= status.getActivePanelIds() %>
+			</td>
+			<td>
+				<%= status.getMessage() %>
+			</td>
+			<td>
+				<%= status.isPlaySound() %>
+			</td>
+		</tr>
+	<tbody>
 <%
 }
 %>
