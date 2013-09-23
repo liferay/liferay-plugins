@@ -2,6 +2,7 @@ AUI.add(
 	'opensocial-editor',
 	function(A) {
 		var Lang = A.Lang;
+
 		var AArray = A.Array;
 
 		var ACE_EDITOR = 'aceEditor';
@@ -489,7 +490,7 @@ AUI.add(
 
 						var bodyContent = Lang.sub(TPL_URL_DISPLAY, [node.get(LABEL), node.get(FILE_ENTRY_URL)]);
 
-						instance._createDialog('URL', bodyContent, null);
+						instance._createDialog('URL', bodyContent);
 					},
 
 					_afterTreeNodeUnpublish: function(event) {
@@ -501,7 +502,9 @@ AUI.add(
 
 						var gadgetId = node.get(GADGET_ID);
 
-						instance._showConfirmationDialog(Liferay.Language.get('are-you-sure-you-want-to-unpublish-the-gadget') + ' "' + node.get(LABEL) + '"?', instance._unpublishGadget, node, gadgetId);
+						var message = Liferay.Language.get('are-you-sure-you-want-to-unpublish-the-gadget', node.get(LABEL));
+
+						instance._showConfirmationDialog(message, instance._unpublishGadget, node, gadgetId);
 					},
 
 					_afterTreeViewAppend: function(event) {
@@ -601,43 +604,42 @@ AUI.add(
 						instance._searchEditorButton.toggle();
 					},
 
-					_createDialog: function(title, bodyContent, buttons, options) {
+					_createDialog: function(title, bodyContent, options) {
 						var instance = this;
 
-						var centered = true;
-						var modal = true;
-						var height = 250;
-						var width = 400;
+						var dialog = {
+							bodyContent: bodyContent,
+							centered: true,
+							height: 250,
+							modal: true,
+							width: 400
+						};
 
 						if (options) {
-							if ('centered' in options) {
-								centered = options['centered'];
+							if ('buttons' in options) {
+								dialog['toolbars.footer'] = options['buttons'];
 							}
 
-							if ('modal' in options) {
-								modal = options['modal'];
+							if ('centered' in options) {
+								dialog.centered = options['centered'];
 							}
 
 							if ('height' in options) {
-								height = options['height'];
+								dialog.height = options['height'];
+							}
+
+							if ('modal' in options) {
+								dialog.modal = options['modal'];
 							}
 
 							if ('width' in options) {
-								width = options['width'];
+								dialog.width = options['width'];
 							}
 						}
 
 						return Liferay.Util.Window.getWindow(
 							{
-								dialog: {
-									bodyContent: bodyContent,
-									centered: centered,
-									destroyOnHide: true,
-									height: height,
-									modal: modal,
-									'toolbars.footer': buttons,
-									width: width
-								},
+								dialog: dialog,
 								title: title
 							}
 						);
@@ -753,7 +755,10 @@ AUI.add(
 						var tab = instance._getTabFromDataSet(event.entryId);
 
 						if (tab && tab.get(IS_DIRTY) && !event.noConfirm) {
-							instance._showConfirmationDialog('"' + tab.get('fileName') + '" has not been saved. Are you sure you want to close the tab?', instance._closeFileEntry, entryId);
+							var tabFileName =  tab.get('fileName');
+							var message = Liferay.Language.get('has-not-been-saved-are-you-sure-you-want-to-close-the-tab', tabFileName);
+
+							instance._showConfirmationDialog(message, instance._closeFileEntry, entryId);
 						}
 						else {
 							instance._closeFileEntry(entryId);
@@ -769,11 +774,16 @@ AUI.add(
 
 						var node = instance._getNodeFromDataSet(entryId);
 
+						var message;
+
 						if (node.get(GADGET_ID) > 0) {
-							unpublish = 'unpublish and ';
+							message = Liferay.Language.get('are-you-sure-you-want-to-unpublish-and-delete', node.get(LABEL));
+						}
+						else {
+							message = Liferay.Language.get('are-you-sure-you-want-to-delete', node.get(LABEL));
 						}
 
-						instance._showConfirmationDialog('Are you sure you want to ' + unpublish + 'delete "' + node.get(LABEL) + '"?', instance._deleteEntry, node, entryId);
+						instance._showConfirmationDialog(message, instance._deleteEntry, node, entryId);
 					},
 
 					_defLoadContentFn: function(event) {
@@ -826,9 +836,9 @@ AUI.add(
 						var tab = instance._getTabFromDataSet(event.entryId);
 
 						if (tab.get(IS_DIRTY) || tab.get(IS_NEW)) {
-							var error = 'Save the gadget before previewing.';
+							var message = Liferay.Language.get('save-the-gadget-before-previewing');
 
-							previewDialog.set(BODY_CONTENT, error);
+							previewDialog.set(BODY_CONTENT, message);
 
 							return;
 						}
@@ -996,7 +1006,9 @@ AUI.add(
 										failure: function(event) {
 											instance._loadingMask.hide();
 
-											instance._showErrorDialog('IO request "' + resourceId + '" failed');
+											var message = Liferay.Language.get('request-for-resource-id-failed', resourceId);
+
+											instance._showErrorDialog(message);
 										}
 									}
 								}
@@ -1140,7 +1152,7 @@ AUI.add(
 						   {
 							  background: 'none',
 							  strings: {
-								 loading: 'Busy'
+								 loading: Liferay.Language.get('busy')
 							  }
 						   }
 						).loadingmask;
@@ -1251,7 +1263,7 @@ AUI.add(
 										);
 									}
 								},
-								label: 'Preview'
+								label: Liferay.Language.get('preview')
 							}
 						);
 
@@ -1280,7 +1292,7 @@ AUI.add(
 						var searchEditorButton = new A.ToggleButton(
 							{
 								activeState: true,
-								label: 'Search',
+								label: Liferay.Language.get('search'),
 								icon: 'icon-search',
 								on: {
 									click: function(event) {
@@ -1352,7 +1364,9 @@ AUI.add(
 										},
 										on: {
 											failure: function(event) {
-												instance._showErrorDialog('Failed to read the Document Library');
+												var message = Liferay.Language.get('failed-to-access-documents');
+
+												instance._showErrorDialog(message);
 											},
 											success: function(event) {
 												this.sortChildren();
@@ -1659,7 +1673,7 @@ AUI.add(
 						var buttons = [
 							{
 								icon: 'icon-ok',
-								label: 'Yes',
+								label: Liferay.Language.get('yes'),
 								on: {
 									click: function(event) {
 										if (callback) {
@@ -1672,7 +1686,7 @@ AUI.add(
 							},
 							{
 								icon: 'icon-remove',
-								label: 'No',
+								label: Liferay.Language.get('no'),
 								on: {
 									click: function(event) {
 										instance._confirmationDialog.destroy();
@@ -1681,7 +1695,11 @@ AUI.add(
 							}
 						];
 
-						var confirmationDialog = instance._createDialog('Confirm', message, buttons);
+						var options = {
+							buttons: buttons
+						};
+
+						var confirmationDialog = instance._createDialog(Liferay.Language.get('confirm'), message, options);
 
 						instance._confirmationDialog = confirmationDialog;
 					},
@@ -1698,7 +1716,7 @@ AUI.add(
 							bodyContent = Lang.sub(TPL_ERROR_MESSAGE, error);
 						}
 
-						instance._createDialog('Error', bodyContent, null);
+						instance._createDialog(Liferay.Language.get('error'), bodyContent);
 					},
 
 					_showSearchDialog: function() {
@@ -1708,13 +1726,13 @@ AUI.add(
 
 						var searchField = new A.Textfield(
 							{
-								labelText: 'Search for:'
+								labelText: Liferay.Language.get('search-for')
 							}
 						);
 
 						var replaceField = new A.Textfield(
 							{
-								labelText: 'Replace with:'
+								labelText: Liferay.Language.get('replace-with')
 							}
 						);
 
@@ -1724,7 +1742,7 @@ AUI.add(
 						var buttons = [
 							new A.Button(
 								{
-									label: 'Find',
+									label: Liferay.Language.get('find'),
 									icon: 'icon-search',
 									on: {
 										click: function(event) {
@@ -1739,7 +1757,7 @@ AUI.add(
 							),
 							new A.Button(
 								{
-									label: 'Replace',
+									label: Liferay.Language.get('replace'),
 									icon: 'icon-random',
 									on: {
 										click: function(event) {
@@ -1756,7 +1774,7 @@ AUI.add(
 							),
 							new A.Button(
 								{
-									label: 'Close',
+									label: Liferay.Language.get('close'),
 									icon: 'icon-remove',
 									on: {
 										click: function(event) {
@@ -1768,12 +1786,13 @@ AUI.add(
 						];
 
 						var options = {
+							buttons: buttons,
 							height: 300,
 							modal: false,
 							width: 400
 						};
 
-						instance._searchDialog = instance._createDialog('Search', form.get(BOUNDING_BOX), buttons, options);
+						instance._searchDialog = instance._createDialog('Search', form.get(BOUNDING_BOX), options);
 					},
 
 					_unpublishGadget: function(node, gadgetId) {

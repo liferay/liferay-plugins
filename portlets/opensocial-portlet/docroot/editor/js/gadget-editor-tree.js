@@ -34,8 +34,6 @@ AUI.add(
 
 		var LABEL = 'label';
 
-		var NEW_FOLDER = 'New Folder';
-
 		var NEW_NODE = 'newNode';
 
 		var OWNER_TREE = 'ownerTree';
@@ -418,7 +416,7 @@ AUI.add(
 									cssClass: 'close-file-entry',
 									disabled: true,
 									icon: 'icon-remove',
-									label: 'Close'
+									label: Liferay.Language.get('close')
 								}
 							);
 
@@ -427,7 +425,7 @@ AUI.add(
 									cssClass: 'publish',
 									disabled: !instance.get(OWNER_TREE).get('publishGadgetPermission'),
 									icon: 'icon-bullhorn',
-									label: 'Publish'
+									label: Liferay.Language.get('publish')
 								}
 							);
 
@@ -435,7 +433,7 @@ AUI.add(
 								{
 									cssClass: 'show-url',
 									icon: 'icon-link',
-									label: 'Show URL'
+									label: Liferay.Language.get('show-url')
 								}
 							);
 
@@ -443,7 +441,7 @@ AUI.add(
 								{
 									cssClass: 'unpublish',
 									icon: 'icon-bullhorn',
-									label: 'Unpublish'
+									label: Liferay.Language.get('unpublish')
 								}
 							);
 
@@ -462,7 +460,7 @@ AUI.add(
 								{
 									cssClass: 'add-folder',
 									icon: 'icon-folder-close',
-									label: NEW_FOLDER
+									label: Liferay.Language.get('new-folder')
 								}
 							);
 
@@ -476,7 +474,7 @@ AUI.add(
 								cssClass: 'delete-entry',
 								disabled: instance.get(IS_ROOT_NODE),
 								icon: 'icon-remove',
-								label: 'Delete'
+								label: Liferay.Language.get('delete')
 							}
 						);
 
@@ -485,7 +483,7 @@ AUI.add(
 								cssClass: 'rename-entry',
 								disabled: instance.get(IS_ROOT_NODE),
 								icon: 'icon-pencil',
-								label: 'Rename'
+								label: Liferay.Language.get('rename')
 							}
 						);
 
