@@ -236,21 +236,21 @@ AUI.add(
 								'xml': 1
 							},
 							html: {
-								'html': 1,
 								'htm': 1,
-								'shtml': 1,
+								'html': 1,
 								'shtm': 1,
+								'shtml': 1,
 								'xhtml': 1
 							},
 							javascript: {
 								'js': 1
 							},
 							xml: {
-								'xsml': 1,
-								'xsl': 1,
-								'xsd': 1,
 								'kml': 1,
-								'wsdl': 1
+								'wsdl': 1,
+								'xsd': 1,
+								'xsl': 1,
+								'xsml': 1
 							}
 						};
 

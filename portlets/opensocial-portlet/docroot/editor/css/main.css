@@ -109,7 +109,6 @@
 
 .gadget-editor-contextmenu-toolbar {
 	background: #EEF0F2;
-	box-shadow: 4px 4px 8px #888888;
 
 	.btn {
 		width: 100%;
@@ -129,4 +128,9 @@
 
 		zoom: 1;
 	}
+}
+
+/* ---------- Extras ---------- */
+.gadget-editor-contextmenu-toolbar {
+	box-shadow: 4px 4px 8px #888888;
 }
