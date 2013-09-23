@@ -72,7 +72,7 @@ public class StringUtil extends com.liferay.portal.kernel.util.StringUtil {
 				// Found non-ascii char, fallback to the slow unicode detection
 
 				if (locale == null) {
-					locale = Locale.getDefault();
+					locale = LocaleUtil.getDefault();
 				}
 
 				return s.toLowerCase(locale);
@@ -109,7 +109,7 @@ public class StringUtil extends com.liferay.portal.kernel.util.StringUtil {
 				// Found non-ascii char, fallback to the slow unicode detection
 
 				if (locale == null) {
-					locale = Locale.getDefault();
+					locale = LocaleUtil.getDefault();
 				}
 
 				return s.toLowerCase(locale);
