@@ -2,6 +2,7 @@ AUI.add(
 	'gadget-editor-tree',
 	function(A) {
 		var Lang = A.Lang;
+		var AArray = A.Array;
 		var isString = Lang.isString;
 		var isValue = Lang.isValue;
 
@@ -47,6 +48,8 @@ AUI.add(
 
 		var RENDERED = 'rendered';
 
+		var STR_EMPTY = '';
+
 		var TPL_ICON_CONTEXT_MENU = '<a href="javascript:;"></a>';
 
 		var VISIBLE = 'visible';
@@ -58,11 +61,16 @@ AUI.add(
 				NAME: 'tree-view-editor',
 
 				ATTRS: {
-					activeEditable: {},
+					activeEditable: {
+						validator: Lang.isObject
+					},
 
-					publishGadgetPermission: {},
+					publishGadgetPermission: {
+						validator: Lang.isBoolean
+					},
 
 					treeActionOverlayManager: {
+						validator: Lang.isObject,
 						valueFn: function() {
 							return new A.OverlayManager();
 						}
@@ -83,7 +91,7 @@ AUI.add(
 							}
 						);
 
-						if (instance.get(ID) == parentId) {
+						if (instance.get(ID) === parentId) {
 							instance.appendChild(node);
 						}
 						else {
@@ -147,7 +155,7 @@ AUI.add(
 						var fileEntryChildren = [];
 						var folderChildren = [];
 
-						A.Array.each(
+						AArray.each(
 							children,
 							function(item, index, collection) {
 								if (item.isLeaf()) {
@@ -162,7 +170,7 @@ AUI.add(
 						fileEntryChildren.sort(arraySort);
 						folderChildren.sort(arraySort);
 
-						A.Array.each(
+						AArray.each(
 							folderChildren,
 							function(item, index, collection) {
 								if (index != 0) {
@@ -171,10 +179,10 @@ AUI.add(
 							}
 						);
 
-						A.Array.each(
+						AArray.each(
 							fileEntryChildren,
 							function(item, index, collection) {
-								if (index == 0) {
+								if (index === 0) {
 									if (folderChildren.length > 0) {
 										instance.insertAfter(item, folderChildren[folderChildren.length - 1]);
 									}
@@ -201,7 +209,7 @@ AUI.add(
 					editable: {},
 
 					entryId: {
-						value: '',
+						value: STR_EMPTY,
 						setter: function(value) {
 							return String(value);
 						}
@@ -212,7 +220,7 @@ AUI.add(
 					},
 
 					fileEntryURL: {
-						value: ''
+						value: STR_EMPTY
 					},
 
 					gadgetId: {
@@ -278,10 +286,10 @@ AUI.add(
 
 							var ownerTree = instance.get(OWNER_TREE);
 
-							A.Array.each(
+							AArray.each(
 								siblings,
 								function(sibling) {
-									if (sibling.isLeaf() == isLeaf) {
+									if (sibling.isLeaf() === isLeaf) {
 										filteredSiblings.push(sibling);
 									}
 								}
@@ -289,7 +297,7 @@ AUI.add(
 
 							filteredSiblings.sort(arraySort);
 
-							if (filteredSiblings.length == 1) {
+							if (filteredSiblings.length === 1) {
 								if (siblings.length > 1) {
 									if (isLeaf) {
 										var lastNode = siblings[siblings.length - 1];
@@ -330,7 +338,7 @@ AUI.add(
 
 						var ownerTree = instance.get(OWNER_TREE);
 
-						A.Array.each(
+						AArray.each(
 							children,
 							function(item, index, collection) {
 								if (item.isLeaf()) {
@@ -345,7 +353,7 @@ AUI.add(
 						fileEntryChildren.sort(arraySort);
 						folderChildren.sort(arraySort);
 
-						A.Array.each(
+						AArray.each(
 							folderChildren,
 							function(item, index, collection) {
 								if (index != 0) {
@@ -354,10 +362,10 @@ AUI.add(
 							}
 						);
 
-						A.Array.each(
+						AArray.each(
 							fileEntryChildren,
 							function(item, index, collection) {
-								if (index == 0) {
+								if (index === 0) {
 									if (folderChildren.length > 0) {
 										ownerTree.insertAfter(item, folderChildren[folderChildren.length - 1]);
 									}
@@ -532,7 +540,7 @@ AUI.add(
 										if (!overlayContext.get(RENDERED)) {
 											contextMenu.render();
 
-											A.Array.each(
+											AArray.each(
 												contextMenu.get('children')[0],
 												function(item, index, collection) {
 													if (A.instanceOf(item, A.Button)) {
@@ -630,7 +638,7 @@ AUI.add(
 									}
 								},
 								entryId: instance.get(ENTRY_ID),
-								eventType: '',
+								eventType: STR_EMPTY,
 								node: instance.get('labelEl'),
 								on: {
 									startEditing: function(event) {
@@ -669,7 +677,7 @@ AUI.add(
 
 						var children = [
 							[
-								'',
+								STR_EMPTY,
 								'vertical',
 								instance._closeContextMenuButton,
 								instance._renameContextMenuButton,
@@ -706,7 +714,7 @@ AUI.add(
 
 						var children = [
 							[
-								'',
+								STR_EMPTY,
 								'vertical',
 								instance._newFolderContextMenuButton,
 								instance._renameContextMenuButton,
@@ -734,7 +742,7 @@ AUI.add(
 
 						var extension = label.substr(label.lastIndexOf('.') + 1);
 
-						if (extension == 'xml') {
+						if (extension === 'xml') {
 							if (instance.get(GADGET_ID) > 0) {
 								var unpublishPermission = instance.get(PERMISSIONS).unpublishPermission;
 
@@ -766,10 +774,10 @@ AUI.add(
 
 				ATTRS: {
 					entryId: {
-						setter: function(v) {
-							return String(v);
+						setter: function(value) {
+							return String(value);
 						},
-						value: ''
+						value: STR_EMPTY
 					}
 				},
 
