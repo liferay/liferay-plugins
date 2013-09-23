@@ -222,8 +222,8 @@ public class CalendarBookingStagedModelDataHandler
 
 		CalendarBooking existingBooking =
 			CalendarBookingLocalServiceUtil.fetchCalendarBooking(
-					calendarBooking.getUuid(),
-					portletDataContext.getScopeGroupId());
+				calendarBooking.getUuid(),
+				portletDataContext.getScopeGroupId());
 
 		if ((existingBooking == null) || !existingBooking.isInTrash()) {
 			return;
