@@ -14,7 +14,7 @@
  */
 --%>
 
-<button class="close" type="button">&times;</button>
+<button class="btn icon icon-remove" type="button">&times;</button>
 
 <p>
 	This is a message embedded in a JSP file that can be displayed as a portal message.
