@@ -1086,7 +1086,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 
 		TrashEntry trashEntry = TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
-				getPrimaryKey());
+				getTrashEntryClassPK());
 
 		if (trashEntry != null) {
 			return trashEntry;
@@ -1115,6 +1115,11 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		}
 
 		return null;
+	}
+
+	@Override
+	public long getTrashEntryClassPK() {
+		return getPrimaryKey();
 	}
 
 	@Override
