@@ -66,7 +66,6 @@
 		<constructor-arg value="com.liferay.portal.monitoring.statistics.service.ServiceMonitorAdvice" />
 		<constructor-arg>
 			<map>
-				<entry key="monitoringDestinationName" value="liferay/monitoring" />
 				<entry key="nextMethodInterceptor" value-ref="asyncAdvice" />
 			</map>
 		</constructor-arg>
