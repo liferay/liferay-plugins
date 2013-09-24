@@ -18,18 +18,18 @@
 
 <h3>Subscribe</h3>
 
-<div>
+<aui:fieldset>
 	<aui:select label="" name="subscribeTopic">
 		<aui:option label="String" />
 		<aui:option label="Array" />
 	</aui:select>
 
 	<aui:button name="subscribe" value="Subscribe" />
-</div>
+</aui:fieldset>
 
 <h3>Unsubscribe</h3>
 
-<div>
+<aui:fieldset>
 	<aui:select label="" name="unsubscribeTopic">
 		<aui:option label="String with Callback Function" value="string_callback_fn" />
 		<aui:option label="String without Callback Function" value="string" />
@@ -38,7 +38,7 @@
 	</aui:select>
 
 	<aui:button name="unsubscribe" value="Unsubscribe" />
-</div>
+</aui:fieldset>
 
 <div id="<portlet:namespace />message"></div>
 
