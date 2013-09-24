@@ -44,19 +44,21 @@ expectedValues.put("liferay.user.id", user.getUserId());
 expectedValues.put("user.name.full", user.getFullName());
 %>
 
-<table class="lfr-table">
-<tr>
-	<th>
-		Key
-	</th>
-	<th>
-		Expected Value
-	</th>
-	<th>
-		Actual Value
-	</th>
-	<th></th>
-</tr>
+<table class="table table-bordered table-hover table-striped">
+	<thead>
+		<tr>
+			<th>
+				Key
+			</th>
+			<th>
+				Expected Value
+			</th>
+			<th>
+				Actual Value
+			</th>
+			<th></th>
+		</tr>
+	</thead>
 
 <%
 Map userInfo = (Map)renderRequest.getAttribute(PortletRequest.USER_INFO);
@@ -69,6 +71,7 @@ if (userInfo != null) {
 		String actualValue = String.valueOf(userInfo.get(key));
 %>
 
+	<tbody>
 		<tr>
 			<td>
 				<%= key %>
@@ -100,6 +103,7 @@ if (userInfo != null) {
 
 			</td>
 		</tr>
+	</tbody>
 
 <%
 	}
@@ -107,12 +111,14 @@ if (userInfo != null) {
 else {
 %>
 
-	<tr>
-		<td colspan="3"></td>
-		</td>
-			FAILED
-		</td>
-	</tr>
+	<tbody>
+		<tr>
+			<td colspan="3"></td>
+			</td>
+				FAILED
+			</td>
+		</tr>
+	</tbody>
 
 <%
 }
