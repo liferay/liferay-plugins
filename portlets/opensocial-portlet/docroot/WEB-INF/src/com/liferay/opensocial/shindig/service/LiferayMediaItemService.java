@@ -266,6 +266,10 @@ public class LiferayMediaItemService implements MediaItemService {
 
 			User user = UserLocalServiceUtil.getUserById(userIdLong);
 
+			if (!ShindigUtil.isValidUser(user)) {
+				continue;
+			}
+
 			List<FileEntry> fileEntries = new ArrayList<FileEntry>();
 
 			GroupId.Type groupIdType = groupId.getType();
@@ -327,6 +331,14 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		User user = UserLocalServiceUtil.getUserById(userIdLong);
 
+		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
+
+		if (!ShindigUtil.isValidUser(user)) {
+			return new RestfulCollection<MediaItem>(
+				mediaItems, collectionOptions.getFirst(), mediaItems.size(),
+				collectionOptions.getMax());
+		}
+
 		Group group = user.getGroup();
 
 		long groupIdLong = group.getGroupId();
@@ -335,8 +347,6 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(
 			groupIdLong, albumIdLong);
-
-		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
 		for (FileEntry fileEntry : fileEntries) {
 			MediaItem.Type mediaItemType = toMediaItemType(
@@ -366,6 +376,14 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		User user = UserLocalServiceUtil.getUserById(userIdLong);
 
+		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
+
+		if (!ShindigUtil.isValidUser(user)) {
+			return new RestfulCollection<MediaItem>(
+				mediaItems, collectionOptions.getFirst(), mediaItems.size(),
+				collectionOptions.getMax());
+		}
+
 		Group group = user.getGroup();
 
 		long groupIdLong = group.getGroupId();
@@ -374,8 +392,6 @@ public class LiferayMediaItemService implements MediaItemService {
 
 		List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(
 			groupIdLong, albumIdLong);
-
-		List<MediaItem> mediaItems = new ArrayList<MediaItem>();
 
 		for (FileEntry fileEntry : fileEntries) {
 			MediaItem.Type mediaItemType = toMediaItemType(
@@ -405,6 +421,10 @@ public class LiferayMediaItemService implements MediaItemService {
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
 		User user = UserLocalServiceUtil.getUserById(userIdLong);
+
+		if (!ShindigUtil.isValidUser(user)) {
+			return;
+		}
 
 		Group group = user.getGroup();
 

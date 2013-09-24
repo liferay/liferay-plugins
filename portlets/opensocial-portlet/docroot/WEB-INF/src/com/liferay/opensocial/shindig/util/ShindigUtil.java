@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -378,6 +379,15 @@ public class ShindigUtil {
 		}
 
 		return false;
+	}
+
+	public static boolean isValidUser(User user) {
+		if (user.isDefaultUser()) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 
 	public static void setHost(String host) {

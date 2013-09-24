@@ -313,7 +313,7 @@ public class LiferayActivityService implements ActivityService {
 			serviceContext.setCompanyId(themeDisplay.getCompanyId());
 			serviceContext.setUserId(themeDisplay.getUserId());
 
-			SocialActivityFeedEntry socialActivityFeedEntry = null;
+			SocialActivityFeedEntry socialActivityFeedEntry =
 				SocialActivityInterpreterLocalServiceUtil.interpret(
 					StringPool.BLANK, socialActivity, serviceContext);
 
