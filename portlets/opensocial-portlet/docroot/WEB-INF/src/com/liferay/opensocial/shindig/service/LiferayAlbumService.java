@@ -15,6 +15,7 @@
 package com.liferay.opensocial.shindig.service;
 
 import com.liferay.opensocial.shindig.util.SerializerUtil;
+import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.log.Log;
@@ -232,6 +233,10 @@ public class LiferayAlbumService implements AlbumService {
 
 			User user = UserLocalServiceUtil.getUserById(userIdLong);
 
+			if (!ShindigUtil.isValidUser(user)) {
+				continue;
+			}
+
 			List<Folder> folders = new ArrayList<Folder>();
 
 			GroupId.Type groupIdType = groupId.getType();
@@ -304,6 +309,10 @@ public class LiferayAlbumService implements AlbumService {
 		long userIdLong = GetterUtil.getLong(userId.getUserId(securityToken));
 
 		User user = UserLocalServiceUtil.getUserById(userIdLong);
+
+		if (!ShindigUtil.isValidUser(user)) {
+			return;
+		}
 
 		Group group = user.getGroup();
 

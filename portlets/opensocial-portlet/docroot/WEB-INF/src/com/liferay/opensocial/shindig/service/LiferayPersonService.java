@@ -14,6 +14,7 @@
 
 package com.liferay.opensocial.shindig.service;
 
+import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -170,6 +171,10 @@ public class LiferayPersonService implements PersonService {
 			long userIdLong = GetterUtil.getLong(userIdString);
 
 			User user = UserLocalServiceUtil.getUserById(userIdLong);
+
+			if (!ShindigUtil.isValidUser(user)) {
+				return null;
+			}
 
 			person = getUserPerson(user, fields, securityToken);
 		}
