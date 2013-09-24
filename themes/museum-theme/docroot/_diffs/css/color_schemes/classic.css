@@ -1,0 +1,15 @@
+/* ---------- Base ---------- */
+
+body.classic {
+	background: url(../../images/color_schemes/classic/classic_pattern.jpg);
+}
+
+/* ---------- Pictures ---------- */
+
+.classic .picture-item {
+	background: black;
+
+	.title {
+		text-transform: uppercase;
+	}
+}

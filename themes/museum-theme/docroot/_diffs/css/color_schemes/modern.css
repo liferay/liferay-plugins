@@ -1,0 +1,16 @@
+body.modern {
+	background: url(../../images/color_schemes/modern/modern_pattern_1.jpg);
+}
+
+/* ---------- Pictures ---------- */
+
+.modern .picture-item {
+	border-radius: 20px;
+	color: white;
+}
+
+.modern .picture-item.color0 { background: #CC0066; }
+.modern .picture-item.color1 { background: #009966; }
+.modern .picture-item.color2 { background: #FF6600; }
+.modern .picture-item.color3 { background: #33CCFF; }
+
