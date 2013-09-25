@@ -14,13 +14,13 @@
 
 package com.liferay.stocks.portlet;
 
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -77,12 +77,9 @@ public class StocksPortlet extends MVCPortlet {
 			return;
 		}
 
-		LiferayPortletConfig liferayPortletConfig =
-			(LiferayPortletConfig)getPortletConfig();
-
 		SessionMessages.add(
 			actionRequest,
-			liferayPortletConfig.getPortletId() +
+			PortalUtil.getPortletId(actionRequest) +
 				SessionMessages.KEY_SUFFIX_UPDATED_PREFERENCES);
 	}
 
