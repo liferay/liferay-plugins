@@ -569,6 +569,10 @@ html > body.lfr-dockbar-pinned {
 	}
 }
 
+.rtl .so-portlet-user-bar {
+	direction: ltr;
+}
+
 @media (max-width:860px) {
 	.so-portlet-user-bar {
 		a {
