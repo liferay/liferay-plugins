@@ -290,6 +290,9 @@ AUI().use(
 								else if (!result.publicLayoutsURL && result.privateLayoutsURL) {
 									name = '<a href="' + result.privateLayoutsURL + '">' + name + '</a>';
 								}
+								else {
+									name = '<a>' + name + '</a>';
+								}
 
 								return A.Lang.sub(
 									siteTemplate,
