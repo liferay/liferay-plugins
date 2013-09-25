@@ -57,8 +57,6 @@ page import="com.liferay.util.portlet.PortletProps" %>
 page import="java.util.List" %><%@
 page import="java.util.Map" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %>
-
 <portlet:defineObjects />
 
 <liferay-theme:defineObjects />

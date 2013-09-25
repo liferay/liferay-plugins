@@ -14,6 +14,7 @@
 
 package com.liferay.randombibleverse.portlet;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -63,7 +64,7 @@ public class RBVPortlet extends MVCPortlet {
 
 		SessionMessages.add(
 			actionRequest,
-			liferayPortletConfig.getPortletId() +
+			PortalUtil.getPortletId(actionRequest) +
 				SessionMessages.KEY_SUFFIX_UPDATED_PREFERENCES);
 	}
 

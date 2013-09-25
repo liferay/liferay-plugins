@@ -36,8 +36,7 @@ page import="com.liferay.stocks.util.StocksUtil" %>
 
 <%@ page import="java.util.Enumeration" %>
 
-<%@ page import="javax.portlet.PortletPreferences" %><%@
-page import="javax.portlet.ValidatorException" %><%@
+<%@ page import="javax.portlet.ValidatorException" %><%@
 page import="javax.portlet.WindowState" %>
 
 <portlet:defineObjects />

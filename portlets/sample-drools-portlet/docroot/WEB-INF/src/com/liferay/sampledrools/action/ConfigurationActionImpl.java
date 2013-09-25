@@ -17,13 +17,13 @@ package com.liferay.sampledrools.action;
 import com.liferay.compat.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.compat.portal.kernel.util.StringUtil;
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.bi.rules.RulesEngineException;
 import com.liferay.portal.kernel.bi.rules.RulesEngineUtil;
 import com.liferay.portal.kernel.bi.rules.RulesLanguage;
 import com.liferay.portal.kernel.bi.rules.RulesResourceRetriever;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.resource.StringResourceRetriever;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -64,12 +64,9 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 		if (SessionErrors.isEmpty(actionRequest)) {
 			preferences.store();
 
-			LiferayPortletConfig liferayPortletConfig =
-				(LiferayPortletConfig)portletConfig;
-
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_UPDATED_CONFIGURATION);
 		}
 	}
