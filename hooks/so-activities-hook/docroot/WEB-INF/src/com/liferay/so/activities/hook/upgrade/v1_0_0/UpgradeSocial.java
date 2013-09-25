@@ -145,8 +145,9 @@ public class UpgradeSocial extends UpgradeProcess {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
 			ps = con.prepareStatement(
-				"select activityId, groupId, companyId, userId, createDate, " +
-					"classNameId, classPK, type_ from SocialActivity");
+				"select activityId, groupId, companyId, userId, " +
+					"mirrorActivityId, createDate, classNameId, classPK, " +
+						"type_ from SocialActivity");
 
 			rs = ps.executeQuery();
 
@@ -155,10 +156,15 @@ public class UpgradeSocial extends UpgradeProcess {
 				long groupId = rs.getLong("groupId");
 				long companyId = rs.getLong("companyId");
 				long userId = rs.getLong("userId");
+				long mirrorActivityId = rs.getLong("mirrorActivityId");
 				long createDate = rs.getLong("createDate");
 				long classNameId = rs.getLong("classNameId");
 				long classPK = rs.getLong("classPK");
 				int type_ = rs.getInt("type_");
+
+				if (mirrorActivityId > 0) {
+					return;
+				}
 
 				long activitySetId = increment();
 
