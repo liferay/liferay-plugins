@@ -148,7 +148,7 @@ public class ActivitiesPortlet extends MVCPortlet {
 				getReceiverMicroblogsEntryMicroblogsEntries(
 					MicroblogsEntryConstants.TYPE_REPLY,
 					activitySet.getClassPK(), QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS, null);
+					QueryUtil.ALL_POS);
 
 		for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 			JSONObject microblogsEntryJSONObject = getJSONObject(
