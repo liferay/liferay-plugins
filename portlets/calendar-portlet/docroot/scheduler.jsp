@@ -67,6 +67,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 		window.<portlet:namespace />monthView = new A.SchedulerMonthView(
 			{
 				height: 700,
+				isoTime: <%= isoTimeFormat %>,
 				readOnly: <%= readOnly %>
 			}
 		);
@@ -76,6 +77,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 		window.<portlet:namespace />agendaView = new A.SchedulerAgendaView(
 			{
 				height: 700,
+				isoTime: <%= isoTimeFormat %>,
 				readOnly: <%= readOnly %>,
 				strings: {
 					noEvents: '<liferay-ui:message key="no-events" />'
