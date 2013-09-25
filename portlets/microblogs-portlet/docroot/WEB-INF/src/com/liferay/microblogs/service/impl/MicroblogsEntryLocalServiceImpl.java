@@ -22,6 +22,7 @@ import com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
+import com.liferay.microblogs.util.comparator.EntryCreateDateComparator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -186,6 +187,15 @@ public class MicroblogsEntryLocalServiceImpl
 		throws PortalException, SystemException {
 
 		return microblogsEntryPersistence.findByPrimaryKey(microblogsEntryId);
+	}
+
+	public List<MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
+			int type, long receiverMicroblogsEntryId, int start, int end)
+		throws SystemException {
+
+		return microblogsEntryPersistence.findByT_RMEI(
+			type, receiverMicroblogsEntryId, start, end,
+			new EntryCreateDateComparator(true));
 	}
 
 	public List<MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
