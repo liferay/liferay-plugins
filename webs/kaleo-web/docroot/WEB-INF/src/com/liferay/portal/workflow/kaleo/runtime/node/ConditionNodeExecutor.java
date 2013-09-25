@@ -67,6 +67,11 @@ public class ConditionNodeExecutor extends BaseNodeExecutor {
 		String transitionName = _conditionEvaluator.evaluate(
 			kaleoCondition, executionContext, classloaders);
 
+		kaleoInstanceLocalService.updateKaleoInstance(
+			kaleoInstanceToken.getKaleoInstanceId(),
+			executionContext.getWorkflowContext(),
+			executionContext.getServiceContext());
+
 		KaleoTransition kaleoTransition = currentKaleoNode.getKaleoTransition(
 			transitionName);
 
