@@ -21,9 +21,11 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
+import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.util.ClassLoaderUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
 
 import java.util.List;
@@ -60,6 +62,14 @@ public class ActionExecutorUtil {
 
 				actionExecutor.execute(
 					kaleoAction, executionContext, classLoaders);
+
+				KaleoInstanceToken kaleoInstanceToken =
+					executionContext.getKaleoInstanceToken();
+
+				KaleoInstanceLocalServiceUtil.updateKaleoInstance(
+					kaleoInstanceToken.getKaleoInstanceId(),
+					executionContext.getWorkflowContext(),
+					executionContext.getServiceContext());
 			}
 			catch (Exception e) {
 				if (_log.isDebugEnabled()) {

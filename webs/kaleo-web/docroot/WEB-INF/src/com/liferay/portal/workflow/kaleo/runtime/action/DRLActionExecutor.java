@@ -15,14 +15,19 @@
 package com.liferay.portal.workflow.kaleo.runtime.action;
 
 import com.liferay.portal.kernel.bi.rules.Fact;
+import com.liferay.portal.kernel.bi.rules.Query;
 import com.liferay.portal.kernel.bi.rules.RulesEngineUtil;
 import com.liferay.portal.kernel.bi.rules.RulesResourceRetriever;
 import com.liferay.portal.kernel.resource.StringResourceRetriever;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.util.RulesContextBuilder;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
+
+import java.io.Serializable;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Michael C. Han
@@ -55,7 +60,16 @@ public class DRLActionExecutor implements ActionExecutor {
 			new RulesResourceRetriever(
 				new StringResourceRetriever(kaleoAction.getScript()));
 
-		RulesEngineUtil.execute(rulesResourceRetriever, facts, classLoaders);
+		Map<String, ?> results = RulesEngineUtil.execute(
+			rulesResourceRetriever, facts, Query.createStandardQuery(),
+			classLoaders);
+
+		Map<String, Serializable> resultsWorkflowContext =
+			(Map<String, Serializable>)results.get(
+				WorkflowContextUtil.WORKFLOW_CONTEXT_NAME);
+
+		WorkflowContextUtil.mergeWorkflowContexts(
+			executionContext, resultsWorkflowContext);
 	}
 
 }

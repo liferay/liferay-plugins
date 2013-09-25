@@ -17,6 +17,7 @@ package com.liferay.portal.workflow.kaleo.util;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.io.Serializable;
 
@@ -27,6 +28,8 @@ import java.util.Map;
  * @author Michael C. Han
  */
 public class WorkflowContextUtil {
+
+	public static final String WORKFLOW_CONTEXT_NAME = "workflowContext";
 
 	public static String convert(Map<String, Serializable> workflowContext) {
 		if (workflowContext == null) {
@@ -42,6 +45,18 @@ public class WorkflowContextUtil {
 		}
 
 		return (Map<String, Serializable>)JSONFactoryUtil.deserialize(json);
+	}
+
+	public static void mergeWorkflowContexts(
+		ExecutionContext executionContext,
+		Map<String, Serializable> workflowContextCopy) {
+
+		if ((workflowContextCopy != null) && !workflowContextCopy.isEmpty()) {
+			Map<String, Serializable> originalWorkflowContext =
+							executionContext.getWorkflowContext();
+
+			originalWorkflowContext.putAll(workflowContextCopy);
+		}
 	}
 
 }
