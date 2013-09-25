@@ -18,13 +18,22 @@ import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.util.ScriptingContextBuilderUtil;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
+import java.io.Serializable;
+
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Michael C. Han
  */
 public class ScriptActionExecutor implements ActionExecutor {
+
+	public ScriptActionExecutor() {
+		_outputObjects.add(WorkflowContextUtil.WORKFLOW_CONTEXT_NAME);
+	}
 
 	@Override
 	public void execute(
@@ -40,6 +49,10 @@ public class ScriptActionExecutor implements ActionExecutor {
 		}
 	}
 
+	public void setOutputObjects(Set<String> outputObjects) {
+		_outputObjects.addAll(outputObjects);
+	}
+
 	protected void doExecute(
 			KaleoAction kaleoAction, ExecutionContext executionContext,
 			ClassLoader... classLoaders)
@@ -48,9 +61,17 @@ public class ScriptActionExecutor implements ActionExecutor {
 		Map<String, Object> inputObjects =
 			ScriptingContextBuilderUtil.buildScriptingContext(executionContext);
 
-		ScriptingUtil.exec(
-			null, inputObjects, kaleoAction.getScriptLanguage(),
+		Map<String, Object> results = ScriptingUtil.eval(
+			null, inputObjects, _outputObjects, kaleoAction.getScriptLanguage(),
 			kaleoAction.getScript(), classLoaders);
+
+		Map<String, Serializable> resultsWorkflowContext =
+			(Map<String, Serializable>)results.get(
+				WorkflowContextUtil.WORKFLOW_CONTEXT_NAME);
+
+		WorkflowContextUtil.mergeWorkflowContexts(
+			executionContext, resultsWorkflowContext);
 	}
 
+	private Set<String> _outputObjects = new HashSet<String>();
 }
