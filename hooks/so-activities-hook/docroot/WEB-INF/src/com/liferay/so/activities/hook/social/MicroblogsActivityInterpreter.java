@@ -22,6 +22,8 @@ import com.liferay.microblogs.service.permission.MicroblogsEntryPermission;
 import com.liferay.microblogs.util.MicroblogsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
@@ -55,7 +57,14 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			return;
 		}
 
-		long activitySetId = getActivitySetId(activityId);
+		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(
+			activity.getExtraData());
+
+		long receiverMicroblogsEntryId = extraDataJSONObject.getLong(
+			"receiverMicroblogsEntryId");
+
+		long activitySetId = getActivitySetId(
+			activityId, receiverMicroblogsEntryId);
 
 		if (activitySetId > 0) {
 			SocialActivitySetLocalServiceUtil.incrementActivityCount(
@@ -68,16 +77,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			if (activity.getType() ==
 					SocialActivityKeyConstants.MICROBLOGS_REPLY_ENTRY) {
 
-				MicroblogsEntry microblogsEntry =
-					MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
-						activity.getClassPK());
-
-				if (microblogsEntry == null) {
-					return;
-				}
-
-				activitySet.setClassPK(
-					microblogsEntry.getReceiverMicroblogsEntryId());
+				activitySet.setClassPK(receiverMicroblogsEntryId);
 
 				SocialActivitySetLocalServiceUtil.updateSocialActivitySet(
 					activitySet);
@@ -85,8 +85,9 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 		}
 	}
 
-	@Override
-	protected long getActivitySetId(long activityId) {
+	protected long getActivitySetId(
+		long activityId, long receiverMicroblogsEntryId) {
+
 		try {
 			SocialActivitySet activitySet = null;
 
@@ -96,18 +97,9 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			if (activity.getType() ==
 					SocialActivityKeyConstants.MICROBLOGS_REPLY_ENTRY) {
 
-				MicroblogsEntry microblogsEntry =
-					MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
-						activity.getClassPK());
-
-				if (microblogsEntry == null) {
-					return 0;
-				}
-
 				activitySet =
 					SocialActivitySetLocalServiceUtil.getClassActivitySet(
-						activity.getClassNameId(),
-						microblogsEntry.getReceiverMicroblogsEntryId(),
+						activity.getClassNameId(), receiverMicroblogsEntryId,
 						activity.getType());
 			}
 
