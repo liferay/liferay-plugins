@@ -106,6 +106,8 @@ public class MicroblogsEntryLocalServiceImpl
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
 
 		extraDataJSONObject.put("content", microblogsEntry.getContent());
+		extraDataJSONObject.put(
+			"receiverMicroblogsEntryId", receiverMicroblogsEntryId);
 
 		SocialActivityLocalServiceUtil.addActivity(
 			userId, 0, MicroblogsEntry.class.getName(), microblogsEntryId,
