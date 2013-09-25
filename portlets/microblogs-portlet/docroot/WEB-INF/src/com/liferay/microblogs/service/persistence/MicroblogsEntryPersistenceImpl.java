@@ -355,6 +355,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<MicroblogsEntry> list = findByCompanyId(companyId, count - 1,
 				count, orderByComparator);
 
@@ -1210,6 +1214,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry fetchByUserId_Last(long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<MicroblogsEntry> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
@@ -2086,6 +2094,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry fetchByU_T_Last(long userId, int type,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByU_T(userId, type);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<MicroblogsEntry> list = findByU_T(userId, type, count - 1, count,
 				orderByComparator);
@@ -2996,6 +3008,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	public MicroblogsEntry fetchByT_R_Last(int type, long receiverUserId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByT_R(type, receiverUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<MicroblogsEntry> list = findByT_R(type, receiverUserId, count - 1,
 				count, orderByComparator);
@@ -3913,6 +3929,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 		throws SystemException {
 		int count = countByT_RMEI(type, receiverMicroblogsEntryId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<MicroblogsEntry> list = findByT_RMEI(type,
 				receiverMicroblogsEntryId, count - 1, count, orderByComparator);
 
@@ -4544,6 +4564,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	private static final String _FINDER_COLUMN_T_RMEI_TYPE_2_SQL = "microblogsEntry.type_ = ? AND ";
 	private static final String _FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2 =
 		"microblogsEntry.receiverMicroblogsEntryId = ?";
+
+	public MicroblogsEntryPersistenceImpl() {
+		setModelClass(MicroblogsEntry.class);
+	}
 
 	/**
 	 * Caches the microblogs entry in the entity cache if it is enabled.

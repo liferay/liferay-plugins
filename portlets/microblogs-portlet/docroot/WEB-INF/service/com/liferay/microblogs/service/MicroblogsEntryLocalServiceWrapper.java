@@ -326,6 +326,14 @@ public class MicroblogsEntryLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
+		int type, long receiverMicroblogsEntryId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _microblogsEntryLocalService.getReceiverMicroblogsEntryMicroblogsEntries(type,
+			receiverMicroblogsEntryId, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
 		int type, long receiverMicroblogsEntryId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
