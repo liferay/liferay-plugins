@@ -1364,7 +1364,7 @@ AUI.add(
 										},
 										on: {
 											failure: function(event) {
-												var message = Liferay.Language.get('failed-to-access-documents');
+												var message = Liferay.Language.get('unable-to-access-documents');
 
 												instance._showErrorDialog(message);
 											},
