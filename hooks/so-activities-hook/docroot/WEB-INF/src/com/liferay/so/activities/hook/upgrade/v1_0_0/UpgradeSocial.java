@@ -146,7 +146,7 @@ public class UpgradeSocial extends UpgradeProcess {
 
 			ps = con.prepareStatement(
 				"select activityId, groupId, companyId, userId, " +
-					"mirrorActivityId, createDate, classNameId, classPK, " +
+					"createDate, mirrorActivityId, classNameId, classPK, " +
 						"type_ from SocialActivity");
 
 			rs = ps.executeQuery();
@@ -156,8 +156,8 @@ public class UpgradeSocial extends UpgradeProcess {
 				long groupId = rs.getLong("groupId");
 				long companyId = rs.getLong("companyId");
 				long userId = rs.getLong("userId");
-				long mirrorActivityId = rs.getLong("mirrorActivityId");
 				long createDate = rs.getLong("createDate");
+				long mirrorActivityId = rs.getLong("mirrorActivityId");
 				long classNameId = rs.getLong("classNameId");
 				long classPK = rs.getLong("classPK");
 				int type_ = rs.getInt("type_");
