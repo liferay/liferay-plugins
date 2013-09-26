@@ -144,8 +144,6 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				inputStream = servletContext.getResourceAsStream(
 					"/WEB-INF/liferay-releng.changelog.md5");
 
-				System.out.println(String.valueOf(inputStream));
-
 				if (inputStream == null) {
 					continue;
 				}
