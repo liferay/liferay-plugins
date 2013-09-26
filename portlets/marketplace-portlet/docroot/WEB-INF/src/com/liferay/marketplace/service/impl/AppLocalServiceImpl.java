@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
+import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
@@ -52,11 +53,15 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
+
+import javax.servlet.ServletContext;
 
 /**
  * @author Ryan Park
@@ -65,6 +70,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 	@Override
 	public void clearInstalledAppsCache() {
+		_bundledApps = null;
 		_installedApps = null;
 	}
 
@@ -115,6 +121,54 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 	@Override
 	public List<App> getApps(String category) throws SystemException {
 		return appPersistence.findByCategory(category);
+	}
+
+	@Override
+	public Map<String, String> getBundledApps() {
+		if (_bundledApps != null) {
+			return _bundledApps;
+		}
+
+		Map<String, String> bundledApps = new HashMap<String, String>();
+
+		List<PluginPackage> pluginPackages =
+			DeployManagerUtil.getInstalledPluginPackages();
+
+		for (PluginPackage pluginPackage : pluginPackages) {
+			ServletContext servletContext = ServletContextPool.get(
+				pluginPackage.getContext());
+
+			InputStream inputStream = null;
+
+			try {
+				inputStream = servletContext.getResourceAsStream(
+					"/WEB-INF/liferay-releng.md5");
+
+				System.out.println(String.valueOf(inputStream));
+
+				if (inputStream == null) {
+					continue;
+				}
+
+				String relengHash = StringUtil.read(inputStream);
+
+				if (Validator.isNotNull(relengHash)) {
+					bundledApps.put(pluginPackage.getContext(), relengHash);
+				}
+			}
+			catch (Exception e) {
+				_log.warn(
+					"Unable to read plugin package hash for " +
+						pluginPackage.getContext());
+			}
+			finally {
+				StreamUtil.cleanUp(inputStream);
+			}
+		}
+
+		_bundledApps = bundledApps;
+
+		return _bundledApps;
 	}
 
 	@Override
@@ -529,6 +583,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 	private static Log _log = LogFactoryUtil.getLog(AppLocalServiceImpl.class);
 
+	private Map<String, String> _bundledApps;
 	private List<App> _installedApps;
 
 }
