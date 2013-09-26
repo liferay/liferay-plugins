@@ -357,6 +357,10 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Module> list = findByUuid(uuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -866,6 +870,10 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByAppId(appId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Module> list = findByAppId(appId, count - 1, count,
 				orderByComparator);
 
@@ -1364,6 +1372,10 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	public Module fetchByContextName_Last(String contextName,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByContextName(contextName);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<Module> list = findByContextName(contextName, count - 1, count,
 				orderByComparator);
@@ -1890,6 +1902,10 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_1 = "module.contextName IS NULL";
 	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_2 = "module.contextName = ?";
 	private static final String _FINDER_COLUMN_A_C_CONTEXTNAME_3 = "(module.contextName IS NULL OR module.contextName = '')";
+
+	public ModulePersistenceImpl() {
+		setModelClass(Module.class);
+	}
 
 	/**
 	 * Caches the module in the entity cache if it is enabled.

@@ -331,6 +331,11 @@ public class AppLocalServiceWrapper implements AppLocalService,
 	}
 
 	@Override
+	public java.util.Map<java.lang.String, java.lang.String> getBundledApps() {
+		return _appLocalService.getBundledApps();
+	}
+
+	@Override
 	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _appLocalService.getInstalledApps();
