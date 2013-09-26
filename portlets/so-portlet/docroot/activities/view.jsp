@@ -239,7 +239,9 @@ portletURL.setParameter("tabs1", tabs1);
 
 			var mbMessageIdOrMicroblogsEntryId = currentTarget.getAttribute('data-mbMessageIdOrMicroblogsEntryId');
 
-			var editForm = A.one('#<portlet:namespace />fm1' + mbMessageIdOrMicroblogsEntryId);
+			var commentsContainer = currentTarget.ancestor('.comments-container');
+
+			var editForm = commentsContainer.one('#<portlet:namespace />fm1' + mbMessageIdOrMicroblogsEntryId);
 
 			var commentEntry = currentTarget.ancestor('.comment-entry');
 
@@ -251,8 +253,6 @@ portletURL.setParameter("tabs1", tabs1);
 				editForm.toggle();
 			}
 			else {
-				var commentsContainer = currentTarget.ancestor('.comments-container');
-
 				editForm = commentsContainer.one('form').cloneNode(true);
 
 				editForm.show();
