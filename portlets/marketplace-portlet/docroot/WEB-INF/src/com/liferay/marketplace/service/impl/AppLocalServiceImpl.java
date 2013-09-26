@@ -150,12 +150,10 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 					continue;
 				}
 
-				String relengChangeLogMD5Checksum = StringUtil.read(
-					inputStream);
+				String relengHash = StringUtil.read(inputStream);
 
-				if (Validator.isNotNull(relengChangeLogMD5Checksum)) {
-					bundledApps.put(
-						pluginPackage.getContext(), relengChangeLogMD5Checksum);
+				if (Validator.isNotNull(relengHash)) {
+					bundledApps.put(pluginPackage.getContext(), relengHash);
 				}
 			}
 			catch (Exception e) {
