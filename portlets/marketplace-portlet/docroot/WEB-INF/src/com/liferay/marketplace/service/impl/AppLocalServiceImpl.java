@@ -142,7 +142,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 			try {
 				inputStream = servletContext.getResourceAsStream(
-					"/WEB-INF/liferay-releng.md5");
+					"/WEB-INF/liferay-releng.changelog.md5");
 
 				System.out.println(String.valueOf(inputStream));
 
@@ -150,15 +150,17 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 					continue;
 				}
 
-				String relengHash = StringUtil.read(inputStream);
+				String relengChangeLogMD5Checksum = StringUtil.read(
+					inputStream);
 
-				if (Validator.isNotNull(relengHash)) {
-					bundledApps.put(pluginPackage.getContext(), relengHash);
+				if (Validator.isNotNull(relengChangeLogMD5Checksum)) {
+					bundledApps.put(
+						pluginPackage.getContext(), relengChangeLogMD5Checksum);
 				}
 			}
 			catch (Exception e) {
 				_log.warn(
-					"Unable to read plugin package hash for " +
+					"Unable to read plugin package MD5 checksum for " +
 						pluginPackage.getContext());
 			}
 			finally {
