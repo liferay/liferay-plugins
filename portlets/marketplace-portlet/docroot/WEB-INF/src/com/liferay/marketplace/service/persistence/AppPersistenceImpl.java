@@ -354,6 +354,10 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<App> list = findByUuid(uuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -902,6 +906,10 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<App> list = findByUuid_C(uuid, companyId, count - 1, count,
 				orderByComparator);
 
@@ -1428,6 +1436,10 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	public App fetchByCompanyId_Last(long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<App> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
@@ -2141,6 +2153,10 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCategory(category);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<App> list = findByCategory(category, count - 1, count,
 				orderByComparator);
 
@@ -2394,6 +2410,10 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 	private static final String _FINDER_COLUMN_CATEGORY_CATEGORY_1 = "app.category IS NULL";
 	private static final String _FINDER_COLUMN_CATEGORY_CATEGORY_2 = "app.category = ?";
 	private static final String _FINDER_COLUMN_CATEGORY_CATEGORY_3 = "(app.category IS NULL OR app.category = '')";
+
+	public AppPersistenceImpl() {
+		setModelClass(App.class);
+	}
 
 	/**
 	 * Caches the app in the entity cache if it is enabled.

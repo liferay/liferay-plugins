@@ -317,6 +317,10 @@ public class AppLocalServiceUtil {
 		return getService().getApps(category);
 	}
 
+	public static java.util.Map<java.lang.String, java.lang.String> getBundledApps() {
+		return getService().getBundledApps();
+	}
+
 	public static java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getInstalledApps();

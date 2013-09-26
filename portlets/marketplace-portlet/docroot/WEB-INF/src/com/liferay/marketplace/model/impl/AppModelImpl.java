@@ -290,8 +290,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		}
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -314,8 +314,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return GetterUtil.getString(_originalUuid);
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getAppId() {
 		return _appId;
 	}
@@ -325,8 +325,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_appId = appId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -348,8 +348,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return _originalCompanyId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
@@ -369,8 +369,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_userUuid = userUuid;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -385,8 +385,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_userName = userName;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -396,8 +396,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_createDate = createDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -407,8 +407,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_modifiedDate = modifiedDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getRemoteAppId() {
 		return _remoteAppId;
 	}
@@ -430,8 +430,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return _originalRemoteAppId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -446,8 +446,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_title = title;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getDescription() {
 		if (_description == null) {
 			return StringPool.BLANK;
@@ -462,8 +462,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_description = description;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getCategory() {
 		if (_category == null) {
 			return StringPool.BLANK;
@@ -488,8 +488,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		return GetterUtil.getString(_originalCategory);
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getIconURL() {
 		if (_iconURL == null) {
 			return StringPool.BLANK;
@@ -504,8 +504,8 @@ public class AppModelImpl extends BaseModelImpl<App> implements AppModel {
 		_iconURL = iconURL;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getVersion() {
 		if (_version == null) {
 			return StringPool.BLANK;

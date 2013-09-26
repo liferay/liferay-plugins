@@ -285,6 +285,9 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.Map<java.lang.String, java.lang.String> getBundledApps();
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.marketplace.model.App> getInstalledApps()
 		throws com.liferay.portal.kernel.exception.SystemException;
 

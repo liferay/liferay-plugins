@@ -34,6 +34,14 @@
 		<property name="sessionFactory" ref="liferaySessionFactory" />
 	</bean>
 	<bean id="serviceAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.spring.aop.SkipAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="nextMethodInterceptor" value-ref="accessControlAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="accessControlAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
 		<constructor-arg value="com.liferay.portal.security.ac.AccessControlAdvice" />
 		<constructor-arg>
 			<map>
@@ -90,6 +98,14 @@
 	</bean>
 	<bean id="indexableAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
 		<constructor-arg value="com.liferay.portal.search.IndexableAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="nextMethodInterceptor" value-ref="systemEventAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="systemEventAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.systemevent.SystemEventAdvice" />
 		<constructor-arg>
 			<map>
 				<entry key="nextMethodInterceptor" value-ref="transactionAdvice" />
