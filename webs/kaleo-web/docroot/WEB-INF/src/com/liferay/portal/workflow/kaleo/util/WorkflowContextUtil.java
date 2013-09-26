@@ -49,13 +49,13 @@ public class WorkflowContextUtil {
 
 	public static void mergeWorkflowContexts(
 		ExecutionContext executionContext,
-		Map<String, Serializable> workflowContextCopy) {
+		Map<String, Serializable> workflowContext) {
 
-		if ((workflowContextCopy != null) && !workflowContextCopy.isEmpty()) {
-			Map<String, Serializable> originalWorkflowContext =
-							executionContext.getWorkflowContext();
+		if ((workflowContext != null) && !workflowContext.isEmpty()) {
+			Map<String, Serializable> executionContextWorkflowContext =
+				executionContext.getWorkflowContext();
 
-			originalWorkflowContext.putAll(workflowContextCopy);
+			executionContextWorkflowContext.putAll(workflowContext);
 		}
 	}
 
