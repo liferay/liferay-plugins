@@ -264,6 +264,12 @@ portletURL.setParameter("tabs1", tabs1);
 					}
 				);
 
+				var userPortrait = editForm.one('.user-portrait');
+
+				if (userPortrait) {
+					userPortrait.remove();
+				}
+
 				var cmdInput = editForm.one('#<portlet:namespace /><%= Constants.CMD %>');
 
 				cmdInput.val('<%= Constants.EDIT %>');
