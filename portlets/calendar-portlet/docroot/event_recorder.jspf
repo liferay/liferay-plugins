@@ -32,10 +32,6 @@
 
 <script id="<portlet:namespace />eventRecorderBodyTpl" type="text/x-alloy-template">
 	<div class="calendar-portlet-event-recorder">
-		<input name="allDay" type="hidden" value="{allDay}" />
-		<input name="startTime" type="hidden" value="{startTime}" />
-		<input name="endTime" type="hidden" value="{endTime}" />
-
 		<div class="scheduler-event-recorder-body">
 			<table>
 				<tpl if="status != Liferay.CalendarWorkflow.STATUS_DRAFT">
