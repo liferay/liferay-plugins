@@ -1,0 +1,7 @@
+<ivysettings>
+	<include file="ivy-settings-default.xml" />
+
+	<signers>
+		<pgp keyId="${pgp.keyname}" name="${pgp.generator}" password="${pgp.passphrase}" />
+	</signers>
+</ivysettings>

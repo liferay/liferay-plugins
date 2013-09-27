@@ -89,7 +89,7 @@
 	</for>
 
 	<target name="publish">
-		<ivy:settings file="${sdk.dir}/ivy-settings.xml" />
+		<ivy:settings file="${sdk.dir}/ivy-settings-publisher.xml" />
 
 		<ivy:resolve
 			log="download-only"
