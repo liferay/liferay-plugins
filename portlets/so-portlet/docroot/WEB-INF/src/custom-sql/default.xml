@@ -6,11 +6,11 @@
 			WHERE (
 				User_.userId NOT IN (
 					SELECT
-						DISTINCT users_groups.userId
+						DISTINCT Users_Groups.userId
 					FROM
-						users_groups
+						Users_Groups
 					WHERE
-						users_groups.groupId = ?
+						Users_Groups.groupId = ?
 				)
 			)
 		]]>
