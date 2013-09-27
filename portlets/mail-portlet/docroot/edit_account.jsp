@@ -82,13 +82,12 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 	<aui:button-row>
 		<aui:button name="updateAccount" type="submit" value="update-account" />
 	</aui:button-row>
+
+	<aui:button-row>
+		<aui:button cssClass="delete-account" name="deleteAccount" type="button" value="delete-account" />
+		<aui:button cssClass="synchronize-account" name="synchronizeAccount" type="button" value="synchronize-account" /> <liferay-ui:icon-help message="synchronizing-accounts-with-a-large-number-of-messages-may-take-minutes-to-complete" />
+	</aui:button-row>
 </aui:form>
-
-<div>
-	<a class="delete-account" href="javascript:;"><liferay-ui:message key="delete-account" /></a><br />
-
-	<a class="synchronize-account" href="javascript:;"><liferay-ui:message key="synchronize-account" /></a> <liferay-ui:icon-help message="synchronizing-accounts-with-a-large-number-of-messages-may-take-minutes-to-complete" />
-</div>
 
 <aui:script use="aui-io-deprecated">
 	var form = A.one('#<portlet:namespace />dialogFm');

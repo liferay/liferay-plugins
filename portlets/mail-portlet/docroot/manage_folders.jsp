@@ -26,7 +26,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 	<div class="add-folder-container">
 		<aui:input name="displayName" value="" />
 
-		<aui:button name="addFolder" value="add-folder" />
+		<aui:button name="addFolder" onClick='<%= renderResponse.getNamespace() + "addFolder()" %>' value="add-folder" />
 	</div>
 
 	<br />
@@ -45,9 +45,9 @@ long accountId = ParamUtil.getLong(request, "accountId");
 					<%= folder.getDisplayName() %>
 				</td>
 				<td class="action">
-					<a class="delete-folder" data-folderId="<%= folder.getFolderId() %>" href="javascript:;"><liferay-ui:message key="delete-folder" /></a>
+					<aui:button cssClass="delete-folder" onClick='<%= renderResponse.getNamespace() + "deleteFolder(" + folder.getFolderId() + ")" %>' value="delete-folder" />
 
-					<a class="rename-folder" data-folderId="<%= folder.getFolderId() %>" href="javascript:;"><liferay-ui:message key="rename-folder" /></a>
+					<aui:button cssClass="rename-folder" onClick='<%= renderResponse.getNamespace() + "renameFolder(" + folder.getFolderId() + ")" %>' value="rename-folder" />
 				</td>
 			</tr>
 
@@ -73,9 +73,12 @@ long accountId = ParamUtil.getLong(request, "accountId");
 			}
 		}
 
-		A.one('#<portlet:namespace />addFolder').on(
-			'click',
+		Liferay.provide(
+			window,
+			'<portlet:namespace />addFolder',
 			function(event) {
+				var A = AUI();
+
 				Liferay.Mail.setStatus('info', '<liferay-ui:message key="adding-folder" />', true);
 
 				var displayName = A.one('#<portlet:namespace />displayName').get('value');
@@ -98,19 +101,21 @@ long accountId = ParamUtil.getLong(request, "accountId");
 						}
 					}
 				);
-			}
+			},
+			['aui-io-deprecated']
 		);
 
-		A.all('.mail-portlet .delete-folder').on(
-			'click',
-			function(event) {
+		Liferay.provide(
+			window,
+			'<portlet:namespace />deleteFolder',
+			function(id) {
+				var A = AUI();
+
 				if (!confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-folder" />')) {
 					return;
 				}
 
 				Liferay.Mail.setStatus('info', '<liferay-ui:message key="deleting-folder" />', true);
-
-				var folderId = event.currentTarget.getData('folderId');
 
 				A.io.request(
 					themeDisplay.getLayoutURL() + '/-/mail/delete_folder',
@@ -118,7 +123,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 						data: Liferay.Util.ns(
 							'<portlet:namespace />',
 							{
-								folderId: folderId
+								folderId: id
 							}
 						),
 						dataType: 'json',
@@ -129,22 +134,26 @@ long accountId = ParamUtil.getLong(request, "accountId");
 						}
 					}
 				);
-			}
+			},
+			['aui-io-deprecated']
 		);
 
-		A.all('.mail-portlet .rename-folder').on(
-			'click',
-			function(event) {
-				var folderId = event.currentTarget.getData('folderId');
+		Liferay.provide(
+			window,
+			'<portlet:namespace />renameFolder',
+			function(id) {
+				var A = AUI();
 
-				new A.Dialog(
+				Liferay.Util.Window.getWindow(
 					{
-						centered: true,
-						cssClass: 'mail-dialog',
-						destroyOnClose: true,
-						modal: true,
-						title: '<liferay-ui:message key="rename-folder" />',
-						width: 600
+						dialog: {
+							centered: true,
+							cssClass: 'mail-dialog',
+							destroyOnClose: true,
+							modal: true,
+							title: '<liferay-ui:message key="rename-folder" />',
+							width: 600
+						}
 					}
 				).plug(
 					A.Plugin.IO,
@@ -152,13 +161,14 @@ long accountId = ParamUtil.getLong(request, "accountId");
 						data: Liferay.Util.ns(
 							'<portlet:namespace />',
 							{
-								folderId: folderId
+								folderId: id
 							}
 						),
 						uri: themeDisplay.getLayoutURL() + '/-/mail/edit_folder'
 					}
 				).render();
-			}
+			},
+			['aui-io-deprecated']
 		);
 	</aui:script>
 </c:if>

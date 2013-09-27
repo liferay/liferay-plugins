@@ -1,6 +1,6 @@
 @import "compass";
 
-.aui body .mail-portlet {
+.aui .mail-portlet {
 	#controlContainer {
 		background-color: #D7F1FF;
 		border: 1px solid #88C5D9;
@@ -18,6 +18,10 @@
 
 	#messagesContainer .nav {
 		width: 100%;
+	}
+
+	.add-account-button {
+		white-space: nowrap;
 	}
 
 	.unread {

@@ -80,35 +80,37 @@ else {
 	<aui:input name="messageId" type="hidden" value="<%= messageId %>" />
 	<aui:input name="attachmentCount" type="hidden" value="0" />
 
-	<div class="row-fluid">
-		<div class="recipient-fields span7">
-			<aui:input name="to" value="<%= to %>" />
+	<aui:fieldset>
+		<div class="row-fluid">
+			<div class="recipient-fields span7">
+				<aui:input name="to" value="<%= to %>" />
 
-			<aui:input name="cc" value="<%= cc %>" />
+				<aui:input name="cc" value="<%= cc %>" />
 
-			<aui:input name="bcc" />
+				<aui:input name="bcc" />
 
-			<aui:input name="subject" value="<%= subject %>" />
+				<aui:input name="subject" value="<%= subject %>" />
+			</div>
+
+			<div class="span5">
+				<aui:field-wrapper label="attachments">
+					<div class="attachments"></div>
+
+					<div>
+						<a class="add-attachment" href="javascript:;"><liferay-ui:message key="add-attachment" /></a>
+					</div>
+				</aui:field-wrapper>
+			</div>
 		</div>
 
-		<div class="span5">
-			<aui:field-wrapper label="attachments">
-				<div class="attachments"></div>
+		<div class="body-editor">
+			<aui:field-wrapper label="body">
+				<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
 
-				<div>
-					<a class="add-attachment" href="javascript:;"><liferay-ui:message key="add-attachment" /></a>
-				</div>
+				<aui:input name="body" type="hidden" />
 			</aui:field-wrapper>
 		</div>
-	</div>
-
-	<div class="body-editor">
-		<aui:field-wrapper label="body">
-			<liferay-ui:input-editor editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>" toolbarSet="email" width="100%" />
-
-			<aui:input name="body" type="hidden" />
-		</aui:field-wrapper>
-	</div>
+	</aui:fieldset>
 
 	<aui:button-row>
 		<aui:button cssClass="send-message" data-messageId="<%= messageId %>" value="send" />
