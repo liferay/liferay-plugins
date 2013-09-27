@@ -113,9 +113,6 @@ public class StorePortlet extends MVCPortlet {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("cmd", "getBundledApps");
-		jsonObject.put("message", "success");
-
 		Map<String, String> bundledApps = AppLocalServiceUtil.getBundledApps();
 
 		JSONObject bundledAppJsonObject = JSONFactoryUtil.createJSONObject();
@@ -127,6 +124,9 @@ public class StorePortlet extends MVCPortlet {
 		}
 
 		jsonObject.put("bundledApps", bundledAppJsonObject);
+
+		jsonObject.put("cmd", "getBundledApps");
+		jsonObject.put("message", "success");
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
