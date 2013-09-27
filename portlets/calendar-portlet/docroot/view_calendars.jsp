@@ -120,10 +120,6 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 				var importCalendarContainer = A.one('#<portlet:namespace />importCalendarContainer');
 
-				var portletErrorMessage = A.one('#<portlet:namespace />portletErrorMessage');
-
-				var portletSuccessMessage = A.one('#<portlet:namespace />portletSuccessMessage');
-
 				var buttons = [
 					{
 						on: {
@@ -133,22 +129,24 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 									{
 										dataType: 'json',
 										form: {
-											id: form,
+											id: '<portlet:namespace />fm',
 											upload: true
 										},
 										method: 'post',
 										on: {
-											complete: function() {
-												var responseData = this.get('responseData');
+											complete: function(event, id, obj) {
+												var responseText = obj.responseText;
 
-												var error = responseData && responseData.error;
+												var responseData = A.JSON.parse(responseText);
 
-												if (error) {
-													portletErrorMessage.html(error).show();
+												if (responseData.success) {
+													A.one('#<portlet:namespace />portletErrorMessage').hide();
+													A.one('#<portlet:namespace />portletSuccessMessage').show();
 												}
 												else {
-													portletErrorMessage.hide();
-													portletSuccessMessage.show();
+													A.one('#<portlet:namespace />portletErrorMessage').show();
+													A.one('#<portlet:namespace />portletErrorMessage').html(responseData.error);
+													A.one('#<portlet:namespace />portletSuccessMessage').hide();
 												}
 											}
 										}
@@ -160,25 +158,39 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 					}
 				];
 
+				var buttonClose = [
+					{
+						on: {
+							click: function() {
+								A.one('#<portlet:namespace />fm').reset();
+								A.one('#<portlet:namespace />portletErrorMessage').hide();
+								A.one('#<portlet:namespace />portletSuccessMessage').hide();
+								<portlet:namespace />importDialog.hide();
+							}
+						},
+						cssClass: 'close',
+						label: "\u00D7",
+						render: true
+					}
+				];
+
+
 				<portlet:namespace />importDialog = Liferay.Util.Window.getWindow(
 					{
 						dialog: {
 							bodyContent: importCalendarContainer.html(),
 							toolbars: {
-								footer: buttons
-							}
+								footer: buttons,
+								header: buttonClose
+						},
+						modal: true
 						},
 						on: {
 							visibleChange: function(event) {
-								if (event.newVal) {
-									importCalendarContainer.show();
-								}
-								else {
 									form.reset();
-
-									portletSuccessMessage.hide();
-									portletErrorMessage.hide();
-								}
+								A.one('#<portlet:namespace />portletErrorMessage').hide();
+								A.one('#<portlet:namespace />portletSuccessMessage').hide();
+								importCalendarContainer.show();
 							}
 						},
 						title: Liferay.Language.get('import')
