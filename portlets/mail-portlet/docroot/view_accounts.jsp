@@ -24,13 +24,13 @@ MailManager mailManager = MailManager.getInstance(request);
 
 <c:if test="<%= Validator.isNotNull(mailManager) %>">
 	<div class="row-fluid">
-		<div class="span10">
-			<%
-			List<Account> mailAccounts = mailManager.getAccounts();
-			%>
+		<%
+		List<Account> mailAccounts = mailManager.getAccounts();
+		%>
 
-			<c:choose>
-				<c:when test="<%= !mailAccounts.isEmpty() %>">
+		<c:choose>
+			<c:when test="<%= !mailAccounts.isEmpty() %>">
+				<div class="span9">
 					<ul class="nav nav-pills">
 
 						<%
@@ -46,15 +46,19 @@ MailManager mailManager = MailManager.getInstance(request);
 						%>
 
 					</ul>
-				</c:when>
-				<c:otherwise>
+				</div>
 
-				</c:otherwise>
-			</c:choose>
-		</div>
-
-		<div class="span2">
-			<aui:button onClick="Liferay.Mail.addAccount();" value="add-mail-account" />
-		</div>
+				<div class="span3 text-right">
+					<aui:button cssClass="add-account-button" onClick="Liferay.Mail.addAccount();" value="add-mail-account" />
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="span12">
+					<div class="alert alert-info">
+						<aui:a href="javascript:;" onClick="Liferay.Mail.addAccount();"><liferay-ui:message key="add-a-new-email-account" /></aui:a>
+					</div>
+				</div>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </c:if>

@@ -454,23 +454,13 @@ AUI.add(
 				instance.loadAccounts();
 
 				instance._pollStopMessages();
-
 				instance._hideWindow();
 			},
 
 			setStatus: function(type, message, indefinite) {
 				var instance = this;
 
-				var messageType = 'alert-error';
-
-				if (type == 'success') {
-					messageType = 'alert-success';
-				}
-				else if (type == 'info') {
-					messageType = 'alert-info';
-				}
-
-				var statusContainers = A.all('.mail-status').html('<table style="margin: 0 auto;"><tr><td>&nbsp;</td><td><span class="alert message ' + messageType + '">' + message + '</span></td><td>&nbsp;</td></tr></table>');
+				var statusContainers = A.all('.mail-status').html('<table style="margin: 0 auto;"><tr><td>&nbsp;</td><td><span class="alert message alert-' + type + '">' + message + '</span></td><td>&nbsp;</td></tr></table>');
 
 				var status = statusContainers.all('table');
 
@@ -832,6 +822,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-base', 'aui-datatype', 'liferay-util-window', 'aui-io-deprecated']
+		requires: ['aui-base', 'aui-datatype', 'aui-io-deprecated', 'liferay-util-window']
 	}
 );

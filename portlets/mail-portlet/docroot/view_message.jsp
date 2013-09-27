@@ -154,9 +154,7 @@ MailManager mailManager = MailManager.getInstance(request);
 	</aui:nav-bar>
 
 	<c:if test="<%= Validator.isNull(message.getBody()) %>">
-		<aui:script>
-			var A = AUI();
-
+		<aui:script use="aui-io-plugin-deprecated">
 			A.one('#messageContentContainer').plug(
 				A.Plugin.IO,
 				{
