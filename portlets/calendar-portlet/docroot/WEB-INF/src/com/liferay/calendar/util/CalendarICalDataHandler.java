@@ -605,19 +605,12 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		// Dates
 
-		boolean multipleDayEvent = false;
-
-		if (calendarBooking.getDuration() > Time.DAY) {
-			multipleDayEvent = true;
-		}
-
 		if (calendarBooking.isAllDay()) {
 			DtStart dtStart = new DtStart(
 				new Date(calendarBooking.getStartTime()));
 
 			propertyList.add(dtStart);
 
-			if (calendarBooking.getDuration() > Time.DAY) {
 				java.util.Calendar endJCalendar = JCalendarUtil.getJCalendar(
 					calendarBooking.getEndTime());
 
@@ -627,7 +620,6 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 				propertyList.add(dtEnd);
 			}
-		}
 		else {
 			DtStart dtStart = new DtStart(
 				toICalDateTime(calendarBooking.getStartTime()));
