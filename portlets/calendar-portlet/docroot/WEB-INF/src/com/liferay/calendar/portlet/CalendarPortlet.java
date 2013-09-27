@@ -990,11 +990,20 @@ public class CalendarPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		if (Validator.isNotNull(data)) {
-			CalendarDataHandler calendarDataHandler =
-				CalendarDataHandlerFactory.getCalendarDataHandler(
-					CalendarDataFormat.ICAL);
-
-			calendarDataHandler.importCalendar(calendarId, data);
+			try {
+				CalendarDataHandler calendarDataHandler =
+					CalendarDataHandlerFactory
+						.getCalendarDataHandler(CalendarDataFormat.ICAL);
+				calendarDataHandler.importCalendar(calendarId, data);
+				jsonObject.put("success", true);
+			}
+			catch (Exception e) {
+				jsonObject.put(
+					"error",
+					themeDisplay.translate(
+						"an-unexpected-error-occurred-while-importing-your-file"
+							));
+			}
 		}
 		else {
 			jsonObject.put(
