@@ -117,6 +117,7 @@ speed-filters-enabled=false
 				<replace file="${portlet.dir}/docroot/WEB-INF/liferay-portlet.xml">
 					<replacetoken><![CDATA[</icon>]]></replacetoken>
 					<replacevalue><![CDATA[</icon>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
 		<ajaxable>false</ajaxable>]]></replacevalue>
 				</replace>
 
