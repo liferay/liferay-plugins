@@ -47,7 +47,7 @@
 				</div>
 			</c:if>
 
-			<c:if test="<%= total == 0 %>">
+			<c:if test="<%= searchContainer.getTotal() == 0 %>">
 				<liferay-ui:message key="<%= searchContainer.getEmptyResultsMessage() %>" />
 			</c:if>
 
