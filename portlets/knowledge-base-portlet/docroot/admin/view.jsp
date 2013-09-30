@@ -51,9 +51,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			KBArticleSearchTerms searchTerms = (KBArticleSearchTerms)searchContainer.getSearchTerms();
 			%>
 
-			<liferay-ui:search-container-results>
-				<%@ include file="/admin/article_search_results.jspf" %>
-			</liferay-ui:search-container-results>
+			<%@ include file="/admin/article_search_results.jspf" %>
 
 			<%
 			boolean updateArticlesPriorities = AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES);

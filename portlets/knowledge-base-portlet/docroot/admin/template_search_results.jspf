@@ -15,6 +15,8 @@
 --%>
 
 <%
+List results = new ArrayList();
+
 if (!searchTerms.hasSearchTerms()) {
 	results = KBTemplateServiceUtil.getGroupKBTemplates(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 	total = KBTemplateServiceUtil.getGroupKBTemplatesCount(scopeGroupId);
@@ -36,6 +38,6 @@ else {
 	total = kbTemplateSearchDisplay.getTotal();
 }
 
-pageContext.setAttribute("results", results);
-pageContext.setAttribute("total", total);
+searchContainer.setResults(results);
+searchContainer.setTotal(total);
 %>

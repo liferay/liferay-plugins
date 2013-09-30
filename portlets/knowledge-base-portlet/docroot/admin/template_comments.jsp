@@ -97,7 +97,7 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 						</c:if>
 
 						<%
-						for (KBComment curKBComment : (List<KBComment>)results) {
+						for (KBComment curKBComment : (List<KBComment>)searchContainer.getResults()) {
 						%>
 
 							<%

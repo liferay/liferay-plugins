@@ -15,6 +15,8 @@
 --%>
 
 <%
+List results = new ArrayList();
+
 if (!searchTerms.hasSearchTerms()) {
 	results = KBArticleServiceUtil.getSiblingKBArticles(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 	total = KBArticleServiceUtil.getSiblingKBArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
@@ -36,6 +38,6 @@ else {
 	total = kbArticleSearchDisplay.getTotal();
 }
 
-pageContext.setAttribute("results", results);
-pageContext.setAttribute("total", total);
+searchContainer.setResults(results);
+searchContainer.setTotal(total);
 %>
