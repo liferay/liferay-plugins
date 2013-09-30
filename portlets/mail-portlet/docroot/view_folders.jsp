@@ -22,7 +22,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= Validator.isNotNull(mailManager) %>">
+<c:if test="<%= mailManager != null %>">
 	<div class="controls-list well">
 		<aui:nav cssClass="nav-list">
 			<aui:nav-item

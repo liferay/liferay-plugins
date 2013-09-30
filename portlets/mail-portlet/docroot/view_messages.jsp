@@ -20,7 +20,7 @@
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= Validator.isNotNull(mailManager) %>">
+<c:if test="<%= mailManager != null %>">
 
 	<%
 	long folderId = ParamUtil.getLong(request, "folderId");
@@ -43,10 +43,10 @@ MailManager mailManager = MailManager.getInstance(request);
 			<aui:nav-item cssClass="delete-messages" iconClass="icon-remove" label="delete" />
 
 			<aui:nav-item dropdown="<%= true %>" label="flag">
-				<aui:nav-item cssClass="flag-messages" label="flag-as-important" data-flagType="4" data-flagToggle="true" />
-				<aui:nav-item cssClass="flag-messages" label="remove-flag" data-flagType="4" data-flagToggle="false" />
-				<aui:nav-item cssClass="flag-messages" label="mark-as-read" data-flagType="6" data-flagToggle="true" />
-				<aui:nav-item cssClass="flag-messages" label="mark-as-unread" data-flagType="6" data-flagToggle="false" />
+				<aui:nav-item cssClass="flag-messages" data-flagToggle="true" data-flagType="4" label="flag-as-important" />
+				<aui:nav-item cssClass="flag-messages" data-flagToggle="false" data-flagType="4" label="remove-flag" />
+				<aui:nav-item cssClass="flag-messages" data-flagToggle="true" data-flagType="6" label="mark-as-read" />
+				<aui:nav-item cssClass="flag-messages" data-flagToggle="false" data-flagType="6" label="mark-as-unread" />
 			</aui:nav-item>
 
 			<aui:nav-item dropdown="<%= true %>" label="move">

@@ -23,6 +23,6 @@ String displayName = ParamUtil.getString(request, "displayName");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= Validator.isNotNull(mailManager) %>">
+<c:if test="<%= mailManager != null %>">
 	<%= mailManager.renameFolder(folderId, displayName) %>
 </c:if>

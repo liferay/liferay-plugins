@@ -23,6 +23,6 @@ long folderId = ParamUtil.getLong(request, "folderId");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= Validator.isNotNull(mailManager) %>">
+<c:if test="<%= mailManager != null %>">
 	<%= mailManager.checkMessages(accountId, folderId) %>
 </c:if>
