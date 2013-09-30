@@ -60,68 +60,68 @@ expectedValues.put("user.name.full", user.getFullName());
 		</tr>
 	</thead>
 
-<%
-Map userInfo = (Map)renderRequest.getAttribute(PortletRequest.USER_INFO);
+	<%
+	Map userInfo = (Map)renderRequest.getAttribute(PortletRequest.USER_INFO);
 
-if (userInfo != null) {
-	for (Map.Entry<String, Object> entry : expectedValues.entrySet()) {
-		String key = entry.getKey();
-		String expectedValue = String.valueOf(entry.getValue());
+	if (userInfo != null) {
+		for (Map.Entry<String, Object> entry : expectedValues.entrySet()) {
+			String key = entry.getKey();
+			String expectedValue = String.valueOf(entry.getValue());
 
-		String actualValue = String.valueOf(userInfo.get(key));
-%>
+			String actualValue = String.valueOf(userInfo.get(key));
+	%>
 
-	<tbody>
-		<tr>
-			<td>
-				<%= key %>
-			</td>
-			<td>
-				<%= expectedValue %>
-			</td>
-			<td>
-				<%= actualValue %>
-			</td>
-			<td>
+		<tbody>
+			<tr>
+				<td>
+					<%= key %>
+				</td>
+				<td>
+					<%= expectedValue %>
+				</td>
+				<td>
+					<%= actualValue %>
+				</td>
+				<td>
 
-				<%
-				if (expectedValue.equals(actualValue)) {
-				%>
+					<%
+					if (expectedValue.equals(actualValue)) {
+					%>
 
-					PASSED
+						PASSED
 
-				<%
-				}
-				else {
-				%>
+					<%
+					}
+					else {
+					%>
 
-					FAILED
+						FAILED
 
-				<%
-				}
-				%>
+					<%
+					}
+					%>
 
-			</td>
-		</tr>
-	</tbody>
+				</td>
+			</tr>
+		</tbody>
 
-<%
+	<%
+		}
 	}
-}
-else {
-%>
+	else {
+	%>
 
-	<tbody>
-		<tr>
-			<td colspan="3"></td>
-			</td>
-				FAILED
-			</td>
-		</tr>
-	</tbody>
+		<tbody>
+			<tr>
+				<td colspan="3"></td>
+				</td>
+					FAILED
+				</td>
+			</tr>
+		</tbody>
 
-<%
-}
-%>
+	<%
+	}
+	%>
 
 </table>
