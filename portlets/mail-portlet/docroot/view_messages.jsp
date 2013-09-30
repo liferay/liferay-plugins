@@ -69,8 +69,6 @@ MailManager mailManager = MailManager.getInstance(request);
 		</aui:nav>
 	</aui:nav-bar>
 
-	<br />
-
 	<c:choose>
 		<c:when test="<%= messagesDisplay.getMessageCount() == 0 %>">
 			<aui:layout>
@@ -224,23 +222,23 @@ MailManager mailManager = MailManager.getInstance(request);
 				</tbody>
 			</table>
 
-			<br />
+			<ul class="message-pager pager pull-right">
+				<li class="<%= (messagesDisplay.getPageNumber() > 2 ? StringPool.BLANK : "disabled ") + "previous" %>">
+					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;">&larr; <liferay-ui:message key="newest" /></aui:a>
+				</li>
 
-			<div class="pull-right">
-				<c:if test="<%= messagesDisplay.getPageNumber() > 2 %>">
-					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="1" href="javascript:;" label="&lt;&lt; Newest" />&nbsp;
-				</c:if>
+				<li class="<%= (messagesDisplay.getPageNumber() > 1 ? StringPool.BLANK : "disabled ") + "previous" %>">
+					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber - 1 %>" href="javascript:;"><liferay-ui:message key="newer" /></aui:a>
+				</li>
 
-				<c:if test="<%= messagesDisplay.getPageNumber() > 1 %>">
-					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber - 1 %>" href="javascript:;" label="&lt; Newer" />
-				</c:if>
+				<li class="message-count">
+					<liferay-ui:message arguments='<%= new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), messagesDisplay.getMessageCount()} %>' key="x-of-x" />
+				</li>
 
-				<liferay-ui:message arguments='<%= new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), messagesDisplay.getMessageCount()} %>' key="x-of-x" />
-
-				<c:if test="<%= messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() %>">
-					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber + 1 %>" href="javascript:;" label="Older &gt;" />&nbsp;
-				</c:if>
-			</div>
+				<li class="<%= (messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() ? StringPool.BLANK : "disabled ") + "next" %>">
+					<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber + 1 %>" href="javascript:;"><liferay-ui:message key="older" /> &rarr;</aui:a>
+				</li>
+			</ul>
 		</c:otherwise>
 	</c:choose>
 </c:if>

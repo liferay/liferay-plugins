@@ -23,50 +23,80 @@ MailManager mailManager = MailManager.getInstance(request);
 %>
 
 <c:if test="<%= Validator.isNotNull(mailManager) %>">
+	<div class="controls-list well">
+		<aui:nav cssClass="nav-list">
+			<aui:nav-item
+				cssClass="compose-message"
+				data-messageId="0"
+				data-messageType="new"
+				data-replyMessageId="0"
+				href="javascript:;"
+				iconClass="icon-envelope"
+				label="compose"
+			/>
 
-	<aui:a cssClass="compose-message icon icon-envelope" data-messageId="0" data-messageType="new" data-replyMessageId="0" href="javascript: ;" >
-		<liferay-ui:message key="compose" />
-	</aui:a>
+			<aui:nav-item cssClass="divider" />
 
-	<br /><br />
+			<%
+			Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
-	<%
-	Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
+			List<Folder> folders = mailManager.getFolders(accountId, true, true);
 
-	List<Folder> folders = mailManager.getFolders(accountId, true, true);
+			for (Folder folder : folders) {
+				String folderIcon = "icon-folder-open";
 
-	for (Folder folder : folders) {
-		String folderIcon = "icon-folder-open";
+				if (folder.getFolderId() == mailAccount.getInboxFolderId()) {
+					folderIcon = "icon-inbox";
+				}
+				else if (folder.getFolderId() == mailAccount.getDraftFolderId()) {
+					folderIcon = "icon-pencil";
+				}
+				else if (folder.getFolderId() == mailAccount.getSentFolderId()) {
+					folderIcon = "icon-folder-close";
+				}
+				else if (folder.getFolderId() == mailAccount.getTrashFolderId()) {
+					folderIcon = "icon-trash";
+				}
+			%>
 
-		if (folder.getFolderId() == mailAccount.getInboxFolderId()) {
-			folderIcon = "icon-inbox";
-		}
-		else if (folder.getFolderId() == mailAccount.getDraftFolderId()) {
-			folderIcon = "icon-pencil";
-		}
-		else if (folder.getFolderId() == mailAccount.getSentFolderId()) {
-			folderIcon = "icon-folder-close";
-		}
-		else if (folder.getFolderId() == mailAccount.getTrashFolderId()) {
-			folderIcon = "icon-trash";
-		}
-	%>
+				<aui:nav-item
+					cssClass="messages-link"
+					data-accountId="<%= accountId %>"
+					data-folderId="<%= folder.getFolderId() %>"
+					data-keywords=""
+					data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>"
+					data-orderByType="desc"
+					data-pageNumber="1"
+					href="javascript:;"
+					iconClass="<%= folderIcon %>"
+					label='<%= folder.getDisplayName() + " (" + MessageLocalServiceUtil.getFolderUnreadMessagesCount(folder.getFolderId()) + ")" %>'
+				/>
 
-		<aui:a cssClass='<%= "messages-link icon " + folderIcon %>' data-accountId="<%= accountId %>" data-folderId="<%= folder.getFolderId() %>" data-keywords="" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="desc" data-pageNumber="1" href="javascript:;">
-			<%= folder.getDisplayName() + " (" + MessageLocalServiceUtil.getFolderUnreadMessagesCount(folder.getFolderId()) + ")" %>
-		</aui:a>
+				<%
+				}
+				%>
 
-		<br/>
+				<aui:nav-item cssClass="divider" />
 
-	<%
-	}
-	%>
+				<aui:nav-item
+					cssClass="manage-folders"
+					data-messageId="0"
+					data-messageType="new"
+					data-replyMessageId="0"
+					href="javascript:;"
+					iconClass="icon-cogs"
+					label="manage-folders"
+				/>
 
-	<br />
-
-	<aui:a cssClass="icon icon-cogs manage-folders" href="javascript:;"><liferay-ui:message key="manage-folders" /></aui:a>
-
-	<br />
-
-	<aui:a cssClass="edit-account icon icon-cog" href="javascript:;"><liferay-ui:message key="edit-account" /></aui:a>
+				<aui:nav-item
+					cssClass="edit-account"
+					data-messageId="0"
+					data-messageType="new"
+					data-replyMessageId="0"
+					href="javascript:;"
+					iconClass="icon-cog"
+					label="edit-account"
+				/>
+			</aui:nav>
+	</div>
 </c:if>

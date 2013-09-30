@@ -64,19 +64,19 @@ MailManager mailManager = MailManager.getInstance(request);
 				<aui:nav-item cssClass="delete-message" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" label="delete" iconClass="icon-trash" />
 			</aui:nav>
 
-			<div class="pull-right">
-				<div class="message-count">
-					<c:if test="<%= messageNumber > 1 %>">
-						<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber - 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;">&lt; <liferay-ui:message key="newer" /></aui:a>
-					</c:if>
+			<ul class="message-pager pager pull-right">
+				<li class="<%= (messageNumber > 1 ? StringPool.BLANK : "disabled ") + "previous" %>">
+					<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber - 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;">&larr; <liferay-ui:message key="newer" /></aui:a>
+				</li>
 
+				<li class="message-count">
 					<liferay-ui:message arguments="<%= new Object[] {messageNumber, messageCount} %>" key="x-of-x" />
+				</li>
 
-					<c:if test="<%= messageNumber < messageCount %>">
-						<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber + 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;"><liferay-ui:message key="older" /> &gt;</aui:a>
-					</c:if>
-				</div>
-			</div>
+				<li class="<%= (messageNumber < messageCount ? StringPool.BLANK : "disabled ") + "next" %>">
+					<aui:a cssClass="message-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageNumber="<%= messageNumber + 1 %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" href="javascript:;"><liferay-ui:message key="older" /> &rarr;</aui:a>
+				</li>
+			</ul>
 		</aui:nav-bar>
 	</div>
 
@@ -90,40 +90,37 @@ MailManager mailManager = MailManager.getInstance(request);
 	</c:choose>
 
 	<div class="message-header">
-		<table>
-		<tr>
-			<td class="message-header-label">
+		<dl class="dl-horizontal">
+			<dt>
 				<liferay-ui:message key="from" />
-			</td>
-			<td>
+			</dt>
+			<dd>
 				<%= message.getSender() %>
-			</td>
-		</tr>
-		<tr>
-			<td class="message-header-label">
+			</dd>
+
+			<dt>
 				<liferay-ui:message key="to" />
-			</td>
-			<td>
+			</dt>
+			<dd>
 				<%= message.getTo() %>
-			</td>
-		</tr>
+			</dd>
 
-		<c:if test="<%= Validator.isNotNull(message.getCc()) %>">
-			<tr>
-				<td class="message-header-label">
+			<c:if test="<%= Validator.isNotNull(message.getCc()) %>">
+				<dt>
 					<liferay-ui:message key="cc" />
-				</td>
-				<td>
+				</dt>
+				<dd>
 					<%= message.getCc() %>
-				</td>
-			</tr>
-		</c:if>
+				</dd>
 
-		<tr>
-			<td class="message-header-label">
+				<dt></dt>
+				<dd></dd>
+			</c:if>
+
+			<dt>
 				<liferay-ui:message key="date" />
-			</td>
-			<td>
+			</dt>
+			<dd>
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(message.getSentDate()) %>">
 						<%= dateFormatDateTime.format(message.getSentDate()) %>
@@ -132,9 +129,8 @@ MailManager mailManager = MailManager.getInstance(request);
 						<%= StringPool.DASH %>
 					</c:otherwise>
 				</c:choose>
-			</td>
-		</tr>
-		</table>
+			</dd>
+		</dl>
 	</div>
 
 	<div id="messageContentContainer">
