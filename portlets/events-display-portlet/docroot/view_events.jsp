@@ -25,15 +25,11 @@ List<CalEvent> events = (List<CalEvent>)request.getAttribute("view.jsp-events");
 
 <liferay-ui:search-container
 	delta="<%= eventsPerPage %>"
+	total="<%= events.size() %>"
 >
 
-	<%
-	int end = (events.size() < searchContainer.getEnd()) ? events.size() : searchContainer.getEnd();
-	%>
-
 	<liferay-ui:search-container-results
-		results="<%= events.subList(searchContainer.getStart(), end) %>"
-		total="<%= events.size() %>"
+		results="<%= events.subList(searchContainer.getStart(), searchContainer.getEnd()) %>"
 	/>
 
 	<liferay-ui:search-container-row

@@ -40,39 +40,36 @@ taskListURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 taskListURL.setParameter("mvcPath", "/tasks/view_tasks.jsp");
 taskListURL.setParameter("tabs1", tabs1);
 taskListURL.setParameter("tabs2", tabs2);
+
+if (group.isRegularSite()) {
+	groupId = group.getGroupId();
+}
+
+long assigneeUserId = 0;
+long reporterUserId = 0;
+
+if (tabs1.equals("assigned-to-me")) {
+	assigneeUserId = user.getUserId();
+}
+else if (tabs1.equals("i-have-created")) {
+	reporterUserId = user.getUserId();
+}
+
+int status = TasksEntryConstants.STATUS_ALL;
+
+if (tabs2.equals("open")) {
+	status = TasksEntryConstants.STATUS_OPEN;
+}
 %>
 
 <liferay-ui:search-container
 	emptyResultsMessage="no-tasks-were-found"
 	headerNames="description,due, "
 	iteratorURL="<%= portletURL %>"
+	total= "<%= TasksEntryLocalServiceUtil.getTasksEntriesCount(groupId, 0, assigneeUserId, reporterUserId, status, assetTagIds, new long[0]) %>"
 >
-
-	<%
-	if (group.isRegularSite()) {
-		groupId = group.getGroupId();
-	}
-
-	long assigneeUserId = 0;
-	long reporterUserId = 0;
-
-	if (tabs1.equals("assigned-to-me")) {
-		assigneeUserId = user.getUserId();
-	}
-	else if (tabs1.equals("i-have-created")) {
-		reporterUserId = user.getUserId();
-	}
-
-	int status = TasksEntryConstants.STATUS_ALL;
-
-	if (tabs2.equals("open")) {
-		status = TasksEntryConstants.STATUS_OPEN;
-	}
-	%>
-
 	<liferay-ui:search-container-results
 		results="<%= TasksEntryLocalServiceUtil.getTasksEntries(groupId, 0, assigneeUserId, reporterUserId, status, assetTagIds, new long[0], searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= TasksEntryLocalServiceUtil.getTasksEntriesCount(groupId, 0, assigneeUserId, reporterUserId, status, assetTagIds, new long[0]) %>"
 	/>
 
 	<liferay-ui:search-container-row

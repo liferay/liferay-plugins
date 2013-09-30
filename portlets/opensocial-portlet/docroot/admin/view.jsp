@@ -24,10 +24,10 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	emptyResultsMessage="there-are-no-gadgets"
 	headerNames="name"
 	iteratorURL="<%= portletURL %>"
+	total="<%= GadgetLocalServiceUtil.getGadgetsCount(company.getCompanyId()) %>"
 >
 	<liferay-ui:search-container-results
 		results="<%= GadgetLocalServiceUtil.getGadgets(company.getCompanyId(), searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= GadgetLocalServiceUtil.getGadgetsCount(company.getCompanyId()) %>"
 	/>
 
 	<liferay-ui:search-container-row

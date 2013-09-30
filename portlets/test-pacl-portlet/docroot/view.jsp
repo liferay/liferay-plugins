@@ -1462,10 +1462,10 @@
 	<liferay-util:buffer var="searchContainerHTML">
 		<liferay-ui:search-container
 			headerNames="Check,Result"
+			total="1"
 		>
 			<liferay-ui:search-container-results
 				results="<%= foos %>"
-				total="1"
 			/>
 
 			<liferay-ui:search-container-row

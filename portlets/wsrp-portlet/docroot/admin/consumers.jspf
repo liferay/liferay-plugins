@@ -21,10 +21,10 @@
 	emptyResultsMessage="there-are-no-consumers"
 	headerNames="name"
 	iteratorURL="<%= portletURL %>"
+	total="<%= WSRPConsumerLocalServiceUtil.getWSRPConsumersCount(company.getCompanyId()) %>"
 >
 	<liferay-ui:search-container-results
 		results="<%= WSRPConsumerLocalServiceUtil.getWSRPConsumers(company.getCompanyId(), searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= WSRPConsumerLocalServiceUtil.getWSRPConsumersCount(company.getCompanyId()) %>"
 	/>
 
 	<liferay-ui:search-container-row

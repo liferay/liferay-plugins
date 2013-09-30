@@ -61,10 +61,10 @@ if (DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, di
 			delta="<%= fileNames.length %>"
 			emptyResultsMessage="there-are-no-attachments"
 			id="attachmentsSearchContainer"
+			total="<%= fileNames.length %>"
 		>
 			<liferay-ui:search-container-results
 				results="<%= ListUtil.fromArray(fileNames) %>"
-				total="<%= fileNames.length %>"
 			/>
 
 			<liferay-ui:search-container-row
