@@ -174,7 +174,6 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 					}
 				];
 
-
 				<portlet:namespace />importDialog = Liferay.Util.Window.getWindow(
 					{
 						dialog: {
@@ -182,12 +181,12 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 							toolbars: {
 								footer: buttons,
 								header: buttonClose
-						},
-						modal: true
+							},
+							modal: true
 						},
 						on: {
 							visibleChange: function(event) {
-									form.reset();
+								form.reset();
 								A.one('#<portlet:namespace />portletErrorMessage').hide();
 								A.one('#<portlet:namespace />portletSuccessMessage').hide();
 								importCalendarContainer.show();
