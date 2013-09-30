@@ -1,6 +1,6 @@
 @import "compass";
 
-/* -------- Set Compass Defaults -------- */
+/* -------- Set compass defaults -------- */
 
 $default-box-shadow-blur-offset: 6px;
 $default-box-shadow-color: #999;
@@ -193,7 +193,7 @@ hr {
 	}
 }
 
-/* -------- Search Bar -------- */
+/* -------- Search bar -------- */
 
 #pageSearch {
 		background-image: url(../images/custom/page_search.png);
@@ -408,7 +408,7 @@ hr {
 	}
 }
 
-/* -------- Quote Box ------- */
+/* -------- Quote box ------- */
 
 #quoteBox {
 	padding-top: 15px;
@@ -467,7 +467,7 @@ hr {
 	}
 }
 
-/* -------- Side Bar -------- */
+/* -------- Side bar -------- */
 
 .list-block {
 	.title {
@@ -577,7 +577,7 @@ ul.arrow {
 	}
 }
 
-/* ------- Browser Specific Rules ------ */
+/* ------- Browser specific rules ------ */
 
 .ie6 {
 	.aui-carousel-menu-active {

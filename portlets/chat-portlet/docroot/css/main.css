@@ -5,7 +5,7 @@ html body {
 	padding-bottom: 24px;
 }
 
-/* ---------- Bottom Dock ---------- */
+/* ---------- Bottom dock ---------- */
 
 .chat-bar {
 	background: #E5E5E5 url(../images/btm-dock_bg.png) repeat-x;
@@ -31,7 +31,7 @@ html body {
 	float: left;
 }
 
-/* ---------- Bottom Dock Tabs ---------- */
+/* ---------- Bottom dock tabs ---------- */
 .chat-bar {
 	div ul {
 		&, li {
@@ -96,7 +96,7 @@ html body {
 		float: right;
 	}
 
-	/* ---------- Bottom Dock Popups ---------- */
+	/* ---------- Bottom dock popups ---------- */
 
 	.chat-panel {
 		bottom: 24px;
@@ -132,7 +132,7 @@ html body {
 	display: block;
 }
 
-/* ---------- Online Users ---------- */
+/* ---------- Online users ---------- */
 
 .buddy-list {
 	.field.search-buddies {
@@ -214,7 +214,7 @@ html body {
 	}
 }
 
-/* ---------- Popup Window ---------- */
+/* ---------- Popup window ---------- */
 
 .chat-portlet .chat-settings {
 	.settings {
