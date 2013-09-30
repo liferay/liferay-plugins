@@ -120,6 +120,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 				var buttons = [
 					{
+						label: Liferay.Language.get('import'),
 						on: {
 							click: function() {
 								A.io.request(
@@ -156,21 +157,20 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 									}
 								);
 							}
-						},
-						label: Liferay.Language.get('import')
+						}
 					}
 				];
 
 				var buttonClose = [
 					{
+						cssClass: 'close',
+						label: "\u00D7",
+						render: true,
 						on: {
 							click: function() {
 								<portlet:namespace />importDialog.hide();
 							}
-						},
-						cssClass: 'close',
-						label: "\u00D7",
-						render: true
+						}
 					}
 				];
 
