@@ -212,7 +212,8 @@ AUI.add(
 					themeDisplay.getLayoutURL() + '/-/mail/password_saved',
 					{
 						data: Liferay.Util.ns(
-							instance.namespace, {
+							instance.namespace,
+							{
 								accountId: accountId,
 								inboxFolderId: inboxFolderId
 							}
@@ -603,13 +604,17 @@ AUI.add(
 					function(event) {
 						var link = event.currentTarget;
 
-						var folderId = link.getData('folderId');
-						var messageNumber = link.getData('messageNumber');
-						var orderByField = link.getData('orderByField');
-						var orderByType = link.getData('orderByType');
-						var keywords = link.getData('keywords');
+						var li = link.ancestor('li');
 
-						instance.loadMessage(folderId, messageNumber, orderByField, orderByType, keywords);
+						if (!li || !li.hasClass('disabled')) {
+							var folderId = link.getData('folderId');
+							var messageNumber = link.getData('messageNumber');
+							var orderByField = link.getData('orderByField');
+							var orderByType = link.getData('orderByType');
+							var keywords = link.getData('keywords');
+
+							instance.loadMessage(folderId, messageNumber, orderByField, orderByType, keywords);
+						}
 					},
 					'.message-link'
 				);
@@ -647,13 +652,17 @@ AUI.add(
 					function(event) {
 						var link = event.currentTarget;
 
-						var folderId = link.getData('folderId');
-						var pageNumber = link.getData('pageNumber');
-						var orderByField = link.getData('orderByField');
-						var orderByType = link.getData('orderByType');
-						var keywords = link.getData('keywords');
+						var li = link.ancestor('li');
 
-						instance.loadMessages(folderId, pageNumber, orderByField, orderByType, keywords);
+						if (!li || !li.hasClass('disabled')) {
+							var folderId = link.getData('folderId');
+							var pageNumber = link.getData('pageNumber');
+							var orderByField = link.getData('orderByField');
+							var orderByType = link.getData('orderByType');
+							var keywords = link.getData('keywords');
+
+							instance.loadMessages(folderId, pageNumber, orderByField, orderByType, keywords);
+						}
 					},
 					'.messages-link'
 				);
@@ -753,7 +762,7 @@ AUI.add(
 					'.select-none'
 				);
 
-				instance.timeoutMessages = setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
+				instance._pollCheckMessages();
 			},
 
 			_displayContainer: function(container) {
@@ -801,7 +810,11 @@ AUI.add(
 
 				instance.checkMessages(instance.inboxFolderId);
 
-				instance.timeoutMessages = setTimeout('Liferay.Mail._pollCheckMessages()', instance._pollInterval);
+				if (instance.timeoutMessages) {
+					clearTimeout(instance.timeoutMessages);
+				}
+
+				instance.timeoutMessages = setTimeout(A.bind('_pollCheckMessages', instance), instance._pollInterval);
 			},
 
 			_pollStopMessages: function() {

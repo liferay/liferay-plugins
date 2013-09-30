@@ -1,15 +1,14 @@
 @import "compass";
 
-.aui .mail-portlet {
-	#controlContainer {
-		background-color: #D7F1FF;
-		border: 1px solid #88C5D9;
-		padding: 0.7em;
+.mail-portlet {
+	.controls-list {
+		padding: 8px 0;
 	}
 
 	#messageContentContainer {
 		background-color: #FFF;
-		border: 1px solid #C8C9CA;
+		border: solid #C8C9CA;
+		border-width: 1px 0;
 		margin: 1em 0;
 		min-height: 2em;
 		overflow: auto;
@@ -47,17 +46,20 @@
 	}
 
 	.message-header {
-		border: 1px solid #C8C9CA;
+		background-color: #FAFAFA;
+		color: #999;
 		margin: 1em 0;
+	}
 
-		td {
-			padding: 2px 1em;
+	.message-pager {
+		li {
+			line-height: 20px;
 		}
 
-		.message-header-label {
-			background-color: #D1D6DC;
-			padding-left: 3em;
-			text-align: right;
+		.message-count {
+			display: inline-block;
+			margin: 5px 10px;
+			vertical-align: middle;
 		}
 	}
 
