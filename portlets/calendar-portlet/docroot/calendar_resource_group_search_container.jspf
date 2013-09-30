@@ -15,25 +15,25 @@
 --%>
 
 <liferay-ui:search-container id="sites" searchContainer='<%= new CalendarResourceSearch(renderRequest, CalendarResourceSearch.DEFAULT_CUR_PARAM + "Groups", iteratorURL) %>'>
-	<liferay-ui:search-container-results>
 
-		<%
-		String[] params = {"site:true:boolean"};
+	<%
+	String[] params = {"site:true:boolean"};
 
-		if (displayTerms.isAdvancedSearch()) {
-			results = GroupServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), params, searchContainer.getStart(), searchContainer.getEnd());
-			total = GroupServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), params);
-		}
-		else {
-			results = GroupServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getKeywords(), displayTerms.getKeywords(), params, searchContainer.getStart(), searchContainer.getEnd());
-			total = GroupServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getKeywords(), displayTerms.getKeywords(), params);
-		}
+	if (displayTerms.isAdvancedSearch()) {
+		total = GroupServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), params);
 
-		pageContext.setAttribute("results", results);
-		pageContext.setAttribute("total", total);
-		%>
+		searchContainer.setTotal(total);
 
-	</liferay-ui:search-container-results>
+		searchContainer.setResults(GroupServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getName(), displayTerms.getDescription(), params, searchContainer.getStart(), searchContainer.getEnd()));
+	}
+	else {
+		total = GroupServiceUtil.searchCount(themeDisplay.getCompanyId(), displayTerms.getKeywords(), displayTerms.getKeywords(), params);
+
+		searchContainer.setTotal(total);
+
+		searchContainer.setResults(GroupServiceUtil.search(themeDisplay.getCompanyId(), displayTerms.getKeywords(), displayTerms.getKeywords(), params, searchContainer.getStart(), searchContainer.getEnd()));
+	}
+	%>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portal.model.Group"
