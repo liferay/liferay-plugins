@@ -16,6 +16,13 @@ package com.liferay.testmisc.messaging;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.nio.intraband.rpc.IntrabandRPCUtil;
+import com.liferay.portal.kernel.process.ProcessCallable;
+import com.liferay.portal.kernel.process.ProcessException;
+import com.liferay.portal.kernel.resiliency.mpi.MPIHelperUtil;
+import com.liferay.portal.kernel.resiliency.spi.SPI;
+
+import java.io.Serializable;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
@@ -36,9 +43,37 @@ public class TestPortletConfigMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
+		_countDown();
+	}
+
+	private static void _countDown() throws Exception {
 		_countDownLatch.countDown();
+
+		for (SPI spi : MPIHelperUtil.getSPIs()) {
+			IntrabandRPCUtil.execute(
+				spi.getRegistrationReference(), new CountDownProcessCallable());
+		}
 	}
 
 	private static CountDownLatch _countDownLatch = new CountDownLatch(1);
+
+	private static class CountDownProcessCallable
+		implements ProcessCallable<Serializable> {
+
+		@Override
+		public Serializable call() throws ProcessException {
+			try {
+				TestPortletConfigMessageListener._countDown();
+			}
+			catch (Exception e) {
+				throw new ProcessException(e);
+			}
+
+			return null;
+		}
+
+		private static final long serialVersionUID = 1L;
+
+	}
 
 }
