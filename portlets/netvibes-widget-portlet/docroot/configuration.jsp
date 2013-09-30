@@ -55,16 +55,12 @@ String htmlAttributes =
 			servletContext="<%= application %>"
 		/>
 
-		<liferay-ui:search-container-results>
+		<%
+		Object[] widgets = NetvibesWidgetUtil.getWidgets(query, sort, category, region, searchContainer.getCur(), searchContainer.getDelta());
 
-			<%
-			Object[] widgets = NetvibesWidgetUtil.getWidgets(query, sort, category, region, searchContainer.getCur(), searchContainer.getDelta());
-
-			pageContext.setAttribute("results", (List<Object[]>)widgets[0]);
-			pageContext.setAttribute("total", (Integer)widgets[1]);
-			%>
-
-		</liferay-ui:search-container-results>
+		searchContainer.setResults((List<Object[]>)widgets[0]);
+		searchContainer.setTotal((Integer)widgets[1]);
+		%>
 
 		<liferay-ui:search-container-row
 			className="java.lang.Object"
