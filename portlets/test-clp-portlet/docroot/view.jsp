@@ -62,6 +62,7 @@ There are <%= statuses.size() %> statuses.
 	<%
 	for (Status status : statuses) {
 	%>
+
 		<tbody>
 			<tr>
 				<td>
@@ -90,6 +91,7 @@ There are <%= statuses.size() %> statuses.
 				</td>
 			</tr>
 		<tbody>
+
 	<%
 	}
 	%>

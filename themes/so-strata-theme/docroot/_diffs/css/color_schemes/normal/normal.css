@@ -32,7 +32,7 @@ a {
 	@include clear-both;
 }
 
-/* ---------- Forms Custom ---------- */
+/* ---------- Forms custom ---------- */
 
 .aui-panel-hd .aui-toolbar-content {
 	padding: 0.125em;
@@ -360,7 +360,7 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 	}
 }
 
-/* ---------- Site Breadcrumbs ---------- */
+/* ---------- Site breadcrumbs ---------- */
 
 .site-breadcrumbs .breadcrumbs-horizontal {
 	border-top: 1px solid $defaultBorderColor;
@@ -811,7 +811,7 @@ div#navigation {
 	display: block;
 }
 
-/* ---------- Top Links Component ---------- */
+/* ---------- Top links component ---------- */
 
 .top-links {
 	background: $controlBgColor;
@@ -881,7 +881,7 @@ div#navigation {
 	padding: 0 0.2em;
 }
 
-/* ---------- LFR Header Row ---------- */
+/* ---------- LFR header row ---------- */
 
 .lfr-header-row {
 	.lfr-actions {
@@ -914,7 +914,7 @@ div#navigation {
 	}
 }
 
-/* ---------- Document Library ---------- */
+/* ---------- Document library ---------- */
 
 .portlet-document-library {
 	.lfr-app-column-view {
@@ -1179,7 +1179,7 @@ div#navigation {
 	}
 }
 
-/* ---------- Microblogs Portlet ---------- */
+/* ---------- Microblogs portlet ---------- */
 
 .microblogs-portlet {
 	.aui-tabview-list {
@@ -1241,7 +1241,7 @@ div#navigation {
 	top: 0;
 }
 
-/* ---------- Activities Portlet ---------- */
+/* ---------- Activities portlet ---------- */
 
 .so-portlet-activities {
 	h3 {
@@ -1453,7 +1453,7 @@ div#navigation {
 	}
 }
 
-/* ---------- Blogs Aggregator ---------- */
+/* ---------- Blogs aggregator ---------- */
 
 .portlet-blogs-aggregator {
 	.entry-author, .entry-date {
@@ -1590,7 +1590,7 @@ div#navigation {
 	padding: 10px;
 }
 
-/* ---------- Contacts Portlet ---------- */
+/* ---------- Contacts portlet ---------- */
 
 .contacts-portlet {
 	.contacts-profile {
@@ -1735,7 +1735,7 @@ div#navigation {
 	border-bottom-width: 1px;
 }
 
-/* ---------- Private Messaging ---------- */
+/* ---------- Private messaging ---------- */
 
 .private-messaging-portlet {
 	.controls {
@@ -1791,7 +1791,7 @@ div#navigation {
 	}
 }
 
-/* ---------- Message Boards ---------- */
+/* ---------- Message boards ---------- */
 
 .portlet-message-boards {
 	.category-current {
@@ -2116,7 +2116,7 @@ div#navigation {
 	}
 }
 
-/* ---------- Tasks Portlet ---------- */
+/* ---------- Tasks portlet ---------- */
 
 .tasks-portlet {
 	.aui-tabview-list, .control-wrapper, .filter-wrapper, .list-wrapper, .tasks-options {
@@ -2141,7 +2141,7 @@ div#navigation {
 	}
 }
 
-/* ---------- Invite Members ---------- */
+/* ---------- Invite members ---------- */
 
 .so-portlet-invite-members {
 	background-color: $controlBgColor;
@@ -2151,7 +2151,7 @@ div#navigation {
 	padding: 0.8em 1em;
 }
 
-/* ---------- SO Portlet Sites ---------- */
+/* ---------- SO portlet sites ---------- */
 
 .aui-dialog-bd .so-sites-directory {
 	.taglib-header {
@@ -2159,7 +2159,7 @@ div#navigation {
 	}
 }
 
-/* ---------- Wiki Portlet ---------- */
+/* ---------- Wiki portlet ---------- */
 
 .portlet-wiki {
 	.page-actions {
@@ -2194,7 +2194,7 @@ div#navigation {
 	}
 }
 
-/* ---------- Portlet Typography ---------- */
+/* ---------- Portlet typography ---------- */
 
 .portlet-message-boards .thread-body, .portlet-wiki .wiki-body, .portlet-blogs .entry-body {
 	line-height: 1.5em;

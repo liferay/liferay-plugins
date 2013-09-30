@@ -150,7 +150,7 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 	border-width: 1px;
 }
 
-/* ---------- Login Screens ---------- */
+/* ---------- Login screens ---------- */
 
 #sign-in {
 	color: #34404F;
@@ -244,7 +244,7 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 	}
 }
 
-/* ---------- Internet Explorer ---------- */
+/* ---------- Internet explorer ---------- */
 
 .ie {
 	#loginPage {

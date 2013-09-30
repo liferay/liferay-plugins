@@ -170,7 +170,7 @@ body {
 	min-height: 350px;
 }
 
-/* -------- Content Layout -------- */
+/* -------- Content layout -------- */
 
 .columns-1-2-3 #layout-column_column-1, .columns-2-1-4 #layout-column_column-1 {
 	padding-top: 0;
@@ -247,7 +247,7 @@ h1.underlined {
 	}
 }
 
-/* -------- Navigation Portlet -------- */
+/* -------- Navigation portlet -------- */
 
 .portlet-navigation .nav-menu {
 	background: #E6E6E6;
@@ -314,7 +314,7 @@ input {
 	background-color: #343434;
 }
 
-/* -------- Make an Appointment / Web Form -------- */
+/* -------- Make an appointment / Web form -------- */
 
 .web-form-portlet.make-appointment {
 	padding: 10px 20px;

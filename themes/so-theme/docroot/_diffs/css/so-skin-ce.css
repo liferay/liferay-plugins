@@ -680,7 +680,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	padding: 0 20px 0 4px;
 }
 
-/* ---------- Portal Tool Tips ---------- */
+/* ---------- Portal tool tips ---------- */
 
 .portal-tool-tip {
 	font-size: 1.2em;
@@ -760,7 +760,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	display: none;
 }
 
-/* ---------- Dynamic Uploader ---------- */
+/* ---------- Dynamic uploader ---------- */
 
 .lfr-upload-container .upload-error .error-message {
 	background-color: #FDD;
@@ -796,7 +796,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	font-weight: bold;
 }
 
-/* ---------- Search Iterator ---------- */
+/* ---------- Search iterator ---------- */
 
 .taglib-search-iterator {
 	 .result-title img {
@@ -2385,7 +2385,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	display: none;
 }
 
-/* ---------- Internet Explorer ---------- */
+/* ---------- Internet explorer ---------- */
 
 .ie7 {
 	#so-sidebar {
@@ -2554,7 +2554,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 }
 
-/* ---------- Fluid Layout ---------- */
+/* ---------- Fluid layout ---------- */
 
 body.so-layout-fluid, body.so-layout-fluid-ad {
 	#banner #heading, #content, #footer {
