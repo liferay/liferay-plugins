@@ -44,9 +44,7 @@
 			KBTemplateSearchTerms searchTerms = (KBTemplateSearchTerms)searchContainer.getSearchTerms();
 			%>
 
-			<liferay-ui:search-container-results>
-				<%@ include file="/admin/template_search_results.jspf" %>
-			</liferay-ui:search-container-results>
+			<%@ include file="/admin/template_search_results.jspf" %>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBTemplate"
