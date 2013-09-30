@@ -23,10 +23,10 @@
 		headerNames="subject,preview,posted-by"
 		iteratorURL="<%= portletURL %>"
 		rowChecker="<%= new RowChecker(renderResponse) %>"
+		total="<%= MBMessageLocalServiceUtil.getGroupMessagesCount(scopeGroupId, WorkflowConstants.STATUS_DENIED) %>"
 	>
 		<liferay-ui:search-container-results
 			results="<%= MBMessageLocalServiceUtil.getGroupMessages(scopeGroupId, WorkflowConstants.STATUS_DENIED, searchContainer.getStart(), searchContainer.getEnd()) %>"
-			total="<%= MBMessageLocalServiceUtil.getGroupMessagesCount(scopeGroupId, WorkflowConstants.STATUS_DENIED) %>"
 		/>
 
 		<c:if test="<%= !results.isEmpty() %>">

@@ -35,10 +35,10 @@ String keywords = ParamUtil.getString(request, "keywords");
 <liferay-ui:search-container
 	emptyResultsMessage="no-categories-found"
 	iteratorURL="<%= portletURL %>"
+	total="<%= SubscriptionManagerUtil.getMBCategoriesCount(scopeGroupId, keywords) %>"
 >
 	<liferay-ui:search-container-results
 		results="<%= SubscriptionManagerUtil.getMBCategories(scopeGroupId, keywords, searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= SubscriptionManagerUtil.getMBCategoriesCount(scopeGroupId, keywords) %>"
 	/>
 
 	<liferay-ui:search-container-row

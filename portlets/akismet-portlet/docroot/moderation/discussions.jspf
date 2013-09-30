@@ -23,10 +23,10 @@
 		headerNames="subject,preview,posted-by"
 		iteratorURL="<%= portletURL %>"
 		rowChecker="<%= new RowChecker(renderResponse) %>"
+		total="<%= MBMessageLocalServiceUtil.getCategoryMessagesCount(scopeGroupId, MBCategoryConstants.DISCUSSION_CATEGORY_ID, WorkflowConstants.STATUS_DENIED) %>"
 	>
 		<liferay-ui:search-container-results
 			results="<%= MBMessageLocalServiceUtil.getCategoryMessages(scopeGroupId, MBCategoryConstants.DISCUSSION_CATEGORY_ID, WorkflowConstants.STATUS_DENIED, searchContainer.getStart(), searchContainer.getEnd()) %>"
-			total="<%= MBMessageLocalServiceUtil.getCategoryMessagesCount(scopeGroupId, MBCategoryConstants.DISCUSSION_CATEGORY_ID, WorkflowConstants.STATUS_DENIED) %>"
 		/>
 
 		<c:if test="<%= !results.isEmpty() %>">

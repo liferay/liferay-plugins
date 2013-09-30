@@ -85,10 +85,10 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 
 					<liferay-ui:search-container
 						iteratorURL="<%= iteratorURL %>"
+						total="<%= KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getResourcePrimKey()) %>"
 					>
 						<liferay-ui:search-container-results
 							results="<%= KBCommentLocalServiceUtil.getKBComments(KBArticle.class.getName(), kbArticle.getResourcePrimKey(), searchContainer.getStart(), searchContainer.getEnd(), null) %>"
-							total="<%= KBCommentLocalServiceUtil.getKBCommentsCount(KBArticle.class.getName(), kbArticle.getResourcePrimKey()) %>"
 						/>
 
 						<c:if test="<%= total > 0 %>">

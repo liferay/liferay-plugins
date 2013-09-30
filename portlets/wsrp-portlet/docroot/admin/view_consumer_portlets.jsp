@@ -35,10 +35,10 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 	emptyResultsMessage="there-are-no-portlets"
 	headerNames="name,remote-portlet"
 	iteratorURL="<%= portletURL %>"
+	total="<%= WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortletsCount(wsrpConsumerId) %>"
 >
 	<liferay-ui:search-container-results
 		results="<%= WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlets(wsrpConsumerId, searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortletsCount(wsrpConsumerId) %>"
 	/>
 
 	<liferay-ui:search-container-row

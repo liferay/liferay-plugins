@@ -18,10 +18,10 @@
 	emptyResultsMessage="there-are-no-producers"
 	headerNames="name"
 	iteratorURL="<%= portletURL %>"
+	total="<%= WSRPProducerLocalServiceUtil.getWSRPProducersCount(company.getCompanyId()) %>"
 >
 	<liferay-ui:search-container-results
 		results="<%= WSRPProducerLocalServiceUtil.getWSRPProducers(company.getCompanyId(), searchContainer.getStart(), searchContainer.getEnd()) %>"
-		total="<%= WSRPProducerLocalServiceUtil.getWSRPProducersCount(company.getCompanyId()) %>"
 	/>
 
 	<liferay-ui:search-container-row

@@ -35,16 +35,10 @@
 					emptyResultsMessage="you-have-no-notifications"
 					iteratorURL="<%= iteratorURL %>"
 					rowChecker="<%= new RowChecker(renderResponse) %>"
+					total="<%= UserNotificationEventLocalServiceUtil.getUserNotificationEventsCount(themeDisplay.getUserId()) %>"
 				>
-
-					<%
-					List<UserNotificationEvent> notificationEvents = UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-					int notificationEventsCount = UserNotificationEventLocalServiceUtil.getUserNotificationEventsCount(themeDisplay.getUserId());
-					%>
-
 					<liferay-ui:search-container-results
-						results="<%= notificationEvents %>"
-						total="<%= notificationEventsCount %>"
+						results="<%= UserNotificationEventLocalServiceUtil.getUserNotificationEvents(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd()) %>"
 					/>
 
 					<liferay-ui:search-container-row
