@@ -98,7 +98,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 		<liferay-ui:message key="your-request-completed-successfully" />
 	</div>
 
-	<aui:form enctype="multipart/form-data" method="post" name="fm">
+	<aui:form enctype="multipart/form-data" method="post" name="importFm">
 		<aui:input id="file" name="file" type="file" />
 		<div class="portlet-msg-help">
 			<liferay-ui:message key="choose-the-file-that-contains-your-events.this-calendar-can-import-event-information-in-ical-format" />
@@ -116,8 +116,6 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 			var A = AUI();
 
 			if (!<portlet:namespace />importDialog) {
-				var form = A.one('#<portlet:namespace />fm');
-
 				var importCalendarContainer = A.one('#<portlet:namespace />importCalendarContainer');
 
 				var buttons = [
@@ -129,24 +127,29 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 									{
 										dataType: 'json',
 										form: {
-											id: '<portlet:namespace />fm',
+											id: '<portlet:namespace />importFm',
 											upload: true
 										},
 										method: 'post',
 										on: {
-											complete: function(event, id, obj) {
-												var responseText = obj.responseText;
+											complete: function() {
+												var responseData = this.get('responseData');
 
-												var responseData = A.JSON.parse(responseText);
+												var portletErrorMessage = A.one('#<portlet:namespace />portletErrorMessage');
 
-												if (responseData.success) {
-													A.one('#<portlet:namespace />portletErrorMessage').hide();
-													A.one('#<portlet:namespace />portletSuccessMessage').show();
+												var portletSuccessMessage = A.one('#<portlet:namespace />portletSuccessMessage');
+
+												var error = responseData && responseData.error;
+
+												if (error) {
+													portletErrorMessage.show();
+													portletSuccessMessage.hide();
+
+													portletErrorMessage.html(error);
 												}
 												else {
-													A.one('#<portlet:namespace />portletErrorMessage').show();
-													A.one('#<portlet:namespace />portletErrorMessage').html(responseData.error);
-													A.one('#<portlet:namespace />portletSuccessMessage').hide();
+													portletErrorMessage.hide();
+													portletSuccessMessage.show();
 												}
 											}
 										}
@@ -162,9 +165,6 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 					{
 						on: {
 							click: function() {
-								A.one('#<portlet:namespace />fm').reset();
-								A.one('#<portlet:namespace />portletErrorMessage').hide();
-								A.one('#<portlet:namespace />portletSuccessMessage').hide();
 								<portlet:namespace />importDialog.hide();
 							}
 						},
@@ -182,14 +182,13 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 								footer: buttons,
 								header: buttonClose
 							},
-							modal: true
-						},
-						on: {
-							visibleChange: function(event) {
-								form.reset();
-								A.one('#<portlet:namespace />portletErrorMessage').hide();
-								A.one('#<portlet:namespace />portletSuccessMessage').hide();
-								importCalendarContainer.show();
+							modal: true,
+							on: {
+								visibleChange: function(event) {
+									A.one('#<portlet:namespace />importFm').reset();
+									A.one('#<portlet:namespace />portletErrorMessage').hide();
+									A.one('#<portlet:namespace />portletSuccessMessage').hide();
+								}
 							}
 						},
 						title: Liferay.Language.get('import')
