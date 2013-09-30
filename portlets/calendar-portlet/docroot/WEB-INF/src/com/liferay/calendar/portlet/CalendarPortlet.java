@@ -992,14 +992,17 @@ public class CalendarPortlet extends MVCPortlet {
 		if (Validator.isNotNull(data)) {
 			try {
 				CalendarDataHandler calendarDataHandler =
-					CalendarDataHandlerFactory
-						.getCalendarDataHandler(CalendarDataFormat.ICAL);
+					CalendarDataHandlerFactory.getCalendarDataHandler(
+						CalendarDataFormat.ICAL);
+
 				calendarDataHandler.importCalendar(calendarId, data);
+
 				jsonObject.put("success", true);
 			}
 			catch (Exception e) {
 				String message = themeDisplay.translate(
-						"an-unexpected-error-occurred-while-importing-your-file");
+						"an-unexpected-error-occurred-while-importing-your-" +
+						"file");
 
 				jsonObject.put("error", message);
 			}
