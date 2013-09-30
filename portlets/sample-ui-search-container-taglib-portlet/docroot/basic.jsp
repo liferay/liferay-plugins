@@ -25,18 +25,12 @@ portletURL.setParameter("mvcPath", "/basic.jsp");
 <liferay-ui:search-container
 	headerNames="email-address,screen-name"
 	iteratorURL="<%= portletURL %>"
+	total="<%= UserLocalServiceUtil.getUsersCount() %>"
 >
-	<liferay-ui:search-container-results>
 
-		<%
-		results = UserLocalServiceUtil.getUsers(searchContainer.getStart(), searchContainer.getEnd());
-		total = UserLocalServiceUtil.getUsersCount();
-
-		pageContext.setAttribute("results", results);
-		pageContext.setAttribute("total", total);
-		%>
-
-	</liferay-ui:search-container-results>
+	<liferay-ui:search-container-results
+		results="<%= UserLocalServiceUtil.getUsers(searchContainer.getStart(), searchContainer.getEnd()) %>"
+	/>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portal.model.User"
