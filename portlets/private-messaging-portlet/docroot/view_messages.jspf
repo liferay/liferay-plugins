@@ -37,18 +37,12 @@
 
 <liferay-ui:search-container
 	emptyResultsMessage="no-messages-found"
+	total="<%= UserThreadLocalServiceUtil.getUserUserThreadCount(themeDisplay.getUserId(), false) %>"
 >
-	<liferay-ui:search-container-results>
 
-		<%
-		results = UserThreadLocalServiceUtil.getUserUserThreads(themeDisplay.getUserId(), false, searchContainer.getStart(), searchContainer.getEnd());
-		total = UserThreadLocalServiceUtil.getUserUserThreadCount(themeDisplay.getUserId(), false);
-
-		pageContext.setAttribute("results", results);
-		pageContext.setAttribute("total", total);
-		%>
-
-	</liferay-ui:search-container-results>
+	<liferay-ui:search-container-results
+		results="<%= UserThreadLocalServiceUtil.getUserUserThreads(themeDisplay.getUserId(), false, searchContainer.getStart(), searchContainer.getEnd()) %>"
+	/>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.privatemessaging.model.UserThread"
