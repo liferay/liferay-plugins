@@ -85,6 +85,7 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
 	<aui:button-row>
 		<aui:button cssClass="delete-account" name="deleteAccount" type="button" value="delete-account" />
+
 		<aui:button cssClass="synchronize-account" name="synchronizeAccount" type="button" value="synchronize-account" /> <liferay-ui:icon-help message="synchronizing-accounts-with-a-large-number-of-messages-may-take-minutes-to-complete" />
 	</aui:button-row>
 </aui:form>

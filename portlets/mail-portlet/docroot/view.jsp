@@ -48,7 +48,7 @@ MailManager mailManager = MailManager.getInstance(request);
 		long initialAccountId = 0;
 		long initialFolderId = 0;
 
-		if (Validator.isNotNull(initialAccount)) {
+		if (initialAccount != null) {
 			initialAccountId = initialAccount.getAccountId();
 			initialFolderId = initialAccount.getInboxFolderId();
 		}

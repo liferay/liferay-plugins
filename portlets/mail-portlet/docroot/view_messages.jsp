@@ -163,12 +163,12 @@ MailManager mailManager = MailManager.getInstance(request);
 						}
 
 						if (mailAccount.getDraftFolderId() == folderId) {
-							if (Validator.isNotNull(message.getModifiedDate())) {
+							if (message.getModifiedDate() != null) {
 								date = dateFormatDateTime.format(message.getModifiedDate());
 							}
 						}
 						else {
-							if (Validator.isNotNull(message.getSentDate())) {
+							if (message.getSentDate() != null) {
 								date = dateFormatDateTime.format(message.getSentDate());
 							}
 						}
