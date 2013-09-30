@@ -28,7 +28,7 @@ public class ConstantsBeanFactoryUtil {
 			ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
 
 			Class<?> clazz = classLoader.loadClass(
-				"com.liferay.portal.kernel.util.ConstantsBeanFactoryUtil");
+				"com.liferay.portal.kernel.bean.ConstantsBeanFactoryUtil");
 
 			Method getConstantsBeanMethod = clazz.getMethod(
 				"getConstantsBean", Class.class);
