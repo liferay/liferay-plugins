@@ -163,7 +163,7 @@ public class UpgradeSocial extends UpgradeProcess {
 				int type_ = rs.getInt("type_");
 
 				if (mirrorActivityId > 0) {
-					return;
+					continue;
 				}
 
 				long activitySetId = increment();
