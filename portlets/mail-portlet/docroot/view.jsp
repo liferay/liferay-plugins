@@ -21,7 +21,7 @@ MailManager mailManager = MailManager.getInstance(request);
 %>
 
 <c:choose>
-	<c:when test="<%= Validator.isNotNull(mailManager) %>">
+	<c:when test="<%= mailManager != null %>">
 		<div id="accountsContainer"></div>
 
 		<div class="mail-status"></div>

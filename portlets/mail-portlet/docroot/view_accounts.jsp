@@ -22,8 +22,9 @@ long accountId = ParamUtil.getLong(request, "accountId");
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= Validator.isNotNull(mailManager) %>">
+<c:if test="<%= mailManager != null %>">
 	<div class="row-fluid">
+
 		<%
 		List<Account> mailAccounts = mailManager.getAccounts();
 		%>

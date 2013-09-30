@@ -22,7 +22,7 @@ MailManager mailManager = MailManager.getInstance(request);
 long accountId = ParamUtil.getLong(request, "accountId");
 %>
 
-<c:if test="<%= Validator.isNotNull(mailManager) %>">
+<c:if test="<%= mailManager != null %>">
 	<div class="add-folder-container">
 		<aui:input name="displayName" value="" />
 

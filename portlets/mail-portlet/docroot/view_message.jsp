@@ -20,7 +20,7 @@
 MailManager mailManager = MailManager.getInstance(request);
 %>
 
-<c:if test="<%= Validator.isNotNull(mailManager) %>">
+<c:if test="<%= mailManager != null %>">
 
 	<%
 	long folderId = ParamUtil.getLong(request, "folderId");
@@ -53,15 +53,15 @@ MailManager mailManager = MailManager.getInstance(request);
 	<div class="row-fluid">
 		<aui:nav-bar>
 			<aui:nav>
-				<aui:nav-item cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' iconClass="icon-arrow-left" />
+				<aui:nav-item cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" iconClass="icon-arrow-left" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
 
-				<aui:nav-item cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" label="reply" iconClass="icon-reply" />
+				<aui:nav-item cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" iconClass="icon-reply" label="reply" />
 
-				<aui:nav-item cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" label="reply-all" iconClass="icon-reply-all" />
+				<aui:nav-item cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" iconClass="icon-reply-all" label="reply-all" />
 
-				<aui:nav-item cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" label="forward" iconClass="icon-share-alt" />
+				<aui:nav-item cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" iconClass="icon-share-alt" label="forward" />
 
-				<aui:nav-item cssClass="delete-message" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" label="delete" iconClass="icon-trash" />
+				<aui:nav-item cssClass="delete-message" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" iconClass="icon-trash" label="delete" />
 			</aui:nav>
 
 			<ul class="message-pager pager pull-right">
@@ -141,11 +141,11 @@ MailManager mailManager = MailManager.getInstance(request);
 
 	<aui:nav-bar>
 		<aui:nav>
-			<aui:nav-item cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" label="reply" iconClass="icon-reply" />
+			<aui:nav-item cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" iconClass="icon-reply" label="reply" />
 
-			<aui:nav-item cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" label="reply-all" iconClass="icon-reply-all" />
+			<aui:nav-item cssClass="compose-message" data-messageType="reply-all" data-replyMessageId="<%= message.getMessageId() %>" iconClass="icon-reply-all" label="reply-all" />
 
-			<aui:nav-item cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" label="forward" iconClass="icon-share-alt" />
+			<aui:nav-item cssClass="compose-message" data-messageType="forward" data-replyMessageId="<%= message.getMessageId() %>" iconClass="icon-share-alt" label="forward" />
 		</aui:nav>
 	</aui:nav-bar>
 
