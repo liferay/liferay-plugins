@@ -59,40 +59,40 @@ There are <%= statuses.size() %> statuses.
 		</tr>
 	</thead>
 
-<%
-for (Status status : statuses) {
-%>
-	<tbody>
-		<tr>
-			<td>
-				<%= status.getStatusId() %>
-			</td>
-			<td>
-				<%= status.getUserId() %>
-			</td>
-			<td>
-				<%= status.getModifiedDate() %>
-			</td>
-			<td>
-				<%= status.isOnline() %>
-			</td>
-			<td>
-				<%= status.isAwake() %>
-			</td>
-			<td>
-				<%= status.getActivePanelIds() %>
-			</td>
-			<td>
-				<%= status.getMessage() %>
-			</td>
-			<td>
-				<%= status.isPlaySound() %>
-			</td>
-		</tr>
-	<tbody>
-<%
-}
-%>
+	<%
+	for (Status status : statuses) {
+	%>
+		<tbody>
+			<tr>
+				<td>
+					<%= status.getStatusId() %>
+				</td>
+				<td>
+					<%= status.getUserId() %>
+				</td>
+				<td>
+					<%= status.getModifiedDate() %>
+				</td>
+				<td>
+					<%= status.isOnline() %>
+				</td>
+				<td>
+					<%= status.isAwake() %>
+				</td>
+				<td>
+					<%= status.getActivePanelIds() %>
+				</td>
+				<td>
+					<%= status.getMessage() %>
+				</td>
+				<td>
+					<%= status.isPlaySound() %>
+				</td>
+			</tr>
+		<tbody>
+	<%
+	}
+	%>
 
 </table>
 
