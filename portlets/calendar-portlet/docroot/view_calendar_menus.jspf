@@ -310,7 +310,8 @@ String backURL = PortalUtil.getCurrentURL(request);
 					colorPickerContainer.append(window.<portlet:namespace />colorPicker.get('boundingBox'));
 				}
 			}
-		}
+		},
+		width: 225
 	};
 
 	<portlet:namespace />colorPicker = new Liferay.SimpleColorPicker(
