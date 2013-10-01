@@ -87,7 +87,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 			<aui:layout cssClass="toolbar">
 				<div class="filter-container">
 					<aui:layout cssClass="contact-group-filter">
-						<aui:button name="checkAll" type="checkbox" />
+						<aui:input label="" name="checkAll" type="checkbox" />
 
 						<c:if test="<%= !userPublicPage %>">
 							<aui:select cssClass="contact-group-filter-select" inlineField="true" label="" name="filterBy">

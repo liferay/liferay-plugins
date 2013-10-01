@@ -393,7 +393,7 @@ AUI.add(
 
 						instance._popup.show();
 
-						instance._popup.set('title', title);
+						instance._popup.titleNode.html(title);
 
 						instance._popup.io.set('uri', uri);
 
