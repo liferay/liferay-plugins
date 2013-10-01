@@ -368,7 +368,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 			</aui:layout>
 		</aui:form>
 
-		<aui:script use="liferay-util-window,aui-io-deprecated,aui-io-plugin-deprecated,datatype-number,liferay-contacts-center,liferay-form">
+		<aui:script use="aui-io-deprecated,aui-io-plugin-deprecated,aui-loading-mask-deprecated,datatype-number,liferay-contacts-center,liferay-form,liferay-util-window">
 			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
 
 			var contactsCenter = new Liferay.ContactsCenter(
@@ -408,6 +408,12 @@ portletURL.setWindowState(WindowState.NORMAL);
 			contactsResult.delegate(
 				'click',
 				function(event) {
+					var contactsContainer = A.one('.contacts-portlet .contacts-container');
+
+					contactsContainer.plug(A.LoadingMask);
+
+					contactsContainer.loadingmask.show();
+
 					var node = event.currentTarget;
 
 					A.io.request(
@@ -415,9 +421,13 @@ portletURL.setWindowState(WindowState.NORMAL);
 						{
 							after: {
 								failure: function(event, id, obj) {
+									contactsContainer.loadingmask.hide();
+
 									contactsCenter.showMessage(false);
 								},
 								success: function(event, id, obj) {
+									contactsContainer.loadingmask.hide();
+
 									contactsCenter.renderContent(this.get('responseData'), true);
 								}
 							}
