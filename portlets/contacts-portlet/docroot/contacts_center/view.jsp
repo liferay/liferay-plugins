@@ -541,7 +541,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				var contactsCenterHome = A.one('.contacts-portlet .contacts-center-home');
 
 				<c:if test="<%= !showOnlySiteMembers %>">
-					var addContact = A.one('#<portlet:namespace/>add-contact');
+					var addContact = A.one('#<portlet:namespace/>addContact');
 
 					if (addContact) {
 						addContact.on(

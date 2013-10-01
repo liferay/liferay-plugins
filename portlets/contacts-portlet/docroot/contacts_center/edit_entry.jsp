@@ -36,8 +36,8 @@ if (entryId > 0) {
 <liferay-portlet:actionURL name="updateEntry" var="updateEntryURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />
 
 <aui:form action="<%= updateEntryURL %>" method="post" name="addEntry" onSubmit="event.preventDefault();">
-	<aui:input name="redirect" type="hidden"  value="<%= redirect %>" />
-	<aui:input name="entryId" type="hidden"  value="<%= entryId %>" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="entryId" type="hidden" value="<%= entryId %>" />
 
 	<aui:model-context bean="<%= entry %>" model="<%= Entry.class %>" />
 
