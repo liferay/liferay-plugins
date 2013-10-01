@@ -81,12 +81,6 @@
 		</sequential>
 	</macrodef>
 
-	<target name="clean">
-		<delete dir="${osgi.plugin.classes.dir}" />
-
-		<antcall target="build-common-plugin.clean" />
-	</target>
-
 	<target name="compile">
 		<antcall target="compile-import-shared" />
 

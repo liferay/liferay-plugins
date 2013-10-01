@@ -129,6 +129,7 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<delete dir="@{module.dir}/classes" />
 			<delete dir="@{module.dir}/docroot/WEB-INF/classes" />
 
 			<if>
