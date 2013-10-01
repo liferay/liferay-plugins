@@ -1374,7 +1374,7 @@ AUI.add(
 							A.each(
 								changed,
 								function(item, index, collection) {
-									persist = AObject.owns(persistentAttrMap, index);
+									persist = persist || AObject.owns(persistentAttrMap, index);
 								}
 							);
 
