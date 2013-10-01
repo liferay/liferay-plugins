@@ -17,11 +17,14 @@ import com.liferay.portal.kernel.search.BooleanClauseFactoryUtil;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.BooleanQueryFactoryUtil;
 import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.FacetedSearcher;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.facet.Facet;
+import com.liferay.portal.kernel.search.facet.AssetEntriesFacet;
+import com.liferay.portal.kernel.search.facet.ScopeFacet;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.ObjectValuePair;
@@ -45,6 +48,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 dialect "java"
@@ -77,6 +81,18 @@ function List getAssetEntries(
 	searchContext.setScopeStrict(false);
 	searchContext.setUserId(user.getUserId());
 
+	Facet assetEntriesFacet = new AssetEntriesFacet(searchContext);
+
+	assetEntriesFacet.setStatic(true);
+
+	searchContext.addFacet(assetEntriesFacet);
+
+	Facet scopeFacet = new ScopeFacet(searchContext);
+
+	scopeFacet.setStatic(true);
+
+	searchContext.addFacet(scopeFacet);
+
 	BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(searchContext);
 
 	booleanQuery.addExactTerm(Field.ASSET_TAG_NAMES, assetTagName);
@@ -88,37 +104,29 @@ function List getAssetEntries(
 
 	List<AssetEntry> assetEntries = new ArrayList<AssetEntry>();
 
-	for (long classNameId : classNameIds) {
-		String className = PortalUtil.getClassName(classNameId);
+	Indexer indexer = FacetedSearcher.getInstance();
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(className);
+	Hits hits = indexer.search(searchContext);
 
-		if (indexer == null) {
-			continue;
+	for (int i = 0; i < hits.getDocs().length; i++) {
+		Document document = hits.doc(i);
+
+		String entryClassName = document.get(Field.ENTRY_CLASS_NAME);
+
+		long entryClassPK = GetterUtil.getLong(
+			document.get(Field.ENTRY_CLASS_PK));
+		long rootEntryClassPK = GetterUtil.getLong(
+			document.get(Field.ROOT_ENTRY_CLASS_PK));
+
+		if (rootEntryClassPK > 0) {
+			entryClassPK = rootEntryClassPK;
 		}
 
-		Hits hits = indexer.search(searchContext);
+		AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(
+			entryClassName, entryClassPK);
 
-		for (int i = 0; i < hits.getDocs().length; i++) {
-			Document document = hits.doc(i);
-
-			String entryClassName = document.get(Field.ENTRY_CLASS_NAME);
-
-			long entryClassPK = GetterUtil.getLong(
-				document.get(Field.ENTRY_CLASS_PK));
-			long rootEntryClassPK = GetterUtil.getLong(
-				document.get(Field.ROOT_ENTRY_CLASS_PK));
-
-			if (rootEntryClassPK > 0) {
-				entryClassPK = rootEntryClassPK;
-			}
-
-			AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(
-				entryClassName, entryClassPK);
-
-			if (assetEntry != null) {
-				assetEntries.add(assetEntry);
-			}
+		if (assetEntry != null) {
+			assetEntries.add(assetEntry);
 		}
 	}
 
