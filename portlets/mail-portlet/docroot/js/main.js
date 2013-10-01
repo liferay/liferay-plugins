@@ -808,7 +808,9 @@ AUI.add(
 			_pollCheckMessages: function() {
 				var instance = this;
 
-				instance.checkMessages(instance.inboxFolderId);
+				if (instance.inboxFolderId) {
+					instance.checkMessages(instance.inboxFolderId);
+				}
 
 				if (instance.timeoutMessages) {
 					clearTimeout(instance.timeoutMessages);
