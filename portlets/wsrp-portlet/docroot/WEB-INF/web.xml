@@ -50,9 +50,6 @@
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
 	<listener>
-		<listener-class>com.liferay.wsrp.servlet.WSRPServletContextListener</listener-class>
-	</listener>
-	<listener>
 		<listener-class>com.liferay.wsrp.servlet.WSRPSessionListener</listener-class>
 	</listener>
 	<servlet>
