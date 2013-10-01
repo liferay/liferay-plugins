@@ -103,9 +103,9 @@ AUI.add(
 
 						var maxCoordinateY = maxCoordinate.y;
 
-						var node = instance._host._node;
+						var host = instance._host;
 
-						var scrollTop = node.scrollTop || node.scrollY;
+						var scrollTop = host.get('scrollTop') || host.get('scrollY') || 0;
 
 						if (edgeProximity % 1) {
 							edgeProximityY *= maxCoordinateY;
