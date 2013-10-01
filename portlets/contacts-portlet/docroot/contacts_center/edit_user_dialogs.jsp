@@ -137,10 +137,14 @@ if (selUser != null) {
 								}
 							}
 							else {
+								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
+
 								var redirect = responseData.redirect;
 
 								if (redirect) {
-									location.href = redirect;
+									var topWindow = Liferay.Util.getTop();
+
+									topWindow.location.href = redirect;
 								}
 							}
 						}
