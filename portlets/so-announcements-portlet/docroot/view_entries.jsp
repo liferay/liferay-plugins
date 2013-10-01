@@ -73,6 +73,12 @@ if ((start >= total) && (start != 0)) {
 List<AnnouncementsEntry> results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, start, end);
 %>
 
+<c:if test="<%= results.isEmpty() && !readEntries %>">
+	<div class="no-announcements">
+		<liferay-ui:message key="there-are-no-new-announcements" />
+	</div>
+</c:if>
+
 <div class="entries <%= readEntries ? "read-entries" : "unread-entries" %>" data-start="<%= start %>">
 	<c:choose>
 		<c:when test="<%= readEntries %>">

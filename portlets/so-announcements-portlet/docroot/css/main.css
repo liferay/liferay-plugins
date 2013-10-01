@@ -135,6 +135,11 @@
 		}
 	}
 
+	.no-announcements {
+		padding: 5px;
+		text-align: center;
+	}
+
 	.read-entries-container .entries {
 		margin-top: 1em;
 
