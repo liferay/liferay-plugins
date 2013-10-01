@@ -27,8 +27,8 @@ $toolbar-bg: #DCE3EA;
 		font-size: 14px;
 		min-height: 31px;
 
-		.contact-group-filter-select select {
-			width: 223px;
+		.contact-group-filter-select {
+			width: 224px;
 		}
 
 		.contact-group-filter-content {
@@ -189,7 +189,7 @@ $toolbar-bg: #DCE3EA;
 			padding-left: 10px;
 		}
 
-		.lfr-contact-grid-item:hover, .more-results {
+		.lfr-contact-grid-item:hover, .more-results a {
 			background-color: #E8EFF4;
 		}
 
@@ -648,6 +648,17 @@ $toolbar-bg: #DCE3EA;
 		.lfr-change-logo {
 			background: none;
 		}
+	}
+}
+
+.portlet-configuration .contacts-portlet {
+	.lfr-user-profile-preferences, .toggler-content {
+		overflow: hidden;
+		margin: 0;
+	}
+
+	.lfr-user-profile-preferences .column {
+		margin-right: 1em;
 	}
 }
 

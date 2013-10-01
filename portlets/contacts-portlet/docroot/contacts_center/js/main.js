@@ -163,7 +163,7 @@ AUI.add(
 
 						instance._contactsCheckBox = A.one('.contacts-result');
 
-						instance._checkAll = instance.byId('checkAll');
+						instance._checkAll = instance.byId('checkAllCheckbox');
 
 						instance._checkAll.on('click', instance._onCheckAll, instance);
 
@@ -427,7 +427,7 @@ AUI.add(
 						instance._buttonUnBlockUserIds.length = 0;
 						instance._buttonUnFollowUserIds.length = 0;
 
-						A.all('.contacts-portlet .toolbar-content button').hide();
+						A.all('.contacts-container-content .toolbar-content button').hide();
 
 						if (instance._sendMessageButton) {
 							instance._sendMessageButton.show();
@@ -450,12 +450,12 @@ AUI.add(
 								},
 								on: {
 									request: function(event) {
-										var contactFilterContainer = A.one('.contacts-portlet .contact-group-filter');
+										var contactFilter = A.one('#' + instance._namespace + 'filterBy');
 
 										var filterBy = '0';
 
-										if (contactFilterContainer) {
-											filterBy = contactFilterContainer.one('select').get('value');
+										if (contactFilter) {
+											filterBy = contactFilter.get('value');
 										}
 
 										var eventData = {};
