@@ -125,103 +125,115 @@ Error-Prone was automatically installed. Please rerun your task.
 		</else>
 	</if>
 
-	<target name="clean" description="clean">
-		<delete dir="docroot/WEB-INF/classes" />
+	<macrodef name="clean">
+		<attribute name="module.dir" />
 
-		<if>
-			<available file="docroot/WEB-INF/.gitignore" />
-			<then>
-				<loadfile property=".gitignore.content" srcFile="docroot/WEB-INF/.gitignore" />
+		<sequential>
+			<delete dir="@{module.dir}/docroot/WEB-INF/classes" />
 
-				<if>
-					<contains string="${.gitignore.content}" substring="/lib" />
-					<then>
-						<delete dir="docroot/WEB-INF/lib" />
-					</then>
-				</if>
-			</then>
-		</if>
+			<if>
+				<available file="@{module.dir}/docroot/WEB-INF/.gitignore" />
+				<then>
+					<loadfile property=".gitignore.content" srcFile="@{module.dir}/docroot/WEB-INF/.gitignore" />
 
-		<if>
-			<and>
-				<available file="docroot/WEB-INF/.svn" />
-				<not>
-					<available file="docroot/WEB-INF/lib/.svn" />
-				</not>
-				<length length="0" when="equal">
-					<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" />
-				</length>
-			</and>
-			<then>
-				<delete dir="docroot/WEB-INF/lib" />
-			</then>
-		</if>
+					<if>
+						<contains string="${.gitignore.content}" substring="/lib" />
+						<then>
+							<delete dir="@{module.dir}/docroot/WEB-INF/lib" />
+						</then>
+					</if>
 
-		<delete dir="javadoc" />
-		<delete dir="test-classes" />
-		<delete dir="test-results" />
-		<delete dir="tmp" />
-		<delete file="${plugin.file}" />
-		<delete file="${plugin.javadoc.file}" />
-		<delete file="${plugin.pom.file}" />
-		<delete file="${plugin.sources.file}" />
-		<delete file="${plugin.src.file}" />
+					<var name=".gitignore.content" unset="true" />
+				</then>
+			</if>
 
-		<delete failonerror="false" includeemptydirs="true">
-			<fileset dir="docroot" includes="**/*.processed" />
-			<fileset dir="docroot" includes="**/.sass-cache/**" />
-			<fileset dir="docroot" includes="**/.sprite.png" />
-			<fileset dir="docroot" includes="**/.sprite.properties" />
-			<fileset dir="docroot" includes="**/Thumbs.db" />
-		</delete>
+			<if>
+				<and>
+					<available file="@{module.dir}/docroot/WEB-INF/.svn" />
+					<not>
+						<available file="@{module.dir}/docroot/WEB-INF/lib/.svn" />
+					</not>
+					<length length="0" when="equal">
+						<fileset dir="@{module.dir}/docroot/WEB-INF/lib" erroronmissingdir="false" />
+					</length>
+				</and>
+				<then>
+					<delete dir="@{module.dir}/docroot/WEB-INF/lib" />
+				</then>
+			</if>
 
-		<antcall target="clean-portal-dependencies" />
-	</target>
+			<delete dir="@{module.dir}/javadoc" />
+			<delete dir="@{module.dir}/test-classes" />
+			<delete dir="@{module.dir}/test-results" />
+			<delete dir="@{module.dir}/tmp" />
+			<delete file="@{module.dir}/${plugin.file}" />
+			<delete file="@{module.dir}/${plugin.javadoc.file}" />
+			<delete file="@{module.dir}/${plugin.pom.file}" />
+			<delete file="@{module.dir}/${plugin.sources.file}" />
+			<delete file="@{module.dir}/${plugin.src.file}" />
 
-	<target name="clean-portal-dependencies">
-		<if>
-			<equals arg1="${plugins.war.clean.portal.dependencies}" arg2="true" />
-			<then>
-				<if>
-					<available file="docroot/WEB-INF/lib" />
-					<then>
-						<delete>
-							<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
-							<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
-						</delete>
-					</then>
-				</if>
+			<delete failonerror="false" includeemptydirs="true">
+				<fileset dir="@{module.dir}/docroot" includes="**/*.processed" />
+				<fileset dir="@{module.dir}/docroot" includes="**/.sass-cache/**" />
+				<fileset dir="@{module.dir}/docroot" includes="**/.sprite.png" />
+				<fileset dir="@{module.dir}/docroot" includes="**/.sprite.properties" />
+				<fileset dir="@{module.dir}/docroot" includes="**/Thumbs.db" />
+			</delete>
 
-				<if>
-					<available file="docroot/WEB-INF/tld" />
-					<then>
-						<delete>
-							<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
-						</delete>
-					</then>
-				</if>
+			<clean-portal-dependencies
+				module.dir="@{module.dir}"
+			/>
+		</sequential>
+	</macrodef>
 
-				<if>
-					<available file="tmp/WEB-INF/lib" />
-					<then>
-						<delete>
-							<fileset dir="tmp/WEB-INF/lib" includes="${required.portal.jars}" />
-							<fileset dir="tmp/WEB-INF/lib" includes="${plugin.jars}" />
-						</delete>
-					</then>
-				</if>
+	<macrodef name="clean-portal-dependencies">
+		<attribute name="module.dir" />
 
-				<if>
-					<available file="tmp/WEB-INF/tld" />
-					<then>
-						<delete>
-							<fileset dir="tmp/WEB-INF/tld" includes="${plugin.tlds}" />
-						</delete>
-					</then>
-				</if>
-			</then>
-		</if>
-	</target>
+		<sequential>
+			<if>
+				<equals arg1="${plugins.war.clean.portal.dependencies}" arg2="true" />
+				<then>
+					<if>
+						<available file="@{module.dir}/docroot/WEB-INF/lib" />
+						<then>
+							<delete>
+								<fileset dir="@{module.dir}/docroot/WEB-INF/lib" includes="${required.portal.jars}" />
+								<fileset dir="@{module.dir}/docroot/WEB-INF/lib" includes="${plugin.jars}" />
+							</delete>
+						</then>
+					</if>
+
+					<if>
+						<available file="@{module.dir}/docroot/WEB-INF/tld" />
+						<then>
+							<delete>
+								<fileset dir="@{module.dir}/docroot/WEB-INF/tld" includes="${plugin.tlds}" />
+							</delete>
+						</then>
+					</if>
+
+					<if>
+						<available file="@{module.dir}/tmp/WEB-INF/lib" />
+						<then>
+							<delete>
+								<fileset dir="@{module.dir}/tmp/WEB-INF/lib" includes="${required.portal.jars}" />
+								<fileset dir="@{module.dir}/tmp/WEB-INF/lib" includes="${plugin.jars}" />
+							</delete>
+						</then>
+					</if>
+
+					<if>
+						<available file="@{module.dir}/tmp/WEB-INF/tld" />
+						<then>
+							<delete>
+								<fileset dir="@{module.dir}/tmp/WEB-INF/tld" includes="${plugin.tlds}" />
+							</delete>
+						</then>
+					</if>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
 
 	<target name="compile-java">
 		<copy todir="${javac.destdir}">
