@@ -98,28 +98,28 @@ request.setAttribute("view_user.jsp-user", user2);
 							%>
 
 							<liferay-ui:icon
-								cssClass='<%= showConnectedRequestedIcon ? "disabled" : "disabled hide" %>'
+								cssClass='<%= showConnectedRequestedIcon ? "action disabled" : "action disabled hide" %>'
 								image="../aui/user"
 								label="<%= true %>"
 								message="connection-requested"
 							/>
 
 							<liferay-ui:icon
-								cssClass='<%= showConnectedIcon ? "connected" : "connected hide" %>'
+								cssClass='<%= showConnectedIcon ? "action connected" : "action connected hide" %>'
 								image="../aui/user"
 								label="<%= true %>"
 								message="connected"
 							/>
 
 							<liferay-ui:icon
-								cssClass='<%= showFollowingIcon ? "following" : "following hide" %>'
+								cssClass='<%= showFollowingIcon ? "action following" : "action following hide" %>'
 								image="../aui/user"
 								label="<%= true %>"
 								message="following"
 							/>
 
 							<liferay-ui:icon
-								cssClass='<%= showBlockIcon ? "block" : "block hide" %>'
+								cssClass='<%= showBlockIcon ? "action block" : "action block hide" %>'
 								image="../aui/ban-circle"
 								label="<%= true %>"
 								message="blocked"
