@@ -467,7 +467,7 @@ AUI.add(
 										eventData[instance._namespace + 'keywords'] = data[instance._namespace + 'keywords'] || '';
 										eventData[instance._namespace + 'start'] = data[instance._namespace + 'start'] || 0;
 
-										event.cfg.data = eventData
+										event.cfg.data = eventData;
 									}
 								},
 								source: url
@@ -494,7 +494,7 @@ AUI.add(
 
 									data[instance._namespace + 'keywords'] = query;
 
-									return data
+									return data;
 								},
 								resultTextLocator: function(response) {
 									var result = '';
