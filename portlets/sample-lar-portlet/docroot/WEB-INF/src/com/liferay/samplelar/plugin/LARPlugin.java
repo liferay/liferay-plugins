@@ -15,7 +15,6 @@
 package com.liferay.samplelar.plugin;
 
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
-import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataException;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
@@ -39,12 +38,24 @@ import javax.portlet.PortletPreferences;
 public class LARPlugin extends BasePortletDataHandler {
 
 	public LARPlugin() {
-		setDataLevel(DataLevel.PORTLET_INSTANCE);
+		setExportControls(
+			new PortletDataHandlerBoolean(
+				_NAMESPACE, "export-sample-lar-portlet-data", true,
+				new PortletDataHandlerControl[] {
+					new PortletDataHandlerBoolean(
+						_NAMESPACE, "create-readme", true, false),
+					new PortletDataHandlerChoice(
+						_NAMESPACE, "data-type", 1, new String[] {"csv", "xml"})
+				}));
+		setImportControls(
+			new PortletDataHandlerBoolean(
+				_NAMESPACE, "import-sample-lar-portlet-data", true, true));
+		setPublishToLiveByDefault(_PUBLISH_TO_LIVE_BY_DEFAULT);
 	}
 
 	@Override
 	public PortletPreferences deleteData(
-			PortletDataContext context, String portletId,
+			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences preferences)
 		throws PortletDataException {
 
@@ -53,15 +64,14 @@ public class LARPlugin extends BasePortletDataHandler {
 
 	@Override
 	public String exportData(
-			PortletDataContext context, String portletId,
+			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences preferences)
 		throws PortletDataException {
 
-		Map parameterMap = context.getParameterMap();
+		Map parameterMap = portletDataContext.getParameterMap();
 
-		boolean exportData = MapUtil.getBoolean(
-			parameterMap, "export-sample-lar-portlet-data",
-			_enableExport.getDefaultState());
+		boolean exportData = portletDataContext.getBooleanParameter(
+			_NAMESPACE, "export-sample-lar-portlet-data");
 
 		if (_log.isDebugEnabled()) {
 			if (exportData) {
@@ -90,12 +100,11 @@ public class LARPlugin extends BasePortletDataHandler {
 
 			String data = "<data-file />";
 
-			ZipWriter zipWriter = context.getZipWriter();
+			ZipWriter zipWriter = portletDataContext.getZipWriter();
 
 			if (zipWriter != null) {
-				boolean createReadMe = MapUtil.getBoolean(
-					parameterMap, "create-readme",
-					_createReadme.getDefaultState());
+				boolean createReadMe = portletDataContext.getBooleanParameter(
+					_NAMESPACE, "create-readme");
 
 				if (createReadMe) {
 					if (_log.isInfoEnabled()) {
@@ -107,7 +116,7 @@ public class LARPlugin extends BasePortletDataHandler {
 				}
 
 				String dataType = MapUtil.getString(
-					parameterMap, "data-type", _dataType.getDefaultChoice());
+					parameterMap, "data-type", "xml");
 
 				if (Validator.equals(dataType, "csv")) {
 					StringBuilder csv = new StringBuilder();
@@ -152,26 +161,13 @@ public class LARPlugin extends BasePortletDataHandler {
 	}
 
 	@Override
-	public PortletDataHandlerControl[] getExportControls() {
-		return new PortletDataHandlerControl[] {_enableExport};
-	}
-
-	@Override
-	public PortletDataHandlerControl[] getImportControls() {
-		return new PortletDataHandlerControl[] {_enableImport};
-	}
-
-	@Override
 	public PortletPreferences importData(
-			PortletDataContext context, String portletId,
+			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences preferences, String data)
 		throws PortletDataException {
 
-		Map parameterMap = context.getParameterMap();
-
-		boolean importData = MapUtil.getBoolean(
-			parameterMap, "import-sample-lar-portlet-data",
-			_enableImport.getDefaultState());
+		boolean importData = portletDataContext.getBooleanParameter(
+			_NAMESPACE, "import-sample-lar-portlet-data");
 
 		if (_log.isDebugEnabled()) {
 			if (importData) {
@@ -196,7 +192,7 @@ public class LARPlugin extends BasePortletDataHandler {
 				_log.info("Importing data " + data);
 			}
 
-			ZipReader zipReader = context.getZipReader();
+			ZipReader zipReader = portletDataContext.getZipReader();
 
 			if (zipReader != null) {
 				_log.info(
@@ -211,28 +207,10 @@ public class LARPlugin extends BasePortletDataHandler {
 		}
 	}
 
-	@Override
-	public boolean isPublishToLiveByDefault() {
-		return _PUBLISH_TO_LIVE_BY_DEFAULT;
-	}
-
 	private static final String _NAMESPACE = "lar-plugin";
 
 	private static final boolean _PUBLISH_TO_LIVE_BY_DEFAULT = true;
 
 	private static Log _log = LogFactoryUtil.getLog(LARPlugin.class);
-
-	private static PortletDataHandlerBoolean _createReadme =
-		new PortletDataHandlerBoolean(_NAMESPACE, "create-readme", true, true);
-	private static PortletDataHandlerChoice _dataType =
-		new PortletDataHandlerChoice(
-			_NAMESPACE, "data-type", 1, new String[] {"csv", "xml"});
-	private static PortletDataHandlerBoolean _enableExport =
-		new PortletDataHandlerBoolean(
-			_NAMESPACE, "export-sample-lar-portlet-data", true,
-			new PortletDataHandlerControl[] {_createReadme, _dataType});
-	private static PortletDataHandlerBoolean _enableImport =
-		new PortletDataHandlerBoolean(
-			_NAMESPACE, "import-sample-lar-portlet-data", true, true);
 
 }
