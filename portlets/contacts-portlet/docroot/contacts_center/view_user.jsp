@@ -360,7 +360,7 @@ request.setAttribute("view_user.jsp-user", user2);
 			var <portlet:namespace />openDialog = function(event) {
 				var node = event.currentTarget;
 
-				var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_user_dialogs.jsp" /></portlet:renderURL>';
+				var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_user_dialogs.jsp" /></portlet:renderURL>';
 
 				if (node.getAttribute('data-sectionId')) {
 					uri = Liferay.Util.addParams('<portlet:namespace />curSectionId=' + node.getAttribute('data-sectionId'), uri) || uri;
@@ -384,14 +384,11 @@ request.setAttribute("view_user.jsp-user", user2);
 							resizable: false,
 							width: 500
 						},
-						title: node.getAttribute('data-title')
-					}
-				).plug(
-					A.Plugin.IO,
-					{
+						id: '<portlet:namespace />Dialog',
+						title: node.getAttribute('data-title'),
 						uri: uri
 					}
-				).render();
+				)
 			};
 	</aui:script>
 </c:if>
