@@ -282,7 +282,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 			</div>
 
 			<div>
-				<label class="aui-field-label">
+				<label class="field-label">
 					<liferay-ui:message key="attachments" />
 				</label>
 
