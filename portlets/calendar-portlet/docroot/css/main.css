@@ -412,7 +412,7 @@
 	cursor: pointer;
 	list-style-type: none;
 	overflow: hidden;
-	padding: 6px 7em 6px 30px;
+	padding: 6px 30px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 
