@@ -1,8 +1,7 @@
 @import "compass";
 
-$border-color: #EBEBEB;
+$border-color: #DDD;
 $section-header-bg: #CCE6F7;
-$toolbar-bg: #DCE3EA;
 
 #wrapper .contacts-portlet .panel-page-body {
 	padding: 0;
@@ -15,6 +14,10 @@ $toolbar-bg: #DCE3EA;
 
 	.column-content, .column-content-center {
 		padding: 0;
+	}
+
+	.portlet .portlet-content .control-group {
+		margin-bottom: 0;
 	}
 
 	.toolbar-content {
@@ -35,31 +38,17 @@ $toolbar-bg: #DCE3EA;
 			padding: 5px;
 		}
 
-		select {
-			height: 26px;
+		input[type="checkbox"] {
+			margin: 0;
 		}
-	}
 
-	.contacts-search {
-		.contacts-search-content {
-			height: 28px;
-			padding: 5px 0;
-			position: relative;
-
-			.field-label {
-				display: none;
-			}
-
-			.search-input {
-				left: 5px;
-				position: absolute;
-				right: 5px;
-			}
+		select {
+			margin-bottom: 0;
 		}
 	}
 
 	.lfr-contact {
-		border-bottom: 1px solid #CCC;
+		border-bottom: 1px solid $border-color;
 
 		.lfr-contact-checkbox {
 			float: left;
@@ -284,24 +273,34 @@ $toolbar-bg: #DCE3EA;
 			width: 250px;
 
 			.contacts-search {
-				background: $toolbar-bg;
-				border-bottom: 1px solid #C9C9C9;
-				padding: 5px;
+				border-bottom: 1px solid $border-color;
+				height: 31px;
+				padding: 4px 5px;
 
-				.field-input {
+				.search-input {
+					padding-right: 25px;
 					width: 208px;
+				}
+
+				.icon-search {
+					color: $border-color;
+					position: absolute;
+					right: 11px;
+					top: 11px;
 				}
 			}
 		}
 
 		.contacts-container {
+			border-left: 1px solid $border-color;
 			float: none;
+			min-height: 600px;
 			width: 100%;
 
 			.lfr-button-column {
-				background-color: #E9E8E8;
+				border-bottom: 1px solid $border-color;
 				overflow: hidden;
-				padding: 4px 6px;
+				padding: 4px 6px 5px;
 
 				.edit-toolbar {
 					margin: 0;
@@ -328,12 +327,12 @@ $toolbar-bg: #DCE3EA;
 		}
 	}
 
-	.contacts-action-content span {
-		display: inline-block;
-		padding: 3px 4px 0px;
+	.contacts-action-content {
+		margin-left: 10px;
 
-		&:first-child {
-			padding-left: 10px;
+		.action {
+			display: inline-block;
+			padding: 3px 4px 0px;
 		}
 	}
 
@@ -368,19 +367,23 @@ $toolbar-bg: #DCE3EA;
 		}
 	}
 
-	.toolbar {
-		background-color: $toolbar-bg;
+	.layout.toolbar {
+		border-bottom: 1px solid $border-color;
 		min-height: 31px;
 
 		.add-contact {
 			float: right;
-			margin: 5px;\
+			margin: 5px;
 		}
 	}
 
-	.portlet-content {
+	.portlet .portlet-content {
+		padding: 0;
+
 		.portlet-body {
-			border: 1px solid #C9C9C9;
+			form {
+				margin: 0;
+			}
 
 			.lfr-app-column-view {
 				border-width: 0;
