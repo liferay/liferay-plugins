@@ -37,6 +37,14 @@ AUI.add(
 
 		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}ruleName={ruleName}';
 
+		var CONTROLS_NODE = 'controlsNode';
+
+		var ICON_CREATE_EVENT_NODE = 'iconCreateEventNode';
+
+		var TPL_ICON_CREATE_EVENT_NODE = '<button type="button" class="btn btn-primary calendar-create-event-btn">' +
+											Liferay.Language.get('add-calendar-booking') +
+										 '</button>';
+
 		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
 
 		var USER_ID = toInt(themeDisplay.getUserId());
@@ -1198,6 +1206,12 @@ AUI.add(
 						validator: isFunction
 					},
 
+					iconCreateEventNode: {
+						valueFn: function() {
+							return A.Node.create(TPL_ICON_CREATE_EVENT_NODE);
+						}
+					},
+
 					portletNamespace: {
 						setter: String,
 						validator: isValue,
@@ -1208,6 +1222,11 @@ AUI.add(
 						validator: isBoolean,
 						value: false
 					},
+
+					showNewEventBtn: {
+						validator: isBoolean,
+						value: true
+					}
 				},
 
 				EXTENDS: A.Scheduler,
@@ -1223,6 +1242,16 @@ AUI.add(
 						var instance = this;
 
 						Scheduler.superclass.renderUI.apply(this, arguments);
+
+						var showNewEventBtn = instance.get('showNewEventBtn');
+
+						if (showNewEventBtn) {
+							instance[ICON_CREATE_EVENT_NODE] = instance.get(ICON_CREATE_EVENT_NODE);
+
+							instance[CONTROLS_NODE].prepend(instance[ICON_CREATE_EVENT_NODE]);
+
+							instance[ICON_CREATE_EVENT_NODE].on('click', instance._onClickCreateEvent, instance);
+						}
 					},
 
 					bindUI: function() {
@@ -1463,6 +1492,42 @@ AUI.add(
 								}
 							}
 						}
+					},
+
+					_onClickCreateEvent: function(event) {
+						var instance = this;
+
+						var recorder = instance.get('eventRecorder');
+
+						var activeViewName = instance.get('activeView').get('name');
+
+						var defaultUserCalendar = CalendarUtil.getDefaultUserCalendar();
+
+						var calendarId = defaultUserCalendar.get('calendarId');
+
+						var editCalendarBookingURL = decodeURIComponent(recorder.get('editCalendarBookingURL'));
+
+						Liferay.Util.openWindow(
+							{
+								dialog: {
+									after: {
+										destroy: function(event) {
+											instance.load();
+										}
+									},
+									destroyOnHide: true,
+									modal: true
+								},
+								title: Liferay.Language.get('new-calendar-booking'),
+								uri: Lang.sub(
+									editCalendarBookingURL,
+									{
+										activeView: activeViewName,
+										calendarId: calendarId
+									}
+								)
+							}
+						);
 					},
 
 					_onDeleteEvent: function(event) {
