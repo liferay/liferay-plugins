@@ -288,9 +288,9 @@ if (user2 != null) {
 				data: {
 					<portlet:namespace />end: end,
 					<portlet:namespace />filterBy: contactFilerSelectValue,
+					<portlet:namespace />jsonFormat: true,
 					<portlet:namespace />keywords: searchInput.get('value'),
 					<portlet:namespace />start: 0,
-					<portlet:namespace />jsonFormat: true,
 					<portlet:namespace />userIds: userIds.join()
 				},
 				dataType: 'json'
