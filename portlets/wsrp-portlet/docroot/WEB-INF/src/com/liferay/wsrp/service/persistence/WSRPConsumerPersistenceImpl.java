@@ -358,6 +358,10 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WSRPConsumer> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
 
@@ -914,6 +918,10 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WSRPConsumer> list = findByUuid_C(uuid, companyId, count - 1,
 				count, orderByComparator);
 
@@ -1447,6 +1455,10 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WSRPConsumer> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
@@ -1671,6 +1683,10 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 	}
 
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "wsrpConsumer.companyId = ?";
+
+	public WSRPConsumerPersistenceImpl() {
+		setModelClass(WSRPConsumer.class);
+	}
 
 	/**
 	 * Caches the w s r p consumer in the entity cache if it is enabled.

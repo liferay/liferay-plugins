@@ -366,6 +366,10 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WSRPConsumerPortlet> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
 
@@ -925,6 +929,10 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WSRPConsumerPortlet> list = findByUuid_C(uuid, companyId,
 				count - 1, count, orderByComparator);
 
@@ -1467,6 +1475,10 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByWsrpConsumerId(wsrpConsumerId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WSRPConsumerPortlet> list = findByWsrpConsumerId(wsrpConsumerId,
 				count - 1, count, orderByComparator);
 
@@ -1974,6 +1986,10 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 	private static final String _FINDER_COLUMN_W_P_PORTLETHANDLE_1 = "wsrpConsumerPortlet.portletHandle IS NULL";
 	private static final String _FINDER_COLUMN_W_P_PORTLETHANDLE_2 = "wsrpConsumerPortlet.portletHandle = ?";
 	private static final String _FINDER_COLUMN_W_P_PORTLETHANDLE_3 = "(wsrpConsumerPortlet.portletHandle IS NULL OR wsrpConsumerPortlet.portletHandle = '')";
+
+	public WSRPConsumerPortletPersistenceImpl() {
+		setModelClass(WSRPConsumerPortlet.class);
+	}
 
 	/**
 	 * Caches the w s r p consumer portlet in the entity cache if it is enabled.
