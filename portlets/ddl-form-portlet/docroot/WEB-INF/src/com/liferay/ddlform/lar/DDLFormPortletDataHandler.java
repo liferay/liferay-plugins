@@ -17,6 +17,7 @@ package com.liferay.ddlform.lar;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -38,6 +39,8 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 
 	public DDLFormPortletDataHandler() {
 		setDataLevel(DataLevel.PORTLET_INSTANCE);
+		setDataPortletPreferences("formDDMTemplateId", "recordSetId");
+		setExportControls(new PortletDataHandlerControl[0]);
 	}
 
 	@Override
@@ -59,7 +62,7 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 	}
 
 	@Override
-	protected String doExportData(
+	protected PortletPreferences doProcessExportPortletPreferences(
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
 		throws Exception {
@@ -70,24 +73,22 @@ public class DDLFormPortletDataHandler extends BasePortletDataHandler {
 			portletPreferences.getValue("recordSetId", null));
 
 		if (recordSetId == 0) {
-			return StringPool.BLANK;
+			return portletPreferences;
 		}
 
 		DDLRecordSet recordSet = DDLRecordSetLocalServiceUtil.getRecordSet(
 			recordSetId);
 
-		StagedModelDataHandlerUtil.exportStagedModel(
-			portletDataContext, recordSet);
+		StagedModelDataHandlerUtil.exportReferenceStagedModel(
+			portletDataContext, portletId, recordSet);
 
-		Element rootElement = addExportDataRootElement(portletDataContext);
-
-		return getExportDataRootElementString(rootElement);
+		return portletPreferences;
 	}
 
 	@Override
-	protected PortletPreferences doImportData(
+	protected PortletPreferences doProcessImportPortletPreferences(
 			PortletDataContext portletDataContext, String portletId,
-			PortletPreferences portletPreferences, String data)
+			PortletPreferences portletPreferences)
 		throws Exception {
 
 		portletDataContext.importPortletPermissions(RESOURCE_NAME);
