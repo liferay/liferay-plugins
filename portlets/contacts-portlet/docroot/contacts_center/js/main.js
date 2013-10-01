@@ -458,14 +458,16 @@ AUI.add(
 											filterBy = contactFilterContainer.one('select').get('value');
 										}
 
+										var eventData = {};
+
 										var data = event.request;
 
-										event.cfg.data = {
-											end: data.end || instance._maxResultCount,
-											filterBy: data.filterBy || filterBy,
-											keywords: data.keywords || '',
-											start: data.start || 0
-										}
+										eventData[instance._namespace + 'end'] = data[instance._namespace + 'end'] || instance._maxResultCount;
+										eventData[instance._namespace + 'filterBy'] = data[instance._namespace + 'filterBy'] || filterBy;
+										eventData[instance._namespace + 'keywords'] = data[instance._namespace + 'keywords'] || '';
+										eventData[instance._namespace + 'start'] = data[instance._namespace + 'start'] || 0;
+
+										event.cfg.data = eventData
 									}
 								},
 								source: url
@@ -488,9 +490,11 @@ AUI.add(
 								listNode: contactsResult,
 								minQueryLength: 0,
 								requestTemplate: function(query) {
-									return {
-										keywords: query
-									}
+									var data = {};
+
+									data[instance._namespace + 'keywords'] = query;
+
+									return data
 								},
 								resultTextLocator: function(response) {
 									var result = '';
@@ -523,6 +527,7 @@ AUI.add(
 						if (confirm(confirmMessageText)) {
 							var actionURL = new Liferay.PortletURL.createURL(config.baseActionURL);
 
+							actionURL.setParameter('entryId', contact.entryId);
 							actionURL.setParameter('javax.portlet.action', 'deleteEntry');
 							actionURL.setPortletId('1_WAR_contactsportlet');
 							actionURL.setWindowState('NORMAL');
@@ -537,9 +542,6 @@ AUI.add(
 										success: function(event, id, obj) {
 											location.href = contact.redirect;
 										}
-									},
-									data: {
-										entryId: contact.entryId
 									}
 								}
 							);
@@ -566,12 +568,14 @@ AUI.add(
 						var instance = this;
 
 						return function(query) {
-							return {
-								end: instance._maxResultCount,
-								filterBy: filterBy,
-								keywords: query,
-								start: 0
-							}
+							var data = {};
+
+							data[instance._namespace + 'end'] = instance._maxResultCount;
+							data[instance._namespace + 'filterBy'] = filterBy;
+							data[instance._namespace + 'keywords'] = query;
+							data[instance._namespace + 'start'] = 0;
+
+							return data;
 						};
 					},
 
@@ -617,10 +621,14 @@ AUI.add(
 							if (contacts.size() > 0) {
 								contacts.set('checked', true);
 
+								var uri = config.getSelectedContactsURL;
+
 								var userIds = contacts.val();
 
+								uri = Liferay.Util.addParams(instance._namespace + 'userIds=' + userIds.join(), uri) || uri;
+
 								A.io.request(
-									config.getSelectedContactsURL,
+									uri,
 									{
 										after: {
 											failure: function(event, id, obj) {
@@ -629,9 +637,6 @@ AUI.add(
 											success: function(event, id, obj) {
 												instance.addContactResults(this.get('responseData'));
 											}
-										},
-										data: {
-											userIds: userIds.join()
 										},
 										dataType: 'json'
 									}

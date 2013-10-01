@@ -450,10 +450,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 								}
 							},
 							data: {
-								end: end,
-								filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
-								keywords: searchInput.get('value'),
-								start: start
+								<portlet:namespace />end: end,
+								<portlet:namespace />filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
+								<portlet:namespace />keywords: searchInput.get('value'),
+								<portlet:namespace />start: start
 							},
 							dataType: 'json'
 						}
@@ -486,7 +486,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 									}
 								},
 								data: {
-									userId: userId
+									<portlet:namespace />userId: userId
 								},
 								dataType: 'json'
 							}
@@ -520,8 +520,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 								}
 							},
 							data: {
-								showDetailView: true,
-								userId: userId
+								<portlet:namespace />showDetailView: true,
+								<portlet:namespace />userId: userId
 							}
 						}
 					);

@@ -353,11 +353,11 @@ request.setAttribute("view_user.jsp-user", user2);
 				var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_user_dialogs.jsp" /></portlet:renderURL>';
 
 				if (node.getAttribute('data-sectionId')) {
-					uri = Liferay.Util.addParams('curSectionId=' + node.getAttribute('data-sectionId'), uri) || uri;
+					uri = Liferay.Util.addParams('<portlet:namespace />curSectionId=' + node.getAttribute('data-sectionId'), uri) || uri;
 				}
 
 				if (node.getAttribute('data-extension')) {
-					uri = Liferay.Util.addParams('extension=' + node.getAttribute('data-extension'), uri) || uri;
+					uri = Liferay.Util.addParams('<portlet:namespace />extension=' + node.getAttribute('data-extension'), uri) || uri;
 				}
 
 				var dialog = Liferay.Util.Window.getWindow(
