@@ -489,9 +489,9 @@
 	</target>
 
 	<target name="clean">
-	</target>
-
-	<target name="clean-portal-dependencies">
+		<clean
+			module.dir="."
+		/>
 	</target>
 
 	<target name="compile">
@@ -1262,7 +1262,9 @@ Please find a solution that does not require portal-impl.jar.
 
 		<delete file="${plugin.file}" />
 
-		<antcall target="clean-portal-dependencies" />
+		<clean-portal-dependencies
+			module.dir="."
+		/>
 
 		<if>
 			<available file="docroot/WEB-INF/liferay-hook.xml.processed" />

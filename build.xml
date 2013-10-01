@@ -40,12 +40,14 @@
 	</target>
 
 	<target name="clean">
-		<ant dir="hooks" target="clean" inheritAll="false" />
-		<ant dir="layouttpl" target="clean" inheritAll="false" />
-		<ant dir="portlets" target="clean" inheritAll="false" />
-		<ant dir="shared" target="clean" inheritAll="false" />
-		<ant dir="themes" target="clean" inheritAll="false" />
-		<ant dir="webs" target="clean" inheritAll="false" />
+		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="clean"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
 	</target>
 
 	<target name="compile">
@@ -205,9 +207,14 @@
 	</target>
 
 	<target name="setup-eclipse">
-		<ant dir="hooks" target="clean" inheritAll="false" />
-		<ant dir="portlets" target="clean" inheritAll="false" />
-		<ant dir="webs" target="clean" inheritAll="false" />
+		<for list="hooks,portlets,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="clean"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
 
 		<ant dir="hooks" target="compile" inheritAll="false" />
 		<ant dir="portlets" target="compile" inheritAll="false" />

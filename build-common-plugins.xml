@@ -37,13 +37,10 @@
 	</target>
 
 	<target name="clean">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="clean-module" />
-		</antcall>
-	</target>
-
-	<target name="clean-module">
-		<ant dir="${module.name}" target="clean" inheritAll="false" />
+		<loop-modules
+			loop.modules.cmd="clean"
+			loop.modules.dir="."
+		/>
 	</target>
 
 	<target name="compile">

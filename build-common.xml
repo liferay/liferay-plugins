@@ -235,6 +235,53 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="loop-modules">
+		<attribute name="loop.modules.cmd" />
+		<attribute name="loop.modules.dir" />
+
+		<sequential>
+			<if>
+				<not>
+					<equals arg1="${plugins.includes}" arg2="" />
+				</not>
+				<then>
+					<path id="module.dirs.path">
+						<dirset dir="@{loop.modules.dir}" excludes="${plugins.excludes}" includes="${plugins.includes}" />
+					</path>
+
+					<pathconvert pathsep="," property="module.dirs" refid="module.dirs.path" targetos="unix" />
+
+					<for list="${module.dirs}" param="module.dir">
+						<sequential>
+							<if>
+								<equals arg1="@{loop.modules.cmd}" arg2="clean" />
+								<then>
+									<loadfile property="module.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+									<if>
+										<contains string="${module.build.xml.content}" substring="&lt;target name=&quot;clean&quot;&gt;" />
+										<then>
+											<ant dir="@{module.dir}" target="clean" inheritAll="false" />
+										</then>
+										<else>
+											<clean
+												module.dir="@{module.dir}"
+											/>
+										</else>
+									</if>
+
+									<var name="module.build.xml.content" unset="true" />
+								</then>
+							</if>
+						</sequential>
+					</for>
+
+					<var name="module.dirs" unset="true" />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<target name="compile-java">
 		<copy todir="${javac.destdir}">
 			<fileset dir="${javac.srcdir}" excludes="**/*.java" />
