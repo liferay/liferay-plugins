@@ -358,6 +358,10 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WSRPProducer> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
 
@@ -1177,6 +1181,10 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WSRPProducer> list = findByUuid_C(uuid, companyId, count - 1,
 				count, orderByComparator);
 
@@ -1710,6 +1718,10 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WSRPProducer> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
@@ -1934,6 +1946,10 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 	}
 
 	private static final String _FINDER_COLUMN_COMPANYID_COMPANYID_2 = "wsrpProducer.companyId = ?";
+
+	public WSRPProducerPersistenceImpl() {
+		setModelClass(WSRPProducer.class);
+	}
 
 	/**
 	 * Caches the w s r p producer in the entity cache if it is enabled.
