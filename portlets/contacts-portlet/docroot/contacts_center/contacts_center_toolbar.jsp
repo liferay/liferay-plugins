@@ -194,7 +194,7 @@ if (user2 != null) {
 							A.Plugin.IO,
 							{
 								data: {
-									userIds: userIds.join()
+									<portlet:namespace />userIds: userIds.join()
 								},
 								uri: uri
 							}
@@ -280,12 +280,12 @@ if (user2 != null) {
 					}
 				},
 				data: {
-					end: end,
-					filterBy: contactFilerSelectValue,
-					keywords: searchInput.get('value'),
-					start: 0,
-					jsonFormat: true,
-					userIds: userIds.join()
+					<portlet:namespace />end: end,
+					<portlet:namespace />filterBy: contactFilerSelectValue,
+					<portlet:namespace />keywords: searchInput.get('value'),
+					<portlet:namespace />start: 0,
+					<portlet:namespace />jsonFormat: true,
+					<portlet:namespace />userIds: userIds.join()
 				},
 				dataType: 'json'
 			}

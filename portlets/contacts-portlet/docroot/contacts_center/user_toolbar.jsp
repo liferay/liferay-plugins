@@ -197,7 +197,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 			A.Plugin.IO,
 			{
 				data: {
-					userIds: <%= user2.getUserId() %>
+					<portlet:namespace />userIds: <%= user2.getUserId() %>
 				},
 				uri: uri
 			}

@@ -107,10 +107,10 @@ if (entryId > 0) {
 						}
 					},
 					data: {
-						end: end,
-						filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
-						keywords: searchInput.get('value'),
-						start: 0
+						<portlet:namespace />end: end,
+						<portlet:namespace />filterBy: contactFilterSelect.get('value') || '<%= ContactsConstants.FILTER_BY_DEFAULT %>',
+						<portlet:namespace />keywords: searchInput.get('value'),
+						<portlet:namespace />start: 0
 					},
 					dataType: 'json',
 					form: {

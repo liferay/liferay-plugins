@@ -93,7 +93,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 														}
 													},
 													data: {
-														entryId: <%= entryId %>
+														<portlet:namespace />entryId: <%= entryId %>
 													}
 												}
 											);
