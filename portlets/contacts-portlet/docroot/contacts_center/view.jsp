@@ -129,11 +129,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</div>
 
 				<c:if test="<%= !showOnlySiteMembers %>">
-					<button class="add-contact buttonitem-content yui3-widget component buttonitem state-default buttonitem-icon-label" id="<portlet:namespace/>add-contact" type="button" value="add-contact">
-						<span class="buttonitem-icon icon icon-add"></span>
-
-						<span class="buttonitem-label"><liferay-ui:message key="add-contact" /></span>
-					</button>
+					<aui:button cssClass="add-contact btn-primary" icon="icon-plus-sign" id='<%= renderResponse.getNamespace() + "addContact" %>' value="add-contact" />
 				</c:if>
 			</aui:layout>
 
@@ -141,6 +137,8 @@ portletURL.setWindowState(WindowState.NORMAL);
 				<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">
 					<div class="lfr-search-column contacts-search search-bar">
 						<aui:input cssClass="search-input" id="name" label="" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
+
+						<i class="icon-search"></i>
 					</div>
 
 					<aui:layout cssClass='<%= userPublicPage ? "contacts-result personal-contact-list" : "contacts-result" %>'>

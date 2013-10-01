@@ -25,6 +25,8 @@
 			<c:if test="<%= Validator.isNull(user2.getComments()) %>">
 				<li class="action-field component settings-field lfr-token" data-sectionId="comments" data-title="<%= LanguageUtil.get(pageContext, "introduction") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="introduction" /></span>
 					</div>
 				</li>
@@ -33,6 +35,8 @@
 			<c:if test="<%= assetTags.isEmpty() %>">
 				<li class="action-field component settings-field lfr-token" data-sectionId="categorization" data-title="<%= LanguageUtil.get(pageContext, "tags") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="tags" /></span>
 					</div>
 				</li>
@@ -41,6 +45,8 @@
 			<c:if test="<%= phones.isEmpty() %>">
 				<li class="action-field component settings-field lfr-token" data-sectionId="phoneNumbers" data-title="<%= LanguageUtil.get(pageContext, "phone-numbers") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="phones" /></span>
 					</div>
 				</li>
@@ -49,6 +55,8 @@
 			<c:if test="<%= emailAddresses.isEmpty() %>">
 				<li class="action-field component settings-field lfr-token" data-sectionId="additionalEmailAddresses" data-title="<%= LanguageUtil.get(pageContext, "additional-email-addresses") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="email-address" /></span>
 					</div>
 				</li>
@@ -57,6 +65,8 @@
 			<c:if test="<%= Validator.isNull(aim) && Validator.isNull(icq) && Validator.isNull(jabber) && Validator.isNull(msn) && Validator.isNull(skype) && Validator.isNull(ym) %>">
 				<li class="action-field component settings-field lfr-token" data-sectionId="instantMessenger" data-title="<%= LanguageUtil.get(pageContext, "instant-messenger") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="instant-messenger" /></span>
 					</div>
 				</li>
@@ -65,6 +75,8 @@
 			<c:if test="<%= addresses.isEmpty() %>">
 				<li class="action-field component settings-field lfr-token" data-sectionId="addresses" data-title="<%= LanguageUtil.get(pageContext, "addresses") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="addresses" /></span>
 					</div>
 				</li>
@@ -73,6 +85,8 @@
 			<c:if test="<%= websites.isEmpty() %>">
 				<li class="action-field component settings-field lfr-token" data-sectionId="websites" data-title="<%= LanguageUtil.get(pageContext, "websites") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="websites" /></span>
 					</div>
 				</li>
@@ -81,6 +95,8 @@
 			<c:if test="<%= Validator.isNull(facebook) && Validator.isNull(twitter) %>">
 				<li class="action-field component settings-field lfr-token" data-sectionId="socialNetwork" data-title="<%= LanguageUtil.get(pageContext, "social-network") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="social-network" /></span>
 					</div>
 				</li>
@@ -89,6 +105,8 @@
 			<c:if test="<%= Validator.isNull(contact2.getSmsSn()) %>">
 				<li class="action-field component settings-field lfr-token" data-sectionId="sms" data-title="<%= LanguageUtil.get(pageContext, "sms") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="sms" /></span>
 					</div>
 				</li>

@@ -194,9 +194,11 @@ $toolbar-bg: #DCE3EA;
 		}
 
 		.empty {
-			background: url(@theme_image_path@/messages/alert.png) no-repeat 0 50%;
 			margin: 5px;
-			padding-left: 25px;
+
+			.icon-warning-sign {
+				margin-right: 10px
+			}
 		}
 
 		.last-name-anchor a {
@@ -264,10 +266,10 @@ $toolbar-bg: #DCE3EA;
 		.social-relations .lfr-asset-metadata {
 			display: none;
 		}
-	}
 
-	.contacts-result-container .contacts-container {
-		min-height: 600px;
+		.field-group .icon-edit {
+			display: none;
+		}
 	}
 
 	.contacts-result-container-content {
@@ -304,54 +306,6 @@ $toolbar-bg: #DCE3EA;
 				.edit-toolbar {
 					margin: 0;
 					overflow: visible;
-				}
-
-				.icon-remove-coworker {
-					background-image: url(@theme_image_path@/social/remove_coworker.png);
-				}
-
-				.icon-add-coworker {
-					background-image: url(@theme_image_path@/social/add_coworker.png);
-				}
-
-				.icon-back {
-					background-image: url(@theme_image_path@/common/back.png);
-				}
-
-				.icon-block {
-					background-image: url(@theme_image_path@/social/block.png);
-				}
-
-				.icon-delete {
-					background-image: url(@theme_image_path@/common/delete.png);
-				}
-
-				.icon-edit {
-					background-image: url(@theme_image_path@/common/edit.png);
-				}
-
-				.icon-export {
-					background-image: url(@theme_image_path@/common/export.png);
-				}
-
-				.icon-follow {
-					background-image: url(@theme_image_path@/social/follow.png);
-				}
-
-				.icon-send-message {
-					background-image: url(@theme_image_path@/mail/compose.png);
-				}
-
-				.icon-unblock {
-					background-image: url(@theme_image_path@/social/unblock.png);
-				}
-
-				.icon-unfollow {
-					background-image: url(@theme_image_path@/social/unfollow.png);
-				}
-
-				.icon-user {
-					background-image: url(@theme_image_path@/common/user_icon.png);
 				}
 			}
 		}
@@ -420,11 +374,7 @@ $toolbar-bg: #DCE3EA;
 
 		.add-contact {
 			float: right;
-			margin: 5px;
-
-			.icon-add {
-				background-image: url(@theme_image_path@/common/add.png);
-			}
+			margin: 5px;\
 		}
 	}
 
@@ -501,18 +451,6 @@ $toolbar-bg: #DCE3EA;
 		.lfr-asset-coworker, .lfr-asset-follower, .lfr-asset-following {
 			padding: 0 20px
 		}
-
-		.lfr-asset-coworker {
-			background: url(@theme_image_path@/social/coworker.png) no-repeat;
-		}
-
-		.lfr-asset-follower {
-			background: url(@theme_image_path@/social/follower.png) no-repeat;
-		}
-
-		.lfr-asset-following {
-			background: url(@theme_image_path@/social/following.png) no-repeat;
-		}
 	}
 
 	.members-container {
@@ -570,9 +508,23 @@ $toolbar-bg: #DCE3EA;
 		margin-top: 1em;
 	}
 
-	.my-profile .field-group:hover {
-		background: #E9E8E8 url(@theme_image_path@/common/edit.png) no-repeat right 5px;
-		cursor: pointer;
+	.my-profile .field-group {
+		position: relative;
+
+		.icon-edit {
+			position: absolute;
+			right: 5px;
+			top: 5px;
+		}
+
+		&:hover {
+			background: #E9E8E8;
+			cursor: pointer;
+
+			.icon-edit {
+				display: block;
+			}
+		}
 	}
 
 	.profile-actions {
@@ -616,10 +568,8 @@ $toolbar-bg: #DCE3EA;
 			}
 
 			.action-field {
-				background: url(@theme_image_path@/common/add.png) no-repeat 2px 50%;
 				float: left;
 				margin: 2px;
-				padding-left: 21px;
 			}
 
 			.lfr-token {
