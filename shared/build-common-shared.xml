@@ -18,12 +18,6 @@
 		</then>
 	</if>
 
-	<target name="clean">
-		<delete dir="classes" />
-
-		<antcall target="build-common-plugin.clean" />
-	</target>
-
 	<target name="compile">
 		<antcall target="compile-import-shared" />
 
