@@ -80,7 +80,7 @@ if (user2 != null) {
 					<portlet:namespace />relationAction(event, '<portlet:actionURL name="requestSocialRelation" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>" /></portlet:actionURL>');
 				}
 			},
-			icon: 'add-coworker',
+			icon: 'icon-plus-sign',
 			id: '<portlet:namespace />addConnectionButton',
 			label: '<%= UnicodeLanguageUtil.get(pageContext, "connect") %>',
 			visible: <%= showAddAsConnectionButton %>
@@ -94,7 +94,7 @@ if (user2 != null) {
 					<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_BI_CONNECTION) %>" /></portlet:actionURL>');
 				}
 			},
-			icon: 'remove-coworker',
+			icon: 'icon-minus-sign',
 			id: '<portlet:namespace />removeConnectionButton',
 			label: '<%= UnicodeLanguageUtil.get(pageContext, "disconnect") %>',
 			visible: <%= showRemoveAsConnectionButton %>
@@ -108,7 +108,7 @@ if (user2 != null) {
 					<portlet:namespace />relationAction(event, '<portlet:actionURL name="addSocialRelation" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" /></portlet:actionURL>');
 				}
 			},
-			icon: 'follow',
+			icon: 'icon-plus-sign',
 			id: '<portlet:namespace />followButton',
 			label: '<%= UnicodeLanguageUtil.get(pageContext, "follow") %>',
 			visible: <%= showFollowButton %>
@@ -122,7 +122,7 @@ if (user2 != null) {
 					<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_FOLLOWER) %>" /></portlet:actionURL>');
 				}
 			},
-			icon: 'unfollow',
+			icon: 'icon-minus-sign',
 			id: '<portlet:namespace />unfollowButton',
 			label: '<%= UnicodeLanguageUtil.get(pageContext, "unfollow") %>',
 			visible: <%= showUnFollowButton %>
@@ -136,7 +136,7 @@ if (user2 != null) {
 					<portlet:namespace />relationAction(event, '<portlet:actionURL name="addSocialRelation" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" /></portlet:actionURL>');
 				}
 			},
-			icon: 'block',
+			icon: 'icon-ban-circle',
 			id: '<portlet:namespace />blockButton',
 			label: '<%= UnicodeLanguageUtil.get(pageContext, "block") %>',
 			visible: <%= showBlockButton %>
@@ -150,7 +150,7 @@ if (user2 != null) {
 					<portlet:namespace />relationAction(event, '<portlet:actionURL name="deleteSocialRelation" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="type" value="<%= String.valueOf(SocialRelationConstants.TYPE_UNI_ENEMY) %>" /></portlet:actionURL>');
 				}
 			},
-			icon: 'unblock',
+			icon: 'icon-ok',
 			id: '<portlet:namespace />unblockButton',
 			label: '<%= UnicodeLanguageUtil.get(pageContext, "unblock") %>',
 			visible: <%= showUnBlockButton %>
@@ -201,7 +201,7 @@ if (user2 != null) {
 						).render();
 					}
 				},
-				icon: 'send-message',
+				icon: 'icon-envelope',
 				id: '<portlet:namespace />sendMessageButton',
 				label: '<%= UnicodeLanguageUtil.get(pageContext, "message") %>'
 			}
@@ -222,7 +222,7 @@ if (user2 != null) {
 					</c:choose>
 				}
 			},
-			icon: 'export',
+			icon: 'icon-save',
 			id: '<portlet:namespace />exportButton',
 			label: '<%= UnicodeLanguageUtil.get(pageContext, "vcard") %>'
 		}

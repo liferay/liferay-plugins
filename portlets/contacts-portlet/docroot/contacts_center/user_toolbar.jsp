@@ -43,7 +43,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 
 			<liferay-ui:icon
 				cssClass="action remove-connection"
-				image="../social/remove_coworker"
+				image="../aui/minus-sign"
 				label="<%= true %>"
 				message="disconnect"
 				method="get"
@@ -53,7 +53,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 		<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(themeDisplay.getUserId(), User.class.getName(), themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
 			<liferay-ui:icon
 				cssClass="disabled"
-				image="../social/coworker"
+				image="../aui/user"
 				label="<%= true %>"
 				message="connection-requested"
 			/>
@@ -67,7 +67,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 
 			<liferay-ui:icon
 				cssClass="action add-connection"
-				image="../social/add_coworker"
+				image="../aui/plus-sign"
 				label="<%= true %>"
 				message="connect"
 				method="get"
@@ -86,7 +86,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 
 			<liferay-ui:icon
 				cssClass="action unfollow"
-				image="../social/unfollow"
+				image="../aui/minus-sign"
 				label="<%= true %>"
 				message="unfollow"
 				method="get"
@@ -102,7 +102,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 
 			<liferay-ui:icon
 				cssClass="action follow"
-				image="../social/follow"
+				image="../aui/plus-sign"
 				label="<%= true %>"
 				message="follow"
 				method="get"
@@ -122,7 +122,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 
 		<liferay-ui:icon
 			cssClass="action unblock"
-			image="../social/unblock"
+			image="../aui/ok"
 			label="<%= true %>"
 			message="unblock"
 			method="get"
@@ -138,7 +138,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 
 		<liferay-ui:icon
 			cssClass="action block"
-			image="../social/block"
+			image="../aui/ban-circle"
 			label="<%= true %>"
 			message="block"
 			method="get"
@@ -155,7 +155,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 
 	<liferay-ui:icon
 		cssClass="send-message"
-		image="../mail/compose"
+		image="../aui/envelope"
 		label="<%= true %>"
 		message="message"
 		onClick="<%= messageTaglibOnClick %>"
@@ -168,7 +168,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 </portlet:resourceURL>
 
 <liferay-ui:icon
-	image="export"
+	image="../aui/save"
 	label="<%= true %>"
 	message="vcard"
 	url="<%= exportURL %>"

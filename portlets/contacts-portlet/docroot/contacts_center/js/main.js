@@ -17,19 +17,19 @@ AUI.add(
 
 		var TPL_BLOCK_IMG =
 			'<span>' +
-				'<img class="icon" alt="" src="' + themeDisplay.getPathThemeImages() + '/social/block.png">' +
+				'<i class="icon-ban-circle"></i>' +
 				'<span class="taglib-text">' + Liferay.Language.get('blocked') + '</span>' +
 			'</span>';
 
 		var TPL_CONNECTED_IMG =
 			'<span>' +
-				'<img class="icon" alt="" src="' + themeDisplay.getPathThemeImages() + '/social/coworker.png">' +
+				'<i class="icon-user"></i>' +
 				'<span class="taglib-text">' + Liferay.Language.get('connected') + '</span>' +
 			'</span>';
 
 		var TPL_CONNECTION_REQUESTED_IMG =
 			'<span>' +
-				'<img class="icon" alt="" src="' + themeDisplay.getPathThemeImages() + '/social/coworker.png">' +
+				'<i class="icon-user"></i>' +
 				'<span class="taglib-text">' + Liferay.Language.get('connection-requested') + '</span>' +
 			'</span>';
 
@@ -77,7 +77,7 @@ AUI.add(
 
 		var TPL_FOLLOWING_IMG =
 			'<span>' +
-				'<img class="icon" alt="" src="' + themeDisplay.getPathThemeImages() + '/social/following.png">' +
+				'<i class="icon-user"></i>' +
 				'<span class="taglib-text">' + Liferay.Language.get('following') + '</span>' +
 			'</span>';
 
@@ -752,7 +752,7 @@ AUI.add(
 
 						if ((results.length == 0) && displayMessage) {
 							buffer.push(
-								'<div class="empty">' + Liferay.Language.get('there-are-no-results') + '</div>'
+								'<div class="empty"><i class="icon-warning-sign"></i>' + Liferay.Language.get('there-are-no-results') + '</div>'
 							);
 						}
 						else {
