@@ -18,22 +18,6 @@
 		</java>
 	</target>
 
-	<target name="clean">
-		<if>
-			<available file="docroot/_diffs" />
-			<then>
-				<delete includeemptydirs="true" quiet="true" failonerror="false">
-					<fileset
-						dir="docroot"
-						excludes=".gitignore,_diffs.*,_diffs/**,WEB-INF/**"
-					/>
-				</delete>
-			</then>
-		</if>
-
-		<antcall target="build-common-plugin.clean" />
-	</target>
-
 	<target name="compile">
 		<if>
 			<available file="docroot/_diffs/images" />
