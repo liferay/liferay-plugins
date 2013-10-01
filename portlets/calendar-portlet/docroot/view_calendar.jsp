@@ -70,12 +70,6 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 <aui:container cssClass="calendar-portlet-column-parent">
 	<aui:row>
 		<aui:col cssClass='<%= "calendar-portlet-column-options " + (columnOptionsVisible ? StringPool.BLANK : "hide") %>' id="columnOptions" span="<%= 3 %>">
-			<c:if test="<%= (userDefaultCalendar != null) && CalendarPermission.contains(permissionChecker, userDefaultCalendar, ActionKeys.MANAGE_BOOKINGS) %>">
-				<aui:button-row cssClass="calendar-create-event-btn-row">
-					<aui:button onClick='<%= renderResponse.getNamespace() + \"onCreateEventClick();\" %>' primary="true" value="add-calendar-booking" />
-				</aui:button-row>
-			</c:if>
-
 			<div class="calendar-portlet-mini-calendar" id="<portlet:namespace />miniCalendarContainer"></div>
 
 			<div id="<portlet:namespace />calendarListContainer">
@@ -434,50 +428,6 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	<portlet:namespace />refreshMiniCalendarSelectedDates();
 
 	<portlet:namespace />scheduler.load();
-</aui:script>
-
-<aui:script>
-	<c:if test="<%= (userDefaultCalendar != null) && CalendarPermission.contains(permissionChecker, userDefaultCalendar, ActionKeys.MANAGE_BOOKINGS) %>">
-		Liferay.provide(
-			window,
-			'<portlet:namespace/>onCreateEventClick',
-			function() {
-				var A = AUI();
-
-				var activeViewName = <portlet:namespace/>scheduler.get('activeView').get('name');
-
-				var defaultUserCalendar = Liferay.CalendarUtil.getDefaultUserCalendar();
-
-				var calendarId = defaultUserCalendar.get('calendarId');
-
-				var editCalendarBookingURL = decodeURIComponent(<portlet:namespace/>eventRecorder.get('editCalendarBookingURL'));
-
-				Liferay.Util.openWindow(
-					{
-						dialog: {
-							after: {
-								destroy: function(event) {
-									<portlet:namespace/>scheduler.load();
-								}
-							},
-							destroyOnHide: true,
-							modal: true
-						},
-						title: Liferay.Language.get('new-calendar-booking'),
-						uri: A.Lang.sub(
-							editCalendarBookingURL,
-							{
-								activeView: activeViewName,
-								calendarId: calendarId,
-								titleCurrentValue: ''
-							}
-						)
-					}
-				);
-			},
-			['aui-base', 'liferay-scheduler']
-		);
-	</c:if>
 </aui:script>
 
 <%!
