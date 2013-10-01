@@ -28,7 +28,7 @@ boolean hideWeekView = ParamUtil.getBoolean(request, "hideWeekView");
 String permissionsCalendarBookingURL = ParamUtil.getString(request, "permissionsCalendarBookingURL");
 boolean preventPersistence = ParamUtil.getBoolean(request, "preventPersistence");
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
-boolean showNewEventBtn = ParamUtil.getBoolean(request, "showNewEventBtn");
+boolean showAddEventBtn = ParamUtil.getBoolean(request, "showAddEventBtn");
 String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookingURL");
 %>
 
@@ -117,7 +117,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 			portletNamespace: '<portlet:namespace />',
 			preventPersistence: <%= preventPersistence %>,
 			render: true,
-			showNewEventBtn: <%= showNewEventBtn %>,
+			showAddEventBtn: <%= showAddEventBtn %>,
 			strings: {
 				agenda: '<liferay-ui:message key="agenda" />',
 				day: '<liferay-ui:message key="day" />',

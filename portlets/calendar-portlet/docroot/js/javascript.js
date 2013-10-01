@@ -39,11 +39,13 @@ AUI.add(
 
 		var CONTROLS_NODE = 'controlsNode';
 
-		var ICON_CREATE_EVENT_NODE = 'iconCreateEventNode';
+		var ICON_ADD_EVENT_NODE = 'iconAddEventNode';
 
-		var TPL_ICON_CREATE_EVENT_NODE = '<button type="button" class="btn btn-primary calendar-create-event-btn">' +
+		var TPL_ICON_ADD_EVENT_NODE = '<div class="btn-group">' +
+										'<button type="button" class="btn btn-primary calendar-add-event-btn">' +
 											Liferay.Language.get('add-calendar-booking') +
-										 '</button>';
+										'</div>' +
+									 '</button>';
 
 		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
 
@@ -1206,9 +1208,9 @@ AUI.add(
 						validator: isFunction
 					},
 
-					iconCreateEventNode: {
+					iconAddEventNode: {
 						valueFn: function() {
-							return A.Node.create(TPL_ICON_CREATE_EVENT_NODE);
+							return A.Node.create(TPL_ICON_ADD_EVENT_NODE);
 						}
 					},
 
@@ -1223,7 +1225,7 @@ AUI.add(
 						value: false
 					},
 
-					showNewEventBtn: {
+					showAddEventBtn: {
 						validator: isBoolean,
 						value: true
 					}
@@ -1243,14 +1245,14 @@ AUI.add(
 
 						Scheduler.superclass.renderUI.apply(this, arguments);
 
-						var showNewEventBtn = instance.get('showNewEventBtn');
+						var showAddEventBtn = instance.get('showAddEventBtn');
 
-						if (showNewEventBtn) {
-							instance[ICON_CREATE_EVENT_NODE] = instance.get(ICON_CREATE_EVENT_NODE);
+						if (showAddEventBtn) {
+							instance[ICON_ADD_EVENT_NODE] = instance.get(ICON_ADD_EVENT_NODE);
 
-							instance[CONTROLS_NODE].prepend(instance[ICON_CREATE_EVENT_NODE]);
+							instance[CONTROLS_NODE].prepend(instance[ICON_ADD_EVENT_NODE]);
 
-							instance[ICON_CREATE_EVENT_NODE].on('click', instance._onClickCreateEvent, instance);
+							instance[ICON_ADD_EVENT_NODE].on('click', instance._onClickAddEvent, instance);
 						}
 					},
 
@@ -1494,7 +1496,7 @@ AUI.add(
 						}
 					},
 
-					_onClickCreateEvent: function(event) {
+					_onClickAddEvent: function(event) {
 						var instance = this;
 
 						var recorder = instance.get('eventRecorder');
@@ -1523,7 +1525,8 @@ AUI.add(
 									editCalendarBookingURL,
 									{
 										activeView: activeViewName,
-										calendarId: calendarId
+										calendarId: calendarId,
+										titleCurrentValue: ''
 									}
 								)
 							}

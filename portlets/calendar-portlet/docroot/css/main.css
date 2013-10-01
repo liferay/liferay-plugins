@@ -334,6 +334,10 @@
 	margin-top: -1em;
 }
 
+.scheduler-base-controls .calendar-add-event-btn {
+	margin-right: 3px;
+}
+
 .scheduler-event-past {
 	@include opacity(0.4);
 }
