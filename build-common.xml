@@ -183,6 +183,23 @@ Error-Prone was automatically installed. Please rerun your task.
 			<clean-portal-dependencies
 				module.dir="@{module.dir}"
 			/>
+
+			<if>
+				<matches pattern=".*-theme" string="@{module.dir}" />
+				<then>
+					<if>
+						<available file="@{module.dir}/docroot/_diffs" />
+						<then>
+							<delete includeemptydirs="true" quiet="true" failonerror="false">
+								<fileset
+									dir="@{module.dir}/docroot"
+									excludes=".gitignore,_diffs.*,_diffs/**,WEB-INF/**"
+								/>
+							</delete>
+						</then>
+					</if>
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
