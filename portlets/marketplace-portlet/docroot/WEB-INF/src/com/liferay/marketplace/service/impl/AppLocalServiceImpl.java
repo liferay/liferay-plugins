@@ -17,7 +17,6 @@ package com.liferay.marketplace.service.impl;
 import com.liferay.marketplace.AppPropertiesException;
 import com.liferay.marketplace.AppTitleException;
 import com.liferay.marketplace.AppVersionException;
-import com.liferay.marketplace.DuplicateAppException;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.model.Module;
 import com.liferay.marketplace.service.base.AppLocalServiceBaseImpl;
@@ -433,7 +432,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		User user = userPersistence.fetchByPrimaryKey(userId);
 		Date now = new Date();
 
-		validate(remoteAppId, title, version);
+		validate(title, version);
 
 		App app = appPersistence.fetchByRemoteAppId(remoteAppId);
 
@@ -559,7 +558,7 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		return false;
 	}
 
-	protected void validate(long remoteAppId, String title, String version)
+	protected void validate(String title, String version)
 		throws PortalException, SystemException {
 
 		if (Validator.isNull(title)) {
@@ -568,14 +567,6 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
 		if (Validator.isNull(version)) {
 			throw new AppVersionException();
-		}
-
-		if (remoteAppId > 0) {
-			App app = appPersistence.fetchByRemoteAppId(remoteAppId);
-
-			if (app != null) {
-				throw new DuplicateAppException();
-			}
 		}
 	}
 
