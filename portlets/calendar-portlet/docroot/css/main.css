@@ -269,7 +269,7 @@
 
 .calendar-portlet-recurrence-content {
 	.calendar-portlet-recurrence-limit  {
-		label,input {
+		label, input {
 			display: inline-block;
 			margin: 0 4px 0 0;
 		}
@@ -283,8 +283,6 @@
 		display: inline-block;
 	}
 }
-
-
 
 .calendar-portlet-recurrence-summary {
 	font-weight: bold;
