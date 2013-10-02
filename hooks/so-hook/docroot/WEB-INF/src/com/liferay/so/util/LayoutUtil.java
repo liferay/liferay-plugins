@@ -160,10 +160,10 @@ public class LayoutUtil {
 				configureMessageBoards(layout);
 				removePortletBorder(layout, portletId);
 			}
-			else if (portletId.equals(PortletKeys.CALENDAR) ||
-					 portletId.equals(PortletKeys.DOCUMENT_LIBRARY) ||
+			else if (portletId.equals(PortletKeys.DOCUMENT_LIBRARY) ||
 					 portletId.equals(PortletKeys.BLOGS) ||
 					 portletId.equals(PortletKeys.WIKI) ||
+					 portletId.equals("1_WAR_calendarportlet") ||
 					 portletId.contains("_WAR_microblogsportlet") ||
 					 portletId.equals("1_WAR_privatemessagingportlet") ||
 					 portletId.contains("1_WAR_tasksportlet")) {
