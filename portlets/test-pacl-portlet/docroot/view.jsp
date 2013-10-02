@@ -337,15 +337,24 @@
 	java.lang.Thread#getContextClassLoader=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+		if (!ServerDetector.isWebLogic()) {
+			new SecurityExceptionTest(out, themeDisplay, true) {
 
-			protected void test() throws Exception {
-				Thread thread = Thread.currentThread();
+				protected void test() throws Exception {
+					Thread thread = Thread.currentThread();
 
-				thread.getContextClassLoader();
-			}
+					thread.getContextClassLoader();
+				}
 
-		};
+			};
+		}
+		else {
+
+			// Let this pass since in WebLogic the context classloader is always
+			// the classloader of the jsp, hence there is no security check
+
+			out.print("PASSED");
+		}
 		%>
 
 </p>
@@ -658,15 +667,7 @@
 	new FileSecurityExceptionTest(out, themeDisplay, true) {
 
 		protected void test() throws Exception {
-			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
-		}
-
-	};
-
-	new FileSecurityExceptionTest(out, themeDisplay, true) {
-
-		protected void test() throws Exception {
-			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
+			testDelete("../webapps/chat-portlet/WEB-INF/liferay-releng.properties");
 		}
 
 	};
@@ -674,15 +675,7 @@
 	new FileSecurityExceptionTest(out, themeDisplay, false) {
 
 		protected void test() throws Exception {
-			testDeleteWithFile("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
-		}
-
-	};
-
-	new FileSecurityExceptionTest(out, themeDisplay, false) {
-
-		protected void test() throws Exception {
-			testDeleteWithFileUtil("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
+			testDelete("../webapps/chat-portlet/WEB-INF/src/com/liferay/chat/util/ChatConstants.java");
 		}
 
 	};
@@ -1440,7 +1433,7 @@
 	TestPACLUtil.class#_log=
 
 		<%
-		new SecurityExceptionTest(out, themeDisplay, true) {
+		new SecurityExceptionTest(out, themeDisplay, false) {
 
 			protected void test() throws Exception {
 				Class<?> clazz = TestPACLUtil.class;
@@ -2858,7 +2851,7 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 		super(writer, themeDisplay, expectSecurityException);
 	}
 
-	protected void testDeleteWithFile(String fileName) throws Exception {
+	protected void testDelete(String fileName) throws Exception {
 		fileName = TestPACLUtil.translateFileName(fileName);
 
 		writer.write(fileName);
@@ -2866,68 +2859,7 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 
 		File file = new File(fileName);
 
-		byte[] bytes = null;
-
-		try {
-			bytes = FileUtil.getBytes(file);
-		}
-		catch (SecurityException se) {
-			throw new Exception(se.getMessage(), se);
-		}
-
-		if (file.delete()) {
-			try {
-				FileUtil.write(file, bytes);
-			}
-			catch (SecurityException se) {
-				throw new Exception(se.getMessage(), se);
-			}
-
-			if (expectSecurityException) {
-				throw new SecurityException();
-			}
-		}
-		else {
-			if (!expectSecurityException) {
-				throw new SecurityException();
-			}
-		}
-	}
-
-	protected void testDeleteWithFileUtil(String fileName) throws Exception {
-		fileName = TestPACLUtil.translateFileName(fileName);
-
-		writer.write(fileName);
-		writer.write("=");
-
-		File file = new File(fileName);
-
-		byte[] bytes = null;
-
-		try {
-			bytes = FileUtil.getBytes(file);
-		}
-		catch (SecurityException se) {
-			throw new Exception(se.getMessage(), se);
-		}
-
-		if (FileUtil.delete(file)) {
-			try {
-				FileUtil.write(file, bytes);
-			}
-			catch (SecurityException se) {
-				throw new Exception(se.getMessage(), se);
-			}
-
-			if (expectSecurityException) {
-				throw new SecurityException();
-			}
-		}
-		else {
-			if (!expectSecurityException) {
-				throw new SecurityException();
-			}
-		}
+		PortalFilePermission.checkDelete(file.getPath());
 	}
 
 	protected void testExecute(String cmd) throws Exception {
@@ -2961,7 +2893,9 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 		writer.write(fileName);
 		writer.write("=");
 
-		FileUtil.read(fileName);
+		File file = new File(fileName);
+
+		PortalFilePermission.checkRead(file.getPath());
 	}
 
 	protected void testWriteWithFile(String fileName) throws Exception {
@@ -2988,9 +2922,7 @@ private class FileSecurityExceptionTest extends SecurityExceptionTest {
 
 		File file = new File(fileName);
 
-		byte[] bytes = FileUtil.getBytes(file);
-
-		FileUtil.write(file, bytes);
+		PortalFilePermission.checkWrite(file.getPath());
 	}
 
 }
@@ -3072,6 +3004,8 @@ private class SecurityExceptionTest {
 			}
 		}
 		catch (Exception e) {
+			e.printStackTrace();
+
 			writer.write("FAILED with " + e.getMessage());
 		}
 
