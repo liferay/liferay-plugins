@@ -212,7 +212,7 @@ public class AdminIndexer extends BaseIndexer {
 	}
 
 	protected void reindexKBArticles(long companyId) throws Exception {
-		final Collection<Document> documents = new ArrayList<Document>();
+		Collection<Document> documents = new ArrayList<Document>();
 
 		ActionableDynamicQuery actionableDynamicQuery =
 			new KBArticleActionableDynamicQuery() {
@@ -231,17 +231,18 @@ public class AdminIndexer extends BaseIndexer {
 
 				Document document = getDocument(kbArticle);
 
-				documents.add(document);
+				getDocuments().add(document);
 			}
 
 		};
 
 		actionableDynamicQuery.setCompanyId(companyId);
 
-		actionableDynamicQuery.performActions();
+		actionableDynamicQuery.setDocuments(documents);
 
-		SearchEngineUtil.updateDocuments(
-			getSearchEngineId(), companyId, documents);
+		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
+
+		actionableDynamicQuery.performActions();
 	}
 
 }
