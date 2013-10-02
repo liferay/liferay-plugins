@@ -119,7 +119,7 @@ if (recurrence != null) {
 				<th class="calendar-portlet-recurrence-title">
 					<liferay-ui:message key="repeat-on" />:
 				</th>
-				<td class="calendar-portlet-recurrence-content">
+				<td class="calendar-portlet-recurrence-content calendar-recurrence-weekday-checkbox">
 					<aui:field-wrapper inlineField="<%= true %>" label="">
 
 						<%
@@ -142,20 +142,28 @@ if (recurrence != null) {
 					<liferay-ui:message key="ends" />:
 				</th>
 				<td class="calendar-portlet-recurrence-content">
-					<aui:input checked="<%= !afterChecked && !onChecked %>" label="never" name="ends" type="radio" value="never" />
+					<aui:field-wrapper cssClass="calendar-portlet-recurrence-limit" label="">
+						<aui:input checked="<%= !afterChecked && !onChecked %>"  label="<%= StringPool.BLANK %>" name="ends" type="radio" value="never" />
 
-					<aui:field-wrapper inlineField="<%= true %>" label="">
-						<aui:input checked="<%= afterChecked %>" label="after" name="ends" type="radio" value="after" />
-
-						<aui:input disabled="<%= !afterChecked %>" label="" name="count" size="5" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
-
-						<liferay-ui:message key="occurrences" />
+						<label><liferay-ui:message key="never" /></label>
 					</aui:field-wrapper>
 
-					<aui:field-wrapper cssClass="calendar-portlet-field-date" label="">
-						<aui:input checked="<%= onChecked %>" inlineField="<%= true %>" label="on" name="ends" type="radio" value="on" />
+					<aui:field-wrapper cssClass="calendar-portlet-recurrence-limit" label="">
+						<aui:input checked="<%= afterChecked %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="after" />
+
+						<label><liferay-ui:message key="after" /></label>
+
+						<aui:input disabled="<%= !afterChecked %>" label="<%= StringPool.BLANK %>"  name="count" size="5" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
+
+						<label><liferay-ui:message key="occurrences" /></label>
+					</aui:field-wrapper>
+
+					<aui:field-wrapper cssClass="calendar-portlet-recurrence-limit calendar-portlet-field-date" label="">
+						<aui:input checked="<%= onChecked %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="on" />
 
 						<div class="calendar-portlet-field-datepicker clearfix">
+							<label><liferay-ui:message key="on" /></label>
+
 							<liferay-ui:input-date
 								dayParam="untilDateDay"
 								dayValue="<%= untilJCalendar.get(java.util.Calendar.DATE) %>"

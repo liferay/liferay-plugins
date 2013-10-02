@@ -209,11 +209,6 @@
 	.calendar-portlet-field-datepicker {
 		display: inline-block;
 	}
-
-	.field {
-		position: relative;
-		top: -10px;
-	}
 }
 
 .calendar-portlet-import-container {
@@ -271,6 +266,25 @@
 		margin: 2px;
 	}
 }
+
+.calendar-portlet-recurrence-content {
+	.calendar-portlet-recurrence-limit  {
+		label,input {
+			display: inline-block;
+			margin: 0 4px 0 0;
+		}
+
+		&.control-group {
+			margin-bottom: 10px;
+		}
+	}
+
+	&.calendar-recurrence-weekday-checkbox label {
+		display: inline-block;
+	}
+}
+
+
 
 .calendar-portlet-recurrence-summary {
 	font-weight: bold;
