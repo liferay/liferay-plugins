@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -145,12 +146,24 @@ public class CalendarResourceUtil {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		Group userGroup = GroupLocalServiceUtil.getUserGroup(
-			serviceContext.getCompanyId(), userId);
+		Group userGroup = null;
+
+		String userName = user.getFullName();
+
+		if (user.isDefaultUser()) {
+			userGroup = GroupLocalServiceUtil.getGroup(
+				serviceContext.getCompanyId(), GroupConstants.GUEST);
+
+			userName = GroupConstants.GUEST;
+		}
+		else {
+			userGroup = GroupLocalServiceUtil.getUserGroup(
+				serviceContext.getCompanyId(), userId);
+		}
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(LocaleUtil.getDefault(), user.getFullName());
+		nameMap.put(LocaleUtil.getDefault(), userName);
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
