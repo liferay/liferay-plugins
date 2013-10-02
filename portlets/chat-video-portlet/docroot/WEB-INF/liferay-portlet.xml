@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.2.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_2_0.dtd">
+
+<liferay-portlet-app>
+	<portlet>
+		<portlet-name>1</portlet-name>
+		<use-default-template>false</use-default-template>
+		<css-class-wrapper>chat-video-portlet</css-class-wrapper>
+		<system>true</system>
+	</portlet>
+</liferay-portlet-app>
