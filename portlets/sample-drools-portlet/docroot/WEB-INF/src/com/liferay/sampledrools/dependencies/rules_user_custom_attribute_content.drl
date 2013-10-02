@@ -22,8 +22,8 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.AssetEntriesFacet;
+import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.ScopeFacet;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
@@ -48,7 +48,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 dialect "java"
@@ -74,13 +73,6 @@ function List getAssetEntries(
 
 	SearchContext searchContext = new SearchContext();
 
-	searchContext.setAttribute("paginationType", "regular");
-	searchContext.setCompanyId(user.getCompanyId());
-	searchContext.setGroupIds(groupIds);
-	searchContext.setIncludeStagingGroups(false);
-	searchContext.setScopeStrict(false);
-	searchContext.setUserId(user.getUserId());
-
 	Facet assetEntriesFacet = new AssetEntriesFacet(searchContext);
 
 	assetEntriesFacet.setStatic(true);
@@ -92,6 +84,13 @@ function List getAssetEntries(
 	scopeFacet.setStatic(true);
 
 	searchContext.addFacet(scopeFacet);
+
+	searchContext.setAttribute("paginationType", "regular");
+	searchContext.setCompanyId(user.getCompanyId());
+	searchContext.setGroupIds(groupIds);
+	searchContext.setIncludeStagingGroups(false);
+	searchContext.setScopeStrict(false);
+	searchContext.setUserId(user.getUserId());
 
 	BooleanQuery booleanQuery = BooleanQueryFactoryUtil.create(searchContext);
 
