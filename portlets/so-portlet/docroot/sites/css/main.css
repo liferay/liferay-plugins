@@ -68,9 +68,10 @@
 			&.more {
 				background-image: url(@theme_image_path@/common/view.png);
 
-				a {
+				a, a:hover {
+					border-top: #C8C9CA;
 					color: #8F0920;
-					font-weight: bold;
+					padding: 0.5em 33px;
 				}
 			}
 
