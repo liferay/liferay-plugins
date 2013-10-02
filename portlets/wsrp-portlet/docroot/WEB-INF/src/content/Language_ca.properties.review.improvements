@@ -1,0 +1,13 @@
+forward-cookies=Reenvia Cookies
+forward-headers=Forward Headers (Automatic Copy)
+markup-character-sets-help=Please specify markup character encodings supported for the consumer in a comma delimited list. UTF-8 is assumed and and will be automatically added as a supported encoding. (Automatic Copy)
+markup-character-sets=Markup Character Sets (Automatic Copy)
+new-consumer-registration=Registre del consumidor nou
+new-consumer=Consumidor nou
+new-portlet=Mòdul de portal nou
+new-producer=Productor nou
+please-enter-a-valid-remote-portlet=Introduïu un portlet remot vàlid.
+restart-consumer=Reinicieu el consumidor
+the-wsrp-consumer-is-not-available=The consumer is not available. (Automatic Copy)
+there-are-no-producers=No hi ha productors.
+unable-to-update-the-service-description=Unable to update the service description. (Automatic Copy)
