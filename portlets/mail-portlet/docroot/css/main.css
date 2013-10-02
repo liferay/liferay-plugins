@@ -15,8 +15,14 @@
 		padding: 1em;
 	}
 
-	#messagesContainer .nav {
-		width: 100%;
+	#messagesContainer {
+		.nav {
+			width: 100%;
+		}
+
+		.table-container {
+			overflow: auto;
+		}
 	}
 
 	.add-account-button {

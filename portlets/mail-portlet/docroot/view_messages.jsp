@@ -83,144 +83,146 @@ MailManager mailManager = MailManager.getInstance(request);
 			</aui:layout>
 		</c:when>
 		<c:otherwise>
-			<table class="table table-condensed table-bordered table-hover">
-				<thead>
-					<tr>
-						<th class="check"></th>
-						<th class="address">
+			<div class="table-container">
+				<table class="table table-condensed table-bordered table-hover">
+					<thead>
+						<tr>
+							<th class="check"></th>
+							<th class="address">
 
-							<%
-							String addressOrderByType = "asc";
+								<%
+								String addressOrderByType = "asc";
 
-							if (orderByField.equals(MailConstants.ORDER_BY_ADDRESS) && orderByType.equals("asc")) {
-								addressOrderByType = "desc";
-							}
-							%>
+								if (orderByField.equals(MailConstants.ORDER_BY_ADDRESS) && orderByType.equals("asc")) {
+									addressOrderByType = "desc";
+								}
+								%>
 
-							<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_ADDRESS %>" data-orderByType="<%= addressOrderByType %>" data-pageNumber="1" href="javascript:;" label="address" />
-						</th>
-						<th class="subject">
+								<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_ADDRESS %>" data-orderByType="<%= addressOrderByType %>" data-pageNumber="1" href="javascript:;" label="address" />
+							</th>
+							<th class="subject">
 
-							<%
-							String subjectOrderByType = "asc";
+								<%
+								String subjectOrderByType = "asc";
 
-							if (orderByField.equals(MailConstants.ORDER_BY_SUBJECT) && orderByType.equals("asc")) {
-								subjectOrderByType = "desc";
-							}
-							%>
+								if (orderByField.equals(MailConstants.ORDER_BY_SUBJECT) && orderByType.equals("asc")) {
+									subjectOrderByType = "desc";
+								}
+								%>
 
-							<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_SUBJECT %>" data-orderByType="<%= subjectOrderByType %>" data-pageNumber="1" href="javascript:;" label="subject" />
-						</th>
-						<th class="date">
+								<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_SUBJECT %>" data-orderByType="<%= subjectOrderByType %>" data-pageNumber="1" href="javascript:;" label="subject" />
+							</th>
+							<th class="date">
 
-							<%
-							String dateOrderByType = "desc";
+								<%
+								String dateOrderByType = "desc";
 
-							if (orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) && orderByType.equals("desc")) {
-								dateOrderByType = "asc";
-							}
-							%>
+								if (orderByField.equals(MailConstants.ORDER_BY_SENT_DATE) && orderByType.equals("desc")) {
+									dateOrderByType = "asc";
+								}
+								%>
 
-							<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="<%= dateOrderByType %>" data-pageNumber="1" href="javascript:;" label="date" />
-						</th>
-						<th class="attachments"></th>
-					</tr>
-				</thead>
-				<tbody>
+								<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="<%= dateOrderByType %>" data-pageNumber="1" href="javascript:;" label="date" />
+							</th>
+							<th class="attachments"></th>
+						</tr>
+					</thead>
+					<tbody>
 
-					<%
-					Folder folder = FolderLocalServiceUtil.getFolder(folderId);
+						<%
+						Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
-					Account mailAccount = AccountLocalServiceUtil.getAccount(folder.getAccountId());
+						Account mailAccount = AccountLocalServiceUtil.getAccount(folder.getAccountId());
 
-					int messageNumber = messagesDisplay.getStartMessageNumber();
+						int messageNumber = messagesDisplay.getStartMessageNumber();
 
-					List<Message> messages = messagesDisplay.getMessages();
+						List<Message> messages = messagesDisplay.getMessages();
 
-					String messageCssClass = "message-link";
-
-					if (mailAccount.getDraftFolderId() == folderId) {
-						messageCssClass = "draft-link";
-					}
-
-					for (Message message : messages) {
-						String address = StringPool.BLANK;
-						String date = StringPool.DASH;
-
-						if (mailAccount.getSentFolderId() == folderId) {
-							address = message.getTo();
-
-							if (Validator.isNotNull(message.getCc())) {
-								address += ", " + message.getCc();
-							}
-
-							if (Validator.isNotNull(message.getBcc())) {
-								address += ", " + message.getBcc();
-							}
-						}
-						else {
-							address = message.getSender();
-						}
+						String messageCssClass = "message-link";
 
 						if (mailAccount.getDraftFolderId() == folderId) {
-							if (message.getModifiedDate() != null) {
-								date = dateFormatDateTime.format(message.getModifiedDate());
+							messageCssClass = "draft-link";
+						}
+
+						for (Message message : messages) {
+							String address = StringPool.BLANK;
+							String date = StringPool.DASH;
+
+							if (mailAccount.getSentFolderId() == folderId) {
+								address = message.getTo();
+
+								if (Validator.isNotNull(message.getCc())) {
+									address += ", " + message.getCc();
+								}
+
+								if (Validator.isNotNull(message.getBcc())) {
+									address += ", " + message.getBcc();
+								}
 							}
-						}
-						else {
-							if (message.getSentDate() != null) {
-								date = dateFormatDateTime.format(message.getSentDate());
+							else {
+								address = message.getSender();
 							}
+
+							if (mailAccount.getDraftFolderId() == folderId) {
+								if (message.getModifiedDate() != null) {
+									date = dateFormatDateTime.format(message.getModifiedDate());
+								}
+							}
+							else {
+								if (message.getSentDate() != null) {
+									date = dateFormatDateTime.format(message.getSentDate());
+								}
+							}
+
+							String rowCssClass = "results-row";
+
+							if (!message.hasFlag(MailConstants.FLAG_SEEN)) {
+								rowCssClass += " unread";
+							}
+
+							if (message.hasFlag(MailConstants.FLAG_FLAGGED)) {
+								rowCssClass += " important";
+							}
+						%>
+
+							<tr class="<%= rowCssClass %>">
+								<td>
+									<aui:input id='<%= "message" + message.getMessageId() %>' label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
+								</td>
+								<td>
+									<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+										<%= HtmlUtil.escape(address) %>
+									</div>
+								</td>
+								<td>
+									<div class="<%= messageCssClass + (Validator.isNull(message.getSubject()) ? " no-subject" : StringPool.BLANK) %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+										<%= Validator.isNull(message.getSubject()) ? LanguageUtil.get(pageContext, "no-subject") : HtmlUtil.escape(message.getSubject()) %>
+									</div>
+								</td>
+								<td>
+									<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+										<%= HtmlUtil.escape(date) %>
+									</div>
+								</td>
+								<td>
+									<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+										<c:if test="<%= !AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
+											<liferay-ui:icon
+												image="../mail/clip"
+											/>
+										</c:if>
+									</div>
+								</td>
+							</tr>
+
+						<%
+							messageNumber++;
 						}
+						%>
 
-						String rowCssClass = "results-row";
-
-						if (!message.hasFlag(MailConstants.FLAG_SEEN)) {
-							rowCssClass += " unread";
-						}
-
-						if (message.hasFlag(MailConstants.FLAG_FLAGGED)) {
-							rowCssClass += " important";
-						}
-					%>
-
-						<tr class="<%= rowCssClass %>">
-							<td>
-								<aui:input id='<%= "message" + message.getMessageId() %>' label="" messageId="<%= message.getMessageId() %>" name="message" type="checkbox" value="<%= message.getMessageId() %>" />
-							</td>
-							<td>
-								<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
-									<%= HtmlUtil.escape(address) %>
-								</div>
-							</td>
-							<td>
-								<div class="<%= messageCssClass + (Validator.isNull(message.getSubject()) ? " no-subject" : StringPool.BLANK) %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
-									<%= Validator.isNull(message.getSubject()) ? LanguageUtil.get(pageContext, "no-subject") : HtmlUtil.escape(message.getSubject()) %>
-								</div>
-							</td>
-							<td>
-								<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
-									<%= HtmlUtil.escape(date) %>
-								</div>
-							</td>
-							<td>
-								<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
-									<c:if test="<%= !AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
-										<liferay-ui:icon
-											image="../mail/clip"
-										/>
-									</c:if>
-								</div>
-							</td>
-						</tr>
-
-					<%
-						messageNumber++;
-					}
-					%>
-
-				</tbody>
-			</table>
+					</tbody>
+				</table>
+			</div>
 
 			<ul class="message-pager pager pull-right">
 				<li class="<%= (messagesDisplay.getPageNumber() > 2 ? StringPool.BLANK : "disabled ") + "previous" %>">
