@@ -1485,7 +1485,7 @@ AUI().use(
 		Liferay.publish(
 			'chatPortletReady',
 			{
-				defaultFn: A.bind(Liferay.Chat.Manager.init, Liferay.Chat.Manager),
+				defaultFn: A.bind('init', Liferay.Chat.Manager),
 				fireOnce: true
 			}
 		);
