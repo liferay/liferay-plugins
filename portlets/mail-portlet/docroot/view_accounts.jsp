@@ -29,37 +29,28 @@ MailManager mailManager = MailManager.getInstance(request);
 		List<Account> mailAccounts = mailManager.getAccounts();
 		%>
 
-		<c:choose>
-			<c:when test="<%= !mailAccounts.isEmpty() %>">
-				<div class="span9">
-					<ul class="nav nav-pills">
+		<c:if test="<%= !mailAccounts.isEmpty() %>">
+			<div class="span9">
+				<ul class="nav nav-pills">
 
-						<%
-						for (Account mailAccount : mailAccounts) {
-						%>
+					<%
+					for (Account mailAccount : mailAccounts) {
+					%>
 
-							<li class="tab <%= (mailAccount.getAccountId() == accountId) ? "active" : "" %>">
-								<aui:a cssClass="folders-link" data-accountId="<%= mailAccount.getAccountId() %>" data-inboxFolderId="<%= mailAccount.getInboxFolderId() %>" href="javascript:;" label="<%= mailAccount.getAddress() %>" />
-							</li>
+						<li class="tab <%= (mailAccount.getAccountId() == accountId) ? "active" : "" %>">
+							<aui:a cssClass="folders-link" data-accountId="<%= mailAccount.getAccountId() %>" data-inboxFolderId="<%= mailAccount.getInboxFolderId() %>" href="javascript:;" label="<%= mailAccount.getAddress() %>" />
+						</li>
 
-						<%
-						}
-						%>
+					<%
+					}
+					%>
 
-					</ul>
-				</div>
+				</ul>
+			</div>
+		</c:if>
 
-				<div class="span3 text-right">
-					<aui:button cssClass="add-account-button" onClick="Liferay.Mail.addAccount();" value="add-mail-account" />
-				</div>
-			</c:when>
-			<c:otherwise>
-				<div class="span12">
-					<div class="alert alert-info">
-						<aui:a href="javascript:;" onClick="Liferay.Mail.addAccount();"><liferay-ui:message key="add-a-new-email-account" /></aui:a>
-					</div>
-				</div>
-			</c:otherwise>
-		</c:choose>
+		<div class='<%= !mailAccounts.isEmpty() ? "span3 text-right" : "span12" %>'>
+			<aui:button cssClass="add-account-button" onClick="Liferay.Mail.addAccount();" value="add-mail-account" />
+		</div>
 	</div>
 </c:if>
