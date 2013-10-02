@@ -1090,9 +1090,11 @@
 							{
 								dialog:	{
 									bodyContent: content.join(''),
+									height: 200,
 									toolbars: {
 										footer: buttons
 									},
+									width: 700
 								},
 								title: titleText
 							}
