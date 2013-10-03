@@ -463,19 +463,14 @@
 	border: 1px solid #DDD;
 }
 
-/* --- YUI Calendar --- */
+/* --- YUI calendar --- */
 
 .yui3-skin-sam .calendar-portlet {
-	.yui3-calendar-day,
-	.yui3-calendar-header-label,
-	.yui3-calendar-weekday {
+	.yui3-calendar-day, .yui3-calendar-header-label, .yui3-calendar-weekday {
 		font-weight: 200;
 	}
 
-	.yui3-calendar-day,
-	.yui3-calendar-prevmonth-day,
-	.yui3-calendar-nextmonth-day,
-	.yui3-calendar-content {
+	.yui3-calendar-day, .yui3-calendar-prevmonth-day, .yui3-calendar-nextmonth-day, .yui3-calendar-content {
 		border: 0;
 	}
 
@@ -488,20 +483,16 @@
 		padding-bottom: 10px;
 	}
 
-	.yui3-calendar-day:hover,
-	.yui3-calendar-day.yui3-calendar-day-selected:hover,
-	.yui3-calendar-day.yui3-calendar-day-selected.lfr-busy-day:hover {
+	.yui3-calendar-day:hover, .yui3-calendar-day.yui3-calendar-day-selected:hover, .yui3-calendar-day.yui3-calendar-day-selected.lfr-busy-day:hover {
 		background: #bbb;
 		color: #fff;
 	}
 
-	.yui3-calendar-day.yui3-calendar-day-selected,
-	.yui3-calendar-day.yui3-calendar-day-selected.lfr-busy-day {
+	.yui3-calendar-day.yui3-calendar-day-selected, .yui3-calendar-day.yui3-calendar-day-selected.lfr-busy-day {
 		background-color: #f2f2f2;
 	}
 
-	.yui3-calendar-day.lfr-busy-day,
-	.yui3-calendar-day.yui3-calendar-day-selected.lfr-busy-day {
+	.yui3-calendar-day.lfr-busy-day, .yui3-calendar-day.yui3-calendar-day-selected.lfr-busy-day {
 		font-weight: bold;
 		padding-bottom: 0;
 	}
