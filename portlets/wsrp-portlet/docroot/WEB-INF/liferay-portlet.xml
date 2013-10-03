@@ -20,6 +20,7 @@
 	<portlet>
 		<portlet-name>2</portlet-name>
 		<friendly-url-mapper-class>com.liferay.wsrp.consumer.portlet.ConsumerFriendlyURLMapper</friendly-url-mapper-class>
+		<requires-namespaced-parameters>false</requires-namespaced-parameters>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
