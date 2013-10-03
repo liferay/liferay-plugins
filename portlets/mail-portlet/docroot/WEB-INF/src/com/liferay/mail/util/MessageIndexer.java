@@ -39,8 +39,6 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Locale;
 
 import javax.portlet.PortletURL;
@@ -187,8 +185,6 @@ public class MessageIndexer extends BaseIndexer {
 	protected void reindexMessages(long companyId)
 		throws PortalException, SystemException {
 
-		Collection<Document> documents = new ArrayList<Document>();
-
 		ActionableDynamicQuery actionableDynamicQuery =
 			new MessageActionableDynamicQuery() {
 
@@ -198,15 +194,12 @@ public class MessageIndexer extends BaseIndexer {
 
 				Document document = getDocument(message);
 
-				getDocuments().add(document);
+				addDocument(document);
 			}
 
 		};
 
 		actionableDynamicQuery.setCompanyId(companyId);
-
-		actionableDynamicQuery.setDocuments(documents);
-
 		actionableDynamicQuery.setSearchEngineId(getSearchEngineId());
 
 		actionableDynamicQuery.performActions();
