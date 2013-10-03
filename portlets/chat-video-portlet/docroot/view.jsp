@@ -25,6 +25,4 @@
 	<liferay-util:html-bottom>
 		<script defer="defer" src="<%= PortalUtil.getStaticResourceURL(request, PortalUtil.getPathContext(request) + "/js/main.js", portlet.getTimestamp()) %>" type="text/javascript"></script>
 	</liferay-util:html-bottom>
-
-	Chat Video
 </c:if>
