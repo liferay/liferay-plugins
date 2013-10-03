@@ -251,9 +251,6 @@
 			</throws>
 		</method>
 		<field>
-			<name>NAMESPACE</name>
-		</field>
-		<field>
 			<name>_PORTLET_ID</name>
 		</field>
 	</javadoc>
@@ -5334,6 +5331,17 @@
 			<param>
 				<name>content</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>isValidUser</name>
+			<param>
+				<name>user</name>
+				<type>com.liferay.portal.model.User</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>

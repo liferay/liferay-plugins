@@ -494,6 +494,24 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<method>
+			<name>doRestoreStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>calendarBooking</name>
+				<type>com.liferay.calendar.model.CalendarBooking</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>CLASS_NAMES</name>
 		</field>
@@ -4308,34 +4326,6 @@
 			<param>
 				<name>status</name>
 				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>serviceContext</name>
-				<type>com.liferay.portal.service.ServiceContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>invokeTransition</name>
-			<param>
-				<name>calendarBookingId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>transitionName</name>
-				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -12968,6 +12958,22 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<method>
+			<name>_isInCheckInterval</name>
+			<param>
+				<name>deltaTime</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>intervalStart</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
 		<field>
 			<name>_CHECK_INTERVAL</name>
 		</field>
@@ -13273,39 +13279,6 @@
 			</throws>
 		</method>
 		<method>
-			<name>invokeTransition</name>
-			<param>
-				<name>userId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarBookingId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>transitionName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>serviceContext</name>
-				<type>com.liferay.portal.service.ServiceContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
 			<name>startWorkflow</name>
 			<param>
 				<name>userId</name>
@@ -13399,39 +13372,6 @@
 			</throws>
 		</method>
 		<method>
-			<name>invokeTransition</name>
-			<param>
-				<name>userId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>calendarBookingId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>transitionName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>serviceContext</name>
-				<type>com.liferay.portal.service.ServiceContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
 			<name>startWorkflow</name>
 			<param>
 				<name>userId</name>
@@ -13491,37 +13431,6 @@
 		<type>com.liferay.calendar.workflow.CalendarBookingWorkflowConstants</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<author><![CDATA[Eduardo Lundgren]]></author>
-		<method>
-			<name>getLabelStatus</name>
-			<param>
-				<name>label</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getStatusLabel</name>
-			<param>
-				<name>status</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<field>
-			<name>LABEL_ACCEPTED</name>
-		</field>
-		<field>
-			<name>LABEL_DECLINED</name>
-		</field>
-		<field>
-			<name>LABEL_MAYBE</name>
-		</field>
 		<field>
 			<name>STATUS_MAYBE</name>
 		</field>

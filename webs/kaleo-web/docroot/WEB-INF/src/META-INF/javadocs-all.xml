@@ -7672,6 +7672,9 @@
 		<type>com.liferay.portal.workflow.kaleo.runtime.action.ScriptActionExecutor</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
+			<name>ScriptActionExecutor</name>
+		</method>
+		<method>
 			<name>execute</name>
 			<param>
 				<name>kaleoAction</name>
@@ -7693,6 +7696,14 @@
 				<type>ActionExecutorException</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
+		</method>
+		<method>
+			<name>setOutputObjects</name>
+			<param>
+				<name>outputObjects</name>
+				<type>java.util.Set</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 		</method>
 		<method>
 			<name>doExecute</name>
@@ -7717,6 +7728,9 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>_outputObjects</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>BaseTaskAssignmentSelector</name>
@@ -15914,6 +15928,22 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
+		<method>
+			<name>mergeWorkflowContexts</name>
+			<param>
+				<name>executionContext</name>
+				<type>com.liferay.portal.workflow.kaleo.runtime.ExecutionContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>workflowContext</name>
+				<type>java.util.Map</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<field>
+			<name>WORKFLOW_CONTEXT_NAME</name>
+		</field>
 	</javadoc>
 	<javadoc>
 		<name>WorkflowModelUtil</name>

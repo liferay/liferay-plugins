@@ -149,7 +149,7 @@
 			</throws>
 		</method>
 		<method>
-			<name>doExportData</name>
+			<name>doProcessExportPortletPreferences</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
@@ -175,7 +175,7 @@
 			</throws>
 		</method>
 		<method>
-			<name>doImportData</name>
+			<name>doProcessImportPortletPreferences</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
@@ -189,11 +189,6 @@
 			<param>
 				<name>portletPreferences</name>
 				<type>javax.portlet.PortletPreferences</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>data</name>
-				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>

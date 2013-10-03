@@ -447,6 +447,12 @@
 			</throws>
 		</method>
 		<method>
+			<name>getBundledApps</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getInstalledApps</name>
 			<return>
 				<comment><![CDATA[]]></comment>
@@ -649,11 +655,6 @@
 		<method>
 			<name>validate</name>
 			<param>
-				<name>remoteAppId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
 				<name>title</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
@@ -676,6 +677,9 @@
 		</method>
 		<field>
 			<name>_log</name>
+		</field>
+		<field>
+			<name>_bundledApps</name>
 		</field>
 		<field>
 			<name>_installedApps</name>
@@ -941,6 +945,24 @@
 		</method>
 		<method>
 			<name>getApp</name>
+			<param>
+				<name>actionRequest</name>
+				<type>javax.portlet.ActionRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>actionResponse</name>
+				<type>javax.portlet.ActionResponse</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getBundledApps</name>
 			<param>
 				<name>actionRequest</name>
 				<type>javax.portlet.ActionRequest</type>

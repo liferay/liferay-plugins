@@ -24,6 +24,14 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<method>
+			<name>_countDown</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>_countDownLatch</name>
 		</field>
@@ -45,6 +53,14 @@
 				<type>com.liferay.portal.kernel.messaging.Message</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>_countDown</name>
 			<throws>
 				<name>Exception</name>
 				<type>java.lang.Exception</type>
