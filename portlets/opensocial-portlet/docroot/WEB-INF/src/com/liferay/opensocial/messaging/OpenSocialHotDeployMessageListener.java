@@ -12,19 +12,14 @@
  * details.
  */
 
-package com.liferay.opensocial.servlet;
+package com.liferay.opensocial.messaging;
 
 import com.liferay.opensocial.model.Gadget;
-import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Layout;
@@ -36,23 +31,14 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 
 import java.util.List;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
 /**
  * @author Michael Young
  */
-public class OpenSocialServletContextListener
-	extends BasePortalLifecycle implements ServletContextListener {
+public class OpenSocialHotDeployMessageListener
+	extends HotDeployMessageListener {
 
-	@Override
-	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		portalDestroy();
-	}
-
-	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		registerPortalLifecycle();
+	public OpenSocialHotDeployMessageListener(String... servletContextNames) {
+		super(servletContextNames);
 	}
 
 	protected void checkExpando() throws Exception {
@@ -84,39 +70,24 @@ public class OpenSocialServletContextListener
 	}
 
 	@Override
-	protected void doPortalDestroy() throws Exception {
-		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
+	protected void onDeploy(Message message) throws Exception {
+		verifyGadgets();
 
-		GadgetLocalServiceUtil.destroyGadgets();
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+
+		for (Company company : companies) {
+			PortletLocalServiceUtil.addPortletCategory(
+				company.getCompanyId(), _GADGETS_CATEGORY);
+		}
+
+		GadgetLocalServiceUtil.initGadgets();
+
+		checkExpando();
 	}
 
 	@Override
-	protected void doPortalInit() throws Exception {
-		_messageListener = new HotDeployMessageListener(
-			ClpSerializer.getServletContextName()) {
-
-			@Override
-			protected void onDeploy(Message message) throws Exception {
-				verifyGadgets();
-
-				List<Company> companies =
-					CompanyLocalServiceUtil.getCompanies();
-
-				for (Company company : companies) {
-					PortletLocalServiceUtil.addPortletCategory(
-						company.getCompanyId(), _GADGETS_CATEGORY);
-				}
-
-				GadgetLocalServiceUtil.initGadgets();
-
-				checkExpando();
-			}
-
-		};
-
-		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
+	protected void onUndeploy(Message message) throws Exception {
+		GadgetLocalServiceUtil.destroyGadgets();
 	}
 
 	protected void verifyGadgets() throws Exception {
@@ -135,7 +106,5 @@ public class OpenSocialServletContextListener
 	}
 
 	private static final String _GADGETS_CATEGORY = "category.gadgets";
-
-	private MessageListener _messageListener;
 
 }

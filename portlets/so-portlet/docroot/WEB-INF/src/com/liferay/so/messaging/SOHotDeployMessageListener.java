@@ -15,65 +15,30 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.so.servlet;
+package com.liferay.so.messaging;
 
-import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortletClassInvoker;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.so.service.ClpSerializer;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
 /**
  * @author Ryan Park
  */
-public class SOServletContextListener
-	extends BasePortalLifecycle implements ServletContextListener {
+public class SOHotDeployMessageListener extends HotDeployMessageListener {
 
 	@Override
-	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		portalDestroy();
-	}
+	protected void onDeploy(Message message) throws Exception {
+		long companyId = message.getLong("companyId");
 
-	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		registerPortalLifecycle();
-	}
+		if (PortletLocalServiceUtil.hasPortlet(
+				companyId, "1_WAR_contactsportlet")) {
 
-	@Override
-	protected void doPortalDestroy() throws Exception {
-		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
-	}
-
-	@Override
-	protected void doPortalInit() {
-		_messageListener = new HotDeployMessageListener(
-			ClpSerializer.getServletContextName(), "contacts-portlet") {
-
-			@Override
-			protected void onDeploy(Message message) throws Exception {
-				long companyId = message.getLong("companyId");
-
-				if (PortletLocalServiceUtil.hasPortlet(
-						companyId, "1_WAR_contactsportlet")) {
-
-					registerContactsExtension();
-				}
-			}
-
-		};
-
-		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
+			registerContactsExtension();
+		}
 	}
 
 	protected void registerContactsExtension() throws Exception {
@@ -82,7 +47,6 @@ public class SOServletContextListener
 			ClpSerializer.getServletContextName(), "/contacts/projects.jsp");
 	}
 
-	private MessageListener _messageListener;
 	private MethodKey _registerMethodKey = new MethodKey(
 		ClassResolverUtil.resolveByPortletClassLoader(
 			"com.liferay.contacts.util.ContactsExtensionsUtil",

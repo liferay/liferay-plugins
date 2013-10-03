@@ -12,18 +12,14 @@
  * details.
  */
 
-package com.liferay.scriptingexecutor.servlet;
+package com.liferay.scriptingexecutor.messaging;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
-import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -41,104 +37,17 @@ import java.util.Properties;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 
 /**
  * @author Michael C. Han
  */
-public class ScriptingExecutorServletContextListener
-	extends BasePortalLifecycle implements ServletContextListener {
+public class ScriptingExecutorHotDeployMessageListener
+	extends HotDeployMessageListener {
 
-	@Override
-	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		portalDestroy();
-	}
+	public ScriptingExecutorHotDeployMessageListener(
+		String... servletContextNames) {
 
-	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		registerPortalLifecycle();
-	}
-
-	@Override
-	protected void doPortalDestroy() throws Exception {
-		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
-	}
-
-	@Override
-	protected void doPortalInit() {
-		_messageListener = new HotDeployMessageListener() {
-
-			@Override
-			protected void onDeploy(Message message) throws Exception {
-				ServletContext servletContext = ServletContextPool.get(
-					message.getString("servletContextName"));
-
-				URL url = servletContext.getResource(_SCRIPTS_DIR);
-
-				if (url == null) {
-					return;
-				}
-
-				Set<String> supportedLanguages =
-					ScriptingUtil.getSupportedLanguages();
-
-				Properties pluginPackageProperties = getPluginPackageProperties(
-					servletContext);
-
-				String language = getLanguage(pluginPackageProperties);
-
-				if (!supportedLanguages.contains(language)) {
-					if (_log.isWarnEnabled()) {
-						_log.warn("Unsupported language " + language);
-					}
-
-					return;
-				}
-
-				String requiredDeploymentContexts =
-					pluginPackageProperties.getProperty(
-						"required-deployment-contexts");
-
-				if (Validator.isNull(requiredDeploymentContexts)) {
-					return;
-				}
-
-				ClassLoader classLoader =
-					ClassLoaderUtil.getAggregatePluginsClassLoader(
-						StringUtil.split(requiredDeploymentContexts), false);
-
-				executeScripts(servletContext, language, classLoader);
-			}
-
-			@Override
-			protected void onUndeploy(Message message) throws Exception {
-				ServletContext servletContext = ServletContextPool.get(
-					message.getString("servletContextName"));
-
-				if (servletContext != null) {
-					Properties pluginPackageProperties =
-						getPluginPackageProperties(servletContext);
-
-					String language = getLanguage(pluginPackageProperties);
-
-					ScriptingUtil.clearCache(language);
-				}
-				else {
-					Set<String> supportedLanguages =
-						ScriptingUtil.getSupportedLanguages();
-
-					for (String supportedLanguage : supportedLanguages) {
-						ScriptingUtil.clearCache(supportedLanguage);
-					}
-				}
-			}
-
-		};
-
-		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
+		super(servletContextNames);
 	}
 
 	protected void executeScripts(
@@ -203,11 +112,72 @@ public class ScriptingExecutorServletContextListener
 		return properties;
 	}
 
+	@Override
+	protected void onDeploy(Message message) throws Exception {
+		ServletContext servletContext = ServletContextPool.get(
+			message.getString("servletContextName"));
+
+		URL url = servletContext.getResource(_SCRIPTS_DIR);
+
+		if (url == null) {
+			return;
+		}
+
+		Set<String> supportedLanguages = ScriptingUtil.getSupportedLanguages();
+
+		Properties pluginPackageProperties = getPluginPackageProperties(
+			servletContext);
+
+		String language = getLanguage(pluginPackageProperties);
+
+		if (!supportedLanguages.contains(language)) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Unsupported language " + language);
+			}
+
+			return;
+		}
+
+		String requiredDeploymentContexts = pluginPackageProperties.getProperty(
+			"required-deployment-contexts");
+
+		if (Validator.isNull(requiredDeploymentContexts)) {
+			return;
+		}
+
+		ClassLoader classLoader =
+			ClassLoaderUtil.getAggregatePluginsClassLoader(
+				StringUtil.split(requiredDeploymentContexts), false);
+
+		executeScripts(servletContext, language, classLoader);
+	}
+
+	@Override
+	protected void onUndeploy(Message message) throws Exception {
+		ServletContext servletContext = ServletContextPool.get(
+			message.getString("servletContextName"));
+
+		if (servletContext != null) {
+			Properties pluginPackageProperties = getPluginPackageProperties(
+				servletContext);
+
+			String language = getLanguage(pluginPackageProperties);
+
+			ScriptingUtil.clearCache(language);
+		}
+		else {
+			Set<String> supportedLanguages =
+				ScriptingUtil.getSupportedLanguages();
+
+			for (String supportedLanguage : supportedLanguages) {
+				ScriptingUtil.clearCache(supportedLanguage);
+			}
+		}
+	}
+
 	private static final String _SCRIPTS_DIR = "/WEB-INF/classes/scripts/";
 
 	private static Log _log = LogFactoryUtil.getLog(
-		ScriptingExecutorServletContextListener.class);
-
-	private MessageListener _messageListener;
+		ScriptingExecutorHotDeployMessageListener.class);
 
 }
