@@ -390,6 +390,10 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 							var selected = (selectedDates.length > 0) && A.Date.isInRange(date, selectedDates[0], selectedDates[selectedDates.length - 1]);
 
+							if (A.DataType.DateMath.isToday(date)) {
+								node.addClass('lfr-current-day');
+							}
+
 							node.toggleClass('yui3-calendar-day-selected', selected);
 						},
 						rules: rulesDefinition
