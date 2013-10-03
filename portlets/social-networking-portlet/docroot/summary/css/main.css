@@ -38,7 +38,6 @@
 		}
 
 		.user-container {
-			margin-right: 30px;
 			max-width: 180px;
 			width: auto;
 		}
@@ -53,7 +52,8 @@
 		}
 
 		.actions-container {
-			margin: 5px 0;
+			margin-bottom: 5px;
+			margin-top: 5px;
 			width: auto;
 		}
 
