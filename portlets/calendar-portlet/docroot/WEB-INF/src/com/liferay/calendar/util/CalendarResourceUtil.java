@@ -89,7 +89,7 @@ public class CalendarResourceUtil {
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(LocaleUtil.getDefault(), group.getName());
+		nameMap.put(LocaleUtil.getDefault(), group.getDescriptiveName());
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
