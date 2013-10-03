@@ -223,8 +223,8 @@ if (recurrence != null) {
 					},
 					bodyContent: recurrenceContainerNode,
 					centered: true,
-					id: '<portlet:namespace />recurrenceDialog',
 					height: 600,
+					id: '<portlet:namespace />recurrenceDialog',
 					modal: true,
 					render: '#<portlet:namespace />fm',
 					toolbars: {
