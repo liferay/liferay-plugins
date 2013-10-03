@@ -143,7 +143,7 @@ if (recurrence != null) {
 				</th>
 				<td class="calendar-portlet-recurrence-content">
 					<aui:field-wrapper cssClass="calendar-portlet-recurrence-limit" label="">
-						<aui:input checked="<%= !afterChecked && !onChecked %>"  label="<%= StringPool.BLANK %>" name="ends" type="radio" value="never" />
+						<aui:input checked="<%= !afterChecked && !onChecked %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="never" />
 
 						<label><liferay-ui:message key="never" /></label>
 					</aui:field-wrapper>
