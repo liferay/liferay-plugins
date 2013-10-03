@@ -12,17 +12,14 @@
  * details.
  */
 
-package com.liferay.resourcesimporter.servlet;
+package com.liferay.resourcesimporter.messaging;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
-import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -51,46 +48,13 @@ import java.util.Properties;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
 
 /**
  * @author Ryan Park
  * @author Raymond Augé
  */
-public class ResourcesImporterServletContextListener
-	extends BasePortalLifecycle implements ServletContextListener {
-
-	@Override
-	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		portalDestroy();
-	}
-
-	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		registerPortalLifecycle();
-	}
-
-	@Override
-	protected void doPortalDestroy() throws Exception {
-		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
-	}
-
-	@Override
-	protected void doPortalInit() {
-		_messageListener = new HotDeployMessageListener() {
-
-			@Override
-			protected void onDeploy(Message message) throws Exception {
-				initialize(message);
-			}
-
-		};
-
-		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
-	}
+public class ResourcesImporterHotDeployMessageListener
+	extends HotDeployMessageListener {
 
 	protected FileSystemImporter getFileSystemImporter() {
 		return new FileSystemImporter();
@@ -309,12 +273,15 @@ public class ResourcesImporterServletContextListener
 		}
 	}
 
+	@Override
+	protected void onDeploy(Message message) throws Exception {
+		initialize(message);
+	}
+
 	private static final String _RESOURCES_DIR =
 		"/WEB-INF/classes/resources-importer/";
 
 	private static Log _log = LogFactoryUtil.getLog(
-		ResourcesImporterServletContextListener.class);
-
-	private MessageListener _messageListener;
+		ResourcesImporterHotDeployMessageListener.class);
 
 }

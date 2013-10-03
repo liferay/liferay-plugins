@@ -15,68 +15,27 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.contacts.servlet;
+package com.liferay.contacts.messaging;
 
 import com.liferay.contacts.service.ClpSerializer;
 import com.liferay.contacts.util.ContactsExtensionsUtil;
-import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.util.BasePortalLifecycle;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortletClassInvoker;
 
-import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;
-
 /**
  * @author Ryan Park
  */
-public class ContactsServletContextListener
-	extends BasePortalLifecycle implements ServletContextListener {
+public class ContactsHotDeployMessageListener extends HotDeployMessageListener {
 
-	@Override
-	public void contextDestroyed(ServletContextEvent servletContextEvent) {
-		portalDestroy();
+	public ContactsHotDeployMessageListener(String... servletContextNames) {
+		super(servletContextNames);
 	}
 
 	@Override
-	public void contextInitialized(ServletContextEvent servletContextEvent) {
-		registerPortalLifecycle();
-	}
-
-	@Override
-	protected void doPortalDestroy() throws Exception {
-		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
-	}
-
-	@Override
-	protected void doPortalInit() {
-		_messageListener = new HotDeployMessageListener(
-			ClpSerializer.getServletContextName(), "chat-portlet") {
-
-			@Override
-			protected void onDeploy(Message message) throws Exception {
-				registerChatExtension();
-			}
-
-			@Override
-			protected void onUndeploy(Message message) throws Exception {
-				ContactsExtensionsUtil.unregister(
-					message.getString("servletContextName"));
-			}
-
-		};
-
-		MessageBusUtil.registerMessageListener(
-			DestinationNames.HOT_DEPLOY, _messageListener);
-	}
-
-	protected void registerChatExtension() throws Exception {
+	protected void onDeploy(Message message) throws Exception {
 		if (_registerMethodKey == null) {
 			try {
 				_registerMethodKey = new MethodKey(
@@ -95,7 +54,12 @@ public class ContactsServletContextListener
 			ClpSerializer.getServletContextName(), "/chat/view.jsp");
 	}
 
-	private MessageListener _messageListener;
+	@Override
+	protected void onUndeploy(Message message) throws Exception {
+		ContactsExtensionsUtil.unregister(
+			message.getString("servletContextName"));
+	}
+
 	private MethodKey _registerMethodKey;
 
 }
