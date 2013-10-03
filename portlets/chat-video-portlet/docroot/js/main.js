@@ -6,6 +6,7 @@
 
 			A.on(
 				function() {
+
 					// Runs before the init method
 
 					alert('init...');
@@ -16,6 +17,7 @@
 
 			A.on(
 				function(panelName, panel) {
+
 					// Prevents _addPanel from being run
 
 					return new A.Do.Prevent();
