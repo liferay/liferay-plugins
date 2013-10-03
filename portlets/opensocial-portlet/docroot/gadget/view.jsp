@@ -48,7 +48,7 @@ String userPrefsKey = ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace
 
 JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), Layout.class.getName(), ShindigUtil.getTableOpenSocial(), userPrefsKey, themeDisplay.getPlid());
 
-String userPrefsJSON = StringPool.BLANK;
+String userPrefsJSON = "{}";
 
 if (userPrefsJSONObject != null) {
 	userPrefsJSON = String.valueOf(userPrefsJSONObject);
