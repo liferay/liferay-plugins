@@ -11,7 +11,7 @@
 		<method>
 			<name>deleteData</name>
 			<param>
-				<name>context</name>
+				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -37,7 +37,7 @@
 		<method>
 			<name>exportData</name>
 			<param>
-				<name>context</name>
+				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -61,21 +61,9 @@
 			</throws>
 		</method>
 		<method>
-			<name>getExportControls</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getImportControls</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
 			<name>importData</name>
 			<param>
-				<name>context</name>
+				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -103,12 +91,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<method>
-			<name>isPublishToLiveByDefault</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
 		<field>
 			<name>_NAMESPACE</name>
 		</field>
@@ -117,18 +99,6 @@
 		</field>
 		<field>
 			<name>_log</name>
-		</field>
-		<field>
-			<name>_createReadme</name>
-		</field>
-		<field>
-			<name>_dataType</name>
-		</field>
-		<field>
-			<name>_enableExport</name>
-		</field>
-		<field>
-			<name>_enableImport</name>
 		</field>
 	</javadoc>
 </javadocs>

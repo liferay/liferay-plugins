@@ -600,6 +600,37 @@
 				<type>int</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getReceiverMicroblogsEntryMicroblogsEntries</name>
+			<param>
+				<name>type</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>receiverMicroblogsEntryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>start</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>end</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<param>
 				<name>orderByComparator</name>
 				<type>com.liferay.portal.kernel.util.OrderByComparator</type>

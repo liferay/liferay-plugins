@@ -1002,6 +1002,11 @@
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<param>
+				<name>receiverMicroblogsEntryId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
