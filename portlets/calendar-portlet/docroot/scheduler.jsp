@@ -110,9 +110,11 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 			activeView: window.<portlet:namespace /><%= activeView %>View,
 			boundingBox: '#<portlet:namespace />scheduler',
 			date: new Date(<%= date %>),
+
 			<c:if test="<%= !themeDisplay.isSignedIn() %>">
 				disabled: true,
 			</c:if>
+
 			eventRecorder: window.<portlet:namespace />eventRecorder,
 			filterCalendarBookings: <%= filterCalendarBookings %>,
 			firstDayOfWeek: <%= weekStartsOn %>,
