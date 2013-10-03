@@ -8,8 +8,6 @@
 				function() {
 
 					// Runs before the init method
-
-					alert('init...');
 				},
 				ChatManager,
 				'init'
