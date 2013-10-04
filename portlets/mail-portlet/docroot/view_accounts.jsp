@@ -49,7 +49,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			</div>
 		</c:if>
 
-		<div class='<%= !mailAccounts.isEmpty() ? "span3 text-right" : "span12" %>'>
+		<div class="<%= !mailAccounts.isEmpty() ? "span3 text-right" : "span12" %>">
 			<aui:button cssClass="add-account-button" onClick="Liferay.Mail.addAccount();" value="add-mail-account" />
 		</div>
 	</div>
