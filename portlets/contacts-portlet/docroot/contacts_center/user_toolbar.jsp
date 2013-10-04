@@ -175,37 +175,42 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 />
 
 <aui:script>
-	function <portlet:namespace />sendMessage() {
-		var A = AUI();
+	Liferay.provide(
+		window,
+		'<portlet:namespace />sendMessage',
+		function() {
+			var A = AUI();
 
-		<portlet:renderURL var="redirectURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />
+			<portlet:renderURL var="redirectURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />
 
-		var uri = '<liferay-portlet:renderURL portletName="1_WAR_privatemessagingportlet" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/new_message.jsp" /><portlet:param name="redirect" value="<%= redirectURL %>" /></liferay-portlet:renderURL>';
+			var uri = '<liferay-portlet:renderURL portletName="1_WAR_privatemessagingportlet" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/new_message.jsp" /><portlet:param name="redirect" value="<%= redirectURL %>" /></liferay-portlet:renderURL>';
 
-		Liferay.Util.Window.getWindow(
-			{
-				dialog: {
-					align: Liferay.Util.Window.ALIGN_CENTER,
-					cssClass: 'private-messaging-portlet',
-					destroyOnClose: true,
-					modal: true,
-					width: 600
-				},
-				title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>'
-			}
-		).plug(
-			A.Plugin.IO,
-			{
-				data: {
-					<portlet:namespace />userIds: <%= user2.getUserId() %>
-				},
-				uri: uri
-			}
-		).render();
-	}
+			Liferay.Util.Window.getWindow(
+				{
+					dialog: {
+						align: Liferay.Util.Window.ALIGN_CENTER,
+						cssClass: 'private-messaging-portlet',
+						destroyOnClose: true,
+						modal: true,
+						width: 600
+					},
+					title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>'
+				}
+			).plug(
+				A.Plugin.IO,
+				{
+					data: {
+						<portlet:namespace />userIds: <%= user2.getUserId() %>
+					},
+					uri: uri
+				}
+			).render();
+		},
+		['aui-io-plugin-deprecated', 'liferay-util-window']
+	);
 </aui:script>
 
-<aui:script use="aui-base,liferay-util-window,aui-dialog-iframe-deprecated">
+<aui:script use="aui-base,aui-io-request-deprecated">
 	<liferay-portlet:renderURL var="viewSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 		<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
 		<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />

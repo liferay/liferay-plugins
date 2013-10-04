@@ -340,7 +340,7 @@ request.setAttribute("view_user.jsp-user", user2);
 </c:if>
 
 <c:if test="<%= themeDisplay.getUserId() == user2.getUserId() %>">
-	<aui:script use="aui-base">
+	<aui:script use="aui-base,liferay-util-window">
 			var contactsProfile = A.one('#<portlet:namespace />contactsProfile');
 
 			contactsProfile.delegate(
