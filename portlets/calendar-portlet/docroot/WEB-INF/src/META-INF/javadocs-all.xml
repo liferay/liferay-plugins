@@ -983,6 +983,35 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>CalendarHotDeployMessageListener</name>
+		<type>com.liferay.calendar.messaging.CalendarHotDeployMessageListener</type>
+		<author><![CDATA[Marcellus Tavares]]></author>
+		<method>
+			<name>CalendarHotDeployMessageListener</name>
+			<param>
+				<name>servletContextNames</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>onDeploy</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>CheckBookingsMessageListener</name>
 		<type>com.liferay.calendar.messaging.CheckBookingsMessageListener</type>
 		<author><![CDATA[Fabio Pezzutto]]></author>
@@ -11731,49 +11760,6 @@
 		</field>
 		<field>
 			<name>FIND_BY_C_G_C_C_N_D_A</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>CalendarServletContextListener</name>
-		<type>com.liferay.calendar.servlet.CalendarServletContextListener</type>
-		<author><![CDATA[Marcellus Tavares]]></author>
-		<method>
-			<name>contextDestroyed</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>contextInitialized</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>doPortalDestroy</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doPortalInit</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_log</name>
-		</field>
-		<field>
-			<name>_messageListener</name>
 		</field>
 	</javadoc>
 	<javadoc>

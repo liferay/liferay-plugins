@@ -2,35 +2,16 @@
 
 <javadocs>
 	<javadoc>
-		<name>ScriptingExecutorServletContextListener</name>
-		<type>com.liferay.scriptingexecutor.servlet.ScriptingExecutorServletContextListener</type>
+		<name>ScriptingExecutorHotDeployMessageListener</name>
+		<type>com.liferay.scriptingexecutor.messaging.ScriptingExecutorHotDeployMessageListener</type>
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
-			<name>contextDestroyed</name>
+			<name>ScriptingExecutorHotDeployMessageListener</name>
 			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
+				<name>servletContextNames</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
-		</method>
-		<method>
-			<name>contextInitialized</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>doPortalDestroy</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doPortalInit</name>
 		</method>
 		<method>
 			<name>executeScripts</name>
@@ -72,14 +53,37 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
+		<method>
+			<name>onDeploy</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>onUndeploy</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 		<field>
 			<name>_SCRIPTS_DIR</name>
 		</field>
 		<field>
 			<name>_log</name>
-		</field>
-		<field>
-			<name>_messageListener</name>
 		</field>
 	</javadoc>
 	<javadoc>
