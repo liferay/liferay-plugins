@@ -41,9 +41,15 @@ public class CDIContextListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		BeanManager beanManager = CDIBeanManagerUtil.getBeanManager();
+
+		if (beanManager != null) {
+			return;
+		}
+
 		ServletContext servletContext = servletContextEvent.getServletContext();
 
-		BeanManager beanManager = (BeanManager)servletContext.getAttribute(
+		beanManager = (BeanManager)servletContext.getAttribute(
 			BeanManager.class.getName());
 
 		if (beanManager == null) {
