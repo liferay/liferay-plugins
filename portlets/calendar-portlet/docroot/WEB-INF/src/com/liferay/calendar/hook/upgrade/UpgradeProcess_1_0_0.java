@@ -18,7 +18,7 @@ import com.liferay.calendar.hook.upgrade.v1_0_0.UpgradeLayouts;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 /**
- * @author Adam Victor Nazareth Brandizzi
+ * @author Adam Brandizzi
  */
 public class UpgradeProcess_1_0_0 extends UpgradeProcess {
 

@@ -39,7 +39,7 @@ import java.io.IOException;
 import org.apache.commons.lang.time.StopWatch;
 
 /**
- * @author Adam Victor Nazareth Brandizzi
+ * @author Adam Brandizzi
  */
 public class UpgradeLayouts extends UpgradeProcess {
 
