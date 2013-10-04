@@ -554,3 +554,9 @@
 .simple-color-picker-item:hover, .simple-color-picker-item-selected {
 	@include transition(border-color 0s);
 }
+
+.scheduler-event {
+
+  z-index: 300 !important;
+
+}
