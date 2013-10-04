@@ -1177,7 +1177,7 @@ Please find a solution that does not require portal-impl.jar.
 
 	<target name="publish-remote-m2-release" depends="jar-javadoc,jar-source,war">
 		<antcall target="build-common-ivy.publish">
-			<param name="ivy.publish.resolver" value="sonatype-m2-staging" />
+			<param name="ivy.publish.resolver" value="sonatype-m2-release" />
 		</antcall>
 	</target>
 
