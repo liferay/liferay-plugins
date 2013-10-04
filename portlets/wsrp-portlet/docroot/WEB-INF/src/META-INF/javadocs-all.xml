@@ -3198,6 +3198,45 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>WSRPHotDeployMessageListener</name>
+		<type>com.liferay.wsrp.messaging.WSRPHotDeployMessageListener</type>
+		<author><![CDATA[Shuyang Zhou]]></author>
+		<method>
+			<name>WSRPHotDeployMessageListener</name>
+			<param>
+				<name>servletContextNames</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>onDeploy</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>onUndeploy</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>WSRPConsumerImpl</name>
 		<type>com.liferay.wsrp.model.impl.WSRPConsumerImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -5215,41 +5254,6 @@
 		</field>
 		<field>
 			<name>_paths</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>WSRPServletContextListener</name>
-		<type>com.liferay.wsrp.servlet.WSRPServletContextListener</type>
-		<author><![CDATA[Brian Wing Shun Chan]]></author>
-		<method>
-			<name>contextDestroyed</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>contextInitialized</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>doPortalDestroy</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doPortalInit</name>
-		</method>
-		<field>
-			<name>_messageListener</name>
 		</field>
 	</javadoc>
 	<javadoc>

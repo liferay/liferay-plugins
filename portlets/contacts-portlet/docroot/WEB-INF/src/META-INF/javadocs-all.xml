@@ -590,6 +590,48 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>ContactsHotDeployMessageListener</name>
+		<type>com.liferay.contacts.messaging.ContactsHotDeployMessageListener</type>
+		<author><![CDATA[Ryan Park]]></author>
+		<method>
+			<name>ContactsHotDeployMessageListener</name>
+			<param>
+				<name>servletContextNames</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>onDeploy</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>onUndeploy</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_registerMethodKey</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>EntryImpl</name>
 		<type>com.liferay.contacts.model.impl.EntryImpl</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
@@ -1169,52 +1211,6 @@
 		</field>
 		<field>
 			<name>FIND_BY_C_U_FN_EA</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>ContactsServletContextListener</name>
-		<type>com.liferay.contacts.servlet.ContactsServletContextListener</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<method>
-			<name>contextDestroyed</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>contextInitialized</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>doPortalDestroy</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doPortalInit</name>
-		</method>
-		<method>
-			<name>registerChatExtension</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_messageListener</name>
-		</field>
-		<field>
-			<name>_registerMethodKey</name>
 		</field>
 	</javadoc>
 	<javadoc>

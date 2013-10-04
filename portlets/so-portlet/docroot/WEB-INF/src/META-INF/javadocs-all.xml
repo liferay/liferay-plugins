@@ -658,6 +658,35 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>SOHotDeployMessageListener</name>
+		<type>com.liferay.so.messaging.SOHotDeployMessageListener</type>
+		<author><![CDATA[Ryan Park]]></author>
+		<method>
+			<name>onDeploy</name>
+			<param>
+				<name>message</name>
+				<type>com.liferay.portal.kernel.messaging.Message</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>registerContactsExtension</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_registerMethodKey</name>
+		</field>
+	</javadoc>
+	<javadoc>
 		<name>FavoriteSiteImpl</name>
 		<type>com.liferay.so.model.impl.FavoriteSiteImpl</type>
 		<author><![CDATA[Jonathan Lee]]></author>
@@ -1770,52 +1799,6 @@
 		</field>
 		<field>
 			<name>FIND_BY_U_N</name>
-		</field>
-	</javadoc>
-	<javadoc>
-		<name>SOServletContextListener</name>
-		<type>com.liferay.so.servlet.SOServletContextListener</type>
-		<author><![CDATA[Ryan Park]]></author>
-		<method>
-			<name>contextDestroyed</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>contextInitialized</name>
-			<param>
-				<name>servletContextEvent</name>
-				<type>javax.servlet.ServletContextEvent</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>doPortalDestroy</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>doPortalInit</name>
-		</method>
-		<method>
-			<name>registerContactsExtension</name>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<field>
-			<name>_messageListener</name>
-		</field>
-		<field>
-			<name>_registerMethodKey</name>
 		</field>
 	</javadoc>
 	<javadoc>
