@@ -150,11 +150,13 @@ public class TestPACLUtil {
 					fileName, "/chat-portlet/", "/chat-portlet.war/");
 			}
 			else if (ServerDetector.isWebSphere()) {
+				String serverRoot = System.getProperty("server.root");
+				String cellName = System.getenv("WAS_CELL");
+
 				fileName = StringUtil.replace(
 					fileName, installedDir + "/chat-portlet/",
-					System.getenv("USER_INSTALL_ROOT") +
-						"/installedApps/liferay-cell/chat-portlet.ear" +
-							"/chat-portlet.war/");
+					serverRoot + "/installedApps/" + cellName +
+						"/chat-portlet.ear/chat-portlet.war/");
 			}
 		}
 
