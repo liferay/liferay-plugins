@@ -41,7 +41,7 @@
 					<if>
 						<isfalse value="${ivy.xml.unmodified}" />
 						<then>
-							<ivy:settings file="${ivy.settings.file}" />
+							<ivy:settings file="${ivy.custom.settings.file}" />
 
 							<ivy:resolve
 								file="@{ivy.xml.dir}/ivy.xml"

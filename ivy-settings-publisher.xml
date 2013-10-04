@@ -1,5 +1,5 @@
 <ivysettings>
-	<include file="ivy-settings.xml" />
+	<include file="${ivy.custom.settings.file}" />
 
 	<credentials host="${sonatype.release.hostname}" realm="${sonatype.release.realm}" passwd="${sonatype.release.password}" username="${sonatype.release.username}" />
 	<credentials host="${sonatype.snapshot.hostname}" realm="${sonatype.snapshot.realm}" passwd="${sonatype.snapshot.password}" username="${sonatype.snapshot.username}" />
