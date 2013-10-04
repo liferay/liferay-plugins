@@ -1,6 +1,23 @@
 <ivysettings>
 	<include file="ivy-settings.xml" />
 
+	<credentials host="${sonatype.release.hostname}" realm="${sonatype.release.realm}" passwd="${sonatype.release.password}" username="${sonatype.release.username}" />
+	<credentials host="${sonatype.snapshot.hostname}" realm="${sonatype.snapshot.realm}" passwd="${sonatype.snapshot.password}" username="${sonatype.snapshot.username}" />
+
+	<resolvers>
+		<filesystem m2compatible="true" name="local-m2">
+			<artifact pattern="${user.home}/.m2/repository/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
+		</filesystem>
+
+		<url m2compatible="true" name="sonatype-m2-release">
+			<artifact pattern="${sonatype.release.url}/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
+		</url>
+
+		<url m2compatible="true" name="sonatype-m2-snapshot">
+			<artifact pattern="${sonatype.snapshot.url}/[organisation]/[module]/[revision]/[artifact]-[revision](-[classifier]).[ext]" />
+		</url>
+	</resolvers>
+
 	<signers>
 		<pgp keyId="${pgp.keyname}" name="${pgp.generator}" password="${pgp.passphrase}" />
 	</signers>
