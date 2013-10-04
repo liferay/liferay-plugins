@@ -30,6 +30,10 @@ import com.liferay.so.service.ClpSerializer;
  */
 public class SOHotDeployMessageListener extends HotDeployMessageListener {
 
+	public SOHotDeployMessageListener(String... servletContextNames) {
+		super(servletContextNames);
+	}
+
 	@Override
 	protected void onDeploy(Message message) throws Exception {
 		long companyId = message.getLong("companyId");
