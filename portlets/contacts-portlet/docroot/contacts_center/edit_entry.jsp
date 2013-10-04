@@ -52,7 +52,7 @@ if (entryId > 0) {
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-io-request-deprecated">
+<aui:script use="aui-io-request-deprecated,datatype-number">
 	Liferay.Util.focusFormField(document.<portlet:namespace />addEntry.<portlet:namespace />fullName);
 
 	var form = A.one('#<portlet:namespace />addEntry');

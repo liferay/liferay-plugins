@@ -68,7 +68,7 @@ if (user2 != null) {
 	</div>
 </div>
 
-<aui:script position="inline" use="liferay-util-window,aui-dialog-iframe-deprecated">
+<aui:script position="inline" use="aui-dialog-iframe-deprecated,aui-io-plugin-deprecated,aui-io-request-deprecated,aui-toolbar,liferay-util-window">
 	var buttonRow = A.one('#<portlet:namespace />userToolbar');
 
 	var contactsToolbarChildren = [];
@@ -182,6 +182,9 @@ if (user2 != null) {
 	<c:if test="<%= Validator.isNotNull(servletContext) && (user2 == null || (user2.getUserId() != themeDisplay.getUserId())) %>">
 		contactsToolbarChildren.push(
 			{
+				icon: 'icon-envelope',
+				id: '<portlet:namespace />sendMessageButton',
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "message") %>',
 				on: {
 					click: function(event) {
 						<portlet:renderURL var="redirectURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />
@@ -218,10 +221,7 @@ if (user2 != null) {
 							}
 						).render();
 					}
-				},
-				icon: 'icon-envelope',
-				id: '<portlet:namespace />sendMessageButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "message") %>'
+				}
 			}
 		);
 	</c:if>
@@ -229,6 +229,9 @@ if (user2 != null) {
 	contactsToolbarChildren.push(
 		new A.Button(
 			{
+				icon: 'icon-save',
+				id: '<portlet:namespace />exportButton',
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "vcard") %>',
 				on: {
 					click: function(event) {
 						<c:choose>
@@ -240,10 +243,7 @@ if (user2 != null) {
 							</c:otherwise>
 						</c:choose>
 					}
-				},
-				icon: 'icon-save',
-				id: '<portlet:namespace />exportButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "vcard") %>'
+				}
 			}
 		)
 	);
