@@ -38,16 +38,9 @@ $dockbarOpenGradientStart: #0EA6F9;
 		}
 	}
 
-	.button {
+	.btn {
 		font-weight: normal;
-		padding: 5px 10px;
-		text-decoration: none;
 		text-transform: uppercase;
-
-		&:hover {
-			cursor: pointer;
-			text-decoration: none;
-		}
 	}
 
 	/* ---------- Dockbar ---------- */
@@ -89,7 +82,6 @@ $dockbarOpenGradientStart: #0EA6F9;
 	}
 
 	#wrapper {
-		margin: 0;
 		padding: 0;
 		position: relative;
 
@@ -140,8 +132,8 @@ $dockbarOpenGradientStart: #0EA6F9;
 		}
 
 		h1.site-title {
+			margin: 0;
 			text-align: center;
-			margin: 5px 0;
 		}
 
 		.logo {
@@ -195,7 +187,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 				a {
 					display: block;
 					font-size: 1.2em;
-					padding: 7px 25px 6px;
+					padding: 7px 25px;
 					text-transform: uppercase;
 
 					&:hover {
@@ -224,7 +216,6 @@ $dockbarOpenGradientStart: #0EA6F9;
 		padding: 4px;
 		right: -10px;
 		top: 0;
-		z-index: 300;
 
 		&:hover {
 			@include box-shadow(0 1px 1px -1px #000)
@@ -241,10 +232,6 @@ $dockbarOpenGradientStart: #0EA6F9;
 			padding: 10px 10px 0;
 			width: 940px;
 		}
-
-		#hrefFm {
-			margin: 0;
-		}
 	}
 
 	.portlet {
@@ -256,7 +243,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 			.portlet-title {
 				display: block;
 				font-size: 1.4em;
-				margin-top: 0;
+				margin: 0;
 				text-align: center;
 				text-transform: uppercase;
 
@@ -278,11 +265,8 @@ $dockbarOpenGradientStart: #0EA6F9;
 			}
 
 			.home-content {
-				margin-bottom: 10px;
-
 				.join {
 					background-image: url(../images/color_schemes/#{$color-scheme}/join.jpg);
-					width: 100%;
 				}
 
 				.main-banner {
@@ -335,7 +319,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 
 		.join, .pick-your-state, .vote {
 			height: 108px;
-			width: 104%;
+			width: 100%;
 		}
 	}
 
@@ -345,7 +329,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 
 	/* -------- Extras -------- */
 
-	.button:hover {
+	.btn:hover {
 		@include box-shadow(rgba(0, 0, 0, 0.5) 1px 1px 15px);
 	}
 

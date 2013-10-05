@@ -16,13 +16,10 @@ body.independent {
 			background-color: #FFF;
 		}
 
-		.button {
+		.btn {
 			background-color: #E62238;
+			background-image: none;
 			color: #FFF;
-
-			&:hover {
-				text-decoration: none;
-			}
 		}
 	}
 
