@@ -137,18 +137,6 @@ catch (NoSuchRoleException nsre) {
 					layoutGroup = layout.getGroup();
 				}
 				%>
-
-				<c:if test="<%= (layoutGroup != null) || !layoutGroup.isControlPanel() %>">
-					<li class="config-item">
-						<a class="config-icon" href="javascript:;" id="<portlet:namespace/>toggleDockbar">
-							<img alt="<liferay-ui:message key="configuration" /> <liferay-ui:message key="icon" />" height="15" src="<%= PortalUtil.getPathContext(request) + "/user_bar/images/cog.png" %>" width="15" />
-
-							<span class="aui-helper-hidden">
-								<liferay-ui:message key="toggle" /> <liferay-ui:message key="javax.portlet.title.145" />
-							</span>
-						</a>
-					</li>
-				</c:if>
 			</ul>
 		</div>
 	</liferay-util:body-top>
@@ -186,21 +174,6 @@ catch (NoSuchRoleException nsre) {
 				if (!userBar.one('.go-to').hasClass('search-focus') || (searchInput.get('value') == "")) {
 					searchInput.set('value', goToString);
 				}
-			}
-		);
-
-		var toggleDockbar = userBar.one('#<portlet:namespace/>toggleDockbar');
-
-		toggleDockbar.on(
-			'click',
-			function(event) {
-				event.preventDefault();
-
-				var body = A.one('body');
-
-				body.toggleClass('show-dockbar');
-
-				A.fire('close-menus', event);
 			}
 		);
 
