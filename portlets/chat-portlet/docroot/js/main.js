@@ -140,7 +140,7 @@ AUI().use(
 			TIMESTAMP_24: (24 * 60 * 60 * 1000)
 		};
 
-		Liferay.Chat.Panel = function(options) {
+		var Panel = function(options) {
 			var instance = this;
 
 			if (!options.container) {
@@ -170,7 +170,7 @@ AUI().use(
 			instance._popupTrigger.unselectable();
 		};
 
-		Liferay.Chat.Panel.prototype = {
+		Panel.prototype = {
 			close: function() {
 				var instance = this;
 
@@ -298,12 +298,12 @@ AUI().use(
 			}
 		};
 
-		A.augment(Liferay.Chat.Panel, A.Attribute);
+		A.augment(Panel, A.Attribute);
 
-		Liferay.Chat.Conversation = function(options) {
+		var Conversation = function(options) {
 			var instance = this;
 
-			Liferay.Chat.Conversation.superclass.constructor.call(instance, options);
+			Conversation.superclass.constructor.call(instance, options);
 
 			instance._chatInput = instance._panel.one('.panel-input textarea');
 			instance._chatOutput = instance._panel.one('.panel-output');
@@ -336,8 +336,8 @@ AUI().use(
 		};
 
 		A.extend(
-			Liferay.Chat.Conversation,
-			Liferay.Chat.Panel,
+			Conversation,
+			Panel,
 			{
 				send: function(options) {
 					var instance = this;
@@ -1481,6 +1481,9 @@ AUI().use(
 		};
 
 		A.augment(Liferay.Chat.Manager, A.Attribute, true);
+
+		Liferay.Chat.Panel = Panel;
+		Liferay.Chat.Conversation = Conversation;
 
 		Liferay.publish(
 			'chatPortletReady',
