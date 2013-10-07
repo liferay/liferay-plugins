@@ -51,6 +51,7 @@ Test only in
 			<th></th>
 		</tr>
 	</thead>
+	<tbody>
 
 	<%
 	String[] expectedResourceBundleValues = null;
@@ -222,7 +223,6 @@ Test only in
 		String key = test[1];
 	%>
 
-	<tbody>
 		<tr>
 			<td>
 				<%= test[0] %>
@@ -245,7 +245,9 @@ Test only in
 				<%= resourceBundleActualValue %>
 			</td>
 			<td>
-				<liferay-util:buffer var="taglibActualValue"><liferay-ui:message key="<%= key %>" /></liferay-util:buffer>
+				<liferay-util:buffer var="taglibActualValue">
+					<liferay-ui:message key="<%= key %>" />
+				</liferay-util:buffer>
 
 				<%= taglibActualValue %>
 			</td>
@@ -290,10 +292,10 @@ Test only in
 
 			</td>
 		</tr>
+
+	<%
+	}
+	%>
+
 	</tbody>
-
-<%
-}
-%>
-
 </table>
