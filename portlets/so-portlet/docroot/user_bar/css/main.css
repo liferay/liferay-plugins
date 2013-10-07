@@ -77,9 +77,14 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	}
 
 	.dashboard-nav {
+		font-size: 0;
 		position: relative;
 		width: 100%;
 		z-index: 2;
+
+		li {
+			font-size: 14px;
+		}
 	}
 
 	a {
@@ -87,7 +92,7 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 		background-color: rgba(0,0,0, 0);
 
 		font-size: 1em;
-		padding: 0.5em 0.8em;
+		padding: 0.58em 0.8em;
 
 		@include transition-duration(0.5s);
 		@include transition-property(background-color);
@@ -343,6 +348,17 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 		}
 	}
 
+	.menu-active {
+		overflow: visible;
+
+		.child-menu {
+			display: block;
+			height: auto;
+		}
+	}
+}
+
+.portlet-dockbar {
 	.so-portlet-sites {
 		display: block;
 		margin-left: -300px;
@@ -355,7 +371,11 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 		width: 350px;
 
 		.portlet {
-			border-width: 0;
+			background: transparent;
+
+			&, .portlet-content {
+				border-width: 0;
+			}
 		}
 
 		.portlet-topper, .favorite-msg-info {
@@ -364,7 +384,7 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 
 		.portlet-body {
 			left: 0;
-			margin: -1.675em 0 0;
+			margin: -1.125em 0 0;
 
 			@include menu-mix;
 
@@ -400,13 +420,13 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 			width: auto;
 
 			.search-input {
-				background: rgba(0,0,0, 0.40);
+				background: #FFF;
 				border: 1px solid #1C2125;
 
-				@include border-radius(4px);
+				@include border-radius(20px);
 				@include box-shadow(0 1px 2px rgba(0,0,0, 0.4) inset);
 
-				color: #FFF;
+				color: #202020;
 				cursor: pointer;
 				display: block;
 				float: right;
@@ -416,7 +436,6 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 
 				text-align: left;
 				text-indent: 0.5em;
-				text-shadow: 0 1px 2px rgba(0,0,0, 0.75);
 				width: 20%;
 			}
 
@@ -528,15 +547,6 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 			display: block;
 		}
 	}
-
-	.menu-active {
-		overflow: visible;
-
-		.child-menu {
-			display: block;
-			height: auto;
-		}
-	}
 }
 
 .aui .dockbar-split .portlet-dockbar .dockbar .navbar-inner .nav-account-controls {
@@ -544,6 +554,32 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	background-image: none;
 	border-top-color: transparent;
 	right: 0;
+}
+
+.my-sites.dropdown {
+	display: none;
+}
+
+.dockbar-user-notifications .user-notifications-count, .notifications-portlet .user-notifications-count {
+	background: #FFF;
+
+	@include border-radius(12px);
+
+	border-width: 0;
+	color: #202020;
+	padding: 4px 8px;
+}
+
+.navbar .dockbar-user-notifications .nav>li>.dropdown-menu {
+	&:after {
+		left: auto;
+		right: 9px;
+	}
+
+	&:before {
+		left: auto;
+		right: 10px;
+	}
 }
 
 @media (max-width:860px) {
