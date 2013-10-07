@@ -17,7 +17,6 @@
  */
 --%>
 
-
 <c:if test="<%= themeDisplay.isSignedIn() %>">
 	<li class="go-to">
 		<liferay-portlet:runtime portletName="5_WAR_soportlet" />

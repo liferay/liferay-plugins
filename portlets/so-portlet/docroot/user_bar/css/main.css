@@ -58,8 +58,8 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 			color: #FFF;
 			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 			font-size: 14px;
-			line-height: 2em;
 			font-weight: 400;
+			line-height: 2em;
 			text-decoration: none;
 		}
 	}

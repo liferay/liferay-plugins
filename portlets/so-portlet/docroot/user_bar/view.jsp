@@ -91,8 +91,6 @@ catch (NoSuchRoleException nsre) {
 	<aui:script use="aui-base,liferay-so-user-menu">
 		var html = A.one('html');
 
-		var searchInput = A.one('.portlet-dockbar .go-to .so-portlet-sites input');
-
 		html.on(
 			'click',
 			function(event) {
@@ -100,15 +98,13 @@ catch (NoSuchRoleException nsre) {
 			}
 		);
 
-		if (searchInput) {
-			new Liferay.SO.UserMenu(
-				{
-					node: '.portlet-dockbar .go-to',
-					showClass: 'search-focus',
-					showOn: 'focus',
-					trigger: '.portlet-dockbar .go-to .so-portlet-sites .search-input'
-				}
-			);
-		}
+		new Liferay.SO.UserMenu(
+			{
+				node: '.portlet-dockbar .go-to',
+				showClass: 'search-focus',
+				showOn: 'focus',
+				trigger: '.portlet-dockbar .go-to .so-portlet-sites .search-input'
+			}
+		);
 	</aui:script>
 </c:if>
