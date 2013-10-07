@@ -68,7 +68,7 @@ pageContext.setAttribute("portletURL", portletURL);
 </div>
 
 <div class="search">
-	<input class="search-input" id="<portlet:namespace />name" name="<portlet:namespace />name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
+	<input class="search-input" id="<portlet:namespace />name" name="<portlet:namespace />name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" placeholder="<liferay-ui:message key="go-to" />" />
 
 	<input src="<%= themeDisplay.getPathThemeImages() %>/common/search.png" type="image" value='<liferay-ui:message key="search" />' />
 </div>
