@@ -85,123 +85,30 @@ catch (NoSuchRoleException nsre) {
 
 				</ul>
 			</nav>
-
-			<ul class="user-toolbar">
-				<li class="go-to">
-					<liferay-portlet:runtime portletName="<%= PortletKeys.SO_SITES %>" />
-				</li>
-				<li class="notifications-menu" id="<portlet:namespace/>notificationsMenu">
-					<liferay-util:include page="/dockbar_notifications/view.jsp" servletContext="<%= application %>" />
-				</li>
-				<li class="user-menu has-submenu">
-					<a class="user-info" href="<%= group.getPathFriendlyURL(false, themeDisplay) + "/" + user.getScreenName() %>">
-						<span class="avatar">
-							<img alt="<%= user.getFullName() %>" src="<%= HtmlUtil.escape(user.getPortraitURL(themeDisplay)) %>">
-						</span>
-
-						<span class="full-name"><%= user.getFullName() %></span> &#x25BE;
-					</a>
-
-					<ul class="child-menu">
-						<li>
-							<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="profileURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
-								<portlet:param name="struts_action" value="/my_sites/view" />
-								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-								<portlet:param name="privateLayout" value="<%= Boolean.FALSE.toString() %>" />
-							</liferay-portlet:actionURL>
-
-							<a href="<%= profileURL %>"><liferay-ui:message key="my-profile" /></a>
-						</li>
-						<li>
-							<a href="<%= themeDisplay.getURLMyAccount() %>"><liferay-ui:message key="my-account" /></a>
-						</li>
-
-						<c:if test="<%= themeDisplay.isShowControlPanelIcon() %>">
-							<li>
-								<a href="<%= themeDisplay.getURLControlPanel() %>"><liferay-ui:message key="control-panel" /></a>
-							</li>
-						</c:if>
-
-						<c:if test="<%= themeDisplay.isShowSignOutIcon() %>">
-							<li>
-								<a href="<%= themeDisplay.getURLSignOut() %>"><liferay-ui:message key="sign-out" /></a>
-							</li>
-						</c:if>
-					</ul>
-				</li>
-
-				<%
-				Group layoutGroup = null;
-
-				if (layout != null) {
-					layoutGroup = layout.getGroup();
-				}
-				%>
-			</ul>
 		</div>
 	</liferay-util:body-top>
 
 	<aui:script use="aui-base,liferay-so-user-menu">
-		var body = A.one('body');
+		var html = A.one('html');
 
-		var userBar = A.one('#<portlet:namespace/>userBar');
+		var searchInput = A.one('.portlet-dockbar .go-to .so-portlet-sites input');
 
-		var searchInput = userBar.one('.search input');
-
-		var goToString = '<liferay-ui:message key="go-to" /> ' + '\u25BE';
-
-		body.on(
+		html.on(
 			'click',
 			function(event) {
 				A.fire('close-menus');
 			}
 		);
 
-		searchInput.set('value', goToString);
-
-		searchInput.on(
-			'click',
-			function(event) {
-				if (searchInput.get('value') == goToString) {
-					searchInput.set('value', '');
+		if (searchInput) {
+			new Liferay.SO.UserMenu(
+				{
+					node: '.portlet-dockbar .go-to',
+					showClass: 'search-focus',
+					showOn: 'focus',
+					trigger: '.portlet-dockbar .go-to .so-portlet-sites .search-input'
 				}
-			}
-		);
-
-		A.on(
-			'close-menus',
-			function(event) {
-				if (!userBar.one('.go-to').hasClass('search-focus') || (searchInput.get('value') == "")) {
-					searchInput.set('value', goToString);
-				}
-			}
-		);
-
-		new Liferay.SO.UserMenu(
-			{
-				node: '#<portlet:namespace/>userBar .go-to',
-				showClass: 'search-focus',
-				showOn: 'focus',
-				trigger: '#<portlet:namespace/>userBar .go-to .search input'
-			}
-		);
-
-		new Liferay.SO.UserMenu(
-			{
-				hideClass: 'aui-overlaycontext-hidden',
-				node: '#<portlet:namespace/>userBar .notifications-menu',
-				target: '#<portlet:namespace/>userBar .notifications-menu .user-notification-events',
-				trigger: '#<portlet:namespace/>userBar .user-notification-events-icon'
-			}
-		);
-
-		new Liferay.SO.UserMenu(
-			{
-				node: '#<portlet:namespace/>userBar .user-menu',
-				preventDefault: true,
-				showClass: 'menu-active',
-				trigger: '#<portlet:namespace/>userBar .user-info'
-			}
-		);
+			);
+		}
 	</aui:script>
 </c:if>
