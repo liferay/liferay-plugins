@@ -337,7 +337,14 @@
 	java.lang.Thread#getContextClassLoader=
 
 		<%
-		if (!ServerDetector.isWebLogic()) {
+		if (ServerDetector.isWebLogic()) {
+
+			// In WebLogic, the context classloader is always the JSP class
+			// loader. Therefore, there is no security check.
+
+			out.print("PASSED");
+		}
+		else {
 			new SecurityExceptionTest(out, themeDisplay, true) {
 
 				protected void test() throws Exception {
@@ -347,13 +354,6 @@
 				}
 
 			};
-		}
-		else {
-
-			// Let this pass since in WebLogic the context classloader is always
-			// the classloader of the jsp, hence there is no security check
-
-			out.print("PASSED");
 		}
 		%>
 
