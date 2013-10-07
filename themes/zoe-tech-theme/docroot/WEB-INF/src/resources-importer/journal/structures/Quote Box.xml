@@ -11,13 +11,6 @@
 		</meta-data>
 	</dynamic-element>
 	<dynamic-element name="quote" type="text_box" index-type="" repeatable="true">
-		<meta-data>
-			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
-			<entry name="required"><![CDATA[false]]></entry>
-			<entry name="instructions"><![CDATA[]]></entry>
-			<entry name="label"><![CDATA[Quote]]></entry>
-			<entry name="predefinedValue"><![CDATA[]]></entry>
-		</meta-data>
 		<dynamic-element name="author" type="text" index-type="" repeatable="false">
 			<meta-data>
 				<entry name="displayAsTooltip"><![CDATA[true]]></entry>
@@ -27,5 +20,12 @@
 				<entry name="predefinedValue"><![CDATA[]]></entry>
 			</meta-data>
 		</dynamic-element>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[]]></entry>
+			<entry name="label"><![CDATA[Quote]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
 	</dynamic-element>
 </root>
