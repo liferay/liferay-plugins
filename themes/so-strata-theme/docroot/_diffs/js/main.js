@@ -14,8 +14,6 @@ AUI().ready(
 				var body = A.one('body');
 
 				body.toggleClass('show-dockbar');
-
-				A.fire('close-menus', event);
 			}
 		);
 

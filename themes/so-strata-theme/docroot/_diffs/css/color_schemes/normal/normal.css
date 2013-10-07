@@ -46,10 +46,10 @@ body {
 
 .aui-helper-hidden {
 	clip: rect(0, 0, 0, 0);
+	height: 0;
 	overflow: hidden;
 	position: absolute;
 	width: 0;
-	height: 0;
 }
 
 a {
