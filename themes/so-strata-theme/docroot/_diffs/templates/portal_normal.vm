@@ -12,7 +12,7 @@
 	<meta content="user-scalable=yes, initial-scale=1.0, width=device-width" name="viewport" />
 </head>
 
-<body class="so-strata-theme $css_class">
+<body class="so-strata-theme dockbar-split $css_class">
 
 $theme.include($body_top_include)
 
@@ -93,6 +93,14 @@ $theme.include($body_top_include)
 			#end
 
 			#if ($is_signed_in)
+				<a class="config-icon" href="javascript:;" id="toggleDockbar">
+					<img alt="#language("configuration") #language("icon")" height="16" src="$images_folder/custom/cog.png" width="16" />
+
+					<span class="aui-helper-hidden">
+						#language("toggle") #language("javax.portlet.title.145")
+					</span>
+				</a>
+
 				<div id="page-search">
 					$theme.search()
 				</div>

@@ -7,8 +7,49 @@ body {
 	font: 13px/1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-.so-strata-theme #dockbar {
-	margin-top: -32px;
+#wrapper {
+	padding: 0;
+}
+
+.aui .dockbar-split .dockbar .navbar-inner {
+	.nav-add-controls {
+		background: $btnBackgroundDefault;
+		border-right: 1px solid $defaultBorderColor;
+		bottom: 0;
+		margin-left: -63px;
+		top: 44px;
+
+		@include transition-duration(0.2s);
+		@include transition-property(margin-left);
+	}
+}
+
+.aui .navbar {
+	.nav > li > a {
+		padding-bottom: 0.45em;
+		padding-top: 0.45em;
+	}
+}
+
+.aui .dockbar-split.show-dockbar {
+	#wrapper {
+		padding-left: 63px;
+
+		@include transition-duration(0.2s);
+		@include transition-property(padding-left);
+	}
+
+	.dockbar .navbar-inner .nav-add-controls {
+		margin-left: 0;
+	}
+}
+
+.aui-helper-hidden {
+	clip: rect(0, 0, 0, 0);
+	overflow: hidden;
+	position: absolute;
+	width: 0;
+	height: 0;
 }
 
 a {
@@ -170,6 +211,10 @@ a {
 
 /* --------- Forms --------- */
 
+form#hrefFm {
+	margin: 0;
+}
+
 fieldset {
 	@include default-border;
 
@@ -309,6 +354,10 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 	border-left-width: 0;
 }
 
+.aui .row-fluid [class*="span"] {
+	margin-left: 0;
+}
+
 /* ---------- Breadcrumbs ---------- */
 
 .breadcrumbs-horizontal {
@@ -373,7 +422,7 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 	@include header;
 
 	border-width: 1px 0;
-	padding: 1em 1.5em;
+	padding: 0.86em 1.5em;
 
 	h1, h2 {
 		font-size: 1.8em;
@@ -417,6 +466,10 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 			width: 55px;
 		}
 	}
+
+	#toggleDockbar {
+		float: right;
+	}
 }
 
 #banner, #navigation {
@@ -445,7 +498,10 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 
 	input[type="text"] {
 		color: $defaultBorderColor;
+	}
 
+	form, input[type="text"] {
+		margin: 0;
 	}
 
 	input[type="text"]:focus, &.focus input[type="text"] {
@@ -639,8 +695,6 @@ div#navigation {
 	@include button-focus;
 }
 
-
-
 .results-row {
 	td {
 		background: none;
@@ -775,8 +829,10 @@ div#navigation {
 	.portlet-title {
 		font-size: 1.5em;
 		font-weight: 200;
+		line-height: 1.25em;
+		margin: 0;
 
-		.icon {
+		.icon, img {
 			display: none;
 		}
 	}
