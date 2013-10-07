@@ -23,23 +23,6 @@ $defaultTextColor: #202020;
 	@include box-shadow(0 1px 3px rgba(0,0,0, 0.78));
 }
 
-.portlet-dockbar {
-	overflow: hidden;
-}
-
-#dockbar {
-	margin-top: -31px;
-	opacity: 0;
-	position: relative;
-
-	@include transition-duration(0.5s);
-	@include transition-property(all);
-
-	.user-toolbar {
-		display: none;
-	}
-}
-
 body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	.portlet-dockbar {
 		overflow: visible;
@@ -52,30 +35,19 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	}
 }
 
-html > body.lfr-dockbar-pinned {
-	padding-top: 74px;
-
-	#dockbar {
-		@include box-shadow(0 7px 9px -8px rgba(0, 0, 0, 0.5));
-
-		position: fixed;
-		top: 42px;
-	}
-
-	.so-portlet-user-bar {
-		left: 0;
-		position: fixed;
-		right: 0;
-		top: 0;
-	}
+.aui .dockbar .navbar-inner .container .nav-account-controls {
+	top: -44px;
+	z-index: 301;
 }
 
-.so-portlet-user-bar {
-	background: #32363A url(../images/user_bar_default_bg.png) repeat-x;
+.aui .dockbar-split .dockbar .navbar-inner .container .nav-account-controls {
+	top: 0;
+}
 
+.aui .so-portlet-user-bar {
 	@include background-image(linear-gradient(bottom, #252D31 0, #32363A 100%));
 
-	font: 13px/1.5em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font: 14px/2em 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-weight: 200;
 	padding-right: 30%;
 	position: relative;
@@ -85,7 +57,8 @@ html > body.lfr-dockbar-pinned {
 		&, &:hover, &:visited, &:active {
 			color: #FFF;
 			font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-			font-size: 13px;
+			font-size: 14px;
+			line-height: 2em;
 			font-weight: 400;
 			text-decoration: none;
 		}
@@ -93,7 +66,6 @@ html > body.lfr-dockbar-pinned {
 
 	.so-logo {
 		display: inline-block;
-		margin-bottom: -7px;
 		padding: 6px 3px 6px 8px;
 		vertical-align: middle;
 
@@ -114,12 +86,8 @@ html > body.lfr-dockbar-pinned {
 		color: #FFF;
 		background-color: rgba(0,0,0, 0);
 
-		@include border-radius(4px);
-		@include box-shadow(none);
-
 		font-size: 1em;
-		padding: 0.25em 0.8em;
-		text-shadow: 0 1px 2px rgba(0,0,0, 0.75);
+		padding: 0.5em 0.8em;
 
 		@include transition-duration(0.5s);
 		@include transition-property(background-color);
@@ -127,8 +95,6 @@ html > body.lfr-dockbar-pinned {
 
 	li.selected a, a:hover, .hover a {
 		background-color: rgba(0,0,0, 0.48);
-
-		@include box-shadow(0 1px 2px rgba(0,0,0, 0.75));
 
 		text-decoration: none;
 	}
@@ -212,6 +178,10 @@ html > body.lfr-dockbar-pinned {
 					color: #FFF;
 				}
 			}
+		}
+
+		.go-to, .notifications-menu, .user-menu {
+			display: none;
 		}
 
 		.full-name {
@@ -567,6 +537,13 @@ html > body.lfr-dockbar-pinned {
 			height: auto;
 		}
 	}
+}
+
+.aui .dockbar-split .portlet-dockbar .dockbar .navbar-inner .nav-account-controls {
+	background-color: transparent;
+	background-image: none;
+	border-top-color: transparent;
+	right: 0;
 }
 
 @media (max-width:860px) {
