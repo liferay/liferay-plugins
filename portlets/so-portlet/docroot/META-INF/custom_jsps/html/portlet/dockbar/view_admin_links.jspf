@@ -17,7 +17,22 @@
  */
 --%>
 
-<c:if test="<%= themeDisplay.isSignedIn() %>">
+<%@page import="com.liferay.portal.NoSuchRoleException" %>
+
+<%
+boolean socialOfficeUser = false;
+
+try {
+	socialOfficeUser = UserLocalServiceUtil.hasRoleUser(themeDisplay.getCompanyId(), "Social Office User", themeDisplay.getUserId(), true);
+}
+catch (NoSuchRoleException nsre) {
+
+	// This exception should never be thrown except while SO is being uninstalled
+
+}
+%>
+
+<c:if test="<%= themeDisplay.isSignedIn() && socialOfficeUser %>">
 	<li class="go-to">
 		<liferay-portlet:runtime portletName="5_WAR_soportlet" />
 	</li>
