@@ -46,8 +46,12 @@ $dockbarOpenGradientStart: #A7C86C;
 			.nav {
 				background-color: $dockbarGradientEnd;
 
+				> li {
+					background-color: transparent;
+				}
+
 				li.dropdown {
-					&.open, &.active, &.open.active {
+					&.active, &.open, &.open.active {
 						> .dropdown-toggle {
 							background-color: $dockbarOpenGradientEnd;
 						}
@@ -67,7 +71,7 @@ $dockbarOpenGradientStart: #A7C86C;
 				background: transparent;
 
 				> li > a {
-					background: #85a056;
+					background: #85A056;
 
 					&:hover {
 						background: #647840;
@@ -267,7 +271,6 @@ $dockbarOpenGradientStart: #A7C86C;
 
 	.underlined {
 		border-bottom: 6px solid #B2CF7D;
-		display: inline-block;
 	}
 
 	.full {
@@ -291,14 +294,8 @@ $dockbarOpenGradientStart: #A7C86C;
 		}
 	}
 
-	.journal-content-article {
-		h4 {
-			margin: 0 0 10px 0;
-		}
-
-		.span8 {
-			margin-bottom: 50px;
-		}
+	.journal-content-article h4 {
+		margin: 0 0 10px 0;
 	}
 
 	/* -------- Navigation Portlet -------- */
@@ -349,13 +346,13 @@ $dockbarOpenGradientStart: #A7C86C;
 		}
 	}
 
-	button[type="submit"], button[type="submit"]:hover, input[type="reset"], input[type="reset"]:hover {
-		background-color: #343434;
-		background-image: none;
-		color: #A4C667;
-	}
-
 	button[type="submit"], input[type="reset"] {
+		&, &:hover {
+			background-color: #343434;
+			background-image: none;
+			color: #A4C667;
+		}
+
 		&:hover {
 			color: #E8E8E8;
 		}
@@ -385,7 +382,7 @@ $dockbarOpenGradientStart: #A7C86C;
 			top: 25%;
 			width: 267px;
 
-			&:before, &:after {
+			&:after, &:before {
 				background-image: url(../images/custom/quotemarks.png);
 				background-repeat: no-repeat;
 				content: " ";
@@ -458,7 +455,7 @@ $dockbarOpenGradientStart: #A7C86C;
 				}
 			}
 
-			#footerNavigation ul, #footerContact ul {
+			#footerContact ul, #footerNavigation ul {
 				list-style: none;
 				margin-left: 0;
 			}
