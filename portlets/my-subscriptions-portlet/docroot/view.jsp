@@ -127,19 +127,15 @@
 						constrain2view: true,
 						cssClass: 'portlet-my-subscription',
 						modal: true,
-						resizable: false,
+						resizable: true,
 						width: 950
 					},
-					title: title
-				}
-			).plug(
-				A.Plugin.DialogIframe,
-				{
+					title: title,
 					uri: url
 				}
 			)
 		},
-		['aui-dialog-iframe-deprecated', 'liferay-util-window']
+		['liferay-util-window']
 	);
 
 	Liferay.provide(
