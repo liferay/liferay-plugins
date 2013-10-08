@@ -84,6 +84,14 @@
 	}
 }
 
+.aui .mail-portlet .table-bordered {
+	th, td {
+	 	&.attachments {
+			border-left: 0;
+		}
+	}
+}
+
 .ie6 .mail-portlet #messageContentContainer {
 	height: 2em;
 }
