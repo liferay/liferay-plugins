@@ -209,6 +209,7 @@ MailManager mailManager = MailManager.getInstance(request);
 										<c:if test="<%= !AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
 											<liferay-ui:icon
 												image="../mail/clip"
+												message="attachments"
 											/>
 										</c:if>
 									</div>
