@@ -112,6 +112,7 @@ MailManager mailManager = MailManager.getInstance(request);
 
 								<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_SUBJECT %>" data-orderByType="<%= subjectOrderByType %>" data-pageNumber="1" href="javascript:;" label="subject" />
 							</th>
+							<th class="attachments"></th>
 							<th class="date">
 
 								<%
@@ -124,7 +125,6 @@ MailManager mailManager = MailManager.getInstance(request);
 
 								<aui:a cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= MailConstants.ORDER_BY_SENT_DATE %>" data-orderByType="<%= dateOrderByType %>" data-pageNumber="1" href="javascript:;" label="date" />
 							</th>
-							<th class="attachments"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -199,12 +199,7 @@ MailManager mailManager = MailManager.getInstance(request);
 										<%= Validator.isNull(message.getSubject()) ? LanguageUtil.get(pageContext, "no-subject") : HtmlUtil.escape(message.getSubject()) %>
 									</div>
 								</td>
-								<td>
-									<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
-										<%= HtmlUtil.escape(date) %>
-									</div>
-								</td>
-								<td>
+								<td class="attachments">
 									<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
 										<c:if test="<%= !AttachmentLocalServiceUtil.getAttachments(message.getMessageId()).isEmpty() %>">
 											<liferay-ui:icon
@@ -212,6 +207,11 @@ MailManager mailManager = MailManager.getInstance(request);
 												message="attachments"
 											/>
 										</c:if>
+									</div>
+								</td>
+								<td>
+									<div class="<%= messageCssClass %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
+										<%= HtmlUtil.escape(date) %>
 									</div>
 								</td>
 							</tr>
