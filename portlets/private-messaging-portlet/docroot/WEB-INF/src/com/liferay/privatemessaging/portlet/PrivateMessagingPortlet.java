@@ -184,7 +184,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 	public void sendMessage(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
@@ -192,13 +192,15 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long userId = ParamUtil.getLong(uploadPortletRequest, "userId");
 		long mbThreadId = ParamUtil.getLong(uploadPortletRequest, "mbThreadId");
-		String to = ParamUtil.getString(uploadPortletRequest, "to");
-		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
+		long userId = ParamUtil.getLong(uploadPortletRequest, "userId");
 		String body = ParamUtil.getString(uploadPortletRequest, "body");
+		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
+		String to = ParamUtil.getString(uploadPortletRequest, "to");
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 			new ArrayList<ObjectValuePair<String, InputStream>>();
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
 			for (int i = 1; i <= 3; i++) {
@@ -221,17 +223,22 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 					inputStreamOVPs.add(inputStreamOVP);
 				}
 				catch (Exception e) {
-					_log.error("unable to attach file " + fileName, e);
+					_log.error(translate(
+						actionRequest, "unable to attach file ") + fileName, e);
 				}
 			}
 
 			UserThreadLocalServiceUtil.addPrivateMessage(
 				userId, mbThreadId, to, subject, body, inputStreamOVPs,
 				themeDisplay);
+
+			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
+			String message = null;
+
 			if (e instanceof IOException) {
-				throw new PortalException("Unable to process attachment", e);
+				message = "unable-to-process-attachment";
 			}
 			else if (e instanceof FileExtensionException ||
 					 e instanceof FileNameException ||
@@ -239,7 +246,11 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 					 e instanceof UserScreenNameException) {
 
 				SessionErrors.add(actionRequest, e.getClass());
+				message = "unable-to-process-attachment";
 			}
+
+			jsonObject.put("message", translate(actionRequest, message));
+			jsonObject.put("success", Boolean.FALSE);
 		}
 		finally {
 			for (ObjectValuePair<String, InputStream> inputStreamOVP :
@@ -250,6 +261,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 				StreamUtil.cleanUp(inputStream);
 			}
 		}
+
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	@Override
