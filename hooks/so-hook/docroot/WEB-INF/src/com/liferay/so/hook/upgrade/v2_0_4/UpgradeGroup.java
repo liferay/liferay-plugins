@@ -34,7 +34,6 @@ public class UpgradeGroup extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		// This is a Social Office EE upgrade.
 	}
 
 }
