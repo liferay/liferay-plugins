@@ -10,6 +10,13 @@ $smallBannerHeight: 224px;
 $navHeight: 46px;
 $color: #3D7899;
 
+/* -------- Dockbar color variables -------- */
+
+$dockbarGradientEnd: #3D7899;
+$dockbarGradientStart: #00BFFF;
+$dockbarOpenGradientEnd: #0993DD;
+$dockbarOpenGradientStart: #0EA6F9;
+
 /* -------- Base Styles -------- */
 
 .aui {
@@ -36,6 +43,44 @@ $color: #3D7899;
 
 		&:hover {
 			font-weight: underline;
+		}
+	}
+
+	/* ---------- Dockbar ---------- */
+
+	.dockbar-split .dockbar {
+		.navbar-inner {
+			.nav {
+				background-color: $dockbarGradientStart;
+
+				> li {
+					background-color: transparent;
+				}
+
+				li.dropdown {
+					&.active, &.open, &.open.active {
+						> .dropdown-toggle {
+							background-color: $dockbarOpenGradientStart;
+						}
+					}
+				}
+			}
+
+			.nav-add-controls {
+				background: transparent;
+
+				> li > a {
+					background: #0DB5E7;
+
+					&:hover {
+						background: $dockbarOpenGradientEnd;
+					}
+
+					&.toggle-controls-link {
+						background: #BDBDBD;
+					}
+				}
+			}
 		}
 	}
 
@@ -216,10 +261,15 @@ $color: #3D7899;
 		background: url(../images/custom/port_topper.png) 100% repeat-x;
 		height: 37px;
 		letter-spacing: .05em;
+
+		.portlet-topper-toolbar {
+			a, a:visited {
+				color: #FFF;
+			}
+		}
 	}
 
 	.portlet-title {
-		background: url(../images/custom/port_topper_arrow.png) 100% 60% no-repeat;
 		color: #FFF;
 		font: 21px "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 		margin: 0 12px 0 0;
@@ -254,7 +304,6 @@ $color: #3D7899;
 	}
 
 	.portlet-options .dropdown-toggle, .portlet-options.open .dropdown-toggle {
-		background: url(../images/portlet/options.png) no-repeat;
 		display: inline-block;
 		height: 16px;
 		vertical-align: middle;
@@ -263,10 +312,6 @@ $color: #3D7899;
 		.caret {
 			display: none;
 		}
-	}
-
-	.portlet-borderless-bar .portlet-options .dropdown-toggle {
-		background: url(../images/portlet/options_borderless.png) no-repeat;
 	}
 
 	/* -------- Carousel -------- */
@@ -397,6 +442,25 @@ $color: #3D7899;
 
 	#wrapper {
 		@include box-shadow(#000 0 0 10px);
+	}
+
+	.dockbar {
+		.navbar-inner {
+			@include box-shadow(none);
+
+			.nav {
+				li.dropdown.open > .dropdown-toggle {
+					@include background-image(linear-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd));
+					@include box-shadow(none);
+					@include filter-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd, vertical);
+				}
+			}
+
+			.nav-account-controls {
+				@include background-image(linear-gradient($dockbarGradientStart 0%, $dockbarGradientStart 10%, $dockbarGradientEnd 100%));
+				@include filter-gradient($dockbarGradientStart, $dockbarGradientEnd, vertical);
+			}
+		}
 	}
 
 	#banner #heading .site-name {
