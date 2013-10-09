@@ -130,7 +130,7 @@ to = sb.toString() + to;
 	}
 </aui:script>
 
-<aui:script use="aui-io-request-deprecated,aui-loading-mask-deprecated,autocomplete,json-parse,io-upload-iframe">
+<aui:script use="aui-io-request-deprecated,aui-loading-mask-deprecated,autocomplete,io-upload-iframe,json-parse">
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.on(
