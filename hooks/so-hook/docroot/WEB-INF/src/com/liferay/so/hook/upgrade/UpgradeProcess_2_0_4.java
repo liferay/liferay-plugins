@@ -34,8 +34,8 @@ public class UpgradeProcess_2_0_4 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeLayoutSet.class);
 		upgrade(UpgradeLayout.class);
+		upgrade(UpgradeLayoutSet.class);
 		upgrade(UpgradeTheme.class);
 	}
 
