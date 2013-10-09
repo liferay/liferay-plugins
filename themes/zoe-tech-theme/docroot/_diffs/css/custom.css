@@ -125,7 +125,7 @@ $default-box-shadow-v-offset: 1px;
 	/* -------- Dockbar -------- */
 
 	.dockbar-split .dockbar .navbar-inner .nav-add-controls > li {
-		background: none;
+		background: transparent;
 	}
 
 	/* -------- Global-Layout -------- */
@@ -606,7 +606,7 @@ $default-box-shadow-v-offset: 1px;
 
 	#banner .site-name {
 		@include background(linear-gradient(top left, #132832, #193340));
-		@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px white);
+		@include box-shadow(inset 0 0 5px rgba(0, 0, 0, 0.8), 1px 1px 1px #FFF);
 		@include text-shadow(1px 1px rgba(0, 0, 0, 0.5));
 	}
 
