@@ -15,28 +15,18 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.so.hook.upgrade;
+package com.liferay.so.hook.upgrade.v2_0_4;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.so.hook.upgrade.v2_0_4.UpgradeLayout;
-import com.liferay.so.hook.upgrade.v2_0_4.UpgradeLayoutSet;
-import com.liferay.so.hook.upgrade.v2_0_4.UpgradeTheme;
 
 /**
  * @author Jonathan Lee
  */
-public class UpgradeProcess_2_0_4 extends UpgradeProcess {
-
-	@Override
-	public int getThreshold() {
-		return 204;
-	}
+public class UpgradeLayout extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeLayoutSet.class);
-		upgrade(UpgradeLayout.class);
-		upgrade(UpgradeTheme.class);
+		// This is a Social Office EE upgrade.
 	}
 
 }
