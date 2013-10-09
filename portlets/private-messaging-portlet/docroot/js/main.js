@@ -42,6 +42,8 @@ AUI.add(
 						instance._eventHandles = [];
 
 						instance._bindUI();
+
+						instance._namespace = config.namespace;
 					},
 
 					destructor: function() {
@@ -332,32 +334,29 @@ AUI.add(
 						var portletURL =  new Liferay.PortletURL.createURL(instance.get('baseRenderURL'));
 
 						portletURL.setPortletId(instance.get('portletId'));
-						portletURL.setWindowState('EXCLUSIVE');
+						portletURL.setWindowState('POP_UP');
 
 						portletURL.setParameter('mvcPath', '/new_message.jsp');
 						portletURL.setParameter('redirect', redirectURL.toString());
+						portletURL.setParameter('mbThreadId', mbThreadId);
 
-						var messageDialog = new A.Modal(
+						var messageDialog = Liferay.Util.openWindow(
 							{
-								centered: true,
-								constrain: true,
-								cssClass: 'private-messaging-portlet',
-								destroyOnHide: true,
-								headerContent: Liferay.Language.get('new-message'),
-								height: 600,
-								modal: true,
-								plugins: [Liferay.WidgetZIndex],
-								width: 600
-							}
-						).plug(
-							APluginIO,
-							{
-								data: {
-									mbThreadId: mbThreadId
+								dialog: {
+									centered: true,
+									constrain: true,
+									cssClass: 'private-messaging-portlet',
+									destroyOnHide: true,
+									height: 600,
+									modal: true,
+									plugins: [Liferay.WidgetZIndex],
+									width: 600
 								},
+								id: instance._namespace + 'Dialog',
+								title: Liferay.Language.get('new-message'),
 								uri: portletURL.toString()
 							}
-						).render();
+						);
 					},
 
 					_sendRequest: function(request, mbThreadIds) {

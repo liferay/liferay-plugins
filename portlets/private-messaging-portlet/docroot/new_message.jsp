@@ -63,12 +63,8 @@ to = sb.toString() + to;
 
 <div id="<portlet:namespace />messageContainer"></div>
 
-<liferay-portlet:actionURL name="sendMessage" var="sendMessageURL">
-	<portlet:param name="redirect" value="<%= redirect %>" />
-</liferay-portlet:actionURL>
-
 <aui:layout cssClass="message-body-container">
-	<aui:form action="<%= sendMessageURL %>" enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
+	<aui:form enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
 		<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 		<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
 
@@ -166,13 +162,8 @@ to = sb.toString() + to;
 			loadingMask.show();
 
 			A.io.request(
-				'<liferay-portlet:resourceURL id="checkData"><liferay-portlet:param name="redirect" value="<%= PortalUtil.getLayoutURL(themeDisplay) %>" /></liferay-portlet:resourceURL>',
+				'<liferay-portlet:actionURL name="sendMessage"></liferay-portlet:actionURL>',
 				{
-					dataType: 'json',
-					form: {
-						id: form.getDOM(),
-						upload: true
-					},
 					on: {
 						complete: function(event, id, obj) {
 							var responseText = obj.responseText;
@@ -180,19 +171,25 @@ to = sb.toString() + to;
 							var responseData = A.JSON.parse(responseText);
 
 							if (responseData.success) {
-								submitForm(document.<portlet:namespace />fm);
+								if (<%= Validator.isNotNull(redirect) %>) {
+									var topWindow = Liferay.Util.getTop();
+
+									topWindow.location.href = '<%= redirect %>';
+								}
+
+								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 							}
 							else {
 								<portlet:namespace />showMessage('<span class="portlet-msg-error">' + responseData.message + '</span>');
 
 								loadingMask.hide();
 							}
-						},
-						failure: function(event, id, obj) {
-							<portlet:namespace />showMessage('<span class="portlet-msg-error"><%= UnicodeLanguageUtil.get(pageContext, "your-request-failed-to-complete") %></span>');
-
-							loadingMask.hide();
 						}
+					},
+					dataType: 'json',
+					form: {
+						id: form,
+						upload: true
 					}
 				}
 			);
