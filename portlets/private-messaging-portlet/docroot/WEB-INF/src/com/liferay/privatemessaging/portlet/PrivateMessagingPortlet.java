@@ -274,10 +274,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			String resourceID = GetterUtil.getString(
 				resourceRequest.getResourceID());
 
-			if (resourceID.equals("checkData")) {
-				checkData(resourceRequest, resourceResponse);
-			}
-			else if (resourceID.equals("getUsers")) {
+			if (resourceID.equals("getUsers")) {
 				getUsers(resourceRequest, resourceResponse);
 			}
 			else {
@@ -287,46 +284,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
-	}
-
-	protected void checkData(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(resourceRequest);
-
-		String to = ParamUtil.getString(uploadPortletRequest, "to");
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		try {
-			validateTo(to, themeDisplay);
-
-			for (int i = 1; i <= 3; i++) {
-				String fileName = uploadPortletRequest.getFileName(
-					"msgFile" + i);
-				InputStream inputStream = uploadPortletRequest.getFileAsStream(
-					"msgFile" + i);
-
-				if (inputStream == null) {
-					continue;
-				}
-
-				validateAttachment(fileName, inputStream);
-			}
-
-			jsonObject.put("success", Boolean.TRUE);
-		}
-		catch (Exception e) {
-			jsonObject.put("message", getMessage(resourceRequest, e));
-			jsonObject.put("success", Boolean.FALSE);
-		}
-
-		writeJSON(resourceRequest, resourceResponse, jsonObject);
 	}
 
 	protected String getMessage(PortletRequest portletRequest, Exception key)
