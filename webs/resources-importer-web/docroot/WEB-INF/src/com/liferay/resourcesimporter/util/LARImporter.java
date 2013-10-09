@@ -129,9 +129,6 @@ public class LARImporter extends BaseImporter {
 			PortletDataHandlerKeys.PUBLISH_TO_REMOTE,
 			new String[] {Boolean.TRUE.toString()});
 		parameters.put(
-			PortletDataHandlerKeys.THEME,
-			new String[] {Boolean.FALSE.toString()});
-		parameters.put(
 			PortletDataHandlerKeys.THEME_REFERENCE,
 			new String[] {Boolean.TRUE.toString()});
 		parameters.put(
