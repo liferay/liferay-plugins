@@ -757,6 +757,8 @@ AUI.add(
 						},
 
 						success: function(data) {
+							var scheduler = schedulerEvent.get('scheduler');
+
 							schedulerEvent.set(
 								'loading',
 								false,
@@ -777,6 +779,8 @@ AUI.add(
 							if (success) {
 								success.call(this, data);
 							}
+
+							scheduler.load();
 						}
 					}
 				);
