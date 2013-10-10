@@ -309,6 +309,12 @@ public class AkismetMBMessageLocalServiceImpl
 			long userId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		if (serviceContext.getWorkflowAction() !=
+				WorkflowConstants.ACTION_PUBLISH) {
+
+			return false;
+		}
+
 		if (!AkismetUtil.hasRequiredInfo(serviceContext)) {
 			return false;
 		}
@@ -326,6 +332,12 @@ public class AkismetMBMessageLocalServiceImpl
 	protected boolean isMessageBoardsEnabled(
 			long userId, long groupId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		if (serviceContext.getWorkflowAction() !=
+				WorkflowConstants.ACTION_PUBLISH) {
+
+			return false;
+		}
 
 		if (!AkismetUtil.hasRequiredInfo(serviceContext)) {
 			return false;
