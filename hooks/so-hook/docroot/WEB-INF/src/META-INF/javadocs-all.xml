@@ -805,6 +805,25 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>UpgradeProcess_2_0_4</name>
+		<type>com.liferay.so.hook.upgrade.UpgradeProcess_2_0_4</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>UpgradeUtil</name>
 		<type>com.liferay.so.hook.upgrade.UpgradeUtil</type>
 		<author><![CDATA[Ryan Park]]></author>
@@ -959,6 +978,45 @@
 		<name>UpgradeBookmarks</name>
 		<type>com.liferay.so.hook.upgrade.v2_0_3.UpgradeBookmarks</type>
 		<author><![CDATA[Evan Thibodeau]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeLayout</name>
+		<type>com.liferay.so.hook.upgrade.v2_0_4.UpgradeLayout</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeLayoutSet</name>
+		<type>com.liferay.so.hook.upgrade.v2_0_4.UpgradeLayoutSet</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeTheme</name>
+		<type>com.liferay.so.hook.upgrade.v2_0_4.UpgradeTheme</type>
+		<author><![CDATA[Jonathan Lee]]></author>
 		<method>
 			<name>doUpgrade</name>
 			<throws>
