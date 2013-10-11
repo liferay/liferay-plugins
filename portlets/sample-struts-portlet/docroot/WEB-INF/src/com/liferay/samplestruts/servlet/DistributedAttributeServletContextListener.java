@@ -23,7 +23,6 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.jsp.PageContext;
 
 /**
- *
  * @author Shuyang Zhou
  */
 public class DistributedAttributeServletContextListener

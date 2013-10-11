@@ -111,6 +111,27 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>DistributedAttributeServletContextListener</name>
+		<type>com.liferay.samplestruts.servlet.DistributedAttributeServletContextListener</type>
+		<author><![CDATA[Shuyang Zhou]]></author>
+		<method>
+			<name>contextDestroyed</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
+			<name>contextInitialized</name>
+			<param>
+				<name>servletContextEvent</name>
+				<type>javax.servlet.ServletContextEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>TestSessionServlet</name>
 		<type>com.liferay.samplestruts.servlet.TestSessionServlet</type>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>

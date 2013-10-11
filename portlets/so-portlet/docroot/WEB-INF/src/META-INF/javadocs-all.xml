@@ -662,6 +662,14 @@
 		<type>com.liferay.so.messaging.SOHotDeployMessageListener</type>
 		<author><![CDATA[Ryan Park]]></author>
 		<method>
+			<name>SOHotDeployMessageListener</name>
+			<param>
+				<name>servletContextNames</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+		</method>
+		<method>
 			<name>onDeploy</name>
 			<param>
 				<name>message</name>
