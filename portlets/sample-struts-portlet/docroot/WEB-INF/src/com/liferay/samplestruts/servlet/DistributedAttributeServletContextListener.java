@@ -33,6 +33,7 @@ public class DistributedAttributeServletContextListener
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
 		DistributedRegistry.unregisterDistributed(
 			PageContext.EXCEPTION, Direction.DUPLEX, MatchType.POSTFIX);
+
 		DistributedRegistry.unregisterDistributed(
 			"file_name", Direction.DUPLEX, MatchType.POSTFIX);
 		DistributedRegistry.unregisterDistributed(
@@ -43,6 +44,7 @@ public class DistributedAttributeServletContextListener
 	public void contextInitialized(ServletContextEvent servletContextEvent) {
 		DistributedRegistry.registerDistributed(
 			PageContext.EXCEPTION, Direction.DUPLEX, MatchType.POSTFIX);
+
 		DistributedRegistry.registerDistributed(
 			"file_name", Direction.DUPLEX, MatchType.POSTFIX);
 		DistributedRegistry.registerDistributed(
