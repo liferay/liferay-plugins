@@ -488,102 +488,10 @@
 		<delete dir="${tstamp.value}" />
 	</target>
 
-	<target name="clean" description="clean">
-		<delete dir="docroot/WEB-INF/classes" />
-
-		<if>
-			<available file="docroot/WEB-INF/.gitignore" />
-			<then>
-				<loadfile property=".gitignore.content" srcFile="docroot/WEB-INF/.gitignore" />
-
-				<if>
-					<contains string="${.gitignore.content}" substring="/lib" />
-					<then>
-						<delete dir="docroot/WEB-INF/lib" />
-					</then>
-				</if>
-			</then>
-		</if>
-
-		<if>
-			<and>
-				<available file="docroot/WEB-INF/.svn" />
-				<not>
-					<available file="docroot/WEB-INF/lib/.svn" />
-				</not>
-				<length length="0" when="equal">
-					<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" />
-				</length>
-			</and>
-			<then>
-				<delete dir="docroot/WEB-INF/lib" />
-			</then>
-		</if>
-
-		<delete dir="javadoc" />
-		<delete dir="test-classes" />
-		<delete dir="test-results" />
-		<delete dir="tmp" />
-		<delete file="${plugin.file}" />
-		<delete file="${plugin.javadoc.file}" />
-		<delete file="${plugin.pom.file}" />
-		<delete file="${plugin.sources.file}" />
-		<delete file="${plugin.src.file}" />
-
-		<delete failonerror="false" includeemptydirs="true">
-			<fileset dir="docroot" includes="**/*.processed" />
-			<fileset dir="docroot" includes="**/.sass-cache/**" />
-			<fileset dir="docroot" includes="**/.sprite.png" />
-			<fileset dir="docroot" includes="**/.sprite.properties" />
-			<fileset dir="docroot" includes="**/Thumbs.db" />
-		</delete>
-
-		<antcall target="clean-portal-dependencies" />
+	<target name="clean">
 	</target>
 
 	<target name="clean-portal-dependencies">
-		<if>
-			<equals arg1="${plugins.war.clean.portal.dependencies}" arg2="true" />
-			<then>
-				<if>
-					<available file="docroot/WEB-INF/lib" />
-					<then>
-						<delete>
-							<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
-							<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
-						</delete>
-					</then>
-				</if>
-
-				<if>
-					<available file="docroot/WEB-INF/tld" />
-					<then>
-						<delete>
-							<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
-						</delete>
-					</then>
-				</if>
-
-				<if>
-					<available file="tmp/WEB-INF/lib" />
-					<then>
-						<delete>
-							<fileset dir="tmp/WEB-INF/lib" includes="${required.portal.jars}" />
-							<fileset dir="tmp/WEB-INF/lib" includes="${plugin.jars}" />
-						</delete>
-					</then>
-				</if>
-
-				<if>
-					<available file="tmp/WEB-INF/tld" />
-					<then>
-						<delete>
-							<fileset dir="tmp/WEB-INF/tld" includes="${plugin.tlds}" />
-						</delete>
-					</then>
-				</if>
-			</then>
-		</if>
 	</target>
 
 	<target name="compile">
