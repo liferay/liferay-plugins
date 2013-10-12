@@ -4,6 +4,10 @@
 <project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<set-module-properties
+		module.dir="."
+	/>
+
 	<macrodef name="classpath-to-jar">
 		<attribute name="classpathref" />
 		<attribute name="jarfile" />

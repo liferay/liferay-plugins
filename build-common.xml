@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common">
+<project name="build-common" xmlns:antelope="antlib:ise.antelope.tasks">
 	<dirname file="${ant.file.build-common}" property="sdk.dir" />
 
 	<property environment="env" />
@@ -129,6 +129,10 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
 			<delete dir="@{module.dir}/classes" />
 			<delete dir="@{module.dir}/docroot/WEB-INF/classes" />
 
@@ -167,11 +171,11 @@ Error-Prone was automatically installed. Please rerun your task.
 			<delete dir="@{module.dir}/test-classes" />
 			<delete dir="@{module.dir}/test-results" />
 			<delete dir="@{module.dir}/tmp" />
-			<delete file="@{module.dir}/${plugin.file}" />
-			<delete file="@{module.dir}/${plugin.javadoc.file}" />
-			<delete file="@{module.dir}/${plugin.pom.file}" />
-			<delete file="@{module.dir}/${plugin.sources.file}" />
-			<delete file="@{module.dir}/${plugin.src.file}" />
+			<delete file="${plugin.file}" />
+			<delete file="${plugin.javadoc.file}" />
+			<delete file="${plugin.pom.file}" />
+			<delete file="${plugin.sources.file}" />
+			<delete file="${plugin.src.file}" />
 
 			<delete failonerror="false" includeemptydirs="true">
 				<fileset dir="@{module.dir}/docroot" includes="**/*.processed" />
@@ -208,6 +212,10 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
 			<if>
 				<equals arg1="${plugins.war.clean.portal.dependencies}" arg2="true" />
 				<then>
@@ -300,98 +308,170 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
-	<if>
-		<available file="docroot/WEB-INF/liferay-plugin-package.properties" />
-		<then>
-			<property file="docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
+	<macrodef name="set-module-properties">
+		<attribute name="module.dir" />
 
-			<property name="plugin.version" value="${plugin-package.module-incremental-version}" />
-			<property name="plugin.jars" value="${plugin-package.portal-dependency-jars}" />
-			<property name="plugin.tlds" value="${plugin-package.portal-dependency-tlds}" />
-		</then>
-	</if>
-
-	<property name="plugin.name" value="${ant.project.name}" />
-
-	<if>
-		<or>
-			<antelope:endswith string="${plugin.name}" with="-ext" />
-			<antelope:endswith string="${plugin.name}" with="-hook" />
-			<antelope:endswith string="${plugin.name}" with="-layouttpl" />
-			<antelope:endswith string="${plugin.name}" with="-portlet" />
-			<antelope:endswith string="${plugin.name}" with="-theme" />
-			<antelope:endswith string="${plugin.name}" with="-web" />
-		</or>
-		<then>
-			<property name="plugin.packaging" value="war" />
-		</then>
-		<else>
-			<property name="plugin.packaging" value="jar" />
-		</else>
-	</if>
-
-	<property name="plugin.full.version.default" value="${lp.version}.${plugin.version}${lp.version.file.suffix}" />
-
-	<property name="plugin.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.${plugin.packaging}" />
-	<property name="plugin.javadoc.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" />
-	<property name="plugin.pom.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.pom" />
-	<property name="plugin.sources.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
-	<property name="plugin.src.file.default" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
-
-	<var name="plugin.full.version" value="${plugin.full.version.default}" />
-
-	<var name="plugin.file" value="${plugin.file.default}" />
-	<var name="plugin.javadoc.file" value="${plugin.javadoc.file.default}" />
-	<var name="plugin.pom.file" value="${plugin.pom.file.default}" />
-	<var name="plugin.sources.file" value="${plugin.sources.file.default}" />
-	<var name="plugin.src.file" value="${plugin.src.file.default}" />
-
-	<if>
-		<available file="src" />
-		<then>
-			<property name="plugin.classes.dir" value="classes" />
-			<property name="plugin.lib.dir" value="lib" />
-			<property name="plugin.source.dir" value="src" />
+		<sequential>
+			<var name="plugin.jars" unset="true" />
+			<var name="plugin.required.contexts" unset="true" />
+			<var name="plugin.tlds" unset="true" />
+			<var name="plugin.version" unset="true" />
 
 			<if>
-				<available file="lib" />
+				<available file="@{module.dir}/docroot/WEB-INF/liferay-plugin-package.properties" />
 				<then>
-					<path id="plugin-lib.classpath">
-						<fileset dir="lib" includes="*.jar" />
-						<pathelement location="classes" />
-					</path>
+					<var name="plugin-package.module-incremental-version" unset="true" />
+					<var name="plugin-package.portal-dependency-jars" unset="true" />
+					<var name="plugin-package.portal-dependency-tlds" unset="true" />
+					<var name="plugin-package.required-deployment-contexts" unset="true" />
+
+					<property file="@{module.dir}/docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
+
+					<var name="plugin.jars" value="${plugin-package.portal-dependency-jars}" />
+					<var name="plugin.required.contexts" value="${plugin-package.required-deployment-contexts}" />
+					<var name="plugin.tlds" value="${plugin-package.portal-dependency-tlds}" />
+					<var name="plugin.version" value="${plugin-package.module-incremental-version}" />
 				</then>
 				<else>
-					<path id="plugin-lib.classpath">
-						<pathelement location="classes" />
-					</path>
+					<loadfile property="set-module-properties.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+					<script classpathref="lib.classpath" language="beanshell">
+						String buildXmlContent = project.getProperty("set-module-properties.build.xml.content");
+
+						int x = buildXmlContent.indexOf("property name=\"plugin.version\" value=\"");
+
+						if (x != -1) {
+							x = buildXmlContent.indexOf("value=\"", x) + 7;
+
+							int y = buildXmlContent.indexOf("\"", x);
+
+							project.setProperty("plugin.version", buildXmlContent.substring(x, y));
+						}
+						else {
+							project.setProperty("plugin.version", "1");
+						}
+					</script>
+
+					<var name="set-module-properties.build.xml.content" unset="true" />
+					<var name="set-module-properties.plugin.version" unset="true" />
 				</else>
 			</if>
-		</then>
-		<else>
-			<property name="plugin.classes.dir" value="docroot/WEB-INF/classes" />
-			<property name="plugin.lib.dir" value="docroot/WEB-INF/lib" />
-			<property name="plugin.source.dir" value="docroot/WEB-INF/src" />
 
 			<if>
-				<available file="tmp" />
+				<equals arg1="@{module.dir}" arg2="." />
 				<then>
-					<path id="plugin-lib.classpath">
-						<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
-						<fileset dir="tmp/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
-						<pathelement location="docroot/WEB-INF/classes" />
-						<pathelement location="tmp/WEB-INF/classes" />
-					</path>
+					<var name="plugin.name" value="${ant.project.name}" />
 				</then>
 				<else>
-					<path id="plugin-lib.classpath">
-						<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
-						<pathelement location="docroot/WEB-INF/classes" />
-					</path>
+					<antelope:grep
+						group="2"
+						in="@{module.dir}"
+						property="plugin.name"
+						regex="(.*/)(.*)"
+					/>
 				</else>
 			</if>
-		</else>
-	</if>
+
+			<script classpathref="lib.classpath" language="beanshell">
+				String buildXmlContent = project.getProperty("set-module-properties.build.xml.content");
+
+				int x = buildXmlContent.indexOf("property name=\"theme.parent\" value=\"");
+
+				if (x != -1) {
+					x = buildXmlContent.indexOf("value=\"", x) + 7;
+
+					int y = buildXmlContent.indexOf("\"", x);
+
+					project.setProperty("theme.parent", buildXmlContent.substring(x, y));
+				}
+				else {
+					project.setProperty("theme.parent", null);
+				}
+			</script>
+
+			<var name="plugin.packaging" unset="true" />
+
+			<if>
+				<or>
+					<antelope:endswith string="${plugin.name}" with="-ext" />
+					<antelope:endswith string="${plugin.name}" with="-hook" />
+					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+					<antelope:endswith string="${plugin.name}" with="-portlet" />
+					<antelope:endswith string="${plugin.name}" with="-theme" />
+					<antelope:endswith string="${plugin.name}" with="-web" />
+				</or>
+				<then>
+					<property name="plugin.packaging" value="war" />
+				</then>
+				<else>
+					<property name="plugin.packaging" value="jar" />
+				</else>
+			</if>
+
+			<var name="plugin.full.version.default" value="${lp.version}.${plugin.version}${lp.version.file.suffix}" />
+
+			<var name="plugin.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.${plugin.packaging}" />
+			<var name="plugin.javadoc.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" />
+			<var name="plugin.pom.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.pom" />
+			<var name="plugin.sources.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
+			<var name="plugin.src.file.default" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
+
+			<var name="plugin.full.version" value="${plugin.full.version.default}" />
+
+			<var name="plugin.file" value="${plugin.file.default}" />
+			<var name="plugin.javadoc.file" value="${plugin.javadoc.file.default}" />
+			<var name="plugin.pom.file" value="${plugin.pom.file.default}" />
+			<var name="plugin.sources.file" value="${plugin.sources.file.default}" />
+			<var name="plugin.src.file" value="${plugin.src.file.default}" />
+
+			<if>
+				<available file="@{module.dir}/src" />
+				<then>
+					<var name="plugin.classes.dir" value="@{module.dir}/classes" />
+					<var name="plugin.lib.dir" value="@{module.dir}/lib" />
+					<var name="plugin.source.dir" value="@{module.dir}/src" />
+
+					<if>
+						<available file="@{module.dir}/lib" />
+						<then>
+							<path id="plugin-lib.classpath">
+								<fileset dir="@{module.dir}/lib" includes="*.jar" />
+								<pathelement location="@{module.dir}/classes" />
+							</path>
+						</then>
+						<else>
+							<path id="plugin-lib.classpath">
+								<pathelement location="@{module.dir}/classes" />
+							</path>
+						</else>
+					</if>
+				</then>
+				<else>
+					<var name="plugin.classes.dir" value="@{module.dir}/docroot/WEB-INF/classes" />
+					<var name="plugin.lib.dir" value="@{module.dir}/docroot/WEB-INF/lib" />
+					<var name="plugin.source.dir" value="@{module.dir}/docroot/WEB-INF/src" />
+
+					<if>
+						<available file="@{module.dir}/tmp" />
+						<then>
+							<path id="plugin-lib.classpath">
+								<fileset dir="@{module.dir}/docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+								<fileset dir="@{module.dir}/tmp/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+								<pathelement location="@{module.dir}/docroot/WEB-INF/classes" />
+								<pathelement location="@{module.dir}/tmp/WEB-INF/classes" />
+							</path>
+						</then>
+						<else>
+							<path id="plugin-lib.classpath">
+								<fileset dir="@{module.dir}/docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+								<pathelement location="@{module.dir}/docroot/WEB-INF/classes" />
+							</path>
+						</else>
+					</if>
+				</else>
+			</if>
+		</sequential>
+	</macrodef>
 
 	<target name="compile-java">
 		<copy todir="${javac.destdir}">
