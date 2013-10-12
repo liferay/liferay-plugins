@@ -171,11 +171,6 @@ Error-Prone was automatically installed. Please rerun your task.
 			<delete dir="@{module.dir}/test-classes" />
 			<delete dir="@{module.dir}/test-results" />
 			<delete dir="@{module.dir}/tmp" />
-			<delete file="${plugin.file}" />
-			<delete file="${plugin.javadoc.file}" />
-			<delete file="${plugin.pom.file}" />
-			<delete file="${plugin.sources.file}" />
-			<delete file="${plugin.src.file}" />
 
 			<delete failonerror="false" includeemptydirs="true">
 				<fileset dir="@{module.dir}/docroot" includes="**/*.processed" />
@@ -184,6 +179,12 @@ Error-Prone was automatically installed. Please rerun your task.
 				<fileset dir="@{module.dir}/docroot" includes="**/.sprite.properties" />
 				<fileset dir="@{module.dir}/docroot" includes="**/Thumbs.db" />
 			</delete>
+
+			<delete file="${plugin.file}" />
+			<delete file="${plugin.javadoc.file}" />
+			<delete file="${plugin.pom.file}" />
+			<delete file="${plugin.sources.file}" />
+			<delete file="${plugin.src.file}" />
 
 			<clean-portal-dependencies
 				module.dir="@{module.dir}"
