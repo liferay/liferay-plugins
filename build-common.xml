@@ -300,6 +300,99 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<if>
+		<available file="docroot/WEB-INF/liferay-plugin-package.properties" />
+		<then>
+			<property file="docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
+
+			<property name="plugin.version" value="${plugin-package.module-incremental-version}" />
+			<property name="plugin.jars" value="${plugin-package.portal-dependency-jars}" />
+			<property name="plugin.tlds" value="${plugin-package.portal-dependency-tlds}" />
+		</then>
+	</if>
+
+	<property name="plugin.name" value="${ant.project.name}" />
+
+	<if>
+		<or>
+			<antelope:endswith string="${plugin.name}" with="-ext" />
+			<antelope:endswith string="${plugin.name}" with="-hook" />
+			<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+			<antelope:endswith string="${plugin.name}" with="-portlet" />
+			<antelope:endswith string="${plugin.name}" with="-theme" />
+			<antelope:endswith string="${plugin.name}" with="-web" />
+		</or>
+		<then>
+			<property name="plugin.packaging" value="war" />
+		</then>
+		<else>
+			<property name="plugin.packaging" value="jar" />
+		</else>
+	</if>
+
+	<property name="plugin.full.version.default" value="${lp.version}.${plugin.version}${lp.version.file.suffix}" />
+
+	<property name="plugin.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.${plugin.packaging}" />
+	<property name="plugin.javadoc.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-javadoc.zip" />
+	<property name="plugin.pom.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.pom" />
+	<property name="plugin.sources.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
+	<property name="plugin.src.file.default" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
+
+	<var name="plugin.full.version" value="${plugin.full.version.default}" />
+
+	<var name="plugin.file" value="${plugin.file.default}" />
+	<var name="plugin.javadoc.file" value="${plugin.javadoc.file.default}" />
+	<var name="plugin.pom.file" value="${plugin.pom.file.default}" />
+	<var name="plugin.sources.file" value="${plugin.sources.file.default}" />
+	<var name="plugin.src.file" value="${plugin.src.file.default}" />
+
+	<if>
+		<available file="src" />
+		<then>
+			<property name="plugin.classes.dir" value="classes" />
+			<property name="plugin.lib.dir" value="lib" />
+			<property name="plugin.source.dir" value="src" />
+
+			<if>
+				<available file="lib" />
+				<then>
+					<path id="plugin-lib.classpath">
+						<fileset dir="lib" includes="*.jar" />
+						<pathelement location="classes" />
+					</path>
+				</then>
+				<else>
+					<path id="plugin-lib.classpath">
+						<pathelement location="classes" />
+					</path>
+				</else>
+			</if>
+		</then>
+		<else>
+			<property name="plugin.classes.dir" value="docroot/WEB-INF/classes" />
+			<property name="plugin.lib.dir" value="docroot/WEB-INF/lib" />
+			<property name="plugin.source.dir" value="docroot/WEB-INF/src" />
+
+			<if>
+				<available file="tmp" />
+				<then>
+					<path id="plugin-lib.classpath">
+						<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+						<fileset dir="tmp/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+						<pathelement location="docroot/WEB-INF/classes" />
+						<pathelement location="tmp/WEB-INF/classes" />
+					</path>
+				</then>
+				<else>
+					<path id="plugin-lib.classpath">
+						<fileset dir="docroot/WEB-INF/lib" erroronmissingdir="false" includes="*.jar" />
+						<pathelement location="docroot/WEB-INF/classes" />
+					</path>
+				</else>
+			</if>
+		</else>
+	</if>
+
 	<target name="compile-java">
 		<copy todir="${javac.destdir}">
 			<fileset dir="${javac.srcdir}" excludes="**/*.java" />
