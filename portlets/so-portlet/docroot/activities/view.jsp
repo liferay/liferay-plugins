@@ -76,8 +76,6 @@ portletURL.setParameter("tabs1", tabs1);
 
 				uri = Liferay.Util.addParams('start=' + start, uri) || uri;
 
-				console.log(uri);
-
 				A.io.request(
 					uri,
 					{

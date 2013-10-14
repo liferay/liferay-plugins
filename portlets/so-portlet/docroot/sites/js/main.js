@@ -27,11 +27,11 @@ AUI.add(
 
 AUI().use(
 	'aui-base',
-	'liferay-util-window',
 	'aui-io-plugin-deprecated',
 	'datasource-io',
 	'json-parse',
 	'liferay-so-site-list',
+	'liferay-util-window',
 	function(A) {
 		var Lang = A.Lang;
 
@@ -87,6 +87,12 @@ AUI().use(
 				)
 			},
 
+			createDirectoryList: function(directoryList) {
+				var instance = this;
+
+				instance._directoryList = directoryList;
+			},
+
 			disableButton: function(button) {
 				button = button.one('input') || button;
 
@@ -123,31 +129,28 @@ AUI().use(
 
 				if (!instance._popup) {
 					instance._popup = Liferay.Util.Window.getWindow(
-{
-dialog: {
-							align: {
-								node: null,
-								points: ['tc', 'tc']
-							},
-							constrain2view: true,
-							cssClass: 'so-portlet-sites-dialog',
-							modal: true,
-							resizable: true,
-							width: 650
-						}}
+						{
+							dialog: {
+								align: {
+									node: null,
+									points: ['tc', 'tc']
+								},
+								constrain2view: true,
+								cssClass: 'so-portlet-sites-dialog',
+								modal: true,
+								resizable: true,
+								width: 650
+							}
+						}
 					).plug(
 						A.Plugin.IO,
-						{autoLoad: false}
+						{
+							autoLoad: false
+						}
 					).render();
 				}
 
 				return instance._popup;
-			},
-
-			createDirectoryList: function(directoryList) {
-				var instance = this;
-
-				instance._directoryList = directoryList;
 			},
 
 			setTitle: function(title) {

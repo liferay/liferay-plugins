@@ -32,11 +32,11 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 <aui:form action="<%= addSiteURL %>" method="post" name="dialogFm">
 	<aui:model-context model="<%= Group.class %>" />
 
-	<div class="portlet-msg-success hide">
+	<div class="hide portlet-msg-success">
 		<liferay-ui:message key="your-request-processed-successfully" />
 	</div>
 
-	<div class="portlet-msg-error hide">
+	<div class="hide portlet-msg-error">
 		<liferay-ui:message key="your-request-failed-to-complete" />
 	</div>
 
@@ -53,7 +53,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		LayoutSetPrototype defaultLayoutSetPrototype = null;
 		%>
 
-		<div class="section site-settings hide" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {2, 2}) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-settings") %>'>
+		<div class="hide section site-settings" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {2, 2}) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-settings") %>'>
 			<div class="site-options">
 
 				<%

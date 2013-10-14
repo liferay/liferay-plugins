@@ -34,7 +34,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 		<a class="invite-members" href="javascript:;" onClick="<portlet:namespace />openInviteMembers('<%= inviteURL %>');"><liferay-ui:message key="invite-members-to-this-site" /></a>
 
-		<aui:script position="inline" use="aui-base,liferay-util-window,aui-io-plugin-deprecated,liferay-so-invite-members">
+		<aui:script position="inline" use="aui-base,aui-io-plugin-deprecated,liferay-so-invite-members,liferay-util-window">
 			Liferay.provide(
 				window,
 				'<portlet:namespace />openInviteMembers',
@@ -51,19 +51,20 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 					}
 
 					var dialog = Liferay.Util.Window.getWindow(
-{
-dialog: {
-							align: {
-								node: null,
-								points: ['tc', 'tc']
-							},
-							cssClass: 'so-portlet-invite-members',
-							destroyOnClose: true,
-							modal: true,
-							resizable: false,
-							title: title,
-							width: 700
-						}}
+						{
+							dialog: {
+								align: {
+									node: null,
+									points: ['tc', 'tc']
+								},
+								cssClass: 'so-portlet-invite-members',
+								destroyOnClose: true,
+								modal: true,
+								resizable: false,
+								title: title,
+								width: 700
+							}
+						}
 					).plug(
 						A.Plugin.IO,
 						{
@@ -82,7 +83,7 @@ dialog: {
 						}
 					).render();
 				},
-				['aui-base', 'liferay-util-window', 'aui-io-plugin-deprecated', 'liferay-so-invite-members']
+				['aui-base', 'aui-io-plugin-deprecated', 'liferay-so-invite-members', 'liferay-util-window']
 			);
 		</aui:script>
 	</c:when>
