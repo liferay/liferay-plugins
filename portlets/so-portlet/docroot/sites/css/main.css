@@ -193,7 +193,7 @@
 			vertical-align: top;
 		}
 
-		.aui-field-input-select {
+		.field-input-select {
 			margin: 0;
 		}
 	}
@@ -280,24 +280,24 @@
 			font-weight: bold;
 		}
 
-		.template-details .aui-column-content {
+		.template-details .column-content {
 			padding: 5px 10px 15px;
 		}
 
-		.aui-field {
+		.field {
 			margin: 0;
 		}
 
-		 .aui-field-content, .aui-field-label, .aui-field-select {
+		 .field-content, .field-label, .field-select {
 			display: inline;
 		}
 
-		.aui-field-content:after, .aui-button-holder:after {
+		.field-content:after, .button-holder:after {
 			clear: none;
 			display: none;
 		}
 
-		.aui-field-select {
+		.field-select {
 			padding-right: 10px;
 		}
 

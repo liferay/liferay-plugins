@@ -40,7 +40,7 @@
 .portlet-column-only .so-portlet-notifications .portlet-content {
 	padding: 0;
 
-	.aui-button-holder, .taglib-search-iterator-page-iterator-bottom {
+	.button-holder, .taglib-search-iterator-page-iterator-bottom {
 		padding: 5px 10px;
 	}
 }

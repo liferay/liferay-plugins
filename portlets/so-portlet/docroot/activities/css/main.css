@@ -238,7 +238,7 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
-	.comment-entry, .comments-container .aui-form {
+	.comment-entry, .comments-container .form {
 		background: #EAEAEA;
 		border-top: 1px solid #FFF;
 		overflow: hidden;
@@ -269,11 +269,11 @@ $default-border-color: #E7E7E7;
 	}
 
 	.comment-form {
-		.aui-field-content {
+		.field-content {
 			overflow: hidden;
 		}
 
-		.aui-field-element {
+		.field-element {
 			border: 1px solid #C7D0DA;
 
 			@include border-radius(5px);
@@ -291,7 +291,7 @@ $default-border-color: #E7E7E7;
 			}
 		}
 
-		.aui-field-input-text {
+		.field-input-text {
 			border-width: 0;
 
 			@include box-shadow(none);

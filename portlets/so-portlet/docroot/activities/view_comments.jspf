@@ -76,7 +76,7 @@
 								if (responseData.success) {
 									var commentsList = commentsContainer.one('.comments-list');
 
-									commentsList.removeClass('aui-helper-hidden');
+									commentsList.removeClass('hide');
 
 									Liferay.SO.Activities.addNewComment(commentsList, responseData);
 
@@ -95,7 +95,7 @@
 										(messagesCount > 1 ? ' <%= UnicodeLanguageUtil.get(pageContext, "comments") %>' : ' <%= UnicodeLanguageUtil.get(pageContext, "comment") %>')
 									);
 
-									var textInput = commentsContainer.one('.comment-form .aui-field-input-text');
+									var textInput = commentsContainer.one('.comment-form .field-input-text');
 
 									textInput.attr('value', '');
 								}

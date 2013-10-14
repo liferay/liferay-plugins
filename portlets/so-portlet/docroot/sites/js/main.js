@@ -27,8 +27,8 @@ AUI.add(
 
 AUI().use(
 	'aui-base',
-	'aui-dialog',
-	'aui-io-plugin',
+	'liferay-util-window',
+	'aui-io-plugin-deprecated',
 	'datasource-io',
 	'json-parse',
 	'liferay-so-site-list',
@@ -91,7 +91,7 @@ AUI().use(
 				button = button.one('input') || button;
 
 				button.set('disabled', true);
-				button.ancestor('.aui-button').addClass('aui-button-disabled');
+				button.ancestor('.button').addClass('button-disabled');
 			},
 
 			displayPopup: function(url, title, data) {
@@ -115,15 +115,16 @@ AUI().use(
 				button = button.one('input') || button;
 
 				button.set('disabled', false);
-				button.ancestor('.aui-button').removeClass('aui-button-disabled');
+				button.ancestor('.button').removeClass('button-disabled');
 			},
 
 			getPopup: function() {
 				var instance = this;
 
 				if (!instance._popup) {
-					instance._popup = new A.Dialog(
-						{
+					instance._popup = Liferay.Util.Window.getWindow(
+{
+dialog: {
 							align: {
 								node: null,
 								points: ['tc', 'tc']
@@ -133,7 +134,7 @@ AUI().use(
 							modal: true,
 							resizable: true,
 							width: 650
-						}
+						}}
 					).plug(
 						A.Plugin.IO,
 						{autoLoad: false}

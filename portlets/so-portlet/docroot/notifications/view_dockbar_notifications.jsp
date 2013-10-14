@@ -46,8 +46,8 @@ while (iterator.hasNext()) {
 }
 %>
 
-<div class="aui-menu aui-overlaycontext-hidden user-notification-events" id="<portlet:namespace />notificationsMenuContainer">
-	<div class="aui-menu-content user-notification-events-container" id="<portlet:namespace />notificationsMenuContent">
+<div class="menu overlaycontext-hidden user-notification-events" id="<portlet:namespace />notificationsMenuContainer">
+	<div class="menu-content user-notification-events-container" id="<portlet:namespace />notificationsMenuContent">
 
 		<%
 		String userNotificationEventUuids = StringPool.BLANK;
@@ -126,7 +126,7 @@ while (iterator.hasNext()) {
 	<span class="notification-count"><%= notificationEvents.size() %></span>
 </a>
 
-<aui:script use="aui-base,aui-io">
+<aui:script use="aui-base,aui-io-deprecated">
 	var userNotificationEvents = A.one('#<portlet:namespace />notificationsMenuContainer');
 	var userNotificationsContainer = userNotificationEvents.one('.user-notification-events-container');
 

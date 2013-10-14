@@ -25,7 +25,7 @@
 			<liferay-ui:message key="your-request-processed-successfully" />
 		</div>
 
-		<aui:script use="aui-dialog">
+		<aui:script use="liferay-util-window">
 			var closeDialog = function() {
 				var container = A.one('.so-portlet-invite-members-content');
 
@@ -143,7 +143,7 @@
 
 				<div class="invite-actions">
 					<form action='<portlet:actionURL name="sendInvites" />' id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
-					<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/invite_members/view_invite.jsp" /></portlet:renderURL>" />
+					<input name="<portlet:namespace />redirect" type="hidden" value="<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="<portlet:namespace />mvcPath" value="/invite_members/view_invite.jsp" /></portlet:renderURL>" />
 					<input name="<portlet:namespace />groupId" type="hidden" value="<%= themeDisplay.getScopeGroupId() %>" />
 					<input name="<portlet:namespace />receiverUserIds" type="hidden" value="" />
 					<input name="<portlet:namespace />receiverEmailAddresses" type="hidden" value="" />

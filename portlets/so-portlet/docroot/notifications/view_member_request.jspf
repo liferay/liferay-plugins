@@ -46,7 +46,7 @@ catch (Exception e) {
 %>
 
 <c:if test="<%= invitedGroup != null %>">
-	<div class="aui-menu-item user-notification-event-content aui-menu-item">
+	<div class="menu-item user-notification-event-content menu-item">
 		<div class="user-notification-event-sender">
 			<span class="thumbnail">
 				<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
