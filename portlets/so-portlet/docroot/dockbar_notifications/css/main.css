@@ -99,7 +99,7 @@
 		}
 	}
 
-	.user-notification-event-content.aui-focus, .user-notification-event-content.aui-focus a, .user-notification-event-content.aui-focus a:hover, .user-notification-event-footer .dismiss-notifications a:hover, .user-notification-event-footer .view-all a:hover {
+	.user-notification-event-content.focus, .user-notification-event-content.focus a, .user-notification-event-content.focus a:hover, .user-notification-event-footer .dismiss-notifications a:hover, .user-notification-event-footer .view-all a:hover {
 		background: #5B677D;
 		color: #FFF;
 		text-shadow: none;

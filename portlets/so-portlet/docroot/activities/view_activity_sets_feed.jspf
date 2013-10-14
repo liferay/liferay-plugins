@@ -110,7 +110,7 @@ for (SocialActivitySet activitySet : results) {
 							<a data-activitySetId="<%= activitySet.getActivitySetId() %>" href="javascript:;"><%= commentsCount > 0 ? commentsCount : StringPool.BLANK %> <liferay-ui:message key='<%= commentsCount > 1 ? "comments" : "comment" %>' /></a>
 						</span>
 
-						<span class="toggle action aui-helper-hidden">
+						<span class="toggle action hide">
 							<a class="toggle-entry" data-entryId="<%= activitySet.getActivitySetId() %>" href="javascript:;">
 								<span><liferay-ui:message key="view-more" /></span>
 							</a>
@@ -134,7 +134,7 @@ for (SocialActivitySet activitySet : results) {
 			if (body.outerHeight() > (subentry.outerHeight() * 3)) {
 				var toggle = entry.one('.toggle');
 
-				toggle.removeClass('aui-helper-hidden');
+				toggle.removeClass('hide');
 
 				entry.addClass('toggler-content-collapsed')
 			}

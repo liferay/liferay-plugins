@@ -39,7 +39,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 <div class="loading-bar"></div>
 
-<aui:script use="aui-base,aui-io-request,aui-parse-content,liferay-so-scroll">
+<aui:script use="aui-base,aui-io-request-deprecated,aui-parse-content,liferay-so-scroll">
 	var activities = A.one('#p_p_id<portlet:namespace />');
 	var body = A.getBody();
 
@@ -75,6 +75,8 @@ portletURL.setParameter("tabs1", tabs1);
 				var uri = '<%= viewActivitySetsURL %>';
 
 				uri = Liferay.Util.addParams('start=' + start, uri) || uri;
+
+				console.log(uri);
 
 				A.io.request(
 					uri,

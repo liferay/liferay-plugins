@@ -83,7 +83,7 @@ pageContext.setAttribute("portletURL", portletURL);
 
 </form>
 
-<aui:script use="aui-base,aui-io,aui-toolbar">
+<aui:script use="aui-base,aui-io-deprecated,aui-toolbar">
 	Liferay.SO.Sites.init(
 		{
 			messages: '#<portlet:namespace />messages',

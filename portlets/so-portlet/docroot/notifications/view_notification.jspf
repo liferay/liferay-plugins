@@ -42,7 +42,7 @@ else {
 }
 %>
 
-<div class="aui-menu-item user-notification-event-content" data-portletUrl="<%= portletURL %>">
+<div class="menu-item user-notification-event-content" data-portletUrl="<%= portletURL %>">
 	<div class="user-notification-event-sender">
 		<span class="thumbnail">
 			<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />

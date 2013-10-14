@@ -49,7 +49,7 @@
 			notificationsMenuItems.on(
 				['mouseover', 'mouseout'],
 				function(event) {
-					event.currentTarget.toggleClass('aui-focus');
+					event.currentTarget.toggleClass('focus');
 				}
 			);
 		}

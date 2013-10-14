@@ -34,7 +34,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 		<a class="invite-members" href="javascript:;" onClick="<portlet:namespace />openInviteMembers('<%= inviteURL %>');"><liferay-ui:message key="invite-members-to-this-site" /></a>
 
-		<aui:script position="inline" use="aui-base,aui-dialog,aui-io-plugin,liferay-so-invite-members">
+		<aui:script position="inline" use="aui-base,liferay-util-window,aui-io-plugin-deprecated,liferay-so-invite-members">
 			Liferay.provide(
 				window,
 				'<portlet:namespace />openInviteMembers',
@@ -50,8 +50,9 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 						title = titleNode.get('innerHTML');
 					}
 
-					var dialog = new A.Dialog(
-						{
+					var dialog = Liferay.Util.Window.getWindow(
+{
+dialog: {
 							align: {
 								node: null,
 								points: ['tc', 'tc']
@@ -62,7 +63,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 							resizable: false,
 							title: title,
 							width: 700
-						}
+						}}
 					).plug(
 						A.Plugin.IO,
 						{
@@ -81,7 +82,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 						}
 					).render();
 				},
-				['aui-base', 'aui-dialog', 'aui-io-plugin', 'liferay-so-invite-members']
+				['aui-base', 'liferay-util-window', 'aui-io-plugin-deprecated', 'liferay-so-invite-members']
 			);
 		</aui:script>
 	</c:when>

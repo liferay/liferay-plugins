@@ -225,7 +225,7 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 		width: 350px;
 		z-index: 2;
 
-		.aui-menu-content {
+		.menu-content {
 			background-image: none;
 
 			@include menu-mix;
@@ -513,7 +513,7 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 		}
 
 		.control-container {
-			.aui-toolbar-content {
+			.toolbar-content {
 				display: block;
 			}
 
