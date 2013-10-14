@@ -73,7 +73,7 @@ if (user2 != null) {
 
 		<div class="field-actions-toolbar">
 			<ul class="settings-actions">
-				<li class="action-field component settings-field lfr-token" data-extension="true" data-sectionId="projects" data-title="<%= LanguageUtil.get(pageContext, "projects") %>">
+				<li class="action-field component lfr-token settings-field" data-extension="true" data-sectionId="projects" data-title="<%= LanguageUtil.get(pageContext, "projects") %>">
 					<div class="settings-field-content">
 						<span class="settings-label"><liferay-ui:message key="add" /></span>
 					</div>

@@ -106,11 +106,11 @@ for (SocialActivitySet activitySet : results) {
 							</c:if>
 						</c:if>
 
-						<span class="view-comments action">
+						<span class="action view-comments">
 							<a data-activitySetId="<%= activitySet.getActivitySetId() %>" href="javascript:;"><%= commentsCount > 0 ? commentsCount : StringPool.BLANK %> <liferay-ui:message key='<%= commentsCount > 1 ? "comments" : "comment" %>' /></a>
 						</span>
 
-						<span class="toggle action hide">
+						<span class="action hide toggle">
 							<a class="toggle-entry" data-entryId="<%= activitySet.getActivitySetId() %>" href="javascript:;">
 								<span><liferay-ui:message key="view-more" /></span>
 							</a>
