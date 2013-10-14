@@ -16,7 +16,7 @@
 
 <liferay-ui:search-container
 	id="users"
-	searchContainer="<%= new CalendarResourceSearch(renderRequest, CalendarResourceSearch.DEFAULT_CUR_PARAM + "Users", iteratorURL) %>"
+	searchContainer='<%= new CalendarResourceSearch(renderRequest, CalendarResourceSearch.DEFAULT_CUR_PARAM + "Users", iteratorURL) %>'
 >
 
 	<%

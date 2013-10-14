@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <aui:fieldset>
-	<aui:button id='<%= renderResponse.getNamespace() + "publish" %>' type="button" value="Publish a Random Number" />
+	<aui:button name="publish" value="Publish a Random Number" />
 </aui:fieldset>
 
 <div id="<portlet:namespace />message"></div>
