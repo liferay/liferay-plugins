@@ -27,7 +27,6 @@ portletURL.setParameter("mvcPath", "/basic.jsp");
 	iteratorURL="<%= portletURL %>"
 	total="<%= UserLocalServiceUtil.getUsersCount() %>"
 >
-
 	<liferay-ui:search-container-results
 		results="<%= UserLocalServiceUtil.getUsers(searchContainer.getStart(), searchContainer.getEnd()) %>"
 	/>

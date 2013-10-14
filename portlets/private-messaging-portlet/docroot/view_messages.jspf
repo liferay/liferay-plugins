@@ -39,7 +39,6 @@
 	emptyResultsMessage="no-messages-found"
 	total="<%= UserThreadLocalServiceUtil.getUserUserThreadCount(themeDisplay.getUserId(), false) %>"
 >
-
 	<liferay-ui:search-container-results
 		results="<%= UserThreadLocalServiceUtil.getUserUserThreads(themeDisplay.getUserId(), false, searchContainer.getStart(), searchContainer.getEnd()) %>"
 	/>
