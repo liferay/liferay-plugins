@@ -38,7 +38,7 @@ public class WorkflowDefinitionManagerImpl
 
 	@Override
 	public WorkflowDefinition deployWorkflowDefinition(
-			long companyId, long userId, String title, byte[] definitionData)
+			long companyId, long userId, String title, byte[] bytes)
 		throws WorkflowException {
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -47,8 +47,7 @@ public class WorkflowDefinitionManagerImpl
 		serviceContext.setUserId(userId);
 
 		return _workflowEngine.deployWorkflowDefinition(
-			title, new UnsyncByteArrayInputStream(definitionData),
-			serviceContext);
+			title, new UnsyncByteArrayInputStream(bytes), serviceContext);
 	}
 
 	@Override
@@ -329,11 +328,11 @@ public class WorkflowDefinitionManagerImpl
 	}
 
 	@Override
-	public void validateWorkflowDefinition(byte[] definitionData)
+	public void validateWorkflowDefinition(byte[] bytes)
 		throws WorkflowException {
 
 		_workflowEngine.validateWorkflowDefinition(
-			new UnsyncByteArrayInputStream(definitionData));
+			new UnsyncByteArrayInputStream(bytes));
 	}
 
 	protected List<WorkflowDefinition> toWorkflowDefinitions(

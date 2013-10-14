@@ -24,7 +24,7 @@ import com.liferay.portal.workflow.kaleo.definition.Definition;
 public interface DefinitionBuilder {
 
 	public Definition buildDefinition(long kaleoDefinitionId)
-			throws PortalException, SystemException;
+		throws PortalException, SystemException;
 
 	public Definition buildDefinition(long companyId, String name, int version)
 		throws PortalException, SystemException;
