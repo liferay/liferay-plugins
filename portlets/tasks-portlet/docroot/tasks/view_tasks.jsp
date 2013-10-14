@@ -24,22 +24,8 @@ String tabs1 = ParamUtil.getString(request, "tabs1", tabs1Default);
 String tabs2 = ParamUtil.getString(request, "tabs2", "open");
 
 long[] assetTagIds = StringUtil.split(ParamUtil.getString(request, "assetTagIds"), 0L);
-long groupId = ParamUtil.getLong(request, "groupId", 0);
 
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setWindowState(WindowState.NORMAL);
-
-portletURL.setParameter("tabs1", tabs1);
-portletURL.setParameter("tabs2", tabs2);
-
-PortletURL taskListURL = renderResponse.createRenderURL();
-
-taskListURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
-taskListURL.setParameter("mvcPath", "/tasks/view_tasks.jsp");
-taskListURL.setParameter("tabs1", tabs1);
-taskListURL.setParameter("tabs2", tabs2);
+long groupId = ParamUtil.getLong(request, "groupId");
 
 if (group.isRegularSite()) {
 	groupId = group.getGroupId();
@@ -60,6 +46,21 @@ int status = TasksEntryConstants.STATUS_ALL;
 if (tabs2.equals("open")) {
 	status = TasksEntryConstants.STATUS_OPEN;
 }
+
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setWindowState(WindowState.NORMAL);
+
+portletURL.setParameter("tabs1", tabs1);
+portletURL.setParameter("tabs2", tabs2);
+
+PortletURL taskListURL = renderResponse.createRenderURL();
+
+taskListURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+
+taskListURL.setParameter("mvcPath", "/tasks/view_tasks.jsp");
+taskListURL.setParameter("tabs1", tabs1);
+taskListURL.setParameter("tabs2", tabs2);
 %>
 
 <liferay-ui:search-container

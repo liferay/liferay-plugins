@@ -77,7 +77,7 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 	%>
 
 	<liferay-ui:search-container-results
-			results="<%= BookmarksEntryServiceUtil.getEntries(scopeGroupId, folderId, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
+		results="<%= BookmarksEntryServiceUtil.getEntries(scopeGroupId, folderId, searchContainer.getStart(), searchContainer.getEnd(), orderByComparator) %>"
 	/>
 
 	<liferay-ui:search-container-row
