@@ -40,8 +40,21 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	z-index: 301;
 }
 
-.aui .dockbar-split .dockbar .navbar-inner .container .nav-account-controls {
-	top: 0;
+html.aui .dockbar .navbar-inner .container .nav-account-controls,
+html.aui .dockbar-split .dockbar .navbar-inner .container .nav-account-controls {
+	bottom: 100%;
+	left: auto;
+	position: absolute;
+	right: 0;
+
+	.divider {
+		display: none;
+	}
+
+	.navbar .nav > li > a {
+		color: #FFF;
+		text-shadow: none;
+	}
 }
 
 .aui .so-portlet-user-bar {
