@@ -337,11 +337,10 @@ public class KaleoDefinitionTestCase extends TestCase {
 	}
 
 	protected String assertInvalid(InputStream inputStream) throws Exception {
-		byte[] definitionData = FileUtil.getBytes(inputStream);
+		byte[] bytes = FileUtil.getBytes(inputStream);
 
 		try {
-			WorkflowDefinitionManagerUtil.validateWorkflowDefinition(
-				definitionData);
+			WorkflowDefinitionManagerUtil.validateWorkflowDefinition(bytes);
 
 			fail();
 		}
@@ -355,11 +354,10 @@ public class KaleoDefinitionTestCase extends TestCase {
 	}
 
 	protected void assertValid(InputStream inputStream) throws Exception {
-		byte[] definitionData = FileUtil.getBytes(inputStream);
+		byte[] bytes = FileUtil.getBytes(inputStream);
 
 		try {
-			WorkflowDefinitionManagerUtil.validateWorkflowDefinition(
-				definitionData);
+			WorkflowDefinitionManagerUtil.validateWorkflowDefinition(bytes);
 		}
 		catch (WorkflowException we) {
 			fail(we.getMessage());
