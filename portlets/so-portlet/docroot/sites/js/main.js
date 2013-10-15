@@ -59,7 +59,7 @@ AUI().use(
 
 			createDataSource: function(url) {
 				var instance = this;
-				
+
 				return new A.DataSource.IO(
 					{
 						ioConfig: {
@@ -101,7 +101,7 @@ AUI().use(
 
 			disableButton: function(button) {
 				button.set('disabled', true);
-				
+
 				button.addClass('disabled');
 			},
 
@@ -113,7 +113,7 @@ AUI().use(
 				popup.titleNode.html(title);
 
 				popup.show();
-				
+
 				popup.io.set('uri', url);
 				popup.io.set('data', data);
 
@@ -122,7 +122,7 @@ AUI().use(
 
 			enableButton: function(button) {
 				button.set('disabled', false);
-				
+
 				button.removeClass('disabled');
 			},
 
