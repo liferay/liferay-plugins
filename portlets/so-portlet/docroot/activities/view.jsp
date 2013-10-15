@@ -74,7 +74,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 				var uri = '<%= viewActivitySetsURL %>';
 
-				uri = Liferay.Util.addParams('start=' + start, uri) || uri;
+				uri = Liferay.Util.addParams('<portlet:namespace />start=' + start, uri) || uri;
 
 				A.io.request(
 					uri,
@@ -139,7 +139,7 @@ portletURL.setParameter("tabs1", tabs1);
 			else {
 				var uri = '<liferay-portlet:resourceURL id="getComments"></liferay-portlet:resourceURL>';
 
-				uri = Liferay.Util.addParams('activitySetId=' + currentTarget.getAttribute('data-activitySetId'), uri) || uri;
+				uri = Liferay.Util.addParams('<portlet:namespace />activitySetId=' + currentTarget.getAttribute('data-activitySetId'), uri) || uri;
 
 				A.io.request(
 					uri,
@@ -332,7 +332,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 			var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcPath" value="/activities/repost_microblogs_entry.jsp" /><portlet:param name="mvcPath" value="/activities/repost_microblogs_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';
 
-			uri = Liferay.Util.addParams('microblogsEntryId=' + currentTarget.getAttribute('data-microblogsEntryId'), uri) || uri;
+			uri = Liferay.Util.addParams('<portlet:namespace />microblogsEntryId=' + currentTarget.getAttribute('data-microblogsEntryId'), uri) || uri;
 
 			Liferay.Util.openWindow(
 				{

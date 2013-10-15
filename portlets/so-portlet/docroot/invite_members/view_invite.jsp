@@ -178,9 +178,9 @@
 						var data = event.request;
 
 						event.cfg.data = {
-							end: data.end || pageDelta,
-							keywords: data.keywords || '',
-							start: data.start || 0
+							<portlet:namespace />end: data.<portlet:namespace />end || pageDelta,
+							<portlet:namespace />keywords: data.<portlet:namespace />keywords || '',
+							<portlet:namespace />start: data.<portlet:namespace />start || 0
 						}
 					}
 				},
@@ -196,9 +196,9 @@
 			minQueryLength: 0,
 			requestTemplate: function(query) {
 				return {
-					end: pageDelta,
-					keywords: query,
-					start: 0
+					<portlet:namespace />end: pageDelta,
+					<portlet:namespace />keywords: query,
+					<portlet:namespace />start: 0
 				}
 			},
 			resultTextLocator: function(response) {
@@ -307,9 +307,9 @@
 						}
 					},
 					data: {
-						end: end,
-						keywords: inviteUserSearch.get('value'),
-						start: start
+						<portlet:namespace />end: <portlet:namespace />end,
+						<portlet:namespace />keywords: inviteUserSearch.get('value'),
+						<portlet:namespace />start: <portlet:namespace />start
 					},
 					dataType: 'json'
 				}

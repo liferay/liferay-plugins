@@ -104,11 +104,11 @@ else {
 			minQueryLength: 0,
 			requestTemplate: function(query) {
 				return {
-					directory: true,
-					end: <%= maxResultSize %>,
-					keywords: query,
-					searchTab: sitesTabsSelect.get('value'),
-					start: 0
+					<portlet:namespace />directory: true,
+					<portlet:namespace />end: <%= maxResultSize %>,
+					<portlet:namespace />keywords: query,
+					<portlet:namespace />searchTab: sitesTabsSelect.get('value'),
+					<portlet:namespace />start: 0
 				}
 			},
 			resultTextLocator: function(response) {
@@ -242,11 +242,11 @@ else {
 
 		return function(query) {
 			return {
-				directory: true,
-				end: end,
-				keywords: query,
-				searchTab: sitesTabsSelect.get('value'),
-				start: start
+				<portlet:namespace />directory: true,
+				<portlet:namespace />end: end,
+				<portlet:namespace />keywords: query,
+				<portlet:namespace />searchTab: sitesTabsSelect.get('value'),
+				<portlet:namespace />start: start
 			}
 		};
 	};

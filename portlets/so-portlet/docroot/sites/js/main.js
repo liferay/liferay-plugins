@@ -41,6 +41,8 @@ AUI().use(
 			init: function(config) {
 				var instance = this;
 
+				instance._namespace = config.namespace;
+
 				instance._createSiteList(config);
 				instance._assignEvents();
 			},
@@ -56,6 +58,8 @@ AUI().use(
 			},
 
 			createDataSource: function(url) {
+				var instance = this;
+				
 				return new A.DataSource.IO(
 					{
 						ioConfig: {
@@ -71,15 +75,17 @@ AUI().use(
 									tabs1 = sitesTabsContainer.one('select').get('value');
 								}
 
+								var eventData = {};
+
 								var data = event.request;
 
-								event.cfg.data = {
-									directory: data.directory || false,
-									end: data.end || 10,
-									keywords: data.keywords || '',
-									searchTab: data.searchTab || tabs1,
-									start: data.start || 0
-								}
+								eventData[instance._namespace + 'directory'] = data[instance._namespace + 'directory'] || false;
+								eventData[instance._namespace + 'end'] = data[instance._namespace + 'end'] || 10;
+								eventData[instance._namespace + 'keywords'] = data[instance._namespace + 'keywords'] || '';
+								eventData[instance._namespace + 'searchTab'] = data[instance._namespace + 'searchTab'] || 0;
+								eventData[instance._namespace + 'start'] = data[instance._namespace + 'start'] || tabs1;
+
+								event.cfg.data = eventData;
 							}
 						},
 						source: url
@@ -219,9 +225,11 @@ AUI().use(
 						listNode: siteList,
 						minQueryLength: 0,
 						requestTemplate: function(query) {
-							return {
-								keywords: query
-							}
+							var data = {};
+
+							data[instance._namespace + 'keywords'] = query;
+
+							return data;
 						},
 						resultTextLocator: function(response) {
 							var result = '';

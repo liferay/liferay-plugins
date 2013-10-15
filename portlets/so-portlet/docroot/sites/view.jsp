@@ -87,6 +87,7 @@ pageContext.setAttribute("portletURL", portletURL);
 	Liferay.SO.Sites.init(
 		{
 			messages: '#<portlet:namespace />messages',
+			namespace: '<portlet:namespace />',
 			siteList: '.so-portlet-sites .site-list',
 			siteListContainer: '.so-portlet-sites .site-list-container',
 			siteListURL: '<portlet:resourceURL id="getSites"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
@@ -165,8 +166,8 @@ pageContext.setAttribute("portletURL", portletURL);
 			var keywords = searchInput.get('value');
 
 			var data = {
-				keywords: keywords,
-				tabs1: sitesTabsSelect.get('value')
+				<portlet:namespace />keywords: keywords,
+				<portlet:namespace />tabs1: sitesTabsSelect.get('value')
 			};
 
 			<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">

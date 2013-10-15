@@ -365,7 +365,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 						}
 					},
 					data: {
-						layoutSetPrototypeId: templateId
+						<portlet:namespace />layoutSetPrototypeId: templateId
 					},
 					dataType: 'JSON'
 				}
