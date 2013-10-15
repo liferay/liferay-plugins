@@ -276,14 +276,14 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 
 			sectionContainer.all('.section').hide();
 
-			if (!section.previous()) {
+			if (!section.previous('.section')) {
 				Liferay.SO.Sites.disableButton(previousButton);
 			}
 			else {
 				Liferay.SO.Sites.enableButton(previousButton);
 			}
 
-			if (!section.next()) {
+			if (!section.next('.section')) {
 				Liferay.SO.Sites.disableButton(nextButton);
 			}
 			else {
