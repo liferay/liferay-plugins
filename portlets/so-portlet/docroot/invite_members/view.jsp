@@ -39,10 +39,6 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 				window,
 				'<portlet:namespace />openInviteMembers',
 				function(url) {
-					if (A.one('#<portlet:namespace />inviteMembersContainer')) {
-						return;
-					}
-
 					var title = '';
 					var titleNode = A.one('.so-portlet-invite-members .portlet-title-default');
 
