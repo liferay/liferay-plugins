@@ -14,6 +14,7 @@
 
 package com.liferay.portal.workflow.kaleo.test;
 
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil;
 import com.liferay.portal.kernel.workflow.WorkflowException;
 
@@ -335,10 +336,12 @@ public class KaleoDefinitionTestCase extends TestCase {
 		assertValid(inputStream);
 	}
 
-	protected String assertInvalid(InputStream inputStream) {
+	protected String assertInvalid(InputStream inputStream) throws Exception {
+		byte[] definitionData = FileUtil.getBytes(inputStream);
+
 		try {
 			WorkflowDefinitionManagerUtil.validateWorkflowDefinition(
-				inputStream);
+				definitionData);
 
 			fail();
 		}
@@ -351,10 +354,12 @@ public class KaleoDefinitionTestCase extends TestCase {
 		return null;
 	}
 
-	protected void assertValid(InputStream inputStream) {
+	protected void assertValid(InputStream inputStream) throws Exception {
+		byte[] definitionData = FileUtil.getBytes(inputStream);
+
 		try {
 			WorkflowDefinitionManagerUtil.validateWorkflowDefinition(
-				inputStream);
+				definitionData);
 		}
 		catch (WorkflowException we) {
 			fail(we.getMessage());
