@@ -100,10 +100,9 @@ AUI().use(
 			},
 
 			disableButton: function(button) {
-				button = button.one('input') || button;
-
 				button.set('disabled', true);
-				button.ancestor('.button').addClass('button-disabled');
+				
+				button.addClass('disabled');
 			},
 
 			displayPopup: function(url, title, data) {
@@ -122,10 +121,9 @@ AUI().use(
 			},
 
 			enableButton: function(button) {
-				button = button.one('input') || button;
-
 				button.set('disabled', false);
-				button.ancestor('.button').removeClass('button-disabled');
+				
+				button.removeClass('disabled');
 			},
 
 			getPopup: function() {
