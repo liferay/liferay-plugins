@@ -95,7 +95,7 @@
 										(messagesCount > 1 ? ' <%= UnicodeLanguageUtil.get(pageContext, "comments") %>' : ' <%= UnicodeLanguageUtil.get(pageContext, "comment") %>')
 									);
 
-									var textInput = commentsContainer.one('.comment-form .field-input-text');
+									var textInput = commentsContainer.one('.comment-form');
 
 									textInput.attr('value', '');
 								}
