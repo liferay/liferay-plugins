@@ -109,14 +109,12 @@ AUI().use(
 			displayPopup: function(url, title, data) {
 				var instance = this;
 
-				var viewportRegion = A.getBody().get('viewportRegion');
-
 				var popup = instance.getPopup();
 
+				popup.titleNode.html(title);
+
 				popup.show();
-
-				popup.set('title', title);
-
+				
 				popup.io.set('uri', url);
 				popup.io.set('data', data);
 
@@ -164,7 +162,7 @@ AUI().use(
 
 				var popup = instance.getPopup();
 
-				popup.set('title', title);
+				popup.titleNode.html(title);
 			},
 
 			updateSites: function(showSuccessMessage, keywordsInput, requestTemplate) {

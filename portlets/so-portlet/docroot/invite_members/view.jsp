@@ -61,9 +61,9 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 								destroyOnClose: true,
 								modal: true,
 								resizable: false,
-								title: title,
 								width: 700
-							}
+							},
+							title: title
 						}
 					).plug(
 						A.Plugin.IO,
