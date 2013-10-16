@@ -32,7 +32,7 @@ if (distributionScopeArray.length == 2) {
 	classPK = GetterUtil.getLong(distributionScopeArray[1]);
 }
 
-if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
+if ((classNameId == 0) && (classPK == 0) && !PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_GENERAL_ANNOUNCEMENTS)) {
 	throw new PrincipalException();
 }
 
