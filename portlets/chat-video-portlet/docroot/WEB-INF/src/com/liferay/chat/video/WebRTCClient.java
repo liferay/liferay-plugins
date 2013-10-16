@@ -24,49 +24,16 @@ import java.util.Set;
  * @author Philippe Proulx
  */
 public class WebRTCClient {
-	private final HashMap<WebRTCClient, WebRTCConnection> connections = new HashMap<WebRTCClient, WebRTCConnection>();
-	private final WebRTCClient.Mailbox outgoingMailbox = new WebRTCClient.Mailbox();
-	private boolean isAvailable = false;
-	private final long userId;
-	private long ts;
-
 	public WebRTCClient(long userId) {
 		this.userId = userId;
 		this.updatePresence();
 	}
 
-	public void isAvailable(boolean val) {
-		this.isAvailable = val;
-	}
-
-	public boolean isAvailable() {
-		return this.isAvailable;
-	}
-
-	public long getTs() {
-		return this.ts;
-	}
-
-	public synchronized void updatePresence() {
-		this.ts = System.currentTimeMillis();
-	}
-
-	public long getUserId() {
-		return this.userId;
-	}
-
-	public synchronized void reset() {
-		this.isAvailable(false);
-		this.removeAllConnections();
-	}
-
-	public WebRTCClient.Mailbox getOugoingMailbox() {
-		return this.outgoingMailbox;
-	}
-
 	public void addConnection(WebRTCClient dst, WebRTCConnection conn) {
 		if (this.connectionExists(dst)) {
+
 			// TODO: error: already exists
+
 			return;
 		}
 
@@ -77,42 +44,64 @@ public class WebRTCClient {
 		return this.connections.containsKey(dst);
 	}
 
-	public WebRTCConnection getConnection(WebRTCClient dst) {
-		if (!this.connectionExists(dst)) {
-			// TODO: error
-			return null;
-		}
-
-		return this.connections.get(dst);
-	}
-
-	public void removeAllConnections() {
-		for (WebRTCClient dst : this.connections.keySet()) {
-			dst.removeSimpleConnection(this);
-		}
-		this.connections.clear();
-	}
-
-	private void removeSimpleConnection(WebRTCClient dst) {
-		if (this.connectionExists(dst)) {
-			this.connections.remove(dst);
-		}
-	}
-
-	public void removeBilateralConnection(WebRTCClient dst) {
-		if (dst.connectionExists(this)) {
-			dst.removeSimpleConnection(this);
-		}
-		this.removeSimpleConnection(dst);
-	}
-
 	public Set<WebRTCClient> getConnectedClients() {
 		Set<WebRTCClient> connectedClients = this.connections.keySet();
 
 		return connectedClients;
 	}
 
-    public static class Mailbox {
+	public WebRTCConnection getConnection(WebRTCClient dst) {
+		if (!this.connectionExists(dst)) {
+
+			// TODO: error
+
+			return null;
+		}
+
+		return this.connections.get(dst);
+	}
+
+	public WebRTCClient.Mailbox getOugoingMailbox() {
+		return this.outgoingMailbox;
+	}
+
+	public long getTs() {
+		return this.ts;
+	}
+
+	public long getUserId() {
+		return this.userId;
+	}
+
+	public boolean isAvailable() {
+		return this.isAvailable;
+	}
+
+	public void isAvailable(boolean val) {
+		this.isAvailable = val;
+	}
+
+	public void removeAllConnections() {
+		for (WebRTCClient dst : this.connections.keySet()) {
+			dst.removeSimpleConnection(this);
+		}
+
+		this.connections.clear();
+	}
+
+	public void removeBilateralConnection(WebRTCClient dst) {
+		if (dst.connectionExists(this)) {
+			dst.removeSimpleConnection(this);
+		}
+
+		this.removeSimpleConnection(dst);
+	}
+
+	public synchronized void updatePresence() {
+		this.ts = System.currentTimeMillis();
+	}
+
+	public static class Mailbox {
 		private final ArrayList<Mailbox.Mail> messages = new ArrayList<Mailbox.Mail>();
 
 		public void push(Mailbox.Mail mail) {
@@ -162,6 +151,7 @@ public class WebRTCClient {
 			}
 
 			// specialized messages need to implement those
+
 			public abstract String getMsgType();
 		}
 
@@ -240,5 +230,21 @@ public class WebRTCClient {
 				return "conn";
 			}
 		}
+	} public synchronized void reset() {
+		this.isAvailable(false);
+		this.removeAllConnections();
 	}
+
+	private void removeSimpleConnection(WebRTCClient dst) {
+		if (this.connectionExists(dst)) {
+			this.connections.remove(dst);
+		}
+	}
+
+	private final HashMap<WebRTCClient, WebRTCConnection> connections = new HashMap<WebRTCClient, WebRTCConnection>();
+	private boolean isAvailable = false;
+	private final WebRTCClient.Mailbox outgoingMailbox = new WebRTCClient.Mailbox();
+	private long ts;
+	private final long userId;
+
 }

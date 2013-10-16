@@ -30,343 +30,408 @@ import java.util.Set;
  * @author Philippe Proulx
  */
 public class WebRTCManager {
-    /*
-     * Clients should send an "update presence" message every 10-15 seconds,
-     * so check presences every 30 seconds.
-     */
-    private static final long PRESENCE_TIMEOUT_MS = 30000;
+	/*
+	 * Clients should send an "update presence" message every 10-15 seconds,
+	 * so check presences every 30 seconds.
+	 */
+	/**
+	 * Verifies the connections states for timeouts handling.
+	 *
+	 * This method should be called by an external timer/scheduler.
+	 */
+	public static void checkAllManagersConnectionsStates() {
+		synchronized (WebRTCManager.managers) {
+			for (WebRTCManager manager : WebRTCManager.managers) {
+				manager.checkConnectionsStates();
+			}
+		}
+	}
 
-    // connection state timeout value (ms)
-    private static final long CONNECTION_TIMEOUT_MS = 60000;
+	/**
+	 * Verifies presences of all registered clients.
+	 *
+	 * This method should be called by an external timer/scheduler.
+	 */
+	public static void checkAllManagersPresences() {
+		synchronized (WebRTCManager.managers) {
+			for (WebRTCManager manager : WebRTCManager.managers) {
+				manager.checkPresences();
+			}
+		}
+	}
 
-    // all known managers (most of the time, only one will exist)
-    private static final List<WebRTCManager> managers = new ArrayList<WebRTCManager>();
+	public WebRTCManager() {
+		synchronized (WebRTCManager.managers) {
+			WebRTCManager.managers.add(this);
+		}
+	}
 
-    // user ID -> WebRTC client (for all known clients by this manager)
-    private final HashMap<Long, WebRTCClient> clients = new HashMap<Long, WebRTCClient>();
+	public boolean clientIsAvailable(long userId) {
+		if (!this.clients.containsKey(userId)) {
+			return false;
+		}
 
-    public WebRTCManager() {
-        synchronized (WebRTCManager.managers) {
-            WebRTCManager.managers.add(this);
-        }
-    }
+		return this.clients.get(userId).isAvailable();
+	}
 
-    public boolean clientIsAvailable(long userId) {
-        if (!this.clients.containsKey(userId)) {
-            return false;
-        }
+	public List<Long> getAvailableClientsIds() {
+		ArrayList<Long> uids = new ArrayList<Long>();
+		synchronized (this.clients) {
+			for (Long uid : this.clients.keySet()) {
+				if (this.clientIsAvailable(uid)) {
+					uids.add(uid);
+				}
+			}
+		}
 
-        return this.clients.get(userId).isAvailable();
-    }
+		return uids;
+	}
 
-    private WebRTCClient getClientUnsafe(long userId) {
-        if (this.clients.containsKey(userId)) {
-            return this.clients.get(userId);
-        } else {
-            return null;
-        }
-    }
+	public WebRTCClient getClient(long userId) {
+		synchronized (this.clients) {
+			return this.getClientUnsafe(userId);
+		}
+	}
 
-    public List<Long> getAvailableClientsIds() {
-        ArrayList<Long> uids = new ArrayList<Long>();
-        synchronized (this.clients) {
-            for (Long uid : this.clients.keySet()) {
-                if (this.clientIsAvailable(uid)) {
-                    uids.add(uid);
-                }
-            }
-        }
+	public void processMsgCall(long fromUserId, long toUserId) {
+		synchronized (this.clients) {
+			this.addNonExistingClient(fromUserId);
+			WebRTCClient fromClient = this.getClientUnsafe(fromUserId);
 
-        return uids;
-    }
+			// cannot make a call if source client is not available
 
-    public WebRTCClient getClient(long userId) {
-        synchronized (this.clients) {
-            return this.getClientUnsafe(userId);
-        }
-    }
+			if (!this.clientIsAvailable(fromUserId)) {
 
-    public void removeClient(long userId) {
-        WebRTCClient client = this.getClientUnsafe(userId);
-        if (client != null) {
-            client.removeAllConnections();
-            this.clients.remove(userId);
-        }
-    }
+				// TODO: error
 
-    private void addNonExistingClient(long userId) {
-        if (this.getClientUnsafe(userId) == null) {
-            this.clients.put(userId, new WebRTCClient(userId));
-        }
-    }
+				return;
+			}
 
-    public void updatePresence(long userId) {
-        synchronized (this.clients) {
-            WebRTCClient client = this.getClientUnsafe(userId);
-            if (client == null) {
-                return;
-            }
-            client.updatePresence();
-        }
-    }
+			// check if the destination client is available
 
-    /**
-     * Verifies presences of all registered clients.
-     *
-     * This method should be called by an external timer/scheduler.
-     */
-    public static void checkAllManagersPresences() {
-        synchronized (WebRTCManager.managers) {
-            for (WebRTCManager manager : WebRTCManager.managers) {
-                manager.checkPresences();
-            }
-        }
-    }
+			if (!this.clientIsAvailable(toUserId)) {
 
-    /**
-     * Verifies the connections states for timeouts handling.
-     *
-     * This method should be called by an external timer/scheduler.
-     */
-    public static void checkAllManagersConnectionsStates() {
-        synchronized (WebRTCManager.managers) {
-            for (WebRTCManager manager : WebRTCManager.managers) {
-                manager.checkConnectionsStates();
-            }
-        }
-    }
+				// add error to user mailbox
 
-    private void checkConnectionsStates() {
-        synchronized(this.clients) {
-            // verify each client
-            for (WebRTCClient client : this.clients.values()) {
-                // verify each connected other clients
-                for (WebRTCClient otherClient : client.getConnectedClients()) {
-                    WebRTCConnection conn = client.getConnection(otherClient);
+				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+						"{\"id\": \"unavailable_user\"}"));
+				return;
+			}
 
-                    // if the (client -> other client) connection is initiated
-                    if (conn.getState() == WebRTCConnection.State.INITIATED) {
-                        // timeout?
-                        if (conn.getInitatedTsMs() > WebRTCManager.CONNECTION_TIMEOUT_MS) {
-                            // disconnect both clients
-                            assert(otherClient.connectionExists(client));
-                            client.removeBilateralConnection(otherClient);
-                            WebRTCManager.notifyClientLostConnection(client, otherClient, "timeout");
-                            WebRTCManager.notifyClientLostConnection(otherClient, client, "timeout");
-                        }
-                    }
-                }
-            }
-        }
-    }
+			WebRTCClient toClient = this.getClientUnsafe(toUserId);
 
-    private void checkPresences() {
-        long currentTimeMs = System.currentTimeMillis();
+			// check if a connection already exists
 
-        synchronized(this.clients) {
-            Set<Long> presUserIds = this.clients.keySet();
-            for (long userId : presUserIds) {
-                long tsMs = this.getClientUnsafe(userId).getTs();
-                long diff = currentTimeMs - tsMs;
-                if (diff > WebRTCManager.PRESENCE_TIMEOUT_MS) {
-                    // expired: reset this client and remove it
-                    this.resetUserUnsafe(userId);
-                    this.removeClient(userId);
-                }
-            }
-        }
-    }
+			if (fromClient.connectionExists(toClient) || toClient.connectionExists(fromClient)) {
 
-    public void processMsgSetAvailability(long userId, boolean isAvailable) {
-        synchronized (this.clients) {
-            this.removeClient(userId);
-            this.addNonExistingClient(userId);
-            this.getClientUnsafe(userId).isAvailable(isAvailable);
-        }
-    }
+				// add error to user mailbox
 
-    public void processMsgCall(long fromUserId, long toUserId) {
-        synchronized (this.clients) {
-            this.addNonExistingClient(fromUserId);
-            WebRTCClient fromClient = this.getClientUnsafe(fromUserId);
+				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+						"{\"id\": \"existing_conn\"}"));
+				return;
+			}
 
-            // cannot make a call if source client is not available
-            if (!this.clientIsAvailable(fromUserId)) {
-                // TODO: error
-                return;
-            }
+			// initialize the connection
 
-            // check if the destination client is available
-            if (!this.clientIsAvailable(toUserId)) {
-                // add error to user mailbox
-                fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
-                        "{\"id\": \"unavailable_user\"}"));
-                return;
-            }
-            WebRTCClient toClient = this.getClientUnsafe(toUserId);
+			WebRTCConnection conn = new WebRTCConnection(fromClient);
+			conn.setState(WebRTCConnection.State.INITIATED);
+			toClient.addConnection(fromClient, conn);
+			fromClient.addConnection(toClient, conn);
 
-            // check if a connection already exists
-            if (fromClient.connectionExists(toClient) || toClient.connectionExists(fromClient)) {
-                // add error to user mailbox
-                fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
-                        "{\"id\": \"existing_conn\"}"));
-                return;
-            }
+			// add call connection to destination user mailbox
 
-            // initialize the connection
-            WebRTCConnection conn = new WebRTCConnection(fromClient);
-            conn.setState(WebRTCConnection.State.INITIATED);
-            toClient.addConnection(fromClient, conn);
-            fromClient.addConnection(toClient, conn);
+			toClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromUserId,
+					"{\"type\": \"call\"}"));
+		}
+	}
 
-            // add call connection to destination user mailbox
-            toClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromUserId,
-                    "{\"type\": \"call\"}"));
-        }
-    }
+	public void processMsgHangUp(long fromUserId, long toUserId) {
+		synchronized (this.clients) {
+			WebRTCClient fromClient = this.getClientUnsafe(fromUserId);
 
-    private static boolean validateConnectionState(WebRTCClient peer1, WebRTCClient peer2, WebRTCConnection.State expectedState) {
-        // connection must exist for both peers
-        if (peer1.connectionExists(peer2) && peer2.connectionExists(peer1)) {
-            // and must be the same
-            if (peer1.getConnection(peer2) != peer2.getConnection(peer1)) {
-                return false;
-            }
+			if (fromClient == null) {
 
-            // and its state must match the expected state
-            if (peer1.getConnection(peer2).getState() != expectedState) {
-                return false;
-            }
-        }
+				// TODO: error
 
-        return true;
-    }
+				return;
+			}
 
-    public void processMsgAnswer(long fromUserId, long toUserId, boolean acceptAnswer) {
-        synchronized (this.clients) {
-            this.addNonExistingClient(fromUserId);
-            WebRTCClient fromClient = this.getClientUnsafe(fromUserId);
+			WebRTCClient toClient = this.getClientUnsafe(toUserId);
 
-            // cannot make a call if source client is not available
-            if (!this.clientIsAvailable(fromUserId)) {
-                // TODO: error
-                return;
-            }
+			if (toClient == null) {
 
-            // check if the destination client (original caller) is available
-            if (!this.clientIsAvailable(toUserId)) {
-                // add error to user mailbox
-                fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
-                        "{\"id\": \"unavailable_user\"}"));
-                return;
-            }
-            WebRTCClient toClient = this.getClientUnsafe(toUserId);
+				// no destination client anyway
 
-            // verify connection state
-            if (!WebRTCManager.validateConnectionState(fromClient, toClient, WebRTCConnection.State.INITIATED)) {
-                fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
-                        "{\"id\": \"invalid_state\"}"));
-                return;
-            }
+				return;
+			}
 
-            // make sure the client answering is *not* the caller
-            if (fromClient.getConnection(toClient).getCaller() == fromClient) {
-                fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
-                        "{\"id\": \"cannot_answer\"}"));
-                return;
-            }
+			// remove connection if any and notify both peers they lost it
 
-            // get/update the connection
-            if (acceptAnswer) {
-                WebRTCConnection conn = fromClient.getConnection(toClient);
-                conn.setState(WebRTCConnection.State.CONNECTED);
-            } else {
-                fromClient.removeBilateralConnection(toClient);
-            }
+			if (fromClient.connectionExists(toClient)) {
+				fromClient.removeBilateralConnection(toClient);
+				WebRTCManager.notifyClientLostConnection(fromClient, toClient, "hangUp");
+				WebRTCManager.notifyClientLostConnection(toClient, fromClient, "hangUp");
+			}
+		}
+	}
 
-            // add answer connection to destination user mailbox
-            String acceptJsonBool = acceptAnswer ? "true" : "false";
-            toClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromUserId,
-                    "{\"type\": \"answer\", \"accept\": " + acceptJsonBool + "}"));
-        }
-    }
+	public void processMsgReset(long userId) {
+		synchronized (this.clients) {
+			this.resetUserUnsafe(userId);
+		}
+	} public void processMsgAnswer(long fromUserId, long toUserId, boolean acceptAnswer) {
+		synchronized (this.clients) {
+			this.addNonExistingClient(fromUserId);
+			WebRTCClient fromClient = this.getClientUnsafe(fromUserId);
 
-    private void processMsgShareWebRTCStuff(long fromUserId, long toUserId, WebRTCClient.Mailbox.Mail mail) {
-        synchronized (this.clients) {
-            if (this.getClientUnsafe(fromUserId) == null || this.getClientUnsafe(toUserId) == null) {
-                // TODO: error
-                return;
-            }
-            WebRTCClient fromClient = this.getClientUnsafe(fromUserId);
-            WebRTCClient toClient = this.getClientUnsafe(toUserId);
+			// cannot make a call if source client is not available
 
-            // verify connection state
-            if (!WebRTCManager.validateConnectionState(fromClient, toClient, WebRTCConnection.State.CONNECTED)) {
-                fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
-                        "{\"id\": \"invalid_state\"}"));
+			if (!this.clientIsAvailable(fromUserId)) {
 
-                return;
-            }
+				// TODO: error
 
-            // add SDP to destination user mailbox
-            toClient.getOugoingMailbox().push(mail);
-        }
-    }
+				return;
+			}
 
-    public void processMsgShareSdp(long fromUserId, long toUserId, String jsonSdp) {
-        this.processMsgShareWebRTCStuff(fromUserId, toUserId, new WebRTCClient.Mailbox.SdpMail(fromUserId, jsonSdp));
-    }
+			// check if the destination client (original caller) is available
 
-    public void processMsgShareIceCandidate(long fromUserId, long toUserId, String jsonIceCandidate) {
-        this.processMsgShareWebRTCStuff(fromUserId, toUserId, new WebRTCClient.Mailbox.IceCandidateMail(fromUserId, jsonIceCandidate));
-    }
+			if (!this.clientIsAvailable(toUserId)) {
 
-    private static void notifyClientLostConnection(WebRTCClient toClient, WebRTCClient fromClient, String reason) {
-        toClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromClient.getUserId(),
-                String.format("{\"type\": \"status\", \"status\": \"lost\", \"reason\": \"%s\"}", reason)));
-    }
+				// add error to user mailbox
 
-    public void processMsgHangUp(long fromUserId, long toUserId) {
-        synchronized (this.clients) {
-            WebRTCClient fromClient = this.getClientUnsafe(fromUserId);
-            if (fromClient == null) {
-                // TODO: error
-                return;
-            }
-            WebRTCClient toClient = this.getClientUnsafe(toUserId);
-            if (toClient == null) {
-                // no destination client anyway
-                return;
-            }
+				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+						"{\"id\": \"unavailable_user\"}"));
+				return;
+			}
 
-            // remove connection if any and notify both peers they lost it
-            if (fromClient.connectionExists(toClient)) {
-                fromClient.removeBilateralConnection(toClient);
-                WebRTCManager.notifyClientLostConnection(fromClient, toClient, "hangUp");
-                WebRTCManager.notifyClientLostConnection(toClient, fromClient, "hangUp");
-            }
-        }
-    }
+			WebRTCClient toClient = this.getClientUnsafe(toUserId);
 
-    private void resetUserUnsafe(long userId) {
-        WebRTCClient client = this.getClientUnsafe(userId);
-        if (client == null) {
-            // already reset
-            return;
-        }
-        Set<WebRTCClient> connectedClients = client.getConnectedClients();
-        for (WebRTCClient cc : connectedClients) {
-            if (client.getConnection(cc).getState() != WebRTCConnection.State.DISCONNECTED) {
-                WebRTCManager.notifyClientLostConnection(cc, client, "reset");
-            }
-        }
-        client.reset();
-        client.updatePresence();
-    }
+			// verify connection state
 
-    public void processMsgReset(long userId) {
-        synchronized (this.clients) {
-            this.resetUserUnsafe(userId);
-        }
-    }
+			if (!WebRTCManager.validateConnectionState(fromClient, toClient, WebRTCConnection.State.INITIATED)) {
+				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+						"{\"id\": \"invalid_state\"}"));
+				return;
+			}
+
+			// make sure the client answering is *not* the caller
+
+			if (fromClient.getConnection(toClient).getCaller() == fromClient) {
+				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+						"{\"id\": \"cannot_answer\"}"));
+				return;
+			}
+
+			// get/update the connection
+
+			if (acceptAnswer) {
+				WebRTCConnection conn = fromClient.getConnection(toClient);
+				conn.setState(WebRTCConnection.State.CONNECTED);
+			} else {
+				fromClient.removeBilateralConnection(toClient);
+			}
+
+			// add answer connection to destination user mailbox
+
+			String acceptJsonBool = acceptAnswer ? "true" : "false";
+			toClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromUserId,
+					"{\"type\": \"answer\", \"accept\": " + acceptJsonBool + "}"));
+		}
+	}
+
+	public void processMsgSetAvailability(long userId, boolean isAvailable) {
+		synchronized (this.clients) {
+			this.removeClient(userId);
+			this.addNonExistingClient(userId);
+			this.getClientUnsafe(userId).isAvailable(isAvailable);
+		}
+	}
+
+	public void processMsgShareIceCandidate(long fromUserId, long toUserId, String jsonIceCandidate) {
+		this.processMsgShareWebRTCStuff(fromUserId, toUserId, new WebRTCClient.Mailbox.IceCandidateMail(fromUserId, jsonIceCandidate));
+	}
+
+	public void processMsgShareSdp(long fromUserId, long toUserId, String jsonSdp) {
+		this.processMsgShareWebRTCStuff(fromUserId, toUserId, new WebRTCClient.Mailbox.SdpMail(fromUserId, jsonSdp));
+	}
+
+	public void removeClient(long userId) {
+		WebRTCClient client = this.getClientUnsafe(userId);
+
+		if (client != null) {
+			client.removeAllConnections();
+			this.clients.remove(userId);
+		}
+	}
+
+	public void updatePresence(long userId) {
+		synchronized (this.clients) {
+			WebRTCClient client = this.getClientUnsafe(userId);
+
+			if (client == null) {
+				return;
+			}
+
+			client.updatePresence();
+		}
+	}
+
+	private static void notifyClientLostConnection(WebRTCClient toClient, WebRTCClient fromClient, String reason) {
+		toClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromClient.getUserId(),
+				String.format("{\"type\": \"status\", \"status\": \"lost\", \"reason\": \"%s\"}", reason)));
+	}
+
+	private static boolean validateConnectionState(WebRTCClient peer1, WebRTCClient peer2, WebRTCConnection.State expectedState) {
+
+		// connection must exist for both peers
+
+		if (peer1.connectionExists(peer2) && peer2.connectionExists(peer1)) {
+
+			// and must be the same
+
+			if (peer1.getConnection(peer2) != peer2.getConnection(peer1)) {
+				return false;
+			}
+
+			// and its state must match the expected state
+
+			if (peer1.getConnection(peer2).getState() != expectedState) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private void addNonExistingClient(long userId) {
+		if (this.getClientUnsafe(userId) == null) {
+			this.clients.put(userId, new WebRTCClient(userId));
+		}
+	}
+
+	private void checkConnectionsStates() {
+		synchronized(this.clients) {
+
+			// verify each client
+
+			for (WebRTCClient client : this.clients.values()) {
+
+				// verify each connected other clients
+
+				for (WebRTCClient otherClient : client.getConnectedClients()) {
+					WebRTCConnection conn = client.getConnection(otherClient);
+
+					// if the (client -> other client) connection is initiated
+
+					if (conn.getState() == WebRTCConnection.State.INITIATED) {
+
+						// timeout?
+
+						if (conn.getInitatedTsMs() > WebRTCManager.CONNECTION_TIMEOUT_MS) {
+
+							// disconnect both clients
+
+							assert(otherClient.connectionExists(client));
+							client.removeBilateralConnection(otherClient);
+							WebRTCManager.notifyClientLostConnection(client, otherClient, "timeout");
+							WebRTCManager.notifyClientLostConnection(otherClient, client, "timeout");
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void checkPresences() {
+		long currentTimeMs = System.currentTimeMillis();
+
+		synchronized(this.clients) {
+			Set<Long> presUserIds = this.clients.keySet();
+
+			for (long userId : presUserIds) {
+				long tsMs = this.getClientUnsafe(userId).getTs();
+				long diff = currentTimeMs - tsMs;
+
+				if (diff > WebRTCManager.PRESENCE_TIMEOUT_MS) {
+
+					// expired: reset this client and remove it
+
+					this.resetUserUnsafe(userId);
+					this.removeClient(userId);
+				}
+			}
+		}
+	}
+
+	private WebRTCClient getClientUnsafe(long userId) {
+		if (this.clients.containsKey(userId)) {
+			return this.clients.get(userId);
+		} else {
+			return null;
+		}
+	}
+
+	private void processMsgShareWebRTCStuff(long fromUserId, long toUserId, WebRTCClient.Mailbox.Mail mail) {
+		synchronized (this.clients) {
+			if (this.getClientUnsafe(fromUserId) == null || this.getClientUnsafe(toUserId) == null) {
+
+				// TODO: error
+
+				return;
+			}
+
+			WebRTCClient fromClient = this.getClientUnsafe(fromUserId);
+			WebRTCClient toClient = this.getClientUnsafe(toUserId);
+
+			// verify connection state
+
+			if (!WebRTCManager.validateConnectionState(fromClient, toClient, WebRTCConnection.State.CONNECTED)) {
+				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+						"{\"id\": \"invalid_state\"}"));
+
+				return;
+			}
+
+			// add SDP to destination user mailbox
+
+			toClient.getOugoingMailbox().push(mail);
+		}
+	}
+
+	private void resetUserUnsafe(long userId) {
+		WebRTCClient client = this.getClientUnsafe(userId);
+
+		if (client == null) {
+
+			// already reset
+
+			return;
+		}
+
+		Set<WebRTCClient> connectedClients = client.getConnectedClients();
+
+		for (WebRTCClient cc : connectedClients) {
+			if (client.getConnection(cc).getState() != WebRTCConnection.State.DISCONNECTED) {
+				WebRTCManager.notifyClientLostConnection(cc, client, "reset");
+			}
+		}
+
+		client.reset();
+		client.updatePresence();
+	}
+
+	// connection state timeout value (ms)
+
+	private static final long CONNECTION_TIMEOUT_MS = 60000;
+
+	private static final long PRESENCE_TIMEOUT_MS = 30000;
+
+	// all known managers (most of the time, only one will exist)
+
+	private static final List<WebRTCManager> managers = new ArrayList<WebRTCManager>();
+
+	// user ID -> WebRTC client (for all known clients by this manager)
+
+	private final HashMap<Long, WebRTCClient> clients = new HashMap<Long, WebRTCClient>();
+
 }
