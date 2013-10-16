@@ -28,6 +28,7 @@ public class JabberChatManagerListener implements ChatManagerListener {
 		_userId = userId;
 	}
 
+	@Override
 	public void chatCreated(Chat chat, boolean createdLocally) {
 		if (!createdLocally) {
 			MessageListener messageListener = new JabberMessageListener(

@@ -35,6 +35,7 @@ public class JabberMessageListener implements MessageListener {
 		_userId = userId;
 	}
 
+	@Override
 	public void processMessage(Chat chat, Message message) {
 		try {
 			String body = message.getBody();
