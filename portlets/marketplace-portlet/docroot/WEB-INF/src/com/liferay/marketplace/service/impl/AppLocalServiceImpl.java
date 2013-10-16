@@ -154,9 +154,11 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				}
 			}
 			catch (Exception e) {
-				_log.warn(
-					"Unable to read plugin package MD5 checksum for " +
-						pluginPackage.getContext());
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Unable to read plugin package MD5 checksum for " +
+							pluginPackage.getContext());
+				}
 			}
 			finally {
 				StreamUtil.cleanUp(inputStream);

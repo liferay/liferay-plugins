@@ -183,11 +183,15 @@ public class TestPortlet extends LiferayPortlet {
 	}
 
 	protected void testResponseBufferSize(RenderResponse renderResponse) {
-		_log.info("Original buffer size " + renderResponse.getBufferSize());
+		if (_log.isInfoEnabled()) {
+			_log.info("Original buffer size " + renderResponse.getBufferSize());
+		}
 
 		renderResponse.setBufferSize(12345);
 
-		_log.info("New buffer size " + renderResponse.getBufferSize());
+		if (_log.isInfoEnabled()) {
+			_log.info("New buffer size " + renderResponse.getBufferSize());
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(TestPortlet.class);
