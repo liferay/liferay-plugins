@@ -20,13 +20,6 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * WebRTC manager (thread safe)
- *
- * A manager has to be instantiated by any communication mechanism that
- * can talk to clients. Its purpose is to connect two clients together,
- * follow that connection and manage mails for clients. Mails are added
- * automatically to users' mailboxes with the {@code processMsg*} methods.
- *
  * @author Philippe Proulx
  */
 public class WebRTCManager {
