@@ -21,7 +21,7 @@ package com.liferay.chat.video;
  * both clients connected together, but still holds a reference to
  * the original caller so that we know it later.
  *
- * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
+ * @author Philippe Proulx
  */
 public class WebRTCConnection {
 	public enum State {
