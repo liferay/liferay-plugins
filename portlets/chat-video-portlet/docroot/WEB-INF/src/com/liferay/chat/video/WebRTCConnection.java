@@ -18,40 +18,44 @@ package com.liferay.chat.video;
  * @author Philippe Proulx
  */
 public class WebRTCConnection {
-	public WebRTCConnection(WebRTCClient caller) {
-		this.caller = caller;
+
+	public WebRTCConnection(WebRTCClient webRTCClient) {
+		_webRTCClient = webRTCClient;
 	}
 
-	public WebRTCClient getCaller() {
-		return this.caller;
+	public WebRTCClient getWebRTCClient() {
+		return _webRTCClient;
 	}
 
-	public long getInitatedTsMs() {
-		if (this.initiatedTsMs == -1) {
+	public long getDurationTime() {
+		if (_durationTime == -1) {
 			return -1;
 		}
 
-		return System.currentTimeMillis() - this.initiatedTsMs;
-	} public synchronized void setState(State state) {
-		this.currentState = state;
+		return System.currentTimeMillis() - _durationTime;
+	}
+	
+	public synchronized void setState(State state) {
+		_state = state;
 
 		if (state == State.INITIATED) {
-			this.initiatedTsMs = System.currentTimeMillis();
-		} else {
-			this.initiatedTsMs = -1;
+			_durationTime = System.currentTimeMillis();
+		}
+		else {
+			_durationTime = -1;
 		}
 	}
 
 	public synchronized State getState() {
-		return this.currentState;
+		return _state;
 	}
 
 	public enum State {
 		INITIATED, CONNECTED, DISCONNECTED
 	}
 
-	private final WebRTCClient caller;
-	private State currentState = State.DISCONNECTED;
-	private long initiatedTsMs = -1;
+	private WebRTCClient _webRTCClient;
+	private State _state = State.DISCONNECTED;
+	private long _durationTime = -1;
 
 }

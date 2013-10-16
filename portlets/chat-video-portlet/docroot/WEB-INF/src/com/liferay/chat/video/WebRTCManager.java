@@ -23,39 +23,26 @@ import java.util.Set;
  * @author Philippe Proulx
  */
 public class WebRTCManager {
-	/*
-	 * Clients should send an "update presence" message every 10-15 seconds,
-	 * so check presences every 30 seconds.
-	 */
-	/**
-	 * Verifies the connections states for timeouts handling.
-	 *
-	 * This method should be called by an external timer/scheduler.
-	 */
+
 	public static void checkAllManagersConnectionsStates() {
-		synchronized (WebRTCManager.managers) {
-			for (WebRTCManager manager : WebRTCManager.managers) {
-				manager.checkConnectionsStates();
+		synchronized (WebRTCManager.webRTCManagers) {
+			for (WebRTCManager webRTCManager : WebRTCManager.webRTCManagers) {
+				webRTCManager.checkConnectionsStates();
 			}
 		}
 	}
 
-	/**
-	 * Verifies presences of all registered clients.
-	 *
-	 * This method should be called by an external timer/scheduler.
-	 */
 	public static void checkAllManagersPresences() {
-		synchronized (WebRTCManager.managers) {
-			for (WebRTCManager manager : WebRTCManager.managers) {
-				manager.checkPresences();
+		synchronized (WebRTCManager.webRTCManagers) {
+			for (WebRTCManager webRTCManager : WebRTCManager.webRTCManagers) {
+				webRTCManager.checkPresences();
 			}
 		}
 	}
 
 	public WebRTCManager() {
-		synchronized (WebRTCManager.managers) {
-			WebRTCManager.managers.add(this);
+		synchronized (WebRTCManager.webRTCManagers) {
+			WebRTCManager.webRTCManagers.add(this);
 		}
 	}
 
@@ -161,7 +148,7 @@ public class WebRTCManager {
 			// remove connection if any and notify both peers they lost it
 
 			if (fromClient.isAlreadyConnected(toClient)) {
-				fromClient.removeBilateralWebRTCConnection(toClient);
+				fromClient.removeWebRTCConnections(toClient);
 				WebRTCManager.notifyClientLostConnection(fromClient, toClient, "hangUp");
 				WebRTCManager.notifyClientLostConnection(toClient, fromClient, "hangUp");
 			}
@@ -209,7 +196,7 @@ public class WebRTCManager {
 
 			// make sure the client answering is *not* the caller
 
-			if (fromClient.getWebRTCConnection(toClient).getCaller() == fromClient) {
+			if (fromClient.getWebRTCConnection(toClient).getWebRTCClient() == fromClient) {
 				fromClient.getMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
 						"{\"id\": \"cannot_answer\"}"));
 				return;
@@ -221,7 +208,7 @@ public class WebRTCManager {
 				WebRTCConnection conn = fromClient.getWebRTCConnection(toClient);
 				conn.setState(WebRTCConnection.State.CONNECTED);
 			} else {
-				fromClient.removeBilateralWebRTCConnection(toClient);
+				fromClient.removeWebRTCConnections(toClient);
 			}
 
 			// add answer connection to destination user mailbox
@@ -236,7 +223,7 @@ public class WebRTCManager {
 		synchronized (this.clients) {
 			this.removeClient(userId);
 			this.addNonExistingClient(userId);
-			this.getClientUnsafe(userId).isAvailable(isAvailable);
+			this.getClientUnsafe(userId).setAvailable(isAvailable);
 		}
 	}
 
@@ -252,7 +239,7 @@ public class WebRTCManager {
 		WebRTCClient client = this.getClientUnsafe(userId);
 
 		if (client != null) {
-			client.removeAllWebRTCConnections();
+			client.removeWebRTCConnections();
 			this.clients.remove(userId);
 		}
 	}
@@ -265,7 +252,7 @@ public class WebRTCManager {
 				return;
 			}
 
-			client.updatePresence();
+			client.updatePresenceTime();
 		}
 	}
 
@@ -320,12 +307,12 @@ public class WebRTCManager {
 
 						// timeout?
 
-						if (conn.getInitatedTsMs() > WebRTCManager.CONNECTION_TIMEOUT_MS) {
+						if (conn.getDurationTime() > WebRTCManager.CONNECTION_TIMEOUT_MS) {
 
 							// disconnect both clients
 
 							assert(otherClient.isAlreadyConnected(client));
-							client.removeBilateralWebRTCConnection(otherClient);
+							client.removeWebRTCConnections(otherClient);
 							WebRTCManager.notifyClientLostConnection(client, otherClient, "timeout");
 							WebRTCManager.notifyClientLostConnection(otherClient, client, "timeout");
 						}
@@ -342,7 +329,7 @@ public class WebRTCManager {
 			Set<Long> presUserIds = this.clients.keySet();
 
 			for (long userId : presUserIds) {
-				long tsMs = this.getClientUnsafe(userId).getTimestamp();
+				long tsMs = this.getClientUnsafe(userId).getPresenceTime();
 				long diff = currentTimeMs - tsMs;
 
 				if (diff > WebRTCManager.PRESENCE_TIMEOUT_MS) {
@@ -410,7 +397,7 @@ public class WebRTCManager {
 		}
 
 		client.reset();
-		client.updatePresence();
+		client.updatePresenceTime();
 	}
 
 	// connection state timeout value (ms)
@@ -421,7 +408,7 @@ public class WebRTCManager {
 
 	// all known managers (most of the time, only one will exist)
 
-	private static final List<WebRTCManager> managers = new ArrayList<WebRTCManager>();
+	private static final List<WebRTCManager> webRTCManagers = new ArrayList<WebRTCManager>();
 
 	// user ID -> WebRTC client (for all known clients by this manager)
 
