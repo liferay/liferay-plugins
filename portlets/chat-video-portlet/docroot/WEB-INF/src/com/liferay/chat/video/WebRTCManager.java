@@ -106,7 +106,7 @@ public class WebRTCManager {
 
 				// add error to user mailbox
 
-				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+				fromClient.getMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
 						"{\"id\": \"unavailable_user\"}"));
 				return;
 			}
@@ -115,11 +115,11 @@ public class WebRTCManager {
 
 			// check if a connection already exists
 
-			if (fromClient.connectionExists(toClient) || toClient.connectionExists(fromClient)) {
+			if (fromClient.isAlreadyConnected(toClient) || toClient.isAlreadyConnected(fromClient)) {
 
 				// add error to user mailbox
 
-				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+				fromClient.getMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
 						"{\"id\": \"existing_conn\"}"));
 				return;
 			}
@@ -128,12 +128,12 @@ public class WebRTCManager {
 
 			WebRTCConnection conn = new WebRTCConnection(fromClient);
 			conn.setState(WebRTCConnection.State.INITIATED);
-			toClient.addConnection(fromClient, conn);
-			fromClient.addConnection(toClient, conn);
+			toClient.addWebRTCConnection(fromClient, conn);
+			fromClient.addWebRTCConnection(toClient, conn);
 
 			// add call connection to destination user mailbox
 
-			toClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromUserId,
+			toClient.getMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromUserId,
 					"{\"type\": \"call\"}"));
 		}
 	}
@@ -160,8 +160,8 @@ public class WebRTCManager {
 
 			// remove connection if any and notify both peers they lost it
 
-			if (fromClient.connectionExists(toClient)) {
-				fromClient.removeBilateralConnection(toClient);
+			if (fromClient.isAlreadyConnected(toClient)) {
+				fromClient.removeBilateralWebRTCConnection(toClient);
 				WebRTCManager.notifyClientLostConnection(fromClient, toClient, "hangUp");
 				WebRTCManager.notifyClientLostConnection(toClient, fromClient, "hangUp");
 			}
@@ -192,7 +192,7 @@ public class WebRTCManager {
 
 				// add error to user mailbox
 
-				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+				fromClient.getMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
 						"{\"id\": \"unavailable_user\"}"));
 				return;
 			}
@@ -202,15 +202,15 @@ public class WebRTCManager {
 			// verify connection state
 
 			if (!WebRTCManager.validateConnectionState(fromClient, toClient, WebRTCConnection.State.INITIATED)) {
-				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+				fromClient.getMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
 						"{\"id\": \"invalid_state\"}"));
 				return;
 			}
 
 			// make sure the client answering is *not* the caller
 
-			if (fromClient.getConnection(toClient).getCaller() == fromClient) {
-				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+			if (fromClient.getWebRTCConnection(toClient).getCaller() == fromClient) {
+				fromClient.getMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
 						"{\"id\": \"cannot_answer\"}"));
 				return;
 			}
@@ -218,16 +218,16 @@ public class WebRTCManager {
 			// get/update the connection
 
 			if (acceptAnswer) {
-				WebRTCConnection conn = fromClient.getConnection(toClient);
+				WebRTCConnection conn = fromClient.getWebRTCConnection(toClient);
 				conn.setState(WebRTCConnection.State.CONNECTED);
 			} else {
-				fromClient.removeBilateralConnection(toClient);
+				fromClient.removeBilateralWebRTCConnection(toClient);
 			}
 
 			// add answer connection to destination user mailbox
 
 			String acceptJsonBool = acceptAnswer ? "true" : "false";
-			toClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromUserId,
+			toClient.getMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromUserId,
 					"{\"type\": \"answer\", \"accept\": " + acceptJsonBool + "}"));
 		}
 	}
@@ -252,7 +252,7 @@ public class WebRTCManager {
 		WebRTCClient client = this.getClientUnsafe(userId);
 
 		if (client != null) {
-			client.removeAllConnections();
+			client.removeAllWebRTCConnections();
 			this.clients.remove(userId);
 		}
 	}
@@ -270,7 +270,7 @@ public class WebRTCManager {
 	}
 
 	private static void notifyClientLostConnection(WebRTCClient toClient, WebRTCClient fromClient, String reason) {
-		toClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromClient.getUserId(),
+		toClient.getMailbox().push(new WebRTCClient.Mailbox.ConnectionMail(fromClient.getUserId(),
 				String.format("{\"type\": \"status\", \"status\": \"lost\", \"reason\": \"%s\"}", reason)));
 	}
 
@@ -278,17 +278,17 @@ public class WebRTCManager {
 
 		// connection must exist for both peers
 
-		if (peer1.connectionExists(peer2) && peer2.connectionExists(peer1)) {
+		if (peer1.isAlreadyConnected(peer2) && peer2.isAlreadyConnected(peer1)) {
 
 			// and must be the same
 
-			if (peer1.getConnection(peer2) != peer2.getConnection(peer1)) {
+			if (peer1.getWebRTCConnection(peer2) != peer2.getWebRTCConnection(peer1)) {
 				return false;
 			}
 
 			// and its state must match the expected state
 
-			if (peer1.getConnection(peer2).getState() != expectedState) {
+			if (peer1.getWebRTCConnection(peer2).getState() != expectedState) {
 				return false;
 			}
 		}
@@ -311,8 +311,8 @@ public class WebRTCManager {
 
 				// verify each connected other clients
 
-				for (WebRTCClient otherClient : client.getConnectedClients()) {
-					WebRTCConnection conn = client.getConnection(otherClient);
+				for (WebRTCClient otherClient : client.getConnectedWebRTCClients()) {
+					WebRTCConnection conn = client.getWebRTCConnection(otherClient);
 
 					// if the (client -> other client) connection is initiated
 
@@ -324,8 +324,8 @@ public class WebRTCManager {
 
 							// disconnect both clients
 
-							assert(otherClient.connectionExists(client));
-							client.removeBilateralConnection(otherClient);
+							assert(otherClient.isAlreadyConnected(client));
+							client.removeBilateralWebRTCConnection(otherClient);
 							WebRTCManager.notifyClientLostConnection(client, otherClient, "timeout");
 							WebRTCManager.notifyClientLostConnection(otherClient, client, "timeout");
 						}
@@ -342,7 +342,7 @@ public class WebRTCManager {
 			Set<Long> presUserIds = this.clients.keySet();
 
 			for (long userId : presUserIds) {
-				long tsMs = this.getClientUnsafe(userId).getTs();
+				long tsMs = this.getClientUnsafe(userId).getTimestamp();
 				long diff = currentTimeMs - tsMs;
 
 				if (diff > WebRTCManager.PRESENCE_TIMEOUT_MS) {
@@ -379,7 +379,7 @@ public class WebRTCManager {
 			// verify connection state
 
 			if (!WebRTCManager.validateConnectionState(fromClient, toClient, WebRTCConnection.State.CONNECTED)) {
-				fromClient.getOugoingMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
+				fromClient.getMailbox().push(new WebRTCClient.Mailbox.ErrorMail(toUserId,
 						"{\"id\": \"invalid_state\"}"));
 
 				return;
@@ -387,7 +387,7 @@ public class WebRTCManager {
 
 			// add SDP to destination user mailbox
 
-			toClient.getOugoingMailbox().push(mail);
+			toClient.getMailbox().push(mail);
 		}
 	}
 
@@ -401,10 +401,10 @@ public class WebRTCManager {
 			return;
 		}
 
-		Set<WebRTCClient> connectedClients = client.getConnectedClients();
+		Set<WebRTCClient> connectedClients = client.getConnectedWebRTCClients();
 
 		for (WebRTCClient cc : connectedClients) {
-			if (client.getConnection(cc).getState() != WebRTCConnection.State.DISCONNECTED) {
+			if (client.getWebRTCConnection(cc).getState() != WebRTCConnection.State.DISCONNECTED) {
 				WebRTCManager.notifyClientLostConnection(cc, client, "reset");
 			}
 		}
