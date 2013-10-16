@@ -93,7 +93,7 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 		// get client mails
 
 		if (client != null) {
-			List<WebRTCClient.Mailbox.Mail> clientMails = client.getOugoingMailbox().popAll();
+			List<WebRTCClient.Mailbox.Mail> clientMails = client.getMailbox().popAll();
 
 			for (Mailbox.Mail mail : clientMails) {
 				String type = mail.getMsgType();

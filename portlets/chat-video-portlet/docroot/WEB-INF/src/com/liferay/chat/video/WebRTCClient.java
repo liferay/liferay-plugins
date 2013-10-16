@@ -29,43 +29,41 @@ public class WebRTCClient {
 		updatePresence();
 	}
 
-	public void addConnection(WebRTCClient dst, WebRTCConnection conn) {
-		if (connectionExists(dst)) {
+	public void addWebRTCConnection(WebRTCClient webRTCClient, WebRTCConnection webRTCConnection) {
+		if (isAlreadyConnected(webRTCClient)) {
 
-			// TODO: error: already exists
+			// TODO
 
 			return;
 		}
 
-		_connections.put(dst, conn);
+		_webRTCConnections.put(webRTCClient, webRTCConnection);
 	}
 
-	public boolean connectionExists(WebRTCClient dst) {
-		return _connections.containsKey(dst);
+	public boolean isAlreadyConnected(WebRTCClient webRTCClient) {
+		return _webRTCConnections.containsKey(webRTCClient);
 	}
 
-	public Set<WebRTCClient> getConnectedClients() {
-		Set<WebRTCClient> connectedClients = _connections.keySet();
-
-		return connectedClients;
+	public Set<WebRTCClient> getConnectedWebRTCClients() {
+		return _webRTCConnections.keySet();
 	}
 
-	public WebRTCConnection getConnection(WebRTCClient dst) {
-		if (!connectionExists(dst)) {
+	public WebRTCConnection getWebRTCConnection(WebRTCClient webRTCClient) {
+		if (!isAlreadyConnected(webRTCClient)) {
 
-			// TODO: error
+			// TODO
 
 			return null;
 		}
 
-		return _connections.get(dst);
+		return _webRTCConnections.get(webRTCClient);
 	}
 
-	public WebRTCClient.Mailbox getOugoingMailbox() {
+	public WebRTCClient.Mailbox getMailbox() {
 		return _mailbox;
 	}
 
-	public long getTs() {
+	public long getTimestamp() {
 		return _timestamp;
 	}
 
@@ -77,24 +75,24 @@ public class WebRTCClient {
 		return _available;
 	}
 
-	public void isAvailable(boolean val) {
-		_available = val;
+	public void isAvailable(boolean available) {
+		_available = available;
 	}
 
-	public void removeAllConnections() {
-		for (WebRTCClient dst : _connections.keySet()) {
-			dst.removeSimpleConnection(this);
+	public void removeAllWebRTCConnections() {
+		for (WebRTCClient webRTCClient : _webRTCConnections.keySet()) {
+			webRTCClient._removeWebRTCConnection(this);
 		}
 
-		_connections.clear();
+		_webRTCConnections.clear();
 	}
 
-	public void removeBilateralConnection(WebRTCClient dst) {
-		if (dst.connectionExists(this)) {
-			dst.removeSimpleConnection(this);
+	public void removeBilateralWebRTCConnection(WebRTCClient webRTCClient) {
+		if (webRTCClient.isAlreadyConnected(this)) {
+			webRTCClient._removeWebRTCConnection(this);
 		}
 
-		removeSimpleConnection(dst);
+		_removeWebRTCConnection(webRTCClient);
 	}
 
 	public synchronized void updatePresence() {
@@ -234,18 +232,21 @@ public class WebRTCClient {
 				return "conn";
 			}
 		}
-	} public synchronized void reset() {
+	}
+	
+	public synchronized void reset() {
 		isAvailable(false);
-		removeAllConnections();
+		removeAllWebRTCConnections();
 	}
 
-	private void removeSimpleConnection(WebRTCClient dst) {
-		if (connectionExists(dst)) {
-			_connections.remove(dst);
+	private void _removeWebRTCConnection(WebRTCClient webRTCClient) {
+		if (isAlreadyConnected(webRTCClient)) {
+			_webRTCConnections.remove(webRTCClient);
 		}
 	}
 
-	private Map<WebRTCClient, WebRTCConnection> _connections = new HashMap<WebRTCClient, WebRTCConnection>();
+	private Map<WebRTCClient, WebRTCConnection> _webRTCConnections =
+		new HashMap<WebRTCClient, WebRTCConnection>();
 	private boolean _available;
 	private WebRTCClient.Mailbox _mailbox = new WebRTCClient.Mailbox();
 	private long _timestamp;
