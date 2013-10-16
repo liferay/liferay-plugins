@@ -169,6 +169,7 @@ public class WebRTCClient {
 				super(fromUserId, message);
 			}
 
+			@Override
 			public String getMsgType() {
 				return "ice";
 			}
@@ -188,6 +189,7 @@ public class WebRTCClient {
 				super(fromUserId, message);
 			}
 
+			@Override
 			public String getMsgType() {
 				return "err";
 			}
@@ -207,6 +209,7 @@ public class WebRTCClient {
 				super(fromUserId, message);
 			}
 
+			@Override
 			public String getMsgType() {
 				return "sdp";
 			}
@@ -226,6 +229,7 @@ public class WebRTCClient {
 				super(fromUserId, message);
 			}
 
+			@Override
 			public String getMsgType() {
 				return "conn";
 			}
