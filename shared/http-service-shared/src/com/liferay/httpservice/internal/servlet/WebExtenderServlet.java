@@ -167,7 +167,9 @@ public class WebExtenderServlet extends PortletServlet implements StrutsAction {
 				portlet = PortletLocalServiceUtil.getPortletById(rootPortletId);
 			}
 			catch (Exception e) {
-				_log.debug(e, e);
+				if (_log.isDebugEnabled()) {
+					_log.debug(e, e);
+				}
 			}
 		}
 
