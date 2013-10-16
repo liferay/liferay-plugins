@@ -315,8 +315,6 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	border-top-color: transparent;
 	right: 0;
 }
-html.aui .dockbar-split .dockbar .navbar-inner .nav > li {
-}
 
 html.aui {
 	.dockbar,
@@ -342,11 +340,11 @@ html.aui {
 
 		.navbar-inner .nav > li {
 			background-color: transparent;
+		}
 
-			> a {
-				color: #FFF;
-				text-shadow: none;
-			}
+		.navbar-inner .nav.nav-account-controls > li > a {
+			color: #FFF;
+			text-shadow: none;
 		}
 	}
 
