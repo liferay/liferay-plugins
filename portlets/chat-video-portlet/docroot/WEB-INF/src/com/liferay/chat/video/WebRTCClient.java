@@ -16,75 +16,77 @@ package com.liferay.chat.video;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
  * @author Philippe Proulx
  */
 public class WebRTCClient {
+
 	public WebRTCClient(long userId) {
-		this.userId = userId;
-		this.updatePresence();
+		_userId = userId;
+		updatePresence();
 	}
 
 	public void addConnection(WebRTCClient dst, WebRTCConnection conn) {
-		if (this.connectionExists(dst)) {
+		if (connectionExists(dst)) {
 
 			// TODO: error: already exists
 
 			return;
 		}
 
-		this.connections.put(dst, conn);
+		_connections.put(dst, conn);
 	}
 
 	public boolean connectionExists(WebRTCClient dst) {
-		return this.connections.containsKey(dst);
+		return _connections.containsKey(dst);
 	}
 
 	public Set<WebRTCClient> getConnectedClients() {
-		Set<WebRTCClient> connectedClients = this.connections.keySet();
+		Set<WebRTCClient> connectedClients = _connections.keySet();
 
 		return connectedClients;
 	}
 
 	public WebRTCConnection getConnection(WebRTCClient dst) {
-		if (!this.connectionExists(dst)) {
+		if (!connectionExists(dst)) {
 
 			// TODO: error
 
 			return null;
 		}
 
-		return this.connections.get(dst);
+		return _connections.get(dst);
 	}
 
 	public WebRTCClient.Mailbox getOugoingMailbox() {
-		return this.outgoingMailbox;
+		return _mailbox;
 	}
 
 	public long getTs() {
-		return this.ts;
+		return _timestamp;
 	}
 
 	public long getUserId() {
-		return this.userId;
+		return _userId;
 	}
 
 	public boolean isAvailable() {
-		return this.isAvailable;
+		return _available;
 	}
 
 	public void isAvailable(boolean val) {
-		this.isAvailable = val;
+		_available = val;
 	}
 
 	public void removeAllConnections() {
-		for (WebRTCClient dst : this.connections.keySet()) {
+		for (WebRTCClient dst : _connections.keySet()) {
 			dst.removeSimpleConnection(this);
 		}
 
-		this.connections.clear();
+		_connections.clear();
 	}
 
 	public void removeBilateralConnection(WebRTCClient dst) {
@@ -92,27 +94,27 @@ public class WebRTCClient {
 			dst.removeSimpleConnection(this);
 		}
 
-		this.removeSimpleConnection(dst);
+		removeSimpleConnection(dst);
 	}
 
 	public synchronized void updatePresence() {
-		this.ts = System.currentTimeMillis();
+		_timestamp = System.currentTimeMillis();
 	}
 
 	public static class Mailbox {
 		private final ArrayList<Mailbox.Mail> messages = new ArrayList<Mailbox.Mail>();
 
 		public void push(Mailbox.Mail mail) {
-			synchronized (this.messages) {
-				this.messages.add(mail);
+			synchronized (messages) {
+				messages.add(mail);
 			}
 		}
 
 		public ArrayList<Mailbox.Mail> popAll() {
 			ArrayList<Mailbox.Mail> ret;
-			synchronized (this.messages) {
-				ret = new ArrayList<Mailbox.Mail>(this.messages);
-				this.messages.clear();
+			synchronized (messages) {
+				ret = new ArrayList<Mailbox.Mail>(messages);
+				messages.clear();
 			}
 
 			return ret;
@@ -127,25 +129,25 @@ public class WebRTCClient {
 		 * @author  Philippe Proulx <philippe.proulx@savoirfairelinux.com>
 		 */
 		public static abstract class Mail {
-			private final long fromUserId;
-			private final String jsonMessage;
+			private long _fromUserId;
+			private String _jsonMessage;
 
 			public Mail(Mailbox.Mail mail) {
-				this.fromUserId = mail.fromUserId;
-				this.jsonMessage = mail.jsonMessage;
+				_fromUserId = mail._fromUserId;
+				_jsonMessage = mail._jsonMessage;
 			}
 
 			public Mail(long fromUserId, String message) {
-				this.fromUserId = fromUserId;
-				this.jsonMessage = message;
+				_fromUserId = fromUserId;
+				_jsonMessage = message;
 			}
 
-			public final long getFromUserId() {
-				return this.fromUserId;
+			public long getFromUserId() {
+				return _fromUserId;
 			}
 
 			public String getJsonMessage() {
-				return jsonMessage;
+				return _jsonMessage;
 			}
 
 			// specialized messages need to implement those
@@ -233,20 +235,20 @@ public class WebRTCClient {
 			}
 		}
 	} public synchronized void reset() {
-		this.isAvailable(false);
-		this.removeAllConnections();
+		isAvailable(false);
+		removeAllConnections();
 	}
 
 	private void removeSimpleConnection(WebRTCClient dst) {
-		if (this.connectionExists(dst)) {
-			this.connections.remove(dst);
+		if (connectionExists(dst)) {
+			_connections.remove(dst);
 		}
 	}
 
-	private final HashMap<WebRTCClient, WebRTCConnection> connections = new HashMap<WebRTCClient, WebRTCConnection>();
-	private boolean isAvailable = false;
-	private final WebRTCClient.Mailbox outgoingMailbox = new WebRTCClient.Mailbox();
-	private long ts;
-	private final long userId;
+	private Map<WebRTCClient, WebRTCConnection> _connections = new HashMap<WebRTCClient, WebRTCConnection>();
+	private boolean _available;
+	private WebRTCClient.Mailbox _mailbox = new WebRTCClient.Mailbox();
+	private long _timestamp;
+	private long _userId;
 
 }
