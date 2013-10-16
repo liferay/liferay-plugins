@@ -35,28 +35,6 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	}
 }
 
-.aui .dockbar .navbar-inner .container .nav-account-controls {
-	top: -44px;
-	z-index: 301;
-}
-
-html.aui .dockbar .navbar-inner .container .nav-account-controls,
-html.aui .dockbar-split .dockbar .navbar-inner .container .nav-account-controls {
-	bottom: 100%;
-	left: auto;
-	position: absolute;
-	right: 0;
-
-	.divider {
-		display: none;
-	}
-
-	.navbar .nav > li > a {
-		color: #FFF;
-		text-shadow: none;
-	}
-}
-
 .aui .so-portlet-user-bar {
 	@include background-image(linear-gradient(bottom, #252D31 0, #32363A 100%));
 
@@ -300,7 +278,7 @@ html.aui .dockbar-split .dockbar .navbar-inner .container .nav-account-controls 
 			}
 		}
 
-		.user-notification-event-header{
+		.user-notification-event-header {
 			padding: 0.5em;
 		}
 
@@ -568,30 +546,77 @@ html.aui .dockbar-split .dockbar .navbar-inner .container .nav-account-controls 
 	border-top-color: transparent;
 	right: 0;
 }
-
-.my-sites.dropdown {
-	display: none;
+html.aui .dockbar-split .dockbar .navbar-inner .nav > li {
 }
 
-.dockbar-user-notifications .user-notifications-count, .notifications-portlet .user-notifications-count {
-	background: #FFF;
+html.aui {
+	.dockbar,
+	.dockbar-split .dockbar,
+	.dockbar.navbar-static-top .dockbar {
+		.navbar-inner, .container {
+			width: auto;
+		}
 
-	@include border-radius(12px);
+		.container {
+			.nav-account-controls {
+				bottom: 100%;
+				left: auto;
+				position: absolute;
+				right: 0;
+				z-index: 301;
 
-	border-width: 0;
-	color: #202020;
-	padding: 4px 8px;
-}
+				.divider-vertical {
+					display: none;
+				}
+			}
+		}
 
-.navbar .dockbar-user-notifications .nav>li>.dropdown-menu {
-	&:after {
-		left: auto;
-		right: 9px;
+		.navbar-inner .nav > li {
+			background-color: transparent;
+
+			> a {
+				color: #FFF;
+				text-shadow: none;
+			}
+		}
 	}
 
-	&:before {
-		left: auto;
-		right: 10px;
+	.dockbar .container .nav-account-controls,
+	.dockbar.navbar-static-top .collapse .nav-account-controls {
+		position: absolute;
+		top: -42px;
+	}
+
+	.dockbar-split .dockbar .container .nav-account-controls,
+	.dockbar-split .dockbar.navbar-static-top .collapse .nav-account-controls {
+		position: absolute;
+		top: 0;
+	}
+
+	.my-sites.dropdown {
+		display: none;
+	}
+
+	.dockbar-user-notifications .user-notifications-count, .notifications-portlet .user-notifications-count {
+		background: #FFF;
+
+		@include border-radius(12px);
+
+		border-width: 0;
+		color: #202020;
+		padding: 4px 8px;
+	}
+
+	.navbar .dockbar-user-notifications .nav>li>.dropdown-menu {
+		&:after {
+			left: auto;
+			right: 9px;
+		}
+
+		&:before {
+			left: auto;
+			right: 10px;
+		}
 	}
 }
 
