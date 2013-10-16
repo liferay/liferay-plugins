@@ -26,14 +26,14 @@ import java.util.Set;
  *
  * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
  */
-public class WebRtcClient {
-	private final HashMap<WebRtcClient, WebRtcConnection> connections = new HashMap<WebRtcClient, WebRtcConnection>();
-	private final WebRtcClient.Mailbox outgoingMailbox = new WebRtcClient.Mailbox();
+public class WebRTCClient {
+	private final HashMap<WebRTCClient, WebRTCConnection> connections = new HashMap<WebRTCClient, WebRTCConnection>();
+	private final WebRTCClient.Mailbox outgoingMailbox = new WebRTCClient.Mailbox();
 	private boolean isAvailable = false;
 	private final long userId;
 	private long ts;
 
-	public WebRtcClient(long userId) {
+	public WebRTCClient(long userId) {
 		this.userId = userId;
 		this.updatePresence();
 	}
@@ -63,11 +63,11 @@ public class WebRtcClient {
 		this.removeAllConnections();
 	}
 
-	public WebRtcClient.Mailbox getOugoingMailbox() {
+	public WebRTCClient.Mailbox getOugoingMailbox() {
 		return this.outgoingMailbox;
 	}
 
-	public void addConnection(WebRtcClient dst, WebRtcConnection conn) {
+	public void addConnection(WebRTCClient dst, WebRTCConnection conn) {
 		if (this.connectionExists(dst)) {
 			// TODO: error: already exists
 			return;
@@ -76,11 +76,11 @@ public class WebRtcClient {
 		this.connections.put(dst, conn);
 	}
 
-	public boolean connectionExists(WebRtcClient dst) {
+	public boolean connectionExists(WebRTCClient dst) {
 		return this.connections.containsKey(dst);
 	}
 
-	public WebRtcConnection getConnection(WebRtcClient dst) {
+	public WebRTCConnection getConnection(WebRTCClient dst) {
 		if (!this.connectionExists(dst)) {
 			// TODO: error
 			return null;
@@ -90,27 +90,27 @@ public class WebRtcClient {
 	}
 
 	public void removeAllConnections() {
-		for (WebRtcClient dst : this.connections.keySet()) {
+		for (WebRTCClient dst : this.connections.keySet()) {
 			dst.removeSimpleConnection(this);
 		}
 		this.connections.clear();
 	}
 
-	private void removeSimpleConnection(WebRtcClient dst) {
+	private void removeSimpleConnection(WebRTCClient dst) {
 		if (this.connectionExists(dst)) {
 			this.connections.remove(dst);
 		}
 	}
 
-	public void removeBilateralConnection(WebRtcClient dst) {
+	public void removeBilateralConnection(WebRTCClient dst) {
 		if (dst.connectionExists(this)) {
 			dst.removeSimpleConnection(this);
 		}
 		this.removeSimpleConnection(dst);
 	}
 
-	public Set<WebRtcClient> getConnectedClients() {
-		Set<WebRtcClient> connectedClients = this.connections.keySet();
+	public Set<WebRTCClient> getConnectedClients() {
+		Set<WebRTCClient> connectedClients = this.connections.keySet();
 
 		return connectedClients;
 	}
