@@ -4,11 +4,8 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-
-		<!-- WebRTC presence timer -->
-
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.chat.video.scheduler.WebRtcPresenceScheduler</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.chat.video.messaging.WebRtcPresenceMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<simple-trigger-value>10</simple-trigger-value>
@@ -16,11 +13,8 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
-
-		<!-- WebRTC connection state timeout timer -->
-
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.chat.video.scheduler.WebRtcConnectionStateScheduler</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.chat.video.messaging.WebRtcConnectionStateMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<simple-trigger-value>5</simple-trigger-value>
@@ -28,7 +22,6 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
-
 		<poller-processor-class>com.liferay.chat.video.poller.ChatVideoPollerProcessor</poller-processor-class>
 		<use-default-template>false</use-default-template>
 		<css-class-wrapper>chat-video-portlet</css-class-wrapper>
