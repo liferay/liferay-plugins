@@ -16,6 +16,7 @@ package com.liferay.chat.video;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,7 +27,7 @@ public class WebRTCClient {
 
 	public WebRTCClient(long userId) {
 		_userId = userId;
-		updatePresence();
+		updatePresenceTime();
 	}
 
 	public void addWebRTCConnection(WebRTCClient webRTCClient, WebRTCConnection webRTCConnection) {
@@ -63,8 +64,8 @@ public class WebRTCClient {
 		return _mailbox;
 	}
 
-	public long getTimestamp() {
-		return _timestamp;
+	public long getPresenceTime() {
+		return _presenceTime;
 	}
 
 	public long getUserId() {
@@ -75,11 +76,11 @@ public class WebRTCClient {
 		return _available;
 	}
 
-	public void isAvailable(boolean available) {
+	public void setAvailable(boolean available) {
 		_available = available;
 	}
 
-	public void removeAllWebRTCConnections() {
+	public void removeWebRTCConnections() {
 		for (WebRTCClient webRTCClient : _webRTCConnections.keySet()) {
 			webRTCClient._removeWebRTCConnection(this);
 		}
@@ -87,7 +88,7 @@ public class WebRTCClient {
 		_webRTCConnections.clear();
 	}
 
-	public void removeBilateralWebRTCConnection(WebRTCClient webRTCClient) {
+	public void removeWebRTCConnections(WebRTCClient webRTCClient) {
 		if (webRTCClient.isAlreadyConnected(this)) {
 			webRTCClient._removeWebRTCConnection(this);
 		}
@@ -95,12 +96,12 @@ public class WebRTCClient {
 		_removeWebRTCConnection(webRTCClient);
 	}
 
-	public synchronized void updatePresence() {
-		_timestamp = System.currentTimeMillis();
+	public synchronized void updatePresenceTime() {
+		_presenceTime = System.currentTimeMillis();
 	}
 
 	public static class Mailbox {
-		private final ArrayList<Mailbox.Mail> messages = new ArrayList<Mailbox.Mail>();
+		private final List<Mailbox.Mail> messages = new ArrayList<Mailbox.Mail>();
 
 		public void push(Mailbox.Mail mail) {
 			synchronized (messages) {
@@ -118,14 +119,6 @@ public class WebRTCClient {
 			return ret;
 		}
 
-		/**
-		 * Client immutable mail
-		 *
-		 * A mail always has a source (from whom is the mail) and a JSON (object)
-		 * message content. It is to be contained into the destination user's mailbox.
-		 *
-		 * @author  Philippe Proulx <philippe.proulx@savoirfairelinux.com>
-		 */
 		public static abstract class Mail {
 			private long _fromUserId;
 			private String _jsonMessage;
@@ -153,11 +146,6 @@ public class WebRTCClient {
 			public abstract String getMsgType();
 		}
 
-		/**
-		 * Ice candidate mail
-		 *
-		 * @author  Philippe Proulx <philippe.proulx@savoirfairelinux.com>
-		 */
 		public static class IceCandidateMail extends Mail {
 			public IceCandidateMail(IceCandidateMail mail) {
 				super(mail);
@@ -173,11 +161,6 @@ public class WebRTCClient {
 			}
 		}
 
-		/**
-		 * Error mail
-		 *
-		 * @author  Philippe Proulx <philippe.proulx@savoirfairelinux.com>
-		 */
 		public static class ErrorMail extends Mail {
 			public ErrorMail(ErrorMail mail) {
 				super(mail);
@@ -193,11 +176,6 @@ public class WebRTCClient {
 			}
 		}
 
-		/**
-		 * SDP description mail
-		 *
-		 * @author  Philippe Proulx <philippe.proulx@savoirfairelinux.com>
-		 */
 		public static class SdpMail extends Mail {
 			public SdpMail(SdpMail mail) {
 				super(mail);
@@ -213,11 +191,6 @@ public class WebRTCClient {
 			}
 		}
 
-		/**
-		 * Connection state mail
-		 *
-		 * @author  Philippe Proulx <philippe.proulx@savoirfairelinux.com>
-		 */
 		public static class ConnectionMail extends Mail {
 			public ConnectionMail(ConnectionMail mail) {
 				super(mail);
@@ -232,11 +205,12 @@ public class WebRTCClient {
 				return "conn";
 			}
 		}
+
 	}
 	
 	public synchronized void reset() {
-		isAvailable(false);
-		removeAllWebRTCConnections();
+		setAvailable(false);
+		removeWebRTCConnections();
 	}
 
 	private void _removeWebRTCConnection(WebRTCClient webRTCClient) {
@@ -249,7 +223,7 @@ public class WebRTCClient {
 		new HashMap<WebRTCClient, WebRTCConnection>();
 	private boolean _available;
 	private WebRTCClient.Mailbox _mailbox = new WebRTCClient.Mailbox();
-	private long _timestamp;
+	private long _presenceTime;
 	private long _userId;
 
 }
