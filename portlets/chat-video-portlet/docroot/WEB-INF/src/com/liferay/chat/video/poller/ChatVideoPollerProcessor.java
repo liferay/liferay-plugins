@@ -123,8 +123,6 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 
 	@Override
 	protected void doReceive(PollerRequest pollerRequest, PollerResponse pollerResponse) throws Exception {
-		JSONObject yallObj = JSONFactoryUtil.createJSONObject();
-
 		this.getWebRTCData(pollerRequest, pollerResponse);
 	}
 
