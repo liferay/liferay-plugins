@@ -14,9 +14,9 @@
 
 package com.liferay.chat.video.scheduler;
 
+import com.liferay.chat.video.WebRTCManager;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.chat.video.WebRTCManager;
 
 /**
  * WebRTC presence scheduler
@@ -27,8 +27,8 @@ import com.liferay.chat.video.WebRTCManager;
  * @author Philippe Proulx
  */
 public class WebRTCPresenceScheduler extends BaseMessageListener {
-    @Override
-    protected void doReceive(Message message) throws Exception {
-        WebRTCManager.checkAllManagersPresences();
-    }
+	@Override
+	protected void doReceive(Message message) throws Exception {
+		WebRTCManager.checkAllManagersPresences();
+	}
 }

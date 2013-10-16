@@ -24,40 +24,40 @@ package com.liferay.chat.video;
  * @author Philippe Proulx
  */
 public class WebRTCConnection {
-	public enum State {
-		INITIATED,
-		CONNECTED,
-		DISCONNECTED
-	}
-	private State currentState = State.DISCONNECTED;
-	private final WebRTCClient caller;
-    private long initiatedTsMs = -1;
-
 	public WebRTCConnection(WebRTCClient caller) {
 		this.caller = caller;
 	}
-	
-	public synchronized State getState() {
-		return this.currentState;
-	}
-	
-	public synchronized void setState(State state) {
-		this.currentState = state;
-        if (state == State.INITIATED) {
-            this.initiatedTsMs = System.currentTimeMillis();
-        } else {
-            this.initiatedTsMs = -1;
-        }
-	}
-	
+
 	public WebRTCClient getCaller() {
 		return this.caller;
 	}
 
-    public long getInitatedTsMs() {
-        if (this.initiatedTsMs == -1) {
-            return -1;
-        }
-        return System.currentTimeMillis() - this.initiatedTsMs;
-    }
+	public long getInitatedTsMs() {
+		if (this.initiatedTsMs == -1) {
+			return -1;
+		}
+
+		return System.currentTimeMillis() - this.initiatedTsMs;
+	} public synchronized void setState(State state) {
+		this.currentState = state;
+
+		if (state == State.INITIATED) {
+			this.initiatedTsMs = System.currentTimeMillis();
+		} else {
+			this.initiatedTsMs = -1;
+		}
+	}
+
+	public synchronized State getState() {
+		return this.currentState;
+	}
+
+	public enum State {
+		INITIATED, CONNECTED, DISCONNECTED
+	}
+
+	private final WebRTCClient caller;
+	private State currentState = State.DISCONNECTED;
+	private long initiatedTsMs = -1;
+
 }
