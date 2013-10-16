@@ -30,9 +30,9 @@ import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.model.ContactConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.chat.video.WebRtcClient;
-import com.liferay.chat.video.WebRtcManager;
-import com.liferay.chat.video.WebRtcClient.Mailbox;
+import com.liferay.chat.video.WebRTCClient;
+import com.liferay.chat.video.WebRTCManager;
+import com.liferay.chat.video.WebRTCClient.Mailbox;
 
 import java.util.Collections;
 import java.util.List;
@@ -41,13 +41,13 @@ import java.util.List;
  * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
  */
 public class ChatVideoPollerProcessor extends BasePollerProcessor {
-	private final WebRtcManager webRtcManager = new WebRtcManager();
+	private final WebRTCManager webRtcManager = new WebRTCManager();
 
-    protected String getWebRtcMessageType(PollerRequest req) {
+    protected String getWebRTCMessageType(PollerRequest req) {
         return this.getString(req, "webrtcMsgType");
     }
 
-    protected long getWebRtcDstUserId(PollerRequest req) {
+    protected long getWebRTCDstUserId(PollerRequest req) {
         if (req.getParameterMap().containsKey("webrtcDstUserId")) {
             return this.getLong(req, "webrtcDstUserId");
         } else {
@@ -55,10 +55,10 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
         }
     }
 
-    protected void processWebRtcMessage(PollerRequest req) {
+    protected void processWebRTCMessage(PollerRequest req) {
         long srcUserId = req.getUserId();
-        String webRtcMsgType = this.getWebRtcMessageType(req);
-        long dstUserId = this.getWebRtcDstUserId(req);
+        String webRtcMsgType = this.getWebRTCMessageType(req);
+        long dstUserId = this.getWebRTCDstUserId(req);
 
         // process message
         if (webRtcMsgType.equals("setAvailability")) {
@@ -87,9 +87,9 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
         }
     }
 
-    protected void getWebRtcData(PollerRequest req, PollerResponse resp) throws Exception {
-        // get WebRtc client
-        WebRtcClient client = this.webRtcManager.getClient(req.getUserId());
+    protected void getWebRTCData(PollerRequest req, PollerResponse resp) throws Exception {
+        // get WebRTC client
+        WebRTCClient client = this.webRtcManager.getClient(req.getUserId());
 
         // initialize response
         JSONObject webrtcObj = JSONFactoryUtil.createJSONObject();
@@ -98,7 +98,7 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 
         // get client mails
         if (client != null) {
-            List<WebRtcClient.Mailbox.Mail> clientMails = client.getOugoingMailbox().popAll();
+            List<WebRTCClient.Mailbox.Mail> clientMails = client.getOugoingMailbox().popAll();
             for (Mailbox.Mail mail : clientMails) {
                 String type = mail.getMsgType();
                 String jsonMessage = mail.getJsonMessage();
@@ -127,11 +127,11 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 	protected void doReceive(PollerRequest pollerRequest, PollerResponse pollerResponse) throws Exception {
         JSONObject yallObj = JSONFactoryUtil.createJSONObject();
 
-        this.getWebRtcData(pollerRequest, pollerResponse);
+        this.getWebRTCData(pollerRequest, pollerResponse);
 	}
 
 	@Override
 	protected void doSend(PollerRequest pollerRequest) throws Exception {
-        this.processWebRtcMessage(pollerRequest);
+        this.processWebRTCMessage(pollerRequest);
 	}
 }

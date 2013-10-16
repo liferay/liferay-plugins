@@ -26,17 +26,17 @@ package com.liferay.chat.video;
  *
  * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
  */
-public class WebRtcConnection {
+public class WebRTCConnection {
 	public enum State {
 		INITIATED,
 		CONNECTED,
 		DISCONNECTED
 	}
 	private State currentState = State.DISCONNECTED;
-	private final WebRtcClient caller;
+	private final WebRTCClient caller;
     private long initiatedTsMs = -1;
 
-	public WebRtcConnection(WebRtcClient caller) {
+	public WebRTCConnection(WebRTCClient caller) {
 		this.caller = caller;
 	}
 	
@@ -53,7 +53,7 @@ public class WebRtcConnection {
         }
 	}
 	
-	public WebRtcClient getCaller() {
+	public WebRTCClient getCaller() {
 		return this.caller;
 	}
 

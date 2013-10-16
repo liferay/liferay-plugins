@@ -19,7 +19,7 @@ package com.liferay.chat.video.scheduler;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.chat.video.WebRtcManager;
+import com.liferay.chat.video.WebRTCManager;
 
 /**
  * WebRTC connection state scheduler
@@ -29,9 +29,9 @@ import com.liferay.chat.video.WebRtcManager;
  *
  * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
  */
-public class WebRtcConnectionStateScheduler extends BaseMessageListener {
+public class WebRTCConnectionStateScheduler extends BaseMessageListener {
     @Override
     protected void doReceive(Message message) throws Exception {
-        WebRtcManager.checkAllManagersConnectionsStates();
+        WebRTCManager.checkAllManagersConnectionsStates();
     }
 }
