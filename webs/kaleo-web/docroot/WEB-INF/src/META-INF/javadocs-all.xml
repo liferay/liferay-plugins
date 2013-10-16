@@ -74,8 +74,8 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
+				<name>bytes</name>
+				<type>byte[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -453,8 +453,8 @@
 		<method>
 			<name>validateWorkflowDefinition</name>
 			<param>
-				<name>inputStream</name>
-				<type>java.io.InputStream</type>
+				<name>bytes</name>
+				<type>byte[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
