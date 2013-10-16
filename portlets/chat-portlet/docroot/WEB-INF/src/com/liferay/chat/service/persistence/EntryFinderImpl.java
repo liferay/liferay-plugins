@@ -43,6 +43,7 @@ public class EntryFinderImpl
 	public static final String FIND_BY_OLD =
 		EntryFinder.class.getName() + ".findByOld";
 
+	@Override
 	public List<Entry> findByEmptyContent(
 			long fromUserId, long toUserId, int start, int end)
 		throws SystemException {
@@ -73,6 +74,7 @@ public class EntryFinderImpl
 		}
 	}
 
+	@Override
 	public List<Entry> findByNew(
 			long userId, long createDate, int start, int end)
 		throws SystemException {
@@ -114,6 +116,7 @@ public class EntryFinderImpl
 		}
 	}
 
+	@Override
 	public List<Entry> findByOld(long createDate, int start, int end)
 		throws SystemException {
 

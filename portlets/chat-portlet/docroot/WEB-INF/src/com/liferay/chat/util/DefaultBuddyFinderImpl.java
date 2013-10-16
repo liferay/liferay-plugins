@@ -29,6 +29,7 @@ import java.util.List;
  */
 public class DefaultBuddyFinderImpl implements BuddyFinder {
 
+	@Override
 	public List<Object[]> getBuddies(long companyId, long userId)
 		throws SystemException {
 

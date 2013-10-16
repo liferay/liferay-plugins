@@ -44,6 +44,7 @@ public class StatusFinderImpl
 	public static final String FIND_BY_USERS_GROUPS =
 		StatusFinder.class.getName() + ".findByUsersGroups";
 
+	@Override
 	public List<Object[]> findByModifiedDate(
 			long companyId, long userId, long modifiedDate, int start, int end)
 		throws SystemException {
@@ -81,6 +82,7 @@ public class StatusFinderImpl
 		}
 	}
 
+	@Override
 	public List<Object[]> findBySocialRelationType(
 			long userId, int type, long modifiedDate, int start, int end)
 		throws SystemException {
@@ -119,6 +121,7 @@ public class StatusFinderImpl
 		}
 	}
 
+	@Override
 	public List<Object[]> findByUsersGroups(
 			long userId, long modifiedDate, String[] groupNames, int start,
 			int end)
