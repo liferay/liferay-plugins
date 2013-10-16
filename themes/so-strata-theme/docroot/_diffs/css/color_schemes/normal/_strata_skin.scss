@@ -56,7 +56,7 @@ $red: #8F0920;
 }
 
 @mixin button-primary-gradient {
-	background: #0E50A9 url(../../images/custom/button_primary_bg.png) repeat-x;
+	background: #0E50A9 url(../../../images/custom/button_primary_bg.png) repeat-x;
 
 	@include background-image(linear-gradient(bottom, #0E50A9 0, #1D87EB 100%));
 
@@ -127,7 +127,7 @@ $red: #8F0920;
 }
 
 @mixin subtle-gradient {
-	background: #E4E4E4 no-repeat;
+	background: $btnBackgroundDefault url(../../../images/custom/normal_gradient_bg.png) 0 0 repeat-x;
 
 	@include background-image(linear-gradient(bottom, #E4E4E4 0, #F7F7F7 100%));
 	@include transition-duration(0.2s);
