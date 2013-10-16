@@ -27,7 +27,7 @@ import java.util.Set;
  * follow that connection and manage mails for clients. Mails are added
  * automatically to users' mailboxes with the {@code processMsg*} methods.
  *
- * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
+ * @author Philippe Proulx
  */
 public class WebRTCManager {
     /*

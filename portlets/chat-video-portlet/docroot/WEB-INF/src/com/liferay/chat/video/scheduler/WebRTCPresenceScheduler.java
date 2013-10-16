@@ -24,7 +24,7 @@ import com.liferay.chat.video.WebRTCManager;
  * This class is instantiated by Liferay and checks at a regular
  * interval all the client presences of all the WebRTC managers.
  *
- * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
+ * @author Philippe Proulx
  */
 public class WebRTCPresenceScheduler extends BaseMessageListener {
     @Override

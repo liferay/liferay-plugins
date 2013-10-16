@@ -35,7 +35,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
+ * @author Philippe Proulx
  */
 public class ChatVideoPollerProcessor extends BasePollerProcessor {
 	private final WebRTCManager webRtcManager = new WebRTCManager();

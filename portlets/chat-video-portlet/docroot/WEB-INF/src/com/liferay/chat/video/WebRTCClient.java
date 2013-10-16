@@ -21,7 +21,7 @@ import java.util.Set;
 /**
  * WebRTC client (not thread safe)
  *
- * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
+ * @author Philippe Proulx
  */
 public class WebRTCClient {
 	private final HashMap<WebRTCClient, WebRTCConnection> connections = new HashMap<WebRTCClient, WebRTCConnection>();
