@@ -86,43 +86,4 @@
 			<name>_log</name>
 		</field>
 	</javadoc>
-	<javadoc>
-		<name>ClassLoaderUtil</name>
-		<type>com.liferay.scriptingexecutor.util.ClassLoaderUtil</type>
-		<author><![CDATA[Michael C. Han]]></author>
-		<see><![CDATA[com.liferay.portal.util.ClassLoaderUtil]]></see>
-		<method>
-			<name>getAggregatePluginsClassLoader</name>
-			<param>
-				<name>servletContextNames</name>
-				<type>java.lang.String[]</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>addContextClassLoader</name>
-				<type>boolean</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>_getContextClassLoader</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>_getPluginClassLoader</name>
-			<param>
-				<name>servletContextName</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-	</javadoc>
 </javadocs>

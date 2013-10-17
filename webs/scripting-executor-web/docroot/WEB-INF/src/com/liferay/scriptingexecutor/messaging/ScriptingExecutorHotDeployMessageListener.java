@@ -20,12 +20,14 @@ import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.scripting.ScriptingUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
+import com.liferay.portal.kernel.util.ClassLoaderPool;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.scriptingexecutor.util.ClassLoaderUtil;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +46,10 @@ import javax.servlet.ServletContext;
 public class ScriptingExecutorHotDeployMessageListener
 	extends HotDeployMessageListener {
 
+	public ScriptingExecutorHotDeployMessageListener() {
+		super();
+	}
+
 	public ScriptingExecutorHotDeployMessageListener(
 		String... servletContextNames) {
 
@@ -52,20 +58,39 @@ public class ScriptingExecutorHotDeployMessageListener
 
 	protected void executeScripts(
 		ServletContext servletContext, String language,
-		ClassLoader classLoader) {
+		String requiredDeploymentContexts) {
 
 		InputStream inputStream = null;
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			_SCRIPTS_DIR);
 
+		Set<String> servletContextNames = SetUtil.fromArray(
+			StringUtil.split(requiredDeploymentContexts));
+
+		servletContextNames.add(servletContext.getServletContextName());
+		servletContextNames.add(
+			ClassLoaderPool.getContextName(
+				PortalClassLoaderUtil.getClassLoader()));
+
 		for (String resourcePath : resourcePaths) {
+
+			if (resourcePath.endsWith("/")) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Skipping directory: " + resourcePath);
+				}
+
+				continue;
+			}
+
 			try {
 				inputStream = servletContext.getResourceAsStream(resourcePath);
 
 				ScriptingUtil.exec(
 					null, new HashMap<String, Object>(), language,
-					StringUtil.read(inputStream), classLoader);
+					StringUtil.read(inputStream),
+					(String[])servletContextNames.toArray(
+						new String[servletContextNames.size()]));
 			}
 			catch (Exception e) {
 				_log.error("Unable to execute script " + resourcePath, e);
@@ -145,11 +170,7 @@ public class ScriptingExecutorHotDeployMessageListener
 			return;
 		}
 
-		ClassLoader classLoader =
-			ClassLoaderUtil.getAggregatePluginsClassLoader(
-				StringUtil.split(requiredDeploymentContexts), false);
-
-		executeScripts(servletContext, language, classLoader);
+		executeScripts(servletContext, language, requiredDeploymentContexts);
 	}
 
 	@Override
@@ -163,7 +184,9 @@ public class ScriptingExecutorHotDeployMessageListener
 
 			String language = getLanguage(pluginPackageProperties);
 
-			ScriptingUtil.clearCache(language);
+			if (Validator.isNotNull(language)) {
+				ScriptingUtil.clearCache(language);
+			}
 		}
 		else {
 			Set<String> supportedLanguages =
