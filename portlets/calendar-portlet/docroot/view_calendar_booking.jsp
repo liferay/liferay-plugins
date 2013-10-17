@@ -76,7 +76,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 				}
 				%>
 
-				<%= StringUtil.merge(calendarResourcesNames, ", ") %>
+				<%= HtmlUtil.escape(StringUtil.merge(calendarResourcesNames, ", ")) %>
 			</dd>
 		</c:if>
 		<c:if test="<%= Validator.isNotNull(calendarBooking.getLocation()) %>">
@@ -99,7 +99,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 	</liferay-ui:custom-attributes-available>
 
 	<p>
-		<%= calendarBooking.getDescription(locale) %>
+		<%= HtmlUtil.escape(calendarBooking.getDescription(locale)) %>
 	</p>
 
 	<div class="entry-categories">

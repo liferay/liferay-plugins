@@ -43,7 +43,7 @@
 	>
 		<liferay-ui:search-container-column-text
 			name="name"
-			value="<%= user.getFullName() %>"
+			value="<%= HtmlUtil.escape(user.getFullName()) %>"
 		/>
 
 		<liferay-ui:search-container-column-text

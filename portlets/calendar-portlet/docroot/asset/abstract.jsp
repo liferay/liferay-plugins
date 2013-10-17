@@ -55,7 +55,7 @@
 			}
 			%>
 
-			<%= StringUtil.merge(calendarResourcesNames, ", ") %>
+			<%= HtmlUtil.escape(StringUtil.merge(calendarResourcesNames, ", ")) %>
 		</c:if>
 
 		<br />

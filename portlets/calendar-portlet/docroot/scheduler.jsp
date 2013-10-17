@@ -107,7 +107,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 
 	window.<portlet:namespace />scheduler = new Liferay.Scheduler(
 		{
-			activeView: window.<portlet:namespace /><%= activeView %>View,
+			activeView: window['<portlet:namespace /><%= activeView %>View'],
 			boundingBox: '#<portlet:namespace />scheduler',
 			date: new Date(<%= date %>),
 
@@ -116,7 +116,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 			</c:if>
 
 			eventRecorder: window.<portlet:namespace />eventRecorder,
-			filterCalendarBookings: <%= filterCalendarBookings %>,
+			filterCalendarBookings: window['<%= HtmlUtil.escapeJS(filterCalendarBookings) %>'],
 			firstDayOfWeek: <%= weekStartsOn %>,
 			items: A.Object.values(Liferay.CalendarUtil.availableCalendars),
 			portletNamespace: '<portlet:namespace />',

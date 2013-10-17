@@ -69,7 +69,7 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 					</c:when>
 					<c:otherwise>
 						<aui:field-wrapper label="code">
-							<%= code %>
+							<%= HtmlUtil.escape(code) %>
 						</aui:field-wrapper>
 					</c:otherwise>
 				</c:choose>
@@ -83,7 +83,7 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 						for (Calendar calendar : calendars) {
 						%>
 
-							<aui:option label="<%= calendar.getName(locale) %>" value="<%= calendar.getCalendarId() %>" />
+							<aui:option label="<%= HtmlUtil.escapeAttribute(calendar.getName(locale)) %>" value="<%= calendar.getCalendarId() %>" />
 
 						<%
 						}
