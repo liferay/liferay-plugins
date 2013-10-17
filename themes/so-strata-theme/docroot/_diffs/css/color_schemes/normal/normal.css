@@ -545,7 +545,6 @@ input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-fo
 
 div#navigation {
 	background: $navigationBgColor;
-	border-right: 1px solid $defaultBorderColor;
 	float: left;
 	margin-left: -156px;
 	width: 155px;
