@@ -60,7 +60,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 		<liferay-ui:search-container-column-text
 			name="description"
-			value="<%= StringUtil.shorten(calendar.getDescription(locale)) %>"
+			value="<%= HtmlUtil.escape(StringUtil.shorten(calendar.getDescription(locale))) %>"
 		/>
 
 		<liferay-ui:search-container-column-text

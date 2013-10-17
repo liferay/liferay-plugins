@@ -49,7 +49,7 @@
 
 		<liferay-ui:search-container-column-text
 			name="description"
-			value="<%= StringUtil.shorten(resource.getDescription(locale)) %>"
+			value="<%= HtmlUtil.escape(StringUtil.shorten(resource.getDescription(locale))) %>"
 		/>
 
 		<liferay-ui:search-container-column-text name="active">
