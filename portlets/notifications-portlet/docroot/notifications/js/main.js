@@ -43,13 +43,28 @@ AUI().use(
 				var uri = currentTarget.attr('href');
 
 				if (uri) {
-					Liferay.Util.openWindow(
-						{
-							id: 'notificationsWindow',
-							uri: uri
-						}
-					);
+					if (instance._openWindow(uri)) {
+						Liferay.Util.openWindow(
+							{
+								id: 'notificationsWindow',
+								uri: uri
+							}
+						);
+					}
+					else {
+						var topWindow = Liferay.Util.getTop();
+
+						topWindow.location.href = uri;
+					}
 				}
+			},
+
+			_openWindow: function(uri) {
+				if (uri.match('p_p_state=maximized') || uri.match('p_p_state=pop_up') || uri.match('p_p_state=exclusive')) {
+					return true;
+				}
+
+				return false;
 			}
 		};
 	}
