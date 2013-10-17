@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.process.ProcessCallable;
+import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -44,6 +46,7 @@ import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalService;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalServiceWrapper;
 import com.liferay.portlet.announcements.service.persistence.AnnouncementsEntryFinderUtil;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -193,5 +196,36 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		SOAnnouncementsEntryLocalServiceImpl.class);
 
 	private Date _previousCheckDate;
+
+	private static class NotificationProcessCallable
+		implements ProcessCallable<Serializable> {
+
+		public NotificationProcessCallable(
+			AnnouncementsEntry announcementEntry,
+			JSONObject notificationEventJSONObject) {
+
+			_announcementEntry = announcementEntry;
+			_notificationEventJSONObject = notificationEventJSONObject;
+		}
+
+		@Override
+		public Serializable call() throws ProcessException {
+			try {
+				AnnouncementsEntryLocalServiceUtil.
+					sendUserNotifications(
+						_announcementEntry, _notificationEventJSONObject);
+			}
+			catch (Exception e) {
+				throw new ProcessException(e);
+			}
+
+			return null;
+		}
+
+		private static final long serialVersionUID = 1L;
+
+		private final AnnouncementsEntry _announcementEntry;
+		private final JSONObject _notificationEventJSONObject;
+	}
 
 }
