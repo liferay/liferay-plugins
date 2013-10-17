@@ -66,7 +66,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 			long userId, long classNameId, long classPK, String title,
 			String content, String url, String type, int displayDateMonth,
 			int displayDateDay, int displayDateYear, int displayDateHour,
-			int displayDateMinute, boolean autoDisplayDate,
+			int displayDateMinute, boolean displayImmediately,
 			int expirationDateMonth, int expirationDateDay,
 			int expirationDateYear, int expirationDateHour,
 			int expirationDateMinute, int priority, boolean alert)
@@ -75,9 +75,9 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		AnnouncementsEntry announcementEntry = super.addEntry(
 			userId, classNameId, classPK, title, content, url, type,
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
-			displayDateMinute, expirationDateMonth, expirationDateDay,
-			expirationDateYear, expirationDateHour, expirationDateMinute,
-			priority, alert);
+			displayDateMinute, displayImmediately, expirationDateMonth,
+			expirationDateDay, expirationDateYear, expirationDateHour,
+			expirationDateMinute, priority, alert);
 
 		if (announcementEntry != null) {
 			Date displayDate = announcementEntry.getDisplayDate();
