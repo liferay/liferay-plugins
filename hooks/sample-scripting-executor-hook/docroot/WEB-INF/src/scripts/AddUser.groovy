@@ -12,25 +12,28 @@
  * details.
  */
 
-import com.liferay.scriptingexecutor.scripts.groovy.GroovyRole
-import com.liferay.scriptingexecutor.scripts.groovy.GroovyScriptingContext
-import com.liferay.scriptingexecutor.scripts.groovy.GroovySite
-import com.liferay.scriptingexecutor.scripts.groovy.GroovyUser
+import com.liferay.scriptingexecutor.scripts.groovy.GroovyRole;
+import com.liferay.scriptingexecutor.scripts.groovy.GroovyScriptingContext;
+import com.liferay.scriptingexecutor.scripts.groovy.GroovySite;
+import com.liferay.scriptingexecutor.scripts.groovy.GroovyUser;
 
- 
 GroovyScriptingContext scriptingContext = new GroovyScriptingContext();
- 
-def testRole = GroovyRole.portalRole("testRole", "Testing this role");
-testRole.create(scriptingContext);
- 
-def site1 = GroovySite.openSite("HR GroovySite", "My first site");
-site1.create(scriptingContext);
- 
-def user1 = new GroovyUser(
+
+GroovyRole groovyRole = GroovyRole.portalRole(
+	"Sample Groovy Role", "This is a sample Groovy role.");
+
+groovyRole.create(scriptingContext);
+
+GroovySite groovySite = GroovySite.openSite(
+	"Sample Groovy Site", "This is a sample Groovy site.");
+
+groovySite.create(scriptingContext);
+
+GroovyUser groovyUser = new GroovyUser(
 	"test.user@liferay.com", "test",  "Test", "User", "Web Admin");
- 
-user1.create(scriptingContext);
- 
-user1.addRoles(scriptingContext, testRole.name);
- 
-user1.joinSites(scriptingContext, site1.name);
+
+groovyUser.create(scriptingContext);
+
+groovyUser.addRoles(scriptingContext, groovyRole.name);
+
+groovyUser.joinSites(scriptingContext, groovySite.name);
