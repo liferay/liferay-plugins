@@ -12,10 +12,14 @@
  * details.
  */
 
-package com.liferay.scriptingexecutor.scripts.groovy;
+package com.liferay.scriptingexecutor.scripts.groovy
 
+import com.liferay.portal.model.GroupConstants
+import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
-import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.RoleConstants
+import com.liferay.portal.service.ResourceBlockLocalServiceUtil
+import com.liferay.portal.service.ResourcePermissionLocalServiceUtil
 import com.liferay.portal.service.RoleLocalServiceUtil;
 
 /**
@@ -61,9 +65,66 @@ class GroovyRole {
 		}
 
 		role = RoleLocalServiceUtil.addRole(
-			scriptingContext.defaultUserId, scriptingContext.companyId, name,
+			scriptingContext.defaultUserId, null, 0, name,
 			GroovyScriptingContext.getLocalizationMap(name),
-			GroovyScriptingContext.getLocalizationMap(description), type);
+			GroovyScriptingContext.getLocalizationMap(description), type, null,
+			scriptingContext.serviceContext);
+	}
+
+	void updatePermissions(
+		String resourceName, String[] resourceActions, boolean add,
+		GroovyScriptingContext scriptingContext) {
+
+		boolean resourceBlockSupported =
+			ResourceBlockLocalServiceUtil.isSupported(resourceName);
+
+		int scope = ResourceConstants.SCOPE_COMPANY;
+
+		if ((role.getType() == RoleConstants.TYPE_SITE) ||
+			(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
+
+			scope = ResourceConstants.SCOPE_GROUP_TEMPLATE;
+		}
+
+		for (String resourceAction : resourceActions) {
+			if (add) {
+				if (resourceBlockSupported) {
+					ResourceBlockLocalServiceUtil.addCompanyScopePermission(
+						scriptingContext.companyId, resourceName,
+						role.getRoleId(), resourceAction);
+				}
+				else {
+					if (scope == ResourceConstants.SCOPE_COMPANY) {
+						ResourcePermissionLocalServiceUtil.
+							addResourcePermission(
+								scriptingContext.companyId, resourceName, scope,
+								String.valueOf(role.getCompanyId()),
+								role.getRoleId(), resourceAction);
+					}
+					else if (scope == ResourceConstants.SCOPE_GROUP_TEMPLATE) {
+						ResourcePermissionLocalServiceUtil.
+							addResourcePermission(
+								scriptingContext.companyId, resourceName, scope,
+								String.valueOf(
+									GroupConstants.DEFAULT_PARENT_GROUP_ID),
+								role.getRoleId(), resourceAction);
+					}
+				}
+			}
+			else {
+				if (resourceBlockSupported) {
+					ResourceBlockLocalServiceUtil.removeCompanyScopePermission(
+						scriptingContext.companyId, resourceName,
+						role.getRoleId(), resourceAction);
+				}
+				else {
+					ResourcePermissionLocalServiceUtil.
+						removeResourcePermissions(
+							scriptingContext.companyId, resourceName, scope,
+							role.getRoleId(), resourceAction);
+				}
+			}
+		}
 	}
 
 	String description;
