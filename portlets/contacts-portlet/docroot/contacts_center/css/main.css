@@ -20,10 +20,8 @@ $section-header-bg: #CCE6F7;
 		margin-bottom: 0;
 	}
 
-	.toolbar-content {
-		.filter-container {
-			float: left;
-		}
+	.toolbar-content .filter-container {
+		float: left;
 	}
 
 	.contact-group-filter {
@@ -42,7 +40,7 @@ $section-header-bg: #CCE6F7;
 			margin: 0;
 		}
 
-		select {
+		.control-group, select {
 			margin-bottom: 0;
 		}
 	}
