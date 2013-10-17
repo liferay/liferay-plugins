@@ -61,6 +61,10 @@ else {
 for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 	UserNotificationFeedEntry userNotificationFeedEntry = UserNotificationManagerUtil.interpret(StringPool.BLANK, userNotificationEvent, ServiceContextFactory.getInstance(request));
 
+	if (userNotificationFeedEntry == null) {
+		continue;
+	}
+
 	JSONObject userNotificationEventJSONObject = JSONFactoryUtil.createJSONObject(userNotificationEvent.getPayload());
 
 	long userId = userNotificationEventJSONObject.getLong("userId");
