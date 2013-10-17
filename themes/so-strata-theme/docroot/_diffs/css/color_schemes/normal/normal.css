@@ -1596,7 +1596,7 @@ div#navigation {
 		}
 	}
 
-	.toolbar, .contact-group-filter, .lfr-button-column {
+	.toolbar, .contacts-search, .lfr-button-column {
 		background-color: $controlBgColor;
 	}
 
