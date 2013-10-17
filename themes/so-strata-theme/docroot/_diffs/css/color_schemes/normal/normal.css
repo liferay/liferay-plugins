@@ -174,37 +174,6 @@ a {
 	}
 }
 
-/* --------- Calendar --------- */
-
-.aui-calendar-content .aui-calendar-day {
-	&, &.aui-state-default {
-		background: transparent none;
-		border-width: 0;
-		padding: 0;
-		width: 13.2%;
-
-		@include box-shadow(none);
-		@include border-radius(0);
-	}
-
-	&:hover, &.aui-state-active, &.aui-state-hover {
-		background: $btnBackgroundDefault;
-		padding: 0;
-		text-decoration: none;
-	}
-}
-
-.aui-search-bar, .lfr-search-combobox {
-	.aui-field-content, .aui-button-content {
-		display: inline;
-		vertical-align: top;
-	}
-
-	.aui-button-input {
-		padding: 0.37em 0.70em 0.38em;
-	}
-}
-
 .hidden-accessible, #navigation h1 {
 	@include hidden-accessible;
 }
@@ -648,40 +617,9 @@ div#navigation {
 }
 
 .aui-dialog-iframe-popup #main-content {
+	@include box-shadow(none);
+
 	float: none;
-}
-
-.aui-tabview-list {
-	@include default-border;
-
-	padding: 0 0.45em;
-
-	@include normal-gradient;
-
-	.aui-tab, .aui-tab:first-child, .last, .first, .aui-tab-content {
-		border-width: 0;
-		padding: 0;
-	}
-
-	.aui-tab-content {
-		margin: -1px -1px 0 0;
-	}
-
-	.aui-tab-label {
-		font-weight: 200;
-		text-decoration: none;
-		margin-bottom: -1px;
-
-		&:hover, &:focus {
-			@include button-hover;
-
-			text-shadow: none;
-		}
-	}
-
-	.aui-tab-active .aui-tab-label, .aui-tab-label:active {
-		@include button-active;
-	}
 }
 
 /* ---------- Application CSS ---------- */
@@ -1647,7 +1585,7 @@ div#navigation {
 	padding: 10px;
 }
 
-/* ---------- Contacts portlet ---------- */
+/* ---------- Contacts ---------- */
 
 .contacts-portlet {
 	.contacts-profile {
@@ -1658,7 +1596,7 @@ div#navigation {
 		}
 	}
 
-	.toolbar, .contact-group-filter {
+	.toolbar, .contact-group-filter, .lfr-button-column {
 		background-color: $controlBgColor;
 	}
 
@@ -1792,7 +1730,7 @@ div#navigation {
 	border-bottom-width: 1px;
 }
 
-/* ---------- Private messaging ---------- */
+/* ---------- Private Messaging ---------- */
 
 .private-messaging-portlet {
 	.controls {
