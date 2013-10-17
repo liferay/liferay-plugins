@@ -145,45 +145,11 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		notificationEventJSONObject.put(
 			"userId", announcementEntry.getUserId());
 
-		List<User> users = Collections.emptyList();
-
-		if (announcementEntry.getClassNameId() == 0) {
-			users = UserLocalServiceUtil.getUsers(
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-		}
-		else {
-			String className = PortalUtil.getClassName(
-				announcementEntry.getClassNameId());
-
-			if (className.equals(Group.class.getName())) {
-				users = UserLocalServiceUtil.getGroupUsers(
-					announcementEntry.getClassPK());
-			}
-			else if (className.equals(Organization.class.getName())) {
-				users = UserLocalServiceUtil.getOrganizationUsers(
-					announcementEntry.getClassPK());
-			}
-			else if (className.equals(Role.class.getName())) {
-				users = UserLocalServiceUtil.getRoleUsers(
-					announcementEntry.getClassPK());
-			}
-			else if (className.equals(UserGroup.class.getName())) {
-				users = UserLocalServiceUtil.getUserGroupUsers(
-					announcementEntry.getClassPK());
-			}
-		}
-
-		for (User user : users) {
-			NotificationEvent notificationEvent =
-				NotificationEventFactoryUtil.createNotificationEvent(
-					System.currentTimeMillis(), "6_WAR_soportlet",
-					notificationEventJSONObject);
-
-			notificationEvent.setDeliveryRequired(0);
-
-			ChannelHubManagerUtil.sendNotificationEvent(
-				user.getCompanyId(), user.getUserId(), notificationEvent);
-		}
+		MessageBusUtil.sendMessage(
+			DestinationNames.ASYNC_SERVICE,
+			new NotificationProcessCallable(
+				announcementEntry, notificationEventJSONObject)
+		);
 	}
 
 	private static final long _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL =
@@ -211,15 +177,58 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		@Override
 		public Serializable call() throws ProcessException {
 			try {
-				AnnouncementsEntryLocalServiceUtil.
-					sendUserNotifications(
-						_announcementEntry, _notificationEventJSONObject);
+				sendUserNotifications(
+					_announcementEntry, _notificationEventJSONObject);
 			}
 			catch (Exception e) {
 				throw new ProcessException(e);
 			}
 
 			return null;
+		}
+
+		protected void sendUserNotifications(
+				AnnouncementsEntry announcementEntry,
+				JSONObject notificationEventJSONObject)
+			throws PortalException, SystemException {
+
+			if (announcementEntry.getClassNameId() == 0) {
+				users = UserLocalServiceUtil.getUsers(
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+			}
+			else {
+				String className = PortalUtil.getClassName(
+					announcementEntry.getClassNameId());
+
+				if (className.equals(Group.class.getName())) {
+					users = UserLocalServiceUtil.getGroupUsers(
+						announcementEntry.getClassPK());
+				}
+				else if (className.equals(Organization.class.getName())) {
+					users = UserLocalServiceUtil.getOrganizationUsers(
+						announcementEntry.getClassPK());
+				}
+				else if (className.equals(Role.class.getName())) {
+					users = UserLocalServiceUtil.getRoleUsers(
+						announcementEntry.getClassPK());
+				}
+				else if (className.equals(UserGroup.class.getName())) {
+					users = UserLocalServiceUtil.getUserGroupUsers(
+						announcementEntry.getClassPK());
+				}
+			}
+
+			for (User user : users) {
+				NotificationEvent notificationEvent =
+					NotificationEventFactoryUtil.createNotificationEvent(
+						System.currentTimeMillis(), "6_WAR_soportlet",
+						notificationEventJSONObject);
+
+				notificationEvent.setDeliveryRequired(0);
+
+				ChannelHubManagerUtil.sendNotificationEvent(
+					user.getCompanyId(), user.getUserId(), notificationEvent);
+			}
 		}
 
 		private static final long serialVersionUID = 1L;
