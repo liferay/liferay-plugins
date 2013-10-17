@@ -12,6 +12,9 @@
  * details.
  */
 
+import com.liferay.portal.security.permission.ActionKeys
+import com.liferay.portal.util.PortletKeys
+
 import com.liferay.scriptingexecutor.scripts.groovy.GroovyRole;
 import com.liferay.scriptingexecutor.scripts.groovy.GroovyScriptingContext;
 import com.liferay.scriptingexecutor.scripts.groovy.GroovySite;
@@ -23,6 +26,11 @@ GroovyRole groovyRole = GroovyRole.portalRole(
 	"Sample Groovy Role", "This is a sample Groovy role.");
 
 groovyRole.create(scriptingContext);
+
+String[] resourceActions = [ActionKeys.CONFIGURATION, ActionKeys.VIEW];
+
+groovyRole.updatePermissions(
+	PortletKeys.ACTIVITIES, resourceActions, true, scriptingContext);
 
 GroovySite groovySite = GroovySite.openSite(
 	"Sample Groovy Site", "This is a sample Groovy site.");
