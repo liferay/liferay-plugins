@@ -74,10 +74,9 @@ public class ScriptingExecutorHotDeployMessageListener
 				PortalClassLoaderUtil.getClassLoader()));
 
 		for (String resourcePath : resourcePaths) {
-
-			if (resourcePath.endsWith("/")) {
+			if (resourcePath.endsWith(StringPool.SLASH)) {
 				if (_log.isInfoEnabled()) {
-					_log.info("Skipping directory: " + resourcePath);
+					_log.info("Skipping directory " + resourcePath);
 				}
 
 				continue;
@@ -89,7 +88,7 @@ public class ScriptingExecutorHotDeployMessageListener
 				ScriptingUtil.exec(
 					null, new HashMap<String, Object>(), language,
 					StringUtil.read(inputStream),
-					(String[])servletContextNames.toArray(
+					servletContextNames.toArray(
 						new String[servletContextNames.size()]));
 			}
 			catch (Exception e) {
