@@ -134,8 +134,11 @@ class GroovySite {
 		}
 
 		site = GroupLocalServiceUtil.addGroup(
-			scriptingContext.defaultUserId, null, 0, 0, name, description, type,
-			null, true, true, scriptingContext.serviceContext);
+			scriptingContext.defaultUserId,
+			GroupConstants.DEFAULT_PARENT_GROUP_ID, null, 0, 0, name,
+			description, type, true,
+			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, true, true,
+			scriptingContext.serviceContext);
 	}
 
 	String description;
