@@ -163,8 +163,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 	private static final long _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL =
 		GetterUtil.getInteger(
 			PropsUtil.get(
-				PropsKeys.ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL)) *
-		Time.MINUTE;
+				PropsKeys.ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL)) * Time.MINUTE;
 
 	private static Log _log = LogFactoryUtil.getLog(
 		SOAnnouncementsEntryLocalServiceImpl.class);
