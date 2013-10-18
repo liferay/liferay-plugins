@@ -73,8 +73,9 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		Calendar calendar = CalendarLocalServiceUtil.getCalendar(
 			calendarNotificationTemplate.getCalendarId());
 
-		StagedModelDataHandlerUtil.exportStagedModel(
-			portletDataContext, calendar);
+		StagedModelDataHandlerUtil.exportReferenceStagedModel(
+			portletDataContext, calendarNotificationTemplate, calendar,
+			PortletDataContext.REFERENCE_TYPE_STRONG);
 
 		Element calendarNotificationTemplateElement =
 			portletDataContext.getExportDataElement(
@@ -104,15 +105,8 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		long userId = portletDataContext.getUserId(
 			calendarNotificationTemplate.getUserUuid());
 
-		String calendarPath = ExportImportPathUtil.getModelPath(
-			portletDataContext, Calendar.class.getName(),
-			calendarNotificationTemplate.getCalendarId());
-
-		Calendar calendar = (Calendar)portletDataContext.getZipEntryAsObject(
-			calendarPath);
-
-		StagedModelDataHandlerUtil.importStagedModel(
-			portletDataContext, calendar);
+		StagedModelDataHandlerUtil.importReferenceStagedModels(
+			portletDataContext, calendarNotificationTemplate, Calendar.class);
 
 		Map<Long, Long> calendarIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
