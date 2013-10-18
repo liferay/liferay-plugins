@@ -151,10 +151,10 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		_previousCheckDate = now;
 	}
 
-	protected void sendNotificationEvent(final AnnouncementsEntry announcementEntry)
+	protected void sendNotificationEvent(AnnouncementsEntry announcementEntry)
 		throws PortalException, SystemException {
 
-		final JSONObject notificationEventJSONObject =
+		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
 		notificationEventJSONObject.put("body", announcementEntry.getTitle());
@@ -169,127 +169,8 @@ public class SOAnnouncementsEntryLocalServiceImpl
 
 		MessageBusUtil.sendMessage(
 			DestinationNames.ASYNC_SERVICE,
-			new Runnable() {
-
-				@Override
-				public void run() {
-					try {
-						sendUserNotifications(
-							announcementEntry, notificationEventJSONObject);
-					}
-					catch (Throwable t) {
-						throw new RuntimeException(t);
-					}
-				}
-
-				protected void sendUserNotifications(
-						AnnouncementsEntry announcementEntry,
-						JSONObject notificationEventJSONObject)
-					throws PortalException, SystemException {
-
-					int count = 0;
-
-					LinkedHashMap<String, Object> params =
-						new LinkedHashMap<String, Object>();
-
-					if (announcementEntry.getClassNameId() == 0) {
-						count = UserLocalServiceUtil.getUsersCount();
-					}
-					else {
-						String className = announcementEntry.getClassName();
-
-						long classPK = announcementEntry.getClassPK();
-
-						if (classPK > 0) {
-							if (className.equals(Group.class.getName())) {
-								params.put("inherit", Boolean.TRUE);
-								params.put("usersGroups", classPK);
-							}
-							else if (className.equals(
-										Organization.class.getName())) {
-
-								Organization organization =
-									OrganizationLocalServiceUtil.
-										fetchOrganization(classPK);
-
-								if (organization == null) {
-									return;
-								}
-
-								params.put(
-									"usersOrgsTree",
-									ListUtil.fromArray(
-										new Organization[]{organization}));
-							}
-							else if (className.equals(Role.class.getName())) {
-								Role role = RoleLocalServiceUtil.fetchRole(
-									classPK);
-
-								if (role == null) {
-									return;
-								}
-
-								if (role.getType() ==
-										RoleConstants.TYPE_REGULAR) {
-
-									params.put("inherit", Boolean.TRUE);
-									params.put("usersRoles", classPK);
-								}
-								else {
-									params.put(
-										"userGroupRole",
-										new Long[] {Long.valueOf(0), classPK});
-								}
-							}
-							else if (className.equals(
-										UserGroup.class.getName())) {
-
-								params.put("usersUserGroups", classPK);
-							}
-						}
-
-						count = UserLocalServiceUtil.searchCount(
-							announcementEntry.getCompanyId(), null,
-							WorkflowConstants.STATUS_APPROVED, params);
-					}
-
-					int pages = count / Indexer.DEFAULT_INTERVAL;
-
-					for (int i = 0; i <= pages; i++) {
-						List<User> users = null;
-
-						int start = (i * Indexer.DEFAULT_INTERVAL);
-
-						int end = start + Indexer.DEFAULT_INTERVAL;
-
-						if (announcementEntry.getClassNameId() == 0) {
-							users = UserLocalServiceUtil.getUsers(start, end);
-						}
-						else {
-							users = UserLocalServiceUtil.search(
-								announcementEntry.getCompanyId(), null,
-								WorkflowConstants.STATUS_APPROVED, params,
-								start, end, (OrderByComparator)null);
-						}
-
-						for (User user : users) {
-							NotificationEvent notificationEvent =
-								NotificationEventFactoryUtil.
-									createNotificationEvent(
-									System.currentTimeMillis(),
-									"6_WAR_soportlet",
-									notificationEventJSONObject);
-
-							notificationEvent.setDeliveryRequired(0);
-
-							ChannelHubManagerUtil.sendNotificationEvent(
-								user.getCompanyId(), user.getUserId(),
-								notificationEvent);
-						}
-					}
-				}
-			}
-		);
+			new NotificationRunnable(
+				announcementEntry, notificationEventJSONObject));
 	}
 
 	private static final long _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL =
@@ -302,5 +183,130 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		SOAnnouncementsEntryLocalServiceImpl.class);
 
 	private Date _previousCheckDate;
+
+	private static class NotificationRunnable implements Runnable {
+
+		public NotificationRunnable(
+			AnnouncementsEntry announcementEntry,
+			JSONObject notificationEventJSONObject) {
+
+			_announcementEntry = announcementEntry;
+			_notificationEventJSONObject = notificationEventJSONObject;
+		}
+
+		@Override
+		public void run() {
+			try {
+				sendUserNotifications(
+					_announcementEntry, _notificationEventJSONObject);
+			}
+			catch (Throwable t) {
+				throw new RuntimeException(t);
+			}
+		}
+
+		protected void sendUserNotifications(
+				AnnouncementsEntry announcementEntry,
+				JSONObject notificationEventJSONObject)
+			throws PortalException, SystemException {
+
+			int count = 0;
+
+			LinkedHashMap<String, Object> params =
+				new LinkedHashMap<String, Object>();
+
+			if (announcementEntry.getClassNameId() == 0) {
+				count = UserLocalServiceUtil.getUsersCount();
+			}
+			else {
+				String className = announcementEntry.getClassName();
+
+				long classPK = announcementEntry.getClassPK();
+
+				if (classPK > 0) {
+					if (className.equals(Group.class.getName())) {
+						params.put("inherit", Boolean.TRUE);
+						params.put("usersGroups", classPK);
+					}
+					else if (className.equals(Organization.class.getName())) {
+						Organization organization =
+							OrganizationLocalServiceUtil.fetchOrganization(
+								classPK);
+
+						if (organization == null) {
+							return;
+						}
+
+						params.put(
+							"usersOrgsTree",
+							ListUtil.fromArray(
+								new Organization[]{organization}));
+					}
+					else if (className.equals(Role.class.getName())) {
+						Role role = RoleLocalServiceUtil.fetchRole(classPK);
+
+						if (role == null) {
+							return;
+						}
+
+						if (role.getType() ==
+								RoleConstants.TYPE_REGULAR) {
+
+							params.put("inherit", Boolean.TRUE);
+							params.put("usersRoles", classPK);
+						}
+						else {
+							params.put(
+								"userGroupRole",
+								new Long[] {Long.valueOf(0), classPK});
+						}
+					}
+					else if (className.equals(UserGroup.class.getName())) {
+						params.put("usersUserGroups", classPK);
+					}
+				}
+
+				count = UserLocalServiceUtil.searchCount(
+					announcementEntry.getCompanyId(), null,
+					WorkflowConstants.STATUS_APPROVED, params);
+			}
+
+			int pages = count / Indexer.DEFAULT_INTERVAL;
+
+			for (int i = 0; i <= pages; i++) {
+				List<User> users = null;
+
+				int start = (i * Indexer.DEFAULT_INTERVAL);
+
+				int end = start + Indexer.DEFAULT_INTERVAL;
+
+				if (announcementEntry.getClassNameId() == 0) {
+					users = UserLocalServiceUtil.getUsers(start, end);
+				}
+				else {
+					users = UserLocalServiceUtil.search(
+						announcementEntry.getCompanyId(), null,
+						WorkflowConstants.STATUS_APPROVED, params, start, end,
+						(OrderByComparator)null);
+				}
+
+				for (User user : users) {
+					NotificationEvent notificationEvent =
+						NotificationEventFactoryUtil.createNotificationEvent(
+							System.currentTimeMillis(), "6_WAR_soportlet",
+							notificationEventJSONObject);
+
+					notificationEvent.setDeliveryRequired(0);
+
+					ChannelHubManagerUtil.sendNotificationEvent(
+						user.getCompanyId(), user.getUserId(),
+						notificationEvent);
+				}
+			}
+		}
+
+		private final AnnouncementsEntry _announcementEntry;
+		private final JSONObject _notificationEventJSONObject;
+	}
 
 }
