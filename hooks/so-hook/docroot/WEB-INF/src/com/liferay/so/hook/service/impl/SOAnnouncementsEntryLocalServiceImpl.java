@@ -156,8 +156,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		MessageBusUtil.sendMessage(
 			DestinationNames.ASYNC_SERVICE,
 			new NotificationProcessCallable(
-				announcementEntry, notificationEventJSONObject)
-		);
+				announcementEntry, notificationEventJSONObject));
 	}
 
 	private static final long _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL =
@@ -244,8 +243,8 @@ public class SOAnnouncementsEntryLocalServiceImpl
 						}
 						else {
 							params.put(
-								"userGroupRole", new Long[] {Long.valueOf(0),
-								classPK});
+								"userGroupRole",
+								new Long[] {Long.valueOf(0), classPK});
 						}
 					}
 					else if (className.equals(UserGroup.class.getName())) {
