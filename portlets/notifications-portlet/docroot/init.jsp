@@ -25,6 +25,7 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ page import="com.liferay.notifications.util.PortletKeys" %><%@
+page import="com.liferay.notifications.util.PortletPropsValues" %><%@
 page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.notifications.UserNotificationDefinition" %><%@
