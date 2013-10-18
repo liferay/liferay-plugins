@@ -345,10 +345,10 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 							function() {
 								submitForm(document.<portlet:namespace />fm);
 
-								this.close();
+								this.hide();
 							},
 							function() {
-								this.close();
+								this.hide();
 							}
 						);
 					</c:otherwise>
