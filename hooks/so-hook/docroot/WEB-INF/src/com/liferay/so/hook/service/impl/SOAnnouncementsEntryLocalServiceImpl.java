@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
+import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -199,13 +200,13 @@ public class SOAnnouncementsEntryLocalServiceImpl
 				JSONObject notificationEventJSONObject)
 			throws PortalException, SystemException {
 
-			List<User> users = null;
+			int count = 0;
 
 			LinkedHashMap<String, Object> params =
 				new LinkedHashMap<String, Object>();
 
 			if (announcementEntry.getClassNameId() == 0) {
-				users = UserLocalServiceUtil.getUsers(start, end);
+				count = UserLocalServiceUtil.getUsersCount();
 			}
 			else {
 				String className = announcementEntry.getClassName();
@@ -253,23 +254,42 @@ public class SOAnnouncementsEntryLocalServiceImpl
 					}
 				}
 
-				users = UserLocalServiceUtil.search(
+				count = UserLocalServiceUtil.searchCount(
 					announcementEntry.getCompanyId(), null,
-					WorkflowConstants.STATUS_APPROVED, params, start, end,
-					(OrderByComparator)null);
+					WorkflowConstants.STATUS_APPROVED, params);
 			}
 
-			for (User user : users) {
-				NotificationEvent notificationEvent =
-					NotificationEventFactoryUtil.createNotificationEvent(
-						System.currentTimeMillis(), "6_WAR_soportlet",
-						notificationEventJSONObject);
+			int pages = count / Indexer.DEFAULT_INTERVAL;
 
-				notificationEvent.setDeliveryRequired(0);
+			for (int i = 0; i <= pages; i++) {
+				List<User> users = null;
 
-				ChannelHubManagerUtil.sendNotificationEvent(
-					user.getCompanyId(), user.getUserId(),
-					notificationEvent);
+				int start = (i * Indexer.DEFAULT_INTERVAL);
+
+				int end = start + Indexer.DEFAULT_INTERVAL;
+
+				if (announcementEntry.getClassNameId() == 0) {
+					users = UserLocalServiceUtil.getUsers(start, end);
+				}
+				else {
+					users = UserLocalServiceUtil.search(
+						announcementEntry.getCompanyId(), null,
+						WorkflowConstants.STATUS_APPROVED, params, start, end,
+						(OrderByComparator)null);
+				}
+
+				for (User user : users) {
+					NotificationEvent notificationEvent =
+						NotificationEventFactoryUtil.createNotificationEvent(
+							System.currentTimeMillis(), "6_WAR_soportlet",
+							notificationEventJSONObject);
+
+					notificationEvent.setDeliveryRequired(0);
+
+					ChannelHubManagerUtil.sendNotificationEvent(
+						user.getCompanyId(), user.getUserId(),
+						notificationEvent);
+				}
 			}
 		}
 
