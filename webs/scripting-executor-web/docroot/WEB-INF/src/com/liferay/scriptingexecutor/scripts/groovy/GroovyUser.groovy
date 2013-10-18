@@ -43,13 +43,13 @@ class GroovyUser {
 	}
 
 	void addRoles(
-		GroovyScriptingContext scriptingContext, String... roleNames) {
+		GroovyScriptingContext groovyScriptingContext, String... roleNames) {
 
 		List<Role> roles = new ArrayList<Role>(roleNames.length);
 
 		for (String roleName : roleNames) {
 			Role role = RoleLocalServiceUtil.fetchRole(
-				scriptingContext.companyId, roleName);
+				groovyScriptingContext.companyId, roleName);
 
 			roles.add(role);
 		}
@@ -57,28 +57,30 @@ class GroovyUser {
 		RoleLocalServiceUtil.addUserRoles(user.getUserId(), roles);
 	}
 
-	void create(GroovyScriptingContext scriptingContext) {
+	void create(GroovyScriptingContext groovyScriptingContext) {
 		user = UserLocalServiceUtil.fetchUserByEmailAddress(
-			scriptingContext.companyId, emailAddress);
+			groovyScriptingContext.companyId, emailAddress);
 
 		if (user != null) {
 			return;
 		}
 
 		user = UserLocalServiceUtil.addUser(
-			scriptingContext.defaultUserId, scriptingContext.companyId, false,
+			groovyScriptingContext.defaultUserId,
+			groovyScriptingContext.companyId, false,
 			password, password, true, null, emailAddress, 0, null,
 			LocaleUtil.getDefault(), firstName, null, lastName, -1, -1, true, 1,
 			1, 1977, jobTitle, new long[0], new long[0], new long[0],
-			new long[0], false, scriptingContext.serviceContext);
+			new long[0], false, groovyScriptingContext.serviceContext);
 	}
 
 	void joinOrganizations(
-		GroovyScriptingContext scriptingContext, String... organizationNames) {
+		GroovyScriptingContext groovyScriptingContext,
+		String... organizationNames) {
 
 		for (String organizationName : organizationNames) {
 			Organization organization = GroovyOrganization.fetchOrganization(
-					scriptingContext, organizationName);
+					groovyScriptingContext, organizationName);
 
 			if (organization != null) {
 				UserLocalServiceUtil.addOrganizationUser(
