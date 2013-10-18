@@ -6,6 +6,7 @@
 		<portlet-name>1</portlet-name>
 		<icon>/microblogs/icon.png</icon>
 		<social-activity-interpreter-class>com.liferay.microblogs.microblogs.social.MicroblogsActivityInterpreter</social-activity-interpreter-class>
+		<user-notification-definitions>com/liferay/microblogs/microblogs/portlet/microblogs-user-notification-definitions.xml</user-notification-definitions>
 		<user-notification-handler-class>com.liferay.microblogs.microblogs.notifications.MicroblogsUserNotificationHandler</user-notification-handler-class>
 		<asset-renderer-factory>com.liferay.microblogs.microblogs.asset.MicroblogsEntryAssetRendererFactory</asset-renderer-factory>
 		<header-portlet-css>/microblogs/css/main.css</header-portlet-css>
