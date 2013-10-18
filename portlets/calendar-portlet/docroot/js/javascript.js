@@ -1489,12 +1489,12 @@ AUI.add(
 										function() {
 											CalendarUtil.updateEvent(schedulerEvent);
 
-											this.close();
+											this.hide();
 										},
 										function() {
 											instance.load();
 
-											this.close();
+											this.hide();
 										}
 									);
 								}
