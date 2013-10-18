@@ -60,7 +60,7 @@ page import="com.liferay.portlet.social.model.SocialRelationConstants" %>
 
 <%@ page import="java.text.Format" %>
 
-<%@ page import="java.util.ArrayList" %><%@ 
+<%@ page import="java.util.ArrayList" %><%@
 page import="java.util.List" %>
 
 <%@ page import="javax.portlet.PortletURL" %><%@
