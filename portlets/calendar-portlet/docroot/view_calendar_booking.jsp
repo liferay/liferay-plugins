@@ -99,7 +99,7 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 	</liferay-ui:custom-attributes-available>
 
 	<p>
-		<%= HtmlUtil.escape(calendarBooking.getDescription(locale)) %>
+		<%= calendarBooking.getDescription(locale) %>
 	</p>
 
 	<div class="entry-categories">
