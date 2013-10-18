@@ -23,10 +23,10 @@ import com.liferay.portal.service.UserGroupLocalServiceUtil;
 class GroovyUserGroup {
 
 	static UserGroup fetchUserGroup(
-		GroovyScriptingContext scriptingContext, String name) {
+		GroovyScriptingContext groovyScriptingContext, String name) {
 
 		return UserGroupLocalServiceUtil.fetchUserGroup(
-			scriptingContext.companyId, name);
+			groovyScriptingContext.companyId, name);
 	}
 
 }

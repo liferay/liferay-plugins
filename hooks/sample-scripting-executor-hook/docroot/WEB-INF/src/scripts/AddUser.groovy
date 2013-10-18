@@ -12,36 +12,36 @@
  * details.
  */
 
-import com.liferay.portal.security.permission.ActionKeys
-import com.liferay.portal.util.PortletKeys
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.util.PortletKeys;
 
 import com.liferay.scriptingexecutor.scripts.groovy.GroovyRole;
 import com.liferay.scriptingexecutor.scripts.groovy.GroovyScriptingContext;
 import com.liferay.scriptingexecutor.scripts.groovy.GroovySite;
 import com.liferay.scriptingexecutor.scripts.groovy.GroovyUser;
 
-GroovyScriptingContext scriptingContext = new GroovyScriptingContext();
+GroovyScriptingContext groovyScriptingContext = new GroovyScriptingContext();
 
 GroovyRole groovyRole = GroovyRole.portalRole(
 	"Sample Groovy Role", "This is a sample Groovy role.");
 
-groovyRole.create(scriptingContext);
+groovyRole.create(groovyScriptingContext);
 
 String[] resourceActions = [ActionKeys.CONFIGURATION, ActionKeys.VIEW];
 
 groovyRole.updatePermissions(
-	PortletKeys.ACTIVITIES, resourceActions, true, scriptingContext);
+	PortletKeys.ACTIVITIES, resourceActions, true, groovyScriptingContext);
 
 GroovySite groovySite = GroovySite.openSite(
 	"Sample Groovy Site", "This is a sample Groovy site.");
 
-groovySite.create(scriptingContext);
+groovySite.create(groovyScriptingContext);
 
 GroovyUser groovyUser = new GroovyUser(
 	"test.user@liferay.com", "test",  "Test", "User", "Web Admin");
 
-groovyUser.create(scriptingContext);
+groovyUser.create(groovyScriptingContext);
 
-groovyUser.addRoles(scriptingContext, groovyRole.name);
+groovyUser.addRoles(groovyScriptingContext, groovyRole.name);
 
-groovyUser.joinSites(scriptingContext, groovySite.name);
+groovyUser.joinSites(groovyScriptingContext, groovySite.name);

@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.scriptingexecutor.scripts.groovy
+package com.liferay.scriptingexecutor.scripts.groovy;
 
-import com.liferay.portal.model.GroupConstants
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants
@@ -57,71 +57,73 @@ class GroovyRole {
 		return groovyRole;
 	}
 
-	void create(GroovyScriptingContext scriptingContext) {
-		role = RoleLocalServiceUtil.fetchRole(scriptingContext.companyId, name);
+	void create(GroovyScriptingContext groovyScriptingContext) {
+		role = RoleLocalServiceUtil.fetchRole(
+			groovyScriptingContext.companyId, name);
 
 		if (role != null) {
 			return;
 		}
 
 		role = RoleLocalServiceUtil.addRole(
-			scriptingContext.defaultUserId, null, 0, name,
+			groovyScriptingContext.defaultUserId, null, 0, name,
 			GroovyScriptingContext.getLocalizationMap(name),
 			GroovyScriptingContext.getLocalizationMap(description), type, null,
-			scriptingContext.serviceContext);
+			groovyScriptingContext.serviceContext);
 	}
 
 	void updatePermissions(
-		String resourceName, String[] resourceActions, boolean add,
-		GroovyScriptingContext scriptingContext) {
+		String resourceName, String[] actionIds, boolean add,
+		GroovyScriptingContext groovyScriptingContext) {
 
 		boolean resourceBlockSupported =
 			ResourceBlockLocalServiceUtil.isSupported(resourceName);
 
 		int scope = ResourceConstants.SCOPE_COMPANY;
 
-		if ((role.getType() == RoleConstants.TYPE_SITE) ||
-			(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {
+		if ((role.getType() == RoleConstants.TYPE_ORGANIZATION) ||
+			(role.getType() == RoleConstants.TYPE_SITE)) {
 
 			scope = ResourceConstants.SCOPE_GROUP_TEMPLATE;
 		}
 
-		for (String resourceAction : resourceActions) {
+		for (String actionId : actionIds) {
 			if (add) {
 				if (resourceBlockSupported) {
 					ResourceBlockLocalServiceUtil.addCompanyScopePermission(
-						scriptingContext.companyId, resourceName,
-						role.getRoleId(), resourceAction);
+						groovyScriptingContext.companyId, resourceName,
+						role.getRoleId(), actionId);
 				}
 				else {
 					if (scope == ResourceConstants.SCOPE_COMPANY) {
 						ResourcePermissionLocalServiceUtil.
 							addResourcePermission(
-								scriptingContext.companyId, resourceName, scope,
-								String.valueOf(role.getCompanyId()),
-								role.getRoleId(), resourceAction);
+								groovyScriptingContext.companyId, resourceName,
+								scope, String.valueOf(role.getCompanyId()),
+								role.getRoleId(), actionId);
 					}
 					else if (scope == ResourceConstants.SCOPE_GROUP_TEMPLATE) {
 						ResourcePermissionLocalServiceUtil.
 							addResourcePermission(
-								scriptingContext.companyId, resourceName, scope,
+								groovyScriptingContext.companyId, resourceName,
+								scope,
 								String.valueOf(
 									GroupConstants.DEFAULT_PARENT_GROUP_ID),
-								role.getRoleId(), resourceAction);
+								role.getRoleId(), actionId);
 					}
 				}
 			}
 			else {
 				if (resourceBlockSupported) {
 					ResourceBlockLocalServiceUtil.removeCompanyScopePermission(
-						scriptingContext.companyId, resourceName,
-						role.getRoleId(), resourceAction);
+						groovyScriptingContext.companyId, resourceName,
+						role.getRoleId(), actionId);
 				}
 				else {
 					ResourcePermissionLocalServiceUtil.
 						removeResourcePermissions(
-							scriptingContext.companyId, resourceName, scope,
-							role.getRoleId(), resourceAction);
+							groovyScriptingContext.companyId, resourceName,
+							scope, role.getRoleId(), actionId);
 				}
 			}
 		}

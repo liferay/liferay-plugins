@@ -26,11 +26,11 @@ import com.liferay.portal.service.OrganizationLocalServiceUtil;
 class GroovyOrganization {
 
 	static Organization fetchOrganization(
-		GroovyScriptingContext scriptingContext, String name) {
+		GroovyScriptingContext groovyScriptingContext, String name) {
 
 		try {
 			return OrganizationLocalServiceUtil.getOrganization(
-				scriptingContext.companyId, name);
+				groovyScriptingContext.companyId, name);
 		}
 		catch (NoSuchOrganizationException nsoe) {
 		}
@@ -47,8 +47,8 @@ class GroovyOrganization {
 		parentOrganizationName = parentOrganizationName_;
 	}
 
-	void create(GroovyScriptingContext scriptingContext) {
-		organization = fetchOrganization(scriptingContext, name);
+	void create(GroovyScriptingContext groovyScriptingContext) {
+		organization = fetchOrganization(groovyScriptingContext, name);
 
 		if (organization != null) {
 			return;
@@ -59,7 +59,7 @@ class GroovyOrganization {
 
 		if (Validator.isNotNull(parentOrganizationName)) {
 			Organization parentOrganization = fetchOrganization(
-				scriptingContext, parentOrganizationName);
+				groovyScriptingContext, parentOrganizationName);
 
 			if (parentOrganization != null) {
 				parentOrganizationId = parentOrganization.getOrganizationId();
@@ -67,7 +67,8 @@ class GroovyOrganization {
 		}
 
 		organization = OrganizationLocalServiceUtil.addOrganization(
-			scriptingContext.defaultUserId, parentOrganizationId, name, false);
+			groovyScriptingContext.defaultUserId, parentOrganizationId, name,
+			false);
 	}
 
 	String name;

@@ -61,11 +61,12 @@ class GroovySite {
 	}
 
 	void addOrganizations(
-		GroovyScriptingContext scriptingContext, String... organizationNames) {
+		GroovyScriptingContext groovyScriptingContext,
+		String... organizationNames) {
 
 		for (String organizationName : organizationNames) {
 			Organization organization = GroovyOrganization.fetchOrganization(
-				scriptingContext, organizationName);
+				groovyScriptingContext, organizationName);
 
 			if (organization != null) {
 				GroupLocalServiceUtil.addOrganizationGroup(
@@ -75,7 +76,7 @@ class GroovySite {
 	}
 
 	void addTeamUserGroupMembers(
-		GroovyScriptingContext scriptingContext, String teamName,
+		GroovyScriptingContext groovyScriptingContext, String teamName,
 		String... userGroupNames) {
 
 		Team team = null;
@@ -85,13 +86,13 @@ class GroovySite {
 		}
 		catch (NoSuchTeamException nste) {
 			team = TeamLocalServiceUtil.addTeam(
-				scriptingContext.defaultUserId, site.getGroupId(), teamName,
-				null);
+				groovyScriptingContext.defaultUserId, site.getGroupId(),
+				teamName, null);
 		}
 
 		for (String userGroupName : userGroupNames) {
 			UserGroup userGroup = GroovyUserGroup.fetchUserGroup(
-				scriptingContext, userGroupName);
+				groovyScriptingContext, userGroupName);
 
 			if (userGroup != null) {
 				TeamLocalServiceUtil.addUserGroupTeam(
@@ -101,7 +102,7 @@ class GroovySite {
 	}
 
 	void addTeamUserMembers(
-		GroovyScriptingContext scriptingContext, String teamName,
+		GroovyScriptingContext groovyScriptingContext, String teamName,
 		String... screenNames) {
 
 		Team team = null;
@@ -111,13 +112,13 @@ class GroovySite {
 		}
 		catch (NoSuchTeamException nste) {
 			team = TeamLocalServiceUtil.addTeam(
-				scriptingContext.defaultUserId, site.getGroupId(), teamName,
-				null);
+				groovyScriptingContext.defaultUserId, site.getGroupId(),
+				teamName, null);
 		}
 
 		for (String screenName : screenNames) {
 			User user = UserLocalServiceUtil.fetchUserByScreenName(
-				scriptingContext.companyId, screenName);
+				groovyScriptingContext.companyId, screenName);
 
 			if (user != null) {
 				TeamLocalServiceUtil.addUserTeam(user.getUserId(), team);
@@ -125,20 +126,20 @@ class GroovySite {
 		}
 	}
 
-	void create(GroovyScriptingContext scriptingContext) {
+	void create(GroovyScriptingContext groovyScriptingContext) {
 		site = GroupLocalServiceUtil.fetchGroup(
-			scriptingContext.companyId, name);
+			groovyScriptingContext.companyId, name);
 
 		if (site != null) {
 			return;
 		}
 
 		site = GroupLocalServiceUtil.addGroup(
-			scriptingContext.defaultUserId,
+			groovyScriptingContext.defaultUserId,
 			GroupConstants.DEFAULT_PARENT_GROUP_ID, null, 0, 0, name,
 			description, type, true,
 			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, true, true,
-			scriptingContext.serviceContext);
+			groovyScriptingContext.serviceContext);
 	}
 
 	String description;
