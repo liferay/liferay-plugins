@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
@@ -38,7 +37,6 @@ import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -221,17 +219,8 @@ public abstract class BaseNotificationSender implements NotificationSender {
 		throws Exception {
 
 		if (roleType == RoleConstants.TYPE_REGULAR) {
-			Role role = RoleLocalServiceUtil.getRole(roleId);
-
-			LinkedHashMap<String, Object> params =
-				new LinkedHashMap<String, Object>();
-
-			params.put("inherit", Boolean.TRUE);
-			params.put("usersRoles", role.getRoleId());
-
-			return UserLocalServiceUtil.search(
-				role.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED,
-				params, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			return UserLocalServiceUtil.getInheritedRoleUsers(
+				roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 				(OrderByComparator)null);
 		}
 
