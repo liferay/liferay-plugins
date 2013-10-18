@@ -26,6 +26,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.DestinationNames;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
@@ -199,6 +201,29 @@ public class SOAnnouncementsEntryLocalServiceImpl
 			ChannelHubManagerUtil.sendNotificationEvent(
 				user.getCompanyId(), user.getUserId(), notificationEvent);
 		}
+
+		MessageBusUtil.sendMessage(
+			DestinationNames.ASYNC_SERVICE,
+			new Runnable() {
+
+				@Override
+				public void run() {
+					try {
+						sendUserNotifications(
+							announcementEntry, notificationEventJSONObject);
+					} catch (Throwable t) {
+						throw new RuntimeException(t);
+					}
+				}
+
+				protected void sendUserNotifications(
+						AnnouncementsEntry announcementEntry,
+						JSONObject notificationEventJSONObject)
+					throws PortalException, SystemException {
+
+				}
+			}
+		);
 	}
 
 	private static final long _ANNOUNCEMENTS_ENTRY_CHECK_INTERVAL =
