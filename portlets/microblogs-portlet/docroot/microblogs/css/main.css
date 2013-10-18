@@ -32,7 +32,7 @@ $microblogs-border-color: #EAEAEA;
 		}
 
 		.button-holder {
-			margin: 5px 0 0 5px;
+			margin-top: 5px;
 		}
 
 		.field-select {
@@ -73,17 +73,24 @@ $microblogs-border-color: #EAEAEA;
 	}
 
 	.autocomplete {
-		background-color: #FFF;
-		height: 18px;
-		padding: 8px;
-		position: relative;
+		&, &.textarea {
+			background-color: #FFF;
+			height: 18px;
+			padding: 8px;
+			position: relative;
+		}
 
-	}
+		&,
+		&:focus,
+		&.inactive {
+			border: 1px solid #EAEAEA;
 
-	.autocomplete.inactive {
-		border: 1px solid #EAEAEA;
+			@include border-radius(3px);
+		}
 
-		@include border-radius(3px);
+		.textarea {
+			border-width: 0;
+		}
 	}
 
 	.microblogs-entry {
@@ -92,7 +99,7 @@ $microblogs-border-color: #EAEAEA;
 		padding: 1em 0 0.5em;
 
 		.entry-bubble {
-			margin-left: 50px;
+			margin-left: 60px;
 		}
 	}
 
@@ -110,6 +117,10 @@ $microblogs-border-color: #EAEAEA;
 
 	.comments-container {
 		display: none;
+
+		.button-holder {
+			margin-left: 40px;
+		}
 	}
 
 	.microblogs-entry {
@@ -168,7 +179,7 @@ $microblogs-border-color: #EAEAEA;
 		margin-left: 50px;
 
 		.entry-bubble {
-			margin-left: 30px;
+			margin-left: 40px;
 		}
 
 		.thumbnail {
@@ -191,12 +202,11 @@ $microblogs-border-color: #EAEAEA;
 		}
 
 		.microblogs-entry-form .microblogs-countdown-holder {
-			float: none;
 			margin-left: 35px;
 		}
 
 		.microblogs-entry-content, .autocomplete {
-			margin-left: 35px;
+			margin-left: 40px;
 		}
 
 		.microblogs-entry .footer {
@@ -220,10 +230,10 @@ $microblogs-border-color: #EAEAEA;
 
 		@include force-wrap();
 
-		left: 1px;
-		padding: 5px;
+		left: 5px;
+		padding: 4px;
 		position: absolute;
-		top: 1px;
+		top: 0;
 		width: 100%;
 		visibility: hidden;
 		z-index: 998;
@@ -236,8 +246,9 @@ $microblogs-border-color: #EAEAEA;
 
 		span {
 			background-color: #97D1FF;
+			border-radius: 3px;
 			font-weight: normal;
-			padding: 2px 2px 0;
+			padding: 2px 0;
 			visibility: visible;
 			zoom: 1;
 		}

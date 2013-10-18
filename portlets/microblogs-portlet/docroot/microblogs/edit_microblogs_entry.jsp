@@ -188,6 +188,14 @@ if (comment) {
 	%>
 
 	<aui:row cssClass="<%= rowCssClass %>">
+		<aui:col width="<%= 10 %>">
+			<aui:button cssClass="pull-left" disabled="<%= !repost ? true : false %>" name="submit" type="submit" value="post" />
+
+			<c:if test="<%= repost %>">
+				<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
+			</c:if>
+		</aui:col>
+
 		<c:if test="<%= !comment && !repost %>">
 
 			<%
@@ -198,7 +206,7 @@ if (comment) {
 			}
 			%>
 
-			<aui:col width="<%= 80 %>">
+			<aui:col width="<%= 95 %>">
 				<aui:select inlineLabel="true" label="viewable-by" name="socialRelationType">
 					<aui:option label="everyone" selected="<%= socialRelationType == MicroblogsEntryConstants.TYPE_EVERYONE %>" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
 					<aui:option label="connections" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
@@ -206,14 +214,6 @@ if (comment) {
 				</aui:select>
 			</aui:col>
 		</c:if>
-
-		<aui:col width="<%= 20 %>">
-			<aui:button cssClass="pull-right" disabled="<%= !repost ? true : false %>" name="submit" type="submit" value="post" />
-
-			<c:if test="<%= repost %>">
-				<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
-			</c:if>
-		</aui:col>
 	</aui:row>
 </aui:form>
 
