@@ -189,7 +189,7 @@ if (comment) {
 
 	<aui:row cssClass="<%= rowCssClass %>">
 		<aui:col width="<%= 10 %>">
-			<aui:button cssClass="pull-left" disabled="<%= !repost ? true : false %>" name="submit" type="submit" value="post" />
+			<aui:button cssClass="pull-left" disabled="<%= !repost %>" name="submit" type="submit" value="post" />
 
 			<c:if test="<%= repost %>">
 				<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
