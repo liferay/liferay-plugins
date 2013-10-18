@@ -107,7 +107,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 
 	window.<portlet:namespace />scheduler = new Liferay.Scheduler(
 		{
-			activeView: window['<portlet:namespace /><%= activeView %>View'],
+			activeView: window['<portlet:namespace /><%= HtmlUtil.escapeJS(activeView) %>View'],
 			boundingBox: '#<portlet:namespace />scheduler',
 			date: new Date(<%= date %>),
 
