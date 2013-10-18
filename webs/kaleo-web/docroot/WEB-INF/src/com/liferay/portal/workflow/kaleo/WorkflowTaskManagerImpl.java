@@ -51,6 +51,7 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -225,13 +226,19 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					}
 				}
 				else {
-					List<User> inheritedRoleUsers =
-						UserLocalServiceUtil.getInheritedRoleUsers(
-							kaleoTaskAssignment.getAssigneeClassPK(),
-							QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-							(OrderByComparator)null);
+					LinkedHashMap<String, Object> params =
+						new LinkedHashMap<String, Object>();
 
-					for (User user : inheritedRoleUsers) {
+					params.put("inherit", Boolean.TRUE);
+					params.put("usersRoles", role.getRoleId());
+
+					List<User> users = UserLocalServiceUtil.search(
+						role.getCompanyId(), null,
+						WorkflowConstants.STATUS_APPROVED, params,
+						QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+						(OrderByComparator)null);
+
+					for (User user : users) {
 						pooledActors.add(user.getUserId());
 					}
 				}
