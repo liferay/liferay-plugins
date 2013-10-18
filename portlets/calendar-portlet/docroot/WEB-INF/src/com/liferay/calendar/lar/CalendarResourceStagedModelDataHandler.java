@@ -95,12 +95,9 @@ public class CalendarResourceStagedModelDataHandler
 			portletDataContext.getExportDataElement(calendarResource);
 
 		for (Calendar calendar : calendarResource.getCalendars()) {
-			StagedModelDataHandlerUtil.exportStagedModel(
-				portletDataContext, calendar);
-
-			portletDataContext.addReferenceElement(
-				calendarResource, calendarResourceElement, calendar,
-				PortletDataContext.REFERENCE_TYPE_STRONG, false);
+			StagedModelDataHandlerUtil.exportReferenceStagedModel(
+				portletDataContext, calendarResource, calendar,
+				PortletDataContext.REFERENCE_TYPE_STRONG);
 		}
 
 		if (calendarResource.getClassNameId() ==
@@ -129,14 +126,8 @@ public class CalendarResourceStagedModelDataHandler
 		long userId = portletDataContext.getUserId(
 			calendarResource.getUserUuid());
 
-		List<Element> calendarElements =
-			portletDataContext.getReferenceDataElements(
-				calendarResource, Calendar.class);
-
-		for (Element calendarElement : calendarElements) {
-			StagedModelDataHandlerUtil.importStagedModel(
-				portletDataContext, calendarElement);
-		}
+		StagedModelDataHandlerUtil.importReferenceStagedModels(
+			portletDataContext, calendarResource, Calendar.class);
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			calendarResource);

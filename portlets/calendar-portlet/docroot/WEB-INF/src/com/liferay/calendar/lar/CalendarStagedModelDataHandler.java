@@ -67,8 +67,9 @@ public class CalendarStagedModelDataHandler
 			PortletDataContext portletDataContext, Calendar calendar)
 		throws Exception {
 
-		StagedModelDataHandlerUtil.exportStagedModel(
-			portletDataContext, calendar.getCalendarResource());
+		StagedModelDataHandlerUtil.exportReferenceStagedModel(
+			portletDataContext, calendar, calendar.getCalendarResource(),
+			PortletDataContext.REFERENCE_TYPE_STRONG);
 
 		Element calendarElement = portletDataContext.getExportDataElement(
 			calendar);
@@ -85,17 +86,8 @@ public class CalendarStagedModelDataHandler
 
 		long userId = portletDataContext.getUserId(calendar.getUserUuid());
 
-		String calendarResourcePath =
-			ExportImportPathUtil.getModelPath(
-				portletDataContext, CalendarResource.class.getName(),
-				calendar.getCalendarResourceId());
-
-		CalendarResource calendarResource =
-			(CalendarResource)portletDataContext.getZipEntryAsObject(
-				calendarResourcePath);
-
-		StagedModelDataHandlerUtil.importStagedModel(
-			portletDataContext, calendarResource);
+		StagedModelDataHandlerUtil.importReferenceStagedModels(
+			portletDataContext, CalendarResource.class);
 
 		Map<Long, Long> calendarResourceIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(

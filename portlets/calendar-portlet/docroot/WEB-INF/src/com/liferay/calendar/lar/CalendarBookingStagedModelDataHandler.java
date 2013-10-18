@@ -72,12 +72,15 @@ public class CalendarBookingStagedModelDataHandler
 			CalendarBooking calendarBooking)
 		throws Exception {
 
-		StagedModelDataHandlerUtil.exportStagedModel(
-			portletDataContext, calendarBooking.getCalendar());
+		StagedModelDataHandlerUtil.exportReferenceStagedModel(
+			portletDataContext, calendarBooking, calendarBooking.getCalendar(),
+			PortletDataContext.REFERENCE_TYPE_STRONG);
 
 		if (!calendarBooking.isMasterBooking()) {
-			StagedModelDataHandlerUtil.exportStagedModel(
-				portletDataContext, calendarBooking.getParentCalendarBooking());
+			StagedModelDataHandlerUtil.exportReferenceStagedModel(
+				portletDataContext, calendarBooking,
+				calendarBooking.getParentCalendarBooking(),
+				PortletDataContext.REFERENCE_TYPE_STRONG);
 		}
 
 		Element calendarBookingElement =
@@ -98,15 +101,8 @@ public class CalendarBookingStagedModelDataHandler
 		long userId = portletDataContext.getUserId(
 			calendarBooking.getUserUuid());
 
-		String calendarPath = ExportImportPathUtil.getModelPath(
-			portletDataContext, Calendar.class.getName(),
-			calendarBooking.getCalendarId());
-
-		Calendar calendar = (Calendar)portletDataContext.getZipEntryAsObject(
-			calendarPath);
-
-		StagedModelDataHandlerUtil.importStagedModel(
-			portletDataContext, calendar);
+		StagedModelDataHandlerUtil.importReferenceStagedModels(
+			portletDataContext, calendarBooking, Calendar.class);
 
 		Map<Long, Long> calendarIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
@@ -120,17 +116,8 @@ public class CalendarBookingStagedModelDataHandler
 			CalendarBookingConstants.PARENT_CALENDAR_BOOKING_ID_DEFAULT;
 
 		if (!calendarBooking.isMasterBooking()) {
-			String parentCalendarBookingPath =
-				ExportImportPathUtil.getModelPath(
-					portletDataContext, CalendarBooking.class.getName(),
-					calendarBooking.getParentCalendarBookingId());
-
-			CalendarBooking parentCalendarBooking =
-				(CalendarBooking)portletDataContext.getZipEntryAsObject(
-					parentCalendarBookingPath);
-
-			StagedModelDataHandlerUtil.importStagedModel(
-				portletDataContext, parentCalendarBooking);
+			StagedModelDataHandlerUtil.importReferenceStagedModels(
+				portletDataContext, calendarBooking, CalendarBooking.class);
 
 			Map<Long, Long> calendarBookingIds =
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
