@@ -32,13 +32,19 @@ import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.announcements.model.AnnouncementsEntry;
@@ -48,6 +54,7 @@ import com.liferay.portlet.announcements.service.persistence.AnnouncementsEntryF
 
 import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -181,32 +188,72 @@ public class SOAnnouncementsEntryLocalServiceImpl
 						JSONObject notificationEventJSONObject)
 					throws PortalException, SystemException {
 
-					List<User> users = Collections.emptyList();
+					List<User> users = null;
+
+					LinkedHashMap<String, Object> params =
+						new LinkedHashMap<String, Object>();
 
 					if (announcementEntry.getClassNameId() == 0) {
 						users = UserLocalServiceUtil.getUsers(
 							QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 					}
 					else {
-						String className = PortalUtil.getClassName(
-							announcementEntry.getClassNameId());
+						String className = announcementEntry.getClassName();
 
-						if (className.equals(Group.class.getName())) {
-							users = UserLocalServiceUtil.getGroupUsers(
-								announcementEntry.getClassPK());
+						long classPK = announcementEntry.getClassPK();
+
+						if (classPK > 0) {
+							if (className.equals(Group.class.getName())) {
+								params.put("inherit", Boolean.TRUE);
+								params.put("usersGroups", classPK);
+							}
+							else if (
+								className.equals(
+									Organization.class.getName())) {
+								Organization organization =
+									OrganizationLocalServiceUtil.
+										fetchOrganization(
+											classPK);
+
+								if (organization == null) {
+									return;
+								}
+
+								params.put(
+									"usersOrgsTree",
+									ListUtil.fromArray(
+										new Organization[]{organization}));
+							}
+							else if (className.equals(Role.class.getName())) {
+								Role role =
+									RoleLocalServiceUtil.fetchRole(classPK);
+
+								if (role == null) {
+									return;
+								}
+
+								if (
+									role.getType() ==
+										RoleConstants.TYPE_REGULAR) {
+									params.put("inherit", Boolean.TRUE);
+									params.put("usersRoles", classPK);
+								}
+								else {
+									params.put(
+										"userGroupRole",
+										new Long[] {Long.valueOf(0), classPK});
+								}
+							}
+							else if (className.equals(UserGroup.class.getName())) {
+								params.put("usersUserGroups", classPK);
+							}
 						}
-						else if (className.equals(Organization.class.getName())) {
-							users = UserLocalServiceUtil.getOrganizationUsers(
-								announcementEntry.getClassPK());
-						}
-						else if (className.equals(Role.class.getName())) {
-							users = UserLocalServiceUtil.getRoleUsers(
-								announcementEntry.getClassPK());
-						}
-						else if (className.equals(UserGroup.class.getName())) {
-							users = UserLocalServiceUtil.getUserGroupUsers(
-								announcementEntry.getClassPK());
-						}
+
+						users = UserLocalServiceUtil.search(
+							announcementEntry.getCompanyId(), null,
+							WorkflowConstants.STATUS_APPROVED, params,
+							QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+							(OrderByComparator)null);
 					}
 
 					for (User user : users) {
@@ -218,7 +265,8 @@ public class SOAnnouncementsEntryLocalServiceImpl
 						notificationEvent.setDeliveryRequired(0);
 
 						ChannelHubManagerUtil.sendNotificationEvent(
-							user.getCompanyId(), user.getUserId(), notificationEvent);
+							user.getCompanyId(), user.getUserId(),
+							notificationEvent);
 					}
 				}
 			}
