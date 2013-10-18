@@ -17,7 +17,6 @@ package com.liferay.portal.workflow.kaleo.runtime.notification;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
@@ -220,8 +219,7 @@ public abstract class BaseNotificationSender implements NotificationSender {
 
 		if (roleType == RoleConstants.TYPE_REGULAR) {
 			return UserLocalServiceUtil.getInheritedRoleUsers(
-				roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				(OrderByComparator)null);
+				roleId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 		}
 
 		List<User> users = new ArrayList<User>();

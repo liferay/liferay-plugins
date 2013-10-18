@@ -228,8 +228,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					List<User> inheritedRoleUsers =
 						UserLocalServiceUtil.getInheritedRoleUsers(
 							kaleoTaskAssignment.getAssigneeClassPK(),
-							QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-							(OrderByComparator)null);
+							QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 					for (User user : inheritedRoleUsers) {
 						pooledActors.add(user.getUserId());
