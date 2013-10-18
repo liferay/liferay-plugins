@@ -75,7 +75,9 @@
 								<tpl for="calendarIds">
 									<tpl for="parent.availableCalendars[values]">
 										<tpl if="values.get('permissions').MANAGE_BOOKINGS == true">
-											<option value="{[values.get('calendarId')]}">{[Liferay.CalendarUtil.getCalendarName(values.get('name'), values.get('calendarResourceName'))]}</option>
+											<option value="{[values.get('calendarId')]}">
+												{[Liferay.Util.escapeHTML(Liferay.CalendarUtil.getCalendarName(values.get('name'), values.get('calendarResourceName')))]}
+											</option>
 										</tpl>
 									</tpl>
 								</tpl>
