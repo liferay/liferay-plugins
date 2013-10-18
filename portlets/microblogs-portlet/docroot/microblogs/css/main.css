@@ -80,9 +80,7 @@ $microblogs-border-color: #EAEAEA;
 			position: relative;
 		}
 
-		&,
-		&:focus,
-		&.inactive {
+		&, &:focus, &.inactive {
 			border: 1px solid #EAEAEA;
 
 			@include border-radius(3px);
@@ -226,16 +224,16 @@ $microblogs-border-color: #EAEAEA;
 
 	.highlighter-content {
 		color: transparent;
-		line-height: 1.5em;
 
-		@include force-wrap();
+		@include force-wrap;
 
 		left: 5px;
+		line-height: 1.5em;
 		padding: 4px;
 		position: absolute;
 		top: 0;
-		width: 100%;
 		visibility: hidden;
+		width: 100%;
 		z-index: 998;
 
 		&.textbox {
@@ -255,9 +253,10 @@ $microblogs-border-color: #EAEAEA;
 
 		div {
 			display: inline-block;
-			width: 100%;
 
-			@include force-wrap();
+			@include force-wrap;
+
+			width: 100%;
 		}
 	}
 
@@ -281,7 +280,7 @@ $microblogs-border-color: #EAEAEA;
 			margin: 0 5px 0 0;
 
 			img {
-				float:left;
+				float: left;
 				width: 50px;
 			}
 		}

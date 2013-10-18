@@ -206,7 +206,7 @@ if (comment) {
 			}
 			%>
 
-			<aui:col width="<%= 95 %>">
+			<aui:col width="<%= 90 %>">
 				<aui:select inlineLabel="true" label="viewable-by" name="socialRelationType">
 					<aui:option label="everyone" selected="<%= socialRelationType == MicroblogsEntryConstants.TYPE_EVERYONE %>" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
 					<aui:option label="connections" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
