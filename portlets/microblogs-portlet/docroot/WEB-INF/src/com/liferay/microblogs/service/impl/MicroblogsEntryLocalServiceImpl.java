@@ -22,19 +22,23 @@ import com.liferay.microblogs.microblogs.social.MicroblogsActivityKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
+import com.liferay.microblogs.util.PortletKeys;
 import com.liferay.microblogs.util.comparator.EntryCreateDateComparator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
@@ -299,29 +303,30 @@ public class MicroblogsEntryLocalServiceImpl
 	protected void sendNotificationEvent(MicroblogsEntry microblogsEntry)
 		throws PortalException, SystemException {
 
-		JSONObject notificationEventJSONObject =
-			JSONFactoryUtil.createJSONObject();
+		if (UserNotificationManagerUtil.isDeliver(
+				microblogsEntry.getReceiverUserId(), PortletKeys.MICROBLOGS,
+				PortalUtil.getClassNameId(MicroblogsEntry.class),
+				MicroblogsEntryConstants.TYPE_REPLY,
+				UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
-		notificationEventJSONObject.put("body", microblogsEntry.getContent());
-		notificationEventJSONObject.put(
-			"entryId", microblogsEntry.getMicroblogsEntryId());
-		notificationEventJSONObject.put(
-			"entryKeyName", "receiverMicroblogsEntryId");
-		notificationEventJSONObject.put("mvcPath", "/microblogs/view.jsp");
-		notificationEventJSONObject.put("portletId", "1_WAR_microblogsportlet");
-		notificationEventJSONObject.put("title", "x-commented-on-your-post");
-		notificationEventJSONObject.put("userId", microblogsEntry.getUserId());
+			JSONObject notificationEventJSONObject =
+				JSONFactoryUtil.createJSONObject();
 
-		NotificationEvent notificationEvent =
-			NotificationEventFactoryUtil.createNotificationEvent(
-				System.currentTimeMillis(), "6_WAR_soportlet",
-				notificationEventJSONObject);
+			notificationEventJSONObject.put(
+				"microblogsEntryId", microblogsEntry.getMicroblogsEntryId());
+			notificationEventJSONObject.put(
+				"userId", microblogsEntry.getUserId());
 
-		notificationEvent.setDeliveryRequired(0);
+			NotificationEvent notificationEvent =
+				NotificationEventFactoryUtil.createNotificationEvent(
+					System.currentTimeMillis(), PortletKeys.MICROBLOGS,
+					notificationEventJSONObject);
 
-		ChannelHubManagerUtil.sendNotificationEvent(
-			microblogsEntry.getCompanyId(), microblogsEntry.getReceiverUserId(),
-			notificationEvent);
+			notificationEvent.setDeliveryRequired(0);
+
+			UserNotificationEventLocalServiceUtil.addUserNotificationEvent(
+				microblogsEntry.getReceiverUserId(), notificationEvent);
+		}
 	}
 
 	protected void validate(int type, long receiverMicroblogsEntryId)
