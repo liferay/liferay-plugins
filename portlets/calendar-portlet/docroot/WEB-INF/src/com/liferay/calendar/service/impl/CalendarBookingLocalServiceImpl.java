@@ -56,6 +56,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Company;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
@@ -210,6 +211,13 @@ public class CalendarBookingLocalServiceImpl
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
 			try {
+				Company company = companyPersistence.findByPrimaryKey(
+					calendarBooking.getCompanyId());
+
+				if (!company.isActive()) {
+					continue;
+				}
+
 				NotificationUtil.notifyCalendarBookingReminders(
 					calendarBooking, now.getTime());
 			}
