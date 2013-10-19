@@ -277,7 +277,6 @@ public class SOAnnouncementsEntryLocalServiceImpl
 				List<User> users = null;
 
 				int start = (i * Indexer.DEFAULT_INTERVAL);
-
 				int end = start + Indexer.DEFAULT_INTERVAL;
 
 				if (announcementEntry.getClassNameId() == 0) {
@@ -305,8 +304,9 @@ public class SOAnnouncementsEntryLocalServiceImpl
 			}
 		}
 
-		private final AnnouncementsEntry _announcementEntry;
-		private final JSONObject _notificationEventJSONObject;
+		private AnnouncementsEntry _announcementEntry;
+		private JSONObject _notificationEventJSONObject;
+
 	}
 
 }
