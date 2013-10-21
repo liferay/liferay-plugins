@@ -214,12 +214,10 @@ public class CalendarBookingLocalServiceImpl
 				Company company = companyPersistence.findByPrimaryKey(
 					calendarBooking.getCompanyId());
 
-				if (!company.isActive()) {
-					continue;
+				if (company.isActive()) {
+					NotificationUtil.notifyCalendarBookingReminders(
+						calendarBooking, now.getTime());
 				}
-
-				NotificationUtil.notifyCalendarBookingReminders(
-					calendarBooking, now.getTime());
 			}
 			catch (PortalException pe) {
 				throw pe;
