@@ -99,6 +99,24 @@ public class CalendarServiceWrapper implements CalendarService,
 	}
 
 	@Override
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
+		long groupId, long calendarResourceId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarService.getCalendarResourceCalendars(groupId,
+			calendarResourceId);
+	}
+
+	@Override
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendarResourceCalendars(
+		long groupId, long calendarResourceId, boolean defaultCalendar)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarService.getCalendarResourceCalendars(groupId,
+			calendarResourceId, defaultCalendar);
+	}
+
+	@Override
 	public void importCalendar(long calendarId, java.lang.String data,
 		java.lang.String type) throws java.lang.Exception {
 		_calendarService.importCalendar(calendarId, data, type);

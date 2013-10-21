@@ -152,6 +152,37 @@ public class CalendarServiceSoap {
 		}
 	}
 
+	public static com.liferay.calendar.model.CalendarSoap[] getCalendarResourceCalendars(
+		long groupId, long calendarResourceId) throws RemoteException {
+		try {
+			java.util.List<com.liferay.calendar.model.Calendar> returnValue = CalendarServiceUtil.getCalendarResourceCalendars(groupId,
+					calendarResourceId);
+
+			return com.liferay.calendar.model.CalendarSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.calendar.model.CalendarSoap[] getCalendarResourceCalendars(
+		long groupId, long calendarResourceId, boolean defaultCalendar)
+		throws RemoteException {
+		try {
+			java.util.List<com.liferay.calendar.model.Calendar> returnValue = CalendarServiceUtil.getCalendarResourceCalendars(groupId,
+					calendarResourceId, defaultCalendar);
+
+			return com.liferay.calendar.model.CalendarSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static void importCalendar(long calendarId, java.lang.String data,
 		java.lang.String type) throws RemoteException {
 		try {
