@@ -53,9 +53,7 @@ Web-ContextPath: /modules-admin-portlet
 	{WEB-INF/liferay-display.xml=docroot/WEB-INF/liferay-display.xml},\
 	{WEB-INF/liferay-plugin-package.properties=docroot/WEB-INF/liferay-plugin-package.properties},\
 	{WEB-INF/liferay-portlet.xml=docroot/WEB-INF/liferay-portlet.xml},\
-	{WEB-INF/liferay-web.xml=docroot/WEB-INF/liferay-web.xml},\
 	{WEB-INF/portlet.xml=docroot/WEB-INF/portlet.xml},\
-	{WEB-INF/web.xml=docroot/WEB-INF/web.xml}
 -wablib: \
 	${app.server.lib.portal.dir}/util-java.jar,\
 	${app.server.lib.portal.dir}/util-taglib.jar
