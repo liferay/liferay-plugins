@@ -14,8 +14,9 @@
 
 package com.liferay.modulesadmin.portlet;
 
-import aQute.libg.header.OSGiHeader;
-import aQute.libg.version.Version;
+import aQute.bnd.header.OSGiHeader;
+import aQute.bnd.header.Parameters;
+import aQute.bnd.version.Version;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -38,7 +39,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
 import java.util.jar.Attributes;
 import java.util.jar.JarInputStream;
@@ -295,10 +295,10 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 			String bundleSymbolicNameAttributeValue = attributes.getValue(
 				Constants.BUNDLE_SYMBOLICNAME);
 
-			Map<String, Map<String, String>> bundleSymbolicNameMap =
-				OSGiHeader.parseHeader(bundleSymbolicNameAttributeValue);
+			Parameters parameters = OSGiHeader.parseHeader(
+				bundleSymbolicNameAttributeValue);
 
-			Set<String> bundleSymbolicNameSet = bundleSymbolicNameMap.keySet();
+			Set<String> bundleSymbolicNameSet = parameters.keySet();
 
 			Iterator<String> bundleSymbolicNameIterator =
 				bundleSymbolicNameSet.iterator();
