@@ -105,6 +105,30 @@ public class CalendarServiceImpl extends CalendarServiceBaseImpl {
 	}
 
 	@Override
+	public List<Calendar> getCalendarResourceCalendars(
+			long groupId, long calendarResourceId)
+		throws PortalException, SystemException {
+
+		CalendarResourcePermission.check(
+			getPermissionChecker(), calendarResourceId, ActionKeys.VIEW);
+
+		return calendarLocalService.getCalendarResourceCalendars(
+			groupId, calendarResourceId);
+	}
+
+	@Override
+	public List<Calendar> getCalendarResourceCalendars(
+			long groupId, long calendarResourceId, boolean defaultCalendar)
+		throws PortalException, SystemException {
+
+		CalendarResourcePermission.check(
+			getPermissionChecker(), calendarResourceId, ActionKeys.VIEW);
+
+		return calendarLocalService.getCalendarResourceCalendars(
+			groupId, calendarResourceId, defaultCalendar);
+	}
+
+	@Override
 	public void importCalendar(long calendarId, String data, String type)
 		throws Exception {
 
