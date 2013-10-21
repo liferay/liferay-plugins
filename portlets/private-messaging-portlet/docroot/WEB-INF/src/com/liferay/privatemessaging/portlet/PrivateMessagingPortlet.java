@@ -192,11 +192,12 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long mbThreadId = ParamUtil.getLong(uploadPortletRequest, "mbThreadId");
 		long userId = ParamUtil.getLong(uploadPortletRequest, "userId");
-		String body = ParamUtil.getString(uploadPortletRequest, "body");
-		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
+		long mbThreadId = ParamUtil.getLong(uploadPortletRequest, "mbThreadId");
 		String to = ParamUtil.getString(uploadPortletRequest, "to");
+		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
+		String body = ParamUtil.getString(uploadPortletRequest, "body");
+
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 			new ArrayList<ObjectValuePair<String, InputStream>>();
 
