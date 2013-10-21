@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.notifications.UnknownChannelException;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
-import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -224,8 +223,9 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 					inputStreamOVPs.add(inputStreamOVP);
 				}
 				catch (Exception e) {
-					_log.error(translate(
-						actionRequest, "unable to attach file ") + fileName, e);
+					_log.error(
+						translate(actionRequest, "unable to attach file ") +
+							fileName, e);
 				}
 			}
 
@@ -236,17 +236,13 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
-			String message = null;
+			String message = "unable-to-send-message";
 
-			if (e instanceof IOException) {
-				message = "unable-to-process-attachment";
-			}
-			else if (e instanceof FileExtensionException ||
-					 e instanceof FileNameException ||
-					 e instanceof FileSizeException ||
-					 e instanceof UserScreenNameException) {
+			if (e instanceof FileExtensionException ||
+				e instanceof FileNameException ||
+				e instanceof FileSizeException ||
+				e instanceof IOException) {
 
-				SessionErrors.add(actionRequest, e.getClass());
 				message = "unable-to-process-attachment";
 			}
 
