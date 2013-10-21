@@ -135,7 +135,7 @@ public class BundleRequestDispatcher implements RequestDispatcher {
 
 		if (_requestURI != null) {
 			bundleServletRequest.setAttribute(
-				JavaConstants.JAVAX_SERVLET_ERROR_REQUEST_URI,
+				JavaConstants.JAVAX_SERVLET_INCLUDE_REQUEST_URI,
 				_bundleServletContext.getContextPath().concat(_requestURI));
 		}
 
