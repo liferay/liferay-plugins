@@ -28,7 +28,7 @@ List<Calendar> calendars = null;
 if (calendarResource != null) {
 	calendarResourceId = calendarResource.getCalendarResourceId();
 
-	calendars = CalendarLocalServiceUtil.getCalendarResourceCalendars(themeDisplay.getScopeGroupId(), calendarResourceId);
+	calendars = CalendarServiceUtil.getCalendarResourceCalendars(themeDisplay.getScopeGroupId(), calendarResourceId);
 }
 
 String code = BeanParamUtil.getString(calendarResource, request, "code");
