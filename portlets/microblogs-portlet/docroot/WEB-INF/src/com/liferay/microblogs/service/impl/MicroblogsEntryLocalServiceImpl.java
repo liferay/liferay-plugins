@@ -38,7 +38,6 @@ import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 
@@ -304,8 +303,7 @@ public class MicroblogsEntryLocalServiceImpl
 		throws PortalException, SystemException {
 
 		if (UserNotificationManagerUtil.isDeliver(
-				microblogsEntry.getReceiverUserId(), PortletKeys.MICROBLOGS,
-				PortalUtil.getClassNameId(MicroblogsEntry.class),
+				microblogsEntry.getReceiverUserId(), PortletKeys.MICROBLOGS, 0,
 				MicroblogsEntryConstants.TYPE_REPLY,
 				UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
