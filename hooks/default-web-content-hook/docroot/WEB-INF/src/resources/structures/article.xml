@@ -1,6 +1,6 @@
 <root>
 	<dynamic-element name='show-display-date' type='boolean' index-type='' repeatable='false'>
-	<meta-data>
+		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
 			<entry name="instructions"><![CDATA[By marking this as selected, the template will display the displayed date of the article]]></entry>
@@ -9,7 +9,7 @@
 		</meta-data>
 	</dynamic-element>
 	<dynamic-element name='article-title' type='text' index-type='text' repeatable='false'>
-	<meta-data>
+		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
 			<entry name="instructions"><![CDATA[This is the displayed title of the article]]></entry>
@@ -18,26 +18,25 @@
 		</meta-data>
 	</dynamic-element>
 	<dynamic-element name='article-main-image' type='image_gallery' index-type='text' repeatable='false'>
-	<meta-data>
-			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
-			<entry name="required"><![CDATA[false]]></entry>
-			<entry name="instructions"><![CDATA[This is the image displayed on the main article.]]></entry>
-			<entry name="label"><![CDATA[Main Image]]></entry>
-			<entry name="predefinedValue"><![CDATA[]]></entry>
-		</meta-data>
-
-	<dynamic-element name='preview-image' type='image_gallery' index-type='text' repeatable='false'>
-	<meta-data>
+		<dynamic-element name='preview-image' type='image_gallery' index-type='text' repeatable='false'>
+			<meta-data>
 				<entry name="displayAsTooltip"><![CDATA[true]]></entry>
 				<entry name="required"><![CDATA[false]]></entry>
 				<entry name="instructions"><![CDATA[This image is only displayed in a previewed-descriptive template.]]></entry>
 				<entry name="label"><![CDATA[Preview Image]]></entry>
 				<entry name="predefinedValue"><![CDATA[]]></entry>
 			</meta-data>
-	</dynamic-element>
+		</dynamic-element>
+		<meta-data>
+			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
+			<entry name="required"><![CDATA[false]]></entry>
+			<entry name="instructions"><![CDATA[This is the image displayed on the main article.]]></entry>
+			<entry name="label"><![CDATA[Main Image]]></entry>
+			<entry name="predefinedValue"><![CDATA[]]></entry>
+		</meta-data>
 	</dynamic-element>
 	<dynamic-element name='article-body' type='text_area' index-type='text' repeatable='false'>
-	<meta-data>
+		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
 			<entry name="instructions"><![CDATA[Enter the main body of the article in this WYSIWYG]]></entry>
@@ -46,7 +45,7 @@
 		</meta-data>
 	</dynamic-element>
 	<dynamic-element name='show-author' type='boolean' index-type='text' repeatable='false'>
-	<meta-data>
+		<meta-data>
 			<entry name="displayAsTooltip"><![CDATA[false]]></entry>
 			<entry name="required"><![CDATA[false]]></entry>
 			<entry name="instructions"><![CDATA[This option displays the original creator of the web content]]></entry>
