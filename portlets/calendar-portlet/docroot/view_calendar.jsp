@@ -37,9 +37,9 @@ List<Calendar> otherCalendars = new ArrayList<Calendar>();
 long[] calendarIds = StringUtil.split(SessionClicks.get(request, "otherCalendars", StringPool.BLANK), 0L);
 
 for (long calendarId : calendarIds) {
-	Calendar calendar = CalendarLocalServiceUtil.fetchCalendar(calendarId);
+	Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
 
-	if ((calendar != null) && CalendarPermission.contains(permissionChecker, calendar, ActionKeys.VIEW)) {
+	if (calendar != null) {
 		CalendarResource calendarResource = calendar.getCalendarResource();
 
 		if (calendarResource.isActive()) {
