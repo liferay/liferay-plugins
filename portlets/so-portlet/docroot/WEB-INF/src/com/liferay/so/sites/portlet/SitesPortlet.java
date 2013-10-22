@@ -203,6 +203,7 @@ public class SitesPortlet extends MVCPortlet {
 		optionsJSONObject.put("end", end);
 		optionsJSONObject.put("keywords", keywords);
 		optionsJSONObject.put("maxResultSize", maxResultSize);
+		optionsJSONObject.put("searchTab", searchTab);
 		optionsJSONObject.put("start", start);
 
 		jsonObject.put("options", optionsJSONObject);

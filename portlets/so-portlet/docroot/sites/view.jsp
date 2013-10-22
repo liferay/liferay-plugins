@@ -146,16 +146,6 @@ pageContext.setAttribute("portletURL", portletURL);
 		function(event) {
 			searchInput.set('value', '');
 
-			Liferay.SO.Sites.init(
-				{
-					messages: '#<portlet:namespace />messages',
-					siteList: '.so-portlet-sites .site-list',
-					siteListContainer: '.so-portlet-sites .site-list-container',
-					siteListURL: '<portlet:resourceURL id="getSites"><portlet:param name="portletResource" value="<%= portletResource %>" /></portlet:resourceURL>',
-					siteSearchInput: '#<portlet:namespace />name'
-				}
-			);
-
 			Liferay.SO.Sites.updateSites();
 		}
 	);
