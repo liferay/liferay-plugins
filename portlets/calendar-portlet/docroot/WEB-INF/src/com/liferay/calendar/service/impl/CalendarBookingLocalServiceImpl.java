@@ -46,6 +46,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.sanitizer.Sanitizer;
+import com.liferay.portal.kernel.sanitizer.SanitizerUtil;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -138,6 +140,16 @@ public class CalendarBookingLocalServiceImpl
 		}
 		else {
 			calendarBooking.setParentCalendarBookingId(calendarBookingId);
+		}
+
+		for (Locale locale : descriptionMap.keySet()) {
+			String sanitizedDescription = SanitizerUtil.sanitize(
+					calendar.getCompanyId(), calendar.getGroupId(), userId,
+					CalendarBooking.class.getName(), calendarBookingId,
+					ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL,
+					descriptionMap.get(locale), null);
+
+			descriptionMap.put(locale, sanitizedDescription);
 		}
 
 		calendarBooking.setTitleMap(titleMap);
@@ -690,6 +702,16 @@ public class CalendarBookingLocalServiceImpl
 
 		validate(titleMap, startTimeJCalendar, endTimeJCalendar);
 
+		for (Locale locale : descriptionMap.keySet()) {
+			String sanitizedDescription = SanitizerUtil.sanitize(
+					calendar.getCompanyId(), calendar.getGroupId(), userId,
+					CalendarBooking.class.getName(), calendarBookingId,
+					ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL,
+					descriptionMap.get(locale), null);
+
+			descriptionMap.put(locale, sanitizedDescription);
+		}
+
 		calendarBooking.setGroupId(calendar.getGroupId());
 		calendarBooking.setCompanyId(user.getCompanyId());
 		calendarBooking.setUserId(user.getUserId());
@@ -1076,4 +1098,4 @@ public class CalendarBookingLocalServiceImpl
 	private static Log _log = LogFactoryUtil.getLog(
 		CalendarBookingLocalServiceImpl.class);
 
-}
+}
