@@ -20,6 +20,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
+String searchContainerName = (String)request.getAttribute("searchContainerName");
 List<CalendarBooking> calendarBookings = (List<CalendarBooking>)request.getAttribute("view.jsp-events");
 %>
 
@@ -36,7 +37,9 @@ List<CalendarBooking> calendarBookings = (List<CalendarBooking>)request.getAttri
 		keyProperty="calendarBookingId"
 		modelVar="calendarBooking"
 	>
-		<liferay-ui:search-container-column-text>
+		<liferay-ui:search-container-column-text
+			name="<%= searchContainerName %>"
+		>
 
 			<%
 			Group group = GroupLocalServiceUtil.getGroup(calendarBooking.getGroupId());
