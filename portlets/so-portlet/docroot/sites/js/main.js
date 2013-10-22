@@ -82,8 +82,8 @@ AUI().use(
 								eventData[instance._namespace + 'directory'] = data[instance._namespace + 'directory'] || false;
 								eventData[instance._namespace + 'end'] = data[instance._namespace + 'end'] || 10;
 								eventData[instance._namespace + 'keywords'] = data[instance._namespace + 'keywords'] || '';
-								eventData[instance._namespace + 'searchTab'] = data[instance._namespace + 'searchTab'] || 0;
-								eventData[instance._namespace + 'start'] = data[instance._namespace + 'start'] || tabs1;
+								eventData[instance._namespace + 'searchTab'] = data[instance._namespace + 'searchTab'] || tabs1;
+								eventData[instance._namespace + 'start'] = data[instance._namespace + 'start'] || 0;
 
 								event.cfg.data = eventData;
 							}
