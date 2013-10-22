@@ -352,7 +352,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			PortletPropsValues.AUTOCOMPLETE_RECIPIENT_TYPE, keywords, 0,
 			PortletPropsValues.AUTOCOMPLETE_RECIPIENT_MAX);
 
-		results.put("results", jsonObject);
+		resultsJSONObject.put("results", jsonObject);
 
 		writeJSON(resourceRequest, resourceResponse, resultsJSONObject);
 	}
