@@ -100,11 +100,10 @@ for (CalendarBooking calendarBooking : calendarBookings) {
 	</c:when>
 	<c:otherwise>
 		<c:if test="<%= !todayBookings.isEmpty() %>">
-			<h2><liferay-ui:message key="todays-events" /></h2>
-
 			<div class="today-events">
 
 				<%
+				request.setAttribute("searchContainerName", "todays-events");
 				request.setAttribute("view.jsp-events", todayBookings);
 				%>
 
@@ -113,11 +112,10 @@ for (CalendarBooking calendarBooking : calendarBookings) {
 		</c:if>
 
 		<c:if test="<%= !upcomingBookings.isEmpty() %>">
-			<h2><liferay-ui:message key="upcoming-events" /></h2>
-
 			<div class="upcoming-events">
 
 				<%
+				request.setAttribute("searchContainerName", "upcoming-events");
 				request.setAttribute("view.jsp-events", upcomingBookings);
 				%>
 
