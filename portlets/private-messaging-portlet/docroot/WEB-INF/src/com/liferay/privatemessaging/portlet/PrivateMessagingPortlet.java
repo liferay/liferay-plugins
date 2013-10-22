@@ -196,7 +196,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		String to = ParamUtil.getString(uploadPortletRequest, "to");
 		String subject = ParamUtil.getString(uploadPortletRequest, "subject");
 		String body = ParamUtil.getString(uploadPortletRequest, "body");
-
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
 			new ArrayList<ObjectValuePair<String, InputStream>>();
 
@@ -346,16 +345,16 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 
+		JSONObject resultsJSONObject = JSONFactoryUtil.createJSONObject();
+
 		JSONObject jsonObject = PrivateMessagingUtil.getJSONRecipients(
 			themeDisplay.getUserId(),
 			PortletPropsValues.AUTOCOMPLETE_RECIPIENT_TYPE, keywords, 0,
 			PortletPropsValues.AUTOCOMPLETE_RECIPIENT_MAX);
 
-		JSONObject results = JSONFactoryUtil.createJSONObject();
-
 		results.put("results", jsonObject);
 
-		writeJSON(resourceRequest, resourceResponse, results);
+		writeJSON(resourceRequest, resourceResponse, resultsJSONObject);
 	}
 
 	protected boolean isValidName(String name) {
