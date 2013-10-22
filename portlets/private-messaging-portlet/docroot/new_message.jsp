@@ -164,6 +164,11 @@ to = sb.toString() + to;
 			A.io.request(
 				'<liferay-portlet:actionURL name="sendMessage"></liferay-portlet:actionURL>',
 				{
+					dataType: 'json',
+					form: {
+						id: form,
+						upload: true
+					},
 					on: {
 						complete: function(event, id, obj) {
 							var responseText = obj.responseText;
@@ -185,11 +190,6 @@ to = sb.toString() + to;
 								loadingMask.hide();
 							}
 						}
-					},
-					dataType: 'json',
-					form: {
-						id: form,
-						upload: true
 					}
 				}
 			);
