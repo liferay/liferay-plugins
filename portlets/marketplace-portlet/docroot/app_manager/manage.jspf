@@ -63,6 +63,10 @@ portletURL.setParameter("category", category);
 			for (String contextName : app.getContextNames()) {
 				ServletContext servletContext = ServletContextPool.get(contextName);
 
+				if (servletContext == null) {
+					continue;
+				}
+
 				List<LayoutTemplate> servletContextLayoutTemplates = (List<LayoutTemplate>)servletContext.getAttribute(WebKeys.PLUGIN_LAYOUT_TEMPLATES);
 
 				if (servletContextLayoutTemplates != null) {
