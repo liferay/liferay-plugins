@@ -144,10 +144,10 @@ public class CalendarBookingLocalServiceImpl
 
 		for (Locale locale : descriptionMap.keySet()) {
 			String sanitizedDescription = SanitizerUtil.sanitize(
-					calendar.getCompanyId(), calendar.getGroupId(), userId,
-					CalendarBooking.class.getName(), calendarBookingId,
-					ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL,
-					descriptionMap.get(locale), null);
+				calendar.getCompanyId(), calendar.getGroupId(), userId,
+				CalendarBooking.class.getName(), calendarBookingId,
+				ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL,
+				descriptionMap.get(locale), null);
 
 			descriptionMap.put(locale, sanitizedDescription);
 		}
@@ -704,10 +704,10 @@ public class CalendarBookingLocalServiceImpl
 
 		for (Locale locale : descriptionMap.keySet()) {
 			String sanitizedDescription = SanitizerUtil.sanitize(
-					calendar.getCompanyId(), calendar.getGroupId(), userId,
-					CalendarBooking.class.getName(), calendarBookingId,
-					ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL,
-					descriptionMap.get(locale), null);
+				calendar.getCompanyId(), calendar.getGroupId(), userId,
+				CalendarBooking.class.getName(), calendarBookingId,
+				ContentTypes.TEXT_HTML, Sanitizer.MODE_ALL,
+				descriptionMap.get(locale), null);
 
 			descriptionMap.put(locale, sanitizedDescription);
 		}
