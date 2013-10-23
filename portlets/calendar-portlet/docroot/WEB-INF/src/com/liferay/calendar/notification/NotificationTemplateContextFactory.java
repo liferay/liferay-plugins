@@ -59,12 +59,6 @@ public class NotificationTemplateContextFactory {
 
 		Calendar calendar = parentCalendarBooking.getCalendar();
 
-		CalendarNotificationTemplate calendarNotificationTemplate =
-			CalendarNotificationTemplateLocalServiceUtil.
-				fetchCalendarNotificationTemplate(
-					calendar.getCalendarId(), notificationType,
-					notificationTemplateType);
-
 		NotificationTemplateContext notificationTemplateContext =
 			new NotificationTemplateContext();
 
@@ -92,6 +86,12 @@ public class NotificationTemplateContextFactory {
 				StringPool.SPACE + userTimezoneDisplayName;
 
 		attributes.put("endTime", endTime);
+
+		CalendarNotificationTemplate calendarNotificationTemplate =
+			CalendarNotificationTemplateLocalServiceUtil.
+				fetchCalendarNotificationTemplate(
+					calendar.getCalendarId(), notificationType,
+					notificationTemplateType);
 
 		attributes.put(
 			"fromAddress",
