@@ -1098,4 +1098,4 @@ public class CalendarBookingLocalServiceImpl
 	private static Log _log = LogFactoryUtil.getLog(
 		CalendarBookingLocalServiceImpl.class);
 
-}
+}
