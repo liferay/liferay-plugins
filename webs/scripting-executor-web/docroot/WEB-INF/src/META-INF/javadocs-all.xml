@@ -7,6 +7,9 @@
 		<author><![CDATA[Michael C. Han]]></author>
 		<method>
 			<name>ScriptingExecutorHotDeployMessageListener</name>
+		</method>
+		<method>
+			<name>ScriptingExecutorHotDeployMessageListener</name>
 			<param>
 				<name>servletContextNames</name>
 				<type>java.lang.String</type>
@@ -26,8 +29,8 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>classLoader</name>
-				<type>java.lang.ClassLoader</type>
+				<name>requiredDeploymentContexts</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 		</method>
