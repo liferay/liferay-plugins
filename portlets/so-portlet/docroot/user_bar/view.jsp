@@ -87,24 +87,4 @@ catch (NoSuchRoleException nsre) {
 			</nav>
 		</div>
 	</liferay-util:body-top>
-
-	<aui:script use="aui-base,liferay-so-user-menu">
-		var html = A.one('html');
-
-		html.on(
-			'click',
-			function(event) {
-				A.fire('close-menus');
-			}
-		);
-
-		new Liferay.SO.UserMenu(
-			{
-				node: '.portlet-dockbar .go-to',
-				showClass: 'search-focus',
-				showOn: 'focus',
-				trigger: '.portlet-dockbar .go-to .so-portlet-sites .search-input'
-			}
-		);
-	</aui:script>
 </c:if>

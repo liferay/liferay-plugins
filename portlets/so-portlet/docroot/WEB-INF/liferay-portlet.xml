@@ -47,7 +47,6 @@
 		<portlet-name>8</portlet-name>
 		<icon>/user_bar/icon.png</icon>
 		<use-default-template>false</use-default-template>
-		<header-portlet-javascript>/user_bar/js/main.js</header-portlet-javascript>
 		<css-class-wrapper>so-portlet-user-bar</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
 		<system>true</system>

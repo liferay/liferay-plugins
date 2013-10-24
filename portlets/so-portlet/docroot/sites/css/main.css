@@ -1,5 +1,15 @@
 @import "compass";
 
+$defaultBorderColor: #C9C9C9;
+$defaultTextColor: #202020;
+
+@mixin menu-mix {
+	background-color: #FFF;
+
+	@include border-radius(4px);
+	@include box-shadow(0 1px 3px rgba(0,0,0, 0.78));
+}
+
 .so-portlet-sites {
 	ul.site-list {
 		background: #E8EFF4;
@@ -310,6 +320,216 @@
 	.dialog-footer {
 		display: block;
 		text-align: center;
+	}
+}
+
+.portlet-dockbar {
+	.so-portlet-sites {
+		display: block;
+		margin-left: -300px;
+		max-width: 450px;
+		min-width: 350px;
+		position: relative;
+		right: 0;
+		top: 0;
+		vertical-align: middle;
+		width: 350px;
+
+		.portlet {
+			background: transparent;
+
+			&, .portlet-content {
+				border-width: 0;
+			}
+		}
+
+		.portlet-topper, .favorite-msg-info {
+			display: none;
+		}
+
+		.portlet-body {
+			left: 0;
+			margin: -1.125em 0 0;
+
+			@include menu-mix;
+
+			padding: 3.4em 0 0;
+			position: absolute;
+			right: 0;
+			visibility: hidden;
+			z-index: 1;
+
+			a, a:hover, li.has-menu:hover a {
+				background-color: transparent;
+
+				@include border-radius(0);
+				@include box-shadow(none);
+
+				color: $defaultTextColor;
+				font-weight: normal;
+				text-shadow: none;
+			}
+		}
+
+		.search {
+			display: block;
+			float: none;
+			left: 0;
+			margin-bottom: 0;
+			padding: 0 0.75em;
+			position: absolute;
+			right: 0;
+			text-align: right;
+			top: 0.65em;
+			visibility: visible;
+			width: auto;
+
+			.search-input {
+				background: #FFF;
+
+				@include border-radius(20px);
+				@include box-shadow(0 1px 2px rgba(0,0,0, 0.4) inset);
+
+				color: #202020;
+				cursor: pointer;
+				display: block;
+				float: right;
+
+				@include transition-duration(0.5s);
+				@include transition-property(width);
+
+				text-align: left;
+				text-indent: 0.5em;
+				width: 20%;
+			}
+
+			input[type=image] {
+				display: none;
+			}
+		}
+
+		.sites-tabs, .sites-list-container, .control-container {
+			display: none;
+		}
+
+		.sites-tabs {
+			border-top: 1px solid rgba(0,0,0, 0.1);
+			float: none;
+			padding: 1em;
+
+			select {
+				display: block;
+				width: 100%;
+			}
+		}
+
+		.site-list-container {
+			.name {
+				position: relative;
+
+				a {
+					background-position: 8px center;
+					background-repeat: no-repeat;
+					border-top: 1px solid $defaultBorderColor;
+					display: block;
+					padding: 0.55em 2.5em;
+
+					&:hover {
+						background-color: rgba(0,0,0, 0.1);
+					}
+				}
+
+				.private-pages {
+					background: #FFF;
+					padding: 0.55em 0.5em;
+					position: absolute;
+					right: 2em;
+					top: 0;
+				}
+			}
+
+			span.action {
+				position: relative;
+				z-index: 1;
+
+				a {
+					font-size: 0;
+					margin-top: 8px;
+					text-indent: -9999em;
+				}
+			}
+
+			ul.site-list {
+				&, li {
+					background-color: transparent;
+					border-width: 0;
+					color: $defaultTextColor;
+					display: block;
+					margin: 0;
+					padding: 0
+				}
+
+				.empty, .empty:hover {
+					border-width: 1px 0 0;
+					padding: 0.5em 1em 0.5em 2em;
+				}
+			}
+		}
+
+		.control-container {
+			.toolbar-content {
+				display: block;
+			}
+
+			button {
+				width: 50%;
+			}
+		}
+	}
+
+	.search-focus .so-portlet-sites .portlet-body {
+		visibility: visible;
+		z-index: 3;
+
+		.search {
+			width: auto;
+
+			.search-input {
+				background: #FFF;
+				border: 1px solid $defaultBorderColor;
+
+				@include box-shadow(0 1px 2px rgba(0,0,0, 0) inset);
+
+				color: $defaultTextColor;
+				cursor: text;
+				text-shadow: none;
+				width: 97%;
+			}
+		}
+
+		.sites-tabs, .sites-list-container, .control-container {
+			display: block;
+		}
+	}
+
+	.go-to {
+		display: block;
+		padding-left: 50px;
+		width: auto;
+
+		.so-portlet-sites {
+			top: -5px;
+		}
+	}
+}
+
+.dockbar-split {
+	.go-to {
+		height: 44px;
+
+		.so-portlet-sites {
+			top: 0;
+		}
 	}
 }
 
