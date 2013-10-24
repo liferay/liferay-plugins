@@ -2221,6 +2221,17 @@ div#navigation {
 	}
 }
 
+.portal-popup {
+	#main-content {
+		background: transparent;
+
+		@include box-shadow(none);
+
+		float: none;
+		min-height: auto;
+	}
+}
+
 @media print {
 	.portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a, .portlet-wiki .page-actions a, .portlet-wiki .toc a.toc-trigger, .popup-print {
 		display: none;
