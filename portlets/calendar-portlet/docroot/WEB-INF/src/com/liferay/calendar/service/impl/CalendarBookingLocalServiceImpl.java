@@ -97,6 +97,8 @@ public class CalendarBookingLocalServiceImpl
 		User user = userPersistence.findByPrimaryKey(userId);
 		Calendar calendar = calendarPersistence.findByPrimaryKey(calendarId);
 
+		long calendarBookingId = counterLocalService.increment();
+
 		for (Locale locale : descriptionMap.keySet()) {
 			String sanitizedDescription = SanitizerUtil.sanitize(
 				calendar.getCompanyId(), calendar.getGroupId(), userId,
@@ -129,8 +131,6 @@ public class CalendarBookingLocalServiceImpl
 		Date now = new Date();
 
 		validate(titleMap, startTimeJCalendar, endTimeJCalendar);
-
-		long calendarBookingId = counterLocalService.increment();
 
 		CalendarBooking calendarBooking = calendarBookingPersistence.create(
 			calendarBookingId);
