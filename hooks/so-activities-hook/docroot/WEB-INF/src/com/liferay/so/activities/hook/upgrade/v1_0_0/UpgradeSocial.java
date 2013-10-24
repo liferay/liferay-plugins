@@ -72,34 +72,6 @@ public class UpgradeSocial extends UpgradeProcess {
 		}
 	}
 
-	protected void addSOSocialActivity(long activityId, long activitySetId)
-		throws Exception {
-
-		Connection con = null;
-		PreparedStatement ps = null;
-
-		try {
-			con = DataAccess.getUpgradeOptimizedConnection();
-
-			ps = con.prepareStatement(
-				"insert into SO_SocialActivity (activityId, activitySetId) " +
-					"values (?, ?)");
-
-			ps.setLong(1, activityId);
-			ps.setLong(2, activitySetId);
-
-			ps.executeUpdate();
-		}
-		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to add SO_SocialActivity " + activityId, e);
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps);
-		}
-	}
-
 	@Override
 	protected void doUpgrade() throws Exception {
 		migrateActivities();
@@ -171,12 +143,25 @@ public class UpgradeSocial extends UpgradeProcess {
 				addActivitySet(
 					activitySetId, groupId, companyId, userId, createDate,
 					classNameId, classPK, type_);
-				addSOSocialActivity(activityId, activitySetId);
+				updateActivity(activityId, activitySetId);
 			}
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
+	}
+
+	protected void updateActivity(long activityId, long activitySetId)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("update SocialActivity set activitySetId = ");
+		sb.append(activitySetId);
+		sb.append(" where activityId = ");
+		sb.append(activityId);
+
+		runSQL(sb.toString());
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(UpgradeSocial.class);
