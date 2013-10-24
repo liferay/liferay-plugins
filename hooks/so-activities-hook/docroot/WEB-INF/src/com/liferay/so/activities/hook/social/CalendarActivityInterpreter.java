@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivitySet;
@@ -28,6 +30,9 @@ import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
 import com.liferay.so.activities.util.SocialActivityKeyConstants;
 
 import java.text.Format;
+
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
 
 /**
  * @author Evan Thibodeau
@@ -129,6 +134,29 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("</div></div>");
 
 		return sb.toString();
+	}
+
+	@Override
+	protected String getLinkURL(
+			String className, long classPK, ServiceContext serviceContext)
+		throws Exception {
+
+		CalendarBooking calendarBooking =
+			CalendarBookingLocalServiceUtil.fetchCalendarBooking(classPK);
+
+		long plid = PortalUtil.getPlidFromPortletId(
+			calendarBooking.getGroupId(), "1_WAR_calendarportlet");
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			serviceContext.getRequest(), "1_WAR_calendarportlet", plid,
+			PortletRequest.RENDER_PHASE);
+
+		portletURL.setParameter("mvcPath", "/view_calendar_booking.jsp");
+		portletURL.setParameter(
+			"calendarBookingId",
+			String.valueOf(calendarBooking.getCalendarBookingId()));
+
+		return portletURL.toString();
 	}
 
 	@Override
