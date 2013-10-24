@@ -339,7 +339,7 @@ html.aui {
 			}
 		}
 
-		.navbar-inner .nav > li {
+		.navbar-inner .nav-account-controls > li {
 			background-color: transparent;
 			background-image: none;
 
