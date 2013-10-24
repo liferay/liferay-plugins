@@ -26,12 +26,12 @@ $theme.include($body_top_include)
 	<header id="banner" role="banner">
 		<div id="heading">
 			<h1 class="site-title">
-				<a class="$logo_css_class" href="$site_default_url" title="#language("go-to") $site_name">
+				<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
 					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 				</a>
 
 				#if ($show_site_name)
-					<span class="site-name" title="#language("go-to") $site_name">
+					<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
 						$site_name
 					</span>
 				#end
