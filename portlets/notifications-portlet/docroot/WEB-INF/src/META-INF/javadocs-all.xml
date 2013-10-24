@@ -143,4 +143,20 @@
 			<name>NOTIFICATIONS</name>
 		</field>
 	</javadoc>
+	<javadoc>
+		<name>PortletPropsKeys</name>
+		<type>com.liferay.notifications.util.PortletPropsKeys</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<field>
+			<name>NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletPropsValues</name>
+		<type>com.liferay.notifications.util.PortletPropsValues</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<field>
+			<name>NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED</name>
+		</field>
+	</javadoc>
 </javadocs>

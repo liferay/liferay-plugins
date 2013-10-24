@@ -170,13 +170,8 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
-				<name>PortalException</name>
-				<type>com.liferay.portal.kernel.exception.PortalException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-			<throws>
-				<name>SystemException</name>
-				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
@@ -195,24 +190,6 @@
 			<throws>
 				<name>PortletException</name>
 				<type>javax.portlet.PortletException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>checkData</name>
-			<param>
-				<name>resourceRequest</name>
-				<type>javax.portlet.ResourceRequest</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>resourceResponse</name>
-				<type>javax.portlet.ResourceResponse</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>

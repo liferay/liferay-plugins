@@ -220,6 +220,56 @@
 		</field>
 	</javadoc>
 	<javadoc>
+		<name>MicroblogsUserNotificationHandler</name>
+		<type>com.liferay.microblogs.microblogs.notifications.MicroblogsUserNotificationHandler</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>MicroblogsUserNotificationHandler</name>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>userNotificationEvent</name>
+				<type>com.liferay.portal.model.UserNotificationEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLink</name>
+			<param>
+				<name>userNotificationEvent</name>
+				<type>com.liferay.portal.model.UserNotificationEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>MicroblogsPortlet</name>
 		<type>com.liferay.microblogs.microblogs.portlet.MicroblogsPortlet</type>
 		<author><![CDATA[Jonathan Lee]]></author>
@@ -1504,6 +1554,14 @@
 		</field>
 		<field>
 			<name>_joinBySocialRelationSQL</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>PortletKeys</name>
+		<type>com.liferay.microblogs.util.PortletKeys</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<field>
+			<name>MICROBLOGS</name>
 		</field>
 	</javadoc>
 	<javadoc>
