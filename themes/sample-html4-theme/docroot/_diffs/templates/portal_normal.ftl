@@ -24,13 +24,13 @@
 	<div id="banner" role="banner">
 		<div id="heading">
 			<h1 class="company-title">
-				<a class="${logo_css_class}" href="${company_url}" title="<@liferay.language key="go-to" /> ${company_name}">
+				<a class="${logo_css_class}" href="${company_url}" title="<@liferay.language_format arguments="${company_name}" key="go-to-x" />">
 					<span>${company_name}</span>
 				</a>
 			</h1>
 
 			<h2 class="community-title">
-				<a href="${community_default_url}" title="<@liferay.language key="go-to" /> ${community_name}">
+				<a href="${community_default_url}" title="<@liferay.language_format arguments="${community_name}" key="go-to-x" />">
 					<span>${community_name}</span>
 				</a>
 			</h2>

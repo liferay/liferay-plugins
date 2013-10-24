@@ -33,7 +33,7 @@ $theme.include($body_top_include)
 
 			#if (!$page_group.isUser())
 				<div class="community-title">
-					<a href="$community_default_url" title='#language ("go-to") $community_name'>
+					<a href="$community_default_url" title='#language_format ("go-to-x", [$community_name])'>
 						<span>$community_name</span>
 					</a>
 

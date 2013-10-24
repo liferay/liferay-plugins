@@ -27,7 +27,7 @@ $theme.include($body_top_include)
 <div id="loginPage">
 	<div class="login-holder">
 		<div class="company-title">
-			<a class="$logo_css_class" href="$site_default_url" title="#language ("go-to") #language ("dashboard")">
+			<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$languageUtil.get($locale, "dashboard")])">
 				<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 			</a>
 		</div>
