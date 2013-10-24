@@ -160,8 +160,9 @@ html.aui {
 				}
 
 				&.nav > li > a {
-					padding-bottom: 0.8em;
-					padding-top: 0.8em;
+					margin: 0 0;
+					padding-bottom: 0.45em;
+					padding-top: 0.45em;
 				}
 			}
 		}
@@ -182,26 +183,25 @@ html.aui {
 		}
 	}
 
-	.dockbar .container .nav-account-controls,
+	.dockbar .navbar-inner .container .nav-account-controls,
 	.dockbar.navbar-static-top .collapse .nav-account-controls {
 		position: absolute;
-		top: -42px;
+		top: -45px;
 
 		.go-to .so-portlet-sites {
-			top: -3px;
+			top: 0;
+		}
+
+		&.nav > li > a {
+			padding-bottom: 0.8em;
+			padding-top: 0.8em;
 		}
 	}
 
-	.dockbar-split .dockbar .container .nav-account-controls,
-	.dockbar-split .dockbar.navbar-static-top .collapse .nav-account-controls {
+	.dockbar-split .dockbar .navbar-inner .container .nav.nav-account-controls,
+	.dockbar-split .dockbar.navbar-static-top .collapse .nav.nav-account-controls {
 		position: absolute;
 		top: 0;
-
-
-		&.nav > li.dropdown > a {
-			padding-bottom: 0.45em;
-			padding-top: 0.45em;
-		}
 	}
 
 	.my-sites.dropdown {
