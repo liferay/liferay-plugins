@@ -31,13 +31,13 @@ boolean hasExistingRecipients = false;
 			<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
 		</liferay-portlet:actionURL>
 
-		<aui:nav-item href="<%= markAsUnreadURL %>" id="markMessageAsUnread" label="mark-as-unread" />
+		<aui:button href="<%= markAsUnreadURL %>" name="markMessageAsUnread" value="mark-as-unread" />
 
 		<liferay-portlet:actionURL name="deleteMessages" var="deleteMessageURL">
 			<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
 		</liferay-portlet:actionURL>
 
-		<aui:nav-item href="<%= deleteMessageURL %>" id="deleteMessage" label="delete" />
+		<aui:button href="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 	</aui:nav>
 </aui:nav-bar>
 

@@ -882,7 +882,7 @@ div#navigation {
 }
 
 .taglib-header .header-back-to a {
-	padding: 0 0.2em;
+	padding: 10px 0 0 10px;
 }
 
 /* ---------- LFR header row ---------- */
@@ -1739,8 +1739,6 @@ div#navigation {
 
 .private-messaging-portlet {
 	.controls {
-		background-color: $controlBgColor;
-
 		@include border-radius(0);
 
 		border-width: 0 0 1px;
@@ -1768,11 +1766,6 @@ div#navigation {
 		text-decoration: none;
 	}
 
-	.user-profile-image {
-		position: relative;
-		z-index: 2;
-	}
-
 	.taglib-search-iterator-page-iterator-bottom {
 		padding: 10px;
 	}
@@ -1781,13 +1774,11 @@ div#navigation {
 		min-height: 400px;
 	}
 
-	.message-link {
-		padding-bottom: 20px;
-	}
-
 	.user-profile-image {
-		overflow: hidden;
-		height: 50px;
+		height: 60px;
+		margin-right: 10px;
+		position: relative;
+		z-index: 2;
 	}
 }
 
