@@ -23,15 +23,15 @@
 			<aui:input cssClass="check-all" inline="<%= true %>" label="" name="checkAllMessages" title='<%= LanguageUtil.get(pageContext, "check-all-messages") %>' type="checkbox" />
 		</aui:nav-item>
 
-		<aui:nav-item id="markMessagesAsUnread" label="mark-as-unread" />
+		<aui:button name="markMessagesAsUnread" value="mark-as-unread" />
 
-		<aui:nav-item id="markMessagesAsRead" label="mark-as-read" />
+		<aui:button name="markMessagesAsRead" value="mark-as-read" />
 
-		<aui:nav-item id="deleteMessages" label="delete" />
+		<aui:button name="deleteMessages" value="delete" />
 	</aui:nav>
 
 	<aui:nav cssClass="pull-right">
-		<aui:nav-item id="newMessage" label="new-message" />
+		<aui:button primary="<%= true %>" name="newMessage" value="new-message" />
 	</aui:nav>
 </aui:nav-bar>
 

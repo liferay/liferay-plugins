@@ -7,15 +7,22 @@
 		}
 	}
 
+	.navbar, .lfr-search-container {
+		margin: 0;
+	}
+
+	.navbar-inner {
+		padding: 0 10px;
+	}
+
 	img.avatar {
-		width: 50px;
+		width: 60px;
 	}
 
 
 	.controls {
 		.check-all {
-			margin-left: -10px;
-			margin-top: 13px;
+			margin: 15px 10px 0 0;
 		}
 
 		.back-button {
@@ -53,8 +60,8 @@
 
 	.message-link {
 		display: block;
-		margin: -10px -10px -10px -60px;
-		padding: 10px 10px 10px 60px;
+		margin: -10px;
+		padding: 10px 10px 10px 80px;
 		position: relative;
 		z-index: 1;
 
@@ -69,6 +76,23 @@
 
 	.private-messaging-container .results-header, .taglib-user-display.display-style-2 .user-details, .taglib-user-display.display-style-2 .user-name {
 		display: none;
+	}
+
+	.table {
+		border-top: 0;
+
+		thead {
+			display: none;
+		}
+
+		.first {
+			vertical-align: middle;
+			width: 12px;
+		}
+	}
+
+	.table-striped .table-data .first, .table-striped .table-data .last {
+		background: none;
 	}
 
 	/* Messages */
@@ -146,10 +170,6 @@
 	.messages .taglib-user-display, .thread .taglib-user-display {
 		float: left;
 		padding: 0;
-	}
-
-	.messages .last-thread, .thread .message {
-		margin-left: 60px;
 	}
 
 	.line-through {
