@@ -119,197 +119,6 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	}
 }
 
-.portlet-dockbar {
-	.so-portlet-sites {
-		display: block;
-		margin-left: -300px;
-		max-width: 450px;
-		min-width: 350px;
-		position: relative;
-		right: 0;
-		top: 0;
-		vertical-align: middle;
-		width: 350px;
-
-		.portlet {
-			background: transparent;
-
-			&, .portlet-content {
-				border-width: 0;
-			}
-		}
-
-		.portlet-topper, .favorite-msg-info {
-			display: none;
-		}
-
-		.portlet-body {
-			left: 0;
-			margin: -1.125em 0 0;
-
-			@include menu-mix;
-
-			padding: 3.4em 0 0;
-			position: absolute;
-			right: 0;
-			visibility: hidden;
-			z-index: 1;
-
-			a, a:hover, li.has-menu:hover a {
-				background-color: transparent;
-
-				@include border-radius(0);
-				@include box-shadow(none);
-
-				color: $defaultTextColor;
-				font-weight: normal;
-				text-shadow: none;
-			}
-		}
-
-		.search {
-			display: block;
-			float: none;
-			left: 0;
-			margin-bottom: 0;
-			padding: 0 0.75em;
-			position: absolute;
-			right: 0;
-			text-align: right;
-			top: 0.65em;
-			visibility: visible;
-			width: auto;
-
-			.search-input {
-				background: #FFF;
-				border: 1px solid #1C2125;
-
-				@include border-radius(20px);
-				@include box-shadow(0 1px 2px rgba(0,0,0, 0.4) inset);
-
-				color: #202020;
-				cursor: pointer;
-				display: block;
-				float: right;
-
-				@include transition-duration(0.5s);
-				@include transition-property(width);
-
-				text-align: left;
-				text-indent: 0.5em;
-				width: 20%;
-			}
-
-			input[type=image] {
-				display: none;
-			}
-		}
-
-		.sites-tabs, .sites-list-container, .control-container {
-			display: none;
-		}
-
-		.sites-tabs {
-			border-top: 1px solid rgba(0,0,0, 0.1);
-			float: none;
-			padding: 1em;
-
-			select {
-				display: block;
-				width: 100%;
-			}
-		}
-
-		.site-list-container {
-			.name {
-				position: relative;
-
-				a {
-					background-position: 8px center;
-					background-repeat: no-repeat;
-					border-top: 1px solid $defaultBorderColor;
-					display: block;
-					padding: 0.55em 2.5em;
-
-					&:hover {
-						background-color: rgba(0,0,0, 0.1);
-					}
-				}
-
-				.private-pages {
-					background: #FFF;
-					padding: 0.55em 0.5em;
-					position: absolute;
-					right: 2em;
-					top: 0;
-				}
-			}
-
-			span.action {
-				position: relative;
-				z-index: 1;
-
-				a {
-					font-size: 0;
-					margin-top: 8px;
-					text-indent: -9999em;
-				}
-			}
-
-			ul.site-list {
-				&, li {
-					background-color: transparent;
-					border-width: 0;
-					color: $defaultTextColor;
-					display: block;
-					margin: 0;
-					padding: 0
-				}
-
-				.empty, .empty:hover {
-					border-width: 1px 0 0;
-					padding: 0.5em 1em 0.5em 2em;
-				}
-			}
-		}
-
-		.control-container {
-			.toolbar-content {
-				display: block;
-			}
-
-			button {
-				width: 50%;
-			}
-		}
-	}
-
-	.search-focus .so-portlet-sites .portlet-body {
-		visibility: visible;
-		z-index: 3;
-
-		.search {
-			width: auto;
-
-			.search-input {
-				background: #FFF;
-				border: 1px solid $defaultBorderColor;
-
-				@include box-shadow(0 1px 2px rgba(0,0,0, 0) inset);
-
-				color: $defaultTextColor;
-				cursor: text;
-				text-shadow: none;
-				width: 97%;
-			}
-		}
-
-		.sites-tabs, .sites-list-container, .control-container {
-			display: block;
-		}
-	}
-}
-
 .aui .dockbar-split .portlet-dockbar .dockbar .navbar-inner .nav-account-controls {
 	background-color: transparent;
 	background-image: none;
@@ -325,7 +134,7 @@ html.aui {
 			width: auto;
 		}
 
-		.container {
+		.navbar-inner .container {
 			.nav-account-controls {
 				bottom: 100%;
 				left: auto;
@@ -335,6 +144,24 @@ html.aui {
 
 				.divider-vertical {
 					display: none;
+				}
+
+				li.dropdown {
+					> .dropdown-toggle {
+						background-color: rgba(0,0,0, 0);
+
+						@include transition-duration(0.5s);
+						@include transition-property(background-color);
+					}
+
+					&.open > .dropdown-toggle {
+						background-color: rgba(0,0,0, 0.48);
+					}
+				}
+
+				&.nav > li > a {
+					padding-bottom: 0.8em;
+					padding-top: 0.8em;
 				}
 			}
 		}
@@ -359,12 +186,22 @@ html.aui {
 	.dockbar.navbar-static-top .collapse .nav-account-controls {
 		position: absolute;
 		top: -42px;
+
+		.go-to .so-portlet-sites {
+			top: -3px;
+		}
 	}
 
 	.dockbar-split .dockbar .container .nav-account-controls,
 	.dockbar-split .dockbar.navbar-static-top .collapse .nav-account-controls {
 		position: absolute;
 		top: 0;
+
+
+		&.nav > li.dropdown > a {
+			padding-bottom: 0.45em;
+			padding-top: 0.45em;
+		}
 	}
 
 	.my-sites.dropdown {
@@ -393,6 +230,13 @@ html.aui {
 		}
 	}
 }
+
+.portlet-dockbar .nav-account-controls .go-to {
+	.so-portlet-sites .search .search-input {
+		border: 1px solid #1C2125;
+	}
+}
+
 
 @media (max-width:860px) {
 	.so-portlet-user-bar {
