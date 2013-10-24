@@ -48,15 +48,15 @@ public class SocialActivityKeyConstants {
 
 	/**
 	 * {@link
-	 * com.liferay.portlet.calendar.social.CalendarActivityKeys#ADD_EVENT}
+	 * com.liferay.calendar.social.CalendarActivityKeys#ADD_CALENDAR_BOOKING}
 	 */
-	public static final int CALENDAR_ADD_EVENT = 1;
+	public static final int CALENDAR_ADD_CALENDAR_BOOKING = 1;
 
 	/**
 	 * {@link
-	 * com.liferay.portlet.calendar.social.CalendarActivityKeys#UPDATE_EVENT}
+	 * com.liferay.calendar.social.CalendarActivityKeys#UPDATE_CALENDAR_BOOKING}
 	 */
-	public static final int CALENDAR_UPDATE_EVENT = 2;
+	public static final int CALENDAR_UPDATE_CALENDAR_BOOKING = 2;
 
 	/**
 	 * {@link
