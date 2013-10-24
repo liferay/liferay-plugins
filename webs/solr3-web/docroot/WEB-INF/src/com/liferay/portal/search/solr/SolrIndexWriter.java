@@ -177,8 +177,11 @@ public class SolrIndexWriter extends BaseIndexWriter {
 			SearchContext searchContext, Collection<Document> documents)
 		throws SearchException {
 
-		for (Document document : documents) {
-			deleteDocument(searchContext, document.getUID());
+		if (!documents.isEmpty()) {
+			String UID = documents.iterator().next().getUID();
+			String portletId = UID.substring(0, UID.indexOf("_"));
+
+			deletePortletDocuments(searchContext, portletId);
 		}
 
 		addDocuments(searchContext, documents);
