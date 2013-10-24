@@ -39,6 +39,7 @@ page import="com.liferay.portal.kernel.util.CalendarFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
+page import="com.liferay.portal.kernel.util.ListUtil" %><%@
 page import="com.liferay.portal.kernel.util.PrefsParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PrefsPropsUtil" %><%@
 page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
@@ -52,7 +53,8 @@ page import="com.liferay.portal.model.LayoutConstants" %><%@
 page import="com.liferay.portal.service.GroupLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PortletKeys" %><%@
-page import="com.liferay.portlet.PortletURLFactoryUtil" %>
+page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
+page import="com.liferay.portlet.eventsdisplay.util.comparator.CalendarBookingTimeComparator" %>
 
 <%@ page import="java.text.Format" %>
 

@@ -59,6 +59,10 @@ int[] statuses = {WorkflowConstants.STATUS_APPROVED};
 
 List<CalendarBooking> calendarBookings = CalendarBookingServiceUtil.search(themeDisplay.getCompanyId(), null, null, ArrayUtil.toLongArray(calendarResourceIds), -1, null, displayStartTimeJCalendar.getTimeInMillis(), displayEndTime, true, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
+if (calendarBookings.size() > 1) {
+	ListUtil.sort(calendarBookings, new CalendarBookingTimeComparator(locale));
+}
+
 List<CalendarBooking> todayBookings = new ArrayList<CalendarBooking>();
 List<CalendarBooking> upcomingBookings = new ArrayList<CalendarBooking>();
 
