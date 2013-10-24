@@ -616,10 +616,15 @@ div#navigation {
 	@include box-shadow(-4px 0 15px -7px rgba(0,0,0, 0.6));
 }
 
-.aui-dialog-iframe-popup #main-content {
-	@include box-shadow(none);
+.aui-dialog-iframe-popup, .portal-popup {
+	#main-content {
+		background: transparent;
 
-	float: none;
+		@include box-shadow(none);
+
+		float: none;
+		min-height: auto;
+	}
 }
 
 /* ---------- Application CSS ---------- */
@@ -2218,17 +2223,6 @@ div#navigation {
 
 	h5, h6 {
 		font-size: 1em;
-	}
-}
-
-.portal-popup {
-	#main-content {
-		background: transparent;
-
-		@include box-shadow(none);
-
-		float: none;
-		min-height: auto;
 	}
 }
 
