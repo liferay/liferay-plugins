@@ -175,35 +175,6 @@
 		</releng>
 	</plugin>
 	<plugin>
-		<artifact-id><![CDATA[private-plugin-installer-hook]]></artifact-id>
-		<name><![CDATA[Private Plugin Installer]]></name>
-		<type><![CDATA[hook]]></type>
-		<tags><![CDATA[ftp, hot deploy, installer, private, repository, ssh]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[The Private Plugin Installer app allows developers and system administrators to hot deploy individual Liferay plugins using the Control Panel. It is a graphical front-end to the underlying Liferay plugin deployment and management mechanism, and eliminates the need to manually copy plugins into the underlying operating system's filesystem in order to hot deploy plugins (e.g. using FTP or SSH). It also enables the use of a private plugins repository.<br /><br />This app installs to the Plugins Installation tab in the Control Panel and adds a new sub-tab called "Private Plugins Installation". See the "Plugin Management" section of the Liferay User Guide for more details on setting up a plugin repository.<br /><br />This app will appear in your Control Panel once installed.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Utility]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<screenshot><![CDATA[hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
-			<screenshot><![CDATA[hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
-			<screenshot><![CDATA[hooks/private-plugin-installer-hook/docroot/WEB-INF/releng/screenshots/4.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
 		<artifact-id><![CDATA[sample-application-adapter-hook]]></artifact-id>
 		<name><![CDATA[Sample Application Adapter]]></name>
 		<type><![CDATA[hook]]></type>
@@ -257,6 +228,30 @@
 		<type><![CDATA[hook]]></type>
 		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[This hook shows how to use Liferay's Expando to automatically create custom fields.]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[sample-scripting-executor-hook]]></artifact-id>
+		<name><![CDATA[Sample Scripting Executor]]></name>
+		<type><![CDATA[hook]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
@@ -709,6 +704,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id><![CDATA[chat-video-portlet]]></artifact-id>
+		<name><![CDATA[Chat Video]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id><![CDATA[contacts-portlet]]></artifact-id>
 		<name><![CDATA[Contacts]]></name>
 		<type><![CDATA[portlet]]></type>
@@ -756,32 +775,6 @@
 			<screenshot><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[portlets/ddl-form-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[digg-portlet]]></artifact-id>
-		<name><![CDATA[Digg]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[bookmarks, digg, news, social]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app integrates with Digg, a social news website (http://digg.com). The app provides additional configuration, allowing users to select the types of news streams they wish to view, and configure various parameters (result limits, polling frequency, and others) to optimally retrieve and show news and social links from Digg.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Utility]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<icon><![CDATA[portlets/digg-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
-			<public><![CDATA[true]]></public>
-			<screenshot><![CDATA[portlets/digg-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -1120,14 +1113,14 @@
 	</plugin>
 	<plugin>
 		<artifact-id><![CDATA[modules-admin-portlet]]></artifact-id>
-		<name><![CDATA[Modules Administration]]></name>
+		<name><![CDATA[${Bundle-Name}]]></name>
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[]]></tags>
 		<short-description><![CDATA[]]></short-description>
 		<long-description><![CDATA[]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
+		<author><![CDATA[${Bundle-Vendor}]]></author>
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
 		<releng>
@@ -1196,6 +1189,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id><![CDATA[notifications-portlet]]></artifact-id>
+		<name><![CDATA[Notifications]]></name>
+		<type><![CDATA[portlet]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[true]]></bundle>
+			<category><![CDATA[Communication]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id><![CDATA[opensocial-portlet]]></artifact-id>
 		<name><![CDATA[OpenSocial Gadget]]></name>
 		<type><![CDATA[portlet]]></type>
@@ -1208,7 +1225,7 @@
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[false]]></bundle>
+			<bundle><![CDATA[true]]></bundle>
 			<category><![CDATA[Communication]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
@@ -1246,30 +1263,6 @@
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[portlets/plugins-security-manager-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
-			<support-url><![CDATA[]]></support-url>
-			<supported><![CDATA[false]]></supported>
-		</releng>
-	</plugin>
-	<plugin>
-		<artifact-id><![CDATA[polls-portlet]]></artifact-id>
-		<name><![CDATA[Polls]]></name>
-		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[]]></tags>
-		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
-		<change-log><![CDATA[]]></change-log>
-		<page-url><![CDATA[http://www.liferay.com]]></page-url>
-		<author><![CDATA[Liferay, Inc.]]></author>
-		<licenses><![CDATA[LGPL]]></licenses>
-		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
-		<releng>
-			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[]]></category>
-			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[]]></dependent-apps>
-			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[false]]></marketplace>
-			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -1364,7 +1357,7 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
@@ -1986,7 +1979,7 @@
 			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Productivity]]></category>
 			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[chat-portlet, contacts-portlet, deploy-listener-hook, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-hook, so-portlet, so-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet]]></dependent-apps>
+			<dependent-apps><![CDATA[calendar-portlet, chat-portlet, contacts-portlet, deploy-listener-hook, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-activities-hook, so-announcements-portlet, so-hook, so-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet]]></dependent-apps>
 			<icon><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
@@ -2694,7 +2687,7 @@
 		<type><![CDATA[portlet]]></type>
 		<tags><![CDATA[utility, weather]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[This app provides a quick visual indication of weather across a configurable set of locations. Locations can be specified using a textual city name (such as "Los Angeles, CA" or "China"), or a postal code (such as 32701 in the U.S.). Links to a summary screen at weather.com are provided for each location. Temperature readings can be configured for Celsius or Fahrenheit.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
+		<long-description><![CDATA[This app provides a quick visual indication of weather across a configurable set of locations. Locations can be specified using a textual city name (such as "Los Angeles, CA" or "China"), or a postal code (such as 32701 in the U.S.). Links to a summary screen at OpenWeatherMap.org are provided for each location. Temperature readings can be configured for Celsius or Fahrenheit.<br /><br />This app will appear in your Application menu once installed.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -2727,7 +2720,7 @@
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[false]]></bundle>
+			<bundle><![CDATA[true]]></bundle>
 			<category><![CDATA[Productivity]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
@@ -2989,6 +2982,30 @@
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[false]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[so-strata-theme]]></artifact-id>
+		<name><![CDATA[Social Office Strata]]></name>
+		<type><![CDATA[theme]]></type>
+		<tags><![CDATA[collaboration, communication, office, so, social, social office, team]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[AGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
@@ -3302,7 +3319,7 @@
 		<licenses><![CDATA[LGPL]]></licenses>
 		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
 		<releng>
-			<bundle><![CDATA[false]]></bundle>
+			<bundle><![CDATA[true]]></bundle>
 			<category><![CDATA[Productivity]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
@@ -3341,6 +3358,30 @@
 			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/resources-importer-web/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
+		<artifact-id><![CDATA[scripting-executor-web]]></artifact-id>
+		<name><![CDATA[Scripting Executor]]></name>
+		<type><![CDATA[web]]></type>
+		<tags><![CDATA[]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[false]]></bundle>
+			<category><![CDATA[Utility]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[true]]></labs>
+			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -3431,6 +3472,30 @@
 		</releng>
 	</plugin>
 	<plugin>
+		<artifact-id><![CDATA[sync-web]]></artifact-id>
+		<name><![CDATA[Sync]]></name>
+		<type><![CDATA[web]]></type>
+		<tags><![CDATA[sync]]></tags>
+		<short-description><![CDATA[]]></short-description>
+		<long-description><![CDATA[]]></long-description>
+		<change-log><![CDATA[]]></change-log>
+		<page-url><![CDATA[http://www.liferay.com]]></page-url>
+		<author><![CDATA[Liferay, Inc.]]></author>
+		<licenses><![CDATA[LGPL]]></licenses>
+		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
+		<releng>
+			<bundle><![CDATA[true]]></bundle>
+			<category><![CDATA[Productivity]]></category>
+			<demo-url><![CDATA[]]></demo-url>
+			<dependent-apps><![CDATA[]]></dependent-apps>
+			<labs><![CDATA[false]]></labs>
+			<marketplace><![CDATA[true]]></marketplace>
+			<public><![CDATA[true]]></public>
+			<support-url><![CDATA[]]></support-url>
+			<supported><![CDATA[false]]></supported>
+		</releng>
+	</plugin>
+	<plugin>
 		<artifact-id><![CDATA[theme-loader-web]]></artifact-id>
 		<name><![CDATA[Theme Loader]]></name>
 		<type><![CDATA[web]]></type>
@@ -3487,6 +3552,7 @@
 			<supported><![CDATA[false]]></supported>
 		</releng>
 	</plugin>
+	<author>${Bundle-Vendor}</author>
 	<author>Liferay, Inc.</author>
 	<author>SpringSource, Inc.</author>
 	<author>Sun Microsystems, Inc.</author>
