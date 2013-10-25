@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.sync.model.SyncDLObject">
+		<field name="objectId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="createTime" type="long" />
+		<field name="modifiedTime" type="long" />
+		<field name="repositoryId" type="long" />
+		<field name="parentFolderId" type="long" />
+		<field name="name" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="extension" type="String" />
+		<field name="mimeType" type="String" />
+		<field name="description" type="String">
+			<hint-collection name="TEXTAREA" />
+		</field>
+		<field name="changeLog" type="String" />
+		<field name="extraSettings" type="String">
+			<hint-collection name="CLOB" />
+		</field>
+		<field name="version" type="String" />
+		<field name="size" type="long" />
+		<field name="checksum" type="String" />
+		<field name="event" type="String" />
+		<field name="lockExpirationDate" type="Date" />
+		<field name="lockUserId" type="long" />
+		<field name="lockUserName" type="String" />
+		<field name="type" type="String" />
+		<field name="typePK" type="long" />
+		<field name="typeUuid" type="String" />
+	</model>
+</model-hints>

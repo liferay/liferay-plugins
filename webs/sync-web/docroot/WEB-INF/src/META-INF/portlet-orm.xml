@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.sync.model.impl.SyncDLObjectModelImpl">
+		<attributes>
+			<id name="objectId" />
+			<basic name="companyId" />
+			<basic name="createTime" />
+			<basic name="modifiedTime" />
+			<basic name="repositoryId" />
+			<basic name="parentFolderId" />
+			<basic name="name" />
+			<basic name="extension" />
+			<basic name="mimeType" />
+			<basic name="description" />
+			<basic name="changeLog" />
+			<basic name="extraSettings" />
+			<basic name="version" />
+			<basic name="size">
+				<column name="SIZE_" />
+			</basic>
+			<basic name="checksum" />
+			<basic name="event" />
+			<basic name="lockExpirationDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="lockUserId" />
+			<basic name="lockUserName" />
+			<basic name="type">
+				<column name="TYPE_" />
+			</basic>
+			<basic name="typePK" />
+			<basic name="typeUuid" />
+			<transient name="lockUserUuid" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.sync.model.impl.SyncDLObjectImpl" name="SyncDLObject">
+		<table name="SyncDLObject" />
+		<attributes />
+	</entity>
+</entity-mappings>

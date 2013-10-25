@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="sync-web" basedir="." default="deploy">
+	<import file="../build-common-web.xml" />
+
+	<target name="compile">
+		<copy
+			file="${sdk.dir}/portlets/so-portlet/docroot/WEB-INF/lib/so-portlet-service.jar"
+			tofile="docroot/WEB-INF/lib/so-portlet-service.jar"
+		/>
+
+		<antcall target="build-common-plugin.compile" />
+	</target>
+</project>
