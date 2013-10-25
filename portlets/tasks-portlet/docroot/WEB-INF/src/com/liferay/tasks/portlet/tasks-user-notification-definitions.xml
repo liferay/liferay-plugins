@@ -4,7 +4,7 @@
 <user-notification-definitions>
 	<definition>
 		<notification-type>${com.liferay.tasks.model.TasksEntryConstants.STATUS_ALL}</notification-type>
-		<description>someone-assigns-you-a-tasks</description>
+		<description>receive-a-notification-when-someone-assigns-you-a-task</description>
 		<delivery-type>
 			<name>website</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
