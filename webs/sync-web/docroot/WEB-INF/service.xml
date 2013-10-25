@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.liferay.sync" auto-namespace-tables="false">
+	<namespace>Sync</namespace>
+	<entity name="SyncDLObject" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="objectId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="companyId" type="long" />
+		<column name="createTime" type="long" />
+		<column name="modifiedTime" type="long" />
+
+		<!-- Other fields -->
+
+		<column name="repositoryId" type="long" />
+		<column name="parentFolderId" type="long" />
+		<column name="name" type="String" />
+		<column name="extension" type="String" />
+		<column name="mimeType" type="String" />
+		<column name="description" type="String" />
+		<column name="changeLog" type="String" />
+		<column name="extraSettings" type="String" />
+		<column name="version" type="String" />
+		<column name="size" type="long" />
+		<column name="checksum" type="String" />
+		<column name="event" type="String" />
+		<column name="lockExpirationDate" type="Date" />
+		<column name="lockUserId" type="long" />
+		<column name="lockUserName" type="String" />
+		<column name="type" type="String" />
+		<column name="typePK" type="long" />
+		<column name="typeUuid" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="companyId" />
+			<order-column name="modifiedTime" />
+			<order-column name="repositoryId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="TypePK" return-type="SyncDLObject" unique="true">
+			<finder-column name="typePK" />
+		</finder>
+		<finder name="C_M_R" return-type="Collection">
+			<finder-column name="companyId" />
+			<finder-column name="modifiedTime" comparator="&gt;" />
+			<finder-column name="repositoryId" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="Group" />
+		<reference package-path="com.liferay.portal" entity="Repository" />
+		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLApp" />
+
+		<!-- Transactions -->
+
+		<tx-required>getFileDeltaAsStream</tx-required>
+	</entity>
+	<exceptions>
+		<exception>SyncDLObjectChecksum</exception>
+	</exceptions>
+</service-builder>
