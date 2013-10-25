@@ -22,11 +22,17 @@
 <%
 Group group = themeDisplay.getScopeGroup();
 
+PortletURL portletURL = renderResponse.createRenderURL();
+
+portletURL.setParameter("tabs1", tabs1);
+
+SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
+
 List<SocialActivity> results = null;
 int total = 0;
 
 int start = ParamUtil.getInteger(request, "start", 0);
-int end = start + delta;
+int end = start + searchContainer.getDelta();
 %>
 
 <c:choose>
