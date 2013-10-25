@@ -4,7 +4,7 @@
 <user-notification-definitions>
 	<definition>
 		<notification-type>${com.liferay.microblogs.model.MicroblogsEntryConstants.TYPE_REPLY}</notification-type>
-		<description>someone-comments-on-your-microblogs</description>
+		<description>receive-a-notification-when-someone-comments-on-your-microblog</description>
 		<delivery-type>
 			<name>website</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
