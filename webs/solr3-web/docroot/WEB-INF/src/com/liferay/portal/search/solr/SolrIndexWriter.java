@@ -182,6 +182,8 @@ public class SolrIndexWriter extends BaseIndexWriter {
 			return;
 		}
 
+		// LPS-41388
+
 		Iterator<Document> itr = documents.iterator();
 
 		Document firstDocument = itr.next();
