@@ -103,11 +103,12 @@ for (CalendarBooking calendarBooking : calendarBookings) {
 			<div class="today-events">
 
 				<%
-				request.setAttribute("searchContainerName", "todays-events");
-				request.setAttribute("view.jsp-events", todayBookings);
+				request.setAttribute("view.jsp-calendarBookings", todayBookings);
 				%>
 
-				<liferay-util:include page="/view_events.jsp" servletContext="<%= application %>" />
+				<liferay-util:include page="/view_events.jsp" servletContext="<%= application %>">
+					<liferay-util:param name="searchContainerName" value="todays-events" />
+				</liferay-util:include>
 			</div>
 		</c:if>
 
@@ -115,11 +116,12 @@ for (CalendarBooking calendarBooking : calendarBookings) {
 			<div class="upcoming-events">
 
 				<%
-				request.setAttribute("searchContainerName", "upcoming-events");
-				request.setAttribute("view.jsp-events", upcomingBookings);
+				request.setAttribute("view.jsp-calendarBookings", upcomingBookings);
 				%>
 
-				<liferay-util:include page="/view_events.jsp" servletContext="<%= application %>" />
+				<liferay-util:include page="/view_events.jsp" servletContext="<%= application %>">
+					<liferay-util:param name="searchContainerName" value="upcoming-events" />
+				</liferay-util:include>
 			</div>
 		</c:if>
 	</c:otherwise>

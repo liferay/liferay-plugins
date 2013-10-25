@@ -20,8 +20,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String searchContainerName = (String)request.getAttribute("searchContainerName");
-List<CalendarBooking> calendarBookings = (List<CalendarBooking>)request.getAttribute("view.jsp-events");
+String searchContainerName = ParamUtil.getString(request, "searchContainerName");
+
+List<CalendarBooking> calendarBookings = (List<CalendarBooking>)request.getAttribute("view.jsp-calendarBookings");
 %>
 
 <liferay-ui:search-container
