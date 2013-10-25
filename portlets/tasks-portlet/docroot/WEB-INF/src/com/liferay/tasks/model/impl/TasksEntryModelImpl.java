@@ -302,8 +302,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		}
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getTasksEntryId() {
 		return _tasksEntryId;
 	}
@@ -313,8 +313,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_tasksEntryId = tasksEntryId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -336,8 +336,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return _originalGroupId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -347,8 +347,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_companyId = companyId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
@@ -380,8 +380,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return _originalUserId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -396,8 +396,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_userName = userName;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -409,8 +409,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_createDate = createDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -420,8 +420,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_modifiedDate = modifiedDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -436,8 +436,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_title = title;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public int getPriority() {
 		return _priority;
 	}
@@ -449,8 +449,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_priority = priority;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getAssigneeUserId() {
 		return _assigneeUserId;
 	}
@@ -483,8 +483,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return _originalAssigneeUserId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getResolverUserId() {
 		return _resolverUserId;
 	}
@@ -517,8 +517,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		return _originalResolverUserId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getDueDate() {
 		return _dueDate;
 	}
@@ -530,8 +530,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_dueDate = dueDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getFinishDate() {
 		return _finishDate;
 	}
@@ -541,8 +541,8 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 		_finishDate = finishDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public int getStatus() {
 		return _status;
 	}

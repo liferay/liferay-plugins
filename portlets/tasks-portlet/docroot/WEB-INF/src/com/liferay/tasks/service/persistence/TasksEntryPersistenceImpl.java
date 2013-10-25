@@ -346,6 +346,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByGroupId(groupId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<TasksEntry> list = findByGroupId(groupId, count - 1, count,
 				orderByComparator);
 
@@ -1194,6 +1198,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<TasksEntry> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
 
@@ -1689,6 +1697,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry fetchByAssigneeUserId_Last(long assigneeUserId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByAssigneeUserId(assigneeUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<TasksEntry> list = findByAssigneeUserId(assigneeUserId, count - 1,
 				count, orderByComparator);
@@ -2187,6 +2199,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry fetchByResolverUserId_Last(long resolverUserId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByResolverUserId(resolverUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<TasksEntry> list = findByResolverUserId(resolverUserId, count - 1,
 				count, orderByComparator);
@@ -2701,6 +2717,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry fetchByG_U_Last(long groupId, long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_U(groupId, userId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<TasksEntry> list = findByG_U(groupId, userId, count - 1, count,
 				orderByComparator);
@@ -3609,6 +3629,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 	public TasksEntry fetchByG_A_Last(long groupId, long assigneeUserId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_A(groupId, assigneeUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<TasksEntry> list = findByG_A(groupId, assigneeUserId, count - 1,
 				count, orderByComparator);
@@ -4520,6 +4544,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_R(groupId, resolverUserId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<TasksEntry> list = findByG_R(groupId, resolverUserId, count - 1,
 				count, orderByComparator);
 
@@ -5141,6 +5169,10 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 	private static final String _FINDER_COLUMN_G_R_GROUPID_2 = "tasksEntry.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_R_RESOLVERUSERID_2 = "tasksEntry.resolverUserId = ?";
+
+	public TasksEntryPersistenceImpl() {
+		setModelClass(TasksEntry.class);
+	}
 
 	/**
 	 * Caches the tasks entry in the entity cache if it is enabled.

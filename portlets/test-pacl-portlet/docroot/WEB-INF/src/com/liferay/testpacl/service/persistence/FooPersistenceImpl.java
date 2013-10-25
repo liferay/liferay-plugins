@@ -340,6 +340,10 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByField2(field2);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Foo> list = findByField2(field2, count - 1, count,
 				orderByComparator);
 
@@ -563,6 +567,10 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	private static final String _FINDER_COLUMN_FIELD2_FIELD2_2 = "foo.field2 = ?";
+
+	public FooPersistenceImpl() {
+		setModelClass(Foo.class);
+	}
 
 	/**
 	 * Caches the foo in the entity cache if it is enabled.

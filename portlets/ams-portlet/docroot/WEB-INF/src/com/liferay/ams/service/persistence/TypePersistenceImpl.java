@@ -81,6 +81,10 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			TypeModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
+	public TypePersistenceImpl() {
+		setModelClass(Type.class);
+	}
+
 	/**
 	 * Caches the type in the entity cache if it is enabled.
 	 *

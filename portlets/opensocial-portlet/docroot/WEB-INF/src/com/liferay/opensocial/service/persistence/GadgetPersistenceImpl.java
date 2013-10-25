@@ -360,6 +360,10 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Gadget> list = findByUuid(uuid, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1312,6 +1316,10 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	public Gadget fetchByUuid_C_Last(String uuid, long companyId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<Gadget> list = findByUuid_C(uuid, companyId, count - 1, count,
 				orderByComparator);
@@ -2267,6 +2275,10 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Gadget> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
@@ -3112,6 +3124,10 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 	private static final String _FINDER_COLUMN_C_U_URL_1 = "gadget.url IS NULL";
 	private static final String _FINDER_COLUMN_C_U_URL_2 = "gadget.url = ?";
 	private static final String _FINDER_COLUMN_C_U_URL_3 = "(gadget.url IS NULL OR gadget.url = '')";
+
+	public GadgetPersistenceImpl() {
+		setModelClass(Gadget.class);
+	}
 
 	/**
 	 * Caches the gadget in the entity cache if it is enabled.

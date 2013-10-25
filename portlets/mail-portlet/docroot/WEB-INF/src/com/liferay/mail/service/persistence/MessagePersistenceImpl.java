@@ -346,6 +346,10 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Message> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
@@ -831,6 +835,10 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByFolderId(folderId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Message> list = findByFolderId(folderId, count - 1, count,
 				orderByComparator);
 
@@ -1294,6 +1302,10 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 
 	private static final String _FINDER_COLUMN_F_R_FOLDERID_2 = "message.folderId = ? AND ";
 	private static final String _FINDER_COLUMN_F_R_REMOTEMESSAGEID_2 = "message.remoteMessageId = ?";
+
+	public MessagePersistenceImpl() {
+		setModelClass(Message.class);
+	}
 
 	/**
 	 * Caches the message in the entity cache if it is enabled.

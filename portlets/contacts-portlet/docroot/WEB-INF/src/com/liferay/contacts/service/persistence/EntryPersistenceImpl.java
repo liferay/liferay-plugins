@@ -342,6 +342,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Entry> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
 
@@ -835,6 +839,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	private static final String _FINDER_COLUMN_U_EA_EMAILADDRESS_1 = "entry.emailAddress IS NULL";
 	private static final String _FINDER_COLUMN_U_EA_EMAILADDRESS_2 = "entry.emailAddress = ?";
 	private static final String _FINDER_COLUMN_U_EA_EMAILADDRESS_3 = "(entry.emailAddress IS NULL OR entry.emailAddress = '')";
+
+	public EntryPersistenceImpl() {
+		setModelClass(Entry.class);
+	}
 
 	/**
 	 * Caches the entry in the entity cache if it is enabled.

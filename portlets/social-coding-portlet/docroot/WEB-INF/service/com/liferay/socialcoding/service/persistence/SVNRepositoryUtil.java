@@ -61,7 +61,7 @@ public class SVNRepositoryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public long countWithDynamicQuery(DynamicQuery dynamicQuery)
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
 		throws SystemException {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}

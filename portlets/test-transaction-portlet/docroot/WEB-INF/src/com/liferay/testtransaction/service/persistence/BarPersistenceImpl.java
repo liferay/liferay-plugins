@@ -353,6 +353,10 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 		throws SystemException {
 		int count = countByText(text);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Bar> list = findByText(text, count - 1, count, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -605,6 +609,10 @@ public class BarPersistenceImpl extends BasePersistenceImpl<Bar>
 	private static final String _FINDER_COLUMN_TEXT_TEXT_1 = "bar.text IS NULL";
 	private static final String _FINDER_COLUMN_TEXT_TEXT_2 = "bar.text = ?";
 	private static final String _FINDER_COLUMN_TEXT_TEXT_3 = "(bar.text IS NULL OR bar.text = '')";
+
+	public BarPersistenceImpl() {
+		setModelClass(Bar.class);
+	}
 
 	/**
 	 * Caches the bar in the entity cache if it is enabled.

@@ -699,6 +699,11 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	@Override
 	public TrashEntry getTrashEntry() throws PortalException, SystemException;
 
+	/**
+	 * Returns the class primary key of the trash entry for this calendar booking.
+	 *
+	 * @return the class primary key of the trash entry for this calendar booking
+	 */
 	@Override
 	public long getTrashEntryClassPK();
 

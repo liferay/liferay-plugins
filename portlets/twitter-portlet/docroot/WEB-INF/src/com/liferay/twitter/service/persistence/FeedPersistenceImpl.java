@@ -356,6 +356,10 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 	private static final String _FINDER_COLUMN_U_TSN_TWITTERSCREENNAME_2 = "feed.twitterScreenName = ?";
 	private static final String _FINDER_COLUMN_U_TSN_TWITTERSCREENNAME_3 = "(feed.twitterScreenName IS NULL OR feed.twitterScreenName = '')";
 
+	public FeedPersistenceImpl() {
+		setModelClass(Feed.class);
+	}
+
 	/**
 	 * Caches the feed in the entity cache if it is enabled.
 	 *

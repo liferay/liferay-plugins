@@ -347,6 +347,10 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCompanyId(companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<MeetupsEntry> list = findByCompanyId(companyId, count - 1, count,
 				orderByComparator);
 
@@ -832,6 +836,10 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<MeetupsEntry> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
 
@@ -1056,6 +1064,10 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "meetupsEntry.userId = ?";
+
+	public MeetupsEntryPersistenceImpl() {
+		setModelClass(MeetupsEntry.class);
+	}
 
 	/**
 	 * Caches the meetups entry in the entity cache if it is enabled.

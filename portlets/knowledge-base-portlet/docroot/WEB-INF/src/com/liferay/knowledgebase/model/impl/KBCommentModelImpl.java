@@ -286,8 +286,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		}
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -310,8 +310,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return GetterUtil.getString(_originalUuid);
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getKbCommentId() {
 		return _kbCommentId;
 	}
@@ -321,8 +321,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_kbCommentId = kbCommentId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -344,8 +344,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _originalGroupId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -367,8 +367,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _originalCompanyId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
@@ -400,8 +400,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _originalUserId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -416,8 +416,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_userName = userName;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -427,8 +427,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_createDate = createDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -460,8 +460,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		setClassNameId(classNameId);
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getClassNameId() {
 		return _classNameId;
 	}
@@ -483,8 +483,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _originalClassNameId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getClassPK() {
 		return _classPK;
 	}
@@ -506,8 +506,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		return _originalClassPK;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getContent() {
 		if (_content == null) {
 			return StringPool.BLANK;
@@ -522,8 +522,8 @@ public class KBCommentModelImpl extends BaseModelImpl<KBComment>
 		_content = content;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public boolean getHelpful() {
 		return _helpful;
 	}

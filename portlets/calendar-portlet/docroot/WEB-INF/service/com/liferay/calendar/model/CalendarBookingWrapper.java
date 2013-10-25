@@ -1117,6 +1117,11 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return _calendarBooking.getTrashEntry();
 	}
 
+	/**
+	* Returns the class primary key of the trash entry for this calendar booking.
+	*
+	* @return the class primary key of the trash entry for this calendar booking
+	*/
 	@Override
 	public long getTrashEntryClassPK() {
 		return _calendarBooking.getTrashEntryClassPK();

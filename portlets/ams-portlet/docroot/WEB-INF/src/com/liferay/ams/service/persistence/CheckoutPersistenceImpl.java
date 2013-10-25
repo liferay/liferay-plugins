@@ -81,6 +81,10 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 			CheckoutModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
+	public CheckoutPersistenceImpl() {
+		setModelClass(Checkout.class);
+	}
+
 	/**
 	 * Caches the checkout in the entity cache if it is enabled.
 	 *

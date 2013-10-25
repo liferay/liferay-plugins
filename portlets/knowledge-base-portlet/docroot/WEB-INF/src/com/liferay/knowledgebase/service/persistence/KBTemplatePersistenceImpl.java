@@ -360,6 +360,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBTemplate> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
 
@@ -1179,6 +1183,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBTemplate> list = findByUuid_C(uuid, companyId, count - 1, count,
 				orderByComparator);
 
@@ -1706,6 +1714,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	public KBTemplate fetchByGroupId_Last(long groupId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByGroupId(groupId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBTemplate> list = findByGroupId(groupId, count - 1, count,
 				orderByComparator);
@@ -2294,6 +2306,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	}
 
 	private static final String _FINDER_COLUMN_GROUPID_GROUPID_2 = "kbTemplate.groupId = ?";
+
+	public KBTemplatePersistenceImpl() {
+		setModelClass(KBTemplate.class);
+	}
 
 	/**
 	 * Caches the k b template in the entity cache if it is enabled.

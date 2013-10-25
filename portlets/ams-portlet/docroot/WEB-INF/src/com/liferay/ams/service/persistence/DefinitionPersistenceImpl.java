@@ -81,6 +81,10 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			DefinitionModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
 
+	public DefinitionPersistenceImpl() {
+		setModelClass(Definition.class);
+	}
+
 	/**
 	 * Caches the definition in the entity cache if it is enabled.
 	 *

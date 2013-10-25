@@ -349,6 +349,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByMBThreadId(mbThreadId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<UserThread> list = findByMBThreadId(mbThreadId, count - 1, count,
 				orderByComparator);
 
@@ -831,6 +835,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	public UserThread fetchByUserId_Last(long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<UserThread> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
@@ -1581,6 +1589,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByU_D(userId, deleted);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<UserThread> list = findByU_D(userId, deleted, count - 1, count,
 				orderByComparator);
 
@@ -2134,6 +2146,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		throws SystemException {
 		int count = countByU_R_D(userId, read, deleted);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<UserThread> list = findByU_R_D(userId, read, deleted, count - 1,
 				count, orderByComparator);
 
@@ -2384,6 +2400,10 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 	private static final String _FINDER_COLUMN_U_R_D_USERID_2 = "userThread.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_R_D_READ_2 = "userThread.read = ? AND ";
 	private static final String _FINDER_COLUMN_U_R_D_DELETED_2 = "userThread.deleted = ?";
+
+	public UserThreadPersistenceImpl() {
+		setModelClass(UserThread.class);
+	}
 
 	/**
 	 * Caches the user thread in the entity cache if it is enabled.

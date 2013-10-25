@@ -364,6 +364,10 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByJiraUserId(jiraUserId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAAction> list = findByJiraUserId(jiraUserId, count - 1, count,
 				orderByComparator);
 
@@ -883,6 +887,10 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByJiraIssueId(jiraIssueId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAAction> list = findByJiraIssueId(jiraIssueId, count - 1,
 				count, orderByComparator);
 
@@ -1379,6 +1387,10 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByType(type);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAAction> list = findByType(type, count - 1, count,
 				orderByComparator);
 
@@ -1633,6 +1645,10 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 	private static final String _FINDER_COLUMN_TYPE_TYPE_1 = "jiraAction.type IS NULL";
 	private static final String _FINDER_COLUMN_TYPE_TYPE_2 = "jiraAction.type = ?";
 	private static final String _FINDER_COLUMN_TYPE_TYPE_3 = "(jiraAction.type IS NULL OR jiraAction.type = '')";
+
+	public JIRAActionPersistenceImpl() {
+		setModelClass(JIRAAction.class);
+	}
 
 	/**
 	 * Caches the j i r a action in the entity cache if it is enabled.

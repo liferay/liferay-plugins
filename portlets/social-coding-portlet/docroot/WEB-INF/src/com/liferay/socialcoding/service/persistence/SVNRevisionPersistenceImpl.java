@@ -362,6 +362,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countBySVNUserId(svnUserId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<SVNRevision> list = findBySVNUserId(svnUserId, count - 1, count,
 				orderByComparator);
 
@@ -885,6 +889,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	public SVNRevision fetchBySVNRepositoryId_Last(long svnRepositoryId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countBySVNRepositoryId(svnRepositoryId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<SVNRevision> list = findBySVNRepositoryId(svnRepositoryId,
 				count - 1, count, orderByComparator);
@@ -1418,6 +1426,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 		throws SystemException {
 		int count = countBySVNU_SVNR(svnUserId, svnRepositoryId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<SVNRevision> list = findBySVNU_SVNR(svnUserId, svnRepositoryId,
 				count - 1, count, orderByComparator);
 
@@ -1687,6 +1699,10 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 	private static final String _FINDER_COLUMN_SVNU_SVNR_SVNUSERID_2 = "svnRevision.svnUserId = ? AND ";
 	private static final String _FINDER_COLUMN_SVNU_SVNR_SVNUSERID_3 = "(svnRevision.svnUserId IS NULL OR svnRevision.svnUserId = '') AND ";
 	private static final String _FINDER_COLUMN_SVNU_SVNR_SVNREPOSITORYID_2 = "svnRevision.svnRepositoryId = ?";
+
+	public SVNRevisionPersistenceImpl() {
+		setModelClass(SVNRevision.class);
+	}
 
 	/**
 	 * Caches the s v n revision in the entity cache if it is enabled.

@@ -349,6 +349,10 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<ProjectsEntry> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
 
@@ -573,6 +577,10 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 	}
 
 	private static final String _FINDER_COLUMN_USERID_USERID_2 = "projectsEntry.userId = ?";
+
+	public ProjectsEntryPersistenceImpl() {
+		setModelClass(ProjectsEntry.class);
+	}
 
 	/**
 	 * Caches the projects entry in the entity cache if it is enabled.

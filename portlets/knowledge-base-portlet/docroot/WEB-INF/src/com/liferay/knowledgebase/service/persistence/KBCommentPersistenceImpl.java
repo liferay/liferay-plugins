@@ -358,6 +358,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBComment> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
 
@@ -1176,6 +1180,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBComment> list = findByUuid_C(uuid, companyId, count - 1, count,
 				orderByComparator);
 
@@ -1704,6 +1712,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByGroupId(groupId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBComment> list = findByGroupId(groupId, count - 1, count,
 				orderByComparator);
 
@@ -2213,6 +2225,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	public KBComment fetchByG_C_Last(long groupId, long classNameId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_C(groupId, classNameId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBComment> list = findByG_C(groupId, classNameId, count - 1,
 				count, orderByComparator);
@@ -2738,6 +2754,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_C(classNameId, classPK);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBComment> list = findByC_C(classNameId, classPK, count - 1,
 				count, orderByComparator);
 
@@ -3232,6 +3252,10 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 	private static final String _FINDER_COLUMN_U_C_C_USERID_2 = "kbComment.userId = ? AND ";
 	private static final String _FINDER_COLUMN_U_C_C_CLASSNAMEID_2 = "kbComment.classNameId = ? AND ";
 	private static final String _FINDER_COLUMN_U_C_C_CLASSPK_2 = "kbComment.classPK = ?";
+
+	public KBCommentPersistenceImpl() {
+		setModelClass(KBComment.class);
+	}
 
 	/**
 	 * Caches the k b comment in the entity cache if it is enabled.
