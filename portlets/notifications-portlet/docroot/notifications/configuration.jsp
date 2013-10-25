@@ -24,7 +24,7 @@
 			</div>
 
 			<div class="receive-notification">
-				<span><liferay-ui:message key="receive-notification-when" /></span>
+				<span><liferay-ui:message key="receive-a-notification-when-someone" /></span>
 			</div>
 		</div>
 
