@@ -28,11 +28,8 @@ portletURL.setParameter("tabs1", tabs1);
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
 
-List<SocialActivity> results = null;
+List<SocialActivity> results = new ArrayList<SocialActivity>();
 int total = 0;
-
-int start = ParamUtil.getInteger(request, "start", 0);
-int end = start + searchContainer.getDelta();
 %>
 
 <c:choose>
@@ -41,25 +38,40 @@ int end = start + searchContainer.getDelta();
 		<%
 		if (!layout.isPublicLayout()) {
 			if (tabs1.equals("connections")) {
-				results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
 				total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+
+				searchContainer.setTotal(total);
+
+				results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
 			}
 			else if (tabs1.equals("following")) {
-				results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
 				total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+
+				searchContainer.setTotal(total);
+
+				results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
 			}
 			else if (tabs1.equals("my-sites")) {
-				results = SocialActivityLocalServiceUtil.getUserGroupsActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 				total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(themeDisplay.getUserId());
+
+				searchContainer.setTotal(total);
+
+				results = SocialActivityLocalServiceUtil.getUserGroupsActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 			}
 			else {
-				results = SocialActivityLocalServiceUtil.getUserActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 				total = SocialActivityLocalServiceUtil.getUserActivitiesCount(themeDisplay.getUserId());
+
+				searchContainer.setTotal(total);
+
+				results = SocialActivityLocalServiceUtil.getUserActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 			}
 		}
 		else {
-			results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
 			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
+
+			searchContainer.setTotal(total);
+
+			results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
 		}
 		%>
 
@@ -67,12 +79,19 @@ int end = start + searchContainer.getDelta();
 	<c:otherwise>
 
 		<%
-		results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
-		total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
+			total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
+
+			searchContainer.setTotal(total);
+
+			results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
 		%>
 
 	</c:otherwise>
 </c:choose>
+
+<%
+searchContainer.setResults(results);
+%>
 
 <%@ include file="/activities/view_activities_feed.jspf" %>
 
