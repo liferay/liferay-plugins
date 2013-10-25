@@ -342,6 +342,10 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByGroupId(groupId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WallEntry> list = findByGroupId(groupId, count - 1, count,
 				orderByComparator);
 
@@ -824,6 +828,10 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 	public WallEntry fetchByUserId_Last(long userId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUserId(userId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<WallEntry> list = findByUserId(userId, count - 1, count,
 				orderByComparator);
@@ -1334,6 +1342,10 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_U(groupId, userId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<WallEntry> list = findByG_U(groupId, userId, count - 1, count,
 				orderByComparator);
 
@@ -1571,6 +1583,10 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 
 	private static final String _FINDER_COLUMN_G_U_GROUPID_2 = "wallEntry.groupId = ? AND ";
 	private static final String _FINDER_COLUMN_G_U_USERID_2 = "wallEntry.userId = ?";
+
+	public WallEntryPersistenceImpl() {
+		setModelClass(WallEntry.class);
+	}
 
 	/**
 	 * Caches the wall entry in the entity cache if it is enabled.

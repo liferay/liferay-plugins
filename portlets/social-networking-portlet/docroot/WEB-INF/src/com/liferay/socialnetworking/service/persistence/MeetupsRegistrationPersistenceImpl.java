@@ -357,6 +357,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByMeetupsEntryId(meetupsEntryId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<MeetupsRegistration> list = findByMeetupsEntryId(meetupsEntryId,
 				count - 1, count, orderByComparator);
 
@@ -1119,6 +1123,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		throws SystemException {
 		int count = countByME_S(meetupsEntryId, status);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<MeetupsRegistration> list = findByME_S(meetupsEntryId, status,
 				count - 1, count, orderByComparator);
 
@@ -1359,6 +1367,10 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 	private static final String _FINDER_COLUMN_ME_S_MEETUPSENTRYID_2 = "meetupsRegistration.meetupsEntryId = ? AND ";
 	private static final String _FINDER_COLUMN_ME_S_STATUS_2 = "meetupsRegistration.status = ?";
+
+	public MeetupsRegistrationPersistenceImpl() {
+		setModelClass(MeetupsRegistration.class);
+	}
 
 	/**
 	 * Caches the meetups registration in the entity cache if it is enabled.

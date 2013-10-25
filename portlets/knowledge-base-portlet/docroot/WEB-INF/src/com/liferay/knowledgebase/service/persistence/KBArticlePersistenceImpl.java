@@ -361,6 +361,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid(uuid);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByUuid(uuid, count - 1, count,
 				orderByComparator);
 
@@ -1179,6 +1183,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByUuid_C(uuid, companyId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByUuid_C(uuid, companyId, count - 1, count,
 				orderByComparator);
 
@@ -1717,6 +1725,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByResourcePrimKey(resourcePrimKey);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByResourcePrimKey(resourcePrimKey,
 				count - 1, count, orderByComparator);
 
@@ -2230,6 +2242,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle fetchByR_G_Last(long resourcePrimKey, long groupId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByR_G(resourcePrimKey, groupId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByR_G(resourcePrimKey, groupId, count - 1,
 				count, orderByComparator);
@@ -3375,6 +3391,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByR_L(resourcePrimKey, latest);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByR_L(resourcePrimKey, latest, count - 1,
 				count, orderByComparator);
 
@@ -4187,6 +4207,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByR_M(resourcePrimKey, main);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByR_M(resourcePrimKey, main, count - 1,
 				count, orderByComparator);
 
@@ -4996,6 +5020,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByR_S(resourcePrimKey, status);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByR_S(resourcePrimKey, status, count - 1,
 				count, orderByComparator);
 
@@ -5800,6 +5828,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle fetchByG_L_Last(long groupId, boolean latest,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_L(groupId, latest);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByG_L(groupId, latest, count - 1, count,
 				orderByComparator);
@@ -6703,6 +6735,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle fetchByG_M_Last(long groupId, boolean main,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_M(groupId, main);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByG_M(groupId, main, count - 1, count,
 				orderByComparator);
@@ -7608,6 +7644,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_S(groupId, status);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByG_S(groupId, status, count - 1, count,
 				orderByComparator);
 
@@ -8511,6 +8551,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_L(companyId, latest);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByC_L(companyId, latest, count - 1, count,
 				orderByComparator);
 
@@ -9033,6 +9077,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle fetchByC_M_Last(long companyId, boolean main,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_M(companyId, main);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByC_M(companyId, main, count - 1, count,
 				orderByComparator);
@@ -9557,6 +9605,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle fetchByC_S_Last(long companyId, int status,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_S(companyId, status);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByC_S(companyId, status, count - 1, count,
 				orderByComparator);
@@ -10087,6 +10139,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		boolean latest, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByP_L(parentResourcePrimKey, latest);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByP_L(parentResourcePrimKey, latest,
 				count - 1, count, orderByComparator);
@@ -10903,6 +10959,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByP_M(parentResourcePrimKey, main);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByP_M(parentResourcePrimKey, main,
 				count - 1, count, orderByComparator);
 
@@ -11717,6 +11777,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	public KBArticle fetchByP_S_Last(long parentResourcePrimKey, int status,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByP_S(parentResourcePrimKey, status);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByP_S(parentResourcePrimKey, status,
 				count - 1, count, orderByComparator);
@@ -12563,6 +12627,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		boolean latest, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByR_G_L(resourcePrimKey, groupId, latest);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByR_G_L(resourcePrimKey, groupId, latest,
 				count - 1, count, orderByComparator);
@@ -14115,6 +14183,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		throws SystemException {
 		int count = countByR_G_M(resourcePrimKey, groupId, main);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByR_G_M(resourcePrimKey, groupId, main,
 				count - 1, count, orderByComparator);
 
@@ -15665,6 +15737,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		int status, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByR_G_S(resourcePrimKey, groupId, status);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByR_G_S(resourcePrimKey, groupId, status,
 				count - 1, count, orderByComparator);
@@ -17217,6 +17293,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, boolean latest,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_L(groupId, parentResourcePrimKey, latest);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByG_P_L(groupId, parentResourcePrimKey,
 				latest, count - 1, count, orderByComparator);
@@ -18785,6 +18865,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_M(groupId, parentResourcePrimKey, main);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByG_P_M(groupId, parentResourcePrimKey,
 				main, count - 1, count, orderByComparator);
 
@@ -20347,6 +20431,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		long parentResourcePrimKey, int status,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_S(groupId, parentResourcePrimKey, status);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByG_P_S(groupId, parentResourcePrimKey,
 				status, count - 1, count, orderByComparator);
@@ -21921,6 +22009,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_P_S_L(groupId, parentResourcePrimKey, sections,
 				latest);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<KBArticle> list = findByG_P_S_L(groupId, parentResourcePrimKey,
 				sections, latest, count - 1, count, orderByComparator);
@@ -23702,6 +23794,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		int count = countByG_P_S_M(groupId, parentResourcePrimKey, sections,
 				main);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByG_P_S_M(groupId, parentResourcePrimKey,
 				sections, main, count - 1, count, orderByComparator);
 
@@ -25481,6 +25577,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		int count = countByG_P_S_S(groupId, parentResourcePrimKey, sections,
 				status);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<KBArticle> list = findByG_P_S_S(groupId, parentResourcePrimKey,
 				sections, status, count - 1, count, orderByComparator);
 
@@ -26925,6 +27025,10 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 	private static final String _FINDER_COLUMN_G_P_S_S_STATUS_2 = "kbArticle.status = ?";
 	private static final String _FINDER_COLUMN_G_P_S_S_STATUS_5 = "(" +
 		removeConjunction(_FINDER_COLUMN_G_P_S_S_STATUS_2) + ")";
+
+	public KBArticlePersistenceImpl() {
+		setModelClass(KBArticle.class);
+	}
 
 	/**
 	 * Caches the k b article in the entity cache if it is enabled.

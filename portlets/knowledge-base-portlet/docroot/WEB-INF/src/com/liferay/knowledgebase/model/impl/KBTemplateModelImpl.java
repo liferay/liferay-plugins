@@ -264,8 +264,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		}
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getUuid() {
 		if (_uuid == null) {
 			return StringPool.BLANK;
@@ -288,8 +288,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return GetterUtil.getString(_originalUuid);
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getKbTemplateId() {
 		return _kbTemplateId;
 	}
@@ -299,8 +299,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_kbTemplateId = kbTemplateId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getGroupId() {
 		return _groupId;
 	}
@@ -322,8 +322,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return _originalGroupId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getCompanyId() {
 		return _companyId;
 	}
@@ -345,8 +345,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		return _originalCompanyId;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public long getUserId() {
 		return _userId;
 	}
@@ -366,8 +366,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_userUuid = userUuid;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getUserName() {
 		if (_userName == null) {
 			return StringPool.BLANK;
@@ -382,8 +382,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_userName = userName;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getCreateDate() {
 		return _createDate;
 	}
@@ -393,8 +393,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_createDate = createDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
 	}
@@ -406,8 +406,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_modifiedDate = modifiedDate;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getTitle() {
 		if (_title == null) {
 			return StringPool.BLANK;
@@ -422,8 +422,8 @@ public class KBTemplateModelImpl extends BaseModelImpl<KBTemplate>
 		_title = title;
 	}
 
-	@Override
 	@JSON
+	@Override
 	public String getContent() {
 		if (_content == null) {
 			return StringPool.BLANK;

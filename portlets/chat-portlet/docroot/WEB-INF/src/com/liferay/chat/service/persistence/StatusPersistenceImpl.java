@@ -561,6 +561,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByModifiedDate(modifiedDate);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Status> list = findByModifiedDate(modifiedDate, count - 1, count,
 				orderByComparator);
 
@@ -1043,6 +1047,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 	public Status fetchByOnline_Last(boolean online,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByOnline(online);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<Status> list = findByOnline(online, count - 1, count,
 				orderByComparator);
@@ -1550,6 +1558,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByM_O(modifiedDate, online);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Status> list = findByM_O(modifiedDate, online, count - 1, count,
 				orderByComparator);
 
@@ -1788,6 +1800,10 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 
 	private static final String _FINDER_COLUMN_M_O_MODIFIEDDATE_2 = "status.modifiedDate = ? AND ";
 	private static final String _FINDER_COLUMN_M_O_ONLINE_2 = "status.online = ?";
+
+	public StatusPersistenceImpl() {
+		setModelClass(Status.class);
+	}
 
 	/**
 	 * Caches the status in the entity cache if it is enabled.

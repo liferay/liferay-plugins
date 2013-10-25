@@ -334,6 +334,10 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 	private static final String _FINDER_COLUMN_URL_URL_2 = "svnRepository.url = ?";
 	private static final String _FINDER_COLUMN_URL_URL_3 = "(svnRepository.url IS NULL OR svnRepository.url = '')";
 
+	public SVNRepositoryPersistenceImpl() {
+		setModelClass(SVNRepository.class);
+	}
+
 	/**
 	 * Caches the s v n repository in the entity cache if it is enabled.
 	 *

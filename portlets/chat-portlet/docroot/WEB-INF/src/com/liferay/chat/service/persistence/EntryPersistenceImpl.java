@@ -344,6 +344,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByCreateDate(createDate);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Entry> list = findByCreateDate(createDate, count - 1, count,
 				orderByComparator);
 
@@ -829,6 +833,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByFromUserId(fromUserId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Entry> list = findByFromUserId(fromUserId, count - 1, count,
 				orderByComparator);
 
@@ -1311,6 +1319,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry fetchByToUserId_Last(long toUserId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByToUserId(toUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<Entry> list = findByToUserId(toUserId, count - 1, count,
 				orderByComparator);
@@ -1817,6 +1829,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry fetchByC_F_Last(long createDate, long fromUserId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_F(createDate, fromUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<Entry> list = findByC_F(createDate, fromUserId, count - 1, count,
 				orderByComparator);
@@ -2339,6 +2355,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByC_T(createDate, toUserId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Entry> list = findByC_T(createDate, toUserId, count - 1, count,
 				orderByComparator);
 
@@ -2860,6 +2880,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	public Entry fetchByF_T_Last(long fromUserId, long toUserId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByF_T(fromUserId, toUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<Entry> list = findByF_T(fromUserId, toUserId, count - 1, count,
 				orderByComparator);
@@ -3409,6 +3433,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		long toUserId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByC_F_T(createDate, fromUserId, toUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<Entry> list = findByC_F_T(createDate, fromUserId, toUserId,
 				count - 1, count, orderByComparator);
@@ -3989,6 +4017,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		throws SystemException {
 		int count = countByF_T_C(fromUserId, toUserId, content);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<Entry> list = findByF_T_C(fromUserId, toUserId, content,
 				count - 1, count, orderByComparator);
 
@@ -4269,6 +4301,10 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 	private static final String _FINDER_COLUMN_F_T_C_CONTENT_1 = "entry.content IS NULL";
 	private static final String _FINDER_COLUMN_F_T_C_CONTENT_2 = "entry.content = ?";
 	private static final String _FINDER_COLUMN_F_T_C_CONTENT_3 = "(entry.content IS NULL OR entry.content = '')";
+
+	public EntryPersistenceImpl() {
+		setModelClass(Entry.class);
+	}
 
 	/**
 	 * Caches the entry in the entity cache if it is enabled.

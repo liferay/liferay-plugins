@@ -34,6 +34,14 @@
 		<property name="sessionFactory" ref="liferaySessionFactory" />
 	</bean>
 	<bean id="serviceAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
+		<constructor-arg value="com.liferay.portal.spring.aop.SkipAdvice" />
+		<constructor-arg>
+			<map>
+				<entry key="nextMethodInterceptor" value-ref="accessControlAdvice" />
+			</map>
+		</constructor-arg>
+	</bean>
+	<bean id="accessControlAdvice" class="com.liferay.portal.kernel.spring.util.SpringFactoryUtil" factory-method="newBean">
 		<constructor-arg value="com.liferay.portal.security.ac.AccessControlAdvice" />
 		<constructor-arg>
 			<map>
@@ -58,7 +66,6 @@
 		<constructor-arg value="com.liferay.portal.monitoring.statistics.service.ServiceMonitorAdvice" />
 		<constructor-arg>
 			<map>
-				<entry key="monitoringDestinationName" value="liferay/monitoring" />
 				<entry key="nextMethodInterceptor" value-ref="asyncAdvice" />
 			</map>
 		</constructor-arg>

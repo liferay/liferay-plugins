@@ -351,6 +351,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByProjectId(projectId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAIssue> list = findByProjectId(projectId, count - 1, count,
 				orderByComparator);
 
@@ -1110,6 +1114,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByReporterJiraUserId(reporterJiraUserId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAIssue> list = findByReporterJiraUserId(reporterJiraUserId,
 				count - 1, count, orderByComparator);
 
@@ -1656,6 +1664,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByAssigneeJiraUserId(assigneeJiraUserId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAIssue> list = findByAssigneeJiraUserId(assigneeJiraUserId,
 				count - 1, count, orderByComparator);
 
@@ -2197,6 +2209,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	public JIRAIssue fetchByMD_P_Last(Date modifiedDate, long projectId,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByMD_P(modifiedDate, projectId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<JIRAIssue> list = findByMD_P(modifiedDate, projectId, count - 1,
 				count, orderByComparator);
@@ -2764,6 +2780,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByP_RJUI(projectId, reporterJiraUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<JIRAIssue> list = findByP_RJUI(projectId, reporterJiraUserId,
 				count - 1, count, orderByComparator);
@@ -3339,6 +3359,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByP_AJUI(projectId, assigneeJiraUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<JIRAIssue> list = findByP_AJUI(projectId, assigneeJiraUserId,
 				count - 1, count, orderByComparator);
@@ -3934,6 +3958,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByMD_P_RJUI(modifiedDate, projectId, reporterJiraUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<JIRAIssue> list = findByMD_P_RJUI(modifiedDate, projectId,
 				reporterJiraUserId, count - 1, count, orderByComparator);
@@ -4569,6 +4597,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String assigneeJiraUserId, OrderByComparator orderByComparator)
 		throws SystemException {
 		int count = countByMD_P_AJUI(modifiedDate, projectId, assigneeJiraUserId);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<JIRAIssue> list = findByMD_P_AJUI(modifiedDate, projectId,
 				assigneeJiraUserId, count - 1, count, orderByComparator);
@@ -5227,6 +5259,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		String reporterJiraUserId, String status,
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByP_RJUI_S(projectId, reporterJiraUserId, status);
+
+		if (count == 0) {
+			return null;
+		}
 
 		List<JIRAIssue> list = findByP_RJUI_S(projectId, reporterJiraUserId,
 				status, count - 1, count, orderByComparator);
@@ -5889,6 +5925,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByP_AJUI_S(projectId, assigneeJiraUserId, status);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAIssue> list = findByP_AJUI_S(projectId, assigneeJiraUserId,
 				status, count - 1, count, orderByComparator);
 
@@ -6201,6 +6241,10 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_1 = "jiraIssue.status IS NULL";
 	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_2 = "jiraIssue.status = ?";
 	private static final String _FINDER_COLUMN_P_AJUI_S_STATUS_3 = "(jiraIssue.status IS NULL OR jiraIssue.status = '')";
+
+	public JIRAIssuePersistenceImpl() {
+		setModelClass(JIRAIssue.class);
+	}
 
 	/**
 	 * Caches the j i r a issue in the entity cache if it is enabled.

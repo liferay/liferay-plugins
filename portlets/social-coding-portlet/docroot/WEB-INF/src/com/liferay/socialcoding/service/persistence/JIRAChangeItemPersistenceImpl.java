@@ -359,6 +359,10 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 		throws SystemException {
 		int count = countByJiraChangeGroupId(jiraChangeGroupId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAChangeItem> list = findByJiraChangeGroupId(jiraChangeGroupId,
 				count - 1, count, orderByComparator);
 
@@ -587,6 +591,10 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 
 	private static final String _FINDER_COLUMN_JIRACHANGEGROUPID_JIRACHANGEGROUPID_2 =
 		"jiraChangeItem.jiraChangeGroupId = ?";
+
+	public JIRAChangeItemPersistenceImpl() {
+		setModelClass(JIRAChangeItem.class);
+	}
 
 	/**
 	 * Caches the j i r a change item in the entity cache if it is enabled.

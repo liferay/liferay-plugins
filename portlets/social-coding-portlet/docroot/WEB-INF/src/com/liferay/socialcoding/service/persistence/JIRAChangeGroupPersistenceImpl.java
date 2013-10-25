@@ -369,6 +369,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByJiraUserId(jiraUserId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAChangeGroup> list = findByJiraUserId(jiraUserId, count - 1,
 				count, orderByComparator);
 
@@ -891,6 +895,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByJiraIssueId(jiraIssueId);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<JIRAChangeGroup> list = findByJiraIssueId(jiraIssueId, count - 1,
 				count, orderByComparator);
 
@@ -1116,6 +1124,10 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 	}
 
 	private static final String _FINDER_COLUMN_JIRAISSUEID_JIRAISSUEID_2 = "jiraChangeGroup.jiraIssueId = ?";
+
+	public JIRAChangeGroupPersistenceImpl() {
+		setModelClass(JIRAChangeGroup.class);
+	}
 
 	/**
 	 * Caches the j i r a change group in the entity cache if it is enabled.

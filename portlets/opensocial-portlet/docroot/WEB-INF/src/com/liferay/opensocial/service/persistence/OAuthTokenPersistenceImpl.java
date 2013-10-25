@@ -398,6 +398,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByG_S(gadgetKey, serviceName);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<OAuthToken> list = findByG_S(gadgetKey, serviceName, count - 1,
 				count, orderByComparator);
 
@@ -1109,6 +1113,10 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_1 = "oAuthToken.tokenName IS NULL";
 	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_2 = "oAuthToken.tokenName = ?";
 	private static final String _FINDER_COLUMN_U_G_S_M_T_TOKENNAME_3 = "(oAuthToken.tokenName IS NULL OR oAuthToken.tokenName = '')";
+
+	public OAuthTokenPersistenceImpl() {
+		setModelClass(OAuthToken.class);
+	}
 
 	/**
 	 * Caches the o auth token in the entity cache if it is enabled.

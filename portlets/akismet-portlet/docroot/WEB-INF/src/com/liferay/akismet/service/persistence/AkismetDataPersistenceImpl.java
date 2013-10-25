@@ -350,6 +350,10 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		OrderByComparator orderByComparator) throws SystemException {
 		int count = countByLtModifiedDate(modifiedDate);
 
+		if (count == 0) {
+			return null;
+		}
+
 		List<AkismetData> list = findByLtModifiedDate(modifiedDate, count - 1,
 				count, orderByComparator);
 
@@ -838,6 +842,10 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 	private static final String _FINDER_COLUMN_C_C_CLASSNAMEID_2 = "akismetData.classNameId = ? AND ";
 	private static final String _FINDER_COLUMN_C_C_CLASSPK_2 = "akismetData.classPK = ?";
+
+	public AkismetDataPersistenceImpl() {
+		setModelClass(AkismetData.class);
+	}
 
 	/**
 	 * Caches the akismet data in the entity cache if it is enabled.
