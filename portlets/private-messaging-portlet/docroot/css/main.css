@@ -1,10 +1,8 @@
 @import "compass";
 
 .private-messaging-portlet {
-	.column-content {
-		.check-all {
-			margin: 0 20px 0 5px;
-		}
+	.column-content .check-all {
+		margin: 0 20px 0 5px;
 	}
 
 	.navbar, .lfr-search-container {
@@ -18,7 +16,6 @@
 	img.avatar {
 		width: 60px;
 	}
-
 
 	.controls {
 		.check-all {
@@ -61,7 +58,8 @@
 	.message-link {
 		display: block;
 		margin: -10px;
-		padding: 10px 10px 10px 80px;
+		padding: 10px;
+		padding-left: 80px;
 		position: relative;
 		z-index: 1;
 
@@ -118,13 +116,15 @@
 			border: 1px solid #CFCFCF;
 		}
 
-		.results-row td, .results-row.alt td {
-			background: #FFF;
-			padding: 10px;
-		}
+		.results-row {
+			td, &.alt td {
+				background: #FFF;
+				padding: 10px;
+			}
 
-		.results-row.unread td {
-			background: #F0F5F7;
+			&.unread td {
+				background: #F0F5F7;
+			}
 		}
 	}
 
@@ -152,8 +152,8 @@
 		}
 
 		.results-row td {
-			border-bottom: 1px solid #CFCFCF;
 			background-color: transparent;
+			border-bottom: 1px solid #CFCFCF;
 		}
 
 		.name {
