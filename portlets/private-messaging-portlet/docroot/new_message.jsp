@@ -109,7 +109,7 @@ to = sb.toString() + to;
 		<aui:input label="" name="msgFile3" type="file" />
 
 		<aui:button-row>
-			<input type="submit" value="<liferay-ui:message key="send" />" />
+			<aui:button primary="<%= true %>" type="submit" value="send" />
 		</aui:button-row>
 	</aui:form>
 </aui:layout>
