@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE user-notification-definitions PUBLIC "-//Liferay//DTD User Notification Definitions 6.2.0//EN" "http://www.liferay.com/dtd/liferay-user-notification-definitions_6_2_0.dtd">
+
+<user-notification-definitions>
+	<definition>
+		<notification-type>${com.liferay.tasks.model.TasksEntryConstants.STATUS_ALL}</notification-type>
+		<description>someone-assigns-you-a-tasks</description>
+		<delivery-type>
+			<name>website</name>
+			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
+			<default>true</default>
+			<modifiable>true</modifiable>
+		</delivery-type>
+	</definition>
+</user-notification-definitions>
