@@ -30,66 +30,54 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 List<SocialActivity> results = new ArrayList<SocialActivity>();
 int total = 0;
-%>
 
-<c:choose>
-	<c:when test="<%= group.isUser() %>">
+if (group.isUser()) {
+	if (!layout.isPublicLayout()) {
+		if (tabs1.equals("connections")) {
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
 
-		<%
-		if (!layout.isPublicLayout()) {
-			if (tabs1.equals("connections")) {
-				total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
+			searchContainer.setTotal(total);
 
-				searchContainer.setTotal(total);
+			results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
+		}
+		else if (tabs1.equals("following")) {
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
 
-				results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
-			}
-			else if (tabs1.equals("following")) {
-				total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+			searchContainer.setTotal(total);
 
-				searchContainer.setTotal(total);
+			results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
+		}
+		else if (tabs1.equals("my-sites")) {
+			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(themeDisplay.getUserId());
 
-				results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
-			}
-			else if (tabs1.equals("my-sites")) {
-				total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(themeDisplay.getUserId());
+			searchContainer.setTotal(total);
 
-				searchContainer.setTotal(total);
-
-				results = SocialActivityLocalServiceUtil.getUserGroupsActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-			}
-			else {
-				total = SocialActivityLocalServiceUtil.getUserActivitiesCount(themeDisplay.getUserId());
-
-				searchContainer.setTotal(total);
-
-				results = SocialActivityLocalServiceUtil.getUserActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-			}
+			results = SocialActivityLocalServiceUtil.getUserGroupsActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 		}
 		else {
-			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
+			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(themeDisplay.getUserId());
 
 			searchContainer.setTotal(total);
 
-			results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+			results = SocialActivityLocalServiceUtil.getUserActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
 		}
-		%>
+	}
+	else {
+		total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
 
-	</c:when>
-	<c:otherwise>
+		searchContainer.setTotal(total);
 
-		<%
-			total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
+		results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+	}
+}
+else {
+	total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
 
-			searchContainer.setTotal(total);
+	searchContainer.setTotal(total);
 
-			results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
-		%>
+	results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
+}
 
-	</c:otherwise>
-</c:choose>
-
-<%
 searchContainer.setResults(results);
 %>
 
