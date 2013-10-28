@@ -36,11 +36,11 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			orderByCol="<%= orderByCol %>"
 			orderByComparator="<%= KnowledgeBaseUtil.getKBArticleOrderByComparator(orderByCol, orderByType) %>"
 			orderByType="<%= orderByType %>"
-			total="<%= KBArticleServiceUtil.getKBArticlesCount(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED) %>"
+			total='<%= KBArticleServiceUtil.getKBArticlesCount(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED) %>'
 		>
 
 			<liferay-ui:search-container-results
-				results="<%= KBArticleServiceUtil.getKBArticles(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+				results='<%= KBArticleServiceUtil.getKBArticles(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>'
 			/>
 
 			<liferay-ui:search-container-row
