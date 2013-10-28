@@ -180,19 +180,45 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	var syncCalendarsMap = function() {
 		var calendarLists = [];
 
+		<c:if test="<%= themeDisplay.isSignedIn() || (groupCalendarResource != null) %>">
+			calendarLists.push(window.<portlet:namespace />myCalendarList);
+		</c:if>
+
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			calendarLists.push(window.<portlet:namespace />otherCalendarList);
 		</c:if>
 
 		<c:if test="<%= groupCalendarResource != null %>">
-			calendarLists.push(
-				window.<portlet:namespace />myCalendarList,
-				window.<portlet:namespace />siteCalendarList
-			);
+			calendarLists.push(window.<portlet:namespace />siteCalendarList);
 		</c:if>
 
 		Liferay.CalendarUtil.syncCalendarsMap(calendarLists);
 	}
+
+	<c:if test="<%= themeDisplay.isSignedIn() || (groupCalendarResource != null) %>">
+		window.<portlet:namespace />myCalendarList = new Liferay.CalendarList(
+			{
+				after: {
+					calendarsChange: syncCalendarsMap,
+					'scheduler-calendar:visibleChange': function(event) {
+						syncCalendarsMap();
+
+						<portlet:namespace />refreshVisibleCalendarRenderingRules();
+					}
+				},
+				boundingBox: '#<portlet:namespace />myCalendarList',
+
+				<%
+				updateCalendarsJSONArray(request, userCalendarsJSONArray);
+				%>
+
+				calendars: <%= userCalendarsJSONArray %>,
+				scheduler: <portlet:namespace />scheduler,
+				simpleMenu: window.<portlet:namespace />calendarsMenu,
+				visible: <%= themeDisplay.isSignedIn() %>
+			}
+		).render();
+	</c:if>
 
 	<c:if test="<%= themeDisplay.isSignedIn() %>">
 		window.<portlet:namespace />otherCalendarList = new Liferay.CalendarList(
@@ -227,32 +253,6 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	</c:if>
 
 	<c:if test="<%= groupCalendarResource != null %>">
-		window.<portlet:namespace />myCalendarList = new Liferay.CalendarList(
-			{
-				after: {
-					calendarsChange: syncCalendarsMap,
-					'scheduler-calendar:visibleChange': function(event) {
-						syncCalendarsMap();
-
-						<portlet:namespace />refreshVisibleCalendarRenderingRules();
-					}
-				},
-				boundingBox: '#<portlet:namespace />myCalendarList',
-
-				<%
-				updateCalendarsJSONArray(request, userCalendarsJSONArray);
-				%>
-
-				calendars: <%= userCalendarsJSONArray %>,
-				scheduler: <portlet:namespace />scheduler,
-				simpleMenu: window.<portlet:namespace />calendarsMenu
-			}
-		).render();
-
-		<c:if test="<%= !themeDisplay.isSignedIn() %>">
-			window.<portlet:namespace />myCalendarList.set('visible', false);
-		</c:if>
-
 		window.<portlet:namespace />siteCalendarList = new Liferay.CalendarList(
 			{
 				after: {
