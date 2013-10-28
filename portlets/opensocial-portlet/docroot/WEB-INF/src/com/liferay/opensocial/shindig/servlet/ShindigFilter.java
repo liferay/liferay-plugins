@@ -104,13 +104,9 @@ public class ShindigFilter extends InjectedFilter {
 	public void init(FilterConfig filterConfig) throws ServletException {
 
 		// LPS-23577
+		// LPS-41715
 
-		if (ServerDetector.isWebSphere()) {
-			injector = null;
-		}
-		else {
-			super.init(filterConfig);
-		}
+		injector = null;
 	}
 
 	protected boolean setPermissionChecker(ServletRequest servletRequest) {
