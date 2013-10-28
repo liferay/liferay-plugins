@@ -22,14 +22,16 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
@@ -442,14 +444,16 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSONObject.put("body", tasksEntry.getTitle());
 		notificationEventJSONObject.put(
-			"entryId", tasksEntry.getTasksEntryId());
-		notificationEventJSONObject.put("portletId", PortletKeys.TASKS);
-		notificationEventJSONObject.put("userId", serviceContext.getUserId());
+			"tasksEntryId", tasksEntry.getTasksEntryId());
 
 		for (long receiverUserId : receiverUserIds) {
-			if (receiverUserId == 0) {
+			if ((receiverUserId == 0) ||
+				!UserNotificationManagerUtil.isDeliver(
+					receiverUserId, PortletKeys.TASKS, 0,
+					TasksEntryConstants.STATUS_ALL,
+					UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+
 				continue;
 			}
 
@@ -480,13 +484,13 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 			NotificationEvent notificationEvent =
 				NotificationEventFactoryUtil.createNotificationEvent(
-					System.currentTimeMillis(), "6_WAR_soportlet",
+					System.currentTimeMillis(), PortletKeys.TASKS,
 					notificationEventJSONObject);
 
 			notificationEvent.setDeliveryRequired(0);
 
-			ChannelHubManagerUtil.sendNotificationEvent(
-				tasksEntry.getCompanyId(), receiverUserId, notificationEvent);
+			UserNotificationEventLocalServiceUtil.addUserNotificationEvent(
+				receiverUserId, notificationEvent);
 		}
 	}
 

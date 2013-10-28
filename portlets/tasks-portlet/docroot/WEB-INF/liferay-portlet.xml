@@ -1,11 +1,13 @@
 <?xml version="1.0"?>
-<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.1.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_1_0.dtd">
+<!DOCTYPE liferay-portlet-app PUBLIC "-//Liferay//DTD Portlet Application 6.2.0//EN" "http://www.liferay.com/dtd/liferay-portlet-app_6_2_0.dtd">
 
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/tasks/icon.png</icon>
 		<social-activity-interpreter-class>com.liferay.tasks.social.TasksActivityInterpreter</social-activity-interpreter-class>
+		<user-notification-definitions>com/liferay/tasks/portlet/tasks-user-notification-definitions.xml</user-notification-definitions>
+		<user-notification-handler-class>com.liferay.tasks.notifications.TasksUserNotificationHandler</user-notification-handler-class>
 		<asset-renderer-factory>com.liferay.tasks.asset.TasksEntryAssetRendererFactory</asset-renderer-factory>
 		<header-portlet-css>/tasks/css/main.css</header-portlet-css>
 		<header-portlet-javascript>/tasks/js/main.js</header-portlet-javascript>

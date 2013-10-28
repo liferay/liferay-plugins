@@ -3,8 +3,8 @@
 
 <user-notification-definitions>
 	<definition>
-		<notification-type>${com.liferay.microblogs.model.MicroblogsEntryConstants.TYPE_REPLY}</notification-type>
-		<description>receive-a-notification-when-someone-comments-on-your-microblog</description>
+		<notification-type>${com.liferay.tasks.model.TasksEntryConstants.STATUS_ALL}</notification-type>
+		<description>receive-a-notification-when-someone-assigns-you-a-task</description>
 		<delivery-type>
 			<name>website</name>
 			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>

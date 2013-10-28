@@ -261,6 +261,7 @@ html body {
 	border: 1px solid #262626;
 	font: 12px Tahoma, Geneva, sans-serif;
 	min-width: 226px;
+	max-width: 452px;
 	position: relative;
 }
 
@@ -336,6 +337,8 @@ html body {
 	height: 192px;
 	overflow-y: scroll;
 	padding: 2px;
+	overflow-x: auto;
+	word-wrap: break-word;
 
 	.blurb {
 		margin: 0;
