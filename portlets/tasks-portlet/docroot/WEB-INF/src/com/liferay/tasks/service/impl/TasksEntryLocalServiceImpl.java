@@ -480,7 +480,12 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 				title = "x-modified-the-task";
 			}
 
-			notificationEventJSONObject.put("title", title);
+			notificationEventJSONObject.put(
+				"title",
+				serviceContext.translate(
+					title,
+					PortalUtil.getUserName(
+						serviceContext.getUserId(), StringPool.BLANK)));
 
 			NotificationEvent notificationEvent =
 				NotificationEventFactoryUtil.createNotificationEvent(
