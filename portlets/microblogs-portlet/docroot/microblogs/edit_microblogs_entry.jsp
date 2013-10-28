@@ -187,14 +187,12 @@ if (comment) {
 	}
 	%>
 
-	<aui:row cssClass="<%= rowCssClass %>">
-		<aui:col width="<%= 10 %>">
-			<aui:button cssClass="pull-left" disabled="<%= !repost %>" name="submit" type="submit" value="post" />
+	<div class="<%= rowCssClass %>">
+		<aui:button cssClass="pull-left microblogs-post" disabled="<%= !repost %>" name="submit" type="submit" value="post" />
 
-			<c:if test="<%= repost %>">
-				<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
-			</c:if>
-		</aui:col>
+		<c:if test="<%= repost %>">
+			<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
+		</c:if>
 
 		<c:if test="<%= !comment && !repost %>">
 
@@ -206,15 +204,13 @@ if (comment) {
 			}
 			%>
 
-			<aui:col width="<%= 90 %>">
-				<aui:select inlineLabel="true" label="viewable-by" name="socialRelationType">
-					<aui:option label="everyone" selected="<%= socialRelationType == MicroblogsEntryConstants.TYPE_EVERYONE %>" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
-					<aui:option label="connections" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
-					<aui:option label="followers" selected="<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>" value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
-				</aui:select>
-			</aui:col>
+			<aui:select inlineLabel="true" label="viewable-by" name="socialRelationType">
+				<aui:option label="everyone" selected="<%= socialRelationType == MicroblogsEntryConstants.TYPE_EVERYONE %>" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
+				<aui:option label="connections" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
+				<aui:option label="followers" selected="<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>" value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
+			</aui:select>
 		</c:if>
-	</aui:row>
+	</div>
 </aui:form>
 
 <aui:script use="aui-base,aui-event-input,aui-template-deprecated,aui-form-textarea-deprecated,autocomplete,autocomplete-filters">

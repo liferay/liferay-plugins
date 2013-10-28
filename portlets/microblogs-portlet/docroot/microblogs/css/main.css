@@ -20,8 +20,10 @@ $microblogs-border-color: #EAEAEA;
 			padding: 0 5px;
 
 			textarea {
-				height: 1.25em;
-				margin: 0 -10px;
+				-webkit-box-shadow: none;
+				-moz-box-shadow: none;
+				box-shadow: none;
+				margin: 0 -12px;
 				overflow: hidden;
 				width: 100%;
 			}
@@ -33,6 +35,10 @@ $microblogs-border-color: #EAEAEA;
 
 		.button-holder {
 			margin-top: 5px;
+		}
+
+		.microblogs-post {
+			margin-right: 1em;
 		}
 
 		.field-select {
@@ -76,7 +82,7 @@ $microblogs-border-color: #EAEAEA;
 		&, &.textarea {
 			background-color: #FFF;
 			height: 18px;
-			padding: 8px;
+			padding: 5px 8px;
 			position: relative;
 		}
 
@@ -261,15 +267,16 @@ $microblogs-border-color: #EAEAEA;
 	}
 
 	.field-input-text {
+		-moz-box-sizing: border-box;
 		background: none transparent;
 		border-width: 0;
+		box-sizing: border-box;
 		line-height: 1.5em;
-		min-width: 99%;
+		min-width: 100%;
 		outline: none;
 		position: absolute;
 		resize: none;
 		top: 0;
-		z-index: 999;
 	}
 
 	.microblogs-autocomplete {
