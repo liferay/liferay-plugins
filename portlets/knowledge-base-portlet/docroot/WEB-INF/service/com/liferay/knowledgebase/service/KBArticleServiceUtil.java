@@ -163,12 +163,26 @@ public class KBArticleServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long[] resourcePrimKeys, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getKBArticles(groupId, resourcePrimKeys, status, start,
+			end, orderByComparator);
+	}
+
+	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		long groupId, long[] resourcePrimKeys, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getKBArticles(groupId, resourcePrimKeys, status,
 			orderByComparator);
+	}
+
+	public static int getKBArticlesCount(long groupId, long[] resourcePrimKeys,
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKBArticlesCount(groupId, resourcePrimKeys, status);
 	}
 
 	public static com.liferay.knowledgebase.model.KBArticleSearchDisplay getKBArticleSearchDisplay(
