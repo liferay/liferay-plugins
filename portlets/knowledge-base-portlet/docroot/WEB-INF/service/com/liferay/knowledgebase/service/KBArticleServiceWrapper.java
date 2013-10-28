@@ -160,11 +160,27 @@ public class KBArticleServiceWrapper implements KBArticleService,
 
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long[] resourcePrimKeys, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleService.getKBArticles(groupId, resourcePrimKeys,
+			status, start, end, orderByComparator);
+	}
+
+	@Override
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		long groupId, long[] resourcePrimKeys, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _kbArticleService.getKBArticles(groupId, resourcePrimKeys,
 			status, orderByComparator);
+	}
+
+	@Override
+	public int getKBArticlesCount(long groupId, long[] resourcePrimKeys,
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleService.getKBArticlesCount(groupId, resourcePrimKeys,
+			status);
 	}
 
 	@Override

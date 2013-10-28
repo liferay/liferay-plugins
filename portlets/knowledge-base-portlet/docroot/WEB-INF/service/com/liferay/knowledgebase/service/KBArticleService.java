@@ -135,9 +135,19 @@ public interface KBArticleService extends BaseService, InvokableService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
+		long groupId, long[] resourcePrimKeys, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		long groupId, long[] resourcePrimKeys, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getKBArticlesCount(long groupId, long[] resourcePrimKeys,
+		int status) throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.knowledgebase.model.KBArticleSearchDisplay getKBArticleSearchDisplay(
