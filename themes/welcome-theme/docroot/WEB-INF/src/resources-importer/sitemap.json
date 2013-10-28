@@ -6,16 +6,6 @@
 				[
 					{
 						"portletId": "58"
-					},
-					{
-						"portletId": "56",
-						"portletPreferences": {
-							"articleId": "First Time Logging In.html",
-							"groupId": "${groupId}",
-							"portletSetupShowBorders": "true",
-							"portletSetupTitle_en_US": "First time logging in?",
-							"portletSetupUseCustomTitle": "true"
-						}
 					}
 				],
 				[
