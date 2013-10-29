@@ -43,8 +43,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	searchContainer.setTotal(AssetEntryServiceUtil.getEntriesCount(assetEntryQuery));
 
-	assetEntryQuery.setStart(searchContainer.getStart());
 	assetEntryQuery.setEnd(searchContainer.getEnd());
+	assetEntryQuery.setStart(searchContainer.getStart());
 
 	searchContainer.setResults(AssetEntryServiceUtil.getEntries(assetEntryQuery));
 	%>
