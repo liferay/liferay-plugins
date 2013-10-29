@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
@@ -43,6 +42,7 @@ import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.privatemessaging.NoSuchUserThreadException;
 import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
+import com.liferay.privatemessaging.service.UserThreadServiceUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -137,65 +137,6 @@ public class PrivateMessagingUtil {
 		return jsonObject;
 	}
 
-	public static MBMessage getLastThreadMessage(long userId, long mbThreadId)
-		throws PortalException, SystemException {
-
-		List<MBMessage> mbMessages = getThreadMessages(
-			userId, mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
-
-		MBMessage lastMBMessage = mbMessages.get(0);
-
-		return lastMBMessage;
-	}
-
-	public static List<MBMessage> getThreadMessages(
-			long userId, long mbThreadId, int start, int end, boolean ascending)
-		throws PortalException, SystemException {
-
-		UserThread userThread = UserThreadLocalServiceUtil.getUserThread(
-			userId, mbThreadId);
-
-		MBMessage topMBMessage = MBMessageLocalServiceUtil.getMBMessage(
-			userThread.getTopMBMessageId());
-
-		List<MBMessage> mbMessages =
-			MBMessageLocalServiceUtil.getThreadMessages(
-				mbThreadId, WorkflowConstants.STATUS_ANY,
-				new MessageCreateDateComparator(ascending));
-
-		List<MBMessage> filteredMBMessages = new ArrayList<MBMessage>();
-
-		for (MBMessage mbMessage : mbMessages) {
-			int compareTo = DateUtil.compareTo(
-				topMBMessage.getCreateDate(), mbMessage.getCreateDate());
-
-			if (compareTo <= 0) {
-				filteredMBMessages.add(mbMessage);
-			}
-		}
-
-		if (filteredMBMessages.isEmpty()) {
-			return filteredMBMessages;
-		}
-		else if ((start == QueryUtil.ALL_POS) || (end == QueryUtil.ALL_POS)) {
-			return filteredMBMessages;
-		}
-		else if (end > filteredMBMessages.size()) {
-			end = filteredMBMessages.size();
-		}
-
-		return filteredMBMessages.subList(start, end);
-	}
-
-	public static int getThreadMessagesCount(long userId, long mbThreadId)
-		throws PortalException, SystemException {
-
-		List<MBMessage> mbMessages = getThreadMessages(
-			userId, mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, true);
-
-		return mbMessages.size();
-	}
-
 	/**
 	 * Each thread has a user that represents that thread. This person is either
 	 * the last user to post on that thread (exluding himself), or if he is the
@@ -245,8 +186,8 @@ public class PrivateMessagingUtil {
 
 		// Users who have contributed to the thread
 
-		List<MBMessage> mbMessages = getThreadMessages(
-			userId, mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
+		List<MBMessage> mbMessages = UserThreadServiceUtil.getThreadMessages(
+			mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
 
 		for (MBMessage mbMessage : mbMessages) {
 			if (userId == mbMessage.getUserId()) {

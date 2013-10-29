@@ -57,6 +57,7 @@ page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
 page import="com.liferay.privatemessaging.model.UserThread" %><%@
 page import="com.liferay.privatemessaging.service.UserThreadLocalServiceUtil" %><%@
+page import="com.liferay.privatemessaging.service.UserThreadServiceUtil" %><%@
 page import="com.liferay.privatemessaging.util.PrivateMessagingUtil" %>
 
 <%@ page import="java.text.Format" %>
