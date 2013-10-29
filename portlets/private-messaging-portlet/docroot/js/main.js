@@ -362,12 +362,11 @@ AUI.add(
 					_sendRequest: function(request, mbThreadIds) {
 						var instance = this;
 
+						var request = Liferay.Util.addParams(instance._namespace + 'mbThreadIds=' + mbThreadIds, request) || request;
+
 						A.io.request(
 							request,
 							{
-								data: {
-									mbThreadIds: mbThreadIds
-								},
 								on: {
 									success: function(event, id, obj) {
 										A.config.win.location = themeDisplay.getLayoutURL();

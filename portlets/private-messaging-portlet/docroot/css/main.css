@@ -112,21 +112,14 @@
 	/* Results */
 
 	.messages .table-data tr {
-		border-width: 0;
-
-		table.taglib-search-iterator, .results-row td, .results-row.alt td {
-			border: 1px solid #CFCFCF;
+		&:hover td, &:nth-child(odd) td, td {
+			background: #FFF;
+			padding: 10px;
 		}
 
-		.results-row {
-			td, &.alt td {
-				background: #FFF;
-				padding: 10px;
-			}
-
-			&.unread td {
-				background: #F0F5F7;
-			}
+		&.unread td {
+			background: #F0F5F7;
+		}
 	}
 
 	.taglib-search-iterator-page-iterator-bottom {
