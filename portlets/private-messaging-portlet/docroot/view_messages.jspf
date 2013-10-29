@@ -63,7 +63,7 @@
 			<%
 			long userId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
 
-			MBMessage mbMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
+			MBMessage mbMessage = UserThreadServiceUtil.getLastThreadMessage(userThread.getMbThreadId());
 			%>
 
 			<liferay-ui:user-display
