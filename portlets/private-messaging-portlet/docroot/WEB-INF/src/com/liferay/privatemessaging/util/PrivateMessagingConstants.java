@@ -22,6 +22,8 @@ package com.liferay.privatemessaging.util;
  */
 public class PrivateMessagingConstants {
 
+	public static final int NEW_MESSAGE = 0;
+
 	public static final long PRIVATE_MESSAGING_CATEGORY_ID = -2;
 
 }
