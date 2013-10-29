@@ -446,6 +446,7 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		notificationEventJSONObject.put(
 			"tasksEntryId", tasksEntry.getTasksEntryId());
+		notificationEventJSONObject.put("userId", serviceContext.getUserId());
 
 		for (long receiverUserId : receiverUserIds) {
 			if ((receiverUserId == 0) ||
