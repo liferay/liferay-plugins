@@ -31,7 +31,7 @@
 	</aui:nav>
 
 	<aui:nav cssClass="pull-right">
-		<aui:button primary="<%= true %>" name="newMessage" value="new-message" />
+		<aui:button name="newMessage" primary="<%= true %>" value="new-message" />
 	</aui:nav>
 </aui:nav-bar>
 

@@ -10,6 +10,7 @@
 	}
 
 	.navbar-inner {
+		border-bottom-width: 0;
 		padding: 0 10px;
 	}
 
@@ -78,6 +79,7 @@
 
 	.table {
 		border-top: 0;
+		margin-bottom: 0;
 
 		thead {
 			display: none;
@@ -109,7 +111,7 @@
 
 	/* Results */
 
-	.messages .results-grid {
+	.messages .table-data tr {
 		border-width: 0;
 
 		table.taglib-search-iterator, .results-row td, .results-row.alt td {
@@ -125,6 +127,11 @@
 			&.unread td {
 				background: #F0F5F7;
 			}
+	}
+
+	.taglib-search-iterator-page-iterator-bottom {
+		.lfr-pagination-buttons, .lfr-pagination-config, .search-results {
+			line-height: 30px;
 		}
 	}
 
@@ -151,9 +158,13 @@
 			padding: 0 10px 10px;
 		}
 
-		.results-row td {
+		tr td {
 			background-color: transparent;
 			border-bottom: 1px solid #CFCFCF;
+
+			&.last, &.only {
+				border-bottom-width: 0;
+			}
 		}
 
 		.name {
