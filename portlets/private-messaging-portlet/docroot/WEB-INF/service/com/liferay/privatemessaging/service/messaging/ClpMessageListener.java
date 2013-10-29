@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.messaging.Message;
 
 import com.liferay.privatemessaging.service.ClpSerializer;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
+import com.liferay.privatemessaging.service.UserThreadServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -36,6 +37,8 @@ public class ClpMessageListener extends BaseMessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
 			UserThreadLocalServiceUtil.clearService();
+
+			UserThreadServiceUtil.clearService();
 		}
 	}
 }
