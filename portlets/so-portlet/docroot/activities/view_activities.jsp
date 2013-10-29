@@ -20,8 +20,6 @@
 <%@ include file="/activities/init.jsp" %>
 
 <%
-Group group = themeDisplay.getScopeGroup();
-
 PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("tabs1", tabs1);
@@ -30,6 +28,8 @@ SearchContainer searchContainer = new SearchContainer(renderRequest, null, null,
 
 List<SocialActivity> results = new ArrayList<SocialActivity>();
 int total = 0;
+
+Group group = themeDisplay.getScopeGroup();
 
 if (group.isUser()) {
 	if (!layout.isPublicLayout()) {
