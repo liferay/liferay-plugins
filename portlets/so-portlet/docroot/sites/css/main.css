@@ -425,14 +425,18 @@ $defaultTextColor: #202020;
 
 		.site-list-container {
 			.name {
+				border-top: 1px solid $defaultBorderColor;
 				position: relative;
+
+				&, a {
+					padding: 0.55em 2.5em;
+				}
 
 				a {
 					background-position: 8px center;
 					background-repeat: no-repeat;
-					border-top: 1px solid $defaultBorderColor;
 					display: block;
-					padding: 0.55em 2.5em;
+					margin: -0.55em -2.5em;
 
 					&:hover {
 						background-color: rgba(0,0,0, 0.1);
@@ -441,6 +445,7 @@ $defaultTextColor: #202020;
 
 				.private-pages {
 					background: #FFF;
+					margin: 0;
 					padding: 0.55em 0.5em;
 					position: absolute;
 					right: 2em;
