@@ -93,16 +93,16 @@
 
 <%!
 private DynamicQuery _getDynamicQuery(long scopeGroupId) {
-	DynamicQuery wikiPageDynamicQuery = DynamicQueryFactoryUtil.forClass(WikiPage.class);
+	DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(WikiPage.class);
 
 	Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
 
-	wikiPageDynamicQuery.add(groupIdProperty.eq(scopeGroupId));
+	dynamicQuery.add(groupIdProperty.eq(scopeGroupId));
 
 	Property summaryProperty = PropertyFactoryUtil.forName("summary");
 
-	wikiPageDynamicQuery.add(summaryProperty.eq(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
+	dynamicQuery.add(summaryProperty.eq(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
 
-	return wikiPageDynamicQuery;
+	return dynamicQuery;
 }
 %>
