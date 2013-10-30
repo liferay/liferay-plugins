@@ -20,9 +20,8 @@ $microblogs-border-color: #EAEAEA;
 			padding: 0 5px;
 
 			textarea {
-				-webkit-box-shadow: none;
-				-moz-box-shadow: none;
-				box-shadow: none;
+				@include box-shadow(none);
+
 				margin: 0 -12px;
 				overflow: hidden;
 				width: 100%;
