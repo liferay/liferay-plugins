@@ -112,7 +112,9 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 
 			<%
 			java.util.Calendar dateJCalendar = CalendarFactoryUtil.getCalendar(userTimeZone);
+
 			dateJCalendar.setTimeInMillis(date);
+
 			int dateYear = dateJCalendar.get(java.util.Calendar.YEAR);
 			int dateMonth = dateJCalendar.get(java.util.Calendar.MONTH);
 			int dateDay = dateJCalendar.get(java.util.Calendar.DAY_OF_MONTH);
@@ -143,6 +145,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 
 			<%
 			java.util.Calendar todayJCalendar = CalendarFactoryUtil.getCalendar(userTimeZone);
+
 			int todayYear = todayJCalendar.get(java.util.Calendar.YEAR);
 			int todayMonth = todayJCalendar.get(java.util.Calendar.MONTH);
 			int todayDay = todayJCalendar.get(java.util.Calendar.DAY_OF_MONTH);
