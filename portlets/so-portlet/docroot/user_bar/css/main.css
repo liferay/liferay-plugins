@@ -215,7 +215,7 @@ html > body.lfr-dockbar-pinned {
 		}
 
 		.full-name {
-			display: inline-block;
+			display: inline;
 			max-width: 8.25em;
 			overflow: hidden;
 			text-overflow: ellipsis;
