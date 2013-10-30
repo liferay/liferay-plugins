@@ -122,10 +122,17 @@
 		}
 	}
 
-	.taglib-search-iterator-page-iterator-bottom {
+	.taglib-page-iterator {
+		padding: 10px;
+
 		.lfr-pagination-buttons, .lfr-pagination-config, .search-results {
 			line-height: 30px;
 		}
+	}
+
+	.taglib-search-iterator-page-iterator-top {
+		margin-bottom: 0;
+		border-top: 1px solid #DDD;
 	}
 
 	/* Thread */
