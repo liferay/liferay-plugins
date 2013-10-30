@@ -30,12 +30,8 @@ List<CalendarBooking> calendarBookings = (List<CalendarBooking>)request.getAttri
 	total="<%= calendarBookings.size() %>"
 >
 
-	<%
-	int end = (calendarBookings.size() < searchContainer.getEnd()) ? calendarBookings.size() : searchContainer.getEnd();
-	%>
-
 	<liferay-ui:search-container-results
-		results="<%= calendarBookings.subList(searchContainer.getStart(), end) %>"
+		results="<%= calendarBookings.subList(searchContainer.getStart(), searchContainer.getResultEnd()) %>"
 	/>
 
 	<liferay-ui:search-container-row
