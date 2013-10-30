@@ -27,6 +27,8 @@ int total = 0;
 
 int start = ParamUtil.getInteger(request, "start");
 int end = start + _DELTA;
+
+int[] startAndEnd = null;
 %>
 
 <c:choose>
@@ -35,29 +37,47 @@ int end = start + _DELTA;
 		<%
 		if (!layout.isPublicLayout()) {
 			if (tabs1.equals("connections")) {
-				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
 				total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
+
+				startAndEnd = SearchPaginationUtil.calculateStartAndEnd(start, end, total);
+
+				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, startAndEnd[0], startAndEnd[1]);
 			}
 			else if (tabs1.equals("following")) {
-				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
 				total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+
+				startAndEnd = SearchPaginationUtil.calculateStartAndEnd(start, end, total);
+
+				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, startAndEnd[0], startAndEnd[1]);
 			}
 			else if (tabs1.equals("me")) {
-				results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
 				total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
+
+				startAndEnd = SearchPaginationUtil.calculateStartAndEnd(start, end, total);
+
+				results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), startAndEnd[0], startAndEnd[1]);
 			}
 			else if (tabs1.equals("my-sites")) {
-				results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(group.getClassPK(), start, end);
 				total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(group.getClassPK());
+
+				startAndEnd = SearchPaginationUtil.calculateStartAndEnd(start, end, total);
+
+				results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(group.getClassPK(), startAndEnd[0], startAndEnd[1]);
 			}
 			else {
-				results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(group.getClassPK(), start, end);
 				total = SocialActivitySetLocalServiceUtil.getUserViewableActivitySetsCount(group.getClassPK());
+
+				startAndEnd = SearchPaginationUtil.calculateStartAndEnd(start, end, total);
+
+				results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(group.getClassPK(), startAndEnd[0], startAndEnd[1]);
 			}
 		}
 		else {
-			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
 			total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
+
+			startAndEnd = SearchPaginationUtil.calculateStartAndEnd(start, end, total);
+
+			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), startAndEnd[0], startAndEnd[1]);
 		}
 		%>
 
@@ -65,8 +85,11 @@ int end = start + _DELTA;
 	<c:otherwise>
 
 		<%
-		results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), start, end);
 		total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
+
+		startAndEnd = SearchPaginationUtil.calculateStartAndEnd(start, end, total);
+
+		results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), startAndEnd[0], startAndEnd[1]);
 		%>
 
 	</c:otherwise>
