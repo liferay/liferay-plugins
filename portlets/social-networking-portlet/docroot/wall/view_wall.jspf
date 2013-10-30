@@ -74,6 +74,8 @@
 		else {
 			results = WallEntryLocalServiceUtil.getWallEntries(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
 		}
+
+		searchContainer.setResults(results);
 		%>
 
 		<table class="table" width="100%">

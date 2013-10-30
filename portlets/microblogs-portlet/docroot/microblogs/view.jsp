@@ -89,8 +89,11 @@ portletURL.setParameter("tabs1", tabs1);
 		catch (NoSuchUserException nsue) {
 		}
 
-		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());
 		total = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount(assetTagName);
+
+		searchContainer.setTotal(total);
+
+		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());
 	}
 	else if (receiverMicroblogsEntryId > 0) {
 		MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(receiverMicroblogsEntryId);
@@ -103,36 +106,50 @@ portletURL.setParameter("tabs1", tabs1);
 		portletURL.setParameter("receiverMicroblogsEntryId", String.valueOf(receiverMicroblogsEntryId));
 	}
 	else if ((receiverUserId > 0) && (receiverUserId == themeDisplay.getUserId())) {
-		results = MicroblogsEntryLocalServiceUtil.getUserMicroblogsEntries(receiverUserId, searchContainer.getStart(), searchContainer.getEnd());
 		total = MicroblogsEntryLocalServiceUtil.getUserMicroblogsEntriesCount(receiverUserId);
+
+		searchContainer.setTotal(total);
+
+		results = MicroblogsEntryLocalServiceUtil.getUserMicroblogsEntries(receiverUserId, searchContainer.getStart(), searchContainer.getEnd());
 
 		portletURL.setParameter("receiverUserId", String.valueOf(receiverUserId));
 	}
 	else if (receiverUserId > 0) {
-		results = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(receiverUserId, searchContainer.getStart(), searchContainer.getEnd());
 		total = MicroblogsEntryServiceUtil.getUserMicroblogsEntriesCount(receiverUserId);
+
+		searchContainer.setTotal(total);
+
+		results = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(receiverUserId, searchContainer.getStart(), searchContainer.getEnd());
 
 		portletURL.setParameter("receiverUserId", String.valueOf(receiverUserId));
 	}
 	else if (Validator.isNotNull(assetTagName)) {
-		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());
 		total = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount(assetTagName);
+
+		searchContainer.setTotal(total);
+
+		results = MicroblogsEntryServiceUtil.getMicroblogsEntries(assetTagName, searchContainer.getStart(), searchContainer.getEnd());
 
 		portletURL.setParameter("assetTagName", String.valueOf(assetTagName));
 	}
 	else if (tabs1.equals("timeline")) {
 		if (userPublicPage) {
-			results = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
 			total = MicroblogsEntryServiceUtil.getUserMicroblogsEntriesCount(group.getClassPK());
+
+			searchContainer.setTotal(total);
+
+			results = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
 		}
 		else {
-			results = MicroblogsEntryServiceUtil.getMicroblogsEntries(searchContainer.getStart(), searchContainer.getEnd());
 			total = MicroblogsEntryServiceUtil.getMicroblogsEntriesCount();
+
+			searchContainer.setTotal(total);
+
+			results = MicroblogsEntryServiceUtil.getMicroblogsEntries(searchContainer.getStart(), searchContainer.getEnd());
 		}
 	}
 
 	searchContainer.setResults(results);
-	searchContainer.setTotal(total);
 
 	PortletURL microblogsEntriesURL = renderResponse.createRenderURL();
 

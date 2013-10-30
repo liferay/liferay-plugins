@@ -144,6 +144,8 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 
 		List<MeetupsRegistration> results = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrations(meetupsEntryId, tabs1Status, searchContainer.getStart(), searchContainer.getEnd());
 
+		searchContainer.setResults(results);
+
 		for (MeetupsRegistration curMeetupsRegistration : results) {
 		%>
 
