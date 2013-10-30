@@ -16,7 +16,7 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.hot_deploy" class="com.liferay.resourcesimporter.messaging.HotDeployMessageListener" />
+	<bean id="messageListener.hot_deploy" class="com.liferay.resourcesimporter.messaging.ResourcesImporterHotDeployMessageListener" />
 
 	<!-- Configurator -->
 

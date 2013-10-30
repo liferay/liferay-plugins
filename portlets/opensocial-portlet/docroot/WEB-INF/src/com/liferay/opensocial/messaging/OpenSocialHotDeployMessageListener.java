@@ -18,7 +18,7 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.messaging.BaseMessageListener;
+import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
@@ -34,7 +34,12 @@ import java.util.List;
 /**
  * @author Michael Young
  */
-public class HotDeployMessageListener extends BaseMessageListener {
+public class OpenSocialHotDeployMessageListener
+	extends HotDeployMessageListener {
+
+	public OpenSocialHotDeployMessageListener(String... servletContextNames) {
+		super(servletContextNames);
+	}
 
 	protected void checkExpando() throws Exception {
 		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
@@ -65,32 +70,24 @@ public class HotDeployMessageListener extends BaseMessageListener {
 	}
 
 	@Override
-	protected void doReceive(Message message) throws Exception {
-		String servletContextName = message.getString("servletContextName");
+	protected void onDeploy(Message message) throws Exception {
+		verifyGadgets();
 
-		if (!servletContextName.equals("opensocial-portlet")) {
-			return;
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
+
+		for (Company company : companies) {
+			PortletLocalServiceUtil.addPortletCategory(
+				company.getCompanyId(), _GADGETS_CATEGORY);
 		}
 
-		String command = message.getString("command");
+		GadgetLocalServiceUtil.initGadgets();
 
-		if (command.equals("deploy")) {
-			verifyGadgets();
+		checkExpando();
+	}
 
-			List<Company> companies = CompanyLocalServiceUtil.getCompanies();
-
-			for (Company company : companies) {
-				PortletLocalServiceUtil.addPortletCategory(
-					company.getCompanyId(), _GADGETS_CATEGORY);
-			}
-
-			GadgetLocalServiceUtil.initGadgets();
-
-			checkExpando();
-		}
-		else if (command.equals("undeploy")) {
-			GadgetLocalServiceUtil.destroyGadgets();
-		}
+	@Override
+	protected void onUndeploy(Message message) throws Exception {
+		GadgetLocalServiceUtil.destroyGadgets();
 	}
 
 	protected void verifyGadgets() throws Exception {

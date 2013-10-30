@@ -14,36 +14,32 @@
 
 package com.liferay.wsrp.messaging;
 
-import com.liferay.portal.kernel.messaging.BaseMessageListener;
+import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.util.ExtensionHelperUtil;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Shuyang Zhou
  */
-public class HotDeployMessageListener extends BaseMessageListener {
+public class WSRPHotDeployMessageListener extends HotDeployMessageListener {
+
+	public WSRPHotDeployMessageListener(String... servletContextNames) {
+		super(servletContextNames);
+	}
 
 	@Override
-	protected void doReceive(Message message) throws Exception {
-		String servletContextName = message.getString("servletContextName");
+	protected void onDeploy(Message message) throws Exception {
+		ExtensionHelperUtil.initialize();
 
-		if (!servletContextName.equals("wsrp-portlet")) {
-			return;
-		}
+		WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
 
-		String command = message.getString("command");
+		WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
+	}
 
-		if (command.equals("deploy")) {
-			ExtensionHelperUtil.initialize();
-
-			WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
-
-			WSRPConsumerPortletLocalServiceUtil.initWSRPConsumerPortlets();
-		}
-		else if (command.equals("undeploy")) {
-			WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
-		}
+	@Override
+	protected void onUndeploy(Message message) throws Exception {
+		WSRPConsumerPortletLocalServiceUtil.destroyWSRPConsumerPortlets();
 	}
 
 }

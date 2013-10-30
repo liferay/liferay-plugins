@@ -14,16 +14,16 @@
 
 package com.liferay.resourcesimporter.messaging;
 
-import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.messaging.BaseMessageListener;
+import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
@@ -53,24 +53,61 @@ import javax.servlet.ServletContext;
  * @author Ryan Park
  * @author Raymond Augé
  */
-public class HotDeployMessageListener extends BaseMessageListener {
+public class ResourcesImporterHotDeployMessageListener
+	extends HotDeployMessageListener {
 
-	@Override
-	protected void doReceive(Message message) throws Exception {
-		String command = message.getString("command");
+	protected FileSystemImporter getFileSystemImporter() {
+		return new FileSystemImporter();
+	}
 
-		if (!command.equals("deploy")) {
-			return;
+	protected LARImporter getLARImporter() {
+		return new LARImporter();
+	}
+
+	protected Properties getPluginPackageProperties(
+		ServletContext servletContext) {
+
+		Properties properties = new Properties();
+
+		try {
+			String propertiesString = StringUtil.read(
+				servletContext.getResourceAsStream(
+					"/WEB-INF/liferay-plugin-package.properties"));
+
+			if (propertiesString == null) {
+				return properties;
+			}
+
+			String contextPath = servletContext.getRealPath(StringPool.SLASH);
+
+			contextPath = StringUtil.replace(
+				contextPath, StringPool.BACK_SLASH, StringPool.SLASH);
+
+			propertiesString = propertiesString.replace(
+				"${context.path}", contextPath);
+
+			PropertiesUtil.load(properties, propertiesString);
+		}
+		catch (IOException ioe) {
+			_log.error(ioe, ioe);
 		}
 
+		return properties;
+	}
+
+	protected ResourceImporter getResourceImporter() {
+		return new ResourceImporter();
+	}
+
+	protected void initialize(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
 		ServletContext servletContext = ServletContextPool.get(
 			servletContextName);
 
-		URL resourcesDirURL = servletContext.getResource(_RESOURCES_DIR);
+		URL url = servletContext.getResource(_RESOURCES_DIR);
 
-		if (resourcesDirURL == null) {
+		if (url == null) {
 			return;
 		}
 
@@ -236,52 +273,15 @@ public class HotDeployMessageListener extends BaseMessageListener {
 		}
 	}
 
-	protected FileSystemImporter getFileSystemImporter() {
-		return new FileSystemImporter();
-	}
-
-	protected LARImporter getLARImporter() {
-		return new LARImporter();
-	}
-
-	protected Properties getPluginPackageProperties(
-		ServletContext servletContext) {
-
-		Properties properties = new Properties();
-
-		try {
-			String propertiesString = StringUtil.read(
-				servletContext.getResourceAsStream(
-					"/WEB-INF/liferay-plugin-package.properties"));
-
-			if (propertiesString != null) {
-				String contextPath = servletContext.getRealPath(
-					StringPool.SLASH);
-
-				contextPath = StringUtil.replace(
-					contextPath, StringPool.BACK_SLASH, StringPool.SLASH);
-
-				propertiesString = propertiesString.replace(
-					"${context.path}", contextPath);
-
-				PropertiesUtil.load(properties, propertiesString);
-			}
-		}
-		catch (IOException e) {
-			_log.error(e, e);
-		}
-
-		return properties;
-	}
-
-	protected ResourceImporter getResourceImporter() {
-		return new ResourceImporter();
+	@Override
+	protected void onDeploy(Message message) throws Exception {
+		initialize(message);
 	}
 
 	private static final String _RESOURCES_DIR =
 		"/WEB-INF/classes/resources-importer/";
 
 	private static Log _log = LogFactoryUtil.getLog(
-		HotDeployMessageListener.class);
+		ResourcesImporterHotDeployMessageListener.class);
 
 }

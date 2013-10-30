@@ -10,7 +10,13 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.hot_deploy" class="com.liferay.wsrp.messaging.HotDeployMessageListener" />
+	<bean id="messageListener.hot_deploy" class="com.liferay.wsrp.messaging.WSRPHotDeployMessageListener">
+		<constructor-arg name="servletContextNames">
+			<array>
+				<bean class="com.liferay.wsrp.service.ClpSerializer" factory-method="getServletContextName" />
+			</array>
+		</constructor-arg>
+	</bean>
 
 	<!-- Configurator -->
 

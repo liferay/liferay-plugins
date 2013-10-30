@@ -10,7 +10,14 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.hot_deploy" class="com.liferay.so.messaging.HotDeployMessageListener" />
+	<bean id="messageListener.hot_deploy" class="com.liferay.so.messaging.SOHotDeployMessageListener">
+		<constructor-arg name="servletContextNames">
+			<array>
+				<bean class="com.liferay.so.service.ClpSerializer" factory-method="getServletContextName" />
+				<value>contacts-portlet</value>
+			</array>
+		</constructor-arg>
+	</bean>
 
 	<!-- Configurator -->
 

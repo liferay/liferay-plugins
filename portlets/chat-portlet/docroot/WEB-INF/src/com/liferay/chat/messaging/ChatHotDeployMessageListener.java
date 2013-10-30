@@ -15,23 +15,17 @@
 package com.liferay.chat.messaging;
 
 import com.liferay.chat.util.ChatExtensionsUtil;
-import com.liferay.portal.kernel.messaging.BaseMessageListener;
+import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
 /**
  * @author Ryan Park
  */
-public class HotDeployMessageListener extends BaseMessageListener {
+public class ChatHotDeployMessageListener extends HotDeployMessageListener {
 
 	@Override
-	protected void doReceive(Message message) throws Exception {
-		String command = message.getString("command");
-
-		if (command.equals("undeploy")) {
-			String servletContextName = message.getString("servletContextName");
-
-			ChatExtensionsUtil.unregister(servletContextName);
-		}
+	protected void onUndeploy(Message message) throws Exception {
+		ChatExtensionsUtil.unregister(message.getString("servletContextName"));
 	}
 
 }

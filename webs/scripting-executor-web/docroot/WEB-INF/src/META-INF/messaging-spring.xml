@@ -10,13 +10,7 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.hot_deploy" class="com.liferay.opensocial.messaging.OpenSocialHotDeployMessageListener">
-		<constructor-arg name="servletContextNames">
-			<array>
-				<bean class="com.liferay.opensocial.service.ClpSerializer" factory-method="getServletContextName" />
-			</array>
-		</constructor-arg>
-	</bean>
+	<bean id="messageListener.hot_deploy" class="com.liferay.scriptingexecutor.messaging.ScriptingExecutorHotDeployMessageListener" />
 
 	<!-- Configurator -->
 

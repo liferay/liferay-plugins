@@ -17,51 +17,44 @@
 
 package com.liferay.so.messaging;
 
-import com.liferay.portal.kernel.messaging.BaseMessageListener;
+import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortletClassInvoker;
 import com.liferay.portal.service.PortletLocalServiceUtil;
+import com.liferay.so.service.ClpSerializer;
 
 /**
  * @author Ryan Park
  */
-public class HotDeployMessageListener extends BaseMessageListener {
+public class SOHotDeployMessageListener extends HotDeployMessageListener {
 
-	protected void deploy(Message message) throws Exception {
-		String servletContextName = message.getString("servletContextName");
-
-		if (servletContextName.equals("contacts-portlet")) {
-			registerContactsExtension();
-		}
-		else if (servletContextName.equals("so-portlet")) {
-			long companyId = message.getLong("companyId");
-
-			if (PortletLocalServiceUtil.hasPortlet(
-					companyId, "1_WAR_contactsportlet")) {
-
-				registerContactsExtension();
-			}
-		}
+	public SOHotDeployMessageListener(String... servletContextNames) {
+		super(servletContextNames);
 	}
 
 	@Override
-	protected void doReceive(Message message) throws Exception {
-		String command = message.getString("command");
+	protected void onDeploy(Message message) throws Exception {
+		long companyId = message.getLong("companyId");
 
-		if (command.equals("deploy")) {
-			deploy(message);
+		if (PortletLocalServiceUtil.hasPortlet(
+				companyId, "1_WAR_contactsportlet")) {
+
+			registerContactsExtension();
 		}
 	}
 
 	protected void registerContactsExtension() throws Exception {
 		PortletClassInvoker.invoke(
-			false, "1_WAR_contactsportlet", _registerMethodKey, "so-portlet",
-			"/contacts/projects.jsp");
+			false, "1_WAR_contactsportlet", _registerMethodKey,
+			ClpSerializer.getServletContextName(), "/contacts/projects.jsp");
 	}
 
 	private MethodKey _registerMethodKey = new MethodKey(
-		"com.liferay.contacts.util.ContactsExtensionsUtil", "register",
-		String.class, String.class);
+		ClassResolverUtil.resolveByPortletClassLoader(
+			"com.liferay.contacts.util.ContactsExtensionsUtil",
+			"contacts-portlet"),
+		"register", String.class, String.class);
 
 }

@@ -10,7 +10,7 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.hot_deploy" class="com.liferay.chat.messaging.HotDeployMessageListener" />
+	<bean id="messageListener.hot_deploy" class="com.liferay.chat.messaging.ChatHotDeployMessageListener" />
 
 	<!-- Configurator -->
 
