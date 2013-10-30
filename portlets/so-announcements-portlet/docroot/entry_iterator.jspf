@@ -20,7 +20,9 @@
 <%
 total = AnnouncementsEntryLocalServiceUtil.getEntriesCount(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue);
 
-results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, start, end);
+startAndEnd = SearchPaginationUtil.calculateStartAndEnd(start, end, total);
+
+results = AnnouncementsEntryLocalServiceUtil.getEntries(user.getUserId(), scopes, portletName.equals(PortletKeys.ALERTS), flagValue, startAndEnd[0], startAndEnd[1]);
 
 for (int i = 0; i < results.size(); i++) {
 	AnnouncementsEntry entry = results.get(i);
