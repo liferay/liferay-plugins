@@ -82,9 +82,12 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 						<span class="profile-link"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
 					</c:when>
 					<c:otherwise>
-						<liferay-ui:icon-help message="deleted-user">
-							<span class="profile-link line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-						</liferay-ui:icon-help>
+						<span class="profile-link line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+
+						<liferay-ui:icon
+							image="../aui/question-sign"
+							message="deleted-user"
+						/>
 					</c:otherwise>
 				</c:choose>
 			</c:otherwise>
@@ -177,9 +180,12 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 							</c:when>
 							<c:otherwise>
 								<span class="name">
-									<liferay-ui:icon-help message="deleted-user">
-										<span class="profile-link line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-									</liferay-ui:icon-help>
+									<span class="profile-link line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+
+									<liferay-ui:icon
+										image="../aui/question-sign"
+										message="deleted-user"
+									/>
 								</span>
 							</c:otherwise>
 						</c:choose>
