@@ -95,9 +95,12 @@
 								<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
 							</c:when>
 							<c:otherwise>
-								<liferay-ui:icon-help message="deleted-user">
-									<span class="author-sender line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-								</liferay-ui:icon-help>
+								<span class="author-sender line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+
+								<liferay-ui:icon
+									image="../aui/question-sign"
+									message="deleted-user"
+								/>
 							</c:otherwise>
 						</c:choose>
 
@@ -119,9 +122,7 @@
 
 					<div class="body">
 						<c:if test="<%= user.getUserId() == mbMessage.getUserId() %>">
-							<liferay-ui:icon
-								src="/html/themes/classic/images/mail/replied.png"
-							/>
+							<i class="icon-reply"></i>
 						</c:if>
 
 						<%= HtmlUtil.escape(StringUtil.shorten(mbMessage.getBody(), 100)) %>
