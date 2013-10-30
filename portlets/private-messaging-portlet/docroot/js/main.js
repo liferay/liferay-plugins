@@ -343,6 +343,11 @@ AUI.add(
 						var messageDialog = Liferay.Util.openWindow(
 							{
 								dialog: {
+									after: {
+										destroy: function(event) {
+											document.location.href = redirectURL.toString();
+										}
+									},
 									centered: true,
 									constrain: true,
 									cssClass: 'private-messaging-portlet',

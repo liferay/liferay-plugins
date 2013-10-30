@@ -176,12 +176,6 @@ to = sb.toString() + to;
 							var responseData = A.JSON.parse(responseText);
 
 							if (responseData.success) {
-								if (<%= Validator.isNotNull(redirect) %>) {
-									var topWindow = Liferay.Util.getTop();
-
-									topWindow.location.href = '<liferay-portlet:renderURL windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="mvcPath" value="/view.jsp" /></liferay-portlet:renderURL>';
-								}
-
 								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 							}
 							else {
