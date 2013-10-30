@@ -30,6 +30,17 @@ boolean preventPersistence = ParamUtil.getBoolean(request, "preventPersistence")
 boolean readOnly = ParamUtil.getBoolean(request, "readOnly");
 boolean showAddEventBtn = ParamUtil.getBoolean(request, "showAddEventBtn");
 String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookingURL");
+
+java.util.Calendar dateJCalendar = CalendarFactoryUtil.getCalendar(userTimeZone);
+dateJCalendar.setTimeInMillis(date);
+int dateYear = dateJCalendar.get(java.util.Calendar.YEAR);
+int dateMonth = dateJCalendar.get(java.util.Calendar.MONTH);
+int dateDay = dateJCalendar.get(java.util.Calendar.DAY_OF_MONTH);
+
+java.util.Calendar todayJCalendar = CalendarFactoryUtil.getCalendar(userTimeZone);
+int todayYear = todayJCalendar.get(java.util.Calendar.YEAR);
+int todayMonth = todayJCalendar.get(java.util.Calendar.MONTH);
+int todayDay = todayJCalendar.get(java.util.Calendar.DAY_OF_MONTH);
 %>
 
 <div class="calendar-portlet-wrapper" id="<portlet:namespace />scheduler"></div>
@@ -109,7 +120,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 		{
 			activeView: window['<portlet:namespace /><%= HtmlUtil.escapeJS(activeView) %>View'],
 			boundingBox: '#<portlet:namespace />scheduler',
-			date: new Date(<%= date %>),
+			date: new Date(<%= dateYear %>, <%= dateMonth %>, <%= dateDay %>),
 
 			<c:if test="<%= !themeDisplay.isSignedIn() %>">
 				disabled: true,
@@ -131,6 +142,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 				week: '<liferay-ui:message key="week" />',
 				year: '<liferay-ui:message key="year" />'
 			},
+			todayDate: new Date(<%= todayYear %>, <%= todayMonth %>, <%= todayDay %>),
 			views: [
 				<c:if test="<%= !hideDayView %>">
 					window.<portlet:namespace />dayView,
