@@ -41,15 +41,17 @@ AUI().ready(
 
 		var toggleDockbar = A.one('#toggleDockbar');
 
-		toggleDockbar.on(
-			'click',
-			function(event) {
-				event.preventDefault();
+		if (toggleDockbar) {
+			toggleDockbar.on(
+				'click',
+				function(event) {
+					event.preventDefault();
 
-				var body = A.one('body');
+					var body = A.one('body');
 
-				body.toggleClass('show-dockbar');
-			}
-		);
+					body.toggleClass('show-dockbar');
+				}
+			);
+		}
 	}
 );
