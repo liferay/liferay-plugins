@@ -66,6 +66,56 @@
 		</method>
 	</javadoc>
 	<javadoc>
+		<name>PrivateMessagingUserNotificationHandler</name>
+		<type>com.liferay.privatemessaging.notifications.PrivateMessagingUserNotificationHandler</type>
+		<author><![CDATA[Jonathan Lee]]></author>
+		<method>
+			<name>PrivateMessagingUserNotificationHandler</name>
+		</method>
+		<method>
+			<name>getBody</name>
+			<param>
+				<name>userNotificationEvent</name>
+				<type>com.liferay.portal.model.UserNotificationEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLink</name>
+			<param>
+				<name>userNotificationEvent</name>
+				<type>com.liferay.portal.model.UserNotificationEvent</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
 		<name>PrivateMessagingPortlet</name>
 		<type>com.liferay.privatemessaging.portlet.PrivateMessagingPortlet</type>
 		<author><![CDATA[Scott Lee]]></author>
@@ -242,29 +292,6 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-		</method>
-		<method>
-			<name>removeNotification</name>
-			<param>
-				<name>companyId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>userId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>mbThreadId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>ChannelException</name>
-				<type>com.liferay.portal.kernel.notifications.ChannelException</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
 			<name>validateAttachment</name>
@@ -916,6 +943,9 @@
 		<name>PrivateMessagingConstants</name>
 		<type>com.liferay.privatemessaging.util.PrivateMessagingConstants</type>
 		<author><![CDATA[Scott Lee]]></author>
+		<field>
+			<name>NEW_MESSAGE</name>
+		</field>
 		<field>
 			<name>PRIVATE_MESSAGING_CATEGORY_ID</name>
 		</field>
