@@ -24,13 +24,6 @@ body {
 	}
 }
 
-.aui .navbar {
-	.nav > li > a {
-		padding-bottom: 0.45em;
-		padding-top: 0.45em;
-	}
-}
-
 .aui .dockbar-split.show-dockbar {
 	#wrapper {
 		padding-left: 63px;
@@ -180,105 +173,111 @@ a {
 
 /* --------- Forms --------- */
 
-form#hrefFm {
-	margin: 0;
-}
-
-fieldset {
-	@include default-border;
-
-	padding: 8px;
-}
-
-.aui-legend {
-	border-bottom-color: $defaultBorderColor;
-}
-
-input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button, .aui-field-input-text {
-	@include input-field-default;
-}
-
-a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
-	&, &:active, &.active, &:hover, &:focus {
-		@include button-default;
+.aui {
+	form#hrefFm {
+		margin: 0;
 	}
 
-	&:active, &.active {
-		@include button-active;
+	fieldset {
+		@include default-border;
+
+		padding: 8px;
 	}
 
-	&:hover, &:focus {
-		@include button-hover;
-	}
-}
-
-input, textarea {
-	&.focus {
-		@include input-field-focus;
-	}
-}
-
-.aui-buttonitem-content.aui-buttonitem-icon-only {
-	padding: 4px;
-}
-
-.lfr-actions {
-	&, &.lfr-extended, ul {
-		@include button-default;
-
-		padding: 0;
-	}
-
-	&:focus {
-		&, ul {
-			@include button-focus;
-		}
-	}
-
-	&.disabled, &.disabled:hover {
-		&, ul {
-			@include button-disabled;
-		}
-	}
-
-	&:hover, &.lfr-extended:hover {
-		&, ul {
-			@include button-hover;
-		}
-	}
-}
-
-.rtl .lfr-header-row .lfr-actions.show-arrow.direction-down .lfr-trigger strong a {
-	padding: 0 20px 0 4px;
-}
-
-.aui-menu-content, .lfr-menu-list ul {
-	@include menu-style;
-
-	li {
-		border-top-width: 0;
+	.aui-legend {
 		border-bottom-color: $defaultBorderColor;
 	}
-}
 
-.aui-menu-content li a.aui-focus, .lfr-menu-list ul .taglib-icon.aui-focus, .lfr-menu-expanded li a:focus {
-	background-color: #1D87EB;
-}
+	input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button, .aui-field-input-text {
+		@include input-field-default;
+	}
 
-.aui-button-disabled {
-	input[type], button {
-		&, &:hover, &:focus {
-			@include button-disabled;
+	.btn, a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
+		&, &:active, &.active, &:hover, &:focus {
+			@include button-default;
+		}
+
+		&:active, &.active {
+			@include button-active;
+		}
+
+		&:hover, &:focus {
+			@include button-hover;
+		}
+
+		&.btn-primary {
+			@include button-primary-gradient;
 		}
 	}
-}
 
-.aui-buttonitem-disabled {
-	@include button-disabled;
-}
+	input, textarea {
+		&.focus {
+			@include input-field-focus;
+		}
+	}
 
-input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-form-validator-error {
-	border-color: $red;
+	.aui-buttonitem-content.aui-buttonitem-icon-only {
+		padding: 4px;
+	}
+
+	.lfr-actions {
+		&, &.lfr-extended, ul {
+			@include button-default;
+
+			padding: 0;
+		}
+
+		&:focus {
+			&, ul {
+				@include button-focus;
+			}
+		}
+
+		&.disabled, &.disabled:hover {
+			&, ul {
+				@include button-disabled;
+			}
+		}
+
+		&:hover, &.lfr-extended:hover {
+			&, ul {
+				@include button-hover;
+			}
+		}
+	}
+
+	.rtl .lfr-header-row .lfr-actions.show-arrow.direction-down .lfr-trigger strong a {
+		padding: 0 20px 0 4px;
+	}
+
+	.aui-menu-content, .lfr-menu-list ul {
+		@include menu-style;
+
+		li {
+			border-top-width: 0;
+			border-bottom-color: $defaultBorderColor;
+		}
+	}
+
+	.aui-menu-content li a.aui-focus, .lfr-menu-list ul .taglib-icon.aui-focus, .lfr-menu-expanded li a:focus {
+		background-color: #1D87EB;
+	}
+
+	.aui-button-disabled {
+		input[type], button {
+			&, &:hover, &:focus {
+				@include button-disabled;
+			}
+		}
+	}
+
+	.aui-buttonitem-disabled {
+		@include button-disabled;
+	}
+
+	input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-form-validator-error {
+		border-color: $red;
+	}
 }
 
 .ie6 {
@@ -881,8 +880,22 @@ div#navigation {
 	}
 }
 
-.taglib-header .header-back-to a {
-	padding: 10px 0 0 10px;
+.taglib-header {
+	margin: 1em 0;
+
+	.header-back-to, .header-title {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	.header-back-to a {
+		padding-left: 0.25em;
+		padding-right: 0.25em;
+	}
+
+	.header-title {
+		font-weight: 200;
+	}
 }
 
 /* ---------- LFR header row ---------- */
@@ -1084,7 +1097,6 @@ div#navigation {
 
 	.taglib-header {
 		border-bottom-width: 0;
-		margin-bottom: 0;
 		position: relative;
 	}
 
@@ -1811,7 +1823,7 @@ div#navigation {
 		border-color: $defaultBorderColor;
 		border-width: 0 0 1px 1px;
 		margin: 0;
-		padding: 0 5px;
+		padding: 8px 5px;
 
 		&.reply {
 			border: 1px solid $defaultBorderColor;
@@ -1847,7 +1859,7 @@ div#navigation {
 
 		.thread-top {
 			border-bottom-width: 0;
-			padding: 1.75em 0 0;
+			padding: 1.75em 0.5em 0;
 			position: relative;
 
 			.edit-controls {
@@ -1923,11 +1935,33 @@ div#navigation {
 		@include border-radius(4px);
 		@include default-border;
 
-		padding: 5px 6px;
+		padding: 0 6px;
+
+		.thread-actions {
+			padding: 5px 0 0;
+		}
+
+		ul {
+			margin-bottom: 0;
+
+			li {
+				margin-right: 0.5em;
+				margin-bottom: 6px;
+
+				img {
+					display: none;
+				}
+			}
+		}
 	}
 
 	.thread-navigation {
-		padding: 0 5px;
+		border: 1px solid $defaultBorderColor;
+		border-width: 0px 1px 1px;
+		margin: -2px 0 0;
+		padding: 6px 11px;
+		position: relative;
+		bottom: -1px;
 	}
 
 	.edit-controls {
@@ -1941,7 +1975,11 @@ div#navigation {
 		z-index: 2;
 
 		li {
-			margin: 0 5px;
+			margin: 0 5px 0 0;
+		}
+
+		a img {
+			display: none;
 		}
 	}
 
@@ -2034,11 +2072,6 @@ div#navigation {
 .portlet-message-boards, .portlet-wiki {
 	.taglib-header {
 		border-bottom-width: 0;
-
-		.header-title {
-			font-weight: normal;
-			margin: 0.5em 0;
-		}
 	}
 
 	.top-links-container {
@@ -2102,8 +2135,15 @@ div#navigation {
 		@include button-focus;
 	}
 
-	img.icon {
+	img {
 		vertical-align: top;
+	}
+}
+
+.portlet-asset-publisher, .portlet-message-boards, .portlet-trash {
+	.thread-view-controls {
+		margin: 0.5em;
+		text-align: left;
 	}
 }
 
