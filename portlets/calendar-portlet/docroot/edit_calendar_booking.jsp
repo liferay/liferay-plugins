@@ -280,6 +280,10 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 </aui:form>
 
 <aui:script>
+	function <portlet:namespace />getSuggestionsContent() {
+		return document.<portlet:namespace />fm.<portlet:namespace />title.value + ' ' + document.<portlet:namespace />fm.<portlet:namespace />description.value;
+	}
+
 	function <portlet:namespace />filterCalendarBookings(calendarBooking) {
 		return <%= calendarBookingId %> !== calendarBooking.calendarBookingId;
 	}
