@@ -1732,6 +1732,9 @@
 			</throws>
 		</method>
 		<field>
+			<name>FIND_BY_C_M_R_E</name>
+		</field>
+		<field>
 			<name>FIND_BY_C_M_R_T</name>
 		</field>
 	</javadoc>
