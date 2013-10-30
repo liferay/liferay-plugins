@@ -135,11 +135,10 @@ public class PrivateMessagingUserNotificationHandler
 			portletURL = liferayPortletResponse.createRenderURL(
 				PortletKeys.PRIVATE_MESSAGING);
 
-			portletURL.setWindowState(WindowState.MAXIMIZED);
-
 			portletURL.setParameter("mvcPath", "/view.jsp");
 			portletURL.setParameter(
 				"mbThreadId", String.valueOf(mbMessage.getThreadId()));
+			portletURL.setWindowState(WindowState.MAXIMIZED);
 		}
 
 		return portletURL.toString();
