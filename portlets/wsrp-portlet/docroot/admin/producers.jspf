@@ -14,6 +14,13 @@
  */
 --%>
 
+<portlet:renderURL var="addProducerURL">
+	<portlet:param name="mvcPath" value="/admin/edit_producer.jsp" />
+	<portlet:param name="redirect" value="<%= currentURL %>" />
+</portlet:renderURL>
+
+<aui:button href="<%= addProducerURL %>" value="add-producer" />
+
 <liferay-ui:search-container
 	emptyResultsMessage="there-are-no-producers"
 	headerNames="name"
@@ -62,12 +69,6 @@
 			valign="top"
 		/>
 	</liferay-ui:search-container-row>
-
-	<div>
-		<input onClick="location.href = '<portlet:renderURL><portlet:param name="mvcPath" value="/admin/edit_producer.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>';" type="button" value="<liferay-ui:message key="add-producer" />" />
-	</div>
-
-	<br />
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
