@@ -45,56 +45,33 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 	title='<%= (wsrpProducer != null) ? wsrpProducer.getName() : "new-producer" %>'
 />
 
-<form action="<portlet:actionURL name="updateWSRPProducer" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveProducer(); return false;">
-<input name="<portlet:namespace />mvcPath" type="hidden" value="/admin/edit_producer.jsp" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
-<input name="<portlet:namespace />wsrpProducerId" type="hidden" value="<%= wsrpProducerId %>" />
-<input name="<portlet:namespace />portletIds" type="hidden" value="" />
+<portlet:actionURL name="updateWSRPProducer" var="updateWSRPProducerURL" />
 
-<liferay-ui:error exception="<%= WSRPProducerNameException.class %>" message="please-enter-a-valid-name" />
+<aui:form action="<%= updateWSRPProducerURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveProducer();" %>'>
+	<aui:input name="mvcPath" type="hidden" value="/admin/edit_producer.jsp" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="wsrpProducerId" type="hidden" value="<%= wsrpProducerId %>" />
+	<aui:input name="portletIds" type="hidden" value="" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="name" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= wsrpProducer %>" field="name" model="<%= WSRPProducer.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="version" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />version">
-			<option <%= version.equals(Constants.WSRP_V2) ? "selected" : "" %> value="<%= Constants.WSRP_V2 %>"><%= Constants.WSRP_V2 %></option>
-			<option <%= version.equals(Constants.WSRP_V1) ? "selected" : "" %> value="<%= Constants.WSRP_V1 %>"><%= Constants.WSRP_V1 %></option>
-		</select>
-	</td>
-</tr>
+	<liferay-ui:error exception="<%= WSRPProducerNameException.class %>" message="please-enter-a-valid-name" />
 
-<c:if test="<%= wsrpProducer != null %>">
-	<tr>
-		<td>
-			<liferay-ui:message key="url" />
-		</td>
-		<td>
-			<a href="<%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %>" target="_blank"><%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %></a>
-		</td>
-	</tr>
-</c:if>
+	<aui:model-context bean="<%= wsrpProducer %>" model="<%= WSRPProducer.class %>" />
 
-<tr>
-	<td colspan="3">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
+	<aui:fieldset>
+		<aui:input name="name" />
+
+		<aui:select name="version">
+			<aui:option selected="<%= version.equals(Constants.WSRP_V2) %>" value="<%= Constants.WSRP_V2 %>"><%= Constants.WSRP_V2 %></aui:option>
+			<aui:option selected="<%= version.equals(Constants.WSRP_V1) %>" value="<%= Constants.WSRP_V1 %>"><%= Constants.WSRP_V1 %></aui:option>
+		</aui:select>
+
+		<c:if test="<%= wsrpProducer != null %>">
+			<aui:a href="<%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %>" target="_blank"><%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %></aui:a>
+
+			<br />
+		</c:if>
+
 		<liferay-ui:message key="portlets" />
-	</td>
-	<td>
 
 		<%
 
@@ -161,17 +138,14 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 			rightList="<%= rightList %>"
 			rightTitle="available"
 		/>
-	</td>
-</tr>
-</table>
+	</aui:fieldset>
 
-<br />
+	<aui:button-row>
+		<aui:button type="submit" />
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" type="button" value="<liferay-ui:message key="cancel" />" />
-
-</form>
+		<aui:button href="<%= redirect %>" type="cancel" />
+	</aui:button-row>
+</aui:form>
 
 <aui:script>
 	Liferay.provide(
