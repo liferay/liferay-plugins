@@ -265,7 +265,7 @@ html body {
 	position: relative;
 }
 
-.panel-icon {
+img.panel-icon {
 	background: #333;
 	border: 1px solid #000;
 	display: block;
@@ -477,10 +477,6 @@ pre.chat-height-monitor {
 .ie {
 	.buddy-list .panel-content .online-users li {
 		width: 202px;
-	}
-
-	.panel-icon {
-		max-width: 48px;
 	}
 
 	.panel-output {
