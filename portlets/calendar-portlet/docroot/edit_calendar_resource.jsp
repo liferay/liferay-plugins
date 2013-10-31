@@ -118,7 +118,7 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 
 <aui:script>
 	function <portlet:namespace />getSuggestionsContent() {
-		return = document.<portlet:namespace />fm.<portlet:namespace />name.value + ' ' + document.<portlet:namespace />fm.<portlet:namespace />description.value;
+		return document.<portlet:namespace />fm.<portlet:namespace />name.value + ' ' + document.<portlet:namespace />fm.<portlet:namespace />description.value;
 	}
 
 	function <portlet:namespace />updateCalendarResource() {
