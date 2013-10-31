@@ -295,10 +295,10 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 			String bundleSymbolicNameAttributeValue = attributes.getValue(
 				Constants.BUNDLE_SYMBOLICNAME);
 
-			Parameters bundleSymbolicNameMap = OSGiHeader.parseHeader(
+			Parameters parameters = OSGiHeader.parseHeader(
 				bundleSymbolicNameAttributeValue);
 
-			Set<String> bundleSymbolicNameSet = bundleSymbolicNameMap.keySet();
+			Set<String> bundleSymbolicNameSet = parameters.keySet();
 
 			Iterator<String> bundleSymbolicNameIterator =
 				bundleSymbolicNameSet.iterator();
