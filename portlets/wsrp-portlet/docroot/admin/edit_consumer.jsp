@@ -50,7 +50,7 @@ WSRPConsumer wsrpConsumer = WSRPConsumerLocalServiceUtil.fetchWSRPConsumer(wsrpC
 
 		<aui:input name="forwardHeaders" />
 
-		<aui:input name="markupCharacterSets" helpMessage="markup-character-sets-help" />
+		<aui:input helpMessage="markup-character-sets-help" name="markupCharacterSets" />
 	</aui:fieldset>
 
 	<aui:button-row>
