@@ -55,17 +55,19 @@ if (supportsInbandRegistration) {
 	<aui:input name="wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
 
 	<aui:fieldset>
-		<liferay-ui:message key="name" />
-		<%= wsrpConsumer.getName() %>
-		<br />
+		<aui:field-wrapper label="name">
 
-		<liferay-ui:message key="url" />
-		<aui:a href="<%= wsrpConsumer.getUrl() %>" target="_blank"><%= wsrpConsumer.getUrl() %></aui:a>
-		<br />
+			<%= wsrpConsumer.getName() %>
+		</aui:field-wrapper>
+
+		<aui:field-wrapper label="url">
+
+			<aui:a href="<%= wsrpConsumer.getUrl() %>" target="_blank"><%= wsrpConsumer.getUrl() %></aui:a>
+		</aui:field-wrapper>
 
 		<aui:select label="registration-type" name="inbandRegistration">
 			<c:if test="<%= supportsInbandRegistration %>">
-				<aui:option value="true" label="inband" />
+				<aui:option label="inband" value="true" />
 			</c:if>
 
 			<aui:option label="outband" value="false" />
@@ -76,74 +78,75 @@ if (supportsInbandRegistration) {
 		</div>
 
 		<div <%= !supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
-			<liferay-ui:message key="registration-properties" />
+			<aui:field-wrapper label="registration-properties">
 
-			<%
-			SearchContainer searchContainer = new SearchContainer();
+				<%
+				SearchContainer searchContainer = new SearchContainer();
 
-			List<String> headerNames = new ArrayList<String>();
+				List<String> headerNames = new ArrayList<String>();
 
-			headerNames.add("name");
-			headerNames.add("value");
-			headerNames.add("description");
+				headerNames.add("name");
+				headerNames.add("value");
+				headerNames.add("description");
 
-			searchContainer.setHeaderNames(headerNames);
-			searchContainer.setEmptyResultsMessage("there-are-no-registration-properties");
+				searchContainer.setHeaderNames(headerNames);
+				searchContainer.setEmptyResultsMessage("there-are-no-registration-properties");
 
-			List resultRows = searchContainer.getResultRows();
+				List resultRows = searchContainer.getResultRows();
 
-			for (int i = 0; i < propertyDescriptions.length; i++) {
-				PropertyDescription propertyDescription = propertyDescriptions[i];
+				for (int i = 0; i < propertyDescriptions.length; i++) {
+					PropertyDescription propertyDescription = propertyDescriptions[i];
 
-				String fullyQualifiedName = propertyDescription.getName().toString();
+					String fullyQualifiedName = propertyDescription.getName().toString();
 
-				String name = propertyDescription.getName().getLocalPart();
+					String name = propertyDescription.getName().getLocalPart();
 
-				String description = LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getDescription(), StringPool.BLANK);
+					String description = LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getDescription(), StringPool.BLANK);
 
-				description += LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getHint(), StringPool.BLANK);
+					description += LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getHint(), StringPool.BLANK);
 
-				ResultRow row = new ResultRow(name, name, i);
+					ResultRow row = new ResultRow(name, name, i);
 
-				// Name
+					// Name
 
-				row.addText(name);
+					row.addText(name);
 
-				// Value
+					// Value
 
-				StringBuilder sb = new StringBuilder();
+					StringBuilder sb = new StringBuilder();
 
-				sb.append("<input name=\"");
-				sb.append(renderResponse.getNamespace());
-				sb.append("registrationPropertyName");
-				sb.append(i);
-				sb.append("\" type=\"hidden\" value=\"");
-				sb.append(fullyQualifiedName);
-				sb.append("\" />");
+					sb.append("<input name=\"");
+					sb.append(renderResponse.getNamespace());
+					sb.append("registrationPropertyName");
+					sb.append(i);
+					sb.append("\" type=\"hidden\" value=\"");
+					sb.append(fullyQualifiedName);
+					sb.append("\" />");
 
-				String registrationPropertyValue = GetterUtil.getString(registrationProperties.get(fullyQualifiedName));
+					String registrationPropertyValue = GetterUtil.getString(registrationProperties.get(fullyQualifiedName));
 
-				sb.append("<input name=\"");
-				sb.append(renderResponse.getNamespace());
-				sb.append("registrationPropertyValue");
-				sb.append(i);
-				sb.append("\" type=\"text\" value=\"");
-				sb.append(registrationPropertyValue);
-				sb.append("\" />");
+					sb.append("<input name=\"");
+					sb.append(renderResponse.getNamespace());
+					sb.append("registrationPropertyValue");
+					sb.append(i);
+					sb.append("\" type=\"text\" value=\"");
+					sb.append(registrationPropertyValue);
+					sb.append("\" />");
 
-				row.addText(sb.toString());
+					row.addText(sb.toString());
 
-				// Description
+					// Description
 
-				row.addText(description);
+					row.addText(description);
 
-				// Add result row
+					// Add result row
 
-				resultRows.add(row);
-			}
-			%>
+					resultRows.add(row);
+				}
+				%>
 
-			<liferay-ui:search-iterator paginate="<%= false %>" searchContainer="<%= searchContainer %>" />
+				<liferay-ui:search-iterator paginate="<%= false %>" searchContainer="<%= searchContainer %>" />
+			</aui:field-wrapper>
 		</div>
 	</aui:fieldset>
 

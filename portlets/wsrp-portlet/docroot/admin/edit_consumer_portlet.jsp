@@ -62,9 +62,7 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 	<aui:fieldset>
 		<aui:input name="name" />
 
-		<liferay-ui:message key="remote-portlet" />
-
-		<aui:select name="portletHandle">
+		<aui:select label="remote-portlet" name="portletHandle">
 			<aui:option value="" />
 
 			<c:if test="<%= portletDescriptions != null %>">
