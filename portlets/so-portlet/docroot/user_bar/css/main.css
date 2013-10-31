@@ -181,6 +181,11 @@ html.aui {
 			background: transparent none;
 			border-width: 0;
 		}
+
+		.info-items, .info-link-container {
+			position: relative;
+			top: 44px;
+		}
 	}
 
 	.dockbar .navbar-inner .container .nav-account-controls,
