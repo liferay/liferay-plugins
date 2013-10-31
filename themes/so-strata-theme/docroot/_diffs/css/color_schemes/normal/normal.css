@@ -22,6 +22,34 @@ body {
 		@include transition-duration(0.2s);
 		@include transition-property(margin-left);
 	}
+
+	.info-items, .info-link-container {
+		a {
+			background: transparent none;
+		}
+	}
+
+	.info-button .diamond {
+		border-bottom-color: transparent;
+		border-left-color: rgba(0, 0, 0, 0.5);
+		right: -12px;
+		top: 0;
+
+		&:after {
+			border-top-color: transparent;
+		}
+	}
+
+	.hide + .info-link-container .info-button .diamond {
+		border-bottom-color: rgba(0, 0, 0, 0.5);
+		border-left-color: transparent;
+		right: 0;
+		top: -12px;
+
+		&:after {
+			border-top-color: rgba(0, 0, 0, 0.5);
+		}
+	}
 }
 
 .aui .dockbar-split.show-dockbar {
