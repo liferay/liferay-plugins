@@ -1945,8 +1945,8 @@ div#navigation {
 			margin-bottom: 0;
 
 			li {
-				margin-right: 0.5em;
 				margin-bottom: 6px;
+				margin-right: 0.5em;
 
 				img {
 					display: none;
@@ -1958,10 +1958,10 @@ div#navigation {
 	.thread-navigation {
 		border: 1px solid $defaultBorderColor;
 		border-width: 0px 1px 1px;
+		bottom: -1px;
 		margin: -2px 0 0;
 		padding: 6px 11px;
 		position: relative;
-		bottom: -1px;
 	}
 
 	.edit-controls {
