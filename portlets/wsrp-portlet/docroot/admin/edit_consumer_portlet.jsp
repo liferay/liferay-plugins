@@ -46,31 +46,26 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 	title='<%= (wsrpConsumerPortlet != null) ? wsrpConsumerPortlet.getName() : "new-portlet" %>'
 />
 
-<form action="<portlet:actionURL name="updateWSRPConsumerPortlet" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerPortlet(); return false;">
-<input name="<portlet:namespace />mvcPath" type="hidden" value="/admin/edit_consumer_portlet.jsp" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
-<input name="<portlet:namespace />wsrpConsumerPortletId" type="hidden" value="<%= wsrpConsumerPortletId %>" />
-<input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
+<portlet:actionURL name="updateWSRPConsumerPortlet" var="updateWSRPConsumerPortletURL" />
 
-<liferay-ui:error exception="<%= WSRPConsumerPortletHandleException.class %>" message="please-enter-a-valid-remote-portlet" />
-<liferay-ui:error exception="<%= WSRPConsumerPortletNameException.class %>" message="please-enter-a-valid-name" />
+<aui:form action="<%= updateWSRPConsumerPortletURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConsumerPortlet();" %>'>
+	<aui:input name="mvcPath" type="hidden" value="/admin/edit_consumer_portlet.jsp" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="wsrpConsumerPortletId" type="hidden" value="<%= wsrpConsumerPortletId %>" />
+	<aui:input name="wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="name" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= wsrpConsumerPortlet %>" field="name" model="<%= WSRPConsumerPortlet.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
+	<liferay-ui:error exception="<%= WSRPConsumerPortletHandleException.class %>" message="please-enter-a-valid-remote-portlet" />
+	<liferay-ui:error exception="<%= WSRPConsumerPortletNameException.class %>" message="please-enter-a-valid-name" />
+
+	<aui:model-context bean="<%= wsrpConsumerPortlet %>" model="<%= WSRPConsumerPortlet.class %>" />
+
+	<aui:fieldset>
+		<aui:input name="name" />
+
 		<liferay-ui:message key="remote-portlet" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />portletHandle">
-			<option value=""></option>
+
+		<aui:select name="portletHandle">
+			<aui:option value="" />
 
 			<c:if test="<%= portletDescriptions != null %>">
 
@@ -82,7 +77,7 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 					catch (NoSuchConsumerPortletException nscpe) {
 				%>
 
-						<option <%= portletHandle.equals(portletDescription.getPortletHandle()) ? "selected" : "" %> value="<%= portletDescription.getPortletHandle() %>"><%= wsrpConsumerManager.getDisplayName(portletDescription) %></option>
+					<aui:option selected="<%= portletHandle.equals(portletDescription.getPortletHandle()) %>" value="<%= portletDescription.getPortletHandle() %>"><%= wsrpConsumerManager.getDisplayName(portletDescription) %></aui:option>
 
 				<%
 					}
@@ -90,18 +85,15 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 				%>
 
 			</c:if>
-		</select>
-	</td>
-</tr>
-</table>
+		</aui:select>
+	</aui:fieldset>
 
-<br />
+	<aui:button-row>
+		<aui:button type="submit" />
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" type="button" value="<liferay-ui:message key="cancel" />" />
-
-</form>
+		<aui:button href="<%= redirect %>" type="cancel" />
+	</aui:button-row>
+</aui:form>
 
 <aui:script>
 	function <portlet:namespace />saveConsumerPortlet() {

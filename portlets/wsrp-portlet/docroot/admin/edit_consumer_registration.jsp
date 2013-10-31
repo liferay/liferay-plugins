@@ -47,63 +47,36 @@ if (supportsInbandRegistration) {
 	title='<%= (wsrpConsumer != null) ? wsrpConsumer.getName() : "new-consumer-registration" %>'
 />
 
-<form action="<portlet:actionURL name="updateWSRPConsumerRegistration" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerRegistration(); return false;">
-<input name="<portlet:namespace />mvcPath" type="hidden" value="/admin/edit_consumer_registration.jsp" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
-<input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
+<portlet:actionURL name="updateWSRPConsumerRegistration" var="updateWSRPConsumerRegistrationURL" />
 
-<table class="lfr-table">
-<tr>
-	<td>
+<aui:form action="<%= updateWSRPConsumerRegistrationURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConsumerRegistration();" %>'>
+	<aui:input name="mvcPath" type="hidden" value="/admin/edit_consumer_registration.jsp" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
+
+	<aui:fieldset>
 		<liferay-ui:message key="name" />
-	</td>
-	<td>
 		<%= wsrpConsumer.getName() %>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="url" />
-	</td>
-	<td>
-		<a href="<%= wsrpConsumer.getUrl() %>" target="_blank"><%= wsrpConsumer.getUrl() %></a>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
 		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="registration-type" />
-	</td>
-	<td>
-		<select id="<portlet:namespace />inbandRegistration" name="<portlet:namespace />inbandRegistration">
+
+		<liferay-ui:message key="url" />
+		<aui:a href="<%= wsrpConsumer.getUrl() %>" target="_blank"><%= wsrpConsumer.getUrl() %></aui:a>
+		<br />
+
+		<aui:select label="registration-type" name="inbandRegistration">
 			<c:if test="<%= supportsInbandRegistration %>">
-				<option value="true"><liferay-ui:message key="inband" /></option>
+				<aui:option value="true" label="inband" />
 			</c:if>
 
-			<option value="false"><liferay-ui:message key="outband" /></option>
-		</select>
-	</td>
-</tr>
-<tbody <%= supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationHandleSettings">
-	<tr>
-		<td>
-			<liferay-ui:message key="registration-handle" />
-		</td>
-		<td>
-			<input class="lfr-input-text" name="<portlet:namespace />registrationHandle" type="text" />
-		</td>
-	</tr>
-</tbody>
-<tbody <%= !supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
-	<tr>
-		<td>
+			<aui:option label="outband" value="false" />
+		</aui:select>
+
+		<div <%= supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationHandleSettings">
+			<aui:input name="registrationHandle" />
+		</div>
+
+		<div <%= !supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
 			<liferay-ui:message key="registration-properties" />
-		</td>
-		<td>
 
 			<%
 			SearchContainer searchContainer = new SearchContainer();
@@ -171,18 +144,15 @@ if (supportsInbandRegistration) {
 			%>
 
 			<liferay-ui:search-iterator paginate="<%= false %>" searchContainer="<%= searchContainer %>" />
-		</td>
-	</tr>
-</tbody>
-</table>
+		</div>
+	</aui:fieldset>
 
-<br />
+	<aui:button-row>
+		<aui:button type="submit" />
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" type="button" value="<liferay-ui:message key="cancel" />" />
-
-</form>
+		<aui:button href="<%= redirect %>" type="cancel" />
+	</aui:button-row>
+</aui:form>
 
 <aui:script>
 	function <portlet:namespace />saveConsumerRegsitration() {

@@ -29,65 +29,36 @@ WSRPConsumer wsrpConsumer = WSRPConsumerLocalServiceUtil.fetchWSRPConsumer(wsrpC
 	title='<%= (wsrpConsumer != null) ? wsrpConsumer.getName() : "new-consumer" %>'
 />
 
-<form action="<portlet:actionURL name="updateWSRPConsumer" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumer(); return false;">
-<input name="<portlet:namespace />mvcPath" type="hidden" value="/admin/edit_consumer.jsp" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
-<input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
+<portlet:actionURL name="updateWSRPConsumer" var="updateWSRPConsumerURL" />
 
-<liferay-ui:error exception="<%= WSRPConsumerNameException.class %>" message="please-enter-a-valid-name" />
-<liferay-ui:error exception="<%= WSRPConsumerWSDLException.class %>" message="url-does-not-point-to-a-valid-wsrp-producer" />
+<aui:form action="<%= updateWSRPConsumerURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConsumer();" %>'>
+	<aui:input name="mvcPath" type="hidden" value="/admin/edit_consumer.jsp" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="name" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= wsrpConsumer %>" field="name" model="<%= WSRPConsumer.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="url" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= wsrpConsumer %>" field="url" model="<%= WSRPConsumer.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="forward-cookies" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= wsrpConsumer %>" field="forwardCookies" model="<%= WSRPConsumer.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="forward-headers" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= wsrpConsumer %>" field="forwardHeaders" model="<%= WSRPConsumer.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="markup-character-sets" /><liferay-ui:icon-help message="markup-character-sets-help" />
+	<liferay-ui:error exception="<%= WSRPConsumerNameException.class %>" message="please-enter-a-valid-name" />
+	<liferay-ui:error exception="<%= WSRPConsumerWSDLException.class %>" message="url-does-not-point-to-a-valid-wsrp-producer" />
 
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= wsrpConsumer %>" field="markupCharacterSets" model="<%= WSRPConsumer.class %>" />
-	</td>
-</tr>
-</table>
+	<aui:model-context bean="<%= wsrpConsumer %>" model="<%= WSRPConsumer.class %>" />
 
-<br />
+	<aui:fieldset>
+		<aui:input name="name" />
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
+		<aui:input name="url" />
 
-<input onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" type="button" value="<liferay-ui:message key="cancel" />" />
+		<aui:input name="forwardCookies" />
 
-</form>
+		<aui:input name="forwardHeaders" />
+
+		<aui:input name="markupCharacterSets" helpMessage="markup-character-sets-help" />
+	</aui:fieldset>
+
+	<aui:button-row>
+		<aui:button type="submit" />
+
+		<aui:button href="<%= redirect %>" type="cancel" />
+	</aui:button-row>
+</aui:form>
 
 <aui:script>
 	function <portlet:namespace />saveConsumer() {
