@@ -56,12 +56,10 @@ if (supportsInbandRegistration) {
 
 	<aui:fieldset>
 		<aui:field-wrapper label="name">
-
 			<%= wsrpConsumer.getName() %>
 		</aui:field-wrapper>
 
 		<aui:field-wrapper label="url">
-
 			<aui:a href="<%= wsrpConsumer.getUrl() %>" target="_blank"><%= wsrpConsumer.getUrl() %></aui:a>
 		</aui:field-wrapper>
 

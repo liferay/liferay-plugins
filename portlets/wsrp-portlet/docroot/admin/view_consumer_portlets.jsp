@@ -29,8 +29,6 @@ portletURL.setParameter("mvcPath", "/admin/view_consumer_portlets.jsp");
 portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 %>
 
-<form>
-
 <portlet:renderURL var="addPortletURL">
 	<portlet:param name="mvcPath" value="/admin/edit_consumer_portlet.jsp" />
 	<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -87,8 +85,6 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
-
-</form>
 
 <%
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "manage-portlets"), currentURL);
