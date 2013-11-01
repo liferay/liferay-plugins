@@ -66,78 +66,81 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 		</aui:select>
 
 		<c:if test="<%= wsrpProducer != null %>">
-			<aui:a href="<%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %>" target="_blank"><%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %></aui:a>
+			<aui:field-wrapper label="url">
 
-			<br />
+				<aui:a href="<%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %>" target="_blank"><%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %></aui:a><br />
+
+			</aui:field-wrapper>
 		</c:if>
 
-		<liferay-ui:message key="portlets" />
+		<aui:field-wrapper label="portlets">
 
-		<%
+			<%
 
-		// Left list
+			// Left list
 
-		List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+			List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
 
-		for (String portletId : portletIds) {
-			Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId);
+			for (String portletId : portletIds) {
+				Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId);
 
-			if ((portlet == null) || portlet.isUndeployedPortlet()) {
-				continue;
+				if ((portlet == null) || portlet.isUndeployedPortlet()) {
+					continue;
+				}
+
+				leftList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
 			}
 
-			leftList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
-		}
+			leftList = ListUtil.sort(leftList, new KeyValuePairComparator(false, true));
 
-		leftList = ListUtil.sort(leftList, new KeyValuePairComparator(false, true));
+			// Right list
 
-		// Right list
+			List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
-		List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+			for (int i = 0; i < portletIds.length; i++) {
+				String portletId = portletIds[i];
 
-		for (int i = 0; i < portletIds.length; i++) {
-			String portletId = portletIds[i];
+				int index = portletId.indexOf(PortletConstants.INSTANCE_SEPARATOR);
 
-			int index = portletId.indexOf(PortletConstants.INSTANCE_SEPARATOR);
-
-			if (index != -1) {
-				portletIds[i] = portletId.substring(0, index);
-			}
-		}
-
-		Arrays.sort(portletIds);
-
-		Iterator<Portlet> itr = PortletLocalServiceUtil.getPortlets(company.getCompanyId(), false, false).iterator();
-
-		while (itr.hasNext()) {
-			Portlet portlet = (Portlet)itr.next();
-
-			if (portlet.isUndeployedPortlet()) {
-				continue;
+				if (index != -1) {
+					portletIds[i] = portletId.substring(0, index);
+				}
 			}
 
-			if (!portlet.isRemoteable()) {
-				continue;
+			Arrays.sort(portletIds);
+
+			Iterator<Portlet> itr = PortletLocalServiceUtil.getPortlets(company.getCompanyId(), false, false).iterator();
+
+			while (itr.hasNext()) {
+				Portlet portlet = (Portlet)itr.next();
+
+				if (portlet.isUndeployedPortlet()) {
+					continue;
+				}
+
+				if (!portlet.isRemoteable()) {
+					continue;
+				}
+
+				String portletId = portlet.getPortletId();
+
+				if (Arrays.binarySearch(portletIds, portletId) < 0) {
+					rightList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
+				}
 			}
 
-			String portletId = portlet.getPortletId();
+			rightList = ListUtil.sort(rightList, new KeyValuePairComparator(false, true));
+			%>
 
-			if (Arrays.binarySearch(portletIds, portletId) < 0) {
-				rightList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
-			}
-		}
-
-		rightList = ListUtil.sort(rightList, new KeyValuePairComparator(false, true));
-		%>
-
-		<liferay-ui:input-move-boxes
-			leftBoxName="currentPortletIds"
-			leftList="<%= leftList %>"
-			leftTitle="current"
-			rightBoxName="availablePortletIds"
-			rightList="<%= rightList %>"
-			rightTitle="available"
-		/>
+			<liferay-ui:input-move-boxes
+				leftBoxName="currentPortletIds"
+				leftList="<%= leftList %>"
+				leftTitle="current"
+				rightBoxName="availablePortletIds"
+				rightList="<%= rightList %>"
+				rightTitle="available"
+			/>
+		</aui:field-wrapper>
 	</aui:fieldset>
 
 	<aui:button-row>
