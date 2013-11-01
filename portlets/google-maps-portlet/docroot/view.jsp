@@ -23,15 +23,21 @@
 				<aui:layout>
 					<c:choose>
 						<c:when test="<%= mapInputEnabled %>">
-							<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= (directionsInputEnabled || Validator.isNotNull(directionsAddress)) ? "from" : StringPool.BLANK %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
+							<aui:field-wrapper inlineField="<%= true %>" label='<%= (directionsInputEnabled || Validator.isNotNull(directionsAddress)) ? "from" : "map-address" %>'>
+								<div class="input-append">
+									<aui:input label="" name="mapAddress" type="text" value="<%= mapAddress %>" />
 
-							<c:if test="<%= !directionsInputEnabled && !mapInputEnabled && Validator.isNotNull(directionsAddress) %>">
-								<aui:button name="getMapButton" value="get-map" />
-							</c:if>
+									<c:if test="<%= !directionsInputEnabled && Validator.isNull(directionsAddress) %>">
+										<aui:button name="getMapButton" value="get-map" />
+									</c:if>
+								</div>
+							</aui:field-wrapper>
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= Validator.isNotNull(mapAddress) && (Validator.isNotNull(directionsAddress) || directionsInputEnabled) %>">
-								<aui:field-wrapper cssClass="address-field" inlineField="<%= true %>" label="from"><%= mapAddress %></aui:field-wrapper>
+								<aui:field-wrapper inlineField="<%= true %>" label="from">
+									<liferay-ui:input-resource url="<%= mapAddress %>" />
+								</aui:field-wrapper>
 							</c:if>
 
 							<aui:input name="mapAddress" type="hidden" value="<%= mapAddress %>" />
@@ -42,11 +48,13 @@
 				<aui:layout>
 					<c:choose>
 						<c:when test="<%= directionsInputEnabled %>">
-							<aui:input cssClass="address-field" inlineField="<%= true %>" label="to" name="directionsAddress" type="text" value="<%= directionsAddress %>" />
+							<aui:input inlineField="<%= true %>" label="to" name="directionsAddress" type="text" value="<%= directionsAddress %>" />
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= Validator.isNotNull(directionsAddress) %>">
-								<aui:field-wrapper cssClass="address-field" inlineField="<%= true %>" label="to"><%= directionsAddress %></aui:field-wrapper>
+								<aui:field-wrapper inlineField="<%= true %>" label="to">
+									<liferay-ui:input-resource url="<%= directionsAddress %>" />
+								</aui:field-wrapper>
 							</c:if>
 
 							<aui:input name="directionsAddress" type="hidden" value="<%= directionsAddress %>" />

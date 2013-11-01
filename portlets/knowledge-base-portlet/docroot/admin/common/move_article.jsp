@@ -45,16 +45,11 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 
 	<aui:fieldset>
 		<aui:field-wrapper label="current-parent">
-			<c:choose>
-				<c:when test="<%= !kbArticle.isRoot() %>">
-					<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(kbArticle.getParentResourcePrimKey(), status), "title") %>
-				</c:when>
-				<c:otherwise>
-					(<liferay-ui:message key="none" />)
-				</c:otherwise>
-			</c:choose>
+			<div class="input-append">
+				<liferay-ui:input-resource url='<%= !kbArticle.isRoot() ? BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(kbArticle.getParentResourcePrimKey(), status), "title") : "(" + LanguageUtil.get(pageContext, "none") + ")" %>' />
 
-			<span class="kb-priority"><%= BigDecimal.valueOf(priority).toPlainString() %></span>
+				<liferay-ui:input-resource cssClass="input-mini" url="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
+			</div>
 		</aui:field-wrapper>
 
 		<aui:field-wrapper label="new-parent">
