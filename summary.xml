@@ -3300,12 +3300,12 @@
 		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
 		<releng>
 			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Utility]]></category>
+			<category><![CDATA[]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
