@@ -48,7 +48,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 	<aui:fieldset>
 		<c:choose>
 			<c:when test='<%= tabs2.equals("general") %>'>
-				<div class="kb-field-wrapper">
+				<div class="input-append kb-field-wrapper">
 					<aui:field-wrapper label="article">
 
 						<%
@@ -61,9 +61,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 						}
 						%>
 
-						<div id="<portlet:namespace />configurationKBArticle">
-							<%= (kbArticle != null) ? kbArticle.getTitle() : StringPool.BLANK %>
-						</div>
+						<liferay-ui:input-resource id="configurationKBArticle" url="<%= (kbArticle != null) ? kbArticle.getTitle() : StringPool.BLANK %>" />
 
 						<liferay-portlet:renderURL portletName="<%= portletResource %>" var="selectConfigurationKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 							<portlet:param name="mvcPath" value="/article/select_configuration_article.jsp" />
@@ -73,9 +71,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 						String taglibOnClick = "var selectConfigurationKBArticleWindow = window.open('" + selectConfigurationKBArticleURL + "&" + HtmlUtil.escapeJS(PortalUtil.getPortletNamespace(portletResource)) + "&selResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "resourcePrimKey.value, 'selectConfigurationKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationKBArticleWindow.focus();";
 						%>
 
-						<div class="kb-edit-link">
-							<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-article" /> &raquo;</aui:a>
-						</div>
+						<aui:a cssClass="btn" href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select" /></aui:a>
 					</aui:field-wrapper>
 				</div>
 			</c:when>
@@ -112,7 +108,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 	<aui:script>
 		function <portlet:namespace />selectConfigurationKBArticle(resourcePrimKey, title) {
 			document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKey.value = resourcePrimKey;
-			document.getElementById("<portlet:namespace />configurationKBArticle").innerHTML = title;
+			document.getElementById("<portlet:namespace />configurationKBArticle").value = title;
 		}
 	</aui:script>
 </c:if>

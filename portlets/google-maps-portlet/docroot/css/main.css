@@ -3,18 +3,8 @@
 		max-width: none;
 	}
 
-	.address-field {
-		input {
-			width: 350px;
-		}
-
-		label {
-			min-width: 40px;
-		}
-	}
-
 	.get-directions {
-		margin-top: -12px;
+		margin-top: -6px;
 	}
 
 	.google-maps-link {

@@ -42,52 +42,40 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 />
 
 <aui:fieldset>
-	<dl class="property-list">
-		<dt>
-			<liferay-ui:message key="start-date" />:
-		</dt>
-		<dd>
-			<%= dateFormatLongDate.format(startTimeJCalendar.getTime()) + ", " + dateFormatTime.format(startTimeJCalendar.getTime()) %>
-		</dd>
-		<dt>
-			<liferay-ui:message key="end-date" />:
-		</dt>
-		<dd>
-			<%= dateFormatLongDate.format(endTimeJCalendar.getTime()) + ", " + dateFormatTime.format(endTimeJCalendar.getTime()) %>
-		</dd>
+	<aui:field-wrapper label="start-date">
+		<liferay-ui:input-resource url='<%= dateFormatLongDate.format(startTimeJCalendar.getTime()) + ", " + dateFormatTime.format(startTimeJCalendar.getTime()) %>' />
+	</aui:field-wrapper>
 
-		<%
-		List<CalendarBooking> childCalendarBookings = calendarBooking.getChildCalendarBookings();
-		%>
+	<aui:field-wrapper label="end-date">
+		<liferay-ui:input-resource url='<%= dateFormatLongDate.format(endTimeJCalendar.getTime()) + ", " + dateFormatTime.format(endTimeJCalendar.getTime()) %>' />
+	</aui:field-wrapper>
 
-		<c:if test="<%= !childCalendarBookings.isEmpty() %>">
-			<dt>
-				<liferay-ui:message key="resources" />:
-			</dt>
-			<dd>
+	<%
+	List<CalendarBooking> childCalendarBookings = calendarBooking.getChildCalendarBookings();
+	%>
 
-				<%
-				List<String> calendarResourcesNames = new ArrayList<String>();
+	<c:if test="<%= !childCalendarBookings.isEmpty() %>">
+		<aui:field-wrapper label="resources">
 
-				for (CalendarBooking childCalendarBooking : childCalendarBookings) {
-					CalendarResource calendarResource = childCalendarBooking.getCalendarResource();
+			<%
+			List<String> calendarResourcesNames = new ArrayList<String>();
 
-					calendarResourcesNames.add(calendarResource.getName(locale));
-				}
-				%>
+			for (CalendarBooking childCalendarBooking : childCalendarBookings) {
+				CalendarResource calendarResource = childCalendarBooking.getCalendarResource();
 
-				<%= HtmlUtil.escape(StringUtil.merge(calendarResourcesNames, ", ")) %>
-			</dd>
-		</c:if>
-		<c:if test="<%= Validator.isNotNull(calendarBooking.getLocation()) %>">
-			<dt>
-				<liferay-ui:message key="location" />:
-			</dt>
-			<dd>
-				<span class="location"><%= HtmlUtil.escape(calendarBooking.getLocation()) %></span>
-			</dd>
-		</c:if>
-	</dl>
+				calendarResourcesNames.add(calendarResource.getName(locale));
+			}
+			%>
+
+			<liferay-ui:input-resource url='<%= StringUtil.merge(calendarResourcesNames, ", ") %>' />
+		</aui:field-wrapper>
+	</c:if>
+
+	<c:if test="<%= Validator.isNotNull(calendarBooking.getLocation()) %>">
+		<aui:field-wrapper label="location">
+			<liferay-ui:input-resource url="<%= calendarBooking.getLocation() %>" />
+		</aui:field-wrapper>
+	</c:if>
 
 	<liferay-ui:custom-attributes-available className="<%= CalendarBooking.class.getName() %>">
 		<liferay-ui:custom-attribute-list
@@ -98,9 +86,9 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 		/>
 	</liferay-ui:custom-attributes-available>
 
-	<p>
-		<%= calendarBooking.getDescription(locale) %>
-	</p>
+	<aui:field-wrapper label="description">
+		<aui:input disabled="<%= true %>" label="" name="descriptionDisplay" type="textarea" value="<%= calendarBooking.getDescription(locale) %>" />
+	</aui:field-wrapper>
 
 	<div class="entry-categories">
 		<liferay-ui:asset-categories-summary

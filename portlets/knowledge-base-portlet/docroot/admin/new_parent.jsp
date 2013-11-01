@@ -27,17 +27,10 @@ long parentResourcePrimKey = BeanParamUtil.getLong(kbArticle, request, "parentRe
 double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 %>
 
-<div class="kb-new-parent">
-	<c:choose>
-		<c:when test="<%= parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
-			<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(parentResourcePrimKey, status), "title") %>
-		</c:when>
-		<c:otherwise>
-			(<liferay-ui:message key="none" />)
-		</c:otherwise>
-	</c:choose>
+<div class="input-append kb-new-parent">
+	<liferay-ui:input-resource url='<%= parentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY ? BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(parentResourcePrimKey, status), "title") : "(" + LanguageUtil.get(pageContext, "none") + ")" %>' />
 
-	<aui:input cssClass="kb-priority" inlineField="<%= true %>" label="" name="priority" size="5" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
+	<aui:input cssClass="input-mini kb-priority" inlineField="<%= true %>" label="" name="priority" type="text" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 
 	<liferay-portlet:renderURL var="selectKBArticleURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 		<portlet:param name="mvcPath" value='<%= templatePath + "select_article.jsp" %>' />
@@ -50,7 +43,8 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 	String taglibOnClick = "var selectKBArticleWindow = window.open('" + selectKBArticleURL + "&" + renderResponse.getNamespace() + "oldParentResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "parentResourcePrimKey.value, 'selectKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectKBArticleWindow.focus();";
 	%>
 
-	<div class="kb-edit-link">
-		<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-article" /> &raquo;</aui:a>
-	</div>
+</div>
+
+<div class="kb-edit-link">
+	<aui:a href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select-article" /> &raquo;</aui:a>
 </div>

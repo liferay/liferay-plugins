@@ -26,9 +26,11 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 <aui:form action="<%= portletURL %>" method="post" name="fm1">
 	<aui:field-wrapper cssClass="form-search">
-		<aui:input id="keywords" inlineField="<%= true %>" label="" name="keywords" size="30" type="text" />
+		<div class="input-append">
+			<aui:input id="keywords" inlineField="<%= true %>" label="" name="keywords" size="30" type="text" />
 
-		<aui:button type="submit" value="search" />
+			<aui:button type="submit" value="search" />
+		</div>
 	</aui:field-wrapper>
 </aui:form>
 
