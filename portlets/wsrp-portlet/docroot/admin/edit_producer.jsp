@@ -67,9 +67,7 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 
 		<c:if test="<%= wsrpProducer != null %>">
 			<aui:field-wrapper label="url">
-
 				<aui:a href="<%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %>" target="_blank"><%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %></aui:a><br />
-
 			</aui:field-wrapper>
 		</c:if>
 
