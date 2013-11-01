@@ -71,11 +71,11 @@ if (supportsInbandRegistration) {
 			<aui:option label="outband" value="false" />
 		</aui:select>
 
-		<div <%= supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationHandleSettings">
+		<div <%= supportsInbandRegistration ? "class=\"aui-hide\"" : "" %> id="<portlet:namespace />registrationHandleSettings">
 			<aui:input name="registrationHandle" />
 		</div>
 
-		<div <%= !supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
+		<div <%= !supportsInbandRegistration ? "class=\"aui-hide\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
 			<aui:field-wrapper label="registration-properties">
 
 				<%
@@ -156,7 +156,7 @@ if (supportsInbandRegistration) {
 </aui:form>
 
 <aui:script>
-	function <portlet:namespace />saveConsumerRegsitration() {
+	function <portlet:namespace />saveConsumerRegistration() {
 		submitForm(document.<portlet:namespace />fm);
 	}
 </aui:script>
