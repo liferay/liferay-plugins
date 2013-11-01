@@ -32,8 +32,15 @@
 						<if>
 							<available file="@{dir}/views" type="dir" />
 							<then>
+								<antelope:stringutil property="basedir" string="${basedir}">
+									<antelope:replace regex="\\" replacement="/" />
+								</antelope:stringutil>
+
 								<antelope:stringutil property="dir" string="@{dir}">
 									<antelope:replace regex="\\" replacement="/" />
+								</antelope:stringutil>
+
+								<antelope:stringutil property="dir" string="${dir}">
 									<antelope:replace regex="${basedir}/docroot/" replacement="" />
 								</antelope:stringutil>
 
