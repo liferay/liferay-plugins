@@ -11,57 +11,78 @@ body {
 	padding: 0;
 }
 
-.aui .dockbar-split .dockbar .navbar-inner {
-	.nav-add-controls {
-		background: $btnBackgroundDefault;
-		border-right: 1px solid $defaultBorderColor;
-		bottom: 0;
-		margin-left: -63px;
-		top: 44px;
+html.aui {
+	.dockbar {
+		margin-top: -44px;
 
 		@include transition-duration(0.2s);
-		@include transition-property(margin-left);
-	}
+		@include transition-property(margin-top);
 
-	.info-items, .info-link-container {
-		a {
-			background: transparent none;
+		.info-items, .info-link-container {
+			a {
+				background: transparent none;
+			}
+		}
+
+		.info-button .diamond {
+			border-bottom-color: transparent;
+			border-left-color: rgba(0, 0, 0, 0.5);
+			right: -12px;
+			top: 0;
+
+			&:after {
+				border-top-color: transparent;
+			}
+		}
+
+		.hide + .info-link-container .info-button .diamond {
+			border-bottom-color: rgba(0, 0, 0, 0.5);
+			border-left-color: transparent;
+			right: 0;
+			top: -12px;
+
+			&:after {
+				border-top-color: rgba(0, 0, 0, 0.5);
+			}
+		}
+
+		&.navbar-static-top .collapse .nav-account-controls, .navbar-inner .container .nav-account-controls {
+			top: 0;
+
+			@include transition-duration(0.2s);
+			@include transition-property(top);
 		}
 	}
 
-	.info-button .diamond {
-		border-bottom-color: transparent;
-		border-left-color: rgba(0, 0, 0, 0.5);
-		right: -12px;
-		top: 0;
+	.dockbar {
+		.info-items, .info-link-container {
+			display: none;
+		}
 
-		&:after {
-			border-top-color: transparent;
+		.info-items {
+			left: auto;
+			position: absolute;
+			right: 293px;
+			top: 86px;
+			width: 575px;
+		}
+
+		.info-link-container {
+			left: 50px;
+			top: 92px;
 		}
 	}
 
-	.hide + .info-link-container .info-button .diamond {
-		border-bottom-color: rgba(0, 0, 0, 0.5);
-		border-left-color: transparent;
-		right: 0;
-		top: -12px;
+	.show-dockbar .dockbar {
+		margin-top: 0;
 
-		&:after {
-			border-top-color: rgba(0, 0, 0, 0.5);
+		&.navbar-static-top .collapse .nav-account-controls, .navbar-inner .container .nav-account-controls {
+			top: -44px;
 		}
-	}
-}
 
-.aui .dockbar-split.show-dockbar {
-	#wrapper {
-		padding-left: 63px;
-
-		@include transition-duration(0.2s);
-		@include transition-property(padding-left);
-	}
-
-	.dockbar .navbar-inner .nav-add-controls {
-		margin-left: 0;
+		.info-items, .info-link-container {
+			display: block;
+		}
 	}
 }
 
@@ -465,7 +486,10 @@ a {
 	}
 
 	#toggleDockbar {
+		border-left: 1px solid $defaultBorderColor;
 		float: right;
+		margin: -15px -1.25em -26px 1em;
+		padding: 20px 1.25em;
 
 		img {
 			height: 16px;
@@ -2302,6 +2326,11 @@ div#navigation {
 		width: 155px;
 	}
 }
+
+@media (max-width: 767px) {
+	padding: 0;
+}
+
 
 @media (max-width:860px) {
 	#content, #navigation, #navigation ul {
