@@ -58,11 +58,11 @@ long accountId = ParamUtil.getLong(request, "accountId");
 	</table>
 
 	<aui:script>
-		var <portlet:namespace />onIOFailure = function(event, id, obj) {
+		function <portlet:namespace />onIOFailure(event, id, obj) {
 			Liferay.Mail.setStatus('error', '<liferay-ui:message key="unable-to-connect-with-mail-server" />');
 		}
 
-		var <portlet:namespace />onIOSuccess = function(event, id, obj) {
+		function <portlet:namespace />onIOSuccess(event, id, obj) {
 			var responseData = this.get('responseData');
 
 			Liferay.Mail.setStatus(responseData.status, responseData.message);
