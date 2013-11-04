@@ -63,7 +63,6 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 				@Override
 				protected void addCriteria(DynamicQuery dynamicQuery) {
-
 					Property columnIdProperty = PropertyFactoryUtil.forName(
 						"columnId");
 
