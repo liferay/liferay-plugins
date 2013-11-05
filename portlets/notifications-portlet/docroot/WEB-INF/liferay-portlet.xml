@@ -17,6 +17,7 @@
 		<footer-portlet-javascript>/notifications/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>notifications-portlet</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
+		<system>true</system>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
