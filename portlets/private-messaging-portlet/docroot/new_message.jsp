@@ -162,7 +162,7 @@ to = sb.toString() + to;
 			loadingMask.show();
 
 			A.io.request(
-				'<liferay-portlet:actionURL name="sendMessage"></liferay-portlet:actionURL>',
+				'<liferay-portlet:resourceURL id="sendMessage"></liferay-portlet:resourceURL>',
 				{
 					dataType: 'json',
 					form: {
