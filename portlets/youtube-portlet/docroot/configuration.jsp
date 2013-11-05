@@ -70,6 +70,10 @@
 					</div>
 				</liferay-ui:panel>
 			</liferay-ui:panel-container>
+
+			<aui:button-row>
+				<aui:button type="submit" />
+			</aui:button-row>
 		</aui:column>
 
 		<aui:column columnWidth="50">
@@ -78,10 +82,6 @@
 			</div>
 		</aui:column>
 	</aui:layout>
-
-	<aui:button-row>
-		<aui:button type="submit" />
-	</aui:button-row>
 </aui:form>
 
 <aui:script use="aui-datatype,aui-swf-deprecated">
