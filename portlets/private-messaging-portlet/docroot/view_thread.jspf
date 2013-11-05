@@ -277,9 +277,11 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
+<div class="message-container" id="<portlet:namespace />messageContainer"></div>
+
 <c:if test="<%= hasExistingRecipients %>">
 	<aui:layout cssClass="message-body-container">
-		<form enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;">
+		<aui:form enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
 			<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 			<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
 
@@ -302,7 +304,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 			<aui:button-row>
 				<aui:button name="send" type="submit" value="send" />
 			</aui:button-row>
-		</form>
+		</aui:form>
 	</aui:layout>
 </c:if>
 
@@ -310,15 +312,52 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 	<aui:button cssClass="back-button" href="<%= backURL %>" value="back-to-messages" />
 </aui:layout>
 
-<aui:script>
-	<liferay-portlet:renderURL var="backToThreadURL" windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>
+<aui:script use="aui-image-viewer-gallery,aui-io-request-deprecated">
+	var form = A.one('#<portlet:namespace />fm');
 
-	function <portlet:namespace />sendPrivateMessage() {
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage"><portlet:param name="redirect" value="<%= backToThreadURL %>" /></liferay-portlet:actionURL>');
-	}
-</aui:script>
+	form.on(
+		'submit',
+		function(event) {
+			var loadingMask = new A.LoadingMask(
+				{
+					'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "sending-message") %>',
+					target: A.one('.private-messaging-portlet .private-messaging-container')
+				}
+			);
 
-<aui:script use="aui-image-viewer-gallery">
+			loadingMask.show();
+
+			A.io.request(
+				'<liferay-portlet:resourceURL id="sendMessage"></liferay-portlet:resourceURL>',
+				{
+					dataType: 'json',
+					form: {
+						id: form,
+						upload: true
+					},
+					on: {
+						complete: function(event, id, obj) {
+							var responseText = obj.responseText;
+
+							var responseData = A.JSON.parse(responseText);
+
+							if (responseData.success) {
+								document.location.href = '<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>';
+
+								loadingMask.hide();
+							}
+							else {
+								Liferay.PrivateMessaging.showMessage('<span class="portlet-msg-error">' + responseData.message + '</span>');
+
+								loadingMask.hide();
+							}
+						}
+					}
+				}
+			);
+		}
+	);
+
 	var viewportRegion = A.getDoc().get('viewportRegion');
 
 	var imageGallery = new A.ImageGallery(
