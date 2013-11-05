@@ -41,10 +41,6 @@ long endTime = BeanPropertiesUtil.getLong(calendarBooking, "endTime", ParamUtil.
 
 java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(endTime, userTimeZone);
 
-if (com.liferay.portal.kernel.util.CalendarUtil.equalsByDay(startTimeJCalendar.getTime(), endTimeJCalendar.getTime())) {
-	activeView = "day";
-}
-
 boolean allDay = BeanParamUtil.getBoolean(calendarBooking, request, "allDay");
 
 long firstReminder = BeanParamUtil.getLong(calendarBooking, request, "firstReminder");
