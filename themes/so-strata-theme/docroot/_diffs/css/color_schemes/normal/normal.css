@@ -986,65 +986,65 @@ div#navigation {
 /* ---------- Document library ---------- */
 
 .portlet-document-library {
-        .lfr-app-column-view {
-                background: #F5F5F5;
-                border-bottom: 1px solid #DDD;
+	.lfr-app-column-view {
+		background: #F5F5F5;
+		border-bottom: 1px solid #DDD;
 
-                .navigation-pane .nav {
-                        background: none;
-                        border: 0;
-                        padding: 0 15px;
+		.navigation-pane .nav {
+			background: none;
+			border: 0;
+			padding: 0 15px;
 
-                        .app-view-navigation-entry .overlay.entry-action .btn {
-                                padding: 15px 10px 5px;
-                        }
+			.app-view-navigation-entry .overlay.entry-action .btn {
+				padding: 15px 10px 5px;
+			}
 
-                        li > a {
-                                border-top: 1px solid #FFF;
-                                border-bottom: 1px solid #CCC;
-                                padding: 0.70em 15px;
+			li > a {
+				border-bottom: 1px solid #CCC;
+				border-top: 1px solid #FFF;
+				padding: 0.70em 15px;
 
-                                :first-child {
-                                        border-top: 0;
-                                }
-                        }
+				:first-child {
+					border-top-width: 0;
+				}
+			}
 
-                        li.active > a {
-                                border-color: #0af;
-                        }
-                }
+			li.active > a {
+				border-color: #0AF;
+			}
+		}
 
-                .context-pane {
-                        background: #FFF;
-                        border-left: 1px solid #DDD;
-                        min-height: 500px;
+		.context-pane {
+			background: #FFF;
+			border-left: 1px solid #DDD;
+			min-height: 500px;
 
-                        .lfr-header-row-content {
-                                padding: 0;
+			.lfr-header-row-content {
+				padding: 0;
 
-                                .select-all-entries {
-                                        left: 10px;
-                                        top: 13px;
-                                }
-                        }
+				.select-all-entries {
+					left: 10px;
+					top: 13px;
+				}
+			}
 
-                        .navbar {
-                                margin-bottom: 0;
+			.navbar {
+				margin-bottom: 0;
 
-                                .navbar-inner {
-                                        background: $controlBgColor;
+				.navbar-inner {
+					background: $controlBgColor;
 
-                                        li.dropdown > a {
-                                                margin-top: 5px;
-                                        }
-                                }
-                        }
-                }
-        }
+					li.dropdown > a {
+						margin-top: 5px;
+					}
+				}
+			}
+		}
+	}
 
-        .document-entries-pagination, .portlet-document-library-display .document-entries-pagination {
-                padding: 20px 0 0;
-        }
+	.document-entries-pagination, .portlet-document-library-display .document-entries-pagination {
+		padding: 20px 0 0;
+	}
 }
 
 /* ---------- Microblogs portlet ---------- */
