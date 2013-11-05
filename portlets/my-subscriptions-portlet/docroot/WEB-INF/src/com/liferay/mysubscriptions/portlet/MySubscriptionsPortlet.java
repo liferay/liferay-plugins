@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Subscription;
 import com.liferay.portal.security.auth.PrincipalException;
-import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 
@@ -53,10 +52,7 @@ public class MySubscriptionsPortlet extends MVCPortlet {
 					SubscriptionLocalServiceUtil.getSubscription(
 						subscriptionId);
 
-				PermissionChecker permissionChecker =
-					themeDisplay.getPermissionChecker();
-
-				if (permissionChecker.getUserId() != subscription.getUserId()) {
+				if (themeDisplay.getUserId() != subscription.getUserId()) {
 					throw new PrincipalException();
 				}
 
