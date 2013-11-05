@@ -58,6 +58,10 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 				ExpandoTableConstants.DEFAULT_TABLE_NAME,
 				DL.MANUAL_CHECK_IN_REQUIRED);
 
+		if (expandoColumn == null) {
+			return;
+		}
+
 		ActionableDynamicQuery actionableDynamicQuery =
 			new ExpandoValueActionableDynamicQuery() {
 
