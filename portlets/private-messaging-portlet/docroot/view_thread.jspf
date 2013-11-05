@@ -303,14 +303,12 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 
 			<aui:button-row>
 				<aui:button name="send" type="submit" value="send" />
+
+				<aui:button cssClass="back-button" href="<%= backURL %>" value="back-to-messages" />
 			</aui:button-row>
 		</aui:form>
 	</aui:layout>
 </c:if>
-
-<aui:layout cssClass="controls">
-	<aui:button cssClass="back-button" href="<%= backURL %>" value="back-to-messages" />
-</aui:layout>
 
 <aui:script use="aui-image-viewer-gallery,aui-io-request-deprecated">
 	var form = A.one('#<portlet:namespace />fm');

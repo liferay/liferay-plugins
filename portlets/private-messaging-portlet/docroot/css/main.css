@@ -32,11 +32,6 @@
 			margin: 15px 10px 0 0;
 		}
 
-		.back-button {
-			float: right;
-		}
-	}
-
 	.message-attachments {
 		clear: both;
 
@@ -178,6 +173,10 @@
 
 		.name {
 			font-weight: bold;
+		}
+
+		.back-button {
+			float: right;
 		}
 	}
 
