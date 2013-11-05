@@ -114,18 +114,6 @@ to = sb.toString() + to;
 	</aui:form>
 </aui:layout>
 
-<aui:script>
-	function <portlet:namespace />showMessage(message) {
-		var A = AUI();
-
-		var messageContainer = A.one('#<portlet:namespace />messageContainer');
-
-		if (messageContainer) {
-			messageContainer.html(message);
-		}
-	}
-</aui:script>
-
 <aui:script use="aui-io-request-deprecated,aui-loading-mask-deprecated,autocomplete,io-upload-iframe,json-parse">
 	var form = A.one('#<portlet:namespace />fm');
 
@@ -179,7 +167,7 @@ to = sb.toString() + to;
 								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 							}
 							else {
-								<portlet:namespace />showMessage('<span class="portlet-msg-error">' + responseData.message + '</span>');
+								Liferay.PrivateMessaging.showMessage('<span class="portlet-msg-error">' + responseData.message + '</span>');
 
 								loadingMask.hide();
 							}
