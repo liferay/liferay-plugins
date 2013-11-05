@@ -46,7 +46,6 @@ page import="com.liferay.portal.kernel.util.StringBundler" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.TextFormatter" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@

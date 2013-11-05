@@ -140,8 +140,8 @@
 	}
 
 	.taglib-search-iterator-page-iterator-top {
-		margin-bottom: 0;
 		border-top: 1px solid #DDD;
+		margin-bottom: 0;
 	}
 
 	/* Thread */
@@ -180,7 +180,7 @@
 			}
 		}
 
-		.lfr-search-container , .message-body-container-content {
+		.lfr-search-container, .message-body-container-content {
 			margin: 0 10px;
 		}
 
