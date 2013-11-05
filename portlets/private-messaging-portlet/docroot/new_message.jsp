@@ -61,7 +61,7 @@ for (long userId : userIds) {
 to = sb.toString() + to;
 %>
 
-<div id="<portlet:namespace />messageContainer"></div>
+<div class="message-container" id="<portlet:namespace />messageContainer"></div>
 
 <aui:layout cssClass="message-body-container">
 	<aui:form enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
