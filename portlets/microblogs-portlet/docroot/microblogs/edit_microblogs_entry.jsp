@@ -484,7 +484,7 @@ if (comment) {
 			var updateContainer = A.one('.microblogs-portlet .portlet-body');
 
 			<c:if test="<%= comment %>">
-				updateContainer = A.one('.microblogs-portlet #commentsContainer<%= microblogsEntryId %>');
+				updateContainer = A.one('.microblogs-portlet #<portlet:namespace />commentsContainer<%= microblogsEntryId %>');
 			</c:if>
 
 			Liferay.Microblogs.updateMicroblogs(form, url.get("value"), updateContainer);
