@@ -16,10 +16,12 @@ package com.liferay.opensocial.messaging;
 
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.shindig.servlet.GuiceServletContextListener;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Layout;
@@ -30,6 +32,8 @@ import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 
 import java.util.List;
+
+import javax.servlet.ServletContextListener;
 
 /**
  * @author Michael Young
@@ -83,11 +87,30 @@ public class OpenSocialHotDeployMessageListener
 		GadgetLocalServiceUtil.initGadgets();
 
 		checkExpando();
+
+		Thread currentThread = Thread.currentThread();
+
+		ClassLoader classLoader = currentThread.getContextClassLoader();
+
+		try {
+			currentThread.setContextClassLoader(
+				PortletClassLoaderUtil.getClassLoader());
+
+			_guiceServletContextListener.contextInitialized(
+				GuiceServletContextListener.
+					getInitializedServletContextEvent());
+		}
+		finally {
+			currentThread.setContextClassLoader(classLoader);
+		}
 	}
 
 	@Override
 	protected void onUndeploy(Message message) throws Exception {
 		GadgetLocalServiceUtil.destroyGadgets();
+
+		_guiceServletContextListener.contextDestroyed(
+			GuiceServletContextListener.getInitializedServletContextEvent());
 	}
 
 	protected void verifyGadgets() throws Exception {
@@ -106,5 +129,8 @@ public class OpenSocialHotDeployMessageListener
 	}
 
 	private static final String _GADGETS_CATEGORY = "category.gadgets";
+
+	private ServletContextListener _guiceServletContextListener =
+		new org.apache.shindig.common.servlet.GuiceServletContextListener();
 
 }
