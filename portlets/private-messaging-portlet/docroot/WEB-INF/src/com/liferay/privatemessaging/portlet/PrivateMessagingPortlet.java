@@ -99,15 +99,22 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 	}
 
 	public void getMessageAttachment(
-			ActionRequest actionRequest, ActionResponse actionResponse)
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
+
+		HttpServletRequest request = PortalUtil.getHttpServletRequest(
+			resourceRequest);
+		HttpServletResponse response = PortalUtil.getHttpServletResponse(
+			resourceResponse);
 
 		try {
 			ThemeDisplay themeDisplay =
-				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+				(ThemeDisplay)resourceRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
 
-			long messageId = ParamUtil.getLong(actionRequest, "messageId");
-			String fileName = ParamUtil.getString(actionRequest, "attachment");
+			long messageId = ParamUtil.getLong(resourceRequest, "messageId");
+			String fileName = ParamUtil.getString(
+				resourceRequest, "attachment");
 
 			MBMessage message = MBMessageLocalServiceUtil.getMessage(messageId);
 
@@ -116,11 +123,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 				throw new PrincipalException();
 			}
-
-			HttpServletRequest request = PortalUtil.getHttpServletRequest(
-				actionRequest);
-			HttpServletResponse response = PortalUtil.getHttpServletResponse(
-				actionResponse);
 
 			FileEntry fileEntry = PortletFileRepositoryUtil.getPortletFileEntry(
 				message.getGroupId(), message.getAttachmentsFolderId(),
@@ -131,7 +133,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 				fileEntry.getSize(), fileEntry.getMimeType());
 		}
 		catch (Exception e) {
-			PortalUtil.sendError(e, actionRequest, actionResponse);
+			PortalUtil.sendError(e, request, response);
 		}
 	}
 
@@ -247,7 +249,10 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			String resourceID = GetterUtil.getString(
 				resourceRequest.getResourceID());
 
-			if (resourceID.equals("getUsers")) {
+			if (resourceID.equals("getMessageAttachment")) {
+				getMessageAttachment(resourceRequest, resourceResponse);
+			}
+			else if (resourceID.equals("getUsers")) {
 				getUsers(resourceRequest, resourceResponse);
 			}
 			else if (resourceID.equals("sendMessage")) {

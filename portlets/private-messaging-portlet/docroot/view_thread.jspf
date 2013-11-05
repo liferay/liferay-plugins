@@ -209,10 +209,10 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 							if (MimeTypesUtil.isWebImage(fileEntry.getMimeType())) {
 						%>
 
-								<liferay-portlet:actionURL name="getMessageAttachment" var="imageURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+								<liferay-portlet:resourceURL id="getMessageAttachment" var="imageURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 									<portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" />
 									<portlet:param name="attachment" value="<%= fileEntry.getTitle() %>" />
-								</liferay-portlet:actionURL>
+								</liferay-portlet:resourceURL>
 
 								<div class="image-thumbnail">
 									<a href="<%= imageURL %>" title="<%= fileEntry.getTitle() %>">
@@ -240,10 +240,10 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 							for (FileEntry fileEntry : attachmentsFileEntries) {
 							%>
 
-								<liferay-portlet:actionURL name="getMessageAttachment" var="attachmentURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+								<liferay-portlet:resourceURL id="getMessageAttachment" var="attachmentURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 									<portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" />
 									<portlet:param name="attachment" value="<%= fileEntry.getTitle() %>" />
-								</liferay-portlet:actionURL>
+								</liferay-portlet:resourceURL>
 
 								<li class="message-attachment">
 
