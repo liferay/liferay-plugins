@@ -70,6 +70,16 @@ AUI.add(
 						instance._sendRequest(instance._getActionURL('markMessagesAsUnread').toString(), mbThreadIds);
 					},
 
+					showMessage: function(message) {
+						var instance = this;
+
+						var messageContainer = A.one('#' + instance._namespace + 'messageContainer');
+
+						if (messageContainer) {
+							messageContainer.html(message);
+						}
+					},
+
 					_bindCheckAllMessages: function() {
 						var instance = this;
 
