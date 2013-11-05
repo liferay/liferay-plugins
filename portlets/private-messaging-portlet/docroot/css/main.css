@@ -18,6 +18,15 @@
 		width: 60px;
 	}
 
+	.message-container {
+		margin: 0 10px;
+
+		.portlet-msg-error {
+			display: block;
+			margin-bottom: 10px;
+		}
+	}
+
 	.controls {
 		.check-all {
 			margin: 15px 10px 0 0;
