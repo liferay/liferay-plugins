@@ -17,6 +17,9 @@ package com.liferay.mysubscriptions.portlet;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.Subscription;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -46,7 +49,18 @@ public class MySubscriptionsPortlet extends MVCPortlet {
 
 		for (long subscriptionId : subscriptionIds) {
 			if (subscriptionId > 0) {
-				SubscriptionLocalServiceUtil.deleteSubscription(subscriptionId);
+				Subscription subscription =
+					SubscriptionLocalServiceUtil.getSubscription(
+						subscriptionId);
+
+				PermissionChecker permissionChecker =
+					themeDisplay.getPermissionChecker();
+
+				if (permissionChecker.getUserId() != subscription.getUserId()) {
+					throw new PrincipalException();
+				}
+
+				SubscriptionLocalServiceUtil.deleteSubscription(subscription);
 			}
 		}
 	}
