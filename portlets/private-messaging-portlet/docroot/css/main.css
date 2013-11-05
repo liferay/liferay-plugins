@@ -1,6 +1,14 @@
 @import "compass";
 
 .private-messaging-portlet {
+	.layout {
+		width: auto;
+	}
+
+	.alert {
+		margin-bottom: 0;
+	}
+
 	.column-content .check-all {
 		margin: 0 20px 0 5px;
 	}
@@ -27,10 +35,9 @@
 		}
 	}
 
-	.controls {
-		.check-all {
-			margin: 15px 10px 0 0;
-		}
+	.controls .check-all {
+		margin: 15px 10px 0 0;
+	}
 
 	.message-attachments {
 		clear: both;
@@ -44,16 +51,14 @@
 		width: 300px;
 	}
 
-	.message-body {
+	.message-body, .message-subject, .message-to {
 		width: 90%;
 	}
 
-	.message-body-container .message-body-container-content {
-		padding: 10px;
-
-		.autocomplete-button {
-			margin: 0;
-		}
+	input[type="file"] {
+		height: 24px;
+		line-height: 24px;
+		padding: 0;
 	}
 
 	.author-sender {
@@ -142,6 +147,10 @@
 	/* Thread */
 
 	.thread {
+		.taglib-header {
+			border-top: 1px solid #C8C9CA;
+		}
+
 		.body {
 			padding: 5px 60px 0 0;
 
@@ -169,6 +178,10 @@
 			&.last, &.only {
 				border-bottom-width: 0;
 			}
+		}
+
+		.lfr-search-container , .message-body-container-content {
+			margin: 0 10px;
 		}
 
 		.name {
