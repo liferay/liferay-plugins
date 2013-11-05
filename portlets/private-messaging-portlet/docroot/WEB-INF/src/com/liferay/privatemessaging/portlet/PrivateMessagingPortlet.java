@@ -270,9 +270,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 	protected String getMessage(PortletRequest portletRequest, Exception key)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		String message = null;
 
 		if (key instanceof FileExtensionException) {
