@@ -221,17 +221,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
-			String message = "unable-to-send-message";
+			jsonObject.put("message", getMessage(resourceRequest, e));
 
-			if (e instanceof FileExtensionException ||
-				e instanceof FileNameException ||
-				e instanceof FileSizeException ||
-				e instanceof IOException) {
-
-				message = "unable-to-process-attachment";
-			}
-
-			jsonObject.put("message", translate(actionRequest, message));
 			jsonObject.put("success", Boolean.FALSE);
 		}
 		finally {
