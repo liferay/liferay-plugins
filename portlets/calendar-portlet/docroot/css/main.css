@@ -98,11 +98,6 @@
 	.calendar-portlet-column-grid {
 		position: relative;
 
-		&.calendar-portlet-column-full {
-			margin-left: 0;
-			width: 100%;
-		}
-
 		.calendar-portlet-column-toggler {
 			bottom: 0;
 			margin-left: -10px;
