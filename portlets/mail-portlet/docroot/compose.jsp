@@ -206,7 +206,7 @@ else {
 
 			var count = parseInt(countNode.val()) + 1;
 
-			form.one('.attachments').append('<div><input name="<portlet:namespace/>attachment' + count + '" size="30" type="file" /></div>');
+			form.one('.attachments').append('<div><input name="<portlet:namespace />attachment' + count + '" size="30" type="file" /></div>');
 
 			countNode.setAttribute('value', count);
 		}

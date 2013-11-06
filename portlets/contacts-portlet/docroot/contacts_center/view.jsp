@@ -282,15 +282,15 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</aui:column>
 
 				<aui:column columnWidth="70" cssClass="contacts-container">
-					<div id="<portlet:namespace/>userToolbarButtons"><!-- --></div>
+					<div id="<portlet:namespace />userToolbarButtons"><!-- --></div>
 
-					<div class="hide" id="<portlet:namespace/>contactCenterToolbarButtons">
+					<div class="hide" id="<portlet:namespace />contactCenterToolbarButtons">
 						<liferay-util:include page="/contacts_center/contacts_center_toolbar.jsp" servletContext="<%= application %>" />
 					</div>
 
-					<div id="<portlet:namespace/>messageContainer"></div>
+					<div id="<portlet:namespace />messageContainer"></div>
 
-					<div id="<portlet:namespace/>detailUserView">
+					<div id="<portlet:namespace />detailUserView">
 						<c:choose>
 							<c:when test="<%= userPublicPage %>">
 
@@ -363,7 +363,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						</c:choose>
 					</div>
 
-					<div id="<portlet:namespace/>selectedUsersView"><!-- --></div>
+					<div id="<portlet:namespace />selectedUsersView"><!-- --></div>
 				</aui:column>
 			</aui:layout>
 		</aui:form>
@@ -541,7 +541,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 				var contactsCenterHome = A.one('.contacts-portlet .contacts-center-home');
 
 				<c:if test="<%= !showOnlySiteMembers %>">
-					var addContact = A.one('#<portlet:namespace/>addContact');
+					var addContact = A.one('#<portlet:namespace />addContact');
 
 					if (addContact) {
 						addContact.on(
