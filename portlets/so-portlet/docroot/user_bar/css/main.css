@@ -234,6 +234,10 @@ html.aui {
 			right: 10px;
 		}
 	}
+
+	.navbar .nav > .user-avatar > .dropdown-menu:after {
+		left: 18px;
+	}
 }
 
 .portlet-dockbar .nav-account-controls .go-to {
