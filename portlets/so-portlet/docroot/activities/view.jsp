@@ -68,7 +68,15 @@ portletURL.setParameter("tabs1", tabs1);
 		setTimeout(
 			function() {
 				<portlet:renderURL var="viewActivitySetsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-					<portlet:param name="mvcPath" value="/activities/view_activity_sets.jsp" />
+					<c:choose>
+						<c:when test="<%= GetterUtil.getBoolean(PropsUtil.get(PropsKeys.SOCIAL_ACTIVITY_SETS_ENABLED)) %>">
+							<portlet:param name="mvcPath" value="/activities/view_activity_sets.jsp" />
+						</c:when>
+						<c:otherwise>
+							<portlet:param name="mvcPath" value="/activities/view_activities.jsp" />
+						</c:otherwise>
+					</c:choose>
+
 					<portlet:param name="tabs1" value="<%= tabs1 %>" />
 				</portlet:renderURL>
 

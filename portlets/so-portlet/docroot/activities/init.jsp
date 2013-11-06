@@ -22,8 +22,8 @@
 <%@ page import="com.liferay.microblogs.model.MicroblogsEntry" %><%@
 page import="com.liferay.microblogs.model.MicroblogsEntryConstants" %><%@
 page import="com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil" %><%@
-page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
-page import="com.liferay.portal.kernel.dao.search.SearchPaginationUtil" %><%@
+page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
+page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
 page import="com.liferay.portal.kernel.util.Time" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
 page import="com.liferay.portlet.documentlibrary.model.DLFileEntry" %><%@

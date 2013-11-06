@@ -20,71 +20,55 @@
 <%@ include file="/activities/init.jsp" %>
 
 <%
-PortletURL portletURL = renderResponse.createRenderURL();
+Group group = themeDisplay.getScopeGroup();
 
-portletURL.setParameter("tabs1", tabs1);
-
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 10, portletURL, null, null);
-
-List<SocialActivity> results = new ArrayList<SocialActivity>();
+List<SocialActivity> results = null;
 int total = 0;
 
-Group group = themeDisplay.getScopeGroup();
+int start = ParamUtil.getInteger(request, "start");
+int end = start + _DELTA;
 
 if (group.isUser()) {
 	if (!layout.isPublicLayout()) {
 		if (tabs1.equals("connections")) {
-			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
-
-			searchContainer.setTotal(total);
-
-			results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
+			results = SocialActivityLocalServiceUtil.getRelationActivities(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
 		}
 		else if (tabs1.equals("following")) {
-			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-
-			searchContainer.setTotal(total);
-
-			results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
+			results = SocialActivityLocalServiceUtil.getRelationActivities(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
 		}
 		else if (tabs1.equals("my-sites")) {
-			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(themeDisplay.getUserId());
-
-			searchContainer.setTotal(total);
-
-			results = SocialActivityLocalServiceUtil.getUserGroupsActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			results = SocialActivityLocalServiceUtil.getUserGroupsActivities(group.getClassPK(), start, end);
+			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(group.getClassPK());
 		}
 		else {
-			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(themeDisplay.getUserId());
-
-			searchContainer.setTotal(total);
-
-			results = SocialActivityLocalServiceUtil.getUserActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
+			results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), start, end);
+			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
 		}
 	}
 	else {
+		results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), start, end);
 		total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
-
-		searchContainer.setTotal(total);
-
-		results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
 	}
 }
 else {
+	results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), start, end);
 	total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
-
-	searchContainer.setTotal(total);
-
-	results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
 }
-
-searchContainer.setResults(results);
 %>
 
 <%@ include file="/activities/view_activities_feed.jspf" %>
 
 <c:if test="<%= (results.isEmpty()) %>">
 	<div class="no-activities">
-		<liferay-ui:message key="there-are-no-activities" />
+		<c:choose>
+			<c:when test="<%= total == 0 %>">
+				<liferay-ui:message key="there-are-no-activities" />
+			</c:when>
+			<c:otherwise>
+				<liferay-ui:message key="there-are-no-more-activities" />
+			</c:otherwise>
+		</c:choose>
 	</div>
 </c:if>
