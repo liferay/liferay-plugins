@@ -21,7 +21,6 @@ import com.liferay.contacts.service.ClpSerializer;
 import com.liferay.contacts.util.ContactsExtensionsUtil;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.PortletClassInvoker;
 
@@ -36,19 +35,6 @@ public class ContactsHotDeployMessageListener extends HotDeployMessageListener {
 
 	@Override
 	protected void onDeploy(Message message) throws Exception {
-		if (_registerMethodKey == null) {
-			try {
-				_registerMethodKey = new MethodKey(
-					ClassResolverUtil.resolveByPortletClassLoader(
-						"com.liferay.chat.util.ChatExtensionsUtil",
-						"chat-portlet"),
-					"register", String.class, String.class);
-			}
-			catch (RuntimeException re) {
-				return;
-			}
-		}
-
 		PortletClassInvoker.invoke(
 			false, "1_WAR_chatportlet", _registerMethodKey,
 			ClpSerializer.getServletContextName(), "/chat/view.jsp");
