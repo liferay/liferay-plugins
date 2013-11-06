@@ -55,6 +55,8 @@ String twitterSn = contact.getTwitterSn();
 		String configureURL = "javascript:Liferay.Util.openWindow({id: '" + renderResponse.getNamespace() + "configureTwitter', title:'" + LanguageUtil.get(pageContext, "my-account") + "',uri:'" + HtmlUtil.escapeJS(themeDisplay.getURLMyAccount() + "#_" + PortletKeys.MY_ACCOUNT + "_tab=_" + PortletKeys.MY_ACCOUNT + "_socialNetwork") + "'});";
 		%>
 
-		<a href="<%= configureURL %>"><liferay-ui:message key="please-configure-your-twitter-screen-name" /></a>
+		<div class="alert alert-info">
+			<a href="<%= configureURL %>"><liferay-ui:message key="please-configure-your-twitter-screen-name" /></a>
+		</div>
 	</c:otherwise>
 </c:choose>
