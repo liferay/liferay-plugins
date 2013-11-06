@@ -20,16 +20,16 @@
 <%@ include file="/html/portlet/blogs_aggregator/init.jsp" %>
 
 <%
-Map<String, String[]> preferencesMap = preferences.getMap();
+Map<String, String[]> portletPreferencesMap = portletPreferences.getMap();
 
-if (preferencesMap.isEmpty()) {
-	preferences.setValue("displayStyle", "title");
-	preferences.setValue("enableRssSubscription", "false");
-	preferences.setValue("max", "10");
-	preferences.setValue("selectionMethod", "scope");
-	preferences.setValue("showTags", "false");
+if (portletPreferencesMap.isEmpty()) {
+	portletPreferences.setValue("displayStyle", "title");
+	portletPreferences.setValue("enableRssSubscription", "false");
+	portletPreferences.setValue("max", "10");
+	portletPreferences.setValue("selectionMethod", "scope");
+	portletPreferences.setValue("showTags", "false");
 
-	preferences.store();
+	portletPreferences.store();
 }
 %>
 
