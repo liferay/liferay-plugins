@@ -175,7 +175,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 
 <aui:script>
 	function <portlet:namespace />getSuggestionsContent() {
-		var content = document.<portlet:namespace />fm1.<portlet:namespace/>title.value + ' ';
+		var content = document.<portlet:namespace />fm1.<portlet:namespace />title.value + ' ';
 
 		return content;
 	}

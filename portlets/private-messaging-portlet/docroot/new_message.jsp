@@ -196,7 +196,7 @@ to = sb.toString() + to;
 		}
 	);
 
-	var to = A.one('#<portlet:namespace/>to');
+	var to = A.one('#<portlet:namespace />to');
 
 	to.plug(
 		A.Plugin.AutoComplete,

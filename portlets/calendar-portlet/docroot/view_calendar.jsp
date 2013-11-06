@@ -118,8 +118,8 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 		</aui:col>
 
 		<aui:col cssClass='<%= "calendar-portlet-column-grid " + (columnOptionsVisible ? StringPool.BLANK : "calendar-portlet-column-full") %>' id="columnGrid" span="<%= 9 %>">
-			<div class="calendar-portlet-column-toggler" id="<portlet:namespace/>columnToggler">
-				<i class="<%= columnOptionsVisible ? "icon-caret-left" : "icon-caret-right" %>" id="<portlet:namespace/>columnTogglerIcon"></i>
+			<div class="calendar-portlet-column-toggler" id="<portlet:namespace />columnToggler">
+				<i class="<%= columnOptionsVisible ? "icon-caret-left" : "icon-caret-right" %>" id="<portlet:namespace />columnTogglerIcon"></i>
 			</div>
 
 			<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">

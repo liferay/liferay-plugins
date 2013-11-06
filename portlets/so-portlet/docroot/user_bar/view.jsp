@@ -43,7 +43,7 @@ catch (NoSuchRoleException nsre) {
 	</liferay-util:html-top>
 
 	<liferay-util:body-top>
-		<div class="so-portlet-user-bar" id="<portlet:namespace/>userBar">
+		<div class="so-portlet-user-bar" id="<portlet:namespace />userBar">
 
 			<%
 			Group group = user.getGroup();
@@ -60,7 +60,7 @@ catch (NoSuchRoleException nsre) {
 			</a>
 
 			<nav>
-				<ul class="dashboard-nav" id="<portlet:namespace/>dashboardNav">
+				<ul class="dashboard-nav" id="<portlet:namespace />dashboardNav">
 
 					<%
 					List<Layout> mylayouts = LayoutLocalServiceUtil.getLayouts(group.getGroupId(), true);

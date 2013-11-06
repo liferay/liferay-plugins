@@ -26,17 +26,17 @@ String region = ParamUtil.getString(request, "region", "all");
 <table class="lfr-table netvibes-search-wrapper">
 <tr>
 	<td>
-		<label for="<portlet:namespace/>sort"><strong>Sort</strong></label>
+		<label for="<portlet:namespace />sort"><strong>Sort</strong></label>
 
-		<select name="<portlet:namespace/>sort">
+		<select name="<portlet:namespace />sort">
 			<option <%= sort.equals("popular") ? "selected" : "" %> value="popular">Most Popular</option>
 			<option <%= sort.equals("recent") ? "selected" : "" %> value="recent">Most Recent</option>
 		</select>
 	</td>
 	<td>
-		<label for="<portlet:namespace/>category"><strong>Category</strong></label>
+		<label for="<portlet:namespace />category"><strong>Category</strong></label>
 
-		<select name="<portlet:namespace/>category">
+		<select name="<portlet:namespace />category">
 			<option <%= category == 0 ? "selected" : "" %> value="0"><liferay-ui:message key="all" /></option>
 
 			<%
@@ -52,9 +52,9 @@ String region = ParamUtil.getString(request, "region", "all");
 		</select>
 	</td>
 	<td>
-		<label for="<portlet:namespace/>region"><strong>Region</strong></label>
+		<label for="<portlet:namespace />region"><strong>Region</strong></label>
 
-		<select name="<portlet:namespace/>region">
+		<select name="<portlet:namespace />region">
 
 			<%
 			for (String[] regionValues : _REGIONS) {
@@ -76,7 +76,7 @@ String region = ParamUtil.getString(request, "region", "all");
 </tr>
 <tr>
 	<td colspan="3">
-		<input class="input-medium search-query" name="<portlet:namespace/>query" type="text" value="<%= query %>" />
+		<input class="input-medium search-query" name="<portlet:namespace />query" type="text" value="<%= query %>" />
 
 		<input class="btn btn-primary" onClick="<portlet:namespace />search();" type="button" value="<liferay-ui:message key="search" />" />
 	</td>

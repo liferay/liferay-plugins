@@ -58,7 +58,7 @@ if (entryId > 0) {
 	var form = A.one('#<portlet:namespace />addEntry');
 
 	var failureCallback = function() {
-		var errorMessage = A.one('#<portlet:namespace/>errorMessage');
+		var errorMessage = A.one('#<portlet:namespace />errorMessage');
 
 		if (errorMessage) {
 			errorMessage.html('<span class="alert alert-error"><liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" /></span>');

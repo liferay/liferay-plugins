@@ -54,7 +54,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 pageContext.setAttribute("portletURL", portletURL);
 %>
 
-<div id="<portlet:namespace/>messages"><!-- --></div>
+<div id="<portlet:namespace />messages"><!-- --></div>
 
 <form action="<%= portletURL.toString() %>" method="get" name="<portlet:namespace />fm">
 <liferay-portlet:renderURLParams varImpl="portletURL" />
