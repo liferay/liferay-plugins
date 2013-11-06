@@ -160,6 +160,10 @@
 	}
 }
 
+.calendar-portlet-add-calendars-input {
+	max-width: 90%;
+}
+
 .calendar-portlet-availability {
 	margin: 0 30px;
 }
