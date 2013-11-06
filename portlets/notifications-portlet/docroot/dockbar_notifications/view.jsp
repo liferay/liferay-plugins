@@ -28,7 +28,7 @@
 			<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>' id="<portlet:namespace />userNotificationsCount"><%= unreadUserNotificationsCount %></span>
 		</a>
 
-		<ul class="dropdown-menu user-notifications-list"></ul>
+		<ul class="dropdown-menu pull-right user-notifications-list"></ul>
 
 		<aui:script use="aui-base,aui-io-plugin-deprecated,liferay-poller">
 			var userNotifications = A.one('#<portlet:namespace />userNotifications');
