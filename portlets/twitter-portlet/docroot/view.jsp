@@ -18,10 +18,13 @@
 
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
+<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 
 <portlet:defineObjects />
 
@@ -36,6 +39,11 @@ String twitterSn = contact.getTwitterSn();
 		Your Twitter screen name is <a href="http://twitter.com/<%= twitterSn %>" target="_blank"><%= twitterSn %></a>. Your tweets will appear as activities.
 	</c:when>
 	<c:otherwise>
-		<a href="<%= themeDisplay.getURLMyAccount() %>#_<%= PortletKeys.MY_ACCOUNT %>_tab=_<%= PortletKeys.MY_ACCOUNT %>_socialNetwork">Please configure your Twitter screen name.</a>
+
+		<%
+		String configureURL = "javascript:Liferay.Util.openWindow({id: '" + renderResponse.getNamespace() + "configureTwitter', title:'" + LanguageUtil.get(pageContext, "my-account") + "',uri:'" + HtmlUtil.escapeJS(themeDisplay.getURLMyAccount() + "#_" + PortletKeys.MY_ACCOUNT + "_tab=_" + PortletKeys.MY_ACCOUNT + "_socialNetwork") + "'});";
+		%>
+
+		<a href="<%= configureURL %>">Please configure your Twitter screen name.</a>
 	</c:otherwise>
 </c:choose>
