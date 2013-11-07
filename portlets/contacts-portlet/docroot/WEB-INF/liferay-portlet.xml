@@ -4,7 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<icon>/contacts_center/images/icon.png</icon>
+		<icon>/contacts_center/icon.png</icon>
 		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>contacts</friendly-url-mapping>
@@ -19,7 +19,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<icon>/contacts_center/images/icon.png</icon>
+		<icon>/contacts_center/icon.png</icon>
 		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<instanceable>true</instanceable>
 		<header-portlet-css>/contacts_center/css/main.css</header-portlet-css>
@@ -27,13 +27,13 @@
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
-		<icon>/contacts_center/images/icon.png</icon>
+		<icon>/contacts_center/icon.png</icon>
 		<header-portlet-css>/contacts_center/css/main.css</header-portlet-css>
 		<css-class-wrapper>contacts-portlet</css-class-wrapper>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
-		<icon>/contacts_center/images/icon.png</icon>
+		<icon>/contacts_center/icon.png</icon>
 		<configuration-action-class>com.liferay.portal.kernel.portlet.DefaultConfigurationAction</configuration-action-class>
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>contacts</friendly-url-mapping>
