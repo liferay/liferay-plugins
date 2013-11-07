@@ -61,8 +61,8 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 		<aui:input name="name" />
 
 		<aui:select name="version">
-			<aui:option selected="<%= version.equals(Constants.WSRP_V2) %>" value="<%= Constants.WSRP_V2 %>"><%= Constants.WSRP_V2 %></aui:option>
-			<aui:option selected="<%= version.equals(Constants.WSRP_V1) %>" value="<%= Constants.WSRP_V1 %>"><%= Constants.WSRP_V1 %></aui:option>
+			<aui:option label="<%= Constants.WSRP_V2 %>" selected="<%= version.equals(Constants.WSRP_V2) %>" value="<%= Constants.WSRP_V2 %>" />
+			<aui:option label="<%= Constants.WSRP_V1 %>" selected="<%= version.equals(Constants.WSRP_V1) %>" value="<%= Constants.WSRP_V1 %>" />
 		</aui:select>
 
 		<c:if test="<%= wsrpProducer != null %>">

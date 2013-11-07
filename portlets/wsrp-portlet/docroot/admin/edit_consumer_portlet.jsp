@@ -75,7 +75,7 @@ PortletDescription[] portletDescriptions = serviceDescription.getOfferedPortlets
 					catch (NoSuchConsumerPortletException nscpe) {
 				%>
 
-					<aui:option selected="<%= portletHandle.equals(portletDescription.getPortletHandle()) %>" value="<%= portletDescription.getPortletHandle() %>"><%= wsrpConsumerManager.getDisplayName(portletDescription) %></aui:option>
+					<aui:option label="<%= wsrpConsumerManager.getDisplayName(portletDescription) %>" selected="<%= portletHandle.equals(portletDescription.getPortletHandle()) %>" value="<%= portletDescription.getPortletHandle() %>" />
 
 				<%
 					}
