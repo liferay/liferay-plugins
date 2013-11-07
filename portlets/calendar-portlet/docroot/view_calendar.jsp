@@ -118,7 +118,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 		</aui:col>
 
 		<aui:col cssClass="calendar-portlet-column-grid" id="columnGrid" span="<%= columnOptionsVisible ? 9 : 12 %>">
-			<div class="calendar-portlet-column-toggler" id="<portlet:namespace/>columnToggler">
+			<div class="calendar-portlet-column-toggler" id="<portlet:namespace />columnToggler">
 				<i class="<%= columnOptionsVisible ? "icon-caret-left" : "icon-caret-right" %>" id="<portlet:namespace />columnTogglerIcon"></i>
 			</div>
 
