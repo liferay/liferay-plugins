@@ -807,6 +807,10 @@ div#navigation {
 	@include input-field-focus;
 }
 
+.autocomplete-content .toolbar {
+	position: relative;
+}
+
 /* ---------- Portlets ---------- */
 
 .portlet {
