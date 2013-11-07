@@ -23,6 +23,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
+import com.liferay.portlet.expando.NoSuchColumnException;
+import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoTable;
@@ -595,7 +597,17 @@ public class MongoExpandoValueLocalServiceImpl
 			BasicDBObject expandoValueDBObject =
 				(BasicDBObject)dbCollection.findOne(queryDBObject);
 
+			if (expandoValueDBObject == null) {
+				return null;
+			}
+
 			return toExpandoValue(expandoValueDBObject, expandoColumn);
+		}
+		catch (NoSuchTableException e) {
+			return null;
+		}
+		catch (NoSuchColumnException e) {
+			return null;
 		}
 		catch (PortalException pe) {
 			throw new SystemException(pe);
