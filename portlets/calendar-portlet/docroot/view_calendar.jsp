@@ -332,7 +332,9 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 			Liferay.Store('calendar-portlet-column-options-visible', columnOptions.hasClass('hide'));
 
 			columnGrid.toggleClass('span9').toggleClass('span12');
+
 			columnOptions.toggleClass('hide');
+
 			columnTogglerIcon.toggleClass('icon-caret-left').toggleClass('icon-caret-right');
 		}
 	);
