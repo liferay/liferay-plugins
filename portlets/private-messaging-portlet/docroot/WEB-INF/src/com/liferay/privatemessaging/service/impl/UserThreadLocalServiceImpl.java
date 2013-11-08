@@ -498,8 +498,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSONObject.put(
-			"mbMessageId", mbMessage.getMessageId());
+		notificationEventJSONObject.put("classPK", mbMessage.getMessageId());
 		notificationEventJSONObject.put("userId", mbMessage.getUserId());
 
 		List<UserThread> userThreads =

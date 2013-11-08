@@ -60,7 +60,7 @@ public class PrivateMessagingUserNotificationHandler
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		long mbMessageId = jsonObject.getLong("mbMessageId");
+		long mbMessageId = jsonObject.getLong("classPK");
 
 		MBMessage mbMessage = MBMessageLocalServiceUtil.getMBMessage(
 			mbMessageId);
@@ -96,7 +96,7 @@ public class PrivateMessagingUserNotificationHandler
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		long mbMessageId = jsonObject.getLong("mbMessageId");
+		long mbMessageId = jsonObject.getLong("classPK");
 
 		MBMessage mbMessage = MBMessageLocalServiceUtil.getMBMessage(
 			mbMessageId);
