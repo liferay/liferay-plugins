@@ -371,10 +371,6 @@ a {
 	border-left-width: 0;
 }
 
-.aui .row-fluid [class*="span"] {
-	margin-left: 0;
-}
-
 /* ---------- Breadcrumbs ---------- */
 
 .breadcrumbs-horizontal {
