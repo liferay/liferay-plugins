@@ -603,10 +603,10 @@ public class MongoExpandoValueLocalServiceImpl
 
 			return toExpandoValue(expandoValueDBObject, expandoColumn);
 		}
-		catch (NoSuchTableException e) {
+		catch (NoSuchColumnException nsce) {
 			return null;
 		}
-		catch (NoSuchColumnException e) {
+		catch (NoSuchTableException nste) {
 			return null;
 		}
 		catch (PortalException pe) {
