@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
+
+<service-builder package-path="com.liferay.testblob">
+	<namespace>TB</namespace>
+	<entity name="BlobEntry" uuid="true" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="blobEntryId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="blobField" type="Blob" />
+	</entity>
+</service-builder>

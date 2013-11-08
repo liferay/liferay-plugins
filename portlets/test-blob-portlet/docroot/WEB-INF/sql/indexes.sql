@@ -1,0 +1,1 @@
+create index IX_725C8D8A on TB_BlobEntry (uuid_);

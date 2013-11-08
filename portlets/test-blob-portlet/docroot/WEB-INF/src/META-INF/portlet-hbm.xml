@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.testblob.model.BlobEntry" />
+	<class name="com.liferay.testblob.model.impl.BlobEntryImpl" table="TB_BlobEntry">
+		<cache usage="read-write" />
+		<id name="blobEntryId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
+		<one-to-one name="blobFieldBlobModel" access="com.liferay.portal.dao.orm.hibernate.PrivatePropertyAccessor" class="com.liferay.testblob.model.BlobEntryBlobFieldBlobModel" cascade="save-update" outer-join="false" constrained="true" />
+	</class>
+	<class name="com.liferay.testblob.model.BlobEntryBlobFieldBlobModel" table="TB_BlobEntry" lazy="true">
+		<id name="blobEntryId" column="blobEntryId">
+			<generator class="foreign">
+				<param name="property">com.liferay.testblob.model.impl.BlobEntryImpl</param>
+			</generator>
+		</id>
+		<property column="blobField" name="blobFieldBlob" type="blob" />
+	</class>
+</hibernate-mapping>
