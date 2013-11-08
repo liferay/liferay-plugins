@@ -23,6 +23,8 @@ package com.liferay.contacts.util;
 public class SocialRelationConstants
 	extends com.liferay.portlet.social.model.SocialRelationConstants {
 
+	public static final int SOCIAL_RELATION_REQUEST = 1001;
+
 	public static final int TYPE_MY_CONTACTS = 101;
 
 }

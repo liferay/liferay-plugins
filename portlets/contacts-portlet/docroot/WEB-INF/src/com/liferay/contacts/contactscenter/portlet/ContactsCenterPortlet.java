@@ -49,9 +49,9 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
@@ -75,12 +75,14 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.model.Website;
 import com.liferay.portal.service.EmailAddressServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.service.UserServiceUtil;
 import com.liferay.portal.theme.PortletDisplay;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -90,9 +92,7 @@ import com.liferay.portlet.announcements.service.AnnouncementsDeliveryLocalServi
 import com.liferay.portlet.social.NoSuchRelationException;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.model.SocialRequestConstants;
-import com.liferay.portlet.social.model.SocialRequestFeedEntry;
 import com.liferay.portlet.social.service.SocialRelationLocalServiceUtil;
-import com.liferay.portlet.social.service.SocialRequestInterpreterLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
@@ -375,7 +375,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 					themeDisplay.getUserId(), 0, User.class.getName(),
 					themeDisplay.getUserId(), type, StringPool.BLANK, userId);
 
-			sendNotificationEvent(socialRequest, themeDisplay);
+			sendNotificationEvent(socialRequest);
 		}
 	}
 
@@ -602,16 +602,14 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		long requestId = ParamUtil.getLong(actionRequest, "requestId");
+		long socialRequestId = ParamUtil.getLong(
+			actionRequest, "socialRequestId");
+		int status = ParamUtil.getInteger(actionRequest, "status");
+		long userNotificationEventId = ParamUtil.getLong(
+			actionRequest, "userNotificationEventId");
 
 		SocialRequest socialRequest =
-			SocialRequestLocalServiceUtil.getSocialRequest(requestId);
-
-		if (socialRequest.getUserId() != themeDisplay.getUserId()) {
-			return;
-		}
-
-		int status = ParamUtil.getInteger(actionRequest, "status");
+			SocialRequestLocalServiceUtil.getSocialRequest(socialRequestId);
 
 		if (SocialRelationLocalServiceUtil.hasRelation(
 				socialRequest.getReceiverUserId(), socialRequest.getUserId(),
@@ -621,14 +619,16 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		}
 
 		SocialRequestLocalServiceUtil.updateRequest(
-			requestId, status, themeDisplay);
+			socialRequestId, status, themeDisplay);
 
-		String notificationEventUuid = ParamUtil.getString(
-			actionRequest, "notificationEventUuid");
+		if (status == SocialRequestConstants.STATUS_CONFIRM) {
+			SocialRelationLocalServiceUtil.addRelation(
+				socialRequest.getUserId(), socialRequest.getReceiverUserId(),
+				socialRequest.getType());
+		}
 
-		ChannelHubManagerUtil.confirmDelivery(
-			themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-			notificationEventUuid, false);
+		UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
+			userNotificationEventId);
 	}
 
 	protected void deleteEntry(
@@ -1036,35 +1036,32 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		return userJSONObject;
 	}
 
-	protected void sendNotificationEvent(
-			SocialRequest socialRequest, ThemeDisplay themeDisplay)
+	protected void sendNotificationEvent(SocialRequest socialRequest)
 		throws Exception {
 
-		JSONObject notificationEventJSONObject =
-			JSONFactoryUtil.createJSONObject();
+		if (UserNotificationManagerUtil.isDeliver(
+				socialRequest.getReceiverUserId(), PortletKeys.CONTACTS_CENTER,
+				0, SocialRelationConstants.SOCIAL_RELATION_REQUEST,
+				UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
-		SocialRequestFeedEntry socialRequestFeedEntry =
-			SocialRequestInterpreterLocalServiceUtil.interpret(
-				socialRequest, themeDisplay);
+			JSONObject notificationEventJSONObject =
+				JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSONObject.put(
-			"portletId", PortletKeys.CONTACTS_CENTER);
-		notificationEventJSONObject.put(
-			"requestId", socialRequest.getRequestId());
-		notificationEventJSONObject.put(
-			"title", socialRequestFeedEntry.getTitle());
-		notificationEventJSONObject.put("userId", socialRequest.getUserId());
+			notificationEventJSONObject.put(
+				"classPK", socialRequest.getRequestId());
+			notificationEventJSONObject.put(
+				"userId", socialRequest.getUserId());
 
-		NotificationEvent notificationEvent =
-			NotificationEventFactoryUtil.createNotificationEvent(
-				System.currentTimeMillis(), "6_WAR_soportlet",
-				notificationEventJSONObject);
+			NotificationEvent notificationEvent =
+				NotificationEventFactoryUtil.createNotificationEvent(
+					System.currentTimeMillis(), PortletKeys.CONTACTS_CENTER,
+					notificationEventJSONObject);
 
-		notificationEvent.setDeliveryRequired(0);
+			notificationEvent.setDeliveryRequired(0);
 
-		ChannelHubManagerUtil.sendNotificationEvent(
-			socialRequest.getCompanyId(), socialRequest.getReceiverUserId(),
-			notificationEvent);
+			UserNotificationEventLocalServiceUtil.addUserNotificationEvent(
+				socialRequest.getReceiverUserId(), notificationEvent);
+		}
 	}
 
 	protected void updateAdditionalEmailAddresses(ActionRequest actionRequest)
