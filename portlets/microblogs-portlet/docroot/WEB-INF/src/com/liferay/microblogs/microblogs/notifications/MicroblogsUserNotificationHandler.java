@@ -54,7 +54,7 @@ public class MicroblogsUserNotificationHandler
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		long microblogsEntryId = jsonObject.getLong("microblogsEntryId");
+		long microblogsEntryId = jsonObject.getLong("classPK");
 
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
@@ -96,7 +96,7 @@ public class MicroblogsUserNotificationHandler
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		long microblogsEntryId = jsonObject.getLong("microblogsEntryId");
+		long microblogsEntryId = jsonObject.getLong("classPK");
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(

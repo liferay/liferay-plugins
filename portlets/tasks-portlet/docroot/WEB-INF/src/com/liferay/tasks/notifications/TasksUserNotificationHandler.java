@@ -50,7 +50,7 @@ public class TasksUserNotificationHandler extends BaseUserNotificationHandler {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		long tasksEntryId = jsonObject.getLong("tasksEntryId");
+		long tasksEntryId = jsonObject.getLong("classPK");
 
 		TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(
 			tasksEntryId);
@@ -82,7 +82,7 @@ public class TasksUserNotificationHandler extends BaseUserNotificationHandler {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		long tasksEntryId = jsonObject.getLong("tasksEntryId");
+		long tasksEntryId = jsonObject.getLong("classPK");
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
