@@ -47,7 +47,7 @@ String twitterSn = contact.getTwitterSn();
 		sb.append("</a>");
 		%>
 
-		<liferay-ui:message arguments="<%= sb.toString() %>" key="your-twitter-screen-name-is-x-your-tweets-will-appear-as-activities" />
+		<liferay-ui:message arguments="<%= sb.toString() %>" key="your-twitter-screen-name-is-x" />
 	</c:when>
 	<c:otherwise>
 
