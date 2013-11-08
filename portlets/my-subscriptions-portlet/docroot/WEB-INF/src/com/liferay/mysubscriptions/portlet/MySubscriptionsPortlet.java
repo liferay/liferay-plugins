@@ -47,17 +47,18 @@ public class MySubscriptionsPortlet extends MVCPortlet {
 			ParamUtil.getString(actionRequest, "subscriptionIds"), 0L);
 
 		for (long subscriptionId : subscriptionIds) {
-			if (subscriptionId > 0) {
-				Subscription subscription =
-					SubscriptionLocalServiceUtil.getSubscription(
-						subscriptionId);
-
-				if (themeDisplay.getUserId() != subscription.getUserId()) {
-					throw new PrincipalException();
-				}
-
-				SubscriptionLocalServiceUtil.deleteSubscription(subscription);
+			if (subscriptionId <= 0) {
+				continue;
 			}
+
+			Subscription subscription =
+				SubscriptionLocalServiceUtil.getSubscription(subscriptionId);
+
+			if (themeDisplay.getUserId() != subscription.getUserId()) {
+				throw new PrincipalException();
+			}
+
+			SubscriptionLocalServiceUtil.deleteSubscription(subscription);
 		}
 	}
 
