@@ -4,7 +4,12 @@ if "" == "%1" goto errorCreate
 
 if "" == "%2" goto errorCreate
 
-call ant -Dhook.name=%1 -Dhook.display.name=%2 create
+IF "" == "%3" (
+    call ant -Dhook.name=%1 -Dhook.display.name=%2 create
+)
+IF "" != "%3" (
+    call ant -Dhook.name=%1 -Dhook.display.name=%2 -Dhook.lang=%3 create
+)
 
 rem call ant deploy
 

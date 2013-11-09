@@ -15,7 +15,11 @@ if [ -z "$1" ]; then
 	exit 127
 fi
 
-ant -Dhook.name=$1 -Dhook.display.name=\"$2\" create
+if [ -z "$3" ]; then
+    ant -Dhook.name=$1 -Dhook.display.name=\"$2\" create
+else
+    ant -Dhook.name=$1 -Dhook.display.name=\"$2\" -Dhook.lang=\"$3\" create
+fi
 
 #ant deploy
 

@@ -34,7 +34,20 @@
 				dir="${sdk.dir}/tools/hook_tmpl"
 			/>
 		</copy>
-
+				
+		<!-- Support for scala language in hooks -->
+		<if>
+			<isset property="hook.lang" />
+			<then>
+				<copy overwrite="true" todir="${hook.dir}">
+					<fileset
+						dir="${sdk.dir}/tools/hook_${hook.lang}_tmpl"
+					/>
+				</copy>
+			</then>
+		</if>
+		<!-- Support for scala language in hooks -->
+		
 		<replace dir="${hook.dir}">
 			<replacefilter token="@hook.display.name@" value="${hook.display.name}" />
 			<replacefilter token="@hook.name@" value="${hook.name}" />
