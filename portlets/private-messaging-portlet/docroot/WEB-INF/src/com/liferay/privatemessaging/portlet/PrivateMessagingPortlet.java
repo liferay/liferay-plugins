@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
@@ -73,9 +72,6 @@ import javax.portlet.PortletRequest;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 /**
  * @author Scott Lee
  * @author Eudaldo Alonso
@@ -102,39 +98,27 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
-		HttpServletRequest request = PortalUtil.getHttpServletRequest(
-			resourceRequest);
-		HttpServletResponse response = PortalUtil.getHttpServletResponse(
-			resourceResponse);
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-		try {
-			ThemeDisplay themeDisplay =
-				(ThemeDisplay)resourceRequest.getAttribute(
-					WebKeys.THEME_DISPLAY);
+		long messageId = ParamUtil.getLong(resourceRequest, "messageId");
+		String fileName = ParamUtil.getString(resourceRequest, "attachment");
 
-			long messageId = ParamUtil.getLong(resourceRequest, "messageId");
-			String fileName = ParamUtil.getString(
-				resourceRequest, "attachment");
+		MBMessage message = MBMessageLocalServiceUtil.getMessage(messageId);
 
-			MBMessage message = MBMessageLocalServiceUtil.getMessage(messageId);
+		if (!PrivateMessagingUtil.isUserPartOfThread(
+				themeDisplay.getUserId(), message.getThreadId())) {
 
-			if (!PrivateMessagingUtil.isUserPartOfThread(
-					themeDisplay.getUserId(), message.getThreadId())) {
-
-				throw new PrincipalException();
-			}
-
-			FileEntry fileEntry = PortletFileRepositoryUtil.getPortletFileEntry(
-				message.getGroupId(), message.getAttachmentsFolderId(),
-				fileName);
-
-			ServletResponseUtil.sendFile(
-				request, response, fileName, fileEntry.getContentStream(),
-				fileEntry.getSize(), fileEntry.getMimeType());
+			throw new PrincipalException();
 		}
-		catch (Exception e) {
-			PortalUtil.sendError(e, request, response);
-		}
+
+		FileEntry fileEntry = PortletFileRepositoryUtil.getPortletFileEntry(
+			message.getGroupId(), message.getAttachmentsFolderId(), fileName);
+
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, fileName,
+			fileEntry.getContentStream(), (int)fileEntry.getSize(),
+			fileEntry.getMimeType());
 	}
 
 	public void markMessagesAsRead(
