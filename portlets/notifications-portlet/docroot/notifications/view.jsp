@@ -140,8 +140,6 @@
 	userNotificationsList.delegate(
 		'click',
 		function(event) {
-			event.preventDefault();
-
 			Liferay.Notifications.viewNotification(event);
 		},
 		'.user-notification .user-notification-link'

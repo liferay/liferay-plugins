@@ -24,14 +24,6 @@
 		.message {
 			text-align: center;
 
-			&.top {
-				border-bottom: 1px solid #FFF;
-			}
-
-			&.bottom {
-				border-top: 1px solid #FFF;
-			}
-
 			.left-nav {
 				float: left;
 				padding: 0 10px;
@@ -53,17 +45,20 @@
 		}
 
 		.user-notification {
-			a {
-				clear: both;
-				display: block;
-				font-weight: normal;
-				padding: 5px;
-				white-space: normal;
+			background: #FFF;
+
+			@include border-radius(4px);
+
+			margin-bottom: 10px;
+			padding: 10px;
+
+			&:hover, &.hover {
+				background: #FAFAFA;
+				cursor: pointer;
 			}
 
-			a:hover {
-				color: #FFF;
-				text-decoration: none;
+			.btn {
+				margin-right: 10px;
 			}
 
 			.icon-remove-circle {
@@ -119,7 +114,6 @@
 		margin-bottom: 10px;
 
 		a {
-			color: #333333;
 			display: block;
 			padding: 5px 10px;
 
@@ -156,19 +150,22 @@
 
 	.user-notifications-list {
 		.user-notification {
-			a {
-				border-bottom: 1px solid #D5D5D5;
-				padding: 15px;
-			}
+			color:#000;
 
-			a:hover {
-				background-color: #0A85E4;
-				color: #FFF;
-				text-decoration: none;
+			&:hover {
+				color:#FFF;
 			}
 
 			&.unread {
 				background-color: #FAFAFA;
+
+				&:hover {
+					background: #2FA4F5;
+				}
+			}
+
+			a {
+				color: #009AE5;
 			}
 		}
 
@@ -234,4 +231,5 @@
 .aui .dockbar .nav li.dropdown.dockbar-user-notifications .dropdown-menu {
 	left: auto;
 	right: 0;
+	padding: 10px;
 }
