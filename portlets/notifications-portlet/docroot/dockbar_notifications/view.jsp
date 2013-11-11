@@ -113,21 +113,12 @@
 						}
 
 					}
-					else {
-						Liferay.Data['<portlet:namespace />userNotificationsHandle'] = null;
-
-						handle.detach();
-
-						currentTarget.removeClass('open');
-					}
 				}
 			);
 
 			userNotificationsList.delegate(
 				'click',
 				function(event) {
-					event.preventDefault();
-
 					Liferay.Notifications.viewNotification(event);
 				},
 				'.user-notification .user-notification-link'
