@@ -95,8 +95,6 @@ public class ContactsCenterUserNotificationHandler
 		PortletURL confirmURL = liferayPortletResponse.createActionURL(
 			PortletKeys.CONTACTS_CENTER);
 
-		confirmURL.setWindowState(WindowState.NORMAL);
-
 		confirmURL.setParameter(
 			ActionRequest.ACTION_NAME, "updateSocialRequest");
 		confirmURL.setParameter(
@@ -106,18 +104,15 @@ public class ContactsCenterUserNotificationHandler
 		confirmURL.setParameter(
 			"userNotificationEventId",
 			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
+		confirmURL.setWindowState(WindowState.NORMAL);
 
-		sb.append(
-			"<a class=\"btn btn-success\"href=\"" +
-				confirmURL + "\">");
+		sb.append("<a class=\"btn btn-success\"href=\"" + confirmURL + "\">");
 
 		sb.append(serviceContext.translate("confirm"));
 		sb.append("</a>");
 
 		PortletURL ignoreURL = liferayPortletResponse.createActionURL(
 			PortletKeys.CONTACTS_CENTER);
-
-		ignoreURL.setWindowState(WindowState.NORMAL);
 
 		ignoreURL.setParameter(
 			ActionRequest.ACTION_NAME, "updateSocialRequest");
@@ -128,10 +123,9 @@ public class ContactsCenterUserNotificationHandler
 		ignoreURL.setParameter(
 			"userNotificationEventId",
 			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
+		ignoreURL.setWindowState(WindowState.NORMAL);
 
-		sb.append(
-			"<a class=\"btn btn-warning\"href=\"" +
-				ignoreURL + "\">");
+		sb.append("<a class=\"btn btn-warning\"href=\"" + ignoreURL + "\">");
 
 		sb.append(serviceContext.translate("ignore"));
 		sb.append("</a></div>");
