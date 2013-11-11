@@ -21,7 +21,7 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
@@ -41,9 +41,9 @@ String twitterSn = contact.getTwitterSn();
 		StringBuilder sb = new StringBuilder(5);
 
 		sb.append("<a href=\"http://twitter.com/");
-		sb.append(twitterSn);
+		sb.append(HtmlUtil.escapeAttribute(twitterSn));
 		sb.append("\" target=\"_blank\">");
-		sb.append(twitterSn);
+		sb.append(HtmlUtil.escape(twitterSn));
 		sb.append("</a>");
 		%>
 
@@ -52,7 +52,7 @@ String twitterSn = contact.getTwitterSn();
 	<c:otherwise>
 
 		<%
-		String configureURL = "javascript:Liferay.Util.openWindow({id: '" + renderResponse.getNamespace() + "configureTwitter', title:'" + UnicodeLanguageUtil.get(pageContext, "my-account") + "',uri:'" + HtmlUtil.escapeURL(themeDisplay.getURLMyAccount() + "#_" + PortletKeys.MY_ACCOUNT + "_tab=_" + PortletKeys.MY_ACCOUNT + "_socialNetwork") + "'});";
+		String configureURL = "javascript:Liferay.Util.openWindow({id: '" + renderResponse.getNamespace() + "configureTwitter', title:'" + HtmlUtil.escapeAttribute(LanguageUtil.get(pageContext, "my-account")) + "',uri:'" + HtmlUtil.escapeAttribute(themeDisplay.getURLMyAccount() + "#_" + PortletKeys.MY_ACCOUNT + "_tab=_" + PortletKeys.MY_ACCOUNT + "_socialNetwork") + "'});";
 		%>
 
 		<div class="alert alert-info">
