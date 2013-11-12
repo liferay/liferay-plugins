@@ -45,6 +45,7 @@ import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.portlet.trash.util.TrashUtil;
 import com.liferay.so.activities.util.PortletPropsValues;
 
 import java.text.Format;
@@ -65,6 +66,20 @@ public abstract class SOSocialActivityInterpreter
 	@Override
 	public String getSelector() {
 		return _SELECTOR;
+	}
+
+	@Override
+	protected SocialActivityFeedEntry doInterpret(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		if (TrashUtil.isInTrash(
+				activity.getClassName(), activity.getClassPK())) {
+
+			return null;
+		}
+
+		return super.doInterpret(activity, serviceContext);
 	}
 
 	@Override
@@ -236,6 +251,10 @@ public abstract class SOSocialActivityInterpreter
 		throws Exception {
 
 		String className = activity.getClassName();
+
+		if (TrashUtil.isInTrash(className, activity.getClassPK())) {
+			return null;
+		}
 
 		String title = getPageTitle(
 			className, activity.getClassPK(), serviceContext);
