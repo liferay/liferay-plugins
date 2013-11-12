@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -38,10 +39,13 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.service.permission.LayoutPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.so.MemberRequestAlreadyUsedException;
+import com.liferay.so.MemberRequestInvalidUserException;
 import com.liferay.so.invitemembers.util.InviteMembersUtil;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
 import com.liferay.so.util.PortletKeys;
@@ -146,6 +150,38 @@ public class InviteMembersPortlet extends MVCPortlet {
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
+		}
+	}
+
+	public void updateMemberRequest(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		long memberRequestId = ParamUtil.getLong(
+			actionRequest, "memberRequestId");
+		int status = ParamUtil.getInteger(actionRequest, "status");
+		long userNotificationEventId = ParamUtil.getLong(
+			actionRequest, "userNotificationEventId");
+
+		try {
+			MemberRequestLocalServiceUtil.updateMemberRequest(
+				themeDisplay.getUserId(), memberRequestId, status);
+
+			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
+				userNotificationEventId);
+		}
+		catch (Exception e) {
+			if ((e instanceof MemberRequestAlreadyUsedException) ||
+				(e instanceof MemberRequestInvalidUserException)) {
+
+				SessionErrors.add(actionRequest, e.getClass(), e);
+			}
+			else {
+				throw e;
+			}
 		}
 	}
 
