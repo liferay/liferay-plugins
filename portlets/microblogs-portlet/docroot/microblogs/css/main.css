@@ -148,16 +148,16 @@ $microblogs-border-color: #EAEAEA;
 				padding: 0 5px;
 				position: relative;
 			}
+
+			.action-container {
+				.comment, .repost {
+					display: inline-block;
+				}
+			}
 		}
 
 		&:hover .footer .action {
 			display: inline-block;
-		}
-
-		.footer .action-container {
-			.comment, .repost {
-				display: inline-block;
-			}
 		}
 
 		&.show-comments {
@@ -270,10 +270,11 @@ $microblogs-border-color: #EAEAEA;
 	}
 
 	.field-input-text {
-		-moz-box-sizing: border-box;
 		background: none transparent;
 		border-width: 0;
-		box-sizing: border-box;
+
+		@include box-sizing(border-box);
+
 		line-height: 1.5em;
 		min-width: 100%;
 		outline: none;
