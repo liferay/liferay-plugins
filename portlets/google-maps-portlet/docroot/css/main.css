@@ -1,4 +1,8 @@
 .google-maps-portlet {
+	img {
+		max-width: none;
+	}
+
 	.address-field {
 		input {
 			width: 350px;
