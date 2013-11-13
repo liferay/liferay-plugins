@@ -32,6 +32,10 @@ $microblogs-border-color: #EAEAEA;
 			height: auto;
 		}
 
+		textarea:focus {
+			outline: 0;
+		}
+
 		.button-holder {
 			margin-top: 5px;
 		}
