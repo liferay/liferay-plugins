@@ -1158,6 +1158,12 @@ public class CalendarBookingWrapper implements CalendarBooking,
 		return _calendarBooking.isInTrashContainer();
 	}
 
+	@Override
+	public boolean isInTrashExplicitly()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBooking.isInTrashExplicitly();
+	}
+
 	/**
 	* @deprecated As of 6.1.0, replaced by {@link #isApproved()}
 	*/

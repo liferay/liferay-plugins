@@ -732,6 +732,9 @@ public interface CalendarBookingModel extends BaseModel<CalendarBooking>,
 	@Override
 	public boolean isInTrashContainer();
 
+	@Override
+	public boolean isInTrashExplicitly() throws SystemException;
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #isApproved()}
 	 */
