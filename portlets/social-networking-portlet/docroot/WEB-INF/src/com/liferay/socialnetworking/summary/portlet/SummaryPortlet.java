@@ -184,6 +184,21 @@ public class SummaryPortlet extends MVCPortlet {
 			WorkflowConstants.STATUS_APPROVED, userParams, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, (OrderByComparator)null);
 
+		if (users.size() == 0) {
+			Role portalAdminRole = RoleLocalServiceUtil.getRole(
+				themeDisplay.getCompanyId(), RoleConstants.ADMINISTRATOR);
+
+			userParams.clear();
+
+			userParams.put("usersRoles", portalAdminRole.getRoleId());
+
+			users = UserLocalServiceUtil.search(
+				themeDisplay.getCompanyId(), null,
+				WorkflowConstants.STATUS_APPROVED, userParams,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				(OrderByComparator)null);
+		}
+
 		for (User user : users) {
 			SocialRequestLocalServiceUtil.addRequest(
 				themeDisplay.getUserId(), 0, Organization.class.getName(),
