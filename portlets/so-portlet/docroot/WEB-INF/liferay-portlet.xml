@@ -13,11 +13,13 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
+		<icon>/invite_members/icon.png</icon>
 		<user-notification-definitions>com/liferay/so/invitemembers/portlet/invite-members-user-notification-definitions.xml</user-notification-definitions>
 		<user-notification-handler-class>com.liferay.so.invitemembers.notifications.InviteMembersUserNotificationHandler</user-notification-handler-class>
 		<header-portlet-css>/invite_members/css/main.css</header-portlet-css>
 		<footer-portlet-javascript>/invite_members/js/main.js</footer-portlet-javascript>
 		<css-class-wrapper>so-portlet-invite-members</css-class-wrapper>
+		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
