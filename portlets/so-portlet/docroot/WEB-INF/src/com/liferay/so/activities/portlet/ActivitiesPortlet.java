@@ -38,9 +38,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFileVersion;
-import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageDisplay;
 import com.liferay.portlet.messageboards.model.MBThread;
@@ -50,7 +47,7 @@ import com.liferay.portlet.messageboards.service.MBMessageServiceUtil;
 import com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
-import com.liferay.so.activities.util.SocialActivityKeyConstants;
+import com.liferay.so.activities.util.ActivitiesUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -81,27 +78,11 @@ public class ActivitiesPortlet extends MVCPortlet {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		String className = activitySet.getClassName();
-		long classPK = activitySet.getClassPK();
+		Object[] commentsClassNameAndClassPK =
+			ActivitiesUtil.getCommentsClassNameAndClassPK(activitySet);
 
-		if (className.equals(DLFileEntry.class.getName())) {
-			if ((activitySet.getActivityCount() > 1 ) &&
-				(activitySet.getType() ==
-					SocialActivityKeyConstants.DL_ADD_FILE_ENTRY)) {
-
-				className = SocialActivitySet.class.getName();
-				classPK = activitySet.getActivitySetId();
-			}
-			else {
-				className = DLFileVersion.class.getName();
-
-				DLFileVersion dlFileVersion =
-					DLFileVersionLocalServiceUtil.getLatestFileVersion(
-						classPK, false);
-
-				classPK = dlFileVersion.getFileVersionId();
-			}
-		}
+		String className = (String)commentsClassNameAndClassPK[0];
+		long classPK = (Long)commentsClassNameAndClassPK[1];
 
 		MBMessageDisplay mbMessageDisplay =
 			MBMessageLocalServiceUtil.getDiscussionMessageDisplay(
