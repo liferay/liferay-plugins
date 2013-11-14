@@ -30,7 +30,7 @@
 <%@ page import="com.liferay.calendar.model.CalendarBooking" %><%@
 page import="com.liferay.calendar.model.CalendarResource" %><%@
 page import="com.liferay.calendar.service.CalendarBookingServiceUtil" %><%@
-page import="com.liferay.calendar.service.CalendarResourceServiceUtil" %><%@
+page import="com.liferay.calendar.service.CalendarResourceLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayPortletURL" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
