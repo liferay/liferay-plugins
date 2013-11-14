@@ -483,12 +483,16 @@ a {
 
 	#toggleDockbar {
 		border-left: 1px solid $defaultBorderColor;
+		display: block;
 		float: right;
-		margin: -15px -1.25em -26px 1em;
-		padding: 20px 1.25em;
+		height: 52px;
+		overflow: visible;
+		margin: -0.75em -1.45em -0.85em 1em;
+		width: 52px;
 
 		img {
 			height: 16px;
+			padding: 1.35em;
 			width: 16px;
 		}
 	}
