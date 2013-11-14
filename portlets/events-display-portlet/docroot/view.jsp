@@ -52,7 +52,7 @@ for (Group curGroup : groups) {
 		classNameId = PortalUtil.getClassNameId(User.class);
 	}
 
-	CalendarResource calendarResource = CalendarResourceServiceUtil.fetchCalendarResource(classNameId, curGroup.getGroupId());
+	CalendarResource calendarResource = CalendarResourceLocalServiceUtil.fetchCalendarResource(classNameId, curGroup.getGroupId());
 
 	if (calendarResource != null) {
 		calendarResourceIds.add(calendarResource.getCalendarResourceId());
