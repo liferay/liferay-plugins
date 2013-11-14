@@ -24,4 +24,7 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
 	public static final String BREADCRUMB = "73";
 
+	public static final String SO_ANNOUNCEMENTS =
+		"1_WAR_soannouncementsportlet";
+
 }
