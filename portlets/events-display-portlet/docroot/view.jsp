@@ -45,9 +45,13 @@ long displayEndTime = jCalendar.getTimeInMillis() + (Time.DAY * maxDaysDisplayed
 
 List<Long> calendarResourceIds = new ArrayList<Long>();
 
-long classNameId = PortalUtil.getClassNameId(Group.class);
-
 for (Group curGroup : groups) {
+	long classNameId = PortalUtil.getClassNameId(Group.class);
+
+	if (group.isUser()) {
+		classNameId = PortalUtil.getClassNameId(User.class);
+	}
+
 	CalendarResource calendarResource = CalendarResourceServiceUtil.fetchCalendarResource(classNameId, curGroup.getGroupId());
 
 	if (calendarResource != null) {
