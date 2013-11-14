@@ -71,6 +71,10 @@ List<CalendarBooking> todayBookings = new ArrayList<CalendarBooking>();
 List<CalendarBooking> upcomingBookings = new ArrayList<CalendarBooking>();
 
 for (CalendarBooking calendarBooking : calendarBookings) {
+	if (Validator.isNull(calendarBooking.getTitle())) {
+		continue;
+	}
+
 	if (!calendarBooking.isAllDay() && (calendarBooking.getEndTime() < jCalendar.getTimeInMillis())) {
 		continue;
 	}
