@@ -29,7 +29,7 @@ int start = ParamUtil.getInteger(request, "start");
 int end = start + _DELTA;
 
 if (group.isUser()) {
-	if (!layout.isPublicLayout()) {
+	if (layout.isPrivateLayout()) {
 		if (tabs1.equals("connections")) {
 			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
 			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
