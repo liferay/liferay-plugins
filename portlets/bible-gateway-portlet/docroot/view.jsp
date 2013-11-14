@@ -14,12 +14,7 @@
  */
 --%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-
-<%@ taglib uri="http://liferay.com/tld/aui" prefix="aui" %>
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
-
-<portlet:defineObjects />
+<%@ include file="/init.jsp" %>
 
 <liferay-ui:tabs
 	names="passage-lookup,passage-comparison,word-search"
@@ -60,19 +55,19 @@
 			<aui:fieldset>
 				<aui:input label="" name="passage" size="30" type="text" />
 
-				<aui:input id='<%= renderResponse.getNamespace() + "version_esv" %>' label="esv" name="version" type="checkbox" value="ESV" />
+				<aui:input id="version_esv" label="esv" name="version" type="checkbox" value="ESV" />
 
-				<aui:input id='<%= renderResponse.getNamespace() + "version_niv" %>' label="niv" name="version" type="checkbox" value="NIV" />
+				<aui:input id="version_niv" label="niv" name="version" type="checkbox" value="NIV" />
 
-				<aui:input id='<%= renderResponse.getNamespace() + "version_nasb" %>' label="nasb" name="version" type="checkbox" value="NASB" />
+				<aui:input id="version_nasb" label="nasb" name="version" type="checkbox" value="NASB" />
 
-				<aui:input id='<%= renderResponse.getNamespace() + "version_msg" %>' label="msg" name="version" type="checkbox" value="MSG" />
+				<aui:input id="version_msg" label="msg" name="version" type="checkbox" value="MSG" />
 
-				<aui:input id='<%= renderResponse.getNamespace() + "version_amp" %>' label="amp" name="version" type="checkbox" value="AMP" />
+				<aui:input id="version_amp" label="amp" name="version" type="checkbox" value="AMP" />
 
-				<aui:input id='<%= renderResponse.getNamespace() + "version_nlt" %>' label="nlt" name="version" type="checkbox" value="NLT" />
+				<aui:input id="version_nlt" label="nlt" name="version" type="checkbox" value="NLT" />
 
-				<aui:input id='<%= renderResponse.getNamespace() + "version_kjv" %>' label="kjv" name="version" type="checkbox" value="KJV" />
+				<aui:input id="version_kjv" label="kjv" name="version" type="checkbox" value="KJV" />
 			</aui:fieldset>
 
 			<aui:button-row>
@@ -272,14 +267,21 @@
 </liferay-ui:tabs>
 
 <aui:script>
-	function <portlet:namespace />compare() {
-		var url = 'http://bible.gospelcom.net/cgi-bin/bible?showfn=yes&passage=' + encodeURIComponent(document.<portlet:namespace />fm2.<portlet:namespace />passage.value);
+	var A = AUI();
 
-		for (var i = 0; i < document.<portlet:namespace />fm2.<portlet:namespace />versionCheckbox.length; i++) {
-			if (document.<portlet:namespace />fm2.<portlet:namespace />versionCheckbox[i].checked) {
-				url += '&' + document.<portlet:namespace />fm2.<portlet:namespace />versionCheckbox[i].value + '_version=yes';
+	function <portlet:namespace />compare() {
+		var url = 'http://bible.gospelcom.net/cgi-bin/bible?showfn=yes&passage=' + encodeURIComponent(A.one('#<portlet:namespace />passage').val());
+
+		var versionCheckboxes = A.all('input[name=<portlet:namespace />versionCheckbox]');
+
+		A.each(
+			versionCheckboxes,
+			function(item, index, collection) {
+				if (item.attr('checked')) {
+					url += '&' + item.val() + '_version=yes';
+				}
 			}
-		}
+		);
 
 		window.open(url);
 
@@ -287,12 +289,12 @@
 	}
 
 	function <portlet:namespace />lookup() {
-		if (!document.<portlet:namespace />fm1.showfn_cb.checked) {
-			document.<portlet:namespace />fm1.showfn.value = 'no';
+		if (!A.one('input[name=showfn_cb]').attr('checked')) {
+			A.one('#showfn').val('no');
 		}
 
-		if (!document.<portlet:namespace />fm1.showxref_cb.checked) {
-			document.<portlet:namespace />fm1.showxref.value = 'no';
+		if (!A.one('input[name=showxref_cb]').attr('checked')) {
+			A.one('#showxref').val('no');
 		}
 
 		submitForm(document.<portlet:namespace />fm1, 'http://www.biblegateway.com/cgi-bin/bible', false);
@@ -307,39 +309,51 @@
 	}
 
 	function <portlet:namespace />resetA() {
-		document.<portlet:namespace />fm3.StartRestrict.selectedIndex = 0;
+		A.one('#StartRestrict').attr('selectedIndex', 0);
 
-		document.<portlet:namespace />fm3.EndRestrict.selectedIndex = 0;
+		A.one('#EndRestrict').attr('selectedIndex', 0);
 	}
 
 	function <portlet:namespace />resetB() {
-		document.<portlet:namespace />fm3.restrict.selectedIndex = 0;
+		A.one('#restrict').attr('selectedIndex', 0);
 
-		text = document.<portlet:namespace />fm3.StartRestrict[document.<portlet:namespace />fm3.StartRestrict.selectedIndex].value;
+		var startRestrict = A.one('#StartRestrict');
+		var endRestrict = A.one('#EndRestrict');
 
-		if (document.<portlet:namespace />fm3.StartRestrict.selectedIndex > document.<portlet:namespace />fm3.EndRestrict.selectedIndex) {
-			for (var i = 0; i < document.<portlet:namespace />fm3.EndRestrict.length; i++) {
-				if (document.<portlet:namespace />fm3.EndRestrict[i].value == text) {
-					document.<portlet:namespace />fm3.EndRestrict.selectedIndex = i;
+		var text = startRestrict.val();
+
+		if (startRestrict.attr('selectedIndex') > endRestrict.attr('selectedIndex')) {
+			A.each(
+				endRestrict.all('option'),
+				function(item, index, collection) {
+					if (item.val() == text) {
+						endRestrict.attr('selectedIndex', index);
+					}
 				}
-			}
+			);
 		}
 	}
 
 	function <portlet:namespace />resetC() {
-		document.<portlet:namespace />fm3.restrict.selectedIndex = 0;
+		A.one('#restrict').attr('selectedIndex', 0);
 
-		text = document.<portlet:namespace />fm3.StartRestrict[document.<portlet:namespace />fm3.EndRestrict.selectedIndex].value;
+		var startRestrict = A.one('#StartRestrict');
+		var endRestrict = A.one('#EndRestrict');
 
-		if (document.<portlet:namespace />fm3.StartRestrict.selectedIndex == 0) {
-			document.<portlet:namespace />fm3.StartRestrict.selectedIndex = document.<portlet:namespace />fm3.EndRestrict.selectedIndex;
+		var text = endRestrict.val();
+
+		if (startRestrict.attr('selectedIndex') == 0) {
+			startRestrict.attr('selectedIndex', endRestrict.attr('selectedIndex'));
 		}
-		else if (document.<portlet:namespace />fm3.StartRestrict.selectedIndex > document.<portlet:namespace />fm3.EndRestrict.selectedIndex) {
-			for (var i = 0; i < document.<portlet:namespace />fm3.EndRestrict.length; i++) {
-				if (document.<portlet:namespace />fm3.EndRestrict[i].value == text) {
-					document.<portlet:namespace />fm3.StartRestrict.selectedIndex = i;
+		else if (startRestrict.attr('selectedIndex') > endRestrict.attr('selectedIndex')) {
+			A.each(
+				endRestrict.all('option'),
+				function(item, index, collection) {
+					if (item.val() == text) {
+						startRestrict.attr('selectedIndex', index);
+					}
 				}
-			}
+			);
 		}
 	}
 </aui:script>
