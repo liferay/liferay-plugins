@@ -26,6 +26,10 @@ $dropdownLinkBackgroundActive: lighten($linkColor, 5%);
 $dropdownLinkBackgroundHover: darken(#3ECAF4, 10%);
 $dropdownLinkColorActive: $white;
 
+$gridGutterWidth: 0px;
+$gridGutterWidth1200: 0px;
+$gridGutterWidth768: 0px;
+
 $navbarBackground: #F3F3F3;
 $navbarBackgroundHighlight: #F9F9F9;
 $navbarBorder: #DDDDDD;
@@ -40,9 +44,9 @@ $errorText: #B50303;
 $infoBackground: #CEF1FC;
 $infoBorder: darken($infoBackground, 10%);
 $infoText: #12718F;
-$successBackground: #F1FBD1;
-$successBorder: #BCE830;
-$successText: #488F06;
+$successBackground: #F5FBD1;
+$successBorder: #D3E830;
+$successText: #8D9D0D;
 $warningBackground: #FFFBDC;
 $warningBorder: #F1D875;
 $warningText: #BF7900;
