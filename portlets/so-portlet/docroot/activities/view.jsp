@@ -27,7 +27,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("tabs1", tabs1);
 %>
 
-<c:if test="<%= group.isUser() %>">
+<c:if test="<%= group.isUser() && layout.isPrivateLayout() %>">
 	<liferay-ui:tabs
 		names="all,connections,following,my-sites,me"
 		url="<%= portletURL.toString() %>"
