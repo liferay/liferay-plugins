@@ -63,7 +63,8 @@ public class SOAnnouncementsUserNotificationHandler
 		long announcementEntryId = jsonObject.getLong("classPK");
 
 		AnnouncementsEntry announcementEntry =
-			AnnouncementsEntryLocalServiceUtil.getEntry(announcementEntryId);
+			AnnouncementsEntryLocalServiceUtil.fetchAnnouncementsEntry(
+				announcementEntryId);
 
 		if (announcementEntry == null) {
 			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
@@ -101,7 +102,8 @@ public class SOAnnouncementsUserNotificationHandler
 		long announcementEntryId = jsonObject.getLong("classPK");
 
 		AnnouncementsEntry announcementEntry =
-			AnnouncementsEntryLocalServiceUtil.getEntry(announcementEntryId);
+			AnnouncementsEntryLocalServiceUtil.fetchAnnouncementsEntry(
+				announcementEntryId);
 
 		if (announcementEntry == null) {
 			UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
