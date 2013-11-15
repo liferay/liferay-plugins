@@ -226,6 +226,7 @@ $section-header-bg: #CCE6F7;
 		.lfr-detail-info {
 			border-bottom-width: 0;
 			padding: 10px 10px 5px;
+			width: 100%;
 		}
 
 		.lfr-contact-name {
