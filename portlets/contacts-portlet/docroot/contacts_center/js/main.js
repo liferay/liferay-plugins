@@ -430,7 +430,7 @@ AUI.add(
 						A.all('.contacts-container-content .toolbar-content button').hide();
 
 						if (instance._sendMessageButton) {
-							instance._sendMessageButton.show();
+							instance._showButton(instance._sendMessageButton);
 						}
 
 						instance._contactCenterToolbar.hide();
@@ -862,6 +862,14 @@ AUI.add(
 						instance._selectedUsersView.show();
 					},
 
+					_showButton: function(node) {
+						node.show();
+
+						if (node.hasClass('btn-hidden')) {
+							node.removeClass('btn-hidden');
+						}
+					},
+
 					_updateContactsResult: function(event) {
 						var instance = this;
 
@@ -883,14 +891,14 @@ AUI.add(
 
 						if (user.block) {
 							if (instance._unblockButton) {
-								instance._unblockButton.show();
+								instance._showButton(instance._unblockButton);
 
 								instance._buttonUnBlockUserIds.push(user.userId);
 							}
 						}
 						else {
 							if (instance._blockButton) {
-								instance._blockButton.show();
+								instance._showButton(instance._blockButton);
 
 								instance._buttonBlockUserIds.push(user.userId);
 							}
@@ -898,14 +906,14 @@ AUI.add(
 							if (!user.connectionRequested) {
 								if (user.connected) {
 									if (instance._removeConnectionButton) {
-										instance._removeConnectionButton.show();
+										instance._showButton(instance._removeConnectionButton);
 
 										instance._buttonRemoveConnectionUserIds.push(user.userId);
 									}
 								}
 								else {
 									if (instance._addConnectionButton) {
-										instance._addConnectionButton.show();
+										instance._showButton(instance._addConnectionButton);
 
 										instance._buttonAddConnectionUserIds.push(user.userId);
 									}
@@ -914,21 +922,21 @@ AUI.add(
 
 							if (user.following) {
 								if (instance._unfollowButton) {
-									instance._unfollowButton.show();
+									instance._showButton(instance._unfollowButton);
 
 									instance._buttonUnFollowUserIds.push(user.userId);
 								}
 							}
 							else {
 								if (instance._followButton) {
-									instance._followButton.show();
+									instance._showButton(instance._followButton);
 
 									instance._buttonFollowUserIds.push(user.userId);
 								}
 							}
 
 							if (instance._exportButton) {
-								instance._exportButton.show();
+								instance._showButton(instance._exportButton);
 
 								instance._buttonExportUserIds.push(user.userId);
 							}
@@ -1071,11 +1079,11 @@ AUI.add(
 							blockButton.hide();
 							followButton.hide();
 							removeConnectionButton.hide();
-							unblockButton.show();
+							instance._showButton(unblockButton);
 							unfollowButton.hide();
 						}
 						else {
-							blockButton.show();
+							instance._showButton(blockButton);
 							unblockButton.hide();
 
 							if (user.connectionRequested) {
@@ -1084,19 +1092,19 @@ AUI.add(
 							}
 							else if (user.connected) {
 								addConnectionButton.hide();
-								removeConnectionButton.show();
+								instance._showButton(removeConnectionButton);
 							}
 							else {
-								addConnectionButton.show();
+								instance._showButton(addConnectionButton);
 								removeConnectionButton.hide();
 							}
 
 							if (user.following) {
 								followButton.hide();
-								unfollowButton.show();
+								instance._showButton(unfollowButton);
 							}
 							else {
-								followButton.show();
+								instance._showButton(followButton);
 								unfollowButton.hide();
 							}
 						}
