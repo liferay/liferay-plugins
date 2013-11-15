@@ -70,7 +70,7 @@ public class ContactsCenterUserNotificationHandler
 			return null;
 		}
 
-		StringBundler sb = new StringBundler(10);
+		StringBundler sb = new StringBundler(14);
 
 		sb.append("<div class=\"title\">");
 
@@ -106,8 +106,9 @@ public class ContactsCenterUserNotificationHandler
 			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
 		confirmURL.setWindowState(WindowState.NORMAL);
 
-		sb.append("<a class=\"btn btn-success\"href=\"" + confirmURL + "\">");
-
+		sb.append("<a class=\"btn btn-success\"href=\"");
+		sb.append(confirmURL);
+		sb.append("\">");
 		sb.append(serviceContext.translate("confirm"));
 		sb.append("</a>");
 
@@ -125,8 +126,9 @@ public class ContactsCenterUserNotificationHandler
 			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
 		ignoreURL.setWindowState(WindowState.NORMAL);
 
-		sb.append("<a class=\"btn btn-warning\"href=\"" + ignoreURL + "\">");
-
+		sb.append("<a class=\"btn btn-warning\"href=\"");
+		sb.append(ignoreURL);
+		sb.append("\">");
 		sb.append(serviceContext.translate("ignore"));
 		sb.append("</a></div>");
 
