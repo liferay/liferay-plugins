@@ -192,8 +192,7 @@ public class SummaryPortlet extends MVCPortlet {
 			users = UserLocalServiceUtil.search(
 				themeDisplay.getCompanyId(), null,
 				WorkflowConstants.STATUS_APPROVED, userParams,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-				(OrderByComparator)null);
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
 		}
 
 		for (User user : users) {
