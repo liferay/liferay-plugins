@@ -90,7 +90,7 @@ public class CalendarBookingAssetRendererFactory
 
 		if (!CalendarPermission.contains(
 				themeDisplay.getPermissionChecker(), calendar.getCalendarId(),
-				ActionKeys.ADD_CALENDAR)) {
+				ActionKeys.MANAGE_BOOKINGS)) {
 
 			return null;
 		}
