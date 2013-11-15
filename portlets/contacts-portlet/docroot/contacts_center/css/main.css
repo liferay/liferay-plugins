@@ -12,6 +12,10 @@ $section-header-bg: #CCE6F7;
 		clear: both;
 	}
 
+	.alert {
+		display: block;
+	}
+
 	.column-content, .column-content-center {
 		padding: 0;
 	}
