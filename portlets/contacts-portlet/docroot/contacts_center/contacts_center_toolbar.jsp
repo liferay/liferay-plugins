@@ -215,7 +215,7 @@ if (user2 != null) {
 							A.Plugin.IO,
 							{
 								data: {
-									<portlet:namespace />userIds: userIds.join()
+									_1_WAR_privatemessagingportlet_userIds: userIds.join()
 								},
 								uri: uri
 							}
