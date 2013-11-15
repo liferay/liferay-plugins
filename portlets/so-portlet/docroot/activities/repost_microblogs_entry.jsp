@@ -77,7 +77,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 
 <aui:script>
 	function <portlet:namespace />closeEntry() {
-		Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
+		Liferay.Util.getWindow('<portlet:namespace />Dialog').destroy();
 	}
 
 	function <portlet:namespace />saveEntry() {
