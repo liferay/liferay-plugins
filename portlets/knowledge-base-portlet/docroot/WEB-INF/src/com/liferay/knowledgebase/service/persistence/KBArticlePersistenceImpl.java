@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -21775,7 +21776,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (KBArticle kbArticle : list) {
 				if ((groupId != kbArticle.getGroupId()) ||
 						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
-						!Validator.equals(sections, kbArticle.getSections()) ||
+						!StringUtil.wildcardMatches(kbArticle.getSections(),
+							sections, CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true) ||
 						(latest != kbArticle.getLatest())) {
 					list = null;
 
@@ -23559,7 +23562,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (KBArticle kbArticle : list) {
 				if ((groupId != kbArticle.getGroupId()) ||
 						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
-						!Validator.equals(sections, kbArticle.getSections()) ||
+						!StringUtil.wildcardMatches(kbArticle.getSections(),
+							sections, CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true) ||
 						(main != kbArticle.getMain())) {
 					list = null;
 
@@ -25342,7 +25347,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (KBArticle kbArticle : list) {
 				if ((groupId != kbArticle.getGroupId()) ||
 						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
-						!Validator.equals(sections, kbArticle.getSections()) ||
+						!StringUtil.wildcardMatches(kbArticle.getSections(),
+							sections, CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true) ||
 						(status != kbArticle.getStatus())) {
 					list = null;
 
