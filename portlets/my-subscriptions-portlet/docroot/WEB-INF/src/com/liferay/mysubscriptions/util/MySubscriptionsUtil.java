@@ -17,6 +17,7 @@ package com.liferay.mysubscriptions.util;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
@@ -145,13 +146,18 @@ public class MySubscriptionsUtil {
 
 			return wikiNode.getName();
 		}
-		else if (className.equals(Folder.class.getName())) {
+
+		Group group = GroupLocalServiceUtil.fetchGroup(classPK);
+
+		if (className.equals(Folder.class.getName())) {
+			if (group != null) {
+				return LanguageUtil.get(locale, "home");
+			}
+
 			Folder folder = DLAppLocalServiceUtil.getFolder(classPK);
 
 			return folder.getName();
 		}
-
-		Group group = GroupLocalServiceUtil.fetchGroup(classPK);
 
 		if (group != null) {
 			title += group.getDescriptiveName(locale);
