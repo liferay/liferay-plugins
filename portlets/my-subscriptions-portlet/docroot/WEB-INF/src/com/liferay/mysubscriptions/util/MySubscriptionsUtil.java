@@ -121,6 +121,8 @@ public class MySubscriptionsUtil {
 			return title;
 		}
 
+		Group group = GroupLocalServiceUtil.fetchGroup(classPK);
+
 		if (className.equals(BlogsEntry.class.getName())) {
 			title = "Blog at ";
 		}
@@ -146,10 +148,7 @@ public class MySubscriptionsUtil {
 
 			return wikiNode.getName();
 		}
-
-		Group group = GroupLocalServiceUtil.fetchGroup(classPK);
-
-		if (className.equals(Folder.class.getName())) {
+		else if (className.equals(Folder.class.getName())) {
 			if (group != null) {
 				return LanguageUtil.get(locale, "home");
 			}
