@@ -14,7 +14,6 @@
 
 package com.liferay.chat.video.messaging;
 
-import com.liferay.chat.video.WebRTCManager;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
@@ -25,7 +24,6 @@ public class WebRTCConnectionStateMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
-		WebRTCManager.checkAllManagersConnectionsStates();
 	}
 
 }
