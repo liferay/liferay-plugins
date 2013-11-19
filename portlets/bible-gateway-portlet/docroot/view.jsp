@@ -51,7 +51,6 @@
 	</liferay-ui:section>
 	<liferay-ui:section>
 		<aui:form name="fm2" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "compare();" %>'>
-
 			<aui:fieldset>
 				<aui:input label="" name="passage" size="30" type="text" />
 
@@ -77,7 +76,6 @@
 	</liferay-ui:section>
 	<liferay-ui:section>
 		<aui:form method="get" name='<%= renderResponse.getNamespace() + "fm3" %>' onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "search();" %>' portletNamespace="" target="_blank">
-
 			<aui:fieldset>
 				<aui:input label="" name="search" size="30" type="text" />
 
