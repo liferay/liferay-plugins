@@ -732,18 +732,6 @@ div#navigation {
 	}
 }
 
-.taglib-search-iterator .results-row {
-	td, th {
-		&.first {
-			border-left-width: 0;
-		}
-
-		&.last {
-			border-right-width: 0;
-		}
-	}
-}
-
 /* ---------- Dragging/sorting indicators ---------- */
 
 .aui-proxy {
@@ -1622,7 +1610,7 @@ div#navigation {
 	}
 
 	.private-messaging-container {
-		.results-grid, .results-grid table.taglib-search-iterator, .results-grid .results-row td, .results-grid .results-row.alt td, .thread .results-row {
+		.results-grid, .results-grid .results-row td, .results-grid .results-row.alt td, .thread .results-row {
 			border-left-width: 0;
 			border-right-width: 0;
 			border-top-width: 0;
