@@ -796,38 +796,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	font-weight: bold;
 }
 
-/* ---------- Search iterator ---------- */
-
-.taglib-search-iterator {
-	 .result-title img {
-		margin-right: .5em;
-	}
-
-	.result-data, .result-description {
-		color: #777;
-		font-size: 10px;
-	}
-
-	.result-data span {
-		margin-right: 1em;
-		white-space: nowrap;
-	}
-
-	.result-tags {
-		background: url(../images/custom/so_tag_small.png) no-repeat 0 3px;
-		color: #777;
-		font-size: 10px;
-		padding-left: 15px;
-
-		span {
-			float: left;
-			font-size: 0;
-			opacity: 0;
-			text-indent: -9999em;
-		}
-	}
-}
-
 /* ---------- Taglib ---------- */
 
 .taglib-icon .taglib-text {
@@ -1585,10 +1553,6 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 		min-width: 200px;
 	}
 
-	.document-container table.taglib-search-iterator {
-		table-layout: auto;
-	}
-
 	.version-history .results-grid .lfr-actions .lfr-trigger strong {
 		min-width: 16px;
 	}
@@ -2073,7 +2037,7 @@ input[type=button], input[type=reset], input[type=submit], .aui-button button, .
 	}
 
 	.private-messaging-container {
-		.results-grid, .results-grid table.taglib-search-iterator, .results-grid .results-row td, .results-grid .results-row.alt td, .thread .results-row {
+		.results-grid, .results-grid .results-row td, .results-grid .results-row.alt td, .thread .results-row {
 			border-left-width: 0;
 			border-right-width: 0;
 			border-top-width: 0;
