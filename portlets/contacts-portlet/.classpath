@@ -19,5 +19,8 @@
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/private-messaging-portlet-service.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/private-messaging-shared.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
