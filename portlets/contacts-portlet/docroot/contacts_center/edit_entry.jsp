@@ -100,9 +100,9 @@ if (entryId > 0) {
 								}
 							}
 							else {
-								Liferay.ContactsCenter.renderEntry(responseData);
+								contactsCenterImpl.renderEntry(responseData);
 
-								Liferay.ContactsCenter.closePopup();
+								contactsCenterImpl.closePopup();
 							}
 						}
 					},
