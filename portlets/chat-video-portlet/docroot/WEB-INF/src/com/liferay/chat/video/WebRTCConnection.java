@@ -28,8 +28,8 @@ public class WebRTCConnection {
 	}
 
 	public long getDurationTime() {
-		if (_durationTime == -1) {
-			return -1;
+		if (_durationTime == 0) {
+			return 0;
 		}
 
 		return System.currentTimeMillis() - _durationTime;
@@ -42,7 +42,7 @@ public class WebRTCConnection {
 			_durationTime = System.currentTimeMillis();
 		}
 		else {
-			_durationTime = -1;
+			_durationTime = 0;
 		}
 	}
 
@@ -51,11 +51,13 @@ public class WebRTCConnection {
 	}
 
 	public enum State {
-		INITIATED, CONNECTED, DISCONNECTED
+
+		CONNECTED, INITIATED, DISCONNECTED
+
 	}
 
 	private WebRTCClient _webRTCClient;
 	private State _state = State.DISCONNECTED;
-	private long _durationTime = -1;
+	private long _durationTime;
 
 }
