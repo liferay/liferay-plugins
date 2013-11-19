@@ -5,7 +5,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.chat.video.messaging.WebRtcPresenceMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.chat.video.messaging.WebRTCPresenceMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<simple-trigger-value>10</simple-trigger-value>
@@ -14,7 +14,7 @@
 			</trigger>
 		</scheduler-entry>
 		<scheduler-entry>
-			<scheduler-event-listener-class>com.liferay.chat.video.messaging.WebRtcConnectionStateMessageListener</scheduler-event-listener-class>
+			<scheduler-event-listener-class>com.liferay.chat.video.messaging.WebRTCConnectionStateMessageListener</scheduler-event-listener-class>
 			<trigger>
 				<simple>
 					<simple-trigger-value>5</simple-trigger-value>
