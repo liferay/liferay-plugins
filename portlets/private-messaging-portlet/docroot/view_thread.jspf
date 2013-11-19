@@ -345,7 +345,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 								loadingMask.hide();
 							}
 							else {
-								Liferay.PrivateMessaging.showMessage('<span class="portlet-msg-error">' + responseData.message + '</span>');
+								privateMessagingImpl.showMessage('<span class="portlet-msg-error">' + responseData.message + '</span>');
 
 								loadingMask.hide();
 							}

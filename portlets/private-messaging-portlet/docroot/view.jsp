@@ -42,7 +42,7 @@ long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 </div>
 
 <aui:script use="liferay-plugin-privatemessaging">
-	var privateMessaging = new Liferay.PrivateMessaging(
+	privateMessagingImpl = new Liferay.PrivateMessaging(
 		{
 			baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
 			baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
@@ -50,6 +50,4 @@ long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
 			portletId: '<%= portletDisplay.getId() %>'
 		}
 	);
-
-	Liferay.PrivateMessaging = privateMessaging;
 </aui:script>
