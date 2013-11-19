@@ -2,6 +2,7 @@
 /jstl-api.jar
 /jstl-impl.jar
 /log4j.jar
+/portal-compat-shared.jar
 /private-messaging-portlet-service.jar
 /private-messaging-shared.jar
 /util-bridges.jar
