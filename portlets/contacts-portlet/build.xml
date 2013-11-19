@@ -3,4 +3,6 @@
 
 <project name="contacts-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
+
+	<property name="import.shared" value="private-messaging-shared" />
 </project>
