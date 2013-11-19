@@ -295,10 +295,10 @@ if (user2 != null) {
 			{
 				after: {
 					failure: function(event, id, obj) {
-						Liferay.ContactsCenter.showMessage(false);
+						contactsCenterImpl.showMessage(false);
 					},
 					success: function(event, id, obj) {
-						Liferay.ContactsCenter.renderSelectedContacts(this.get('responseData'), lastNameAnchor);
+						contactsCenterImpl.renderSelectedContacts(this.get('responseData'), lastNameAnchor);
 					}
 				},
 				data: {

@@ -65,7 +65,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 							{
 								on: {
 									click: function(event) {
-										Liferay.ContactsCenter.showPopup('<%= UnicodeLanguageUtil.get(pageContext, "update-contact") %>', '<%= viewEntryURL %>');
+										contactsCenterImpl.showPopup('<%= UnicodeLanguageUtil.get(pageContext, "update-contact") %>', '<%= viewEntryURL %>');
 									}
 								},
 								icon: 'edit',
@@ -86,7 +86,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 												{
 													after: {
 														failure: function(event, id, obj) {
-															Liferay.ContactsCenter.showMessage(false);
+															contactsCenterImpl.showMessage(false);
 														},
 														success: function(event, id, obj) {
 															location.href = '<%= HtmlUtil.escape(redirect) %>';
@@ -161,7 +161,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 									label: '<%= UnicodeLanguageUtil.get(pageContext, "back-to-selection") %>',
 									on: {
 										click: function(event) {
-											Liferay.ContactsCenter._setVisibleSelectedUsersView();
+											contactsCenterImpl._setVisibleSelectedUsersView();
 										}
 									}
 								}
