@@ -297,4 +297,12 @@ public class SyncUtil {
 		return syncDLObject;
 	}
 
+	public static boolean validateFolder(Folder folder) {
+		if (folder.isMountPoint()) {
+			return false;
+		}
+
+		return true;
+	}
+
 }
