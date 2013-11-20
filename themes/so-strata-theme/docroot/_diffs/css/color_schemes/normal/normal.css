@@ -13,7 +13,7 @@ body {
 
 html.aui {
 	.dockbar {
-		margin-top: -44px;
+		margin-top: -41px;
 
 		@include transition-duration(0.2s);
 		@include transition-property(margin-top);
@@ -77,7 +77,7 @@ html.aui {
 		margin-top: 0;
 
 		&.navbar-static-top .collapse .nav-account-controls, .navbar-inner .container .nav-account-controls {
-			top: -44px;
+			top: -41px;
 		}
 
 		.info-items, .info-link-container {
@@ -476,8 +476,8 @@ a {
 		vertical-align: middle;
 
 		&, img {
-			height: 55px;
-			width: 55px;
+			height: 56px;
+			width: 56px;
 		}
 	}
 
