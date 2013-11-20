@@ -167,7 +167,11 @@ to = sb.toString() + to;
 								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 							}
 							else {
-								privateMessagingImpl.showMessage('<span class="portlet-msg-error">' + responseData.message + '</span>');
+								var messageContainer = A.one('#<portlet:namespace />messageContainer');
+
+								if (messageContainer) {
+									messageContainer.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+								}
 
 								loadingMask.hide();
 							}
