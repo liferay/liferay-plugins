@@ -371,7 +371,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 		<aui:script use="aui-io-deprecated,aui-loading-mask-deprecated,datatype-number,liferay-contacts-center">
 			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
 
-			contactsCenterImpl = new Liferay.ContactsCenter(
+			var contactsCenterImpl = new Liferay.ContactsCenter(
 				{
 					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
 					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
