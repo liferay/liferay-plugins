@@ -117,6 +117,14 @@ public class TemplateNotificationMessageGenerator
 
 			template.put("taskName", kaleoTask.getName());
 
+			if (kaleoTaskInstanceToken.getCompletionUserId() != 0) {
+				template.put(
+					"userId", kaleoTaskInstanceToken.getCompletionUserId());
+			}
+			else {
+				template.put("userId", kaleoTaskInstanceToken.getUserId());
+			}
+
 			template.put("userId", kaleoTaskInstanceToken.getUserId());
 			template.put("userName", kaleoTaskInstanceToken.getUserName());
 

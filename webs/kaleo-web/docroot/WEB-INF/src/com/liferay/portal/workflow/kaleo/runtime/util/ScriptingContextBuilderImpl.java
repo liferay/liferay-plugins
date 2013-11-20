@@ -67,7 +67,13 @@ public class ScriptingContextBuilderImpl implements ScriptingContextBuilder {
 
 			inputObjects.put("taskName", kaleoTask.getName());
 
-			inputObjects.put("userId", kaleoTaskInstanceToken.getUserId());
+			if (kaleoTaskInstanceToken.getCompletionUserId() != 0) {
+				inputObjects.put(
+					"userId", kaleoTaskInstanceToken.getCompletionUserId());
+			}
+			else {
+				inputObjects.put("userId", kaleoTaskInstanceToken.getUserId());
+			}
 
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
 				KaleoTaskAssignmentInstanceUtil.getWorkflowTaskAssignees(
