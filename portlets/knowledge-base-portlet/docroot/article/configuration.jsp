@@ -71,7 +71,7 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 						String taglibOnClick = "var selectConfigurationKBArticleWindow = window.open('" + selectConfigurationKBArticleURL + "&" + HtmlUtil.escapeJS(PortalUtil.getPortletNamespace(portletResource)) + "&selResourcePrimKey=' + document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "resourcePrimKey.value, 'selectConfigurationKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); selectConfigurationKBArticleWindow.focus();";
 						%>
 
-						<aui:a cssClass="btn" href="javascript:;" onClick="<%= taglibOnClick %>"><liferay-ui:message key="select" /></aui:a>
+						<aui:button onClick="<%= taglibOnClick %>" value="select" />
 					</aui:field-wrapper>
 				</div>
 			</c:when>
