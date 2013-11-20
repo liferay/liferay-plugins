@@ -77,7 +77,8 @@ public class RulesContextBuilder {
 			}
 			else {
 				facts.add(
-					new Fact<Long>("userId", kaleoTaskInstanceToken.getUserId()));
+					new Fact<Long>(
+						"userId", kaleoTaskInstanceToken.getUserId()));
 			}
 
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
