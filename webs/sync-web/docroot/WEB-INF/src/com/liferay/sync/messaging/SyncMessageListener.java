@@ -94,7 +94,7 @@ public class SyncMessageListener extends BaseMessageListener {
 				return;
 			}
 
-			if (!SyncUtil.validateFolder(folder)) {
+			if (!SyncUtil.isSupportedFolder(folder)) {
 				return;
 			}
 
