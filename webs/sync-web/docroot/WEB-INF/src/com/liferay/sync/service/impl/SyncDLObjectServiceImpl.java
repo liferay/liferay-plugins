@@ -232,7 +232,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		Folder folder = dlAppService.getFolder(folderId);
 
-		if (!SyncUtil.validateFolder(folder)) {
+		if (!SyncUtil.isSupportedFolder(folder)) {
 			return null;
 		}
 
@@ -251,7 +251,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			folders.size());
 
 		for (Folder folder : folders) {
-			if (!SyncUtil.validateFolder(folder)) {
+			if (!SyncUtil.isSupportedFolder(folder)) {
 				continue;
 			}
 
@@ -497,7 +497,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			else if (folderAndFileEntryAndFileShortcut instanceof Folder) {
 				Folder folder = (Folder)folderAndFileEntryAndFileShortcut;
 
-				if (!SyncUtil.validateFolder(folder)) {
+				if (!SyncUtil.isSupportedFolder(folder)) {
 					continue;
 				}
 

@@ -179,6 +179,14 @@ public class SyncUtil {
 		return deltaInputStream;
 	}
 
+	public static boolean isSupportedFolder(Folder folder) {
+		if (folder.isMountPoint()) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public static void patchFile(
 			File originalFile, File deltaFile, File patchedFile)
 		throws PortalException {
@@ -295,14 +303,6 @@ public class SyncUtil {
 		syncDLObject.setTypeUuid(folder.getUuid());
 
 		return syncDLObject;
-	}
-
-	public static boolean validateFolder(Folder folder) {
-		if (folder.isMountPoint()) {
-			return false;
-		}
-
-		return true;
 	}
 
 }
