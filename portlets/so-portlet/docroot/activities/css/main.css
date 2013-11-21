@@ -57,6 +57,9 @@ $default-border-color: #E7E7E7;
 
 	.activity-body, .grouped-activity-body-container {
 		border: 1px solid $default-border-color;
+
+		@include hyphenation;
+
 		margin: 0.8em 0 0;
 
 		span {
