@@ -1,5 +1,5 @@
 @import "compass";
-@import "mixins"
+@import "mixins";
 
 .calendar-booking-invitations {
 	min-height: 110px;
@@ -556,39 +556,7 @@
 }
 
 @include respond-to(phone, tablet) {
-	.scheduler-view-table-header-day {
-		font-weight: normal;
-	}
-
-	.scheduler-view-table-header-day:first-child:after {
-		content: 'Su';
-	}
-
-	.scheduler-view-table-header-day:nth-child(2):after {
-		content: 'Mo';
-	}
-
-	.scheduler-view-table-header-day:nth-child(3):after {
-		content: 'Tu';
-	}
-
-	.scheduler-view-table-header-day:nth-child(4):after {
-		content: 'We';
-	}
-
-	.scheduler-view-table-header-day:nth-child(5):after {
-		content: 'Th';
-	}
-
-	.scheduler-view-table-header-day:nth-child(6):after {
-		content: 'Fr';
-	}
-
-	.scheduler-view-table-header-day:nth-child(7):after {
-		content: 'Sa';
-	}
-
 	.scheduler-view-table-header-day div {
-		display: none;
+		overflow: hidden
 	}
 }
