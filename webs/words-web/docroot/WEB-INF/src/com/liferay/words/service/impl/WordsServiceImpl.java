@@ -34,18 +34,18 @@ public class WordsServiceImpl extends WordsServiceBaseImpl {
 
 	@Override
 	public List<String> checkSpelling(String text) throws Exception {
-		List<String> invalidWordsList = new ArrayList<String>();
+		List<String> invalidWords = new ArrayList<String>();
 
-		for (InvalidWord invalidWord : _getInvalidWords(text)) {
-			invalidWordsList.add(invalidWord.getInvalidWord());
+		for (InvalidWord invalidWord : getInvalidWords(text)) {
+			invalidWords.add(invalidWord.getInvalidWord());
 		}
 
-		return invalidWordsList;
+		return invalidWords;
 	}
 
 	@Override
 	public List<String> getSuggestions(String word) throws Exception {
-		List<InvalidWord> invalidWords = _getInvalidWords(word);
+		List<InvalidWord> invalidWords = getInvalidWords(word);
 
 		if (invalidWords.isEmpty()) {
 			return Collections.emptyList();
@@ -56,7 +56,7 @@ public class WordsServiceImpl extends WordsServiceBaseImpl {
 		return invalidWord.getSuggestions();
 	}
 
-	private List<InvalidWord> _getInvalidWords(String text) throws Exception {
+	protected List<InvalidWord> getInvalidWords(String text) throws Exception {
 		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
 
 		Class wordsUtilClass = (Class)portalClassLoader.loadClass(
