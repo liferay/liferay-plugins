@@ -14,13 +14,9 @@
 
 package com.liferay.words.service.impl;
 
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.util.ReflectionUtil;
-import com.liferay.util.SerializableUtil;
-import com.liferay.util.jazzy.InvalidWord;
+import com.liferay.portal.kernel.jazzy.InvalidWord;
+import com.liferay.portal.kernel.words.WordsUtil;
 import com.liferay.words.service.base.WordsServiceBaseImpl;
-
-import java.lang.reflect.Method;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -36,7 +32,7 @@ public class WordsServiceImpl extends WordsServiceBaseImpl {
 	public List<String> checkSpelling(String text) throws Exception {
 		List<String> invalidWordsList = new ArrayList<String>();
 
-		for (InvalidWord invalidWord : _getInvalidWords(text)) {
+		for (InvalidWord invalidWord : WordsUtil.checkSpelling(text)) {
 			invalidWordsList.add(invalidWord.getInvalidWord());
 		}
 
@@ -45,7 +41,7 @@ public class WordsServiceImpl extends WordsServiceBaseImpl {
 
 	@Override
 	public List<String> getSuggestions(String word) throws Exception {
-		List<InvalidWord> invalidWords = _getInvalidWords(word);
+		List<InvalidWord> invalidWords = WordsUtil.checkSpelling(word);
 
 		if (invalidWords.isEmpty()) {
 			return Collections.emptyList();
@@ -54,19 +50,6 @@ public class WordsServiceImpl extends WordsServiceBaseImpl {
 		InvalidWord invalidWord = invalidWords.get(0);
 
 		return invalidWord.getSuggestions();
-	}
-
-	private List<InvalidWord> _getInvalidWords(String text) throws Exception {
-		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
-
-		Class wordsUtilClass = (Class)portalClassLoader.loadClass(
-			"com.liferay.portal.words.WordsUtil");
-
-		Method method = ReflectionUtil.getDeclaredMethod(
-			wordsUtilClass, "checkSpelling", String.class);
-
-		return (List<InvalidWord>)SerializableUtil.clone(
-			method.invoke(null, text));
 	}
 
 }
