@@ -59,7 +59,7 @@ public class WordsServiceImpl extends WordsServiceBaseImpl {
 	protected List<InvalidWord> getInvalidWords(String text) throws Exception {
 		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
 
-		Class wordsUtilClass = (Class)portalClassLoader.loadClass(
+		Class<?> wordsUtilClass = portalClassLoader.loadClass(
 			"com.liferay.portal.words.WordsUtil");
 
 		Method method = ReflectionUtil.getDeclaredMethod(
