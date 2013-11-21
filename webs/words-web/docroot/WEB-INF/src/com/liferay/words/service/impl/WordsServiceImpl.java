@@ -30,13 +30,13 @@ public class WordsServiceImpl extends WordsServiceBaseImpl {
 
 	@Override
 	public List<String> checkSpelling(String text) throws Exception {
-		List<String> invalidWordsList = new ArrayList<String>();
+		List<String> invalidWords = new ArrayList<String>();
 
 		for (InvalidWord invalidWord : WordsUtil.checkSpelling(text)) {
-			invalidWordsList.add(invalidWord.getInvalidWord());
+			invalidWords.add(invalidWord.getInvalidWord());
 		}
 
-		return invalidWordsList;
+		return invalidWords;
 	}
 
 	@Override
