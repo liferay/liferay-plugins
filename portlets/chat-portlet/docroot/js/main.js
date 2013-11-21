@@ -118,6 +118,12 @@ AUI().use(
 
 				time += instance._getOffset();
 
+				var currentSystemTime = now();
+
+				if (time > currentSystemTime) {
+					time = currentSystemTime;
+				}
+
 				return time;
 			},
 
