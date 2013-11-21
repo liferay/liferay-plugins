@@ -542,40 +542,45 @@
 
 	<target name="clean-portal-dependencies">
 		<if>
-			<available file="docroot/WEB-INF/lib" />
+			<equals arg1="${plugins.war.clean.portal.dependencies}" arg2="true" />
 			<then>
-				<delete>
-					<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
-					<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
-				</delete>
-			</then>
-		</if>
+				<if>
+					<available file="docroot/WEB-INF/lib" />
+					<then>
+						<delete>
+							<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
+							<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
+						</delete>
+					</then>
+				</if>
 
-		<if>
-			<available file="docroot/WEB-INF/tld" />
-			<then>
-				<delete>
-					<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
-				</delete>
-			</then>
-		</if>
+				<if>
+					<available file="docroot/WEB-INF/tld" />
+					<then>
+						<delete>
+							<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
+						</delete>
+					</then>
+				</if>
 
-		<if>
-			<available file="tmp/WEB-INF/lib" />
-			<then>
-				<delete>
-					<fileset dir="tmp/WEB-INF/lib" includes="${required.portal.jars}" />
-					<fileset dir="tmp/WEB-INF/lib" includes="${plugin.jars}" />
-				</delete>
-			</then>
-		</if>
+				<if>
+					<available file="tmp/WEB-INF/lib" />
+					<then>
+						<delete>
+							<fileset dir="tmp/WEB-INF/lib" includes="${required.portal.jars}" />
+							<fileset dir="tmp/WEB-INF/lib" includes="${plugin.jars}" />
+						</delete>
+					</then>
+				</if>
 
-		<if>
-			<available file="tmp/WEB-INF/tld" />
-			<then>
-				<delete>
-					<fileset dir="tmp/WEB-INF/tld" includes="${plugin.tlds}" />
-				</delete>
+				<if>
+					<available file="tmp/WEB-INF/tld" />
+					<then>
+						<delete>
+							<fileset dir="tmp/WEB-INF/tld" includes="${plugin.tlds}" />
+						</delete>
+					</then>
+				</if>
 			</then>
 		</if>
 	</target>
