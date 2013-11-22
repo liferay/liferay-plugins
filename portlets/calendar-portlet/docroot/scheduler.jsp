@@ -87,7 +87,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	</c:if>
 
 	<c:if test="<%= !readOnly && (userDefaultCalendar != null) %>">
-		var width = (Liferay.Util.getWindowWidth() > 550) ? 550 : Liferay.Util.getWindowWidth();
+		var width = Math.min(Liferay.Util.getWindowWidth(), 550);
 
 		window.<portlet:namespace />eventRecorder = new Liferay.SchedulerEventRecorder(
 			{
