@@ -34,6 +34,20 @@ AUI().use(
 												if (read) {
 													read.setHTML(Liferay.Language.get('read'));
 												}
+
+												if (instance._openWindow(uri)) {
+													Liferay.Util.openWindow(
+														{
+															id: 'notificationsWindow',
+															uri: uri
+														}
+													);
+												}
+												else {
+													var topWindow = Liferay.Util.getTop();
+
+													topWindow.location.href = uri;
+												}
 											}
 										}
 									}
@@ -41,22 +55,6 @@ AUI().use(
 								dataType: 'json'
 							}
 						);
-					}
-
-					if (uri) {
-						if (instance._openWindow(uri)) {
-							Liferay.Util.openWindow(
-								{
-									id: 'notificationsWindow',
-									uri: uri
-								}
-							);
-						}
-						else {
-							var topWindow = Liferay.Util.getTop();
-
-							topWindow.location.href = uri;
-						}
 					}
 				}
 			},
