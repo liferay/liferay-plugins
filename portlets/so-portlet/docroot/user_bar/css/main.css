@@ -164,6 +164,24 @@ html.aui {
 					padding-bottom: 0.45em;
 					padding-top: 0.45em;
 				}
+
+				.user-avatar {
+					.nav-item-label {
+						padding-left: 20px;
+						position: relative;
+					}
+
+					img {
+						border-width: 0;
+
+						@include border-radius(0);
+
+						clip: rect(0px, 20px, 20px, 0px);
+						left: -6px;
+						position: absolute;
+						top: 0;
+					}
+				}
 			}
 		}
 
@@ -204,8 +222,9 @@ html.aui {
 		}
 
 		&.nav > li > a {
-			padding-bottom: 0.8em;
-			padding-top: 0.8em;
+			line-height: 1em;
+			padding-bottom: 12px;
+			padding-top: 12px;
 		}
 	}
 
