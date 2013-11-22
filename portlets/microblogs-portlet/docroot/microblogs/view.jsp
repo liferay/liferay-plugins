@@ -179,14 +179,14 @@ portletURL.setParameter("tabs1", tabs1);
 		}
 	);
 
-	var microblogsContainer = A.one('.microblogs-portlet .microblogs-container');
+	var microblogsContainer = A.one('#p_p_id<portlet:namespace /> .microblogs-container');
 
 	var showComments = function(microblogsEntryId) {
 		var uri = '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/microblogs/view_comments.jsp" /></portlet:renderURL>';
 
 		uri = Liferay.Util.addParams('<portlet:namespace />receiverMicroblogsEntryId=' + microblogsEntryId, uri) || uri;
 
-		var commentsContainer = A.one('.microblogs-portlet #<portlet:namespace />commentsContainer' + microblogsEntryId);
+		var commentsContainer = A.one('#<portlet:namespace />commentsContainer' + microblogsEntryId);
 
 		var commentsContainerContent = commentsContainer.one('.comments-container-content');
 
@@ -230,7 +230,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 			var microblogsEntryId = event.currentTarget.getAttribute('data-microblogsEntryId');
 
-			var microblogsEntry = A.one('.microblogs-portlet #<portlet:namespace />microblogsEntry' + microblogsEntryId);
+			var microblogsEntry = A.one('#<portlet:namespace />microblogsEntry' + microblogsEntryId);
 
 			var editContainer = microblogsEntry.one('.edit-container');
 
@@ -273,7 +273,7 @@ portletURL.setParameter("tabs1", tabs1);
 					{
 						on: {
 							success: function(event, id, obj) {
-								var updateContainer = A.one('.microblogs-portlet .portlet-body');
+								var updateContainer = A.one('#p_p_id<portlet:namespace /> .portlet-body');
 
 								Liferay.Microblogs.updateMicroblogsList('<%= microblogsEntriesURL %>', updateContainer);
 							}
