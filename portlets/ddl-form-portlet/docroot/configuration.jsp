@@ -91,7 +91,6 @@ catch (NoSuchRecordSetException nsrse) {
 			iteratorURL="<%= portletURL %>"
 			total="<%= DDLRecordSetLocalServiceUtil.searchCount(company.getCompanyId(), scopeGroupId, keywords, DDLRecordSetConstants.SCOPE_DYNAMIC_DATA_LISTS) %>"
 		>
-
 			<div class="form-search input-append">
 				<liferay-ui:input-search autoFocus="<%= true %>" placeholder='<%= LanguageUtil.get(locale, "keywords") %>' title='<%= LanguageUtil.get(locale, "search-lists") %>' />
 			</div>
