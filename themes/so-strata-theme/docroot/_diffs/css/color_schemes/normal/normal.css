@@ -24,6 +24,11 @@ html.aui {
 			}
 		}
 
+		.info-link-container {
+			right: -8px;
+			top: 43px;
+		}
+
 		.info-button .diamond {
 			border-bottom-color: transparent;
 			border-left-color: rgba(0, 0, 0, 0.5);
@@ -57,19 +62,6 @@ html.aui {
 	.dockbar {
 		.info-items, .info-link-container {
 			display: none;
-		}
-
-		.info-items {
-			left: auto;
-			position: absolute;
-			right: 293px;
-			top: 86px;
-			width: 575px;
-		}
-
-		.info-link-container {
-			left: 50px;
-			top: 92px;
 		}
 	}
 
@@ -121,7 +113,6 @@ a {
 	padding: 0.125em;
 
 	.aui-state-default {
-		background: transparent none;
 		border-width: 0;
 
 		@include box-shadow(none);
