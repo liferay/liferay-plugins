@@ -103,6 +103,16 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 
 					payloadJSONObject.remove("entryId");
 				}
+				else {
+					long memberRequestId = payloadJSONObject.getLong(
+						"memberRequestId");
+
+					if (memberRequestId > 0) {
+						payloadJSONObject.put("classPK", memberRequestId);
+
+						payloadJSONObject.remove("memberRequestId");
+					}
+				}
 
 				updateNotification(
 					userNotificationEventId, type, payloadJSONObject);
