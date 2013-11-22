@@ -183,8 +183,14 @@ html.aui {
 		}
 
 		.info-items, .info-link-container {
-			position: relative;
-			top: 44px;
+			left: auto;
+			position: absolute;
+			right: 16px;
+			top: 43px;
+		}
+
+		.info-items {
+			width: 660px;
 		}
 	}
 
