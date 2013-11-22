@@ -87,11 +87,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 	</c:if>
 
 	<c:if test="<%= !readOnly && (userDefaultCalendar != null) %>">
-		var width = 550;
-
-		if (Liferay.Util.isPhone()) {
-			width = Liferay.Util.getWindowWidth() - 30;
-		}
+		var width = (Liferay.Util.getWindowWidth() > 550) ? 550 : Liferay.Util.getWindowWidth();
 
 		window.<portlet:namespace />eventRecorder = new Liferay.SchedulerEventRecorder(
 			{
