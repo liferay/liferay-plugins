@@ -12,6 +12,14 @@ body {
 }
 
 html.aui {
+	.alert .close {
+		background: inherit;
+		border-width: 0;
+
+		@include box-shadow(none);
+
+		padding: 0;
+	}
 	.dockbar {
 		margin-top: -44px;
 
@@ -987,6 +995,41 @@ div#navigation {
 /* ---------- Document library ---------- */
 
 .portlet-document-library {
+	.span6 {
+		.common-file-metadata-container, .form {
+			margin: 10px;
+		}
+	}
+
+	.alert, .breadcrumb, .form {
+		margin-bottom: 0;
+	}
+
+	.taglib-header {
+		margin: 0;
+	}
+
+	fieldset {
+		border-width: 0;
+		padding: 10px;
+	}
+
+	.input-append .search-query {
+		min-height: 20px;
+	}
+
+	.accordion-group, .accordion-inner {
+		border-width: 0;
+	}
+
+	.field-wrapper .btn {
+		margin-top: 0;
+	}
+
+	.lfr-message {
+		margin: 10px 10px 0;
+	}
+
 	.lfr-app-column-view {
 		background: #F5F5F5;
 		border-bottom: 1px solid #DDD;
@@ -997,6 +1040,8 @@ div#navigation {
 			padding: 0 15px;
 
 			.app-view-navigation-entry .overlay.entry-action .btn {
+				@include box-shadow(none);
+
 				padding: 15px 10px 5px;
 			}
 
@@ -1034,17 +1079,30 @@ div#navigation {
 
 				.navbar-inner {
 					background: $controlBgColor;
+					padding: 0 10px 0 30px;
+				}
 
-					li.dropdown > a {
-						margin-top: 5px;
+				.nav {
+					> li.open > a {
+						@include box-shadow(inset 0 3px 8px rgba(0, 0, 0, 0.25));
 					}
 				}
+			}
+
+			.lfr-search-container {
+				margin: 10px;
 			}
 		}
 	}
 
 	.document-entries-pagination, .portlet-document-library-display .document-entries-pagination {
 		padding: 20px 0 0;
+	}
+
+	.view .toolbar {
+		border-bottom: 1px solid $defaultBorderColor;
+		display: block;
+		padding: 4px;
 	}
 }
 
