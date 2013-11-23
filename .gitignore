@@ -13,6 +13,8 @@
 .sass_cache_*.css
 _sass_cache_*.css
 
+/.bnd
+
 /*/*/bin
 /*/*/classes
 /*/*/temp
@@ -23,6 +25,7 @@ _sass_cache_*.css
 /*/*/docroot/WEB-INF/classes
 /*/*/docroot/WEB-INF/lib/portal-compat-shared.jar
 
+/baseline-reports
 /build.*.properties
 /dist
 /tools/*/*/*/lib
