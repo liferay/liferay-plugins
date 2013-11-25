@@ -19,4 +19,12 @@
 		</id>
 		<property column="blobField" name="blobFieldBlob" type="blob" />
 	</class>
+	<class name="com.liferay.testblob.model.BlobEntryBlobFieldBlobModel" table="TB_BlobEntry" lazy="true">
+		<id name="blobEntryId" column="blobEntryId">
+			<generator class="foreign">
+				<param name="property">com.liferay.testblob.model.impl.BlobEntryImpl</param>
+			</generator>
+		</id>
+		<property column="blobField" name="blobFieldBlob" type="blob" />
+	</class>
 </hibernate-mapping>
