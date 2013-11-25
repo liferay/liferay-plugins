@@ -1,2 +1,4 @@
-@import url(so-framework-ce.css);
-@import url(so-skin-ce.css);
+@import "compass";
+
+@import url(./color_schemes/normal/normal.css);
+@import url(./color_schemes/so-classic/classic_scheme.css);
