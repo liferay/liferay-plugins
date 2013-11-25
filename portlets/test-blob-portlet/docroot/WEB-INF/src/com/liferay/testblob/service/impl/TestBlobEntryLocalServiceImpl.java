@@ -17,24 +17,8 @@ package com.liferay.testblob.service.impl;
 import com.liferay.testblob.service.base.TestBlobEntryLocalServiceBaseImpl;
 
 /**
- * The implementation of the test blob entry local service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.testblob.service.TestBlobEntryLocalService} interface.
- *
- * <p>
- * This is a local service. Methods of this service will not have security checks based on the propagated JAAS credentials because this service can only be accessed from within the same VM.
- * </p>
- *
  * @author Brian Wing Shun Chan
- * @see com.liferay.testblob.service.base.TestBlobEntryLocalServiceBaseImpl
- * @see com.liferay.testblob.service.TestBlobEntryLocalServiceUtil
  */
 public class TestBlobEntryLocalServiceImpl
 	extends TestBlobEntryLocalServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this interface directly. Always use {@link com.liferay.testblob.service.TestBlobEntryLocalServiceUtil} to access the test blob entry local service.
-	 */
 }
