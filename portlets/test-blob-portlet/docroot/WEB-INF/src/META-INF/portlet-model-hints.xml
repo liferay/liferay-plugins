@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <model-hints>
-	<model name="com.liferay.testblob.model.BlobEntry">
+	<model name="com.liferay.testblob.model.TestBlobEntry">
 		<field name="uuid" type="String" />
 		<field name="testBlobEntryId" type="long" />
 		<field name="blobField" type="Blob" />

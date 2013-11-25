@@ -25,7 +25,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
-import com.liferay.testblob.model.BlobEntryClp;
+import com.liferay.testblob.model.TestBlobEntryClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -102,8 +102,8 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
-		if (oldModelClassName.equals(BlobEntryClp.class.getName())) {
-			return translateInputBlobEntry(oldModel);
+		if (oldModelClassName.equals(TestBlobEntryClp.class.getName())) {
+			return translateInputTestBlobEntry(oldModel);
 		}
 
 		return oldModel;
@@ -121,10 +121,10 @@ public class ClpSerializer {
 		return newList;
 	}
 
-	public static Object translateInputBlobEntry(BaseModel<?> oldModel) {
-		BlobEntryClp oldClpModel = (BlobEntryClp)oldModel;
+	public static Object translateInputTestBlobEntry(BaseModel<?> oldModel) {
+		TestBlobEntryClp oldClpModel = (TestBlobEntryClp)oldModel;
 
-		BaseModel<?> newModel = oldClpModel.getBlobEntryRemoteModel();
+		BaseModel<?> newModel = oldClpModel.getTestBlobEntryRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -149,8 +149,8 @@ public class ClpSerializer {
 		String oldModelClassName = oldModelClass.getName();
 
 		if (oldModelClassName.equals(
-					"com.liferay.testblob.model.impl.BlobEntryImpl")) {
-			return translateOutputBlobEntry(oldModel);
+					"com.liferay.testblob.model.impl.TestBlobEntryImpl")) {
+			return translateOutputTestBlobEntry(oldModel);
 		}
 
 		return oldModel;
@@ -233,19 +233,19 @@ public class ClpSerializer {
 			return new SystemException();
 		}
 
-		if (className.equals("com.liferay.testblob.NoSuchBlobEntryException")) {
-			return new com.liferay.testblob.NoSuchBlobEntryException();
+		if (className.equals("com.liferay.testblob.NoSuchEntryException")) {
+			return new com.liferay.testblob.NoSuchEntryException();
 		}
 
 		return throwable;
 	}
 
-	public static Object translateOutputBlobEntry(BaseModel<?> oldModel) {
-		BlobEntryClp newModel = new BlobEntryClp();
+	public static Object translateOutputTestBlobEntry(BaseModel<?> oldModel) {
+		TestBlobEntryClp newModel = new TestBlobEntryClp();
 
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
-		newModel.setBlobEntryRemoteModel(oldModel);
+		newModel.setTestBlobEntryRemoteModel(oldModel);
 
 		return newModel;
 	}

@@ -19,21 +19,21 @@ import com.liferay.portal.NoSuchModelException;
 /**
  * @author Brian Wing Shun Chan
  */
-public class NoSuchBlobEntryException extends NoSuchModelException {
+public class NoSuchEntryException extends NoSuchModelException {
 
-	public NoSuchBlobEntryException() {
+	public NoSuchEntryException() {
 		super();
 	}
 
-	public NoSuchBlobEntryException(String msg) {
+	public NoSuchEntryException(String msg) {
 		super(msg);
 	}
 
-	public NoSuchBlobEntryException(String msg, Throwable cause) {
+	public NoSuchEntryException(String msg, Throwable cause) {
 		super(msg, cause);
 	}
 
-	public NoSuchBlobEntryException(Throwable cause) {
+	public NoSuchEntryException(Throwable cause) {
 		super(cause);
 	}
 

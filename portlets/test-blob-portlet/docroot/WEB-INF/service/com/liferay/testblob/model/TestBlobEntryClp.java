@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.impl.BaseModelImpl;
 
-import com.liferay.testblob.service.BlobEntryLocalServiceUtil;
 import com.liferay.testblob.service.ClpSerializer;
+import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -36,18 +36,19 @@ import java.util.Map;
 /**
  * @author Brian Wing Shun Chan
  */
-public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry {
-	public BlobEntryClp() {
+public class TestBlobEntryClp extends BaseModelImpl<TestBlobEntry>
+	implements TestBlobEntry {
+	public TestBlobEntryClp() {
 	}
 
 	@Override
 	public Class<?> getModelClass() {
-		return BlobEntry.class;
+		return TestBlobEntry.class;
 	}
 
 	@Override
 	public String getModelClassName() {
-		return BlobEntry.class.getName();
+		return TestBlobEntry.class.getName();
 	}
 
 	@Override
@@ -111,13 +112,13 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 	public void setUuid(String uuid) {
 		_uuid = uuid;
 
-		if (_blobEntryRemoteModel != null) {
+		if (_testBlobEntryRemoteModel != null) {
 			try {
-				Class<?> clazz = _blobEntryRemoteModel.getClass();
+				Class<?> clazz = _testBlobEntryRemoteModel.getClass();
 
 				Method method = clazz.getMethod("setUuid", String.class);
 
-				method.invoke(_blobEntryRemoteModel, uuid);
+				method.invoke(_testBlobEntryRemoteModel, uuid);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -134,13 +135,13 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 	public void setTestBlobEntryId(long testBlobEntryId) {
 		_testBlobEntryId = testBlobEntryId;
 
-		if (_blobEntryRemoteModel != null) {
+		if (_testBlobEntryRemoteModel != null) {
 			try {
-				Class<?> clazz = _blobEntryRemoteModel.getClass();
+				Class<?> clazz = _testBlobEntryRemoteModel.getClass();
 
 				Method method = clazz.getMethod("setTestBlobEntryId", long.class);
 
-				method.invoke(_blobEntryRemoteModel, testBlobEntryId);
+				method.invoke(_testBlobEntryRemoteModel, testBlobEntryId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -157,13 +158,13 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 	public void setBlobField(Blob blobField) {
 		_blobField = blobField;
 
-		if (_blobEntryRemoteModel != null) {
+		if (_testBlobEntryRemoteModel != null) {
 			try {
-				Class<?> clazz = _blobEntryRemoteModel.getClass();
+				Class<?> clazz = _testBlobEntryRemoteModel.getClass();
 
 				Method method = clazz.getMethod("setBlobField", Blob.class);
 
-				method.invoke(_blobEntryRemoteModel, blobField);
+				method.invoke(_testBlobEntryRemoteModel, blobField);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -171,12 +172,13 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 		}
 	}
 
-	public BaseModel<?> getBlobEntryRemoteModel() {
-		return _blobEntryRemoteModel;
+	public BaseModel<?> getTestBlobEntryRemoteModel() {
+		return _testBlobEntryRemoteModel;
 	}
 
-	public void setBlobEntryRemoteModel(BaseModel<?> blobEntryRemoteModel) {
-		_blobEntryRemoteModel = blobEntryRemoteModel;
+	public void setTestBlobEntryRemoteModel(
+		BaseModel<?> testBlobEntryRemoteModel) {
+		_testBlobEntryRemoteModel = testBlobEntryRemoteModel;
 	}
 
 	public Object invokeOnRemoteModel(String methodName,
@@ -190,7 +192,7 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 			}
 		}
 
-		Class<?> remoteModelClass = _blobEntryRemoteModel.getClass();
+		Class<?> remoteModelClass = _testBlobEntryRemoteModel.getClass();
 
 		ClassLoader remoteModelClassLoader = remoteModelClass.getClassLoader();
 
@@ -210,7 +212,7 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 		Method method = remoteModelClass.getMethod(methodName,
 				remoteParameterTypes);
 
-		Object returnValue = method.invoke(_blobEntryRemoteModel,
+		Object returnValue = method.invoke(_testBlobEntryRemoteModel,
 				remoteParameterValues);
 
 		if (returnValue != null) {
@@ -223,22 +225,22 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 	@Override
 	public void persist() throws SystemException {
 		if (this.isNew()) {
-			BlobEntryLocalServiceUtil.addBlobEntry(this);
+			TestBlobEntryLocalServiceUtil.addTestBlobEntry(this);
 		}
 		else {
-			BlobEntryLocalServiceUtil.updateBlobEntry(this);
+			TestBlobEntryLocalServiceUtil.updateTestBlobEntry(this);
 		}
 	}
 
 	@Override
-	public BlobEntry toEscapedModel() {
-		return (BlobEntry)ProxyUtil.newProxyInstance(BlobEntry.class.getClassLoader(),
-			new Class[] { BlobEntry.class }, new AutoEscapeBeanHandler(this));
+	public TestBlobEntry toEscapedModel() {
+		return (TestBlobEntry)ProxyUtil.newProxyInstance(TestBlobEntry.class.getClassLoader(),
+			new Class[] { TestBlobEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
 	@Override
 	public Object clone() {
-		BlobEntryClp clone = new BlobEntryClp();
+		TestBlobEntryClp clone = new TestBlobEntryClp();
 
 		clone.setUuid(getUuid());
 		clone.setTestBlobEntryId(getTestBlobEntryId());
@@ -248,8 +250,8 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 	}
 
 	@Override
-	public int compareTo(BlobEntry blobEntry) {
-		long primaryKey = blobEntry.getPrimaryKey();
+	public int compareTo(TestBlobEntry testBlobEntry) {
+		long primaryKey = testBlobEntry.getPrimaryKey();
 
 		if (getPrimaryKey() < primaryKey) {
 			return -1;
@@ -268,13 +270,13 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 			return true;
 		}
 
-		if (!(obj instanceof BlobEntryClp)) {
+		if (!(obj instanceof TestBlobEntryClp)) {
 			return false;
 		}
 
-		BlobEntryClp blobEntry = (BlobEntryClp)obj;
+		TestBlobEntryClp testBlobEntry = (TestBlobEntryClp)obj;
 
-		long primaryKey = blobEntry.getPrimaryKey();
+		long primaryKey = testBlobEntry.getPrimaryKey();
 
 		if (getPrimaryKey() == primaryKey) {
 			return true;
@@ -309,7 +311,7 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 		StringBundler sb = new StringBundler(13);
 
 		sb.append("<model><model-name>");
-		sb.append("com.liferay.testblob.model.BlobEntry");
+		sb.append("com.liferay.testblob.model.TestBlobEntry");
 		sb.append("</model-name>");
 
 		sb.append(
@@ -333,5 +335,5 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 	private String _uuid;
 	private long _testBlobEntryId;
 	private Blob _blobField;
-	private BaseModel<?> _blobEntryRemoteModel;
+	private BaseModel<?> _testBlobEntryRemoteModel;
 }

@@ -14,7 +14,7 @@
 
 package com.liferay.testblob.service.base;
 
-import com.liferay.testblob.service.BlobEntryLocalServiceUtil;
+import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
 
 import java.util.Arrays;
 
@@ -22,26 +22,26 @@ import java.util.Arrays;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class BlobEntryLocalServiceClpInvoker {
-	public BlobEntryLocalServiceClpInvoker() {
-		_methodName0 = "addBlobEntry";
+public class TestBlobEntryLocalServiceClpInvoker {
+	public TestBlobEntryLocalServiceClpInvoker() {
+		_methodName0 = "addTestBlobEntry";
 
 		_methodParameterTypes0 = new String[] {
-				"com.liferay.testblob.model.BlobEntry"
+				"com.liferay.testblob.model.TestBlobEntry"
 			};
 
-		_methodName1 = "createBlobEntry";
+		_methodName1 = "createTestBlobEntry";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteBlobEntry";
+		_methodName2 = "deleteTestBlobEntry";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deleteBlobEntry";
+		_methodName3 = "deleteTestBlobEntry";
 
 		_methodParameterTypes3 = new String[] {
-				"com.liferay.testblob.model.BlobEntry"
+				"com.liferay.testblob.model.TestBlobEntry"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -80,11 +80,11 @@ public class BlobEntryLocalServiceClpInvoker {
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetchBlobEntry";
+		_methodName10 = "fetchTestBlobEntry";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getBlobEntry";
+		_methodName11 = "getTestBlobEntry";
 
 		_methodParameterTypes11 = new String[] { "long" };
 
@@ -92,18 +92,18 @@ public class BlobEntryLocalServiceClpInvoker {
 
 		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getBlobEntries";
+		_methodName13 = "getTestBlobEntries";
 
 		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "getBlobEntriesCount";
+		_methodName14 = "getTestBlobEntriesCount";
 
 		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "updateBlobEntry";
+		_methodName15 = "updateTestBlobEntry";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.testblob.model.BlobEntry"
+				"com.liferay.testblob.model.TestBlobEntry"
 			};
 
 		_methodName16 = "getBlobFieldBlobModel";
@@ -123,44 +123,44 @@ public class BlobEntryLocalServiceClpInvoker {
 		Object[] arguments) throws Throwable {
 		if (_methodName0.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes0, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.addBlobEntry((com.liferay.testblob.model.BlobEntry)arguments[0]);
+			return TestBlobEntryLocalServiceUtil.addTestBlobEntry((com.liferay.testblob.model.TestBlobEntry)arguments[0]);
 		}
 
 		if (_methodName1.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes1, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.createBlobEntry(((Long)arguments[0]).longValue());
+			return TestBlobEntryLocalServiceUtil.createTestBlobEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName2.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes2, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.deleteBlobEntry(((Long)arguments[0]).longValue());
+			return TestBlobEntryLocalServiceUtil.deleteTestBlobEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName3.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes3, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.deleteBlobEntry((com.liferay.testblob.model.BlobEntry)arguments[0]);
+			return TestBlobEntryLocalServiceUtil.deleteTestBlobEntry((com.liferay.testblob.model.TestBlobEntry)arguments[0]);
 		}
 
 		if (_methodName4.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes4, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.dynamicQuery();
+			return TestBlobEntryLocalServiceUtil.dynamicQuery();
 		}
 
 		if (_methodName5.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes5, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return TestBlobEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName6.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes6, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return TestBlobEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName7.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes7, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return TestBlobEntryLocalServiceUtil.dynamicQuery((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
@@ -168,59 +168,59 @@ public class BlobEntryLocalServiceClpInvoker {
 
 		if (_methodName8.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes8, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
+			return TestBlobEntryLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0]);
 		}
 
 		if (_methodName9.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes9, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
+			return TestBlobEntryLocalServiceUtil.dynamicQueryCount((com.liferay.portal.kernel.dao.orm.DynamicQuery)arguments[0],
 				(com.liferay.portal.kernel.dao.orm.Projection)arguments[1]);
 		}
 
 		if (_methodName10.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes10, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.fetchBlobEntry(((Long)arguments[0]).longValue());
+			return TestBlobEntryLocalServiceUtil.fetchTestBlobEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName11.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes11, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.getBlobEntry(((Long)arguments[0]).longValue());
+			return TestBlobEntryLocalServiceUtil.getTestBlobEntry(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+			return TestBlobEntryLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName13.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.getBlobEntries(((Integer)arguments[0]).intValue(),
+			return TestBlobEntryLocalServiceUtil.getTestBlobEntries(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.getBlobEntriesCount();
+			return TestBlobEntryLocalServiceUtil.getTestBlobEntriesCount();
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.updateBlobEntry((com.liferay.testblob.model.BlobEntry)arguments[0]);
+			return TestBlobEntryLocalServiceUtil.updateTestBlobEntry((com.liferay.testblob.model.TestBlobEntry)arguments[0]);
 		}
 
 		if (_methodName16.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.getBlobFieldBlobModel((java.io.Serializable)arguments[0]);
+			return TestBlobEntryLocalServiceUtil.getBlobFieldBlobModel((java.io.Serializable)arguments[0]);
 		}
 
 		if (_methodName33.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
-			return BlobEntryLocalServiceUtil.getBeanIdentifier();
+			return TestBlobEntryLocalServiceUtil.getBeanIdentifier();
 		}
 
 		if (_methodName34.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
-			BlobEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+			TestBlobEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}

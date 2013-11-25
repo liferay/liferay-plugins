@@ -17,18 +17,18 @@ package com.liferay.testblob.service.persistence;
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.SystemException;
 
-import com.liferay.testblob.model.BlobEntry;
-import com.liferay.testblob.service.BlobEntryLocalServiceUtil;
+import com.liferay.testblob.model.TestBlobEntry;
+import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
  * @generated
  */
-public abstract class BlobEntryActionableDynamicQuery
+public abstract class TestBlobEntryActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public BlobEntryActionableDynamicQuery() throws SystemException {
-		setBaseLocalService(BlobEntryLocalServiceUtil.getService());
-		setClass(BlobEntry.class);
+	public TestBlobEntryActionableDynamicQuery() throws SystemException {
+		setBaseLocalService(TestBlobEntryLocalServiceUtil.getService());
+		setClass(TestBlobEntry.class);
 
 		setClassLoader(com.liferay.testblob.service.ClpSerializer.class.getClassLoader());
 

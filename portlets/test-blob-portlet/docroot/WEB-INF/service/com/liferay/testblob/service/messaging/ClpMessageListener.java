@@ -17,8 +17,8 @@ package com.liferay.testblob.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
-import com.liferay.testblob.service.BlobEntryLocalServiceUtil;
 import com.liferay.testblob.service.ClpSerializer;
+import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
@@ -35,7 +35,7 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
-			BlobEntryLocalServiceUtil.clearService();
+			TestBlobEntryLocalServiceUtil.clearService();
 		}
 	}
 }

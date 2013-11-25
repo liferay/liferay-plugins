@@ -17,21 +17,22 @@ package com.liferay.testblob.model;
 import java.sql.Blob;
 
 /**
- * The Blob model class for lazy loading the blobField column in BlobEntry.
+ * The Blob model class for lazy loading the blobField column in TestBlobEntry.
  *
  * @author Brian Wing Shun Chan
- * @see BlobEntry
+ * @see TestBlobEntry
  * @generated
  */
-public class BlobEntryBlobFieldBlobModel {
-	public BlobEntryBlobFieldBlobModel() {
+public class TestBlobEntryBlobFieldBlobModel {
+	public TestBlobEntryBlobFieldBlobModel() {
 	}
 
-	public BlobEntryBlobFieldBlobModel(long testBlobEntryId) {
+	public TestBlobEntryBlobFieldBlobModel(long testBlobEntryId) {
 		_testBlobEntryId = testBlobEntryId;
 	}
 
-	public BlobEntryBlobFieldBlobModel(long testBlobEntryId, Blob blobFieldBlob) {
+	public TestBlobEntryBlobFieldBlobModel(long testBlobEntryId,
+		Blob blobFieldBlob) {
 		_testBlobEntryId = testBlobEntryId;
 		_blobFieldBlob = blobFieldBlob;
 	}

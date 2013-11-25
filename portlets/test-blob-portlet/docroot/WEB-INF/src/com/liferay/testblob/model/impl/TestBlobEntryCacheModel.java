@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 
-import com.liferay.testblob.model.BlobEntry;
+import com.liferay.testblob.model.TestBlobEntry;
 
 import java.io.Externalizable;
 import java.io.IOException;
@@ -26,13 +26,13 @@ import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
 /**
- * The cache model class for representing BlobEntry in entity cache.
+ * The cache model class for representing TestBlobEntry in entity cache.
  *
  * @author Brian Wing Shun Chan
- * @see BlobEntry
+ * @see TestBlobEntry
  * @generated
  */
-public class BlobEntryCacheModel implements CacheModel<BlobEntry>,
+public class TestBlobEntryCacheModel implements CacheModel<TestBlobEntry>,
 	Externalizable {
 	@Override
 	public String toString() {
@@ -47,21 +47,21 @@ public class BlobEntryCacheModel implements CacheModel<BlobEntry>,
 	}
 
 	@Override
-	public BlobEntry toEntityModel() {
-		BlobEntryImpl blobEntryImpl = new BlobEntryImpl();
+	public TestBlobEntry toEntityModel() {
+		TestBlobEntryImpl testBlobEntryImpl = new TestBlobEntryImpl();
 
 		if (uuid == null) {
-			blobEntryImpl.setUuid(StringPool.BLANK);
+			testBlobEntryImpl.setUuid(StringPool.BLANK);
 		}
 		else {
-			blobEntryImpl.setUuid(uuid);
+			testBlobEntryImpl.setUuid(uuid);
 		}
 
-		blobEntryImpl.setTestBlobEntryId(testBlobEntryId);
+		testBlobEntryImpl.setTestBlobEntryId(testBlobEntryId);
 
-		blobEntryImpl.resetOriginalValues();
+		testBlobEntryImpl.resetOriginalValues();
 
-		return blobEntryImpl;
+		return testBlobEntryImpl;
 	}
 
 	@Override

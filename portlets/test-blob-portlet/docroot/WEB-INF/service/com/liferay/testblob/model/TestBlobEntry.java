@@ -17,18 +17,18 @@ package com.liferay.testblob.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the BlobEntry service. Represents a row in the &quot;TestBlob_BlobEntry&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the TestBlobEntry service. Represents a row in the &quot;TestBlob_TestBlobEntry&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
- * @see BlobEntryModel
- * @see com.liferay.testblob.model.impl.BlobEntryImpl
- * @see com.liferay.testblob.model.impl.BlobEntryModelImpl
+ * @see TestBlobEntryModel
+ * @see com.liferay.testblob.model.impl.TestBlobEntryImpl
+ * @see com.liferay.testblob.model.impl.TestBlobEntryModelImpl
  * @generated
  */
-public interface BlobEntry extends BlobEntryModel, PersistedModel {
+public interface TestBlobEntry extends TestBlobEntryModel, PersistedModel {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify this interface directly. Add methods to {@link com.liferay.testblob.model.impl.BlobEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add methods to {@link com.liferay.testblob.model.impl.TestBlobEntryImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 }

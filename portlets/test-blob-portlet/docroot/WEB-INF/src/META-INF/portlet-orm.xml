@@ -7,7 +7,7 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
-	<mapped-superclass class="com.liferay.testblob.model.impl.BlobEntryModelImpl">
+	<mapped-superclass class="com.liferay.testblob.model.impl.TestBlobEntryModelImpl">
 		<attributes>
 			<id name="testBlobEntryId" />
 			<basic name="uuid">
@@ -19,8 +19,8 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
-	<entity class="com.liferay.testblob.model.impl.BlobEntryImpl" name="BlobEntry">
-		<table name="TestBlob_BlobEntry" />
+	<entity class="com.liferay.testblob.model.impl.TestBlobEntryImpl" name="TestBlobEntry">
+		<table name="TestBlob_TestBlobEntry" />
 		<attributes />
 	</entity>
 </entity-mappings>

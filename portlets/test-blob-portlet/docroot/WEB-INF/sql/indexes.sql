@@ -1,1 +1,1 @@
-create index IX_B7AC1AE9 on TestBlob_BlobEntry (uuid_);
+create index IX_4FFDE31B on TestBlob_TestBlobEntry (uuid_);

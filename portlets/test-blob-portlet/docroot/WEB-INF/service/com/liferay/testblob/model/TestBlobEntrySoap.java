@@ -27,9 +27,9 @@ import java.util.List;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class BlobEntrySoap implements Serializable {
-	public static BlobEntrySoap toSoapModel(BlobEntry model) {
-		BlobEntrySoap soapModel = new BlobEntrySoap();
+public class TestBlobEntrySoap implements Serializable {
+	public static TestBlobEntrySoap toSoapModel(TestBlobEntry model) {
+		TestBlobEntrySoap soapModel = new TestBlobEntrySoap();
 
 		soapModel.setUuid(model.getUuid());
 		soapModel.setTestBlobEntryId(model.getTestBlobEntryId());
@@ -38,8 +38,8 @@ public class BlobEntrySoap implements Serializable {
 		return soapModel;
 	}
 
-	public static BlobEntrySoap[] toSoapModels(BlobEntry[] models) {
-		BlobEntrySoap[] soapModels = new BlobEntrySoap[models.length];
+	public static TestBlobEntrySoap[] toSoapModels(TestBlobEntry[] models) {
+		TestBlobEntrySoap[] soapModels = new TestBlobEntrySoap[models.length];
 
 		for (int i = 0; i < models.length; i++) {
 			soapModels[i] = toSoapModel(models[i]);
@@ -48,14 +48,14 @@ public class BlobEntrySoap implements Serializable {
 		return soapModels;
 	}
 
-	public static BlobEntrySoap[][] toSoapModels(BlobEntry[][] models) {
-		BlobEntrySoap[][] soapModels = null;
+	public static TestBlobEntrySoap[][] toSoapModels(TestBlobEntry[][] models) {
+		TestBlobEntrySoap[][] soapModels = null;
 
 		if (models.length > 0) {
-			soapModels = new BlobEntrySoap[models.length][models[0].length];
+			soapModels = new TestBlobEntrySoap[models.length][models[0].length];
 		}
 		else {
-			soapModels = new BlobEntrySoap[0][0];
+			soapModels = new TestBlobEntrySoap[0][0];
 		}
 
 		for (int i = 0; i < models.length; i++) {
@@ -65,17 +65,17 @@ public class BlobEntrySoap implements Serializable {
 		return soapModels;
 	}
 
-	public static BlobEntrySoap[] toSoapModels(List<BlobEntry> models) {
-		List<BlobEntrySoap> soapModels = new ArrayList<BlobEntrySoap>(models.size());
+	public static TestBlobEntrySoap[] toSoapModels(List<TestBlobEntry> models) {
+		List<TestBlobEntrySoap> soapModels = new ArrayList<TestBlobEntrySoap>(models.size());
 
-		for (BlobEntry model : models) {
+		for (TestBlobEntry model : models) {
 			soapModels.add(toSoapModel(model));
 		}
 
-		return soapModels.toArray(new BlobEntrySoap[soapModels.size()]);
+		return soapModels.toArray(new TestBlobEntrySoap[soapModels.size()]);
 	}
 
-	public BlobEntrySoap() {
+	public TestBlobEntrySoap() {
 	}
 
 	public long getPrimaryKey() {

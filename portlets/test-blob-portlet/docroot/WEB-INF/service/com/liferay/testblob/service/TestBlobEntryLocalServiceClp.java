@@ -20,28 +20,29 @@ import com.liferay.portal.service.InvokableLocalService;
  * @author Brian Wing Shun Chan
  * @generated
  */
-public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
-	public BlobEntryLocalServiceClp(InvokableLocalService invokableLocalService) {
+public class TestBlobEntryLocalServiceClp implements TestBlobEntryLocalService {
+	public TestBlobEntryLocalServiceClp(
+		InvokableLocalService invokableLocalService) {
 		_invokableLocalService = invokableLocalService;
 
-		_methodName0 = "addBlobEntry";
+		_methodName0 = "addTestBlobEntry";
 
 		_methodParameterTypes0 = new String[] {
-				"com.liferay.testblob.model.BlobEntry"
+				"com.liferay.testblob.model.TestBlobEntry"
 			};
 
-		_methodName1 = "createBlobEntry";
+		_methodName1 = "createTestBlobEntry";
 
 		_methodParameterTypes1 = new String[] { "long" };
 
-		_methodName2 = "deleteBlobEntry";
+		_methodName2 = "deleteTestBlobEntry";
 
 		_methodParameterTypes2 = new String[] { "long" };
 
-		_methodName3 = "deleteBlobEntry";
+		_methodName3 = "deleteTestBlobEntry";
 
 		_methodParameterTypes3 = new String[] {
-				"com.liferay.testblob.model.BlobEntry"
+				"com.liferay.testblob.model.TestBlobEntry"
 			};
 
 		_methodName4 = "dynamicQuery";
@@ -80,11 +81,11 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 				"com.liferay.portal.kernel.dao.orm.Projection"
 			};
 
-		_methodName10 = "fetchBlobEntry";
+		_methodName10 = "fetchTestBlobEntry";
 
 		_methodParameterTypes10 = new String[] { "long" };
 
-		_methodName11 = "getBlobEntry";
+		_methodName11 = "getTestBlobEntry";
 
 		_methodParameterTypes11 = new String[] { "long" };
 
@@ -92,18 +93,18 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 
 		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
 
-		_methodName13 = "getBlobEntries";
+		_methodName13 = "getTestBlobEntries";
 
 		_methodParameterTypes13 = new String[] { "int", "int" };
 
-		_methodName14 = "getBlobEntriesCount";
+		_methodName14 = "getTestBlobEntriesCount";
 
 		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "updateBlobEntry";
+		_methodName15 = "updateTestBlobEntry";
 
 		_methodParameterTypes15 = new String[] {
-				"com.liferay.testblob.model.BlobEntry"
+				"com.liferay.testblob.model.TestBlobEntry"
 			};
 
 		_methodName16 = "getBlobFieldBlobModel";
@@ -120,15 +121,15 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry addBlobEntry(
-		com.liferay.testblob.model.BlobEntry blobEntry)
+	public com.liferay.testblob.model.TestBlobEntry addTestBlobEntry(
+		com.liferay.testblob.model.TestBlobEntry testBlobEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName0,
 					_methodParameterTypes0,
-					new Object[] { ClpSerializer.translateInput(blobEntry) });
+					new Object[] { ClpSerializer.translateInput(testBlobEntry) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -146,11 +147,11 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 			}
 		}
 
-		return (com.liferay.testblob.model.BlobEntry)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.testblob.model.TestBlobEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry createBlobEntry(
+	public com.liferay.testblob.model.TestBlobEntry createTestBlobEntry(
 		long testBlobEntryId) {
 		Object returnObj = null;
 
@@ -170,11 +171,11 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 			}
 		}
 
-		return (com.liferay.testblob.model.BlobEntry)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.testblob.model.TestBlobEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry deleteBlobEntry(
+	public com.liferay.testblob.model.TestBlobEntry deleteTestBlobEntry(
 		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -204,19 +205,19 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 			}
 		}
 
-		return (com.liferay.testblob.model.BlobEntry)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.testblob.model.TestBlobEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry deleteBlobEntry(
-		com.liferay.testblob.model.BlobEntry blobEntry)
+	public com.liferay.testblob.model.TestBlobEntry deleteTestBlobEntry(
+		com.liferay.testblob.model.TestBlobEntry testBlobEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName3,
 					_methodParameterTypes3,
-					new Object[] { ClpSerializer.translateInput(blobEntry) });
+					new Object[] { ClpSerializer.translateInput(testBlobEntry) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -234,7 +235,7 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 			}
 		}
 
-		return (com.liferay.testblob.model.BlobEntry)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.testblob.model.TestBlobEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -435,7 +436,7 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry fetchBlobEntry(
+	public com.liferay.testblob.model.TestBlobEntry fetchTestBlobEntry(
 		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -460,11 +461,11 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 			}
 		}
 
-		return (com.liferay.testblob.model.BlobEntry)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.testblob.model.TestBlobEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry getBlobEntry(
+	public com.liferay.testblob.model.TestBlobEntry getTestBlobEntry(
 		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -494,7 +495,7 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 			}
 		}
 
-		return (com.liferay.testblob.model.BlobEntry)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.testblob.model.TestBlobEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -533,7 +534,7 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 	}
 
 	@Override
-	public java.util.List<com.liferay.testblob.model.BlobEntry> getBlobEntries(
+	public java.util.List<com.liferay.testblob.model.TestBlobEntry> getTestBlobEntries(
 		int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -558,11 +559,11 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 			}
 		}
 
-		return (java.util.List<com.liferay.testblob.model.BlobEntry>)ClpSerializer.translateOutput(returnObj);
+		return (java.util.List<com.liferay.testblob.model.TestBlobEntry>)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public int getBlobEntriesCount()
+	public int getTestBlobEntriesCount()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -590,15 +591,15 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry updateBlobEntry(
-		com.liferay.testblob.model.BlobEntry blobEntry)
+	public com.liferay.testblob.model.TestBlobEntry updateTestBlobEntry(
+		com.liferay.testblob.model.TestBlobEntry testBlobEntry)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName15,
 					_methodParameterTypes15,
-					new Object[] { ClpSerializer.translateInput(blobEntry) });
+					new Object[] { ClpSerializer.translateInput(testBlobEntry) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -616,11 +617,11 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 			}
 		}
 
-		return (com.liferay.testblob.model.BlobEntry)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.testblob.model.TestBlobEntry)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntryBlobFieldBlobModel getBlobFieldBlobModel(
+	public com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel getBlobFieldBlobModel(
 		java.io.Serializable primaryKey)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -646,7 +647,7 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 			}
 		}
 
-		return (com.liferay.testblob.model.BlobEntryBlobFieldBlobModel)ClpSerializer.translateOutput(returnObj);
+		return (com.liferay.testblob.model.TestBlobEntryBlobFieldBlobModel)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
