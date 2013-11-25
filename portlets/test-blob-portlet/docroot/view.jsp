@@ -14,33 +14,25 @@
  */
 --%>
 
-<%@ page import="com.liferay.counter.service.CounterLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.kernel.dao.jdbc.OutputBlob" %>
-<%@ page import="com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream" %>
-<%@ page import="com.liferay.testblob.model.BlobEntry" %>
-<%@ page import="com.liferay.testblob.service.BlobEntryLocalServiceUtil" %>
-<%@ page import="com.liferay.testblob.service.persistence.BlobEntryUtil" %>
+<%@ include file="/init.jsp" %>
 
-<%@ page import="java.io.InputStream" %>
+<%
+long testBlobEntryId = 0;
+%>
 
-<%@ page import="java.sql.Blob" %>
+Create : <%= (testBlobEntryId = _createBlob()) > 0 ? "PASSED" : "FAILED" %><br />
 
-<%@ page import="java.util.Random" %>
+Read: <%= _readBlob(testBlobEntryId, data1) ? "PASSED" : "FAILED" %><br />
 
-<% long testBlobEntryId = -1; %>
+Update: <%= _updateBlob(testBlobEntryId) ? "PASSED" : "FAILED" %><br />
 
-Create Blob : <%= (testBlobEntryId = _createBlob()) > 0 ? "PASSED" : "FAILED" %> <br />
-
-Read Blob : <%= _readBlob(testBlobEntryId, data1) ? "PASSED" : "FAILED" %> <br />
-
-Update Blob : <%= _updateBlob(testBlobEntryId) ? "PASSED" : "FAILED" %> <br />
-
-Delete Blob : <%= _deleteBlob(testBlobEntryId) ? "PASSED" : "FAILED" %> <br />
+Delete: <%= _deleteBlob(testBlobEntryId) ? "PASSED" : "FAILED" %><br />
 
 <%!
-
 private static final int _TEST_DATA_SIZE = 4096;
+
 private static final byte[] data1 = new byte[_TEST_DATA_SIZE];
+
 private static final byte[] data2 = new byte[_TEST_DATA_SIZE];
 
 static {
@@ -69,7 +61,6 @@ private static long _createBlob() {
 		return blobEntry.getTestBlobEntryId();
 	}
 	catch (Exception e) {
-		System.err.println(e);
 		e.printStackTrace();
 
 		return -1;
@@ -89,7 +80,6 @@ private static boolean _deleteBlob(long testBlobEntryId) {
 		return true;
 	}
 	catch (Exception e) {
-		System.err.println(e);
 		e.printStackTrace();
 
 		return false;
@@ -119,7 +109,6 @@ private static boolean _readBlob(long testBlobEntryId, byte[] expectedData) {
 		return true;
 	}
 	catch (Exception e) {
-		System.err.println(e);
 		e.printStackTrace();
 
 		return false;
@@ -161,7 +150,6 @@ private static boolean _updateBlob(long testBlobEntryId) {
 		return true;
 	}
 	catch (Exception e) {
-		System.err.println(e);
 		e.printStackTrace();
 
 		return false;
