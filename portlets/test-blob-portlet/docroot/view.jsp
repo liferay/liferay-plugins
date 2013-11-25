@@ -20,28 +20,28 @@
 
 	<%
 	long testBlobEntryId = 0;
+
+	Random random = new Random();
+
+	byte[] bytes = new byte[4096];
+
+	random.nextBytes(bytes);
 	%>
 
-	Create=<%= (testBlobEntryId = _create()) > 0 ? "PASSED" : "FAILED" %><br />
-	Read=<%= _read(testBlobEntryId, data1) ? "PASSED" : "FAILED" %><br />
+	Create=<%= (testBlobEntryId = _create(bytes)) > 0 ? "PASSED" : "FAILED" %><br />
+	Read=<%= _read(testBlobEntryId, bytes) ? "PASSED" : "FAILED" %><br />
 	Update=<%= _update(testBlobEntryId) ? "PASSED" : "FAILED" %><br />
 	Delete=<%= _delete(testBlobEntryId) ? "PASSED" : "FAILED" %><br />
 </p>
 
 <%!
-private static long _create() {
+private static long _create(byte[] bytes) {
 	try {
 		long testBlobEntryId = CounterLocalServiceUtil.increment();
 
 		TestBlobEntry testBlobEntry = TestBlobEntryUtil.create(testBlobEntryId);
 
-		UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(data1);
-
-		Random random = new Random();
-
-		byte[] bytes = new byte[4096];
-
-		random.nextBytes(bytes);
+		UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(bytes);
 
 		OutputBlob outputBlob = new OutputBlob(unsyncByteArrayInputStream, bytes.length);
 
@@ -65,7 +65,7 @@ private static boolean _delete(long testBlobEntryId) {
 		TestBlobEntry testBlobEntry = TestBlobEntryLocalServiceUtil.fetchTestBlobEntry(testBlobEntryId);
 
 		if (testBlobEntry != null) {
-			throw new Exception("TestBlobEntry still exists after deletion.");
+			throw new Exception("Test blob entry was not deleted");
 		}
 
 		return true;
@@ -77,7 +77,7 @@ private static boolean _delete(long testBlobEntryId) {
 	}
 }
 
-private static boolean _read(long testBlobEntryId, byte[] expectedData) {
+private static boolean _read(long testBlobEntryId, byte[] bytes) {
 	try {
 		TestBlobEntry testBlobEntry = TestBlobEntryLocalServiceUtil.getTestBlobEntry(testBlobEntryId);
 
@@ -85,14 +85,14 @@ private static boolean _read(long testBlobEntryId, byte[] expectedData) {
 
 		InputStream inputStream = blob.getBinaryStream();
 
-		for (int i = 0; i < expectedData.length; i++) {
-			if (expectedData[i] != (byte)inputStream.read()) {
-				throw new Exception("Mismatch at index : " + i);
+		for (int i = 0; i < bytes.length; i++) {
+			if (bytes[i] != (byte)inputStream.read()) {
+				throw new Exception("Test blob entry bytes do not match at index " + i);
 			}
 		}
 
 		if (inputStream.read() != -1) {
-			throw new Exception("Blob has more data than expected.");
+			throw new Exception("Test blob entry has more bytes than expected");
 		}
 
 		inputStream.close();
@@ -116,11 +116,9 @@ private static boolean _update(long testBlobEntryId) {
 
 		random.nextBytes(bytes);
 
-		UnsyncByteArrayInputStream unsyncByteArrayInputStream =
-			new UnsyncByteArrayInputStream(bytes);
+		UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(bytes);
 
-		OutputBlob outputBlob = new OutputBlob(
-			unsyncByteArrayInputStream, bytes.length);
+		OutputBlob outputBlob = new OutputBlob(unsyncByteArrayInputStream, bytes.length);
 
 		testBlobEntry.setBlobField(outputBlob);
 
@@ -134,12 +132,12 @@ private static boolean _update(long testBlobEntryId) {
 
 		for (int i = 0; i < bytes.length; i++) {
 			if (bytes[i] != (byte)inputStream.read()) {
-				throw new Exception("Mismatch at index : " + i);
+				throw new Exception("Test blob entry bytes do not match at index " + i);
 			}
 		}
 
 		if (inputStream.read() != -1) {
-			throw new Exception("Blob has more data than expected.");
+			throw new Exception("Test blob entry has more bytes than expected");
 		}
 
 		inputStream.close();

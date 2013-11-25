@@ -17,9 +17,9 @@
 <%@ page import="com.liferay.counter.service.CounterLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.dao.jdbc.OutputBlob" %><%@
 page import="com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream" %><%@
-page import="com.liferay.testblob.model.BlobEntry" %><%@
-page import="com.liferay.testblob.service.BlobEntryLocalServiceUtil" %><%@
-page import="com.liferay.testblob.service.persistence.BlobEntryUtil" %>
+page import="com.liferay.testblob.model.TestBlobEntry" %><%@
+page import="com.liferay.testblob.service.TestBlobEntryLocalServiceUtil" %><%@
+page import="com.liferay.testblob.service.persistence.TestBlobEntryUtil" %>
 
 <%@ page import="java.io.InputStream" %>
 
