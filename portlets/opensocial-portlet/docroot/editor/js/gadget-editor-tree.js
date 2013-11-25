@@ -562,7 +562,7 @@ AUI.add(
 						overlay.get(BOUNDING_BOX).delegate(
 							CLICK,
 							function(event) {
-								var buttonItem = event.target;
+								var buttonItem = event.currentTarget;
 
 								entry.entryId = instance.get(ENTRY_ID);
 
