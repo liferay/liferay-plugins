@@ -3,7 +3,7 @@
 
 <service-builder package-path="com.liferay.testblob">
 	<namespace>TestBlob</namespace>
-	<entity name="BlobEntry" uuid="true" local-service="true" remote-service="false">
+	<entity name="TestBlobEntry" uuid="true" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 

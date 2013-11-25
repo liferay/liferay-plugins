@@ -16,65 +16,56 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-long testBlobEntryId = 0;
-%>
+<p>
 
-Create : <%= (testBlobEntryId = _createBlob()) > 0 ? "PASSED" : "FAILED" %><br />
+	<%
+	long testBlobEntryId = 0;
+	%>
 
-Read: <%= _readBlob(testBlobEntryId, data1) ? "PASSED" : "FAILED" %><br />
-
-Update: <%= _updateBlob(testBlobEntryId) ? "PASSED" : "FAILED" %><br />
-
-Delete: <%= _deleteBlob(testBlobEntryId) ? "PASSED" : "FAILED" %><br />
+	Create=<%= (testBlobEntryId = _create()) > 0 ? "PASSED" : "FAILED" %><br />
+	Read=<%= _read(testBlobEntryId, data1) ? "PASSED" : "FAILED" %><br />
+	Update=<%= _update(testBlobEntryId) ? "PASSED" : "FAILED" %><br />
+	Delete=<%= _delete(testBlobEntryId) ? "PASSED" : "FAILED" %><br />
+</p>
 
 <%!
-private static final int _TEST_DATA_SIZE = 4096;
-
-private static final byte[] data1 = new byte[_TEST_DATA_SIZE];
-
-private static final byte[] data2 = new byte[_TEST_DATA_SIZE];
-
-static {
-	Random random = new Random();
-
-	random.nextBytes(data1);
-	random.nextBytes(data2);
-}
-
-private static long _createBlob() {
+private static long _create() {
 	try {
 		long testBlobEntryId = CounterLocalServiceUtil.increment();
 
-		BlobEntry blobEntry = BlobEntryUtil.create(testBlobEntryId);
+		TestBlobEntry testBlobEntry = TestBlobEntryUtil.create(testBlobEntryId);
 
-		UnsyncByteArrayInputStream unsyncByteArrayInputStream =
-			new UnsyncByteArrayInputStream(data1);
+		UnsyncByteArrayInputStream unsyncByteArrayInputStream = new UnsyncByteArrayInputStream(data1);
 
-		OutputBlob outputBlob = new OutputBlob(
-			unsyncByteArrayInputStream, data1.length);
+		Random random = new Random();
 
-		blobEntry.setBlobField(outputBlob);
+		byte[] bytes = new byte[4096];
 
-		blobEntry = BlobEntryLocalServiceUtil.addBlobEntry(blobEntry);
+		random.nextBytes(bytes);
 
-		return blobEntry.getTestBlobEntryId();
+		OutputBlob outputBlob = new OutputBlob(unsyncByteArrayInputStream, bytes.length);
+
+		testBlobEntry.setBlobField(outputBlob);
+
+		testBlobEntry = TestBlobEntryLocalServiceUtil.addTestBlobEntry(testBlobEntry);
+
+		return testBlobEntry.getTestBlobEntryId();
 	}
 	catch (Exception e) {
 		e.printStackTrace();
 
-		return -1;
+		return 0;
 	}
 }
 
-private static boolean _deleteBlob(long testBlobEntryId) {
+private static boolean _delete(long testBlobEntryId) {
 	try {
-		BlobEntryLocalServiceUtil.deleteBlobEntry(testBlobEntryId);
+		TestBlobEntryLocalServiceUtil.deleteTestBlobEntry(testBlobEntryId);
 
-		BlobEntry blobEntry = BlobEntryLocalServiceUtil.fetchBlobEntry(testBlobEntryId);
+		TestBlobEntry testBlobEntry = TestBlobEntryLocalServiceUtil.fetchTestBlobEntry(testBlobEntryId);
 
-		if (blobEntry != null) {
-			throw new Exception("BlobEntry still exists after deletion.");
+		if (testBlobEntry != null) {
+			throw new Exception("TestBlobEntry still exists after deletion.");
 		}
 
 		return true;
@@ -86,11 +77,11 @@ private static boolean _deleteBlob(long testBlobEntryId) {
 	}
 }
 
-private static boolean _readBlob(long testBlobEntryId, byte[] expectedData) {
+private static boolean _read(long testBlobEntryId, byte[] expectedData) {
 	try {
-		BlobEntry blobEntry = BlobEntryLocalServiceUtil.getBlobEntry(testBlobEntryId);
+		TestBlobEntry testBlobEntry = TestBlobEntryLocalServiceUtil.getTestBlobEntry(testBlobEntryId);
 
-		Blob blob = blobEntry.getBlobField();
+		Blob blob = testBlobEntry.getBlobField();
 
 		InputStream inputStream = blob.getBinaryStream();
 
@@ -115,28 +106,34 @@ private static boolean _readBlob(long testBlobEntryId, byte[] expectedData) {
 	}
 }
 
-private static boolean _updateBlob(long testBlobEntryId) {
+private static boolean _update(long testBlobEntryId) {
 	try {
-		BlobEntry blobEntry = BlobEntryLocalServiceUtil.getBlobEntry(testBlobEntryId);
+		TestBlobEntry testBlobEntry = TestBlobEntryLocalServiceUtil.getTestBlobEntry(testBlobEntryId);
+
+		Random random = new Random();
+
+		byte[] bytes = new byte[4096];
+
+		random.nextBytes(bytes);
 
 		UnsyncByteArrayInputStream unsyncByteArrayInputStream =
-			new UnsyncByteArrayInputStream(data2);
+			new UnsyncByteArrayInputStream(bytes);
 
 		OutputBlob outputBlob = new OutputBlob(
-			unsyncByteArrayInputStream, data2.length);
+			unsyncByteArrayInputStream, bytes.length);
 
-		blobEntry.setBlobField(outputBlob);
+		testBlobEntry.setBlobField(outputBlob);
 
-		BlobEntryLocalServiceUtil.updateBlobEntry(blobEntry);
+		TestBlobEntryLocalServiceUtil.updateTestBlobEntry(testBlobEntry);
 
-		blobEntry = BlobEntryLocalServiceUtil.getBlobEntry(testBlobEntryId);
+		testBlobEntry = TestBlobEntryLocalServiceUtil.getTestBlobEntry(testBlobEntryId);
 
-		Blob blob = blobEntry.getBlobField();
+		Blob blob = testBlobEntry.getBlobField();
 
 		InputStream inputStream = blob.getBinaryStream();
 
-		for (int i = 0; i < data2.length; i++) {
-			if (data2[i] != (byte)inputStream.read()) {
+		for (int i = 0; i < bytes.length; i++) {
+			if (bytes[i] != (byte)inputStream.read()) {
 				throw new Exception("Mismatch at index : " + i);
 			}
 		}
