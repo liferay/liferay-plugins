@@ -7,7 +7,7 @@
 
 		<!-- PK fields -->
 
-		<column name="blobEntryId" type="long" primary="true" />
+		<column name="testBlobEntryId" type="long" primary="true" />
 
 		<!-- Other fields -->
 
