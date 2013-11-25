@@ -32,7 +32,7 @@ public class BlobEntrySoap implements Serializable {
 		BlobEntrySoap soapModel = new BlobEntrySoap();
 
 		soapModel.setUuid(model.getUuid());
-		soapModel.setBlobEntryId(model.getBlobEntryId());
+		soapModel.setTestBlobEntryId(model.getTestBlobEntryId());
 		soapModel.setBlobField(model.getBlobField());
 
 		return soapModel;
@@ -79,11 +79,11 @@ public class BlobEntrySoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _blobEntryId;
+		return _testBlobEntryId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setBlobEntryId(pk);
+		setTestBlobEntryId(pk);
 	}
 
 	public String getUuid() {
@@ -94,12 +94,12 @@ public class BlobEntrySoap implements Serializable {
 		_uuid = uuid;
 	}
 
-	public long getBlobEntryId() {
-		return _blobEntryId;
+	public long getTestBlobEntryId() {
+		return _testBlobEntryId;
 	}
 
-	public void setBlobEntryId(long blobEntryId) {
-		_blobEntryId = blobEntryId;
+	public void setTestBlobEntryId(long testBlobEntryId) {
+		_testBlobEntryId = testBlobEntryId;
 	}
 
 	public Blob getBlobField() {
@@ -111,6 +111,6 @@ public class BlobEntrySoap implements Serializable {
 	}
 
 	private String _uuid;
-	private long _blobEntryId;
+	private long _testBlobEntryId;
 	private Blob _blobField;
 }

@@ -143,7 +143,7 @@ public interface BlobEntryPersistence extends BasePersistence<BlobEntry> {
 	/**
 	* Returns the blob entries before and after the current blob entry in the ordered set where uuid = &#63;.
 	*
-	* @param blobEntryId the primary key of the current blob entry
+	* @param testBlobEntryId the primary key of the current blob entry
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next blob entry
@@ -151,7 +151,7 @@ public interface BlobEntryPersistence extends BasePersistence<BlobEntry> {
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.BlobEntry[] findByUuid_PrevAndNext(
-		long blobEntryId, java.lang.String uuid,
+		long testBlobEntryId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.testblob.NoSuchBlobEntryException;
@@ -193,20 +193,20 @@ public interface BlobEntryPersistence extends BasePersistence<BlobEntry> {
 	/**
 	* Creates a new blob entry with the primary key. Does not add the blob entry to the database.
 	*
-	* @param blobEntryId the primary key for the new blob entry
+	* @param testBlobEntryId the primary key for the new blob entry
 	* @return the new blob entry
 	*/
-	public com.liferay.testblob.model.BlobEntry create(long blobEntryId);
+	public com.liferay.testblob.model.BlobEntry create(long testBlobEntryId);
 
 	/**
 	* Removes the blob entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param blobEntryId the primary key of the blob entry
+	* @param testBlobEntryId the primary key of the blob entry
 	* @return the blob entry that was removed
 	* @throws com.liferay.testblob.NoSuchBlobEntryException if a blob entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.testblob.model.BlobEntry remove(long blobEntryId)
+	public com.liferay.testblob.model.BlobEntry remove(long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.testblob.NoSuchBlobEntryException;
 
@@ -217,25 +217,25 @@ public interface BlobEntryPersistence extends BasePersistence<BlobEntry> {
 	/**
 	* Returns the blob entry with the primary key or throws a {@link com.liferay.testblob.NoSuchBlobEntryException} if it could not be found.
 	*
-	* @param blobEntryId the primary key of the blob entry
+	* @param testBlobEntryId the primary key of the blob entry
 	* @return the blob entry
 	* @throws com.liferay.testblob.NoSuchBlobEntryException if a blob entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.BlobEntry findByPrimaryKey(
-		long blobEntryId)
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.testblob.NoSuchBlobEntryException;
 
 	/**
 	* Returns the blob entry with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param blobEntryId the primary key of the blob entry
+	* @param testBlobEntryId the primary key of the blob entry
 	* @return the blob entry, or <code>null</code> if a blob entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.BlobEntry fetchByPrimaryKey(
-		long blobEntryId)
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

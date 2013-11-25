@@ -1,5 +1,5 @@
-create table TB_BlobEntry (
+create table TestBlob_BlobEntry (
 	uuid_ VARCHAR(75) null,
-	blobEntryId LONG not null primary key,
+	testBlobEntryId LONG not null primary key,
 	blobField BLOB
 );

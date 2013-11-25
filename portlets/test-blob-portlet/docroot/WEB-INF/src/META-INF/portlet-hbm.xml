@@ -3,13 +3,29 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="com.liferay.testblob.model.BlobEntry" />
-	<class name="com.liferay.testblob.model.impl.BlobEntryImpl" table="TB_BlobEntry">
+	<class name="com.liferay.testblob.model.impl.BlobEntryImpl" table="TestBlob_BlobEntry">
 		<cache usage="read-write" />
-		<id name="blobEntryId" type="long">
+		<id name="testBlobEntryId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="uuid" type="com.liferay.portal.dao.orm.hibernate.StringType" column="uuid_" />
 		<one-to-one name="blobFieldBlobModel" access="com.liferay.portal.dao.orm.hibernate.PrivatePropertyAccessor" class="com.liferay.testblob.model.BlobEntryBlobFieldBlobModel" cascade="save-update" outer-join="false" constrained="true" />
+	</class>
+	<class name="com.liferay.testblob.model.BlobEntryBlobFieldBlobModel" table="TestBlob_BlobEntry" lazy="true">
+		<id name="testBlobEntryId" column="testBlobEntryId">
+			<generator class="foreign">
+				<param name="property">com.liferay.testblob.model.impl.BlobEntryImpl</param>
+			</generator>
+		</id>
+		<property column="blobField" name="blobFieldBlob" type="blob" />
+	</class>
+	<class name="com.liferay.testblob.model.BlobEntryBlobFieldBlobModel" table="TestBlob_BlobEntry" lazy="true">
+		<id name="blobEntryId" column="blobEntryId">
+			<generator class="foreign">
+				<param name="property">com.liferay.testblob.model.impl.BlobEntryImpl</param>
+			</generator>
+		</id>
+		<property column="blobField" name="blobFieldBlob" type="blob" />
 	</class>
 	<class name="com.liferay.testblob.model.BlobEntryBlobFieldBlobModel" table="TB_BlobEntry" lazy="true">
 		<id name="blobEntryId" column="blobEntryId">

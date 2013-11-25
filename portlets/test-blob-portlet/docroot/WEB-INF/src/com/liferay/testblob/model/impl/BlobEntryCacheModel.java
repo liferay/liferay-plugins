@@ -40,8 +40,8 @@ public class BlobEntryCacheModel implements CacheModel<BlobEntry>,
 
 		sb.append("{uuid=");
 		sb.append(uuid);
-		sb.append(", blobEntryId=");
-		sb.append(blobEntryId);
+		sb.append(", testBlobEntryId=");
+		sb.append(testBlobEntryId);
 
 		return sb.toString();
 	}
@@ -57,7 +57,7 @@ public class BlobEntryCacheModel implements CacheModel<BlobEntry>,
 			blobEntryImpl.setUuid(uuid);
 		}
 
-		blobEntryImpl.setBlobEntryId(blobEntryId);
+		blobEntryImpl.setTestBlobEntryId(testBlobEntryId);
 
 		blobEntryImpl.resetOriginalValues();
 
@@ -67,7 +67,7 @@ public class BlobEntryCacheModel implements CacheModel<BlobEntry>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		uuid = objectInput.readUTF();
-		blobEntryId = objectInput.readLong();
+		testBlobEntryId = objectInput.readLong();
 	}
 
 	@Override
@@ -80,9 +80,9 @@ public class BlobEntryCacheModel implements CacheModel<BlobEntry>,
 			objectOutput.writeUTF(uuid);
 		}
 
-		objectOutput.writeLong(blobEntryId);
+		objectOutput.writeLong(testBlobEntryId);
 	}
 
 	public String uuid;
-	public long blobEntryId;
+	public long testBlobEntryId;
 }

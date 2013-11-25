@@ -55,27 +55,27 @@ public class BlobEntryLocalServiceUtil {
 	/**
 	* Creates a new blob entry with the primary key. Does not add the blob entry to the database.
 	*
-	* @param blobEntryId the primary key for the new blob entry
+	* @param testBlobEntryId the primary key for the new blob entry
 	* @return the new blob entry
 	*/
 	public static com.liferay.testblob.model.BlobEntry createBlobEntry(
-		long blobEntryId) {
-		return getService().createBlobEntry(blobEntryId);
+		long testBlobEntryId) {
+		return getService().createBlobEntry(testBlobEntryId);
 	}
 
 	/**
 	* Deletes the blob entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param blobEntryId the primary key of the blob entry
+	* @param testBlobEntryId the primary key of the blob entry
 	* @return the blob entry that was removed
 	* @throws PortalException if a blob entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testblob.model.BlobEntry deleteBlobEntry(
-		long blobEntryId)
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteBlobEntry(blobEntryId);
+		return getService().deleteBlobEntry(testBlobEntryId);
 	}
 
 	/**
@@ -182,24 +182,24 @@ public class BlobEntryLocalServiceUtil {
 	}
 
 	public static com.liferay.testblob.model.BlobEntry fetchBlobEntry(
-		long blobEntryId)
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchBlobEntry(blobEntryId);
+		return getService().fetchBlobEntry(testBlobEntryId);
 	}
 
 	/**
 	* Returns the blob entry with the primary key.
 	*
-	* @param blobEntryId the primary key of the blob entry
+	* @param testBlobEntryId the primary key of the blob entry
 	* @return the blob entry
 	* @throws PortalException if a blob entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testblob.model.BlobEntry getBlobEntry(
-		long blobEntryId)
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getBlobEntry(blobEntryId);
+		return getService().getBlobEntry(testBlobEntryId);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

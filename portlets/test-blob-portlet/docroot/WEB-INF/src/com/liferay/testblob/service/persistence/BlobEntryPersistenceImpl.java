@@ -374,7 +374,7 @@ public class BlobEntryPersistenceImpl extends BasePersistenceImpl<BlobEntry>
 	/**
 	 * Returns the blob entries before and after the current blob entry in the ordered set where uuid = &#63;.
 	 *
-	 * @param blobEntryId the primary key of the current blob entry
+	 * @param testBlobEntryId the primary key of the current blob entry
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next blob entry
@@ -382,10 +382,10 @@ public class BlobEntryPersistenceImpl extends BasePersistenceImpl<BlobEntry>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public BlobEntry[] findByUuid_PrevAndNext(long blobEntryId, String uuid,
-		OrderByComparator orderByComparator)
+	public BlobEntry[] findByUuid_PrevAndNext(long testBlobEntryId,
+		String uuid, OrderByComparator orderByComparator)
 		throws NoSuchBlobEntryException, SystemException {
-		BlobEntry blobEntry = findByPrimaryKey(blobEntryId);
+		BlobEntry blobEntry = findByPrimaryKey(testBlobEntryId);
 
 		Session session = null;
 
@@ -702,15 +702,15 @@ public class BlobEntryPersistenceImpl extends BasePersistenceImpl<BlobEntry>
 	/**
 	 * Creates a new blob entry with the primary key. Does not add the blob entry to the database.
 	 *
-	 * @param blobEntryId the primary key for the new blob entry
+	 * @param testBlobEntryId the primary key for the new blob entry
 	 * @return the new blob entry
 	 */
 	@Override
-	public BlobEntry create(long blobEntryId) {
+	public BlobEntry create(long testBlobEntryId) {
 		BlobEntry blobEntry = new BlobEntryImpl();
 
 		blobEntry.setNew(true);
-		blobEntry.setPrimaryKey(blobEntryId);
+		blobEntry.setPrimaryKey(testBlobEntryId);
 
 		String uuid = PortalUUIDUtil.generate();
 
@@ -722,15 +722,15 @@ public class BlobEntryPersistenceImpl extends BasePersistenceImpl<BlobEntry>
 	/**
 	 * Removes the blob entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param blobEntryId the primary key of the blob entry
+	 * @param testBlobEntryId the primary key of the blob entry
 	 * @return the blob entry that was removed
 	 * @throws com.liferay.testblob.NoSuchBlobEntryException if a blob entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public BlobEntry remove(long blobEntryId)
+	public BlobEntry remove(long testBlobEntryId)
 		throws NoSuchBlobEntryException, SystemException {
-		return remove((Serializable)blobEntryId);
+		return remove((Serializable)testBlobEntryId);
 	}
 
 	/**
@@ -891,7 +891,7 @@ public class BlobEntryPersistenceImpl extends BasePersistenceImpl<BlobEntry>
 		blobEntryImpl.setPrimaryKey(blobEntry.getPrimaryKey());
 
 		blobEntryImpl.setUuid(blobEntry.getUuid());
-		blobEntryImpl.setBlobEntryId(blobEntry.getBlobEntryId());
+		blobEntryImpl.setTestBlobEntryId(blobEntry.getTestBlobEntryId());
 		blobEntryImpl.setBlobField(blobEntry.getBlobField());
 
 		return blobEntryImpl;
@@ -925,15 +925,15 @@ public class BlobEntryPersistenceImpl extends BasePersistenceImpl<BlobEntry>
 	/**
 	 * Returns the blob entry with the primary key or throws a {@link com.liferay.testblob.NoSuchBlobEntryException} if it could not be found.
 	 *
-	 * @param blobEntryId the primary key of the blob entry
+	 * @param testBlobEntryId the primary key of the blob entry
 	 * @return the blob entry
 	 * @throws com.liferay.testblob.NoSuchBlobEntryException if a blob entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public BlobEntry findByPrimaryKey(long blobEntryId)
+	public BlobEntry findByPrimaryKey(long testBlobEntryId)
 		throws NoSuchBlobEntryException, SystemException {
-		return findByPrimaryKey((Serializable)blobEntryId);
+		return findByPrimaryKey((Serializable)testBlobEntryId);
 	}
 
 	/**
@@ -987,14 +987,14 @@ public class BlobEntryPersistenceImpl extends BasePersistenceImpl<BlobEntry>
 	/**
 	 * Returns the blob entry with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param blobEntryId the primary key of the blob entry
+	 * @param testBlobEntryId the primary key of the blob entry
 	 * @return the blob entry, or <code>null</code> if a blob entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public BlobEntry fetchByPrimaryKey(long blobEntryId)
+	public BlobEntry fetchByPrimaryKey(long testBlobEntryId)
 		throws SystemException {
-		return fetchByPrimaryKey((Serializable)blobEntryId);
+		return fetchByPrimaryKey((Serializable)testBlobEntryId);
 	}
 
 	/**

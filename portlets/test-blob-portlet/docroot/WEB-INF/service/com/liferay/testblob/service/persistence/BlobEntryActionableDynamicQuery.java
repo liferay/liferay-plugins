@@ -32,6 +32,6 @@ public abstract class BlobEntryActionableDynamicQuery
 
 		setClassLoader(com.liferay.testblob.service.ClpSerializer.class.getClassLoader());
 
-		setPrimaryKeyPropertyName("blobEntryId");
+		setPrimaryKeyPropertyName("testBlobEntryId");
 	}
 }

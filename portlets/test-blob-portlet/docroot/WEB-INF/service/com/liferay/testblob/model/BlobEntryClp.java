@@ -52,17 +52,17 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 
 	@Override
 	public long getPrimaryKey() {
-		return _blobEntryId;
+		return _testBlobEntryId;
 	}
 
 	@Override
 	public void setPrimaryKey(long primaryKey) {
-		setBlobEntryId(primaryKey);
+		setTestBlobEntryId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _blobEntryId;
+		return _testBlobEntryId;
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("uuid", getUuid());
-		attributes.put("blobEntryId", getBlobEntryId());
+		attributes.put("testBlobEntryId", getTestBlobEntryId());
 		attributes.put("blobField", getBlobField());
 
 		return attributes;
@@ -89,10 +89,10 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 			setUuid(uuid);
 		}
 
-		Long blobEntryId = (Long)attributes.get("blobEntryId");
+		Long testBlobEntryId = (Long)attributes.get("testBlobEntryId");
 
-		if (blobEntryId != null) {
-			setBlobEntryId(blobEntryId);
+		if (testBlobEntryId != null) {
+			setTestBlobEntryId(testBlobEntryId);
 		}
 
 		Blob blobField = (Blob)attributes.get("blobField");
@@ -126,21 +126,21 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 	}
 
 	@Override
-	public long getBlobEntryId() {
-		return _blobEntryId;
+	public long getTestBlobEntryId() {
+		return _testBlobEntryId;
 	}
 
 	@Override
-	public void setBlobEntryId(long blobEntryId) {
-		_blobEntryId = blobEntryId;
+	public void setTestBlobEntryId(long testBlobEntryId) {
+		_testBlobEntryId = testBlobEntryId;
 
 		if (_blobEntryRemoteModel != null) {
 			try {
 				Class<?> clazz = _blobEntryRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setBlobEntryId", long.class);
+				Method method = clazz.getMethod("setTestBlobEntryId", long.class);
 
-				method.invoke(_blobEntryRemoteModel, blobEntryId);
+				method.invoke(_blobEntryRemoteModel, testBlobEntryId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -241,7 +241,7 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 		BlobEntryClp clone = new BlobEntryClp();
 
 		clone.setUuid(getUuid());
-		clone.setBlobEntryId(getBlobEntryId());
+		clone.setTestBlobEntryId(getTestBlobEntryId());
 		clone.setBlobField(getBlobField());
 
 		return clone;
@@ -295,8 +295,8 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
-		sb.append(", blobEntryId=");
-		sb.append(getBlobEntryId());
+		sb.append(", testBlobEntryId=");
+		sb.append(getTestBlobEntryId());
 		sb.append(", blobField=");
 		sb.append(getBlobField());
 		sb.append("}");
@@ -317,8 +317,8 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 		sb.append(getUuid());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>blobEntryId</column-name><column-value><![CDATA[");
-		sb.append(getBlobEntryId());
+			"<column><column-name>testBlobEntryId</column-name><column-value><![CDATA[");
+		sb.append(getTestBlobEntryId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>blobField</column-name><column-value><![CDATA[");
@@ -331,7 +331,7 @@ public class BlobEntryClp extends BaseModelImpl<BlobEntry> implements BlobEntry 
 	}
 
 	private String _uuid;
-	private long _blobEntryId;
+	private long _testBlobEntryId;
 	private Blob _blobField;
 	private BaseModel<?> _blobEntryRemoteModel;
 }

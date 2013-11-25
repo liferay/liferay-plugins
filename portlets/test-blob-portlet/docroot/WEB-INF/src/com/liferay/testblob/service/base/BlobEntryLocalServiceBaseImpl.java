@@ -85,27 +85,27 @@ public abstract class BlobEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	/**
 	 * Creates a new blob entry with the primary key. Does not add the blob entry to the database.
 	 *
-	 * @param blobEntryId the primary key for the new blob entry
+	 * @param testBlobEntryId the primary key for the new blob entry
 	 * @return the new blob entry
 	 */
 	@Override
-	public BlobEntry createBlobEntry(long blobEntryId) {
-		return blobEntryPersistence.create(blobEntryId);
+	public BlobEntry createBlobEntry(long testBlobEntryId) {
+		return blobEntryPersistence.create(testBlobEntryId);
 	}
 
 	/**
 	 * Deletes the blob entry with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param blobEntryId the primary key of the blob entry
+	 * @param testBlobEntryId the primary key of the blob entry
 	 * @return the blob entry that was removed
 	 * @throws PortalException if a blob entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public BlobEntry deleteBlobEntry(long blobEntryId)
+	public BlobEntry deleteBlobEntry(long testBlobEntryId)
 		throws PortalException, SystemException {
-		return blobEntryPersistence.remove(blobEntryId);
+		return blobEntryPersistence.remove(testBlobEntryId);
 	}
 
 	/**
@@ -216,22 +216,23 @@ public abstract class BlobEntryLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@Override
-	public BlobEntry fetchBlobEntry(long blobEntryId) throws SystemException {
-		return blobEntryPersistence.fetchByPrimaryKey(blobEntryId);
+	public BlobEntry fetchBlobEntry(long testBlobEntryId)
+		throws SystemException {
+		return blobEntryPersistence.fetchByPrimaryKey(testBlobEntryId);
 	}
 
 	/**
 	 * Returns the blob entry with the primary key.
 	 *
-	 * @param blobEntryId the primary key of the blob entry
+	 * @param testBlobEntryId the primary key of the blob entry
 	 * @return the blob entry
 	 * @throws PortalException if a blob entry with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public BlobEntry getBlobEntry(long blobEntryId)
+	public BlobEntry getBlobEntry(long testBlobEntryId)
 		throws PortalException, SystemException {
-		return blobEntryPersistence.findByPrimaryKey(blobEntryId);
+		return blobEntryPersistence.findByPrimaryKey(testBlobEntryId);
 	}
 
 	@Override

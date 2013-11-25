@@ -3,7 +3,7 @@
 <model-hints>
 	<model name="com.liferay.testblob.model.BlobEntry">
 		<field name="uuid" type="String" />
-		<field name="blobEntryId" type="long" />
+		<field name="testBlobEntryId" type="long" />
 		<field name="blobField" type="Blob" />
 	</model>
 </model-hints>

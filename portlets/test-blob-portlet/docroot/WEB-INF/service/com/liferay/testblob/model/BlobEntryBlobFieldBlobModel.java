@@ -27,21 +27,21 @@ public class BlobEntryBlobFieldBlobModel {
 	public BlobEntryBlobFieldBlobModel() {
 	}
 
-	public BlobEntryBlobFieldBlobModel(long blobEntryId) {
-		_blobEntryId = blobEntryId;
+	public BlobEntryBlobFieldBlobModel(long testBlobEntryId) {
+		_testBlobEntryId = testBlobEntryId;
 	}
 
-	public BlobEntryBlobFieldBlobModel(long blobEntryId, Blob blobFieldBlob) {
-		_blobEntryId = blobEntryId;
+	public BlobEntryBlobFieldBlobModel(long testBlobEntryId, Blob blobFieldBlob) {
+		_testBlobEntryId = testBlobEntryId;
 		_blobFieldBlob = blobFieldBlob;
 	}
 
-	public long getBlobEntryId() {
-		return _blobEntryId;
+	public long getTestBlobEntryId() {
+		return _testBlobEntryId;
 	}
 
-	public void setBlobEntryId(long blobEntryId) {
-		_blobEntryId = blobEntryId;
+	public void setTestBlobEntryId(long testBlobEntryId) {
+		_testBlobEntryId = testBlobEntryId;
 	}
 
 	public Blob getBlobFieldBlob() {
@@ -52,6 +52,6 @@ public class BlobEntryBlobFieldBlobModel {
 		_blobFieldBlob = blobFieldBlob;
 	}
 
-	private long _blobEntryId;
+	private long _testBlobEntryId;
 	private Blob _blobFieldBlob;
 }

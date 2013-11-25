@@ -151,12 +151,12 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 
 	@Override
 	public com.liferay.testblob.model.BlobEntry createBlobEntry(
-		long blobEntryId) {
+		long testBlobEntryId) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { blobEntryId });
+					_methodParameterTypes1, new Object[] { testBlobEntryId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -175,14 +175,14 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 
 	@Override
 	public com.liferay.testblob.model.BlobEntry deleteBlobEntry(
-		long blobEntryId)
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { blobEntryId });
+					_methodParameterTypes2, new Object[] { testBlobEntryId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -435,13 +435,14 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry fetchBlobEntry(long blobEntryId)
+	public com.liferay.testblob.model.BlobEntry fetchBlobEntry(
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { blobEntryId });
+					_methodParameterTypes10, new Object[] { testBlobEntryId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -463,14 +464,15 @@ public class BlobEntryLocalServiceClp implements BlobEntryLocalService {
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry getBlobEntry(long blobEntryId)
+	public com.liferay.testblob.model.BlobEntry getBlobEntry(
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { blobEntryId });
+					_methodParameterTypes11, new Object[] { testBlobEntryId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

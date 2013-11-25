@@ -9,7 +9,7 @@
 	</persistence-unit-metadata>
 	<mapped-superclass class="com.liferay.testblob.model.impl.BlobEntryModelImpl">
 		<attributes>
-			<id name="blobEntryId" />
+			<id name="testBlobEntryId" />
 			<basic name="uuid">
 				<column name="UUID_" />
 			</basic>
@@ -20,7 +20,7 @@
 		</attributes>
 	</mapped-superclass>
 	<entity class="com.liferay.testblob.model.impl.BlobEntryImpl" name="BlobEntry">
-		<table name="TB_BlobEntry" />
+		<table name="TestBlob_BlobEntry" />
 		<attributes />
 	</entity>
 </entity-mappings>

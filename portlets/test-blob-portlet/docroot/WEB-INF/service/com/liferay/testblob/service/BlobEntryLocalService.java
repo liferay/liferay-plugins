@@ -59,22 +59,22 @@ public interface BlobEntryLocalService extends BaseLocalService,
 	/**
 	* Creates a new blob entry with the primary key. Does not add the blob entry to the database.
 	*
-	* @param blobEntryId the primary key for the new blob entry
+	* @param testBlobEntryId the primary key for the new blob entry
 	* @return the new blob entry
 	*/
 	public com.liferay.testblob.model.BlobEntry createBlobEntry(
-		long blobEntryId);
+		long testBlobEntryId);
 
 	/**
 	* Deletes the blob entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param blobEntryId the primary key of the blob entry
+	* @param testBlobEntryId the primary key of the blob entry
 	* @return the blob entry that was removed
 	* @throws PortalException if a blob entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.BlobEntry deleteBlobEntry(
-		long blobEntryId)
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -167,19 +167,21 @@ public interface BlobEntryLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.testblob.model.BlobEntry fetchBlobEntry(long blobEntryId)
+	public com.liferay.testblob.model.BlobEntry fetchBlobEntry(
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
 	* Returns the blob entry with the primary key.
 	*
-	* @param blobEntryId the primary key of the blob entry
+	* @param testBlobEntryId the primary key of the blob entry
 	* @return the blob entry
 	* @throws PortalException if a blob entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.testblob.model.BlobEntry getBlobEntry(long blobEntryId)
+	public com.liferay.testblob.model.BlobEntry getBlobEntry(
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

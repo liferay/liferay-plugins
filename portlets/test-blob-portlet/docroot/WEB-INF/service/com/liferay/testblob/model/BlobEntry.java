@@ -17,7 +17,7 @@ package com.liferay.testblob.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the BlobEntry service. Represents a row in the &quot;TB_BlobEntry&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the BlobEntry service. Represents a row in the &quot;TestBlob_BlobEntry&quot; database table, with each column mapped to a property of this class.
  *
  * @author Brian Wing Shun Chan
  * @see BlobEntryModel

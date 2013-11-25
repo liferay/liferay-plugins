@@ -47,29 +47,29 @@ public class BlobEntryLocalServiceWrapper implements BlobEntryLocalService,
 	/**
 	* Creates a new blob entry with the primary key. Does not add the blob entry to the database.
 	*
-	* @param blobEntryId the primary key for the new blob entry
+	* @param testBlobEntryId the primary key for the new blob entry
 	* @return the new blob entry
 	*/
 	@Override
 	public com.liferay.testblob.model.BlobEntry createBlobEntry(
-		long blobEntryId) {
-		return _blobEntryLocalService.createBlobEntry(blobEntryId);
+		long testBlobEntryId) {
+		return _blobEntryLocalService.createBlobEntry(testBlobEntryId);
 	}
 
 	/**
 	* Deletes the blob entry with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param blobEntryId the primary key of the blob entry
+	* @param testBlobEntryId the primary key of the blob entry
 	* @return the blob entry that was removed
 	* @throws PortalException if a blob entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.testblob.model.BlobEntry deleteBlobEntry(
-		long blobEntryId)
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _blobEntryLocalService.deleteBlobEntry(blobEntryId);
+		return _blobEntryLocalService.deleteBlobEntry(testBlobEntryId);
 	}
 
 	/**
@@ -183,24 +183,26 @@ public class BlobEntryLocalServiceWrapper implements BlobEntryLocalService,
 	}
 
 	@Override
-	public com.liferay.testblob.model.BlobEntry fetchBlobEntry(long blobEntryId)
+	public com.liferay.testblob.model.BlobEntry fetchBlobEntry(
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _blobEntryLocalService.fetchBlobEntry(blobEntryId);
+		return _blobEntryLocalService.fetchBlobEntry(testBlobEntryId);
 	}
 
 	/**
 	* Returns the blob entry with the primary key.
 	*
-	* @param blobEntryId the primary key of the blob entry
+	* @param testBlobEntryId the primary key of the blob entry
 	* @return the blob entry
 	* @throws PortalException if a blob entry with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public com.liferay.testblob.model.BlobEntry getBlobEntry(long blobEntryId)
+	public com.liferay.testblob.model.BlobEntry getBlobEntry(
+		long testBlobEntryId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _blobEntryLocalService.getBlobEntry(blobEntryId);
+		return _blobEntryLocalService.getBlobEntry(testBlobEntryId);
 	}
 
 	@Override

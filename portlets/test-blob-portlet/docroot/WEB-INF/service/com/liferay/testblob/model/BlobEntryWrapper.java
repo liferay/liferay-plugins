@@ -51,7 +51,7 @@ public class BlobEntryWrapper implements BlobEntry, ModelWrapper<BlobEntry> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("uuid", getUuid());
-		attributes.put("blobEntryId", getBlobEntryId());
+		attributes.put("testBlobEntryId", getTestBlobEntryId());
 		attributes.put("blobField", getBlobField());
 
 		return attributes;
@@ -65,10 +65,10 @@ public class BlobEntryWrapper implements BlobEntry, ModelWrapper<BlobEntry> {
 			setUuid(uuid);
 		}
 
-		Long blobEntryId = (Long)attributes.get("blobEntryId");
+		Long testBlobEntryId = (Long)attributes.get("testBlobEntryId");
 
-		if (blobEntryId != null) {
-			setBlobEntryId(blobEntryId);
+		if (testBlobEntryId != null) {
+			setTestBlobEntryId(testBlobEntryId);
 		}
 
 		Blob blobField = (Blob)attributes.get("blobField");
@@ -119,23 +119,23 @@ public class BlobEntryWrapper implements BlobEntry, ModelWrapper<BlobEntry> {
 	}
 
 	/**
-	* Returns the blob entry ID of this blob entry.
+	* Returns the test blob entry ID of this blob entry.
 	*
-	* @return the blob entry ID of this blob entry
+	* @return the test blob entry ID of this blob entry
 	*/
 	@Override
-	public long getBlobEntryId() {
-		return _blobEntry.getBlobEntryId();
+	public long getTestBlobEntryId() {
+		return _blobEntry.getTestBlobEntryId();
 	}
 
 	/**
-	* Sets the blob entry ID of this blob entry.
+	* Sets the test blob entry ID of this blob entry.
 	*
-	* @param blobEntryId the blob entry ID of this blob entry
+	* @param testBlobEntryId the test blob entry ID of this blob entry
 	*/
 	@Override
-	public void setBlobEntryId(long blobEntryId) {
-		_blobEntry.setBlobEntryId(blobEntryId);
+	public void setTestBlobEntryId(long testBlobEntryId) {
+		_blobEntry.setTestBlobEntryId(testBlobEntryId);
 	}
 
 	/**
