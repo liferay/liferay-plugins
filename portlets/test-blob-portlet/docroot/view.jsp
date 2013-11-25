@@ -47,7 +47,7 @@ private static long _create() {
 
 		testBlobEntry.setBlobField(outputBlob);
 
-		testBlobEntry = TestBlobEntryLocalServiceUtil.addTestBlobEntry(testBlobEntry);
+		TestBlobEntryLocalServiceUtil.addTestBlobEntry(testBlobEntry);
 
 		return testBlobEntry.getTestBlobEntryId();
 	}
