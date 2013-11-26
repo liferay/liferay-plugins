@@ -7,10 +7,10 @@
 		<version>6.2.0+</version>
 	</compatibility>
 	<theme id="so" name="Social Office">
-		<color-scheme id="classic" name="Classic">
+		<color-scheme id="01" name="Classic">
 			<css-class>so-classic</css-class>
 		</color-scheme>
-		<color-scheme id="strata" name="Strata">
+		<color-scheme id="02" name="Strata">
 			<default-cs>true</default-cs>
 			<css-class>so-strata</css-class>
 		</color-scheme>
