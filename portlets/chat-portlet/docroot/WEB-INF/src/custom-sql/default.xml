@@ -63,9 +63,9 @@
 				User_.lastName ASC
 		]]>
 	</sql>
-	<sql id="com.liferay.chat.service.persistence.StatusFinder.findBySocialRelationType">
+	<sql id="com.liferay.chat.service.persistence.StatusFinder.findBySocialRelationTypes">
 		<![CDATA[
-			SELECT
+			SELECT DISTINCT
 				User_.userId AS userId, User_.screenName AS screenName, User_.firstName AS firstName, User_.middleName AS middleName, User_.lastName AS lastName, User_.portraitId AS portraitId, Chat_Status.awake AS awake
 			FROM
 				Chat_Status
@@ -77,7 +77,7 @@
 					(SocialRelation.userId2 = User_.userId)
 			WHERE
 				(SocialRelation.userId1 = ?) AND
-				(SocialRelation.type_ = ?) AND
+				[$SOCIAL_RELATION_TYPES$]
 				(Chat_Status.modifiedDate > ?) AND
 				(Chat_Status.online_ = [$TRUE$]) AND
 				(User_.userId != ?)
