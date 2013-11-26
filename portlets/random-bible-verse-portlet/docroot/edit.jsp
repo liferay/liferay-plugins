@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Map bibles = RBVUtil.getBibles();
+Map<String, Bible> bibles = RBVUtil.getBibles();
 %>
 
 <portlet:actionURL var="updateURL" />
@@ -29,12 +29,8 @@ Map bibles = RBVUtil.getBibles();
 		<aui:option label="default-language" selected='<%= language.equals("") %>' value="" />
 
 		<%
-		Iterator itr = bibles.entrySet().iterator();
-
-		while (itr.hasNext()) {
-			Map.Entry entry = (Map.Entry)itr.next();
-
-			Bible bible = (Bible)entry.getValue();
+		for (Map.Entry<String, Bible> entry : bibles.entrySet()) {
+			Bible bible = entry.getValue();
 		%>
 
 			<aui:option label="<%= StringUtil.toLowerCase(bible.getLanguageName()) %>" selected="<%= language.equals(bible.getLanguage()) %>" value="<%= bible.getLanguage() %>" />
