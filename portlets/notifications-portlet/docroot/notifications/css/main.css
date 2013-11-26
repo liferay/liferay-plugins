@@ -1,15 +1,59 @@
 @import "compass";
 
+@mixin keyframes($name) {
+	@-o-keyframes #{$name} {
+		@content;
+	}
+
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+@include keyframes(shakeNotificationCount) {
+	0% {
+		@include transform(rotate(5deg));
+	}
+	25% {
+		@include transform(translate(3px, -4px), rotate(0deg));
+	}
+	50% {
+		@include transform(rotate(-5deg));
+	}
+	75% {
+		@include transform(rotate(0deg));
+	}
+	100% {
+		@include transform(translate(0, 0), rotate(5deg));
+	}
+}
+
 .dockbar-user-notifications, .notifications-portlet {
 	.user-notifications-count {
 		background-color: #0066B3;
 		border: 1px solid #0066B3;
+		line-height: 1.25em;
+		margin: 4px 0;
 		padding: 2px 6px;
+		display: block;
+		position: relative;
 
 		&.alert {
 			background-color: #FAA732;
 			border: 1px solid #FAA732;
 			color: #FFF;
+
+			@include experimental(animation, shakeNotificationCount 0.8s linear infinite);
+			@include experimental(animation-iteration-count, 2);
+			@include experimental(transform-origin, 50% 50%);
 		}
 	}
 
