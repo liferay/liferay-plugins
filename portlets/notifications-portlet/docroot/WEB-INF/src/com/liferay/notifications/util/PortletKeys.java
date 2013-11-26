@@ -24,4 +24,10 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
 	public static final String NOTIFICATIONS = "1_WAR_notificationsportlet";
 
+	public static final String SO_ANNOUNCEMENTS =
+		com.liferay.so.announcements.util.PortletKeys.SO_ANNOUNCEMENTS;
+
+	public static final String SO_NOTIFICATION =
+		com.liferay.so.util.PortletKeys.SO_NOTIFICATION;
+
 }
