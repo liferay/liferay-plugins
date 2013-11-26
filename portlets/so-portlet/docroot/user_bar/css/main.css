@@ -83,7 +83,6 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	a {
 		color: #FFF;
 		background-color: rgba(0,0,0, 0);
-
 		font-size: 1em;
 		padding: 0.58em 0.8em;
 
@@ -161,26 +160,8 @@ html.aui {
 
 				&.nav > li > a {
 					margin: 0 0;
-					padding-bottom: 0.45em;
-					padding-top: 0.45em;
-				}
-
-				.user-avatar {
-					.nav-item-label {
-						padding-left: 20px;
-						position: relative;
-					}
-
-					img {
-						border-width: 0;
-
-						@include border-radius(0);
-
-						clip: rect(0px, 20px, 20px, 0px);
-						left: -6px;
-						position: absolute;
-						top: 0;
-					}
+					padding-bottom: 12px;
+					padding-top: 12px;
 				}
 			}
 		}
@@ -222,7 +203,6 @@ html.aui {
 		}
 
 		&.nav > li > a {
-			line-height: 1em;
 			padding-bottom: 12px;
 			padding-top: 12px;
 		}
@@ -231,21 +211,30 @@ html.aui {
 	.dockbar-split .dockbar .navbar-inner .container .nav.nav-account-controls,
 	.dockbar-split .dockbar.navbar-static-top .collapse .nav.nav-account-controls {
 		position: absolute;
-		top: 0;
+		top: -3px;
 	}
 
 	.my-sites.dropdown {
 		display: none;
 	}
 
-	.dockbar-user-notifications .user-notifications-count, .notifications-portlet .user-notifications-count {
-		background: #FFF;
+	.dockbar-user-notifications, .notifications-portlet {
+		.user-notifications-count {
+			background: #FFF;
 
-		@include border-radius(12px);
+			@include border-radius(12px);
 
-		border-width: 0;
-		color: #202020;
-		padding: 4px 8px;
+			border-width: 0;
+			color: #202020;
+			font-size: 0.85em;
+			padding: 4px 8px;
+
+			&.alert {
+				background-color: #A20F0F;
+				color: #FFF;
+				text-shadow: none;
+			}
+		}
 	}
 
 	.navbar .dockbar-user-notifications .nav>li>.dropdown-menu {
@@ -273,6 +262,28 @@ html.aui {
 
 	.search .search-input {
 		border: 1px solid #1C2125;
+	}
+}
+
+@media (max-width:860px) {
+	.so-portlet-user-bar {
+		a {
+			padding: 0.25em 0.7em;
+		}
+
+		.user-info a {
+			padding: 0;
+
+			.avatar {
+				@include border-radius(4px);
+
+				margin: 0;
+			}
+		}
+
+		.full-name {
+			display: none;
+		}
 	}
 }
 
@@ -345,7 +356,7 @@ html.aui {
 			}
 		}
 	}
-	
+
 	@media (max-width:979px) {
 		.so-portlet-user-bar {
 			padding-right: 0;
