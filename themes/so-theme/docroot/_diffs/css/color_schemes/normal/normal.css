@@ -318,6 +318,14 @@ a {
 	input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-form-validator-error {
 		border-color: $red;
 	}
+
+	legend {
+		border: 0;
+		padding: 0 0.25em;
+		margin: 0;
+		width: auto;
+
+	}
 }
 
 .ie6 {
