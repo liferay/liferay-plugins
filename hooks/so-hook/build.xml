@@ -4,5 +4,5 @@
 <project name="so-hook" basedir="." default="deploy">
 	<import file="../build-common-hook.xml" />
 
-	<property name="import.shared" value="deploy-listener-shared" />
+	<property name="import.shared" value="deploy-listener-shared,so-shared" />
 </project>
