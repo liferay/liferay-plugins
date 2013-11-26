@@ -24,9 +24,8 @@ html.aui {
 			}
 		}
 
-		.info-link-container {
-			right: -8px;
-			top: 43px;
+		&.navbar-static-top {
+			position: static;
 		}
 
 		.info-button .diamond {
@@ -62,6 +61,19 @@ html.aui {
 	.dockbar {
 		.info-items, .info-link-container {
 			display: none;
+		}
+
+		.info-items {
+			left: auto;
+			position: absolute;
+			right: 293px;
+			top: 86px;
+			width: 575px;
+		}
+
+		.info-link-container {
+			left: 50px;
+			top: 92px;
 		}
 	}
 
@@ -113,6 +125,7 @@ a {
 	padding: 0.125em;
 
 	.aui-state-default {
+		background: transparent none;
 		border-width: 0;
 
 		@include box-shadow(none);
@@ -2113,55 +2126,112 @@ div#navigation {
 	}
 }
 
-@media (max-width: 767px) {
-	padding: 0;
-}
+/* ---------- Responsive ---------- */
 
-
-@media (max-width:860px) {
-	#content, #navigation, #navigation ul {
-		border-width: 0;
+html.aui {
+	@media (max-width:1060px) {
+		.so-portlet-user-bar {
+			.dashboard-nav li a {
+				font-weight: 300;
+				padding: 0.58em 0.5em;
+			}
+		}
 	}
 
-	div#navigation {
-		@include clear-both;
+	@media (max-width:979px) {
+		.so-portlet-user-bar {
+			padding-right: 0;
 
-		float: none;
-		margin-left: 0;
+			.dashboard-nav li a {
+				font-weight: 400;
+				padding: 0.58em 0.7em;
+			}
+		}
 
-		@include subtle-gradient;
+		.portlet-dockbar {
+			.navbar {
+				margin-top: 0;
+			}
 
-		width: 100%;
+			.btn-navbar {
+				padding: 7px 10px;
 
-		li {
-			float: left;
+				&:hover {
+					color: #000;
+				}
+
+				.user-avatar-image {
+					width: 20px;
+				}
+			}
+		}
+
+		#banner #toggleDockbar {
+			display: none
+		}
+
+		.dockbar.navbar-static-top .collapse .nav,
+		.dockbar .navbar-inner .container .nav {
+			float: right;
+			position: relative;
 
 			a {
-				@include background-image(linear, 50% 100%, 50% 0, color-stop(0, #252d31), color-stop(100%, #32363a));
-
-				display: block;
-				padding: 0.75em 1em;
+				color: #555;
 			}
 		}
+	}
 
-		.avatar {
-			float: left;
-			height: 39px;
-			width: 39px;
+	@media (max-width:860px) {
+		#content, #navigation, #navigation ul {
+			border-width: 0;
+		}
 
-			img {
-				min-height: 39px;
+		div#navigation {
+			@include clear-both;
+
+			float: none;
+			margin-left: 0;
+
+			@include subtle-gradient;
+
+			width: 100%;
+
+			li {
+				float: left;
+
+				a {
+					@include background-image(linear, 50% 100%, 50% 0, color-stop(0, #252d31), color-stop(100%, #32363a));
+
+					display: block;
+					padding: 0.75em 1em;
+				}
+			}
+
+			.avatar {
+				float: left;
+				height: 39px;
 				width: 39px;
+
+				img {
+					min-height: 39px;
+					width: 39px;
+				}
 			}
+		}
+
+		#content {
+			padding-left: 0;
+		}
+
+		.portlet-layout, .portlet-column {
+			display: block;
+			width: auto;
 		}
 	}
 
-	#content {
-		padding-left: 0;
-	}
-
-	.portlet-layout, .portlet-column {
-		display: block;
-		width: auto;
+	@media (max-width: 767px) {
+		body {
+			padding: 0;
+		}
 	}
 }
