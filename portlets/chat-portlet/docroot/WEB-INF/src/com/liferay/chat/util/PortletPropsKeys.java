@@ -16,8 +16,12 @@ package com.liferay.chat.util;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Tibor Lipusz
  */
 public interface PortletPropsKeys {
+
+	public static final String BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES =
+		"buddy.list.allowed.social.relation.types";
 
 	public static final String BUDDY_LIST_MAX_BUDDIES =
 		"buddy.list.max.buddies";
