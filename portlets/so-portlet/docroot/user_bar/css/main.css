@@ -342,3 +342,46 @@ html.aui {
 		float: right;
 	}
 }
+
+/* ---------- Responsive ---------- */
+
+html.aui {
+	@media (max-width:979px) {
+		.so-portlet-user-bar {
+			padding-right: 0;
+
+			.dashboard-nav li a {
+				font-weight: 400;
+				padding: 0.58em 0.7em;
+			}
+		}
+
+		.portlet-dockbar {
+			.navbar {
+				margin-top: 0;
+			}
+
+			.btn-navbar {
+				padding: 7px 10px;
+
+				&:hover {
+					color: #000;
+				}
+
+				.user-avatar-image {
+					width: 20px;
+				}
+			}
+		}
+
+		#banner #toggleDockbar {
+			display: none
+		}
+
+		.dockbar-split .dockbar.navbar-static-top .collapse .nav.nav-account-controls,
+		.dockbar-split .dockbar .navbar-inner .container .nav.nav-account-controls {
+			float: right;
+			position: relative;
+		}
+	}
+}
