@@ -32,6 +32,7 @@ import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Tibor Lipusz
  */
 public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 
@@ -59,8 +60,17 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 			long userId, int type, long modifiedDate, int start, int end)
 		throws SystemException {
 
-		return statusFinder.findBySocialRelationType(
-			userId, type, modifiedDate, start, end);
+		return getSocialStatuses(
+			userId, new int[] {type}, modifiedDate, start, end);
+	}
+
+	@Override
+	public List<Object[]> getSocialStatuses(
+			long userId, int[] types, long modifiedDate, int start, int end)
+		throws SystemException {
+
+		return statusFinder.findBySocialRelationTypes(
+			userId, types, modifiedDate, start, end);
 	}
 
 	@Override
