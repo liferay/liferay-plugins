@@ -18,7 +18,6 @@ import com.liferay.chat.jabber.JabberUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.comparator.BuddyComparator;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portlet.social.model.SocialRelationConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +25,7 @@ import java.util.List;
 
 /**
  * @author Ankit Srivastava
+ * @author Tibor Lipusz
  */
 public class DefaultBuddyFinderImpl implements BuddyFinder {
 
@@ -51,13 +51,18 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 				PortletPropsValues.BUDDY_LIST_SITE_EXCLUDES, 0,
 				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
-		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("friends")) {
+		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("friends") ||
+				 PortletPropsValues.BUDDY_LIST_STRATEGY.equals("social")) {
+
 			buddies = StatusLocalServiceUtil.getSocialStatuses(
-				userId, SocialRelationConstants.TYPE_BI_FRIEND, modifiedDate, 0,
-				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
+				userId,
+				PortletPropsValues.BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES,
+				modifiedDate, 0, PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"communities,friends") ||
+				 PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
+					"sites,social") ||
 				 PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"friends,sites")) {
 
@@ -68,7 +73,8 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 					PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 			List<Object[]> socialBuddies =
 				StatusLocalServiceUtil.getSocialStatuses(
-					userId, SocialRelationConstants.TYPE_BI_FRIEND,
+					userId,
+					PortletPropsValues.BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES,
 					modifiedDate, 0, PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 
 			buddies = new ArrayList<Object[]>(
