@@ -30,8 +30,7 @@ page import="com.liferay.randombibleverse.model.Bible" %><%@
 page import="com.liferay.randombibleverse.model.Verse" %><%@
 page import="com.liferay.randombibleverse.util.RBVUtil" %>
 
-<%@ page import="java.util.Iterator" %><%@
-page import="java.util.Map" %>
+<%@ page import="java.util.Map" %>
 
 <portlet:defineObjects />
 
