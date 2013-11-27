@@ -294,6 +294,13 @@ public class StatusLocalServiceUtil {
 				   .getSocialStatuses(userId, type, modifiedDate, start, end);
 	}
 
+	public static java.util.List<java.lang.Object[]> getSocialStatuses(
+		long userId, int[] types, long modifiedDate, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getSocialStatuses(userId, types, modifiedDate, start, end);
+	}
+
 	public static com.liferay.chat.model.Status getUserStatus(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getUserStatus(userId);

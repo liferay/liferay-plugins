@@ -126,17 +126,23 @@ public class StatusLocalServiceClp implements StatusLocalService {
 				"long", "int", "long", "int", "int"
 			};
 
-		_methodName22 = "getUserStatus";
+		_methodName22 = "getSocialStatuses";
 
-		_methodParameterTypes22 = new String[] { "long" };
+		_methodParameterTypes22 = new String[] {
+				"long", "int[][]", "long", "int", "int"
+			};
 
-		_methodName23 = "updateStatus";
+		_methodName23 = "getUserStatus";
 
-		_methodParameterTypes23 = new String[] { "long", "long" };
+		_methodParameterTypes23 = new String[] { "long" };
 
 		_methodName24 = "updateStatus";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes24 = new String[] { "long", "long" };
+
+		_methodName25 = "updateStatus";
+
+		_methodParameterTypes25 = new String[] {
 				"long", "long", "int", "int", "java.lang.String",
 				"java.lang.String", "int"
 			};
@@ -789,13 +795,53 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	}
 
 	@Override
-	public com.liferay.chat.model.Status getUserStatus(long userId)
+	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
+		int[] types, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { userId });
+					_methodParameterTypes22,
+					new Object[] {
+						userId,
+						
+					ClpSerializer.translateInput(types),
+						
+					modifiedDate,
+						
+					start,
+						
+					end
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<java.lang.Object[]>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.chat.model.Status getUserStatus(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -823,8 +869,8 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { userId, modifiedDate });
 		}
 		catch (Throwable t) {
@@ -854,8 +900,8 @@ public class StatusLocalServiceClp implements StatusLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						userId,
 						
@@ -940,4 +986,6 @@ public class StatusLocalServiceClp implements StatusLocalService {
 	private String[] _methodParameterTypes23;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
+	private String _methodName25;
+	private String[] _methodParameterTypes25;
 }
