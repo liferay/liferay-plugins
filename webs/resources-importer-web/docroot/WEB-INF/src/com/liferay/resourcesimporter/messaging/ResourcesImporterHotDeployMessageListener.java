@@ -207,7 +207,9 @@ public class ResourcesImporterHotDeployMessageListener
 					pluginPackageProperties.getProperty(
 						"resources-importer-developer-mode-enabled"));
 
-				if (!developerModeEnabled && importer.isExisting()) {
+				if (!developerModeEnabled && importer.isExisting() &&
+					!importer.isGlobalGroup()) {
+
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							"Group or layout set prototype already exists " +

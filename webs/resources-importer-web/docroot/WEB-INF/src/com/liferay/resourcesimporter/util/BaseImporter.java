@@ -99,6 +99,11 @@ public abstract class BaseImporter implements Importer {
 					}
 				}
 			}
+			else if (targetValue.equals(GroupConstants.GLOBAL)) {
+				group = GroupLocalServiceUtil.getCompanyGroup(companyId);
+
+				globalGroup = true;
+			}
 			else {
 				group = GroupLocalServiceUtil.fetchGroup(
 					companyId, targetValue);
@@ -152,6 +157,11 @@ public abstract class BaseImporter implements Importer {
 	}
 
 	@Override
+	public boolean isGlobalGroup() {
+		return globalGroup;
+	}
+
+	@Override
 	public void setCompanyId(long companyId) {
 		this.companyId = companyId;
 	}
@@ -202,6 +212,7 @@ public abstract class BaseImporter implements Importer {
 
 	protected long companyId;
 	protected boolean existing;
+	protected boolean globalGroup;
 	protected long groupId;
 	protected String resourcesDir;
 	protected ServletContext servletContext;
