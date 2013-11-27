@@ -394,7 +394,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 			);
 
 			var contactsCenter = Liferay.component('contactsCenter');
-			
+
 			<c:if test="<%= !userPublicPage %>">
 				var contactFilterSelect = A.one('#<portlet:namespace />filterBy');
 
