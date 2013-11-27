@@ -183,7 +183,7 @@ for (String importer : importers) {
 		%>
 
 		DDMStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE", parentStructureKey) %><br />
-		DDMStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(3, DDMStructureLocalServiceUtil.getStructuresCount(groupId)) %><br />
+		DDMStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(5, DDMStructureLocalServiceUtil.getStructuresCount(groupId)) %><br />
 
 		<%
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1");
@@ -198,7 +198,86 @@ for (String importer : importers) {
 		%>
 
 		DDMTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1", ddmStructureKey) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(2, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId)) %>
+		DDMTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(16, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId)) %><br />
+	</p>
+
+	<p>
+
+		<%
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(LayoutPrototype.class);
+
+		dynamicQuery.setProjection(ProjectionFactoryUtil.distinct(ProjectionFactoryUtil.property("name")));
+
+		Criterion page1 = RestrictionsFactoryUtil.eq("description", "Page 1");
+
+		Criterion page2 = RestrictionsFactoryUtil.eq("description", "Page 2");
+
+		dynamicQuery.add(RestrictionsFactoryUtil.or(page1, page2));
+
+		List<Object> layoutPrototypes = LayoutPrototypeLocalServiceUtil.dynamicQuery(dynamicQuery);
+		%>
+
+		LayoutPrototype#getLayoutPrototypesCount=<%= _assertEquals(2, layoutPrototypes.size()) %><br />
+	</p>
+
+	<p>
+
+		<%
+		int assetCategoryTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetCategory.class));
+		%>
+
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetCategory)=<%= _assertEquals(1, assetCategoryTemplatesCount) %><br />
+
+		<%
+		int assetEntryTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetEntry.class));
+		%>
+
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetEntry)=<%= _assertEquals(2, assetEntryTemplatesCount) %><br />
+
+		<%
+		int assetTagTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetTag.class));
+		%>
+
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetTag)=<%= _assertEquals(1, assetTagTemplatesCount) %><br />
+
+		<%
+		int blogsEntryTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(BlogsEntry.class));
+		%>
+
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, BlogsEntry)=<%= _assertEquals(1, blogsEntryTemplatesCount) %><br />
+
+		<%
+		int fileEntryTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(FileEntry.class));
+		%>
+
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, FileEntry)=<%= _assertEquals(1, fileEntryTemplatesCount) %><br />
+
+		<%
+		int layoutSetTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(LayoutSet.class));
+		%>
+
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, LayoutSet)=<%= _assertEquals(1, layoutSetTemplatesCount) %><br />
+
+		<%
+		int wikiPageTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(WikiPage.class));
+		%>
+
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, WikiPage)=<%= _assertEquals(1, wikiPageTemplatesCount) %><br />
+	</p>
+
+	<p>
+
+		<%
+		int ddlStructuresCount = DDMStructureLocalServiceUtil.getStructuresCount(groupId, PortalUtil.getClassNameId(DDLRecordSet.class));
+		%>
+
+		DDMStructureLocalServiceUtil#getStructuresCount(groupId, DDLRecordSet)=<%= _assertEquals(2, ddlStructuresCount) %><br />
+
+		<%
+		int ddlTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(DDMStructure.class));
+		%>
+
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, DDMStructure)=<%= _assertEquals(8, ddlTemplatesCount) %>
 	</p>
 
 <%
