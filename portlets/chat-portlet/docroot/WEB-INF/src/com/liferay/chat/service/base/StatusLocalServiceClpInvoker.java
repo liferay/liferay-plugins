@@ -126,17 +126,23 @@ public class StatusLocalServiceClpInvoker {
 				"long", "int", "long", "int", "int"
 			};
 
-		_methodName49 = "getUserStatus";
+		_methodName49 = "getSocialStatuses";
 
-		_methodParameterTypes49 = new String[] { "long" };
+		_methodParameterTypes49 = new String[] {
+				"long", "int[][]", "long", "int", "int"
+			};
 
-		_methodName50 = "updateStatus";
+		_methodName50 = "getUserStatus";
 
-		_methodParameterTypes50 = new String[] { "long", "long" };
+		_methodParameterTypes50 = new String[] { "long" };
 
 		_methodName51 = "updateStatus";
 
-		_methodParameterTypes51 = new String[] {
+		_methodParameterTypes51 = new String[] { "long", "long" };
+
+		_methodName52 = "updateStatus";
+
+		_methodParameterTypes52 = new String[] {
 				"long", "long", "int", "int", "java.lang.String",
 				"java.lang.String", "int"
 			};
@@ -272,17 +278,25 @@ public class StatusLocalServiceClpInvoker {
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			return StatusLocalServiceUtil.getUserStatus(((Long)arguments[0]).longValue());
+			return StatusLocalServiceUtil.getSocialStatuses(((Long)arguments[0]).longValue(),
+				(int[])arguments[1], ((Long)arguments[2]).longValue(),
+				((Integer)arguments[3]).intValue(),
+				((Integer)arguments[4]).intValue());
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			return StatusLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			return StatusLocalServiceUtil.getUserStatus(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+			return StatusLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName52.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
 			return StatusLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -342,4 +356,6 @@ public class StatusLocalServiceClpInvoker {
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
+	private String _methodName52;
+	private String[] _methodParameterTypes52;
 }

@@ -29,12 +29,12 @@ public class StatusFinderUtil {
 			end);
 	}
 
-	public static java.util.List<java.lang.Object[]> findBySocialRelationType(
-		long userId, int type, long modifiedDate, int start, int end)
+	public static java.util.List<java.lang.Object[]> findBySocialRelationTypes(
+		long userId, int[] types, long modifiedDate, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
-				   .findBySocialRelationType(userId, type, modifiedDate, start,
-			end);
+				   .findBySocialRelationTypes(userId, types, modifiedDate,
+			start, end);
 	}
 
 	public static java.util.List<java.lang.Object[]> findByUsersGroups(
