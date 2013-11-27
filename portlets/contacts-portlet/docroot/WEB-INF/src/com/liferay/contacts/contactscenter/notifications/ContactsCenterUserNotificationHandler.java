@@ -113,7 +113,6 @@ public class ContactsCenterUserNotificationHandler
 		sb.append(serviceContext.translate("confirm"));
 		sb.append("</a>");
 
-
 		PortletURL ignoreURL = liferayPortletResponse.createActionURL(
 			PortletKeys.CONTACTS_CENTER);
 
