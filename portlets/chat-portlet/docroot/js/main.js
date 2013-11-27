@@ -80,7 +80,7 @@ AUI().use(
 				var hour = time.getHours();
 				var minute = time.getMinutes();
 
-				if (hour >= 11) {
+				if (hour >= 12) {
 					meridian = 'pm';
 				}
 
