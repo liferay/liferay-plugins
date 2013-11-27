@@ -32,6 +32,8 @@ public interface Importer {
 
 	public boolean isExisting();
 
+	public boolean isGlobalGroup();
+
 	public void setCompanyId(long companyId);
 
 	public void setResourcesDir(String resourcesDir);
