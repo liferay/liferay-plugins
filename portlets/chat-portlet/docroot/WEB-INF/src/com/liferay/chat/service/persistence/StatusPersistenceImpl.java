@@ -2132,6 +2132,8 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		clearUniqueFindersCache(status);
 		cacheUniqueFindersCache(status);
 
+		status.resetOriginalValues();
+
 		return status;
 	}
 
