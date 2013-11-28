@@ -313,10 +313,24 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<loadfile property="module.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+			<script classpathref="lib.classpath" language="beanshell">
+				String moduleBuildXmlContent = project.getProperty("module.build.xml.content");
+
+				int x = moduleBuildXmlContent.indexOf("value=\"", moduleBuildXmlContent.indexOf("property name=\"original.war.file\" value=\"")) + 7;
+				int y = moduleBuildXmlContent.indexOf("\"", x);
+
+				project.setProperty("module.build.xml.original.war.file", moduleBuildXmlContent.substring(x, y));
+			</script>
+
 			<unzip
-				dest="tmp"
-				src="${original.war.file}"
+				dest="@{module.dir}/tmp"
+				src="@{module.dir}/${module.build.xml.original.war.file}"
 			/>
+
+			<var name="module.build.xml.content" unset="true" />
+			<var name="module.build.xml.original.war.file" unset="true" />
 		</sequential>
 	</macrodef>
 
