@@ -309,6 +309,13 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="merge">
+		<attribute name="module.dir" />
+
+		<sequential>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="merge-unzip">
 		<attribute name="module.dir" />
 
