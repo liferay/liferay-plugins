@@ -309,6 +309,17 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="merge-unzip">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<unzip
+				dest="tmp"
+				src="${original.war.file}"
+			/>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="set-module-properties">
 		<attribute name="module.dir" />
 

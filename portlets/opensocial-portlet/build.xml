@@ -361,7 +361,9 @@
 	</target>
 
 	<target name="merge-unzip">
-		<antcall target="build-common-plugin.merge-unzip" />
+		<merge-unzip
+			module.dir="."
+		/>
 
 		<copy
 			file="tmp/WEB-INF/web.xml"
