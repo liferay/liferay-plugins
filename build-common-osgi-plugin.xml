@@ -82,10 +82,6 @@
 	</macrodef>
 
 	<target name="clean">
-		<property file="bnd.bnd" />
-		<property file="${sdk.dir}/common.bnd" />
-
-		<delete file="${-output}" />
 		<delete dir="${osgi.plugin.classes.dir}" />
 
 		<antcall target="build-common-plugin.clean" />
