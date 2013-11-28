@@ -276,28 +276,6 @@ html.aui {
 	}
 }
 
-@media (max-width:860px) {
-	.so-portlet-user-bar {
-		a {
-			padding: 0.25em 0.7em;
-		}
-
-		.user-info a {
-			padding: 0;
-
-			.avatar {
-				@include border-radius(4px);
-
-				margin: 0;
-			}
-		}
-
-		.full-name {
-			display: none;
-		}
-	}
-}
-
 .ie7 .so-portlet-user-bar {
 	.dashboard-nav, .user-toolbar {
 		@include clear-both;
@@ -346,6 +324,28 @@ html.aui {
 /* ---------- Responsive ---------- */
 
 html.aui {
+	@media (max-width:860px) {
+		.so-portlet-user-bar {
+			a {
+				padding: 0.25em 0.7em;
+			}
+
+			.user-info a {
+				padding: 0;
+
+				.avatar {
+					@include border-radius(4px);
+
+					margin: 0;
+				}
+			}
+
+			.full-name {
+				display: none;
+			}
+		}
+	}
+	
 	@media (max-width:979px) {
 		.so-portlet-user-bar {
 			padding-right: 0;
