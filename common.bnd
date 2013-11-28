@@ -23,6 +23,6 @@ Javac-Encoding: ${javac.encoding}
 		name=remoterepo;\
 		phase=any;\
 		type=R5
--pluginpath: ${workspace}/lib/plugin/bnd-repository.jar
+-pluginpath: ${workspace}/osgi/lib/plugin/bnd-repository.jar
 -releaserepo: localrepo
 -sources: false
