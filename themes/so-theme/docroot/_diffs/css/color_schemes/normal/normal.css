@@ -2130,11 +2130,9 @@ div#navigation {
 
 html.aui {
 	@media (max-width:1060px) {
-		.so-portlet-user-bar {
-			.dashboard-nav li a {
-				font-weight: 300;
-				padding: 0.58em 0.5em;
-			}
+		.so-portlet-user-bar .dashboard-nav li a {
+			font-weight: 300;
+			padding: 0.58em 0.5em;
 		}
 	}
 
