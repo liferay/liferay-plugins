@@ -16,6 +16,10 @@
 
 <%@ include file="/html/taglib/ui/social_bookmark/init.jsp" %>
 
+<%
+String everNoteContentId = GetterUtil.getString((String)request.getAttribute("liferay-ui:social-bookmark:contentId"));
+%>
+
 <script src="<%= HttpUtil.getProtocol(request) %>://static.evernote.com/noteit.js" type="text/javascript"></script>
 
-<a href="#" onClick="Evernote.doClip({contentId:'<%= namespace + contentId %>', title:'<%= title %>'}); return false;"><img alt="Clip to Evernote" src="<%= HttpUtil.getProtocol(request) %>://static.evernote.com/article-clipper.png" /></a>
+<a href="#" onClick="Evernote.doClip({contentId:'<%= namespace + everNoteContentId %>', title:'<%= title %>'}); return false;"><img alt="Clip to Evernote" src="<%= HttpUtil.getProtocol(request) %>://static.evernote.com/article-clipper.png" /></a>
