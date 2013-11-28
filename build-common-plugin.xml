@@ -941,7 +941,21 @@ Please find a solution that does not require portal-impl.jar.
 				<mkdir dir="tmp/WEB-INF/classes" />
 				<mkdir dir="tmp/WEB-INF/lib" />
 
-				<antcall target="merge-unzip" />
+				<loadfile property="module.build.xml.content" srcFile="build.xml" />
+
+				<if>
+					<contains string="${module.build.xml.content}" substring="&lt;target name=&quot;merge-unzip&quot;&gt;" />
+					<then>
+						<ant dir="." target="merge-unzip" inheritAll="false" />
+					</then>
+					<else>
+						<merge-unzip
+							module.dir="."
+						/>
+					</else>
+				</if>
+
+				<var name="module.build.xml.content" unset="true" />
 
 				<copy todir="tmp" overwrite="true">
 					<fileset dir="docroot" />
@@ -955,7 +969,9 @@ Please find a solution that does not require portal-impl.jar.
 	</target>
 
 	<target name="merge-unzip">
-		<unzip dest="tmp" src="${original.war.file}" />
+		<merge-unzip
+			module.dir="."
+		/>
 	</target>
 
 	<target name="patch">
