@@ -313,12 +313,28 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<loadfile property="module.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+			<script classpathref="lib.classpath" language="beanshell">
+				String moduleBuildXmlContent = project.getProperty("module.build.xml.content");
+
+				int x = moduleBuildXmlContent.indexOf("property name=\"original.war.file\" value=\"");
+
+				if (x != -1) {
+					x = moduleBuildXmlContent.indexOf("value=\"", x) + 7;
+
+					int y = moduleBuildXmlContent.indexOf("\"", x);
+
+					project.setProperty("module.build.xml.original.war.file", moduleBuildXmlContent.substring(x, y));
+				}
+			</script>
+
 			<if>
-				<isset property="original.war.file" />
+				<isset property="module.build.xml.original.war.file" />
 				<then>
 					<if>
 						<not>
-							<uptodate srcfile="@{module.dir}/${original.war.file}" targetfile="@{module.dir}/tmp" />
+							<uptodate srcfile="@{module.dir}/${module.build.xml.original.war.file}" targetfile="@{module.dir}/tmp" />
 						</not>
 						<then>
 							<delete dir="@{module.dir}/tmp" />
@@ -326,8 +342,6 @@ Error-Prone was automatically installed. Please rerun your task.
 
 							<mkdir dir="@{module.dir}/tmp/WEB-INF/classes" />
 							<mkdir dir="@{module.dir}/tmp/WEB-INF/lib" />
-
-							<loadfile property="module.build.xml.content" srcFile="@{module.dir}/build.xml" />
 
 							<if>
 								<contains string="${module.build.xml.content}" substring="&lt;target name=&quot;merge-unzip&quot;&gt;" />
@@ -354,6 +368,9 @@ Error-Prone was automatically installed. Please rerun your task.
 					</copy>
 				</then>
 			</if>
+
+			<var name="module.build.xml.content" unset="true" />
+			<var name="module.build.xml.original.war.file" unset="true" />
 		</sequential>
 	</macrodef>
 
@@ -361,24 +378,38 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<loadfile property="module.build.xml.content" srcFile="@{module.dir}/build.xml" />
+			<if>
+				<isset property="module.build.xml.original.war.file" />
+				<then>
+					<unzip
+						dest="@{module.dir}/tmp"
+						src="@{module.dir}/${module.build.xml.original.war.file}"
+					/>
+				</then>
+				<else>
+					<loadfile property="module.build.xml.content" srcFile="@{module.dir}/build.xml" />
 
-			<script classpathref="lib.classpath" language="beanshell">
-				String moduleBuildXmlContent = project.getProperty("module.build.xml.content");
+					<script classpathref="lib.classpath" language="beanshell">
+						String moduleBuildXmlContent = project.getProperty("module.build.xml.content");
 
-				int x = moduleBuildXmlContent.indexOf("value=\"", moduleBuildXmlContent.indexOf("property name=\"original.war.file\" value=\"")) + 7;
-				int y = moduleBuildXmlContent.indexOf("\"", x);
+						int x = moduleBuildXmlContent.indexOf("property name=\"original.war.file\" value=\"");
 
-				project.setProperty("module.build.xml.original.war.file", moduleBuildXmlContent.substring(x, y));
-			</script>
+						x = moduleBuildXmlContent.indexOf("value=\"", x) + 7;
 
-			<unzip
-				dest="@{module.dir}/tmp"
-				src="@{module.dir}/${module.build.xml.original.war.file}"
-			/>
+						int y = moduleBuildXmlContent.indexOf("\"", x);
 
-			<var name="module.build.xml.content" unset="true" />
-			<var name="module.build.xml.original.war.file" unset="true" />
+						project.setProperty("module.build.xml.original.war.file", moduleBuildXmlContent.substring(x, y));
+					</script>
+
+					<unzip
+						dest="@{module.dir}/tmp"
+						src="@{module.dir}/${module.build.xml.original.war.file}"
+					/>
+
+					<var name="module.build.xml.content" unset="true" />
+					<var name="module.build.xml.original.war.file" unset="true" />
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
