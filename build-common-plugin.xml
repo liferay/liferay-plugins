@@ -35,8 +35,6 @@
 	<property name="plugin.sources.file.default" value="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-sources.${plugin.packaging}" />
 	<property name="plugin.src.file.default" value="${sdk.dir}/dist/${plugin.name}-src-${plugin.full.version}.zip" />
 
-	<var name="import.compat.shared" value="true" />
-
 	<var name="plugin.full.version" value="${plugin.full.version.default}" />
 
 	<var name="plugin.file" value="${plugin.file.default}" />
@@ -735,7 +733,12 @@ Please find a solution that does not require portal-impl.jar.
 				</if>
 
 				<if>
-					<equals arg1="${import.compat.shared}" arg2="true" />
+					<or>
+						<not>
+							<isset property="import.compat.shared" />
+						</not>
+						<equals arg1="${import.compat.shared}" arg2="true" />
+					</or>
 					<then>
 						<var name="import.shared" value="portal-compat-shared,${import.shared}" />
 					</then>
