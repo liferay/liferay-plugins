@@ -5,6 +5,8 @@
 	<import file="../build-common-plugin.xml" />
 
 	<target name="compile">
-		<antcall target="merge" />
+		<merge
+			module.dir="."
+		/>
 	</target>
 </project>

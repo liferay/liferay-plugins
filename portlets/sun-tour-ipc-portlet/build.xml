@@ -12,7 +12,9 @@
 	<property name="original.war.file" value="touripcportlet.war" />
 
 	<target name="merge">
-		<antcall target="build-common-plugin.merge" />
+		<merge
+			module.dir="."
+		/>
 
 		<replace file="tmp/WEB-INF/portlet.xml">
 			<replacefilter

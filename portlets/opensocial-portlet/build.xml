@@ -16,7 +16,9 @@
 
 		<!-- Merge -->
 
-		<antcall target="build-common-plugin.merge" />
+		<merge
+			module.dir="."
+		/>
 
 		<!-- Configure Modules -->
 
