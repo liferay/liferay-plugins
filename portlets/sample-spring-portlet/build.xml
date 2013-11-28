@@ -15,7 +15,9 @@
 	<property name="original.war.file" value="petportal.war" />
 
 	<target name="merge">
-		<antcall target="build-common-plugin.merge" />
+		<merge
+			module.dir="."
+		/>
 
 		<delete file="tmp/WEB-INF/lib/log4j-1.2.15.jar" />
 	</target>
