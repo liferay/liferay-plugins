@@ -9,10 +9,14 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="activation" org="javax.activation" rev="1.1" />
+		<dependency name="ant-apache-bsf" org="org.apache.ant" rev="1.8.3" />
 		<dependency name="antelopetasks" org="org.tigris.antelope" rev="3.2.10" />
 		<dependency name="bcpg-jdk16" org="org.bouncycastle" rev="1.46" />
 		<dependency name="bcprov-jdk16" org="org.bouncycastle" rev="1.46" />
+		<dependency name="bsh" org="org.beanshell" rev="2.0b4" />
+		<dependency name="bsf" org="bsf" rev="2.4.0" />
 		<dependency name="ccpp" org="javax.ccpp" rev="1.0" />
+		<dependency name="commons-logging" org="commons-logging" rev="1.1.1" />
 		<dependency name="ecj" org="org.eclipse.jdt.core.compiler" rev="3.7.2" />
 		<dependency name="jalopy" org="jalopy" rev="1.5rc3" />
 		<dependency name="jargs" org="net.sf" rev="1.0" />
