@@ -313,6 +313,47 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<if>
+				<isset property="original.war.file" />
+				<then>
+					<if>
+						<not>
+							<uptodate srcfile="${original.war.file}" targetfile="tmp" />
+						</not>
+						<then>
+							<delete dir="tmp" />
+							<mkdir dir="tmp" />
+
+							<mkdir dir="tmp/WEB-INF/classes" />
+							<mkdir dir="tmp/WEB-INF/lib" />
+
+							<loadfile property="module.build.xml.content" srcFile="build.xml" />
+
+							<if>
+								<contains string="${module.build.xml.content}" substring="&lt;target name=&quot;merge-unzip&quot;&gt;" />
+								<then>
+									<ant dir="." target="merge-unzip" inheritAll="false" />
+								</then>
+								<else>
+									<merge-unzip
+										module.dir="."
+									/>
+								</else>
+							</if>
+
+							<var name="module.build.xml.content" unset="true" />
+
+							<copy todir="tmp" overwrite="true">
+								<fileset dir="docroot" />
+							</copy>
+						</then>
+					</if>
+
+					<copy todir="tmp">
+						<fileset dir="docroot" />
+					</copy>
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
