@@ -87,11 +87,11 @@
 
 		<mkdir dir="docroot/WEB-INF/client/classes" />
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="portal.classpath" />
-			<param name="javac.destdir" value="docroot/WEB-INF/client/classes" />
-			<param name="javac.srcdir" value="docroot/WEB-INF/client/src" />
-		</antcall>
+		<compile-java
+			javac.classpathref="portal.classpath"
+			javac.destdir="docroot/WEB-INF/client/classes"
+			javac.srcdir="docroot/WEB-INF/client/src"
+		/>
 
 		<zip destfile="docroot/WEB-INF/client/${plugin.name}-client.jar">
 			<fileset dir="docroot/WEB-INF/client/classes" />
@@ -250,12 +250,11 @@
 			<fileset dir="docroot/WEB-INF/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
 		</path>
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="service.classpath" />
-			<param name="javac.destdir" value="docroot/WEB-INF/service-classes" />
-			<param name="javac.srcdir" value="docroot/WEB-INF/service" />
-			<reference refid="service.classpath" torefid="service.classpath" />
-		</antcall>
+		<compile-java
+			javac.classpathref="service.classpath"
+			javac.destdir="docroot/WEB-INF/service-classes"
+			javac.srcdir="docroot/WEB-INF/service"
+		/>
 
 		<zip
 			basedir="docroot/WEB-INF/service-classes"
@@ -335,11 +334,11 @@
 					url="@{wsdl.full.path}"
 				/>
 
-				<antcall target="compile-java">
-					<param name="javac.classpathref" value="plugin.classpath" />
-					<param name="javac.destdir" value="${tstamp.value}" />
-					<param name="javac.srcdir" value="${tstamp.value}" />
-				</antcall>
+				<compile-java
+					javac.classpathref="plugin.classpath"
+					javac.destdir="${tstamp.value}"
+					javac.srcdir="${tstamp.value}"
+				/>
 
 				<antelope:stringutil string="@{wsdl.full.path}" property="wsdl.name.beginindex">
 					<antelope:lastindexof string="${file.separator}" />
@@ -510,11 +509,11 @@ Please find a solution that does not require portal-impl.jar.
 					</then>
 				</if>
 
-				<antcall target="compile-java">
-					<param name="javac.classpathref" value="plugin.classpath" />
-					<param name="javac.destdir" value="docroot/WEB-INF/classes" />
-					<param name="javac.srcdir" value="docroot/WEB-INF/src" />
-				</antcall>
+				<compile-java
+					javac.classpathref="plugin.classpath"
+					javac.destdir="docroot/WEB-INF/classes"
+					javac.srcdir="docroot/WEB-INF/src"
+				/>
 			</then>
 		</if>
 
@@ -587,11 +586,11 @@ Please find a solution that does not require portal-impl.jar.
 					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
 				</copy>
 
-				<antcall target="compile-java">
-					<param name="javac.classpathref" value="test.classpath" />
-					<param name="javac.destdir" value="test-classes/${test.type}" />
-					<param name="javac.srcdir" value="test/${test.type}" />
-				</antcall>
+				<compile-java
+					javac.classpathref="test.classpath"
+					javac.destdir="test-classes/${test.type}"
+					javac.srcdir="test/${test.type}"
+				/>
 			</then>
 		</if>
 	</target>
