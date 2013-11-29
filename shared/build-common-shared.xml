@@ -29,10 +29,6 @@
 
 		<mkdir dir="classes" />
 
-		<copy todir="classes">
-			<fileset dir="src" excludes="**/*.java" />
-		</copy>
-
 		<antcall target="compile-java">
 			<param name="javac.classpathref" value="plugin.classpath" />
 			<param name="javac.destdir" value="classes" />

@@ -92,10 +92,6 @@
 
 		<mkdir dir="${osgi.plugin.classes.dir}" />
 
-		<copy todir="${osgi.plugin.classes.dir}">
-			<fileset dir="${osgi.plugin.source.dir}" excludes="**/*.java" />
-		</copy>
-
 		<antcall target="compile-java">
 			<param name="javac.classpathref" value="plugin.classpath" />
 			<param name="javac.destdir" value="${osgi.plugin.classes.dir}" />
