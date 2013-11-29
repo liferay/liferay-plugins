@@ -154,6 +154,14 @@ Error-Prone was automatically installed. Please rerun your task.
 							</then>
 						</elseif>
 						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="compile" />
+							<then>
+								<compile
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
 							<equals arg1="@{macrodef.name}" arg2="compile-import-shared" />
 							<then>
 								<compile-import-shared
