@@ -47,8 +47,4 @@
 			<replacefilter token="@theme.name@" value="${theme.name}" />
 		</replace>
 	</target>
-
-	<target name="merge">
-		<echo message="${theme.name}-theme" />
-	</target>
 </project>
