@@ -19,7 +19,10 @@
 	</if>
 
 	<target name="compile">
-		<antcall target="compile-import-shared" />
+		<call-macrodef-or-target
+			macrodef.name="compile-import-shared"
+			module.dir="."
+		/>
 
 		<mkdir dir="classes" />
 
