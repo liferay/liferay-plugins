@@ -463,10 +463,9 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			InternetAddress to = new InternetAddress(
 				recipient.getEmailAddress());
 
-			Format dateFormatDateTime =
-				FastDateFormatFactoryUtil.getDateTime(
-					FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT,
-					recipient.getLocale(), recipient.getTimeZone());
+			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
+				FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT,
+				recipient.getLocale(), recipient.getTimeZone());
 
 			String userThreadBody = StringUtil.replace(
 				body,
