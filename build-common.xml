@@ -450,6 +450,9 @@ Error-Prone was automatically installed. Please rerun your task.
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
 					<then>
+						<merge
+							module.dir="."
+						/>
 					</then>
 				</elseif>
 				<elseif>
