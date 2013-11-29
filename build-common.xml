@@ -331,6 +331,32 @@ Error-Prone was automatically installed. Please rerun your task.
 				module.dir="@{module.dir}"
 			/>
 
+			<loadfile property="compile-import-shared.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+			<script classpathref="lib.classpath" language="beanshell">
+				String buildXmlContent = project.getProperty("compile-import-shared.build.xml.content");
+
+				int x = buildXmlContent.indexOf("property name=\"import.compat.shared\" value=\"");
+
+				if (x != -1) {
+					x = buildXmlContent.indexOf("value=\"", x) + 7;
+
+					int y = buildXmlContent.indexOf("\"", x);
+
+					project.setProperty("compile-import-shared.import.compat.shared", buildXmlContent.substring(x, y));
+				}
+
+				x = buildXmlContent.indexOf("property name=\"import.shared\" value=\"");
+
+				if (x != -1) {
+					x = buildXmlContent.indexOf("value=\"", x) + 7;
+
+					int y = buildXmlContent.indexOf("\"", x);
+
+					project.setProperty("compile-import-shared.import.shared", buildXmlContent.substring(x, y));
+				}
+			</script>
+
 			<if>
 				<not>
 					<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
@@ -398,6 +424,10 @@ Error-Prone was automatically installed. Please rerun your task.
 					</for>
 				</then>
 			</if>
+
+			<var name="compile-import-shared.build.xml.content" unset="true" />
+			<var name="compile-import-shared.import.compat.shared" unset="true" />
+			<var name="compile-import-shared.import.shared" unset="true" />
 		</sequential>
 	</macrodef>
 
