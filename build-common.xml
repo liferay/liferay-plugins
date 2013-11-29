@@ -448,16 +448,16 @@ Error-Prone was automatically installed. Please rerun your task.
 
 					int y = buildXmlContent.indexOf("\"", x);
 
-					project.setProperty("merge.build.xml.original.war.file", buildXmlContent.substring(x, y));
+					project.setProperty("merge.original.war.file", buildXmlContent.substring(x, y));
 				}
 			</script>
 
 			<if>
-				<isset property="merge.build.xml.original.war.file" />
+				<isset property="merge.original.war.file" />
 				<then>
 					<if>
 						<not>
-							<uptodate srcfile="@{module.dir}/${merge.build.xml.original.war.file}" targetfile="@{module.dir}/tmp" />
+							<uptodate srcfile="@{module.dir}/${merge.original.war.file}" targetfile="@{module.dir}/tmp" />
 						</not>
 						<then>
 							<delete dir="@{module.dir}/tmp" />
@@ -486,7 +486,7 @@ Error-Prone was automatically installed. Please rerun your task.
 			</if>
 
 			<var name="merge.build.xml.content" unset="true" />
-			<var name="merge.build.xml.original.war.file" unset="true" />
+			<var name="merge.original.war.file" unset="true" />
 		</sequential>
 	</macrodef>
 
@@ -505,16 +505,16 @@ Error-Prone was automatically installed. Please rerun your task.
 
 				int y = buildXmlContent.indexOf("\"", x);
 
-				project.setProperty("merge-unzip.build.xml.original.war.file", buildXmlContent.substring(x, y));
+				project.setProperty("merge-unzip.original.war.file", buildXmlContent.substring(x, y));
 			</script>
 
 			<unzip
 				dest="@{module.dir}/tmp"
-				src="@{module.dir}/${merge-unzip.build.xml.original.war.file}"
+				src="@{module.dir}/${merge-unzip.original.war.file}"
 			/>
 
 			<var name="merge-unzip.build.xml.content" unset="true" />
-			<var name="merge-unzip.build.xml.original.war.file" unset="true" />
+			<var name="merge-unzip.original.war.file" unset="true" />
 		</sequential>
 	</macrodef>
 
