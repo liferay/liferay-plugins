@@ -18,12 +18,18 @@
 	<property name="plugin.name" value="${ant.project.name}" />
 
 	<if>
-		<antelope:endswith string="${plugin.name}" with="-shared" />
+		<or>
+			<antelope:endswith string="${plugin.name}" with="-ext" />
+			<antelope:endswith string="${plugin.name}" with="-hook" />
+			<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+			<antelope:endswith string="${plugin.name}" with="-portlet" />
+			<antelope:endswith string="${plugin.name}" with="-theme" />
+		</or>
 		<then>
-			<property name="plugin.packaging" value="jar" />
+			<property name="plugin.packaging" value="war" />
 		</then>
 		<else>
-			<property name="plugin.packaging" value="war" />
+			<property name="plugin.packaging" value="jar" />
 		</else>
 	</if>
 
