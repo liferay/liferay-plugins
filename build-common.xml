@@ -341,28 +341,28 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<loadfile property="module.build.xml.content" srcFile="@{module.dir}/build.xml" />
+			<loadfile property="merge.build.xml.content" srcFile="@{module.dir}/build.xml" />
 
 			<script classpathref="lib.classpath" language="beanshell">
-				String moduleBuildXmlContent = project.getProperty("module.build.xml.content");
+				String buildXmlContent = project.getProperty("merge.build.xml.content");
 
-				int x = moduleBuildXmlContent.indexOf("property name=\"original.war.file\" value=\"");
+				int x = buildXmlContent.indexOf("property name=\"original.war.file\" value=\"");
 
 				if (x != -1) {
-					x = moduleBuildXmlContent.indexOf("value=\"", x) + 7;
+					x = buildXmlContent.indexOf("value=\"", x) + 7;
 
-					int y = moduleBuildXmlContent.indexOf("\"", x);
+					int y = buildXmlContent.indexOf("\"", x);
 
-					project.setProperty("module.build.xml.original.war.file", moduleBuildXmlContent.substring(x, y));
+					project.setProperty("merge.build.xml.original.war.file", buildXmlContent.substring(x, y));
 				}
 			</script>
 
 			<if>
-				<isset property="module.build.xml.original.war.file" />
+				<isset property="merge.build.xml.original.war.file" />
 				<then>
 					<if>
 						<not>
-							<uptodate srcfile="@{module.dir}/${module.build.xml.original.war.file}" targetfile="@{module.dir}/tmp" />
+							<uptodate srcfile="@{module.dir}/${merge.build.xml.original.war.file}" targetfile="@{module.dir}/tmp" />
 						</not>
 						<then>
 							<delete dir="@{module.dir}/tmp" />
@@ -376,7 +376,7 @@ Error-Prone was automatically installed. Please rerun your task.
 								module.dir="@{module.dir}"
 							/>
 
-							<var name="module.build.xml.content" unset="true" />
+							<var name="merge.build.xml.content" unset="true" />
 
 							<copy todir="@{module.dir}/tmp" overwrite="true">
 								<fileset dir="@{module.dir}/docroot" />
@@ -390,8 +390,8 @@ Error-Prone was automatically installed. Please rerun your task.
 				</then>
 			</if>
 
-			<var name="module.build.xml.content" unset="true" />
-			<var name="module.build.xml.original.war.file" unset="true" />
+			<var name="merge.build.xml.content" unset="true" />
+			<var name="merge.build.xml.original.war.file" unset="true" />
 		</sequential>
 	</macrodef>
 
@@ -399,38 +399,27 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<if>
-				<isset property="module.build.xml.original.war.file" />
-				<then>
-					<unzip
-						dest="@{module.dir}/tmp"
-						src="@{module.dir}/${module.build.xml.original.war.file}"
-					/>
-				</then>
-				<else>
-					<loadfile property="module.build.xml.content" srcFile="@{module.dir}/build.xml" />
+			<loadfile property="merge-unzip.build.xml.content" srcFile="@{module.dir}/build.xml" />
 
-					<script classpathref="lib.classpath" language="beanshell">
-						String moduleBuildXmlContent = project.getProperty("module.build.xml.content");
+			<script classpathref="lib.classpath" language="beanshell">
+				String buildXmlContent = project.getProperty("merge-unzip.build.xml.content");
 
-						int x = moduleBuildXmlContent.indexOf("property name=\"original.war.file\" value=\"");
+				int x = buildXmlContent.indexOf("property name=\"original.war.file\" value=\"");
 
-						x = moduleBuildXmlContent.indexOf("value=\"", x) + 7;
+				x = buildXmlContent.indexOf("value=\"", x) + 7;
 
-						int y = moduleBuildXmlContent.indexOf("\"", x);
+				int y = buildXmlContent.indexOf("\"", x);
 
-						project.setProperty("module.build.xml.original.war.file", moduleBuildXmlContent.substring(x, y));
-					</script>
+				project.setProperty("merge-unzip.build.xml.original.war.file", buildXmlContent.substring(x, y));
+			</script>
 
-					<unzip
-						dest="@{module.dir}/tmp"
-						src="@{module.dir}/${module.build.xml.original.war.file}"
-					/>
+			<unzip
+				dest="@{module.dir}/tmp"
+				src="@{module.dir}/${merge-unzip.build.xml.original.war.file}"
+			/>
 
-					<var name="module.build.xml.content" unset="true" />
-					<var name="module.build.xml.original.war.file" unset="true" />
-				</else>
-			</if>
+			<var name="merge-unzip.build.xml.content" unset="true" />
+			<var name="merge-unzip.build.xml.original.war.file" unset="true" />
 		</sequential>
 	</macrodef>
 
