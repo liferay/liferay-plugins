@@ -18,7 +18,12 @@
 		</java>
 	</target>
 
-	<target name="war" depends="compile">
+	<target name="war">
+		<call-macrodef-or-target
+			macrodef.name="compile"
+			module.dir="."
+		/>
+
 		<antcall target="build-css" />
 
 		<antcall target="build-common-plugin.war" />

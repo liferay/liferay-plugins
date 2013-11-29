@@ -21,7 +21,12 @@
 	<target name="deploy" depends="jar">
 	</target>
 
-	<target name="jar" depends="compile">
+	<target name="jar">
+		<call-macrodef-or-target
+			macrodef.name="compile"
+			module.dir="."
+		/>
+
 		<mkdir dir="${sdk.dir}/dist" />
 
 		<jar
