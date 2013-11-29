@@ -431,6 +431,13 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="compile">
+		<attribute name="module.dir" />
+
+		<sequential>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="compile-java">
 		<attribute name="javac.classpathref" />
 		<attribute name="javac.destdir" />
