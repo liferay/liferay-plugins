@@ -365,18 +365,18 @@ Error-Prone was automatically installed. Please rerun your task.
 					<if>
 						<or>
 							<not>
-								<isset property="import.compat.shared" />
+								<isset property="compile-import-shared.import.compat.shared" />
 							</not>
-							<equals arg1="${import.compat.shared}" arg2="true" />
+							<equals arg1="${compile-import-shared.import.compat.shared}" arg2="true" />
 						</or>
 						<then>
 							<if>
-								<isset property="import.shared" />
+								<isset property="compile-import-shared.import.shared" />
 								<then>
-									<var name="import.shared" value="portal-compat-shared,${import.shared}" />
+									<var name="compile-import-shared.import.shared" value="portal-compat-shared,${compile-import-shared.import.shared}" />
 								</then>
 								<else>
-									<var name="import.shared" value="portal-compat-shared" />
+									<var name="compile-import-shared.import.shared" value="portal-compat-shared" />
 								</else>
 							</if>
 						</then>
@@ -385,11 +385,11 @@ Error-Prone was automatically installed. Please rerun your task.
 			</if>
 
 			<if>
-				<isset property="import.shared" />
+				<isset property="compile-import-shared.import.shared" />
 				<then>
-					<var name="import.shared.list" value="${import.shared}" />
+					<var name="import.shared.list" value="${compile-import-shared.import.shared}" />
 
-					<var name="import.shared" unset="true" />
+					<var name="compile-import-shared.import.shared" unset="true" />
 
 					<for list="${import.shared.list}" param="import.shared.current">
 						<sequential>
