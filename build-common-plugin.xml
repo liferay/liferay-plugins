@@ -726,13 +726,6 @@ Please find a solution that does not require portal-impl.jar.
 			</not>
 			<then>
 				<if>
-					<isset property="import.shared" />
-					<then>
-						<var name="import.shared" value="${import.shared}" />
-					</then>
-				</if>
-
-				<if>
 					<or>
 						<not>
 							<isset property="import.compat.shared" />
@@ -740,7 +733,15 @@ Please find a solution that does not require portal-impl.jar.
 						<equals arg1="${import.compat.shared}" arg2="true" />
 					</or>
 					<then>
-						<var name="import.shared" value="portal-compat-shared,${import.shared}" />
+						<if>
+							<isset property="import.shared" />
+							<then>
+								<var name="import.shared" value="portal-compat-shared,${import.shared}" />
+							</then>
+							<else>
+								<var name="import.shared" value="portal-compat-shared" />
+							</else>
+						</if>
 					</then>
 				</if>
 			</then>
