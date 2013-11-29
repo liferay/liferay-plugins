@@ -448,26 +448,26 @@ Error-Prone was automatically installed. Please rerun your task.
 				<then>
 					<call-macrodef-or-target
 						macrodef.name="merge"
-						module.dir="."
+						module.dir="@{module.dir}"
 					/>
 
 					<call-macrodef-or-target
 						macrodef.name="compile-import-shared"
-						module.dir="."
+						module.dir="@{module.dir}"
 					/>
 
-					<mkdir dir="docroot/WEB-INF/classes" />
-					<mkdir dir="docroot/WEB-INF/lib" />
+					<mkdir dir="@{module.dir}/docroot/WEB-INF/classes" />
+					<mkdir dir="@{module.dir}/docroot/WEB-INF/lib" />
 
-					<copy todir="docroot/WEB-INF/lib">
+					<copy todir="@{module.dir}/docroot/WEB-INF/lib">
 						<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
 					</copy>
 
 					<if>
-						<available file="overwrite" />
+						<available file="@{module.dir}/overwrite" />
 						<then>
-							<copy overwrite="true" preservelastmodified="true" todir="docroot">
-								<fileset dir="overwrite" />
+							<copy overwrite="true" preservelastmodified="true" todir="@{module.dir}/docroot">
+								<fileset dir="@{module.dir}/overwrite" />
 							</copy>
 						</then>
 					</if>
@@ -482,7 +482,7 @@ Error-Prone was automatically installed. Please rerun your task.
 										<then>
 											<copy
 												file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
-												todir="docroot/WEB-INF/lib"
+												todir="@{module.dir}/docroot/WEB-INF/lib"
 												overwrite="true"
 											/>
 										</then>
@@ -491,7 +491,7 @@ Error-Prone was automatically installed. Please rerun your task.
 											<then>
 												<copy
 													file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
-													todir="docroot/WEB-INF/lib"
+													todir="@{module.dir}/docroot/WEB-INF/lib"
 													overwrite="true"
 												/>
 											</then>
@@ -501,7 +501,7 @@ Error-Prone was automatically installed. Please rerun your task.
 											<then>
 												<copy
 													file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
-													todir="docroot/WEB-INF/lib"
+													todir="@{module.dir}/docroot/WEB-INF/lib"
 													overwrite="true"
 												/>
 											</then>
@@ -512,19 +512,19 @@ Error-Prone was automatically installed. Please rerun your task.
 						</then>
 					</if>
 
-					<copy todir="docroot/WEB-INF/tld">
+					<copy todir="@{module.dir}/docroot/WEB-INF/tld">
 						<fileset dir="${app.server.portal.dir}/WEB-INF/tld" includes="${plugin.tlds}" />
 					</copy>
 
 					<if>
-						<available file="docroot/WEB-INF/src" />
+						<available file="@{module.dir}/docroot/WEB-INF/src" />
 						<then>
-							<copy todir="docroot/WEB-INF/lib">
+							<copy todir="@{module.dir}/docroot/WEB-INF/lib">
 								<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
 							</copy>
 
 							<if>
-								<available file="docroot/WEB-INF/lib/portal-impl.jar" />
+								<available file="@{module.dir}/docroot/WEB-INF/lib/portal-impl.jar" />
 								<then>
 									<fail>
 .
@@ -545,25 +545,25 @@ Please find a solution that does not require portal-impl.jar.
 
 							<compile-java
 								javac.classpathref="plugin.classpath"
-								javac.destdir="docroot/WEB-INF/classes"
-								javac.srcdir="docroot/WEB-INF/src"
+								javac.destdir="@{module.dir}/docroot/WEB-INF/classes"
+								javac.srcdir="@{module.dir}/docroot/WEB-INF/src"
 							/>
 						</then>
 					</if>
 
 					<if>
 						<and>
-							<available file="docroot/WEB-INF/liferay-hook.xml" />
-							<available file="docroot/WEB-INF/src/content" />
+							<available file="@{module.dir}/docroot/WEB-INF/liferay-hook.xml" />
+							<available file="@{module.dir}/docroot/WEB-INF/src/content" />
 						</and>
 						<then>
-							<loadfile property="liferay-hook.xml.content" srcFile="docroot/WEB-INF/liferay-hook.xml" />
+							<loadfile property="liferay-hook.xml.content" srcFile="@{module.dir}/docroot/WEB-INF/liferay-hook.xml" />
 
 							<if>
 								<contains string="${liferay-hook.xml.content}" substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" />
 								<then>
 									<pathconvert pathsep="${line.separator}&#x9;" property="language.properties.elements">
-										<fileset dir="docroot/WEB-INF/src/content">
+										<fileset dir="@{module.dir}/docroot/WEB-INF/src/content">
 											<include name="Language*.properties" />
 										</fileset>
 										<mapper>
@@ -577,7 +577,7 @@ Please find a solution that does not require portal-impl.jar.
 										</mapper>
 									</pathconvert>
 
-									<copy file="docroot/WEB-INF/liferay-hook.xml" overwrite="true" tofile="docroot/WEB-INF/liferay-hook.xml.processed">
+									<copy file="@{module.dir}/docroot/WEB-INF/liferay-hook.xml" overwrite="true" tofile="@{module.dir}/docroot/WEB-INF/liferay-hook.xml.processed">
 										<filterchain>
 											<tokenfilter>
 												<replacestring from="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" to="${language.properties.elements}" />
@@ -591,14 +591,14 @@ Please find a solution that does not require portal-impl.jar.
 
 					<call-macrodef-or-target
 						macrodef.name="merge"
-						module.dir="."
+						module.dir="@{module.dir}"
 					/>
 				</then>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
 					<then>
 						<merge
-							module.dir="."
+							module.dir="@{module.dir}"
 						/>
 					</then>
 				</elseif>
@@ -606,12 +606,12 @@ Please find a solution that does not require portal-impl.jar.
 					<antelope:endswith string="${plugin.name}" with="-theme" />
 					<then>
 						<if>
-							<available file="docroot/_diffs/images" />
+							<available file="@{module.dir}/docroot/_diffs/images" />
 							<then>
 								<for param="file">
 									<path>
 										<fileset
-											dir="docroot/_diffs/images"
+											dir="@{module.dir}/docroot/_diffs/images"
 											includes="**/screenshot.png"
 										/>
 									</path>
@@ -645,14 +645,14 @@ Please find a solution that does not require portal-impl.jar.
 						<if>
 							<equals arg1="${theme.parent}" arg2="_unstyled" />
 							<then>
-								<copy todir="docroot" overwrite="true" preservelastmodified="true">
+								<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 									<fileset
 										dir="${app.server.portal.dir}/html/themes/_unstyled"
 										excludes="templates/**"
 									/>
 								</copy>
 
-								<copy todir="docroot/templates" overwrite="true" preservelastmodified="true">
+								<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 									<fileset
 										dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
 										excludes="init.${theme.type}"
@@ -663,14 +663,14 @@ Please find a solution that does not require portal-impl.jar.
 							<elseif>
 								<equals arg1="${theme.parent}" arg2="_styled" />
 								<then>
-									<copy todir="docroot" overwrite="true" preservelastmodified="true">
+									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 										<fileset
 											dir="${app.server.portal.dir}/html/themes/_unstyled"
 											excludes="templates/**"
 										/>
 									</copy>
 
-									<copy todir="docroot/templates" overwrite="true" preservelastmodified="true">
+									<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 										<fileset
 											dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
 											excludes="init.${theme.type}"
@@ -678,7 +678,7 @@ Please find a solution that does not require portal-impl.jar.
 										/>
 									</copy>
 
-									<copy todir="docroot" overwrite="true" preservelastmodified="true">
+									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 										<fileset
 											dir="${app.server.portal.dir}/html/themes/_styled"
 										/>
@@ -688,14 +688,14 @@ Please find a solution that does not require portal-impl.jar.
 							<elseif>
 								<equals arg1="${theme.parent}" arg2="classic" />
 								<then>
-									<copy todir="docroot" overwrite="true" preservelastmodified="true">
+									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 										<fileset
 											dir="${app.server.portal.dir}/html/themes/classic"
 											excludes="**/.sass-cache/**,_diffs/**,templates/**"
 										/>
 									</copy>
 
-									<copy todir="docroot/templates" overwrite="true" preservelastmodified="true">
+									<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 										<fileset
 											dir="${app.server.portal.dir}/html/themes/classic/templates"
 											includes="*.${theme.type}"
@@ -706,14 +706,14 @@ Please find a solution that does not require portal-impl.jar.
 							<elseif>
 								<equals arg1="${theme.parent}" arg2="control_panel" />
 								<then>
-									<copy todir="docroot" overwrite="true" preservelastmodified="true">
+									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 										<fileset
 											dir="${app.server.portal.dir}/html/themes/control_panel"
 											excludes="**/.sass-cache/**,_diffs/**,templates/**"
 										/>
 									</copy>
 
-									<copy todir="docroot/templates" overwrite="true" preservelastmodified="true">
+									<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
 										<fileset
 											dir="${app.server.portal.dir}/html/themes/control_panel/templates"
 											includes="*.${theme.type}"
@@ -726,7 +726,7 @@ Please find a solution that does not require portal-impl.jar.
 								<then>
 									<ant dir="${theme.parent}" target="compile" inheritAll="false" />
 
-									<copy todir="docroot" overwrite="true" preservelastmodified="true">
+									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 										<fileset
 											dir="${theme.parent}/docroot"
 											excludes="**/.sass-cache/**,_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml"
@@ -737,29 +737,29 @@ Please find a solution that does not require portal-impl.jar.
 						</if>
 
 						<if>
-							<available file="docroot/_diffs" />
+							<available file="@{module.dir}/docroot/_diffs" />
 							<then>
-								<copy todir="docroot" overwrite="true" preservelastmodified="true">
+								<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 									<fileset
-										dir="docroot/_diffs"
+										dir="@{module.dir}/docroot/_diffs"
 									/>
 								</copy>
 							</then>
 						</if>
 
 						<if>
-							<available file="docroot/WEB-INF/src" />
+							<available file="@{module.dir}/docroot/WEB-INF/src" />
 							<then>
 								<compile
-									module.dir="."
+									module.dir="@{module.dir}"
 								/>
 							</then>
 							<else>
 								<if>
-									<available file="overwrite" />
+									<available file="@{module.dir}/overwrite" />
 									<then>
-										<copy overwrite="true" preservelastmodified="true" todir="docroot">
-											<fileset dir="overwrite" />
+										<copy overwrite="true" preservelastmodified="true" todir="@{module.dir}/docroot">
+											<fileset dir="@{module.dir}/overwrite" />
 										</copy>
 									</then>
 								</if>
@@ -770,15 +770,15 @@ Please find a solution that does not require portal-impl.jar.
 				<else>
 					<call-macrodef-or-target
 						macrodef.name="compile-import-shared"
-						module.dir="."
+						module.dir="@{module.dir}"
 					/>
 
-					<mkdir dir="classes" />
+					<mkdir dir="@{module.dir}/classes" />
 
 					<compile-java
 						javac.classpathref="plugin.classpath"
-						javac.destdir="classes"
-						javac.srcdir="src"
+						javac.destdir="@{module.dir}/classes"
+						javac.srcdir="@{module.dir}/src"
 					/>
 				</else>
 			</if>
