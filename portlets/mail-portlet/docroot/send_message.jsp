@@ -39,15 +39,13 @@ List<MailFile> mailFiles = new ArrayList<MailFile>();
 
 try {
 	for (int i = 1; i <= attachmentCount; i++) {
-		File file = uploadPortletRequest.getFile(
-			 "attachment" + i, true);
+		File file = uploadPortletRequest.getFile("attachment" + i, true);
 
-		String fileName = uploadPortletRequest.getFileName(
-			 "attachment" + i);
+		String fileName = uploadPortletRequest.getFileName("attachment" + i);
 
 		long size = uploadPortletRequest.getSize("attachment" + i);
 
-		if (file == null) {
+		if (fileName.equals(StringPool.BLANK) || (size == 0)) {
 			continue;
 		}
 
