@@ -61,6 +61,12 @@
 	}
 }
 
+.youtube-portlet {
+	.portlet-content {
+		overflow: scroll;
+	}
+}
+
 /* ---------- Extras ---------- */
 
 .portlet-configuration #preview {
