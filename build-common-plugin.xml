@@ -24,6 +24,7 @@
 			<antelope:endswith string="${plugin.name}" with="-layouttpl" />
 			<antelope:endswith string="${plugin.name}" with="-portlet" />
 			<antelope:endswith string="${plugin.name}" with="-theme" />
+			<antelope:endswith string="${plugin.name}" with="-web" />
 		</or>
 		<then>
 			<property name="plugin.packaging" value="war" />
