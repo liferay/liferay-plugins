@@ -18,21 +18,6 @@
 		</then>
 	</if>
 
-	<target name="compile">
-		<call-macrodef-or-target
-			macrodef.name="compile-import-shared"
-			module.dir="."
-		/>
-
-		<mkdir dir="classes" />
-
-		<compile-java
-			javac.classpathref="plugin.classpath"
-			javac.destdir="classes"
-			javac.srcdir="src"
-		/>
-	</target>
-
 	<target name="deploy" depends="jar">
 	</target>
 
