@@ -5,7 +5,9 @@
 	<import file="@plugin.type.dir@/build-common-portlet.xml" />
 
 	<target name="compile">
-		<antcall target="build-common-plugin.compile" />
+		<compile
+			module.dir="."
+		/>
 
 		<antcall target="scalac" />
 	</target>

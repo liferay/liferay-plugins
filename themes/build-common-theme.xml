@@ -164,7 +164,9 @@
 		<if>
 			<available file="docroot/WEB-INF/src" />
 			<then>
-				<antcall target="build-common-plugin.compile" />
+				<compile
+					module.dir="."
+				/>
 			</then>
 			<else>
 				<if>

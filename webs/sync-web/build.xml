@@ -10,6 +10,8 @@
 			tofile="docroot/WEB-INF/lib/so-portlet-service.jar"
 		/>
 
-		<antcall target="build-common-plugin.compile" />
+		<compile
+			module.dir="."
+		/>
 	</target>
 </project>

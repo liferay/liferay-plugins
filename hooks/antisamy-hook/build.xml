@@ -5,7 +5,9 @@
 	<import file="../build-common-hook.xml" />
 
 	<target name="compile">
-		<antcall target="build-common-plugin.compile" />
+		<compile
+			module.dir="."
+		/>
 
 		<if>
 			<not>
