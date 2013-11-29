@@ -431,6 +431,30 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="compile-java">
+		<attribute name="javac.classpathref" />
+		<attribute name="javac.destdir" />
+		<attribute name="javac.srcdir" />
+
+		<sequential>
+			<copy todir="@{javac.destdir}">
+				<fileset dir="@{javac.srcdir}" excludes="**/*.java" />
+			</copy>
+
+			<javac
+				classpathref="@{javac.classpathref}"
+				compiler="${javac.compiler}"
+				debug="${javac.debug}"
+				deprecation="${javac.deprecation}"
+				destdir="@{javac.destdir}"
+				encoding="${javac.encoding}"
+				includeAntRuntime="false"
+				nowarn="${javac.nowarn}"
+				srcdir="@{javac.srcdir}"
+			/>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="loop-modules">
 		<attribute name="loop.modules.cmd" />
 		<attribute name="loop.modules.dir" />
@@ -710,30 +734,6 @@ Error-Prone was automatically installed. Please rerun your task.
 					</if>
 				</else>
 			</if>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="compile-java">
-		<attribute name="javac.classpathref" />
-		<attribute name="javac.destdir" />
-		<attribute name="javac.srcdir" />
-
-		<sequential>
-			<copy todir="@{javac.destdir}">
-				<fileset dir="@{javac.srcdir}" excludes="**/*.java" />
-			</copy>
-
-			<javac
-				classpathref="@{javac.classpathref}"
-				compiler="${javac.compiler}"
-				debug="${javac.debug}"
-				deprecation="${javac.deprecation}"
-				destdir="@{javac.destdir}"
-				encoding="${javac.encoding}"
-				includeAntRuntime="false"
-				nowarn="${javac.nowarn}"
-				srcdir="@{javac.srcdir}"
-			/>
 		</sequential>
 	</macrodef>
 
