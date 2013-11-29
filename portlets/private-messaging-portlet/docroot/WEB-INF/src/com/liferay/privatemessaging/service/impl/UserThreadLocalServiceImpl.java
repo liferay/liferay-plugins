@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.FastDateFormatConstants;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -470,9 +471,9 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				recipient.getEmailAddress());
 
 			Format dateFormatDateTime =
-				FastDateFormatFactoryUtil.getSimpleDateFormat(
-					"MMMMM d 'at' h:mm a", recipient.getLocale(),
-					recipient.getTimeZone());
+				FastDateFormatFactoryUtil.getDateTime(
+					FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT,
+					recipient.getLocale(), recipient.getTimeZone());
 
 			String userThreadBody = StringUtil.replace(
 				body,
