@@ -446,6 +446,153 @@ Error-Prone was automatically installed. Please rerun your task.
 					<antelope:endswith string="${plugin.name}" with="-web" />
 				</or>
 				<then>
+					<call-macrodef-or-target
+						macrodef.name="merge"
+						module.dir="."
+					/>
+
+					<call-macrodef-or-target
+						macrodef.name="compile-import-shared"
+						module.dir="."
+					/>
+
+					<mkdir dir="docroot/WEB-INF/classes" />
+					<mkdir dir="docroot/WEB-INF/lib" />
+
+					<copy todir="docroot/WEB-INF/lib">
+						<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
+					</copy>
+
+					<if>
+						<available file="overwrite" />
+						<then>
+							<copy overwrite="true" preservelastmodified="true" todir="docroot">
+								<fileset dir="overwrite" />
+							</copy>
+						</then>
+					</if>
+
+					<if>
+						<isset property="plugin-package.required-deployment-contexts" />
+						<then>
+							<for list="${plugin-package.required-deployment-contexts}" param="required.deployment.context">
+								<sequential>
+									<if>
+										<available file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+										<then>
+											<copy
+												file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+												todir="docroot/WEB-INF/lib"
+												overwrite="true"
+											/>
+										</then>
+										<elseif>
+											<available file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+											<then>
+												<copy
+													file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+													todir="docroot/WEB-INF/lib"
+													overwrite="true"
+												/>
+											</then>
+										</elseif>
+										<elseif>
+											<available file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+											<then>
+												<copy
+													file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+													todir="docroot/WEB-INF/lib"
+													overwrite="true"
+												/>
+											</then>
+										</elseif>
+									</if>
+								</sequential>
+							</for>
+						</then>
+					</if>
+
+					<copy todir="docroot/WEB-INF/tld">
+						<fileset dir="${app.server.portal.dir}/WEB-INF/tld" includes="${plugin.tlds}" />
+					</copy>
+
+					<if>
+						<available file="docroot/WEB-INF/src" />
+						<then>
+							<copy todir="docroot/WEB-INF/lib">
+								<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
+							</copy>
+
+							<if>
+								<available file="docroot/WEB-INF/lib/portal-impl.jar" />
+								<then>
+									<fail>
+.
+
+Detected inclusion of portal-impl.jar in WEB-INF/lib.
+
+portal-impl.jar is designed with a large number of singleton classes which are
+instantiated on the basis that they will exist alone in the application server.
+
+While compile time issues may be resolved, portlets cannot be made to work by
+simply adding portal-impl.jar, because doing so violates the above assumption,
+and the resulting problems will be extremely difficult to debug.
+
+Please find a solution that does not require portal-impl.jar.
+									</fail>
+								</then>
+							</if>
+
+							<compile-java
+								javac.classpathref="plugin.classpath"
+								javac.destdir="docroot/WEB-INF/classes"
+								javac.srcdir="docroot/WEB-INF/src"
+							/>
+						</then>
+					</if>
+
+					<if>
+						<and>
+							<available file="docroot/WEB-INF/liferay-hook.xml" />
+							<available file="docroot/WEB-INF/src/content" />
+						</and>
+						<then>
+							<loadfile property="liferay-hook.xml.content" srcFile="docroot/WEB-INF/liferay-hook.xml" />
+
+							<if>
+								<contains string="${liferay-hook.xml.content}" substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" />
+								<then>
+									<pathconvert pathsep="${line.separator}&#x9;" property="language.properties.elements">
+										<fileset dir="docroot/WEB-INF/src/content">
+											<include name="Language*.properties" />
+										</fileset>
+										<mapper>
+											<chainedmapper>
+												<flattenmapper />
+												<globmapper
+													from="Language*.properties"
+													to="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;"
+												/>
+											</chainedmapper>
+										</mapper>
+									</pathconvert>
+
+									<copy file="docroot/WEB-INF/liferay-hook.xml" overwrite="true" tofile="docroot/WEB-INF/liferay-hook.xml.processed">
+										<filterchain>
+											<tokenfilter>
+												<replacestring from="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" to="${language.properties.elements}" />
+											</tokenfilter>
+										</filterchain>
+									</copy>
+								</then>
+							</if>
+						</then>
+					</if>
+
+					<call-macrodef-or-target
+						macrodef.name="merge"
+						module.dir="."
+					/>
 				</then>
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
