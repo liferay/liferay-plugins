@@ -435,6 +435,31 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<or>
+					<antelope:endswith string="${plugin.name}" with="-hook" />
+					<antelope:endswith string="${plugin.name}" with="-portlet" />
+					<antelope:endswith string="${plugin.name}" with="-web" />
+				</or>
+				<then>
+				</then>
+				<elseif>
+					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+					<then>
+					</then>
+				</elseif>
+				<elseif>
+					<antelope:endswith string="${plugin.name}" with="-theme" />
+					<then>
+					</then>
+				</elseif>
+				<else>
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
