@@ -4,6 +4,8 @@
 <project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<property name="plugin.packaging" value="war" />
+
 	<if>
 		<available file="docroot/WEB-INF/liferay-plugin-package.properties" />
 		<then>
@@ -20,11 +22,8 @@
 	<if>
 		<antelope:endswith string="${plugin.name}" with="-shared" />
 		<then>
-			<property name="plugin.packaging" value="jar" />
+			<var name="plugin.packaging" value="jar" />
 		</then>
-		<else>
-			<property name="plugin.packaging" value="war" />
-		</else>
 	</if>
 
 	<property name="plugin.full.version.default" value="${lp.version}.${plugin.version}${lp.version.file.suffix}" />
