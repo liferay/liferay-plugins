@@ -44,13 +44,10 @@
 	</target>
 
 	<target name="compile">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="compile-module" />
-		</antcall>
-	</target>
-
-	<target name="compile-module">
-		<ant dir="${module.name}" target="compile" inheritAll="false" />
+		<loop-modules
+			loop.modules.cmd="compile"
+			loop.modules.dir="."
+		/>
 	</target>
 
 	<target name="deploy">

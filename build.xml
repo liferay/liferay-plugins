@@ -51,12 +51,14 @@
 	</target>
 
 	<target name="compile">
-		<ant dir="hooks" target="compile" inheritAll="false" />
-		<ant dir="layouttpl" target="compile" inheritAll="false" />
-		<ant dir="portlets" target="compile" inheritAll="false" />
-		<ant dir="shared" target="compile" inheritAll="false" />
-		<ant dir="themes" target="compile" inheritAll="false" />
-		<ant dir="webs" target="compile" inheritAll="false" />
+		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="compile"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
 	</target>
 
 	<target name="deploy">
@@ -216,9 +218,14 @@
 			</sequential>
 		</for>
 
-		<ant dir="hooks" target="compile" inheritAll="false" />
-		<ant dir="portlets" target="compile" inheritAll="false" />
-		<ant dir="webs" target="compile" inheritAll="false" />
+		<for list="hooks,portlets,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="compile"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
 
 		<ant dir="hooks" target="setup-eclipse" inheritAll="false" />
 		<ant dir="portlets" target="setup-eclipse" inheritAll="false" />
