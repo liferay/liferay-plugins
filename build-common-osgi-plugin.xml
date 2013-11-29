@@ -89,11 +89,11 @@
 
 		<mkdir dir="${osgi.plugin.classes.dir}" />
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="plugin.classpath" />
-			<param name="javac.destdir" value="${osgi.plugin.classes.dir}" />
-			<param name="javac.srcdir" value="${osgi.plugin.source.dir}" />
-		</antcall>
+		<compile-java
+			javac.classpathref="plugin.classpath"
+			javac.destdir="${osgi.plugin.classes.dir}"
+			javac.srcdir="${osgi.plugin.source.dir}"
+		/>
 	</target>
 
 	<target name="deploy" depends="jar,deploy-dependencies">

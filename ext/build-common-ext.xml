@@ -167,12 +167,11 @@ loader.
 			<pathelement location="docroot/WEB-INF/ext-${module.name}/classes" />
 		</path>
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="plugin.classpath" />
-			<param name="javac.destdir" value="docroot/WEB-INF/ext-${module.name}/classes" />
-			<param name="javac.srcdir" value="docroot/WEB-INF/ext-${module.name}/src" />
-			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
-		</antcall>
+		<compile-java
+			javac.classpathref="plugin.classpath"
+			javac.destdir="docroot/WEB-INF/ext-${module.name}/classes"
+			javac.srcdir="docroot/WEB-INF/ext-${module.name}/src"
+		/>
 	</target>
 
 	<target name="compile-with-portal-class-loader">
@@ -188,12 +187,11 @@ loader.
 			<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 		</path>
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="plugin.classpath" />
-			<param name="javac.destdir" value="docroot/WEB-INF/ext-${module.name}/classes" />
-			<param name="javac.srcdir" value="docroot/WEB-INF/ext-${module.name}/src" />
-			<reference refid="plugin-lib.classpath" torefid="plugin-lib.classpath" />
-		</antcall>
+		<compile-java
+			javac.classpathref="plugin.classpath"
+			javac.destdir="docroot/WEB-INF/ext-${module.name}/classes"
+			javac.srcdir="docroot/WEB-INF/ext-${module.name}/src"
+		/>
 	</target>
 
 	<target name="deploy-properties">

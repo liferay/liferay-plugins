@@ -26,11 +26,11 @@
 
 		<mkdir dir="classes" />
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="plugin.classpath" />
-			<param name="javac.destdir" value="classes" />
-			<param name="javac.srcdir" value="src" />
-		</antcall>
+		<compile-java
+			javac.classpathref="plugin.classpath"
+			javac.destdir="classes"
+			javac.srcdir="src"
+		/>
 	</target>
 
 	<target name="deploy" depends="jar">

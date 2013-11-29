@@ -60,11 +60,11 @@
 			<replacefilter token="attrField.setXmlName(new javax.xml.namespace.QName(&quot;&quot;, &quot;lang&quot;))" value="attrField.setXmlName(new javax.xml.namespace.QName(&quot;http://www.w3.org/XML/1998/namespace&quot;, &quot;lang&quot;));" />
 		</replace>
 
-		<antcall target="compile-java">
-			<param name="javac.classpathref" value="plugin.classpath" />
-			<param name="javac.destdir" value="${tstamp.value}" />
-			<param name="javac.srcdir" value="${tstamp.value}" />
-		</antcall>
+		<compile-java
+			javac.classpathref="plugin.classpath"
+			javac.destdir="${tstamp.value}"
+			javac.srcdir="${tstamp.value}"
+		/>
 
 		<jar
 			basedir="${tstamp.value}"
