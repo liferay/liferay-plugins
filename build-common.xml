@@ -146,6 +146,14 @@ Error-Prone was automatically installed. Please rerun your task.
 							/>
 						</then>
 						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="clean-portal-dependencies" />
+							<then>
+								<clean-portal-dependencies
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
 							<equals arg1="@{macrodef.name}" arg2="compile-import-shared" />
 							<then>
 								<compile-import-shared
@@ -238,7 +246,8 @@ Error-Prone was automatically installed. Please rerun your task.
 			<delete file="${plugin.sources.file}" />
 			<delete file="${plugin.src.file}" />
 
-			<clean-portal-dependencies
+			<call-macrodef-or-target
+				macrodef.name="clean-portal-dependencies"
 				module.dir="@{module.dir}"
 			/>
 
