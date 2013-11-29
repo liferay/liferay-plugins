@@ -264,7 +264,12 @@
 		<delete dir="docroot/WEB-INF/service-classes" />
 	</target>
 
-	<target name="build-wsdd" depends="compile">
+	<target name="build-wsdd">
+		<call-macrodef-or-target
+			macrodef.name="compile"
+			module.dir="."
+		/>
+
 		<path id="wsdd.classpath">
 			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
@@ -948,7 +953,12 @@
 		</ant>
 	</target>
 
-	<target name="war" depends="compile">
+	<target name="war">
+		<call-macrodef-or-target
+			macrodef.name="compile"
+			module.dir="."
+		/>
+
 		<mkdir dir="${sdk.dir}/dist" />
 
 		<if>
