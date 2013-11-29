@@ -461,6 +461,18 @@ Error-Prone was automatically installed. Please rerun your task.
 					</then>
 				</elseif>
 				<else>
+					<call-macrodef-or-target
+						macrodef.name="compile-import-shared"
+						module.dir="."
+					/>
+
+					<mkdir dir="classes" />
+
+					<compile-java
+						javac.classpathref="plugin.classpath"
+						javac.destdir="classes"
+						javac.srcdir="src"
+					/>
 				</else>
 			</if>
 		</sequential>
