@@ -146,6 +146,14 @@ Error-Prone was automatically installed. Please rerun your task.
 							/>
 						</then>
 						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="compile-import-shared" />
+							<then>
+								<compile-import-shared
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
 							<equals arg1="@{macrodef.name}" arg2="merge" />
 							<then>
 								<merge
@@ -303,6 +311,13 @@ Error-Prone was automatically installed. Please rerun your task.
 					</if>
 				</then>
 			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="compile-import-shared">
+		<attribute name="module.dir" />
+
+		<sequential>
 		</sequential>
 	</macrodef>
 

@@ -418,7 +418,10 @@
 			module.dir="."
 		/>
 
-		<antcall target="compile-import-shared" />
+		<call-macrodef-or-target
+			macrodef.name="compile-import-shared"
+			module.dir="."
+		/>
 
 		<mkdir dir="docroot/WEB-INF/classes" />
 		<mkdir dir="docroot/WEB-INF/lib" />
