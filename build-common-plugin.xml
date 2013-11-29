@@ -413,21 +413,10 @@
 	</target>
 
 	<target name="compile">
-		<loadfile property="module.build.xml.content" srcFile="build.xml" />
-
-		<if>
-			<contains string="${module.build.xml.content}" substring="&lt;target name=&quot;merge-unzip&quot;&gt;" />
-			<then>
-				<ant dir="." target="merge" inheritAll="false" />
-			</then>
-			<else>
-				<merge
-					module.dir="."
-				/>
-			</else>
-		</if>
-
-		<var name="module.build.xml.content" unset="true" />
+		<call-macrodef-or-target
+			macrodef.name="merge"
+			module.dir="."
+		/>
 
 		<antcall target="compile-import-shared" />
 
@@ -564,21 +553,10 @@ Please find a solution that does not require portal-impl.jar.
 			</then>
 		</if>
 
-		<loadfile property="module.build.xml.content" srcFile="build.xml" />
-
-		<if>
-			<contains string="${module.build.xml.content}" substring="&lt;target name=&quot;merge-unzip&quot;&gt;" />
-			<then>
-				<ant dir="." target="merge" inheritAll="false" />
-			</then>
-			<else>
-				<merge
-					module.dir="."
-				/>
-			</else>
-		</if>
-
-		<var name="module.build.xml.content" unset="true" />
+		<call-macrodef-or-target
+			macrodef.name="merge"
+			module.dir="."
+		/>
 	</target>
 
 	<target name="compile-import-shared">

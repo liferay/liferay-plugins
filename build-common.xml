@@ -125,6 +125,50 @@ Error-Prone was automatically installed. Please rerun your task.
 		</else>
 	</if>
 
+	<macrodef name="call-macrodef-or-target">
+		<attribute name="macrodef.name" />
+		<attribute name="module.dir" />
+
+		<sequential>
+			<loadfile property="call-macrodef-or-target.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+			<if>
+				<contains string="${call-macrodef-or-target.build.xml.content}" substring="&lt;target name=&quot;@{macrodef.name}&quot;&gt;" />
+				<then>
+					<ant dir="@{module.dir}" target="@{macrodef.name}" inheritAll="false" />
+				</then>
+				<else>
+					<if>
+						<equals arg1="@{macrodef.name}" arg2="clean" />
+						<then>
+							<clean
+								module.dir="@{module.dir}"
+							/>
+						</then>
+						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="merge" />
+							<then>
+								<merge
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="merge-unzip" />
+							<then>
+								<merge-unzip
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+					</if>
+				</else>
+			</if>
+
+			<var name="call-macrodef-or-target.build.xml.content" unset="true" />
+		</sequential>
+	</macrodef>
+
 	<macrodef name="clean">
 		<attribute name="module.dir" />
 
@@ -280,26 +324,10 @@ Error-Prone was automatically installed. Please rerun your task.
 
 					<for list="${module.dirs}" param="module.dir">
 						<sequential>
-							<if>
-								<equals arg1="@{loop.modules.cmd}" arg2="clean" />
-								<then>
-									<loadfile property="module.build.xml.content" srcFile="@{module.dir}/build.xml" />
-
-									<if>
-										<contains string="${module.build.xml.content}" substring="&lt;target name=&quot;clean&quot;&gt;" />
-										<then>
-											<ant dir="@{module.dir}" target="clean" inheritAll="false" />
-										</then>
-										<else>
-											<clean
-												module.dir="@{module.dir}"
-											/>
-										</else>
-									</if>
-
-									<var name="module.build.xml.content" unset="true" />
-								</then>
-							</if>
+							<call-macrodef-or-target
+								macrodef.name="@{loop.modules.cmd}"
+								module.dir="@{module.dir}"
+							/>
 						</sequential>
 					</for>
 
@@ -343,17 +371,10 @@ Error-Prone was automatically installed. Please rerun your task.
 							<mkdir dir="@{module.dir}/tmp/WEB-INF/classes" />
 							<mkdir dir="@{module.dir}/tmp/WEB-INF/lib" />
 
-							<if>
-								<contains string="${module.build.xml.content}" substring="&lt;target name=&quot;merge-unzip&quot;&gt;" />
-								<then>
-									<ant dir="@{module.dir}" target="merge-unzip" inheritAll="false" />
-								</then>
-								<else>
-									<merge-unzip
-										module.dir="@{module.dir}"
-									/>
-								</else>
-							</if>
+							<call-macrodef-or-target
+								macrodef.name="merge-unzip"
+								module.dir="@{module.dir}"
+							/>
 
 							<var name="module.build.xml.content" unset="true" />
 
