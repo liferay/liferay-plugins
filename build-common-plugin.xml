@@ -964,87 +964,8 @@
 	</target>
 
 	<target name="war">
-		<call-macrodef-or-target
-			macrodef.name="compile"
+		<war-macro
 			module.dir="."
 		/>
-
-		<mkdir dir="${sdk.dir}/dist" />
-
-		<if>
-			<available file="tmp" />
-			<then>
-				<property name="docroot.dir" value="tmp" />
-			</then>
-			<else>
-				<property name="docroot.dir" value="docroot" />
-			</else>
-		</if>
-
-		<delete file="${plugin.file}" />
-
-		<clean-portal-dependencies
-			module.dir="."
-		/>
-
-		<if>
-			<available file="docroot/WEB-INF/liferay-hook.xml.processed" />
-			<then>
-				<property name="liferay-hook.xml.excludes" value="WEB-INF/liferay-hook.xml*" />
-			</then>
-			<else>
-				<property name="liferay-hook.xml.excludes" value="" />
-			</else>
-		</if>
-
-		<if>
-			<contains string="${app.server.dir}" substring="glassfish" />
-			<then>
-				<zip
-					basedir="${docroot.dir}"
-					destfile="${plugin.file}"
-					excludes="**/META-INF/context.xml,${liferay-hook.xml.excludes},${plugins.war.excludes}"
-				>
-					<zipfileset
-						dir="${docroot.dir}"
-						fullpath="WEB-INF/liferay-hook.xml"
-						includes="WEB-INF/liferay-hook.xml.processed"
-					/>
-				</zip>
-			</then>
-			<else>
-				<zip
-					basedir="${docroot.dir}"
-					destfile="${plugin.file}"
-					excludes="${liferay-hook.xml.excludes},${plugins.war.excludes}"
-				>
-					<zipfileset
-						dir="${docroot.dir}"
-						fullpath="WEB-INF/liferay-hook.xml"
-						includes="WEB-INF/liferay-hook.xml.processed"
-					/>
-				</zip>
-			</else>
-		</if>
-
-		<if>
-			<and>
-				<equals arg1="${plugins.src.zip.enabled}" arg2="true" />
-			</and>
-			<then>
-				<zip destfile="${plugin.src.file}">
-					<zipfileset
-						dir="${docroot.dir}"
-						excludes="${liferay-hook.xml.excludes}"
-						prefix="${plugin.name}-src-${plugin.full.version}"
-					/>
-					<zipfileset
-						dir="${docroot.dir}"
-						fullpath="${plugin.name}-src-${plugin.full.version}/WEB-INF/liferay-hook.xml"
-						includes="WEB-INF/liferay-hook.xml.processed"
-					/>
-				</zip>
-			</then>
-		</if>
 	</target>
 </project>
