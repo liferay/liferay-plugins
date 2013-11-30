@@ -393,31 +393,29 @@ Error-Prone was automatically installed. Please rerun your task.
 				module.dir="@{module.dir}"
 			/>
 
-			<loadfile property="compile-import-shared.build.xml.content" srcFile="@{module.dir}/build.xml" />
+			<set-build-xml-var
+				build.xml.var.name="import.compat.shared"
+				module.dir="@{module.dir}"
+			/>
 
-			<script classpathref="lib.classpath" language="beanshell">
-				String buildXmlContent = project.getProperty("compile-import-shared.build.xml.content");
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="compile-import-shared.import.compat.shared" value="${set-build-xml-var.return}" />
+				</then>
+			</if>
 
-				int x = buildXmlContent.indexOf("property name=\"import.compat.shared\" value=\"");
+			<set-build-xml-var
+				build.xml.var.name="import.shared"
+				module.dir="@{module.dir}"
+			/>
 
-				if (x != -1) {
-					x = buildXmlContent.indexOf("value=\"", x) + 7;
-
-					int y = buildXmlContent.indexOf("\"", x);
-
-					project.setProperty("compile-import-shared.import.compat.shared", buildXmlContent.substring(x, y));
-				}
-
-				x = buildXmlContent.indexOf("property name=\"import.shared\" value=\"");
-
-				if (x != -1) {
-					x = buildXmlContent.indexOf("value=\"", x) + 7;
-
-					int y = buildXmlContent.indexOf("\"", x);
-
-					project.setProperty("compile-import-shared.import.shared", buildXmlContent.substring(x, y));
-				}
-			</script>
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="compile-import-shared.import.shared" value="${set-build-xml-var.return}" />
+				</then>
+			</if>
 
 			<if>
 				<not>
@@ -487,7 +485,6 @@ Error-Prone was automatically installed. Please rerun your task.
 				</then>
 			</if>
 
-			<var name="compile-import-shared.build.xml.content" unset="true" />
 			<var name="compile-import-shared.import.compat.shared" unset="true" />
 			<var name="compile-import-shared.import.shared" unset="true" />
 		</sequential>
@@ -887,25 +884,16 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<loadfile property="merge.build.xml.content" srcFile="@{module.dir}/build.xml" />
-
-			<script classpathref="lib.classpath" language="beanshell">
-				String buildXmlContent = project.getProperty("merge.build.xml.content");
-
-				int x = buildXmlContent.indexOf("property name=\"original.war.file\" value=\"");
-
-				if (x != -1) {
-					x = buildXmlContent.indexOf("value=\"", x) + 7;
-
-					int y = buildXmlContent.indexOf("\"", x);
-
-					project.setProperty("merge.original.war.file", buildXmlContent.substring(x, y));
-				}
-			</script>
+			<set-build-xml-var
+				build.xml.var.name="original.war.file"
+				module.dir="@{module.dir}"
+			/>
 
 			<if>
-				<isset property="merge.original.war.file" />
+				<isset property="set-build-xml-var.return" />
 				<then>
+					<var name="merge.original.war.file" value="${set-build-xml-var.return}" />
+
 					<if>
 						<not>
 							<uptodate srcfile="@{module.dir}/${merge.original.war.file}" targetfile="@{module.dir}/tmp" />
@@ -922,8 +910,6 @@ Please find a solution that does not require portal-impl.jar.
 								module.dir="@{module.dir}"
 							/>
 
-							<var name="merge.build.xml.content" unset="true" />
-
 							<copy todir="@{module.dir}/tmp" overwrite="true">
 								<fileset dir="@{module.dir}/docroot" />
 							</copy>
@@ -933,11 +919,10 @@ Please find a solution that does not require portal-impl.jar.
 					<copy todir="@{module.dir}/tmp">
 						<fileset dir="@{module.dir}/docroot" />
 					</copy>
+
+					<var name="merge.original.war.file" unset="true" />
 				</then>
 			</if>
-
-			<var name="merge.build.xml.content" unset="true" />
-			<var name="merge.original.war.file" unset="true" />
 		</sequential>
 	</macrodef>
 
@@ -945,27 +930,62 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<loadfile property="merge-unzip.build.xml.content" srcFile="@{module.dir}/build.xml" />
+			<set-build-xml-var
+				build.xml.var.name="original.war.file"
+				module.dir="@{module.dir}"
+			/>
 
-			<script classpathref="lib.classpath" language="beanshell">
-				String buildXmlContent = project.getProperty("merge-unzip.build.xml.content");
-
-				int x = buildXmlContent.indexOf("property name=\"original.war.file\" value=\"");
-
-				x = buildXmlContent.indexOf("value=\"", x) + 7;
-
-				int y = buildXmlContent.indexOf("\"", x);
-
-				project.setProperty("merge-unzip.original.war.file", buildXmlContent.substring(x, y));
-			</script>
+			<var name="merge-unzip.original.war.file" value="${set-build-xml-var.return}" />
 
 			<unzip
 				dest="@{module.dir}/tmp"
 				src="@{module.dir}/${merge-unzip.original.war.file}"
 			/>
 
-			<var name="merge-unzip.build.xml.content" unset="true" />
 			<var name="merge-unzip.original.war.file" unset="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="set-build-xml-var">
+		<attribute name="build.xml.var.name" />
+		<attribute name="module.dir" />
+
+		<sequential>
+			<loadfile property="set-build-xml-var.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+			<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.beginindex">
+				<antelope:indexof string="property name=&quot;@{build.xml.var.name}&quot; value=&quot;" fromindex="0" />
+			</antelope:stringutil>
+
+			<if>
+				<equals arg1="${set-build-xml-var.value.beginindex}" arg2="-1" />
+				<then>
+					<var name="set-build-xml-var.return" unset="true" />
+				</then>
+				<else>
+					<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.beginindex">
+						<antelope:indexof string="value=&quot;" fromindex="${set-build-xml-var.value.beginindex}" />
+					</antelope:stringutil>
+
+					<antelope:math
+						datatype="int"
+						operand1="${set-build-xml-var.value.beginindex}"
+						operand2="7"
+						operation="+"
+						result="set-build-xml-var.value.beginindex"
+					/>
+
+					<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.value.endindex">
+						<antelope:indexof string="&quot;" fromindex="${set-build-xml-var.value.beginindex}" />
+					</antelope:stringutil>
+
+					<antelope:stringutil string="${set-build-xml-var.build.xml.content}" property="set-build-xml-var.return">
+						<antelope:substring beginindex="${set-build-xml-var.value.beginindex}" endindex="${set-build-xml-var.value.endindex}" />
+					</antelope:stringutil>
+				</else>
+			</if>
+
+			<var name="set-build-xml-var.build.xml.content" unset="true" />
 		</sequential>
 	</macrodef>
 
@@ -996,22 +1016,20 @@ Please find a solution that does not require portal-impl.jar.
 					<var name="plugin.version" value="${plugin-package.module-incremental-version}" />
 				</then>
 				<else>
-					<script classpathref="lib.classpath" language="beanshell">
-						String buildXmlContent = project.getProperty("set-module-properties.build.xml.content");
+					<set-build-xml-var
+						build.xml.var.name="plugin.version"
+						module.dir="@{module.dir}"
+					/>
 
-						int x = buildXmlContent.indexOf("property name=\"plugin.version\" value=\"");
-
-						if (x != -1) {
-							x = buildXmlContent.indexOf("value=\"", x) + 7;
-
-							int y = buildXmlContent.indexOf("\"", x);
-
-							project.setProperty("plugin.version", buildXmlContent.substring(x, y));
-						}
-						else {
-							project.setProperty("plugin.version", "1");
-						}
-					</script>
+					<if>
+						<isset property="set-build-xml-var.return" />
+						<then>
+							<var name="plugin.version" value="${set-build-xml-var.return}" />
+						</then>
+						<else>
+							<var name="plugin.version" value="1" />
+						</else>
+					</if>
 				</else>
 			</if>
 
@@ -1030,22 +1048,20 @@ Please find a solution that does not require portal-impl.jar.
 				</else>
 			</if>
 
-			<script classpathref="lib.classpath" language="beanshell">
-				String buildXmlContent = project.getProperty("set-module-properties.build.xml.content");
+			<set-build-xml-var
+				build.xml.var.name="theme.parent"
+				module.dir="@{module.dir}"
+			/>
 
-				int x = buildXmlContent.indexOf("property name=\"theme.parent\" value=\"");
-
-				if (x != -1) {
-					x = buildXmlContent.indexOf("value=\"", x) + 7;
-
-					int y = buildXmlContent.indexOf("\"", x);
-
-					project.setProperty("theme.parent", buildXmlContent.substring(x, y));
-				}
-				else {
-					project.setProperty("theme.parent", null);
-				}
-			</script>
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="theme.parent" value="${set-build-xml-var.return}" />
+				</then>
+				<else>
+					<var name="theme.parent" unset="true" />
+				</else>
+			</if>
 
 			<var name="plugin.packaging" unset="true" />
 
