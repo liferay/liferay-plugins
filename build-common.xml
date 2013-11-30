@@ -60,6 +60,8 @@
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,jargs.jar,javax.servlet-api.jar,jsp-api.jar,qdox.jar" />
 	</path>
 
+	<taskdef classpathref="portal.classpath" resource="aQute/bnd/ant/taskdef.properties" />
+
 	<path id="test.classpath">
 		<path refid="plugin.classpath" />
 		<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="*.jar" />
@@ -124,6 +126,37 @@ Error-Prone was automatically installed. Please rerun your task.
 			</if>
 		</else>
 	</if>
+
+	<macrodef name="baseline-jar-macro">
+		<attribute name="bndRootFile" />
+		<attribute name="file" />
+		<attribute name="outputPath" />
+		<attribute name="rootProjectDir" />
+		<attribute name="sourcePath" />
+
+		<sequential>
+			<taskdef
+				classname="com.liferay.util.ant.bnd.BaselineJarTask"
+				classpathref="plugin.classpath"
+				name="baseline-jar"
+			/>
+
+			<manifest-helper />
+
+			<bndexpand propertyfile="@{bndRootFile}" />
+
+			<baseline-jar
+				bndRootFile="@{bndRootFile}"
+				file="@{file}"
+				outputPath="@{outputPath}"
+				sourcePath="@{sourcePath}"
+			>
+				<classpath>
+					<pathelement location="@{sourcePath}/classes" />
+				</classpath>
+			</baseline-jar>
+		</sequential>
+	</macrodef>
 
 	<macrodef name="call-macrodef-or-target">
 		<attribute name="macrodef.name" />
@@ -914,6 +947,24 @@ Please find a solution that does not require portal-impl.jar.
 					<var name="module.dirs" unset="true" />
 				</then>
 			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="manifest-helper">
+		<attribute name="analyze" default="false" />
+
+		<sequential>
+			<taskdef
+				classname="com.liferay.util.ant.ManifestHelperTask"
+				classpathref="plugin.classpath"
+				name="liferay-manifest-helper"
+			/>
+
+			<liferay-manifest-helper
+				analyze="@{analyze}"
+				classpathref="plugin.classpath"
+				projectDirPropertyName="sdk.dir"
+			/>
 		</sequential>
 	</macrodef>
 
