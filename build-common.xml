@@ -966,6 +966,8 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<loadfile property="set-module-properties.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
 			<var name="plugin.jars" unset="true" />
 			<var name="plugin.required.contexts" unset="true" />
 			<var name="plugin.tlds" unset="true" />
@@ -987,8 +989,6 @@ Please find a solution that does not require portal-impl.jar.
 					<var name="plugin.version" value="${plugin-package.module-incremental-version}" />
 				</then>
 				<else>
-					<loadfile property="set-module-properties.build.xml.content" srcFile="@{module.dir}/build.xml" />
-
 					<script classpathref="lib.classpath" language="beanshell">
 						String buildXmlContent = project.getProperty("set-module-properties.build.xml.content");
 
@@ -1005,9 +1005,6 @@ Please find a solution that does not require portal-impl.jar.
 							project.setProperty("plugin.version", "1");
 						}
 					</script>
-
-					<var name="set-module-properties.build.xml.content" unset="true" />
-					<var name="set-module-properties.plugin.version" unset="true" />
 				</else>
 			</if>
 
@@ -1124,6 +1121,24 @@ Please find a solution that does not require portal-impl.jar.
 					</if>
 				</else>
 			</if>
+
+			<if>
+				<contains string="${set-module-properties.build.xml.content}" substring="import file=&quot;../../build-common-osgi-plugin.xml&quot;" />
+				<then>
+					<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
+
+					<path id="plugin-lib.classpath">
+						<path refid="portal.classpath" />
+						<fileset dir="@{module.dir}/lib" erroronmissingdir="false" includes="*.jar" />
+						<pathelement path="${plugin-lib.classpath.path}" />
+					</path>
+
+					<var name="plugin-lib.classpath.path" unset="true" />
+				</then>
+			</if>
+
+			<var name="set-module-properties.build.xml.content" unset="true" />
+			<var name="set-module-properties.plugin.version" unset="true" />
 		</sequential>
 	</macrodef>
 

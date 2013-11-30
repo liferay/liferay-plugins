@@ -18,6 +18,8 @@
 			<param name="patch.source" value="patches/LPS-35466.patch" />
 		</antcall>
 
-		<antcall target="build-common-osgi-plugin.compile" />
+		<compile
+			module.dir="."
+		/>
 	</target>
 </project>

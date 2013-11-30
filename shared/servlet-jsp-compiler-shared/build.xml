@@ -82,6 +82,8 @@
 			</then>
 		</if>
 
-		<antcall target="build-common-osgi-plugin.compile" />
+		<compile
+			module.dir="."
+		/>
 	</target>
 </project>
