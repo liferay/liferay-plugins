@@ -158,6 +158,24 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="build-css">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<java
+				classname="com.liferay.portal.tools.SassToCssBuilder"
+				classpathref="portal.classpath"
+				fork="true"
+				newenvironment="true"
+			>
+				<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+				<arg value="sass.dir=/" />
+				<arg value="sass.docroot.dir=@{module.dir}/docroot" />
+				<arg value="sass.portal.common.dir=${app.server.portal.dir}/html/css/common" />
+			</java>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="call-macrodef-or-target">
 		<attribute name="macrodef.name" />
 		<attribute name="module.dir" />
