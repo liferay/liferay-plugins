@@ -102,12 +102,9 @@
 	</target>
 
 	<target name="war">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="war-module" />
-		</antcall>
-	</target>
-
-	<target name="war-module">
-		<ant dir="${module.name}" target="war" inheritAll="false" />
+		<loop-modules
+			loop.modules.cmd="war-macro"
+			loop.modules.dir="."
+		/>
 	</target>
 </project>

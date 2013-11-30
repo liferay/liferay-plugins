@@ -233,11 +233,14 @@
 	</target>
 
 	<target name="war">
-		<ant dir="hooks" target="war" inheritAll="false" />
-		<ant dir="layouttpl" target="war" inheritAll="false" />
-		<ant dir="portlets" target="war" inheritAll="false" />
-		<ant dir="themes" target="war" inheritAll="false" />
-		<ant dir="webs" target="war" inheritAll="false" />
+		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="war-macro"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
 	</target>
 
 	<target name="zip-portal">

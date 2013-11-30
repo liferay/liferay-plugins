@@ -244,6 +244,14 @@ Error-Prone was automatically installed. Please rerun your task.
 								/>
 							</then>
 						</elseif>
+						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="war-macro" />
+							<then>
+								<war-macro
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
 					</if>
 				</else>
 			</if>
@@ -1344,6 +1352,16 @@ Please find a solution that does not require portal-impl.jar.
 
 			<var name="set-module-properties.build.xml.content" unset="true" />
 			<var name="set-module-properties.plugin.version" unset="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="war-macro">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
 		</sequential>
 	</macrodef>
 
