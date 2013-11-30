@@ -11,41 +11,8 @@
 	</target>
 
 	<target name="war">
-		<call-macrodef-or-target
-			macrodef.name="compile"
+		<war-macro
 			module.dir="."
-		/>
-
-		<build-css
-			module.dir="."
-		/>
-
-		<if>
-			<not>
-				<available file="docroot/images/screenshot.png" />
-			</not>
-			<then>
-				<echo>screenshot.png does not exist.</echo>
-			</then>
-		</if>
-
-		<if>
-			<not>
-				<available file="docroot/images/thumbnail.png" />
-			</not>
-			<then>
-				<echo>thumbnail.png does not exist.</echo>
-			</then>
-		</if>
-
-		<mkdir dir="${sdk.dir}/dist" />
-
-		<delete file="${plugin.file}" />
-
-		<zip
-			basedir="docroot"
-			destfile="${plugin.file}"
-			excludes="_diffs.*,_diffs/**,${plugins.war.excludes}"
 		/>
 	</target>
 </project>
