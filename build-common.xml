@@ -801,7 +801,13 @@ Please find a solution that does not require portal-impl.jar.
 				<elseif>
 					<isset property="theme.parent" />
 					<then>
-						<ant dir="${theme.parent}" target="compile" inheritAll="false" />
+						<compile-theme
+							module.dir="${theme.parent}"
+						/>
+
+						<set-module-properties
+							module.dir="@{module.dir}"
+						/>
 
 						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
 							<fileset
