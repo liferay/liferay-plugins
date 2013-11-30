@@ -346,151 +346,7 @@ Error-Prone was automatically installed. Please rerun your task.
 					<antelope:endswith string="${plugin.name}" with="-web" />
 				</or>
 				<then>
-					<call-macrodef-or-target
-						macrodef.name="merge"
-						module.dir="@{module.dir}"
-					/>
-
-					<call-macrodef-or-target
-						macrodef.name="compile-import-shared"
-						module.dir="@{module.dir}"
-					/>
-
-					<mkdir dir="@{module.dir}/docroot/WEB-INF/classes" />
-					<mkdir dir="@{module.dir}/docroot/WEB-INF/lib" />
-
-					<copy todir="@{module.dir}/docroot/WEB-INF/lib">
-						<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
-					</copy>
-
-					<if>
-						<available file="@{module.dir}/overwrite" />
-						<then>
-							<copy overwrite="true" preservelastmodified="true" todir="@{module.dir}/docroot">
-								<fileset dir="@{module.dir}/overwrite" />
-							</copy>
-						</then>
-					</if>
-
-					<if>
-						<isset property="plugin-package.required-deployment-contexts" />
-						<then>
-							<for list="${plugin-package.required-deployment-contexts}" param="required.deployment.context">
-								<sequential>
-									<if>
-										<available file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
-										<then>
-											<copy
-												file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
-												todir="@{module.dir}/docroot/WEB-INF/lib"
-												overwrite="true"
-											/>
-										</then>
-										<elseif>
-											<available file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
-											<then>
-												<copy
-													file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
-													todir="@{module.dir}/docroot/WEB-INF/lib"
-													overwrite="true"
-												/>
-											</then>
-										</elseif>
-										<elseif>
-											<available file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
-											<then>
-												<copy
-													file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
-													todir="@{module.dir}/docroot/WEB-INF/lib"
-													overwrite="true"
-												/>
-											</then>
-										</elseif>
-									</if>
-								</sequential>
-							</for>
-						</then>
-					</if>
-
-					<copy todir="@{module.dir}/docroot/WEB-INF/tld">
-						<fileset dir="${app.server.portal.dir}/WEB-INF/tld" includes="${plugin.tlds}" />
-					</copy>
-
-					<if>
-						<available file="@{module.dir}/docroot/WEB-INF/src" />
-						<then>
-							<copy todir="@{module.dir}/docroot/WEB-INF/lib">
-								<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
-							</copy>
-
-							<if>
-								<available file="@{module.dir}/docroot/WEB-INF/lib/portal-impl.jar" />
-								<then>
-									<fail>
-.
-
-Detected inclusion of portal-impl.jar in WEB-INF/lib.
-
-portal-impl.jar is designed with a large number of singleton classes which are
-instantiated on the basis that they will exist alone in the application server.
-
-While compile time issues may be resolved, portlets cannot be made to work by
-simply adding portal-impl.jar, because doing so violates the above assumption,
-and the resulting problems will be extremely difficult to debug.
-
-Please find a solution that does not require portal-impl.jar.
-									</fail>
-								</then>
-							</if>
-
-							<compile-java
-								javac.classpathref="plugin.classpath"
-								javac.destdir="@{module.dir}/docroot/WEB-INF/classes"
-								javac.srcdir="@{module.dir}/docroot/WEB-INF/src"
-							/>
-						</then>
-					</if>
-
-					<if>
-						<and>
-							<available file="@{module.dir}/docroot/WEB-INF/liferay-hook.xml" />
-							<available file="@{module.dir}/docroot/WEB-INF/src/content" />
-						</and>
-						<then>
-							<loadfile property="liferay-hook.xml.content" srcFile="@{module.dir}/docroot/WEB-INF/liferay-hook.xml" />
-
-							<if>
-								<contains string="${liferay-hook.xml.content}" substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" />
-								<then>
-									<pathconvert pathsep="${line.separator}&#x9;" property="language.properties.elements">
-										<fileset dir="@{module.dir}/docroot/WEB-INF/src/content">
-											<include name="Language*.properties" />
-										</fileset>
-										<mapper>
-											<chainedmapper>
-												<flattenmapper />
-												<globmapper
-													from="Language*.properties"
-													to="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;"
-												/>
-											</chainedmapper>
-										</mapper>
-									</pathconvert>
-
-									<copy file="@{module.dir}/docroot/WEB-INF/liferay-hook.xml" overwrite="true" tofile="@{module.dir}/docroot/WEB-INF/liferay-hook.xml.processed">
-										<filterchain>
-											<tokenfilter>
-												<replacestring from="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" to="${language.properties.elements}" />
-											</tokenfilter>
-										</filterchain>
-									</copy>
-								</then>
-							</if>
-						</then>
-					</if>
-
-					<call-macrodef-or-target
-						macrodef.name="merge"
+					<compile-portlet
 						module.dir="@{module.dir}"
 					/>
 				</then>
@@ -505,166 +361,9 @@ Please find a solution that does not require portal-impl.jar.
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-theme" />
 					<then>
-						<if>
-							<available file="@{module.dir}/docroot/_diffs/images" />
-							<then>
-								<for param="file">
-									<path>
-										<fileset
-											dir="@{module.dir}/docroot/_diffs/images"
-											includes="**/screenshot.png"
-										/>
-									</path>
-									<sequential>
-										<propertyregex input="@{file}" override="yes" property="thumbnail.file" regexp="screenshot\.png" replace="thumbnail\.png" />
-
-										<java
-											classname="com.liferay.portal.tools.ThumbnailBuilder"
-											classpathref="portal.classpath"
-										>
-											<arg value="thumbnail.original.file=@{file}" />
-											<arg value="thumbnail.thumbnail.file=${thumbnail.file}" />
-											<arg value="thumbnail.height=120" />
-											<arg value="thumbnail.width=160" />
-											<arg value="thumbnail.overwrite=false" />
-										</java>
-									</sequential>
-								</for>
-							</then>
-						</if>
-
-						<if>
-							<not>
-								<isset property="theme.type" />
-							</not>
-							<then>
-								<property name="theme.type" value="vm" />
-							</then>
-						</if>
-
-						<if>
-							<equals arg1="${theme.parent}" arg2="_unstyled" />
-							<then>
-								<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
-									<fileset
-										dir="${app.server.portal.dir}/html/themes/_unstyled"
-										excludes="templates/**"
-									/>
-								</copy>
-
-								<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
-									<fileset
-										dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
-										excludes="init.${theme.type}"
-										includes="*.${theme.type}"
-									/>
-								</copy>
-							</then>
-							<elseif>
-								<equals arg1="${theme.parent}" arg2="_styled" />
-								<then>
-									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
-										<fileset
-											dir="${app.server.portal.dir}/html/themes/_unstyled"
-											excludes="templates/**"
-										/>
-									</copy>
-
-									<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
-										<fileset
-											dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
-											excludes="init.${theme.type}"
-											includes="*.${theme.type}"
-										/>
-									</copy>
-
-									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
-										<fileset
-											dir="${app.server.portal.dir}/html/themes/_styled"
-										/>
-									</copy>
-								</then>
-							</elseif>
-							<elseif>
-								<equals arg1="${theme.parent}" arg2="classic" />
-								<then>
-									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
-										<fileset
-											dir="${app.server.portal.dir}/html/themes/classic"
-											excludes="**/.sass-cache/**,_diffs/**,templates/**"
-										/>
-									</copy>
-
-									<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
-										<fileset
-											dir="${app.server.portal.dir}/html/themes/classic/templates"
-											includes="*.${theme.type}"
-										/>
-									</copy>
-								</then>
-							</elseif>
-							<elseif>
-								<equals arg1="${theme.parent}" arg2="control_panel" />
-								<then>
-									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
-										<fileset
-											dir="${app.server.portal.dir}/html/themes/control_panel"
-											excludes="**/.sass-cache/**,_diffs/**,templates/**"
-										/>
-									</copy>
-
-									<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
-										<fileset
-											dir="${app.server.portal.dir}/html/themes/control_panel/templates"
-											includes="*.${theme.type}"
-										/>
-									</copy>
-								</then>
-							</elseif>
-							<elseif>
-								<isset property="theme.parent" />
-								<then>
-									<ant dir="${theme.parent}" target="compile" inheritAll="false" />
-
-									<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
-										<fileset
-											dir="${theme.parent}/docroot"
-											excludes="**/.sass-cache/**,_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml"
-										/>
-									</copy>
-								</then>
-							</elseif>
-						</if>
-
-						<if>
-							<available file="@{module.dir}/docroot/_diffs" />
-							<then>
-								<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
-									<fileset
-										dir="@{module.dir}/docroot/_diffs"
-									/>
-								</copy>
-							</then>
-						</if>
-
-						<if>
-							<available file="@{module.dir}/docroot/WEB-INF/src" />
-							<then>
-								<compile
-									module.dir="@{module.dir}"
-								/>
-							</then>
-							<else>
-								<if>
-									<available file="@{module.dir}/overwrite" />
-									<then>
-										<copy overwrite="true" preservelastmodified="true" todir="@{module.dir}/docroot">
-											<fileset dir="@{module.dir}/overwrite" />
-										</copy>
-									</then>
-								</if>
-							</else>
-						</if>
+						<compile-theme
+							module.dir="@{module.dir}"
+						/>
 					</then>
 				</elseif>
 				<else>
@@ -814,6 +513,335 @@ Please find a solution that does not require portal-impl.jar.
 				nowarn="${javac.nowarn}"
 				srcdir="@{javac.srcdir}"
 			/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="compile-portlet">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<call-macrodef-or-target
+				macrodef.name="merge"
+				module.dir="@{module.dir}"
+			/>
+
+			<call-macrodef-or-target
+				macrodef.name="compile-import-shared"
+				module.dir="@{module.dir}"
+			/>
+
+			<mkdir dir="@{module.dir}/docroot/WEB-INF/classes" />
+			<mkdir dir="@{module.dir}/docroot/WEB-INF/lib" />
+
+			<copy todir="@{module.dir}/docroot/WEB-INF/lib">
+				<fileset dir="${app.server.lib.portal.dir}" includes="${plugin.jars}" />
+			</copy>
+
+			<if>
+				<available file="@{module.dir}/overwrite" />
+				<then>
+					<copy overwrite="true" preservelastmodified="true" todir="@{module.dir}/docroot">
+						<fileset dir="@{module.dir}/overwrite" />
+					</copy>
+				</then>
+			</if>
+
+			<if>
+				<isset property="plugin-package.required-deployment-contexts" />
+				<then>
+					<for list="${plugin-package.required-deployment-contexts}" param="required.deployment.context">
+						<sequential>
+							<if>
+								<available file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+								<then>
+									<copy
+										file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+										todir="@{module.dir}/docroot/WEB-INF/lib"
+										overwrite="true"
+									/>
+								</then>
+								<elseif>
+									<available file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+									<then>
+										<copy
+											file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+											todir="@{module.dir}/docroot/WEB-INF/lib"
+											overwrite="true"
+										/>
+									</then>
+								</elseif>
+								<elseif>
+									<available file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+									<then>
+										<copy
+											file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+											todir="@{module.dir}/docroot/WEB-INF/lib"
+											overwrite="true"
+										/>
+									</then>
+								</elseif>
+							</if>
+						</sequential>
+					</for>
+				</then>
+			</if>
+
+			<copy todir="@{module.dir}/docroot/WEB-INF/tld">
+				<fileset dir="${app.server.portal.dir}/WEB-INF/tld" includes="${plugin.tlds}" />
+			</copy>
+
+			<if>
+				<available file="@{module.dir}/docroot/WEB-INF/src" />
+				<then>
+					<copy todir="@{module.dir}/docroot/WEB-INF/lib">
+						<fileset dir="${app.server.lib.portal.dir}" includes="${required.portal.jars}" />
+					</copy>
+
+					<if>
+						<available file="@{module.dir}/docroot/WEB-INF/lib/portal-impl.jar" />
+						<then>
+							<fail>
+.
+
+Detected inclusion of portal-impl.jar in WEB-INF/lib.
+
+portal-impl.jar is designed with a large number of singleton classes which are
+instantiated on the basis that they will exist alone in the application server.
+
+While compile time issues may be resolved, portlets cannot be made to work by
+simply adding portal-impl.jar, because doing so violates the above assumption,
+and the resulting problems will be extremely difficult to debug.
+
+Please find a solution that does not require portal-impl.jar.
+							</fail>
+						</then>
+					</if>
+
+					<compile-java
+						javac.classpathref="plugin.classpath"
+						javac.destdir="@{module.dir}/docroot/WEB-INF/classes"
+						javac.srcdir="@{module.dir}/docroot/WEB-INF/src"
+					/>
+				</then>
+			</if>
+
+			<if>
+				<and>
+					<available file="@{module.dir}/docroot/WEB-INF/liferay-hook.xml" />
+					<available file="@{module.dir}/docroot/WEB-INF/src/content" />
+				</and>
+				<then>
+					<loadfile property="liferay-hook.xml.content" srcFile="@{module.dir}/docroot/WEB-INF/liferay-hook.xml" />
+
+					<if>
+						<contains string="${liferay-hook.xml.content}" substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" />
+						<then>
+							<pathconvert pathsep="${line.separator}&#x9;" property="language.properties.elements">
+								<fileset dir="@{module.dir}/docroot/WEB-INF/src/content">
+									<include name="Language*.properties" />
+								</fileset>
+								<mapper>
+									<chainedmapper>
+										<flattenmapper />
+										<globmapper
+											from="Language*.properties"
+											to="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;"
+										/>
+									</chainedmapper>
+								</mapper>
+							</pathconvert>
+
+							<copy file="@{module.dir}/docroot/WEB-INF/liferay-hook.xml" overwrite="true" tofile="@{module.dir}/docroot/WEB-INF/liferay-hook.xml.processed">
+								<filterchain>
+									<tokenfilter>
+										<replacestring from="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" to="${language.properties.elements}" />
+									</tokenfilter>
+								</filterchain>
+							</copy>
+						</then>
+					</if>
+				</then>
+			</if>
+
+			<call-macrodef-or-target
+				macrodef.name="merge"
+				module.dir="@{module.dir}"
+			/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="compile-theme">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<available file="@{module.dir}/docroot/_diffs/images" />
+				<then>
+					<for param="file">
+						<path>
+							<fileset
+								dir="@{module.dir}/docroot/_diffs/images"
+								includes="**/screenshot.png"
+							/>
+						</path>
+						<sequential>
+							<propertyregex input="@{file}" override="yes" property="thumbnail.file" regexp="screenshot\.png" replace="thumbnail\.png" />
+
+							<java
+								classname="com.liferay.portal.tools.ThumbnailBuilder"
+								classpathref="portal.classpath"
+							>
+								<arg value="thumbnail.original.file=@{file}" />
+								<arg value="thumbnail.thumbnail.file=${thumbnail.file}" />
+								<arg value="thumbnail.height=120" />
+								<arg value="thumbnail.width=160" />
+								<arg value="thumbnail.overwrite=false" />
+							</java>
+						</sequential>
+					</for>
+				</then>
+			</if>
+
+			<if>
+				<not>
+					<isset property="theme.type" />
+				</not>
+				<then>
+					<property name="theme.type" value="vm" />
+				</then>
+			</if>
+
+			<if>
+				<equals arg1="${theme.parent}" arg2="_unstyled" />
+				<then>
+					<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/_unstyled"
+							excludes="templates/**"
+						/>
+					</copy>
+
+					<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
+						<fileset
+							dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
+							excludes="init.${theme.type}"
+							includes="*.${theme.type}"
+						/>
+					</copy>
+				</then>
+				<elseif>
+					<equals arg1="${theme.parent}" arg2="_styled" />
+					<then>
+						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${app.server.portal.dir}/html/themes/_unstyled"
+								excludes="templates/**"
+							/>
+						</copy>
+
+						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${app.server.portal.dir}/html/themes/_unstyled/templates"
+								excludes="init.${theme.type}"
+								includes="*.${theme.type}"
+							/>
+						</copy>
+
+						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${app.server.portal.dir}/html/themes/_styled"
+							/>
+						</copy>
+					</then>
+				</elseif>
+				<elseif>
+					<equals arg1="${theme.parent}" arg2="classic" />
+					<then>
+						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${app.server.portal.dir}/html/themes/classic"
+								excludes="**/.sass-cache/**,_diffs/**,templates/**"
+							/>
+						</copy>
+
+						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${app.server.portal.dir}/html/themes/classic/templates"
+								includes="*.${theme.type}"
+							/>
+						</copy>
+					</then>
+				</elseif>
+				<elseif>
+					<equals arg1="${theme.parent}" arg2="control_panel" />
+					<then>
+						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${app.server.portal.dir}/html/themes/control_panel"
+								excludes="**/.sass-cache/**,_diffs/**,templates/**"
+							/>
+						</copy>
+
+						<copy todir="@{module.dir}/docroot/templates" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${app.server.portal.dir}/html/themes/control_panel/templates"
+								includes="*.${theme.type}"
+							/>
+						</copy>
+					</then>
+				</elseif>
+				<elseif>
+					<isset property="theme.parent" />
+					<then>
+						<ant dir="${theme.parent}" target="compile" inheritAll="false" />
+
+						<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
+							<fileset
+								dir="${theme.parent}/docroot"
+								excludes="**/.sass-cache/**,_diffs/**,WEB-INF/*.properties,WEB-INF/*.xml"
+							/>
+						</copy>
+					</then>
+				</elseif>
+			</if>
+
+			<if>
+				<available file="@{module.dir}/docroot/_diffs" />
+				<then>
+					<copy todir="@{module.dir}/docroot" overwrite="true" preservelastmodified="true">
+						<fileset
+							dir="@{module.dir}/docroot/_diffs"
+						/>
+					</copy>
+				</then>
+			</if>
+
+			<if>
+				<available file="@{module.dir}/docroot/WEB-INF/src" />
+				<then>
+					<compile
+						module.dir="@{module.dir}"
+					/>
+				</then>
+				<else>
+					<if>
+						<available file="@{module.dir}/overwrite" />
+						<then>
+							<copy overwrite="true" preservelastmodified="true" todir="@{module.dir}/docroot">
+								<fileset dir="@{module.dir}/overwrite" />
+							</copy>
+						</then>
+					</if>
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
