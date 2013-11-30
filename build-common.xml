@@ -1374,6 +1374,16 @@ Please find a solution that does not require portal-impl.jar.
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-portlet" />
 					<then>
+						<call-macrodef-or-target
+							macrodef.name="compile"
+							module.dir="."
+						/>
+
+						<build-css
+							module.dir="."
+						/>
+
+						<antcall target="build-common-plugin.war" />
 					</then>
 				</elseif>
 				<elseif>
