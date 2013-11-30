@@ -429,7 +429,10 @@
 	</target>
 
 	<target name="compile-test">
-		<antcall target="compile" />
+		<call-macrodef-or-target
+			macrodef.name="compile"
+			module.dir="."
+		/>
 
 		<antcall target="compile-test-integration" inheritall="false" />
 		<antcall target="compile-test-unit" inheritall="false" />
@@ -845,7 +848,11 @@
 		<delete dir="test-classes" />
 		<delete dir="test-results" />
 
-		<antcall target="compile" />
+		<call-macrodef-or-target
+			macrodef.name="compile"
+			module.dir="."
+		/>
+
 		<antcall target="compile-test" />
 
 		<antcall target="test-integration" inheritrefs="true" />
