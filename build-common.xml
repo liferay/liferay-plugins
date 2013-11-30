@@ -924,6 +924,42 @@ Please find a solution that does not require portal-impl.jar.
 							</uptodate>
 						</not>
 						<then>
+							<set-build-xml-var
+								build.xml.var.name="original.lib.name"
+								module.dir="@{module.dir}"
+							/>
+
+							<if>
+								<isset property="set-build-xml-var.return" />
+								<then>
+									<var name="original.lib.name" value="${set-build-xml-var.return}" />
+								</then>
+							</if>
+
+							<set-build-xml-var
+								build.xml.var.name="original.lib.url"
+								module.dir="@{module.dir}"
+							/>
+
+							<if>
+								<isset property="set-build-xml-var.return" />
+								<then>
+									<var name="original.lib.url" value="${set-build-xml-var.return}" />
+								</then>
+							</if>
+
+							<set-build-xml-var
+								build.xml.var.name="original.lib.version"
+								module.dir="@{module.dir}"
+							/>
+
+							<if>
+								<isset property="set-build-xml-var.return" />
+								<then>
+									<var name="original.lib.version" value="${set-build-xml-var.return}" />
+								</then>
+							</if>
+
 							<baseline-jar-macro
 								bndRootFile="${sdk.dir}/common.bnd"
 								file="@{module.dir}/bnd.bnd"
