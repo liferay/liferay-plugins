@@ -170,6 +170,14 @@ Error-Prone was automatically installed. Please rerun your task.
 							</then>
 						</elseif>
 						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="jar-macro" />
+							<then>
+								<jar-macro
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
 							<equals arg1="@{macrodef.name}" arg2="merge" />
 							<then>
 								<merge
@@ -456,7 +464,14 @@ Error-Prone was automatically installed. Please rerun your task.
 							<if>
 								<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
 								<then>
-									<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
+									<call-macrodef-or-target
+										macrodef.name="jar-macro"
+										module.dir="${sdk.dir}/shared/@{import.shared.current}"
+									/>
+
+									<set-module-properties
+										module.dir="@{module.dir}"
+									/>
 
 									<for param="import.shared.full.path">
 										<path>
@@ -846,6 +861,28 @@ Please find a solution that does not require portal-impl.jar.
 					</if>
 				</else>
 			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="jar-macro">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<call-macrodef-or-target
+				macrodef.name="compile"
+				module.dir="@{module.dir}"
+			/>
+
+			<mkdir dir="${sdk.dir}/dist" />
+
+			<jar
+				basedir="@{module.dir}/classes"
+				jarfile="${plugin.file}"
+			/>
 		</sequential>
 	</macrodef>
 

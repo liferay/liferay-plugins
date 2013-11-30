@@ -18,20 +18,15 @@
 		</then>
 	</if>
 
-	<target name="deploy" depends="jar">
+	<target name="deploy">
+		<jar-macro
+			module.dir="."
+		/>
 	</target>
 
 	<target name="jar">
-		<call-macrodef-or-target
-			macrodef.name="compile"
+		<jar-macro
 			module.dir="."
-		/>
-
-		<mkdir dir="${sdk.dir}/dist" />
-
-		<jar
-			basedir="classes"
-			jarfile="${plugin.file}"
 		/>
 	</target>
 
@@ -43,6 +38,8 @@
 	</target>
 
 	<target name="war">
-		<antcall target="jar" />
+		<jar-macro
+			module.dir="."
+		/>
 	</target>
 </project>
