@@ -551,34 +551,34 @@ Error-Prone was automatically installed. Please rerun your task.
 			</if>
 
 			<if>
-				<isset property="plugin-package.required-deployment-contexts" />
+				<isset property="plugin.required.contexts" />
 				<then>
-					<for list="${plugin-package.required-deployment-contexts}" param="required.deployment.context">
+					<for list="${plugin.required.contexts}" param="plugin.required.context">
 						<sequential>
 							<if>
-								<available file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+								<available file="${sdk.dir}/hooks/@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar" />
 								<then>
 									<copy
-										file="${sdk.dir}/hooks/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+										file="${sdk.dir}/hooks/@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar"
 										todir="@{module.dir}/docroot/WEB-INF/lib"
 										overwrite="true"
 									/>
 								</then>
 								<elseif>
-									<available file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+									<available file="${sdk.dir}/portlets/@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar" />
 									<then>
 										<copy
-											file="${sdk.dir}/portlets/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+											file="${sdk.dir}/portlets/@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar"
 											todir="@{module.dir}/docroot/WEB-INF/lib"
 											overwrite="true"
 										/>
 									</then>
 								</elseif>
 								<elseif>
-									<available file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar" />
+									<available file="${sdk.dir}/webs/@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar" />
 									<then>
 										<copy
-											file="${sdk.dir}/webs/@{required.deployment.context}/docroot/WEB-INF/lib/@{required.deployment.context}-service.jar"
+											file="${sdk.dir}/webs/@{plugin.required.context}/docroot/WEB-INF/lib/@{plugin.required.context}-service.jar"
 											todir="@{module.dir}/docroot/WEB-INF/lib"
 											overwrite="true"
 										/>
