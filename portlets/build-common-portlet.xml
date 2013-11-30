@@ -11,15 +11,8 @@
 	</target>
 
 	<target name="war">
-		<call-macrodef-or-target
-			macrodef.name="compile"
+		<war-macro
 			module.dir="."
 		/>
-
-		<build-css
-			module.dir="."
-		/>
-
-		<antcall target="build-common-plugin.war" />
 	</target>
 </project>
