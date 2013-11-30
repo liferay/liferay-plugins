@@ -350,6 +350,38 @@ AUI.add(
 				);
 			},
 
+			getChildrenCalendarBookings: function(schedulerEvent, callback) {
+				var instance = this;
+
+				var endDate = instance.toUTC(schedulerEvent.get('endDate'));
+
+				var startDate = instance.toUTC(schedulerEvent.get('startDate'));
+
+				var statuses = [CalendarWorkflow.STATUS_APPROVED, CalendarWorkflow.STATUS_MAYBE, CalendarWorkflow.STATUS_PENDING];
+
+				instance.invokeService(
+					{
+						'/calendar-portlet/calendarbooking/search-count': {
+							calendarIds: STR_BLANK,
+							calendarResourceIds: STR_BLANK,
+							companyId: COMPANY_ID,
+							endTime: endDate.getTime(),
+							groupIds: STR_BLANK,
+							keywords: STR_BLANK,
+							parentCalendarBookingId: schedulerEvent.get('calendarBookingId'),
+							recurring: schedulerEvent.isRecurring(),
+							startTime: startDate.getTime(),
+							statuses: statuses.join(',')
+						}
+					},
+					{
+						success: function() {
+							callback(this.get('responseData'));
+						}
+					}
+				);
+			},
+
 			getDatesList: function(startDate, total) {
 				var instance = this;
 
@@ -1468,7 +1500,37 @@ AUI.add(
 									);
 								}
 								else if (schedulerEvent.isMasterBooking()) {
-									CalendarUtil.updateEvent(schedulerEvent);
+									CalendarUtil.getChildrenCalendarBookings(
+										schedulerEvent,
+										function(data) {
+											if (data > 1) {
+												var content = [
+													'<p class="calendar-portlet-confirmation-text">',
+													Liferay.Language.get('your-changes-will-affect-all-invited-resources-events'),
+													'</p>',
+													'<p class="calendar-portlet-confirmation-text">',
+													Liferay.Language.get('invited-resources-will-be-notified'),
+													'</p>'
+												].join(STR_BLANK);
+
+												Liferay.CalendarMessageUtil.confirm(
+													content,
+													Liferay.Language.get('continue'),
+													Liferay.Language.get('dont-change-the-event'),
+													function() {
+														CalendarUtil.updateEvent(schedulerEvent);
+
+														this.hide();
+													},
+													function() {
+														instance.load();
+
+														this.hide();
+													}
+												);
+											}
+										}
+									);
 								}
 								else {
 									var calendar = Liferay.CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
