@@ -912,10 +912,37 @@ Please find a solution that does not require portal-impl.jar.
 
 			<mkdir dir="${sdk.dir}/dist" />
 
-			<jar
-				basedir="@{module.dir}/classes"
-				jarfile="${plugin.file}"
-			/>
+			<loadfile property="jar-macro.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+			<if>
+				<contains string="${jar-macro.build.xml.content}" substring="import file=&quot;../../build-common-osgi-plugin.xml&quot;" />
+				<then>
+					<if>
+						<not>
+							<uptodate targetfile="${plugin.file}">
+								<srcfiles dir="${osgi.plugin.classes.dir}" includes="**/*.*" />
+							</uptodate>
+						</not>
+						<then>
+							<baseline-jar-macro
+								bndRootFile="${sdk.dir}/common.bnd"
+								file="@{module.dir}/bnd.bnd"
+								outputPath="@{module.dir}"
+								rootProjectDir="${sdk.dir}"
+								sourcePath="@{module.dir}"
+							/>
+						</then>
+					</if>
+				</then>
+				<else>
+					<jar
+						basedir="@{module.dir}/classes"
+						jarfile="${plugin.file}"
+					/>
+				</else>
+			</if>
+
+			<var name="jar-macro.build.xml.content" unset="true" />
 		</sequential>
 	</macrodef>
 

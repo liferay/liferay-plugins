@@ -30,7 +30,13 @@
 
 	<var name="plugin-lib.classpath.path" unset="true" />
 
-	<target name="deploy" depends="jar,deploy-dependencies">
+	<target name="deploy">
+		<jar-macro
+			module.dir="."
+		/>
+
+		<antcall target="deploy-dependencies" />
+
 		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 	</target>
 
@@ -41,27 +47,9 @@
 	</target>
 
 	<target name="jar">
-		<call-macrodef-or-target
-			macrodef.name="compile"
+		<jar-macro
 			module.dir="."
 		/>
-
-		<if>
-			<not>
-				<uptodate targetfile="${plugin.file}">
-					<srcfiles dir="${osgi.plugin.classes.dir}" includes="**/*.*" />
-				</uptodate>
-			</not>
-			<then>
-				<baseline-jar-macro
-					bndRootFile="${sdk.dir}/common.bnd"
-					file="bnd.bnd"
-					outputPath="."
-					rootProjectDir="${sdk.dir}"
-					sourcePath="."
-				/>
-			</then>
-		</if>
 	</target>
 
 	<target name="manifest">
@@ -119,6 +107,8 @@
 	</target>
 
 	<target name="war">
-		<antcall target="jar" />
+		<jar-macro
+			module.dir="."
+		/>
 	</target>
 </project>
