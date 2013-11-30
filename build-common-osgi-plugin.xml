@@ -30,57 +30,6 @@
 
 	<var name="plugin-lib.classpath.path" unset="true" />
 
-	<taskdef classpathref="portal.classpath" resource="aQute/bnd/ant/taskdef.properties" />
-
-	<macrodef name="manifest-helper">
-		<attribute name="analyze" default="false" />
-
-		<sequential>
-			<taskdef
-				classname="com.liferay.util.ant.ManifestHelperTask"
-				classpathref="plugin.classpath"
-				name="liferay-manifest-helper"
-			/>
-
-			<liferay-manifest-helper
-				analyze="@{analyze}"
-				classpathref="plugin.classpath"
-				projectDirPropertyName="sdk.dir"
-			/>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="baseline-jar-macro">
-		<attribute name="bndRootFile" />
-		<attribute name="file" />
-		<attribute name="outputPath" />
-		<attribute name="rootProjectDir" />
-		<attribute name="sourcePath" />
-
-		<sequential>
-			<taskdef
-				classname="com.liferay.util.ant.bnd.BaselineJarTask"
-				classpathref="plugin.classpath"
-				name="baseline-jar"
-			/>
-
-			<manifest-helper />
-
-			<bndexpand propertyfile="@{bndRootFile}" />
-
-			<baseline-jar
-				bndRootFile="@{bndRootFile}"
-				file="@{file}"
-				outputPath="@{outputPath}"
-				sourcePath="@{sourcePath}"
-			>
-				<classpath>
-					<pathelement location="@{sourcePath}/classes" />
-				</classpath>
-			</baseline-jar>
-		</sequential>
-	</macrodef>
-
 	<target name="deploy" depends="jar,deploy-dependencies">
 		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 	</target>
