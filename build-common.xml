@@ -1382,6 +1382,10 @@ Please find a solution that does not require portal-impl.jar.
 					</then>
 				</elseif>
 				<else>
+					<call-macrodef-or-target
+						macrodef.name="jar-macro"
+						module.dir="@{module.dir}"
+					/>
 				</else>
 			</if>
 		</sequential>
