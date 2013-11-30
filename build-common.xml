@@ -331,114 +331,6 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="compile-import-shared">
-		<attribute name="module.dir" />
-
-		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
-			<loadfile property="compile-import-shared.build.xml.content" srcFile="@{module.dir}/build.xml" />
-
-			<script classpathref="lib.classpath" language="beanshell">
-				String buildXmlContent = project.getProperty("compile-import-shared.build.xml.content");
-
-				int x = buildXmlContent.indexOf("property name=\"import.compat.shared\" value=\"");
-
-				if (x != -1) {
-					x = buildXmlContent.indexOf("value=\"", x) + 7;
-
-					int y = buildXmlContent.indexOf("\"", x);
-
-					project.setProperty("compile-import-shared.import.compat.shared", buildXmlContent.substring(x, y));
-				}
-
-				x = buildXmlContent.indexOf("property name=\"import.shared\" value=\"");
-
-				if (x != -1) {
-					x = buildXmlContent.indexOf("value=\"", x) + 7;
-
-					int y = buildXmlContent.indexOf("\"", x);
-
-					project.setProperty("compile-import-shared.import.shared", buildXmlContent.substring(x, y));
-				}
-			</script>
-
-			<if>
-				<not>
-					<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
-				</not>
-				<then>
-					<if>
-						<or>
-							<not>
-								<isset property="compile-import-shared.import.compat.shared" />
-							</not>
-							<equals arg1="${compile-import-shared.import.compat.shared}" arg2="true" />
-						</or>
-						<then>
-							<if>
-								<isset property="compile-import-shared.import.shared" />
-								<then>
-									<var name="compile-import-shared.import.shared" value="portal-compat-shared,${compile-import-shared.import.shared}" />
-								</then>
-								<else>
-									<var name="compile-import-shared.import.shared" value="portal-compat-shared" />
-								</else>
-							</if>
-						</then>
-					</if>
-				</then>
-			</if>
-
-			<if>
-				<isset property="compile-import-shared.import.shared" />
-				<then>
-					<var name="import.shared.list" value="${compile-import-shared.import.shared}" />
-
-					<var name="compile-import-shared.import.shared" unset="true" />
-
-					<for list="${import.shared.list}" param="import.shared.current">
-						<sequential>
-							<if>
-								<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
-								<then>
-									<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
-
-									<for param="import.shared.full.path">
-										<path>
-											<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.*.jar" />
-										</path>
-										<sequential>
-											<copy
-												file="@{import.shared.full.path}"
-												tofile="${plugin.lib.dir}/@{import.shared.current}.jar"
-											/>
-										</sequential>
-									</for>
-
-									<if>
-										<available file="${sdk.dir}/shared/@{import.shared.current}/lib" />
-										<then>
-											<copy todir="${plugin.lib.dir}">
-												<fileset dir="${sdk.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
-											</copy>
-										</then>
-									</if>
-								</then>
-							</if>
-						</sequential>
-					</for>
-				</then>
-			</if>
-
-			<var name="compile-import-shared.build.xml.content" unset="true" />
-			<var name="compile-import-shared.import.compat.shared" unset="true" />
-			<var name="compile-import-shared.import.shared" unset="true" />
-		</sequential>
-	</macrodef>
-
 	<macrodef name="compile">
 		<attribute name="module.dir" />
 
@@ -790,6 +682,114 @@ Please find a solution that does not require portal-impl.jar.
 					/>
 				</else>
 			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="compile-import-shared">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<loadfile property="compile-import-shared.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+			<script classpathref="lib.classpath" language="beanshell">
+				String buildXmlContent = project.getProperty("compile-import-shared.build.xml.content");
+
+				int x = buildXmlContent.indexOf("property name=\"import.compat.shared\" value=\"");
+
+				if (x != -1) {
+					x = buildXmlContent.indexOf("value=\"", x) + 7;
+
+					int y = buildXmlContent.indexOf("\"", x);
+
+					project.setProperty("compile-import-shared.import.compat.shared", buildXmlContent.substring(x, y));
+				}
+
+				x = buildXmlContent.indexOf("property name=\"import.shared\" value=\"");
+
+				if (x != -1) {
+					x = buildXmlContent.indexOf("value=\"", x) + 7;
+
+					int y = buildXmlContent.indexOf("\"", x);
+
+					project.setProperty("compile-import-shared.import.shared", buildXmlContent.substring(x, y));
+				}
+			</script>
+
+			<if>
+				<not>
+					<equals arg1="${plugin.name}" arg2="portal-compat-shared" />
+				</not>
+				<then>
+					<if>
+						<or>
+							<not>
+								<isset property="compile-import-shared.import.compat.shared" />
+							</not>
+							<equals arg1="${compile-import-shared.import.compat.shared}" arg2="true" />
+						</or>
+						<then>
+							<if>
+								<isset property="compile-import-shared.import.shared" />
+								<then>
+									<var name="compile-import-shared.import.shared" value="portal-compat-shared,${compile-import-shared.import.shared}" />
+								</then>
+								<else>
+									<var name="compile-import-shared.import.shared" value="portal-compat-shared" />
+								</else>
+							</if>
+						</then>
+					</if>
+				</then>
+			</if>
+
+			<if>
+				<isset property="compile-import-shared.import.shared" />
+				<then>
+					<var name="import.shared.list" value="${compile-import-shared.import.shared}" />
+
+					<var name="compile-import-shared.import.shared" unset="true" />
+
+					<for list="${import.shared.list}" param="import.shared.current">
+						<sequential>
+							<if>
+								<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
+								<then>
+									<ant dir="${sdk.dir}/shared/@{import.shared.current}" target="jar" inheritAll="false" />
+
+									<for param="import.shared.full.path">
+										<path>
+											<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.*.jar" />
+										</path>
+										<sequential>
+											<copy
+												file="@{import.shared.full.path}"
+												tofile="${plugin.lib.dir}/@{import.shared.current}.jar"
+											/>
+										</sequential>
+									</for>
+
+									<if>
+										<available file="${sdk.dir}/shared/@{import.shared.current}/lib" />
+										<then>
+											<copy todir="${plugin.lib.dir}">
+												<fileset dir="${sdk.dir}/shared/@{import.shared.current}/lib" includes="*.jar" />
+											</copy>
+										</then>
+									</if>
+								</then>
+							</if>
+						</sequential>
+					</for>
+				</then>
+			</if>
+
+			<var name="compile-import-shared.build.xml.content" unset="true" />
+			<var name="compile-import-shared.import.compat.shared" unset="true" />
+			<var name="compile-import-shared.import.shared" unset="true" />
 		</sequential>
 	</macrodef>
 
