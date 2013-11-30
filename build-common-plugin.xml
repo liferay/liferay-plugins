@@ -464,11 +464,21 @@
 		</ant>
 	</target>
 
-	<target name="deploy" depends="war">
+	<target name="deploy">
+		<call-macrodef-or-target
+			macrodef.name="war-macro"
+			module.dir="."
+		/>
+
 		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 	</target>
 
-	<target name="direct-deploy" depends="war">
+	<target name="direct-deploy">
+		<call-macrodef-or-target
+			macrodef.name="war-macro"
+			module.dir="."
+		/>
+
 		<if>
 			<antelope:endswith string="${plugin.name}" with="-ext" />
 			<then>
