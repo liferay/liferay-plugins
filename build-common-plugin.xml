@@ -531,6 +531,7 @@
 		<delete file="${plugin.src.file}" />
 
 		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="docroot" includes="**/*.processed" />
 			<fileset dir="docroot" includes="**/.sass-cache/**" />
 			<fileset dir="docroot" includes="**/.sprite.png" />
 			<fileset dir="docroot" includes="**/.sprite.properties" />
