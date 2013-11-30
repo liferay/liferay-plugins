@@ -61,13 +61,10 @@
 	</target>
 
 	<target name="jar">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="jar-module" />
-		</antcall>
-	</target>
-
-	<target name="jar-module">
-		<ant dir="${module.name}" target="jar" inheritAll="false" />
+		<loop-modules
+			loop.modules.cmd="jar-macro"
+			loop.modules.dir="."
+		/>
 	</target>
 
 	<target name="loop-modules">
