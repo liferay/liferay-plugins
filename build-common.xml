@@ -1371,7 +1371,7 @@ Please find a solution that does not require portal-impl.jar.
 				</or>
 				<then>
 					<war-web
-						module.dir="."
+						module.dir="@{module.dir}"
 					/>
 				</then>
 				<elseif>
@@ -1379,15 +1379,15 @@ Please find a solution that does not require portal-impl.jar.
 					<then>
 						<call-macrodef-or-target
 							macrodef.name="compile"
-							module.dir="."
+							module.dir="@{module.dir}"
 						/>
 
 						<build-css
-							module.dir="."
+							module.dir="@{module.dir}"
 						/>
 
 						<war-web
-							module.dir="."
+							module.dir="@{module.dir}"
 						/>
 					</then>
 				</elseif>
@@ -1396,16 +1396,16 @@ Please find a solution that does not require portal-impl.jar.
 					<then>
 						<call-macrodef-or-target
 							macrodef.name="compile"
-							module.dir="."
+							module.dir="@{module.dir}"
 						/>
 
 						<build-css
-							module.dir="."
+							module.dir="@{module.dir}"
 						/>
 
 						<if>
 							<not>
-								<available file="docroot/images/screenshot.png" />
+								<available file="@{module.dir}/docroot/images/screenshot.png" />
 							</not>
 							<then>
 								<echo>screenshot.png does not exist.</echo>
@@ -1414,7 +1414,7 @@ Please find a solution that does not require portal-impl.jar.
 
 						<if>
 							<not>
-								<available file="docroot/images/thumbnail.png" />
+								<available file="@{module.dir}/docroot/images/thumbnail.png" />
 							</not>
 							<then>
 								<echo>thumbnail.png does not exist.</echo>
@@ -1426,7 +1426,7 @@ Please find a solution that does not require portal-impl.jar.
 						<delete file="${plugin.file}" />
 
 						<zip
-							basedir="docroot"
+							basedir="@{module.dir}/docroot"
 							destfile="${plugin.file}"
 							excludes="_diffs.*,_diffs/**,${plugins.war.excludes}"
 						/>
@@ -1452,29 +1452,29 @@ Please find a solution that does not require portal-impl.jar.
 
 			<call-macrodef-or-target
 				macrodef.name="compile"
-				module.dir="."
+				module.dir="@{module.dir}"
 			/>
 
 			<mkdir dir="${sdk.dir}/dist" />
 
 			<if>
-				<available file="tmp" />
+				<available file="@{module.dir}/tmp" />
 				<then>
-					<property name="docroot.dir" value="tmp" />
+					<property name="docroot.dir" value="@{module.dir}/tmp" />
 				</then>
 				<else>
-					<property name="docroot.dir" value="docroot" />
+					<property name="docroot.dir" value="@{module.dir}/docroot" />
 				</else>
 			</if>
 
 			<delete file="${plugin.file}" />
 
 			<clean-portal-dependencies
-				module.dir="."
+				module.dir="@{module.dir}"
 			/>
 
 			<if>
-				<available file="docroot/WEB-INF/liferay-hook.xml.processed" />
+				<available file="@{module.dir}/docroot/WEB-INF/liferay-hook.xml.processed" />
 				<then>
 					<property name="liferay-hook.xml.excludes" value="WEB-INF/liferay-hook.xml*" />
 				</then>
