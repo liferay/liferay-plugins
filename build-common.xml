@@ -960,6 +960,19 @@ Please find a solution that does not require portal-impl.jar.
 								</then>
 							</if>
 
+							<loadfile property="jar-macro.bnd.bnd.content" srcFile="@{module.dir}/bnd.bnd" />
+
+							<if>
+								<not>
+									<contains string="${jar-macro.bnd.bnd.content}" substring="-output=" />
+								</not>
+								<then>
+									<echo append="true" file="@{module.dir}/bnd.bnd">${line.separator}${line.separator}-output=${plugin.name}.jar</echo>
+								</then>
+							</if>
+
+							<var name="jar-macro.bnd.bnd.content" unset="true" />
+
 							<baseline-jar-macro
 								bndRootFile="${sdk.dir}/common.bnd"
 								file="@{module.dir}/bnd.bnd"
