@@ -353,7 +353,8 @@ Error-Prone was automatically installed. Please rerun your task.
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
 					<then>
-						<merge
+						<call-macrodef-or-target
+							macrodef.name="merge"
 							module.dir="@{module.dir}"
 						/>
 					</then>
