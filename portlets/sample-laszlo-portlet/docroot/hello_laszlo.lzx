@@ -1,9 +1,0 @@
-<canvas debug="false">
-	<view bgcolor="#FFFFFF" height="100%" width="100%">
-		<view width="30" height="30" x="${200 - (this.sqrtx * this.sqrtx)}">
-			<attribute name="sqrtx" value="-15" />
-			<animator attribute="sqrtx" from ="-15" to="15" duration="3000" repeat="Infinity" />
-			<text><font color="#000000">Hello Laszlo!</font></text>
-		</view>
-	</view>
-</canvas>
