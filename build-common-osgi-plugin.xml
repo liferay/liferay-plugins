@@ -121,7 +121,7 @@
 					bndRootFile="${sdk.dir}/common.bnd"
 					file="bnd.bnd"
 					outputPath="."
-					rootProjectDir="${project.dir}"
+					rootProjectDir="${sdk.dir}"
 					sourcePath="."
 				/>
 			</then>
