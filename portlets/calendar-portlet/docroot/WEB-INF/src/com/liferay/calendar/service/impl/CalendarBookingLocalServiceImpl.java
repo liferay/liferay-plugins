@@ -49,7 +49,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.sanitizer.Sanitizer;
 import com.liferay.portal.kernel.sanitizer.SanitizerUtil;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -69,9 +68,11 @@ import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Eduardo Lundgren
@@ -992,16 +993,16 @@ public class CalendarBookingLocalServiceImpl
 		List<CalendarBooking> childCalendarBookings =
 			calendarBookingPersistence.findByParentCalendarBookingId(
 				calendarBooking.getCalendarBookingId());
+		Set<Long> existingCalendarBookingIds = new HashSet<Long>(
+			childCalendarIds.length);
 
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
-			if (childCalendarBooking.isMasterBooking() ||
-				ArrayUtil.contains(
-					childCalendarIds, childCalendarBooking.getCalendarId())) {
-
-				continue;
+			if (!childCalendarBooking.isMasterBooking()) {
+				deleteCalendarBooking(
+					childCalendarBooking.getCalendarBookingId());
+				existingCalendarBookingIds.add(
+					childCalendarBooking.getCalendarId());
 			}
-
-			deleteCalendarBooking(childCalendarBooking.getCalendarBookingId());
 		}
 
 		for (long calendarId : childCalendarIds) {
@@ -1029,9 +1030,18 @@ public class CalendarBookingLocalServiceImpl
 				NotificationType notificationType = NotificationType.parse(
 					PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 
+				NotificationTemplateType notificationTemplateType =
+						NotificationTemplateType.INVITE;
+
+				if (existingCalendarBookingIds.contains(
+						childCalendarBooking.getCalendarId())) {
+
+					notificationTemplateType = NotificationTemplateType.UPDATE;
+				}
+
 				NotificationUtil.notifyCalendarBookingRecipients(
 					childCalendarBooking, notificationType,
-					NotificationTemplateType.INVITE, serviceContext);
+					notificationTemplateType, serviceContext);
 			}
 			catch (Exception e) {
 				if (_log.isWarnEnabled()) {
