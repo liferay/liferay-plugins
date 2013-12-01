@@ -960,6 +960,16 @@ Please find a solution that does not require portal-impl.jar.
 						macrodef.name="jar-macro"
 						module.dir="."
 					/>
+
+					<loadfile property="deploy.build.xml.content" srcFile="@{module.dir}/build.xml" />
+
+					<if>
+						<contains string="${deploy.build.xml.content}" substring="import file=&quot;../../build-common-osgi-plugin.xml&quot;" />
+						<then>
+						</then>
+					</if>
+
+					<var name="deploy.build.xml.content" unset="true" />
 				</else>
 			</if>
 		</sequential>
