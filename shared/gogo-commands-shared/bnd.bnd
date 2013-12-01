@@ -8,3 +8,5 @@ Include-Resource: classes
 Private-Package:\
 	com.liferay.gogo.commands.user.internal.*
 Service-Component: *
+
+-output=gogo-commands-shared.jar

@@ -3,3 +3,5 @@ Bundle-Name: Log Bridge
 Import-Package: *
 Include-Resource: classes
 Private-Package: *
+
+-output=log-bridge-shared.jar

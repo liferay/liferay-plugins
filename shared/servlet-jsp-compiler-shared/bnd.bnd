@@ -42,3 +42,5 @@ Include-Resource: \
 	lib/${original.lib.name}.jar=lib/${original.lib.name}.jar,\
 	META-INF/LPS-35513.patch=patches/LPS-35513.patch
 Private-Package: com.liferay.servletjspcompiler.compiler.internal
+
+-output=servlet-jsp-compiler-shared.jar
