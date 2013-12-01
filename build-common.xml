@@ -948,6 +948,12 @@ Please find a solution that does not require portal-impl.jar.
 					<antelope:endswith string="${plugin.name}" with="-web" />
 				</or>
 				<then>
+					<call-macrodef-or-target
+						macrodef.name="war-macro"
+						module.dir="."
+					/>
+
+					<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 				</then>
 				<else>
 				</else>
