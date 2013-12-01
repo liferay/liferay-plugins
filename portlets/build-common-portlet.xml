@@ -9,10 +9,4 @@
 			module.dir="."
 		/>
 	</target>
-
-	<target name="war">
-		<war-macro
-			module.dir="."
-		/>
-	</target>
 </project>
