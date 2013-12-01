@@ -966,6 +966,11 @@ Please find a solution that does not require portal-impl.jar.
 					<if>
 						<contains string="${deploy.build.xml.content}" substring="import file=&quot;../../build-common-osgi-plugin.xml&quot;" />
 						<then>
+							<copy failonerror="false" todir="${auto.deploy.dir}">
+								<fileset dir="lib" includes="${osgi.dependencies}" />
+							</copy>
+
+							<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 						</then>
 					</if>
 
