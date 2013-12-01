@@ -938,6 +938,20 @@ Please find a solution that does not require portal-impl.jar.
 			<set-module-properties
 				module.dir="@{module.dir}"
 			/>
+
+			<if>
+				<or>
+					<antelope:endswith string="${plugin.name}" with="-hook" />
+					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+					<antelope:endswith string="${plugin.name}" with="-portlet" />
+					<antelope:endswith string="${plugin.name}" with="-theme" />
+					<antelope:endswith string="${plugin.name}" with="-web" />
+				</or>
+				<then>
+				</then>
+				<else>
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
