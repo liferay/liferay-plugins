@@ -472,12 +472,9 @@
 	</target>
 
 	<target name="deploy">
-		<call-macrodef-or-target
-			macrodef.name="war-macro"
+		<deploy
 			module.dir="."
 		/>
-
-		<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 	</target>
 
 	<target name="direct-deploy">
