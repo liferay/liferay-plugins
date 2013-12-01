@@ -36,10 +36,4 @@
 			<param name="javac.srcdir" value="src" />
 		</antcall>
 	</target>
-
-	<target name="war">
-		<jar-macro
-			module.dir="."
-		/>
-	</target>
 </project>
