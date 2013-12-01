@@ -956,6 +956,9 @@ Please find a solution that does not require portal-impl.jar.
 					<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 				</then>
 				<else>
+					<jar-macro
+						module.dir="."
+					/>
 				</else>
 			</if>
 		</sequential>

@@ -18,12 +18,6 @@
 		</then>
 	</if>
 
-	<target name="deploy">
-		<jar-macro
-			module.dir="."
-		/>
-	</target>
-
 	<target name="jar">
 		<jar-macro
 			module.dir="."
