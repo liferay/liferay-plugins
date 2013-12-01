@@ -49,3 +49,5 @@ Include-Resource: \
 	classes,\
 	lib/${original.lib.name}.jar=lib/${original.lib.name}.jar,\
 	META-INF/patches/LPS-35466.patch=patches/LPS-35466.patch
+
+-output=servlet-jstl-shared.jar
