@@ -62,12 +62,14 @@
 	</target>
 
 	<target name="deploy">
-		<ant dir="hooks" target="deploy" inheritAll="false" />
-		<ant dir="layouttpl" target="deploy" inheritAll="false" />
-		<ant dir="portlets" target="deploy" inheritAll="false" />
-		<ant dir="shared" target="deploy" inheritAll="false" />
-		<ant dir="themes" target="deploy" inheritAll="false" />
-		<ant dir="webs" target="deploy" inheritAll="false" />
+		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="deploy"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
 	</target>
 
 	<target name="direct-deploy">

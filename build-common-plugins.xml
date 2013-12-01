@@ -51,13 +51,10 @@
 	</target>
 
 	<target name="deploy">
-		<antcall target="loop-modules">
-			<param name="loop.modules.cmd" value="deploy-module" />
-		</antcall>
-	</target>
-
-	<target name="deploy-module">
-		<ant dir="${module.name}" target="deploy" inheritAll="false" />
+		<loop-modules
+			loop.modules.cmd="deploy"
+			loop.modules.dir="."
+		/>
 	</target>
 
 	<target name="jar">
