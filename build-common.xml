@@ -950,7 +950,7 @@ Please find a solution that does not require portal-impl.jar.
 				<then>
 					<call-macrodef-or-target
 						macrodef.name="war-macro"
-						module.dir="."
+						module.dir="@{module.dir}"
 					/>
 
 					<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
@@ -958,7 +958,7 @@ Please find a solution that does not require portal-impl.jar.
 				<else>
 					<call-macrodef-or-target
 						macrodef.name="jar-macro"
-						module.dir="."
+						module.dir="@{module.dir}"
 					/>
 
 					<loadfile property="deploy.build.xml.content" srcFile="@{module.dir}/build.xml" />
@@ -967,7 +967,7 @@ Please find a solution that does not require portal-impl.jar.
 						<contains string="${deploy.build.xml.content}" substring="import file=&quot;../../build-common-osgi-plugin.xml&quot;" />
 						<then>
 							<copy failonerror="false" todir="${auto.deploy.dir}">
-								<fileset dir="lib" includes="${osgi.dependencies}" />
+								<fileset dir="@{module.dir}/lib" includes="${osgi.dependencies}" />
 							</copy>
 
 							<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
