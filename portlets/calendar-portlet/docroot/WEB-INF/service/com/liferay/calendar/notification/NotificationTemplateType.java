@@ -33,6 +33,9 @@ public enum NotificationTemplateType {
 		else if (REMINDER.getValue().equals(value)) {
 			return REMINDER;
 		}
+		else if (UPDATE.getValue().equals(value)) {
+			return UPDATE;
+		}
 
 		throw new IllegalArgumentException("Invalid value " + value);
 	}

@@ -993,6 +993,7 @@ public class CalendarBookingLocalServiceImpl
 		List<CalendarBooking> childCalendarBookings =
 			calendarBookingPersistence.findByParentCalendarBookingId(
 				calendarBooking.getCalendarBookingId());
+
 		Set<Long> existingCalendarBookingIds = new HashSet<Long>(
 			childCalendarIds.length);
 
@@ -1002,6 +1003,7 @@ public class CalendarBookingLocalServiceImpl
 
 				deleteCalendarBooking(
 					childCalendarBooking.getCalendarBookingId());
+
 				existingCalendarBookingIds.add(
 					childCalendarBooking.getCalendarId());
 			}
