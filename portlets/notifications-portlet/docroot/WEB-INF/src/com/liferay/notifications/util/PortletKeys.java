@@ -19,6 +19,9 @@ package com.liferay.notifications.util;
  */
 public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
+	public static final String CONTACTS_CENTER =
+		com.liferay.contacts.util.PortletKeys.CONTACTS_CENTER;
+
 	public static final String DOCKBAR_NOTIFICATIONS =
 		"2_WAR_notificationsportlet";
 
@@ -26,6 +29,9 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
 	public static final String SO_ANNOUNCEMENTS =
 		com.liferay.so.announcements.util.PortletKeys.SO_ANNOUNCEMENTS;
+
+	public static final String SO_INVITE_MEMBERS =
+		com.liferay.so.util.PortletKeys.SO_INVITE_MEMBERS;
 
 	public static final String SO_NOTIFICATION =
 		com.liferay.so.util.PortletKeys.SO_NOTIFICATION;

@@ -4,5 +4,5 @@
 <project name="notifications-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
 
-	<property name="import.shared" value="so-announcements-shared,so-shared" />
+	<property name="import.shared" value="contacts-shared,so-announcements-shared,so-shared" />
 </project>
