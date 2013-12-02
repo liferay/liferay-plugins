@@ -344,7 +344,7 @@ public class ResourceImporter extends FileSystemImporter {
 	}
 
 	@Override
-	protected void addPageTemplate(String dirName) throws Exception {
+	protected void addLayoutTemplate(String dirName) throws Exception {
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			resourcesDir.concat(dirName));
 
@@ -363,7 +363,7 @@ public class ResourceImporter extends FileSystemImporter {
 
 			URLConnection urlConnection = url.openConnection();
 
-			addPageTemplate(urlConnection.getInputStream());
+			addLayoutTemplate(urlConnection.getInputStream());
 		}
 	}
 

@@ -798,7 +798,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 	}
 
-	protected void addPageTemplate(InputStream inputStream) throws Exception {
+	protected void addLayoutTemplate(InputStream inputStream) throws Exception {
 		String content = StringUtil.read(inputStream);
 
 		if (Validator.isNull(content)) {
@@ -807,10 +807,10 @@ public class FileSystemImporter extends BaseImporter {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(content);
 
-		JSONObject pageTemplateJSONObject = jsonObject.getJSONObject(
-			"pageTemplate");
+		JSONObject layoutTemplateJSONObject = jsonObject.getJSONObject(
+			"layoutTemplate");
 
-		String name = pageTemplateJSONObject.getString("name");
+		String name = layoutTemplateJSONObject.getString("name");
 
 		Map<Locale, String> nameMap = getMap(name);
 
@@ -818,7 +818,7 @@ public class FileSystemImporter extends BaseImporter {
 			LayoutPrototypeLocalServiceUtil.addLayoutPrototype(
 				userId, companyId, nameMap, name, true, serviceContext);
 
-		JSONArray columnsJSONArray = pageTemplateJSONObject.getJSONArray(
+		JSONArray columnsJSONArray = layoutTemplateJSONObject.getJSONArray(
 			"columns");
 
 		Layout layout = layoutPrototype.getLayout();
@@ -831,17 +831,19 @@ public class FileSystemImporter extends BaseImporter {
 			layout.getTypeSettings());
 	}
 
-	protected void addPageTemplate(String dirName) throws Exception {
-		File pageTemplatesDir = new File(_resourcesDir, dirName);
+	protected void addLayoutTemplate(String dirName) throws Exception {
+		File layoutTemplatesDir = new File(_resourcesDir, dirName);
 
-		if (!pageTemplatesDir.isDirectory() || !pageTemplatesDir.canRead()) {
+		if (!layoutTemplatesDir.isDirectory() ||
+			!layoutTemplatesDir.canRead()) {
+
 			return;
 		}
 
-		File[] files = listFiles(pageTemplatesDir);
+		File[] files = listFiles(layoutTemplatesDir);
 
 		for (File file : files) {
-			addPageTemplate(getInputStream(file));
+			addLayoutTemplate(getInputStream(file));
 		}
 	}
 
@@ -1073,7 +1075,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void setupAssets(String fileName) throws Exception {
-		if (!isGlobalGroup()) {
+		if (!isCompanyGroup()) {
 			List<AssetTag> assetTags = AssetTagLocalServiceUtil.getGroupTags(
 				groupId);
 
@@ -1111,7 +1113,7 @@ public class FileSystemImporter extends BaseImporter {
 		addJournalArticles(
 			StringPool.BLANK, StringPool.BLANK, _JOURNAL_ARTICLES_DIR_NAME);
 
-		addPageTemplate(_PAGE_TEMPLATE_DIR_NAME);
+		addLayoutTemplate(_LAYOUT_TEMPLATE_DIR_NAME);
 	}
 
 	protected void setupSettings(String fileName) throws Exception {
@@ -1257,7 +1259,7 @@ public class FileSystemImporter extends BaseImporter {
 	private static final String _JOURNAL_DDM_TEMPLATES_DIR_NAME =
 		"/journal/templates/";
 
-	private static final String _PAGE_TEMPLATE_DIR_NAME = "/templates/page";
+	private static final String _LAYOUT_TEMPLATE_DIR_NAME = "/templates/page";
 
 	private Map<String, JSONObject> _assetJSONObjectMap =
 		new HashMap<String, JSONObject>();
