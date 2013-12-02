@@ -68,8 +68,6 @@ public class ResourceImporter extends FileSystemImporter {
 		}
 
 		for (String resourcePath : resourcePaths) {
-			File file = new File(resourcePath);
-
 			URL url = servletContext.getResource(resourcePath);
 
 			URLConnection urlConnection = url.openConnection();
@@ -79,6 +77,8 @@ public class ResourceImporter extends FileSystemImporter {
 			if (Validator.isNull(script)) {
 				continue;
 			}
+
+			File file = new File(resourcePath);
 
 			addApplicationDisplayTemplate(script, file, classNameId);
 		}
@@ -92,8 +92,6 @@ public class ResourceImporter extends FileSystemImporter {
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
 			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
-
-		long ddmStructureId = ddmStructure.getStructureId();
 
 		StringBundler sb = new StringBundler(6);
 
@@ -110,8 +108,6 @@ public class ResourceImporter extends FileSystemImporter {
 		}
 
 		for (String resourcePath : resourcePaths) {
-			String language = getDDMTemplateLanguage(resourcePath);
-
 			URL url = servletContext.getResource(resourcePath);
 
 			URLConnection urlConnection = url.openConnection();
@@ -123,9 +119,10 @@ public class ResourceImporter extends FileSystemImporter {
 			}
 
 			addDDMTemplate(
-				groupId, ddmStructureId, FileUtil.stripExtension(resourcePath),
-				language, script, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
-				StringPool.BLANK);
+				groupId, ddmStructure.getStructureId(),
+				FileUtil.stripExtension(resourcePath),
+				getDDMTemplateLanguage(resourcePath), script,
+				DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, StringPool.BLANK);
 		}
 	}
 
@@ -137,8 +134,6 @@ public class ResourceImporter extends FileSystemImporter {
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
 			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
-
-		long ddmStructureId = ddmStructure.getStructureId();
 
 		StringBundler sb = new StringBundler(6);
 
@@ -166,8 +161,8 @@ public class ResourceImporter extends FileSystemImporter {
 			}
 
 			addDDMTemplate(
-				groupId, ddmStructureId, resourcePath, "xsd", script,
-				DDMTemplateConstants.TEMPLATE_TYPE_FORM,
+				groupId, ddmStructure.getStructureId(), resourcePath, "xsd",
+				script, DDMTemplateConstants.TEMPLATE_TYPE_FORM,
 				DDMTemplateConstants.TEMPLATE_MODE_CREATE);
 		}
 	}
@@ -184,13 +179,13 @@ public class ResourceImporter extends FileSystemImporter {
 		for (String resourcePath : resourcePaths) {
 			File file = new File(resourcePath);
 
-			String fileName = FileUtil.stripExtension(file.getName());
-
 			URL url = servletContext.getResource(resourcePath);
 
 			URLConnection urlConnection = url.openConnection();
 
-			addDDMStructures(fileName, urlConnection.getInputStream());
+			addDDMStructures(
+				FileUtil.stripExtension(file.getName()),
+				urlConnection.getInputStream());
 		}
 	}
 

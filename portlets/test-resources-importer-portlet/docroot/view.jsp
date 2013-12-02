@@ -168,37 +168,6 @@ for (String importer : importers) {
 		JournalArticle#isTemplateDriven=<%= _assertTrue(journalArticle.isTemplateDriven()) %><br />
 		JournalArticleLocalService#getArticlesCount=<%= _assertEquals(5, JournalArticleLocalServiceUtil.getArticlesCount(groupId)) %><br />
 
-		<%
-		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(groupId, PortalUtil.getClassNameId(JournalArticle.class), "CHILD-STRUCTURE-1");
-
-		long parentStructureId = ddmStructure.getParentStructureId();
-
-		String parentStructureKey = StringPool.BLANK;
-
-		DDMStructure parentDDMStructure = DDMStructureLocalServiceUtil.fetchStructure(parentStructureId);
-
-		if (parentDDMStructure != null) {
-			parentStructureKey = parentDDMStructure.getStructureKey();
-		}
-		%>
-
-		DDMStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE", parentStructureKey) %><br />
-		DDMStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(5, DDMStructureLocalServiceUtil.getStructuresCount(groupId)) %><br />
-
-		<%
-		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1");
-
-		DDMStructure ddmTemplateStructure = DDMStructureLocalServiceUtil.fetchDDMStructure(ddmTemplate.getClassPK());
-
-		String ddmStructureKey = StringPool.BLANK;
-
-		if (ddmTemplateStructure != null) {
-			ddmStructureKey = ddmTemplateStructure.getStructureKey();
-		}
-		%>
-
-		DDMTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1", ddmStructureKey) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(16, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId)) %><br />
 	</p>
 
 	<p>
@@ -223,61 +192,48 @@ for (String importer : importers) {
 	<p>
 
 		<%
-		int assetCategoryTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetCategory.class));
+		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(groupId, PortalUtil.getClassNameId(JournalArticle.class), "CHILD-STRUCTURE-1");
+
+		long parentStructureId = ddmStructure.getParentStructureId();
+
+		String parentStructureKey = StringPool.BLANK;
+
+		DDMStructure parentDDMStructure = DDMStructureLocalServiceUtil.fetchStructure(parentStructureId);
+
+		if (parentDDMStructure != null) {
+			parentStructureKey = parentDDMStructure.getStructureKey();
+		}
 		%>
 
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetCategory)=<%= _assertEquals(1, assetCategoryTemplatesCount) %><br />
-
-		<%
-		int assetEntryTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetEntry.class));
-		%>
-
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetEntry)=<%= _assertEquals(2, assetEntryTemplatesCount) %><br />
-
-		<%
-		int assetTagTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetTag.class));
-		%>
-
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetTag)=<%= _assertEquals(1, assetTagTemplatesCount) %><br />
-
-		<%
-		int blogsEntryTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(BlogsEntry.class));
-		%>
-
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, BlogsEntry)=<%= _assertEquals(1, blogsEntryTemplatesCount) %><br />
-
-		<%
-		int fileEntryTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(FileEntry.class));
-		%>
-
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, FileEntry)=<%= _assertEquals(1, fileEntryTemplatesCount) %><br />
-
-		<%
-		int layoutSetTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(LayoutSet.class));
-		%>
-
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, LayoutSet)=<%= _assertEquals(1, layoutSetTemplatesCount) %><br />
-
-		<%
-		int wikiPageTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(WikiPage.class));
-		%>
-
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, WikiPage)=<%= _assertEquals(1, wikiPageTemplatesCount) %><br />
+		DDMStructure#getParentStructureId=<%= _assertEquals("PARENT-STRUCTURE", parentStructureKey) %><br />
+		DDMStructureLocalServiceUtil#getStructuresCount(groupId, DDLRecordSet)=<%= _assertEquals(2, DDMStructureLocalServiceUtil.getStructuresCount(groupId, PortalUtil.getClassNameId(DDLRecordSet.class))) %><br />
+		DDMStructureLocalServiceUtil#getStructuresCount=<%= _assertEquals(5, DDMStructureLocalServiceUtil.getStructuresCount(groupId)) %><br />
 	</p>
 
 	<p>
 
 		<%
-		int ddlStructuresCount = DDMStructureLocalServiceUtil.getStructuresCount(groupId, PortalUtil.getClassNameId(DDLRecordSet.class));
+		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.getTemplate(groupId, PortalUtil.getClassNameId(DDMStructure.class), "CHILD-TEMPLATE-1");
+
+		DDMStructure ddmTemplateStructure = DDMStructureLocalServiceUtil.fetchDDMStructure(ddmTemplate.getClassPK());
+
+		String ddmStructureKey = StringPool.BLANK;
+
+		if (ddmTemplateStructure != null) {
+			ddmStructureKey = ddmTemplateStructure.getStructureKey();
+		}
 		%>
 
-		DDMStructureLocalServiceUtil#getStructuresCount(groupId, DDLRecordSet)=<%= _assertEquals(2, ddlStructuresCount) %><br />
-
-		<%
-		int ddlTemplatesCount = DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(DDMStructure.class));
-		%>
-
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, DDMStructure)=<%= _assertEquals(8, ddlTemplatesCount) %>
+		DDMTemplate#getStructureId=<%= _assertEquals("CHILD-STRUCTURE-1", ddmStructureKey) %><br />
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetCategory)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetCategory.class))) %><br />
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetEntry)=<%= _assertEquals(2, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetEntry.class))) %><br />
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, AssetTag)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(AssetTag.class))) %><br />
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, BlogsEntry)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(BlogsEntry.class))) %><br />
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, FileEntry)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(FileEntry.class))) %><br />
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, LayoutSet)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(LayoutSet.class))) %><br />
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, WikiPage)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(WikiPage.class))) %><br />
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, DDMStructure)=<%= _assertEquals(8, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(DDMStructure.class))) %>
+		DDMTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(16, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId)) %><br />
 	</p>
 
 <%
