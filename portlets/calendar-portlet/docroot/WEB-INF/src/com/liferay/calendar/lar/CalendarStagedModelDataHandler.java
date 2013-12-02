@@ -23,10 +23,15 @@ import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -100,7 +105,19 @@ public class CalendarStagedModelDataHandler
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			calendar);
 
+		Group sourceGroup = GroupLocalServiceUtil.getGroup(
+				portletDataContext.getSourceGroupId());
+		Group newGroup = GroupLocalServiceUtil.getGroup(
+				portletDataContext.getScopeGroupId());
+		String sourceCalendarName = calendar.getName(LocaleUtil.getDefault());
+		Map<Locale, String> calendarNameMap = calendar.getNameMap();
+
 		Calendar importedCalendar = null;
+
+		if (sourceCalendarName.equals(sourceGroup.getName())) {
+			calendarNameMap = new HashMap<Locale, String>();
+			calendarNameMap.put(LocaleUtil.getDefault(), newGroup.getName());
+		}
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			Calendar existingCalendar =
@@ -112,7 +129,7 @@ public class CalendarStagedModelDataHandler
 
 				importedCalendar = CalendarLocalServiceUtil.addCalendar(
 					userId, portletDataContext.getScopeGroupId(),
-					calendarResourceId, calendar.getNameMap(),
+					calendarResourceId, calendarNameMap,
 					calendar.getDescriptionMap(), calendar.getColor(),
 					calendar.isDefaultCalendar(), calendar.isEnableComments(),
 					calendar.isEnableRatings(), serviceContext);
@@ -128,7 +145,7 @@ public class CalendarStagedModelDataHandler
 		else {
 			importedCalendar = CalendarLocalServiceUtil.addCalendar(
 				userId, portletDataContext.getScopeGroupId(),
-				calendarResourceId, calendar.getNameMap(),
+				calendarResourceId, calendarNameMap,
 				calendar.getDescriptionMap(), calendar.getColor(),
 				calendar.isDefaultCalendar(), calendar.isEnableComments(),
 				calendar.isEnableRatings(), serviceContext);
