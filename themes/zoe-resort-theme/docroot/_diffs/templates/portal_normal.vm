@@ -12,7 +12,7 @@
 	$theme.include($top_head_include)
 </head>
 
-<body class="$css_class dockbar-split">
+<body class="$css_class">
 
 <a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
 

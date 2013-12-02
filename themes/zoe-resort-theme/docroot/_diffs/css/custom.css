@@ -6,9 +6,9 @@
 /* -------- Variables -------- */
 
 $bannerHeight: 454px;
-$smallBannerHeight: 224px;
-$navHeight: 46px;
 $color: #3D7899;
+$navHeight: 46px;
+$smallBannerHeight: 224px;
 
 /* -------- Dockbar color variables -------- */
 
@@ -99,8 +99,8 @@ $dockbarOpenGradientStart: #0EA6F9;
 
 		#heading {
 			.logo {
-				margin: 20px 0 20px 20px;
 				float: left;
+				margin: 20px 0 20px 20px;
 			}
 
 			.site-name {
