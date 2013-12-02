@@ -30,9 +30,9 @@ public interface Importer {
 
 	public void importResources() throws Exception;
 
-	public boolean isExisting();
+	public boolean isCompanyGroup();
 
-	public boolean isGlobalGroup();
+	public boolean isExisting();
 
 	public void setCompanyId(long companyId);
 

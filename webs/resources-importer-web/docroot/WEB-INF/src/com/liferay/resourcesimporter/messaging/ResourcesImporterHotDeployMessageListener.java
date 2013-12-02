@@ -208,7 +208,7 @@ public class ResourcesImporterHotDeployMessageListener
 						"resources-importer-developer-mode-enabled"));
 
 				if (!developerModeEnabled && importer.isExisting() &&
-					!importer.isGlobalGroup()) {
+					!importer.isCompanyGroup()) {
 
 					if (_log.isInfoEnabled()) {
 						_log.info(

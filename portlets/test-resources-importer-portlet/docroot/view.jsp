@@ -177,11 +177,11 @@ for (String importer : importers) {
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.distinct(ProjectionFactoryUtil.property("name")));
 
-		Criterion page1 = RestrictionsFactoryUtil.eq("description", "Page 1");
+		Criterion layout1Criterion = RestrictionsFactoryUtil.eq("description", "Page 1");
 
-		Criterion page2 = RestrictionsFactoryUtil.eq("description", "Page 2");
+		Criterion layout2Criterion = RestrictionsFactoryUtil.eq("description", "Page 2");
 
-		dynamicQuery.add(RestrictionsFactoryUtil.or(page1, page2));
+		dynamicQuery.add(RestrictionsFactoryUtil.or(layout1Criterion, layout2Criterion));
 
 		List<Object> layoutPrototypes = LayoutPrototypeLocalServiceUtil.dynamicQuery(dynamicQuery);
 		%>
@@ -232,7 +232,7 @@ for (String importer : importers) {
 		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, FileEntry)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(FileEntry.class))) %><br />
 		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, LayoutSet)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(LayoutSet.class))) %><br />
 		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, WikiPage)=<%= _assertEquals(1, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(WikiPage.class))) %><br />
-		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, DDMStructure)=<%= _assertEquals(8, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(DDMStructure.class))) %>
+		DDMTemplateLocalServiceUtil#getTemplatesCount(groupId, DDMStructure)=<%= _assertEquals(8, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId, PortalUtil.getClassNameId(DDMStructure.class))) %><br />
 		DDMTemplateLocalServiceUtil#getTemplatesCount=<%= _assertEquals(16, DDMTemplateLocalServiceUtil.getTemplatesCount(groupId)) %><br />
 	</p>
 
