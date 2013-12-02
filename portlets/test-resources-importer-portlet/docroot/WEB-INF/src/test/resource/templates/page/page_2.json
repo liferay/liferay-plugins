@@ -1,5 +1,4 @@
 {
-	"layoutTemplateId": "2_columns_ii",
 	"layoutTemplate": {
 		"columns": [
 			[
@@ -11,5 +10,6 @@
 		"friendlyURL": "/page-2",
 		"name": "Page 2",
 		"title": "Page 2"
-	}
+	},
+	"layoutTemplateId": "2_columns_ii"
 }
