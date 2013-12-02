@@ -48,9 +48,9 @@ $default-box-shadow-v-offset: 1px;
 	}
 
 	#wrapper {
+		font-size: 12px;
 		padding-top: 0;
 		position: relative;
-		font-size: 12px;
 	}
 
 	#banner, #content {
@@ -202,8 +202,8 @@ $default-box-shadow-v-offset: 1px;
 		background-repeat: no-repeat;
 
 		#keywords {
-			background-image: none;
 			background-color: transparent;
+			background-image: none;
 			border-width: 0;
 			color: #9A9A9A;
 			font-size: 12px;
@@ -488,8 +488,8 @@ $default-box-shadow-v-offset: 1px;
 
 	ul.arrow {
 		list-style: none;
-		margin: 15px;
 		list-style-image:url(../images/custom/bullet.png);
+		margin: 15px;
 
 		li {
 			font-size: 12px;
@@ -519,8 +519,8 @@ $default-box-shadow-v-offset: 1px;
 
 		#footerContent {
 			margin: 0 auto;
-			padding: 25px 0;
 			max-width: 960px;
+			padding: 25px 0;
 		}
 	}
 
