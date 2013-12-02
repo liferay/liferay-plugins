@@ -22,8 +22,8 @@
 
 							var globalCheck = displayButton.attr('checked');
 
-							buttonTitleField.setStyle('paddingLeft', '20px');
-							buttonUrlField.setStyle('paddingLeft', '20px');
+							buttonTitleField.setStyle('paddingLeft', 20);
+							buttonUrlField.setStyle('paddingLeft', 20);
 
 							buttonTitleField.toggle(globalCheck);
 							buttonUrlField.toggle(globalCheck);
