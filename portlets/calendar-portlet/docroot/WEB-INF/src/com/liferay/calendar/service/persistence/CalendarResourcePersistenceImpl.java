@@ -9083,6 +9083,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		clearUniqueFindersCache(calendarResource);
 		cacheUniqueFindersCache(calendarResource);
 
+		calendarResource.resetOriginalValues();
+
 		return calendarResource;
 	}
 

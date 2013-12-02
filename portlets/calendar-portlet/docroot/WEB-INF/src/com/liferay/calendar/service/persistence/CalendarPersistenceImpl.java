@@ -4125,6 +4125,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 		clearUniqueFindersCache(calendar);
 		cacheUniqueFindersCache(calendar);
 
+		calendar.resetOriginalValues();
+
 		return calendar;
 	}
 

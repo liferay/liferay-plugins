@@ -2767,6 +2767,8 @@ public class CalendarNotificationTemplatePersistenceImpl
 		clearUniqueFindersCache(calendarNotificationTemplate);
 		cacheUniqueFindersCache(calendarNotificationTemplate);
 
+		calendarNotificationTemplate.resetOriginalValues();
+
 		return calendarNotificationTemplate;
 	}
 
