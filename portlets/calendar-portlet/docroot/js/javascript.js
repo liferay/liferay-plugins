@@ -47,6 +47,13 @@ AUI.add(
 										'</div>' +
 									 '</button>';
 
+		var TPL_MESSAGE_UPDATE_ALL_INVITED = '<p class="calendar-portlet-confirmation-text">' +
+												Liferay.Language.get('your-changes-will-affect-all-invited-resources-events') +
+											 '</p>' +
+											 '<p class="calendar-portlet-confirmation-text">' +
+												Liferay.Language.get('invited-resources-will-be-notified') +
+											 '</p>';
+
 		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
 
 		var USER_ID = toInt(themeDisplay.getUserId());
@@ -1425,16 +1432,58 @@ AUI.add(
 										'update',
 										schedulerEvent.isMasterBooking(),
 										function() {
-											CalendarUtil.updateEventInstance(schedulerEvent, false);
+											CalendarUtil.getChildrenCalendarBookings(
+												schedulerEvent,
+												function(data) {
+													if (data > 1) {
+														Liferay.CalendarMessageUtil.confirm(
+															TPL_MESSAGE_UPDATE_ALL_INVITED,
+															Liferay.Language.get('continue'),
+															Liferay.Language.get('dont-change-the-event'),
+															function() {
+																CalendarUtil.updateEventInstance(schedulerEvent, false);
+
+																this.hide();
+															},
+															function() {
+																instance.load();
+
+																this.hide();
+															}
+														);
+													}
+												}
+											);
 
 											this.hide();
 										},
 										function() {
-											CalendarUtil.updateEventInstance(
+											CalendarUtil.getChildrenCalendarBookings(
 												schedulerEvent,
-												true,
-												function() {
-													instance.load();
+												function(data) {
+													if (data > 1) {
+														Liferay.CalendarMessageUtil.confirm(
+															TPL_MESSAGE_UPDATE_ALL_INVITED,
+															Liferay.Language.get('continue'),
+															Liferay.Language.get('dont-change-the-event'),
+															function() {
+																CalendarUtil.updateEventInstance(
+																	schedulerEvent,
+																	true,
+																	function() {
+																		instance.load();
+																	}
+																);
+
+																this.hide();
+															},
+															function() {
+																instance.load();
+
+																this.hide();
+															}
+														);
+													}
 												}
 											);
 
@@ -1444,47 +1493,63 @@ AUI.add(
 											CalendarUtil.getEvent(
 												calendarBookingId,
 												function(calendarBooking) {
-													var newSchedulerEvent = CalendarUtil.toSchedulerEvent(calendarBooking);
-
-													newSchedulerEvent.copyPropagateAttrValues(
+													CalendarUtil.getChildrenCalendarBookings(
 														schedulerEvent,
-														null,
-														{
-															silent: true
-														}
-													);
+														function(data) {
+															if (data > 1) {
+																Liferay.CalendarMessageUtil.confirm(
+																	TPL_MESSAGE_UPDATE_ALL_INVITED,
+																	Liferay.Language.get('continue'),
+																	Liferay.Language.get('dont-change-the-event'),
+																	function() {
+																		var newSchedulerEvent = CalendarUtil.toSchedulerEvent(calendarBooking);
 
-													var schedulerEventDuration = schedulerEvent.getSecondsDuration() * 1000;
+																		newSchedulerEvent.copyPropagateAttrValues(
+																				schedulerEvent,
+																				null,
+																				{
+																					silent: true
+																				}
+																		);
 
-													var calendarEndTime = calendarBooking.startTime + schedulerEventDuration;
-													var calendarStartTime = calendarBooking.startTime;
+																		var schedulerEventDuration = schedulerEvent.getSecondsDuration() * 1000;
 
-													var changedStartDate = changed.startDate;
+																		var calendarEndTime = calendarBooking.startTime + schedulerEventDuration;
+																		var calendarStartTime = calendarBooking.startTime;
 
-													if (changedStartDate) {
-														var offset = 0;
-														var newVal = changedStartDate.newVal;
-														var prevVal = changedStartDate.prevVal;
+																		var changedStartDate = changed.startDate;
 
-														if (isDate(newVal) && isDate(prevVal)) {
-															offset = newVal.getTime() - prevVal.getTime();
-														}
+																		if (changedStartDate) {
+																			var offset = 0;
+																			var newVal = changedStartDate.newVal;
+																			var prevVal = changedStartDate.prevVal;
 
-														calendarStartTime = calendarStartTime + offset;
-														calendarEndTime = calendarStartTime + schedulerEventDuration;
-													}
+																			if (isDate(newVal) && isDate(prevVal)) {
+																				offset = newVal.getTime() - prevVal.getTime();
+																			}
 
-													newSchedulerEvent.setAttrs(
-														{
-															endDate: CalendarUtil.toLocalTime(calendarEndTime),
-															startDate: CalendarUtil.toLocalTime(calendarStartTime)
-														}
-													);
+																			calendarStartTime = calendarStartTime + offset;
+																			calendarEndTime = calendarStartTime + schedulerEventDuration;
+																		}
 
-													CalendarUtil.updateEvent(
-														newSchedulerEvent,
-														function() {
-															instance.load();
+																		newSchedulerEvent.setAttrs(
+																				{
+																					endDate: CalendarUtil.toLocalTime(calendarEndTime),
+																					startDate: CalendarUtil.toLocalTime(calendarStartTime)
+																				}
+																		);
+
+																		CalendarUtil.updateEvent(
+																				newSchedulerEvent,
+																				function() {
+																					instance.load();
+																				}
+																		);
+
+																		this.hide();
+																	}
+																);
+															}
 														}
 													);
 												}
@@ -1504,17 +1569,8 @@ AUI.add(
 										schedulerEvent,
 										function(data) {
 											if (data > 1) {
-												var content = [
-													'<p class="calendar-portlet-confirmation-text">',
-													Liferay.Language.get('your-changes-will-affect-all-invited-resources-events'),
-													'</p>',
-													'<p class="calendar-portlet-confirmation-text">',
-													Liferay.Language.get('invited-resources-will-be-notified'),
-													'</p>'
-												].join(STR_BLANK);
-
 												Liferay.CalendarMessageUtil.confirm(
-													content,
+													TPL_MESSAGE_UPDATE_ALL_INVITED,
 													Liferay.Language.get('continue'),
 													Liferay.Language.get('dont-change-the-event'),
 													function() {
