@@ -39,7 +39,7 @@ public abstract class BaseUserNotificationHandler
 			UserNotificationFeedEntry userNotificationFeedEntry = doInterpret(
 				userNotificationEvent, serviceContext);
 
-			if (userNotificationEvent != null) {
+			if (userNotificationFeedEntry != null) {
 				userNotificationFeedEntry.setPortletId(getPortletId());
 			}
 
