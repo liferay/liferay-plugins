@@ -23,7 +23,7 @@
 					(startTime <= ? AND endTime >= ?) OR
 					(startTime >= ? AND startTime <= ? AND endTime >= ?) OR
 					(startTime <= ? AND endTime >= ? AND endTime <= ?)
-				) AND
+				)
 				[$STATUS$]
 		]]>
 	</sql>
@@ -67,7 +67,7 @@
 						(startTime <= ? AND endTime >= ? AND endTime <= ?)
 					)
 					[$RECURRENCE$]
-				) AND
+				)
 				[$STATUS$]
 				[$ORDER_BY$]
 		]]>
