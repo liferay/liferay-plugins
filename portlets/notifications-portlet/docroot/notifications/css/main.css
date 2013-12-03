@@ -40,10 +40,10 @@
 	.user-notifications-count {
 		background-color: #0066B3;
 		border: 1px solid #0066B3;
+		display: block;
 		line-height: 1.25em;
 		margin: 4px 0;
 		padding: 2px 6px;
-		display: block;
 		position: relative;
 
 		&.alert {
@@ -141,6 +141,10 @@
 
 			.content {
 				margin-left: 40px;
+			}
+
+			.body {
+				color: #222;
 			}
 		}
 	}

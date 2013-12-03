@@ -13,7 +13,7 @@ body {
 
 html.aui {
 	.dockbar {
-		margin-top: -41px;
+		margin-top: -44px;
 
 		@include transition-duration(0.2s);
 		@include transition-property(margin-top);
@@ -22,10 +22,6 @@ html.aui {
 			a {
 				background: transparent none;
 			}
-		}
-
-		&.navbar-static-top {
-			position: static;
 		}
 
 		.info-button .diamond {
@@ -50,15 +46,15 @@ html.aui {
 			}
 		}
 
-		&.navbar-static-top .collapse .nav-account-controls, .navbar-inner .container .nav-account-controls {
-			top: 0;
+		&.navbar-static-top .collapse, .navbar-inner .container {
+			.nav-account-controls {
+				top: 0;
 
-			@include transition-duration(0.2s);
-			@include transition-property(top);
+				@include transition-duration(0.2s);
+				@include transition-property(top);
+			}
 		}
-	}
 
-	.dockbar {
 		.info-items, .info-link-container {
 			display: none;
 		}
@@ -80,8 +76,10 @@ html.aui {
 	.show-dockbar .dockbar {
 		margin-top: 0;
 
-		&.navbar-static-top .collapse .nav-account-controls, .navbar-inner .container .nav-account-controls {
-			top: -41px;
+		&.navbar-static-top .collapse, .navbar-inner .container {
+			.nav-account-controls {
+				top: -44px;
+			}
 		}
 
 		.info-items, .info-link-container {

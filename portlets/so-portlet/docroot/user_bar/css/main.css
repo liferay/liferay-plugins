@@ -92,7 +92,6 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 
 	li.selected a, a:hover, .hover a {
 		background-color: rgba(0,0,0, 0.48);
-
 		text-decoration: none;
 	}
 
@@ -133,46 +132,50 @@ html.aui {
 			width: auto;
 		}
 
-		.navbar-inner .container {
-			.nav-account-controls {
-				bottom: 100%;
-				left: auto;
-				position: absolute;
-				right: 0;
-				z-index: 301;
+		.navbar-inner {
+			.container {
+				.nav-account-controls {
+					bottom: 100%;
+					left: auto;
+					position: absolute;
+					right: 0;
+					z-index: 301;
 
-				.divider-vertical {
-					display: none;
-				}
-
-				li.dropdown {
-					> .dropdown-toggle {
-						background-color: rgba(0,0,0, 0);
-
-						@include transition-duration(0.5s);
-						@include transition-property(background-color);
+					.divider-vertical {
+						display: none;
 					}
 
-					&.open > .dropdown-toggle {
-						background-color: rgba(0,0,0, 0.48);
-					}
-				}
+					li.dropdown {
+						> .dropdown-toggle {
+							background-color: rgba(0,0,0, 0);
 
-				&.nav > li > a {
-					margin: 0 0;
-					padding-bottom: 12px;
-					padding-top: 12px;
+							@include transition-duration(0.5s);
+							@include transition-property(background-color);
+						}
+
+						&.open > .dropdown-toggle {
+							background-color: rgba(0,0,0, 0.48);
+						}
+					}
+
+					&.nav > li > a {
+						font-size: 14px;
+						line-height: 1.25em;
+						margin: 0 0;
+						padding-bottom: 13px;
+						padding-top: 13px;
+					}
 				}
 			}
-		}
 
-		.navbar-inner .nav-account-controls > li {
-			background-color: transparent;
-			background-image: none;
+			.nav-account-controls > li {
+				background-color: transparent;
+				background-image: none;
 
-			> a {
-				color: #FFF;
-				text-shadow: none;
+				> a {
+					color: #FFF;
+					text-shadow: none;
+				}
 			}
 		}
 
@@ -193,25 +196,22 @@ html.aui {
 		}
 	}
 
-	.dockbar .navbar-inner .container .nav-account-controls,
-	.dockbar.navbar-static-top .collapse .nav-account-controls {
-		position: absolute;
-		top: -45px;
+	.dockbar .navbar-inner .container, .dockbar.navbar-static-top .collapse {
+		.nav-account-controls {
+			position: absolute;
+			top: -45px;
 
-		.go-to .so-portlet-sites {
-			top: 0;
-		}
-
-		&.nav > li > a {
-			padding-bottom: 12px;
-			padding-top: 12px;
+			.go-to .so-portlet-sites {
+				top: 0;
+			}
 		}
 	}
 
-	.dockbar-split .dockbar .navbar-inner .container .nav.nav-account-controls,
-	.dockbar-split .dockbar.navbar-static-top .collapse .nav.nav-account-controls {
-		position: absolute;
-		top: -3px;
+	.dockbar-split .dockbar .navbar-inner .container, .dockbar-split .dockbar.navbar-static-top .collapse {
+		.nav.nav-account-controls {
+			position: absolute;
+			top: -3px;
+		}
 	}
 
 	.my-sites.dropdown {
@@ -226,7 +226,8 @@ html.aui {
 
 			border-width: 0;
 			color: #202020;
-			font-size: 0.85em;
+			font-size: 11px;
+			margin: -2px 0;
 			padding: 4px 8px;
 
 			&.alert {
@@ -389,10 +390,11 @@ html.aui {
 			display: none
 		}
 
-		.dockbar-split .dockbar.navbar-static-top .collapse .nav.nav-account-controls,
-		.dockbar-split .dockbar .navbar-inner .container .nav.nav-account-controls {
-			float: right;
-			position: relative;
+		.dockbar-split .dockbar.navbar-static-top .collapse, .dockbar-split .dockbar .navbar-inner .container {
+			.nav.nav-account-controls {
+				float: right;
+				position: relative;
+			}
 		}
 	}
 }
