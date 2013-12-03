@@ -2,7 +2,7 @@
 
 #set ($portlet_id = $htmlUtil.escapeAttribute($portlet_display.getId()))
 #set ($portlet_title = $portlet_display.getTitle())
-#set ($portlet_back_url = $htmlUtil.escapeAttribute($portlet_display.getURLBack()))
+#set ($portlet_back_url = $htmlUtil.escapeHREF($portlet_display.getURLBack()))
 
 <div class="portlet" id="portlet_$portlet_id">
 	<div class="portlet-topper">
