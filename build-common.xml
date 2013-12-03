@@ -118,7 +118,7 @@ ECJ was automatically installed. Please rerun your task.
 
 Task cannot continue because Error-Prone is not installed.
 
-Error-Prone was automatically installed. Please rerun your task
+Error-Prone was automatically installed. Please rerun your task.
 					</fail>
 				</then>
 			</if>
