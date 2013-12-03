@@ -56,9 +56,9 @@ JSONArray maybeCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 JSONArray pendingCalendarsJSONArray = JSONFactoryUtil.createJSONArray();
 
 boolean invitable = true;
+Recurrence recurrence = null;
 boolean recurring = false;
 boolean reschedulable = true;
-Recurrence recurrence = null;
 
 Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
 
