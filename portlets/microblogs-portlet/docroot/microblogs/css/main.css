@@ -221,6 +221,10 @@ $microblogs-border-color: #EAEAEA;
 		}
 	}
 
+	.entry-bubble {
+		word-wrap: break-word;
+	}
+
 	.microblogs-status-container .footer .action-container {
 		display: none;
 	}
