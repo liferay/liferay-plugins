@@ -20,6 +20,7 @@ html.aui {
 
 		padding: 0;
 	}
+
 	.dockbar {
 		margin-top: -44px;
 
@@ -313,8 +314,8 @@ a {
 		@include menu-style;
 
 		li {
-			border-top-width: 0;
 			border-bottom-color: $defaultBorderColor;
+			border-top-width: 0;
 		}
 	}
 
@@ -743,9 +744,7 @@ div#navigation {
 
 	&.hover td {
 		background: #D3E8F1;
-		border-bottom-color: #D7D7D7;
-		border-left-color: transparent;
-		border-right-color: transparent;
+		border-color: auto transparent #D7D7D7;
 	}
 }
 
@@ -1082,10 +1081,8 @@ div#navigation {
 					padding: 0 10px 0 30px;
 				}
 
-				.nav {
-					> li.open > a {
-						@include box-shadow(inset 0 3px 8px rgba(0, 0, 0, 0.25));
-					}
+				.nav > li.open > a {
+					@include box-shadow(inset 0 3px 8px rgba(0, 0, 0, 0.25));
 				}
 			}
 
