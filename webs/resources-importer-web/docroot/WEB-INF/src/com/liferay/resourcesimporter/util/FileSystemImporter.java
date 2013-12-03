@@ -133,13 +133,13 @@ public class FileSystemImporter extends BaseImporter {
 			String parentDirName, String dirName, long classNameId)
 		throws Exception {
 
-		File directory = new File(_resourcesDir, parentDirName + "/" + dirName);
+		File dir = new File(_resourcesDir, parentDirName + "/" + dirName);
 
-		if (!directory.isDirectory() || !directory.canRead()) {
+		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
 		}
 
-		File[] files = listFiles(directory);
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
 			String script = StringUtil.read(getInputStream(file));
@@ -174,15 +174,15 @@ public class FileSystemImporter extends BaseImporter {
 			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
 
-		File directory = new File(
+		File dir = new File(
 			_resourcesDir,
 			dirName + "/" + ddmStructure.getName(Locale.getDefault()));
 
-		if (!directory.isDirectory() || !directory.canRead()) {
+		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
 		}
 
-		File[] files = listFiles(directory);
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
 			String language = getDDMTemplateLanguage(file.getName());
@@ -207,15 +207,15 @@ public class FileSystemImporter extends BaseImporter {
 			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
 
-		File directory = new File(
+		File dir = new File(
 			_resourcesDir,
 			dirName + "/" + ddmStructure.getName(Locale.getDefault()));
 
-		if (!directory.isDirectory() || !directory.canRead()) {
+		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
 		}
 
-		File[] files = listFiles(directory);
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
 			String script = StringUtil.read(getInputStream(file));
@@ -232,13 +232,13 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void addDDLStructures(String dirName) throws Exception {
-		File directory = new File(_resourcesDir, dirName);
+		File dir = new File(_resourcesDir, dirName);
 
-		if (!directory.isDirectory() || !directory.canRead()) {
+		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
 		}
 
-		File[] files = listFiles(directory);
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
 			String fileName = FileUtil.stripExtension(file.getName());
@@ -270,13 +270,13 @@ public class FileSystemImporter extends BaseImporter {
 			String parentDDMStructureKey, String dirName)
 		throws Exception {
 
-		File directory = new File(_resourcesDir, dirName);
+		File dir = new File(_resourcesDir, dirName);
 
-		if (!directory.isDirectory() || !directory.canRead()) {
+		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
 		}
 
-		File[] files = listFiles(directory);
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
 			InputStream inputStream = null;
@@ -348,13 +348,13 @@ public class FileSystemImporter extends BaseImporter {
 	protected void addDDMTemplates(String ddmStructureKey, String dirName)
 		throws Exception {
 
-		File directory = new File(_resourcesDir, dirName);
+		File dir = new File(_resourcesDir, dirName);
 
-		if (!directory.isDirectory() || !directory.canRead()) {
+		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
 		}
 
-		File[] files = listFiles(directory);
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
 			InputStream inputStream = null;
@@ -400,13 +400,13 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void addDLFileEntries(String dirName) throws Exception {
-		File directory = new File(_resourcesDir, dirName);
+		File dir = new File(_resourcesDir, dirName);
 
-		if (!directory.isDirectory()|| !directory.canRead()) {
+		if (!dir.isDirectory()|| !dir.canRead()) {
 			return;
 		}
 
-		File[] files = directory.listFiles();
+		File[] files = dir.listFiles();
 
 		if (ArrayUtil.isEmpty(files)) {
 			return;
@@ -499,13 +499,13 @@ public class FileSystemImporter extends BaseImporter {
 			String ddmStructureKey, String ddmTemplateKey, String dirName)
 		throws Exception {
 
-		File directory = new File(_resourcesDir, dirName);
+		File dir = new File(_resourcesDir, dirName);
 
-		if (!directory.isDirectory() || !directory.canRead()) {
+		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
 		}
 
-		File[] files = listFiles(directory);
+		File[] files = listFiles(dir);
 
 		for (File file : files) {
 			InputStream inputStream = null;
