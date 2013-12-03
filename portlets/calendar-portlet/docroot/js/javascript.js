@@ -48,7 +48,7 @@ AUI.add(
 									 '</button>';
 
 		var TPL_MESSAGE_UPDATE_ALL_INVITED = '<p class="calendar-portlet-confirmation-text">' +
-												Liferay.Language.get('your-changes-will-affect-all-invited-resources-events') +
+												Liferay.Language.get('your-changes-will-affect-events-of-all-invited-resources') +
 											'</p>' +
 											'<p class="calendar-portlet-confirmation-text">' +
 												Liferay.Language.get('invited-resources-will-be-notified') +
