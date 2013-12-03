@@ -226,8 +226,8 @@ html.aui {
 
 			border-width: 0;
 			color: #202020;
-			font-size: 11px;
-			margin: -2px 0;
+			font-size: 12px;
+			margin: -4px 0;
 			padding: 4px 8px;
 
 			&.alert {
