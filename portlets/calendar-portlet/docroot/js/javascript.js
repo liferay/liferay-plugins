@@ -49,10 +49,10 @@ AUI.add(
 
 		var TPL_MESSAGE_UPDATE_ALL_INVITED = '<p class="calendar-portlet-confirmation-text">' +
 												Liferay.Language.get('your-changes-will-affect-all-invited-resources-events') +
-											 '</p>' +
-											 '<p class="calendar-portlet-confirmation-text">' +
+											'</p>' +
+											'<p class="calendar-portlet-confirmation-text">' +
 												Liferay.Language.get('invited-resources-will-be-notified') +
-											 '</p>';
+											'</p>';
 
 		var COMPANY_ID = toInt(themeDisplay.getCompanyId());
 
@@ -172,6 +172,38 @@ AUI.add(
 									instance.setEventAttrs(schedulerEvent, data);
 								}
 							}
+						}
+					}
+				);
+			},
+
+			countChildrenCalendarBookings: function(schedulerEvent, callback) {
+				var instance = this;
+
+				var endDate = instance.toUTC(schedulerEvent.get('endDate'));
+
+				var startDate = instance.toUTC(schedulerEvent.get('startDate'));
+
+				var statuses = [CalendarWorkflow.STATUS_APPROVED, CalendarWorkflow.STATUS_MAYBE, CalendarWorkflow.STATUS_PENDING];
+
+				instance.invokeService(
+					{
+						'/calendar-portlet/calendarbooking/search-count': {
+							calendarIds: STR_BLANK,
+							calendarResourceIds: STR_BLANK,
+							companyId: COMPANY_ID,
+							endTime: endDate.getTime(),
+							groupIds: STR_BLANK,
+							keywords: STR_BLANK,
+							parentCalendarBookingId: schedulerEvent.get('calendarBookingId'),
+							recurring: schedulerEvent.isRecurring(),
+							startTime: startDate.getTime(),
+							statuses: statuses.join(',')
+						}
+					},
+					{
+						success: function() {
+							callback(this.get('responseData'));
 						}
 					}
 				);
@@ -352,38 +384,6 @@ AUI.add(
 							success: function() {
 								callback(this.get('responseData'));
 							}
-						}
-					}
-				);
-			},
-
-			getChildrenCalendarBookings: function(schedulerEvent, callback) {
-				var instance = this;
-
-				var endDate = instance.toUTC(schedulerEvent.get('endDate'));
-
-				var startDate = instance.toUTC(schedulerEvent.get('startDate'));
-
-				var statuses = [CalendarWorkflow.STATUS_APPROVED, CalendarWorkflow.STATUS_MAYBE, CalendarWorkflow.STATUS_PENDING];
-
-				instance.invokeService(
-					{
-						'/calendar-portlet/calendarbooking/search-count': {
-							calendarIds: STR_BLANK,
-							calendarResourceIds: STR_BLANK,
-							companyId: COMPANY_ID,
-							endTime: endDate.getTime(),
-							groupIds: STR_BLANK,
-							keywords: STR_BLANK,
-							parentCalendarBookingId: schedulerEvent.get('calendarBookingId'),
-							recurring: schedulerEvent.isRecurring(),
-							startTime: startDate.getTime(),
-							statuses: statuses.join(',')
-						}
-					},
-					{
-						success: function() {
-							callback(this.get('responseData'));
 						}
 					}
 				);
@@ -1432,7 +1432,7 @@ AUI.add(
 										'update',
 										schedulerEvent.isMasterBooking(),
 										function() {
-											CalendarUtil.getChildrenCalendarBookings(
+											CalendarUtil.countChildrenCalendarBookings(
 												schedulerEvent,
 												function(data) {
 													if (data > 1) {
@@ -1458,7 +1458,7 @@ AUI.add(
 											this.hide();
 										},
 										function() {
-											CalendarUtil.getChildrenCalendarBookings(
+											CalendarUtil.countChildrenCalendarBookings(
 												schedulerEvent,
 												function(data) {
 													if (data > 1) {
@@ -1493,7 +1493,7 @@ AUI.add(
 											CalendarUtil.getEvent(
 												calendarBookingId,
 												function(calendarBooking) {
-													CalendarUtil.getChildrenCalendarBookings(
+													CalendarUtil.countChildrenCalendarBookings(
 														schedulerEvent,
 														function(data) {
 															if (data > 1) {
@@ -1565,7 +1565,7 @@ AUI.add(
 									);
 								}
 								else if (schedulerEvent.isMasterBooking()) {
-									CalendarUtil.getChildrenCalendarBookings(
+									CalendarUtil.countChildrenCalendarBookings(
 										schedulerEvent,
 										function(data) {
 											if (data > 1) {

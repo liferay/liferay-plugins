@@ -998,15 +998,16 @@ public class CalendarBookingLocalServiceImpl
 			childCalendarIds.length);
 
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
-			if (!childCalendarBooking.isMasterBooking() &&
-				!childCalendarBooking.isDenied()) {
+			if (childCalendarBooking.isMasterBooking() &&
+				childCalendarBooking.isDenied()) {
 
-				deleteCalendarBooking(
-					childCalendarBooking.getCalendarBookingId());
-
-				existingCalendarBookingIds.add(
-					childCalendarBooking.getCalendarId());
+				continue;
 			}
+
+			deleteCalendarBooking(childCalendarBooking.getCalendarBookingId());
+
+			existingCalendarBookingIds.add(
+				childCalendarBooking.getCalendarId());
 		}
 
 		for (long calendarId : childCalendarIds) {
@@ -1035,7 +1036,7 @@ public class CalendarBookingLocalServiceImpl
 					PortletPropsValues.CALENDAR_NOTIFICATION_DEFAULT_TYPE);
 
 				NotificationTemplateType notificationTemplateType =
-						NotificationTemplateType.INVITE;
+					NotificationTemplateType.INVITE;
 
 				if (existingCalendarBookingIds.contains(
 						childCalendarBooking.getCalendarId())) {
