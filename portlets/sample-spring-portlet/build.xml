@@ -13,4 +13,17 @@
 	-->
 
 	<property name="original.war.file" value="petportal.war" />
+
+	<target name="merge">
+
+		<!-- Merge -->
+
+		<antcall target="build-common-plugin.merge" />
+
+		<!-- Delete the old log4j 1.2.15 to target portal's. -->
+
+		<delete file="tmp/WEB-INF/lib/log4j-1.2.15.jar" />
+
+	</target>
+
 </project>
