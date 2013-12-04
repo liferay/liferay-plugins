@@ -133,27 +133,15 @@ public class CalendarResourceStagedModelDataHandler
 		StagedModelDataHandlerUtil.importReferenceStagedModels(
 			portletDataContext, calendarResource, Calendar.class);
 
+		long classPK = getClassPK(portletDataContext, calendarResource, userId);
+
+		Map<Locale, String> calendarResourceNameMap =
+			getCalendarResourceNameMap(portletDataContext, calendarResource);
+
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			calendarResource);
 
-		long classPK = getClassPK(portletDataContext, calendarResource, userId);
-
-		Group sourceGroup = GroupLocalServiceUtil.getGroup(
-			portletDataContext.getSourceGroupId());
-		Group newGroup = GroupLocalServiceUtil.getGroup(
-			portletDataContext.getScopeGroupId());
-		String sourceCalendarResourceName = calendarResource.getName(
-			LocaleUtil.getDefault());
-		Map<Locale, String> calendarResourceNameMap =
-			calendarResource.getNameMap();
-
 		CalendarResource importedCalendarResource = null;
-
-		if (sourceCalendarResourceName.equals(sourceGroup.getName())) {
-			calendarResourceNameMap = new HashMap<Locale, String>();
-			calendarResourceNameMap.put(
-				LocaleUtil.getDefault(), newGroup.getName());
-		}
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			CalendarResource existingCalendarResource =
@@ -205,6 +193,33 @@ public class CalendarResourceStagedModelDataHandler
 
 		portletDataContext.importClassedModel(
 			calendarResource, importedCalendarResource);
+	}
+
+	protected Map<Locale, String> getCalendarResourceNameMap(
+			PortletDataContext portletDataContext,
+			CalendarResource calendarResource)
+		throws Exception {
+
+		String calendarResourceName = calendarResource.getName(
+			LocaleUtil.getDefault());
+
+		Group sourceGroup = GroupLocalServiceUtil.getGroup(
+			portletDataContext.getSourceGroupId());
+
+		if (!calendarResourceName.equals(sourceGroup.getName())) {
+			return calendarResource.getNameMap();
+		}
+
+		Map<Locale, String> calendarResourceNameMap =
+			new HashMap<Locale, String>();
+
+		Group scopeGroup = GroupLocalServiceUtil.getGroup(
+			portletDataContext.getScopeGroupId());
+
+		calendarResourceNameMap.put(
+			LocaleUtil.getDefault(), scopeGroup.getName());
+
+		return calendarResourceNameMap;
 	}
 
 	protected long getClassPK(
