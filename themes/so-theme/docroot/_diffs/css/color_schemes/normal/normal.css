@@ -1127,6 +1127,20 @@ div#navigation {
 		color: #FFF;
 		opacity: 1;
 	}
+
+	.thumbnail {
+		border-width: 0;
+
+		@include border-radius(0);
+
+		height: 50px;
+		padding: 0;
+		width: 50px;
+
+		img {
+			max-width: 50px;
+		}
+	}
 }
 
 .user-group .microblogs-status-container {
@@ -1692,6 +1706,7 @@ div#navigation {
 	.user-profile-image {
 		height: 60px;
 		margin-right: 10px;
+		overflow: hidden;
 		position: relative;
 		z-index: 2;
 	}
@@ -1799,6 +1814,11 @@ div#navigation {
 
 	.taglib-user-display {
 		padding: 0;
+
+		.user-profile-image {
+			height: 65px;
+			overflow: hidden;
+		}
 	}
 
 	.message-boards-panels, .results-grid {
@@ -1829,7 +1849,7 @@ div#navigation {
 	}
 
 	.thread-body {
-		padding: 10px 0;
+		padding: 10px;
 	}
 
 	.thread-controls {
