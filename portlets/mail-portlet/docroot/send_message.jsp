@@ -45,7 +45,7 @@ try {
 
 		long size = uploadPortletRequest.getSize("attachment" + i);
 
-		if (fileName.equals(StringPool.BLANK) || (size == 0)) {
+		if (Validator.isNull(fileName)) {
 			continue;
 		}
 
