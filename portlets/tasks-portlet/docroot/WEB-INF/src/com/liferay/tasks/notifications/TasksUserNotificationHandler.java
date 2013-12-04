@@ -65,7 +65,7 @@ public class TasksUserNotificationHandler extends BaseUserNotificationHandler {
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("<div class=\"title\">");
-		sb.append(HtmlUtil.escape(jsonObject.getString("title")));
+		sb.append(jsonObject.getString("title"));
 		sb.append("</div><div class=\"body\">");
 		sb.append(HtmlUtil.escape(tasksEntry.getTitle()));
 		sb.append("</div>");
