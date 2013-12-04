@@ -41,17 +41,17 @@ public class UpgradeGroup extends UpgradeProcess {
 				protected void performAction(Object object)
 					throws PortalException, SystemException {
 
-				Group group = (Group)object;
+					Group group = (Group)object;
 
-				if (!SocialOfficeServiceUtil.isSocialOfficeGroup(
-						group.getGroupId())) {
+					if (!SocialOfficeServiceUtil.isSocialOfficeGroup(
+							group.getGroupId())) {
 
-					return;
-				}
+						return;
+					}
 
-				LayoutSetLocalServiceUtil.updateLookAndFeel(
-					group.getGroupId(), "so_WAR_sotheme", "02",
-					StringPool.BLANK, false);
+					LayoutSetLocalServiceUtil.updateLookAndFeel(
+						group.getGroupId(), "so_WAR_sotheme", "02",
+						StringPool.BLANK, false);
 				}
 
 			};
