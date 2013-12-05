@@ -587,24 +587,23 @@ div#navigation {
 	margin-left: -156px;
 	width: 155px;
 
-	.avatar {
+	.taglib-logo-selector {
 		display: block;
 		overflow: hidden;
 		position: relative;
 
 		&, img {
-			height: 155px;
 			width: 155px;
 		}
 
-		.edit-portrait {
-			bottom: 10px;
-			left: 10px;
+		.portrait-icons {
+			bottom: -5px;
+			left: 5px;
 			position: absolute;
 			visibility: hidden;
 		}
 
-		&:hover .edit-portrait {
+		&:hover .portrait-icons {
 			visibility: visible;
 		}
 	}
