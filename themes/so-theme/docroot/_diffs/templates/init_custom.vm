@@ -79,6 +79,7 @@
 		#set ($the_title = $current_user_name)
 		#set ($css_class = $css_class + " profile-page")
 		#set ($user_detail_class = "user-profile-detail")
+		#set ($my_account_portletNamespace = "_2_")
 	#end
 #end
 

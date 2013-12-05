@@ -1,17 +1,23 @@
 <div class="$nav_css_class" id="navigation">
 	#if ($is_profile_page)
-		<div class="avatar" id="${themeNamespace}taglibLogoSelector" style="background-image: url($current_user.getPortraitURL($themeDisplay))">
-			<div id="${themeNamespace}taglibLogoSelectorContent">
-				<img alt="$current_user.getFullName()" id="${themeNamespace}avatar" src="$current_user_profile_portrait_url">
-			</div>
+		<div class="taglib-logo-selector" id="${themeNamespace}taglibLogoSelector">
+			<div class="taglib-logo-selector-content" id="${themeNamespace}taglibLogoSelectorContent">
+				<img alt="$current_user.getFullName()" class="avatar" id="${themeNamespace}avatar" src="$current_user_profile_portrait_url	" />
+				
+				#if ($show_edit_profile_button)
+					<div class="portrait-icons">
+						<div class="btn-group">
+							<button class="btn edit-logo">
+								<span class="aui-buttonitem-label">$languageUtil.get($locale, "edit-profile-picture")</span>
+							</button>
+							<button class="btn delete-logo" disabled="false" icon="icon-remove" value="delete">
+							</button>
+						</div>
 
-			#if ($show_edit_profile_button)
-				<span class="aui-button edit-portrait" id="${themeNamespace}editPortraitButton">
-					<button class="aui-button-content">
-						<span class="aui-buttonitem-label">$languageUtil.get($locale, "edit-profile-picture")</span>
-					</button>
-				</span>
-			#end
+						<input id="${my_account_portletNamespace}deleteLogo" type="hidden" value="false" />
+					</div>
+				#end
+			</div>
 		</div>
 	#end
 
@@ -46,3 +52,25 @@
 		#end
 	</ul>
 </div>
+
+#if ($show_edit_profile_button)
+	<script type="text/javascript">
+		AUI().use(
+			'liferay-logo-selector',
+			'aui-base',
+			function(A) {
+				new Liferay.LogoSelector(
+					{
+						boundingBox: '#${themeNamespace}taglibLogoSelector',
+						contentBox: '#${themeNamespace}taglibLogoSelectorContent',
+						defaultLogoURL: '$current_user_profile_portrait_url',
+						editLogoURL: '$current_user_edit_profile_portrait_url',
+						logoDisplaySelector: '#${themeNamespace}avatar',
+						portletNamespace: '${my_account_portletNamespace}',
+						randomNamespace: '${themeNamespace}'
+					}
+				).render();
+			}
+		);
+	</script>
+#end
