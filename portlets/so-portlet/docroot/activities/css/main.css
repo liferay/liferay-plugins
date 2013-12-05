@@ -10,6 +10,21 @@ $default-border-color: #E7E7E7;
 		border-bottom: 1px solid $default-border-color;
 		min-height: 45px;
 		padding: 1em;
+
+		.control-group {
+			margin-bottom: 0;
+			margin-left: 35px;
+			padding: 0 5px;
+
+			input {
+				display: block;
+				margin-bottom: 0;
+				padding-left: 0;
+				padding-right: 0;
+				text-indent: 0.5em;
+				width: 100%;
+			}
+		}
 	}
 
 	.user-portrait {
