@@ -1,6 +1,6 @@
 #set ($portlet_display = $portletDisplay)
 
-#set ($portlet_back_url = $htmlUtil.escapeAttribute($portlet_display.getURLBack()))
+#set ($portlet_back_url = $htmlUtil.escapeHREF($portlet_display.getURLBack()))
 #set ($portlet_id = $htmlUtil.escapeAttribute($portlet_display.getId()))
 #set ($portlet_title = $portlet_display.getTitle())
 
