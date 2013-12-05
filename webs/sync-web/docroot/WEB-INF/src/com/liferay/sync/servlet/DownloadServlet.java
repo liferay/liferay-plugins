@@ -98,6 +98,10 @@ public class DownloadServlet extends HttpServlet {
 		FileEntry fileEntry = DLAppServiceUtil.getFileEntryByUuidAndGroupId(
 			uuid, groupId);
 
+		String contentType = fileEntry.getMimeType();
+
+		response.setContentType(contentType);
+
 		String version = ParamUtil.getString(request, "version");
 
 		if (Validator.isNull(version)) {
