@@ -266,20 +266,19 @@ html.aui {
 		}
 	}
 
-	.navbar .dockbar-user-notifications .nav>li>.dropdown-menu {
+	.navbar .user-avatar .dropdown-menu {
+		left: auto;
+		right: 0;
+
 		&:after {
 			left: auto;
-			right: 9px;
+			right: 12px;
 		}
 
 		&:before {
 			left: auto;
-			right: 10px;
+			right: 11px;
 		}
-	}
-
-	.navbar .nav > .user-avatar > .dropdown-menu:after {
-		left: 18px;
 	}
 
 	.navbar .nav .user-avatar-image, .navbar .nav li.dropdown.user-avatar .user-avatar-image {
