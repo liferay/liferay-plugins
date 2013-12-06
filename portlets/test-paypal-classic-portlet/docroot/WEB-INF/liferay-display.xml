@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.sample">
-		<portlet id="test-paypal-classic" />
+		<portlet id="1" />
 	</category>
 </display>

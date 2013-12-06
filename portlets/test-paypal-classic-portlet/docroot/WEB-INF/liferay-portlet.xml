@@ -3,7 +3,7 @@
 
 <liferay-portlet-app>
 	<portlet>
-		<portlet-name>test-paypal-classic</portlet-name>
+		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>test-paypal-classic-portlet</css-class-wrapper>
