@@ -41,7 +41,7 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	@include background-image(linear-gradient(bottom, #252D31 0, #32363A 100%));
 
 	font: 14px/2em 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-weight: 200;
+	font-weight: 400;
 	padding-right: 30%;
 	position: relative;
 	z-index: 301;
@@ -158,12 +158,20 @@ html.aui {
 						}
 					}
 
-					&.nav > li > a {
-						font-size: 14px;
-						line-height: 1.25em;
-						margin: 0 0;
-						padding-bottom: 13px;
-						padding-top: 13px;
+					&.nav > li {
+
+						> a {
+							font-size: 14px;
+							font-weight: 400;
+							line-height: 18px;
+							margin: 0 0;
+							padding: 10px;
+						}
+
+						&.admin-links > a {
+							line-height: 20px;
+							min-height: 23px;
+						}
 					}
 
 					.user-avatar-link {
@@ -217,7 +225,7 @@ html.aui {
 	.dockbar .navbar-inner .container, .dockbar.navbar-static-top .collapse {
 		.nav-account-controls {
 			position: absolute;
-			top: -45px;
+			top: -44px;
 
 			.go-to .so-portlet-sites {
 				top: 0;
@@ -227,8 +235,9 @@ html.aui {
 
 	.dockbar-split .dockbar .navbar-inner .container, .dockbar-split .dockbar.navbar-static-top .collapse {
 		.nav.nav-account-controls {
+			margin-right: 10px;
 			position: absolute;
-			top: -3px;
+			top: 0;
 		}
 	}
 
@@ -245,7 +254,8 @@ html.aui {
 			border-width: 0;
 			color: #202020;
 			font-size: 12px;
-			margin: -4px 0;
+			font-weight: bold;
+			margin: 0;
 			padding: 4px 8px;
 
 			&.alert {
@@ -271,6 +281,23 @@ html.aui {
 	.navbar .nav > .user-avatar > .dropdown-menu:after {
 		left: 18px;
 	}
+
+	.navbar .nav .user-avatar-image, .navbar .nav li.dropdown.user-avatar .user-avatar-image {
+		@include border-radius(50%);
+
+		box-shadow: none;
+		margin: 0;
+		width: 23px;
+	}
+
+	.dockbar .nav > li > a [class^="icon-"],
+	.dockbar .nav > li > a [class*=" icon-"],
+	.dockbar-split .dockbar .navbar-inner .nav > li > a [class^="icon-"], 
+	.dockbar-split .dockbar .navbar-inner .nav > li > a [class*=" icon-"] {
+		background-color: transparent;
+		margin: 0;
+		padding: 0;
+	}
 }
 
 .portlet-dockbar .nav-account-controls .go-to .so-portlet-sites {
@@ -281,6 +308,10 @@ html.aui {
 
 	.search .search-input {
 		border: 1px solid #1C2125;
+	}
+
+	.dockbar .user-avatar img {
+		margin: 0;
 	}
 }
 
