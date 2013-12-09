@@ -90,7 +90,7 @@ public class ResourceImporter extends FileSystemImporter {
 		throws Exception {
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
-			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
+			getGroupId(), PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
 
 		StringBundler sb = new StringBundler(6);
@@ -119,7 +119,7 @@ public class ResourceImporter extends FileSystemImporter {
 			}
 
 			addDDMTemplate(
-				groupId, ddmStructure.getStructureId(),
+				getGroupId(), ddmStructure.getStructureId(),
 				FileUtil.stripExtension(resourcePath),
 				getDDMTemplateLanguage(resourcePath), script,
 				DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, StringPool.BLANK);
@@ -132,7 +132,7 @@ public class ResourceImporter extends FileSystemImporter {
 		throws Exception {
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
-			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
+			getGroupId(), PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
 
 		StringBundler sb = new StringBundler(6);
@@ -161,8 +161,8 @@ public class ResourceImporter extends FileSystemImporter {
 			}
 
 			addDDMTemplate(
-				groupId, ddmStructure.getStructureId(), resourcePath, "xsd",
-				script, DDMTemplateConstants.TEMPLATE_TYPE_FORM,
+				getGroupId(), ddmStructure.getStructureId(), resourcePath,
+				"xsd", script, DDMTemplateConstants.TEMPLATE_TYPE_FORM,
 				DDMTemplateConstants.TEMPLATE_MODE_CREATE);
 		}
 	}

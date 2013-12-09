@@ -38,13 +38,13 @@ public class LARImporter extends BaseImporter {
 	public void importResources() throws Exception {
 		if (_privateLARInputStream != null) {
 			LayoutLocalServiceUtil.importLayouts(
-				userId, groupId, true, getParameterMap(),
+				userId, getGroupId(), true, getParameterMap(),
 				_privateLARInputStream);
 		}
 
 		if (_publicLARInputStream != null) {
 			LayoutLocalServiceUtil.importLayouts(
-				userId, groupId, false, getParameterMap(),
+				userId, getGroupId(), false, getParameterMap(),
 				_publicLARInputStream);
 		}
 	}
