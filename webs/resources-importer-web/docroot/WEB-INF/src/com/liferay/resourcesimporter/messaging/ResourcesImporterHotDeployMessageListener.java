@@ -35,6 +35,7 @@ import com.liferay.resourcesimporter.util.Importer;
 import com.liferay.resourcesimporter.util.ImporterException;
 import com.liferay.resourcesimporter.util.LARImporter;
 import com.liferay.resourcesimporter.util.ResourceImporter;
+import com.liferay.resourcesimporter.util.TemplateImporter;
 
 import java.io.IOException;
 
@@ -99,15 +100,21 @@ public class ResourcesImporterHotDeployMessageListener
 		return new ResourceImporter();
 	}
 
+	protected TemplateImporter getTemplateImporter() {
+		return new TemplateImporter();
+	}
+
 	protected void initialize(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
 		ServletContext servletContext = ServletContextPool.get(
 			servletContextName);
 
-		URL url = servletContext.getResource(_RESOURCES_DIR);
+		URL resourcesUrl = servletContext.getResource(_RESOURCES_DIR);
 
-		if (url == null) {
+		URL templatesUrl = servletContext.getResource(_TEMPLATES_DIR);
+
+		if ((resourcesUrl == null) && (templatesUrl == null)) {
 			return;
 		}
 
@@ -120,6 +127,9 @@ public class ResourcesImporterHotDeployMessageListener
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			_RESOURCES_DIR);
+
+		Set<String> templatePaths = servletContext.getResourcePaths(
+			_TEMPLATES_DIR);
 
 		URL privateLARURL = null;
 		URL publicLARURL = servletContext.getResource(
@@ -170,6 +180,11 @@ public class ResourcesImporterHotDeployMessageListener
 					importer = getResourceImporter();
 
 					importer.setResourcesDir(_RESOURCES_DIR);
+				}
+				else if ((templatePaths != null) && !templatePaths.isEmpty()) {
+					importer = getTemplateImporter();
+
+					importer.setResourcesDir(_TEMPLATES_DIR);
 				}
 				else {
 					String resourcesDir = pluginPackageProperties.getProperty(
@@ -282,6 +297,9 @@ public class ResourcesImporterHotDeployMessageListener
 
 	private static final String _RESOURCES_DIR =
 		"/WEB-INF/classes/resources-importer/";
+
+	private static final String _TEMPLATES_DIR =
+		"/WEB-INF/classes/templates-importer/";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ResourcesImporterHotDeployMessageListener.class);
