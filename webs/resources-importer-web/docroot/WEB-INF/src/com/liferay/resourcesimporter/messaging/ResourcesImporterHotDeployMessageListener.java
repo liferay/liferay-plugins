@@ -122,7 +122,6 @@ public class ResourcesImporterHotDeployMessageListener
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			_RESOURCES_DIR);
-
 		Set<String> templatePaths = servletContext.getResourcePaths(
 			_TEMPLATES_DIR);
 
@@ -183,7 +182,6 @@ public class ResourcesImporterHotDeployMessageListener
 						companyId);
 
 					importer.setGroupId(group.getGroupId());
-
 					importer.setResourcesDir(_TEMPLATES_DIR);
 				}
 				else {
