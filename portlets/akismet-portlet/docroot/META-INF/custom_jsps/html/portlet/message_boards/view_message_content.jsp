@@ -29,7 +29,7 @@
 		int x = html.indexOf("<ul class=\"edit-controls", messagePos);
 		int y = html.indexOf("</ul>", x);
 
-		int messageIdPos = html.indexOf("_19_messageId=", x);
+		int messageIdPos = html.indexOf(renderResponse.getNamespace() + "messageId=", x);
 
 		if ((x > 0) && (y > 0) && (messageIdPos > 0)) {
 			String messageId = html.substring(messageIdPos + 14, html.indexOf("\"", messageIdPos));
