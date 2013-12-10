@@ -14,8 +14,49 @@
 
 package com.liferay.chat.video;
 
+import java.util.List;
+
 /**
- * @author Philippe Proulx
+ * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
  */
 public class WebRTCManager {
+    public WebRTCManager() {
+    }
+
+    public boolean clientIsAvailable(long userId) {
+        return false;
+    }
+
+    private WebRTCClient getClientUnsafe(long userId) {
+        return null;
+    }
+
+    public List<Long> getAvailableClientsIds() {
+        return null;
+    }
+
+    public WebRTCClient getClient(long userId) {
+        return null;
+    }
+
+    public void removeClient(long userId) {
+    }
+
+    private void addNonExistingClient(long userId) {
+    }
+
+    public void updatePresence(long userId) {
+    }
+
+    public static void checkAllManagersPresences() {
+    }
+
+    public static void checkAllManagersConnectionsStates() {
+    }
+
+    private void checkConnectionsStates() {
+    }
+
+    private void checkPresences() {
+    }
 }
