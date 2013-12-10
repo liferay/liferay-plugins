@@ -27,15 +27,16 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.resourcesimporter.util.FileSystemImporter;
 import com.liferay.resourcesimporter.util.Importer;
 import com.liferay.resourcesimporter.util.ImporterException;
 import com.liferay.resourcesimporter.util.LARImporter;
 import com.liferay.resourcesimporter.util.ResourceImporter;
-import com.liferay.resourcesimporter.util.TemplateImporter;
 
 import java.io.IOException;
 
@@ -100,21 +101,15 @@ public class ResourcesImporterHotDeployMessageListener
 		return new ResourceImporter();
 	}
 
-	protected TemplateImporter getTemplateImporter() {
-		return new TemplateImporter();
-	}
-
 	protected void initialize(Message message) throws Exception {
 		String servletContextName = message.getString("servletContextName");
 
 		ServletContext servletContext = ServletContextPool.get(
 			servletContextName);
 
-		URL resourcesUrl = servletContext.getResource(_RESOURCES_DIR);
+		if ((servletContext.getResource(_RESOURCES_DIR) == null) &&
+			(servletContext.getResource(_TEMPLATES_DIR) == null)) {
 
-		URL templatesUrl = servletContext.getResource(_TEMPLATES_DIR);
-
-		if ((resourcesUrl == null) && (templatesUrl == null)) {
 			return;
 		}
 
@@ -182,7 +177,12 @@ public class ResourcesImporterHotDeployMessageListener
 					importer.setResourcesDir(_RESOURCES_DIR);
 				}
 				else if ((templatePaths != null) && !templatePaths.isEmpty()) {
-					importer = getTemplateImporter();
+					importer = getResourceImporter();
+
+					Group group = GroupLocalServiceUtil.getCompanyGroup(
+						companyId);
+
+					importer.setGroupId(group.getGroupId());
 
 					importer.setResourcesDir(_TEMPLATES_DIR);
 				}
