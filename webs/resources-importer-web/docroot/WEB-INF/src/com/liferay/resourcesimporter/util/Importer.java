@@ -36,6 +36,8 @@ public interface Importer {
 
 	public void setCompanyId(long companyId);
 
+	public void setGroupId(long groupId);
+
 	public void setResourcesDir(String resourcesDir);
 
 	public void setServletContext(ServletContext servletContext);

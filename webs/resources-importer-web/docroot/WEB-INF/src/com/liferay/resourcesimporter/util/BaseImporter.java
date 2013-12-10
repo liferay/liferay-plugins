@@ -171,6 +171,11 @@ public abstract class BaseImporter implements Importer {
 	}
 
 	@Override
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
+	}
+
+	@Override
 	public void setResourcesDir(String resourcesDir) {
 		this.resourcesDir = resourcesDir;
 	}
