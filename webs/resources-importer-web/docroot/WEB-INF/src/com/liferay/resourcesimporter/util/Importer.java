@@ -30,7 +30,7 @@ public interface Importer {
 
 	public void importResources() throws Exception;
 
-	public boolean isCompanyGroup();
+	public boolean isCompanyGroup() throws Exception;
 
 	public boolean isExisting();
 
