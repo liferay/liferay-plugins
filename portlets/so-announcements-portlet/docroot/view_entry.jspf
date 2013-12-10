@@ -74,7 +74,7 @@ if (entry.getPriority() > 0) {
 			<div class="title">
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(entry.getUrl()) %>">
-						<a class="entry-url" href="<%= entry.getUrl() %>"><%= HtmlUtil.escape(entry.getTitle()) %></a>
+						<a class="entry-url" href="<%= HtmlUtil.escapeHREF(entry.getUrl()) %>"><%= HtmlUtil.escape(entry.getTitle()) %></a>
 					</c:when>
 					<c:otherwise>
 						<%= HtmlUtil.escape(entry.getTitle()) %>
