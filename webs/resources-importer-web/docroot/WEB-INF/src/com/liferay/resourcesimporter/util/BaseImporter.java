@@ -213,6 +213,7 @@ public abstract class BaseImporter implements Importer {
 	protected long companyId;
 	protected boolean existing;
 	protected Group group;
+	protected long groupId;
 	protected String resourcesDir;
 	protected ServletContext servletContext;
 	protected String servletContextName;
