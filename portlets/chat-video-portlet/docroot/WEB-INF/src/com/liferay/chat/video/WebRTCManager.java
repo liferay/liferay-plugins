@@ -27,7 +27,7 @@ public class WebRTCManager {
 	public List<Long> getAvailableWebRTCClientIds() {
 		ArrayList<Long> availableUserIds = new ArrayList<Long>();
 
-		for (Long userId : _clients.keySet()) {
+		for (Long userId : _webRTCClients.keySet()) {
 			if (isWebRTCClientAvailable(userId)) {
 				availableUserIds.add(userId);
 			}
@@ -41,11 +41,11 @@ public class WebRTCManager {
 	}
 
 	public boolean isWebRTCClientAvailable(long userId) {
-		if (!_clients.containsKey(userId)) {
+		if (!_webRTCClients.containsKey(userId)) {
 			return false;
 		}
 
-		return _clients.get(userId).isAvailable();
+		return _webRTCClients.get(userId).isAvailable();
 	}
 
 	public void removeWebRTCClient(long userId) {
@@ -53,19 +53,19 @@ public class WebRTCManager {
 
 	protected void addWebRTCClient(long userId) {
 		if (doGetWebRTCClient(userId) == null) {
-			_clients.put(userId, new WebRTCClient(userId));
+			_webRTCClients.put(userId, new WebRTCClient(userId));
 		}
 	}
 
 	protected WebRTCClient doGetWebRTCClient(long userId) {
-		if (_clients.containsKey(userId)) {
-			return _clients.get(userId);
+		if (_webRTCClients.containsKey(userId)) {
+			return _webRTCClients.get(userId);
 		} else {
 			return null;
 		}
 	}
 
-	private Map<Long, WebRTCClient> _clients =
+	private Map<Long, WebRTCClient> _webRTCClients =
 		new ConcurrentHashMap<Long, WebRTCClient>();
 
 }
