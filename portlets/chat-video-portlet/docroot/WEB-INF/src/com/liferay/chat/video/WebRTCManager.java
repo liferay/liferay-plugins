@@ -27,16 +27,16 @@ public class WebRTCManager {
 	public static void checkAllManagersPresences() {
 	}
 
-	public boolean isClientAvailable(long userId) {
-		return false;
-	}
-
 	public List<Long> getAvailableClientsIds() {
 		return null;
 	}
 
 	public WebRTCClient getClient(long userId) {
 		return null;
+	}
+
+	public boolean isClientAvailable(long userId) {
+		return false;
 	}
 
 	public void removeClient(long userId) {
