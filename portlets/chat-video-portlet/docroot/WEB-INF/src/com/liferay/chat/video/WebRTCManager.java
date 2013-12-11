@@ -25,7 +25,7 @@ public class WebRTCManager {
         return false;
     }
 
-    private WebRTCClient getClientUnsafe(long userId) {
+    protected WebRTCClient getClientUnsafe(long userId) {
         return null;
     }
 
@@ -40,7 +40,7 @@ public class WebRTCManager {
     public void removeClient(long userId) {
     }
 
-    private void addNonExistingClient(long userId) {
+    protected void addNonExistingClient(long userId) {
     }
 
     public void updatePresence(long userId) {
@@ -52,10 +52,10 @@ public class WebRTCManager {
     public static void checkAllManagersConnectionsStates() {
     }
 
-    private void checkConnectionsStates() {
+    protected void checkConnectionsStates() {
     }
 
-    private void checkPresences() {
+    protected void checkPresences() {
     }
 
 }
