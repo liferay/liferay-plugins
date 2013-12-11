@@ -53,7 +53,7 @@ PortletURL microblogsEntriesURL = (PortletURL)request.getAttribute(WebKeys.MICRO
 if (microblogsEntries != null) {
 	for (MicroblogsEntry microblogsEntry : microblogsEntries) {
 		String userDisplayURL = StringPool.BLANK;
-		String userFullName = PortalUtil.getUserName(microblogsEntry);
+		String userFullName = HtmlUtil.escape(PortalUtil.getUserName(microblogsEntry));
 		String userPortaitURL = StringPool.BLANK;
 		String userScreenName = StringPool.BLANK;
 
@@ -78,7 +78,7 @@ if (microblogsEntries != null) {
 					<span><a href="<%= userDisplayURL %>"><%= userFullName %></a></span>
 
 					<c:if test="<%= microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPOST %>">
-						<span class="small"><liferay-ui:message key="reposted-from" /></span> <span><%= PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK) %></span>
+						<span class="small"><liferay-ui:message key="reposted-from" /></span> <span><%= HtmlUtil.escape(PortalUtil.getUserName(microblogsEntry.getReceiverUserId(), StringPool.BLANK)) %></span>
 					</c:if>
 				</div>
 

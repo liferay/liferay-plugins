@@ -116,7 +116,7 @@ $theme.include($body_top_include)
 							<img alt="$user.getFullName()" src="$user.getPortraitURL($themeDisplay)">
 						</a>
 
-						<span class="aui-helper-hidden">$current_user.getFullName()'s</span>
+						<span class="aui-helper-hidden">$htmlUtil.escape($current_user.getFullName())'s</span>
 
 					<span>$the_title</span>
 				</h2>
