@@ -35,7 +35,7 @@ public class WebRTCManager {
 		return null;
 	}
 
-	public boolean isWebRTCClientAvailable(long userId) {
+	public boolean hasWebRTCClient(long userId) {
 		return false;
 	}
 
