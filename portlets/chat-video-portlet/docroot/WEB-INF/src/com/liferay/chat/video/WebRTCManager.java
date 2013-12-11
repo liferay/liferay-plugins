@@ -27,7 +27,7 @@ public class WebRTCManager {
 	public static void checkAllManagersPresences() {
 	}
 
-	public boolean clientIsAvailable(long userId) {
+	public boolean isClientAvailable(long userId) {
 		return false;
 	}
 
