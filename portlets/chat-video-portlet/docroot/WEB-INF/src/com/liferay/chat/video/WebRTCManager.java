@@ -21,11 +21,11 @@ import java.util.List;
  */
 public class WebRTCManager {
 
-	public List<Long> getWebRTCClientIds() {
+	public WebRTCClient getWebRTCClient(long userId) {
 		return null;
 	}
 
-	public WebRTCClient getWebRTCClient(long userId) {
+	public List<Long> getWebRTCClientIds() {
 		return null;
 	}
 
