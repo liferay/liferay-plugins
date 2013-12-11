@@ -21,41 +21,41 @@ import java.util.List;
  */
 public class WebRTCManager {
 
-    public boolean clientIsAvailable(long userId) {
-        return false;
-    }
+	public static void checkAllManagersConnectionsStates() {
+	}
 
-    protected WebRTCClient getClientUnsafe(long userId) {
-        return null;
-    }
+	public static void checkAllManagersPresences() {
+	}
 
-    public List<Long> getAvailableClientsIds() {
-        return null;
-    }
+	public boolean clientIsAvailable(long userId) {
+		return false;
+	}
 
-    public WebRTCClient getClient(long userId) {
-        return null;
-    }
+	public List<Long> getAvailableClientsIds() {
+		return null;
+	}
 
-    public void removeClient(long userId) {
-    }
+	public WebRTCClient getClient(long userId) {
+		return null;
+	}
 
-    protected void addNonExistingClient(long userId) {
-    }
+	public void removeClient(long userId) {
+	}
 
-    public void updatePresence(long userId) {
-    }
+	public void updatePresence(long userId) {
+	}
 
-    public static void checkAllManagersPresences() {
-    }
+	protected void addNonExistingClient(long userId) {
+	}
 
-    public static void checkAllManagersConnectionsStates() {
-    }
+	protected void checkConnectionsStates() {
+	}
 
-    protected void checkConnectionsStates() {
-    }
+	protected void checkPresences() {
+	}
 
-    protected void checkPresences() {
-    }
+	protected WebRTCClient getClientUnsafe(long userId) {
+		return null;
+	}
 
 }
