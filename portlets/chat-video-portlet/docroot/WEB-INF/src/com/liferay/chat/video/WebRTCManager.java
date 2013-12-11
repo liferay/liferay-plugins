@@ -20,8 +20,6 @@ import java.util.List;
  * @author Philippe Proulx
  */
 public class WebRTCManager {
-    public WebRTCManager() {
-    }
 
     public boolean clientIsAvailable(long userId) {
         return false;
