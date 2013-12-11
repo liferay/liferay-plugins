@@ -17,7 +17,7 @@ package com.liferay.chat.video;
 import java.util.List;
 
 /**
- * @author Philippe Proulx <philippe.proulx@savoirfairelinux.com>
+ * @author Philippe Proulx
  */
 public class WebRTCManager {
     public WebRTCManager() {
