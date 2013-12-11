@@ -57,4 +57,5 @@ public class WebRTCManager {
 
     private void checkPresences() {
     }
+
 }
