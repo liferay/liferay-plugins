@@ -21,12 +21,6 @@ import java.util.List;
  */
 public class WebRTCManager {
 
-	public static void checkAllManagersConnectionsStates() {
-	}
-
-	public static void checkAllManagersPresences() {
-	}
-
 	public List<Long> getWebRTCClientIds() {
 		return null;
 	}
@@ -42,16 +36,7 @@ public class WebRTCManager {
 	public void removeWebRTCClient(long userId) {
 	}
 
-	public void updatePresence(long userId) {
-	}
-
 	protected void addWebRTCClient(long userId) {
-	}
-
-	protected void checkConnectionsStates() {
-	}
-
-	protected void checkPresences() {
 	}
 
 	protected WebRTCClient doGetWebRTCClient(long userId) {
