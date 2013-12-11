@@ -21,6 +21,7 @@ public class WebRTCClient {
 
 	public WebRTCClient(long userId) {
 		_userId = userId;
+
 		updatePresence();
 	}
 
