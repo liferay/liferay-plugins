@@ -17,6 +17,7 @@ package com.liferay.chat.video;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Philippe Proulx
@@ -67,6 +68,6 @@ public class WebRTCManager {
 		}
 	}
 
-	private final HashMap<Long, WebRTCClient> _clients = new HashMap<Long, WebRTCClient>();
+	private Map<Long, WebRTCClient> _clients = new HashMap<Long, WebRTCClient>();
 
 }
