@@ -1,6 +1,6 @@
 /* ---------- Portlet ---------- */
 
-.knowledge-base-portlet-search {
+.knowledge-base-portlet.knowledge-base-portlet-search {
 	.knowledge-search {
 		float: none;
 	}
