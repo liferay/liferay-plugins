@@ -45,7 +45,7 @@ public class WebRTCManager {
 	public void updatePresence(long userId) {
 	}
 
-	protected void addNonExistingWebRTCClient(long userId) {
+	protected void addWebRTCClient(long userId) {
 	}
 
 	protected void checkConnectionsStates() {
