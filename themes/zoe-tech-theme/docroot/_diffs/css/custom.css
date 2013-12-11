@@ -122,10 +122,6 @@ $default-box-shadow-v-offset: 1px;
 		width: 100%;
 	}
 
-	.lfr-icon-action .taglib-text {
-		display: none;
-	}
-
 	/* -------- Dockbar -------- */
 
 	.dockbar-split .dockbar .navbar-inner .nav-add-controls > li {
@@ -205,7 +201,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 
 		#search {
-			padding: 0 12px 14px 10px;
+			padding: 0 12px 8px 10px;
 		}
 	}
 
