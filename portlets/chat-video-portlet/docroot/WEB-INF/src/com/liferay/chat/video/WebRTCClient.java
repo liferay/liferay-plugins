@@ -18,4 +18,26 @@ package com.liferay.chat.video;
  * @author Philippe Proulx
  */
 public class WebRTCClient {
+
+	public WebRTCClient(long userId) {
+		_userId = userId;
+		updatePresence();
+	}
+
+	public boolean isAvailable() {
+		return _isAvailable;
+	}
+
+	public void setIsAvailable(boolean available) {
+		_isAvailable = available;
+	}
+
+	public synchronized void updatePresence() {
+		_ts = System.currentTimeMillis();
+	}
+
+	private boolean _isAvailable = false;
+	private long _ts;
+	private final long _userId;
+
 }

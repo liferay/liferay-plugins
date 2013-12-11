@@ -14,6 +14,8 @@
 
 package com.liferay.chat.video;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -21,26 +23,50 @@ import java.util.List;
  */
 public class WebRTCManager {
 
+	public List<Long> getAvailableWebRTCClientIds() {
+		ArrayList<Long> availableUserIds = new ArrayList<Long>();
+		synchronized (_clients) {
+			for (Long userId : _clients.keySet()) {
+				if (isWebRTCClientAvailable(userId)) {
+					availableUserIds.add(userId);
+				}
+			}
+		}
+
+		return availableUserIds;
+	}
+
 	public WebRTCClient getWebRTCClient(long userId) {
-		return null;
+		synchronized (_clients) {
+			return doGetWebRTCClient(userId);
+		}
 	}
 
-	public List<Long> getWebRTCClientIds() {
-		return null;
-	}
+	public boolean isWebRTCClientAvailable(long userId) {
+		if (!_clients.containsKey(userId)) {
+			return false;
+		}
 
-	public boolean hasWebRTCClient(long userId) {
-		return false;
+		return _clients.get(userId).isAvailable();
 	}
 
 	public void removeWebRTCClient(long userId) {
 	}
 
 	protected void addWebRTCClient(long userId) {
+		if (doGetWebRTCClient(userId) == null) {
+			_clients.put(userId, new WebRTCClient(userId));
+		}
 	}
 
 	protected WebRTCClient doGetWebRTCClient(long userId) {
-		return null;
+		if (_clients.containsKey(userId)) {
+			return _clients.get(userId);
+		} else {
+			return null;
+		}
 	}
+
+	private final HashMap<Long, WebRTCClient> _clients = new HashMap<Long, WebRTCClient>();
 
 }
