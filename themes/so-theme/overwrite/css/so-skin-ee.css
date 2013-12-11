@@ -1,7 +1,7 @@
 @import "compass";
 @import "color_schemes/normal/strata_skin";
 
-/* ---------- Documents and Images Library ---------- */
+/* ---------- Documents and images library ---------- */
 
 .portlet-document-library, .portlet-document-library-display {
 	.lfr-header-row {
@@ -340,7 +340,7 @@
 	border-right: 1px solid $defaultBorderColor;
 }
 
-/* ---------- License Dialog ---------- */
+/* ---------- License dialog ---------- */
 
 .license-warning-message {
 	margin-top: 5px;
