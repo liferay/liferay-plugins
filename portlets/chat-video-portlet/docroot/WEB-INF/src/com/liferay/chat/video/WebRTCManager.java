@@ -54,7 +54,7 @@ public class WebRTCManager {
 	protected void checkPresences() {
 	}
 
-	protected WebRTCClient getWebRTCClientUnsafe(long userId) {
+	protected WebRTCClient doGetWebRTCClient(long userId) {
 		return null;
 	}
 
