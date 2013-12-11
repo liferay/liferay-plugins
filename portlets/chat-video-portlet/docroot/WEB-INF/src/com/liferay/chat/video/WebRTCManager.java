@@ -27,7 +27,7 @@ public class WebRTCManager {
 	public static void checkAllManagersPresences() {
 	}
 
-	public List<Long> getAvailableWebRTCClientIds() {
+	public List<Long> getWebRTCClientIds() {
 		return null;
 	}
 
