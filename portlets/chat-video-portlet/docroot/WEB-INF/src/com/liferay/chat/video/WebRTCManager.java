@@ -15,9 +15,9 @@
 package com.liferay.chat.video;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Philippe Proulx
@@ -26,11 +26,10 @@ public class WebRTCManager {
 
 	public List<Long> getAvailableWebRTCClientIds() {
 		ArrayList<Long> availableUserIds = new ArrayList<Long>();
-		synchronized (_clients) {
-			for (Long userId : _clients.keySet()) {
-				if (isWebRTCClientAvailable(userId)) {
-					availableUserIds.add(userId);
-				}
+
+		for (Long userId : _clients.keySet()) {
+			if (isWebRTCClientAvailable(userId)) {
+				availableUserIds.add(userId);
 			}
 		}
 
@@ -38,9 +37,7 @@ public class WebRTCManager {
 	}
 
 	public WebRTCClient getWebRTCClient(long userId) {
-		synchronized (_clients) {
-			return doGetWebRTCClient(userId);
-		}
+		return doGetWebRTCClient(userId);
 	}
 
 	public boolean isWebRTCClientAvailable(long userId) {
@@ -68,6 +65,7 @@ public class WebRTCManager {
 		}
 	}
 
-	private Map<Long, WebRTCClient> _clients = new HashMap<Long, WebRTCClient>();
+	private Map<Long, WebRTCClient> _clients =
+		new ConcurrentHashMap<Long, WebRTCClient>();
 
 }
