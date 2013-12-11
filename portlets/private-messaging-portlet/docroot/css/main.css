@@ -26,13 +26,13 @@
 		width: 60px;
 	}
 
-	.message-container {
+	.thread .message-container {
 		margin: 0 10px;
+	}
 
-		.portlet-msg-error {
-			display: block;
-			margin-bottom: 10px;
-		}
+	.message-container .portlet-msg-error {
+		display: block;
+		margin-bottom: 10px;
 	}
 
 	.controls .check-all {
