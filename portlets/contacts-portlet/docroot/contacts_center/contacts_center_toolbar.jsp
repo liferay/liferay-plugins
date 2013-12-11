@@ -189,7 +189,7 @@ if (user2 != null) {
 					click: function(event) {
 						<portlet:renderURL var="redirectURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />
 
-						var uri = '<liferay-portlet:renderURL portletName="<%= PortletKeys.PRIVATE_MESSAGING %>" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/new_message.jsp" /><portlet:param name="redirect" value="<%= redirectURL %>" /></liferay-portlet:renderURL>';
+						var uri = '<liferay-portlet:renderURL portletName="<%= PortletKeys.PRIVATE_MESSAGING %>" windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcPath" value="/new_message.jsp" /><portlet:param name="redirect" value="<%= redirectURL %>" /></liferay-portlet:renderURL>';
 
 						<c:choose>
 							<c:when test="<%= user2 != null %>">
@@ -200,28 +200,25 @@ if (user2 != null) {
 							</c:otherwise>
 						</c:choose>
 
-						var data = {};
+						uri = Liferay.Util.addParams('<%= PortalUtil.getPortletNamespace(PortletKeys.PRIVATE_MESSAGING) %>userIds=' + userIds.join(), uri) || uri;
 
-						data['<%= PortalUtil.getPortletNamespace(PortletKeys.PRIVATE_MESSAGING) %>userIds'] = userIds.join();
-
-						Liferay.Util.Window.getWindow(
+						Liferay.Util.openWindow(
 							{
 								dialog: {
-									align: Liferay.Util.Window.ALIGN_CENTER,
+									centered: true,
+									constrain: true,
 									cssClass: 'private-messaging-portlet',
-									destroyOnClose: true,
+									destroyOnHide: true,
+									height: 600,
 									modal: true,
+									plugins: [Liferay.WidgetZIndex],
 									width: 600
 								},
-								title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>'
-							}
-						).plug(
-							A.Plugin.IO,
-							{
-								data: data,
+								id: '<%= PortalUtil.getPortletNamespace(PortletKeys.PRIVATE_MESSAGING) %>Dialog',
+								title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>',
 								uri: uri
 							}
-						).render();
+						);
 					}
 				}
 			}
