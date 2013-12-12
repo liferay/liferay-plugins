@@ -16,7 +16,6 @@ package com.liferay.so.activities.hook.social;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Group;
@@ -182,8 +181,7 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 			}
 
 			String assigneeUserLink = wrapLink(
-				assigneeDisplayURL,
-				HtmlUtil.escape(tasksEntry.getAssigneeFullName()));
+				assigneeDisplayURL, tasksEntry.getAssigneeFullName());
 
 			sb.append(assigneeUserLink);
 		}

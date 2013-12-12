@@ -389,7 +389,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		nodeURL.setParameter("struts_action", "/wiki/view");
 		nodeURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 
-		return wrapLink(nodeURL.toString(), HtmlUtil.escape(node.getName()));
+		return wrapLink(nodeURL.toString(), node.getName());
 	}
 
 	@Override
