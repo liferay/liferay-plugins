@@ -68,6 +68,7 @@ long kbTemplateId = ParamUtil.getLong(request, "kbTemplateId");
 						modelResourceDescription="<%= kbTemplate.getTitle() %>"
 						resourcePrimKey="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>"
 						var="permissionsURL"
+						windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 					/>
 
 					<liferay-ui:icon
@@ -75,6 +76,7 @@ long kbTemplateId = ParamUtil.getLong(request, "kbTemplateId");
 						label="<%= true %>"
 						method="get"
 						url="<%= permissionsURL %>"
+						useDialog="<%= true %>"
 					/>
 				</td>
 			</c:if>

@@ -71,6 +71,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 						modelResourceDescription="<%= kbArticle.getTitle() %>"
 						resourcePrimKey="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>"
 						var="permissionsURL"
+						windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 					/>
 
 					<liferay-ui:icon
@@ -78,6 +79,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 						label="<%= true %>"
 						method="get"
 						url="<%= permissionsURL %>"
+						useDialog="<%= true %>"
 					/>
 				</td>
 			</c:if>
