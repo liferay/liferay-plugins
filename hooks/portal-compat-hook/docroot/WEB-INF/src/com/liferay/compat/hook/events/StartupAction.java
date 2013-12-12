@@ -70,7 +70,7 @@ public class StartupAction extends SimpleAction {
 				DLUtil.MANUAL_CHECK_IN_REQUIRED, properties, false);
 		}
 
-		ExpandoColumn column = ExpandoColumnLocalServiceUtil.getColumn(
+		ExpandoColumn expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
 			companyId, DLFileEntry.class.getName(),
 			ExpandoTableConstants.DEFAULT_TABLE_NAME,
 			DLUtil.MANUAL_CHECK_IN_REQUIRED);
@@ -81,7 +81,7 @@ public class StartupAction extends SimpleAction {
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			companyId, ExpandoColumn.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
-			String.valueOf(column.getColumnId()), role.getRoleId(),
+			String.valueOf(expandoColumn.getColumnId()), role.getRoleId(),
 			new String[] {ActionKeys.VIEW});
 	}
 
