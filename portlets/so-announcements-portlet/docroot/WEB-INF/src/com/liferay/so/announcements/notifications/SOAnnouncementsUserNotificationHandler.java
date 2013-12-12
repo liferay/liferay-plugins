@@ -79,8 +79,9 @@ public class SOAnnouncementsUserNotificationHandler
 		sb.append(
 			serviceContext.translate(
 				"x-sent-a-new-announcement",
-				PortalUtil.getUserName(
-					announcementEntry.getUserId(), StringPool.BLANK)));
+				HtmlUtil.escape(
+					PortalUtil.getUserName(
+						announcementEntry.getUserId(), StringPool.BLANK))));
 		sb.append("</div><div class=\"body\">");
 		sb.append(
 			HtmlUtil.escape(

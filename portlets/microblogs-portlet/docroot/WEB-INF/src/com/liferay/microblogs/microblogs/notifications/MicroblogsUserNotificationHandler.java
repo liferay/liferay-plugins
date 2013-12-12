@@ -72,8 +72,9 @@ public class MicroblogsUserNotificationHandler
 		sb.append("<div class=\"title\">");
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
-			String userFullName = PortalUtil.getUserName(
-				microblogsEntry.getUserId(), StringPool.BLANK);
+			String userFullName = HtmlUtil.escape(
+				PortalUtil.getUserName(
+					microblogsEntry.getUserId(), StringPool.BLANK));
 
 			sb.append(
 				serviceContext.translate(

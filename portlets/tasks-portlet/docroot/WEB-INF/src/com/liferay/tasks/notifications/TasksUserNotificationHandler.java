@@ -70,8 +70,9 @@ public class TasksUserNotificationHandler extends BaseUserNotificationHandler {
 		sb.append(
 			serviceContext.translate(
 				jsonObject.getString("title"),
-				PortalUtil.getUserName(
-					jsonObject.getLong("userId"), StringPool.BLANK)));
+				HtmlUtil.escape(
+					PortalUtil.getUserName(
+						jsonObject.getLong("userId"), StringPool.BLANK))));
 		sb.append("</div><div class=\"body\">");
 		sb.append(HtmlUtil.escape(tasksEntry.getTitle()));
 		sb.append("</div>");
