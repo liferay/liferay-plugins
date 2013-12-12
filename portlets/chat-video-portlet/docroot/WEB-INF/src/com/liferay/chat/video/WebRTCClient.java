@@ -33,7 +33,7 @@ public class WebRTCClient {
 		_isAvailable = available;
 	}
 
-	public synchronized void updatePresence() {
+	public void updatePresence() {
 		_ts = System.currentTimeMillis();
 	}
 
