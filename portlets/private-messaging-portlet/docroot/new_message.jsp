@@ -188,7 +188,7 @@ to = sb.toString() + to;
 		A.Plugin.AutoComplete,
 		{
 			queryDelimiter: ',',
-			requestTemplate: '&keywords={query}',
+			requestTemplate: '&<portlet:namespace />keywords={query}',
 			resultListLocator: 'results.users',
 			resultTextLocator: 'name',
 			source: '<liferay-portlet:resourceURL id="getUsers" />'
