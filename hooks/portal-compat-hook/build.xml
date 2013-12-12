@@ -8,6 +8,10 @@
 		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
 			<fileset
 				dir="${app.server.portal.dir}"
+				includes="html/portlet/document_library/folder_action.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
 				includes="html/common/themes/top_head.jsp"
 			/>
 		</copy>
