@@ -19,9 +19,18 @@ import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
+import com.liferay.portlet.expando.model.ExpandoTableConstants;
+import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
 /**
@@ -60,6 +69,20 @@ public class StartupAction extends SimpleAction {
 			expandoBridge.setAttributeProperties(
 				DLUtil.MANUAL_CHECK_IN_REQUIRED, properties, false);
 		}
+
+		ExpandoColumn column = ExpandoColumnLocalServiceUtil.getColumn(
+			companyId, DLFileEntry.class.getName(),
+			ExpandoTableConstants.DEFAULT_TABLE_NAME,
+			DLUtil.MANUAL_CHECK_IN_REQUIRED);
+
+		Role role = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.GUEST);
+
+		ResourcePermissionLocalServiceUtil.setResourcePermissions(
+			companyId, ExpandoColumn.class.getName(),
+			ResourceConstants.SCOPE_INDIVIDUAL,
+			String.valueOf(column.getColumnId()), role.getRoleId(),
+			new String[] {ActionKeys.VIEW});
 	}
 
 }
