@@ -39,6 +39,6 @@ public class WebRTCClient {
 
 	private boolean _available;
 	private long _presenceTime;
-	private final long _userId;
+	private long _userId;
 
 }
