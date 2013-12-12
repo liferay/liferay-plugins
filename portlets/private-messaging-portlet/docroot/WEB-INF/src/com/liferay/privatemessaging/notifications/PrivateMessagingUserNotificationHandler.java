@@ -94,7 +94,8 @@ public class PrivateMessagingUserNotificationHandler
 		sb.append(
 			serviceContext.translate(
 				"x-sent-you-a-message",
-				PortalUtil.getUserName(userId, StringPool.BLANK)));
+				HtmlUtil.escape(
+					PortalUtil.getUserName(userId, StringPool.BLANK))));
 		sb.append("</div><div class=\"body\">");
 		sb.append(HtmlUtil.escape(StringUtil.shorten(body)));
 		sb.append("</div>");
