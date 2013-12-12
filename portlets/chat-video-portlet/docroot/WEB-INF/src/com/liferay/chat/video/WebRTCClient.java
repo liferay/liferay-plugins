@@ -34,11 +34,11 @@ public class WebRTCClient {
 	}
 
 	public void updatePresence() {
-		_ts = System.currentTimeMillis();
+		_timestamp = System.currentTimeMillis();
 	}
 
 	private boolean _isAvailable = false;
-	private long _ts;
+	private long _timestamp;
 	private final long _userId;
 
 }
