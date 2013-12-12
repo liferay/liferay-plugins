@@ -41,11 +41,11 @@ public class WebRTCManager {
 	}
 
 	public boolean hasAvailableWebRTCClient(long userId) {
-		if (!_webRTCClients.containsKey(userId)) {
+		WebRTCClient webRTCClient = _webRTCClients.get(userId);
+
+		if (webRTCClient == null) {
 			return false;
 		}
-
-		WebRTCClient webRTCClient = _webRTCClients.get(userId);
 
 		return webRTCClient.isAvailable();
 	}
