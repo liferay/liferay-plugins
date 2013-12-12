@@ -26,18 +26,18 @@ public class WebRTCClient {
 	}
 
 	public boolean isAvailable() {
-		return _isAvailable;
+		return _available;
 	}
 
-	public void setIsAvailable(boolean available) {
-		_isAvailable = available;
+	public void setAvailable(boolean available) {
+		_available = available;
 	}
 
 	public void updatePresenceTime() {
 		_presenceTime = System.currentTimeMillis();
 	}
 
-	private boolean _isAvailable = false;
+	private boolean _available = false;
 	private long _presenceTime;
 	private final long _userId;
 
