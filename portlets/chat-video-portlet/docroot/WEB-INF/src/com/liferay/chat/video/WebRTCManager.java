@@ -45,7 +45,9 @@ public class WebRTCManager {
 			return false;
 		}
 
-		return _webRTCClients.get(userId).isAvailable();
+		WebRTCClient webRTCClient = _webRTCClients.get(userId);
+
+		return webRTCClient.isAvailable();
 	}
 
 	public void removeWebRTCClient(long userId) {
