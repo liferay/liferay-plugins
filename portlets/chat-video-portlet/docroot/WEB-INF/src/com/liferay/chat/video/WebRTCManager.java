@@ -54,7 +54,7 @@ public class WebRTCManager {
 	}
 
 	protected void addWebRTCClient(long userId) {
-		if (_webRTCClients.get(userId) == null) {
+		if (!_webRTCClients.containsKey(userId)) {
 			_webRTCClients.put(userId, new WebRTCClient(userId));
 		}
 	}
