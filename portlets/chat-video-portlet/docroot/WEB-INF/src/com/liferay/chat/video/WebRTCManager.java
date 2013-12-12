@@ -27,7 +27,7 @@ public class WebRTCManager {
 	public List<Long> getAvailableWebRTCClientIds() {
 		List<Long> availableUserIds = new ArrayList<Long>();
 
-		for (Long userId : _webRTCClients.keySet()) {
+		for (long userId : _webRTCClients.keySet()) {
 			if (hasAvailableWebRTCClient(userId)) {
 				availableUserIds.add(userId);
 			}
