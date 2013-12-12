@@ -58,12 +58,14 @@ KBTemplate kbTemplate = (KBTemplate)row.getObject();
 			modelResourceDescription="<%= kbTemplate.getTitle() %>"
 			resourcePrimKey="<%= String.valueOf(kbTemplate.getKbTemplateId()) %>"
 			var="permissionsURL"
+			windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 		/>
 
 		<liferay-ui:icon
 			image="permissions"
 			method="get"
 			url="<%= permissionsURL %>"
+			useDialog="<%= true %>"
 		/>
 	</c:if>
 
