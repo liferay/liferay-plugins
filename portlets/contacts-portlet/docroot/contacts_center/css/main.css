@@ -347,7 +347,9 @@ $section-header-bg: #CCE6F7;
 	.section {
 		border-bottom: 1px solid #E7E7E7;
 		clear: both;
+		float: none;
 		padding: 10px;
+		width: auto;
 		zoom: 1;
 
 		&:after {
@@ -360,6 +362,7 @@ $section-header-bg: #CCE6F7;
 			color: #B4BEC8;
 			float: left;
 			font-size: 1em;
+			line-height: 20px;
 			margin: 0;
 			text-align: right;
 			width: 100px;
