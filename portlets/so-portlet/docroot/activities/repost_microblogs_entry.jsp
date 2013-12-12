@@ -56,7 +56,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 						</div>
 
 						<div class="activity-user-name">
-							<%= receiverUser.getFullName() %>
+							<%= HtmlUtil.escape(receiverUser.getFullName()) %>
 						</div>
 					</div>
 

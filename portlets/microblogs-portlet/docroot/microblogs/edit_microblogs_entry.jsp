@@ -55,7 +55,7 @@ if ((microblogsEntry != null) && !edit) {
 
 	receiverUserId = microblogsEntry.getUserId();
 
-	receiverUserFullName = PortalUtil.getUserName(microblogsEntry);
+	receiverUserFullName = HtmlUtil.escape(PortalUtil.getUserName(microblogsEntry));
 
 	try {
 		User receiverUser = UserLocalServiceUtil.getUserById(microblogsEntry.getUserId());
