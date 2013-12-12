@@ -37,7 +37,7 @@ public class WebRTCClient {
 		_presenceTime = System.currentTimeMillis();
 	}
 
-	private boolean _available = false;
+	private boolean _available;
 	private long _presenceTime;
 	private final long _userId;
 
