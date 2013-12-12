@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WebRTCManager {
 
 	public List<Long> getAvailableWebRTCClientIds() {
-		ArrayList<Long> availableUserIds = new ArrayList<Long>();
+		List<Long> availableUserIds = new ArrayList<Long>();
 
 		for (Long userId : _webRTCClients.keySet()) {
 			if (hasAvailableWebRTCClient(userId)) {
