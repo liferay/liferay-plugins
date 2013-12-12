@@ -37,7 +37,7 @@ public class WebRTCManager {
 	}
 
 	public WebRTCClient getWebRTCClient(long userId) {
-		return doGetWebRTCClient(userId);
+		return _webRTCClients.get(userId);
 	}
 
 	public boolean hasAvailableWebRTCClient(long userId) {
@@ -54,13 +54,9 @@ public class WebRTCManager {
 	}
 
 	protected void addWebRTCClient(long userId) {
-		if (doGetWebRTCClient(userId) == null) {
+		if (_webRTCClients.get(userId) == null) {
 			_webRTCClients.put(userId, new WebRTCClient(userId));
 		}
-	}
-
-	protected WebRTCClient doGetWebRTCClient(long userId) {
-		return _webRTCClients.get(userId);
 	}
 
 	private Map<Long, WebRTCClient> _webRTCClients =
