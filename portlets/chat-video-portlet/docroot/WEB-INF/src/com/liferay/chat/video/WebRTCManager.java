@@ -60,11 +60,7 @@ public class WebRTCManager {
 	}
 
 	protected WebRTCClient doGetWebRTCClient(long userId) {
-		if (_webRTCClients.containsKey(userId)) {
-			return _webRTCClients.get(userId);
-		} else {
-			return null;
-		}
+		return _webRTCClients.get(userId);
 	}
 
 	private Map<Long, WebRTCClient> _webRTCClients =
