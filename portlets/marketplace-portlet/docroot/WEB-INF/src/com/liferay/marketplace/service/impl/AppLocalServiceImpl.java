@@ -196,10 +196,22 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 			DeployManagerUtil.getInstalledPluginPackages();
 
 		for (PluginPackage pluginPackage : pluginPackages) {
-			int count = modulePersistence.countByContextName(
+			List<Module> modules = modulePersistence.findByContextName(
 				pluginPackage.getContext());
 
-			if (count > 0) {
+			boolean installedApp = false;
+
+			for (Module module : modules) {
+				App app = appPersistence.fetchByPrimaryKey(module.getAppId());
+
+				if ((app != null) && app.isInstalled()) {
+					installedApp = true;
+
+					break;
+				}
+			}
+
+			if (installedApp) {
 				continue;
 			}
 
