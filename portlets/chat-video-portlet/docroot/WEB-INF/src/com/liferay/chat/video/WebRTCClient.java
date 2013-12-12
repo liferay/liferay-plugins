@@ -22,7 +22,7 @@ public class WebRTCClient {
 	public WebRTCClient(long userId) {
 		_userId = userId;
 
-		updatePresence();
+		updatePresenceTime();
 	}
 
 	public boolean isAvailable() {
@@ -33,12 +33,12 @@ public class WebRTCClient {
 		_isAvailable = available;
 	}
 
-	public void updatePresence() {
-		_timestamp = System.currentTimeMillis();
+	public void updatePresenceTime() {
+		_presenceTime = System.currentTimeMillis();
 	}
 
 	private boolean _isAvailable = false;
-	private long _timestamp;
+	private long _presenceTime;
 	private final long _userId;
 
 }
