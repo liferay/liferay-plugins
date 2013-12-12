@@ -66,7 +66,7 @@ if (entry.getPriority() > 0) {
 			</div>
 
 			<div class="entry-action">
-				<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + entryUser.getFullName() + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}) %>
+				<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(entryUser.getFullName()) + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}) %>
 			</div>
 		</div>
 
