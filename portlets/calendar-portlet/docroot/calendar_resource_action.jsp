@@ -43,11 +43,14 @@ CalendarResource calendarResource = (CalendarResource)row.getObject();
 			resourceGroupId="<%= calendarResource.getGroupId() %>"
 			resourcePrimKey="<%= String.valueOf(calendarResource.getCalendarResourceId()) %>"
 			var="permissionsURL"
+			windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 		/>
 
 		<liferay-ui:icon
 			image="permissions"
+			method="get"
 			url="<%= permissionsURL %>"
+			useDialog="<%= true %>"
 		/>
 	</c:if>
 
