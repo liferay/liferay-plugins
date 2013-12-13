@@ -30,9 +30,9 @@ public class WebRTCClient {
 	}
 
 	public void addWebRTCConnection(
-		WebRTCClient otherWebRTCClient, WebRTCConnection webRTCConnection) {
+		WebRTCClient webRTCClient, WebRTCConnection webRTCConnection) {
 
-		_webRTCConnections.put(otherWebRTCClient, webRTCConnection);
+		_webRTCConnections.put(webRTCClient, webRTCConnection);
 	}
 
 	public Set<WebRTCClient> getConnectedWebRTCClients() {
@@ -40,9 +40,9 @@ public class WebRTCClient {
 	}
 
 	public WebRTCConnection getWebRTCConnection(
-		WebRTCClient otherWebRTCClient) {
+		WebRTCClient webRTCClient) {
 
-		return _webRTCConnections.get(otherWebRTCClient);
+		return _webRTCConnections.get(webRTCClient);
 	}
 
 	public long getPresenceTime() {
@@ -58,16 +58,16 @@ public class WebRTCClient {
 	}
 
 	public void removeBilateralWebRTCConnections() {
-		for (WebRTCClient otherWebRTCClient : _webRTCConnections.keySet()) {
-			otherWebRTCClient.removeUnilateralWebRTCConnection(this);
+		for (WebRTCClient webRTCClient : _webRTCConnections.keySet()) {
+			webRTCClient.removeUnilateralWebRTCConnection(this);
 		}
 
 		_webRTCConnections.clear();
 	}
 
-	public void removeBilateralWebRTCConnection(WebRTCClient otherWebRTCClient) {
-		otherWebRTCClient.removeUnilateralWebRTCConnection(this);
-		removeUnilateralWebRTCConnection(otherWebRTCClient);
+	public void removeBilateralWebRTCConnection(WebRTCClient webRTCClient) {
+		webRTCClient.removeUnilateralWebRTCConnection(this);
+		removeUnilateralWebRTCConnection(webRTCClient);
 	}
 
 	public void reset() {
@@ -83,8 +83,8 @@ public class WebRTCClient {
 		_presenceTime = System.currentTimeMillis();
 	}
 
-	protected void removeUnilateralWebRTCConnection(WebRTCClient otherWebRTCClient) {
-		_webRTCConnections.remove(otherWebRTCClient);
+	protected void removeUnilateralWebRTCConnection(WebRTCClient webRTCClient) {
+		_webRTCConnections.remove(webRTCClient);
 	}
 
 	private boolean _available;
