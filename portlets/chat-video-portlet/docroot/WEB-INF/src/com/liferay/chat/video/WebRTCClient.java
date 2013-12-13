@@ -71,6 +71,7 @@ public class WebRTCClient {
 
 	public void reset() {
 		setAvailable(false);
+
 		removeBilateralWebRTCConnections();
 	}
 
