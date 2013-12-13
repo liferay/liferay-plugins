@@ -46,7 +46,7 @@ $default-border-color: #E7E7E7;
 
 	.activity-data {
 		margin-left: 55px;
-		overflow: hidden;
+		word-wrap: break-word;
 	}
 
 	.activity-header {
@@ -259,7 +259,6 @@ $default-border-color: #E7E7E7;
 	.comment-entry, .comments-container .form {
 		background: #EAEAEA;
 		border-top: 1px solid #FFF;
-		overflow: hidden;
 		padding: 2px;
 	}
 
