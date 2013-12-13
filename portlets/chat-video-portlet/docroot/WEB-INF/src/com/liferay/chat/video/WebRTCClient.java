@@ -35,7 +35,7 @@ public class WebRTCClient {
 		_webRTCConnections.put(webRTCClient, webRTCConnection);
 	}
 
-	public Set<WebRTCClient> getConnectedWebRTCClients() {
+	public Set<WebRTCClient> getWebRTCClients() {
 		return _webRTCConnections.keySet();
 	}
 
