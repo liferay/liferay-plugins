@@ -98,6 +98,15 @@ $microblogs-border-color: #EAEAEA;
 		.textarea {
 			border-width: 0;
 		}
+
+		ul {
+			margin: 0;
+
+			li {
+				line-height: 16px;
+				padding: 10px;
+			}
+		}
 	}
 
 	.microblogs-entry {
