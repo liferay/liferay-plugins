@@ -39,9 +39,7 @@ public class WebRTCClient {
 		return _webRTCConnections.keySet();
 	}
 
-	public WebRTCConnection getWebRTCConnection(
-		WebRTCClient webRTCClient) {
-
+	public WebRTCConnection getWebRTCConnection(WebRTCClient webRTCClient) {
 		return _webRTCConnections.get(webRTCClient);
 	}
 
@@ -67,6 +65,7 @@ public class WebRTCClient {
 
 	public void removeBilateralWebRTCConnection(WebRTCClient webRTCClient) {
 		webRTCClient.removeUnilateralWebRTCConnection(this);
+
 		removeUnilateralWebRTCConnection(webRTCClient);
 	}
 
