@@ -35,14 +35,6 @@ public class WebRTCClient {
 		_webRTCConnections.put(webRTCClient, webRTCConnection);
 	}
 
-	public Set<WebRTCClient> getWebRTCClients() {
-		return _webRTCConnections.keySet();
-	}
-
-	public WebRTCConnection getWebRTCConnection(WebRTCClient webRTCClient) {
-		return _webRTCConnections.get(webRTCClient);
-	}
-
 	public long getPresenceTime() {
 		return _presenceTime;
 	}
@@ -51,8 +43,22 @@ public class WebRTCClient {
 		return _userId;
 	}
 
+	public Set<WebRTCClient> getWebRTCClients() {
+		return _webRTCConnections.keySet();
+	}
+
+	public WebRTCConnection getWebRTCConnection(WebRTCClient webRTCClient) {
+		return _webRTCConnections.get(webRTCClient);
+	}
+
 	public boolean isAvailable() {
 		return _available;
+	}
+
+	public void removeBilateralWebRTCConnection(WebRTCClient webRTCClient) {
+		webRTCClient.removeUnilateralWebRTCConnection(this);
+
+		removeUnilateralWebRTCConnection(webRTCClient);
 	}
 
 	public void removeBilateralWebRTCConnections() {
@@ -61,12 +67,6 @@ public class WebRTCClient {
 		}
 
 		_webRTCConnections.clear();
-	}
-
-	public void removeBilateralWebRTCConnection(WebRTCClient webRTCClient) {
-		webRTCClient.removeUnilateralWebRTCConnection(this);
-
-		removeUnilateralWebRTCConnection(webRTCClient);
 	}
 
 	public void reset() {
@@ -87,9 +87,9 @@ public class WebRTCClient {
 	}
 
 	private boolean _available;
-	private Map<WebRTCClient, WebRTCConnection> _webRTCConnections =
-		new ConcurrentHashMap<WebRTCClient, WebRTCConnection>();
 	private long _presenceTime;
 	private long _userId;
+	private Map<WebRTCClient, WebRTCConnection> _webRTCConnections =
+		new ConcurrentHashMap<WebRTCClient, WebRTCConnection>();
 
 }
