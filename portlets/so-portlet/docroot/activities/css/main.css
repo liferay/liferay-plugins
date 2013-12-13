@@ -147,7 +147,7 @@ $default-border-color: #E7E7E7;
 	}
 
 	.grouped-activity-body-container {
-		max-height: 93px;
+		max-height: 107px;
 		overflow: hidden;
 
 		.activity-subentry {
@@ -350,7 +350,7 @@ $default-border-color: #E7E7E7;
 
 .ie7 {
 	.so-portlet-activities .grouped-activity-body-container {
-		height: 93px;
+		height: 107px;
 		max-height: none;
 
 		.activity-subentry-title {
