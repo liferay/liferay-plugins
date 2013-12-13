@@ -14,58 +14,34 @@
 
 package com.liferay.portal.workflow.kaleo.definition;
 
-import com.liferay.portal.kernel.scheduler.CronText;
+import com.liferay.compat.portal.kernel.scheduler.CronText;
 
 /**
  * @author Michael C. Han
+ * @author Peter Borkuti
  */
 public enum DurationScale {
 
-	DAY("day"), HOUR("hour"), MINUTE("minute"), MONTH("month"),
-	SECOND("second"), WEEK("week"), YEAR("year");
+	DAY("day", CronText.DAILY_FREQUENCY),
+	HOUR("hour", CronText.HOURLY_FREQUENCY),
+	MINUTE("minute", CronText.MINUTELY_FREQUENCY),
+	MONTH("month", CronText.MONTHLY_FREQUENCY),
+	SECOND("second", CronText.SECONDLY_FREQUENCY),
+	WEEK("week", CronText.WEEKLY_FREQUENCY),
+	YEAR("year", CronText.YEARLY_FREQUENCY);
 
 	public static DurationScale parse(String value) {
-		if (DAY.getValue().equals(value)) {
-			return DAY;
-		}
-		else if (HOUR.getValue().equals(value)) {
-			return HOUR;
-		}
-		else if (MINUTE.getValue().equals(value)) {
-			return MINUTE;
-		}
-		else if (MONTH.getValue().equals(value)) {
-			return MONTH;
-		}
-		else if (SECOND.getValue().equals(value)) {
-			return SECOND;
-		}
-		else if (YEAR.getValue().equals(value)) {
-			return YEAR;
+		for (DurationScale durationScale : DurationScale.values()) {
+			if (durationScale.getValue().equals(value)) {
+				return durationScale;
+			}
 		}
 
 		throw new IllegalArgumentException("Invalid value " + value);
 	}
 
 	public int getIntegerValue() {
-		if (equals(DAY)) {
-			return CronText.DAILY_FREQUENCY;
-		}
-		else if (equals(HOUR)) {
-			return CronText.HOURLY_FREQUENCY;
-		}
-		else if (equals(MINUTE)) {
-			return CronText.MINUTELY_FREQUENCY;
-		}
-		else if (equals(MONTH)) {
-			return CronText.MONTHLY_FREQUENCY;
-		}
-		else if (equals(WEEK)) {
-			return CronText.WEEKLY_FREQUENCY;
-		}
-		else {
-			return CronText.YEARLY_FREQUENCY;
-		}
+		return _frequency;
 	}
 
 	public String getValue() {
@@ -77,10 +53,12 @@ public enum DurationScale {
 		return _value;
 	}
 
-	private DurationScale(String value) {
+	private DurationScale(String value, int frequency) {
 		_value = value;
+		_frequency = frequency;
 	}
 
+	private int _frequency;
 	private String _value;
 
 }
