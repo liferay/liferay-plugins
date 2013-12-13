@@ -97,7 +97,7 @@ public class PrivateMessagingUserNotificationHandler
 				HtmlUtil.escape(
 					PortalUtil.getUserName(userId, StringPool.BLANK))));
 		sb.append("</div><div class=\"body\">");
-		sb.append(HtmlUtil.escape(StringUtil.shorten(body)));
+		sb.append(HtmlUtil.escape(StringUtil.shorten(body, 50)));
 		sb.append("</div>");
 
 		return sb.toString();
