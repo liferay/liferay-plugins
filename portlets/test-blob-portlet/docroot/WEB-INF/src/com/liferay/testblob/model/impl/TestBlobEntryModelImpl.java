@@ -127,6 +127,9 @@ public class TestBlobEntryModelImpl extends BaseModelImpl<TestBlobEntry>
 		attributes.put("testBlobEntryId", getTestBlobEntryId());
 		attributes.put("blobField", getBlobField());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -293,6 +296,16 @@ public class TestBlobEntryModelImpl extends BaseModelImpl<TestBlobEntry>
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

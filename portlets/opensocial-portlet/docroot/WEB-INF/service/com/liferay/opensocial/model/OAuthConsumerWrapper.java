@@ -467,6 +467,16 @@ public class OAuthConsumerWrapper implements OAuthConsumer,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _oAuthConsumer.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _oAuthConsumer.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_oAuthConsumer.resetOriginalValues();
 	}

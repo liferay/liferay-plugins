@@ -1121,6 +1121,8 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		clearUniqueFindersCache(syncDLObject);
 		cacheUniqueFindersCache(syncDLObject);
 
+		syncDLObject.resetOriginalValues();
+
 		return syncDLObject;
 	}
 

@@ -19,6 +19,7 @@ import com.liferay.mail.service.ClpSerializer;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -100,6 +101,9 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		attributes.put("sentFolderId", getSentFolderId());
 		attributes.put("trashFolderId", getTrashFolderId());
 		attributes.put("defaultSender", getDefaultSender());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -261,6 +265,9 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 		if (defaultSender != null) {
 			setDefaultSender(defaultSender);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -1076,6 +1083,16 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(53);
 
@@ -1282,4 +1299,6 @@ public class AccountClp extends BaseModelImpl<Account> implements Account {
 	private long _trashFolderId;
 	private boolean _defaultSender;
 	private BaseModel<?> _accountRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

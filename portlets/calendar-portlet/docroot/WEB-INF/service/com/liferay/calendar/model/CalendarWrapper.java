@@ -974,6 +974,16 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _calendar.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _calendar.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_calendar.resetOriginalValues();
 	}

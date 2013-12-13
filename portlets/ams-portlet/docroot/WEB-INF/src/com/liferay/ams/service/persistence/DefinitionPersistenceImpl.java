@@ -305,6 +305,8 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			DefinitionImpl.class, definition.getPrimaryKey(), definition);
 
+		definition.resetOriginalValues();
+
 		return definition;
 	}
 

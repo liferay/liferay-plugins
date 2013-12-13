@@ -1136,6 +1136,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		clearUniqueFindersCache(entry);
 		cacheUniqueFindersCache(entry);
 
+		entry.resetOriginalValues();
+
 		return entry;
 	}
 

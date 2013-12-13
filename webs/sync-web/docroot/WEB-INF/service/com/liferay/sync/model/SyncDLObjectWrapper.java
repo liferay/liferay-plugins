@@ -839,6 +839,16 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _syncDLObject.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _syncDLObject.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_syncDLObject.resetOriginalValues();
 	}

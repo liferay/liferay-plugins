@@ -843,6 +843,16 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoTimerInstanceToken.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoTimerInstanceToken.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoTimerInstanceToken.resetOriginalValues();
 	}

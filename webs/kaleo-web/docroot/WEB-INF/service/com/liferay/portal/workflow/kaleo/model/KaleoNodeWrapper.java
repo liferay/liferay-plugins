@@ -660,6 +660,16 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoNode.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoNode.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoNode.resetOriginalValues();
 	}

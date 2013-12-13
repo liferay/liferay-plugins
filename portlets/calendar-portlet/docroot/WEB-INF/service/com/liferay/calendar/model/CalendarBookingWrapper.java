@@ -1475,6 +1475,16 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _calendarBooking.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _calendarBooking.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_calendarBooking.resetOriginalValues();
 	}

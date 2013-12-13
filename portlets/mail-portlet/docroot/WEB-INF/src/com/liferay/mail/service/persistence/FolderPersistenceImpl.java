@@ -1144,6 +1144,8 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 		clearUniqueFindersCache(folder);
 		cacheUniqueFindersCache(folder);
 
+		folder.resetOriginalValues();
+
 		return folder;
 	}
 

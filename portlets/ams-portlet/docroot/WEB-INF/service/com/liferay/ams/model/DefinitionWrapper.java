@@ -585,6 +585,16 @@ public class DefinitionWrapper implements Definition, ModelWrapper<Definition> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _definition.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _definition.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_definition.resetOriginalValues();
 	}

@@ -641,6 +641,16 @@ public class CalendarNotificationTemplateWrapper
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _calendarNotificationTemplate.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _calendarNotificationTemplate.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_calendarNotificationTemplate.resetOriginalValues();
 	}

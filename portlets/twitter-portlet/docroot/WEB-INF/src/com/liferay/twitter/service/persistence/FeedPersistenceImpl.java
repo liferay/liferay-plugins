@@ -633,6 +633,8 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 		clearUniqueFindersCache(feed);
 		cacheUniqueFindersCache(feed);
 
+		feed.resetOriginalValues();
+
 		return feed;
 	}
 

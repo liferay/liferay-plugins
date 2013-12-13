@@ -390,6 +390,16 @@ public class SVNRevisionWrapper implements SVNRevision,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _svnRevision.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _svnRevision.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_svnRevision.resetOriginalValues();
 	}

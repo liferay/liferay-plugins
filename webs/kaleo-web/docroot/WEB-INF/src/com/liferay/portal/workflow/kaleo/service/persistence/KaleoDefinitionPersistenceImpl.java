@@ -2985,6 +2985,8 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 		clearUniqueFindersCache(kaleoDefinition);
 		cacheUniqueFindersCache(kaleoDefinition);
 
+		kaleoDefinition.resetOriginalValues();
+
 		return kaleoDefinition;
 	}
 

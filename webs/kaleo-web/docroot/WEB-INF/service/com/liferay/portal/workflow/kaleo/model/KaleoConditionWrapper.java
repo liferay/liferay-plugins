@@ -563,6 +563,16 @@ public class KaleoConditionWrapper implements KaleoCondition,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoCondition.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoCondition.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoCondition.resetOriginalValues();
 	}

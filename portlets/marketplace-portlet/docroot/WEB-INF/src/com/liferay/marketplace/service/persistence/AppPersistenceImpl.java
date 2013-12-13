@@ -2762,6 +2762,8 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 		clearUniqueFindersCache(app);
 		cacheUniqueFindersCache(app);
 
+		app.resetOriginalValues();
+
 		return app;
 	}
 

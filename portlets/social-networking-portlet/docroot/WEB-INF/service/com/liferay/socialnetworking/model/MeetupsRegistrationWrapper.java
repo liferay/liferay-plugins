@@ -481,6 +481,16 @@ public class MeetupsRegistrationWrapper implements MeetupsRegistration,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _meetupsRegistration.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _meetupsRegistration.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_meetupsRegistration.resetOriginalValues();
 	}

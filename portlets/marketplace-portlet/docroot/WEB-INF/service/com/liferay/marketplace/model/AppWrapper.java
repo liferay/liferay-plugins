@@ -630,6 +630,16 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _app.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _app.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_app.resetOriginalValues();
 	}

@@ -403,6 +403,16 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _jiraChangeItem.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _jiraChangeItem.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_jiraChangeItem.resetOriginalValues();
 	}

@@ -6669,6 +6669,8 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		clearUniqueFindersCache(jiraIssue);
 		cacheUniqueFindersCache(jiraIssue);
 
+		jiraIssue.resetOriginalValues();
+
 		return jiraIssue;
 	}
 

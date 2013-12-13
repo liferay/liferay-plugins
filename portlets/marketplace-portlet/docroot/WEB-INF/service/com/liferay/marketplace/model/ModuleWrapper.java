@@ -319,6 +319,16 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _module.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _module.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_module.resetOriginalValues();
 	}

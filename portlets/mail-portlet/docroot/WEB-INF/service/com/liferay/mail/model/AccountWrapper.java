@@ -996,6 +996,16 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _account.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _account.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_account.resetOriginalValues();
 	}

@@ -712,6 +712,16 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoTaskAssignmentInstance.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoTaskAssignmentInstance.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoTaskAssignmentInstance.resetOriginalValues();
 	}

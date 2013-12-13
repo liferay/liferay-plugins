@@ -1109,6 +1109,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		clearUniqueFindersCache(favoriteSite);
 		cacheUniqueFindersCache(favoriteSite);
 
+		favoriteSite.resetOriginalValues();
+
 		return favoriteSite;
 	}
 

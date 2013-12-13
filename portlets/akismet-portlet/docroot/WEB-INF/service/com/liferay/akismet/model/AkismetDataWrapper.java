@@ -498,6 +498,16 @@ public class AkismetDataWrapper implements AkismetData,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _akismetData.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _akismetData.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_akismetData.resetOriginalValues();
 	}

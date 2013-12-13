@@ -342,6 +342,16 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _favoriteSite.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _favoriteSite.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_favoriteSite.resetOriginalValues();
 	}

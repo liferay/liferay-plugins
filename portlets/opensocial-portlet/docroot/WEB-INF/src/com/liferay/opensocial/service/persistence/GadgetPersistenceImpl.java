@@ -3470,6 +3470,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		clearUniqueFindersCache(gadget);
 		cacheUniqueFindersCache(gadget);
 
+		gadget.resetOriginalValues();
+
 		return gadget;
 	}
 

@@ -1128,6 +1128,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		clearUniqueFindersCache(akismetData);
 		cacheUniqueFindersCache(akismetData);
 
+		akismetData.resetOriginalValues();
+
 		return akismetData;
 	}
 

@@ -1609,6 +1609,8 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		clearUniqueFindersCache(kaleoTask);
 		cacheUniqueFindersCache(kaleoTask);
 
+		kaleoTask.resetOriginalValues();
+
 		return kaleoTask;
 	}
 

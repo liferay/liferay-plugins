@@ -509,6 +509,16 @@ public class JIRAIssueWrapper implements JIRAIssue, ModelWrapper<JIRAIssue> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _jiraIssue.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _jiraIssue.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_jiraIssue.resetOriginalValues();
 	}

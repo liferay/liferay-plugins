@@ -614,6 +614,16 @@ public class MeetupsEntryWrapper implements MeetupsEntry,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _meetupsEntry.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _meetupsEntry.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_meetupsEntry.resetOriginalValues();
 	}

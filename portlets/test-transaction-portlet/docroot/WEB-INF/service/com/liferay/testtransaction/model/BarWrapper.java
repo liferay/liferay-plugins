@@ -265,6 +265,16 @@ public class BarWrapper implements Bar, ModelWrapper<Bar> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _bar.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _bar.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_bar.resetOriginalValues();
 	}

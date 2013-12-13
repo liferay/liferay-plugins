@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -91,6 +92,9 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		attributes.put("scale", getScale());
 		attributes.put("recurrenceDuration", getRecurrenceDuration());
 		attributes.put("recurrenceScale", getRecurrenceScale());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -198,6 +202,9 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 		if (recurrenceScale != null) {
 			setRecurrenceScale(recurrenceScale);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -788,6 +795,16 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(35);
 
@@ -931,4 +948,6 @@ public class KaleoTimerClp extends BaseModelImpl<KaleoTimer>
 	private double _recurrenceDuration;
 	private String _recurrenceScale;
 	private BaseModel<?> _kaleoTimerRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

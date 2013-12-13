@@ -1625,6 +1625,8 @@ public class MessagePersistenceImpl extends BasePersistenceImpl<Message>
 		clearUniqueFindersCache(message);
 		cacheUniqueFindersCache(message);
 
+		message.resetOriginalValues();
+
 		return message;
 	}
 

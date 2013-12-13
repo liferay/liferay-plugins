@@ -476,6 +476,16 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _attachment.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _attachment.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_attachment.resetOriginalValues();
 	}

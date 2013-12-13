@@ -4896,6 +4896,8 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 			MicroblogsEntryImpl.class, microblogsEntry.getPrimaryKey(),
 			microblogsEntry);
 
+		microblogsEntry.resetOriginalValues();
+
 		return microblogsEntry;
 	}
 

@@ -2207,6 +2207,8 @@ public class KaleoTaskInstanceTokenPersistenceImpl extends BasePersistenceImpl<K
 		clearUniqueFindersCache(kaleoTaskInstanceToken);
 		cacheUniqueFindersCache(kaleoTaskInstanceToken);
 
+		kaleoTaskInstanceToken.resetOriginalValues();
+
 		return kaleoTaskInstanceToken;
 	}
 

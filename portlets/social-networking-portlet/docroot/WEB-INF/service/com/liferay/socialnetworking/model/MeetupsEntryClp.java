@@ -17,6 +17,7 @@ package com.liferay.socialnetworking.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -90,6 +91,9 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		attributes.put("maxAttendees", getMaxAttendees());
 		attributes.put("price", getPrice());
 		attributes.put("thumbnailId", getThumbnailId());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -179,6 +183,9 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 		if (thumbnailId != null) {
 			setThumbnailId(thumbnailId);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -643,6 +650,16 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 
@@ -765,4 +782,6 @@ public class MeetupsEntryClp extends BaseModelImpl<MeetupsEntry>
 	private double _price;
 	private long _thumbnailId;
 	private BaseModel<?> _meetupsEntryRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

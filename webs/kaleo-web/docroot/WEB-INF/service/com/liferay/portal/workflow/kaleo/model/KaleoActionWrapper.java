@@ -724,6 +724,16 @@ public class KaleoActionWrapper implements KaleoAction,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoAction.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoAction.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoAction.resetOriginalValues();
 	}

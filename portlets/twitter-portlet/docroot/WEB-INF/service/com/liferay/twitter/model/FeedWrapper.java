@@ -499,6 +499,16 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _feed.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _feed.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_feed.resetOriginalValues();
 	}

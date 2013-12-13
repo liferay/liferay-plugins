@@ -1395,6 +1395,8 @@ public class JIRAChangeGroupPersistenceImpl extends BasePersistenceImpl<JIRAChan
 			JIRAChangeGroupImpl.class, jiraChangeGroup.getPrimaryKey(),
 			jiraChangeGroup);
 
+		jiraChangeGroup.resetOriginalValues();
+
 		return jiraChangeGroup;
 	}
 

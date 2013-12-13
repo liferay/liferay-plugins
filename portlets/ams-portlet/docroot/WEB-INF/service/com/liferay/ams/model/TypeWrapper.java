@@ -292,6 +292,16 @@ public class TypeWrapper implements Type, ModelWrapper<Type> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _type.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _type.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_type.resetOriginalValues();
 	}

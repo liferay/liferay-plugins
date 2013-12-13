@@ -479,6 +479,16 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _status.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _status.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_status.resetOriginalValues();
 	}

@@ -2357,6 +2357,8 @@ public class WSRPConsumerPortletPersistenceImpl extends BasePersistenceImpl<WSRP
 		clearUniqueFindersCache(wsrpConsumerPortlet);
 		cacheUniqueFindersCache(wsrpConsumerPortlet);
 
+		wsrpConsumerPortlet.resetOriginalValues();
+
 		return wsrpConsumerPortlet;
 	}
 

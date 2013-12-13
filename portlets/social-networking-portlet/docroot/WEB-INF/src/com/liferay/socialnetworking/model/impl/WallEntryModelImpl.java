@@ -139,6 +139,9 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("comments", getComments());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -404,6 +407,16 @@ public class WallEntryModelImpl extends BaseModelImpl<WallEntry>
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

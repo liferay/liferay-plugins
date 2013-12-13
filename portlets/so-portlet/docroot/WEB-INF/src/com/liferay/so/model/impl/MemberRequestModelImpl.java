@@ -149,6 +149,9 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 		attributes.put("invitedTeamId", getInvitedTeamId());
 		attributes.put("status", getStatus());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -516,6 +519,16 @@ public class MemberRequestModelImpl extends BaseModelImpl<MemberRequest>
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

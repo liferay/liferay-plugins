@@ -599,6 +599,16 @@ public class WSRPConsumerWrapper implements WSRPConsumer,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _wsrpConsumer.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _wsrpConsumer.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_wsrpConsumer.resetOriginalValues();
 	}

@@ -1142,6 +1142,8 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 		clearUniqueFindersCache(account);
 		cacheUniqueFindersCache(account);
 
+		account.resetOriginalValues();
+
 		return account;
 	}
 

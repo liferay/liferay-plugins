@@ -706,6 +706,16 @@ public class KaleoInstanceWrapper implements KaleoInstance,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoInstance.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoInstance.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoInstance.resetOriginalValues();
 	}

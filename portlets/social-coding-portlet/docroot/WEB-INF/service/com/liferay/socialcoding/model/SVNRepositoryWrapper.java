@@ -304,6 +304,16 @@ public class SVNRepositoryWrapper implements SVNRepository,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _svnRepository.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _svnRepository.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_svnRepository.resetOriginalValues();
 	}

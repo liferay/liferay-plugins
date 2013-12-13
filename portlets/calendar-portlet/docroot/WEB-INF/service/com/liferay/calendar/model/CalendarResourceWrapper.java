@@ -993,6 +993,16 @@ public class CalendarResourceWrapper implements CalendarResource,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _calendarResource.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _calendarResource.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_calendarResource.resetOriginalValues();
 	}

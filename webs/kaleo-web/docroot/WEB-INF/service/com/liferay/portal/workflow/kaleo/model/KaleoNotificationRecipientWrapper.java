@@ -593,6 +593,16 @@ public class KaleoNotificationRecipientWrapper
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoNotificationRecipient.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoNotificationRecipient.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoNotificationRecipient.resetOriginalValues();
 	}

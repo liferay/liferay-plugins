@@ -601,6 +601,16 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _foo.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _foo.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_foo.resetOriginalValues();
 	}

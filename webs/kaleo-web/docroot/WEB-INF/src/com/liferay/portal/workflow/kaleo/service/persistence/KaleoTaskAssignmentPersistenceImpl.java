@@ -2664,6 +2664,8 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			KaleoTaskAssignmentImpl.class, kaleoTaskAssignment.getPrimaryKey(),
 			kaleoTaskAssignment);
 
+		kaleoTaskAssignment.resetOriginalValues();
+
 		return kaleoTaskAssignment;
 	}
 

@@ -17,6 +17,7 @@ package com.liferay.wsrp.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -86,6 +87,9 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		attributes.put("version", getVersion());
 		attributes.put("portletIds", getPortletIds());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -144,6 +148,9 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		if (portletIds != null) {
 			setPortletIds(portletIds);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -501,6 +508,16 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 
@@ -587,4 +604,6 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	private String _version;
 	private String _portletIds;
 	private BaseModel<?> _wsrpProducerRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

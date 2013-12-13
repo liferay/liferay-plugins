@@ -19,6 +19,7 @@ import com.liferay.ams.service.DefinitionLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -88,6 +89,9 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		attributes.put("orderDate", getOrderDate());
 		attributes.put("quantity", getQuantity());
 		attributes.put("price", getPrice());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -171,6 +175,9 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		if (price != null) {
 			setPrice(price);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -611,6 +618,16 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
 
@@ -726,4 +743,6 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 	private int _quantity;
 	private double _price;
 	private BaseModel<?> _definitionRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

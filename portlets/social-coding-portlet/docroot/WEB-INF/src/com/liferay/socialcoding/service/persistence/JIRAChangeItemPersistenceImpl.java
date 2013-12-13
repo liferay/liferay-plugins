@@ -844,6 +844,8 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey(),
 			jiraChangeItem);
 
+		jiraChangeItem.resetOriginalValues();
+
 		return jiraChangeItem;
 	}
 

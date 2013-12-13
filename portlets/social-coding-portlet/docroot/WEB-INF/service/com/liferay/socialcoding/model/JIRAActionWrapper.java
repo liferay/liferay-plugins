@@ -428,6 +428,16 @@ public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _jiraAction.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _jiraAction.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_jiraAction.resetOriginalValues();
 	}

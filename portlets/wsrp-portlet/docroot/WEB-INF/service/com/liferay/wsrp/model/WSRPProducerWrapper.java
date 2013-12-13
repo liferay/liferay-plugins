@@ -467,6 +467,16 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _wsrpProducer.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _wsrpProducer.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_wsrpProducer.resetOriginalValues();
 	}

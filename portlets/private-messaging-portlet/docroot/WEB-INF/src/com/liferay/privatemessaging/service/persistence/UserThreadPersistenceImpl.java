@@ -2770,6 +2770,8 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		clearUniqueFindersCache(userThread);
 		cacheUniqueFindersCache(userThread);
 
+		userThread.resetOriginalValues();
+
 		return userThread;
 	}
 

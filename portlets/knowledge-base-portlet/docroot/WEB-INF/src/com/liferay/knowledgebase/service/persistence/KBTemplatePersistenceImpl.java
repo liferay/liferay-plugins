@@ -2662,6 +2662,8 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 		clearUniqueFindersCache(kbTemplate);
 		cacheUniqueFindersCache(kbTemplate);
 
+		kbTemplate.resetOriginalValues();
+
 		return kbTemplate;
 	}
 

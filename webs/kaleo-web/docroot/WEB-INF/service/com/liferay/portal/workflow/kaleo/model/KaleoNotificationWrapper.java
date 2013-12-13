@@ -696,6 +696,16 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoNotification.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoNotification.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoNotification.resetOriginalValues();
 	}

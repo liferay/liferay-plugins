@@ -323,6 +323,16 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _jiraChangeGroup.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _jiraChangeGroup.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_jiraChangeGroup.resetOriginalValues();
 	}

@@ -20,6 +20,7 @@ import com.liferay.calendar.service.ClpSerializer;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -91,6 +92,9 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		attributes.put("notificationTemplateType", getNotificationTemplateType());
 		attributes.put("subject", getSubject());
 		attributes.put("body", getBody());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -183,6 +187,9 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 		if (body != null) {
 			setBody(body);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -709,6 +716,16 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 
@@ -831,4 +848,6 @@ public class CalendarNotificationTemplateClp extends BaseModelImpl<CalendarNotif
 	private String _subject;
 	private String _body;
 	private BaseModel<?> _calendarNotificationTemplateRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

@@ -137,6 +137,9 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 		attributes.put("expectedCheckInDate", getExpectedCheckInDate());
 		attributes.put("actualCheckInDate", getActualCheckInDate());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -401,6 +404,16 @@ public class CheckoutModelImpl extends BaseModelImpl<Checkout>
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

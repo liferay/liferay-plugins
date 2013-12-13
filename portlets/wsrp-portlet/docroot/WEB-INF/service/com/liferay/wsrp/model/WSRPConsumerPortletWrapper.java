@@ -438,6 +438,16 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _wsrpConsumerPortlet.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _wsrpConsumerPortlet.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_wsrpConsumerPortlet.resetOriginalValues();
 	}

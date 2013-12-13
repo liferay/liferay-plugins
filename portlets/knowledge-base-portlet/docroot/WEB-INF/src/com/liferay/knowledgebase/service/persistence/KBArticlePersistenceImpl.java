@@ -27841,6 +27841,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		clearUniqueFindersCache(kbArticle);
 		cacheUniqueFindersCache(kbArticle);
 
+		kbArticle.resetOriginalValues();
+
 		return kbArticle;
 	}
 

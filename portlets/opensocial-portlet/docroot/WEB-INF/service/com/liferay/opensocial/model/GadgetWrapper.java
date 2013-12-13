@@ -435,6 +435,16 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _gadget.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _gadget.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_gadget.resetOriginalValues();
 	}

@@ -3102,6 +3102,8 @@ public class KaleoInstanceTokenPersistenceImpl extends BasePersistenceImpl<Kaleo
 			KaleoInstanceTokenImpl.class, kaleoInstanceToken.getPrimaryKey(),
 			kaleoInstanceToken);
 
+		kaleoInstanceToken.resetOriginalValues();
+
 		return kaleoInstanceToken;
 	}
 

@@ -19,6 +19,7 @@ import com.liferay.chat.service.StatusLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -82,6 +83,9 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		attributes.put("message", getMessage());
 		attributes.put("playSound", getPlaySound());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -134,6 +138,9 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		if (playSound != null) {
 			setPlaySound(playSound);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -470,6 +477,16 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 
@@ -550,4 +567,6 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	private String _message;
 	private boolean _playSound;
 	private BaseModel<?> _statusRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

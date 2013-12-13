@@ -804,6 +804,16 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoTaskInstanceToken.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoTaskInstanceToken.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoTaskInstanceToken.resetOriginalValues();
 	}

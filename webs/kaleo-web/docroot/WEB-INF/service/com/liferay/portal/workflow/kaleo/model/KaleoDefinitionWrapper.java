@@ -781,6 +781,16 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoDefinition.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoDefinition.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoDefinition.resetOriginalValues();
 	}

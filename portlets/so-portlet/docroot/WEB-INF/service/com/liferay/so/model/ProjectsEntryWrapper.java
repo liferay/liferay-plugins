@@ -532,6 +532,16 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _projectsEntry.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _projectsEntry.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_projectsEntry.resetOriginalValues();
 	}

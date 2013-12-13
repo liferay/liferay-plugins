@@ -702,6 +702,16 @@ public class KaleoTaskAssignmentWrapper implements KaleoTaskAssignment,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoTaskAssignment.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoTaskAssignment.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoTaskAssignment.resetOriginalValues();
 	}

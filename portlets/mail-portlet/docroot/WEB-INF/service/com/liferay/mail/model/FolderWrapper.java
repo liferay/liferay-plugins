@@ -505,6 +505,16 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _folder.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _folder.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_folder.resetOriginalValues();
 	}

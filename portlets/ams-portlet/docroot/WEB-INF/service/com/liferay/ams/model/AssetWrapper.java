@@ -514,6 +514,16 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _asset.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _asset.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_asset.resetOriginalValues();
 	}

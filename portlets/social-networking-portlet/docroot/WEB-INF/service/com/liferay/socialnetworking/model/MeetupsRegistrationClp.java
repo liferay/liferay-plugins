@@ -17,6 +17,7 @@ package com.liferay.socialnetworking.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -86,6 +87,9 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		attributes.put("status", getStatus());
 		attributes.put("comments", getComments());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -145,6 +149,9 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		if (comments != null) {
 			setComments(comments);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -494,6 +501,16 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 
@@ -581,4 +598,6 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 	private int _status;
 	private String _comments;
 	private BaseModel<?> _meetupsRegistrationRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

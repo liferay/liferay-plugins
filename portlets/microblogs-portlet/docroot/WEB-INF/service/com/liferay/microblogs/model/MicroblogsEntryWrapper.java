@@ -559,6 +559,16 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _microblogsEntry.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _microblogsEntry.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_microblogsEntry.resetOriginalValues();
 	}

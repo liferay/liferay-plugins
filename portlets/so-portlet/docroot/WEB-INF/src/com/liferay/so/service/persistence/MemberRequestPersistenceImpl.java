@@ -2008,6 +2008,8 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 		clearUniqueFindersCache(memberRequest);
 		cacheUniqueFindersCache(memberRequest);
 
+		memberRequest.resetOriginalValues();
+
 		return memberRequest;
 	}
 

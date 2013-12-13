@@ -504,6 +504,16 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _checkout.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _checkout.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_checkout.resetOriginalValues();
 	}

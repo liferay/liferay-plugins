@@ -729,6 +729,16 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoInstanceToken.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoInstanceToken.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoInstanceToken.resetOriginalValues();
 	}

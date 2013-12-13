@@ -1437,6 +1437,8 @@ public class OAuthTokenPersistenceImpl extends BasePersistenceImpl<OAuthToken>
 		clearUniqueFindersCache(oAuthToken);
 		cacheUniqueFindersCache(oAuthToken);
 
+		oAuthToken.resetOriginalValues();
+
 		return oAuthToken;
 	}
 

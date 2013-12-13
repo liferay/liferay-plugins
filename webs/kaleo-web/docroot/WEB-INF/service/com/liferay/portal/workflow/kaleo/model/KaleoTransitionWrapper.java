@@ -695,6 +695,16 @@ public class KaleoTransitionWrapper implements KaleoTransition,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoTransition.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoTransition.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_kaleoTransition.resetOriginalValues();
 	}

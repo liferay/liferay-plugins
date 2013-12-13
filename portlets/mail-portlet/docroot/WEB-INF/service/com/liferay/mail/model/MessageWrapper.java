@@ -759,6 +759,16 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _message.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _message.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_message.resetOriginalValues();
 	}

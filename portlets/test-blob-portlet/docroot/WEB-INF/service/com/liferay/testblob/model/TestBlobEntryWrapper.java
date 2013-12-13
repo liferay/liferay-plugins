@@ -223,7 +223,7 @@ public class TestBlobEntryWrapper implements TestBlobEntry,
 	}
 
 	@Override
-	public int compareTo(TestBlobEntry testBlobEntry) {
+	public int compareTo(com.liferay.testblob.model.TestBlobEntry testBlobEntry) {
 		return _testBlobEntry.compareTo(testBlobEntry);
 	}
 
@@ -233,17 +233,17 @@ public class TestBlobEntryWrapper implements TestBlobEntry,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<TestBlobEntry> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.testblob.model.TestBlobEntry> toCacheModel() {
 		return _testBlobEntry.toCacheModel();
 	}
 
 	@Override
-	public TestBlobEntry toEscapedModel() {
+	public com.liferay.testblob.model.TestBlobEntry toEscapedModel() {
 		return new TestBlobEntryWrapper(_testBlobEntry.toEscapedModel());
 	}
 
 	@Override
-	public TestBlobEntry toUnescapedModel() {
+	public com.liferay.testblob.model.TestBlobEntry toUnescapedModel() {
 		return new TestBlobEntryWrapper(_testBlobEntry.toUnescapedModel());
 	}
 
@@ -292,6 +292,16 @@ public class TestBlobEntryWrapper implements TestBlobEntry,
 	@Override
 	public TestBlobEntry getWrappedModel() {
 		return _testBlobEntry;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _testBlobEntry.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _testBlobEntry.isFinderCacheEnabled();
 	}
 
 	@Override

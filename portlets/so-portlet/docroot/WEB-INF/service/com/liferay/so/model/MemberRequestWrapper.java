@@ -581,6 +581,16 @@ public class MemberRequestWrapper implements MemberRequest,
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _memberRequest.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _memberRequest.isFinderCacheEnabled();
+	}
+
+	@Override
 	public void resetOriginalValues() {
 		_memberRequest.resetOriginalValues();
 	}
