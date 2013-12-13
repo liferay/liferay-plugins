@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.util.bridges.alloy;
+package com.liferay.compat.util.bridges.alloy;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
@@ -92,7 +92,7 @@ public class AlloyServiceInvoker {
 
 			Property property = PropertyFactoryUtil.forName(propertyName);
 
-			Object propertyValue = (properties[i + 1]);
+			Object propertyValue = properties[i + 1];
 
 			dynamicQuery.add(property.eq(propertyValue));
 		}

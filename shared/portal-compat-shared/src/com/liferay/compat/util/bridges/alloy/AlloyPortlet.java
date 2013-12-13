@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.util.bridges.alloy;
+package com.liferay.compat.util.bridges.alloy;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;

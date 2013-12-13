@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.util.bridges.alloy;
+package com.liferay.compat.util.bridges.alloy;
 
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.Portlet;
@@ -40,6 +40,7 @@ public interface AlloyController {
 
 	public void setPageContext(PageContext pageContext);
 
-	public void updateModel(BaseModel<?> baseModel) throws Exception;
+	public void updateModel(BaseModel<?> baseModel, Object... properties)
+		throws Exception;
 
 }
