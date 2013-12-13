@@ -29,16 +29,20 @@ public class WebRTCClient {
 		updatePresenceTime();
 	}
 
-	public void addConnection(WebRTCClient otherWebRTCClient, WebRTCConnection connection) {
-		_connections.put(otherWebRTCClient, connection);
+	public void addWebRTCConnection(
+		WebRTCClient otherWebRTCClient, WebRTCConnection webRTCConnection) {
+
+		_webRTCConnections.put(otherWebRTCClient, webRTCConnection);
 	}
 
 	public Set<WebRTCClient> getConnectedWebRTCClients() {
-		return _connections.keySet();
+		return _webRTCConnections.keySet();
 	}
 
-	public WebRTCConnection getConnection(WebRTCClient otherWebRTCClient) {
-		return _connections.get(otherWebRTCClient);
+	public WebRTCConnection getWebRTCConnection(
+		WebRTCClient otherWebRTCClient) {
+
+		return _webRTCConnections.get(otherWebRTCClient);
 	}
 
 	public long getPresenceTime() {
@@ -53,22 +57,22 @@ public class WebRTCClient {
 		return _available;
 	}
 
-	public void removeAllBilateralConnections() {
-		for (WebRTCClient otherWebRTCClient : _connections.keySet()) {
-			otherWebRTCClient.removeUnilateralConnection(this);
+	public void removeBilateralWebRTCConnections() {
+		for (WebRTCClient otherWebRTCClient : _webRTCConnections.keySet()) {
+			otherWebRTCClient.removeUnilateralWebRTCConnection(this);
 		}
 
-		_connections.clear();
+		_webRTCConnections.clear();
 	}
 
-	public void removeBilateralConnection(WebRTCClient otherWebRTCClient) {
-		otherWebRTCClient.removeUnilateralConnection(this);
-		removeUnilateralConnection(otherWebRTCClient);
+	public void removeBilateralWebRTCConnection(WebRTCClient otherWebRTCClient) {
+		otherWebRTCClient.removeUnilateralWebRTCConnection(this);
+		removeUnilateralWebRTCConnection(otherWebRTCClient);
 	}
 
 	public void reset() {
 		setAvailable(false);
-		removeAllBilateralConnections();
+		removeBilateralWebRTCConnections();
 	}
 
 	public void setAvailable(boolean available) {
@@ -79,12 +83,12 @@ public class WebRTCClient {
 		_presenceTime = System.currentTimeMillis();
 	}
 
-	protected void removeUnilateralConnection(WebRTCClient otherWebRTCClient) {
-		_connections.remove(otherWebRTCClient);
+	protected void removeUnilateralWebRTCConnection(WebRTCClient otherWebRTCClient) {
+		_webRTCConnections.remove(otherWebRTCClient);
 	}
 
 	private boolean _available;
-	private Map<WebRTCClient, WebRTCConnection> _connections =
+	private Map<WebRTCClient, WebRTCConnection> _webRTCConnections =
 		new ConcurrentHashMap<WebRTCClient, WebRTCConnection>();
 	private long _presenceTime;
 	private long _userId;
