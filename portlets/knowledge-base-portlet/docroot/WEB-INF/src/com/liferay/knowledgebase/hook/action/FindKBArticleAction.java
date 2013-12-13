@@ -44,6 +44,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 
@@ -119,7 +120,18 @@ public class FindKBArticleAction extends BaseStrutsAction {
 			long plid, int status, HttpServletRequest request)
 		throws Exception {
 
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+
+		long groupId = layout.getGroupId();
+
+		long displayPortlet = PortalUtil.getPlidFromPortletId(
+			groupId, PortletKeys.KNOWLEDGE_BASE_DISPLAY);
+
 		String portletId = PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE;
+
+		if (displayPortlet > 0) {
+			portletId = PortletKeys.KNOWLEDGE_BASE_DISPLAY;
+		}
 
 		PortletURL portletURL = getKBArticleURL(plid, portletId, request);
 
@@ -134,7 +146,10 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		}
 
 		portletURL.setPortletMode(PortletMode.VIEW);
-		portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
+
+		if (displayPortlet == 0) {
+			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
+		}
 
 		return portletURL;
 	}
