@@ -40,12 +40,10 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	public KaleoNotificationRecipientClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return KaleoNotificationRecipient.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return KaleoNotificationRecipient.class.getName();
 	}
@@ -58,12 +56,10 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		setKaleoNotificationRecipientId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoNotificationRecipientId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -533,7 +529,6 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 			new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public KaleoNotificationRecipient toUnescapedModel() {
 		return this;
 	}
@@ -641,7 +636,6 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(43);
 

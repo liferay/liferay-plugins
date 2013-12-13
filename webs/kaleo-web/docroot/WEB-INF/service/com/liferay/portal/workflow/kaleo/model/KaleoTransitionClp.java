@@ -40,12 +40,10 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	public KaleoTransitionClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return KaleoTransition.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return KaleoTransition.class.getName();
 	}
@@ -58,12 +56,10 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		setKaleoTransitionId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoTransitionId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -650,7 +646,6 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 			new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public KaleoTransition toUnescapedModel() {
 		return this;
 	}
@@ -767,7 +762,6 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(52);
 

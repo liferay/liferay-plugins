@@ -5,6 +5,12 @@
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="docroot/WEB-INF/src" />
 	<classpathentry kind="src" path="/portal-6.1.x" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="test/unit" />
+	<classpathentry kind="lib" path="/portal-6.1.x/lib/development/junit.jar" />
+	<classpathentry kind="lib" path="/portal-6.1.x/lib/development/mockito.jar" />
+	<classpathentry kind="lib" path="/portal-6.1.x/lib/development/powermock-mockito.jar" />
+	<classpathentry kind="lib" path="/portal-6.1.x/lib/development/spring-test.jar" />
+	<classpathentry kind="lib" path="/portal-6.1.x/lib/portal/commons-io.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/lib/development/activation.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/lib/development/annotations.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/lib/development/jsp-api.jar" />
@@ -20,6 +26,7 @@
 	<classpathentry kind="lib" path="/portal-6.1.x/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/util-java/util-java.jar" />
+	<classpathentry kind="lib" path="/portal-6.1.x/util-slf4j/util-slf4j.jar" />
 	<classpathentry kind="lib" path="/portal-6.1.x/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
 	<classpathentry kind="output" path="bin" />

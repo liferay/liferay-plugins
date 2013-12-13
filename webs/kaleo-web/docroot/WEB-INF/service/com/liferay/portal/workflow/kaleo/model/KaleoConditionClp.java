@@ -40,12 +40,10 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	public KaleoConditionClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return KaleoCondition.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return KaleoCondition.class.getName();
 	}
@@ -58,12 +56,10 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		setKaleoConditionId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoConditionId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -464,7 +460,6 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 			new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public KaleoCondition toUnescapedModel() {
 		return this;
 	}
@@ -566,7 +561,6 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

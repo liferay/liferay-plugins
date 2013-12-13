@@ -40,12 +40,10 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 	public KaleoTaskAssignmentClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return KaleoTaskAssignment.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return KaleoTaskAssignment.class.getName();
 	}
@@ -58,12 +56,10 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		setKaleoTaskAssignmentId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoTaskAssignmentId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -612,7 +608,6 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 			new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public KaleoTaskAssignment toUnescapedModel() {
 		return this;
 	}
@@ -729,7 +724,6 @@ public class KaleoTaskAssignmentClp extends BaseModelImpl<KaleoTaskAssignment>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(52);
 

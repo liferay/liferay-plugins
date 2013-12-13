@@ -39,12 +39,10 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 	public KaleoTaskClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return KaleoTask.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return KaleoTask.class.getName();
 	}
@@ -57,12 +55,10 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		setKaleoTaskId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kaleoTaskId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -496,7 +492,6 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 			new Class[] { KaleoTask.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public KaleoTask toUnescapedModel() {
 		return this;
 	}
@@ -598,7 +593,6 @@ public class KaleoTaskClp extends BaseModelImpl<KaleoTask> implements KaleoTask 
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 
