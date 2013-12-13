@@ -182,6 +182,7 @@ AUI.add(
 
 AUI().use(
 	'aui-base',
+	'liferay-node',
 	'transition',
 	function(A) {
 		var TPL_COMMENT_ENTRY = '<div class="comment-entry">' +
