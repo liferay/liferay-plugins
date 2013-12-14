@@ -159,15 +159,7 @@ public abstract class SOSocialActivityInterpreter
 				QueryUtil.ALL_POS);
 
 		for (SocialActivity activity : activities) {
-			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
-
-			PermissionChecker permissionChecker =
-				themeDisplay.getPermissionChecker();
-
-			if (!hasPermissions(
-					permissionChecker, activity, ActionKeys.VIEW,
-					serviceContext)) {
-
+			if (!hasPermissions(activity, serviceContext)) {
 				continue;
 			}
 
