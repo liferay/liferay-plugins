@@ -112,42 +112,36 @@ public class AppLocalServiceClpInvoker {
 
 		_methodParameterTypes43 = new String[] { "java.lang.String" };
 
-		_methodName48 = "addApp";
+		_methodName48 = "deleteApp";
 
 		_methodParameterTypes48 = new String[] {
-				"long", "long", "java.lang.String", "java.io.File"
+				"com.liferay.marketplace.model.App"
 			};
 
 		_methodName49 = "deleteApp";
 
-		_methodParameterTypes49 = new String[] {
-				"com.liferay.marketplace.model.App"
-			};
+		_methodParameterTypes49 = new String[] { "long" };
 
-		_methodName50 = "deleteApp";
+		_methodName50 = "fetchRemoteApp";
 
 		_methodParameterTypes50 = new String[] { "long" };
 
-		_methodName51 = "fetchRemoteApp";
+		_methodName51 = "installApp";
 
 		_methodParameterTypes51 = new String[] { "long" };
 
-		_methodName52 = "installApp";
+		_methodName52 = "processMarketplaceProperties";
 
-		_methodParameterTypes52 = new String[] { "long" };
+		_methodParameterTypes52 = new String[] { "java.util.Properties" };
 
-		_methodName53 = "processMarketplaceProperties";
+		_methodName53 = "uninstallApp";
 
-		_methodParameterTypes53 = new String[] { "java.util.Properties" };
+		_methodParameterTypes53 = new String[] { "long" };
 
-		_methodName54 = "uninstallApp";
+		_methodName54 = "updateApp";
 
-		_methodParameterTypes54 = new String[] { "long" };
-
-		_methodName55 = "updateApp";
-
-		_methodParameterTypes55 = new String[] {
-				"long", "java.lang.String", "java.io.File"
+		_methodParameterTypes54 = new String[] {
+				"long", "long", "java.lang.String", "java.io.File"
 			};
 	}
 
@@ -254,51 +248,45 @@ public class AppLocalServiceClpInvoker {
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			return AppLocalServiceUtil.addApp(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.io.File)arguments[3]);
+			return AppLocalServiceUtil.deleteApp((com.liferay.marketplace.model.App)arguments[0]);
 		}
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			return AppLocalServiceUtil.deleteApp((com.liferay.marketplace.model.App)arguments[0]);
+			return AppLocalServiceUtil.deleteApp(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			return AppLocalServiceUtil.deleteApp(((Long)arguments[0]).longValue());
+			return AppLocalServiceUtil.fetchRemoteApp(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
-			return AppLocalServiceUtil.fetchRemoteApp(((Long)arguments[0]).longValue());
+			AppLocalServiceUtil.installApp(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName52.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			AppLocalServiceUtil.installApp(((Long)arguments[0]).longValue());
+			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
 
 			return null;
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
-			AppLocalServiceUtil.processMarketplaceProperties((java.util.Properties)arguments[0]);
+			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName54.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
-			AppLocalServiceUtil.uninstallApp(((Long)arguments[0]).longValue());
-
-			return null;
-		}
-
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			return AppLocalServiceUtil.updateApp(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1], (java.io.File)arguments[2]);
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2], (java.io.File)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -354,6 +342,4 @@ public class AppLocalServiceClpInvoker {
 	private String[] _methodParameterTypes53;
 	private String _methodName54;
 	private String[] _methodParameterTypes54;
-	private String _methodName55;
-	private String[] _methodParameterTypes55;
 }

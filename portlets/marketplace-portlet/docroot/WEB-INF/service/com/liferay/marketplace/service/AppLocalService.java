@@ -243,11 +243,6 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
-	public com.liferay.marketplace.model.App addApp(long userId,
-		long remoteAppId, java.lang.String version, java.io.File file)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
-
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.marketplace.model.App fetchRemoteApp(long remoteAppId)
 		throws com.liferay.portal.kernel.exception.SystemException;
@@ -264,8 +259,8 @@ public interface AppLocalService extends BaseLocalService, InvokableLocalService
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public com.liferay.marketplace.model.App updateApp(long appId,
-		java.lang.String version, java.io.File file)
+	public com.liferay.marketplace.model.App updateApp(long userId,
+		long remoteAppId, java.lang.String version, java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }
