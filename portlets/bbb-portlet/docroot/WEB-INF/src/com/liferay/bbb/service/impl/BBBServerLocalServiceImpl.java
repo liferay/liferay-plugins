@@ -23,6 +23,7 @@ import com.liferay.bbb.util.BBBAPIUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -57,7 +58,13 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 		bbbServer.setCreateDate(serviceContext.getCreateDate(now));
 		bbbServer.setModifiedDate(serviceContext.getModifiedDate(now));
 		bbbServer.setName(name);
+
+		if (!url.endsWith(StringPool.SLASH)) {
+			url += StringPool.SLASH;
+		}
+
 		bbbServer.setUrl(url);
+
 		bbbServer.setSecret(secret);
 		bbbServer.setActive(BBBAPIUtil.isServerActive(bbbServer));
 
@@ -150,7 +157,13 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 
 		bbbServer.setModifiedDate(serviceContext.getModifiedDate(null));
 		bbbServer.setName(name);
+
+		if (!url.endsWith(StringPool.SLASH)) {
+			url += StringPool.SLASH;
+		}
+
 		bbbServer.setUrl(url);
+
 		bbbServer.setSecret(secret);
 		bbbServer.setActive(BBBAPIUtil.isServerActive(bbbServer));
 
