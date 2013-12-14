@@ -74,15 +74,7 @@ public class StorePortlet extends MVCPortlet {
 
 			FileUtil.write(tempFile, inputStream);
 
-			App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
-
-			if (app == null) {
-				app = AppServiceUtil.addApp(remoteAppId, version, tempFile);
-			}
-			else {
-				app = AppServiceUtil.updateApp(
-					app.getAppId(), version, tempFile);
-			}
+			App app = AppServiceUtil.updateApp(remoteAppId, version, tempFile);
 
 			JSONObject jsonObject = getAppJSONObject(app.getRemoteAppId());
 
@@ -214,15 +206,7 @@ public class StorePortlet extends MVCPortlet {
 
 			FileUtil.write(tempFile, inputStream);
 
-			App app = AppLocalServiceUtil.fetchRemoteApp(remoteAppId);
-
-			if (app == null) {
-				app = AppServiceUtil.addApp(remoteAppId, version, tempFile);
-			}
-			else {
-				app = AppServiceUtil.updateApp(
-					app.getAppId(), version, tempFile);
-			}
+			AppServiceUtil.updateApp(remoteAppId, version, tempFile);
 
 			AppServiceUtil.installApp(remoteAppId);
 

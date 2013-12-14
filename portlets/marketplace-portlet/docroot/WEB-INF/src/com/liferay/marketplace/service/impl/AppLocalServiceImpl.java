@@ -55,44 +55,6 @@ import java.util.zip.ZipFile;
  */
 public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 
-	public App addApp(long userId, long remoteAppId, String version, File file)
-		throws PortalException, SystemException {
-
-		// App
-
-		User user = userPersistence.fetchByPrimaryKey(userId);
-		Date now = new Date();
-
-		validate(remoteAppId, version);
-
-		long appId = counterLocalService.increment();
-
-		App app = appPersistence.create(appId);
-
-		if (user != null) {
-			app.setCompanyId(user.getCompanyId());
-			app.setUserId(user.getUserId());
-			app.setUserName(user.getFullName());
-		}
-
-		app.setCreateDate(now);
-		app.setModifiedDate(now);
-		app.setRemoteAppId(remoteAppId);
-		app.setVersion(version);
-
-		appPersistence.update(app, false);
-
-		// File
-
-		if (file != null) {
-			DLStoreUtil.addFile(
-				app.getCompanyId(), CompanyConstants.SYSTEM, app.getFilePath(),
-				false, file);
-		}
-
-		return app;
-	}
-
 	@Override
 	public App deleteApp(App app) throws SystemException {
 
@@ -297,16 +259,36 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 		}
 	}
 
-	public App updateApp(long appId, String version, File file)
+	@Override
+	public App updateApp(
+			long userId, long remoteAppId, String version, File file)
 		throws PortalException, SystemException {
 
 		// App
 
+		User user = userPersistence.fetchByPrimaryKey(userId);
+		Date now = new Date();
+
 		validate(0, version);
 
-		App app = appPersistence.findByPrimaryKey(appId);
+		App app = appPersistence.fetchByRemoteAppId(remoteAppId);
 
-		app.setModifiedDate(new Date());
+		if (app == null) {
+			long appId = counterLocalService.increment();
+
+			app = appPersistence.create(appId);
+
+			app.setCreateDate(now);
+			app.setRemoteAppId(remoteAppId);
+		}
+
+		if (user != null) {
+			app.setCompanyId(user.getCompanyId());
+			app.setUserId(user.getUserId());
+			app.setUserName(user.getFullName());
+		}
+
+		app.setModifiedDate(now);
 		app.setVersion(version);
 
 		appPersistence.update(app, false);
