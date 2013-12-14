@@ -58,13 +58,7 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 		bbbServer.setCreateDate(serviceContext.getCreateDate(now));
 		bbbServer.setModifiedDate(serviceContext.getModifiedDate(now));
 		bbbServer.setName(name);
-
-		if (!url.endsWith(StringPool.SLASH)) {
-			url += StringPool.SLASH;
-		}
-
-		bbbServer.setUrl(url);
-
+		bbbServer.setUrl(formatURL(url));
 		bbbServer.setSecret(secret);
 		bbbServer.setActive(BBBAPIUtil.isServerActive(bbbServer));
 
@@ -157,17 +151,19 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 
 		bbbServer.setModifiedDate(serviceContext.getModifiedDate(null));
 		bbbServer.setName(name);
-
-		if (!url.endsWith(StringPool.SLASH)) {
-			url += StringPool.SLASH;
-		}
-
-		bbbServer.setUrl(url);
-
+		bbbServer.setUrl(formatURL(url));
 		bbbServer.setSecret(secret);
 		bbbServer.setActive(BBBAPIUtil.isServerActive(bbbServer));
 
 		return bbbServerPersistence.update(bbbServer);
+	}
+
+	protected String formatURL(String url) {
+		if (!url.endsWith(StringPool.SLASH)) {
+			url += StringPool.SLASH;
+		}
+
+		return url;
 	}
 
 }
