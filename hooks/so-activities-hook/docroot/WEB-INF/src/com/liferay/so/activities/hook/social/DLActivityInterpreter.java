@@ -95,6 +95,10 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		if (activitySet.getType() ==
 				SocialActivityKeyConstants.DL_UPDATE_FILE_ENTRY) {
 
+			if (!hasPermissions(activitySet, serviceContext)) {
+				return null;
+			}
+
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
