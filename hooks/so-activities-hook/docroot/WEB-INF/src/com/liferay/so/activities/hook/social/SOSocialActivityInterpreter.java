@@ -437,6 +437,42 @@ public abstract class SOSocialActivityInterpreter
 			activity.getClassPK(), ActionKeys.VIEW);
 	}
 
+	protected boolean hasPermissions(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		return hasPermissions(
+			permissionChecker, activity, ActionKeys.VIEW, serviceContext);
+	}
+
+	protected boolean hasPermissions(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		List<SocialActivity> activities =
+			SocialActivityLocalServiceUtil.getActivitySetActivities(
+				activitySet.getActivitySetId(), 0, 1);
+
+		if (!activities.isEmpty()) {
+			SocialActivity activity = activities.get(0);
+
+			return hasPermissions(
+				permissionChecker, activity, ActionKeys.VIEW, serviceContext);
+		}
+
+		return false;
+	}
+
 	protected boolean isExpired(
 		SocialActivitySet activitySet, boolean comment) {
 
