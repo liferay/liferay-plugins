@@ -1220,12 +1220,8 @@ AUI().use(
 				if (instance._initialRequest) {
 					instance._loadCache(entries);
 
-					if (instance._openPanelId.length) {
-						var openPanelId = parseInt(instance._openPanelId, 10);
-
-						if (!isNaN(openPanelId)) {
-							instance._createChatFromUser(instance._openPanelId);
-						}
+					if (instance._openPanelId && !isNaN(instance._openPanelId)) {
+						instance._createChatFromUser(instance._openPanelId);
 					}
 
 					instance._restoreMinimizedPanels();
