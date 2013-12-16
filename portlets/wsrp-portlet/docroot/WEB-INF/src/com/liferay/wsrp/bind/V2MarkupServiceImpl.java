@@ -813,10 +813,10 @@ public class V2MarkupServiceImpl
 		sb.append(portalURL);
 		sb.append(PortalUtil.getPathContext());
 
-		String availableLocales[] =
-				PropsUtil.getArray(PropsKeys.LOCALES_ENABLED);
+		String localesEnabled[] =
+			PropsUtil.getArray(PropsKeys.LOCALES_ENABLED);
 
-		if (ArrayUtil.contains(availableLocales, languageId)) {
+		if (ArrayUtil.contains(localesEnabled, languageId)) {
 			sb.append(StringPool.SLASH);
 			sb.append(languageId);
 		}
