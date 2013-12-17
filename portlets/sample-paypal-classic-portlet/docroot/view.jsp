@@ -18,4 +18,4 @@
 
 <portlet:defineObjects />
 
-This is the <b>Test PayPal Classic</b> portlet.
+This is the <b>Sample PayPal Classic</b> portlet.
