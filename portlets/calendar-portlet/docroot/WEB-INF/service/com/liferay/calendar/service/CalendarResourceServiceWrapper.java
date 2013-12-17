@@ -154,6 +154,7 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public CalendarResourceService getWrappedCalendarResourceService() {
 		return _calendarResourceService;
 	}
@@ -161,6 +162,7 @@ public class CalendarResourceServiceWrapper implements CalendarResourceService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedCalendarResourceService(
 		CalendarResourceService calendarResourceService) {
 		_calendarResourceService = calendarResourceService;

@@ -345,6 +345,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public WallEntryLocalService getWrappedWallEntryLocalService() {
 		return _wallEntryLocalService;
 	}
@@ -352,6 +353,7 @@ public class WallEntryLocalServiceWrapper implements WallEntryLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedWallEntryLocalService(
 		WallEntryLocalService wallEntryLocalService) {
 		_wallEntryLocalService = wallEntryLocalService;

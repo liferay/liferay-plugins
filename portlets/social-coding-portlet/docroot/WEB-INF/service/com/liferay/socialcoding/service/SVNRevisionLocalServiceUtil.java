@@ -360,6 +360,7 @@ public class SVNRevisionLocalServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(SVNRevisionLocalService service) {
 	}
 

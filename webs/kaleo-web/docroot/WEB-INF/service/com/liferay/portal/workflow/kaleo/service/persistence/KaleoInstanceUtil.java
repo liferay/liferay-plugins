@@ -1015,6 +1015,7 @@ public class KaleoInstanceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setPersistence(KaleoInstancePersistence persistence) {
 	}
 

@@ -337,6 +337,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public StatusLocalService getWrappedStatusLocalService() {
 		return _statusLocalService;
 	}
@@ -344,6 +345,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedStatusLocalService(
 		StatusLocalService statusLocalService) {
 		_statusLocalService = statusLocalService;

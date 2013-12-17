@@ -88,6 +88,7 @@ public class AppServiceWrapper implements AppService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public AppService getWrappedAppService() {
 		return _appService;
 	}
@@ -95,6 +96,7 @@ public class AppServiceWrapper implements AppService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedAppService(AppService appService) {
 		_appService = appService;
 	}

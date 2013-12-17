@@ -495,6 +495,7 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Folder getWrappedFolder() {
 		return _folder;
 	}

@@ -319,6 +319,7 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public KaleoNodeLocalService getWrappedKaleoNodeLocalService() {
 		return _kaleoNodeLocalService;
 	}
@@ -326,6 +327,7 @@ public class KaleoNodeLocalServiceWrapper implements KaleoNodeLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedKaleoNodeLocalService(
 		KaleoNodeLocalService kaleoNodeLocalService) {
 		_kaleoNodeLocalService = kaleoNodeLocalService;

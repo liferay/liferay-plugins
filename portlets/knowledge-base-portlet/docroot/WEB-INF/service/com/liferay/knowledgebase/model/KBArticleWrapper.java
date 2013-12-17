@@ -798,6 +798,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	/**
 	* @deprecated As of 6.1.0, replaced by {@link #isApproved()}
 	*/
+	@Deprecated
 	@Override
 	public boolean getApproved() {
 		return _kbArticle.getApproved();
@@ -1055,6 +1056,7 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KBArticle getWrappedKBArticle() {
 		return _kbArticle;
 	}

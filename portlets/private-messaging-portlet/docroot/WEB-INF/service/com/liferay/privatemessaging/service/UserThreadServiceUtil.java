@@ -116,6 +116,7 @@ public class UserThreadServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(UserThreadService service) {
 	}
 

@@ -290,6 +290,7 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public JIRAActionLocalService getWrappedJIRAActionLocalService() {
 		return _jiraActionLocalService;
 	}
@@ -297,6 +298,7 @@ public class JIRAActionLocalServiceWrapper implements JIRAActionLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedJIRAActionLocalService(
 		JIRAActionLocalService jiraActionLocalService) {
 		_jiraActionLocalService = jiraActionLocalService;

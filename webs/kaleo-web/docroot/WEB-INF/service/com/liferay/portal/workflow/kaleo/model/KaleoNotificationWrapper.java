@@ -686,6 +686,7 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoNotification getWrappedKaleoNotification() {
 		return _kaleoNotification;
 	}

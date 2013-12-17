@@ -669,6 +669,7 @@ public class CalendarBookingLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public CalendarBookingLocalService getWrappedCalendarBookingLocalService() {
 		return _calendarBookingLocalService;
 	}
@@ -676,6 +677,7 @@ public class CalendarBookingLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedCalendarBookingLocalService(
 		CalendarBookingLocalService calendarBookingLocalService) {
 		_calendarBookingLocalService = calendarBookingLocalService;

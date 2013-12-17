@@ -749,6 +749,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Message getWrappedMessage() {
 		return _message;
 	}

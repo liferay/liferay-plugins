@@ -324,6 +324,7 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public AttachmentLocalService getWrappedAttachmentLocalService() {
 		return _attachmentLocalService;
 	}
@@ -331,6 +332,7 @@ public class AttachmentLocalServiceWrapper implements AttachmentLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedAttachmentLocalService(
 		AttachmentLocalService attachmentLocalService) {
 		_attachmentLocalService = attachmentLocalService;

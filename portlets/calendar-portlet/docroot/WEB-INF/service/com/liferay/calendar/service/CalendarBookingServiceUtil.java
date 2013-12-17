@@ -342,6 +342,7 @@ public class CalendarBookingServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(CalendarBookingService service) {
 	}
 

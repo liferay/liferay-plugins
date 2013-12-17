@@ -402,6 +402,7 @@ public class KaleoTimerInstanceTokenLocalServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(KaleoTimerInstanceTokenLocalService service) {
 	}
 

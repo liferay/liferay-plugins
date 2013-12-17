@@ -397,6 +397,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public FooLocalService getWrappedFooLocalService() {
 		return _fooLocalService;
 	}
@@ -404,6 +405,7 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedFooLocalService(FooLocalService fooLocalService) {
 		_fooLocalService = fooLocalService;
 	}

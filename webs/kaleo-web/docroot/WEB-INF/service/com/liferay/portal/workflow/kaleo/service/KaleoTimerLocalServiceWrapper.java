@@ -318,6 +318,7 @@ public class KaleoTimerLocalServiceWrapper implements KaleoTimerLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public KaleoTimerLocalService getWrappedKaleoTimerLocalService() {
 		return _kaleoTimerLocalService;
 	}
@@ -325,6 +326,7 @@ public class KaleoTimerLocalServiceWrapper implements KaleoTimerLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedKaleoTimerLocalService(
 		KaleoTimerLocalService kaleoTimerLocalService) {
 		_kaleoTimerLocalService = kaleoTimerLocalService;

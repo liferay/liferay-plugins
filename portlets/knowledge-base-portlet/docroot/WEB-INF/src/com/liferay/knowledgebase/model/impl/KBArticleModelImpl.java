@@ -862,6 +862,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #isApproved}
 	 */
+	@Deprecated
 	@Override
 	public boolean getApproved() {
 		return isApproved();

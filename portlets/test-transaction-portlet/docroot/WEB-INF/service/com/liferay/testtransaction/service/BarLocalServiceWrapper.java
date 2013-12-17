@@ -340,6 +340,7 @@ public class BarLocalServiceWrapper implements BarLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public BarLocalService getWrappedBarLocalService() {
 		return _barLocalService;
 	}
@@ -347,6 +348,7 @@ public class BarLocalServiceWrapper implements BarLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedBarLocalService(BarLocalService barLocalService) {
 		_barLocalService = barLocalService;
 	}

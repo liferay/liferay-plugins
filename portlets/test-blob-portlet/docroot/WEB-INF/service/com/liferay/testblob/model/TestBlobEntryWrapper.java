@@ -285,6 +285,7 @@ public class TestBlobEntryWrapper implements TestBlobEntry,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public TestBlobEntry getWrappedTestBlobEntry() {
 		return _testBlobEntry;
 	}

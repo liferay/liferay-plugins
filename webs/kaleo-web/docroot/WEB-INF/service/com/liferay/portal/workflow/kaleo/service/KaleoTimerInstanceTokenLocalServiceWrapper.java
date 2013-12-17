@@ -390,6 +390,7 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public KaleoTimerInstanceTokenLocalService getWrappedKaleoTimerInstanceTokenLocalService() {
 		return _kaleoTimerInstanceTokenLocalService;
 	}
@@ -397,6 +398,7 @@ public class KaleoTimerInstanceTokenLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedKaleoTimerInstanceTokenLocalService(
 		KaleoTimerInstanceTokenLocalService kaleoTimerInstanceTokenLocalService) {
 		_kaleoTimerInstanceTokenLocalService = kaleoTimerInstanceTokenLocalService;

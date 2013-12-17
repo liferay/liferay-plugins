@@ -494,6 +494,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Checkout getWrappedCheckout() {
 		return _checkout;
 	}

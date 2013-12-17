@@ -964,6 +964,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Calendar getWrappedCalendar() {
 		return _calendar;
 	}

@@ -301,6 +301,7 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public FeedLocalService getWrappedFeedLocalService() {
 		return _feedLocalService;
 	}
@@ -308,6 +309,7 @@ public class FeedLocalServiceWrapper implements FeedLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedFeedLocalService(FeedLocalService feedLocalService) {
 		_feedLocalService = feedLocalService;
 	}

@@ -833,6 +833,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoTimerInstanceToken getWrappedKaleoTimerInstanceToken() {
 		return _kaleoTimerInstanceToken;
 	}

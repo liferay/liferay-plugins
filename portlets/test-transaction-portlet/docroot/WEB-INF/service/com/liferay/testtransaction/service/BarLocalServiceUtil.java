@@ -347,6 +347,7 @@ public class BarLocalServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(BarLocalService service) {
 	}
 

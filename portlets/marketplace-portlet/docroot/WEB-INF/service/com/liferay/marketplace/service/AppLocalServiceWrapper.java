@@ -384,6 +384,7 @@ public class AppLocalServiceWrapper implements AppLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public AppLocalService getWrappedAppLocalService() {
 		return _appLocalService;
 	}
@@ -391,6 +392,7 @@ public class AppLocalServiceWrapper implements AppLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedAppLocalService(AppLocalService appLocalService) {
 		_appLocalService = appLocalService;
 	}

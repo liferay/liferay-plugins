@@ -344,6 +344,7 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public FavoriteSiteLocalService getWrappedFavoriteSiteLocalService() {
 		return _favoriteSiteLocalService;
 	}
@@ -351,6 +352,7 @@ public class FavoriteSiteLocalServiceWrapper implements FavoriteSiteLocalService
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedFavoriteSiteLocalService(
 		FavoriteSiteLocalService favoriteSiteLocalService) {
 		_favoriteSiteLocalService = favoriteSiteLocalService;

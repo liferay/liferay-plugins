@@ -404,6 +404,7 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public CalendarNotificationTemplateLocalService getWrappedCalendarNotificationTemplateLocalService() {
 		return _calendarNotificationTemplateLocalService;
 	}
@@ -411,6 +412,7 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedCalendarNotificationTemplateLocalService(
 		CalendarNotificationTemplateLocalService calendarNotificationTemplateLocalService) {
 		_calendarNotificationTemplateLocalService = calendarNotificationTemplateLocalService;

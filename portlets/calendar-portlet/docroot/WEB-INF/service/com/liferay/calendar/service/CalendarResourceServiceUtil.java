@@ -175,6 +175,7 @@ public class CalendarResourceServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(CalendarResourceService service) {
 	}
 

@@ -447,6 +447,7 @@ public class TasksEntryLocalServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(TasksEntryLocalService service) {
 	}
 

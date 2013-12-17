@@ -719,6 +719,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoInstanceToken getWrappedKaleoInstanceToken() {
 		return _kaleoInstanceToken;
 	}
