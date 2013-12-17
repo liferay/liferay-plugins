@@ -110,13 +110,13 @@ public class TestBlobEntryLocalServiceClpInvoker {
 
 		_methodParameterTypes16 = new String[] { "java.io.Serializable" };
 
-		_methodName33 = "getBeanIdentifier";
+		_methodName39 = "getBeanIdentifier";
 
-		_methodParameterTypes33 = new String[] {  };
+		_methodParameterTypes39 = new String[] {  };
 
-		_methodName34 = "setBeanIdentifier";
+		_methodName40 = "setBeanIdentifier";
 
-		_methodParameterTypes34 = new String[] { "java.lang.String" };
+		_methodParameterTypes40 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -213,13 +213,13 @@ public class TestBlobEntryLocalServiceClpInvoker {
 			return TestBlobEntryLocalServiceUtil.getBlobFieldBlobModel((java.io.Serializable)arguments[0]);
 		}
 
-		if (_methodName33.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
+		if (_methodName39.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes39, parameterTypes)) {
 			return TestBlobEntryLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName34.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			TestBlobEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
@@ -262,8 +262,8 @@ public class TestBlobEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes15;
 	private String _methodName16;
 	private String[] _methodParameterTypes16;
-	private String _methodName33;
-	private String[] _methodParameterTypes33;
-	private String _methodName34;
-	private String[] _methodParameterTypes34;
+	private String _methodName39;
+	private String[] _methodParameterTypes39;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
 }

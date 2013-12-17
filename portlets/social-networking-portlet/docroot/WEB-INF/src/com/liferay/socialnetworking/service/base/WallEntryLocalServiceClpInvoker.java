@@ -106,60 +106,60 @@ public class WallEntryLocalServiceClpInvoker {
 				"com.liferay.socialnetworking.model.WallEntry"
 			};
 
-		_methodName42 = "getBeanIdentifier";
+		_methodName48 = "getBeanIdentifier";
 
-		_methodParameterTypes42 = new String[] {  };
+		_methodParameterTypes48 = new String[] {  };
 
-		_methodName43 = "setBeanIdentifier";
+		_methodName49 = "setBeanIdentifier";
 
-		_methodParameterTypes43 = new String[] { "java.lang.String" };
+		_methodParameterTypes49 = new String[] { "java.lang.String" };
 
-		_methodName48 = "addWallEntry";
+		_methodName54 = "addWallEntry";
 
-		_methodParameterTypes48 = new String[] {
+		_methodParameterTypes54 = new String[] {
 				"long", "long", "java.lang.String",
 				"com.liferay.portal.theme.ThemeDisplay"
 			};
 
-		_methodName49 = "deleteWallEntries";
+		_methodName55 = "deleteWallEntries";
 
-		_methodParameterTypes49 = new String[] { "long" };
+		_methodParameterTypes55 = new String[] { "long" };
 
-		_methodName50 = "deleteWallEntry";
+		_methodName56 = "deleteWallEntry";
 
-		_methodParameterTypes50 = new String[] { "long" };
+		_methodParameterTypes56 = new String[] { "long" };
 
-		_methodName51 = "deleteWallEntry";
+		_methodName57 = "deleteWallEntry";
 
-		_methodParameterTypes51 = new String[] {
+		_methodParameterTypes57 = new String[] {
 				"com.liferay.socialnetworking.model.WallEntry"
 			};
 
-		_methodName52 = "getWallEntries";
+		_methodName58 = "getWallEntries";
 
-		_methodParameterTypes52 = new String[] { "long", "int", "int" };
+		_methodParameterTypes58 = new String[] { "long", "int", "int" };
 
-		_methodName53 = "getWallEntriesCount";
+		_methodName59 = "getWallEntriesCount";
 
-		_methodParameterTypes53 = new String[] { "long" };
+		_methodParameterTypes59 = new String[] { "long" };
 
-		_methodName54 = "getWallEntry";
+		_methodName60 = "getWallEntry";
 
-		_methodParameterTypes54 = new String[] { "long" };
+		_methodParameterTypes60 = new String[] { "long" };
 
-		_methodName55 = "getWallToWallEntries";
+		_methodName61 = "getWallToWallEntries";
 
-		_methodParameterTypes55 = new String[] {
+		_methodParameterTypes61 = new String[] {
 				"long", "long", "long", "long", "int", "int"
 			};
 
-		_methodName56 = "getWallToWallEntriesCount";
+		_methodName62 = "getWallToWallEntriesCount";
 
-		_methodParameterTypes56 = new String[] { "long", "long", "long", "long" };
+		_methodParameterTypes62 = new String[] { "long", "long", "long", "long" };
 
-		_methodName57 = "updateWallEntry";
+		_methodName63 = "updateWallEntry";
 
-		_methodParameterTypes57 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes63 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -251,62 +251,62 @@ public class WallEntryLocalServiceClpInvoker {
 			return WallEntryLocalServiceUtil.updateWallEntry((com.liferay.socialnetworking.model.WallEntry)arguments[0]);
 		}
 
-		if (_methodName42.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return WallEntryLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			WallEntryLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName48.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			return WallEntryLocalServiceUtil.addWallEntry(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
 				(com.liferay.portal.theme.ThemeDisplay)arguments[3]);
 		}
 
-		if (_methodName49.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
 			WallEntryLocalServiceUtil.deleteWallEntries(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return WallEntryLocalServiceUtil.deleteWallEntry(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return WallEntryLocalServiceUtil.deleteWallEntry((com.liferay.socialnetworking.model.WallEntry)arguments[0]);
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return WallEntryLocalServiceUtil.getWallEntries(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return WallEntryLocalServiceUtil.getWallEntriesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return WallEntryLocalServiceUtil.getWallEntry(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return WallEntryLocalServiceUtil.getWallToWallEntries(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -315,16 +315,16 @@ public class WallEntryLocalServiceClpInvoker {
 				((Integer)arguments[5]).intValue());
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			return WallEntryLocalServiceUtil.getWallToWallEntriesCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				((Long)arguments[3]).longValue());
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return WallEntryLocalServiceUtil.updateWallEntry(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
@@ -364,22 +364,10 @@ public class WallEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName42;
-	private String[] _methodParameterTypes42;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
 	private String _methodName48;
 	private String[] _methodParameterTypes48;
 	private String _methodName49;
 	private String[] _methodParameterTypes49;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
-	private String _methodName51;
-	private String[] _methodParameterTypes51;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
 	private String _methodName54;
 	private String[] _methodParameterTypes54;
 	private String _methodName55;
@@ -388,4 +376,16 @@ public class WallEntryLocalServiceClpInvoker {
 	private String[] _methodParameterTypes56;
 	private String _methodName57;
 	private String[] _methodParameterTypes57;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
+	private String _methodName59;
+	private String[] _methodParameterTypes59;
+	private String _methodName60;
+	private String[] _methodParameterTypes60;
+	private String _methodName61;
+	private String[] _methodParameterTypes61;
+	private String _methodName62;
+	private String[] _methodParameterTypes62;
+	private String _methodName63;
+	private String[] _methodParameterTypes63;
 }

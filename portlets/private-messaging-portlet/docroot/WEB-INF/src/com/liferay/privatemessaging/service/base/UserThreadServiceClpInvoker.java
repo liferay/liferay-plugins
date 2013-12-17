@@ -24,81 +24,81 @@ import java.util.Arrays;
  */
 public class UserThreadServiceClpInvoker {
 	public UserThreadServiceClpInvoker() {
-		_methodName18 = "getBeanIdentifier";
+		_methodName24 = "getBeanIdentifier";
 
-		_methodParameterTypes18 = new String[] {  };
+		_methodParameterTypes24 = new String[] {  };
 
-		_methodName19 = "setBeanIdentifier";
+		_methodName25 = "setBeanIdentifier";
 
-		_methodParameterTypes19 = new String[] { "java.lang.String" };
+		_methodParameterTypes25 = new String[] { "java.lang.String" };
 
-		_methodName24 = "getLastThreadMessage";
+		_methodName30 = "getLastThreadMessage";
 
-		_methodParameterTypes24 = new String[] { "long" };
+		_methodParameterTypes30 = new String[] { "long" };
 
-		_methodName25 = "getThreadMessages";
+		_methodName31 = "getThreadMessages";
 
-		_methodParameterTypes25 = new String[] { "long", "int", "int", "boolean" };
+		_methodParameterTypes31 = new String[] { "long", "int", "int", "boolean" };
 
-		_methodName26 = "getThreadMessagesCount";
+		_methodName32 = "getThreadMessagesCount";
 
-		_methodParameterTypes26 = new String[] { "long" };
+		_methodParameterTypes32 = new String[] { "long" };
 
-		_methodName27 = "getUserUserThreads";
+		_methodName33 = "getUserUserThreads";
 
-		_methodParameterTypes27 = new String[] { "boolean" };
+		_methodParameterTypes33 = new String[] { "boolean" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName18.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
+		if (_methodName24.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes24, parameterTypes)) {
 			return UserThreadServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName19.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes19, parameterTypes)) {
+		if (_methodName25.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
 			UserThreadServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName24.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes24, parameterTypes)) {
+		if (_methodName30.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
 			return UserThreadServiceUtil.getLastThreadMessage(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName25.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes25, parameterTypes)) {
+		if (_methodName31.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
 			return UserThreadServiceUtil.getThreadMessages(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				((Boolean)arguments[3]).booleanValue());
 		}
 
-		if (_methodName26.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes26, parameterTypes)) {
+		if (_methodName32.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes32, parameterTypes)) {
 			return UserThreadServiceUtil.getThreadMessagesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName27.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes27, parameterTypes)) {
+		if (_methodName33.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes33, parameterTypes)) {
 			return UserThreadServiceUtil.getUserUserThreads(((Boolean)arguments[0]).booleanValue());
 		}
 
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName18;
-	private String[] _methodParameterTypes18;
-	private String _methodName19;
-	private String[] _methodParameterTypes19;
 	private String _methodName24;
 	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
-	private String _methodName26;
-	private String[] _methodParameterTypes26;
-	private String _methodName27;
-	private String[] _methodParameterTypes27;
+	private String _methodName30;
+	private String[] _methodParameterTypes30;
+	private String _methodName31;
+	private String[] _methodParameterTypes31;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
+	private String _methodName33;
+	private String[] _methodParameterTypes33;
 }
