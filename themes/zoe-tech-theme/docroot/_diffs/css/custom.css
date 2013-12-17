@@ -195,7 +195,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Search Bar -------- */
+	/* -------- Search bar -------- */
 
 	#pageSearch {
 		background-image: url(../images/custom/page_search.png);
@@ -419,7 +419,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Quote Box ------- */
+	/* -------- Quote box ------- */
 
 	#quoteBox {
 		padding-top: 15px;
@@ -478,7 +478,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Side Bar -------- */
+	/* -------- Side bar -------- */
 
 	.list-block {
 		.title {
@@ -588,7 +588,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* ------- Browser Specific Rules ------ */
+	/* ------- Browser specific rules ------ */
 
 	.ie6 {
 		.carousel-menu-active {

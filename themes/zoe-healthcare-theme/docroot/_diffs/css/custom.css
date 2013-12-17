@@ -222,7 +222,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		z-index: 300;
 	}
 
-	/* -------- Content Layout -------- */
+	/* -------- Content layout -------- */
 
 	.columns-1-2-3 #layout-column_column-1, .columns-2-1-4 #layout-column_column-1 {
 		padding-top: 0;
@@ -298,7 +298,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		margin: 0 0 10px 0;
 	}
 
-	/* -------- Navigation Portlet -------- */
+	/* -------- Navigation portlet -------- */
 
 	.portlet-navigation .nav-menu {
 		background-color: #E6E6E6;
@@ -362,7 +362,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		background-color: #343434;
 	}
 
-	/* -------- Make an Appointment / Web Form -------- */
+	/* -------- Make an appointment / Web form -------- */
 
 	.web-form-portlet.make-appointment {
 		padding: 10px 20px;
