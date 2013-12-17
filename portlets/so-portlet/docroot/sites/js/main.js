@@ -31,7 +31,6 @@ AUI.add(
 		var UserMenu = function(config) {
 			var hideClass = config.hideClass;
 			var hideOn = config.hideOn || 'close-menus';
-			var preventDefault = config.preventDefault || false;
 			var showClass = config.showClass;
 			var showOn = config.showOn || 'click';
 
@@ -39,22 +38,8 @@ AUI.add(
 
 			var target = A.one(config.target) || node;
 
-			A.on(
-				'close-menus',
-				function(event) {
-					target.fire('close-menus', event);
-				}
-			);
-
 			target.on(
-				'click',
-				function(event) {
-					event.stopPropagation();
-				}
-			);
-
-			target.on(
-				'hideOn|close-menus',
+				'clickoutside',
 				function(event) {
 					if (hideClass && !target.hasClass(hideClass)) {
 						target.addClass(hideClass);
@@ -71,12 +56,6 @@ AUI.add(
 			trigger.on(
 				showOn,
 				function(event) {
-					if (preventDefault) {
-						event.preventDefault();
-					}
-
-					A.fire('close-menus', event);
-
 					if (hideClass && target.hasClass(hideClass)) {
 						setTimeout(
 							function() {
