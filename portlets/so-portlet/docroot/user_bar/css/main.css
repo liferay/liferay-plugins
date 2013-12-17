@@ -291,7 +291,7 @@ html.aui {
 
 	.dockbar .nav > li > a [class^="icon-"],
 	.dockbar .nav > li > a [class*=" icon-"],
-	.dockbar-split .dockbar .navbar-inner .nav > li > a [class^="icon-"], 
+	.dockbar-split .dockbar .navbar-inner .nav > li > a [class^="icon-"],
 	.dockbar-split .dockbar .navbar-inner .nav > li > a [class*=" icon-"] {
 		background-color: transparent;
 		margin: 0;

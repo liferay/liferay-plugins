@@ -254,7 +254,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 		}
 	}
 
-	/* -------- Color Scheme-------- */
+	/* -------- Color scheme-------- */
 
 	@each $color-scheme in democrat, republican, independent {
 		body.#{$color-scheme} {

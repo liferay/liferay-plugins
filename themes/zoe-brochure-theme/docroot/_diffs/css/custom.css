@@ -17,7 +17,7 @@ $dockbarGradientStart: #3689AC;
 $dockbarOpenGradientEnd: #035679;
 $dockbarOpenGradientStart: #4F98B6;
 
-/* -------- Set Compass defaults -------- */
+/* -------- Set compass defaults -------- */
 
 $default-box-shadow-blur-offset: 6px;
 $default-box-shadow-color: #999;
@@ -347,7 +347,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Portlet Max -------- */
+	/* -------- Portlet max -------- */
 
 	.columns-max {
 		.portlet span {
@@ -380,7 +380,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Custom Classes -------- */
+	/* -------- Custom classes -------- */
 
 	.left {
 		float: left;
@@ -390,7 +390,7 @@ $default-box-shadow-v-offset: 1px;
 		float: right;
 	}
 
-	/* -------- Web Content -------- */
+	/* -------- Web content -------- */
 
 	.pod {
 		background: url(../images/custom/home_pod.png) no-repeat 0 0;
@@ -515,7 +515,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Internet Explorer -------- */
+	/* -------- Internet explorer -------- */
 
 	.ie6 {
 		#banner #heading .logo.default-logo {
@@ -662,7 +662,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Hidden Accessible -------- */
+	/* -------- Hidden accessible -------- */
 
 	#breadcrumbs, #heading .page-title, #navigation h1, #skip-to-content {
 		clip: rect(0 0 0 0);
