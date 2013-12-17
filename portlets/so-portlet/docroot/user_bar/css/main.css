@@ -163,13 +163,13 @@ html.aui {
 						> a {
 							font-size: 14px;
 							font-weight: 400;
-							line-height: 18px;
+							line-height: 23px;
 							margin: 0 0;
 							padding: 10px;
 						}
 
 						&.admin-links > a {
-							line-height: 20px;
+							line-height: 23px;
 							min-height: 23px;
 						}
 					}
@@ -183,12 +183,12 @@ html.aui {
 						img {
 							border-width: 0;
 
-							@include border-radius(0);
+							@include border-radius(12px);
 
-							clip: rect(0px, 20px, 20px, 0px);
+							clip: rect(0px, 23px, 23px, 0px);
 							left: -6px;
 							position: absolute;
-							top: 0;
+							top: -3px;
 						}
 					}
 				}
