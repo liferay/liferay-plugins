@@ -179,7 +179,7 @@ public class ResourcesImporterHotDeployMessageListener
 					importer = getResourceImporter();
 
 					Group group = GroupLocalServiceUtil.getCompanyGroup(
-						companyId);
+						company.getCompanyId());
 
 					importer.setGroupId(group.getGroupId());
 					importer.setResourcesDir(_TEMPLATES_DIR);
@@ -214,11 +214,19 @@ public class ResourcesImporterHotDeployMessageListener
 
 				importer.setTargetValue(targetValue);
 
-				importer.afterPropertiesSet();
+				int version = GetterUtil.getInteger(
+					pluginPackageProperties.getProperty(
+						"module-incremental-version", "1"));
+
+				importer.setVersion(version);
 
 				boolean developerModeEnabled = GetterUtil.getBoolean(
 					pluginPackageProperties.getProperty(
 						"resources-importer-developer-mode-enabled"));
+
+				importer.setDeveloperModeEnabled(developerModeEnabled);
+
+				importer.afterPropertiesSet();
 
 				if (!developerModeEnabled && importer.isExisting() &&
 					!importer.isCompanyGroup()) {

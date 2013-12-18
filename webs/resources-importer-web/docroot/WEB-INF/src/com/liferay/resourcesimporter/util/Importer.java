@@ -36,6 +36,8 @@ public interface Importer {
 
 	public void setCompanyId(long companyId);
 
+	public void setDeveloperModeEnabled(boolean developerModeEnabled);
+
 	public void setGroupId(long groupId);
 
 	public void setResourcesDir(String resourcesDir);
@@ -47,5 +49,7 @@ public interface Importer {
 	public void setTargetClassName(String className);
 
 	public void setTargetValue(String targetValue);
+
+	public void setVersion(int version);
 
 }
