@@ -221,7 +221,7 @@ if (addresses.isEmpty()) {
 				String countryName = StringPool.BLANK;
 
 				if (country != null) {
-					countryName = country.getName();
+					countryName = country.getName(locale);
 				}
 
 				Region region = address.getRegion();
