@@ -14,11 +14,13 @@
 
 package com.liferay.resourcesimporter.messaging;
 
+import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
@@ -214,11 +216,11 @@ public class ResourcesImporterHotDeployMessageListener
 
 				importer.setTargetValue(targetValue);
 
-				int version = GetterUtil.getInteger(
-					pluginPackageProperties.getProperty(
-						"module-incremental-version", "1"));
+				PluginPackage pluginPackage =
+					DeployManagerUtil.getInstalledPluginPackage(
+						servletContextName);
 
-				importer.setVersion(version);
+				importer.setVersion(pluginPackage.getVersion());
 
 				boolean developerModeEnabled = GetterUtil.getBoolean(
 					pluginPackageProperties.getProperty(
