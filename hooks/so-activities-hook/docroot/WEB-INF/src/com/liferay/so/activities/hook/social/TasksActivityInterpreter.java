@@ -93,6 +93,10 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		if (activitySet.getType() ==
 				SocialActivityKeyConstants.TASKS_UPDATE_ENTRY) {
 
+			if (!hasPermissions(activitySet, serviceContext)) {
+				return null;
+			}
+
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
