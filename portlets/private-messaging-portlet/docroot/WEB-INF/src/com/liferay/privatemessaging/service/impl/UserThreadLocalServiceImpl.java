@@ -177,6 +177,12 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		userThreadPersistence.update(userThread);
 	}
 
+	public UserThread fetchUserThread(long userId, long mbThreadId)
+		throws PortalException, SystemException {
+
+		return userThreadPersistence.fetchByU_M(userId, mbThreadId);
+	}
+
 	public List<UserThread> getMBThreadUserThreads(long mbThreadId)
 		throws SystemException {
 
