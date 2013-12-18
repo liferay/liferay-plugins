@@ -213,7 +213,7 @@ public abstract class BaseImporter implements Importer {
 	}
 
 	@Override
-	public void setVersion(int version) {
+	public void setVersion(String version) {
 		this.version = version;
 	}
 
@@ -265,6 +265,6 @@ public abstract class BaseImporter implements Importer {
 	protected long targetClassPK;
 	protected String targetValue;
 	protected long userId;
-	protected int version;
+	protected String version;
 
 }
