@@ -1,0 +1,251 @@
+@font-face  {
+    font-family: "Arvo";
+    font-style: normal;
+    font-weight: normal;
+    src: local("Arvo"), url("http://themes.googleusercontent.com/static/fonts/arvo/v6/WJ6D195CfbTRlIs49IbkFw.woff") format("woff");;
+}
+
+.aui {
+    background-color: #D0D0D0;
+
+    body {
+        background-color: #D0D0D0;
+        font-family: Arvo,Georgia,Times,serif;
+    }
+
+    h1 {
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+    h3 {
+        font-weight: normal;
+    }
+
+    ul, ol {
+        list-style: none;
+        margin: 0 0 5px;
+        }
+
+    a, a:hover, a:focus, a:visited {
+        color: #555555;
+        text-decoration: none;
+    }
+}
+
+#wrapper {
+    background-color: #FFFFFF;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 960px;
+    padding:0;      
+}
+
+#wrapper-content {
+    box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+}
+
+/*------- Header --------*/
+
+#banner {
+    padding: 30px;
+}
+
+.site-name  {
+    font-size: 30px;
+}
+
+.page-description > span {
+    font-style: italic;
+    font-weight: normal;
+}
+
+#navigation {
+    border-bottom: 1px solid #EFEFEF;
+    border-top: 1px solid #EFEFEF;
+    margin-top: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+
+        ul {
+            margin-top: 5px;
+        }
+
+        li {
+            display: inline-block;
+            margin-right: 30px;
+        }
+}
+
+/*----- Main content layout -----*/
+
+#break  {
+    background-color: #D0D0D0;
+    height: 30px;
+}
+
+#content {
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+#copyright {
+    text-align: center;
+}
+
+.asset-abstract {
+    position: relative;
+    
+    h3  {
+        margin-left: 115px;
+    }
+
+    .metadata-entry.metadata-publish-date {
+        left: 3px;
+        position: absolute;
+        top: 13px;
+    }
+    .asset-small-image {
+        float: left;
+        height: 94px;
+        margin-left: -18px;
+        margin-right: 10px;
+        margin-top: -19px;
+        width: 94px;
+    }
+    .asset-more {
+        clear: right;
+        padding-top: 20px;
+    }
+    .asset-title {
+        border-bottom: 0px;
+        
+        a:hover {
+            text-decoration:none;
+        }
+
+        img  {
+            display: none;
+        }
+    }
+}
+
+.banner-content {
+    padding-top: 30px;
+}
+
+.banner-content > p {
+    padding-right: 30px;
+}
+
+.main-banner img {
+    height: 300px;
+    max-width: 100%;
+    max-height: 100%;
+    width: 700px;
+}
+
+.main-banner {
+    background: none repeat scroll 0 0 #EBEDED;
+    height: 300px;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.portlet-asset-publisher .metadata-publish-date {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.85);
+    color: #FFFFFF;
+    margin-bottom: 0;
+    padding-left: 25px;
+    width: 69px;
+}
+
+.portlet-asset-publisher li.title-list img {
+    display: none;
+}
+
+.portlet-content {
+    padding-left: 0;
+}
+            
+.portlet-topper h1 {
+    border-bottom: 1px solid #EFEFEF;
+    border-top: 1px solid #EFEFEF;
+
+    img {
+        display: none;
+    }
+}
+
+.read-more-button {
+    background: none repeat scroll 0 0 #333333;
+    color: #FFFFFF;
+    float: right;
+    padding: 10px;
+}
+
+.social-bookmarks {
+    float: right;
+}
+
+    .social-bookmarks li {
+        display: inline-block;
+        margin: 5px;
+    }
+
+.span8 .portlet-topper h1 {
+    border-bottom: 0;
+    border-top: 0;
+    font-size: 30px;
+}
+
+.taglib-header {
+    border-bottom-color: none
+}
+
+/*---------------Footer---------------*/
+
+#footer {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+    padding: 30px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    }
+
+#footerContent h5 {
+    border-bottom: 1px solid #EFEFEF;
+    border-top: 1px solid #EFEFEF;
+    width: 100%;
+    font-size: 15px;
+    font-weight: normal;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#footerContent #column-1, #footerContent #column-2, #footerContent #column-3 {
+    margin-right: 30px;
+    margin-left: 0px;
+}
+
+#footerContent #column-4 {
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.aui input, .aui textarea, .aui .uneditable-input {
+    width: 120px;
+}
+
+.aui select {
+    width: 134px;
+}
+
+
+/*----- Extras -------*/
+

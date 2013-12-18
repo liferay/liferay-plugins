@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class">
+
+<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+<div class="container-fluid" id="wrapper">
+	<div id="wrapper-content">
+		<header id="banner" role="banner">
+		<div id="heading">
+			<h1 class="site-title">
+				<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
+					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+				</a>
+
+				#if ($show_site_name)
+					<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
+						$site_name
+					</span>
+				#end
+			</h1>
+
+			<h5 class="page-description">
+				<span>Keeping it simple to the trunk</span>
+			</h5>
+		</div>
+
+		#if (!$is_signed_in)
+			<a data-redirect="$is_login_redirect_required" href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
+
+		#if ($has_navigation || $is_signed_in)
+			#parse ("$full_templates_path/navigation.vm")
+		#end
+	</header>
+
+		<div id="content">
+
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
+
+			$portletDisplay.setTitle($the_title)
+
+			$theme.wrapPortlet("portlet.vm", $content_include)
+		#end
+		</div>
+	</div>
+					<div id="break"> </div>
+
+	<div id="footer" class="">
+		<div id="footerContent" class="row-fluid">
+			<div id="column-1" class="span5 yui3-dd-drop">
+				<!--This span5 should be span6-->
+				<h5>About Us</h5>
+				<p>This portion allows your users know more about you... and more about you... and more... and more.</p>
+			</div>
+			<div id="column-2" class="span2 yui3-dd-drop">
+				<h5>Pages</h5>
+				<ul id="pageslist" class="footerLinks">
+					<li id="layout_1">
+						<a href="http://localhost:8080/web/guest/home/">Home</a>
+					<li id="layout_2">
+   						<a href="http://localhost:8080/web/guest/sample1">About Trees</a>
+					</li>
+					<li id="layout_3">
+   						<a href="http://localhost:8080/web/guest/sample2">Blogs</a>
+					</li>
+					<li id="layout_4">
+   						<a href="http://localhost:8080/web/guest/sample3">Sample Page 3</a>
+					</li>
+					<li id="layout_5">
+   						<a href="http://localhost:8080/web/guest/sample4">Sample Page 4</a>
+					</li>
+				</ul>
+			</div>
+			<div id="column-3" class="span2 yui3-dd-drop">
+				<h5>Categories</h5>
+				<ul id="categorieslist" class="footerLinks">
+					<li id="cat_layout_1">
+						<a href="http://localhost:8080/web/guest/home/">A</a>
+					<li id="cat_layout_2">
+   						<a href="http://localhost:8080/web/guest/sample1">B</a>
+					</li>
+					<li id="cat_layout_3">
+   						<a href="http://localhost:8080/web/guest/sample2">C</a>
+					</li>
+					<li id="cat_layout_4">
+   						<a href="http://localhost:8080/web/guest/sample3">D</a>
+					</li>
+					<li id="cat_layout_5">
+   						<a href="http://localhost:8080/web/guest/sample4">E</a>
+				</ul>
+			</div>
+			<div id="column-4" class="span2 yui3-dd-drop">
+					<h5>Search</h5>
+				<div class="portlet-searchBar" id="yui_patched_v3_11_0_1_1386634633129_5086"> 
+        			
+					<form onsubmit="spmr_3_search(); return false;" name="spmr_3_fm" method="get" action="http://localhost:8080/web/guest/home?p_p_id=3&amp;p_p_lifecycle=0&amp;p_p_state=maximized&amp;p_p_mode=view&amp;p_p_col_id=column-3&amp;_3_struts_action=%2Fsearch%2Fsearch&amp;_3_redirect=%2Fweb%2Fguest%2Fhome" id="yui_patched_v3_11_0_1_1386634633129_5083">
+					
+						<input type="hidden" value="3" name="p_p_id"><input type="hidden" value="0" name="p_p_lifecycle"><input type="hidden" value="maximized" name="p_p_state"><input type="hidden" value="view" name="p_p_mode"><input type="hidden" value="column-3" name="p_p_col_id"><input type="hidden" value="/search/search" name="_3_struts_action"><input type="hidden" value="/web/guest/home" name="_3_redirect">
+
+						<input type="text" value="" title="Search" size="30" name="_3_keywords" id="yui_patched_v3_11_0_1_1386634633129_5470" class="">
+
+					<select title="Scope " name="_3_groupId" id="yui_patched_v3_11_0_1_1386634633129_5082">
+						<option selected="" value="0">Everything</option>
+						<option value="10184" id="yui_patched_v3_11_0_1_1386634633129_5101">This Site</option>
+					</select>
+
+						<input type="image" border="0" align="absmiddle" title="Search" src="http://localhost:8080/deep-blue-theme/images/common/search.png">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+</div>
+
+<copyright id="copyright" role="contentinfo"> 
+	<p class="powered-by" id="yui_patched_v3_11_0_1_1386372817560_806"> Powered By <a href="http://www.liferay.com" rel="external">Liferay</a> 
+	</p>
+</copyright>
+$theme.include($body_bottom_include)
+
+$theme.include($bottom_include)
+
+</body>
+
+</html>
