@@ -1003,7 +1003,7 @@ Please find a solution that does not require portal-impl.jar.
 					<if>
 						<not>
 							<uptodate targetfile="${plugin.file}">
-								<srcfiles dir="${osgi.plugin.classes.dir}" includes="**/*.*" />
+								<srcfiles dir="${plugin.classes.dir}" includes="**/*.*" />
 							</uptodate>
 						</not>
 						<then>

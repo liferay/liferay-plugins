@@ -8,18 +8,6 @@
 		<antelope:replace regex="\.war" replacement="\.jar" />
 	</antelope:stringutil>
 
-	<if>
-		<available file="src" />
-		<then>
-			<property name="osgi.plugin.classes.dir" value="classes" />
-			<property name="osgi.plugin.source.dir" value="src" />
-		</then>
-		<else>
-			<property name="osgi.plugin.classes.dir" value="docroot/WEB-INF/classes" />
-			<property name="osgi.plugin.source.dir" value="docroot/WEB-INF/src" />
-		</else>
-	</if>
-
 	<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
 
 	<path id="plugin-lib.classpath">
@@ -39,18 +27,18 @@
 	<target name="manifest">
 		<if>
 			<not>
-				<available file="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF" />
+				<available file="${plugin.classes.dir}/META-INF/MANIFEST.MF" />
 			</not>
 			<then>
 				<manifest-helper analyze="true" />
 
-				<mkdir dir="${osgi.plugin.classes.dir}/META-INF" />
+				<mkdir dir="${plugin.classes.dir}/META-INF" />
 
 				<tstamp>
 					<format property="build.time" pattern="EEE MMM d HH:mm:ss z yyyy" />
 				</tstamp>
 
-				<manifest file="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF">
+				<manifest file="${plugin.classes.dir}/META-INF/MANIFEST.MF">
 					<attribute name="Bundle-ManifestVersion" value="2" />
 					<attribute name="Bundle-RequiredExecutionEnvironment" value="J2SE-1.5" />
 					<attribute name="Bundle-Vendor" value="${release.info.vendor}" />
@@ -69,7 +57,7 @@
 						<isset property="manifest.bundle.symbolic.name" />
 					</and>
 					<then>
-						<manifest file="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF" mode="update">
+						<manifest file="${plugin.classes.dir}/META-INF/MANIFEST.MF" mode="update">
 							<attribute name="Bundle-Name" value="${manifest.bundle.name}" />
 							<attribute name="Bundle-SymbolicName" value="${manifest.bundle.symbolic.name}" />
 						</manifest>
@@ -79,7 +67,7 @@
 				<if>
 					<isset property="manifest.premain.class" />
 					<then>
-						<manifest file="${osgi.plugin.classes.dir}/META-INF/MANIFEST.MF" mode="update">
+						<manifest file="${plugin.classes.dir}/META-INF/MANIFEST.MF" mode="update">
 							<attribute name="Can-Redefine-Classes" value="${manifest.can.redefine.classes}" />
 							<attribute name="Can-Retransform-Classes" value="${manifest.can.retransform.classes}" />
 							<attribute name="Premain-Class" value="${manifest.premain.class}" />
