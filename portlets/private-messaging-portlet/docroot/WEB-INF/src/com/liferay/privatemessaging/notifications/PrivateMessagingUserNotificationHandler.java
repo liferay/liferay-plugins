@@ -38,6 +38,8 @@ import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
+import com.liferay.privatemessaging.model.UserThread;
+import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 import com.liferay.privatemessaging.util.PortletKeys;
 
 import javax.portlet.PortletRequest;
@@ -84,6 +86,17 @@ public class PrivateMessagingUserNotificationHandler
 			userId = jsonObject.getLong("userId");
 		}
 		else {
+			UserThread userThread = UserThreadLocalServiceUtil.fetchUserThread(
+				serviceContext.getUserId(), mbMessage.getThreadId());
+
+			if ((userThread == null) || userThread.isDeleted()) {
+				UserNotificationEventLocalServiceUtil.
+					deleteUserNotificationEvent(
+						userNotificationEvent.getUserNotificationEventId());
+
+				return null;
+			}
+
 			body = mbMessage.getBody();
 			userId = mbMessage.getUserId();
 		}
