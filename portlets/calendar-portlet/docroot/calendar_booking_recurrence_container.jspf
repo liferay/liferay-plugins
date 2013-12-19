@@ -66,7 +66,7 @@ if (recurrence != null) {
 
 <div class="calendar-portlet-recurrence-container hide">
 	<table id="<portlet:namespace />recurrenceContainer">
-		<aui:input disabled="<%= !reschedulable %>" name="exceptionDates" type="hidden" value="<%= exceptionDatesString %>" />
+		<aui:input name="exceptionDates" type="hidden" value="<%= exceptionDatesString %>" />
 
 		<tbody>
 			<tr>
@@ -74,7 +74,7 @@ if (recurrence != null) {
 					<liferay-ui:message key="repeats" />:
 				</th>
 				<td class="calendar-portlet-recurrence-content">
-					<aui:select disabled="<%= !reschedulable %>" label="" name="frequency">
+					<aui:select label="" name="frequency">
 
 						<%
 						for (Frequency curFrequency : Frequency.values()) {
@@ -96,7 +96,7 @@ if (recurrence != null) {
 					<liferay-ui:message key="repeat-every" />:
 				</th>
 				<td class="calendar-portlet-recurrence-content">
-					<aui:select disabled="<%= !reschedulable %>" label="" name="interval">
+					<aui:select label="" name="interval">
 
 						<%
 						for (int i = 1; i <= 30; i++) {
@@ -126,7 +126,7 @@ if (recurrence != null) {
 						for (Weekday weekday : Weekday.values()) {
 						%>
 
-							<aui:input checked="<%= weekdays.contains(weekday) %>" data-weekday='<%= LanguageUtil.get(pageContext, "weekday." + weekday.getValue()) %>' disabled="<%= !reschedulable %>" label="<%= weekday.getValue() %>" name="<%= weekday.getValue() %>" type="checkbox" />
+							<aui:input checked="<%= weekdays.contains(weekday) %>" data-weekday='<%= LanguageUtil.get(pageContext, "weekday." + weekday.getValue()) %>' label="<%= weekday.getValue() %>" name="<%= weekday.getValue() %>" type="checkbox" />
 
 						<%
 						}
@@ -143,23 +143,23 @@ if (recurrence != null) {
 				</th>
 				<td class="calendar-portlet-recurrence-content">
 					<aui:field-wrapper cssClass="calendar-portlet-recurrence-limit" label="">
-						<aui:input checked="<%= !afterChecked && !onChecked %>" disabled="<%= !reschedulable %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="never" />
+						<aui:input checked="<%= !afterChecked && !onChecked %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="never" />
 
 						<label><liferay-ui:message key="never" /></label>
 					</aui:field-wrapper>
 
 					<aui:field-wrapper cssClass="calendar-portlet-recurrence-limit" label="">
-						<aui:input checked="<%= afterChecked %>" disabled="<%= !reschedulable %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="after" />
+						<aui:input checked="<%= afterChecked %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="after" />
 
 						<label><liferay-ui:message key="after" /></label>
 
-						<aui:input disabled="<%= !afterChecked || !reschedulable %>" label="<%= StringPool.BLANK %>"  name="count" size="5" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
+						<aui:input disabled="<%= !afterChecked %>" label="<%= StringPool.BLANK %>"  name="count" size="5" type="text" value="<%= afterChecked ? count : StringPool.BLANK %>" />
 
 						<label><liferay-ui:message key="occurrences" /></label>
 					</aui:field-wrapper>
 
 					<aui:field-wrapper cssClass="calendar-portlet-recurrence-limit calendar-portlet-field-date" label="">
-						<aui:input checked="<%= onChecked %>" disabled="<%= !reschedulable %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="on" />
+						<aui:input checked="<%= onChecked %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="on" />
 
 						<div class="calendar-portlet-field-datepicker clearfix">
 							<label><liferay-ui:message key="on" /></label>
@@ -167,7 +167,7 @@ if (recurrence != null) {
 							<liferay-ui:input-date
 								dayParam="untilDateDay"
 								dayValue="<%= untilJCalendar.get(java.util.Calendar.DATE) %>"
-								disabled="<%= !onChecked || !reschedulable %>"
+								disabled="<%= !onChecked %>"
 								monthParam="untilDateMonth"
 								monthValue="<%= untilJCalendar.get(java.util.Calendar.MONTH) %>"
 								name="untilDate"
@@ -235,7 +235,7 @@ if (recurrence != null) {
 										window.<portlet:namespace />recurrenceDialog.hide();
 									}
 								},
-								label: '<liferay-ui:message key='<%= reschedulable ? "done" : "close" %>' />'
+								label: '<liferay-ui:message key="done" />'
 							}
 						]
 					},
