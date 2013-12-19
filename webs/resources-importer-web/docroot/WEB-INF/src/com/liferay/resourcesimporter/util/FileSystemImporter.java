@@ -131,7 +131,7 @@ public class FileSystemImporter extends BaseImporter {
 			if (!developerModeEnabled) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"DDMTemplate with name " + name + " and version " +
+						"DDM template with name " + name + " and version " +
 							version + " already exists");
 				}
 
@@ -280,7 +280,7 @@ public class FileSystemImporter extends BaseImporter {
 			if (!developerModeEnabled) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"DDMStructure with name " + name + " and version " +
+						"DDM structure with name " + name + " and version " +
 							version + " already exists");
 				}
 
@@ -351,7 +351,7 @@ public class FileSystemImporter extends BaseImporter {
 			if (!developerModeEnabled) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"DDMStructure with name " + name + " and version " +
+						"DDM structure with name " + name + " and version " +
 							version + " already exists");
 				}
 
@@ -404,7 +404,7 @@ public class FileSystemImporter extends BaseImporter {
 			if (!developerModeEnabled) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"DDMTemplate with name " + name + " and version " +
+						"DDM template with name " + name + " and version " +
 							version + " already exists");
 				}
 
@@ -471,7 +471,7 @@ public class FileSystemImporter extends BaseImporter {
 			if (!developerModeEnabled) {
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						"DDMTemplate with name " + name + " and version " +
+						"DDM template with name " + name + " and version " +
 							version + " already exists");
 				}
 
