@@ -112,7 +112,8 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 	}
 
 	protected void reindexModels(long companyId) throws Exception {
-		int count = alloyServiceInvoker.getModelsCount();
+		int count = (int)alloyServiceInvoker.executeDynamicQueryCount(
+			new Object[] {"companyId", companyId});
 
 		int pages = count / Indexer.DEFAULT_INTERVAL;
 
@@ -127,7 +128,8 @@ public abstract class BaseAlloyIndexer extends BaseIndexer {
 	protected void reindexModels(long companyId, int start, int end)
 		throws Exception {
 
-		List<Object> models = alloyServiceInvoker.getModels(start, end);
+		List<Object> models = alloyServiceInvoker.executeDynamicQuery(
+			new Object[] {"companyId", companyId}, start, end);
 
 		if (models.isEmpty()) {
 			return;
