@@ -58,6 +58,8 @@ AUI().ready(
 
 		var navigation = A.one('#navigation ul');
 
-		siteNavigationNavbar.setHTML(navigation.getHTML());
+		if (siteNavigationNavbar && navigation) {
+			siteNavigationNavbar.setHTML(navigation.getHTML());
+		}
 	}
 );
