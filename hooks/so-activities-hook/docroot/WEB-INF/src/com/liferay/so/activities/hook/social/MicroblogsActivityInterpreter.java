@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
@@ -153,7 +154,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("\"><img alt=\"");
 
 		if (user != null) {
-			sb.append(user.getFullName());
+			sb.append(HtmlUtil.escape(user.getFullName()));
 		}
 
 		sb.append("\" src=");
