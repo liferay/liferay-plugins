@@ -63,6 +63,7 @@
 
 	.user-notifications-list {
 		list-style: none;
+		right: 0;
 
 		.message {
 			text-align: center;
