@@ -106,58 +106,58 @@ public class SVNRevisionLocalServiceClpInvoker {
 				"com.liferay.socialcoding.model.SVNRevision"
 			};
 
-		_methodName58 = "getBeanIdentifier";
+		_methodName64 = "getBeanIdentifier";
 
-		_methodParameterTypes58 = new String[] {  };
+		_methodParameterTypes64 = new String[] {  };
 
-		_methodName59 = "setBeanIdentifier";
+		_methodName65 = "setBeanIdentifier";
 
-		_methodParameterTypes59 = new String[] { "java.lang.String" };
+		_methodParameterTypes65 = new String[] { "java.lang.String" };
 
-		_methodName64 = "addSVNRevision";
+		_methodName70 = "addSVNRevision";
 
-		_methodParameterTypes64 = new String[] {
+		_methodParameterTypes70 = new String[] {
 				"java.lang.String", "java.util.Date", "long", "long",
 				"java.lang.String"
 			};
 
-		_methodName65 = "getFirstSVNRevision";
+		_methodName71 = "getFirstSVNRevision";
 
-		_methodParameterTypes65 = new String[] { "java.lang.String" };
+		_methodParameterTypes71 = new String[] { "java.lang.String" };
 
-		_methodName66 = "getLastSVNRevision";
-
-		_methodParameterTypes66 = new String[] { "java.lang.String" };
-
-		_methodName67 = "getSVNRevision";
-
-		_methodParameterTypes67 = new String[] { "long" };
-
-		_methodName68 = "getSVNRevisions";
-
-		_methodParameterTypes68 = new String[] { "long", "int", "int" };
-
-		_methodName69 = "getSVNRevisions";
-
-		_methodParameterTypes69 = new String[] { "java.lang.String", "int", "int" };
-
-		_methodName70 = "getSVNRevisions";
-
-		_methodParameterTypes70 = new String[] {
-				"java.lang.String", "long", "int", "int"
-			};
-
-		_methodName71 = "getSVNRevisionsCount";
-
-		_methodParameterTypes71 = new String[] { "long" };
-
-		_methodName72 = "getSVNRevisionsCount";
+		_methodName72 = "getLastSVNRevision";
 
 		_methodParameterTypes72 = new String[] { "java.lang.String" };
 
-		_methodName73 = "getSVNRevisionsCount";
+		_methodName73 = "getSVNRevision";
 
-		_methodParameterTypes73 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes73 = new String[] { "long" };
+
+		_methodName74 = "getSVNRevisions";
+
+		_methodParameterTypes74 = new String[] { "long", "int", "int" };
+
+		_methodName75 = "getSVNRevisions";
+
+		_methodParameterTypes75 = new String[] { "java.lang.String", "int", "int" };
+
+		_methodName76 = "getSVNRevisions";
+
+		_methodParameterTypes76 = new String[] {
+				"java.lang.String", "long", "int", "int"
+			};
+
+		_methodName77 = "getSVNRevisionsCount";
+
+		_methodParameterTypes77 = new String[] { "long" };
+
+		_methodName78 = "getSVNRevisionsCount";
+
+		_methodParameterTypes78 = new String[] { "java.lang.String" };
+
+		_methodName79 = "getSVNRevisionsCount";
+
+		_methodParameterTypes79 = new String[] { "java.lang.String", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -249,74 +249,74 @@ public class SVNRevisionLocalServiceClpInvoker {
 			return SVNRevisionLocalServiceUtil.updateSVNRevision((com.liferay.socialcoding.model.SVNRevision)arguments[0]);
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			SVNRevisionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.addSVNRevision((java.lang.String)arguments[0],
 				(java.util.Date)arguments[1], ((Long)arguments[2]).longValue(),
 				((Long)arguments[3]).longValue(), (java.lang.String)arguments[4]);
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getFirstSVNRevision((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getLastSVNRevision((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getSVNRevision(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getSVNRevisions(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getSVNRevisions((java.lang.String)arguments[0],
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getSVNRevisions((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName77.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes77, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getSVNRevisionsCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName72.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+		if (_methodName78.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes78, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getSVNRevisionsCount((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName73.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+		if (_methodName79.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes79, parameterTypes)) {
 			return SVNRevisionLocalServiceUtil.getSVNRevisionsCount((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue());
 		}
@@ -356,22 +356,10 @@ public class SVNRevisionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
 	private String _methodName64;
 	private String[] _methodParameterTypes64;
 	private String _methodName65;
 	private String[] _methodParameterTypes65;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
-	private String _methodName67;
-	private String[] _methodParameterTypes67;
-	private String _methodName68;
-	private String[] _methodParameterTypes68;
-	private String _methodName69;
-	private String[] _methodParameterTypes69;
 	private String _methodName70;
 	private String[] _methodParameterTypes70;
 	private String _methodName71;
@@ -380,4 +368,16 @@ public class SVNRevisionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes72;
 	private String _methodName73;
 	private String[] _methodParameterTypes73;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
+	private String _methodName75;
+	private String[] _methodParameterTypes75;
+	private String _methodName76;
+	private String[] _methodParameterTypes76;
+	private String _methodName77;
+	private String[] _methodParameterTypes77;
+	private String _methodName78;
+	private String[] _methodParameterTypes78;
+	private String _methodName79;
+	private String[] _methodParameterTypes79;
 }
