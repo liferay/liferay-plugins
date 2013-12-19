@@ -54,8 +54,9 @@ AUI().ready(
 			);
 		}
 
-		var navigation = A.one('#navigation ul');
 		var siteNavigationNavbar = A.one('#_145_navSiteNavigationNavbarCollapse ul');
+
+		var navigation = A.one('#navigation ul');
 
 		siteNavigationNavbar.setHTML(navigation.getHTML());
 	}
