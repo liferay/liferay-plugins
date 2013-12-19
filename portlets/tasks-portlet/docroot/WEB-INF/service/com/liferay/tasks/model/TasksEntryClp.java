@@ -42,12 +42,10 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 	public TasksEntryClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return TasksEntry.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return TasksEntry.class.getName();
 	}
@@ -60,12 +58,10 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		setTasksEntryId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_tasksEntryId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -635,7 +631,6 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 			new Class[] { TasksEntry.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public TasksEntry toUnescapedModel() {
 		return this;
 	}
@@ -758,7 +753,6 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(46);
 

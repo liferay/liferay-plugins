@@ -42,12 +42,10 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 	public SocialActivitySetClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return SocialActivitySet.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return SocialActivitySet.class.getName();
 	}
@@ -60,12 +58,10 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 		setActivitySetId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_activitySetId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -481,7 +477,6 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 			new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public SocialActivitySet toUnescapedModel() {
 		return this;
 	}
@@ -585,7 +580,6 @@ public class SocialActivitySetClp extends BaseModelImpl<SocialActivitySet>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

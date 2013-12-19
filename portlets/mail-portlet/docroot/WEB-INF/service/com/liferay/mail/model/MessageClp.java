@@ -41,12 +41,10 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	public MessageClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return Message.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return Message.class.getName();
 	}
@@ -59,12 +57,10 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		setMessageId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_messageId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -720,7 +716,6 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 			new Class[] { Message.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public Message toUnescapedModel() {
 		return this;
 	}
@@ -838,7 +833,6 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(61);
 

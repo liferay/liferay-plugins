@@ -39,12 +39,10 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 	public JIRAChangeItemClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return JIRAChangeItem.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return JIRAChangeItem.class.getName();
 	}
@@ -57,12 +55,10 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		setJiraChangeItemId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_jiraChangeItemId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -342,7 +338,6 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 			new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public JIRAChangeItem toUnescapedModel() {
 		return this;
 	}
@@ -426,7 +421,6 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(25);
 

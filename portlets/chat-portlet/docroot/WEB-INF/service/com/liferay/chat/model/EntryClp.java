@@ -39,12 +39,10 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	public EntryClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return Entry.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return Entry.class.getName();
 	}
@@ -57,12 +55,10 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		setEntryId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_entryId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -326,7 +322,6 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 			new Class[] { Entry.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public Entry toUnescapedModel() {
 		return this;
 	}
@@ -415,7 +410,6 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(22);
 

@@ -40,12 +40,10 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	public WSRPConsumerClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return WSRPConsumer.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return WSRPConsumer.class.getName();
 	}
@@ -58,12 +56,10 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		setWsrpConsumerId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_wsrpConsumerId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -592,7 +588,6 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 			new Class[] { WSRPConsumer.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public WSRPConsumer toUnescapedModel() {
 		return this;
 	}
@@ -692,7 +687,6 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(43);
 

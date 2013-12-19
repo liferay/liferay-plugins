@@ -104,112 +104,112 @@ public class KaleoLogLocalServiceClpInvoker {
 				"com.liferay.portal.workflow.kaleo.model.KaleoLog", "boolean"
 			};
 
-		_methodName100 = "getBeanIdentifier";
+		_methodName106 = "getBeanIdentifier";
 
-		_methodParameterTypes100 = new String[] {  };
+		_methodParameterTypes106 = new String[] {  };
 
-		_methodName101 = "setBeanIdentifier";
+		_methodName107 = "setBeanIdentifier";
 
-		_methodParameterTypes101 = new String[] { "java.lang.String" };
+		_methodParameterTypes107 = new String[] { "java.lang.String" };
 
-		_methodName106 = "addActionExecutionKaleoLog";
+		_methodName112 = "addActionExecutionKaleoLog";
 
-		_methodParameterTypes106 = new String[] {
+		_methodParameterTypes112 = new String[] {
 				"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken",
 				"com.liferay.portal.workflow.kaleo.model.KaleoAction", "long",
 				"long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName107 = "addNodeEntryKaleoLog";
+		_methodName113 = "addNodeEntryKaleoLog";
 
-		_methodParameterTypes107 = new String[] {
+		_methodParameterTypes113 = new String[] {
 				"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken",
 				"com.liferay.portal.workflow.kaleo.model.KaleoNode",
 				"com.liferay.portal.workflow.kaleo.model.KaleoNode",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName108 = "addNodeExitKaleoLog";
+		_methodName114 = "addNodeExitKaleoLog";
 
-		_methodParameterTypes108 = new String[] {
+		_methodParameterTypes114 = new String[] {
 				"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken",
 				"com.liferay.portal.workflow.kaleo.model.KaleoNode",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName109 = "addTaskAssignmentKaleoLog";
+		_methodName115 = "addTaskAssignmentKaleoLog";
 
-		_methodParameterTypes109 = new String[] {
+		_methodParameterTypes115 = new String[] {
 				"java.util.List",
 				"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken",
 				"java.lang.String", "java.util.Map",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName110 = "addTaskCompletionKaleoLog";
+		_methodName116 = "addTaskCompletionKaleoLog";
 
-		_methodParameterTypes110 = new String[] {
+		_methodParameterTypes116 = new String[] {
 				"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken",
 				"java.lang.String", "java.util.Map",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName111 = "addTaskUpdateKaleoLog";
-
-		_methodParameterTypes111 = new String[] {
-				"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken",
-				"java.lang.String", "java.util.Map",
-				"com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName112 = "addWorkflowInstanceEndKaleoLog";
-
-		_methodParameterTypes112 = new String[] {
-				"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken",
-				"com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName113 = "addWorkflowInstanceStartKaleoLog";
-
-		_methodParameterTypes113 = new String[] {
-				"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken",
-				"com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName114 = "deleteCompanyKaleoLogs";
-
-		_methodParameterTypes114 = new String[] { "long" };
-
-		_methodName115 = "deleteKaleoDefinitionKaleoLogs";
-
-		_methodParameterTypes115 = new String[] { "long" };
-
-		_methodName116 = "deleteKaleoInstanceKaleoLogs";
-
-		_methodParameterTypes116 = new String[] { "long" };
-
-		_methodName117 = "getKaleoInstanceKaleoLogs";
+		_methodName117 = "addTaskUpdateKaleoLog";
 
 		_methodParameterTypes117 = new String[] {
-				"long", "java.util.List", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+				"com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken",
+				"java.lang.String", "java.util.Map",
+				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName118 = "getKaleoInstanceKaleoLogsCount";
+		_methodName118 = "addWorkflowInstanceEndKaleoLog";
 
-		_methodParameterTypes118 = new String[] { "long", "java.util.List" };
+		_methodParameterTypes118 = new String[] {
+				"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken",
+				"com.liferay.portal.service.ServiceContext"
+			};
 
-		_methodName119 = "getKaleoTaskInstanceTokenKaleoLogs";
+		_methodName119 = "addWorkflowInstanceStartKaleoLog";
 
 		_methodParameterTypes119 = new String[] {
+				"com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName120 = "deleteCompanyKaleoLogs";
+
+		_methodParameterTypes120 = new String[] { "long" };
+
+		_methodName121 = "deleteKaleoDefinitionKaleoLogs";
+
+		_methodParameterTypes121 = new String[] { "long" };
+
+		_methodName122 = "deleteKaleoInstanceKaleoLogs";
+
+		_methodParameterTypes122 = new String[] { "long" };
+
+		_methodName123 = "getKaleoInstanceKaleoLogs";
+
+		_methodParameterTypes123 = new String[] {
 				"long", "java.util.List", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName120 = "getKaleoTaskInstanceTokenKaleoLogsCount";
+		_methodName124 = "getKaleoInstanceKaleoLogsCount";
 
-		_methodParameterTypes120 = new String[] { "long", "java.util.List" };
+		_methodParameterTypes124 = new String[] { "long", "java.util.List" };
+
+		_methodName125 = "getKaleoTaskInstanceTokenKaleoLogs";
+
+		_methodParameterTypes125 = new String[] {
+				"long", "java.util.List", "int", "int",
+				"com.liferay.portal.kernel.util.OrderByComparator"
+			};
+
+		_methodName126 = "getKaleoTaskInstanceTokenKaleoLogsCount";
+
+		_methodParameterTypes126 = new String[] { "long", "java.util.List" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -301,20 +301,20 @@ public class KaleoLogLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName100.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes100, parameterTypes)) {
+		if (_methodName106.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes106, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName101.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes101, parameterTypes)) {
+		if (_methodName107.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
 			KaleoLogLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName106.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes106, parameterTypes)) {
+		if (_methodName112.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.addActionExecutionKaleoLog((com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken)arguments[0],
 				(com.liferay.portal.workflow.kaleo.model.KaleoAction)arguments[1],
 				((Long)arguments[2]).longValue(),
@@ -323,23 +323,23 @@ public class KaleoLogLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
-		if (_methodName107.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
+		if (_methodName113.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes113, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.addNodeEntryKaleoLog((com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken)arguments[0],
 				(com.liferay.portal.workflow.kaleo.model.KaleoNode)arguments[1],
 				(com.liferay.portal.workflow.kaleo.model.KaleoNode)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName108.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
+		if (_methodName114.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes114, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.addNodeExitKaleoLog((com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken)arguments[0],
 				(com.liferay.portal.workflow.kaleo.model.KaleoNode)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}
 
-		if (_methodName109.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
+		if (_methodName115.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes115, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.addTaskAssignmentKaleoLog((java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance>)arguments[0],
 				(com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken)arguments[1],
 				(java.lang.String)arguments[2],
@@ -347,57 +347,57 @@ public class KaleoLogLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[4]);
 		}
 
-		if (_methodName110.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
+		if (_methodName116.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes116, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.addTaskCompletionKaleoLog((com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken)arguments[0],
 				(java.lang.String)arguments[1],
 				(java.util.Map<java.lang.String, java.io.Serializable>)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName111.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
+		if (_methodName117.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes117, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.addTaskUpdateKaleoLog((com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken)arguments[0],
 				(java.lang.String)arguments[1],
 				(java.util.Map<java.lang.String, java.io.Serializable>)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName112.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
+		if (_methodName118.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes118, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.addWorkflowInstanceEndKaleoLog((com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken)arguments[0],
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
 		}
 
-		if (_methodName113.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes113, parameterTypes)) {
+		if (_methodName119.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes119, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.addWorkflowInstanceStartKaleoLog((com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken)arguments[0],
 				(com.liferay.portal.service.ServiceContext)arguments[1]);
 		}
 
-		if (_methodName114.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes114, parameterTypes)) {
+		if (_methodName120.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes120, parameterTypes)) {
 			KaleoLogLocalServiceUtil.deleteCompanyKaleoLogs(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName115.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes115, parameterTypes)) {
+		if (_methodName121.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes121, parameterTypes)) {
 			KaleoLogLocalServiceUtil.deleteKaleoDefinitionKaleoLogs(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName116.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes116, parameterTypes)) {
+		if (_methodName122.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes122, parameterTypes)) {
 			KaleoLogLocalServiceUtil.deleteKaleoInstanceKaleoLogs(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName117.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes117, parameterTypes)) {
+		if (_methodName123.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes123, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.getKaleoInstanceKaleoLogs(((Long)arguments[0]).longValue(),
 				(java.util.List<java.lang.Integer>)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -405,14 +405,14 @@ public class KaleoLogLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
-		if (_methodName118.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes118, parameterTypes)) {
+		if (_methodName124.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes124, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.getKaleoInstanceKaleoLogsCount(((Long)arguments[0]).longValue(),
 				(java.util.List<java.lang.Integer>)arguments[1]);
 		}
 
-		if (_methodName119.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes119, parameterTypes)) {
+		if (_methodName125.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes125, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.getKaleoTaskInstanceTokenKaleoLogs(((Long)arguments[0]).longValue(),
 				(java.util.List<java.lang.Integer>)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -420,8 +420,8 @@ public class KaleoLogLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
-		if (_methodName120.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes120, parameterTypes)) {
+		if (_methodName126.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes126, parameterTypes)) {
 			return KaleoLogLocalServiceUtil.getKaleoTaskInstanceTokenKaleoLogsCount(((Long)arguments[0]).longValue(),
 				(java.util.List<java.lang.Integer>)arguments[1]);
 		}
@@ -461,22 +461,10 @@ public class KaleoLogLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName100;
-	private String[] _methodParameterTypes100;
-	private String _methodName101;
-	private String[] _methodParameterTypes101;
 	private String _methodName106;
 	private String[] _methodParameterTypes106;
 	private String _methodName107;
 	private String[] _methodParameterTypes107;
-	private String _methodName108;
-	private String[] _methodParameterTypes108;
-	private String _methodName109;
-	private String[] _methodParameterTypes109;
-	private String _methodName110;
-	private String[] _methodParameterTypes110;
-	private String _methodName111;
-	private String[] _methodParameterTypes111;
 	private String _methodName112;
 	private String[] _methodParameterTypes112;
 	private String _methodName113;
@@ -495,4 +483,16 @@ public class KaleoLogLocalServiceClpInvoker {
 	private String[] _methodParameterTypes119;
 	private String _methodName120;
 	private String[] _methodParameterTypes120;
+	private String _methodName121;
+	private String[] _methodParameterTypes121;
+	private String _methodName122;
+	private String[] _methodParameterTypes122;
+	private String _methodName123;
+	private String[] _methodParameterTypes123;
+	private String _methodName124;
+	private String[] _methodParameterTypes124;
+	private String _methodName125;
+	private String[] _methodParameterTypes125;
+	private String _methodName126;
+	private String[] _methodParameterTypes126;
 }

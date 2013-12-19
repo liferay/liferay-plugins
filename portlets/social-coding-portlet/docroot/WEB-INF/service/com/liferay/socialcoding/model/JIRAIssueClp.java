@@ -40,12 +40,10 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 	public JIRAIssueClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return JIRAIssue.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return JIRAIssue.class.getName();
 	}
@@ -58,12 +56,10 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		setJiraIssueId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_jiraIssueId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -453,7 +449,6 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 			new Class[] { JIRAIssue.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public JIRAIssue toUnescapedModel() {
 		return this;
 	}
@@ -550,7 +545,6 @@ public class JIRAIssueClp extends BaseModelImpl<JIRAIssue> implements JIRAIssue 
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(37);
 

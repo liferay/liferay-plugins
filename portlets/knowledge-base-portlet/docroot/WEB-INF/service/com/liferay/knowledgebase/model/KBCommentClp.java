@@ -43,12 +43,10 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	public KBCommentClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return KBComment.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return KBComment.class.getName();
 	}
@@ -61,12 +59,10 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		setKbCommentId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_kbCommentId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -512,7 +508,6 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 			new Class[] { KBComment.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public KBComment toUnescapedModel() {
 		return this;
 	}
@@ -612,7 +607,6 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(40);
 

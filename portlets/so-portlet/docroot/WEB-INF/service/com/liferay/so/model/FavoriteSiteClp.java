@@ -40,12 +40,10 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	public FavoriteSiteClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return FavoriteSite.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return FavoriteSite.class.getName();
 	}
@@ -58,12 +56,10 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		setFavoriteSiteId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_favoriteSiteId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -263,7 +259,6 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 			new Class[] { FavoriteSite.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public FavoriteSite toUnescapedModel() {
 		return this;
 	}
@@ -338,7 +333,6 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(16);
 

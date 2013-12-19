@@ -40,12 +40,10 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 	public AttachmentClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return Attachment.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return Attachment.class.getName();
 	}
@@ -58,12 +56,10 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		setAttachmentId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_attachmentId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -403,7 +399,6 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 			new Class[] { Attachment.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public Attachment toUnescapedModel() {
 		return this;
 	}
@@ -493,7 +488,6 @@ public class AttachmentClp extends BaseModelImpl<Attachment>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

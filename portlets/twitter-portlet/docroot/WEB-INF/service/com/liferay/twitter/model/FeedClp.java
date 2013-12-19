@@ -40,12 +40,10 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	public FeedClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return Feed.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return Feed.class.getName();
 	}
@@ -58,12 +56,10 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		setFeedId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_feedId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -413,7 +409,6 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 			new Class[] { Feed.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public Feed toUnescapedModel() {
 		return this;
 	}
@@ -503,7 +498,6 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(31);
 

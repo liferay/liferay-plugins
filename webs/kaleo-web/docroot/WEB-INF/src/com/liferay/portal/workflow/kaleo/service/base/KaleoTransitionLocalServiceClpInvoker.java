@@ -105,17 +105,17 @@ public class KaleoTransitionLocalServiceClpInvoker {
 				"boolean"
 			};
 
-		_methodName100 = "getBeanIdentifier";
+		_methodName106 = "getBeanIdentifier";
 
-		_methodParameterTypes100 = new String[] {  };
+		_methodParameterTypes106 = new String[] {  };
 
-		_methodName101 = "setBeanIdentifier";
+		_methodName107 = "setBeanIdentifier";
 
-		_methodParameterTypes101 = new String[] { "java.lang.String" };
+		_methodParameterTypes107 = new String[] { "java.lang.String" };
 
-		_methodName106 = "addKaleoTransition";
+		_methodName112 = "addKaleoTransition";
 
-		_methodParameterTypes106 = new String[] {
+		_methodParameterTypes112 = new String[] {
 				"long", "long",
 				"com.liferay.portal.workflow.kaleo.definition.Transition",
 				"com.liferay.portal.workflow.kaleo.model.KaleoNode",
@@ -123,33 +123,33 @@ public class KaleoTransitionLocalServiceClpInvoker {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName107 = "deleteCompanyKaleoTransitions";
-
-		_methodParameterTypes107 = new String[] { "long" };
-
-		_methodName108 = "deleteKaleoDefinitionKaleoTransitions";
-
-		_methodParameterTypes108 = new String[] { "long" };
-
-		_methodName109 = "getDefaultKaleoTransition";
-
-		_methodParameterTypes109 = new String[] { "long" };
-
-		_methodName110 = "getKaleoDefinitionKaleoTransitions";
-
-		_methodParameterTypes110 = new String[] { "long" };
-
-		_methodName111 = "getKaleoTransition";
-
-		_methodParameterTypes111 = new String[] { "long", "java.lang.String" };
-
-		_methodName112 = "getKaleoTransitions";
-
-		_methodParameterTypes112 = new String[] { "long" };
-
-		_methodName113 = "getKaleoTransitionsCount";
+		_methodName113 = "deleteCompanyKaleoTransitions";
 
 		_methodParameterTypes113 = new String[] { "long" };
+
+		_methodName114 = "deleteKaleoDefinitionKaleoTransitions";
+
+		_methodParameterTypes114 = new String[] { "long" };
+
+		_methodName115 = "getDefaultKaleoTransition";
+
+		_methodParameterTypes115 = new String[] { "long" };
+
+		_methodName116 = "getKaleoDefinitionKaleoTransitions";
+
+		_methodParameterTypes116 = new String[] { "long" };
+
+		_methodName117 = "getKaleoTransition";
+
+		_methodParameterTypes117 = new String[] { "long", "java.lang.String" };
+
+		_methodName118 = "getKaleoTransitions";
+
+		_methodParameterTypes118 = new String[] { "long" };
+
+		_methodName119 = "getKaleoTransitionsCount";
+
+		_methodParameterTypes119 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -241,20 +241,20 @@ public class KaleoTransitionLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName100.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes100, parameterTypes)) {
+		if (_methodName106.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes106, parameterTypes)) {
 			return KaleoTransitionLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName101.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes101, parameterTypes)) {
+		if (_methodName107.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
 			KaleoTransitionLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName106.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes106, parameterTypes)) {
+		if (_methodName112.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
 			return KaleoTransitionLocalServiceUtil.addKaleoTransition(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(com.liferay.portal.workflow.kaleo.definition.Transition)arguments[2],
@@ -263,43 +263,43 @@ public class KaleoTransitionLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[5]);
 		}
 
-		if (_methodName107.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes107, parameterTypes)) {
+		if (_methodName113.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes113, parameterTypes)) {
 			KaleoTransitionLocalServiceUtil.deleteCompanyKaleoTransitions(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName108.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
+		if (_methodName114.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes114, parameterTypes)) {
 			KaleoTransitionLocalServiceUtil.deleteKaleoDefinitionKaleoTransitions(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName109.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
+		if (_methodName115.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes115, parameterTypes)) {
 			return KaleoTransitionLocalServiceUtil.getDefaultKaleoTransition(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName110.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
+		if (_methodName116.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes116, parameterTypes)) {
 			return KaleoTransitionLocalServiceUtil.getKaleoDefinitionKaleoTransitions(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName111.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
+		if (_methodName117.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes117, parameterTypes)) {
 			return KaleoTransitionLocalServiceUtil.getKaleoTransition(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName112.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
+		if (_methodName118.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes118, parameterTypes)) {
 			return KaleoTransitionLocalServiceUtil.getKaleoTransitions(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName113.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes113, parameterTypes)) {
+		if (_methodName119.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes119, parameterTypes)) {
 			return KaleoTransitionLocalServiceUtil.getKaleoTransitionsCount(((Long)arguments[0]).longValue());
 		}
 
@@ -338,24 +338,24 @@ public class KaleoTransitionLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName100;
-	private String[] _methodParameterTypes100;
-	private String _methodName101;
-	private String[] _methodParameterTypes101;
 	private String _methodName106;
 	private String[] _methodParameterTypes106;
 	private String _methodName107;
 	private String[] _methodParameterTypes107;
-	private String _methodName108;
-	private String[] _methodParameterTypes108;
-	private String _methodName109;
-	private String[] _methodParameterTypes109;
-	private String _methodName110;
-	private String[] _methodParameterTypes110;
-	private String _methodName111;
-	private String[] _methodParameterTypes111;
 	private String _methodName112;
 	private String[] _methodParameterTypes112;
 	private String _methodName113;
 	private String[] _methodParameterTypes113;
+	private String _methodName114;
+	private String[] _methodParameterTypes114;
+	private String _methodName115;
+	private String[] _methodParameterTypes115;
+	private String _methodName116;
+	private String[] _methodParameterTypes116;
+	private String _methodName117;
+	private String[] _methodParameterTypes117;
+	private String _methodName118;
+	private String[] _methodParameterTypes118;
+	private String _methodName119;
+	private String[] _methodParameterTypes119;
 }

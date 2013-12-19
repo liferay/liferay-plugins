@@ -39,12 +39,10 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 	public SVNRepositoryClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return SVNRepository.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return SVNRepository.class.getName();
 	}
@@ -57,12 +55,10 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		setSvnRepositoryId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_svnRepositoryId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -263,7 +259,6 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 			new Class[] { SVNRepository.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public SVNRepository toUnescapedModel() {
 		return this;
 	}
@@ -333,7 +328,6 @@ public class SVNRepositoryClp extends BaseModelImpl<SVNRepository>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(13);
 

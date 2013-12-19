@@ -104,89 +104,89 @@ public class SocialActivitySetLocalServiceClpInvoker {
 				"com.liferay.so.activities.model.SocialActivitySet", "boolean"
 			};
 
-		_methodName44 = "getBeanIdentifier";
+		_methodName50 = "getBeanIdentifier";
 
-		_methodParameterTypes44 = new String[] {  };
+		_methodParameterTypes50 = new String[] {  };
 
-		_methodName45 = "setBeanIdentifier";
+		_methodName51 = "setBeanIdentifier";
 
-		_methodParameterTypes45 = new String[] { "java.lang.String" };
+		_methodParameterTypes51 = new String[] { "java.lang.String" };
 
-		_methodName50 = "addActivitySet";
+		_methodName56 = "addActivitySet";
 
-		_methodParameterTypes50 = new String[] { "long" };
+		_methodParameterTypes56 = new String[] { "long" };
 
-		_methodName51 = "decrementActivityCount";
+		_methodName57 = "decrementActivityCount";
 
-		_methodParameterTypes51 = new String[] { "long" };
+		_methodParameterTypes57 = new String[] { "long" };
 
-		_methodName52 = "getClassActivitySet";
+		_methodName58 = "getClassActivitySet";
 
-		_methodParameterTypes52 = new String[] { "long", "long", "int" };
+		_methodParameterTypes58 = new String[] { "long", "long", "int" };
 
-		_methodName53 = "getClassActivitySet";
+		_methodName59 = "getClassActivitySet";
 
-		_methodParameterTypes53 = new String[] { "long", "long", "long", "int" };
+		_methodParameterTypes59 = new String[] { "long", "long", "long", "int" };
 
-		_methodName54 = "getGroupActivitySets";
+		_methodName60 = "getGroupActivitySets";
 
-		_methodParameterTypes54 = new String[] { "long", "int", "int" };
+		_methodParameterTypes60 = new String[] { "long", "int", "int" };
 
-		_methodName55 = "getGroupActivitySetsCount";
+		_methodName61 = "getGroupActivitySetsCount";
 
-		_methodParameterTypes55 = new String[] { "long" };
+		_methodParameterTypes61 = new String[] { "long" };
 
-		_methodName56 = "getRelationActivitySets";
-
-		_methodParameterTypes56 = new String[] { "long", "int", "int" };
-
-		_methodName57 = "getRelationActivitySets";
-
-		_methodParameterTypes57 = new String[] { "long", "int", "int", "int" };
-
-		_methodName58 = "getRelationActivitySetsCount";
-
-		_methodParameterTypes58 = new String[] { "long" };
-
-		_methodName59 = "getRelationActivitySetsCount";
-
-		_methodParameterTypes59 = new String[] { "long", "int" };
-
-		_methodName60 = "getUserActivitySet";
-
-		_methodParameterTypes60 = new String[] { "long", "long", "int" };
-
-		_methodName61 = "getUserActivitySet";
-
-		_methodParameterTypes61 = new String[] { "long", "long", "long", "int" };
-
-		_methodName62 = "getUserActivitySets";
+		_methodName62 = "getRelationActivitySets";
 
 		_methodParameterTypes62 = new String[] { "long", "int", "int" };
 
-		_methodName63 = "getUserActivitySetsCount";
+		_methodName63 = "getRelationActivitySets";
 
-		_methodParameterTypes63 = new String[] { "long" };
+		_methodParameterTypes63 = new String[] { "long", "int", "int", "int" };
 
-		_methodName64 = "getUserGroupsActivitySets";
+		_methodName64 = "getRelationActivitySetsCount";
 
-		_methodParameterTypes64 = new String[] { "long", "int", "int" };
+		_methodParameterTypes64 = new String[] { "long" };
 
-		_methodName65 = "getUserGroupsActivitySetsCount";
+		_methodName65 = "getRelationActivitySetsCount";
 
-		_methodParameterTypes65 = new String[] { "long" };
+		_methodParameterTypes65 = new String[] { "long", "int" };
 
-		_methodName66 = "getUserViewableActivitySets";
+		_methodName66 = "getUserActivitySet";
 
-		_methodParameterTypes66 = new String[] { "long", "int", "int" };
+		_methodParameterTypes66 = new String[] { "long", "long", "int" };
 
-		_methodName67 = "getUserViewableActivitySetsCount";
+		_methodName67 = "getUserActivitySet";
 
-		_methodParameterTypes67 = new String[] { "long" };
+		_methodParameterTypes67 = new String[] { "long", "long", "long", "int" };
 
-		_methodName68 = "incrementActivityCount";
+		_methodName68 = "getUserActivitySets";
 
-		_methodParameterTypes68 = new String[] { "long", "long" };
+		_methodParameterTypes68 = new String[] { "long", "int", "int" };
+
+		_methodName69 = "getUserActivitySetsCount";
+
+		_methodParameterTypes69 = new String[] { "long" };
+
+		_methodName70 = "getUserGroupsActivitySets";
+
+		_methodParameterTypes70 = new String[] { "long", "int", "int" };
+
+		_methodName71 = "getUserGroupsActivitySetsCount";
+
+		_methodParameterTypes71 = new String[] { "long" };
+
+		_methodName72 = "getUserViewableActivitySets";
+
+		_methodParameterTypes72 = new String[] { "long", "int", "int" };
+
+		_methodName73 = "getUserViewableActivitySetsCount";
+
+		_methodParameterTypes73 = new String[] { "long" };
+
+		_methodName74 = "incrementActivityCount";
+
+		_methodParameterTypes74 = new String[] { "long", "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -278,136 +278,136 @@ public class SocialActivitySetLocalServiceClpInvoker {
 				((Boolean)arguments[1]).booleanValue());
 		}
 
-		if (_methodName44.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return SocialActivitySetLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName45.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			SocialActivitySetLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
 			return SocialActivitySetLocalServiceUtil.addActivitySet(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			SocialActivitySetLocalServiceUtil.decrementActivityCount(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
 			return SocialActivitySetLocalServiceUtil.getClassActivitySet(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return SocialActivitySetLocalServiceUtil.getClassActivitySet(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
 				((Integer)arguments[3]).intValue());
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return SocialActivitySetLocalServiceUtil.getGroupActivitySets(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName55.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getRelationActivitySets(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
-		}
-
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getRelationActivitySets(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue(),
-				((Integer)arguments[3]).intValue());
-		}
-
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue());
-		}
-
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getUserActivitySet(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Integer)arguments[2]).intValue());
-		}
-
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getUserActivitySet(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				((Long)arguments[2]).longValue(),
-				((Integer)arguments[3]).intValue());
+			return SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getUserActivitySets(((Long)arguments[0]).longValue(),
+			return SocialActivitySetLocalServiceUtil.getRelationActivitySets(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(((Long)arguments[0]).longValue());
+			return SocialActivitySetLocalServiceUtil.getRelationActivitySets(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
 		}
 
 		if (_methodName64.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
-				((Integer)arguments[2]).intValue());
+			return SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName65.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(((Long)arguments[0]).longValue());
+			return SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue());
 		}
 
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(((Long)arguments[0]).longValue(),
-				((Integer)arguments[1]).intValue(),
+			return SocialActivitySetLocalServiceUtil.getUserActivitySet(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
 		if (_methodName67.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
-			return SocialActivitySetLocalServiceUtil.getUserViewableActivitySetsCount(((Long)arguments[0]).longValue());
+			return SocialActivitySetLocalServiceUtil.getUserActivitySet(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				((Long)arguments[2]).longValue(),
+				((Integer)arguments[3]).intValue());
 		}
 
 		if (_methodName68.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.getUserActivitySets(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
+		}
+
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
+		}
+
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
+		}
+
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+			return SocialActivitySetLocalServiceUtil.getUserViewableActivitySetsCount(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			SocialActivitySetLocalServiceUtil.incrementActivityCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
@@ -449,22 +449,10 @@ public class SocialActivitySetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName44;
-	private String[] _methodParameterTypes44;
-	private String _methodName45;
-	private String[] _methodParameterTypes45;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
-	private String _methodName54;
-	private String[] _methodParameterTypes54;
-	private String _methodName55;
-	private String[] _methodParameterTypes55;
 	private String _methodName56;
 	private String[] _methodParameterTypes56;
 	private String _methodName57;
@@ -491,4 +479,16 @@ public class SocialActivitySetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes67;
 	private String _methodName68;
 	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
+	private String _methodName70;
+	private String[] _methodParameterTypes70;
+	private String _methodName71;
+	private String[] _methodParameterTypes71;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
 }

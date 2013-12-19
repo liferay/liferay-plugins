@@ -40,12 +40,10 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 	public FolderClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return Folder.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return Folder.class.getName();
 	}
@@ -58,12 +56,10 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		setFolderId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_folderId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -433,7 +429,6 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 			new Class[] { Folder.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public Folder toUnescapedModel() {
 		return this;
 	}
@@ -524,7 +519,6 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 

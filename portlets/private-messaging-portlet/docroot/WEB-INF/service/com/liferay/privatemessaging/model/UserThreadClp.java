@@ -42,12 +42,10 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	public UserThreadClp() {
 	}
 
-	@Override
 	public Class<?> getModelClass() {
 		return UserThread.class;
 	}
 
-	@Override
 	public String getModelClassName() {
 		return UserThread.class.getName();
 	}
@@ -60,12 +58,10 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		setUserThreadId(primaryKey);
 	}
 
-	@Override
 	public Serializable getPrimaryKeyObj() {
 		return new Long(_userThreadId);
 	}
 
-	@Override
 	public void setPrimaryKeyObj(Serializable primaryKeyObj) {
 		setPrimaryKey(((Long)primaryKeyObj).longValue());
 	}
@@ -441,7 +437,6 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 			new Class[] { UserThread.class }, new AutoEscapeBeanHandler(this));
 	}
 
-	@Override
 	public UserThread toUnescapedModel() {
 		return this;
 	}
@@ -535,7 +530,6 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		return sb.toString();
 	}
 
-	@Override
 	public String toXmlString() {
 		StringBundler sb = new StringBundler(34);
 
