@@ -122,14 +122,12 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
-		long groupId = layout.getGroupId();
-
-		long displayPortlet = PortalUtil.getPlidFromPortletId(
-			groupId, PortletKeys.KNOWLEDGE_BASE_DISPLAY);
+		long selPlid = PortalUtil.getPlidFromPortletId(
+			layout.getGroupId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY);
 
 		String portletId = PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE;
 
-		if (displayPortlet > 0) {
+		if (selPlid != LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) {
 			portletId = PortletKeys.KNOWLEDGE_BASE_DISPLAY;
 		}
 
@@ -147,7 +145,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 
 		portletURL.setPortletMode(PortletMode.VIEW);
 
-		if (displayPortlet == 0) {
+		if (selPlid == LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) {
 			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 		}
 
