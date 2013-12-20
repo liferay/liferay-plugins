@@ -14,6 +14,7 @@
 
 package com.liferay.shibboleth.security.auth;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -24,7 +25,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.BaseAutoLogin;
 import com.liferay.portal.security.ldap.PortalLDAPImporterUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.shibboleth.util.PropsKeys;
 import com.liferay.shibboleth.util.PropsValues;
 import com.liferay.shibboleth.util.ShibbolethUtil;

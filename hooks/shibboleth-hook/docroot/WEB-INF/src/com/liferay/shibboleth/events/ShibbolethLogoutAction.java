@@ -14,13 +14,13 @@
 
 package com.liferay.shibboleth.events;
 
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.shibboleth.util.PropsKeys;
 import com.liferay.shibboleth.util.PropsValues;
 import com.liferay.shibboleth.util.ShibbolethUtil;
