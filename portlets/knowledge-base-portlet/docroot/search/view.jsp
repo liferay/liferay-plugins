@@ -16,16 +16,19 @@
 
 <%@ include file="/search/init.jsp" %>
 
-<div class="navbar-search pull-left knowledge-search">
-	<div class="form-search">
-		<liferay-portlet:renderURL varImpl="searchURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-			<portlet:param name="mvcPath" value="/search/search.jsp" />
-		</liferay-portlet:renderURL>
+<liferay-portlet:renderURL varImpl="searchURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+	<portlet:param name="mvcPath" value="/search/search.jsp" />
+</liferay-portlet:renderURL>
 
-		<aui:form action="<%= searchURL %>" method="get" name="searchFm">
-			<liferay-portlet:renderURLParams varImpl="searchURL" />
 
-			<liferay-ui:input-search />
-		</aui:form>
-	</div>
-</div>
+<aui:nav-bar>
+	<aui:nav-bar-search cssClass="pull-right">
+		<div class="form-search">
+			<aui:form action="<%= searchURL %>" method="get" name="searchFm">
+				<liferay-portlet:renderURLParams varImpl="searchURL" />
+
+				<liferay-ui:input-search />
+			</aui:form>
+		</div>
+	</aui:nav-bar-search>
+</aui:nav-bar>
