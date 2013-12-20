@@ -113,7 +113,7 @@ $theme.include($body_top_include)
 			#if ($is_user_dashboard)
 				<h2 class="page-title">
 						<a class="avatar" href="$current_user_profile_url" style="background-image: url($user.getPortraitURL($themeDisplay))">
-							<img alt="$user.getFullName()" src="$user.getPortraitURL($themeDisplay)">
+							<img alt="$htmlUtil.escape($user.getFullName())" src="$user.getPortraitURL($themeDisplay)">
 						</a>
 
 						<span class="aui-helper-hidden">$htmlUtil.escape($current_user.getFullName())'s</span>
