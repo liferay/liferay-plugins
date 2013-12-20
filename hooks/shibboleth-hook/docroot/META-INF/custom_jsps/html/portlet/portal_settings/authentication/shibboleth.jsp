@@ -17,10 +17,10 @@
 <%@ include file="/html/portlet/portal_settings/init.jsp" %>
 
 <%
-	boolean shibbolethAuthEnabled = PrefsPropsUtil.getBoolean(company.getCompanyId(), _SHIBBOLETH_AUTH_ENABLED_KEY, _SHIBBOLETH_AUTH_ENABLED);
-	boolean shibbolethImportFromLdap = PrefsPropsUtil.getBoolean(company.getCompanyId(), _SHIBBOLETH_IMPORT_FROM_LDAP_KEY, _SHIBBOLETH_IMPORT_FROM_LDAP);
-	String shibbolethLogoutURL = PrefsPropsUtil.getString(company.getCompanyId(), _SHIBBOLETH_LOGOUT_URL_KEY, _SHIBBOLETH_LOGOUT_URL);
-	String shibbolethUserHeader = PrefsPropsUtil.getString(company.getCompanyId(), _SHIBBOLETH_USER_HEADER_KEY, _SHIBBOLETH_USER_HEADER);
+boolean shibbolethAuthEnabled = PrefsPropsUtil.getBoolean(company.getCompanyId(), _SHIBBOLETH_AUTH_ENABLED_KEY, _SHIBBOLETH_AUTH_ENABLED_VALUE);
+boolean shibbolethImportFromLdap = PrefsPropsUtil.getBoolean(company.getCompanyId(), _SHIBBOLETH_IMPORT_FROM_LDAP_KEY, _SHIBBOLETH_IMPORT_FROM_LDAP_VALUE);
+String shibbolethLogoutURL = PrefsPropsUtil.getString(company.getCompanyId(), _SHIBBOLETH_LOGOUT_URL_KEY, _SHIBBOLETH_LOGOUT_URL_VALUE);
+String shibbolethUserHeader = PrefsPropsUtil.getString(company.getCompanyId(), _SHIBBOLETH_USER_HEADER_KEY, _SHIBBOLETH_USER_HEADER_VALUE);
 %>
 
 <aui:fieldset>
@@ -34,19 +34,19 @@
 </aui:fieldset>
 
 <%!
-	private static final String _SHIBBOLETH_AUTH_ENABLED_KEY = "shibboleth.auth.enabled";
+private static final String _SHIBBOLETH_AUTH_ENABLED_KEY = "shibboleth.auth.enabled";
 
-	private static final boolean _SHIBBOLETH_AUTH_ENABLED = GetterUtil.getBoolean(PropsUtil.get(_SHIBBOLETH_AUTH_ENABLED_KEY));
+private static final boolean _SHIBBOLETH_AUTH_ENABLED_VALUE = GetterUtil.getBoolean(PropsUtil.get(_SHIBBOLETH_AUTH_ENABLED_KEY));
 
-	private static final String _SHIBBOLETH_IMPORT_FROM_LDAP_KEY = "shibboleth.import.from.ldap";
+private static final String _SHIBBOLETH_IMPORT_FROM_LDAP_KEY = "shibboleth.import.from.ldap";
 
-	private static final boolean _SHIBBOLETH_IMPORT_FROM_LDAP = GetterUtil.getBoolean(PropsUtil.get(_SHIBBOLETH_IMPORT_FROM_LDAP_KEY));
+private static final boolean _SHIBBOLETH_IMPORT_FROM_LDAP_VALUE = GetterUtil.getBoolean(PropsUtil.get(_SHIBBOLETH_IMPORT_FROM_LDAP_KEY));
 
-	private static final String _SHIBBOLETH_LOGOUT_URL_KEY = "shibboleth.logout.url";
+private static final String _SHIBBOLETH_LOGOUT_URL_KEY = "shibboleth.logout.url";
 
-	private static final String _SHIBBOLETH_LOGOUT_URL = GetterUtil.getString(PropsUtil.get(_SHIBBOLETH_LOGOUT_URL_KEY));
+private static final String _SHIBBOLETH_LOGOUT_URL_VALUE = GetterUtil.getString(PropsUtil.get(_SHIBBOLETH_LOGOUT_URL_KEY));
 
-	private static final String _SHIBBOLETH_USER_HEADER_KEY = "shibboleth.user.header";
+private static final String _SHIBBOLETH_USER_HEADER_KEY = "shibboleth.user.header";
 
-	private static final String _SHIBBOLETH_USER_HEADER = GetterUtil.getString(PropsUtil.get(_SHIBBOLETH_USER_HEADER_KEY));
+private static final String _SHIBBOLETH_USER_HEADER_VALUE = GetterUtil.getString(PropsUtil.get(_SHIBBOLETH_USER_HEADER_KEY));
 %>
