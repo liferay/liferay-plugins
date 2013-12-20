@@ -1762,7 +1762,7 @@ div#navigation {
 		.user-name {
 			display: block;
 			left: 100%;
-			padding-left: 10px;
+			padding-left: 0.5em;
 			position: absolute;
 			text-align: left;
 			text-decoration: none;
@@ -1849,7 +1849,7 @@ div#navigation {
 	}
 
 	.thread-body {
-		padding: 10px;
+		padding: 0.5em;
 	}
 
 	.thread-controls {
