@@ -2,7 +2,7 @@
 	#if ($is_profile_page)
 		<div class="taglib-logo-selector" id="${themeNamespace}taglibLogoSelector">
 			<div class="taglib-logo-selector-content" id="${themeNamespace}taglibLogoSelectorContent">
-				<img alt="$current_user.getFullName()" class="avatar" id="${themeNamespace}avatar" src="$current_user_profile_portrait_url" />
+				<img alt="$htmlUtil.escape($current_user.getFullName())" class="avatar" id="${themeNamespace}avatar" src="$current_user_profile_portrait_url" />
 
 				#if ($show_edit_profile_button)
 					<div class="portrait-icons">
