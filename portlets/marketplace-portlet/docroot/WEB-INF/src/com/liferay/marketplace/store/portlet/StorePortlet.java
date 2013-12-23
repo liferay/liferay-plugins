@@ -21,6 +21,7 @@ import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.oauth.util.OAuthUtil;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
+import com.liferay.marketplace.util.MarketplaceLicenseUtil;
 import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.marketplace.util.PortletPropsValues;
 import com.liferay.marketplace.util.WebKeys;
@@ -184,6 +185,9 @@ public class StorePortlet extends RemoteMVCPortlet {
 		long remoteAppId = ParamUtil.getLong(actionRequest, "appId");
 		String version = ParamUtil.getString(actionRequest, "version");
 		String url = ParamUtil.getString(actionRequest, "url");
+		String orderUuid = ParamUtil.getString(actionRequest, "orderUuid");
+		String productEntryName = ParamUtil.getString(
+			actionRequest, "productEntryName");
 
 		if (!url.startsWith(PortletPropsValues.MARKETPLACE_URL)) {
 			JSONObject jsonObject = getAppJSONObject(remoteAppId);
@@ -211,6 +215,17 @@ public class StorePortlet extends RemoteMVCPortlet {
 			FileUtil.write(tempFile, inputStream);
 
 			AppServiceUtil.updateApp(remoteAppId, version, tempFile);
+
+			if (Validator.isNull(orderUuid) &&
+				Validator.isNotNull(productEntryName)) {
+
+				orderUuid = MarketplaceLicenseUtil.getOrder(productEntryName);
+			}
+
+			if (Validator.isNotNull(orderUuid)) {
+				MarketplaceLicenseUtil.registerOrder(
+					orderUuid, productEntryName);
+			}
 
 			AppServiceUtil.installApp(remoteAppId);
 
