@@ -16,8 +16,9 @@ package com.liferay.rtl.servlet.filters.dynamiccss;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.ClassLoaderUtil;
+
 import org.mozilla.javascript.Context;
 import org.mozilla.javascript.Function;
 import org.mozilla.javascript.ScriptableObject;
@@ -72,9 +73,9 @@ public class RTLCSSUtil {
 	public static void init() {
 		try {
 			_jsScript = StringUtil.read(
-				ClassLoaderUtil.getPortalClassLoader(),
-				"com/liferay/portal/servlet/filters/dynamiccss" +
-						"/dependencies/r2.js");
+				PortletClassLoaderUtil.getClassLoader(),
+				"com/liferay/rtl/servlet/filters/dynamiccss" +
+					"/dependencies/r2.js");
 		}
 		catch (Exception e) {
 			_log.error(e, e);
