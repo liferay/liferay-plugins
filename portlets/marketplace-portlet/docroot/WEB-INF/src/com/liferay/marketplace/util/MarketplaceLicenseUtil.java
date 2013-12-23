@@ -33,9 +33,6 @@ import java.util.Arrays;
  */
 public class MarketplaceLicenseUtil {
 
-	public static final String LICENSE_REPOSITORY_DIR =
-		PropsUtil.get(PropsKeys.LIFERAY_HOME) + "/data/license";
-
 	public static String getOrder(String productEntryName) throws Exception {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -60,8 +57,7 @@ public class MarketplaceLicenseUtil {
 	}
 
 	public static byte[] getServerIdBytes() throws Exception {
-		File serverIdFile = new File(
-			LICENSE_REPOSITORY_DIR + "/server/serverId");
+		File serverIdFile = new File(_LICENSE_SERVER_ID_FILE_NAME);
 
 		if (!serverIdFile.exists()) {
 			return new byte[0];
@@ -76,6 +72,9 @@ public class MarketplaceLicenseUtil {
 		PortalClassInvoker.invoke(
 			false, _registerOrderMethodKey, orderUuid, productEntryName, 0);
 	}
+
+	private static final String _LICENSE_SERVER_ID_FILE_NAME =
+		PropsUtil.get(PropsKeys.LIFERAY_HOME) + "/data/license/server/serverId";
 
 	private static MethodKey _registerOrderMethodKey = new MethodKey(
 		"com.liferay.portal.license.util.LicenseUtil", "registerOrder",
