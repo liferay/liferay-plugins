@@ -10,5 +10,3 @@ Import-Package:\
 Include-Resource: classes
 Private-Package:\
 	com.liferay.httpservice.internal.*
-
--output=http-service-shared.jar
