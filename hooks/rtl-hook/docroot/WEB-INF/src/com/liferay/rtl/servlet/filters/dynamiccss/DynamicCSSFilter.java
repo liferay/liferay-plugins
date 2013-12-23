@@ -51,7 +51,8 @@ import javax.servlet.http.HttpServletResponse;
 public class DynamicCSSFilter extends IgnoreModuleRequestFilter {
 
 	public static final boolean ENABLED = GetterUtil.getBoolean(
-		PropsUtil.get(DynamicCSSFilter.class.getName()));
+		PropsUtil.get(
+			"com.liferay.portal.servlet.filters.dynamiccss.DynamicCSSFilter"));
 
 	@Override
 	public void init(FilterConfig filterConfig) {
