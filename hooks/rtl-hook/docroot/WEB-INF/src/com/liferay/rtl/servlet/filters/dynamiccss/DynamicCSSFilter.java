@@ -26,10 +26,10 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.servlet.filters.IgnoreModuleRequestFilter;
-import com.liferay.portal.util.PropsUtil;
+import com.liferay.rtl.servlet.filters.IgnoreModuleRequestFilter;
 
 import java.io.File;
 
@@ -45,6 +45,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Eduardo Lundgren
  * @author Raymond Augé
+ * @author Eduardo Garcia
+ * @see com.liferay.portal.servlet.filters.dynamiccss.DynamicCSSFilter
  */
 public class DynamicCSSFilter extends IgnoreModuleRequestFilter {
 
