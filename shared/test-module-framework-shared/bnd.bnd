@@ -1,4 +1,2 @@
 Include-Resource: classes
 Service-Component: *
-
--output=test-module-framework-shared.jar
