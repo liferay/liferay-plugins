@@ -50,7 +50,7 @@ public class MarketplaceLicenseUtil {
 
 		Thread currentThread = Thread.currentThread();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		ClassLoader classLoader = currentThread.getContextClassLoader();
 
 		String response = null;
 
@@ -62,7 +62,7 @@ public class MarketplaceLicenseUtil {
 				false, _sendRequestMethodKey, jsonObject.toString());
 		}
 		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
+			currentThread.setContextClassLoader(classLoader);
 		}
 
 		JSONObject responseJSONObject = JSONFactoryUtil.createJSONObject(
@@ -86,17 +86,17 @@ public class MarketplaceLicenseUtil {
 
 		Thread currentThread = Thread.currentThread();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
+		ClassLoader classLoader = currentThread.getContextClassLoader();
 
 		try {
 			currentThread.setContextClassLoader(
 				PortalClassLoaderUtil.getClassLoader());
 
-		PortalClassInvoker.invoke(
-			false, _registerOrderMethodKey, orderUuid, productEntryName, 0);
+			PortalClassInvoker.invoke(
+				false, _registerOrderMethodKey, orderUuid, productEntryName, 0);
 		}
 		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
+			currentThread.setContextClassLoader(classLoader);
 		}
 	}
 
