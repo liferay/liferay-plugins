@@ -21,11 +21,28 @@ html.aui {
 		padding: 0;
 	}
 
-	.dockbar {
-		margin-top: -44px;
+	.navbar .nav-navigation {
+		display: none;
+	}
 
+	.dockbar-split .dockbar {
 		@include transition-duration(0.2s);
-		@include transition-property(margin-top);
+		@include transition-property(margin-left);
+
+		.navbar-inner .nav-add-controls {
+			background: $controlBgColor;
+			border-right: 1px solid $defaultBorderColor;
+			bottom: 0;
+			margin-left: -63px;
+			top: 0;
+
+			@include transition-duration(0.2s);
+			@include transition-property(margin-left);
+
+			.dockbar-item {
+				float: none;
+			}
+		}
 
 		.info-items, .info-link-container {
 			a {
@@ -81,19 +98,21 @@ html.aui {
 			top: 92px;
 		}
 	}
+}
 
-	.show-dockbar .dockbar {
-		margin-top: 0;
+.aui .dockbar-split.show-dockbar {
+	#wrapper, .so-portlet-user-bar {
+		border-left: 63px solid $controlBgColor;
 
-		&.navbar-static-top .collapse, .navbar-inner .container {
-			.nav-account-controls {
-				top: -44px;
-			}
-		}
+		@include transition-duration(0.2s);
+		@include transition-property(border-left);
+	}
 
-		.info-items, .info-link-container {
-			display: block;
-		}
+	.dockbar .navbar-inner .nav-add-controls {
+		background: $controlBgColor;
+		bottom: 0;
+		margin-left: 0;
+		top: 0;
 	}
 }
 
@@ -2249,14 +2268,11 @@ div#navigation {
 /* ---------- Responsive ---------- */
 
 html.aui {
-	@media (max-width:1060px) {
-		.so-portlet-user-bar .dashboard-nav li a {
-			font-weight: 300;
-			padding: 0.58em 0.5em;
-		}
-	}
-
 	@media (max-width:979px) {
+		.navbar .nav-navigation {
+			display: block;
+		}
+
 		.so-portlet-user-bar {
 			padding-right: 0;
 
@@ -2265,37 +2281,32 @@ html.aui {
 			}
 		}
 
-		.portlet-dockbar {
-			.btn-navbar {
-				background: transparent;
-				border: 0;
-				color: #FFF;
-				margin: 5px;
-				padding: 6px 7px;
+		.dockbar-split {
+			&.show-dockbar {
+				#wrapper, .so-portlet-user-bar {
+					border-left-width: 0;
 
-				i {
-					font-size: 21px;
+					@include transition-duration(0.2s);
+					@include transition-property(border-left);
 				}
+			}
 
-				.user-avatar-image {
-					width: 21px;
-				}
+			.dockbar .navbar-inner .nav-add-controls > li {
+				margin: 0;
 			}
 		}
 
-		.dockbar .navbar-inner {
-			padding-left: 47px;
-			padding-right: 0;
-
-			.container {
-				z-index: 301;
+		.portlet-dockbar .dockbar .navbar-inner {
+			.nav-add-controls > li {
+				margin: 0;
 			}
 
 			.container {
-				.container .nav-collapse .nav, .nav {
+				z-index: 301;
+
+				.nav-collapse .nav, .nav {
 					float: none;
 					margin-bottom: 0;
-					margin-left: -47px;
 					position: relative;
 
 					> li {
@@ -2326,7 +2337,6 @@ html.aui {
 					}
 
 					.dockbar-user-notifications {
-
 						.dropdown-menu {
 							padding: 0;
 							width: 100%;
@@ -2346,28 +2356,54 @@ html.aui {
 					}
 				}
 
-				.nav-account-controls {
-					li.dropdown.open > .dropdown-toggle {
-						background-color: transparent;
+				.nav-account-controls .user-avatar-link .nav-item-label {
+					padding-left: 0;
+
+					img {
+						display: none;
 					}
+				}
+			}
 
-					.user-avatar-link .nav-item-label {
-						padding-left: 0;
+			.nav-collapse.open > ul, .nav-collapse .open > .dropdown-menu, .site-administration-menu {
+				&.nav {
+					background-color: #DDD;
+					margin: 0;
+				}
 
-						img {
-							display: none;
+				> li {
+					background: transparent;
+					border-top: 1px solid #CCC;
+
+					a {
+						background: transparent;
+						margin-bottom: 0;
+						text-align: left;
+
+						.nav-item-label {
+							background: transparent;
+							display: inline;
+							font-weight: bold;
+							padding: 0;
+							position: inherit;
 						}
 					}
 				}
 			}
-		}
 
-		.nav-collapse .open > .dropdown-menu, .site-administration-menu {
-			background-color: #DDD;
-			margin: 0;
+			.nav-collapse .open  > .dropdown-menu {
+				margin: 0;
 
-			> li {
-				border-top: 1px solid #CCC;
+				li {
+					> a:hover {
+						background: rgba(0, 0, 0, 0.2);
+					}
+
+					li > a {
+						padding: 9px 15px 9px 40px;
+					}
+
+				}
 			}
 		}
 
@@ -2429,6 +2465,10 @@ html.aui {
 	@media (max-width: 767px) {
 		body {
 			padding: 0;
+		}
+
+		.so-portlet-user-bar {
+			margin: 0;
 		}
 
 		.dockbar.navbar-static-top {
