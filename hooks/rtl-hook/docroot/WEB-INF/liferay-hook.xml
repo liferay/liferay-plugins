@@ -2,6 +2,7 @@
 <!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_2_0.dtd">
 
 <hook>
+	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<servlet-filter>
 		<servlet-filter-name>Dynamic CSS Filter</servlet-filter-name>
 		<servlet-filter-impl>com.liferay.rtl.servlet.filters.dynamiccss.DynamicCSSFilter</servlet-filter-impl>
