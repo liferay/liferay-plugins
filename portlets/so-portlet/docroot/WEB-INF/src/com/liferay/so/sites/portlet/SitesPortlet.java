@@ -219,7 +219,7 @@ public class SitesPortlet extends MVCPortlet {
 		}
 		else if (searchTab.equals("my-favorites")) {
 			groups = SitesUtil.getFavoriteSitesGroups(
-				themeDisplay.getUserId(), keywords, 0, end);
+				themeDisplay.getUserId(), keywords, start, end);
 			groupsCount = SitesUtil.getFavoriteSitesGroupsCount(
 				themeDisplay.getUserId(), keywords);
 		}
