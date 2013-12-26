@@ -62,6 +62,10 @@ public class StringUtil extends com.liferay.portal.kernel.util.StringUtil {
 	}
 
 	public static String toLowerCase(String s, Locale locale) {
+		if (s == null) {
+			return null;
+		}
+
 		StringBuilder sb = null;
 
 		for (int i = 0; i < s.length(); i++) {
@@ -99,6 +103,10 @@ public class StringUtil extends com.liferay.portal.kernel.util.StringUtil {
 	}
 
 	public static String toUpperCase(String s, Locale locale) {
+		if (s == null) {
+			return null;
+		}
+
 		StringBuilder sb = null;
 
 		for (int i = 0; i < s.length(); i++) {
