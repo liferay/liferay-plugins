@@ -1012,12 +1012,39 @@ div#navigation {
 		padding: 10px;
 	}
 
-	.input-append .search-query {
-		min-height: 20px;
+	label {
+		font-size: 16px;
+		font-weight: 200;
+	}
+
+	input[type="file"] {
+		height: auto;
+		line-height: 0;
+		padding: 7px;
 	}
 
 	.accordion-group, .accordion-inner {
 		border-width: 0;
+		margin-bottom: 10px;
+
+		.accordion-toggle {
+			-webkit-font-smoothing: antialiased;
+			font-family: 'fontawesome-alloy';
+			font-style: normal;
+			font-variant: normal;
+			font-weight: normal;
+			line-height: 1;
+			speak: none;
+			text-transform: none;
+
+			&:before {
+				content: "\f0da";
+			}
+		}
+
+		.toggler-header-expanded .accordion-toggle:before {
+			content: "\f0d7";
+		}
 	}
 
 	.field-wrapper .btn {
@@ -1095,10 +1122,31 @@ div#navigation {
 		padding: 20px 0 0;
 	}
 
+	.control-group p label {
+		display: inline;
+		font-size: 14px;
+	}
+
 	.view .toolbar {
 		border-bottom: 1px solid $defaultBorderColor;
 		display: block;
-		padding: 4px;
+		padding: 7px 6px;
+	}
+
+	.label-success {
+		background-color: #488f06;
+	}
+
+	@media (min-width: 1201px) {
+		.row-fluid {
+			.span2 {
+				width: 12.66667%;
+			}
+
+			.span10 {
+				width: 87.33333%;
+			}
+		}
 	}
 }
 
