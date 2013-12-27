@@ -27,13 +27,11 @@
 		<permissions>
 			<supports>
 				<action-key>ADD_MEETING</action-key>
-				<action-key>ADD_PARTICIPANT</action-key>
 			</supports>
 			<site-member-defaults />
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ADD_MEETING</action-key>
-				<action-key>ADD_PARTICIPANT</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>
@@ -44,15 +42,11 @@
 		</portlet-ref>
 		<permissions>
 			<supports>
-				<action-key>ADD_MEETING</action-key>
-				<action-key>ADD_PARTICIPANT</action-key>
 				<action-key>ADD_SERVER</action-key>
 			</supports>
 			<site-member-defaults />
 			<guest-defaults />
 			<guest-unsupported>
-				<action-key>ADD_MEETING</action-key>
-				<action-key>ADD_PARTICIPANT</action-key>
 				<action-key>ADD_SERVER</action-key>
 			</guest-unsupported>
 		</permissions>
