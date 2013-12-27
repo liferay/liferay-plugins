@@ -869,17 +869,12 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		entry = entry.toEscapedModel();
 
-		JSONObject contactJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObj = ContactsUtil.getEntryJSONObject(entry);
 
-		contactJSONObject.put("emailAddress", entry.getEmailAddress());
-		contactJSONObject.put("entryId", String.valueOf(entry.getEntryId()));
-		contactJSONObject.put("comments", entry.getComments());
-		contactJSONObject.put("fullName", entry.getFullName());
-		contactJSONObject.put("portalUser", false);
-		contactJSONObject.put(
+		jsonObj.put(
 			"portraitURL",
 			themeDisplay.getPathImage() + "/user_male_portrait?img_id=0");
-		contactJSONObject.put("redirect", redirect);
+		jsonObj.put("redirect", redirect);
 
 		LiferayPortletResponse liferayPortletResponse =
 			(LiferayPortletResponse)portletResponse;
@@ -894,9 +889,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		viewSummaryURL.setParameter("portalUser", Boolean.FALSE.toString());
 		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-		contactJSONObject.put("viewSummaryURL", viewSummaryURL.toString());
+		jsonObj.put("viewSummaryURL", viewSummaryURL.toString());
 
-		return contactJSONObject;
+		return jsonObj;
 	}
 
 	protected String getRelationMessage(ActionRequest actionRequest) {
@@ -972,22 +967,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		user = user.toEscapedModel();
 
-		JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObj = ContactsUtil.getUserJSONObject(
+			themeDisplay.getUserId(), user);
 
-		boolean block = SocialRelationLocalServiceUtil.hasRelation(
-			themeDisplay.getUserId(), user.getUserId(),
-			SocialRelationConstants.TYPE_UNI_ENEMY);
-
-		userJSONObject.put("block", block);
-
-		userJSONObject.put("emailAddress", user.getEmailAddress());
-		userJSONObject.put("firstName", user.getFirstName());
-		userJSONObject.put("fullName", user.getFullName());
-		userJSONObject.put("jobTitle", user.getJobTitle());
-		userJSONObject.put("lastName", user.getLastName());
-		userJSONObject.put("portalUser", true);
-		userJSONObject.put("portraitURL", user.getPortraitURL(themeDisplay));
-		userJSONObject.put("userId", String.valueOf(user.getUserId()));
+		jsonObj.put("portraitURL", user.getPortraitURL(themeDisplay));
 
 		LiferayPortletResponse liferayPortletResponse =
 			(LiferayPortletResponse)portletResponse;
@@ -1000,40 +983,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		viewSummaryURL.setParameter("portalUser", Boolean.TRUE.toString());
 		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-		userJSONObject.put("viewSummaryURL", viewSummaryURL.toString());
+		jsonObj.put("viewSummaryURL", viewSummaryURL.toString());
 
-		if (!SocialRelationLocalServiceUtil.hasRelation(
-				user.getUserId(), themeDisplay.getUserId(),
-				SocialRelationConstants.TYPE_UNI_ENEMY) &&
-			!SocialRelationLocalServiceUtil.hasRelation(
-				themeDisplay.getUserId(), user.getUserId(),
-				SocialRelationConstants.TYPE_UNI_ENEMY)) {
-
-			boolean connectionRequested =
-				SocialRequestLocalServiceUtil.hasRequest(
-					themeDisplay.getUserId(), User.class.getName(),
-					themeDisplay.getUserId(),
-					SocialRelationConstants.TYPE_BI_CONNECTION,
-					user.getUserId(), SocialRequestConstants.STATUS_PENDING);
-
-			userJSONObject.put("connectionRequested", connectionRequested);
-
-			boolean connected =
-				!connectionRequested &&
-				SocialRelationLocalServiceUtil.hasRelation(
-					themeDisplay.getUserId(), user.getUserId(),
-					SocialRelationConstants.TYPE_BI_CONNECTION);
-
-			userJSONObject.put("connected", connected);
-
-			boolean following = SocialRelationLocalServiceUtil.hasRelation(
-				themeDisplay.getUserId(), user.getUserId(),
-				SocialRelationConstants.TYPE_UNI_FOLLOWER);
-
-			userJSONObject.put("following", following);
-		}
-
-		return userJSONObject;
+		return jsonObj;
 	}
 
 	protected void sendNotificationEvent(SocialRequest socialRequest)
