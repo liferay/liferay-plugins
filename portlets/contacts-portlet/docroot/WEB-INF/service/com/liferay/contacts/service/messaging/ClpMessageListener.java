@@ -16,6 +16,7 @@ package com.liferay.contacts.service.messaging;
 
 import com.liferay.contacts.service.ClpSerializer;
 import com.liferay.contacts.service.EntryLocalServiceUtil;
+import com.liferay.contacts.service.EntryServiceUtil;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
@@ -36,6 +37,8 @@ public class ClpMessageListener extends BaseMessageListener {
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
 			EntryLocalServiceUtil.clearService();
+
+			EntryServiceUtil.clearService();
 		}
 	}
 }
