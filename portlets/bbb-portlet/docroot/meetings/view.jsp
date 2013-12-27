@@ -24,7 +24,7 @@ if (bbbParticipantId <= 0) {
 	if (themeDisplay.isSignedIn() && MeetingsPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_MEETING)) {
 %>
 
-	<%@ include file="/admin/meetings.jspf" %>
+	<%@ include file="/meetings/meetings.jspf" %>
 
 <%
 	}

@@ -14,4 +14,43 @@
  */
 --%>
 
-<%@ include file="/admin/edit_meeting.jsp" %>
+<%@ include file="/init.jsp" %>
+
+<%
+String redirect = ParamUtil.getString(request, "redirect");
+String backURL = ParamUtil.getString(request, "backURL");
+
+long bbbMeetingId = ParamUtil.getLong(request, "bbbMeetingId");
+
+BBBMeeting bbbMeeting = BBBMeetingLocalServiceUtil.fetchBBBMeeting(bbbMeetingId);
+%>
+
+<liferay-ui:header
+	backURL="<%= backURL %>"
+	localizeTitle="<%= (bbbMeeting == null) %>"
+	title='<%= (bbbMeeting != null) ? bbbMeeting.getName() : "new-meeting" %>'
+/>
+
+<liferay-portlet:actionURL name="updateBBBMeeting" var="editBBBMeetingURL" />
+
+<aui:form action="<%= editBBBMeetingURL %>" method="post" name="fm">
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
+	<aui:input name="bbbMeetingId" type="hidden" value="<%= String.valueOf(bbbMeetingId) %>" />
+
+	<aui:model-context bean="<%= bbbMeeting %>" model="<%= BBBMeeting.class %>" />
+
+	<aui:input name="name" />
+
+	<aui:input name="description" />
+
+	<liferay-util:include page="/meetings/participants.jsp" servletContext="<%= application %>">
+		<liferay-util:param name="bbbMeetingId" value="<%= String.valueOf(bbbMeetingId) %>" />
+	</liferay-util:include>
+
+	<aui:button-row>
+		<aui:button type="submit" />
+
+		<aui:button onClick="<%= redirect %>" type="cancel" />
+	</aui:button-row>
+</aui:form>

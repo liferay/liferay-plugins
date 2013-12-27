@@ -41,7 +41,6 @@ page import="com.liferay.bbb.service.permission.BBBServerPermission" %><%@
 page import="com.liferay.bbb.service.permission.MeetingsPermission" %><%@
 page import="com.liferay.bbb.util.ActionKeys" %><%@
 page import="com.liferay.bbb.util.BBBAPIUtil" %><%@
-page import="com.liferay.bbb.util.PortletKeys" %><%@
 page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
@@ -69,8 +68,4 @@ page import="javax.portlet.WindowState" %>
 PortletURL portletURL = renderResponse.createRenderURL();
 
 String currentURL = PortalUtil.getCurrentURL(request);
-
-String portletId = portletDisplay.getId();
-
-String templatePath = portletConfig.getInitParameter("template-path");
 %>

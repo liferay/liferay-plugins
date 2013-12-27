@@ -17,12 +17,6 @@
 <%
 String orderByCol = ParamUtil.getString(request, "orderByCol", "createDate");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
-
-long userId = 0;
-
-if (portletId.equals(PortletKeys.BBB_MEETINGS)) {
-	userId = themeDisplay.getUserId();
-}
 %>
 
 <liferay-ui:search-container
@@ -30,11 +24,11 @@ if (portletId.equals(PortletKeys.BBB_MEETINGS)) {
 	iteratorURL="<%= portletURL %>"
 	orderByCol="<%= orderByCol %>"
 	orderByType="<%= orderByType %>"
-	total="<%= BBBMeetingLocalServiceUtil.getBBBMeetingsCount(themeDisplay.getScopeGroupId(), userId, null, null, BBBMeetingConstants.STATUS_ANY, false) %>"
+	total="<%= BBBMeetingLocalServiceUtil.getBBBMeetingsCount(themeDisplay.getScopeGroupId(), themeDisplay.getUserId(), null, null, BBBMeetingConstants.STATUS_ANY, false) %>"
 >
 	<aui:button-row>
 		<portlet:renderURL var="addBBBMeetingURL">
-			<portlet:param name="mvcPath" value='<%= templatePath + "edit_meeting.jsp" %>' />
+			<portlet:param name="mvcPath" value="/meetings/edit_meeting.jsp" />
 			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 		</portlet:renderURL>
 
@@ -52,7 +46,7 @@ if (portletId.equals(PortletKeys.BBB_MEETINGS)) {
 		modelVar="bbbMeeting"
 	>
 		<portlet:renderURL var="rowURL">
-			<portlet:param name="mvcPath" value='<%= templatePath + "view_meeting.jsp" %>' />
+			<portlet:param name="mvcPath" value="/meetings/view_meeting.jsp" />
 			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 			<portlet:param name="bbbMeetingId" value="<%= String.valueOf(bbbMeeting.getBbbMeetingId()) %>" />
 		</portlet:renderURL>
@@ -98,7 +92,7 @@ if (portletId.equals(PortletKeys.BBB_MEETINGS)) {
 
 		</liferay-ui:search-container-column-text>
 
-		<liferay-ui:search-container-column-jsp path='<%= templatePath + "meeting_action.jsp" %>' />
+		<liferay-ui:search-container-column-jsp path="/meetings/meeting_action.jsp" />
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />

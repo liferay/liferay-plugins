@@ -17,11 +17,9 @@ package com.liferay.bbb.service.impl;
 import com.liferay.bbb.model.BBBMeeting;
 import com.liferay.bbb.model.BBBParticipant;
 import com.liferay.bbb.service.base.BBBMeetingServiceBaseImpl;
-import com.liferay.bbb.service.permission.AdminPermission;
 import com.liferay.bbb.service.permission.BBBMeetingPermission;
 import com.liferay.bbb.service.permission.MeetingsPermission;
 import com.liferay.bbb.util.ActionKeys;
-import com.liferay.bbb.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -42,14 +40,8 @@ public class BBBMeetingServiceImpl extends BBBMeetingServiceBaseImpl {
 			List<BBBParticipant> bbbParticipants, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (portletId.equals(PortletKeys.BBB_ADMIN)) {
-			AdminPermission.check(
-				getPermissionChecker(), groupId, ActionKeys.ADD_MEETING);
-		}
-		else {
-			MeetingsPermission.check(
-				getPermissionChecker(), groupId, ActionKeys.ADD_MEETING);
-		}
+		MeetingsPermission.check(
+			getPermissionChecker(), groupId, ActionKeys.ADD_MEETING);
 
 		return bbbMeetingLocalService.addBBBMeeting(
 			getUserId(), groupId, bbbServerId, name, description,
