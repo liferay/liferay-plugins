@@ -19,7 +19,6 @@
 <portlet:renderURL var="portletURL" windowState="<%= WindowState.MAXIMIZED.toString() %>" />
 
 <aui:form action="<%= portletURL %>" cssClass="stock-options-form" method="post" name="fm" onSubmit="submitForm(this); return false;">
-
 	<c:choose>
 		<c:when test="<%= windowState.equals(WindowState.NORMAL) %>">
 			<table class="lfr-table">
@@ -202,7 +201,6 @@
 			</c:choose>
 		</c:otherwise>
 	</c:choose>
-
 </aui:form>
 
 <c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
