@@ -22,8 +22,8 @@
 				</simple>
 			</trigger>
 		</scheduler-entry>
-		<control-panel-entry-category>site_administration.content</control-panel-entry-category>
-		<control-panel-entry-class>com.liferay.bbb.admin.portlet.AdminControlPanelEntry</control-panel-entry-class>
+		<control-panel-entry-category>configuration</control-panel-entry-category>
+		<control-panel-entry-class>com.liferay.portlet.OmniadminControlPanelEntry</control-panel-entry-class>
 		<css-class-wrapper>bbb-portlet</css-class-wrapper>
 	</portlet>
 	<role-mapper>

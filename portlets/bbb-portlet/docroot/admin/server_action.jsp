@@ -29,7 +29,7 @@ if (row != null) {
 <liferay-ui:icon-menu showExpanded="<%= row == null %>">
 	<c:if test="<%= BBBServerPermission.contains(permissionChecker, bbbServer, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcPath" value='<%= templatePath + "/edit_server.jsp" %>' />
+			<portlet:param name="mvcPath" value="/admin/edit_server.jsp" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="bbbServerId" value="<%= String.valueOf(bbbServer.getBbbServerId()) %>" />
 		</portlet:renderURL>

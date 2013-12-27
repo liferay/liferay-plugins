@@ -16,24 +16,63 @@
 
 <%@ include file="/init.jsp" %>
 
-<%
-String tabs1 = ParamUtil.getString(request, "tabs1", "meetings");
+<liferay-ui:search-container
+	emptyResultsMessage="there-are-no-servers"
+	iteratorURL="<%= portletURL %>"
+	total="<%= BBBServerServiceUtil.getBBBServersCount(themeDisplay.getScopeGroupId()) %>"
+>
+	<liferay-ui:search-container-results
+		results="<%= BBBServerServiceUtil.getBBBServers(themeDisplay.getScopeGroupId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+	/>
 
-portletURL.setParameter("tabs1", tabs1);
-portletURL.setWindowState(WindowState.MAXIMIZED);
-%>
+	<c:if test="<%= AdminPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_SERVER) %>">
+		<aui:button-row>
+			<portlet:renderURL var="addBBBServerURL">
+				<portlet:param name="mvcPath" value="/admin/edit_server.jsp" />
+				<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+			</portlet:renderURL>
 
-<liferay-ui:tabs
-	names="meetings,servers"
-	param="tabs1"
-	url="<%= portletURL.toString() %>"
-/>
+			<aui:button onClick="<%= addBBBServerURL.toString() %>" value="add-server" />
+		</aui:button-row>
+	</c:if>
 
-<c:choose>
-	<c:when test='<%= tabs1.equals("meetings") %>'>
-		<%@ include file="/admin/meetings.jspf" %>
-	</c:when>
-	<c:otherwise>
-		<%@ include file="/admin/servers.jspf" %>
-	</c:otherwise>
-</c:choose>
+	<liferay-ui:search-container-row
+		className="com.liferay.bbb.model.BBBServer"
+		escapedModel="<%= true %>"
+		keyProperty="bbbServerId"
+		modelVar="bbbServer"
+	>
+		<portlet:renderURL var="rowURL">
+			<portlet:param name="mvcPath" value="/admin/edit_server.jsp" />
+			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+			<portlet:param name="bbbServerId" value="<%= String.valueOf(bbbServer.getBbbServerId()) %>" />
+		</portlet:renderURL>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			property="name"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="api-url"
+			property="url"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="secret"
+			property="secret"
+		/>
+
+		<liferay-ui:search-container-column-text
+			href="<%= rowURL %>"
+			name="active"
+			property="active"
+		/>
+
+		<liferay-ui:search-container-column-jsp path="/admin/server_action.jsp" />
+	</liferay-ui:search-container-row>
+
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

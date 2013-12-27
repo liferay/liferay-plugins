@@ -54,9 +54,9 @@
 		</supports>
 		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
-			<title>Meetings Admin</title>
-			<short-title>Meetings Admin</short-title>
-			<keywords>Meetings Admin</keywords>
+			<title>Meetings</title>
+			<short-title>Meetings</short-title>
+			<keywords>Meetings</keywords>
 		</portlet-info>
 		<security-role-ref>
 			<role-name>administrator</role-name>
