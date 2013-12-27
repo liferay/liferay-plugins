@@ -85,23 +85,11 @@
 			<finder-column name="bbbMeetingId" />
 		</finder>
 	</entity>
-	<entity name="BBBServer" local-service="true" remote-service="true">
+	<entity name="BBBServer" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
 		<column name="bbbServerId" type="long" primary="true" />
-
-		<!-- Group instance -->
-
-		<column name="groupId" type="long" />
-
-		<!-- Audit fields -->
-
-		<column name="companyId" type="long" />
-		<column name="userId" type="long" />
-		<column name="userName" type="String" />
-		<column name="createDate" type="Date" />
-		<column name="modifiedDate" type="Date" />
 
 		<!-- Other fields -->
 
@@ -118,11 +106,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="GroupId" return-type="Collection">
-			<finder-column name="groupId" />
-		</finder>
-		<finder name="G_A" return-type="Collection">
-			<finder-column name="groupId" />
+		<finder name="Active" return-type="Collection">
 			<finder-column name="active" />
 		</finder>
 	</entity>

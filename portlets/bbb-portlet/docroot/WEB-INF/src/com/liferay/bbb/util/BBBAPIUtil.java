@@ -249,7 +249,7 @@ public class BBBAPIUtil {
 
 		sb.append(BBBConstants.API_PARAMETER_MEETING_ID);
 		sb.append(StringPool.EQUAL);
-		bbbMeeting.setBbbServerId(getBbbServerId(bbbMeeting.getGroupId()));
+		bbbMeeting.setBbbServerId(getBbbServerId());
 
 		sb.append(bbbMeeting.getBbbMeetingId());
 
@@ -317,7 +317,7 @@ public class BBBAPIUtil {
 		}
 	}
 
-	protected static long getBbbServerId(long groupId)
+	protected static long getBbbServerId()
 		throws PortalException, SystemException {
 
 		TreeMap<Integer, Long> bbbServersMap = new TreeMap<Integer, Long>();
@@ -325,7 +325,7 @@ public class BBBAPIUtil {
 		BBBServerLocalServiceUtil.checkBBBServers();
 
 		List<BBBServer> bbbServers = BBBServerLocalServiceUtil.getBBBServers(
-			groupId, true);
+			true);
 
 		if (bbbServers.isEmpty()) {
 			return BBBMeetingConstants.BBB_SERVER_ID_DEFAULT;

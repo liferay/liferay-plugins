@@ -17,10 +17,8 @@ package com.liferay.bbb.admin.portlet;
 import com.liferay.bbb.model.BBBServer;
 import com.liferay.bbb.service.BBBServerLocalServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import javax.portlet.ActionRequest;
@@ -44,9 +42,6 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		long bbbServerId = ParamUtil.getLong(actionRequest, "bbbServerId");
 
 		String name = ParamUtil.getString(actionRequest, "name");
@@ -58,8 +53,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		if (bbbServerId <= 0) {
 			BBBServerLocalServiceUtil.addBBBServer(
-				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(), name,
-				url, secret, serviceContext);
+				name, url, secret, serviceContext);
 		}
 		else {
 			BBBServerLocalServiceUtil.updateBBBServer(

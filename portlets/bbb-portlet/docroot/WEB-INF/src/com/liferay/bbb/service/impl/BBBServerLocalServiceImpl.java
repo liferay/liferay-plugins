@@ -24,11 +24,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.ResourceConstants;
-import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,35 +35,20 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 
 	@Override
 	public BBBServer addBBBServer(
-			long userId, long groupId, String name, String url, String secret,
+			String name, String url, String secret,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
-
-		// BBB server
-
-		User user = userPersistence.findByPrimaryKey(userId);
-		Date now = new Date();
 
 		long bbbServerId = counterLocalService.increment();
 
 		BBBServer bbbServer = bbbServerPersistence.create(bbbServerId);
 
-		bbbServer.setGroupId(groupId);
-		bbbServer.setCompanyId(user.getCompanyId());
-		bbbServer.setUserId(user.getUserId());
-		bbbServer.setUserName(user.getFullName());
-		bbbServer.setCreateDate(serviceContext.getCreateDate(now));
-		bbbServer.setModifiedDate(serviceContext.getModifiedDate(now));
 		bbbServer.setName(name);
 		bbbServer.setUrl(formatURL(url));
 		bbbServer.setSecret(secret);
 		bbbServer.setActive(BBBAPIUtil.isServerActive(bbbServer));
 
 		bbbServerPersistence.update(bbbServer);
-
-		// Resources
-
-		resourceLocalService.addModelResources(bbbServer, serviceContext);
 
 		return bbbServer;
 	}
@@ -96,16 +78,9 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 
 	@Override
 	public BBBServer deleteBBBServer(BBBServer bbbServer)
-		throws PortalException, SystemException {
-
-		// BBB server
+		throws SystemException {
 
 		bbbServerPersistence.remove(bbbServer);
-
-		// Resources
-
-		resourceLocalService.deleteResource(
-			bbbServer, ResourceConstants.SCOPE_INDIVIDUAL);
 
 		return bbbServer;
 	}
@@ -121,10 +96,10 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 	}
 
 	@Override
-	public List<BBBServer> getBBBServers(long groupId, boolean active)
+	public List<BBBServer> getBBBServers(boolean active)
 		throws SystemException {
 
-		return bbbServerPersistence.findByG_A(groupId, active);
+		return bbbServerPersistence.findByActive(active);
 	}
 
 	@Override
@@ -132,12 +107,12 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 			long groupId, int start, int end, OrderByComparator obc)
 		throws SystemException {
 
-		return bbbServerPersistence.findByGroupId(groupId, start, end, obc);
+		return bbbServerPersistence.findAll(start, end, obc);
 	}
 
 	@Override
-	public int getBBBServersCount(long groupId) throws SystemException {
-		return bbbServerPersistence.countByGroupId(groupId);
+	public int getBBBServersCount() throws SystemException {
+		return bbbServerPersistence.countAll();
 	}
 
 	@Override
@@ -149,7 +124,6 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 		BBBServer bbbServer = bbbServerPersistence.findByPrimaryKey(
 			bbbServerId);
 
-		bbbServer.setModifiedDate(serviceContext.getModifiedDate(null));
 		bbbServer.setName(name);
 		bbbServer.setUrl(formatURL(url));
 		bbbServer.setSecret(secret);

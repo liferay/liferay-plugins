@@ -16,7 +16,6 @@ package com.liferay.bbb.service.impl;
 
 import com.liferay.bbb.model.BBBParticipant;
 import com.liferay.bbb.service.base.BBBParticipantServiceBaseImpl;
-import com.liferay.bbb.service.permission.AdminPermission;
 import com.liferay.bbb.service.permission.BBBMeetingPermission;
 import com.liferay.bbb.util.ActionKeys;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -29,20 +28,6 @@ import java.util.List;
  * @author Shinn Lok
  */
 public class BBBParticipantServiceImpl extends BBBParticipantServiceBaseImpl {
-
-	@Override
-	public BBBParticipant addBBBParticipant(
-			long groupId, long bbbMeetingId, String name, String emailAddress,
-			int type, int status, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		AdminPermission.check(
-			getPermissionChecker(), groupId, ActionKeys.ADD_PARTICIPANT);
-
-		return bbbParticipantLocalService.addBBBParticipant(
-			getUserId(), groupId, bbbMeetingId, name, emailAddress, type,
-			status, serviceContext);
-	}
 
 	@Override
 	public BBBParticipant deleteBBBParticipant(BBBParticipant bbbParticipant)
