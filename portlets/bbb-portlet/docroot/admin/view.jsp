@@ -19,22 +19,20 @@
 <liferay-ui:search-container
 	emptyResultsMessage="there-are-no-servers"
 	iteratorURL="<%= portletURL %>"
-	total="<%= BBBServerServiceUtil.getBBBServersCount(themeDisplay.getScopeGroupId()) %>"
+	total="<%= BBBServerLocalServiceUtil.getBBBServersCount(themeDisplay.getScopeGroupId()) %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= BBBServerServiceUtil.getBBBServers(themeDisplay.getScopeGroupId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+		results="<%= BBBLocalServerServiceUtil.getBBBServers(themeDisplay.getScopeGroupId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
 	/>
 
-	<c:if test="<%= AdminPermission.contains(permissionChecker, themeDisplay.getScopeGroupId(), ActionKeys.ADD_SERVER) %>">
-		<aui:button-row>
-			<portlet:renderURL var="addBBBServerURL">
-				<portlet:param name="mvcPath" value="/admin/edit_server.jsp" />
-				<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
-			</portlet:renderURL>
+	<aui:button-row>
+		<portlet:renderURL var="addBBBServerURL">
+			<portlet:param name="mvcPath" value="/admin/edit_server.jsp" />
+			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
+		</portlet:renderURL>
 
-			<aui:button onClick="<%= addBBBServerURL.toString() %>" value="add-server" />
-		</aui:button-row>
-	</c:if>
+		<aui:button onClick="<%= addBBBServerURL.toString() %>" value="add-server" />
+	</aui:button-row>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.bbb.model.BBBServer"

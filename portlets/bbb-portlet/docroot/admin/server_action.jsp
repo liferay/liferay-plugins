@@ -27,44 +27,23 @@ if (row != null) {
 %>
 
 <liferay-ui:icon-menu showExpanded="<%= row == null %>">
-	<c:if test="<%= BBBServerPermission.contains(permissionChecker, bbbServer, ActionKeys.UPDATE) %>">
-		<portlet:renderURL var="editURL">
-			<portlet:param name="mvcPath" value="/admin/edit_server.jsp" />
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="bbbServerId" value="<%= String.valueOf(bbbServer.getBbbServerId()) %>" />
-		</portlet:renderURL>
+	<portlet:renderURL var="editURL">
+		<portlet:param name="mvcPath" value="/admin/edit_server.jsp" />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="bbbServerId" value="<%= String.valueOf(bbbServer.getBbbServerId()) %>" />
+	</portlet:renderURL>
 
-		<liferay-ui:icon
-			image="edit"
-			url="<%= editURL %>"
-		/>
-	</c:if>
+	<liferay-ui:icon
+		image="edit"
+		url="<%= editURL %>"
+	/>
 
-	<c:if test="<%= BBBServerPermission.contains(permissionChecker, bbbServer, ActionKeys.PERMISSIONS) %>">
-		<liferay-security:permissionsURL
-			modelResource="<%= BBBServer.class.getName() %>"
-			modelResourceDescription="<%= bbbServer.getName() %>"
-			resourcePrimKey="<%= String.valueOf(bbbServer.getBbbServerId()) %>"
-			var="permissionsURL"
-			windowState="<%= LiferayWindowState.POP_UP.toString() %>"
-		/>
+	<portlet:actionURL name="deleteBBBServer" var="deleteURL">
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="bbbServerId" value="<%= String.valueOf(bbbServer.getBbbServerId()) %>" />
+	</portlet:actionURL>
 
-		<liferay-ui:icon
-			image="permissions"
-			method="get"
-			url="<%= permissionsURL %>"
-			useDialog="<%= true %>"
-		/>
-	</c:if>
-
-	<c:if test="<%= BBBServerPermission.contains(permissionChecker, bbbServer, ActionKeys.DELETE) %>">
-		<portlet:actionURL name="deleteBBBServer" var="deleteURL">
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="bbbServerId" value="<%= String.valueOf(bbbServer.getBbbServerId()) %>" />
-		</portlet:actionURL>
-
-		<liferay-ui:icon-delete
-			url="<%= deleteURL %>"
-		/>
-	</c:if>
+	<liferay-ui:icon-delete
+		url="<%= deleteURL %>"
+	/>
 </liferay-ui:icon-menu>

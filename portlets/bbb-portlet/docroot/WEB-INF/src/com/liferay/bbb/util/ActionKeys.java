@@ -22,8 +22,4 @@ public class ActionKeys
 
 	public static final String ADD_MEETING = "ADD_MEETING";
 
-	public static final String ADD_PARTICIPANT = "ADD_PARTICIPANT";
-
-	public static final String ADD_SERVER = "ADD_SERVER";
-
 }

@@ -34,10 +34,7 @@ page import="com.liferay.bbb.model.impl.BBBParticipantImpl" %><%@
 page import="com.liferay.bbb.service.BBBMeetingLocalServiceUtil" %><%@
 page import="com.liferay.bbb.service.BBBParticipantLocalServiceUtil" %><%@
 page import="com.liferay.bbb.service.BBBServerLocalServiceUtil" %><%@
-page import="com.liferay.bbb.service.BBBServerServiceUtil" %><%@
-page import="com.liferay.bbb.service.permission.AdminPermission" %><%@
 page import="com.liferay.bbb.service.permission.BBBMeetingPermission" %><%@
-page import="com.liferay.bbb.service.permission.BBBServerPermission" %><%@
 page import="com.liferay.bbb.service.permission.MeetingsPermission" %><%@
 page import="com.liferay.bbb.util.ActionKeys" %><%@
 page import="com.liferay.bbb.util.BBBAPIUtil" %><%@
@@ -57,8 +54,7 @@ page import="com.liferay.portal.util.PortalUtil" %>
 page import="java.util.Collections" %><%@
 page import="java.util.List" %>
 
-<%@ page import="javax.portlet.PortletURL" %><%@
-page import="javax.portlet.WindowState" %>
+<%@ page import="javax.portlet.PortletURL" %>
 
 <portlet:defineObjects />
 

@@ -15,7 +15,7 @@
 package com.liferay.bbb.admin.portlet;
 
 import com.liferay.bbb.model.BBBServer;
-import com.liferay.bbb.service.BBBServerServiceUtil;
+import com.liferay.bbb.service.BBBServerLocalServiceUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.ServiceContext;
@@ -37,7 +37,7 @@ public class AdminPortlet extends MVCPortlet {
 
 		long bbbServerId = ParamUtil.getLong(actionRequest, "bbbServerId");
 
-		BBBServerServiceUtil.deleteBBBServer(bbbServerId);
+		BBBServerLocalServiceUtil.deleteBBBServer(bbbServerId);
 	}
 
 	public void updateBBBServer(
@@ -57,12 +57,12 @@ public class AdminPortlet extends MVCPortlet {
 			BBBServer.class.getName(), actionRequest);
 
 		if (bbbServerId <= 0) {
-			BBBServerServiceUtil.addBBBServer(
-				themeDisplay.getScopeGroupId(), name, url, secret,
-				serviceContext);
+			BBBServerLocalServiceUtil.addBBBServer(
+				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(), name,
+				url, secret, serviceContext);
 		}
 		else {
-			BBBServerServiceUtil.updateBBBServer(
+			BBBServerLocalServiceUtil.updateBBBServer(
 				bbbServerId, name, url, secret, serviceContext);
 		}
 	}
