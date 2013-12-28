@@ -17,6 +17,12 @@
 <%
 String orderByCol = ParamUtil.getString(request, "orderByCol", "createDate");
 String orderByType = ParamUtil.getString(request, "orderByType", "desc");
+
+long userId = 0;
+
+if (!permissionChecker.isCompanyAdmin() || !permissionChecker.isGroupAdmin(scopeGroupId) || !MeetingsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.MANAGE)) {
+	userId = themeDisplay.getUserId();
+}
 %>
 
 <liferay-ui:search-container
@@ -24,7 +30,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	iteratorURL="<%= portletURL %>"
 	orderByCol="<%= orderByCol %>"
 	orderByType="<%= orderByType %>"
-	total="<%= BBBMeetingLocalServiceUtil.getBBBMeetingsCount(themeDisplay.getScopeGroupId(), themeDisplay.getUserId(), null, null, BBBMeetingConstants.STATUS_ANY, false) %>"
+	total="<%= BBBMeetingLocalServiceUtil.getBBBMeetingsCount(scopeGroupId, userId, null, null, BBBMeetingConstants.STATUS_ANY, false) %>"
 >
 	<aui:button-row>
 		<portlet:renderURL var="addBBBMeetingURL">
@@ -36,7 +42,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	</aui:button-row>
 
 	<liferay-ui:search-container-results
-		results="<%= BBBMeetingLocalServiceUtil.getBBBMeetings(themeDisplay.getScopeGroupId(), themeDisplay.getUserId(), null, null, BBBMeetingConstants.STATUS_ANY, false, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByCol(), searchContainer.getOrderByType()) %>"
+		results="<%= BBBMeetingLocalServiceUtil.getBBBMeetings(scopeGroupId, userId, null, null, BBBMeetingConstants.STATUS_ANY, false, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByCol(), searchContainer.getOrderByType()) %>"
 	/>
 
 	<liferay-ui:search-container-row

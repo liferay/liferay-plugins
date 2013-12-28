@@ -10,11 +10,17 @@
 		<permissions>
 			<supports>
 				<action-key>ADD_MEETING</action-key>
+				<action-key>MANAGE</action-key>
+				<action-key>VIEW</action-key>
 			</supports>
-			<site-member-defaults />
+			<site-member-defaults>
+				<action-key>ADD_MEETING</action-key>
+				<action-key>VIEW</action-key>
+			</site-member-defaults>
 			<guest-defaults />
 			<guest-unsupported>
 				<action-key>ADD_MEETING</action-key>
+				<action-key>MANAGE</action-key>
 			</guest-unsupported>
 		</permissions>
 	</model-resource>

@@ -52,7 +52,7 @@ public class BBBMeetingPermission {
 
 		if (permissionChecker.hasOwnerPermission(
 				bbbMeeting.getCompanyId(), BBBMeeting.class.getName(),
-				bbbMeeting.getBbbServerId(), bbbMeeting.getUserId(),
+				bbbMeeting.getBbbMeetingId(), bbbMeeting.getUserId(),
 				actionId)) {
 
 			return true;
