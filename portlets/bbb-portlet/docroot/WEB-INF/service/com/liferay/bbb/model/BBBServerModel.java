@@ -16,9 +16,9 @@ package com.liferay.bbb.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
-import com.liferay.portal.model.GroupedModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -40,7 +40,7 @@ import java.util.Date;
  * @see com.liferay.bbb.model.impl.BBBServerModelImpl
  * @generated
  */
-public interface BBBServerModel extends BaseModel<BBBServer>, GroupedModel {
+public interface BBBServerModel extends AuditedModel, BaseModel<BBBServer> {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
@@ -74,22 +74,6 @@ public interface BBBServerModel extends BaseModel<BBBServer>, GroupedModel {
 	 * @param bbbServerId the bbb server ID of this b b b server
 	 */
 	public void setBbbServerId(long bbbServerId);
-
-	/**
-	 * Returns the group ID of this b b b server.
-	 *
-	 * @return the group ID of this b b b server
-	 */
-	@Override
-	public long getGroupId();
-
-	/**
-	 * Sets the group ID of this b b b server.
-	 *
-	 * @param groupId the group ID of this b b b server
-	 */
-	@Override
-	public void setGroupId(long groupId);
 
 	/**
 	 * Returns the company ID of this b b b server.

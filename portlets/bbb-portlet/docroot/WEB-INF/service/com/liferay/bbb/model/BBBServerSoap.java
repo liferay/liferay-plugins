@@ -21,10 +21,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services, specifically {@link com.liferay.bbb.service.http.BBBServerServiceSoap}.
+ * This class is used by SOAP remote services.
  *
  * @author Shinn Lok
- * @see com.liferay.bbb.service.http.BBBServerServiceSoap
  * @generated
  */
 public class BBBServerSoap implements Serializable {
@@ -32,7 +31,6 @@ public class BBBServerSoap implements Serializable {
 		BBBServerSoap soapModel = new BBBServerSoap();
 
 		soapModel.setBbbServerId(model.getBbbServerId());
-		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
@@ -100,14 +98,6 @@ public class BBBServerSoap implements Serializable {
 
 	public void setBbbServerId(long bbbServerId) {
 		_bbbServerId = bbbServerId;
-	}
-
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
 	}
 
 	public long getCompanyId() {
@@ -187,7 +177,6 @@ public class BBBServerSoap implements Serializable {
 	}
 
 	private long _bbbServerId;
-	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userName;

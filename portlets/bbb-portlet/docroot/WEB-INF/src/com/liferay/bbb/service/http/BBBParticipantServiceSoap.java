@@ -62,25 +62,6 @@ import java.rmi.RemoteException;
  * @generated
  */
 public class BBBParticipantServiceSoap {
-	public static com.liferay.bbb.model.BBBParticipantSoap addBBBParticipant(
-		long groupId, long bbbMeetingId, java.lang.String name,
-		java.lang.String emailAddress, int type, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws RemoteException {
-		try {
-			com.liferay.bbb.model.BBBParticipant returnValue = BBBParticipantServiceUtil.addBBBParticipant(groupId,
-					bbbMeetingId, name, emailAddress, type, status,
-					serviceContext);
-
-			return com.liferay.bbb.model.BBBParticipantSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.bbb.model.BBBParticipantSoap deleteBBBParticipant(
 		com.liferay.bbb.model.BBBParticipantSoap bbbParticipant)
 		throws RemoteException {

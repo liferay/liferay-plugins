@@ -16,11 +16,9 @@ package com.liferay.bbb.model.impl;
 
 import com.liferay.bbb.model.BBBServer;
 import com.liferay.bbb.model.BBBServerModel;
-import com.liferay.bbb.model.BBBServerSoap;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -37,10 +35,8 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,7 +52,6 @@ import java.util.Map;
  * @see com.liferay.bbb.model.BBBServerModel
  * @generated
  */
-@JSON(strict = true)
 public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 	implements BBBServerModel {
 	/*
@@ -67,7 +62,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 	public static final String TABLE_NAME = "BBBServer";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "bbbServerId", Types.BIGINT },
-			{ "groupId", Types.BIGINT },
 			{ "companyId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
 			{ "userName", Types.VARCHAR },
@@ -78,7 +72,7 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 			{ "secret", Types.VARCHAR },
 			{ "active_", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table BBBServer (bbbServerId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,secret VARCHAR(75) null,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table BBBServer (bbbServerId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,name VARCHAR(75) null,url STRING null,secret VARCHAR(75) null,active_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table BBBServer";
 	public static final String ORDER_BY_JPQL = " ORDER BY bbbServer.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY BBBServer.name ASC";
@@ -95,57 +89,7 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 				"value.object.column.bitmask.enabled.com.liferay.bbb.model.BBBServer"),
 			true);
 	public static long ACTIVE_COLUMN_BITMASK = 1L;
-	public static long GROUPID_COLUMN_BITMASK = 2L;
-	public static long NAME_COLUMN_BITMASK = 4L;
-
-	/**
-	 * Converts the soap model instance into a normal model instance.
-	 *
-	 * @param soapModel the soap model instance to convert
-	 * @return the normal model instance
-	 */
-	public static BBBServer toModel(BBBServerSoap soapModel) {
-		if (soapModel == null) {
-			return null;
-		}
-
-		BBBServer model = new BBBServerImpl();
-
-		model.setBbbServerId(soapModel.getBbbServerId());
-		model.setGroupId(soapModel.getGroupId());
-		model.setCompanyId(soapModel.getCompanyId());
-		model.setUserId(soapModel.getUserId());
-		model.setUserName(soapModel.getUserName());
-		model.setCreateDate(soapModel.getCreateDate());
-		model.setModifiedDate(soapModel.getModifiedDate());
-		model.setName(soapModel.getName());
-		model.setUrl(soapModel.getUrl());
-		model.setSecret(soapModel.getSecret());
-		model.setActive(soapModel.getActive());
-
-		return model;
-	}
-
-	/**
-	 * Converts the soap model instances into normal model instances.
-	 *
-	 * @param soapModels the soap model instances to convert
-	 * @return the normal model instances
-	 */
-	public static List<BBBServer> toModels(BBBServerSoap[] soapModels) {
-		if (soapModels == null) {
-			return null;
-		}
-
-		List<BBBServer> models = new ArrayList<BBBServer>(soapModels.length);
-
-		for (BBBServerSoap soapModel : soapModels) {
-			models.add(toModel(soapModel));
-		}
-
-		return models;
-	}
-
+	public static long NAME_COLUMN_BITMASK = 2L;
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.util.service.ServiceProps.get(
 				"lock.expiration.time.com.liferay.bbb.model.BBBServer"));
 
@@ -187,7 +131,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("bbbServerId", getBbbServerId());
-		attributes.put("groupId", getGroupId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
@@ -207,12 +150,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 
 		if (bbbServerId != null) {
 			setBbbServerId(bbbServerId);
-		}
-
-		Long groupId = (Long)attributes.get("groupId");
-
-		if (groupId != null) {
-			setGroupId(groupId);
 		}
 
 		Long companyId = (Long)attributes.get("companyId");
@@ -270,7 +207,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		}
 	}
 
-	@JSON
 	@Override
 	public long getBbbServerId() {
 		return _bbbServerId;
@@ -281,30 +217,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		_bbbServerId = bbbServerId;
 	}
 
-	@JSON
-	@Override
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	@Override
-	public void setGroupId(long groupId) {
-		_columnBitmask |= GROUPID_COLUMN_BITMASK;
-
-		if (!_setOriginalGroupId) {
-			_setOriginalGroupId = true;
-
-			_originalGroupId = _groupId;
-		}
-
-		_groupId = groupId;
-	}
-
-	public long getOriginalGroupId() {
-		return _originalGroupId;
-	}
-
-	@JSON
 	@Override
 	public long getCompanyId() {
 		return _companyId;
@@ -315,7 +227,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		_companyId = companyId;
 	}
 
-	@JSON
 	@Override
 	public long getUserId() {
 		return _userId;
@@ -336,7 +247,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		_userUuid = userUuid;
 	}
 
-	@JSON
 	@Override
 	public String getUserName() {
 		if (_userName == null) {
@@ -352,7 +262,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		_userName = userName;
 	}
 
-	@JSON
 	@Override
 	public Date getCreateDate() {
 		return _createDate;
@@ -363,7 +272,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		_createDate = createDate;
 	}
 
-	@JSON
 	@Override
 	public Date getModifiedDate() {
 		return _modifiedDate;
@@ -374,7 +282,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		_modifiedDate = modifiedDate;
 	}
 
-	@JSON
 	@Override
 	public String getName() {
 		if (_name == null) {
@@ -392,7 +299,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		_name = name;
 	}
 
-	@JSON
 	@Override
 	public String getUrl() {
 		if (_url == null) {
@@ -408,7 +314,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		_url = url;
 	}
 
-	@JSON
 	@Override
 	public String getSecret() {
 		if (_secret == null) {
@@ -424,7 +329,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		_secret = secret;
 	}
 
-	@JSON
 	@Override
 	public boolean getActive() {
 		return _active;
@@ -484,7 +388,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		BBBServerImpl bbbServerImpl = new BBBServerImpl();
 
 		bbbServerImpl.setBbbServerId(getBbbServerId());
-		bbbServerImpl.setGroupId(getGroupId());
 		bbbServerImpl.setCompanyId(getCompanyId());
 		bbbServerImpl.setUserId(getUserId());
 		bbbServerImpl.setUserName(getUserName());
@@ -544,10 +447,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 	public void resetOriginalValues() {
 		BBBServerModelImpl bbbServerModelImpl = this;
 
-		bbbServerModelImpl._originalGroupId = bbbServerModelImpl._groupId;
-
-		bbbServerModelImpl._setOriginalGroupId = false;
-
 		bbbServerModelImpl._originalActive = bbbServerModelImpl._active;
 
 		bbbServerModelImpl._setOriginalActive = false;
@@ -560,8 +459,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		BBBServerCacheModel bbbServerCacheModel = new BBBServerCacheModel();
 
 		bbbServerCacheModel.bbbServerId = getBbbServerId();
-
-		bbbServerCacheModel.groupId = getGroupId();
 
 		bbbServerCacheModel.companyId = getCompanyId();
 
@@ -624,12 +521,10 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{bbbServerId=");
 		sb.append(getBbbServerId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -655,7 +550,7 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.bbb.model.BBBServer");
@@ -664,10 +559,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 		sb.append(
 			"<column><column-name>bbbServerId</column-name><column-value><![CDATA[");
 		sb.append(getBbbServerId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -716,9 +607,6 @@ public class BBBServerModelImpl extends BaseModelImpl<BBBServer>
 			BBBServer.class
 		};
 	private long _bbbServerId;
-	private long _groupId;
-	private long _originalGroupId;
-	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;

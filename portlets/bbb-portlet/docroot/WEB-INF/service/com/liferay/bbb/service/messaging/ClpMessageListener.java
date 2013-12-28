@@ -19,7 +19,6 @@ import com.liferay.bbb.service.BBBMeetingServiceUtil;
 import com.liferay.bbb.service.BBBParticipantLocalServiceUtil;
 import com.liferay.bbb.service.BBBParticipantServiceUtil;
 import com.liferay.bbb.service.BBBServerLocalServiceUtil;
-import com.liferay.bbb.service.BBBServerServiceUtil;
 import com.liferay.bbb.service.ClpSerializer;
 
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
@@ -47,8 +46,6 @@ public class ClpMessageListener extends BaseMessageListener {
 
 			BBBParticipantServiceUtil.clearService();
 			BBBServerLocalServiceUtil.clearService();
-
-			BBBServerServiceUtil.clearService();
 		}
 	}
 }

@@ -111,13 +111,12 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param bbbServer the b b b server
 	 * @return the b b b server that was removed
-	 * @throws PortalException
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public BBBServer deleteBBBServer(BBBServer bbbServer)
-		throws PortalException, SystemException {
+		throws SystemException {
 		return bbbServerPersistence.remove(bbbServer);
 	}
 
@@ -416,25 +415,6 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
-	 * Returns the b b b server remote service.
-	 *
-	 * @return the b b b server remote service
-	 */
-	public com.liferay.bbb.service.BBBServerService getBBBServerService() {
-		return bbbServerService;
-	}
-
-	/**
-	 * Sets the b b b server remote service.
-	 *
-	 * @param bbbServerService the b b b server remote service
-	 */
-	public void setBBBServerService(
-		com.liferay.bbb.service.BBBServerService bbbServerService) {
-		this.bbbServerService = bbbServerService;
-	}
-
-	/**
 	 * Returns the b b b server persistence.
 	 *
 	 * @return the b b b server persistence
@@ -700,8 +680,6 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected BBBParticipantPersistence bbbParticipantPersistence;
 	@BeanReference(type = com.liferay.bbb.service.BBBServerLocalService.class)
 	protected com.liferay.bbb.service.BBBServerLocalService bbbServerLocalService;
-	@BeanReference(type = com.liferay.bbb.service.BBBServerService.class)
-	protected com.liferay.bbb.service.BBBServerService bbbServerService;
 	@BeanReference(type = BBBServerPersistence.class)
 	protected BBBServerPersistence bbbServerPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

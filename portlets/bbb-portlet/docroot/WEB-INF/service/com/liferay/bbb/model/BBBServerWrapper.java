@@ -50,7 +50,6 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("bbbServerId", getBbbServerId());
-		attributes.put("groupId", getGroupId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
@@ -70,12 +69,6 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 
 		if (bbbServerId != null) {
 			setBbbServerId(bbbServerId);
-		}
-
-		Long groupId = (Long)attributes.get("groupId");
-
-		if (groupId != null) {
-			setGroupId(groupId);
 		}
 
 		Long companyId = (Long)attributes.get("companyId");
@@ -171,26 +164,6 @@ public class BBBServerWrapper implements BBBServer, ModelWrapper<BBBServer> {
 	@Override
 	public void setBbbServerId(long bbbServerId) {
 		_bbbServer.setBbbServerId(bbbServerId);
-	}
-
-	/**
-	* Returns the group ID of this b b b server.
-	*
-	* @return the group ID of this b b b server
-	*/
-	@Override
-	public long getGroupId() {
-		return _bbbServer.getGroupId();
-	}
-
-	/**
-	* Sets the group ID of this b b b server.
-	*
-	* @param groupId the group ID of this b b b server
-	*/
-	@Override
-	public void setGroupId(long groupId) {
-		_bbbServer.setGroupId(groupId);
 	}
 
 	/**

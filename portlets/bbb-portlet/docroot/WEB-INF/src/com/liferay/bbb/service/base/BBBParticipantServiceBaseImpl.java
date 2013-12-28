@@ -185,25 +185,6 @@ public abstract class BBBParticipantServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
-	 * Returns the b b b server remote service.
-	 *
-	 * @return the b b b server remote service
-	 */
-	public com.liferay.bbb.service.BBBServerService getBBBServerService() {
-		return bbbServerService;
-	}
-
-	/**
-	 * Sets the b b b server remote service.
-	 *
-	 * @param bbbServerService the b b b server remote service
-	 */
-	public void setBBBServerService(
-		com.liferay.bbb.service.BBBServerService bbbServerService) {
-		this.bbbServerService = bbbServerService;
-	}
-
-	/**
 	 * Returns the b b b server persistence.
 	 *
 	 * @return the b b b server persistence
@@ -464,8 +445,6 @@ public abstract class BBBParticipantServiceBaseImpl extends BaseServiceImpl
 	protected BBBParticipantPersistence bbbParticipantPersistence;
 	@BeanReference(type = com.liferay.bbb.service.BBBServerLocalService.class)
 	protected com.liferay.bbb.service.BBBServerLocalService bbbServerLocalService;
-	@BeanReference(type = com.liferay.bbb.service.BBBServerService.class)
-	protected com.liferay.bbb.service.BBBServerService bbbServerService;
 	@BeanReference(type = BBBServerPersistence.class)
 	protected BBBServerPersistence bbbServerPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

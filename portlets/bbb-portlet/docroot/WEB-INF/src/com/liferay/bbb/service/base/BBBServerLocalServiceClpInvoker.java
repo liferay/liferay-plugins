@@ -100,51 +100,51 @@ public class BBBServerLocalServiceClpInvoker {
 
 		_methodParameterTypes15 = new String[] { "com.liferay.bbb.model.BBBServer" };
 
-		_methodName52 = "getBeanIdentifier";
+		_methodName50 = "getBeanIdentifier";
 
-		_methodParameterTypes52 = new String[] {  };
+		_methodParameterTypes50 = new String[] {  };
 
-		_methodName53 = "setBeanIdentifier";
+		_methodName51 = "setBeanIdentifier";
 
-		_methodParameterTypes53 = new String[] { "java.lang.String" };
+		_methodParameterTypes51 = new String[] { "java.lang.String" };
 
-		_methodName58 = "addBBBServer";
+		_methodName56 = "addBBBServer";
 
-		_methodParameterTypes58 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String",
+		_methodParameterTypes56 = new String[] {
+				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName59 = "checkBBBServers";
+		_methodName57 = "checkBBBServers";
 
-		_methodParameterTypes59 = new String[] {  };
+		_methodParameterTypes57 = new String[] {  };
 
-		_methodName60 = "deleteBBBServer";
+		_methodName58 = "deleteBBBServer";
 
-		_methodParameterTypes60 = new String[] { "com.liferay.bbb.model.BBBServer" };
+		_methodParameterTypes58 = new String[] { "com.liferay.bbb.model.BBBServer" };
 
-		_methodName61 = "deleteBBBServer";
+		_methodName59 = "deleteBBBServer";
 
-		_methodParameterTypes61 = new String[] { "long" };
+		_methodParameterTypes59 = new String[] { "long" };
 
-		_methodName62 = "getBBBServers";
+		_methodName60 = "getBBBServers";
 
-		_methodParameterTypes62 = new String[] { "long", "boolean" };
+		_methodParameterTypes60 = new String[] { "boolean" };
 
-		_methodName63 = "getBBBServers";
+		_methodName61 = "getBBBServers";
 
-		_methodParameterTypes63 = new String[] {
+		_methodParameterTypes61 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName64 = "getBBBServersCount";
+		_methodName62 = "getBBBServersCount";
 
-		_methodParameterTypes64 = new String[] { "long" };
+		_methodParameterTypes62 = new String[] {  };
 
-		_methodName65 = "updateBBBServer";
+		_methodName63 = "updateBBBServer";
 
-		_methodParameterTypes65 = new String[] {
+		_methodParameterTypes63 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
@@ -239,65 +239,63 @@ public class BBBServerLocalServiceClpInvoker {
 			return BBBServerLocalServiceUtil.updateBBBServer((com.liferay.bbb.model.BBBServer)arguments[0]);
 		}
 
-		if (_methodName52.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return BBBServerLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName53.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			BBBServerLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+			return BBBServerLocalServiceUtil.addBBBServer(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
+				(java.lang.String)arguments[3],
+				(com.liferay.portal.service.ServiceContext)arguments[4]);
+		}
+
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+			BBBServerLocalServiceUtil.checkBBBServers();
 
 			return null;
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return BBBServerLocalServiceUtil.addBBBServer(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue(),
-				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(java.lang.String)arguments[4],
-				(com.liferay.portal.service.ServiceContext)arguments[5]);
+			return BBBServerLocalServiceUtil.deleteBBBServer((com.liferay.bbb.model.BBBServer)arguments[0]);
 		}
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			BBBServerLocalServiceUtil.checkBBBServers();
-
-			return null;
+			return BBBServerLocalServiceUtil.deleteBBBServer(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			return BBBServerLocalServiceUtil.deleteBBBServer((com.liferay.bbb.model.BBBServer)arguments[0]);
+			return BBBServerLocalServiceUtil.getBBBServers(((Boolean)arguments[0]).booleanValue());
 		}
 
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return BBBServerLocalServiceUtil.deleteBBBServer(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
-			return BBBServerLocalServiceUtil.getBBBServers(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue());
-		}
-
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return BBBServerLocalServiceUtil.getBBBServers(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[3]);
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
-			return BBBServerLocalServiceUtil.getBBBServersCount(((Long)arguments[0]).longValue());
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
+			return BBBServerLocalServiceUtil.getBBBServersCount();
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return BBBServerLocalServiceUtil.updateBBBServer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3],
@@ -339,10 +337,14 @@ public class BBBServerLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName52;
-	private String[] _methodParameterTypes52;
-	private String _methodName53;
-	private String[] _methodParameterTypes53;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
 	private String _methodName58;
 	private String[] _methodParameterTypes58;
 	private String _methodName59;
@@ -355,8 +357,4 @@ public class BBBServerLocalServiceClpInvoker {
 	private String[] _methodParameterTypes62;
 	private String _methodName63;
 	private String[] _methodParameterTypes63;
-	private String _methodName64;
-	private String[] _methodParameterTypes64;
-	private String _methodName65;
-	private String[] _methodParameterTypes65;
 }

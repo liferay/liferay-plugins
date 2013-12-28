@@ -32,30 +32,23 @@ public class BBBParticipantServiceClp implements BBBParticipantService {
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
 
-		_methodName3 = "addBBBParticipant";
+		_methodName3 = "deleteBBBParticipant";
 
 		_methodParameterTypes3 = new String[] {
-				"long", "long", "java.lang.String", "java.lang.String", "int",
-				"int", "com.liferay.portal.service.ServiceContext"
-			};
-
-		_methodName4 = "deleteBBBParticipant";
-
-		_methodParameterTypes4 = new String[] {
 				"com.liferay.bbb.model.BBBParticipant"
 			};
 
-		_methodName5 = "getBBBParticipants";
+		_methodName4 = "getBBBParticipants";
+
+		_methodParameterTypes4 = new String[] { "long" };
+
+		_methodName5 = "getBBBParticipantsCount";
 
 		_methodParameterTypes5 = new String[] { "long" };
 
-		_methodName6 = "getBBBParticipantsCount";
+		_methodName6 = "updateBBBParticipant";
 
-		_methodParameterTypes6 = new String[] { "long" };
-
-		_methodName7 = "updateBBBParticipant";
-
-		_methodParameterTypes7 = new String[] {
+		_methodParameterTypes6 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -112,57 +105,6 @@ public class BBBParticipantServiceClp implements BBBParticipantService {
 	}
 
 	@Override
-	public com.liferay.bbb.model.BBBParticipant addBBBParticipant(
-		long groupId, long bbbMeetingId, java.lang.String name,
-		java.lang.String emailAddress, int type, int status,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName3,
-					_methodParameterTypes3,
-					new Object[] {
-						groupId,
-						
-					bbbMeetingId,
-						
-					ClpSerializer.translateInput(name),
-						
-					ClpSerializer.translateInput(emailAddress),
-						
-					type,
-						
-					status,
-						
-					ClpSerializer.translateInput(serviceContext)
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
-				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (com.liferay.bbb.model.BBBParticipant)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
 	public com.liferay.bbb.model.BBBParticipant deleteBBBParticipant(
 		com.liferay.bbb.model.BBBParticipant bbbParticipant)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -170,8 +112,8 @@ public class BBBParticipantServiceClp implements BBBParticipantService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName4,
-					_methodParameterTypes4,
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3,
 					new Object[] { ClpSerializer.translateInput(bbbParticipant) });
 		}
 		catch (Throwable t) {
@@ -205,8 +147,8 @@ public class BBBParticipantServiceClp implements BBBParticipantService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName5,
-					_methodParameterTypes5, new Object[] { bbbMeetingId });
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4, new Object[] { bbbMeetingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -238,8 +180,8 @@ public class BBBParticipantServiceClp implements BBBParticipantService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName6,
-					_methodParameterTypes6, new Object[] { bbbMeetingId });
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5, new Object[] { bbbMeetingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -274,8 +216,8 @@ public class BBBParticipantServiceClp implements BBBParticipantService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
 					new Object[] {
 						bbbParticipantId,
 						
@@ -326,6 +268,4 @@ public class BBBParticipantServiceClp implements BBBParticipantService {
 	private String[] _methodParameterTypes5;
 	private String _methodName6;
 	private String[] _methodParameterTypes6;
-	private String _methodName7;
-	private String[] _methodParameterTypes7;
 }

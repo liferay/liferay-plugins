@@ -83,13 +83,11 @@ public class BBBServerLocalServiceUtil {
 	*
 	* @param bbbServer the b b b server
 	* @return the b b b server that was removed
-	* @throws PortalException
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.bbb.model.BBBServer deleteBBBServer(
 		com.liferay.bbb.model.BBBServer bbbServer)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().deleteBBBServer(bbbServer);
 	}
 
@@ -277,14 +275,12 @@ public class BBBServerLocalServiceUtil {
 	}
 
 	public static com.liferay.bbb.model.BBBServer addBBBServer(long userId,
-		long groupId, java.lang.String name, java.lang.String url,
-		java.lang.String secret,
+		java.lang.String name, java.lang.String url, java.lang.String secret,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addBBBServer(userId, groupId, name, url, secret,
-			serviceContext);
+				   .addBBBServer(userId, name, url, secret, serviceContext);
 	}
 
 	public static void checkBBBServers()
@@ -294,9 +290,9 @@ public class BBBServerLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		long groupId, boolean active)
+		boolean active)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getBBBServers(groupId, active);
+		return getService().getBBBServers(active);
 	}
 
 	public static java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
@@ -304,11 +300,6 @@ public class BBBServerLocalServiceUtil {
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getBBBServers(groupId, start, end, obc);
-	}
-
-	public static int getBBBServersCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getBBBServersCount(groupId);
 	}
 
 	public static com.liferay.bbb.model.BBBServer updateBBBServer(

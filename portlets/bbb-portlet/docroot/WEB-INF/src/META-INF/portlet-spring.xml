@@ -8,6 +8,5 @@
 	<bean id="com.liferay.bbb.service.BBBParticipantService" class="com.liferay.bbb.service.impl.BBBParticipantServiceImpl" />
 	<bean id="com.liferay.bbb.service.persistence.BBBParticipantPersistence" class="com.liferay.bbb.service.persistence.BBBParticipantPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.bbb.service.BBBServerLocalService" class="com.liferay.bbb.service.impl.BBBServerLocalServiceImpl" />
-	<bean id="com.liferay.bbb.service.BBBServerService" class="com.liferay.bbb.service.impl.BBBServerServiceImpl" />
 	<bean id="com.liferay.bbb.service.persistence.BBBServerPersistence" class="com.liferay.bbb.service.persistence.BBBServerPersistenceImpl" parent="basePersistence" />
 </beans>

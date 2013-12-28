@@ -75,7 +75,6 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("bbbServerId", getBbbServerId());
-		attributes.put("groupId", getGroupId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 		attributes.put("userName", getUserName());
@@ -95,12 +94,6 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 
 		if (bbbServerId != null) {
 			setBbbServerId(bbbServerId);
-		}
-
-		Long groupId = (Long)attributes.get("groupId");
-
-		if (groupId != null) {
-			setGroupId(groupId);
 		}
 
 		Long companyId = (Long)attributes.get("companyId");
@@ -174,29 +167,6 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 				Method method = clazz.getMethod("setBbbServerId", long.class);
 
 				method.invoke(_bbbServerRemoteModel, bbbServerId);
-			}
-			catch (Exception e) {
-				throw new UnsupportedOperationException(e);
-			}
-		}
-	}
-
-	@Override
-	public long getGroupId() {
-		return _groupId;
-	}
-
-	@Override
-	public void setGroupId(long groupId) {
-		_groupId = groupId;
-
-		if (_bbbServerRemoteModel != null) {
-			try {
-				Class<?> clazz = _bbbServerRemoteModel.getClass();
-
-				Method method = clazz.getMethod("setGroupId", long.class);
-
-				method.invoke(_bbbServerRemoteModel, groupId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -496,7 +466,6 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 		BBBServerClp clone = new BBBServerClp();
 
 		clone.setBbbServerId(getBbbServerId());
-		clone.setGroupId(getGroupId());
 		clone.setCompanyId(getCompanyId());
 		clone.setUserId(getUserId());
 		clone.setUserName(getUserName());
@@ -552,12 +521,10 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{bbbServerId=");
 		sb.append(getBbbServerId());
-		sb.append(", groupId=");
-		sb.append(getGroupId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", userId=");
@@ -583,7 +550,7 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(37);
+		StringBundler sb = new StringBundler(34);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.bbb.model.BBBServer");
@@ -592,10 +559,6 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 		sb.append(
 			"<column><column-name>bbbServerId</column-name><column-value><![CDATA[");
 		sb.append(getBbbServerId());
-		sb.append("]]></column-value></column>");
-		sb.append(
-			"<column><column-name>groupId</column-name><column-value><![CDATA[");
-		sb.append(getGroupId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -640,7 +603,6 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 	}
 
 	private long _bbbServerId;
-	private long _groupId;
 	private long _companyId;
 	private long _userId;
 	private String _userUuid;

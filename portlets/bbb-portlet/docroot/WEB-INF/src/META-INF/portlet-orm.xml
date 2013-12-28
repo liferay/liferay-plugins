@@ -61,7 +61,6 @@
 	<mapped-superclass class="com.liferay.bbb.model.impl.BBBServerModelImpl">
 		<attributes>
 			<id name="bbbServerId" />
-			<basic name="groupId" />
 			<basic name="companyId" />
 			<basic name="userId" />
 			<basic name="userName" />

@@ -38,12 +38,10 @@ public class BBBServerCacheModel implements CacheModel<BBBServer>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(23);
+		StringBundler sb = new StringBundler(21);
 
 		sb.append("{bbbServerId=");
 		sb.append(bbbServerId);
-		sb.append(", groupId=");
-		sb.append(groupId);
 		sb.append(", companyId=");
 		sb.append(companyId);
 		sb.append(", userId=");
@@ -72,7 +70,6 @@ public class BBBServerCacheModel implements CacheModel<BBBServer>,
 		BBBServerImpl bbbServerImpl = new BBBServerImpl();
 
 		bbbServerImpl.setBbbServerId(bbbServerId);
-		bbbServerImpl.setGroupId(groupId);
 		bbbServerImpl.setCompanyId(companyId);
 		bbbServerImpl.setUserId(userId);
 
@@ -128,7 +125,6 @@ public class BBBServerCacheModel implements CacheModel<BBBServer>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		bbbServerId = objectInput.readLong();
-		groupId = objectInput.readLong();
 		companyId = objectInput.readLong();
 		userId = objectInput.readLong();
 		userName = objectInput.readUTF();
@@ -144,7 +140,6 @@ public class BBBServerCacheModel implements CacheModel<BBBServer>,
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeLong(bbbServerId);
-		objectOutput.writeLong(groupId);
 		objectOutput.writeLong(companyId);
 		objectOutput.writeLong(userId);
 
@@ -183,7 +178,6 @@ public class BBBServerCacheModel implements CacheModel<BBBServer>,
 	}
 
 	public long bbbServerId;
-	public long groupId;
 	public long companyId;
 	public long userId;
 	public String userName;
