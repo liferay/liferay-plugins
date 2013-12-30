@@ -71,9 +71,13 @@ public class RTLCSSUtil {
 	}
 
 	public static void init() {
+		init(PortletClassLoaderUtil.getClassLoader());
+	}
+
+	public static void init(ClassLoader classLoader) {
 		try {
 			_jsScript = StringUtil.read(
-				PortletClassLoaderUtil.getClassLoader(),
+				classLoader,
 				"com/liferay/rtl/servlet/filters/dynamiccss" +
 					"/dependencies/r2.js");
 		}
