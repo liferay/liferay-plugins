@@ -24,8 +24,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,14 +37,22 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 
 	@Override
 	public BBBServer addBBBServer(
-			String name, String url, String secret,
+			long userId, String name, String url, String secret,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
+		User user = userPersistence.findByPrimaryKey(userId);
+		Date now = new Date();
 
 		long bbbServerId = counterLocalService.increment();
 
 		BBBServer bbbServer = bbbServerPersistence.create(bbbServerId);
 
+		bbbServer.setCompanyId(user.getCompanyId());
+		bbbServer.setUserId(user.getUserId());
+		bbbServer.setUserName(user.getFullName());
+		bbbServer.setCreateDate(serviceContext.getCreateDate(now));
+		bbbServer.setModifiedDate(serviceContext.getModifiedDate(now));
 		bbbServer.setName(name);
 		bbbServer.setUrl(formatURL(url));
 		bbbServer.setSecret(secret);
@@ -124,6 +134,7 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 		BBBServer bbbServer = bbbServerPersistence.findByPrimaryKey(
 			bbbServerId);
 
+		bbbServer.setModifiedDate(serviceContext.getModifiedDate(null));
 		bbbServer.setName(name);
 		bbbServer.setUrl(formatURL(url));
 		bbbServer.setSecret(secret);
