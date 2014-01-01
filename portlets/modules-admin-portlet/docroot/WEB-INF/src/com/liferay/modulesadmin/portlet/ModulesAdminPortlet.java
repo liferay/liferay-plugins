@@ -194,7 +194,7 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 			json = jsonObject.toString();
 		}
 		catch (BundleException be) {
-			json = JSONFactoryUtil.serializeException(be);
+			json = JSONFactoryUtil.serializeThrowable(be);
 		}
 
 		writeJSON(resourceRequest, resourceResponse, json);
