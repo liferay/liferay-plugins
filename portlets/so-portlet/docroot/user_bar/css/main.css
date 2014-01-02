@@ -29,9 +29,9 @@ body.show-dockbar, html > body.lfr-dockbar-pinned, body.controls-visible {
 	}
 
 	#dockbar {
-		@include opacity(1);
-
 		margin-top: 0;
+
+		@include opacity(1);
 	}
 }
 
@@ -181,10 +181,9 @@ html.aui {
 						}
 
 						img {
-							border-width: 0;
-
 							@include border-radius(12px);
 
+							border-width: 0;
 							clip: rect(0px, 23px, 23px, 0px);
 							left: -6px;
 							position: absolute;
@@ -466,11 +465,11 @@ html.aui {
 					}
 
 					.user-avatar-image {
+						@include border-radius(12px);
+
 						box-shadow: none;
 						top: 0;
 						width: 23px;
-
-						@include border-radius(12px);
 					}
 				}
 			}

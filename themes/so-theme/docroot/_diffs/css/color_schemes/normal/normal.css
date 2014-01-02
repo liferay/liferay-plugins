@@ -159,9 +159,9 @@ a {
 }
 
 .aui-panel-hd, .lfr-panel.lfr-extended .lfr-panel-titlebar {
-	@include normal-gradient;
-
 	@include default-border;
+
+	@include normal-gradient;
 }
 
 .invite-members, .social-relations a, .aui-buttonitem-content, .aui-tabview-list .aui-tab-label {
@@ -187,11 +187,14 @@ a {
 
 	.aui-dialog-hd {
 		border: 1px solid $defaultBorderColor;
-		border-width: 0 0 1px;
-		padding: 0 0 0 0.5em;
 
 		@include border-radius(4px 4px 0 0);
+
+		border-width: 0 0 1px;
+
 		@include box-shadow(none);
+
+		padding: 0 0 0 0.5em;
 
 		.aui-toolbar {
 			margin: -1px;
@@ -469,9 +472,10 @@ a {
 /* ---------- Banner ---------- */
 
 #banner {
+	border-width: 1px 0;
+
 	@include header;
 
-	border-width: 1px 0;
 	padding: 0.86em 1.5em;
 
 	h1, h2 {
@@ -577,10 +581,10 @@ a {
 
 	.search-controls {
 		background: #FFF;
+		display: none;
 
 		@include border-radius(4px);
 
-		display: none;
 		left: 0;
 
 		@include menu-style;
@@ -646,14 +650,15 @@ div#navigation {
 		font-size: 1.125em;
 		font-weight: 200;
 		padding: 0.65em 1.05em;
-		text-shadow: 0 1px 0 #FFF;
 
 		@include subtle-gradient;
 
-		&:hover, &:focus {
-			text-decoration: none;
+		text-shadow: 0 1px 0 #FFF;
 
+		&:hover, &:focus {
 			@include button-hover;
+
+			text-decoration: none;
 		}
 
 		&:active {
@@ -695,12 +700,13 @@ div#navigation {
 
 #main-content {
 	background: #FFF;
+
+	@include box-shadow(-4px 0 15px -7px rgba(0,0,0, 0.6));
+
 	float: left;
 	min-height: 500px;
 	position: relative;
 	width: 100%;
-
-	@include box-shadow(-4px 0 15px -7px rgba(0,0,0, 0.6));
 }
 
 .aui-dialog-iframe-popup, .portal-popup {
@@ -910,8 +916,8 @@ div#navigation {
 		}
 
 		a {
-			@include button-default;
 			@include border-radius(4px);
+			@include button-default;
 
 			display: inline-block;
 			line-height: 1em;
@@ -1148,10 +1154,9 @@ div#navigation {
 	}
 
 	.thumbnail {
-		border-width: 0;
-
 		@include border-radius(0);
 
+		border-width: 0;
 		height: 50px;
 		padding: 0;
 		width: 50px;
@@ -2029,10 +2034,10 @@ div#navigation {
 			}
 
 			.aui-field-input {
+				@include border-radius(4px 0 0 4px);
+
 				margin-right: -1px;
 				width: 9em;
-
-				@include border-radius(4px 0 0 4px);
 			}
 
 			.aui-button-submit input {
@@ -2060,8 +2065,8 @@ div#navigation {
 }
 
 .portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a, .portlet-wiki .page-actions a, .portlet-wiki .toc a.toc-trigger {
-	@include button-default;
 	@include border-radius(4px);
+	@include button-default;
 
 	display: inline-block;
 
