@@ -31,16 +31,18 @@ Contact selContact = null;
 if (selUser != null) {
 	selContact = selUser.getContact();
 }
+
+String namespace = renderResponse.getNamespace();
+
+if (extension) {
+	namespace = PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT);
+}
 %>
 
 <liferay-util:buffer var="html">
 
-	<%
-	String taglibOnSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm();";
-	%>
-
-	<div id="<portlet:namespace />updateUserDialog">
-		<aui:form action="" method="post" name="dialogForm" onSubmit="<%= taglibOnSubmit %>">
+	<div id="<%= namespace %>updateUserDialog">
+		<aui:form action="" method="post" name="dialogForm" portletNamespace="<%= namespace %>">
 			<aui:input name="redirect" type="hidden"  value="<%= selUser.getDisplayURL(themeDisplay) %>" />
 			<aui:input name="fieldGroup" type="hidden"  value="<%= curSectionId %>" />
 			<aui:input name="p_u_i_d" type="hidden" value="<%= (selUser != null) ? selUser.getUserId() : 0 %>" />
@@ -70,8 +72,8 @@ if (selUser != null) {
 			String sectionJsp = "/html/portlet/users_admin/user/" + _getSectionJsp(curSectionId) + ".jsp";
 			%>
 
-			<div class="form-section selected" id="<portlet:namespace /><%= curSectionId %>">
-				<div id="<portlet:namespace />errorMessage"></div>
+			<div class="form-section selected" id="<%= namespace + curSectionId %>">
+				<div id="<%= namespace %>errorMessage"></div>
 
 				<c:choose>
 					<c:when test='<%= curSectionId.equals("details") %>'>
@@ -89,15 +91,14 @@ if (selUser != null) {
 		</aui:form>
 	</div>
 
-	<aui:script>
-		Liferay.provide(
-			window,
-			'<portlet:namespace />saveForm',
-			function() {
-				var A = AUI();
+	<aui:script position="inline" use="aui-base,aui-io-request-deprecated">
+		var form = A.one('#<%= namespace %>dialogForm');
 
-				var form = A.one('#<portlet:namespace />dialogForm');
-
+		form.on(
+			'submit',
+			function(event) {
+				event.halt(true);
+				
 				Liferay.fire(
 					'saveAutoFields',
 					{
@@ -129,7 +130,7 @@ if (selUser != null) {
 								var responseData = this.get('responseData');
 
 								if (!responseData.success) {
-									var message = A.one('#<portlet:namespace />errorMessage');
+									var message = A.one('#<%= namespace %>errorMessage');
 
 									if (message) {
 										message.html('<span class="alert alert-error">' + responseData.message + '</span>');
@@ -154,24 +155,16 @@ if (selUser != null) {
 						}
 					}
 				);
-			},
-			['aui-io-request-deprecated']
+			}
 		);
 	</aui:script>
 
-	<aui:script use="liferay-auto-fields">
-		Liferay.fire('formNavigator:reveal<portlet:namespace /><%= curSectionId %>');
+	<aui:script position="inline" use="liferay-auto-fields">
+		Liferay.fire('formNavigator:reveal<%= namespace %><%= curSectionId %>');
 	</aui:script>
 </liferay-util:buffer>
 
-<c:choose>
-	<c:when test="<%= extension %>">
-		<%= StringUtil.replace(html, renderResponse.getNamespace(), "_" + PortletKeys.MY_ACCOUNT + "_") %>
-	</c:when>
-	<c:otherwise>
-		<%= html %>
-	</c:otherwise>
-</c:choose>
+<%= html %>
 
 <%!
 private String _getSectionJsp(String curSectionId) {
