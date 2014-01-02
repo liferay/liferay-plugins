@@ -40,7 +40,6 @@ if (extension) {
 %>
 
 <liferay-util:buffer var="html">
-
 	<div id="<%= namespace %>updateUserDialog">
 		<aui:form action="" method="post" name="dialogForm" portletNamespace="<%= namespace %>">
 			<aui:input name="redirect" type="hidden"  value="<%= selUser.getDisplayURL(themeDisplay) %>" />
