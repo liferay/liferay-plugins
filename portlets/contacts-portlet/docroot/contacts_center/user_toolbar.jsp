@@ -200,7 +200,7 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 				A.Plugin.IO,
 				{
 					data: {
-						<portlet:namespace />userIds: <%= user2.getUserId() %>
+						<%= PortalUtil.getPortletNamespace(PortletKeys.PRIVATE_MESSAGING) %>userIds: <%= user2.getUserId() %>
 					},
 					uri: uri
 				}
