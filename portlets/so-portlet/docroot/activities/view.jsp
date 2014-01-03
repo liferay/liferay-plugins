@@ -172,6 +172,8 @@ portletURL.setParameter("tabs1", tabs1);
 					}
 				);
 			}
+
+			commentsContainer.one('.comment-form').focus();
 		},
 		'.view-comments a'
 	);
