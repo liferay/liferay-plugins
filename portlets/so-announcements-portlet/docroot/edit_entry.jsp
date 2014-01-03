@@ -130,49 +130,51 @@ if (entry == null) {
 	</aui:button-row>
 </aui:form>
 
-<div class="entry hide" id="<portlet:namespace />preview">
-	<div class="user-portrait">
-		<span class="avatar">
+<div class="entries preview unread-entries">
+	<div class="entry hide" id="<portlet:namespace />preview">
+		<div class="user-portrait">
+			<span class="avatar">
 
-			<%
-			User currentUser = UserLocalServiceUtil.getUserById(themeDisplay.getUserId());
-			%>
+				<%
+				User currentUser = UserLocalServiceUtil.getUserById(themeDisplay.getUserId());
+				%>
 
-			<a href="<%= currentUser.getDisplayURL(themeDisplay) %>">
-				<img alt="<%= currentUser.getFullName() %>" src="<%= currentUser.getPortraitURL(themeDisplay) %>" />
-			</a>
-		</span>
-	</div>
-
-	<div class="entry-data">
-		<div class="entry-header">
-			<div class="entry-time">
-				<%= LanguageUtil.get(pageContext, "about-a-minute-ago") %>
-			</div>
-
-			<div class="entry-action">
-				<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + currentUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(currentUser.getFullName()) + "</a>", "<span class=\"scope\" id=\"" + renderResponse.getNamespace() + "scope\"></span>"}) %>
-			</div>
+				<a href="<%= currentUser.getDisplayURL(themeDisplay) %>">
+					<img alt="<%= currentUser.getFullName() %>" src="<%= currentUser.getPortraitURL(themeDisplay) %>" />
+				</a>
+			</span>
 		</div>
 
-		<div class="entry-body">
-			<div class="title" id="<portlet:namespace />title"></div>
+		<div class="entry-data">
+			<div class="entry-header">
+				<div class="entry-time">
+					<%= LanguageUtil.get(pageContext, "about-a-minute-ago") %>
+				</div>
 
-			<div class="entry-content-container" id="<portlet:namespace />entryContentContainer">
-				<div class="entry-content" id="<portlet:namespace />entryContent"></div>
+				<div class="entry-action">
+					<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + currentUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(currentUser.getFullName()) + "</a>", "<span class=\"scope\" id=\"" + renderResponse.getNamespace() + "scope\"></span>"}) %>
+				</div>
 			</div>
-		</div>
 
-		<div class="entry-footer" id="<portlet:namespace />entryFooter">
-			<div class="entry-footer-toolbar">
-				<div class="edit-actions">
-					<span class="toggle action hide">
-						<a class="toggle-entry" data-entryId="preview" href="javascript:;">
-							<i class="icon-expand-alt"></i>
+			<div class="entry-body">
+				<div class="title" id="<portlet:namespace />title"></div>
 
-							<span><liferay-ui:message key="view-more" /></span>
-						</a>
-					</span>
+				<div class="entry-content-container" id="<portlet:namespace />entryContentContainer">
+					<div class="entry-content" id="<portlet:namespace />entryContent"></div>
+				</div>
+			</div>
+
+			<div class="entry-footer" id="<portlet:namespace />entryFooter">
+				<div class="entry-footer-toolbar">
+					<div class="edit-actions">
+						<span class="toggle action hide">
+							<a class="toggle-entry" data-entryId="preview" href="javascript:;">
+								<i class="icon-expand-alt"></i>
+
+								<span><liferay-ui:message key="view-more" /></span>
+							</a>
+						</span>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -229,7 +231,7 @@ if (entry == null) {
 			var title = A.one('#<portlet:namespace />title').get('value');
 		}
 
-		A.one('#<portlet:namespace />title').html(title);
+		A.one('.preview #<portlet:namespace />title').html(title);
 
 		var content = window.<portlet:namespace />editor.getHTML();
 
