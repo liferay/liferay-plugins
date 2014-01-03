@@ -646,7 +646,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, GadgetImpl.class);
@@ -833,7 +833,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
 				Gadget.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -989,7 +989,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -1618,7 +1618,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, GadgetImpl.class);
@@ -1811,7 +1811,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
 				Gadget.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -1981,7 +1981,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -2538,7 +2538,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, GadgetImpl.class);
@@ -2712,7 +2712,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
 				Gadget.class.getName(), _FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -2840,7 +2840,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -3469,6 +3469,8 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 
 		clearUniqueFindersCache(gadget);
 		cacheUniqueFindersCache(gadget);
+
+		gadget.resetOriginalValues();
 
 		return gadget;
 	}

@@ -285,6 +285,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public CheckoutLocalService getWrappedCheckoutLocalService() {
 		return _checkoutLocalService;
 	}
@@ -292,6 +293,7 @@ public class CheckoutLocalServiceWrapper implements CheckoutLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedCheckoutLocalService(
 		CheckoutLocalService checkoutLocalService) {
 		_checkoutLocalService = checkoutLocalService;

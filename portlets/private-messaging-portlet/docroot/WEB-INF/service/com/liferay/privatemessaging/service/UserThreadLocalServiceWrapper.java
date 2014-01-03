@@ -334,6 +334,14 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	}
 
 	@Override
+	public com.liferay.privatemessaging.model.UserThread fetchUserThread(
+		long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _userThreadLocalService.fetchUserThread(userId, mbThreadId);
+	}
+
+	@Override
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getMBThreadUserThreads(
 		long mbThreadId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -406,6 +414,7 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public UserThreadLocalService getWrappedUserThreadLocalService() {
 		return _userThreadLocalService;
 	}
@@ -413,6 +422,7 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedUserThreadLocalService(
 		UserThreadLocalService userThreadLocalService) {
 		_userThreadLocalService = userThreadLocalService;

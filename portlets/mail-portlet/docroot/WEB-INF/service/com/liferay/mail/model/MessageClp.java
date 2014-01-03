@@ -20,6 +20,7 @@ import com.liferay.mail.service.MessageLocalServiceUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -94,6 +95,9 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		attributes.put("flags", getFlags());
 		attributes.put("size", getSize());
 		attributes.put("remoteMessageId", getRemoteMessageId());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -213,6 +217,9 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 		if (remoteMessageId != null) {
 			setRemoteMessageId(remoteMessageId);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -833,6 +840,16 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(39);
 
@@ -990,4 +1007,6 @@ public class MessageClp extends BaseModelImpl<Message> implements Message {
 	private long _size;
 	private long _remoteMessageId;
 	private BaseModel<?> _messageRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

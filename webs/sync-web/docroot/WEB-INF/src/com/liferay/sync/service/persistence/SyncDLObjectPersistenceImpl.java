@@ -385,7 +385,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		if ((list != null) && !list.isEmpty()) {
 			for (SyncDLObject syncDLObject : list) {
 				if ((companyId != syncDLObject.getCompanyId()) ||
-						(modifiedTime != syncDLObject.getModifiedTime()) ||
+						(modifiedTime >= syncDLObject.getModifiedTime()) ||
 						(repositoryId != syncDLObject.getRepositoryId())) {
 					list = null;
 
@@ -1120,6 +1120,8 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 
 		clearUniqueFindersCache(syncDLObject);
 		cacheUniqueFindersCache(syncDLObject);
+
+		syncDLObject.resetOriginalValues();
 
 		return syncDLObject;
 	}

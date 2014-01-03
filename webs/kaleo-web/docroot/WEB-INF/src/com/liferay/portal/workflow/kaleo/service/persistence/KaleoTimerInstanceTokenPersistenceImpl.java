@@ -2331,6 +2331,8 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 		clearUniqueFindersCache(kaleoTimerInstanceToken);
 		cacheUniqueFindersCache(kaleoTimerInstanceToken);
 
+		kaleoTimerInstanceToken.resetOriginalValues();
+
 		return kaleoTimerInstanceToken;
 	}
 

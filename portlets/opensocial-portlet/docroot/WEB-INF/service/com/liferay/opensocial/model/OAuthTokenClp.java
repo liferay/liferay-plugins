@@ -19,6 +19,7 @@ import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -89,6 +90,9 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		attributes.put("tokenSecret", getTokenSecret());
 		attributes.put("sessionHandle", getSessionHandle());
 		attributes.put("expiration", getExpiration());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -178,6 +182,9 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 		if (expiration != null) {
 			setExpiration(expiration);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -642,6 +649,16 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(29);
 
@@ -764,4 +781,6 @@ public class OAuthTokenClp extends BaseModelImpl<OAuthToken>
 	private String _sessionHandle;
 	private long _expiration;
 	private BaseModel<?> _oAuthTokenRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

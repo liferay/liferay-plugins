@@ -43,7 +43,7 @@ catch (NoSuchRoleException nsre) {
 	</liferay-util:html-top>
 
 	<liferay-util:body-top>
-		<div class="so-portlet-user-bar" id="<portlet:namespace/>userBar">
+		<div class="so-portlet-user-bar" id="<portlet:namespace />userBar">
 
 			<%
 			Group group = user.getGroup();
@@ -60,7 +60,7 @@ catch (NoSuchRoleException nsre) {
 			</a>
 
 			<nav>
-				<ul class="dashboard-nav" id="<portlet:namespace/>dashboardNav">
+				<ul class="dashboard-nav" id="<portlet:namespace />dashboardNav">
 
 					<%
 					List<Layout> mylayouts = LayoutLocalServiceUtil.getLayouts(group.getGroupId(), true);
@@ -87,24 +87,4 @@ catch (NoSuchRoleException nsre) {
 			</nav>
 		</div>
 	</liferay-util:body-top>
-
-	<aui:script use="aui-base,liferay-so-user-menu">
-		var html = A.one('html');
-
-		html.on(
-			'click',
-			function(event) {
-				A.fire('close-menus');
-			}
-		);
-
-		new Liferay.SO.UserMenu(
-			{
-				node: '.portlet-dockbar .go-to',
-				showClass: 'search-focus',
-				showOn: 'focus',
-				trigger: '.portlet-dockbar .go-to .so-portlet-sites .search-input'
-			}
-		);
-	</aui:script>
 </c:if>

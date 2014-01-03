@@ -122,7 +122,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 				id: 'addEvent'
 			},
 			{
-				caption: '<liferay-ui:message key="hide-this-calendar-from-the-list" />',
+				caption: '<liferay-ui:message key="hide-calendar" />',
 				fn: function(event) {
 					var instance = this;
 
@@ -145,17 +145,32 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 					var activeCalendar = calendarList.activeItem;
 
-					<portlet:renderURL var="editCalendarURL">
+					<portlet:renderURL var="editCalendarURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 						<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="calendarId" value="{calendarId}" />
 					</portlet:renderURL>
 
-					window.location.href = A.Lang.sub(
-						decodeURIComponent('<%= editCalendarURL %>'),
+					Liferay.Util.openWindow(
 						{
-							calendarId: activeCalendar.get('calendarId'),
-							calendarResourceId: activeCalendar.get('calendarResourceId')
+							dialog: {
+								after: {
+									destroy: function(event) {
+										scheduler.load();
+									}
+								},
+								destroyOnClose: true,
+								modal: true
+							},
+							refreshWindow: window,
+							title: Liferay.Language.get('calendar-settings'),
+							uri: A.Lang.sub(
+								decodeURIComponent('<%= editCalendarURL %>'),
+								{
+									calendarId: activeCalendar.get('calendarId'),
+									calendarResourceId: activeCalendar.get('calendarResourceId')
+								}
+							)
 						}
 					);
 				},
@@ -176,14 +191,30 @@ String backURL = PortalUtil.getCurrentURL(request);
 						resourceGroupId="{resourceGroupId}"
 						resourcePrimKey="{resourcePrimKey}"
 						var="permissionsURL"
+						windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 					/>
 
-					window.location.href = A.Lang.sub(
-						decodeURIComponent('<%= permissionsURL %>'),
+					Liferay.Util.openWindow(
 						{
-							resourceGroupId: activeCalendar.get('groupId'),
-							resourcePrimKey: activeCalendar.get('calendarId'),
-							modelResourceDescription: activeCalendar.get('name')
+							dialog: {
+								after: {
+									destroy: function(event) {
+										scheduler.load();
+									}
+								},
+								destroyOnClose: true,
+								modal: true
+							},
+							refreshWindow: window,
+							title: Liferay.Language.get('permissions'),
+							uri: A.Lang.sub(
+								decodeURIComponent('<%= permissionsURL %>'),
+								{
+									resourceGroupId: activeCalendar.get('groupId'),
+									resourcePrimKey: activeCalendar.get('calendarId'),
+									modelResourceDescription: activeCalendar.get('name')
+								}
+							)
 						}
 					);
 				},
@@ -310,7 +341,8 @@ String backURL = PortalUtil.getCurrentURL(request);
 					colorPickerContainer.append(window.<portlet:namespace />colorPicker.get('boundingBox'));
 				}
 			}
-		}
+		},
+		width: 225
 	};
 
 	<portlet:namespace />colorPicker = new Liferay.SimpleColorPicker(

@@ -305,6 +305,14 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	}
 
 	@Override
+	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
+		int[] types, long modifiedDate, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _statusLocalService.getSocialStatuses(userId, types,
+			modifiedDate, start, end);
+	}
+
+	@Override
 	public com.liferay.chat.model.Status getUserStatus(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.getUserStatus(userId);
@@ -329,6 +337,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public StatusLocalService getWrappedStatusLocalService() {
 		return _statusLocalService;
 	}
@@ -336,6 +345,7 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedStatusLocalService(
 		StatusLocalService statusLocalService) {
 		_statusLocalService = statusLocalService;

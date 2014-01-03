@@ -983,6 +983,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public CalendarResource getWrappedCalendarResource() {
 		return _calendarResource;
 	}
@@ -990,6 +991,16 @@ public class CalendarResourceWrapper implements CalendarResource,
 	@Override
 	public CalendarResource getWrappedModel() {
 		return _calendarResource;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _calendarResource.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _calendarResource.isFinderCacheEnabled();
 	}
 
 	@Override

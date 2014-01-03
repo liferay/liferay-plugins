@@ -45,7 +45,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 
 				<div class="user-portrait">
 					<span class="avatar">
-						<a href="<%= receiverUser.getDisplayURL(themeDisplay) %>"><img alt="<%= receiverUser.getFullName() %>" src="<%= receiverUser.getPortraitURL(themeDisplay) %>" /></a>
+						<a href="<%= receiverUser.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(receiverUser.getFullName()) %>" src="<%= receiverUser.getPortraitURL(themeDisplay) %>" /></a>
 					</span>
 				</div>
 
@@ -56,7 +56,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 						</div>
 
 						<div class="activity-user-name">
-							<%= receiverUser.getFullName() %>
+							<%= HtmlUtil.escape(receiverUser.getFullName()) %>
 						</div>
 					</div>
 
@@ -77,7 +77,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 
 <aui:script>
 	function <portlet:namespace />closeEntry() {
-		Liferay.Util.getWindow('<portlet:namespace />Dialog').close();
+		Liferay.Util.getWindow('<portlet:namespace />Dialog').destroy();
 	}
 
 	function <portlet:namespace />saveEntry() {

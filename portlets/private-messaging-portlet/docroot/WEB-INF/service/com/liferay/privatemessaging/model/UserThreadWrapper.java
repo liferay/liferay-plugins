@@ -515,6 +515,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public UserThread getWrappedUserThread() {
 		return _userThread;
 	}
@@ -522,6 +523,16 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	@Override
 	public UserThread getWrappedModel() {
 		return _userThread;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _userThread.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _userThread.isFinderCacheEnabled();
 	}
 
 	@Override

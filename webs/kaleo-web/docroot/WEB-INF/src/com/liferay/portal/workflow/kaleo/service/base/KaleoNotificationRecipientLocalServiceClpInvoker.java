@@ -106,33 +106,33 @@ public class KaleoNotificationRecipientLocalServiceClpInvoker {
 				"com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient"
 			};
 
-		_methodName102 = "getBeanIdentifier";
+		_methodName108 = "getBeanIdentifier";
 
-		_methodParameterTypes102 = new String[] {  };
+		_methodParameterTypes108 = new String[] {  };
 
-		_methodName103 = "setBeanIdentifier";
+		_methodName109 = "setBeanIdentifier";
 
-		_methodParameterTypes103 = new String[] { "java.lang.String" };
+		_methodParameterTypes109 = new String[] { "java.lang.String" };
 
-		_methodName108 = "addKaleoNotificationRecipient";
+		_methodName114 = "addKaleoNotificationRecipient";
 
-		_methodParameterTypes108 = new String[] {
+		_methodParameterTypes114 = new String[] {
 				"long", "long",
 				"com.liferay.portal.workflow.kaleo.definition.Recipient",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName109 = "deleteCompanyKaleoNotificationRecipients";
+		_methodName115 = "deleteCompanyKaleoNotificationRecipients";
 
-		_methodParameterTypes109 = new String[] { "long" };
+		_methodParameterTypes115 = new String[] { "long" };
 
-		_methodName110 = "deleteKaleoDefinitionKaleoNotificationRecipients";
+		_methodName116 = "deleteKaleoDefinitionKaleoNotificationRecipients";
 
-		_methodParameterTypes110 = new String[] { "long" };
+		_methodParameterTypes116 = new String[] { "long" };
 
-		_methodName111 = "getKaleoNotificationRecipients";
+		_methodName117 = "getKaleoNotificationRecipients";
 
-		_methodParameterTypes111 = new String[] { "long" };
+		_methodParameterTypes117 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -224,42 +224,42 @@ public class KaleoNotificationRecipientLocalServiceClpInvoker {
 			return KaleoNotificationRecipientLocalServiceUtil.updateKaleoNotificationRecipient((com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient)arguments[0]);
 		}
 
-		if (_methodName102.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes102, parameterTypes)) {
+		if (_methodName108.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
 			return KaleoNotificationRecipientLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName103.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes103, parameterTypes)) {
+		if (_methodName109.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
 			KaleoNotificationRecipientLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName108.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
+		if (_methodName114.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes114, parameterTypes)) {
 			return KaleoNotificationRecipientLocalServiceUtil.addKaleoNotificationRecipient(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(com.liferay.portal.workflow.kaleo.definition.Recipient)arguments[2],
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName109.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
+		if (_methodName115.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes115, parameterTypes)) {
 			KaleoNotificationRecipientLocalServiceUtil.deleteCompanyKaleoNotificationRecipients(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName110.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
+		if (_methodName116.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes116, parameterTypes)) {
 			KaleoNotificationRecipientLocalServiceUtil.deleteKaleoDefinitionKaleoNotificationRecipients(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName111.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
+		if (_methodName117.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes117, parameterTypes)) {
 			return KaleoNotificationRecipientLocalServiceUtil.getKaleoNotificationRecipients(((Long)arguments[0]).longValue());
 		}
 
@@ -298,16 +298,16 @@ public class KaleoNotificationRecipientLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName102;
-	private String[] _methodParameterTypes102;
-	private String _methodName103;
-	private String[] _methodParameterTypes103;
 	private String _methodName108;
 	private String[] _methodParameterTypes108;
 	private String _methodName109;
 	private String[] _methodParameterTypes109;
-	private String _methodName110;
-	private String[] _methodParameterTypes110;
-	private String _methodName111;
-	private String[] _methodParameterTypes111;
+	private String _methodName114;
+	private String[] _methodParameterTypes114;
+	private String _methodName115;
+	private String[] _methodParameterTypes115;
+	private String _methodName116;
+	private String[] _methodParameterTypes116;
+	private String _methodName117;
+	private String[] _methodParameterTypes117;
 }

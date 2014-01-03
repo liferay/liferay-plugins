@@ -571,6 +571,7 @@ public class MemberRequestWrapper implements MemberRequest,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public MemberRequest getWrappedMemberRequest() {
 		return _memberRequest;
 	}
@@ -578,6 +579,16 @@ public class MemberRequestWrapper implements MemberRequest,
 	@Override
 	public MemberRequest getWrappedModel() {
 		return _memberRequest;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _memberRequest.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _memberRequest.isFinderCacheEnabled();
 	}
 
 	@Override

@@ -457,6 +457,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public WSRPProducer getWrappedWSRPProducer() {
 		return _wsrpProducer;
 	}
@@ -464,6 +465,16 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	@Override
 	public WSRPProducer getWrappedModel() {
 		return _wsrpProducer;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _wsrpProducer.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _wsrpProducer.isFinderCacheEnabled();
 	}
 
 	@Override

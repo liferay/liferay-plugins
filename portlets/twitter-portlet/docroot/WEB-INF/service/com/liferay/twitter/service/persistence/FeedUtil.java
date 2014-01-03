@@ -342,6 +342,7 @@ public class FeedUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setPersistence(FeedPersistence persistence) {
 	}
 

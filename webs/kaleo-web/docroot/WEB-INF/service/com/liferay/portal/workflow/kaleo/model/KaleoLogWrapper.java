@@ -1056,6 +1056,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoLog getWrappedKaleoLog() {
 		return _kaleoLog;
 	}
@@ -1063,6 +1064,16 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	@Override
 	public KaleoLog getWrappedModel() {
 		return _kaleoLog;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoLog.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoLog.isFinderCacheEnabled();
 	}
 
 	@Override

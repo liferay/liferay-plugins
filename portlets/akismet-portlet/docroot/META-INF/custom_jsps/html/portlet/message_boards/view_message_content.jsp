@@ -29,10 +29,12 @@
 		int x = html.indexOf("<ul class=\"edit-controls", messagePos);
 		int y = html.indexOf("</ul>", x);
 
-		int messageIdPos = html.indexOf("_19_messageId=", x);
+		String messageIdParameter = renderResponse.getNamespace() + "messageId=";
+
+		int messageIdPos = html.indexOf(messageIdParameter, x);
 
 		if ((x > 0) && (y > 0) && (messageIdPos > 0)) {
-			String messageId = html.substring(messageIdPos + 14, html.indexOf("\"", messageIdPos));
+			String messageId = html.substring(messageIdPos + messageIdParameter.length(), html.indexOf("\"", messageIdPos));
 
 			MBMessage message = null;
 

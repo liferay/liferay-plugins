@@ -1,4 +1,5 @@
 @import "compass";
+@import "mixins";
 
 .calendar-booking-invitations {
 	min-height: 110px;
@@ -98,11 +99,6 @@
 	.calendar-portlet-column-grid {
 		position: relative;
 
-		&.calendar-portlet-column-full {
-			margin-left: 0;
-			width: 100%;
-		}
-
 		.calendar-portlet-column-toggler {
 			bottom: 0;
 			margin-left: -10px;
@@ -158,6 +154,10 @@
 		cursor: default;
 		text-decoration: none;
 	}
+}
+
+.calendar-portlet-add-calendars-input {
+	max-width: 90%;
 }
 
 .calendar-portlet-availability {
@@ -325,19 +325,9 @@
 	margin-bottom: 2em;
 }
 
-.ie6, .ie7 {
+.ie6, .ie7, .ie8 {
 	.yui3-skin-sam .yui3-calendar-day.lfr-busy-day {
 		background: transparent url(../images/lfr-busy-day-arrow.png) right top no-repeat;
-	}
-}
-
-.property-list {
-	margin-left: 0;
-	margin-top: 0;
-	padding: 0;
-
-	dt {
-		font-weight: bold;
 	}
 }
 
@@ -364,7 +354,7 @@
 	border: 1px solid #C4C4C4;
 	outline-width: 0;
 	padding: 7px;
-	width: 482px;
+	width: 90%;
 }
 
 .scheduler-event-recorder-header .scheduler-event-recorder-content:hover {
@@ -413,7 +403,7 @@
 	cursor: pointer;
 	list-style-type: none;
 	overflow: hidden;
-	padding: 6px 7em 6px 30px;
+	padding: 6px 30px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 
@@ -553,4 +543,10 @@
 
 .simple-color-picker-item:hover, .simple-color-picker-item-selected {
 	@include transition(border-color 0s);
+}
+
+@include respond-to(phone, tablet) {
+	.scheduler-view-table-header-day div {
+		overflow: hidden
+	}
 }

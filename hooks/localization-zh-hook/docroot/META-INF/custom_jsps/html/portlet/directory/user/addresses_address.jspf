@@ -45,7 +45,7 @@ Region region = address.getRegion();
 </c:if>
 
 <c:if test="<%= Validator.isNotNull(zipCode) %>">
-	<liferay-ui:message key="zip-code-label" /> <%= zipCode %>
+	<liferay-ui:message key="zip-code-label" /> <%= HtmlUtil.escape(zipCode) %>
 </c:if>
 
 <c:if test="<%= address.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>

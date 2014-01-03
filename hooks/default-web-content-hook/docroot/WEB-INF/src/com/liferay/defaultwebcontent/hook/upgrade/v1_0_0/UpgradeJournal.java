@@ -15,6 +15,7 @@
 package com.liferay.defaultwebcontent.hook.upgrade.v1_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.upgrade.util.UpgradeProcessUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -37,19 +38,20 @@ import java.util.Map;
  */
 public class UpgradeJournal extends UpgradeProcess {
 
-	protected void addJournalStructures(long groupId, long userId)
+	protected void addJournalStructures(
+			long groupId, long userId, Locale locale)
 		throws Exception {
 
 		// Article
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(LocaleUtil.getDefault(), "Article");
+		nameMap.put(locale, "Article");
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
 		descriptionMap.put(
-			LocaleUtil.getDefault(),
+			locale,
 			"This structure accommodates article title, both main, and " +
 				"preview images, and the main article body.");
 
@@ -66,10 +68,10 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		// Carousel
 
-		nameMap.put(LocaleUtil.getDefault(), "Carousel");
+		nameMap.put(locale, "Carousel");
 
 		descriptionMap.put(
-			LocaleUtil.getDefault(),
+			locale,
 			"This is a simple carousel structure designed to handle other " +
 				"necessary carousel configurations.");
 
@@ -81,10 +83,10 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		// Multiple Item
 
-		nameMap.put(LocaleUtil.getDefault(), "Multiple Item");
+		nameMap.put(locale, "Multiple Item");
 
 		descriptionMap.put(
-			LocaleUtil.getDefault(),
+			locale,
 			"This is a simple structure with a single repeatable element " +
 				"that includes an HTML field, and text-box for a title and " +
 					"URL designation.");
@@ -96,19 +98,19 @@ public class UpgradeJournal extends UpgradeProcess {
 			descriptionMap, xsd, serviceContext);
 	}
 
-	protected void addJournalTemplates(long groupId, long userId)
+	protected void addJournalTemplates(long groupId, long userId, Locale locale)
 		throws Exception {
 
 		// Regular Article Description
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(LocaleUtil.getDefault(), "Regular Article Description");
+		nameMap.put(locale, "Regular Article Description");
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
 		descriptionMap.put(
-			LocaleUtil.getDefault(),
+			locale,
 			"This template only displays brief descriptions of web content");
 
 		String xsl = getFileAsString("/templates/article_description.vm");
@@ -125,10 +127,10 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		// Regular Article
 
-		nameMap.put(LocaleUtil.getDefault(), "Regular Article");
+		nameMap.put(locale, "Regular Article");
 
 		descriptionMap.put(
-			LocaleUtil.getDefault(),
+			locale,
 			"This is the regular article template, it handles basic article " +
 				"content like, titles, main image, body, and author " +
 					"information.");
@@ -142,10 +144,10 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		// Carousel
 
-		nameMap.put(LocaleUtil.getDefault(), "Carousel");
+		nameMap.put(locale, "Carousel");
 
 		descriptionMap.put(
-			LocaleUtil.getDefault(),
+			locale,
 			"This is the carousel template that utilizes Alloy UI to display " +
 				"repeatable content as a slideshow.");
 
@@ -158,10 +160,10 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		// Featured Items
 
-		nameMap.put(LocaleUtil.getDefault(), "Featured Items");
+		nameMap.put(locale, "Featured Items");
 
 		descriptionMap.put(
-			LocaleUtil.getDefault(),
+			locale,
 			"This is a template that utilizes the Multiple Item Structure, " +
 				"and displays the data as Featured Items.");
 
@@ -182,8 +184,12 @@ public class UpgradeJournal extends UpgradeProcess {
 		long groupId = group.getGroupId();
 		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
-		addJournalStructures(groupId, userId);
-		addJournalTemplates(groupId, userId);
+		String languageId = UpgradeProcessUtil.getDefaultLanguageId(companyId);
+
+		Locale locale = LocaleUtil.fromLanguageId(languageId);
+
+		addJournalStructures(groupId, userId, locale);
+		addJournalTemplates(groupId, userId, locale);
 	}
 
 	protected String getFileAsString(String path) throws Exception {

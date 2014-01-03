@@ -69,7 +69,7 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 					</c:when>
 					<c:otherwise>
 						<aui:field-wrapper label="code">
-							<%= HtmlUtil.escape(code) %>
+							<liferay-ui:input-resource url="<%= code %>" />
 						</aui:field-wrapper>
 					</c:otherwise>
 				</c:choose>
@@ -117,6 +117,10 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 </aui:form>
 
 <aui:script>
+	function <portlet:namespace />getSuggestionsContent() {
+		return document.<portlet:namespace />fm.<portlet:namespace />name.value + ' ' + document.<portlet:namespace />fm.<portlet:namespace />description.value;
+	}
+
 	function <portlet:namespace />updateCalendarResource() {
 		submitForm(document.<portlet:namespace />fm);
 	}

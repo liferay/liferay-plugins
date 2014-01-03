@@ -1,26 +1,42 @@
 @import "compass";
 
 .private-messaging-portlet {
-	.column-content {
-		.check-all {
-			margin: 0 20px 0 5px;
-		}
+	.layout {
+		width: auto;
+	}
+
+	.alert {
+		margin-bottom: 0;
+	}
+
+	.column-content .check-all {
+		margin: 0 20px 0 5px;
+	}
+
+	.navbar, .lfr-search-container {
+		margin: 0;
+	}
+
+	.navbar-inner {
+		border-bottom-width: 0;
+		padding: 0 10px;
 	}
 
 	img.avatar {
-		width: 50px;
+		width: 60px;
 	}
 
+	.thread .message-container {
+		margin: 0 10px;
+	}
 
-	.controls {
-		.check-all {
-			margin-left: -10px;
-			margin-top: 13px;
-		}
+	.message-container .portlet-msg-error {
+		display: block;
+		margin-bottom: 10px;
+	}
 
-		.back-button {
-			float: right;
-		}
+	.controls .check-all {
+		margin: 15px 10px 0 0;
 	}
 
 	.message-attachments {
@@ -35,16 +51,14 @@
 		width: 300px;
 	}
 
-	.message-body {
+	.message-body, .message-subject, .message-to {
 		width: 90%;
 	}
 
-	.message-body-container .message-body-container-content {
-		padding: 10px;
-
-		.autocomplete-button {
-			margin: 0;
-		}
+	input[type="file"] {
+		height: 24px;
+		line-height: 24px;
+		padding: 0;
 	}
 
 	.author-sender {
@@ -53,8 +67,9 @@
 
 	.message-link {
 		display: block;
-		margin: -10px -10px -10px -60px;
-		padding: 10px 10px 10px 60px;
+		margin: -10px;
+		padding: 10px;
+		padding-left: 80px;
 		position: relative;
 		z-index: 1;
 
@@ -71,6 +86,24 @@
 		display: none;
 	}
 
+	.table {
+		border-top: 0;
+		margin-bottom: 0;
+
+		thead {
+			display: none;
+		}
+
+		.first {
+			vertical-align: middle;
+			width: 12px;
+		}
+	}
+
+	.table-striped .table-data .first, .table-striped .table-data .last {
+		background: none;
+	}
+
 	/* Messages */
 
 	.unread {
@@ -81,32 +114,39 @@
 		}
 	}
 
-	.private-messaging-container .taglib-search-iterator .col-1 {
-		width: 10px;
-	}
-
 	/* Results */
 
-	.messages .results-grid {
-		border-width: 0;
-
-		table.taglib-search-iterator, .results-row td, .results-row.alt td {
-			border: 1px solid #CFCFCF;
-		}
-
-		.results-row td, .results-row.alt td {
+	.messages .table-data tr {
+		&:hover td, &:nth-child(odd) td, td {
 			background: #FFF;
 			padding: 10px;
 		}
 
-		.results-row.unread td {
+		&.unread td {
 			background: #F0F5F7;
 		}
+	}
+
+	.taglib-page-iterator {
+		padding: 10px;
+
+		.lfr-pagination-buttons, .lfr-pagination-config, .search-results {
+			line-height: 30px;
+		}
+	}
+
+	.taglib-search-iterator-page-iterator-top {
+		border-top: 1px solid #DDD;
+		margin-bottom: 0;
 	}
 
 	/* Thread */
 
 	.thread {
+		.taglib-header {
+			border-top: 1px solid #C8C9CA;
+		}
+
 		.body {
 			padding: 5px 60px 0 0;
 
@@ -127,13 +167,25 @@
 			padding: 0 10px 10px;
 		}
 
-		.results-row td {
-			border-bottom: 1px solid #CFCFCF;
+		tr td {
 			background-color: transparent;
+			border-bottom: 1px solid #CFCFCF;
+
+			&.last, &.only {
+				border-bottom-width: 0;
+			}
+		}
+
+		.lfr-search-container, .message-body-container-content {
+			margin: 0 10px;
 		}
 
 		.name {
 			font-weight: bold;
+		}
+
+		.back-button {
+			float: right;
 		}
 	}
 
@@ -146,10 +198,6 @@
 	.messages .taglib-user-display, .thread .taglib-user-display {
 		float: left;
 		padding: 0;
-	}
-
-	.messages .last-thread, .thread .message {
-		margin-left: 60px;
 	}
 
 	.line-through {

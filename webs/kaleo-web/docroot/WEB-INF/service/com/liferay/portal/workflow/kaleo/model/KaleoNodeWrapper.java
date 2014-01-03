@@ -650,6 +650,7 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoNode getWrappedKaleoNode() {
 		return _kaleoNode;
 	}
@@ -657,6 +658,16 @@ public class KaleoNodeWrapper implements KaleoNode, ModelWrapper<KaleoNode> {
 	@Override
 	public KaleoNode getWrappedModel() {
 		return _kaleoNode;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoNode.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoNode.isFinderCacheEnabled();
 	}
 
 	@Override

@@ -61,7 +61,7 @@ for (long userId : userIds) {
 to = sb.toString() + to;
 %>
 
-<div id="<portlet:namespace />messageContainer"></div>
+<div class="message-container" id="<portlet:namespace />messageContainer"></div>
 
 <aui:layout cssClass="message-body-container">
 	<aui:form enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
@@ -109,22 +109,10 @@ to = sb.toString() + to;
 		<aui:input label="" name="msgFile3" type="file" />
 
 		<aui:button-row>
-			<input type="submit" value="<liferay-ui:message key="send" />" />
+			<aui:button primary="<%= true %>" type="submit" value="send" />
 		</aui:button-row>
 	</aui:form>
 </aui:layout>
-
-<aui:script>
-	function <portlet:namespace />showMessage(message) {
-		var A = AUI();
-
-		var messageContainer = A.one('#<portlet:namespace />messageContainer');
-
-		if (messageContainer) {
-			messageContainer.html(message);
-		}
-	}
-</aui:script>
 
 <aui:script use="aui-io-request-deprecated,aui-loading-mask-deprecated,autocomplete,io-upload-iframe,json-parse">
 	var form = A.one('#<portlet:namespace />fm');
@@ -162,7 +150,7 @@ to = sb.toString() + to;
 			loadingMask.show();
 
 			A.io.request(
-				'<liferay-portlet:actionURL name="sendMessage"></liferay-portlet:actionURL>',
+				'<liferay-portlet:resourceURL id="sendMessage"></liferay-portlet:resourceURL>',
 				{
 					dataType: 'json',
 					form: {
@@ -176,16 +164,14 @@ to = sb.toString() + to;
 							var responseData = A.JSON.parse(responseText);
 
 							if (responseData.success) {
-								if (<%= Validator.isNotNull(redirect) %>) {
-									var topWindow = Liferay.Util.getTop();
-
-									topWindow.location.href = '<liferay-portlet:renderURL windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="mvcPath" value="/view.jsp" /></liferay-portlet:renderURL>';
-								}
-
 								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 							}
 							else {
-								<portlet:namespace />showMessage('<span class="portlet-msg-error">' + responseData.message + '</span>');
+								var messageContainer = A.one('#<portlet:namespace />messageContainer');
+
+								if (messageContainer) {
+									messageContainer.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+								}
 
 								loadingMask.hide();
 							}
@@ -196,13 +182,13 @@ to = sb.toString() + to;
 		}
 	);
 
-	var to = A.one('#<portlet:namespace/>to');
+	var to = A.one('#<portlet:namespace />to');
 
 	to.plug(
 		A.Plugin.AutoComplete,
 		{
 			queryDelimiter: ',',
-			requestTemplate: '&keywords={query}',
+			requestTemplate: '&<portlet:namespace />keywords={query}',
 			resultListLocator: 'results.users',
 			resultTextLocator: 'name',
 			source: '<liferay-portlet:resourceURL id="getUsers" />'

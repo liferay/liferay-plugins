@@ -25,53 +25,50 @@ Group group = themeDisplay.getScopeGroup();
 List<SocialActivity> results = null;
 int total = 0;
 
-int start = ParamUtil.getInteger(request, "start", 0);
-int end = start + delta;
-%>
+int start = ParamUtil.getInteger(request, "start");
+int end = start + _DELTA;
 
-<c:choose>
-	<c:when test="<%= group.isUser() %>">
-
-		<%
-		if (!layout.isPublicLayout()) {
-			if (tabs1.equals("connections")) {
-				results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION, searchContainer.getStart(), searchContainer.getEnd());
-				total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_BI_CONNECTION);
-			}
-			else if (tabs1.equals("following")) {
-				results = SocialActivityLocalServiceUtil.getRelationActivities(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER, searchContainer.getStart(), searchContainer.getEnd());
-				total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(themeDisplay.getUserId(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-			}
-			else if (tabs1.equals("my-sites")) {
-				results = SocialActivityLocalServiceUtil.getUserGroupsActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-				total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(themeDisplay.getUserId());
-			}
-			else {
-				results = SocialActivityLocalServiceUtil.getUserActivities(themeDisplay.getUserId(), searchContainer.getStart(), searchContainer.getEnd());
-				total = SocialActivityLocalServiceUtil.getUserActivitiesCount(themeDisplay.getUserId());
-			}
+if (group.isUser()) {
+	if (!layout.isPublicLayout()) {
+		if (tabs1.equals("connections")) {
+			results = SocialActivityLocalServiceUtil.getRelationActivities(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
+		}
+		else if (tabs1.equals("following")) {
+			results = SocialActivityLocalServiceUtil.getRelationActivities(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
+			total = SocialActivityLocalServiceUtil.getRelationActivitiesCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+		}
+		else if (tabs1.equals("my-sites")) {
+			results = SocialActivityLocalServiceUtil.getUserGroupsActivities(group.getClassPK(), start, end);
+			total = SocialActivityLocalServiceUtil.getUserGroupsActivitiesCount(group.getClassPK());
 		}
 		else {
-			results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), searchContainer.getStart(), searchContainer.getEnd());
+			results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), start, end);
 			total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
 		}
-		%>
-
-	</c:when>
-	<c:otherwise>
-
-		<%
-		results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), searchContainer.getStart(), searchContainer.getEnd());
-		total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
-		%>
-
-	</c:otherwise>
-</c:choose>
+	}
+	else {
+		results = SocialActivityLocalServiceUtil.getUserActivities(group.getClassPK(), start, end);
+		total = SocialActivityLocalServiceUtil.getUserActivitiesCount(group.getClassPK());
+	}
+}
+else {
+	results = SocialActivityLocalServiceUtil.getGroupActivities(group.getGroupId(), start, end);
+	total = SocialActivityLocalServiceUtil.getGroupActivitiesCount(group.getGroupId());
+}
+%>
 
 <%@ include file="/activities/view_activities_feed.jspf" %>
 
 <c:if test="<%= (results.isEmpty()) %>">
 	<div class="no-activities">
-		<liferay-ui:message key="there-are-no-activities" />
+		<c:choose>
+			<c:when test="<%= total == 0 %>">
+				<liferay-ui:message key="there-are-no-activities" />
+			</c:when>
+			<c:otherwise>
+				<liferay-ui:message key="there-are-no-more-activities" />
+			</c:otherwise>
+		</c:choose>
 	</div>
 </c:if>

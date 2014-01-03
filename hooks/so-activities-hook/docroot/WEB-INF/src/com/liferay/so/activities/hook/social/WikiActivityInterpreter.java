@@ -223,6 +223,10 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			(activitySet.getType() ==
 				SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
+			if (!hasPermissions(activitySet, serviceContext)) {
+				return null;
+			}
+
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
@@ -389,7 +393,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 		nodeURL.setParameter("struts_action", "/wiki/view");
 		nodeURL.setParameter("nodeId", String.valueOf(node.getNodeId()));
 
-		return wrapLink(nodeURL.toString(), HtmlUtil.escape(node.getName()));
+		return wrapLink(nodeURL.toString(), node.getName());
 	}
 
 	@Override

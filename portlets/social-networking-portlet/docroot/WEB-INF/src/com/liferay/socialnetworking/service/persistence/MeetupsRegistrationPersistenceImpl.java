@@ -1711,6 +1711,8 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 		clearUniqueFindersCache(meetupsRegistration);
 		cacheUniqueFindersCache(meetupsRegistration);
 
+		meetupsRegistration.resetOriginalValues();
+
 		return meetupsRegistration;
 	}
 

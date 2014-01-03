@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -2520,7 +2521,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -2700,7 +2701,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -2843,7 +2844,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -6105,7 +6106,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -6285,7 +6286,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -6428,7 +6429,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -7012,7 +7013,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -7192,7 +7193,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -7334,7 +7335,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -7919,7 +7920,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -8099,7 +8100,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -8240,7 +8241,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -12918,7 +12919,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -13104,7 +13105,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -13285,7 +13286,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -13733,7 +13734,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -13825,7 +13826,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -14473,7 +14474,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -14659,7 +14660,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -14840,7 +14841,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -15288,7 +15289,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -15380,7 +15381,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -16027,7 +16028,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -16213,7 +16214,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -16393,7 +16394,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -16841,7 +16842,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -16933,7 +16934,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -17584,7 +17585,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -17772,7 +17773,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -17955,7 +17956,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -18411,7 +18412,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -18504,7 +18505,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -19155,7 +19156,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -19343,7 +19344,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -19525,7 +19526,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -19978,7 +19979,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -20071,7 +20072,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -20722,7 +20723,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -20910,7 +20911,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -21092,7 +21093,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -21547,7 +21548,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -21640,7 +21641,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -21775,7 +21776,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (KBArticle kbArticle : list) {
 				if ((groupId != kbArticle.getGroupId()) ||
 						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
-						!Validator.equals(sections, kbArticle.getSections()) ||
+						!StringUtil.wildcardMatches(kbArticle.getSections(),
+							sections, CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true) ||
 						(latest != kbArticle.getLatest())) {
 					list = null;
 
@@ -22340,7 +22343,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -22548,7 +22551,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -22756,7 +22759,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -23296,7 +23299,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -23412,7 +23415,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -23559,7 +23562,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (KBArticle kbArticle : list) {
 				if ((groupId != kbArticle.getGroupId()) ||
 						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
-						!Validator.equals(sections, kbArticle.getSections()) ||
+						!StringUtil.wildcardMatches(kbArticle.getSections(),
+							sections, CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true) ||
 						(main != kbArticle.getMain())) {
 					list = null;
 
@@ -24124,7 +24129,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -24332,7 +24337,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -24540,7 +24545,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -25079,7 +25084,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -25195,7 +25200,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -25342,7 +25347,9 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 			for (KBArticle kbArticle : list) {
 				if ((groupId != kbArticle.getGroupId()) ||
 						(parentResourcePrimKey != kbArticle.getParentResourcePrimKey()) ||
-						!Validator.equals(sections, kbArticle.getSections()) ||
+						!StringUtil.wildcardMatches(kbArticle.getSections(),
+							sections, CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true) ||
 						(status != kbArticle.getStatus())) {
 					list = null;
 
@@ -25907,7 +25914,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -26115,7 +26122,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 				KBArticle.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -26322,7 +26329,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, KBArticleImpl.class);
@@ -26861,7 +26868,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -26977,7 +26984,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -27833,6 +27840,8 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 
 		clearUniqueFindersCache(kbArticle);
 		cacheUniqueFindersCache(kbArticle);
+
+		kbArticle.resetOriginalValues();
 
 		return kbArticle;
 	}

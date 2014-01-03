@@ -5595,6 +5595,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 		clearUniqueFindersCache(calendarBooking);
 		cacheUniqueFindersCache(calendarBooking);
 
+		calendarBooking.resetOriginalValues();
+
 		return calendarBooking;
 	}
 

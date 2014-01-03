@@ -21,9 +21,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services.
+ * This class is used by SOAP remote services, specifically {@link com.liferay.privatemessaging.service.http.UserThreadServiceSoap}.
  *
  * @author Brian Wing Shun Chan
+ * @see com.liferay.privatemessaging.service.http.UserThreadServiceSoap
  * @generated
  */
 public class UserThreadSoap implements Serializable {

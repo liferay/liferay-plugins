@@ -20,6 +20,7 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -84,6 +85,9 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		attributes.put("url", getUrl());
 		attributes.put("portletCategoryNames", getPortletCategoryNames());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -137,6 +141,9 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		if (portletCategoryNames != null) {
 			setPortletCategoryNames(portletCategoryNames);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -452,6 +459,16 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(17);
 
@@ -531,4 +548,6 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	private String _url;
 	private String _portletCategoryNames;
 	private BaseModel<?> _gadgetRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

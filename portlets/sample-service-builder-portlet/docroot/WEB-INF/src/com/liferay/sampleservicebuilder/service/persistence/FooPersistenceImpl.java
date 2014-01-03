@@ -2263,6 +2263,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		clearUniqueFindersCache(foo);
 		cacheUniqueFindersCache(foo);
 
+		foo.resetOriginalValues();
+
 		return foo;
 	}
 

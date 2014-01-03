@@ -1,7 +1,11 @@
 /commons-logging.jar
+/contacts-shared.jar
 /jstl-api.jar
 /jstl-impl.jar
 /log4j.jar
+/portal-compat-shared.jar
+/private-messaging-portlet-service.jar
+/private-messaging-shared.jar
 /util-bridges.jar
 /util-java.jar
 /util-taglib.jar

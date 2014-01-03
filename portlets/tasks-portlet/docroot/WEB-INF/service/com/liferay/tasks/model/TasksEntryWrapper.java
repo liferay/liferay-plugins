@@ -666,6 +666,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public TasksEntry getWrappedTasksEntry() {
 		return _tasksEntry;
 	}
@@ -673,6 +674,16 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	@Override
 	public TasksEntry getWrappedModel() {
 		return _tasksEntry;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _tasksEntry.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _tasksEntry.isFinderCacheEnabled();
 	}
 
 	@Override

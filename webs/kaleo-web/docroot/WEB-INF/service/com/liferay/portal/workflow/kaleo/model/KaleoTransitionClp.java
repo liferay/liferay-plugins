@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -90,6 +91,9 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		attributes.put("targetKaleoNodeId", getTargetKaleoNodeId());
 		attributes.put("targetKaleoNodeName", getTargetKaleoNodeName());
 		attributes.put("defaultTransition", getDefaultTransition());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -193,6 +197,9 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 		if (defaultTransition != null) {
 			setDefaultTransition(defaultTransition);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -763,6 +770,16 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(33);
 
@@ -899,4 +916,6 @@ public class KaleoTransitionClp extends BaseModelImpl<KaleoTransition>
 	private String _targetKaleoNodeName;
 	private boolean _defaultTransition;
 	private BaseModel<?> _kaleoTransitionRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

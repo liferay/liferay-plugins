@@ -50,6 +50,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		RowChecker rowChecker = new RowChecker(renderResponse);
 
 		rowChecker.setAllRowIds(null);
+
+		int selStatus = KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) ? WorkflowConstants.STATUS_ANY : status;
 		%>
 
 		<liferay-ui:search-container
@@ -59,17 +61,11 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			orderByComparator="<%= KnowledgeBaseUtil.getKBArticleOrderByComparator(orderByCol, orderByType) %>"
 			orderByType="<%= orderByType %>"
 			rowChecker="<%= rowChecker %>"
+			total="<%= KBArticleServiceUtil.getKBArticleVersionsCount(scopeGroupId, kbArticle.getResourcePrimKey(), selStatus) %>"
 		>
-			<liferay-ui:search-container-results>
-
-				<%
-				int selStatus = KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) ? WorkflowConstants.STATUS_ANY : status;
-
-				pageContext.setAttribute("results", KBArticleServiceUtil.getKBArticleVersions(scopeGroupId, kbArticle.getResourcePrimKey(), selStatus, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()));
-				pageContext.setAttribute("total", KBArticleServiceUtil.getKBArticleVersionsCount(scopeGroupId, kbArticle.getResourcePrimKey(), selStatus));
-				%>
-
-			</liferay-ui:search-container-results>
+			<liferay-ui:search-container-results
+				results="<%= KBArticleServiceUtil.getKBArticleVersions(scopeGroupId, kbArticle.getResourcePrimKey(), selStatus, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+			/>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBArticle"

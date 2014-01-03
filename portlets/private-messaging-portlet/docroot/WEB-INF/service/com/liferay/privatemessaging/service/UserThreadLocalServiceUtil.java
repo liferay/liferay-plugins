@@ -318,6 +318,13 @@ public class UserThreadLocalServiceUtil {
 		getService().deleteUserThread(userId, mbThreadId);
 	}
 
+	public static com.liferay.privatemessaging.model.UserThread fetchUserThread(
+		long userId, long mbThreadId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchUserThread(userId, mbThreadId);
+	}
+
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> getMBThreadUserThreads(
 		long mbThreadId)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -403,6 +410,7 @@ public class UserThreadLocalServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(UserThreadLocalService service) {
 	}
 

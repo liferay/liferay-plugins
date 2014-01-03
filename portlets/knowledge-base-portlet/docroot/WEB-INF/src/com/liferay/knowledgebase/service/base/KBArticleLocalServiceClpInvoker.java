@@ -122,233 +122,233 @@ public class KBArticleLocalServiceClpInvoker {
 				"com.liferay.knowledgebase.model.KBArticle"
 			};
 
-		_methodName102 = "getBeanIdentifier";
+		_methodName108 = "getBeanIdentifier";
 
-		_methodParameterTypes102 = new String[] {  };
+		_methodParameterTypes108 = new String[] {  };
 
-		_methodName103 = "setBeanIdentifier";
+		_methodName109 = "setBeanIdentifier";
 
-		_methodParameterTypes103 = new String[] { "java.lang.String" };
+		_methodParameterTypes109 = new String[] { "java.lang.String" };
 
-		_methodName108 = "addAttachment";
+		_methodName114 = "addAttachment";
 
-		_methodParameterTypes108 = new String[] {
+		_methodParameterTypes114 = new String[] {
 				"java.lang.String", "java.lang.String", "java.io.InputStream",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName109 = "addKBArticle";
+		_methodName115 = "addKBArticle";
 
-		_methodParameterTypes109 = new String[] {
+		_methodParameterTypes115 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String[][]", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName110 = "addKBArticleResources";
+		_methodName116 = "addKBArticleResources";
 
-		_methodParameterTypes110 = new String[] {
+		_methodParameterTypes116 = new String[] {
 				"com.liferay.knowledgebase.model.KBArticle", "boolean",
 				"boolean"
 			};
 
-		_methodName111 = "addKBArticleResources";
+		_methodName117 = "addKBArticleResources";
 
-		_methodParameterTypes111 = new String[] {
+		_methodParameterTypes117 = new String[] {
 				"com.liferay.knowledgebase.model.KBArticle",
 				"java.lang.String[][]", "java.lang.String[][]"
 			};
 
-		_methodName112 = "addKBArticleResources";
+		_methodName118 = "addKBArticleResources";
 
-		_methodParameterTypes112 = new String[] { "long", "boolean", "boolean" };
+		_methodParameterTypes118 = new String[] { "long", "boolean", "boolean" };
 
-		_methodName113 = "addKBArticleResources";
+		_methodName119 = "addKBArticleResources";
 
-		_methodParameterTypes113 = new String[] {
+		_methodParameterTypes119 = new String[] {
 				"long", "java.lang.String[][]", "java.lang.String[][]"
 			};
 
-		_methodName114 = "checkAttachments";
+		_methodName120 = "checkAttachments";
 
-		_methodParameterTypes114 = new String[] {  };
+		_methodParameterTypes120 = new String[] {  };
 
-		_methodName115 = "deleteAttachment";
+		_methodName121 = "deleteAttachment";
 
-		_methodParameterTypes115 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes121 = new String[] { "long", "java.lang.String" };
 
-		_methodName116 = "deleteGroupKBArticles";
+		_methodName122 = "deleteGroupKBArticles";
 
-		_methodParameterTypes116 = new String[] { "long" };
+		_methodParameterTypes122 = new String[] { "long" };
 
-		_methodName117 = "deleteKBArticle";
+		_methodName123 = "deleteKBArticle";
 
-		_methodParameterTypes117 = new String[] {
+		_methodParameterTypes123 = new String[] {
 				"com.liferay.knowledgebase.model.KBArticle"
 			};
 
-		_methodName118 = "deleteKBArticle";
+		_methodName124 = "deleteKBArticle";
 
-		_methodParameterTypes118 = new String[] { "long" };
+		_methodParameterTypes124 = new String[] { "long" };
 
-		_methodName119 = "deleteKBArticles";
+		_methodName125 = "deleteKBArticles";
 
-		_methodParameterTypes119 = new String[] { "long[][]" };
+		_methodParameterTypes125 = new String[] { "long[][]" };
 
-		_methodName120 = "getCompanyKBArticles";
+		_methodName126 = "getCompanyKBArticles";
 
-		_methodParameterTypes120 = new String[] {
+		_methodParameterTypes126 = new String[] {
 				"long", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName121 = "getCompanyKBArticlesCount";
+		_methodName127 = "getCompanyKBArticlesCount";
 
-		_methodParameterTypes121 = new String[] { "long", "int" };
+		_methodParameterTypes127 = new String[] { "long", "int" };
 
-		_methodName122 = "getGroupKBArticles";
+		_methodName128 = "getGroupKBArticles";
 
-		_methodParameterTypes122 = new String[] {
+		_methodParameterTypes128 = new String[] {
 				"long", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName123 = "getGroupKBArticlesCount";
+		_methodName129 = "getGroupKBArticlesCount";
 
-		_methodParameterTypes123 = new String[] { "long", "int" };
+		_methodParameterTypes129 = new String[] { "long", "int" };
 
-		_methodName124 = "getKBArticle";
+		_methodName130 = "getKBArticle";
 
-		_methodParameterTypes124 = new String[] { "long", "int" };
+		_methodParameterTypes130 = new String[] { "long", "int" };
 
-		_methodName125 = "getKBArticleAndAllDescendants";
+		_methodName131 = "getKBArticleAndAllDescendants";
 
-		_methodParameterTypes125 = new String[] {
+		_methodParameterTypes131 = new String[] {
 				"long", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName126 = "getKBArticles";
+		_methodName132 = "getKBArticles";
 
-		_methodParameterTypes126 = new String[] {
+		_methodParameterTypes132 = new String[] {
 				"long[][]", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName127 = "getKBArticleVersions";
+		_methodName133 = "getKBArticleVersions";
 
-		_methodParameterTypes127 = new String[] {
+		_methodParameterTypes133 = new String[] {
 				"long", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName128 = "getKBArticleVersionsCount";
+		_methodName134 = "getKBArticleVersionsCount";
 
-		_methodParameterTypes128 = new String[] { "long", "int" };
+		_methodParameterTypes134 = new String[] { "long", "int" };
 
-		_methodName129 = "getLatestKBArticle";
+		_methodName135 = "getLatestKBArticle";
 
-		_methodParameterTypes129 = new String[] { "long", "int" };
+		_methodParameterTypes135 = new String[] { "long", "int" };
 
-		_methodName130 = "getSectionsKBArticles";
+		_methodName136 = "getSectionsKBArticles";
 
-		_methodParameterTypes130 = new String[] {
+		_methodParameterTypes136 = new String[] {
 				"long", "java.lang.String[][]", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName131 = "getSectionsKBArticlesCount";
+		_methodName137 = "getSectionsKBArticlesCount";
 
-		_methodParameterTypes131 = new String[] {
+		_methodParameterTypes137 = new String[] {
 				"long", "java.lang.String[][]", "int"
 			};
 
-		_methodName132 = "getSiblingKBArticles";
+		_methodName138 = "getSiblingKBArticles";
 
-		_methodParameterTypes132 = new String[] {
+		_methodParameterTypes138 = new String[] {
 				"long", "long", "int", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName133 = "getSiblingKBArticlesCount";
+		_methodName139 = "getSiblingKBArticlesCount";
 
-		_methodParameterTypes133 = new String[] { "long", "long", "int" };
+		_methodParameterTypes139 = new String[] { "long", "long", "int" };
 
-		_methodName134 = "moveKBArticle";
+		_methodName140 = "moveKBArticle";
 
-		_methodParameterTypes134 = new String[] { "long", "long", "long", "double" };
+		_methodParameterTypes140 = new String[] { "long", "long", "long", "double" };
 
-		_methodName135 = "search";
+		_methodName141 = "search";
 
-		_methodParameterTypes135 = new String[] {
+		_methodParameterTypes141 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "int",
 				"java.util.Date", "java.util.Date", "boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName136 = "subscribeGroupKBArticles";
+		_methodName142 = "subscribeGroupKBArticles";
 
-		_methodParameterTypes136 = new String[] { "long", "long" };
+		_methodParameterTypes142 = new String[] { "long", "long" };
 
-		_methodName137 = "subscribeKBArticle";
+		_methodName143 = "subscribeKBArticle";
 
-		_methodParameterTypes137 = new String[] { "long", "long", "long" };
+		_methodParameterTypes143 = new String[] { "long", "long", "long" };
 
-		_methodName138 = "unsubscribeGroupKBArticles";
+		_methodName144 = "unsubscribeGroupKBArticles";
 
-		_methodParameterTypes138 = new String[] { "long", "long" };
+		_methodParameterTypes144 = new String[] { "long", "long" };
 
-		_methodName139 = "unsubscribeKBArticle";
+		_methodName145 = "unsubscribeKBArticle";
 
-		_methodParameterTypes139 = new String[] { "long", "long" };
+		_methodParameterTypes145 = new String[] { "long", "long" };
 
-		_methodName140 = "updateAttachments";
+		_methodName146 = "updateAttachments";
 
-		_methodParameterTypes140 = new String[] {
+		_methodParameterTypes146 = new String[] {
 				"long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName141 = "updateKBArticle";
+		_methodName147 = "updateKBArticle";
 
-		_methodParameterTypes141 = new String[] {
+		_methodParameterTypes147 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String[][]", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName142 = "updateKBArticleAsset";
+		_methodName148 = "updateKBArticleAsset";
 
-		_methodParameterTypes142 = new String[] {
+		_methodParameterTypes148 = new String[] {
 				"long", "com.liferay.knowledgebase.model.KBArticle", "long[][]",
 				"java.lang.String[][]"
 			};
 
-		_methodName143 = "updateKBArticleResources";
+		_methodName149 = "updateKBArticleResources";
 
-		_methodParameterTypes143 = new String[] {
+		_methodParameterTypes149 = new String[] {
 				"com.liferay.knowledgebase.model.KBArticle",
 				"java.lang.String[][]", "java.lang.String[][]"
 			};
 
-		_methodName144 = "updateKBArticlesPriorities";
+		_methodName150 = "updateKBArticlesPriorities";
 
-		_methodParameterTypes144 = new String[] { "java.util.Map" };
+		_methodParameterTypes150 = new String[] { "java.util.Map" };
 
-		_methodName145 = "updatePriority";
+		_methodName151 = "updatePriority";
 
-		_methodParameterTypes145 = new String[] { "long", "double" };
+		_methodParameterTypes151 = new String[] { "long", "double" };
 
-		_methodName146 = "updateStatus";
+		_methodName152 = "updateStatus";
 
-		_methodParameterTypes146 = new String[] {
+		_methodParameterTypes152 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName147 = "updateViewCount";
+		_methodName153 = "updateViewCount";
 
-		_methodParameterTypes147 = new String[] { "long", "long", "int" };
+		_methodParameterTypes153 = new String[] { "long", "long", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -464,20 +464,20 @@ public class KBArticleLocalServiceClpInvoker {
 			return KBArticleLocalServiceUtil.updateKBArticle((com.liferay.knowledgebase.model.KBArticle)arguments[0]);
 		}
 
-		if (_methodName102.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes102, parameterTypes)) {
+		if (_methodName108.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName103.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes103, parameterTypes)) {
+		if (_methodName109.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
 			KBArticleLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName108.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes108, parameterTypes)) {
+		if (_methodName114.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes114, parameterTypes)) {
 			KBArticleLocalServiceUtil.addAttachment((java.lang.String)arguments[0],
 				(java.lang.String)arguments[1],
 				(java.io.InputStream)arguments[2],
@@ -486,8 +486,8 @@ public class KBArticleLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName109.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes109, parameterTypes)) {
+		if (_methodName115.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes115, parameterTypes)) {
 			return KBArticleLocalServiceUtil.addKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -497,83 +497,83 @@ public class KBArticleLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[7]);
 		}
 
-		if (_methodName110.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes110, parameterTypes)) {
-			KBArticleLocalServiceUtil.addKBArticleResources((com.liferay.knowledgebase.model.KBArticle)arguments[0],
-				((Boolean)arguments[1]).booleanValue(),
-				((Boolean)arguments[2]).booleanValue());
-
-			return null;
-		}
-
-		if (_methodName111.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes111, parameterTypes)) {
-			KBArticleLocalServiceUtil.addKBArticleResources((com.liferay.knowledgebase.model.KBArticle)arguments[0],
-				(java.lang.String[])arguments[1],
-				(java.lang.String[])arguments[2]);
-
-			return null;
-		}
-
-		if (_methodName112.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes112, parameterTypes)) {
-			KBArticleLocalServiceUtil.addKBArticleResources(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue(),
-				((Boolean)arguments[2]).booleanValue());
-
-			return null;
-		}
-
-		if (_methodName113.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes113, parameterTypes)) {
-			KBArticleLocalServiceUtil.addKBArticleResources(((Long)arguments[0]).longValue(),
-				(java.lang.String[])arguments[1],
-				(java.lang.String[])arguments[2]);
-
-			return null;
-		}
-
-		if (_methodName114.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes114, parameterTypes)) {
-			KBArticleLocalServiceUtil.checkAttachments();
-
-			return null;
-		}
-
-		if (_methodName115.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes115, parameterTypes)) {
-			KBArticleLocalServiceUtil.deleteAttachment(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
-
-			return null;
-		}
-
 		if (_methodName116.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes116, parameterTypes)) {
-			KBArticleLocalServiceUtil.deleteGroupKBArticles(((Long)arguments[0]).longValue());
+			KBArticleLocalServiceUtil.addKBArticleResources((com.liferay.knowledgebase.model.KBArticle)arguments[0],
+				((Boolean)arguments[1]).booleanValue(),
+				((Boolean)arguments[2]).booleanValue());
 
 			return null;
 		}
 
 		if (_methodName117.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes117, parameterTypes)) {
-			return KBArticleLocalServiceUtil.deleteKBArticle((com.liferay.knowledgebase.model.KBArticle)arguments[0]);
+			KBArticleLocalServiceUtil.addKBArticleResources((com.liferay.knowledgebase.model.KBArticle)arguments[0],
+				(java.lang.String[])arguments[1],
+				(java.lang.String[])arguments[2]);
+
+			return null;
 		}
 
 		if (_methodName118.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes118, parameterTypes)) {
-			return KBArticleLocalServiceUtil.deleteKBArticle(((Long)arguments[0]).longValue());
+			KBArticleLocalServiceUtil.addKBArticleResources(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue(),
+				((Boolean)arguments[2]).booleanValue());
+
+			return null;
 		}
 
 		if (_methodName119.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes119, parameterTypes)) {
-			KBArticleLocalServiceUtil.deleteKBArticles((long[])arguments[0]);
+			KBArticleLocalServiceUtil.addKBArticleResources(((Long)arguments[0]).longValue(),
+				(java.lang.String[])arguments[1],
+				(java.lang.String[])arguments[2]);
 
 			return null;
 		}
 
 		if (_methodName120.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes120, parameterTypes)) {
+			KBArticleLocalServiceUtil.checkAttachments();
+
+			return null;
+		}
+
+		if (_methodName121.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes121, parameterTypes)) {
+			KBArticleLocalServiceUtil.deleteAttachment(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
+
+			return null;
+		}
+
+		if (_methodName122.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes122, parameterTypes)) {
+			KBArticleLocalServiceUtil.deleteGroupKBArticles(((Long)arguments[0]).longValue());
+
+			return null;
+		}
+
+		if (_methodName123.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes123, parameterTypes)) {
+			return KBArticleLocalServiceUtil.deleteKBArticle((com.liferay.knowledgebase.model.KBArticle)arguments[0]);
+		}
+
+		if (_methodName124.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes124, parameterTypes)) {
+			return KBArticleLocalServiceUtil.deleteKBArticle(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName125.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes125, parameterTypes)) {
+			KBArticleLocalServiceUtil.deleteKBArticles((long[])arguments[0]);
+
+			return null;
+		}
+
+		if (_methodName126.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes126, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getCompanyKBArticles(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
@@ -581,14 +581,14 @@ public class KBArticleLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
-		if (_methodName121.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes121, parameterTypes)) {
+		if (_methodName127.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes127, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getCompanyKBArticlesCount(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName122.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes122, parameterTypes)) {
+		if (_methodName128.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes128, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getGroupKBArticles(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
@@ -596,34 +596,34 @@ public class KBArticleLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
-		if (_methodName123.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes123, parameterTypes)) {
+		if (_methodName129.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes129, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getGroupKBArticlesCount(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName124.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes124, parameterTypes)) {
+		if (_methodName130.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes130, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getKBArticle(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName125.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes125, parameterTypes)) {
+		if (_methodName131.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes131, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getKBArticleAndAllDescendants(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[2]);
 		}
 
-		if (_methodName126.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes126, parameterTypes)) {
+		if (_methodName132.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes132, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getKBArticles((long[])arguments[0],
 				((Integer)arguments[1]).intValue(),
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[2]);
 		}
 
-		if (_methodName127.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes127, parameterTypes)) {
+		if (_methodName133.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes133, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getKBArticleVersions(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue(),
@@ -631,20 +631,20 @@ public class KBArticleLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[4]);
 		}
 
-		if (_methodName128.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes128, parameterTypes)) {
+		if (_methodName134.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes134, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getKBArticleVersionsCount(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName129.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes129, parameterTypes)) {
+		if (_methodName135.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes135, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getLatestKBArticle(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName130.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes130, parameterTypes)) {
+		if (_methodName136.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes136, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getSectionsKBArticles(((Long)arguments[0]).longValue(),
 				(java.lang.String[])arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -653,15 +653,15 @@ public class KBArticleLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[5]);
 		}
 
-		if (_methodName131.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes131, parameterTypes)) {
+		if (_methodName137.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes137, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getSectionsKBArticlesCount(((Long)arguments[0]).longValue(),
 				(java.lang.String[])arguments[1],
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName132.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes132, parameterTypes)) {
+		if (_methodName138.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes138, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getSiblingKBArticles(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
@@ -670,15 +670,15 @@ public class KBArticleLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[5]);
 		}
 
-		if (_methodName133.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes133, parameterTypes)) {
+		if (_methodName139.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes139, parameterTypes)) {
 			return KBArticleLocalServiceUtil.getSiblingKBArticlesCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName134.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes134, parameterTypes)) {
+		if (_methodName140.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes140, parameterTypes)) {
 			KBArticleLocalServiceUtil.moveKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -687,8 +687,8 @@ public class KBArticleLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName135.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes135, parameterTypes)) {
+		if (_methodName141.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes141, parameterTypes)) {
 			return KBArticleLocalServiceUtil.search(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				((Integer)arguments[3]).intValue(),
@@ -699,16 +699,16 @@ public class KBArticleLocalServiceClpInvoker {
 				(com.liferay.portal.kernel.util.OrderByComparator)arguments[9]);
 		}
 
-		if (_methodName136.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes136, parameterTypes)) {
+		if (_methodName142.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes142, parameterTypes)) {
 			KBArticleLocalServiceUtil.subscribeGroupKBArticles(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName137.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes137, parameterTypes)) {
+		if (_methodName143.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes143, parameterTypes)) {
 			KBArticleLocalServiceUtil.subscribeKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue());
@@ -716,31 +716,31 @@ public class KBArticleLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName138.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes138, parameterTypes)) {
+		if (_methodName144.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes144, parameterTypes)) {
 			KBArticleLocalServiceUtil.unsubscribeGroupKBArticles(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName139.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes139, parameterTypes)) {
+		if (_methodName145.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes145, parameterTypes)) {
 			KBArticleLocalServiceUtil.unsubscribeKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
-		if (_methodName140.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes140, parameterTypes)) {
+		if (_methodName146.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes146, parameterTypes)) {
 			return KBArticleLocalServiceUtil.updateAttachments(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				(com.liferay.portal.service.ServiceContext)arguments[2]);
 		}
 
-		if (_methodName141.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes141, parameterTypes)) {
+		if (_methodName147.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes147, parameterTypes)) {
 			return KBArticleLocalServiceUtil.updateKBArticle(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -750,8 +750,8 @@ public class KBArticleLocalServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[7]);
 		}
 
-		if (_methodName142.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes142, parameterTypes)) {
+		if (_methodName148.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes148, parameterTypes)) {
 			KBArticleLocalServiceUtil.updateKBArticleAsset(((Long)arguments[0]).longValue(),
 				(com.liferay.knowledgebase.model.KBArticle)arguments[1],
 				(long[])arguments[2], (java.lang.String[])arguments[3]);
@@ -759,8 +759,8 @@ public class KBArticleLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName143.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes143, parameterTypes)) {
+		if (_methodName149.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes149, parameterTypes)) {
 			KBArticleLocalServiceUtil.updateKBArticleResources((com.liferay.knowledgebase.model.KBArticle)arguments[0],
 				(java.lang.String[])arguments[1],
 				(java.lang.String[])arguments[2]);
@@ -768,31 +768,31 @@ public class KBArticleLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName144.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes144, parameterTypes)) {
+		if (_methodName150.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes150, parameterTypes)) {
 			KBArticleLocalServiceUtil.updateKBArticlesPriorities((java.util.Map<java.lang.Long, java.lang.Double>)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName145.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes145, parameterTypes)) {
+		if (_methodName151.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes151, parameterTypes)) {
 			KBArticleLocalServiceUtil.updatePriority(((Long)arguments[0]).longValue(),
 				((Double)arguments[1]).doubleValue());
 
 			return null;
 		}
 
-		if (_methodName146.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes146, parameterTypes)) {
+		if (_methodName152.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes152, parameterTypes)) {
 			return KBArticleLocalServiceUtil.updateStatus(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue(),
 				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
-		if (_methodName147.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes147, parameterTypes)) {
+		if (_methodName153.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes153, parameterTypes)) {
 			KBArticleLocalServiceUtil.updateViewCount(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				((Integer)arguments[2]).intValue());
@@ -843,22 +843,10 @@ public class KBArticleLocalServiceClpInvoker {
 	private String[] _methodParameterTypes18;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
-	private String _methodName102;
-	private String[] _methodParameterTypes102;
-	private String _methodName103;
-	private String[] _methodParameterTypes103;
 	private String _methodName108;
 	private String[] _methodParameterTypes108;
 	private String _methodName109;
 	private String[] _methodParameterTypes109;
-	private String _methodName110;
-	private String[] _methodParameterTypes110;
-	private String _methodName111;
-	private String[] _methodParameterTypes111;
-	private String _methodName112;
-	private String[] _methodParameterTypes112;
-	private String _methodName113;
-	private String[] _methodParameterTypes113;
 	private String _methodName114;
 	private String[] _methodParameterTypes114;
 	private String _methodName115;
@@ -927,4 +915,16 @@ public class KBArticleLocalServiceClpInvoker {
 	private String[] _methodParameterTypes146;
 	private String _methodName147;
 	private String[] _methodParameterTypes147;
+	private String _methodName148;
+	private String[] _methodParameterTypes148;
+	private String _methodName149;
+	private String[] _methodParameterTypes149;
+	private String _methodName150;
+	private String[] _methodParameterTypes150;
+	private String _methodName151;
+	private String[] _methodParameterTypes151;
+	private String _methodName152;
+	private String[] _methodParameterTypes152;
+	private String _methodName153;
+	private String[] _methodParameterTypes153;
 }

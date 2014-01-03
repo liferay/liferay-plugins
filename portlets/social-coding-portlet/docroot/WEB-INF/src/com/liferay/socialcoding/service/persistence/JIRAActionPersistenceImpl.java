@@ -1930,6 +1930,8 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 		EntityCacheUtil.putResult(JIRAActionModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAActionImpl.class, jiraAction.getPrimaryKey(), jiraAction);
 
+		jiraAction.resetOriginalValues();
+
 		return jiraAction;
 	}
 

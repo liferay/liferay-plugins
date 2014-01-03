@@ -794,6 +794,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoTaskInstanceToken getWrappedKaleoTaskInstanceToken() {
 		return _kaleoTaskInstanceToken;
 	}
@@ -801,6 +802,16 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	@Override
 	public KaleoTaskInstanceToken getWrappedModel() {
 		return _kaleoTaskInstanceToken;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoTaskInstanceToken.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoTaskInstanceToken.isFinderCacheEnabled();
 	}
 
 	@Override

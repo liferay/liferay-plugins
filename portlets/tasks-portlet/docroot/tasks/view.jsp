@@ -44,9 +44,16 @@ portletURL.setParameter("tabs2", tabs2);
 			modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
 			resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
 			var="permissionsURL"
+			windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 		/>
 
-		<a class="permission-tasks" href="<%= permissionsURL %>"><liferay-ui:message key="permissions" /></a>
+		<liferay-ui:icon
+			image="permissions"
+			label="<%= true %>"
+			method="get"
+			url="<%= permissionsURL %>"
+			useDialog="<%= true %>"
+		/>
 	</c:if>
 
 	<a class="filter-tasks" href="javascript:;" onClick="Liferay.Tasks.toggleTasksFilter();"><liferay-ui:message key="filter" /></a>

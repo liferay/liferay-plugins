@@ -17,6 +17,7 @@ package com.liferay.privatemessaging.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -87,6 +88,9 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		attributes.put("read", getRead());
 		attributes.put("deleted", getDeleted());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -151,6 +155,9 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		if (deleted != null) {
 			setDeleted(deleted);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -530,6 +537,16 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 
@@ -624,4 +641,6 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	private boolean _read;
 	private boolean _deleted;
 	private BaseModel<?> _userThreadRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

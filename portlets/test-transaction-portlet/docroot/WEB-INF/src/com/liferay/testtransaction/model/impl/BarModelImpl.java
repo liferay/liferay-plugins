@@ -120,6 +120,9 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 		attributes.put("barId", getBarId());
 		attributes.put("text", getText());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -250,6 +253,16 @@ public class BarModelImpl extends BaseModelImpl<Bar> implements BarModel {
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

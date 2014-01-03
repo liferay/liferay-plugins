@@ -384,6 +384,7 @@ public class KaleoInstanceTokenLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public KaleoInstanceTokenLocalService getWrappedKaleoInstanceTokenLocalService() {
 		return _kaleoInstanceTokenLocalService;
 	}
@@ -391,6 +392,7 @@ public class KaleoInstanceTokenLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedKaleoInstanceTokenLocalService(
 		KaleoInstanceTokenLocalService kaleoInstanceTokenLocalService) {
 		_kaleoInstanceTokenLocalService = kaleoInstanceTokenLocalService;

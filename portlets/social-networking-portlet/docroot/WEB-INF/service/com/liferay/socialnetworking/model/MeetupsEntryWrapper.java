@@ -604,6 +604,7 @@ public class MeetupsEntryWrapper implements MeetupsEntry,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public MeetupsEntry getWrappedMeetupsEntry() {
 		return _meetupsEntry;
 	}
@@ -611,6 +612,16 @@ public class MeetupsEntryWrapper implements MeetupsEntry,
 	@Override
 	public MeetupsEntry getWrappedModel() {
 		return _meetupsEntry;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _meetupsEntry.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _meetupsEntry.isFinderCacheEnabled();
 	}
 
 	@Override

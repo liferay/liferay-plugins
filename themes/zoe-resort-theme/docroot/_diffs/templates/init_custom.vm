@@ -1,3 +1,5 @@
+#set ($css_class = "$css_class dockbar-split")
+
 ## ---------- Logo ---------- ##
 
 #if (($company.getLogoId() == 0) && $use_company_logo)

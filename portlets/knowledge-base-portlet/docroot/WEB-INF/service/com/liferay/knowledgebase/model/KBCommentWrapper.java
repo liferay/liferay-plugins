@@ -579,6 +579,7 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KBComment getWrappedKBComment() {
 		return _kbComment;
 	}
@@ -586,6 +587,16 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	@Override
 	public KBComment getWrappedModel() {
 		return _kbComment;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kbComment.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kbComment.isFinderCacheEnabled();
 	}
 
 	@Override

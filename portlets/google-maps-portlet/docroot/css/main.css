@@ -1,16 +1,10 @@
 .google-maps-portlet {
-	.address-field {
-		input {
-			width: 350px;
-		}
-
-		label {
-			min-width: 40px;
-		}
+	img {
+		max-width: none;
 	}
 
 	.get-directions {
-		margin-top: -12px;
+		margin-top: -6px;
 	}
 
 	.google-maps-link {

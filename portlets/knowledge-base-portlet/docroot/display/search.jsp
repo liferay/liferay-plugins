@@ -36,47 +36,44 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	orderByCol="<%= orderByCol %>"
 	orderByType="<%= orderByType %>"
 >
-	<liferay-ui:search-container-results>
 
-		<%
-		SearchContext searchContext = SearchContextFactory.getInstance(request);
+	<%
+	SearchContext searchContext = SearchContextFactory.getInstance(request);
 
-		searchContext.setAttribute("paginationType", "regular");
-		searchContext.setEnd(searchContainer.getEnd());
-		searchContext.setKeywords(keywords);
-		searchContext.setStart(searchContainer.getStart());
-		searchContext.setSorts(KnowledgeBaseUtil.getKBArticleSorts(orderByCol, orderByType));
+	searchContext.setAttribute("paginationType", "regular");
+	searchContext.setEnd(searchContainer.getEnd());
+	searchContext.setKeywords(keywords);
+	searchContext.setSorts(KnowledgeBaseUtil.getKBArticleSorts(orderByCol, orderByType));
+	searchContext.setStart(searchContainer.getStart());
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(KBArticle.class);
+	Indexer indexer = IndexerRegistryUtil.getIndexer(KBArticle.class);
 
-		Hits hits = indexer.search(searchContext);
+	Hits hits = indexer.search(searchContext);
 
-		List<Tuple> tuples = new ArrayList<Tuple>();
+	List<Tuple> tuples = new ArrayList<Tuple>();
 
-		for (int i = 0; i < hits.getDocs().length; i++) {
-			Object[] array = new Object[5];
+	for (int i = 0; i < hits.getDocs().length; i++) {
+		Object[] array = new Object[5];
 
-			Document document = hits.doc(i);
+		Document document = hits.doc(i);
 
-			array[0] = document.get(Field.ENTRY_CLASS_PK);
-			array[1] = document.get(Field.TITLE);
+		array[0] = document.get(Field.ENTRY_CLASS_PK);
+		array[1] = document.get(Field.TITLE);
 
-			long userId = GetterUtil.getLong(document.get(Field.USER_ID));
-			String userName = document.get(Field.USER_NAME);
+		long userId = GetterUtil.getLong(document.get(Field.USER_ID));
+		String userName = document.get(Field.USER_NAME);
 
-			array[2] = PortalUtil.getUserName(userId, userName);
+		array[2] = PortalUtil.getUserName(userId, userName);
 
-			array[3] = document.getDate(Field.CREATE_DATE);
-			array[4] = document.getDate(Field.MODIFIED_DATE);
+		array[3] = document.getDate(Field.CREATE_DATE);
+		array[4] = document.getDate(Field.MODIFIED_DATE);
 
-			tuples.add(new Tuple(array));
-		}
+		tuples.add(new Tuple(array));
+	}
 
-		pageContext.setAttribute("results", tuples);
-		pageContext.setAttribute("total", hits.getLength());
-		%>
-
-	</liferay-ui:search-container-results>
+	searchContainer.setResults(tuples);
+	searchContainer.setTotal(hits.getLength());
+	%>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portal.kernel.util.Tuple"

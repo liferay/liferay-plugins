@@ -332,6 +332,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public FavoriteSite getWrappedFavoriteSite() {
 		return _favoriteSite;
 	}
@@ -339,6 +340,16 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	@Override
 	public FavoriteSite getWrappedModel() {
 		return _favoriteSite;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _favoriteSite.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _favoriteSite.isFinderCacheEnabled();
 	}
 
 	@Override

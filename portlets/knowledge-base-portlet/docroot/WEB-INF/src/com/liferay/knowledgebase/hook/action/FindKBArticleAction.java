@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Layout;
@@ -44,6 +45,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
 
@@ -119,7 +121,7 @@ public class FindKBArticleAction extends BaseStrutsAction {
 			long plid, int status, HttpServletRequest request)
 		throws Exception {
 
-		String portletId = PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE;
+		String portletId = getPortletId(plid);
 
 		PortletURL portletURL = getKBArticleURL(plid, portletId, request);
 
@@ -134,7 +136,13 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		}
 
 		portletURL.setPortletMode(PortletMode.VIEW);
-		portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
+
+		if (Validator.equals(
+				portletId,
+				PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE)) {
+
+			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
+		}
 
 		return portletURL;
 	}
@@ -304,6 +312,19 @@ public class FindKBArticleAction extends BaseStrutsAction {
 		}
 
 		return portletURL;
+	}
+
+	protected String getPortletId(long plid) throws Exception {
+		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+
+		long selPlid = PortalUtil.getPlidFromPortletId(
+			layout.getGroupId(), PortletKeys.KNOWLEDGE_BASE_DISPLAY);
+
+		if (selPlid != LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) {
+			return PortletKeys.KNOWLEDGE_BASE_DISPLAY;
+		}
+
+		return PortletKeys.KNOWLEDGE_BASE_ARTICLE_DEFAULT_INSTANCE;
 	}
 
 	protected boolean isValidPlid(long plid) throws Exception {

@@ -654,11 +654,11 @@
 	</plugin>
 	<plugin>
 		<artifact-id><![CDATA[calendar-portlet]]></artifact-id>
-		<name><![CDATA[Enterprise Calendar]]></name>
+		<name><![CDATA[Calendar CE]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[]]></tags>
+		<tags><![CDATA[calendar, calendar resources]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
+		<long-description><![CDATA[Liferay's Calendar app allows users and organizations to create, track, share, and manage events. In addition, the Calendar app supports notifications, integration with Social Office, and staging. As a user, you can create as many calendars as you need. As an administrator, you are able to manage the scheduling of Calendar Resources such as rooms and projectors. All content from the old Calendar portlet is automatically imported into this new application. For details about how to use the Calendar, consult the "Managing Events and Calendar Resources with Liferay's Calendar Portlet" section of the Liferay User Guide. The Liferay User Guide can be found at http://liferay.com/documentation.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -669,9 +669,12 @@
 			<category><![CDATA[Communication]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
+			<icon><![CDATA[portlets/calendar-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<screenshot><![CDATA[portlets/calendar-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<screenshot><![CDATA[portlets/calendar-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -1190,11 +1193,11 @@
 	</plugin>
 	<plugin>
 		<artifact-id><![CDATA[notifications-portlet]]></artifact-id>
-		<name><![CDATA[Notifications]]></name>
+		<name><![CDATA[Notifications CE]]></name>
 		<type><![CDATA[portlet]]></type>
-		<tags><![CDATA[]]></tags>
+		<tags><![CDATA[notifications, social]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
+		<long-description><![CDATA[Liferay's Notifications app provides a convenient way for users to see notifications of important events on any page. It appears at the top of every page inside the user's dockbar. Notifications also allow users to quickly respond through configurable action buttons.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -1205,9 +1208,13 @@
 			<category><![CDATA[Communication]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
+			<icon><![CDATA[portlets/notifications-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<screenshot><![CDATA[portlets/notifications-portlet/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
+			<screenshot><![CDATA[portlets/notifications-portlet/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
+			<screenshot><![CDATA[portlets/notifications-portlet/docroot/WEB-INF/releng/screenshots/3.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>
@@ -1979,7 +1986,7 @@
 			<bundle><![CDATA[false]]></bundle>
 			<category><![CDATA[Productivity]]></category>
 			<demo-url><![CDATA[]]></demo-url>
-			<dependent-apps><![CDATA[calendar-portlet, chat-portlet, contacts-portlet, deploy-listener-hook, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-activities-hook, so-announcements-portlet, so-hook, so-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet]]></dependent-apps>
+			<dependent-apps><![CDATA[calendar-portlet, chat-portlet, contacts-portlet, deploy-listener-hook, events-display-portlet, microblogs-portlet, private-messaging-portlet, resources-importer-web, so-activities-hook, so-announcements-portlet, so-hook, so-strata-theme, so-welcome-theme, tasks-portlet, wysiwyg-portlet]]></dependent-apps>
 			<icon><![CDATA[portlets/so-portlet/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
@@ -3293,12 +3300,12 @@
 		<liferay-versions><![CDATA[6.2.0+]]></liferay-versions>
 		<releng>
 			<bundle><![CDATA[false]]></bundle>
-			<category><![CDATA[Utility]]></category>
+			<category><![CDATA[]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
 			<icon><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[true]]></labs>
-			<marketplace><![CDATA[true]]></marketplace>
+			<marketplace><![CDATA[false]]></marketplace>
 			<public><![CDATA[true]]></public>
 			<screenshot><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<screenshot><![CDATA[webs/deployment-helper-web/docroot/WEB-INF/releng/screenshots/2.jpg]]></screenshot>
@@ -3473,11 +3480,11 @@
 	</plugin>
 	<plugin>
 		<artifact-id><![CDATA[sync-web]]></artifact-id>
-		<name><![CDATA[Sync]]></name>
+		<name><![CDATA[Sync CE]]></name>
 		<type><![CDATA[web]]></type>
-		<tags><![CDATA[sync]]></tags>
+		<tags><![CDATA[document library, sync]]></tags>
 		<short-description><![CDATA[]]></short-description>
-		<long-description><![CDATA[]]></long-description>
+		<long-description><![CDATA[Liferay Sync transforms the Liferay platform into an easy to use document sharing service. With Liferay Sync, you are able to synchronize content and documents as well as manage document versions and changes for easy tracking. This server side plugin provides all the web services required by the Liferay Sync Desktop and Mobile clients.<br /><br />Liferay Sync is compatible with both desktop and mobile environments including Windows, Mac OS, iOS, and Android.<br /><br />Please visit https://www.liferay.com/products/liferay-sync/features for more information on downloading the Liferay Sync Desktop and Mobile clients.]]></long-description>
 		<change-log><![CDATA[]]></change-log>
 		<page-url><![CDATA[http://www.liferay.com]]></page-url>
 		<author><![CDATA[Liferay, Inc.]]></author>
@@ -3488,9 +3495,11 @@
 			<category><![CDATA[Productivity]]></category>
 			<demo-url><![CDATA[]]></demo-url>
 			<dependent-apps><![CDATA[]]></dependent-apps>
+			<icon><![CDATA[webs/sync-web/docroot/WEB-INF/releng/icons/90x90.png]]></icon>
 			<labs><![CDATA[false]]></labs>
 			<marketplace><![CDATA[true]]></marketplace>
 			<public><![CDATA[true]]></public>
+			<screenshot><![CDATA[webs/sync-web/docroot/WEB-INF/releng/screenshots/1.jpg]]></screenshot>
 			<support-url><![CDATA[]]></support-url>
 			<supported><![CDATA[false]]></supported>
 		</releng>

@@ -45,7 +45,7 @@
 
 		#if ($theme_settings.display-button == true)
 			<li class="call-to-action" role="presentation">
-				<a class="button" href="$theme_settings.button-url">
+				<a class="btn" href="$theme_settings.button-url">
 					<span>
 						$theme_settings.button-title
 					</span>

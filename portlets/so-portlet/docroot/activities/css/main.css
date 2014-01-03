@@ -10,6 +10,21 @@ $default-border-color: #E7E7E7;
 		border-bottom: 1px solid $default-border-color;
 		min-height: 45px;
 		padding: 1em;
+
+		.control-group {
+			margin-bottom: 0;
+			margin-left: 35px;
+			padding: 0 5px;
+
+			input {
+				display: block;
+				margin-bottom: 0;
+				padding-left: 0;
+				padding-right: 0;
+				text-indent: 0.5em;
+				width: 100%;
+			}
+		}
 	}
 
 	.user-portrait {
@@ -31,7 +46,7 @@ $default-border-color: #E7E7E7;
 
 	.activity-data {
 		margin-left: 55px;
-		overflow: hidden;
+		word-wrap: break-word;
 	}
 
 	.activity-header {
@@ -57,6 +72,9 @@ $default-border-color: #E7E7E7;
 
 	.activity-body, .grouped-activity-body-container {
 		border: 1px solid $default-border-color;
+
+		@include hyphenation;
+
 		margin: 0.8em 0 0;
 
 		span {
@@ -129,7 +147,7 @@ $default-border-color: #E7E7E7;
 	}
 
 	.grouped-activity-body-container {
-		max-height: 93px;
+		max-height: 107px;
 		overflow: hidden;
 
 		.activity-subentry {
@@ -241,7 +259,6 @@ $default-border-color: #E7E7E7;
 	.comment-entry, .comments-container .form {
 		background: #EAEAEA;
 		border-top: 1px solid #FFF;
-		overflow: hidden;
 		padding: 2px;
 	}
 
@@ -333,7 +350,7 @@ $default-border-color: #E7E7E7;
 
 .ie7 {
 	.so-portlet-activities .grouped-activity-body-container {
-		height: 93px;
+		height: 107px;
 		max-height: none;
 
 		.activity-subentry-title {

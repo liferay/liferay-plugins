@@ -535,6 +535,7 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoTask getWrappedKaleoTask() {
 		return _kaleoTask;
 	}
@@ -542,6 +543,16 @@ public class KaleoTaskWrapper implements KaleoTask, ModelWrapper<KaleoTask> {
 	@Override
 	public KaleoTask getWrappedModel() {
 		return _kaleoTask;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoTask.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoTask.isFinderCacheEnabled();
 	}
 
 	@Override

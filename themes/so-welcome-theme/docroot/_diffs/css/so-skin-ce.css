@@ -174,6 +174,14 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 			width: 225px;
 		}
 
+		select, .taglib-captcha input[type="text"] {
+			width: 100%;
+		}
+
+		input[type="text"] {
+			width: 256px;
+		}
+
 		.navigation {
 			border: 1px solid $gray;
 			left: 0;
@@ -212,7 +220,6 @@ input[type=button], input[type=reset], input[type=submit], #sign-in:hover, .aui-
 	.signed-in-as {
 		padding: 20px 10px 40px;
 		text-align: center;
-		width: 100px;
 
 		.profile-image img {
 			margin-bottom: 1.5em;

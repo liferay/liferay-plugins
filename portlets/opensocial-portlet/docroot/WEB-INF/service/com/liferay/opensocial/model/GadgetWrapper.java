@@ -425,6 +425,7 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Gadget getWrappedGadget() {
 		return _gadget;
 	}
@@ -432,6 +433,16 @@ public class GadgetWrapper implements Gadget, ModelWrapper<Gadget> {
 	@Override
 	public Gadget getWrappedModel() {
 		return _gadget;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _gadget.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _gadget.isFinderCacheEnabled();
 	}
 
 	@Override

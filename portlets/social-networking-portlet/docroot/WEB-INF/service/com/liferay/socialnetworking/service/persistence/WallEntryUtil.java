@@ -771,6 +771,7 @@ public class WallEntryUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setPersistence(WallEntryPersistence persistence) {
 	}
 

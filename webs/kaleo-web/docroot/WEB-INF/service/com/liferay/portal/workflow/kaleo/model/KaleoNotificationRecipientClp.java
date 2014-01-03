@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -88,6 +89,9 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		attributes.put("recipientClassPK", getRecipientClassPK());
 		attributes.put("recipientRoleType", getRecipientRoleType());
 		attributes.put("address", getAddress());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -172,6 +176,9 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		if (address != null) {
 			setAddress(address);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -634,6 +641,16 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(27);
 
@@ -750,4 +767,6 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	private int _recipientRoleType;
 	private String _address;
 	private BaseModel<?> _kaleoNotificationRecipientRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

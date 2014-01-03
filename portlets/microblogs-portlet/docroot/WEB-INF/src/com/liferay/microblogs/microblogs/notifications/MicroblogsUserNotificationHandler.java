@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
@@ -54,7 +55,7 @@ public class MicroblogsUserNotificationHandler
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		long microblogsEntryId = jsonObject.getLong("microblogsEntryId");
+		long microblogsEntryId = jsonObject.getLong("classPK");
 
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.fetchMicroblogsEntry(
@@ -72,8 +73,9 @@ public class MicroblogsUserNotificationHandler
 		sb.append("<div class=\"title\">");
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
-			String userFullName = PortalUtil.getUserName(
-				microblogsEntry.getUserId(), StringPool.BLANK);
+			String userFullName = HtmlUtil.escape(
+				PortalUtil.getUserName(
+					microblogsEntry.getUserId(), StringPool.BLANK));
 
 			sb.append(
 				serviceContext.translate(
@@ -81,7 +83,9 @@ public class MicroblogsUserNotificationHandler
 		}
 
 		sb.append("</div><div class=\"body\">");
-		sb.append(HtmlUtil.escape(microblogsEntry.getContent()));
+		sb.append(
+			HtmlUtil.escape(
+				StringUtil.shorten(microblogsEntry.getContent(), 50)));
 		sb.append("</div>");
 
 		return sb.toString();
@@ -96,7 +100,7 @@ public class MicroblogsUserNotificationHandler
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			userNotificationEvent.getPayload());
 
-		long microblogsEntryId = jsonObject.getLong("microblogsEntryId");
+		long microblogsEntryId = jsonObject.getLong("classPK");
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(

@@ -29,7 +29,15 @@ portletURL.setParameter("mvcPath", "/admin/view_consumer_portlets.jsp");
 portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 %>
 
-<form>
+<portlet:renderURL var="addPortletURL">
+	<portlet:param name="mvcPath" value="/admin/edit_consumer_portlet.jsp" />
+	<portlet:param name="redirect" value="<%= currentURL %>" />
+	<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+</portlet:renderURL>
+
+<aui:button-row>
+	<aui:button href="<%= addPortletURL %>" value="add-portlet" />
+</aui:button-row>
 
 <liferay-ui:search-container
 	emptyResultsMessage="there-are-no-portlets"
@@ -75,16 +83,8 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 		/>
 	</liferay-ui:search-container-row>
 
-	<div>
-		<input onClick="location.href = '<portlet:renderURL><portlet:param name="mvcPath" value="/admin/edit_consumer_portlet.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /><portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" /></portlet:renderURL>';" type="button" value="<liferay-ui:message key="add-portlet" />" />
-	</div>
-
-	<br />
-
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
-
-</form>
 
 <%
 PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "manage-portlets"), currentURL);

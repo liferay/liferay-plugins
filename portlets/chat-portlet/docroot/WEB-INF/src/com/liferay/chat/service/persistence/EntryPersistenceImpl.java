@@ -4691,6 +4691,8 @@ public class EntryPersistenceImpl extends BasePersistenceImpl<Entry>
 		EntityCacheUtil.putResult(EntryModelImpl.ENTITY_CACHE_ENABLED,
 			EntryImpl.class, entry.getPrimaryKey(), entry);
 
+		entry.resetOriginalValues();
+
 		return entry;
 	}
 

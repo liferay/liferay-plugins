@@ -20,18 +20,22 @@
 <%@ include file="/init.jsp" %>
 
 <%
+List<Long> groupIds = new ArrayList<Long>();
+
 Group group = GroupLocalServiceUtil.getGroup(layout.getGroupId());
 
-List<Group> groups = new ArrayList<Group>();
-
 if (group.isRegularSite()) {
-	groups.add(group);
+	groupIds.add(group.getGroupId());
 }
 else if (group.isUser() && themeDisplay.isSignedIn()) {
-	groups.addAll(user.getMySites());
+	for (Group mySite : user.getMySites()) {
+		groupIds.add(mySite.getGroupId());
+	}
 }
 else {
-	groups.add(GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.GUEST));
+	Group guestGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.GUEST);
+
+	groupIds.add(guestGroup.getGroupId());
 }
 
 Calendar displayStartTimeJCalendar = (Calendar)jCalendar.clone();
@@ -45,10 +49,14 @@ long displayEndTime = jCalendar.getTimeInMillis() + (Time.DAY * maxDaysDisplayed
 
 List<Long> calendarResourceIds = new ArrayList<Long>();
 
-long classNameId = PortalUtil.getClassNameId(Group.class);
+for (long groupId : groupIds) {
+	long classNameId = PortalUtil.getClassNameId(Group.class);
 
-for (Group curGroup : groups) {
-	CalendarResource calendarResource = CalendarResourceServiceUtil.fetchCalendarResource(classNameId, curGroup.getGroupId());
+	if (group.isUser()) {
+		classNameId = PortalUtil.getClassNameId(User.class);
+	}
+
+	CalendarResource calendarResource = CalendarResourceLocalServiceUtil.fetchCalendarResource(classNameId, groupId);
 
 	if (calendarResource != null) {
 		calendarResourceIds.add(calendarResource.getCalendarResourceId());
@@ -57,7 +65,7 @@ for (Group curGroup : groups) {
 
 int[] statuses = {WorkflowConstants.STATUS_APPROVED};
 
-List<CalendarBooking> calendarBookings = CalendarBookingServiceUtil.search(themeDisplay.getCompanyId(), null, null, ArrayUtil.toLongArray(calendarResourceIds), -1, null, displayStartTimeJCalendar.getTimeInMillis(), displayEndTime, true, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+List<CalendarBooking> calendarBookings = CalendarBookingServiceUtil.search(themeDisplay.getCompanyId(), ArrayUtil.toLongArray(groupIds), null, ArrayUtil.toLongArray(calendarResourceIds), -1, null, displayStartTimeJCalendar.getTimeInMillis(), displayEndTime, true, statuses, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 if (calendarBookings.size() > 1) {
 	ListUtil.sort(calendarBookings, new CalendarBookingTimeComparator(locale));
@@ -67,6 +75,10 @@ List<CalendarBooking> todayBookings = new ArrayList<CalendarBooking>();
 List<CalendarBooking> upcomingBookings = new ArrayList<CalendarBooking>();
 
 for (CalendarBooking calendarBooking : calendarBookings) {
+	if (Validator.isNull(calendarBooking.getTitle())) {
+		continue;
+	}
+
 	if (!calendarBooking.isAllDay() && (calendarBooking.getEndTime() < jCalendar.getTimeInMillis())) {
 		continue;
 	}

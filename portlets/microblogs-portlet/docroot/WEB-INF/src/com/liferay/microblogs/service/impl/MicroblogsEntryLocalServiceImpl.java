@@ -311,7 +311,7 @@ public class MicroblogsEntryLocalServiceImpl
 				JSONFactoryUtil.createJSONObject();
 
 			notificationEventJSONObject.put(
-				"microblogsEntryId", microblogsEntry.getMicroblogsEntryId());
+				"classPK", microblogsEntry.getMicroblogsEntryId());
 			notificationEventJSONObject.put(
 				"userId", microblogsEntry.getUserId());
 

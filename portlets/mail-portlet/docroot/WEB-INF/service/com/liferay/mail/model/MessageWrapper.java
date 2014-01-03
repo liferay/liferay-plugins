@@ -749,6 +749,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Message getWrappedMessage() {
 		return _message;
 	}
@@ -756,6 +757,16 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	@Override
 	public Message getWrappedModel() {
 		return _message;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _message.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _message.isFinderCacheEnabled();
 	}
 
 	@Override

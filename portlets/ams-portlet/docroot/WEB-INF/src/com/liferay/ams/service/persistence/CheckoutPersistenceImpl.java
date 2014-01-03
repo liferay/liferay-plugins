@@ -304,6 +304,8 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		EntityCacheUtil.putResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
 			CheckoutImpl.class, checkout.getPrimaryKey(), checkout);
 
+		checkout.resetOriginalValues();
+
 		return checkout;
 	}
 

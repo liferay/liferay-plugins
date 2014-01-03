@@ -101,6 +101,7 @@ public class KaleoDefinitionServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(KaleoDefinitionService service) {
 	}
 

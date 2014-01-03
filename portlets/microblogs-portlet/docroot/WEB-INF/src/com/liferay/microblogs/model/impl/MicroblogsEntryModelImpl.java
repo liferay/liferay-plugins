@@ -204,6 +204,9 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 			getReceiverMicroblogsEntryId());
 		attributes.put("socialRelationType", getSocialRelationType());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -581,6 +584,16 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

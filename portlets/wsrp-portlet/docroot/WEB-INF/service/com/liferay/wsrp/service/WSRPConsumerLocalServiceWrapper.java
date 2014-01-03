@@ -398,6 +398,7 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public WSRPConsumerLocalService getWrappedWSRPConsumerLocalService() {
 		return _wsrpConsumerLocalService;
 	}
@@ -405,6 +406,7 @@ public class WSRPConsumerLocalServiceWrapper implements WSRPConsumerLocalService
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedWSRPConsumerLocalService(
 		WSRPConsumerLocalService wsrpConsumerLocalService) {
 		_wsrpConsumerLocalService = wsrpConsumerLocalService;

@@ -194,7 +194,7 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 			json = jsonObject.toString();
 		}
 		catch (BundleException be) {
-			json = JSONFactoryUtil.serializeException(be);
+			json = JSONFactoryUtil.serializeThrowable(be);
 		}
 
 		writeJSON(resourceRequest, resourceResponse, json);
@@ -266,8 +266,8 @@ public class ModulesAdminPortlet extends FreeMarkerPortlet {
 	}
 
 	/**
-	 * @see {@link com.liferay.osgi.bootstrap.ModuleFrameworkImpl#getBundle(
-	 *      BundleContext, InputStream)}
+	 * @see com.liferay.osgi.bootstrap.ModuleFrameworkImpl#getBundle(
+	 *      BundleContext, InputStream)
 	 */
 	protected Bundle getBundle(
 			BundleContext bundleContext, InputStream inputStream)

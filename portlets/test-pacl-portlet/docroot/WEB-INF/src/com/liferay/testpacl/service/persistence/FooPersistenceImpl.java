@@ -806,6 +806,8 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
 			FooImpl.class, foo.getPrimaryKey(), foo);
 
+		foo.resetOriginalValues();
+
 		return foo;
 	}
 

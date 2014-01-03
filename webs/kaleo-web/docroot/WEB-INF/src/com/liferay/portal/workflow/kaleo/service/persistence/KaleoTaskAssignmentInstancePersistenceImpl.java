@@ -2448,6 +2448,8 @@ public class KaleoTaskAssignmentInstancePersistenceImpl
 			kaleoTaskAssignmentInstance.getPrimaryKey(),
 			kaleoTaskAssignmentInstance);
 
+		kaleoTaskAssignmentInstance.resetOriginalValues();
+
 		return kaleoTaskAssignmentInstance;
 	}
 

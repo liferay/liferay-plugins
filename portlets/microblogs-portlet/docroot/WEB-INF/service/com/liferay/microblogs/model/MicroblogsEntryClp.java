@@ -20,6 +20,7 @@ import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -88,6 +89,9 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		attributes.put("receiverMicroblogsEntryId",
 			getReceiverMicroblogsEntryId());
 		attributes.put("socialRelationType", getSocialRelationType());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -161,6 +165,9 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		if (socialRelationType != null) {
 			setSocialRelationType(socialRelationType);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -571,6 +578,16 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 
@@ -673,4 +690,6 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	private long _receiverMicroblogsEntryId;
 	private int _socialRelationType;
 	private BaseModel<?> _microblogsEntryRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

@@ -33,6 +33,7 @@ page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.repository.model.FileEntry" %><%@
 page import="com.liferay.portal.kernel.util.CharPool" %><%@
+page import="com.liferay.portal.kernel.util.FastDateFormatConstants" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
@@ -46,7 +47,6 @@ page import="com.liferay.portal.kernel.util.StringBundler" %><%@
 page import="com.liferay.portal.kernel.util.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.portal.kernel.util.TextFormatter" %><%@
-page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.workflow.WorkflowConstants" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
@@ -57,6 +57,7 @@ page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
 page import="com.liferay.privatemessaging.model.UserThread" %><%@
 page import="com.liferay.privatemessaging.service.UserThreadLocalServiceUtil" %><%@
+page import="com.liferay.privatemessaging.service.UserThreadServiceUtil" %><%@
 page import="com.liferay.privatemessaging.util.PrivateMessagingUtil" %>
 
 <%@ page import="java.text.Format" %>
@@ -72,7 +73,7 @@ page import="javax.portlet.WindowState" %>
 <liferay-theme:defineObjects />
 
 <%
-Format dateFormatDateTime = FastDateFormatFactoryUtil.getSimpleDateFormat("MMMMM d 'at' h:mm a", locale, timeZone);
+Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT, locale, timeZone);
 %>
 
 <%!

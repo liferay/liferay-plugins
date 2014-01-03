@@ -332,6 +332,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public KaleoActionLocalService getWrappedKaleoActionLocalService() {
 		return _kaleoActionLocalService;
 	}
@@ -339,6 +340,7 @@ public class KaleoActionLocalServiceWrapper implements KaleoActionLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedKaleoActionLocalService(
 		KaleoActionLocalService kaleoActionLocalService) {
 		_kaleoActionLocalService = kaleoActionLocalService;

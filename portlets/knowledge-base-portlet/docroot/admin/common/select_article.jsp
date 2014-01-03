@@ -116,8 +116,8 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			</liferay-ui:search-container-row>
 
 			<c:if test="<%= oldParentResourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY %>">
-				<aui:button-row>
-					<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(oldParentResourcePrimKey, status), "title") %>
+				<aui:button-row cssClass="input-append">
+					<liferay-ui:input-resource url='<%= BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(oldParentResourcePrimKey, status), "title") %>' />
 
 					<liferay-util:buffer var="html">
 						<liferay-util:include page="/admin/new_parent.jsp" servletContext="<%= application %>">

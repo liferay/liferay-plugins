@@ -27,50 +27,40 @@ int total = 0;
 
 int start = ParamUtil.getInteger(request, "start");
 int end = start + _DELTA;
-%>
 
-<c:choose>
-	<c:when test="<%= group.isUser() %>">
-
-		<%
-		if (!layout.isPublicLayout()) {
-			if (tabs1.equals("connections")) {
-				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
-				total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
-			}
-			else if (tabs1.equals("following")) {
-				results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
-				total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
-			}
-			else if (tabs1.equals("me")) {
-				results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
-				total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
-			}
-			else if (tabs1.equals("my-sites")) {
-				results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(group.getClassPK(), start, end);
-				total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(group.getClassPK());
-			}
-			else {
-				results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(group.getClassPK(), start, end);
-				total = SocialActivitySetLocalServiceUtil.getUserViewableActivitySetsCount(group.getClassPK());
-			}
+if (group.isUser()) {
+	if (layout.isPrivateLayout()) {
+		if (tabs1.equals("connections")) {
+			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION, start, end);
+			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_BI_CONNECTION);
 		}
-		else {
+		else if (tabs1.equals("following")) {
+			results = SocialActivitySetLocalServiceUtil.getRelationActivitySets(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER, start, end);
+			total = SocialActivitySetLocalServiceUtil.getRelationActivitySetsCount(group.getClassPK(), SocialRelationConstants.TYPE_UNI_FOLLOWER);
+		}
+		else if (tabs1.equals("me")) {
 			results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
 			total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
 		}
-		%>
-
-	</c:when>
-	<c:otherwise>
-
-		<%
-		results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), start, end);
-		total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
-		%>
-
-	</c:otherwise>
-</c:choose>
+		else if (tabs1.equals("my-sites")) {
+			results = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySets(group.getClassPK(), start, end);
+			total = SocialActivitySetLocalServiceUtil.getUserGroupsActivitySetsCount(group.getClassPK());
+		}
+		else {
+			results = SocialActivitySetLocalServiceUtil.getUserViewableActivitySets(group.getClassPK(), start, end);
+			total = SocialActivitySetLocalServiceUtil.getUserViewableActivitySetsCount(group.getClassPK());
+		}
+	}
+	else {
+		results = SocialActivitySetLocalServiceUtil.getUserActivitySets(group.getClassPK(), start, end);
+		total = SocialActivitySetLocalServiceUtil.getUserActivitySetsCount(group.getClassPK());
+	}
+}
+else {
+	results = SocialActivitySetLocalServiceUtil.getGroupActivitySets(group.getGroupId(), start, end);
+	total = SocialActivitySetLocalServiceUtil.getGroupActivitySetsCount(group.getGroupId());
+}
+%>
 
 <%@ include file="/activities/view_activity_sets_feed.jspf" %>
 

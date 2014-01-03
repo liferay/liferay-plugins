@@ -47,7 +47,7 @@ for (SocialActivitySet activitySet : results) {
 		<div class="user-portrait">
 			<span class="avatar">
 				<a href="<%= userDisplayURL %>">
-					<img alt="<%= userFullName %>" src="<%= userPortraitURL %>" />
+					<img alt="<%= HtmlUtil.escape(userFullName) %>" src="<%= userPortraitURL %>" />
 				</a>
 			</span>
 		</div>
@@ -68,22 +68,10 @@ for (SocialActivitySet activitySet : results) {
 						<%
 						int commentsCount = 0;
 
-						String className = activitySet.getClassName();
-						long classPK = activitySet.getClassPK();
+						Object[] commentsClassNameAndClassPK = ActivitiesUtil.getCommentsClassNameAndClassPK(activitySet);
 
-						if (className.equals(DLFileEntry.class.getName())) {
-							if ((activitySet.getActivityCount() > 1) && (activitySet.getType() == SocialActivityKeyConstants.DL_ADD_FILE_ENTRY)) {
-								className = SocialActivitySet.class.getName();
-								classPK = activitySet.getActivitySetId();
-							}
-							else {
-								className = DLFileVersion.class.getName();
-
-								DLFileVersion dlFileVersion = DLFileVersionLocalServiceUtil.getLatestFileVersion(classPK, false);
-
-								classPK = dlFileVersion.getFileVersionId();
-							}
-						}
+						String className = (String)commentsClassNameAndClassPK[0];
+						long classPK = (Long)commentsClassNameAndClassPK[1];
 
 						if (className.equals(MicroblogsEntry.class.getName())) {
 							commentsCount = MicroblogsEntryLocalServiceUtil.getReceiverMicroblogsEntryMicroblogsEntriesCount(MicroblogsEntryConstants.TYPE_REPLY, classPK);

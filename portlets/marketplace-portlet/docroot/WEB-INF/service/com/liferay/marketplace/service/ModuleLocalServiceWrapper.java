@@ -303,6 +303,7 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public ModuleLocalService getWrappedModuleLocalService() {
 		return _moduleLocalService;
 	}
@@ -310,6 +311,7 @@ public class ModuleLocalServiceWrapper implements ModuleLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedModuleLocalService(
 		ModuleLocalService moduleLocalService) {
 		_moduleLocalService = moduleLocalService;

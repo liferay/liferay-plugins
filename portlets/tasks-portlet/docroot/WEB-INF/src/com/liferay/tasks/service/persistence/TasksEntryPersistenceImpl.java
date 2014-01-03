@@ -611,7 +611,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, TasksEntryImpl.class);
@@ -786,7 +786,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				TasksEntry.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -915,7 +915,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -2994,7 +2994,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, TasksEntryImpl.class);
@@ -3174,7 +3174,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				TasksEntry.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -3316,7 +3316,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -3907,7 +3907,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, TasksEntryImpl.class);
@@ -4087,7 +4087,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				TasksEntry.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -4230,7 +4230,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -4821,7 +4821,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			if (getDB().isSupportsInlineDistinct()) {
 				q.addEntity(_FILTER_ENTITY_ALIAS, TasksEntryImpl.class);
@@ -5001,7 +5001,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 				TasksEntry.class.getName(),
 				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN, groupId);
 
-		SQLQuery q = session.createSQLQuery(sql);
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 		q.setFirstResult(0);
 		q.setMaxResults(2);
@@ -5144,7 +5144,7 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME,
 				com.liferay.portal.kernel.dao.orm.Type.LONG);
@@ -5532,6 +5532,8 @@ public class TasksEntryPersistenceImpl extends BasePersistenceImpl<TasksEntry>
 
 		EntityCacheUtil.putResult(TasksEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TasksEntryImpl.class, tasksEntry.getPrimaryKey(), tasksEntry);
+
+		tasksEntry.resetOriginalValues();
 
 		return tasksEntry;
 	}

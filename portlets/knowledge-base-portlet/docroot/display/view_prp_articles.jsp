@@ -37,16 +37,17 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	orderByCol="<%= orderByCol %>"
 	orderByType="<%= orderByType %>"
 >
-	<liferay-ui:search-container-results>
 
-		<%
-		AssetEntryQuery assetEntryQuery = new AssetEntryQuery(KBArticle.class.getName(), searchContainer);
+	<%
+	AssetEntryQuery assetEntryQuery = new AssetEntryQuery(KBArticle.class.getName(), searchContainer);
 
-		pageContext.setAttribute("results", AssetEntryServiceUtil.getEntries(assetEntryQuery));
-		pageContext.setAttribute("total", AssetEntryServiceUtil.getEntriesCount(assetEntryQuery));
-		%>
+	searchContainer.setTotal(AssetEntryServiceUtil.getEntriesCount(assetEntryQuery));
 
-	</liferay-ui:search-container-results>
+	assetEntryQuery.setEnd(searchContainer.getEnd());
+	assetEntryQuery.setStart(searchContainer.getStart());
+
+	searchContainer.setResults(AssetEntryServiceUtil.getEntries(assetEntryQuery));
+	%>
 
 	<liferay-ui:search-container-row
 		className="com.liferay.portlet.asset.model.AssetEntry"

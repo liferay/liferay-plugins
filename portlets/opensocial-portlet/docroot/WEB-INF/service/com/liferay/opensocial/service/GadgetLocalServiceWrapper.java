@@ -398,6 +398,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public GadgetLocalService getWrappedGadgetLocalService() {
 		return _gadgetLocalService;
 	}
@@ -405,6 +406,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedGadgetLocalService(
 		GadgetLocalService gadgetLocalService) {
 		_gadgetLocalService = gadgetLocalService;

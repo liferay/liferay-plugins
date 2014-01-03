@@ -428,6 +428,7 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public WSRPConsumerPortlet getWrappedWSRPConsumerPortlet() {
 		return _wsrpConsumerPortlet;
 	}
@@ -435,6 +436,16 @@ public class WSRPConsumerPortletWrapper implements WSRPConsumerPortlet,
 	@Override
 	public WSRPConsumerPortlet getWrappedModel() {
 		return _wsrpConsumerPortlet;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _wsrpConsumerPortlet.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _wsrpConsumerPortlet.isFinderCacheEnabled();
 	}
 
 	@Override

@@ -714,6 +714,7 @@ public class KaleoActionWrapper implements KaleoAction,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoAction getWrappedKaleoAction() {
 		return _kaleoAction;
 	}
@@ -721,6 +722,16 @@ public class KaleoActionWrapper implements KaleoAction,
 	@Override
 	public KaleoAction getWrappedModel() {
 		return _kaleoAction;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoAction.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoAction.isFinderCacheEnabled();
 	}
 
 	@Override

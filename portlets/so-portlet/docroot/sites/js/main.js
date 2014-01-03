@@ -25,6 +25,63 @@ AUI.add(
 	}
 );
 
+AUI.add(
+	'liferay-so-user-menu',
+	function(A) {
+		var UserMenu = function(config) {
+			var hideClass = config.hideClass;
+			var hideOn = config.hideOn || 'close-menus';
+			var showClass = config.showClass;
+			var showOn = config.showOn || 'click';
+
+			var node = A.one(config.node);
+
+			var target = A.one(config.target) || node;
+
+			target.on(
+				'clickoutside',
+				function(event) {
+					if (hideClass && !target.hasClass(hideClass)) {
+						target.addClass(hideClass);
+					}
+
+					if (showClass && target.hasClass(showClass)) {
+						target.removeClass(showClass);
+					}
+				}
+			);
+
+			var trigger = A.one(config.trigger) || node;
+
+			trigger.on(
+				showOn,
+				function(event) {
+					if (hideClass && target.hasClass(hideClass)) {
+						setTimeout(
+							function() {
+								target.removeClass(hideClass);
+							},
+							10
+						);
+					}
+
+					if (showClass && !target.hasClass(showClass)) {
+						target.addClass(showClass);
+					}
+				}
+			);
+		}
+
+		Liferay.namespace('SO');
+
+		Liferay.SO.UserMenu = UserMenu;
+	},
+	'',
+	{
+		requires: ['aui-base', 'node-core']
+	}
+);
+
 AUI().use(
 	'aui-base',
 	'aui-io-plugin-deprecated',

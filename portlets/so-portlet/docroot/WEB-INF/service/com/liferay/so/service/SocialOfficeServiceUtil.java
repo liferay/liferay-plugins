@@ -101,6 +101,7 @@ public class SocialOfficeServiceUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setService(SocialOfficeService service) {
 	}
 

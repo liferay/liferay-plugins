@@ -322,6 +322,7 @@ public class KaleoConditionLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public KaleoConditionLocalService getWrappedKaleoConditionLocalService() {
 		return _kaleoConditionLocalService;
 	}
@@ -329,6 +330,7 @@ public class KaleoConditionLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedKaleoConditionLocalService(
 		KaleoConditionLocalService kaleoConditionLocalService) {
 		_kaleoConditionLocalService = kaleoConditionLocalService;

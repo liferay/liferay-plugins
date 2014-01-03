@@ -964,6 +964,7 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Calendar getWrappedCalendar() {
 		return _calendar;
 	}
@@ -971,6 +972,16 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	@Override
 	public Calendar getWrappedModel() {
 		return _calendar;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _calendar.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _calendar.isFinderCacheEnabled();
 	}
 
 	@Override

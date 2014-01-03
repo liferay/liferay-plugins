@@ -2,5 +2,6 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.privatemessaging.service.UserThreadLocalService" class="com.liferay.privatemessaging.service.impl.UserThreadLocalServiceImpl" />
+	<bean id="com.liferay.privatemessaging.service.UserThreadService" class="com.liferay.privatemessaging.service.impl.UserThreadServiceImpl" />
 	<bean id="com.liferay.privatemessaging.service.persistence.UserThreadPersistence" class="com.liferay.privatemessaging.service.persistence.UserThreadPersistenceImpl" parent="basePersistence" />
 </beans>

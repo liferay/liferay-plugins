@@ -637,7 +637,7 @@ public class CalendarBookingFinderImpl
 
 		StringBundler sb = new StringBundler(statuses.length * 2 + 1);
 
-		sb.append(" (");
+		sb.append("AND (");
 
 		for (int i = 0; i < statuses.length; i++) {
 			sb.append("status = ? ");

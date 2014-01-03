@@ -16,6 +16,7 @@ package com.liferay.sync.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -97,6 +98,9 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		attributes.put("type", getType());
 		attributes.put("typePK", getTypePK());
 		attributes.put("typeUuid", getTypeUuid());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -234,6 +238,9 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		if (typeUuid != null) {
 			setTypeUuid(typeUuid);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -957,6 +964,16 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(45);
 
@@ -1135,4 +1152,6 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	private long _typePK;
 	private String _typeUuid;
 	private BaseModel<?> _syncDLObjectRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

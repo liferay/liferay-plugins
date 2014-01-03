@@ -77,6 +77,7 @@ public class CalendarImporterLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public CalendarImporterLocalService getWrappedCalendarImporterLocalService() {
 		return _calendarImporterLocalService;
 	}
@@ -84,6 +85,7 @@ public class CalendarImporterLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedCalendarImporterLocalService(
 		CalendarImporterLocalService calendarImporterLocalService) {
 		_calendarImporterLocalService = calendarImporterLocalService;

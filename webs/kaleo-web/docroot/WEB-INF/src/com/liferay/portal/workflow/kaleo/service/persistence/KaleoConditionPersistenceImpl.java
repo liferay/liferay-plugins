@@ -1623,6 +1623,8 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 		clearUniqueFindersCache(kaleoCondition);
 		cacheUniqueFindersCache(kaleoCondition);
 
+		kaleoCondition.resetOriginalValues();
+
 		return kaleoCondition;
 	}
 

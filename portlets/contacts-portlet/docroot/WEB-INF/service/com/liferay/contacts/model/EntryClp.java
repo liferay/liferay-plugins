@@ -19,6 +19,7 @@ import com.liferay.contacts.service.EntryLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -85,6 +86,9 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		attributes.put("emailAddress", getEmailAddress());
 		attributes.put("comments", getComments());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -149,6 +153,9 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		if (comments != null) {
 			setComments(comments);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -515,6 +522,16 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 
@@ -609,4 +626,6 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	private String _emailAddress;
 	private String _comments;
 	private BaseModel<?> _entryRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

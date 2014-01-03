@@ -26,24 +26,22 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 <aui:form method="post" name="fm">
 
 	<aui:fieldset>
+
+		<%
+		List<Subscription> subscriptions = SubscriptionLocalServiceUtil.getUserSubscriptions(user.getUserId(), KBArticle.class.getName());
+		%>
+
 		<liferay-ui:search-container
 			emptyResultsMessage="no-subscriptions-were-found"
 			orderByCol="<%= orderByCol %>"
 			orderByComparator="<%= KnowledgeBaseUtil.getKBArticleOrderByComparator(orderByCol, orderByType) %>"
 			orderByType="<%= orderByType %>"
+			total='<%= KBArticleServiceUtil.getKBArticlesCount(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED) %>'
 		>
-			<liferay-ui:search-container-results>
 
-				<%
-				List<Subscription> subscriptions = SubscriptionLocalServiceUtil.getUserSubscriptions(user.getUserId(), KBArticle.class.getName());
-
-				List<KBArticle> kbArticles = KBArticleServiceUtil.getKBArticles(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, searchContainer.getOrderByComparator());
-
-				pageContext.setAttribute("results", kbArticles);
-				pageContext.setAttribute("total", kbArticles.size());
-				%>
-
-			</liferay-ui:search-container-results>
+			<liferay-ui:search-container-results
+				results='<%= KBArticleServiceUtil.getKBArticles(scopeGroupId, StringUtil.split(ListUtil.toString(subscriptions, "classPK"), 0L), WorkflowConstants.STATUS_APPROVED, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>'
+			/>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBArticle"

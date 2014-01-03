@@ -489,6 +489,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Feed getWrappedFeed() {
 		return _feed;
 	}
@@ -496,6 +497,16 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	@Override
 	public Feed getWrappedModel() {
 		return _feed;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _feed.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _feed.isFinderCacheEnabled();
 	}
 
 	@Override

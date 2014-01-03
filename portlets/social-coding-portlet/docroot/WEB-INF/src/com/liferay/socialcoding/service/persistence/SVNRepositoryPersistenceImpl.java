@@ -612,6 +612,8 @@ public class SVNRepositoryPersistenceImpl extends BasePersistenceImpl<SVNReposit
 		clearUniqueFindersCache(svnRepository);
 		cacheUniqueFindersCache(svnRepository);
 
+		svnRepository.resetOriginalValues();
+
 		return svnRepository;
 	}
 

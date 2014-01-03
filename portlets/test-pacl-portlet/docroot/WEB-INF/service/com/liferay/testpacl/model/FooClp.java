@@ -16,6 +16,7 @@ package com.liferay.testpacl.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -86,6 +87,9 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		attributes.put("field3", getField3());
 		attributes.put("field4", getField4());
 		attributes.put("field5", getField5());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -163,6 +167,9 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		if (field5 != null) {
 			setField5(field5);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -582,6 +589,16 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 
@@ -690,4 +707,6 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	private Date _field4;
 	private String _field5;
 	private BaseModel<?> _fooRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

@@ -141,6 +141,9 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 		attributes.put("emailAddress", getEmailAddress());
 		attributes.put("comments", getComments());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -446,6 +449,16 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

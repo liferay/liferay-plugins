@@ -346,6 +346,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public FolderLocalService getWrappedFolderLocalService() {
 		return _folderLocalService;
 	}
@@ -353,6 +354,7 @@ public class FolderLocalServiceWrapper implements FolderLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedFolderLocalService(
 		FolderLocalService folderLocalService) {
 		_folderLocalService = folderLocalService;

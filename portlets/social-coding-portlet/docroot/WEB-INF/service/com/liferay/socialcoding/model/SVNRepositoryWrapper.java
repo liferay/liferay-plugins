@@ -294,6 +294,7 @@ public class SVNRepositoryWrapper implements SVNRepository,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public SVNRepository getWrappedSVNRepository() {
 		return _svnRepository;
 	}
@@ -301,6 +302,16 @@ public class SVNRepositoryWrapper implements SVNRepository,
 	@Override
 	public SVNRepository getWrappedModel() {
 		return _svnRepository;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _svnRepository.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _svnRepository.isFinderCacheEnabled();
 	}
 
 	@Override

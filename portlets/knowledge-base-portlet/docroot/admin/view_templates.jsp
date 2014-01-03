@@ -44,9 +44,7 @@
 			KBTemplateSearchTerms searchTerms = (KBTemplateSearchTerms)searchContainer.getSearchTerms();
 			%>
 
-			<liferay-ui:search-container-results>
-				<%@ include file="/admin/template_search_results.jspf" %>
-			</liferay-ui:search-container-results>
+			<%@ include file="/admin/template_search_results.jspf" %>
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBTemplate"
@@ -102,9 +100,10 @@
 							modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
 							resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
 							var="permissionsURL"
+							windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 						/>
 
-						<aui:button href="<%= permissionsURL %>" value="permissions" />
+						<aui:button href="<%= permissionsURL %>" useDialog="<%= true %>" value="permissions" />
 					</c:if>
 				</aui:button-row>
 

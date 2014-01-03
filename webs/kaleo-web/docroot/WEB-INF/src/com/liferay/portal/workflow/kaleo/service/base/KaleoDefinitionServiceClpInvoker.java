@@ -24,45 +24,45 @@ import java.util.Arrays;
  */
 public class KaleoDefinitionServiceClpInvoker {
 	public KaleoDefinitionServiceClpInvoker() {
-		_methodName80 = "getBeanIdentifier";
+		_methodName86 = "getBeanIdentifier";
 
-		_methodParameterTypes80 = new String[] {  };
+		_methodParameterTypes86 = new String[] {  };
 
-		_methodName81 = "setBeanIdentifier";
+		_methodName87 = "setBeanIdentifier";
 
-		_methodParameterTypes81 = new String[] { "java.lang.String" };
+		_methodParameterTypes87 = new String[] { "java.lang.String" };
 
-		_methodName86 = "getKaleoDefinitions";
+		_methodName92 = "getKaleoDefinitions";
 
-		_methodParameterTypes86 = new String[] { "int", "int" };
+		_methodParameterTypes92 = new String[] { "int", "int" };
 
-		_methodName87 = "getKaleoDefinitions";
+		_methodName93 = "getKaleoDefinitions";
 
-		_methodParameterTypes87 = new String[] { "long", "int", "int" };
+		_methodParameterTypes93 = new String[] { "long", "int", "int" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName80.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes80, parameterTypes)) {
+		if (_methodName86.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
 			return KaleoDefinitionServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName81.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes81, parameterTypes)) {
+		if (_methodName87.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
 			KaleoDefinitionServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName86.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes86, parameterTypes)) {
+		if (_methodName92.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes92, parameterTypes)) {
 			return KaleoDefinitionServiceUtil.getKaleoDefinitions(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue());
 		}
 
-		if (_methodName87.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes87, parameterTypes)) {
+		if (_methodName93.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes93, parameterTypes)) {
 			return KaleoDefinitionServiceUtil.getKaleoDefinitions(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
@@ -71,12 +71,12 @@ public class KaleoDefinitionServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName80;
-	private String[] _methodParameterTypes80;
-	private String _methodName81;
-	private String[] _methodParameterTypes81;
 	private String _methodName86;
 	private String[] _methodParameterTypes86;
 	private String _methodName87;
 	private String[] _methodParameterTypes87;
+	private String _methodName92;
+	private String[] _methodParameterTypes92;
+	private String _methodName93;
+	private String[] _methodParameterTypes93;
 }

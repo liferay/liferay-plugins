@@ -14,292 +14,344 @@
  */
 --%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
-
-<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
+<%@ include file="/init.jsp" %>
 
 <liferay-ui:tabs
 	names="passage-lookup,passage-comparison,word-search"
 	refresh="<%= false %>"
 >
 	<liferay-ui:section>
-		<form method="get" name="<portlet:namespace />fm1" onSubmit="if (!document.<portlet:namespace />fm1.showfn_cb.checked) { document.<portlet:namespace />fm1.showfn.value = 'no'; } if (!document.<portlet:namespace />fm1.showxref_cb.checked) { document.<portlet:namespace />fm1.showxref.value = 'no'; } submitForm(document.<portlet:namespace />fm1, 'http://www.biblegateway.com/cgi-bin/bible', false); return false;" target="_blank">
-		<input name="showfn" type="hidden" value="yes" />
-		<input name="showxref" type="hidden" value="yes" />
+		<aui:form method="get" name='<%= renderResponse.getNamespace() + "fm1" %>' onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "lookup();" %>' portletNamespace="" target="_blank">
+			<aui:input name="showfn" type="hidden" value="yes" />
+			<aui:input name="showxref" type="hidden" value="yes" />
 
-		<input name="passage" size="30" type="text" />
+			<aui:fieldset>
+				<aui:input label="" name="passage" size="30" />
 
-		<select name="version">
-			<option value="ESV">ESV</option>
-			<option value="NIV">NIV</option>
-			<option value="NASB">NASB</option>
-			<option value="MSG">MSG</option>
-			<option value="AMP">AMP</option>
-			<option value="NLT">NLT</option>
-			<option value="KJV">KJV</option>
-			<option value="NKJV">NKJV</option>
-		</select>
+				<aui:select label="" name="version">
+					<aui:option label="esv" value="ESV" />
+					<aui:option label="niv" value="NIV" />
+					<aui:option label="nasb" value="NASB" />
+					<aui:option label="msg" value="MSG" />
+					<aui:option label="amp" value="AMP" />
+					<aui:option label="nlt" value="NLT" />
+					<aui:option label="kjv" value="KJV" />
+					<aui:option label="nkjv" value="NKJV" />
+				</aui:select>
 
-		<input checked name="showfn_cb" type="checkbox" /> <span style="font-size: xx-small;"><liferay-ui:message key="footnotes" /></span>
+				<aui:input checked="true" label="footnotes" name="showfn_cb" type="checkbox" />
 
-		<input checked name="showxref_cb" type="checkbox" /> <span style="font-size: xx-small;"><liferay-ui:message key="cross-references" /></span>
+				<aui:input checked="true" label="cross-references" name="showxref_cb" type="checkbox" />
+			</aui:fieldset>
 
-		<br /><br />
-
-		<input type="submit" value="<liferay-ui:message key="lookup" />" />
-
-		</form>
+			<aui:button-row>
+				<aui:button type="submit" value="lookup" />
+			</aui:button-row>
+		</aui:form>
 	</liferay-ui:section>
 	<liferay-ui:section>
-		<form name="<portlet:namespace />fm2"
-			onSubmit="
-				var url = 'http://bible.gospelcom.net/cgi-bin/bible?showfn=yes&passage=' + encodeURIComponent(document.<portlet:namespace />fm2.<portlet:namespace />passage.value);
+		<aui:form name="fm2" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "compare();" %>'>
+			<aui:fieldset>
+				<aui:input label="" name="passage" size="30" type="text" />
 
-				for (var i = 0; i < document.<portlet:namespace />fm2.<portlet:namespace />version.length; i++) {
-					if (document.<portlet:namespace />fm2.<portlet:namespace />version[i].checked) {
-						url += '&' + document.<portlet:namespace />fm2.<portlet:namespace />version[i].value + '_version=yes';
-					}
-				}
+				<aui:input id="version_esv" label="esv" name="version" type="checkbox" value="ESV" />
 
-				window.open(url);
+				<aui:input id="version_niv" label="niv" name="version" type="checkbox" value="NIV" />
 
-				return false;"
-		>
+				<aui:input id="version_nasb" label="nasb" name="version" type="checkbox" value="NASB" />
 
-		<input name="<portlet:namespace />passage" size="30" type="text" /><br />
+				<aui:input id="version_msg" label="msg" name="version" type="checkbox" value="MSG" />
 
-		<input name="<portlet:namespace />version" type="checkbox" value="ESV" /> <span style="font-size: xx-small;">ESV</span>
+				<aui:input id="version_amp" label="amp" name="version" type="checkbox" value="AMP" />
 
-		<input name="<portlet:namespace />version" type="checkbox" value="NIV" /> <span style="font-size: xx-small;">NIV</span>
+				<aui:input id="version_nlt" label="nlt" name="version" type="checkbox" value="NLT" />
 
-		<input name="<portlet:namespace />version" type="checkbox" value="NASB" /> <span style="font-size: xx-small;">NASB</span>
+				<aui:input id="version_kjv" label="kjv" name="version" type="checkbox" value="KJV" />
+			</aui:fieldset>
 
-		<input name="<portlet:namespace />version" type="checkbox" value="MSG" /> <span style="font-size: xx-small;">MSG</span>
-
-		<input name="<portlet:namespace />version" type="checkbox" value="AMP" /> <span style="font-size: xx-small;">AMP</span>
-
-		<input name="<portlet:namespace />version" type="checkbox" value="NLT" /> <span style="font-size: xx-small;">NLT</span>
-
-		<input name="<portlet:namespace />version" type="checkbox" value="KJV" /> <span style="font-size: xx-small;">KJV</span>
-
-		<br /><br />
-
-		<input type="submit" value="<liferay-ui:message key="compare" />" />
-
-		</form>
+			<aui:button-row>
+				<aui:button type="submit" value="compare" />
+			</aui:button-row>
+		</aui:form>
 	</liferay-ui:section>
 	<liferay-ui:section>
-		<form method="get" name="<portlet:namespace />fm3" onSubmit="submitForm(document.<portlet:namespace />fm3, 'http://www.biblegateway.com/cgi-bin/bible', false); return false;" target="_blank">
+		<aui:form method="get" name='<%= renderResponse.getNamespace() + "fm3" %>' onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "search();" %>' portletNamespace="" target="_blank">
+			<aui:fieldset>
+				<aui:input label="" name="search" size="30" type="text" />
 
-		<input name="search" size="30" type="text" />
+				<aui:select label="" name="version">
+					<aui:option label="esv" value="ESV" />
+					<aui:option label="niv" value="NIV" />
+					<aui:option label="nasb" value="NASB" />
+					<aui:option label="msg" value="MSG" />
+					<aui:option label="amp" value="AMP" />
+					<aui:option label="nlt" value="NLT" />
+					<aui:option label="kjv" value="KJV" />
+					<aui:option label="nkjv" value="NKJV" />
+				</aui:select>
 
-		<select name="version">
-			<option value="ESV">ESV</option>
-			<option value="NIV">NIV</option>
-			<option value="NASB">NASB</option>
-			<option value="MSG">MSG</option>
-			<option value="AMP">AMP</option>
-			<option value="NLT">NLT</option>
-			<option value="KJV">KJV</option>
-			<option value="NKJV">NKJV</option>
-		</select>
+				<aui:select label="" name="SearchType">
+					<aui:option label="all-words" value="AND" />
+					<aui:option label="any-words" value="OR" />
+					<aui:option label="exact-phrase" value="EXACT" />
+					<aui:option label="similar-phrase" value="FULL_TEXT" />
+				</aui:select>
 
-		<select name="SearchType">
-			<option value="AND"><liferay-ui:message key="all-words" /></option>
-			<option value="OR"><liferay-ui:message key="any-words" /></option>
-			<option value="EXACT"><liferay-ui:message key="exact-phrase" /></option>
-			<option value="FULL_TEXT"><liferay-ui:message key="similar-phrase" /></option>
-		</select>
+				<aui:input label="match-whole-words" name="SearchWholeWords" type="checkbox" value="yes" />
 
-		<br />
+				<aui:input label="references-only" name="SearchAsLink" type="checkbox" value="yes" />
 
-		<input name="SearchWholeWords" type="checkbox" value="yes" /> <span style="font-size: xx-small;"><liferay-ui:message key="match-whole-words" /></span>
+				<aui:select label="restrict-to" name="restrict" onChange='<%= renderResponse.getNamespace() + "resetA();" %>'>
+					<aui:option label="" value="" />
+					<aui:option label="apocalyptic-books" value="Apocalyptic_Books" />
+					<aui:option label="books-of-moses" value="Books_of_Moses" />
+					<aui:option label="epistles" value="Epistles" />
+					<aui:option label="gospels" value="Gospels" />
+					<aui:option label="major-prophets" value="Major_Prophets" />
+					<aui:option label="minor-prophets" value="Minor_Prophets" />
+					<aui:option label="new-testament" value="New_Testament" />
+					<aui:option label="old-testament" value="Old_Testament" />
+					<aui:option label="ot-historical-books" value="OT_Historical_Books" />
+					<aui:option label="pauline-epistles" value="Pauline_Epistles" />
+					<aui:option label="wisdom-books" value="Wisdom_Books" />
+				</aui:select>
 
-		<input name="SearchAsLink" type="checkbox" value="yes" /> <span style="font-size: xx-small;"><liferay-ui:message key="references-only" /></span>
+				<aui:select label="start-from" name="StartRestrict" onChange='<%= renderResponse.getNamespace() + "resetB();" %>'>
+					<aui:option label="" value="" />
+					<aui:option label="genesis" value="GEN" />
+					<aui:option label="exodus" value="EXOD" />
+					<aui:option label="leviticus" value="LEV" />
+					<aui:option label="numbers" value="NUM" />
+					<aui:option label="deuteronomy" value="DEUT" />
+					<aui:option label="joshua" value="JOSH" />
+					<aui:option label="judges" value="JUDG" />
+					<aui:option label="ruth" value="RUTH" />
+					<aui:option label="1-samuel" value="1SAM" />
+					<aui:option label="2-samuel" value="2SAM" />
+					<aui:option label="1-kings" value="1KGS" />
+					<aui:option label="2-kings" value="2KGS" />
+					<aui:option label="1-chronicles" value="1CHRON" />
+					<aui:option label="2-chronicles" value="2CHRON" />
+					<aui:option label="ezra" value="EZRA" />
+					<aui:option label="nehemiah" value="NEH" />
+					<aui:option label="esther" value="ESTH" />
+					<aui:option label="job" value="JOB" />
+					<aui:option label="psalm" value="PS" />
+					<aui:option label="proverbs" value="PROV" />
+					<aui:option label="ecclesiastes" value="ECC" />
+					<aui:option label="song-of-solomon" value="SONG" />
+					<aui:option label="isaiah" value="ISA" />
+					<aui:option label="jeremiah" value="JER" />
+					<aui:option label="lamentations" value="LAM" />
+					<aui:option label="ezekiel" value="EZEK" />
+					<aui:option label="daniel" value="DAN" />
+					<aui:option label="hosea" value="HOSEA" />
+					<aui:option label="joel" value="JOEL" />
+					<aui:option label="amos" value="AMOS" />
+					<aui:option label="obadiah" value="OBAD" />
+					<aui:option label="jonah" value="JONAH" />
+					<aui:option label="micah" value="MICAH" />
+					<aui:option label="nahum" value="NAHUM" />
+					<aui:option label="habakkuk" value="HAB" />
+					<aui:option label="zephaniah" value="ZEPH" />
+					<aui:option label="haggai" value="HAG" />
+					<aui:option label="zechariah" value="ZECH" />
+					<aui:option label="malachi" value="MAL" />
+					<aui:option label="matthew" value="MATT" />
+					<aui:option label="mark" value="MARK" />
+					<aui:option label="luke" value="LUKE" />
+					<aui:option label="john" value="JOHN" />
+					<aui:option label="acts" value="ACTS" />
+					<aui:option label="romans" value="ROM" />
+					<aui:option label="1-corinthians" value="1COR" />
+					<aui:option label="2-corinthians" value="2COR" />
+					<aui:option label="Galatians" value="GAL" />
+					<aui:option label="ephesians" value="EPH" />
+					<aui:option label="philippians" value="PHIL" />
+					<aui:option label="colossians" value="COL" />
+					<aui:option label="1-thessalonians" value="1THES" />
+					<aui:option label="2-thessalonians" value="2THES" />
+					<aui:option label="1-timothy" value="1TIM" />
+					<aui:option label="2-timothy" value="2TIM" />
+					<aui:option label="titus" value="TIT" />
+					<aui:option label="philemon" value="PHILEM" />
+					<aui:option label="hebrews" value="HEB" />
+					<aui:option label="james" value="JAS" />
+					<aui:option label="1-peter" value="1PET" />
+					<aui:option label="2-peter" value="2PET" />
+					<aui:option label="1-john" value="1JOHN" />
+					<aui:option label="2-john" value="2JOHN" />
+					<aui:option label="3-john" value="3JOHN" />
+					<aui:option label="jude" value="JUDE" />
+					<aui:option label="revelation" value="REV" />
+				</aui:select>
 
-		<br /><br />
+				<aui:select label="end-at" name="EndRestrict" onChange='<%= renderResponse.getNamespace() + "resetC();" %>'>
+					<aui:option label="" value="" />
+					<aui:option label="genesis" value="GEN" />
+					<aui:option label="exodus" value="EXOD" />
+					<aui:option label="leviticus" value="LEV" />
+					<aui:option label="numbers" value="NUM" />
+					<aui:option label="deuteronomy" value="DEUT" />
+					<aui:option label="joshua" value="JOSH" />
+					<aui:option label="judges" value="JUDG" />
+					<aui:option label="ruth" value="RUTH" />
+					<aui:option label="1-samuel" value="1SAM" />
+					<aui:option label="2-samuel" value="2SAM" />
+					<aui:option label="1-kings" value="1KGS" />
+					<aui:option label="2-kings" value="2KGS" />
+					<aui:option label="1-chronicles" value="1CHRON" />
+					<aui:option label="2-chronicles" value="2CHRON" />
+					<aui:option label="ezra" value="EZRA" />
+					<aui:option label="nehemiah" value="NEH" />
+					<aui:option label="esther" value="ESTH" />
+					<aui:option label="job" value="JOB" />
+					<aui:option label="psalm" value="PS" />
+					<aui:option label="proverbs" value="PROV" />
+					<aui:option label="ecclesiastes" value="ECC" />
+					<aui:option label="song-of-solomon" value="SONG" />
+					<aui:option label="isaiah" value="ISA" />
+					<aui:option label="jeremiah" value="JER" />
+					<aui:option label="lamentations" value="LAM" />
+					<aui:option label="ezekiel" value="EZEK" />
+					<aui:option label="daniel" value="DAN" />
+					<aui:option label="hosea" value="HOSEA" />
+					<aui:option label="joel" value="JOEL" />
+					<aui:option label="amos" value="AMOS" />
+					<aui:option label="obadiah" value="OBAD" />
+					<aui:option label="jonah" value="JONAH" />
+					<aui:option label="micah" value="MICAH" />
+					<aui:option label="nahum" value="NAHUM" />
+					<aui:option label="habakkuk" value="HAB" />
+					<aui:option label="zephaniah" value="ZEPH" />
+					<aui:option label="haggai" value="HAG" />
+					<aui:option label="zechariah" value="ZECH" />
+					<aui:option label="malachi" value="MAL" />
+					<aui:option label="matthew" value="MATT" />
+					<aui:option label="mark" value="MARK" />
+					<aui:option label="luke" value="LUKE" />
+					<aui:option label="john" value="JOHN" />
+					<aui:option label="acts" value="ACTS" />
+					<aui:option label="romans" value="ROM" />
+					<aui:option label="1-corinthians" value="1COR" />
+					<aui:option label="2-corinthians" value="2COR" />
+					<aui:option label="galatians" value="GAL" />
+					<aui:option label="ephesians" value="EPH" />
+					<aui:option label="philippians" value="PHIL" />
+					<aui:option label="colossians" value="COL" />
+					<aui:option label="1-thessalonians" value="1THES" />
+					<aui:option label="2-thessalonians" value="2THES" />
+					<aui:option label="1-timothy" value="1TIM" />
+					<aui:option label="2-timothy" value="2TIM" />
+					<aui:option label="titus" value="TIT" />
+					<aui:option label="philemon" value="PHILEM" />
+					<aui:option label="hebrews" value="HEB" />
+					<aui:option label="james" value="JAS" />
+					<aui:option label="1-peter" value="1PET" />
+					<aui:option label="2-peter" value="2PET" />
+					<aui:option label="1-john" value="1JOHN" />
+					<aui:option label="2-john" value="2JOHN" />
+					<aui:option label="3-john" value="3JOHN" />
+					<aui:option label="jude" value="JUDE" />
+					<aui:option label="revelation" value="REV" />
+				</aui:select>
+			</aui:fieldset>
 
-		<table border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<td>
-				<liferay-ui:message key="restrict-to" />
-			</td>
-			<td rowspan="3" style="padding-left: 10px;"></td>
-			<td>
-				<select name="restrict" onChange="document.<portlet:namespace />fm3.StartRestrict.selectedIndex = 0; document.<portlet:namespace />fm3.EndRestrict.selectedIndex = 0;">
-					<option value=""></option>
-					<option value="Apocalyptic_Books">Apocalyptic Books</option>
-					<option value="Books_of_Moses">Books of Moses</option>
-					<option value="Epistles">Epistles</option>
-					<option value="Gospels">Gospels</option>
-					<option value="Major_Prophets">Major Prophets</option>
-					<option value="Minor_Prophets">Minor Prophets</option>
-					<option value="New_Testament">New Testament</option>
-					<option value="Old_Testament">Old Testament</option>
-					<option value="OT_Historical_Books">OT Historical Books</option>
-					<option value="Pauline_Epistles">Pauline Epistles</option>
-					<option value="Wisdom_Books">Wisdom Books</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="start-from" />
-			</td>
-			<td>
-				<select name="StartRestrict" onChange="document.<portlet:namespace />fm3.restrict.selectedIndex = 0; text = document.<portlet:namespace />fm3.StartRestrict[document.<portlet:namespace />fm3.StartRestrict.selectedIndex].value; if (document.<portlet:namespace />fm3.StartRestrict.selectedIndex > document.<portlet:namespace />fm3.EndRestrict.selectedIndex) { for (var i = 0; i < document.<portlet:namespace />fm3.EndRestrict.length; i++) { if (document.<portlet:namespace />fm3.EndRestrict[i].value == text) { document.<portlet:namespace />fm3.EndRestrict.selectedIndex = i; } } }">
-					<option value=""></option>
-					<option value="GEN">Genesis</option>
-					<option value="EXOD">Exodus</option>
-					<option value="LEV">Leviticus</option>
-					<option value="NUM">Numbers</option>
-					<option value="DEUT">Deuteronomy</option>
-					<option value="JOSH">Joshua</option>
-					<option value="JUDG">Judges</option>
-					<option value="RUTH">Ruth</option>
-					<option value="1SAM">1 Samuel</option>
-					<option value="2SAM">2 Samuel</option>
-					<option value="1KGS">1 Kings</option>
-					<option value="2KGS">2 Kings</option>
-					<option value="1CHRON">1 Chronicles</option>
-					<option value="2CHRON">2 Chronicles</option>
-					<option value="EZRA">Ezra</option>
-					<option value="NEH">Nehemiah</option>
-					<option value="ESTH">Esther</option>
-					<option value="JOB">Job</option>
-					<option value="PS">Psalm</option>
-					<option value="PROV">Proverbs</option>
-					<option value="ECC">Ecclesiastes</option>
-					<option value="SONG">Song of Solomon</option>
-					<option value="ISA">Isaiah</option>
-					<option value="JER">Jeremiah</option>
-					<option value="LAM">Lamentations</option>
-					<option value="EZEK">Ezekiel</option>
-					<option value="DAN">Daniel</option>
-					<option value="HOSEA">Hosea</option>
-					<option value="JOEL">Joel</option>
-					<option value="AMOS">Amos</option>
-					<option value="OBAD">Obadiah</option>
-					<option value="JONAH">Jonah</option>
-					<option value="MICAH">Micah</option>
-					<option value="NAHUM">Nahum</option>
-					<option value="HAB">Habakkuk</option>
-					<option value="ZEPH">Zephaniah</option>
-					<option value="HAG">Haggai</option>
-					<option value="ZECH">Zechariah</option>
-					<option value="MAL">Malachi</option>
-					<option value="MATT">Matthew</option>
-					<option value="MARK">Mark</option>
-					<option value="LUKE">Luke</option>
-					<option value="JOHN">John</option>
-					<option value="ACTS">Acts</option>
-					<option value="ROM">Romans</option>
-					<option value="1COR">1 Corinthians</option>
-					<option value="2COR">2 Corinthians</option>
-					<option value="GAL">Galatians</option>
-					<option value="EPH">Ephesians</option>
-					<option value="PHIL">Philippians</option>
-					<option value="COL">Colossians</option>
-					<option value="1THES">1 Thessalonians</option>
-					<option value="2THES">2 Thessalonians</option>
-					<option value="1TIM">1 Timothy</option>
-					<option value="2TIM">2 Timothy</option>
-					<option value="TIT">Titus</option>
-					<option value="PHILEM">Philemon</option>
-					<option value="HEB">Hebrews</option>
-					<option value="JAS">James</option>
-					<option value="1PET">1 Peter</option>
-					<option value="2PET">2 Peter</option>
-					<option value="1JOHN">1 John</option>
-					<option value="2JOHN">2 John</option>
-					<option value="3JOHN">3 John</option>
-					<option value="JUDE">Jude</option>
-					<option value="REV">Revelation</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<liferay-ui:message key="end-at" />
-			</td>
-			<td>
-				<select name="EndRestrict" onChange="document.<portlet:namespace />fm3.restrict.selectedIndex = 0; text = document.<portlet:namespace />fm3.StartRestrict[document.<portlet:namespace />fm3.EndRestrict.selectedIndex].value; if (document.<portlet:namespace />fm3.StartRestrict.selectedIndex == 0) { document.<portlet:namespace />fm3.StartRestrict.selectedIndex = document.<portlet:namespace />fm3.EndRestrict.selectedIndex; } else if (document.<portlet:namespace />fm3.StartRestrict.selectedIndex > document.<portlet:namespace />fm3.EndRestrict.selectedIndex) { for (var i = 0; i < document.<portlet:namespace />fm3.EndRestrict.length; i++) { if (document.<portlet:namespace />fm3.EndRestrict[i].value == text) { document.<portlet:namespace />fm3.StartRestrict.selectedIndex = i; } } }">
-					<option value=""></option>
-					<option value="GEN">Genesis</option>
-					<option value="EXOD">Exodus</option>
-					<option value="LEV">Leviticus</option>
-					<option value="NUM">Numbers</option>
-					<option value="DEUT">Deuteronomy</option>
-					<option value="JOSH">Joshua</option>
-					<option value="JUDG">Judges</option>
-					<option value="RUTH">Ruth</option>
-					<option value="1SAM">1 Samuel</option>
-					<option value="2SAM">2 Samuel</option>
-					<option value="1KGS">1 Kings</option>
-					<option value="2KGS">2 Kings</option>
-					<option value="1CHRON">1 Chronicles</option>
-					<option value="2CHRON">2 Chronicles</option>
-					<option value="EZRA">Ezra</option>
-					<option value="NEH">Nehemiah</option>
-					<option value="ESTH">Esther</option>
-					<option value="JOB">Job</option>
-					<option value="PS">Psalm</option>
-					<option value="PROV">Proverbs</option>
-					<option value="ECC">Ecclesiastes</option>
-					<option value="SONG">Song of Solomon</option>
-					<option value="ISA">Isaiah</option>
-					<option value="JER">Jeremiah</option>
-					<option value="LAM">Lamentations</option>
-					<option value="EZEK">Ezekiel</option>
-					<option value="DAN">Daniel</option>
-					<option value="HOSEA">Hosea</option>
-					<option value="JOEL">Joel</option>
-					<option value="AMOS">Amos</option>
-					<option value="OBAD">Obadiah</option>
-					<option value="JONAH">Jonah</option>
-					<option value="MICAH">Micah</option>
-					<option value="NAHUM">Nahum</option>
-					<option value="HAB">Habakkuk</option>
-					<option value="ZEPH">Zephaniah</option>
-					<option value="HAG">Haggai</option>
-					<option value="ZECH">Zechariah</option>
-					<option value="MAL">Malachi</option>
-					<option value="MATT">Matthew</option>
-					<option value="MARK">Mark</option>
-					<option value="LUKE">Luke</option>
-					<option value="JOHN">John</option>
-					<option value="ACTS">Acts</option>
-					<option value="ROM">Romans</option>
-					<option value="1COR">1 Corinthians</option>
-					<option value="2COR">2 Corinthians</option>
-					<option value="GAL">Galatians</option>
-					<option value="EPH">Ephesians</option>
-					<option value="PHIL">Philippians</option>
-					<option value="COL">Colossians</option>
-					<option value="1THES">1 Thessalonians</option>
-					<option value="2THES">2 Thessalonians</option>
-					<option value="1TIM">1 Timothy</option>
-					<option value="2TIM">2 Timothy</option>
-					<option value="TIT">Titus</option>
-					<option value="PHILEM">Philemon</option>
-					<option value="HEB">Hebrews</option>
-					<option value="JAS">James</option>
-					<option value="1PET">1 Peter</option>
-					<option value="2PET">2 Peter</option>
-					<option value="1JOHN">1 John</option>
-					<option value="2JOHN">2 John</option>
-					<option value="3JOHN">3 John</option>
-					<option value="JUDE">Jude</option>
-					<option value="REV">Revelation</option>
-				</select>
-			</td>
-		</tr>
-		</table>
-
-		<br />
-
-		<input type="submit" value="<liferay-ui:message key="search" />" />
-
-		</form>
+			<aui:button-row>
+				<aui:button type="submit" value="search" />
+			</aui:button-row>
+		</aui:form>
 	</liferay-ui:section>
 </liferay-ui:tabs>
+
+<aui:script>
+	var A = AUI();
+
+	function <portlet:namespace />compare() {
+		var url = 'http://bible.gospelcom.net/cgi-bin/bible?showfn=yes&passage=' + encodeURIComponent(A.one('#<portlet:namespace />passage').val());
+
+		var versionCheckboxes = A.all('input[name=<portlet:namespace />versionCheckbox]');
+
+		A.each(
+			versionCheckboxes,
+			function(item, index, collection) {
+				if (item.attr('checked')) {
+					url += '&' + item.val() + '_version=yes';
+				}
+			}
+		);
+
+		window.open(url);
+
+		return false;
+	}
+
+	function <portlet:namespace />lookup() {
+		if (!A.one('input[name=showfn_cb]').attr('checked')) {
+			A.one('#showfn').val('no');
+		}
+
+		if (!A.one('input[name=showxref_cb]').attr('checked')) {
+			A.one('#showxref').val('no');
+		}
+
+		submitForm(document.<portlet:namespace />fm1, 'http://www.biblegateway.com/cgi-bin/bible', false);
+
+		return false;
+	}
+
+	function <portlet:namespace />search() {
+		submitForm(document.<portlet:namespace />fm3, 'http://www.biblegateway.com/cgi-bin/bible', false);
+
+		return false;
+	}
+
+	function <portlet:namespace />resetA() {
+		A.one('#StartRestrict').attr('selectedIndex', 0);
+
+		A.one('#EndRestrict').attr('selectedIndex', 0);
+	}
+
+	function <portlet:namespace />resetB() {
+		A.one('#restrict').attr('selectedIndex', 0);
+
+		var startRestrict = A.one('#StartRestrict');
+		var endRestrict = A.one('#EndRestrict');
+
+		var text = startRestrict.val();
+
+		if (startRestrict.attr('selectedIndex') > endRestrict.attr('selectedIndex')) {
+			A.each(
+				endRestrict.all('option'),
+				function(item, index, collection) {
+					if (item.val() == text) {
+						endRestrict.attr('selectedIndex', index);
+					}
+				}
+			);
+		}
+	}
+
+	function <portlet:namespace />resetC() {
+		A.one('#restrict').attr('selectedIndex', 0);
+
+		var startRestrict = A.one('#StartRestrict');
+		var endRestrict = A.one('#EndRestrict');
+
+		var text = endRestrict.val();
+
+		if (startRestrict.attr('selectedIndex') == 0) {
+			startRestrict.attr('selectedIndex', endRestrict.attr('selectedIndex'));
+		}
+		else if (startRestrict.attr('selectedIndex') > endRestrict.attr('selectedIndex')) {
+			A.each(
+				endRestrict.all('option'),
+				function(item, index, collection) {
+					if (item.val() == text) {
+						startRestrict.attr('selectedIndex', index);
+					}
+				}
+			);
+		}
+	}
+</aui:script>

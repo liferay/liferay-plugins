@@ -826,6 +826,8 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey(),
 			projectsEntry);
 
+		projectsEntry.resetOriginalValues();
+
 		return projectsEntry;
 	}
 

@@ -2662,6 +2662,8 @@ public class KaleoNotificationPersistenceImpl extends BasePersistenceImpl<KaleoN
 			KaleoNotificationImpl.class, kaleoNotification.getPrimaryKey(),
 			kaleoNotification);
 
+		kaleoNotification.resetOriginalValues();
+
 		return kaleoNotification;
 	}
 

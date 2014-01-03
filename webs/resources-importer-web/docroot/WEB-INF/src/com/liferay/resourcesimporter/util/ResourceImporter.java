@@ -15,15 +15,25 @@
 package com.liferay.resourcesimporter.util;
 
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
+import com.liferay.portlet.dynamicdatalists.model.DDLRecordSet;
+import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
+import com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants;
+import com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil;
 
+import java.io.File;
 import java.io.InputStream;
 
 import java.net.URL;
 import java.net.URLConnection;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -36,6 +46,147 @@ public class ResourceImporter extends FileSystemImporter {
 	@Override
 	public void importResources() throws Exception {
 		doImportResources();
+	}
+
+	@Override
+	protected void addApplicationDisplayTemplate(
+			String parentDirName, String dirName, long classNameId)
+		throws Exception {
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(resourcesDir);
+		sb.append(parentDirName);
+		sb.append("/");
+		sb.append(dirName);
+
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			sb.toString());
+
+		if (resourcePaths == null) {
+			return;
+		}
+
+		for (String resourcePath : resourcePaths) {
+			URL url = servletContext.getResource(resourcePath);
+
+			URLConnection urlConnection = url.openConnection();
+
+			String script = StringUtil.read(urlConnection.getInputStream());
+
+			if (Validator.isNull(script)) {
+				continue;
+			}
+
+			File file = new File(resourcePath);
+
+			addApplicationDisplayTemplate(script, file, classNameId);
+		}
+	}
+
+	@Override
+	protected void addDDLDisplayTemplates(
+			String ddmStructureKey, String displayTemplateDir)
+		throws Exception {
+
+		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
+			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
+			ddmStructureKey);
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append(resourcesDir);
+		sb.append(displayTemplateDir);
+		sb.append("/");
+		sb.append(ddmStructure.getName(Locale.getDefault()));
+
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			sb.toString());
+
+		if (resourcePaths == null) {
+			return;
+		}
+
+		for (String resourcePath : resourcePaths) {
+			URL url = servletContext.getResource(resourcePath);
+
+			URLConnection urlConnection = url.openConnection();
+
+			String script = StringUtil.read(urlConnection.getInputStream());
+
+			if (Validator.isNull(script)) {
+				return;
+			}
+
+			addDDMTemplate(
+				groupId, ddmStructure.getStructureId(),
+				FileUtil.stripExtension(resourcePath),
+				getDDMTemplateLanguage(resourcePath), script,
+				DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, StringPool.BLANK);
+		}
+	}
+
+	@Override
+	protected void addDDLFormTemplates(
+			String ddmStructureKey, String formTemplateDir)
+		throws Exception {
+
+		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
+			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
+			ddmStructureKey);
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append(resourcesDir);
+		sb.append(formTemplateDir);
+		sb.append("/");
+		sb.append(ddmStructure.getName(Locale.getDefault()));
+
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			sb.toString());
+
+		if (resourcePaths == null) {
+			return;
+		}
+
+		for (String resourcePath : resourcePaths) {
+			URL url = servletContext.getResource(resourcePath);
+
+			URLConnection urlConnection = url.openConnection();
+
+			String script = StringUtil.read(urlConnection.getInputStream());
+
+			if (Validator.isNull(script)) {
+				return;
+			}
+
+			addDDMTemplate(
+				groupId, ddmStructure.getStructureId(), resourcePath, "xsd",
+				script, DDMTemplateConstants.TEMPLATE_TYPE_FORM,
+				DDMTemplateConstants.TEMPLATE_MODE_CREATE);
+		}
+	}
+
+	@Override
+	protected void addDDLStructures(String dirName) throws Exception {
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			resourcesDir.concat(dirName));
+
+		if (resourcePaths == null) {
+			return;
+		}
+
+		for (String resourcePath : resourcePaths) {
+			File file = new File(resourcePath);
+
+			URL url = servletContext.getResource(resourcePath);
+
+			URLConnection urlConnection = url.openConnection();
+
+			addDDMStructures(
+				FileUtil.stripExtension(file.getName()),
+				urlConnection.getInputStream());
+		}
 	}
 
 	@Override
@@ -189,6 +340,30 @@ public class ResourceImporter extends FileSystemImporter {
 			addJournalArticles(
 				ddmStructureKey, ddmTemplateKey, name,
 				urlConnection.getInputStream());
+		}
+	}
+
+	@Override
+	protected void addLayoutTemplate(String dirName) throws Exception {
+		Set<String> resourcePaths = servletContext.getResourcePaths(
+			resourcesDir.concat(dirName));
+
+		if (resourcePaths == null) {
+			return;
+		}
+
+		for (String resourcePath : resourcePaths) {
+			String extension = FileUtil.getExtension(resourcePath);
+
+			if (!extension.equals("json")) {
+				return;
+			}
+
+			URL url = servletContext.getResource(resourcePath);
+
+			URLConnection urlConnection = url.openConnection();
+
+			addLayoutTemplate(urlConnection.getInputStream());
 		}
 	}
 

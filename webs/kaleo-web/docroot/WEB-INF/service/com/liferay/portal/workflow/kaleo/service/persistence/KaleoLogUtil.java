@@ -1360,6 +1360,7 @@ public class KaleoLogUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setPersistence(KaleoLogPersistence persistence) {
 	}
 

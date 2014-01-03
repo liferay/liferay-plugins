@@ -108,7 +108,7 @@
 	.email-invited .user, .user-invited .user {
 		background: #DFD url(@theme_image_path@/arrows/01_minus.png) no-repeat 99% 50%;
 		border-bottom: 1px solid #CCC;
-		padding: 0.5em;
+		padding: 0.5em 1.5em 0.5em 0.5em;
 	}
 
 	.email-invited .user {
@@ -118,21 +118,19 @@
 	.user-invited {
 		.user {
 			span {
-				clear: none;
-				display: block;
+				display: inline-block;
+				width: 50%;
 			}
 
 			.name {
 				color: #555;
-				float: left;
 				font-weight: bold;
-				width: 40%;
 			}
 
 			.email {
 				color: #000;
 				font-size: 1em;
-				width: 50%;
+				margin: 0;
 			}
 		}
 	}
@@ -142,7 +140,6 @@
 		font-size: 1em;
 		font-weight: bold;
 		margin: 0;
-		width: 40%;
 	}
 
 	.controls a {

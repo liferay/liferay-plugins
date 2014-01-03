@@ -19,6 +19,7 @@ import com.liferay.calendar.model.CalendarBookingModel;
 import com.liferay.calendar.model.CalendarBookingSoap;
 
 import com.liferay.portal.LocaleException;
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -269,6 +270,9 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
 		attributes.put("statusDate", getStatusDate());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -1095,7 +1099,14 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		TrashHandler trashHandler = getTrashHandler();
 
 		if (!Validator.isNull(trashHandler.getContainerModelClassName())) {
-			ContainerModel containerModel = trashHandler.getParentContainerModel(this);
+			ContainerModel containerModel = null;
+
+			try {
+				containerModel = trashHandler.getParentContainerModel(this);
+			}
+			catch (NoSuchModelException nsme) {
+				return null;
+			}
 
 			while (containerModel != null) {
 				if (containerModel instanceof TrashedModel) {
@@ -1163,9 +1174,26 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 		return false;
 	}
 
+	@Override
+	public boolean isInTrashExplicitly() throws SystemException {
+		if (!isInTrash()) {
+			return false;
+		}
+
+		TrashEntry trashEntry = TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
+				getTrashEntryClassPK());
+
+		if (trashEntry != null) {
+			return true;
+		}
+
+		return false;
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #isApproved}
 	 */
+	@Deprecated
 	@Override
 	public boolean getApproved() {
 		return isApproved();
@@ -1440,6 +1468,16 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+
+<deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+	<service name="Plugin_Microblogs_MicroblogsEntryService" provider="java:RPC" style="rpc" use="encoded">
+		<arrayMapping xmlns:ns="urn:http.service.microblogs.liferay.com" xmlns:cmp-ns="http://model.microblogs.liferay.com" qname="ns:ArrayOf_tns13_MicroblogsEntrySoap" type="java:com.liferay.microblogs.model.MicroblogsEntrySoap[]" innerType="cmp-ns:MicroblogsEntrySoap" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.microblogs.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.microblogs.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_long" type="java:long[]" innerType="cmp-ns:long" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<arrayMapping xmlns:ns="urn:http.service.microblogs.liferay.com" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_string" type="java:java.lang.String[]" innerType="cmp-ns:string" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></arrayMapping>
+		<typeMapping xmlns:ns="http://model.microblogs.liferay.com" qname="ns:MicroblogsEntrySoap" type="java:com.liferay.microblogs.model.MicroblogsEntrySoap" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<typeMapping xmlns:ns="http://model.portal.liferay.com" qname="ns:PortletPreferencesIds" type="java:com.liferay.portal.model.PortletPreferencesIds" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<typeMapping xmlns:ns="http://service.portal.liferay.com" qname="ns:ServiceContext" type="java:com.liferay.portal.service.ServiceContext" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<typeMapping xmlns:ns="http://theme.portal.liferay.com" qname="ns:PortletDisplay" type="java:com.liferay.portal.theme.PortletDisplay" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<typeMapping xmlns:ns="http://theme.portal.liferay.com" qname="ns:ThemeDisplay" type="java:com.liferay.portal.theme.ThemeDisplay" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<typeMapping xmlns:ns="http://util.kernel.portal.liferay.com" qname="ns:StringBundler" type="java:com.liferay.portal.kernel.util.StringBundler" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<typeMapping xmlns:ns="http://xml.apache.org/xml-soap" qname="ns:mapItem" type="java:org.apache.xml.xml_soap.MapItem" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"></typeMapping>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="http://model.microblogs.liferay.com" name="addMicroblogsEntry" qname="operNS:addMicroblogsEntry" returnQName="addMicroblogsEntryReturn" returnType="rtns:MicroblogsEntrySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="userId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="content" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="type" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="receiverUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="receiverMicroblogsEntryId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="socialRelationType" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="http://model.microblogs.liferay.com" name="deleteMicroblogsEntry" qname="operNS:deleteMicroblogsEntry" returnQName="deleteMicroblogsEntryReturn" returnType="rtns:MicroblogsEntrySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="microblogsEntryId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getMicroblogsEntriesCount" qname="operNS:getMicroblogsEntriesCount" returnQName="getMicroblogsEntriesCountReturn" returnType="rtns:int" soapAction=""> </operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getMicroblogsEntriesCount" qname="operNS:getMicroblogsEntriesCount" returnQName="getMicroblogsEntriesCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="assetTagName" type="tns:string"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="urn:http.service.microblogs.liferay.com" xmlns:tns2="http://model.microblogs.liferay.com" name="getMicroblogsEntries" qname="operNS:getMicroblogsEntries" returnQName="getMicroblogsEntriesReturn" returnType="rtns:ArrayOf_tns13_MicroblogsEntrySoap" returnItemType="tns2:MicroblogsEntrySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="urn:http.service.microblogs.liferay.com" xmlns:tns2="http://model.microblogs.liferay.com" name="getMicroblogsEntries" qname="operNS:getMicroblogsEntries" returnQName="getMicroblogsEntriesReturn" returnType="rtns:ArrayOf_tns13_MicroblogsEntrySoap" returnItemType="tns2:MicroblogsEntrySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="assetTagName" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="http://model.microblogs.liferay.com" name="getMicroblogsEntry" qname="operNS:getMicroblogsEntry" returnQName="getMicroblogsEntryReturn" returnType="rtns:MicroblogsEntrySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="microblogsEntryId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getUserMicroblogsEntriesCount" qname="operNS:getUserMicroblogsEntriesCount" returnQName="getUserMicroblogsEntriesCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="microblogsEntryUserId" type="tns:long"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getUserMicroblogsEntriesCount" qname="operNS:getUserMicroblogsEntriesCount" returnQName="getUserMicroblogsEntriesCountReturn" returnType="rtns:int" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="microblogsEntryUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="type" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="urn:http.service.microblogs.liferay.com" xmlns:tns2="http://model.microblogs.liferay.com" name="getUserMicroblogsEntries" qname="operNS:getUserMicroblogsEntries" returnQName="getUserMicroblogsEntriesReturn" returnType="rtns:ArrayOf_tns13_MicroblogsEntrySoap" returnItemType="tns2:MicroblogsEntrySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="microblogsEntryUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="urn:http.service.microblogs.liferay.com" xmlns:tns2="http://model.microblogs.liferay.com" name="getUserMicroblogsEntries" qname="operNS:getUserMicroblogsEntries" returnQName="getUserMicroblogsEntriesReturn" returnType="rtns:ArrayOf_tns13_MicroblogsEntrySoap" returnItemType="tns2:MicroblogsEntrySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="microblogsEntryUserId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="type" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="start" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="end" type="tns:int"></parameter>
+		</operation>
+		<operation xmlns:operNS="urn:http.service.microblogs.liferay.com" xmlns:rtns="http://model.microblogs.liferay.com" name="updateMicroblogsEntry" qname="operNS:updateMicroblogsEntry" returnQName="updateMicroblogsEntryReturn" returnType="rtns:MicroblogsEntrySoap" soapAction="">
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="microblogsEntryId" type="tns:long"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="content" type="tns:string"></parameter>
+			<parameter xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="socialRelationType" type="tns:int"></parameter>
+			<parameter xmlns:tns="http://service.portal.liferay.com" qname="serviceContext" type="tns:ServiceContext"></parameter>
+		</operation>
+		<parameter name="allowedMethods" value="addMicroblogsEntry deleteMicroblogsEntry getMicroblogsEntries getMicroblogsEntriesCount getMicroblogsEntry getUserMicroblogsEntries getUserMicroblogsEntriesCount updateMicroblogsEntry" />
+		<parameter name="className" value="com.liferay.microblogs.service.http.MicroblogsEntryServiceSoap" />
+		<parameter name="schemaUnqualified" value="http://model.microblogs.liferay.com,http://model.portal.liferay.com,http://service.portal.liferay.com,http://theme.portal.liferay.com,http://util.kernel.portal.liferay.com,http://xml.apache.org/xml-soap,urn:http.service.microblogs.liferay.com" />
+		<parameter name="typeMappingVersion" value="1.2" />
+		<parameter name="wsdlPortType" value="MicroblogsEntryServiceSoap" />
+		<parameter name="wsdlServiceElement" value="MicroblogsEntryServiceSoapService" />
+		<parameter name="wsdlServicePort" value="Plugin_Microblogs_MicroblogsEntryService" />
+		<parameter name="wsdlTargetNamespace" value="urn:http.service.microblogs.liferay.com" />
+	</service>
+</deployment>

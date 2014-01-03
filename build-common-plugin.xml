@@ -18,12 +18,19 @@
 	<property name="plugin.name" value="${ant.project.name}" />
 
 	<if>
-		<antelope:endswith string="${plugin.name}" with="-shared" />
+		<or>
+			<antelope:endswith string="${plugin.name}" with="-ext" />
+			<antelope:endswith string="${plugin.name}" with="-hook" />
+			<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+			<antelope:endswith string="${plugin.name}" with="-portlet" />
+			<antelope:endswith string="${plugin.name}" with="-theme" />
+			<antelope:endswith string="${plugin.name}" with="-web" />
+		</or>
 		<then>
-			<property name="plugin.packaging" value="jar" />
+			<property name="plugin.packaging" value="war" />
 		</then>
 		<else>
-			<property name="plugin.packaging" value="war" />
+			<property name="plugin.packaging" value="jar" />
 		</else>
 	</if>
 
@@ -282,15 +289,8 @@
 			<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
 			<arg value="service.input.file=${service.input.file}" />
 			<arg value="service.hbm.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-hbm.xml" />
-			<arg value="service.orm.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-orm.xml" />
 			<arg value="service.model.hints.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-model-hints.xml" />
 			<arg value="service.spring.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
-			<arg value="service.spring.base.file=${basedir}/docroot/WEB-INF/src/META-INF/base-spring.xml" />
-			<arg value="service.spring.cluster.file=${basedir}/docroot/WEB-INF/src/META-INF/cluster-spring.xml" />
-			<arg value="service.spring.dynamic.data.source.file=${basedir}/docroot/WEB-INF/src/META-INF/dynamic-data-source-spring.xml" />
-			<arg value="service.spring.hibernate.file=${basedir}/docroot/WEB-INF/src/META-INF/hibernate-spring.xml" />
-			<arg value="service.spring.infrastructure.file=${basedir}/docroot/WEB-INF/src/META-INF/infrastructure-spring.xml" />
-			<arg value="service.spring.shard.data.source.file=${basedir}/docroot/WEB-INF/src/META-INF/shard-data-source-spring.xml" />
 			<arg value="service.api.dir=${basedir}/docroot/WEB-INF/service" />
 			<arg value="service.impl.dir=${basedir}/docroot/WEB-INF/src" />
 			<arg value="service.json.file=${basedir}/docroot/js/service.js" />
@@ -531,6 +531,7 @@
 		<delete file="${plugin.src.file}" />
 
 		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="docroot" includes="**/*.processed" />
 			<fileset dir="docroot" includes="**/.sass-cache/**" />
 			<fileset dir="docroot" includes="**/.sprite.png" />
 			<fileset dir="docroot" includes="**/.sprite.properties" />
@@ -542,40 +543,45 @@
 
 	<target name="clean-portal-dependencies">
 		<if>
-			<available file="docroot/WEB-INF/lib" />
+			<equals arg1="${plugins.war.clean.portal.dependencies}" arg2="true" />
 			<then>
-				<delete>
-					<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
-					<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
-				</delete>
-			</then>
-		</if>
+				<if>
+					<available file="docroot/WEB-INF/lib" />
+					<then>
+						<delete>
+							<fileset dir="docroot/WEB-INF/lib" includes="${required.portal.jars}" />
+							<fileset dir="docroot/WEB-INF/lib" includes="${plugin.jars}" />
+						</delete>
+					</then>
+				</if>
 
-		<if>
-			<available file="docroot/WEB-INF/tld" />
-			<then>
-				<delete>
-					<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
-				</delete>
-			</then>
-		</if>
+				<if>
+					<available file="docroot/WEB-INF/tld" />
+					<then>
+						<delete>
+							<fileset dir="docroot/WEB-INF/tld" includes="${plugin.tlds}" />
+						</delete>
+					</then>
+				</if>
 
-		<if>
-			<available file="tmp/WEB-INF/lib" />
-			<then>
-				<delete>
-					<fileset dir="tmp/WEB-INF/lib" includes="${required.portal.jars}" />
-					<fileset dir="tmp/WEB-INF/lib" includes="${plugin.jars}" />
-				</delete>
-			</then>
-		</if>
+				<if>
+					<available file="tmp/WEB-INF/lib" />
+					<then>
+						<delete>
+							<fileset dir="tmp/WEB-INF/lib" includes="${required.portal.jars}" />
+							<fileset dir="tmp/WEB-INF/lib" includes="${plugin.jars}" />
+						</delete>
+					</then>
+				</if>
 
-		<if>
-			<available file="tmp/WEB-INF/tld" />
-			<then>
-				<delete>
-					<fileset dir="tmp/WEB-INF/tld" includes="${plugin.tlds}" />
-				</delete>
+				<if>
+					<available file="tmp/WEB-INF/tld" />
+					<then>
+						<delete>
+							<fileset dir="tmp/WEB-INF/tld" includes="${plugin.tlds}" />
+						</delete>
+					</then>
+				</if>
 			</then>
 		</if>
 	</target>
@@ -728,13 +734,23 @@ Please find a solution that does not require portal-impl.jar.
 			</not>
 			<then>
 				<if>
-					<isset property="import.shared" />
+					<or>
+						<not>
+							<isset property="import.compat.shared" />
+						</not>
+						<equals arg1="${import.compat.shared}" arg2="true" />
+					</or>
 					<then>
-						<var name="import.shared" value="portal-compat-shared,${import.shared}" />
+						<if>
+							<isset property="import.shared" />
+							<then>
+								<var name="import.shared" value="portal-compat-shared,${import.shared}" />
+							</then>
+							<else>
+								<var name="import.shared" value="portal-compat-shared" />
+							</else>
+						</if>
 					</then>
-					<else>
-						<var name="import.shared" value="portal-compat-shared" />
-					</else>
 				</if>
 			</then>
 		</if>

@@ -456,6 +456,32 @@
 			</throws>
 		</method>
 		<method>
+			<name>getLinkURL</name>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getTitlePattern</name>
 			<param>
 				<name>groupName</name>
@@ -2260,6 +2286,126 @@
 		</method>
 		<field>
 			<name>_CLASS_NAMES</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeProcess_1_0_0</name>
+		<type>com.liferay.so.activities.hook.upgrade.UpgradeProcess_1_0_0</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>getThreshold</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>UpgradeSocial</name>
+		<type>com.liferay.so.activities.hook.upgrade.v1_0_0.UpgradeSocial</type>
+		<author><![CDATA[Matthew Kong]]></author>
+		<method>
+			<name>addActivitySet</name>
+			<param>
+				<name>activitySetId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>userId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>createDate</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classNameId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>classPK</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>type_</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doUpgrade</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>hasActivitySets</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>migrateActivities</name>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>updateActivity</name>
+			<param>
+				<name>activityId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>activitySetId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>_log</name>
 		</field>
 	</javadoc>
 	<javadoc>

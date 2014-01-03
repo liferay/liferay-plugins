@@ -30,9 +30,15 @@ public interface Importer {
 
 	public void importResources() throws Exception;
 
+	public boolean isCompanyGroup() throws Exception;
+
 	public boolean isExisting();
 
 	public void setCompanyId(long companyId);
+
+	public void setDeveloperModeEnabled(boolean developerModeEnabled);
+
+	public void setGroupId(long groupId);
 
 	public void setResourcesDir(String resourcesDir);
 
@@ -43,5 +49,7 @@ public interface Importer {
 	public void setTargetClassName(String className);
 
 	public void setTargetValue(String targetValue);
+
+	public void setVersion(String version);
 
 }

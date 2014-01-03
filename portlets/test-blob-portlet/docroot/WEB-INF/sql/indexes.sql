@@ -1,0 +1,1 @@
+create index IX_4FFDE31B on TestBlob_TestBlobEntry (uuid_);

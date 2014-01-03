@@ -31,16 +31,17 @@ Contact selContact = null;
 if (selUser != null) {
 	selContact = selUser.getContact();
 }
+
+String namespace = renderResponse.getNamespace();
+
+if (extension) {
+	namespace = PortalUtil.getPortletNamespace(PortletKeys.MY_ACCOUNT);
+}
 %>
 
 <liferay-util:buffer var="html">
-
-	<%
-	String taglibOnSubmit = "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm();";
-	%>
-
-	<div id="<portlet:namespace />updateUserDialog">
-		<aui:form action="" method="post" name="dialogForm" onSubmit="<%= taglibOnSubmit %>">
+	<div id="<%= namespace %>updateUserDialog">
+		<aui:form action="" method="post" name="dialogForm" portletNamespace="<%= namespace %>">
 			<aui:input name="redirect" type="hidden"  value="<%= selUser.getDisplayURL(themeDisplay) %>" />
 			<aui:input name="fieldGroup" type="hidden"  value="<%= curSectionId %>" />
 			<aui:input name="p_u_i_d" type="hidden" value="<%= (selUser != null) ? selUser.getUserId() : 0 %>" />
@@ -70,8 +71,8 @@ if (selUser != null) {
 			String sectionJsp = "/html/portlet/users_admin/user/" + _getSectionJsp(curSectionId) + ".jsp";
 			%>
 
-			<div class="form-section selected" id="<portlet:namespace /><%= curSectionId %>">
-				<div id="<portlet:namespace />errorMessage"></div>
+			<div class="form-section selected" id="<%= namespace + curSectionId %>">
+				<div id="<%= namespace %>errorMessage"></div>
 
 				<c:choose>
 					<c:when test='<%= curSectionId.equals("details") %>'>
@@ -89,87 +90,80 @@ if (selUser != null) {
 		</aui:form>
 	</div>
 
-	<aui:script>
-		var <portlet:namespace />saveForm = function() {
-			var A = AUI();
+	<aui:script position="inline" use="aui-base,aui-io-request-deprecated">
+		var form = A.one('#<%= namespace %>dialogForm');
 
-			var form = A.one('#<portlet:namespace />dialogForm');
+		form.on(
+			'submit',
+			function(event) {
+				event.halt(true);
+				
+				Liferay.fire(
+					'saveAutoFields',
+					{
+						form: form
+					}
+				);
 
-			Liferay.fire(
-				'saveAutoFields',
-				{
-					form: form
-				}
-			);
+				<c:choose>
+					<c:when test="<%= extension %>">
 
-			<c:choose>
-				<c:when test="<%= extension %>">
+						<%
+						Group controlPanelGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.CONTROL_PANEL);
 
-					<%
-					Group controlPanelGroup = GroupLocalServiceUtil.getGroup(themeDisplay.getCompanyId(), GroupConstants.CONTROL_PANEL);
+						long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(controlPanelGroup.getGroupId(), true);
+						%>
 
-					long controlPanelPlid = LayoutLocalServiceUtil.getDefaultPlid(controlPanelGroup.getGroupId(), true);
-					%>
+						var uri = '<liferay-portlet:actionURL name="updateFieldGroup" plid="<%= controlPanelPlid %>" portletName="<%= PortletKeys.MY_ACCOUNT %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/my_account/edit_user" /></liferay-portlet:actionURL>';
+					</c:when>
+					<c:otherwise>
+						var uri = '<liferay-portlet:actionURL name="updateFieldGroup" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />';
+					</c:otherwise>
+				</c:choose>
 
-					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" plid="<%= controlPanelPlid %>" portletName="<%= PortletKeys.MY_ACCOUNT %>" windowState="<%= LiferayWindowState.NORMAL.toString() %>"><portlet:param name="struts_action" value="/my_account/edit_user" /></liferay-portlet:actionURL>';
-				</c:when>
-				<c:otherwise>
-					var uri = '<liferay-portlet:actionURL name="updateFieldGroup" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />';
-				</c:otherwise>
-			</c:choose>
+				A.io.request(
+					uri,
+					{
+						after: {
+							success: function(event, id, obj) {
+								var responseData = this.get('responseData');
 
-			A.io.request(
-				uri,
-				{
-					dataType: 'json',
-					form: {
-						id: form
-					},
-					after: {
-						success: function(event, id, obj) {
-							var responseData = this.get('responseData');
+								if (!responseData.success) {
+									var message = A.one('#<%= namespace %>errorMessage');
 
-							if (!responseData.success) {
-								var message = A.one('#<portlet:namespace />errorMessage');
+									if (message) {
+										message.html('<span class="alert alert-error">' + responseData.message + '</span>');
+									}
+								}
+								else {
+									Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 
-								if (message) {
-									message.html('<span class="alert alert-error">' + responseData.message + '</span>');
+									var redirect = responseData.redirect;
+
+									if (redirect) {
+										var topWindow = Liferay.Util.getTop();
+
+										topWindow.location.href = redirect;
+									}
 								}
 							}
-							else {
-								Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
-
-								var redirect = responseData.redirect;
-
-								if (redirect) {
-									var topWindow = Liferay.Util.getTop();
-
-									topWindow.location.href = redirect;
-								}
-							}
+						},
+						dataType: 'json',
+						form: {
+							id: form
 						}
 					}
-				}
-			);
-		}
-
-		AUI().ready(
-			'liferay-auto-fields',
-			function() {
-				Liferay.fire('formNavigator:reveal<portlet:namespace /><%= curSectionId %>');
+				);
 			}
 		);
 	</aui:script>
+
+	<aui:script position="inline" use="liferay-auto-fields">
+		Liferay.fire('formNavigator:reveal<%= namespace %><%= curSectionId %>');
+	</aui:script>
 </liferay-util:buffer>
 
-<c:choose>
-	<c:when test="<%= extension %>">
-		<%= StringUtil.replace(html, renderResponse.getNamespace(), "_" + PortletKeys.MY_ACCOUNT + "_") %>
-	</c:when>
-	<c:otherwise>
-		<%= html %>
-	</c:otherwise>
-</c:choose>
+<%= html %>
 
 <%!
 private String _getSectionJsp(String curSectionId) {

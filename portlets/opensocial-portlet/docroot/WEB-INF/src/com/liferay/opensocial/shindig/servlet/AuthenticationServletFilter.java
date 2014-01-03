@@ -16,8 +16,6 @@ package com.liferay.opensocial.shindig.servlet;
 
 import com.google.inject.Injector;
 
-import com.liferay.portal.kernel.util.ServerDetector;
-
 import java.io.IOException;
 
 import javax.servlet.FilterChain;
@@ -58,14 +56,9 @@ public class AuthenticationServletFilter
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 
-		// LPS-23577
+		// LPS-23577 and LPS-41715
 
-		if (ServerDetector.isWebSphere()) {
-			injector = null;
-		}
-		else {
-			super.init(filterConfig);
-		}
+		injector = null;
 	}
 
 	private void _init(ServletContext servletContext) throws ServletException {

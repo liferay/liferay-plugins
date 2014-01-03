@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.1.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_1_0.dtd">
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.2.0//EN" "http://www.liferay.com/dtd/liferay-look-and-feel_6_2_0.dtd">
 
 <look-and-feel>
 	<compatibility>
@@ -16,17 +16,14 @@
 							var buttonTitle = A.one('#[@NAMESPACE@]button-title');
 							var buttonUrl = A.one('#[@NAMESPACE@]button-url');
 							var displayButton = A.one('#[@NAMESPACE@]display-buttonCheckbox');
-							var displayButtonInput = A.one('#[@NAMESPACE@]display-button');
 
-							var buttonTitleField = buttonTitle.ancestor('.aui-field');
-							var buttonTitleFieldContent = buttonTitle.ancestor('.aui-field-content');
-							var buttonUrlField = buttonUrl.ancestor('.aui-field');
-							var buttonUrlFieldContent = buttonUrl.ancestor('.aui-field-content');
+							var buttonTitleField = buttonTitle.ancestor('.control-group');
+							var buttonUrlField = buttonUrl.ancestor('.control-group');
 
 							var globalCheck = displayButton.attr('checked');
 
-							buttonTitleFieldContent.setStyle('padding-left', '20px');
-							buttonUrlFieldContent.setStyle('padding-left', '20px');
+							buttonTitleField.setStyle('paddingLeft', 20);
+							buttonUrlField.setStyle('paddingLeft', 20);
 
 							buttonTitleField.toggle(globalCheck);
 							buttonUrlField.toggle(globalCheck);

@@ -1,30 +1,8 @@
 AUI().ready(
+	'aui-base',
 	'aui-io-request',
+	'event',
 	function(A) {
-		var body = A.getBody();
-
-		var toggleFluid = A.one('#toggleFluid');
-
-		if (toggleFluid) {
-			toggleFluid.on(
-				'click',
-				function(event) {
-					if (!body.hasClass('so-layout-fluid-ad')) {
-						body.toggleClass('so-layout-fluid');
-
-						A.io.request(
-							themeDisplay.getPathMain() + '/portal/session_click',
-							{
-								data: {
-									'so-layout-fluid': body.hasClass('so-layout-fluid')
-								}
-							}
-						);
-					};
-				}
-			);
-		}
-
 		var memberButton = A.one('#memberButton');
 
 		if (memberButton) {
@@ -34,18 +12,54 @@ AUI().ready(
 					event.preventDefault();
 
 					A.io.request(
-						event.target.get('href'),
+						event.currentTarget.attr('href'),
 						{
-							method: 'POST',
 							on: {
 								success: function(event, id, obj) {
-									window.location = '';
+									window.location.reload();
 								}
 							}
 						}
 					);
 				}
 			);
+		}
+
+		var messageBoard = A.one('.portlet-message-boards');
+
+		if (messageBoard) {
+			messageBoard.delegate(
+				['mouseenter', 'mouseleave'],
+				function(event) {
+					var target = event.currentTarget;
+
+					target.toggleClass('controls-visible', event.type == 'mouseenter');
+				},
+				'.message-container'
+			);
+		}
+
+		var toggleDockbar = A.one('#toggleDockbar');
+
+		if (toggleDockbar) {
+			toggleDockbar.on(
+				'click',
+				function(event) {
+					event.preventDefault();
+
+					var body = A.one('body');
+
+					body.toggleClass('show-dockbar');
+				}
+			);
+		}
+
+		var siteNavigationNavbar = A.one('#_145_navSiteNavigationNavbarCollapse ul');
+
+		var navigation = A.one('#navigation ul');
+
+		if (siteNavigationNavbar && navigation) {
+			siteNavigationNavbar.setHTML(navigation.getHTML());
 		}
 	}
 );

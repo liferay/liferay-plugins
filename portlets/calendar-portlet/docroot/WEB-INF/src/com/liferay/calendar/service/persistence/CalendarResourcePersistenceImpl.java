@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -5919,7 +5920,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		if ((list != null) && !list.isEmpty()) {
 			for (CalendarResource calendarResource : list) {
 				if ((groupId != calendarResource.getGroupId()) ||
-						!Validator.equals(name, calendarResource.getName()) ||
+						!StringUtil.wildcardMatches(
+							calendarResource.getName(), name,
+							CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true) ||
 						(active != calendarResource.getActive())) {
 					list = null;
 
@@ -7487,7 +7491,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		if ((list != null) && !list.isEmpty()) {
 			for (CalendarResource calendarResource : list) {
 				if ((companyId != calendarResource.getCompanyId()) ||
-						!Validator.equals(code, calendarResource.getCode()) ||
+						!StringUtil.wildcardMatches(
+							calendarResource.getCode(), code,
+							CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true) ||
 						(active != calendarResource.getActive())) {
 					list = null;
 
@@ -8083,7 +8090,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 		if ((list != null) && !list.isEmpty()) {
 			for (CalendarResource calendarResource : list) {
 				if ((companyId != calendarResource.getCompanyId()) ||
-						!Validator.equals(name, calendarResource.getName()) ||
+						!StringUtil.wildcardMatches(
+							calendarResource.getName(), name,
+							CharPool.UNDERLINE, CharPool.PERCENT,
+							CharPool.BACK_SLASH, true) ||
 						(active != calendarResource.getActive())) {
 					list = null;
 
@@ -9072,6 +9082,8 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 		clearUniqueFindersCache(calendarResource);
 		cacheUniqueFindersCache(calendarResource);
+
+		calendarResource.resetOriginalValues();
 
 		return calendarResource;
 	}

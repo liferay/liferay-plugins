@@ -215,6 +215,9 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 		attributes.put("subject", getSubject());
 		attributes.put("body", getBody());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -670,6 +673,16 @@ public class CalendarNotificationTemplateModelImpl extends BaseModelImpl<Calenda
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

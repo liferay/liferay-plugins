@@ -17,43 +17,31 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Map bibles = RBVUtil.getBibles();
+Map<String, Bible> bibles = RBVUtil.getBibles();
 %>
 
-<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<portlet:actionURL var="updateURL" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="language" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />language">
-			<option <%= language.equals("") ? "selected" : "" %> value=""><liferay-ui:message key="default-language" /></option>
+<aui:form action="<%= updateURL %>" method="post" name="fm" onSubmit="submitForm(document.<portlet:namespace />fm);">
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-			<%
-			Iterator itr = bibles.entrySet().iterator();
+	<aui:select inlineLabel="true" name="language">
+		<aui:option label="default-language" selected='<%= language.equals("") %>' value="" />
 
-			while (itr.hasNext()) {
-				Map.Entry entry = (Map.Entry)itr.next();
+		<%
+		for (Map.Entry<String, Bible> entry : bibles.entrySet()) {
+			Bible bible = entry.getValue();
+		%>
 
-				Bible bible = (Bible)entry.getValue();
-			%>
+			<aui:option label="<%= StringUtil.toLowerCase(bible.getLanguageName()) %>" selected="<%= language.equals(bible.getLanguage()) %>" value="<%= bible.getLanguage() %>" />
 
-				<option <%= language.equals(bible.getLanguage()) ? "selected" : "" %> value="<%= bible.getLanguage() %>"><%= LanguageUtil.get(pageContext, StringUtil.toLowerCase(bible.getLanguageName())) %></option>
+		<%
+		}
+		%>
 
-			<%
-			}
-			%>
+	</aui:select>
 
-		</select>
-	</td>
-</tr>
-</table>
-
-<br />
-
-<input onClick="submitForm(document.<portlet:namespace />fm);" type="button" value="<liferay-ui:message key="save" />" />
-
-</form>
+	<aui:button-row>
+		<aui:button type="submit" value="save" />
+	</aui:button-row>
+</aui:form>

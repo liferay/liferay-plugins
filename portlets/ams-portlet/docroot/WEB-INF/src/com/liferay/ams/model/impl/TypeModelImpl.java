@@ -119,6 +119,9 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 		attributes.put("groupId", getGroupId());
 		attributes.put("name", getName());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -252,6 +255,16 @@ public class TypeModelImpl extends BaseModelImpl<Type> implements TypeModel {
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return ENTITY_CACHE_ENABLED;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return FINDER_CACHE_ENABLED;
 	}
 
 	@Override

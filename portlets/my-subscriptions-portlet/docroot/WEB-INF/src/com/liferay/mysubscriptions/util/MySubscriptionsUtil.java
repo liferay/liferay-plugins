@@ -17,6 +17,8 @@ package com.liferay.mysubscriptions.util;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
@@ -32,6 +34,7 @@ import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
 import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
@@ -118,6 +121,8 @@ public class MySubscriptionsUtil {
 			return title;
 		}
 
+		Group group = GroupLocalServiceUtil.fetchGroup(classPK);
+
 		if (className.equals(BlogsEntry.class.getName())) {
 			title = "Blog at ";
 		}
@@ -143,8 +148,15 @@ public class MySubscriptionsUtil {
 
 			return wikiNode.getName();
 		}
+		else if (className.equals(Folder.class.getName())) {
+			if (group != null) {
+				return LanguageUtil.get(locale, "home");
+			}
 
-		Group group = GroupLocalServiceUtil.fetchGroup(classPK);
+			Folder folder = DLAppLocalServiceUtil.getFolder(classPK);
+
+			return folder.getName();
+		}
 
 		if (group != null) {
 			title += group.getDescriptiveName(locale);

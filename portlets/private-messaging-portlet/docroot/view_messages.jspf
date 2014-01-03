@@ -23,15 +23,15 @@
 			<aui:input cssClass="check-all" inline="<%= true %>" label="" name="checkAllMessages" title='<%= LanguageUtil.get(pageContext, "check-all-messages") %>' type="checkbox" />
 		</aui:nav-item>
 
-		<aui:nav-item id="markMessagesAsUnread" label="mark-as-unread" />
+		<aui:button name="markMessagesAsUnread" value="mark-as-unread" />
 
-		<aui:nav-item id="markMessagesAsRead" label="mark-as-read" />
+		<aui:button name="markMessagesAsRead" value="mark-as-read" />
 
-		<aui:nav-item id="deleteMessages" label="delete" />
+		<aui:button name="deleteMessages" value="delete" />
 	</aui:nav>
 
 	<aui:nav cssClass="pull-right">
-		<aui:nav-item id="newMessage" label="new-message" />
+		<aui:button name="newMessage" primary="<%= true %>" value="new-message" />
 	</aui:nav>
 </aui:nav-bar>
 
@@ -63,7 +63,7 @@
 			<%
 			long userId = PrivateMessagingUtil.getThreadRepresentativeUserId(user.getUserId(), userThread.getMbThreadId());
 
-			MBMessage mbMessage = PrivateMessagingUtil.getLastThreadMessage(user.getUserId(), userThread.getMbThreadId());
+			MBMessage mbMessage = UserThreadServiceUtil.getLastThreadMessage(userThread.getMbThreadId());
 			%>
 
 			<liferay-ui:user-display
@@ -95,9 +95,12 @@
 								<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
 							</c:when>
 							<c:otherwise>
-								<liferay-ui:icon-help message="deleted-user">
-									<span class="author-sender line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-								</liferay-ui:icon-help>
+								<span class="author-sender line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+
+								<liferay-ui:icon
+									image="../aui/question-sign"
+									message="deleted-user"
+								/>
 							</c:otherwise>
 						</c:choose>
 
@@ -119,9 +122,7 @@
 
 					<div class="body">
 						<c:if test="<%= user.getUserId() == mbMessage.getUserId() %>">
-							<liferay-ui:icon
-								src="/html/themes/classic/images/mail/replied.png"
-							/>
+							<i class="icon-reply"></i>
 						</c:if>
 
 						<%= HtmlUtil.escape(StringUtil.shorten(mbMessage.getBody(), 100)) %>

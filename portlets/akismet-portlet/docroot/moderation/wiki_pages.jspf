@@ -18,28 +18,16 @@
 	<aui:input name="spamWikiPageIds" type="hidden" />
 	<aui:input name="notSpamWikiPageIds" type="hidden" />
 
-	<%
-	DynamicQuery wikiPageDynamicQuery = DynamicQueryFactoryUtil.forClass(WikiPage.class);
-
-	Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
-
-	wikiPageDynamicQuery.add(groupIdProperty.eq(scopeGroupId));
-
-	Property summaryProperty = PropertyFactoryUtil.forName("summary");
-
-	wikiPageDynamicQuery.add(summaryProperty.eq(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
-	%>
-
 	<liferay-ui:search-container
 		emptyResultsMessage="there-are-no-pages"
 		headerNames="title,version,posted-by"
 		iteratorURL="<%= portletURL %>"
 		rowChecker="<%= new RowChecker(renderResponse) %>"
-		total="<%= (int)WikiPageLocalServiceUtil.dynamicQueryCount(wikiPageDynamicQuery) %>"
+		total="<%= (int)WikiPageLocalServiceUtil.dynamicQueryCount(_getDynamicQuery(scopeGroupId)) %>"
 	>
 
 		<liferay-ui:search-container-results
-			results="<%= WikiPageLocalServiceUtil.dynamicQuery(wikiPageDynamicQuery, searchContainer.getStart(), searchContainer.getEnd()) %>"
+			results="<%= WikiPageLocalServiceUtil.dynamicQuery(_getDynamicQuery(scopeGroupId), searchContainer.getStart(), searchContainer.getEnd()) %>"
 		/>
 
 		<c:if test="<%= !results.isEmpty() %>">
@@ -102,3 +90,19 @@
 		<liferay-ui:search-iterator />
 	</liferay-ui:search-container>
 </aui:form>
+
+<%!
+private DynamicQuery _getDynamicQuery(long scopeGroupId) {
+	DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(WikiPage.class);
+
+	Property groupIdProperty = PropertyFactoryUtil.forName("groupId");
+
+	dynamicQuery.add(groupIdProperty.eq(scopeGroupId));
+
+	Property summaryProperty = PropertyFactoryUtil.forName("summary");
+
+	dynamicQuery.add(summaryProperty.eq(AkismetConstants.WIKI_PAGE_PENDING_APPROVAL));
+
+	return dynamicQuery;
+}
+%>

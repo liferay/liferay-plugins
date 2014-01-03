@@ -45,133 +45,108 @@ ServletContext portalServletContext = ServletContextPool.get(portalServletContex
 	title='<%= (wsrpProducer != null) ? wsrpProducer.getName() : "new-producer" %>'
 />
 
-<form action="<portlet:actionURL name="updateWSRPProducer" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveProducer(); return false;">
-<input name="<portlet:namespace />mvcPath" type="hidden" value="/admin/edit_producer.jsp" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
-<input name="<portlet:namespace />wsrpProducerId" type="hidden" value="<%= wsrpProducerId %>" />
-<input name="<portlet:namespace />portletIds" type="hidden" value="" />
+<portlet:actionURL name="updateWSRPProducer" var="updateWSRPProducerURL" />
 
-<liferay-ui:error exception="<%= WSRPProducerNameException.class %>" message="please-enter-a-valid-name" />
+<aui:form action="<%= updateWSRPProducerURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveProducer();" %>'>
+	<aui:input name="mvcPath" type="hidden" value="/admin/edit_producer.jsp" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="wsrpProducerId" type="hidden" value="<%= wsrpProducerId %>" />
+	<aui:input name="portletIds" type="hidden" value="" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="name" />
-	</td>
-	<td>
-		<liferay-ui:input-field bean="<%= wsrpProducer %>" field="name" model="<%= WSRPProducer.class %>" />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="version" />
-	</td>
-	<td>
-		<select name="<portlet:namespace />version">
-			<option <%= version.equals(Constants.WSRP_V2) ? "selected" : "" %> value="<%= Constants.WSRP_V2 %>"><%= Constants.WSRP_V2 %></option>
-			<option <%= version.equals(Constants.WSRP_V1) ? "selected" : "" %> value="<%= Constants.WSRP_V1 %>"><%= Constants.WSRP_V1 %></option>
-		</select>
-	</td>
-</tr>
+	<liferay-ui:error exception="<%= WSRPProducerNameException.class %>" message="please-enter-a-valid-name" />
 
-<c:if test="<%= wsrpProducer != null %>">
-	<tr>
-		<td>
-			<liferay-ui:message key="url" />
-		</td>
-		<td>
-			<a href="<%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %>" target="_blank"><%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %></a>
-		</td>
-	</tr>
-</c:if>
+	<aui:model-context bean="<%= wsrpProducer %>" model="<%= WSRPProducer.class %>" />
 
-<tr>
-	<td colspan="3">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="portlets" />
-	</td>
-	<td>
+	<aui:fieldset>
+		<aui:input name="name" />
 
-		<%
+		<aui:select name="version">
+			<aui:option label="<%= Constants.WSRP_V2 %>" selected="<%= version.equals(Constants.WSRP_V2) %>" value="<%= Constants.WSRP_V2 %>" />
+			<aui:option label="<%= Constants.WSRP_V1 %>" selected="<%= version.equals(Constants.WSRP_V1) %>" value="<%= Constants.WSRP_V1 %>" />
+		</aui:select>
 
-		// Left list
+		<c:if test="<%= wsrpProducer != null %>">
+			<aui:field-wrapper label="url">
+				<aui:a href="<%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %>" target="_blank"><%= wsrpProducer.getURL(themeDisplay.getPortalURL()) %></aui:a><br />
+			</aui:field-wrapper>
+		</c:if>
 
-		List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+		<aui:field-wrapper label="portlets">
 
-		for (String portletId : portletIds) {
-			Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId);
+			<%
 
-			if ((portlet == null) || portlet.isUndeployedPortlet()) {
-				continue;
+			// Left list
+
+			List<KeyValuePair> leftList = new ArrayList<KeyValuePair>();
+
+			for (String portletId : portletIds) {
+				Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletId);
+
+				if ((portlet == null) || portlet.isUndeployedPortlet()) {
+					continue;
+				}
+
+				leftList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
 			}
 
-			leftList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
-		}
+			leftList = ListUtil.sort(leftList, new KeyValuePairComparator(false, true));
 
-		leftList = ListUtil.sort(leftList, new KeyValuePairComparator(false, true));
+			// Right list
 
-		// Right list
+			List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
 
-		List<KeyValuePair> rightList = new ArrayList<KeyValuePair>();
+			for (int i = 0; i < portletIds.length; i++) {
+				String portletId = portletIds[i];
 
-		for (int i = 0; i < portletIds.length; i++) {
-			String portletId = portletIds[i];
+				int index = portletId.indexOf(PortletConstants.INSTANCE_SEPARATOR);
 
-			int index = portletId.indexOf(PortletConstants.INSTANCE_SEPARATOR);
-
-			if (index != -1) {
-				portletIds[i] = portletId.substring(0, index);
-			}
-		}
-
-		Arrays.sort(portletIds);
-
-		Iterator<Portlet> itr = PortletLocalServiceUtil.getPortlets(company.getCompanyId(), false, false).iterator();
-
-		while (itr.hasNext()) {
-			Portlet portlet = (Portlet)itr.next();
-
-			if (portlet.isUndeployedPortlet()) {
-				continue;
+				if (index != -1) {
+					portletIds[i] = portletId.substring(0, index);
+				}
 			}
 
-			if (!portlet.isRemoteable()) {
-				continue;
+			Arrays.sort(portletIds);
+
+			Iterator<Portlet> itr = PortletLocalServiceUtil.getPortlets(company.getCompanyId(), false, false).iterator();
+
+			while (itr.hasNext()) {
+				Portlet portlet = (Portlet)itr.next();
+
+				if (portlet.isUndeployedPortlet()) {
+					continue;
+				}
+
+				if (!portlet.isRemoteable()) {
+					continue;
+				}
+
+				String portletId = portlet.getPortletId();
+
+				if (Arrays.binarySearch(portletIds, portletId) < 0) {
+					rightList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
+				}
 			}
 
-			String portletId = portlet.getPortletId();
+			rightList = ListUtil.sort(rightList, new KeyValuePairComparator(false, true));
+			%>
 
-			if (Arrays.binarySearch(portletIds, portletId) < 0) {
-				rightList.add(new KeyValuePair(portletId, PortalUtil.getPortletTitle(portlet, portalServletContext, locale)));
-			}
-		}
+			<liferay-ui:input-move-boxes
+				leftBoxName="currentPortletIds"
+				leftList="<%= leftList %>"
+				leftTitle="current"
+				rightBoxName="availablePortletIds"
+				rightList="<%= rightList %>"
+				rightTitle="available"
+			/>
+		</aui:field-wrapper>
+	</aui:fieldset>
 
-		rightList = ListUtil.sort(rightList, new KeyValuePairComparator(false, true));
-		%>
+	<aui:button-row>
+		<aui:button type="submit" />
 
-		<liferay-ui:input-move-boxes
-			leftBoxName="currentPortletIds"
-			leftList="<%= leftList %>"
-			leftTitle="current"
-			rightBoxName="availablePortletIds"
-			rightList="<%= rightList %>"
-			rightTitle="available"
-		/>
-	</td>
-</tr>
-</table>
-
-<br />
-
-<input type="submit" value="<liferay-ui:message key="save" />" />
-
-<input onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" type="button" value="<liferay-ui:message key="cancel" />" />
-
-</form>
+		<aui:button href="<%= redirect %>" type="cancel" />
+	</aui:button-row>
+</aui:form>
 
 <aui:script>
 	Liferay.provide(

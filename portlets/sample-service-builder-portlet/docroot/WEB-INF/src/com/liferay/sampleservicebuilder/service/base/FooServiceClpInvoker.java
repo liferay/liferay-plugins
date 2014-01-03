@@ -24,56 +24,56 @@ import java.util.Arrays;
  */
 public class FooServiceClpInvoker {
 	public FooServiceClpInvoker() {
-		_methodName30 = "getBeanIdentifier";
+		_methodName36 = "getBeanIdentifier";
 
-		_methodParameterTypes30 = new String[] {  };
+		_methodParameterTypes36 = new String[] {  };
 
-		_methodName31 = "setBeanIdentifier";
+		_methodName37 = "setBeanIdentifier";
 
-		_methodParameterTypes31 = new String[] { "java.lang.String" };
+		_methodParameterTypes37 = new String[] { "java.lang.String" };
 
-		_methodName36 = "getUser";
+		_methodName42 = "getUser";
 
-		_methodParameterTypes36 = new String[] { "long" };
+		_methodParameterTypes42 = new String[] { "long" };
 
-		_methodName37 = "getUserSitesGroups";
+		_methodName43 = "getUserSitesGroups";
 
-		_methodParameterTypes37 = new String[] {  };
+		_methodParameterTypes43 = new String[] {  };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName30.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+		if (_methodName36.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
 			return FooServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName31.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+		if (_methodName37.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
 			FooServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName36.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes36, parameterTypes)) {
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
 			return FooServiceUtil.getUser(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName37.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes37, parameterTypes)) {
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
 			return FooServiceUtil.getUserSitesGroups();
 		}
 
 		throw new UnsupportedOperationException();
 	}
 
-	private String _methodName30;
-	private String[] _methodParameterTypes30;
-	private String _methodName31;
-	private String[] _methodParameterTypes31;
 	private String _methodName36;
 	private String[] _methodParameterTypes36;
 	private String _methodName37;
 	private String[] _methodParameterTypes37;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 }

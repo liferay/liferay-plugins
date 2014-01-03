@@ -19,6 +19,7 @@ import com.liferay.ams.service.ClpSerializer;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -85,6 +86,9 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		attributes.put("inactiveDate", getInactiveDate());
 		attributes.put("active", getActive());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -149,6 +153,9 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		if (active != null) {
 			setActive(active);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -522,6 +529,16 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 
@@ -616,4 +633,6 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	private Date _inactiveDate;
 	private boolean _active;
 	private BaseModel<?> _assetRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

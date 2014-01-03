@@ -829,6 +829,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public SyncDLObject getWrappedSyncDLObject() {
 		return _syncDLObject;
 	}
@@ -836,6 +837,16 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	@Override
 	public SyncDLObject getWrappedModel() {
 		return _syncDLObject;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _syncDLObject.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _syncDLObject.isFinderCacheEnabled();
 	}
 
 	@Override

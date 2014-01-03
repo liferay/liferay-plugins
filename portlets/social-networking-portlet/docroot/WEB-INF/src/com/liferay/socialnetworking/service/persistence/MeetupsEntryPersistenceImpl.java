@@ -1330,6 +1330,8 @@ public class MeetupsEntryPersistenceImpl extends BasePersistenceImpl<MeetupsEntr
 		EntityCacheUtil.putResult(MeetupsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsEntryImpl.class, meetupsEntry.getPrimaryKey(), meetupsEntry);
 
+		meetupsEntry.resetOriginalValues();
+
 		return meetupsEntry;
 	}
 

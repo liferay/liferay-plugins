@@ -702,6 +702,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoTaskAssignmentInstance getWrappedKaleoTaskAssignmentInstance() {
 		return _kaleoTaskAssignmentInstance;
 	}
@@ -709,6 +710,16 @@ public class KaleoTaskAssignmentInstanceWrapper
 	@Override
 	public KaleoTaskAssignmentInstance getWrappedModel() {
 		return _kaleoTaskAssignmentInstance;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoTaskAssignmentInstance.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoTaskAssignmentInstance.isFinderCacheEnabled();
 	}
 
 	@Override

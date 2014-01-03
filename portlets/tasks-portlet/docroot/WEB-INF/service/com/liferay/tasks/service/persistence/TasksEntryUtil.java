@@ -1819,6 +1819,7 @@ public class TasksEntryUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
+	@Deprecated
 	public void setPersistence(TasksEntryPersistence persistence) {
 	}
 

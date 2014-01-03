@@ -2304,6 +2304,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		clearUniqueFindersCache(wsrpProducer);
 		cacheUniqueFindersCache(wsrpProducer);
 
+		wsrpProducer.resetOriginalValues();
+
 		return wsrpProducer;
 	}
 

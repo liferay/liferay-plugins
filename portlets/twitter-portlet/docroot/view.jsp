@@ -19,7 +19,10 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
 
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
+<%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
+<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.Validator" %>
 <%@ page import="com.liferay.portal.util.PortletKeys" %>
 
@@ -33,9 +36,27 @@ String twitterSn = contact.getTwitterSn();
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(twitterSn) %>">
-		Your Twitter screen name is <a href="http://twitter.com/<%= twitterSn %>" target="_blank"><%= twitterSn %></a>. Your tweets will appear as activities.
+
+		<%
+		StringBuilder sb = new StringBuilder(5);
+
+		sb.append("<a href=\"http://twitter.com/");
+		sb.append(HtmlUtil.escapeAttribute(twitterSn));
+		sb.append("\" target=\"_blank\">");
+		sb.append(HtmlUtil.escape(twitterSn));
+		sb.append("</a>");
+		%>
+
+		<liferay-ui:message arguments="<%= sb.toString() %>" key="your-twitter-screen-name-is-x" />
 	</c:when>
 	<c:otherwise>
-		<a href="<%= themeDisplay.getURLMyAccount() %>#_<%= PortletKeys.MY_ACCOUNT %>_socialNetwork">Please configure your Twitter screen name.</a>
+
+		<%
+		String configureHREF = "javascript:Liferay.Util.openWindow({id: '" + renderResponse.getNamespace() + "configureTwitter', title: '" + HtmlUtil.escapeAttribute(LanguageUtil.get(pageContext, "my-account")) + "', uri: '" + HtmlUtil.escapeAttribute(themeDisplay.getURLMyAccount() + "#_" + PortletKeys.MY_ACCOUNT + "_tab=_" + PortletKeys.MY_ACCOUNT + "_socialNetwork") + "'});";
+		%>
+
+		<div class="alert alert-info">
+			<a href="<%= configureHREF %>"><liferay-ui:message key="please-configure-your-twitter-screen-name" /></a>
+		</div>
 	</c:otherwise>
 </c:choose>

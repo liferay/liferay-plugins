@@ -25,9 +25,9 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
-import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.search.Indexer;
@@ -44,14 +44,16 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PortletKeys;
+import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portlet.announcements.model.AnnouncementsEntry;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalService;
 import com.liferay.portlet.announcements.service.AnnouncementsEntryLocalServiceWrapper;
 import com.liferay.portlet.announcements.service.persistence.AnnouncementsEntryFinderUtil;
+import com.liferay.so.util.PortletKeys;
 
 import java.io.Serializable;
 
@@ -143,13 +145,8 @@ public class SOAnnouncementsEntryLocalServiceImpl
 		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSONObject.put("body", announcementEntry.getTitle());
 		notificationEventJSONObject.put(
-			"entryId", announcementEntry.getEntryId());
-		notificationEventJSONObject.put(
-			"groupId", announcementEntry.getClassPK());
-		notificationEventJSONObject.put("portletId", PortletKeys.ANNOUNCEMENTS);
-		notificationEventJSONObject.put("title", "x-sent-a-new-announcement");
+			"classPK", announcementEntry.getEntryId());
 		notificationEventJSONObject.put(
 			"userId", announcementEntry.getUserId());
 
@@ -276,16 +273,24 @@ public class SOAnnouncementsEntryLocalServiceImpl
 				}
 
 				for (User user : users) {
-					NotificationEvent notificationEvent =
-						NotificationEventFactoryUtil.createNotificationEvent(
-							System.currentTimeMillis(), "6_WAR_soportlet",
-							notificationEventJSONObject);
+					if (UserNotificationManagerUtil.isDeliver(
+							user.getUserId(), PortletKeys.SO_ANNOUNCEMENTS, 0,
+							0,
+							UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
 
-					notificationEvent.setDeliveryRequired(0);
+						NotificationEvent notificationEvent =
+							NotificationEventFactoryUtil.
+								createNotificationEvent(
+									System.currentTimeMillis(),
+									PortletKeys.SO_ANNOUNCEMENTS,
+									notificationEventJSONObject);
 
-					ChannelHubManagerUtil.sendNotificationEvent(
-						user.getCompanyId(), user.getUserId(),
-						notificationEvent);
+						notificationEvent.setDeliveryRequired(0);
+
+						UserNotificationEventLocalServiceUtil.
+							addUserNotificationEvent(
+								user.getUserId(), notificationEvent);
+					}
 				}
 			}
 		}

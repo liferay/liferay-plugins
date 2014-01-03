@@ -478,6 +478,7 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public CalendarLocalService getWrappedCalendarLocalService() {
 		return _calendarLocalService;
 	}
@@ -485,6 +486,7 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedCalendarLocalService(
 		CalendarLocalService calendarLocalService) {
 		_calendarLocalService = calendarLocalService;

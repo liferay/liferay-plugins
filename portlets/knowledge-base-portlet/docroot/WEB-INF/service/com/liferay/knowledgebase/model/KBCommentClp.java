@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -90,6 +91,9 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		attributes.put("classPK", getClassPK());
 		attributes.put("content", getContent());
 		attributes.put("helpful", getHelpful());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -167,6 +171,9 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 		if (helpful != null) {
 			setHelpful(helpful);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -615,6 +622,16 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 
@@ -723,4 +740,6 @@ public class KBCommentClp extends BaseModelImpl<KBComment> implements KBComment 
 	private String _content;
 	private boolean _helpful;
 	private BaseModel<?> _kbCommentRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

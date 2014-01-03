@@ -466,6 +466,7 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Attachment getWrappedAttachment() {
 		return _attachment;
 	}
@@ -473,6 +474,16 @@ public class AttachmentWrapper implements Attachment, ModelWrapper<Attachment> {
 	@Override
 	public Attachment getWrappedModel() {
 		return _attachment;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _attachment.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _attachment.isFinderCacheEnabled();
 	}
 
 	@Override

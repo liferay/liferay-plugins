@@ -19,8 +19,14 @@ import com.liferay.util.portlet.PortletProps;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Tibor Lipusz
  */
 public class PortletPropsValues {
+
+	public static final int[] BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES =
+		GetterUtil.getIntegerValues(
+			PortletProps.getArray(
+				PortletPropsKeys.BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES));
 
 	public static final int BUDDY_LIST_MAX_BUDDIES = GetterUtil.getInteger(
 		PortletProps.get(PortletPropsKeys.BUDDY_LIST_MAX_BUDDIES));

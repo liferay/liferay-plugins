@@ -309,6 +309,7 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Module getWrappedModule() {
 		return _module;
 	}
@@ -316,6 +317,16 @@ public class ModuleWrapper implements Module, ModelWrapper<Module> {
 	@Override
 	public Module getWrappedModel() {
 		return _module;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _module.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _module.isFinderCacheEnabled();
 	}
 
 	@Override

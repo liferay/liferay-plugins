@@ -1239,6 +1239,8 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 		clearUniqueFindersCache(oAuthConsumer);
 		cacheUniqueFindersCache(oAuthConsumer);
 
+		oAuthConsumer.resetOriginalValues();
+
 		return oAuthConsumer;
 	}
 

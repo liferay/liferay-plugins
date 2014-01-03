@@ -549,6 +549,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public MicroblogsEntry getWrappedMicroblogsEntry() {
 		return _microblogsEntry;
 	}
@@ -556,6 +557,16 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	@Override
 	public MicroblogsEntry getWrappedModel() {
 		return _microblogsEntry;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _microblogsEntry.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _microblogsEntry.isFinderCacheEnabled();
 	}
 
 	@Override

@@ -80,7 +80,7 @@ AUI().use(
 				var hour = time.getHours();
 				var minute = time.getMinutes();
 
-				if (hour >= 11) {
+				if (hour >= 12) {
 					meridian = 'pm';
 				}
 
@@ -117,6 +117,12 @@ AUI().use(
 				time = Number(time);
 
 				time += instance._getOffset();
+
+				var currentSystemTime = now();
+
+				if (time > currentSystemTime) {
+					time = currentSystemTime;
+				}
 
 				return time;
 			},
@@ -604,7 +610,7 @@ AUI().use(
 											'<div class="panel-button minimize"></div>' +
 											'<div class="panel-button close"></div>' +
 											'<img alt="" class="panel-icon" src="' + userImagePath + '" />' +
-											'<div class="panel-title">' + instance._panelTitle + '</div>' +
+											'<div class="panel-title">' + Liferay.Util.escapeHTML(instance._panelTitle) + '</div>' +
 											'<div class="panel-profile">...</div>' +
 											'<div class="panel-output"></div>' +
 											'<div class="panel-input">' +
@@ -635,7 +641,7 @@ AUI().use(
 					content = content.replace(/\n/g, '<br />');
 
 					var message = '<p class="blurb ' + cssClass + '">' +
-									'<b class="name">' + userName + '</b>' +
+									'<b class="name">' + Liferay.Util.escapeHTML(userName) + '</b>' +
 									'<i class="date">' + Liferay.Chat.Util.formatTime(entry.createDate) + '</i>' +
 									'<span class="text">' + content + '</span>' +
 								'</p>';
@@ -1312,7 +1318,7 @@ AUI().use(
 					buffer.push(
 						'<li class="user active" userId="' + buddy.userId + '">' +
 							'<img alt="" src="' + userImagePath + '" />' +
-							'<div class="name">' + buddy.fullName + '</div>' +
+							'<div class="name">' + Liferay.Util.escapeHTML(buddy.fullName) + '</div>' +
 							'<div class="buddy-services">');
 
 					var serviceNames = instance._buddyServices;

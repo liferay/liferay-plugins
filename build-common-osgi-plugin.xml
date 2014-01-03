@@ -50,6 +50,37 @@
 		</sequential>
 	</macrodef>
 
+	<macrodef name="baseline-jar-macro">
+		<attribute name="bndRootFile" />
+		<attribute name="file" />
+		<attribute name="outputPath" />
+		<attribute name="rootProjectDir" />
+		<attribute name="sourcePath" />
+
+		<sequential>
+			<taskdef
+				classname="com.liferay.util.ant.bnd.BaselineJarTask"
+				classpathref="plugin.classpath"
+				name="baseline-jar"
+			/>
+
+			<manifest-helper />
+
+			<bndexpand propertyfile="@{bndRootFile}" />
+
+			<baseline-jar
+				bndRootFile="@{bndRootFile}"
+				file="@{file}"
+				outputPath="@{outputPath}"
+				sourcePath="@{sourcePath}"
+			>
+				<classpath>
+					<pathelement location="@{sourcePath}/classes" />
+				</classpath>
+			</baseline-jar>
+		</sequential>
+	</macrodef>
+
 	<target name="clean">
 		<delete dir="${osgi.plugin.classes.dir}" />
 
@@ -60,10 +91,6 @@
 		<antcall target="compile-import-shared" />
 
 		<mkdir dir="${osgi.plugin.classes.dir}" />
-
-		<copy todir="${osgi.plugin.classes.dir}">
-			<fileset dir="${osgi.plugin.source.dir}" excludes="**/*.java" />
-		</copy>
 
 		<antcall target="compile-java">
 			<param name="javac.classpathref" value="plugin.classpath" />
@@ -90,23 +117,13 @@
 				</uptodate>
 			</not>
 			<then>
-				<manifest-helper />
-
-				<bndexpand propertyfile="${sdk.dir}/common.bnd" />
-
-				<bnd
-					eclipse="false"
-					exceptions="true"
-					failok="false"
-					inherit="true"
-					output="${plugin.file}"
-					sourcepath="."
-				>
-					<bndfiles path="bnd.bnd" />
-					<classpath>
-						<pathelement location="${osgi.plugin.classes.dir}" />
-					</classpath>
-				</bnd>
+				<baseline-jar-macro
+					bndRootFile="${sdk.dir}/common.bnd"
+					file="bnd.bnd"
+					outputPath="."
+					rootProjectDir="${sdk.dir}"
+					sourcePath="."
+				/>
 			</then>
 		</if>
 	</target>

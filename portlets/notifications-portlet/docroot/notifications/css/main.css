@@ -1,15 +1,59 @@
 @import "compass";
 
+@mixin keyframes($name) {
+	@-o-keyframes #{$name} {
+		@content;
+	}
+
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+@include keyframes(shakeNotificationCount) {
+	0% {
+		@include transform(rotate(5deg));
+	}
+	25% {
+		@include transform(translate(3px, -4px), rotate(0deg));
+	}
+	50% {
+		@include transform(rotate(-5deg));
+	}
+	75% {
+		@include transform(rotate(0deg));
+	}
+	100% {
+		@include transform(translate(0, 0), rotate(5deg));
+	}
+}
+
 .dockbar-user-notifications, .notifications-portlet {
 	.user-notifications-count {
 		background-color: #0066B3;
 		border: 1px solid #0066B3;
+		display: block;
+		line-height: 1.25em;
+		margin: 4px 0;
 		padding: 2px 6px;
+		position: relative;
 
 		&.alert {
 			background-color: #FAA732;
 			border: 1px solid #FAA732;
 			color: #FFF;
+
+			@include experimental(animation, shakeNotificationCount 0.8s linear infinite);
+			@include experimental(animation-iteration-count, 2);
+			@include experimental(transform-origin, 50% 50%);
 		}
 	}
 
@@ -19,18 +63,10 @@
 
 	.user-notifications-list {
 		list-style: none;
-		margin: 0;
+		right: 0;
 
 		.message {
 			text-align: center;
-
-			&.top {
-				border-bottom: 1px solid #FFF;
-			}
-
-			&.bottom {
-				border-top: 1px solid #FFF;
-			}
 
 			.left-nav {
 				float: left;
@@ -53,17 +89,20 @@
 		}
 
 		.user-notification {
-			a {
-				clear: both;
-				display: block;
-				font-weight: normal;
-				padding: 5px;
-				white-space: normal;
+			background: #FFF;
+
+			@include border-radius(4px);
+
+			margin-bottom: 10px;
+			padding: 10px;
+
+			&:hover, &.hover {
+				background: #FAFAFA;
+				cursor: pointer;
 			}
 
-			a:hover {
-				color: #FFF;
-				text-decoration: none;
+			.btn {
+				margin-right: 10px;
 			}
 
 			.icon-remove-circle {
@@ -104,6 +143,13 @@
 			.content {
 				margin-left: 40px;
 			}
+
+			.body {
+				color: #222;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
 		}
 	}
 }
@@ -119,7 +165,6 @@
 		margin-bottom: 10px;
 
 		a {
-			color: #333333;
 			display: block;
 			padding: 5px 10px;
 
@@ -130,15 +175,13 @@
 			.count {
 				float: right;
 			}
+
+			&:hover {
+				text-decoration: none;
+			}
 		}
 
-		a:hover {
-			background-color: #0A85E4;
-			color: #FFF;
-			text-decoration: none;
-		}
-
-		a.selected {
+		a:hover, a.selected {
 			background-color: #0A85E4;
 			color: #FFF;
 		}
@@ -156,26 +199,27 @@
 
 	.user-notifications-list {
 		.user-notification {
-			a {
-				border-bottom: 1px solid #D5D5D5;
-				padding: 15px;
-			}
+			color: #000;
 
-			a:hover {
-				background-color: #0A85E4;
+			&:hover {
 				color: #FFF;
-				text-decoration: none;
 			}
 
 			&.unread {
 				background-color: #FAFAFA;
+
+				&:hover {
+					background: #2FA4F5;
+				}
+			}
+
+			a {
+				color: #009AE5;
 			}
 		}
 
-		.message {
-			&.top {
-				border-bottom: 1px solid #D5D5D5;
-			}
+		.message.top {
+			border-bottom: 1px solid #D5D5D5;
 		}
 	}
 
@@ -205,33 +249,23 @@
 
 /* ---------- Extras ---------- */
 
-.dockbar-user-notifications {
-	.user-notifications-count {
-		@include border-radius(4px);
-	}
+.dockbar-user-notifications .user-notifications-count, .notifications-portlet .nav a:hover, .notifications-portlet .nav a.selected, .notifications-portlet .user-notifications-list-container {
+	@include border-radius(4px);
 }
 
-.notifications-portlet {
-	.nav {
-		a:hover {
-			@include border-radius(4px);
+.aui {
+	li.user-notification {
+		line-height: 20px;
+	}
+
+	.dockbar .nav li.dropdown.dockbar-user-notifications .dropdown-menu {
+		left: auto;
+		max-height: none;
+		padding: 10px;
+		right: 0;
+
+		&.pull-right:after {
+			right: 20px;
 		}
-
-		a.selected {
-			@include border-radius(4px);
-		}
 	}
-
-	.user-notifications-list-container {
-		@include border-radius(4px);
-	}
-}
-
-.aui li.user-notification {
-	line-height: 20px;
-}
-
-.aui .dockbar .nav li.dropdown.dockbar-user-notifications .dropdown-menu {
-	left: auto;
-	right: 0;
 }

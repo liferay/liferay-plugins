@@ -31,13 +31,13 @@ boolean hasExistingRecipients = false;
 			<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
 		</liferay-portlet:actionURL>
 
-		<aui:nav-item href="<%= markAsUnreadURL %>" id="markMessageAsUnread" label="mark-as-unread" />
+		<aui:button href="<%= markAsUnreadURL %>" name="markMessageAsUnread" value="mark-as-unread" />
 
 		<liferay-portlet:actionURL name="deleteMessages" var="deleteMessageURL">
 			<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
 		</liferay-portlet:actionURL>
 
-		<aui:nav-item href="<%= deleteMessageURL %>" id="deleteMessage" label="delete" />
+		<aui:button href="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 	</aui:nav>
 </aui:nav-bar>
 
@@ -82,9 +82,12 @@ String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
 						<span class="profile-link"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
 					</c:when>
 					<c:otherwise>
-						<liferay-ui:icon-help message="deleted-user">
-							<span class="profile-link line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-						</liferay-ui:icon-help>
+						<span class="profile-link line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+
+						<liferay-ui:icon
+							image="../aui/question-sign"
+							message="deleted-user"
+						/>
 					</c:otherwise>
 				</c:choose>
 			</c:otherwise>
@@ -125,10 +128,10 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 <liferay-ui:search-container
 	emptyResultsMessage="no-messages-found"
 	iteratorURL="<%= iteratorURL %>"
-	total="<%= PrivateMessagingUtil.getThreadMessagesCount(user.getUserId(), mbThreadId) %>"
+	total="<%= UserThreadServiceUtil.getThreadMessagesCount(mbThreadId) %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= PrivateMessagingUtil.getThreadMessages(user.getUserId(), mbThreadId, searchContainer.getStart(), searchContainer.getEnd(), true) %>"
+		results="<%= UserThreadServiceUtil.getThreadMessages(mbThreadId, searchContainer.getStart(), searchContainer.getEnd(), true) %>"
 	/>
 
 	<liferay-ui:search-container-row
@@ -177,9 +180,12 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 							</c:when>
 							<c:otherwise>
 								<span class="name">
-									<liferay-ui:icon-help message="deleted-user">
-										<span class="profile-link line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
-									</liferay-ui:icon-help>
+									<span class="profile-link line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+
+									<liferay-ui:icon
+										image="../aui/question-sign"
+										message="deleted-user"
+									/>
 								</span>
 							</c:otherwise>
 						</c:choose>
@@ -203,10 +209,10 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 							if (MimeTypesUtil.isWebImage(fileEntry.getMimeType())) {
 						%>
 
-								<liferay-portlet:actionURL name="getMessageAttachment" var="imageURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+								<liferay-portlet:resourceURL id="getMessageAttachment" var="imageURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 									<portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" />
 									<portlet:param name="attachment" value="<%= fileEntry.getTitle() %>" />
-								</liferay-portlet:actionURL>
+								</liferay-portlet:resourceURL>
 
 								<div class="image-thumbnail">
 									<a href="<%= imageURL %>" title="<%= fileEntry.getTitle() %>">
@@ -234,10 +240,10 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 							for (FileEntry fileEntry : attachmentsFileEntries) {
 							%>
 
-								<liferay-portlet:actionURL name="getMessageAttachment" var="attachmentURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+								<liferay-portlet:resourceURL id="getMessageAttachment" var="attachmentURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 									<portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" />
 									<portlet:param name="attachment" value="<%= fileEntry.getTitle() %>" />
-								</liferay-portlet:actionURL>
+								</liferay-portlet:resourceURL>
 
 								<li class="message-attachment">
 
@@ -271,9 +277,11 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
+<div class="message-container" id="<portlet:namespace />messageContainer"></div>
+
 <c:if test="<%= hasExistingRecipients %>">
 	<aui:layout cssClass="message-body-container">
-		<form enctype="multipart/form-data" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />sendPrivateMessage(); return false;">
+		<aui:form enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
 			<aui:input name="userId" type="hidden" value="<%= user.getUserId() %>" />
 			<aui:input name="mbThreadId" type="hidden" value="<%= mbThreadId %>" />
 
@@ -295,24 +303,63 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 
 			<aui:button-row>
 				<aui:button name="send" type="submit" value="send" />
+
+				<aui:button cssClass="back-button" href="<%= backURL %>" value="back-to-messages" />
 			</aui:button-row>
-		</form>
+		</aui:form>
 	</aui:layout>
 </c:if>
 
-<aui:layout cssClass="controls">
-	<aui:button cssClass="back-button" href="<%= backURL %>" value="back-to-messages" />
-</aui:layout>
+<aui:script use="aui-image-viewer-gallery,aui-io-request-deprecated">
+	var form = A.one('#<portlet:namespace />fm');
 
-<aui:script>
-	<liferay-portlet:renderURL var="backToThreadURL" windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>
+	form.on(
+		'submit',
+		function(event) {
+			var loadingMask = new A.LoadingMask(
+				{
+					'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "sending-message") %>',
+					target: A.one('.private-messaging-portlet .private-messaging-container')
+				}
+			);
 
-	function <portlet:namespace />sendPrivateMessage() {
-		submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="sendMessage"><portlet:param name="redirect" value="<%= backToThreadURL %>" /></liferay-portlet:actionURL>');
-	}
-</aui:script>
+			loadingMask.show();
 
-<aui:script use="aui-image-viewer-gallery">
+			A.io.request(
+				'<liferay-portlet:resourceURL id="sendMessage"></liferay-portlet:resourceURL>',
+				{
+					dataType: 'json',
+					form: {
+						id: form,
+						upload: true
+					},
+					on: {
+						complete: function(event, id, obj) {
+							var responseText = obj.responseText;
+
+							var responseData = A.JSON.parse(responseText);
+
+							if (responseData.success) {
+								document.location.href = '<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>';
+
+								loadingMask.hide();
+							}
+							else {
+								var messageContainer = A.one('#<portlet:namespace />messageContainer');
+
+								if (messageContainer) {
+									messageContainer.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+								}
+
+								loadingMask.hide();
+							}
+						}
+					}
+				}
+			);
+		}
+	);
+
 	var viewportRegion = A.getDoc().get('viewportRegion');
 
 	var imageGallery = new A.ImageGallery(

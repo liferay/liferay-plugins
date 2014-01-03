@@ -24,43 +24,40 @@ symbols = StringUtil.split(ParamUtil.getString(request, "symbols", symbolsString
 symbolsString = StringUtil.merge(symbols, StringPool.SPACE);
 %>
 
-<form action="<portlet:actionURL />" method="post" name="<portlet:namespace />fm">
-<input name="<portlet:namespace /><%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<portlet:actionURL var="portletURL" />
 
-<liferay-ui:error exception="<%= ValidatorException.class %>">
+<aui:form action="<%= portletURL %>" method="post" name="fm" onSubmit="submitForm(document.<portlet:namespace />fm);">
+	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-	<%
-	ValidatorException ve = (ValidatorException)errorException;
-	%>
+	<liferay-ui:error exception="<%= ValidatorException.class %>">
 
-	<liferay-ui:message key="the-following-are-invalid-symbols" />
+		<%
+		ValidatorException ve = (ValidatorException)errorException;
+		%>
 
-	<%
-	Enumeration enu = ve.getFailedKeys();
+		<liferay-ui:message key="the-following-are-invalid-symbols" />
 
-	while (enu.hasMoreElements()) {
-		String symbol = (String)enu.nextElement();
-	%>
+		<%
+		Enumeration enu = ve.getFailedKeys();
 
-		<strong><%= symbol %></strong><%= (enu.hasMoreElements()) ? ", " : "." %>
+		while (enu.hasMoreElements()) {
+			String symbol = (String)enu.nextElement();
+		%>
 
-	<%
-	}
-	%>
+			<strong><%= symbol %></strong><%= (enu.hasMoreElements()) ? ", " : "." %>
 
-</liferay-ui:error>
+		<%
+		}
+		%>
 
-<liferay-ui:message key="add-all-ticker-symbols-separated-by-spaces" />
+	</liferay-ui:error>
 
-<br /><br />
+	<aui:input label="add-all-ticker-symbols-separated-by-spaces" name="symbols" type="textarea" value="<%= symbolsString %>" />
 
-<textarea class="lfr-textarea" name="<portlet:namespace />symbols" wrap="soft"><%= symbolsString %></textarea>
-
-<br /><br />
-
-<input onClick="submitForm(document.<portlet:namespace />fm);" type="button" value="<liferay-ui:message key="save" />" />
-
-</form>
+	<aui:button-row>
+		<aui:button type="submit" />
+	</aui:button-row>
+</aui:form>
 
 <c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 	<aui:script>

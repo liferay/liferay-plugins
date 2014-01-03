@@ -47,145 +47,116 @@ if (supportsInbandRegistration) {
 	title='<%= (wsrpConsumer != null) ? wsrpConsumer.getName() : "new-consumer-registration" %>'
 />
 
-<form action="<portlet:actionURL name="updateWSRPConsumerRegistration" />" method="post" name="<portlet:namespace />fm" onSubmit="<portlet:namespace />saveConsumerRegistration(); return false;">
-<input name="<portlet:namespace />mvcPath" type="hidden" value="/admin/edit_consumer_registration.jsp" />
-<input name="<portlet:namespace />redirect" type="hidden" value="<%= redirect %>" />
-<input name="<portlet:namespace />wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
+<portlet:actionURL name="updateWSRPConsumerRegistration" var="updateWSRPConsumerRegistrationURL" />
 
-<table class="lfr-table">
-<tr>
-	<td>
-		<liferay-ui:message key="name" />
-	</td>
-	<td>
-		<%= wsrpConsumer.getName() %>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="url" />
-	</td>
-	<td>
-		<a href="<%= wsrpConsumer.getUrl() %>" target="_blank"><%= wsrpConsumer.getUrl() %></a>
-	</td>
-</tr>
-<tr>
-	<td colspan="2">
-		<br />
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="registration-type" />
-	</td>
-	<td>
-		<select id="<portlet:namespace />inbandRegistration" name="<portlet:namespace />inbandRegistration">
+<aui:form action="<%= updateWSRPConsumerRegistrationURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConsumerRegistration();" %>'>
+	<aui:input name="mvcPath" type="hidden" value="/admin/edit_consumer_registration.jsp" />
+	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="wsrpConsumerId" type="hidden" value="<%= wsrpConsumerId %>" />
+
+	<aui:fieldset>
+		<aui:field-wrapper label="name">
+			<%= wsrpConsumer.getName() %>
+		</aui:field-wrapper>
+
+		<aui:field-wrapper label="url">
+			<aui:a href="<%= wsrpConsumer.getUrl() %>" target="_blank"><%= wsrpConsumer.getUrl() %></aui:a>
+		</aui:field-wrapper>
+
+		<aui:select label="registration-type" name="inbandRegistration">
 			<c:if test="<%= supportsInbandRegistration %>">
-				<option value="true"><liferay-ui:message key="inband" /></option>
+				<aui:option label="inband" value="true" />
 			</c:if>
 
-			<option value="false"><liferay-ui:message key="outband" /></option>
-		</select>
-	</td>
-</tr>
-<tbody <%= supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationHandleSettings">
-	<tr>
-		<td>
-			<liferay-ui:message key="registration-handle" />
-		</td>
-		<td>
-			<input class="lfr-input-text" name="<portlet:namespace />registrationHandle" type="text" />
-		</td>
-	</tr>
-</tbody>
-<tbody <%= !supportsInbandRegistration ? "class=\"aui-helper-hidden\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
-	<tr>
-		<td>
-			<liferay-ui:message key="registration-properties" />
-		</td>
-		<td>
+			<aui:option label="outband" value="false" />
+		</aui:select>
 
-			<%
-			SearchContainer searchContainer = new SearchContainer();
+		<div <%= supportsInbandRegistration ? "class=\"hide\"" : "" %> id="<portlet:namespace />registrationHandleSettings">
+			<aui:input name="registrationHandle" />
+		</div>
 
-			List<String> headerNames = new ArrayList<String>();
+		<div <%= !supportsInbandRegistration ? "class=\"hide\"" : "" %> id="<portlet:namespace />registrationPropertiesSettings">
+			<aui:field-wrapper label="registration-properties">
 
-			headerNames.add("name");
-			headerNames.add("value");
-			headerNames.add("description");
+				<%
+				SearchContainer searchContainer = new SearchContainer();
 
-			searchContainer.setHeaderNames(headerNames);
-			searchContainer.setEmptyResultsMessage("there-are-no-registration-properties");
+				List<String> headerNames = new ArrayList<String>();
 
-			List resultRows = searchContainer.getResultRows();
+				headerNames.add("name");
+				headerNames.add("value");
+				headerNames.add("description");
 
-			for (int i = 0; i < propertyDescriptions.length; i++) {
-				PropertyDescription propertyDescription = propertyDescriptions[i];
+				searchContainer.setHeaderNames(headerNames);
+				searchContainer.setEmptyResultsMessage("there-are-no-registration-properties");
 
-				String fullyQualifiedName = propertyDescription.getName().toString();
+				List resultRows = searchContainer.getResultRows();
 
-				String name = propertyDescription.getName().getLocalPart();
+				for (int i = 0; i < propertyDescriptions.length; i++) {
+					PropertyDescription propertyDescription = propertyDescriptions[i];
 
-				String description = LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getDescription(), StringPool.BLANK);
+					String fullyQualifiedName = propertyDescription.getName().toString();
 
-				description += LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getHint(), StringPool.BLANK);
+					String name = propertyDescription.getName().getLocalPart();
 
-				ResultRow row = new ResultRow(name, name, i);
+					String description = LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getDescription(), StringPool.BLANK);
 
-				// Name
+					description += LocalizedStringUtil.getLocalizedStringValue(propertyDescription.getHint(), StringPool.BLANK);
 
-				row.addText(name);
+					ResultRow row = new ResultRow(name, name, i);
 
-				// Value
+					// Name
 
-				StringBuilder sb = new StringBuilder();
+					row.addText(name);
 
-				sb.append("<input name=\"");
-				sb.append(renderResponse.getNamespace());
-				sb.append("registrationPropertyName");
-				sb.append(i);
-				sb.append("\" type=\"hidden\" value=\"");
-				sb.append(fullyQualifiedName);
-				sb.append("\" />");
+					// Value
 
-				String registrationPropertyValue = GetterUtil.getString(registrationProperties.get(fullyQualifiedName));
+					StringBuilder sb = new StringBuilder();
 
-				sb.append("<input name=\"");
-				sb.append(renderResponse.getNamespace());
-				sb.append("registrationPropertyValue");
-				sb.append(i);
-				sb.append("\" type=\"text\" value=\"");
-				sb.append(registrationPropertyValue);
-				sb.append("\" />");
+					sb.append("<input name=\"");
+					sb.append(renderResponse.getNamespace());
+					sb.append("registrationPropertyName");
+					sb.append(i);
+					sb.append("\" type=\"hidden\" value=\"");
+					sb.append(fullyQualifiedName);
+					sb.append("\" />");
 
-				row.addText(sb.toString());
+					String registrationPropertyValue = GetterUtil.getString(registrationProperties.get(fullyQualifiedName));
 
-				// Description
+					sb.append("<input name=\"");
+					sb.append(renderResponse.getNamespace());
+					sb.append("registrationPropertyValue");
+					sb.append(i);
+					sb.append("\" type=\"text\" value=\"");
+					sb.append(registrationPropertyValue);
+					sb.append("\" />");
 
-				row.addText(description);
+					row.addText(sb.toString());
 
-				// Add result row
+					// Description
 
-				resultRows.add(row);
-			}
-			%>
+					row.addText(description);
 
-			<liferay-ui:search-iterator paginate="<%= false %>" searchContainer="<%= searchContainer %>" />
-		</td>
-	</tr>
-</tbody>
-</table>
+					// Add result row
 
-<br />
+					resultRows.add(row);
+				}
+				%>
 
-<input type="submit" value="<liferay-ui:message key="save" />" />
+				<liferay-ui:search-iterator paginate="<%= false %>" searchContainer="<%= searchContainer %>" />
+			</aui:field-wrapper>
+		</div>
+	</aui:fieldset>
 
-<input onClick="location.href = '<%= HtmlUtil.escape(PortalUtil.escapeRedirect(redirect)) %>';" type="button" value="<liferay-ui:message key="cancel" />" />
+	<aui:button-row>
+		<aui:button type="submit" />
 
-</form>
+		<aui:button href="<%= redirect %>" type="cancel" />
+	</aui:button-row>
+</aui:form>
 
 <aui:script>
-	function <portlet:namespace />saveConsumerRegsitration() {
+	function <portlet:namespace />saveConsumerRegistration() {
 		submitForm(document.<portlet:namespace />fm);
 	}
 </aui:script>

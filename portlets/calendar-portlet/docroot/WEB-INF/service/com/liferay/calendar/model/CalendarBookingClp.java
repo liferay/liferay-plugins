@@ -18,12 +18,14 @@ import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.calendar.service.ClpSerializer;
 
 import com.liferay.portal.LocaleException;
+import com.liferay.portal.NoSuchModelException;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
@@ -121,6 +123,9 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		attributes.put("statusByUserId", getStatusByUserId());
 		attributes.put("statusByUserName", getStatusByUserName());
 		attributes.put("statusDate", getStatusDate());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -289,6 +294,9 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		if (statusDate != null) {
 			setStatusDate(statusDate);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -1360,7 +1368,14 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		TrashHandler trashHandler = getTrashHandler();
 
 		if (!Validator.isNull(trashHandler.getContainerModelClassName())) {
-			ContainerModel containerModel = trashHandler.getParentContainerModel(this);
+			ContainerModel containerModel = null;
+
+			try {
+				containerModel = trashHandler.getParentContainerModel(this);
+			}
+			catch (NoSuchModelException nsme) {
+				return null;
+			}
 
 			while (containerModel != null) {
 				if (containerModel instanceof TrashedModel) {
@@ -1428,9 +1443,26 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 		return false;
 	}
 
+	@Override
+	public boolean isInTrashExplicitly() throws SystemException {
+		if (!isInTrash()) {
+			return false;
+		}
+
+		TrashEntry trashEntry = TrashEntryLocalServiceUtil.fetchEntry(getModelClassName(),
+				getTrashEntryClassPK());
+
+		if (trashEntry != null) {
+			return true;
+		}
+
+		return false;
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #isApproved}
 	 */
+	@Deprecated
 	@Override
 	public boolean getApproved() {
 		return isApproved();
@@ -1746,6 +1778,16 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(55);
 
@@ -1962,4 +2004,6 @@ public class CalendarBookingClp extends BaseModelImpl<CalendarBooking>
 	private String _statusByUserName;
 	private Date _statusDate;
 	private BaseModel<?> _calendarBookingRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

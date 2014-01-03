@@ -19,6 +19,7 @@ import com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -84,6 +85,9 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		attributes.put("consumerSecret", getConsumerSecret());
 		attributes.put("keyType", getKeyType());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -142,6 +146,9 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 		if (keyType != null) {
 			setKeyType(keyType);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -511,6 +518,16 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 
@@ -597,4 +614,6 @@ public class OAuthConsumerClp extends BaseModelImpl<OAuthConsumer>
 	private String _consumerSecret;
 	private String _keyType;
 	private BaseModel<?> _oAuthConsumerRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

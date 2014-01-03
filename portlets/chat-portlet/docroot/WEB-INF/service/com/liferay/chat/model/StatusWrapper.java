@@ -469,6 +469,7 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public Status getWrappedStatus() {
 		return _status;
 	}
@@ -476,6 +477,16 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	@Override
 	public Status getWrappedModel() {
 		return _status;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _status.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _status.isFinderCacheEnabled();
 	}
 
 	@Override

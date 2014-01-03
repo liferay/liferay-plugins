@@ -2244,6 +2244,8 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 		clearUniqueFindersCache(module);
 		cacheUniqueFindersCache(module);
 
+		module.resetOriginalValues();
+
 		return module;
 	}
 

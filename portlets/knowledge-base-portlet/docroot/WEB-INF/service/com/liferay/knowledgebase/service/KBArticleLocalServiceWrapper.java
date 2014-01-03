@@ -689,6 +689,7 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public KBArticleLocalService getWrappedKBArticleLocalService() {
 		return _kbArticleLocalService;
 	}
@@ -696,6 +697,7 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedKBArticleLocalService(
 		KBArticleLocalService kbArticleLocalService) {
 		_kbArticleLocalService = kbArticleLocalService;

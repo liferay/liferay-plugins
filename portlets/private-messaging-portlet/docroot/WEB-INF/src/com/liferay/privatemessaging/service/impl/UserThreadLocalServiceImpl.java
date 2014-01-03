@@ -24,10 +24,11 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.mail.MailMessage;
-import com.liferay.portal.kernel.notifications.ChannelHubManagerUtil;
 import com.liferay.portal.kernel.notifications.NotificationEvent;
 import com.liferay.portal.kernel.notifications.NotificationEventFactoryUtil;
+import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.FastDateFormatConstants;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -37,11 +38,13 @@ import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.webserver.WebServerServletTokenUtil;
@@ -172,6 +175,12 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		userThread.setDeleted(true);
 
 		userThreadPersistence.update(userThread);
+	}
+
+	public UserThread fetchUserThread(long userId, long mbThreadId)
+		throws PortalException, SystemException {
+
+		return userThreadPersistence.fetchByU_M(userId, mbThreadId);
 	}
 
 	public List<UserThread> getMBThreadUserThreads(long mbThreadId)
@@ -445,7 +454,12 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				mbMessage.getThreadId());
 
 		for (UserThread userThread : userThreads) {
-			if (userThread.getUserId() == mbMessage.getUserId()) {
+			if ((userThread.getUserId() == mbMessage.getUserId()) &&
+				UserNotificationManagerUtil.isDeliver(
+					userThread.getUserId(), PortletKeys.PRIVATE_MESSAGING,
+					PrivateMessagingConstants.NEW_MESSAGE, 0,
+					UserNotificationDeliveryConstants.TYPE_EMAIL)) {
+
 				continue;
 			}
 
@@ -462,10 +476,9 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			InternetAddress to = new InternetAddress(
 				recipient.getEmailAddress());
 
-			Format dateFormatDateTime =
-				FastDateFormatFactoryUtil.getSimpleDateFormat(
-					"MMMMM d 'at' h:mm a", recipient.getLocale(),
-					recipient.getTimeZone());
+			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
+				FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT,
+				recipient.getLocale(), recipient.getTimeZone());
 
 			String userThreadBody = StringUtil.replace(
 				body,
@@ -491,13 +504,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
-		notificationEventJSONObject.put("body", mbMessage.getBody());
-		notificationEventJSONObject.put("entryId", mbMessage.getThreadId());
-		notificationEventJSONObject.put("entryKeyName", "mbThreadId");
-		notificationEventJSONObject.put("mvcPath", "/view.jsp");
-		notificationEventJSONObject.put(
-			"portletId", PortletKeys.PRIVATE_MESSAGING);
-		notificationEventJSONObject.put("title", "x-sent-you-a-message");
+		notificationEventJSONObject.put("classPK", mbMessage.getMessageId());
 		notificationEventJSONObject.put("userId", mbMessage.getUserId());
 
 		List<UserThread> userThreads =
@@ -505,20 +512,24 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 				mbMessage.getThreadId());
 
 		for (UserThread userThread : userThreads) {
-			if (userThread.getUserId() == mbMessage.getUserId()) {
+			if ((userThread.getUserId() == mbMessage.getUserId()) &&
+				UserNotificationManagerUtil.isDeliver(
+					userThread.getUserId(), PortletKeys.PRIVATE_MESSAGING,
+					PrivateMessagingConstants.NEW_MESSAGE, 0,
+					UserNotificationDeliveryConstants.TYPE_WEBSITE)) {
+
 				continue;
 			}
 
 			NotificationEvent notificationEvent =
 				NotificationEventFactoryUtil.createNotificationEvent(
-					System.currentTimeMillis(), "6_WAR_soportlet",
+					System.currentTimeMillis(), PortletKeys.PRIVATE_MESSAGING,
 					notificationEventJSONObject);
 
 			notificationEvent.setDeliveryRequired(0);
 
-			ChannelHubManagerUtil.sendNotificationEvent(
-				mbMessage.getCompanyId(), userThread.getUserId(),
-				notificationEvent);
+			UserNotificationEventLocalServiceUtil.addUserNotificationEvent(
+				userThread.getUserId(), notificationEvent);
 		}
 	}
 

@@ -16,6 +16,7 @@ package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -86,6 +87,9 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		attributes.put("script", getScript());
 		attributes.put("scriptLanguage", getScriptLanguage());
 		attributes.put("scriptRequiredContexts", getScriptRequiredContexts());
+
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
 
 		return attributes;
 	}
@@ -164,6 +168,9 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		if (scriptRequiredContexts != null) {
 			setScriptRequiredContexts(scriptRequiredContexts);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -592,6 +599,16 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(25);
 
@@ -700,4 +717,6 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	private String _scriptLanguage;
 	private String _scriptRequiredContexts;
 	private BaseModel<?> _kaleoConditionRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

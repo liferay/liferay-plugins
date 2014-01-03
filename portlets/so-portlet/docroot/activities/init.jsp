@@ -22,18 +22,17 @@
 <%@ page import="com.liferay.microblogs.model.MicroblogsEntry" %><%@
 page import="com.liferay.microblogs.model.MicroblogsEntryConstants" %><%@
 page import="com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil" %><%@
+page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
+page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
 page import="com.liferay.portal.kernel.util.Time" %><%@
 page import="com.liferay.portal.service.ServiceContextFactory" %><%@
-page import="com.liferay.portlet.documentlibrary.model.DLFileEntry" %><%@
-page import="com.liferay.portlet.documentlibrary.model.DLFileVersion" %><%@
-page import="com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil" %><%@
 page import="com.liferay.portlet.social.model.SocialActivity" %><%@
 page import="com.liferay.portlet.social.model.SocialActivitySet" %><%@
 page import="com.liferay.portlet.social.service.SocialActivityLocalServiceUtil" %><%@
 page import="com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil" %><%@
-page import="com.liferay.so.activities.util.SocialActivityKeyConstants" %>
+page import="com.liferay.so.activities.util.ActivitiesUtil" %>
 
 <%
 String tabs1 = ParamUtil.getString(request, "tabs1", "all");

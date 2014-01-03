@@ -94,6 +94,10 @@ public class SyncMessageListener extends BaseMessageListener {
 				return;
 			}
 
+			if (!SyncUtil.isSupportedFolder(folder)) {
+				return;
+			}
+
 			SyncDLObjectLocalServiceUtil.addSyncDLObject(
 				folder.getCompanyId(), modifiedTime, folder.getRepositoryId(),
 				folder.getParentFolderId(), folder.getName(), StringPool.BLANK,

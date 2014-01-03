@@ -16,6 +16,7 @@ package com.liferay.so.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -79,6 +80,9 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		attributes.put("companyId", getCompanyId());
 		attributes.put("userId", getUserId());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -107,6 +111,9 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 		if (userId != null) {
 			setUserId(userId);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -331,6 +338,16 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(9);
 
@@ -383,4 +400,6 @@ public class FavoriteSiteClp extends BaseModelImpl<FavoriteSite>
 	private long _userId;
 	private String _userUuid;
 	private BaseModel<?> _favoriteSiteRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

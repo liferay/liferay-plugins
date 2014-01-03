@@ -583,6 +583,7 @@ public class KaleoNotificationRecipientWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoNotificationRecipient getWrappedKaleoNotificationRecipient() {
 		return _kaleoNotificationRecipient;
 	}
@@ -590,6 +591,16 @@ public class KaleoNotificationRecipientWrapper
 	@Override
 	public KaleoNotificationRecipient getWrappedModel() {
 		return _kaleoNotificationRecipient;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoNotificationRecipient.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoNotificationRecipient.isFinderCacheEnabled();
 	}
 
 	@Override

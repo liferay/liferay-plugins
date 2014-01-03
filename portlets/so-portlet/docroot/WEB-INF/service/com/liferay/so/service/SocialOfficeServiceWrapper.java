@@ -73,6 +73,7 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public SocialOfficeService getWrappedSocialOfficeService() {
 		return _socialOfficeService;
 	}
@@ -80,6 +81,7 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedSocialOfficeService(
 		SocialOfficeService socialOfficeService) {
 		_socialOfficeService = socialOfficeService;

@@ -553,6 +553,7 @@ public class KaleoConditionWrapper implements KaleoCondition,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoCondition getWrappedKaleoCondition() {
 		return _kaleoCondition;
 	}
@@ -560,6 +561,16 @@ public class KaleoConditionWrapper implements KaleoCondition,
 	@Override
 	public KaleoCondition getWrappedModel() {
 		return _kaleoCondition;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoCondition.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoCondition.isFinderCacheEnabled();
 	}
 
 	@Override

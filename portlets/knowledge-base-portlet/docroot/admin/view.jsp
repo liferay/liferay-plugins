@@ -51,9 +51,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 			KBArticleSearchTerms searchTerms = (KBArticleSearchTerms)searchContainer.getSearchTerms();
 			%>
 
-			<liferay-ui:search-container-results>
-				<%@ include file="/admin/article_search_results.jspf" %>
-			</liferay-ui:search-container-results>
+			<%@ include file="/admin/article_search_results.jspf" %>
 
 			<%
 			boolean updateArticlesPriorities = AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.UPDATE_KB_ARTICLES_PRIORITIES);
@@ -159,9 +157,10 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 							modelResourceDescription="<%= HtmlUtil.escape(themeDisplay.getScopeGroupName()) %>"
 							resourcePrimKey="<%= String.valueOf(scopeGroupId) %>"
 							var="permissionsURL"
+							windowState="<%= LiferayWindowState.POP_UP.toString() %>"
 						/>
 
-						<aui:button href="<%= permissionsURL %>" value="permissions" />
+						<aui:button href="<%= permissionsURL %>" useDialog="<%= true %>" value="permissions" />
 					</c:if>
 
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.SUBSCRIBE) %>">

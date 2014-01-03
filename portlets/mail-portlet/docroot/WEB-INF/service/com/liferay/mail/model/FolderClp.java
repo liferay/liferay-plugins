@@ -19,6 +19,7 @@ import com.liferay.mail.service.FolderLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -85,6 +86,9 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		attributes.put("displayName", getDisplayName());
 		attributes.put("remoteMessageCount", getRemoteMessageCount());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -150,6 +154,9 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 		if (remoteMessageCount != null) {
 			setRemoteMessageCount(remoteMessageCount);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -517,6 +524,16 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(21);
 
@@ -611,4 +628,6 @@ public class FolderClp extends BaseModelImpl<Folder> implements Folder {
 	private String _displayName;
 	private int _remoteMessageCount;
 	private BaseModel<?> _folderRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

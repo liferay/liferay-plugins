@@ -356,6 +356,7 @@ public class OAuthConsumerLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public OAuthConsumerLocalService getWrappedOAuthConsumerLocalService() {
 		return _oAuthConsumerLocalService;
 	}
@@ -363,6 +364,7 @@ public class OAuthConsumerLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedOAuthConsumerLocalService(
 		OAuthConsumerLocalService oAuthConsumerLocalService) {
 		_oAuthConsumerLocalService = oAuthConsumerLocalService;

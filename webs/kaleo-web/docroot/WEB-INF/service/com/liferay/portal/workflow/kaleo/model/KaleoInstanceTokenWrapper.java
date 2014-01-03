@@ -719,6 +719,7 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public KaleoInstanceToken getWrappedKaleoInstanceToken() {
 		return _kaleoInstanceToken;
 	}
@@ -726,6 +727,16 @@ public class KaleoInstanceTokenWrapper implements KaleoInstanceToken,
 	@Override
 	public KaleoInstanceToken getWrappedModel() {
 		return _kaleoInstanceToken;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _kaleoInstanceToken.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _kaleoInstanceToken.isFinderCacheEnabled();
 	}
 
 	@Override

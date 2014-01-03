@@ -45,6 +45,7 @@ import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.portlet.trash.util.TrashUtil;
 import com.liferay.so.activities.util.PortletPropsValues;
 
 import java.text.Format;
@@ -65,6 +66,20 @@ public abstract class SOSocialActivityInterpreter
 	@Override
 	public String getSelector() {
 		return _SELECTOR;
+	}
+
+	@Override
+	protected SocialActivityFeedEntry doInterpret(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		if (TrashUtil.isInTrash(
+				activity.getClassName(), activity.getClassPK())) {
+
+			return null;
+		}
+
+		return super.doInterpret(activity, serviceContext);
 	}
 
 	@Override
@@ -144,15 +159,7 @@ public abstract class SOSocialActivityInterpreter
 				QueryUtil.ALL_POS);
 
 		for (SocialActivity activity : activities) {
-			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
-
-			PermissionChecker permissionChecker =
-				themeDisplay.getPermissionChecker();
-
-			if (!hasPermissions(
-					permissionChecker, activity, ActionKeys.VIEW,
-					serviceContext)) {
-
+			if (!hasPermissions(activity, serviceContext)) {
 				continue;
 			}
 
@@ -236,6 +243,10 @@ public abstract class SOSocialActivityInterpreter
 		throws Exception {
 
 		String className = activity.getClassName();
+
+		if (TrashUtil.isInTrash(className, activity.getClassPK())) {
+			return null;
+		}
 
 		String title = getPageTitle(
 			className, activity.getClassPK(), serviceContext);
@@ -416,6 +427,42 @@ public abstract class SOSocialActivityInterpreter
 		return permissionChecker.hasPermission(
 			activity.getGroupId(), activity.getClassName(),
 			activity.getClassPK(), ActionKeys.VIEW);
+	}
+
+	protected boolean hasPermissions(
+			SocialActivity activity, ServiceContext serviceContext)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		return hasPermissions(
+			permissionChecker, activity, ActionKeys.VIEW, serviceContext);
+	}
+
+	protected boolean hasPermissions(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
+
+		List<SocialActivity> activities =
+			SocialActivityLocalServiceUtil.getActivitySetActivities(
+				activitySet.getActivitySetId(), 0, 1);
+
+		if (!activities.isEmpty()) {
+			SocialActivity activity = activities.get(0);
+
+			return hasPermissions(
+				permissionChecker, activity, ActionKeys.VIEW, serviceContext);
+		}
+
+		return false;
 	}
 
 	protected boolean isExpired(

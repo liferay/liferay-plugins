@@ -17,6 +17,7 @@ package com.liferay.so.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -88,6 +89,9 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		attributes.put("endDate", getEndDate());
 		attributes.put("data", getData());
 
+		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
+		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
+
 		return attributes;
 	}
 
@@ -158,6 +162,9 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		if (data != null) {
 			setData(data);
 		}
+
+		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
+		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -549,6 +556,16 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	}
 
 	@Override
+	public boolean isEntityCacheEnabled() {
+		return _entityCacheEnabled;
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _finderCacheEnabled;
+	}
+
+	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(23);
 
@@ -650,4 +667,6 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	private Date _endDate;
 	private String _data;
 	private BaseModel<?> _projectsEntryRemoteModel;
+	private boolean _entityCacheEnabled;
+	private boolean _finderCacheEnabled;
 }

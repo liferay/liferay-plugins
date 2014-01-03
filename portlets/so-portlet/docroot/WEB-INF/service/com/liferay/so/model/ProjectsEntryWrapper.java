@@ -522,6 +522,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public ProjectsEntry getWrappedProjectsEntry() {
 		return _projectsEntry;
 	}
@@ -529,6 +530,16 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	@Override
 	public ProjectsEntry getWrappedModel() {
 		return _projectsEntry;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _projectsEntry.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _projectsEntry.isFinderCacheEnabled();
 	}
 
 	@Override

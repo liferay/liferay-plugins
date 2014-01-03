@@ -37,7 +37,7 @@ else {
 
 <c:choose>
 	<c:when test="<%= userNotificationEvents.isEmpty() %>">
-		<li class="message user-notification">
+		<li class="message">
 			<c:choose>
 				<c:when test='<%= filter.equals("unread") %>'>
 					<a><liferay-ui:message key="you-do-not-have-any-unread-notifications" /></a>
@@ -85,12 +85,12 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 	<li class="user-notification<%= read ? "" : " unread" %>">
 		<c:choose>
 			<c:when test="<%= read %>">
-				<a class="clearfix user-notification-link" href="<%= userNotificationFeedEntry.getLink() %>">
+				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>">
 			</c:when>
 			<c:otherwise>
 				<liferay-portlet:actionURL name="markAsRead" var="markAsReadURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
 
-				<a class="clearfix user-notification-link" data-markAsReadURL="<%= markAsReadURL %>" href="<%= userNotificationFeedEntry.getLink() %>">
+				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-markAsReadURL="<%= markAsReadURL %>">
 			</c:otherwise>
 		</c:choose>
 
@@ -121,7 +121,7 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 					</div>
 				</c:if>
 			</div>
-		</a>
+		</div>
 	</li>
 
 <%
@@ -137,7 +137,7 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 </c:if>
 
 <c:if test="<%= !fullView %>">
-	<li class="bottom message user-notification">
+	<li class="bottom message">
 		<liferay-portlet:renderURL portletName="<%= PortletKeys.NOTIFICATIONS %>" var="viewAllNotifications" windowState="<%= LiferayWindowState.MAXIMIZED.toString() %>">
 			<portlet:param name="mvcPath" value="/notifications/view.jsp" />
 		</liferay-portlet:renderURL>

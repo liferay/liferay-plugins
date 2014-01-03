@@ -117,9 +117,9 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 			<div id="<portlet:namespace />message"></div>
 		</aui:col>
 
-		<aui:col cssClass='<%= "calendar-portlet-column-grid " + (columnOptionsVisible ? StringPool.BLANK : "calendar-portlet-column-full") %>' id="columnGrid" span="<%= 9 %>">
-			<div class="calendar-portlet-column-toggler" id="<portlet:namespace/>columnToggler">
-				<i class="<%= columnOptionsVisible ? "icon-caret-left" : "icon-caret-right" %>" id="<portlet:namespace/>columnTogglerIcon"></i>
+		<aui:col cssClass="calendar-portlet-column-grid" id="columnGrid" span="<%= columnOptionsVisible ? 9 : 12 %>">
+			<div class="calendar-portlet-column-toggler" id="<portlet:namespace />columnToggler">
+				<i class="<%= columnOptionsVisible ? "icon-caret-left" : "icon-caret-right" %>" id="<portlet:namespace />columnTogglerIcon"></i>
 			</div>
 
 			<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
@@ -180,19 +180,45 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	var syncCalendarsMap = function() {
 		var calendarLists = [];
 
+		<c:if test="<%= themeDisplay.isSignedIn() || (groupCalendarResource != null) %>">
+			calendarLists.push(window.<portlet:namespace />myCalendarList);
+		</c:if>
+
 		<c:if test="<%= themeDisplay.isSignedIn() %>">
 			calendarLists.push(window.<portlet:namespace />otherCalendarList);
 		</c:if>
 
 		<c:if test="<%= groupCalendarResource != null %>">
-			calendarLists.push(
-				window.<portlet:namespace />myCalendarList,
-				window.<portlet:namespace />siteCalendarList
-			);
+			calendarLists.push(window.<portlet:namespace />siteCalendarList);
 		</c:if>
 
 		Liferay.CalendarUtil.syncCalendarsMap(calendarLists);
 	}
+
+	<c:if test="<%= themeDisplay.isSignedIn() || (groupCalendarResource != null) %>">
+		window.<portlet:namespace />myCalendarList = new Liferay.CalendarList(
+			{
+				after: {
+					calendarsChange: syncCalendarsMap,
+					'scheduler-calendar:visibleChange': function(event) {
+						syncCalendarsMap();
+
+						<portlet:namespace />refreshVisibleCalendarRenderingRules();
+					}
+				},
+				boundingBox: '#<portlet:namespace />myCalendarList',
+
+				<%
+				updateCalendarsJSONArray(request, userCalendarsJSONArray);
+				%>
+
+				calendars: <%= userCalendarsJSONArray %>,
+				scheduler: <portlet:namespace />scheduler,
+				simpleMenu: window.<portlet:namespace />calendarsMenu,
+				visible: <%= themeDisplay.isSignedIn() %>
+			}
+		).render();
+	</c:if>
 
 	<c:if test="<%= themeDisplay.isSignedIn() %>">
 		window.<portlet:namespace />otherCalendarList = new Liferay.CalendarList(
@@ -227,32 +253,6 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	</c:if>
 
 	<c:if test="<%= groupCalendarResource != null %>">
-		window.<portlet:namespace />myCalendarList = new Liferay.CalendarList(
-			{
-				after: {
-					calendarsChange: syncCalendarsMap,
-					'scheduler-calendar:visibleChange': function(event) {
-						syncCalendarsMap();
-
-						<portlet:namespace />refreshVisibleCalendarRenderingRules();
-					}
-				},
-				boundingBox: '#<portlet:namespace />myCalendarList',
-
-				<%
-				updateCalendarsJSONArray(request, userCalendarsJSONArray);
-				%>
-
-				calendars: <%= userCalendarsJSONArray %>,
-				scheduler: <portlet:namespace />scheduler,
-				simpleMenu: window.<portlet:namespace />calendarsMenu
-			}
-		).render();
-
-		<c:if test="<%= !themeDisplay.isSignedIn() %>">
-			window.<portlet:namespace />myCalendarList.set('visible', false);
-		</c:if>
-
 		window.<portlet:namespace />siteCalendarList = new Liferay.CalendarList(
 			{
 				after: {
@@ -331,9 +331,11 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 			Liferay.Store('calendar-portlet-column-options-visible', columnOptions.hasClass('hide'));
 
-			columnGrid.toggleClass('calendar-portlet-column-full');
-			columnTogglerIcon.toggleClass('icon-caret-left').toggleClass('icon-caret-right');
+			columnGrid.toggleClass('span9').toggleClass('span12');
+
 			columnOptions.toggleClass('hide');
+
+			columnTogglerIcon.toggleClass('icon-caret-left').toggleClass('icon-caret-right');
 		}
 	);
 </aui:script>

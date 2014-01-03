@@ -265,7 +265,7 @@ html body {
 	position: relative;
 }
 
-.panel-icon {
+img.panel-icon {
 	background: #333;
 	border: 1px solid #000;
 	display: block;

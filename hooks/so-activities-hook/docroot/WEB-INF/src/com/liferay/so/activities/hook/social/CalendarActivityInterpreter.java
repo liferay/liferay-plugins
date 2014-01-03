@@ -16,9 +16,12 @@ package com.liferay.so.activities.hook.social;
 
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
+import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.PortletURLFactoryUtil;
@@ -88,6 +91,10 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 
 		if (activitySet.getType() ==
 				SocialActivityKeyConstants.CALENDAR_UPDATE_CALENDAR_BOOKING) {
+
+			if (!hasPermissions(activitySet, serviceContext)) {
+				return null;
+			}
 
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
@@ -195,6 +202,32 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 		}
 
 		return StringPool.BLANK;
+	}
+
+	@Override
+	protected boolean hasPermissions(
+			PermissionChecker permissionChecker, SocialActivity activity,
+			String actionId, ServiceContext serviceContext)
+		throws Exception {
+
+		CalendarBooking calendarBooking =
+			CalendarBookingLocalServiceUtil.fetchCalendarBooking(
+				activity.getClassPK());
+
+		if (calendarBooking == null) {
+			return false;
+		}
+
+		if (actionId.equals(ActionKeys.VIEW) &&
+			!CalendarPermission.contains(
+				permissionChecker, calendarBooking.getCalendarId(),
+				"VIEW_BOOKING_DETAILS")) {
+
+			return false;
+		}
+
+		return CalendarPermission.contains(
+			permissionChecker, calendarBooking.getCalendarId(), actionId);
 	}
 
 	private static final String[] _CLASS_NAMES =

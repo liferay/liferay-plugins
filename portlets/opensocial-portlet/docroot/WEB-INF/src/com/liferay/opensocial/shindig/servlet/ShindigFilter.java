@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CookieKeys;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
@@ -103,14 +102,9 @@ public class ShindigFilter extends InjectedFilter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 
-		// LPS-23577
+		// LPS-23577 and LPS-41715
 
-		if (ServerDetector.isWebSphere()) {
-			injector = null;
-		}
-		else {
-			super.init(filterConfig);
-		}
+		injector = null;
 	}
 
 	protected boolean setPermissionChecker(ServletRequest servletRequest) {

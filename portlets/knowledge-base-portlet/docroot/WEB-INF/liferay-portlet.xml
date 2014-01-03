@@ -77,7 +77,6 @@
 		<friendly-url-mapping>knowledge_base_search</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/search/portlet/search-friendly-url-routes.xml</friendly-url-routes>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
-		<header-portlet-css>/search/css/main.css</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-search</css-class-wrapper>
 	</portlet>
 	<role-mapper>

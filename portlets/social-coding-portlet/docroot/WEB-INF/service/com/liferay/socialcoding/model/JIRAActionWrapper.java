@@ -418,6 +418,7 @@ public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public JIRAAction getWrappedJIRAAction() {
 		return _jiraAction;
 	}
@@ -425,6 +426,16 @@ public class JIRAActionWrapper implements JIRAAction, ModelWrapper<JIRAAction> {
 	@Override
 	public JIRAAction getWrappedModel() {
 		return _jiraAction;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _jiraAction.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _jiraAction.isFinderCacheEnabled();
 	}
 
 	@Override

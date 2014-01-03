@@ -2499,6 +2499,8 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 		clearUniqueFindersCache(kaleoTransition);
 		cacheUniqueFindersCache(kaleoTransition);
 
+		kaleoTransition.resetOriginalValues();
+
 		return kaleoTransition;
 	}
 

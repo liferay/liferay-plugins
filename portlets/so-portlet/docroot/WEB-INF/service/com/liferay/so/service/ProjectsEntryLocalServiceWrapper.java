@@ -329,6 +329,7 @@ public class ProjectsEntryLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */
+	@Deprecated
 	public ProjectsEntryLocalService getWrappedProjectsEntryLocalService() {
 		return _projectsEntryLocalService;
 	}
@@ -336,6 +337,7 @@ public class ProjectsEntryLocalServiceWrapper
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #setWrappedService}
 	 */
+	@Deprecated
 	public void setWrappedProjectsEntryLocalService(
 		ProjectsEntryLocalService projectsEntryLocalService) {
 		_projectsEntryLocalService = projectsEntryLocalService;

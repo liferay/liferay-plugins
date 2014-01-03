@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -165,8 +164,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 		if ((list != null) && !list.isEmpty()) {
 			for (AkismetData akismetData : list) {
-				if (!Validator.equals(modifiedDate,
-							akismetData.getModifiedDate())) {
+				if ((modifiedDate.getTime() <= akismetData.getModifiedDate()
+															  .getTime())) {
 					list = null;
 
 					break;
@@ -1128,6 +1127,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 
 		clearUniqueFindersCache(akismetData);
 		cacheUniqueFindersCache(akismetData);
+
+		akismetData.resetOriginalValues();
 
 		return akismetData;
 	}

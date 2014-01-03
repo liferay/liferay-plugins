@@ -20,8 +20,9 @@ $microblogs-border-color: #EAEAEA;
 			padding: 0 5px;
 
 			textarea {
-				height: 1.25em;
-				margin: 0 -10px;
+				@include box-shadow(none);
+
+				margin: 0 -12px;
 				overflow: hidden;
 				width: 100%;
 			}
@@ -31,8 +32,16 @@ $microblogs-border-color: #EAEAEA;
 			height: auto;
 		}
 
+		textarea:focus {
+			outline: 0;
+		}
+
 		.button-holder {
 			margin-top: 5px;
+		}
+
+		.microblogs-post {
+			margin-right: 1em;
 		}
 
 		.field-select {
@@ -76,7 +85,7 @@ $microblogs-border-color: #EAEAEA;
 		&, &.textarea {
 			background-color: #FFF;
 			height: 18px;
-			padding: 8px;
+			padding: 5px 8px;
 			position: relative;
 		}
 
@@ -89,6 +98,15 @@ $microblogs-border-color: #EAEAEA;
 		.textarea {
 			border-width: 0;
 		}
+
+		ul {
+			margin: 0;
+
+			li {
+				line-height: 16px;
+				padding: 10px;
+			}
+		}
 	}
 
 	.microblogs-entry {
@@ -97,6 +115,8 @@ $microblogs-border-color: #EAEAEA;
 		padding: 1em 0 0.5em;
 
 		.entry-bubble {
+			@include hyphenation;
+
 			margin-left: 60px;
 		}
 	}
@@ -139,16 +159,16 @@ $microblogs-border-color: #EAEAEA;
 				padding: 0 5px;
 				position: relative;
 			}
+
+			.action-container {
+				.comment, .repost {
+					display: inline-block;
+				}
+			}
 		}
 
 		&:hover .footer .action {
 			display: inline-block;
-		}
-
-		.footer .action-container {
-			.comment, .repost {
-				display: inline-block;
-			}
 		}
 
 		&.show-comments {
@@ -227,7 +247,7 @@ $microblogs-border-color: #EAEAEA;
 
 		@include force-wrap;
 
-		left: 5px;
+		left: 3px;
 		line-height: 1.5em;
 		padding: 4px;
 		position: absolute;
@@ -245,6 +265,7 @@ $microblogs-border-color: #EAEAEA;
 		span {
 			background-color: #97D1FF;
 			border-radius: 3px;
+			color: rgba(0,0,0,0.9);
 			font-weight: normal;
 			padding: 2px 0;
 			visibility: visible;
@@ -263,13 +284,15 @@ $microblogs-border-color: #EAEAEA;
 	.field-input-text {
 		background: none transparent;
 		border-width: 0;
+
+		@include box-sizing(border-box);
+
 		line-height: 1.5em;
-		min-width: 99%;
+		min-width: 100%;
 		outline: none;
 		position: absolute;
 		resize: none;
 		top: 0;
-		z-index: 999;
 	}
 
 	.microblogs-autocomplete {

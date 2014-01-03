@@ -3697,6 +3697,8 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 		clearUniqueFindersCache(kbComment);
 		cacheUniqueFindersCache(kbComment);
 
+		kbComment.resetOriginalValues();
+
 		return kbComment;
 	}
 

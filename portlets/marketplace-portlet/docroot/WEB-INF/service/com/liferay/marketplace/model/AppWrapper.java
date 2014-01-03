@@ -620,6 +620,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public App getWrappedApp() {
 		return _app;
 	}
@@ -627,6 +628,16 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	@Override
 	public App getWrappedModel() {
 		return _app;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _app.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _app.isFinderCacheEnabled();
 	}
 
 	@Override

@@ -16,13 +16,10 @@ body.democrat {
 			background-color: #F3F7FA;
 		}
 
-		.button {
+		.btn {
+			background-image: none;
 			background-color: #E62238;
 			color: #FFF;
-
-			&:hover {
-				text-decoration: none;
-			}
 		}
 	}
 

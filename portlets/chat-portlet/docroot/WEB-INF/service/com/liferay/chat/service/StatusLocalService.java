@@ -261,6 +261,11 @@ public interface StatusLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
+		int[] types, long modifiedDate, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.chat.model.Status getUserStatus(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

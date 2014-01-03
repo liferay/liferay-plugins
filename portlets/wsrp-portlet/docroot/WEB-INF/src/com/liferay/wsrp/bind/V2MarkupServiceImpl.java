@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Base64;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.Http;
@@ -812,7 +813,9 @@ public class V2MarkupServiceImpl
 		sb.append(portalURL);
 		sb.append(PortalUtil.getPathContext());
 
-		if (Validator.isNotNull(languageId)) {
+		String[] localesEnabled = PropsUtil.getArray(PropsKeys.LOCALES_ENABLED);
+
+		if (ArrayUtil.contains(localesEnabled, languageId)) {
 			sb.append(StringPool.SLASH);
 			sb.append(languageId);
 		}

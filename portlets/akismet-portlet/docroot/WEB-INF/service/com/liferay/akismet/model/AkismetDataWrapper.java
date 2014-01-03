@@ -488,6 +488,7 @@ public class AkismetDataWrapper implements AkismetData,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
+	@Deprecated
 	public AkismetData getWrappedAkismetData() {
 		return _akismetData;
 	}
@@ -495,6 +496,16 @@ public class AkismetDataWrapper implements AkismetData,
 	@Override
 	public AkismetData getWrappedModel() {
 		return _akismetData;
+	}
+
+	@Override
+	public boolean isEntityCacheEnabled() {
+		return _akismetData.isEntityCacheEnabled();
+	}
+
+	@Override
+	public boolean isFinderCacheEnabled() {
+		return _akismetData.isFinderCacheEnabled();
 	}
 
 	@Override
