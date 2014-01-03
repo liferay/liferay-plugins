@@ -19,8 +19,6 @@ import com.liferay.mail.model.AttachmentClp;
 import com.liferay.mail.model.FolderClp;
 import com.liferay.mail.model.MessageClp;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
@@ -264,6 +262,13 @@ public class ClpSerializer {
 
 				return throwable;
 			}
+			catch (ClassNotFoundException cnfe) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Do not use reflection to translate throwable");
+				}
+
+				_useReflectionToTranslateThrowable = false;
+			}
 			catch (SecurityException se) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Do not use reflection to translate throwable");
@@ -282,32 +287,29 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals(PortalException.class.getName())) {
-			return new PortalException();
-		}
-
-		if (className.equals(SystemException.class.getName())) {
-			return new SystemException();
-		}
-
 		if (className.equals("com.liferay.mail.MailException")) {
-			return new com.liferay.mail.MailException();
+			return new com.liferay.mail.MailException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.mail.NoSuchAccountException")) {
-			return new com.liferay.mail.NoSuchAccountException();
+			return new com.liferay.mail.NoSuchAccountException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.mail.NoSuchAttachmentException")) {
-			return new com.liferay.mail.NoSuchAttachmentException();
+			return new com.liferay.mail.NoSuchAttachmentException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.mail.NoSuchFolderException")) {
-			return new com.liferay.mail.NoSuchFolderException();
+			return new com.liferay.mail.NoSuchFolderException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.mail.NoSuchMessageException")) {
-			return new com.liferay.mail.NoSuchMessageException();
+			return new com.liferay.mail.NoSuchMessageException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		return throwable;
