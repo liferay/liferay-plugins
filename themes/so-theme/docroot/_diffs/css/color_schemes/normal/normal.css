@@ -33,7 +33,7 @@ html.aui {
 			background: $controlBgColor;
 			border-right: 1px solid $defaultBorderColor;
 			bottom: 0;
-			margin-left: -63px;
+			margin-left: -64px;
 			top: 0;
 
 			@include transition-duration(0.2s);
@@ -409,54 +409,6 @@ a {
 
 .portlet-column-last .portlet-column {
 	border-left-width: 0;
-}
-
-/* ---------- Announcements ---------- */
-
-.so-announcements-portlet {
-	.unread-entries {
-		.entry-body, .entry-footer {
-			border-color: #F4A425;
-		}
-
-		.entry .title {
-			background: #F4A425;
-			color: #FFF;
-
-			a {
-				color: #FFF;
-				text-decoration: underline;
-			}
-		}
-
-		.important-entry .title {
-			background: #A20F0F;
-		}
-	}
-
-	.read-entries {
-		.title {
-			padding-bottom: 0;
-		}
-
-		.important-entry .title {
-			color: #A20F0F;
-		}
-	}
-
-	.entry-header .scope {
-		color: #8D071F;
-	}
-
-	.entry-footer-toolbar {
-		background: #E7E7E7;
-	}
-
-	.entries .important-entry {
-		.entry-body, .entry-footer {
-			border-color: #A20F0F;
-		}
-	}
 }
 
 /* ---------- Breadcrumbs ---------- */
@@ -2373,7 +2325,6 @@ html.aui {
 			.nav-collapse.open > ul, .nav-collapse .open > .dropdown-menu, .site-administration-menu {
 				&.nav {
 					background-color: #DDD;
-					margin: 0;
 				}
 
 				> li {

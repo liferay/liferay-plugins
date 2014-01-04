@@ -135,7 +135,6 @@ html.aui {
 		.navbar-inner {
 			.container {
 				.nav-account-controls {
-					bottom: 100%;
 					left: auto;
 					position: absolute;
 					right: 0;
@@ -234,7 +233,6 @@ html.aui {
 
 	.dockbar-split .dockbar .navbar-inner .container, .dockbar-split .dockbar.navbar-static-top .collapse {
 		.nav.nav-account-controls {
-			margin-right: 10px;
 			position: absolute;
 			top: 0;
 		}
@@ -383,34 +381,6 @@ html.aui {
 /* ---------- Responsive ---------- */
 
 html.aui {
-	@media (max-width:767px) {
-		.so-portlet-user-bar {
-			margin: 0 -20px;
-		}
-	}
-
-	@media (max-width:860px) {
-		.so-portlet-user-bar {
-			a {
-				padding: 0.25em 0.7em;
-			}
-
-			.user-info a {
-				padding: 0;
-
-				.avatar {
-					@include border-radius(4px);
-
-					margin: 0;
-				}
-			}
-
-			.full-name {
-				display: none;
-			}
-		}
-	}
-
 	@media (max-width:979px) {
 		.so-portlet-user-bar {
 			padding-right: 0;
@@ -427,8 +397,10 @@ html.aui {
 
 		.dockbar-split .portlet-dockbar, .portlet-dockbar {	
 			.dockbar {
+				float: none;
+				margin-left: 50px;
 				position: relative;
-				top: -45px;
+				top: -44px;
 			}
 
 			.btn-navbar {
@@ -446,6 +418,8 @@ html.aui {
 			.navbar-inner {
 				background-color: transparent;
 				background-image: none;
+
+				@include box-shadow(none);
 
 				.btn-navbar, .btn-navbar.open {
 					background: transparent;
@@ -472,6 +446,69 @@ html.aui {
 						width: 23px;
 					}
 				}
+
+				.nav-collapse.open > ul.nav {
+					background: #DDD;
+					margin-left: -50px;
+					padding: 0;
+
+					> li {
+						border-bottom: 1px solid #DDD;
+						border-top: 1px solid #FFF;
+						margin: 0;
+
+						&.go-to {
+							display: none;
+						}
+
+						&.my-sites {
+							display: block;
+						}
+
+						a {
+							color: #333;
+							font-weight: bold;
+							margin: 0;
+
+							&:hover, &:focus {
+								background: transparent;
+							}
+						}
+
+						&:hover, &:focus {
+							background: rgba(0, 0, 0, 0.2);
+						}
+					}
+
+					.dockbar-user-notifications {
+						.dropdown-menu {
+							padding: 0;
+							width: 100%;
+
+							> li {
+								text-align: left;
+							}
+						}
+
+						.user-notification-link .user-notifications-count {
+							background-color: #333;
+							color: #FFF;
+							display: inline;
+						}
+					}
+				}
+
+				.container .nav-account-controls .user-avatar-link .nav-item-label {
+					padding-left: 0;
+
+					img {
+						display: none;
+					}
+				}
+
+				.container #_145_navSiteNavigationNavbarBtn {
+					float: right;
+				}
 			}
 		}
 
@@ -479,11 +516,47 @@ html.aui {
 			display: none
 		}
 
-		.dockbar-split .dockbar.navbar-static-top .collapse, .dockbar-split .dockbar .navbar-inner .container {
-			.nav.nav-account-controls {
-				float: right;
-				position: relative;
+		.dockbar.navbar-static-top {
+			border: 0;
+			margin-right: 0;
+
+			.collapse .nav.nav-account-controls {
+				top: 44px;
 			}
+
+			.navbar-inner .btn-navbar .user-avatar-image {
+				top: 0;
+				width: 23px;
+			}
+
+			.brand {
+				display: none;
+			}
+		}
+
+		.dockbar.navbar-static-top .collapse {
+			.nav.nav-account-controls, .nav.nav-add-controls, .nav.nav-navigation {
+				float: none;
+				left: 0;
+				right: 0;
+			}
+		}
+	}
+
+	@media (max-width: 767px) {
+		body {
+			padding: 0;
+		}
+
+		.dockbar.navbar-static-top {
+			border: 0;
+			margin-right: 0;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.dockbar.navbar-static-top .collapse .nav.nav-account-controls {
+			top: 0;
 		}
 	}
 }
