@@ -14,8 +14,6 @@
 
 package com.liferay.wsrp.service;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
@@ -248,6 +246,13 @@ public class ClpSerializer {
 
 				return throwable;
 			}
+			catch (ClassNotFoundException cnfe) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Do not use reflection to translate throwable");
+				}
+
+				_useReflectionToTranslateThrowable = false;
+			}
 			catch (SecurityException se) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Do not use reflection to translate throwable");
@@ -266,46 +271,46 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals(PortalException.class.getName())) {
-			return new PortalException();
-		}
-
-		if (className.equals(SystemException.class.getName())) {
-			return new SystemException();
-		}
-
 		if (className.equals("com.liferay.wsrp.WSRPConsumerNameException")) {
-			return new com.liferay.wsrp.WSRPConsumerNameException();
+			return new com.liferay.wsrp.WSRPConsumerNameException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.wsrp.WSRPConsumerPortletHandleException")) {
-			return new com.liferay.wsrp.WSRPConsumerPortletHandleException();
+			return new com.liferay.wsrp.WSRPConsumerPortletHandleException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.wsrp.WSRPConsumerPortletNameException")) {
-			return new com.liferay.wsrp.WSRPConsumerPortletNameException();
+			return new com.liferay.wsrp.WSRPConsumerPortletNameException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.wsrp.WSRPConsumerWSDLException")) {
-			return new com.liferay.wsrp.WSRPConsumerWSDLException();
+			return new com.liferay.wsrp.WSRPConsumerWSDLException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.wsrp.WSRPProducerNameException")) {
-			return new com.liferay.wsrp.WSRPProducerNameException();
+			return new com.liferay.wsrp.WSRPProducerNameException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.wsrp.NoSuchConsumerException")) {
-			return new com.liferay.wsrp.NoSuchConsumerException();
+			return new com.liferay.wsrp.NoSuchConsumerException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.wsrp.NoSuchConsumerPortletException")) {
-			return new com.liferay.wsrp.NoSuchConsumerPortletException();
+			return new com.liferay.wsrp.NoSuchConsumerPortletException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.wsrp.NoSuchProducerException")) {
-			return new com.liferay.wsrp.NoSuchProducerException();
+			return new com.liferay.wsrp.NoSuchProducerException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		return throwable;

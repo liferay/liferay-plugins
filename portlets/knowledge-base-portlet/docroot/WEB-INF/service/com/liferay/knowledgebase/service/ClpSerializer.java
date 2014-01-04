@@ -18,8 +18,6 @@ import com.liferay.knowledgebase.model.KBArticleClp;
 import com.liferay.knowledgebase.model.KBCommentClp;
 import com.liferay.knowledgebase.model.KBTemplateClp;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
@@ -247,6 +245,13 @@ public class ClpSerializer {
 
 				return throwable;
 			}
+			catch (ClassNotFoundException cnfe) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Do not use reflection to translate throwable");
+				}
+
+				_useReflectionToTranslateThrowable = false;
+			}
 			catch (SecurityException se) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Do not use reflection to translate throwable");
@@ -265,55 +270,56 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals(PortalException.class.getName())) {
-			return new PortalException();
-		}
-
-		if (className.equals(SystemException.class.getName())) {
-			return new SystemException();
-		}
-
 		if (className.equals(
 					"com.liferay.knowledgebase.KBArticleContentException")) {
-			return new com.liferay.knowledgebase.KBArticleContentException();
+			return new com.liferay.knowledgebase.KBArticleContentException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.knowledgebase.KBArticlePriorityException")) {
-			return new com.liferay.knowledgebase.KBArticlePriorityException();
+			return new com.liferay.knowledgebase.KBArticlePriorityException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.knowledgebase.KBArticleTitleException")) {
-			return new com.liferay.knowledgebase.KBArticleTitleException();
+			return new com.liferay.knowledgebase.KBArticleTitleException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.knowledgebase.KBCommentContentException")) {
-			return new com.liferay.knowledgebase.KBCommentContentException();
+			return new com.liferay.knowledgebase.KBCommentContentException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.knowledgebase.KBTemplateContentException")) {
-			return new com.liferay.knowledgebase.KBTemplateContentException();
+			return new com.liferay.knowledgebase.KBTemplateContentException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.knowledgebase.KBTemplateTitleException")) {
-			return new com.liferay.knowledgebase.KBTemplateTitleException();
+			return new com.liferay.knowledgebase.KBTemplateTitleException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.knowledgebase.NoSuchArticleException")) {
-			return new com.liferay.knowledgebase.NoSuchArticleException();
+			return new com.liferay.knowledgebase.NoSuchArticleException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals("com.liferay.knowledgebase.NoSuchCommentException")) {
-			return new com.liferay.knowledgebase.NoSuchCommentException();
+			return new com.liferay.knowledgebase.NoSuchCommentException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.knowledgebase.NoSuchTemplateException")) {
-			return new com.liferay.knowledgebase.NoSuchTemplateException();
+			return new com.liferay.knowledgebase.NoSuchTemplateException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		return throwable;

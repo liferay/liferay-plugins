@@ -130,24 +130,6 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		}
 	}
 
-	public com.liferay.portlet.social.model.SocialActivity getPortalSocialActivity() {
-		try {
-			String methodName = "getPortalSocialActivity";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			com.liferay.portlet.social.model.SocialActivity returnObj = (com.liferay.portlet.social.model.SocialActivity)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
 	public long getClassPK() {
 		try {
 			String methodName = "getClassPK";
@@ -166,9 +148,9 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		}
 	}
 
-	public long getReceiverUserId() {
+	public long getCreateDate() {
 		try {
-			String methodName = "getReceiverUserId";
+			String methodName = "getCreateDate";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -184,9 +166,9 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		}
 	}
 
-	public long getCreateDate() {
+	public long getReceiverUserId() {
 		try {
-			String methodName = "getCreateDate";
+			String methodName = "getReceiverUserId";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -238,9 +220,9 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		}
 	}
 
-	public long getMirrorActivityId() {
+	public long getGroupId() {
 		try {
-			String methodName = "getMirrorActivityId";
+			String methodName = "getGroupId";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -256,27 +238,9 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		}
 	}
 
-	public java.lang.String getClassName() {
+	public long getClassNameId() {
 		try {
-			String methodName = "getClassName";
-
-			Class<?>[] parameterTypes = new Class<?>[] {  };
-
-			Object[] parameterValues = new Object[] {  };
-
-			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
-					parameterTypes, parameterValues);
-
-			return returnObj;
-		}
-		catch (Exception e) {
-			throw new UnsupportedOperationException(e);
-		}
-	}
-
-	public long getGroupId() {
-		try {
-			String methodName = "getGroupId";
+			String methodName = "getClassNameId";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -310,9 +274,27 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		}
 	}
 
-	public java.lang.String getExtraData() {
+	public com.liferay.portlet.social.model.SocialActivity getPortalSocialActivity() {
 		try {
-			String methodName = "getExtraData";
+			String methodName = "getPortalSocialActivity";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.portlet.social.model.SocialActivity returnObj = (com.liferay.portlet.social.model.SocialActivity)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	public java.lang.String getClassName() {
+		try {
+			String methodName = "getClassName";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
@@ -328,15 +310,33 @@ public class SocialActivityClp extends BaseModelImpl<SocialActivity>
 		}
 	}
 
-	public long getClassNameId() {
+	public long getMirrorActivityId() {
 		try {
-			String methodName = "getClassNameId";
+			String methodName = "getMirrorActivityId";
 
 			Class<?>[] parameterTypes = new Class<?>[] {  };
 
 			Object[] parameterValues = new Object[] {  };
 
 			Long returnObj = (Long)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	public java.lang.String getExtraData() {
+		try {
+			String methodName = "getExtraData";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

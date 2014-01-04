@@ -14,8 +14,6 @@
 
 package com.liferay.socialnetworking.service;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
@@ -248,6 +246,13 @@ public class ClpSerializer {
 
 				return throwable;
 			}
+			catch (ClassNotFoundException cnfe) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Do not use reflection to translate throwable");
+				}
+
+				_useReflectionToTranslateThrowable = false;
+			}
 			catch (SecurityException se) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Do not use reflection to translate throwable");
@@ -266,37 +271,34 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
-		if (className.equals(PortalException.class.getName())) {
-			return new PortalException();
-		}
-
-		if (className.equals(SystemException.class.getName())) {
-			return new SystemException();
-		}
-
 		if (className.equals(
 					"com.liferay.socialnetworking.MeetupsEntryEndDateException")) {
-			return new com.liferay.socialnetworking.MeetupsEntryEndDateException();
+			return new com.liferay.socialnetworking.MeetupsEntryEndDateException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.socialnetworking.MeetupsEntryStartDateException")) {
-			return new com.liferay.socialnetworking.MeetupsEntryStartDateException();
+			return new com.liferay.socialnetworking.MeetupsEntryStartDateException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.socialnetworking.NoSuchMeetupsEntryException")) {
-			return new com.liferay.socialnetworking.NoSuchMeetupsEntryException();
+			return new com.liferay.socialnetworking.NoSuchMeetupsEntryException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.socialnetworking.NoSuchMeetupsRegistrationException")) {
-			return new com.liferay.socialnetworking.NoSuchMeetupsRegistrationException();
+			return new com.liferay.socialnetworking.NoSuchMeetupsRegistrationException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		if (className.equals(
 					"com.liferay.socialnetworking.NoSuchWallEntryException")) {
-			return new com.liferay.socialnetworking.NoSuchWallEntryException();
+			return new com.liferay.socialnetworking.NoSuchWallEntryException(throwable.getMessage(),
+				throwable.getCause());
 		}
 
 		return throwable;
