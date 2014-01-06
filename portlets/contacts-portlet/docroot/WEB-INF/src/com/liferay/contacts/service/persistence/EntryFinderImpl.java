@@ -114,7 +114,7 @@ public class EntryFinderImpl
 				emailAddresses);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -182,7 +182,7 @@ public class EntryFinderImpl
 				true, emailAddresses);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -278,7 +278,7 @@ public class EntryFinderImpl
 				emailAddresses);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("Contacts_Entry", EntryImpl.class);
 
@@ -336,7 +336,7 @@ public class EntryFinderImpl
 				true, emailAddresses);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar("id", Type.LONG);
 			q.addScalar("name", Type.STRING);

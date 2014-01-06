@@ -97,7 +97,7 @@ if (extension) {
 			'submit',
 			function(event) {
 				event.halt(true);
-				
+
 				Liferay.fire(
 					'saveAutoFields',
 					{
