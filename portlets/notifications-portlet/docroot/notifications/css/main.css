@@ -63,7 +63,6 @@
 
 	.user-notifications-list {
 		list-style: none;
-		right: 0;
 
 		.message {
 			text-align: center;
@@ -258,7 +257,7 @@
 		line-height: 20px;
 	}
 
-	.dockbar .nav li.dropdown.dockbar-user-notifications .dropdown-menu {
+	.dockbar .navbar-inner .container .nav-collapse > .nav li.dropdown.dockbar-user-notifications > ul.dropdown-menu {
 		left: auto;
 		max-height: none;
 		padding: 10px;
