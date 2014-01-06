@@ -145,11 +145,13 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void moveCalendarBookingToTrash(long calendarBookingId)
+	public com.liferay.calendar.model.CalendarBooking moveCalendarBookingToTrash(
+		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void restoreCalendarBookingFromTrash(long calendarBookingId)
+	public com.liferay.calendar.model.CalendarBooking restoreCalendarBookingFromTrash(
+		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

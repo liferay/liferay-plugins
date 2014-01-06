@@ -490,28 +490,29 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(long userId,
-		com.liferay.calendar.model.CalendarBooking calendarBooking)
+	public com.liferay.calendar.model.CalendarBooking moveCalendarBookingToTrash(
+		long userId, com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarBookingLocalService.moveCalendarBookingToTrash(userId,
+		return _calendarBookingLocalService.moveCalendarBookingToTrash(userId,
 			calendarBooking);
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(long userId, long calendarBookingId)
+	public com.liferay.calendar.model.CalendarBooking moveCalendarBookingToTrash(
+		long userId, long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarBookingLocalService.moveCalendarBookingToTrash(userId,
+		return _calendarBookingLocalService.moveCalendarBookingToTrash(userId,
 			calendarBookingId);
 	}
 
 	@Override
-	public void restoreCalendarBookingFromTrash(long userId,
-		long calendarBookingId)
+	public com.liferay.calendar.model.CalendarBooking restoreCalendarBookingFromTrash(
+		long userId, long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_calendarBookingLocalService.restoreCalendarBookingFromTrash(userId,
+		return _calendarBookingLocalService.restoreCalendarBookingFromTrash(userId,
 			calendarBookingId);
 	}
 
@@ -654,6 +655,17 @@ public class CalendarBookingLocalServiceWrapper
 			startTime, endTime, allDay, recurrence, allFollowing,
 			firstReminder, firstReminderType, secondReminder,
 			secondReminderType, status, serviceContext);
+	}
+
+	@Override
+	public com.liferay.calendar.model.CalendarBooking updateStatus(
+		long userId,
+		com.liferay.calendar.model.CalendarBooking calendarBooking, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.updateStatus(userId,
+			calendarBooking, status, serviceContext);
 	}
 
 	@Override

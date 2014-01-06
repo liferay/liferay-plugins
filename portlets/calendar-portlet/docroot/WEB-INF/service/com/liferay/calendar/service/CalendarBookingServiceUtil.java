@@ -174,16 +174,18 @@ public class CalendarBookingServiceUtil {
 		getService().invokeTransition(calendarBookingId, status, serviceContext);
 	}
 
-	public static void moveCalendarBookingToTrash(long calendarBookingId)
+	public static com.liferay.calendar.model.CalendarBooking moveCalendarBookingToTrash(
+		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().moveCalendarBookingToTrash(calendarBookingId);
+		return getService().moveCalendarBookingToTrash(calendarBookingId);
 	}
 
-	public static void restoreCalendarBookingFromTrash(long calendarBookingId)
+	public static com.liferay.calendar.model.CalendarBooking restoreCalendarBookingFromTrash(
+		long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().restoreCalendarBookingFromTrash(calendarBookingId);
+		return getService().restoreCalendarBookingFromTrash(calendarBookingId);
 	}
 
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> search(

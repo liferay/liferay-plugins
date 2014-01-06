@@ -251,7 +251,7 @@ public class CalendarBookingFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_FUTURE_REMINDERS);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("CalendarBooking", CalendarBookingImpl.class);
 
@@ -384,7 +384,7 @@ public class CalendarBookingFinderImpl
 				sql, "lower(location)", StringPool.LIKE, true, locations);
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -502,7 +502,7 @@ public class CalendarBookingFinderImpl
 
 			sql = StringUtil.replace(sql, "[$ORDER_BY$]", sb.toString());
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("CalendarBooking", CalendarBookingImpl.class);
 

@@ -265,10 +265,12 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static void moveCalendarBookingToTrash(long calendarBookingId)
-		throws RemoteException {
+	public static com.liferay.calendar.model.CalendarBookingSoap moveCalendarBookingToTrash(
+		long calendarBookingId) throws RemoteException {
 		try {
-			CalendarBookingServiceUtil.moveCalendarBookingToTrash(calendarBookingId);
+			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.moveCalendarBookingToTrash(calendarBookingId);
+
+			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -277,10 +279,12 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static void restoreCalendarBookingFromTrash(long calendarBookingId)
-		throws RemoteException {
+	public static com.liferay.calendar.model.CalendarBookingSoap restoreCalendarBookingFromTrash(
+		long calendarBookingId) throws RemoteException {
 		try {
-			CalendarBookingServiceUtil.restoreCalendarBookingFromTrash(calendarBookingId);
+			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.restoreCalendarBookingFromTrash(calendarBookingId);
+
+			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModel(returnValue);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

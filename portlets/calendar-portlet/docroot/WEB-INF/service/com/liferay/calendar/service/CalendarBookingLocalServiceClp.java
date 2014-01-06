@@ -295,6 +295,13 @@ public class CalendarBookingLocalServiceClp
 		_methodName50 = "updateStatus";
 
 		_methodParameterTypes50 = new String[] {
+				"long", "com.liferay.calendar.model.CalendarBooking", "int",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName51 = "updateStatus";
+
+		_methodParameterTypes51 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -1498,18 +1505,20 @@ public class CalendarBookingLocalServiceClp
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(long userId,
-		com.liferay.calendar.model.CalendarBooking calendarBooking)
+	public com.liferay.calendar.model.CalendarBooking moveCalendarBookingToTrash(
+		long userId, com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		try {
-			_invokableLocalService.invokeMethod(_methodName38,
-				_methodParameterTypes38,
-				new Object[] {
-					userId,
-					
-				ClpSerializer.translateInput(calendarBooking)
-				});
+			returnObj = _invokableLocalService.invokeMethod(_methodName38,
+					_methodParameterTypes38,
+					new Object[] {
+						userId,
+						
+					ClpSerializer.translateInput(calendarBooking)
+					});
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1530,16 +1539,21 @@ public class CalendarBookingLocalServiceClp
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(long userId, long calendarBookingId)
+	public com.liferay.calendar.model.CalendarBooking moveCalendarBookingToTrash(
+		long userId, long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		try {
-			_invokableLocalService.invokeMethod(_methodName39,
-				_methodParameterTypes39,
-				new Object[] { userId, calendarBookingId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName39,
+					_methodParameterTypes39,
+					new Object[] { userId, calendarBookingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1560,17 +1574,21 @@ public class CalendarBookingLocalServiceClp
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
-	public void restoreCalendarBookingFromTrash(long userId,
-		long calendarBookingId)
+	public com.liferay.calendar.model.CalendarBooking restoreCalendarBookingFromTrash(
+		long userId, long calendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
 		try {
-			_invokableLocalService.invokeMethod(_methodName40,
-				_methodParameterTypes40,
-				new Object[] { userId, calendarBookingId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName40,
+					_methodParameterTypes40,
+					new Object[] { userId, calendarBookingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1591,6 +1609,8 @@ public class CalendarBookingLocalServiceClp
 					" is not a valid exception");
 			}
 		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
 	}
 
 	@Override
@@ -2178,7 +2198,8 @@ public class CalendarBookingLocalServiceClp
 
 	@Override
 	public com.liferay.calendar.model.CalendarBooking updateStatus(
-		long userId, long calendarBookingId, int status,
+		long userId,
+		com.liferay.calendar.model.CalendarBooking calendarBooking, int status,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -2187,6 +2208,50 @@ public class CalendarBookingLocalServiceClp
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName50,
 					_methodParameterTypes50,
+					new Object[] {
+						userId,
+						
+					ClpSerializer.translateInput(calendarBooking),
+						
+					status,
+						
+					ClpSerializer.translateInput(serviceContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.calendar.model.CalendarBooking)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.calendar.model.CalendarBooking updateStatus(
+		long userId, long calendarBookingId, int status,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName51,
+					_methodParameterTypes51,
 					new Object[] {
 						userId,
 						
@@ -2321,4 +2386,6 @@ public class CalendarBookingLocalServiceClp
 	private String[] _methodParameterTypes49;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
 }
