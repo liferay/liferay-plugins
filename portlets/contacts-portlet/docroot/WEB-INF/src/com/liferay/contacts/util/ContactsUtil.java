@@ -59,15 +59,15 @@ import java.util.List;
 public class ContactsUtil {
 
 	public static JSONObject getEntryJSONObject(Entry entry) {
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObj.put("emailAddress", entry.getEmailAddress());
-		jsonObj.put("entryId", String.valueOf(entry.getEntryId()));
-		jsonObj.put("comments", entry.getComments());
-		jsonObj.put("fullName", entry.getFullName());
-		jsonObj.put("portalUser", false);
+		jsonObject.put("emailAddress", entry.getEmailAddress());
+		jsonObject.put("entryId", String.valueOf(entry.getEntryId()));
+		jsonObject.put("comments", entry.getComments());
+		jsonObject.put("fullName", entry.getFullName());
+		jsonObject.put("portalUser", false);
 
-		return jsonObj;
+		return jsonObject;
 	}
 
 	public static long getGroupId(String filterBy) {
@@ -105,20 +105,20 @@ public class ContactsUtil {
 	public static JSONObject getUserJSONObject(long userId, User user)
 		throws PortalException, SystemException {
 
-		JSONObject jsonObj = JSONFactoryUtil.createJSONObject();
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		boolean block = SocialRelationLocalServiceUtil.hasRelation(
 			userId, user.getUserId(), SocialRelationConstants.TYPE_UNI_ENEMY);
 
-		jsonObj.put("block", block);
+		jsonObject.put("block", block);
 
-		jsonObj.put("emailAddress", user.getEmailAddress());
-		jsonObj.put("firstName", user.getFirstName());
-		jsonObj.put("fullName", user.getFullName());
-		jsonObj.put("jobTitle", user.getJobTitle());
-		jsonObj.put("lastName", user.getLastName());
-		jsonObj.put("portalUser", true);
-		jsonObj.put("userId", String.valueOf(user.getUserId()));
+		jsonObject.put("emailAddress", user.getEmailAddress());
+		jsonObject.put("firstName", user.getFirstName());
+		jsonObject.put("fullName", user.getFullName());
+		jsonObject.put("jobTitle", user.getJobTitle());
+		jsonObject.put("lastName", user.getLastName());
+		jsonObject.put("portalUser", true);
+		jsonObject.put("userId", String.valueOf(user.getUserId()));
 
 		if (!SocialRelationLocalServiceUtil.hasRelation(
 				user.getUserId(), userId,
@@ -133,7 +133,7 @@ public class ContactsUtil {
 					SocialRelationConstants.TYPE_BI_CONNECTION,
 					user.getUserId(), SocialRequestConstants.STATUS_PENDING);
 
-			jsonObj.put("connectionRequested", connectionRequested);
+			jsonObject.put("connectionRequested", connectionRequested);
 
 			boolean connected =
 				!connectionRequested &&
@@ -141,16 +141,16 @@ public class ContactsUtil {
 					userId, user.getUserId(),
 					SocialRelationConstants.TYPE_BI_CONNECTION);
 
-			jsonObj.put("connected", connected);
+			jsonObject.put("connected", connected);
 
 			boolean following = SocialRelationLocalServiceUtil.hasRelation(
 				userId, user.getUserId(),
 				SocialRelationConstants.TYPE_UNI_FOLLOWER);
 
-			jsonObj.put("following", following);
+			jsonObject.put("following", following);
 		}
 
-		return jsonObj;
+		return jsonObject;
 	}
 
 	public static String getVCard(User user) throws Exception {

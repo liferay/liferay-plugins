@@ -47,16 +47,16 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 			companyId, userId, keywords, start, end);
 
 		for (BaseModel<?> contact : contacts) {
-			JSONObject jsonObj = null;
+			JSONObject jsonObject = null;
 
 			if (contact instanceof User) {
-				jsonObj = ContactsUtil.getUserJSONObject(userId, (User)contact);
+				jsonObject = ContactsUtil.getUserJSONObject(userId, (User)contact);
 			}
 			else {
-				jsonObj = ContactsUtil.getEntryJSONObject((Entry)contact);
+				jsonObject = ContactsUtil.getEntryJSONObject((Entry)contact);
 			}
 
-			jsonArray.put(jsonObj);
+			jsonArray.put(jsonObject);
 		}
 
 		return jsonArray;
