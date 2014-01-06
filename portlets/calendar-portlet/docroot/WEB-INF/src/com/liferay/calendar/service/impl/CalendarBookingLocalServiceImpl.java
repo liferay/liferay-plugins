@@ -500,8 +500,8 @@ public class CalendarBookingLocalServiceImpl
 			return calendarBooking;
 		}
 
-		updateStatus(
-			userId, calendarBooking.getCalendarBookingId(),
+		calendarBookingLocalService.updateStatus(
+			userId, calendarBooking,
 			CalendarBookingWorkflowConstants.STATUS_IN_TRASH,
 			new ServiceContext());
 
@@ -544,7 +544,7 @@ public class CalendarBookingLocalServiceImpl
 		TrashEntry trashEntry = trashEntryLocalService.getEntry(
 			CalendarBooking.class.getName(), calendarBookingId);
 
-		updateStatus(
+		calendarBookingLocalService.updateStatus(
 			userId, calendarBookingId, trashEntry.getStatus(),
 			new ServiceContext());
 
@@ -985,10 +985,12 @@ public class CalendarBookingLocalServiceImpl
 			long userId, long calendarBookingId, int status,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
+
 		CalendarBooking calendarBooking =
 				calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		return updateStatus(userId, calendarBooking, status, serviceContext);
+		return calendarBookingLocalService.updateStatus(
+			userId, calendarBooking, status, serviceContext);
 	}
 
 	protected void addChildCalendarBookings(
