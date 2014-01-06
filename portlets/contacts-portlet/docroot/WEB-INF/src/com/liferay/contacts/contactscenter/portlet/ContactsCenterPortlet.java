@@ -869,12 +869,12 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		entry = entry.toEscapedModel();
 
-		JSONObject jsonObj = ContactsUtil.getEntryJSONObject(entry);
+		JSONObject jsonObject = ContactsUtil.getEntryJSONObject(entry);
 
-		jsonObj.put(
+		jsonObject.put(
 			"portraitURL",
 			themeDisplay.getPathImage() + "/user_male_portrait?img_id=0");
-		jsonObj.put("redirect", redirect);
+		jsonObject.put("redirect", redirect);
 
 		LiferayPortletResponse liferayPortletResponse =
 			(LiferayPortletResponse)portletResponse;
@@ -889,9 +889,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		viewSummaryURL.setParameter("portalUser", Boolean.FALSE.toString());
 		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-		jsonObj.put("viewSummaryURL", viewSummaryURL.toString());
+		jsonObject.put("viewSummaryURL", viewSummaryURL.toString());
 
-		return jsonObj;
+		return jsonObject;
 	}
 
 	protected String getRelationMessage(ActionRequest actionRequest) {
@@ -967,10 +967,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		user = user.toEscapedModel();
 
-		JSONObject jsonObj = ContactsUtil.getUserJSONObject(
+		JSONObject jsonObject = ContactsUtil.getUserJSONObject(
 			themeDisplay.getUserId(), user);
 
-		jsonObj.put("portraitURL", user.getPortraitURL(themeDisplay));
+		jsonObject.put("portraitURL", user.getPortraitURL(themeDisplay));
 
 		LiferayPortletResponse liferayPortletResponse =
 			(LiferayPortletResponse)portletResponse;
@@ -983,9 +983,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 		viewSummaryURL.setParameter("portalUser", Boolean.TRUE.toString());
 		viewSummaryURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
-		jsonObj.put("viewSummaryURL", viewSummaryURL.toString());
+		jsonObject.put("viewSummaryURL", viewSummaryURL.toString());
 
-		return jsonObj;
+		return jsonObject;
 	}
 
 	protected void sendNotificationEvent(SocialRequest socialRequest)
