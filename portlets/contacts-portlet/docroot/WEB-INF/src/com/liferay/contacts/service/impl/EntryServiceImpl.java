@@ -50,7 +50,8 @@ public class EntryServiceImpl extends EntryServiceBaseImpl {
 			JSONObject jsonObject = null;
 
 			if (contact instanceof User) {
-				jsonObject = ContactsUtil.getUserJSONObject(userId, (User)contact);
+				jsonObject = ContactsUtil.getUserJSONObject(
+					userId, (User)contact);
 			}
 			else {
 				jsonObject = ContactsUtil.getEntryJSONObject((Entry)contact);
