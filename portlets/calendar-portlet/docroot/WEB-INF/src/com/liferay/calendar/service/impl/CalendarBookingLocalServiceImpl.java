@@ -48,6 +48,8 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.sanitizer.Sanitizer;
 import com.liferay.portal.kernel.sanitizer.SanitizerUtil;
+import com.liferay.portal.kernel.search.Indexable;
+import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -244,6 +246,7 @@ public class CalendarBookingLocalServiceImpl
 		}
 	}
 
+	@Indexable(type = IndexableType.DELETE)
 	@Override
 	@SystemEvent(
 		action = SystemEventConstants.ACTION_SKIP, send = false,
@@ -846,6 +849,7 @@ public class CalendarBookingLocalServiceImpl
 			secondReminderType, status, serviceContext);
 	}
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public CalendarBooking updateStatus(
 			long userId, long calendarBookingId, int status,
