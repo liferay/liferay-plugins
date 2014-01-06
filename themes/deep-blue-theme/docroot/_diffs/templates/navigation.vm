@@ -1,0 +1,68 @@
+<nav class="$nav_css_class" id="navigation" role="navigation">
+	<ul aria-label="#language ("site-pages")" role="menubar">
+		#foreach ($nav_item in $nav_items)
+			#set ($nav_has_children = $nav_item.hasChildren())
+			#set ($nav_item_class = "")
+
+			#if ($nav_item.isSelected())
+				#set ($nav_item_class = "selected")
+			#end
+
+			#if ($nav_has_children)
+				#set ($nav_item_class = "$nav_item_class has-children parent-menu")
+			#end
+
+			<li class="$nav_item_class">
+				<a href="$nav_item.getURL()" $nav_item.getTarget()>
+						<span>
+							$nav_item.icon() $nav_item.getName()
+
+							#if ($nav_has_children)
+								<i class="icon-caret-down"></i>
+							#end
+						</span>
+					</a>
+
+				#if ($nav_has_children)
+					<ul class="child-menu">
+						#foreach ($nav_child in $nav_item.getChildren())
+							#set ($has_grand_children = $nav_child.hasChildren())
+							#set ($nav_child_class = "")
+
+							#if ($nav_child.isSelected() || $nav_child.isChildSelected())
+								#set ($nav_child_class = "selected")
+							#end
+
+							#if ($has_grand_children)
+								#set ($nav_child_class = "$nav_child_class has-children")
+							#end
+
+							<li class="$nav_child_class">
+								<a href="$nav_child.getURL()" $nav_child.getTarget()><span>$nav_child.icon() $nav_child.getName()</span>
+									#if ($has_grand_children)
+										<i class="icon-caret-right"></i>
+									#end
+								</a>
+
+								#if ($has_grand_children)
+									<ul class="grandchild-menu">
+										#foreach ($nav_grandchild in $nav_child.getChildren())
+											#if ($nav_grandchild.isSelected())
+												<li class="selected">
+											#else
+												<li>
+											#end
+
+												<a href="$nav_grandchild.getURL()" $nav_grandchild.getTarget()>$nav_grandchild.getName()</a>
+											</li>
+										#end
+									</ul>
+								#end
+							</li>
+						#end
+					</ul>
+				#end
+			</li>
+		#end
+	</ul>
+</nav>

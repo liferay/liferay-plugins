@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class">
+
+<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+<div class="container-fluid" id="wrapper">
+	<div id="wrapperContent">
+		<header id="banner" role="banner">
+			<div id="heading">
+				<h1 class="site-title">
+					<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
+						<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+					</a>
+
+					#if ($show_site_name)
+						<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
+							$site_name
+						</span>
+					#end
+				</h1>
+
+				<h5 class="page-description">
+					<span>Keeping it simple to the trunk</span>
+				</h5>
+			</div>
+
+			#if (!$is_signed_in)
+				<a data-redirect="$is_login_redirect_required" href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+			#end
+
+			#if ($has_navigation || $is_signed_in)
+				#parse ("$full_templates_path/navigation.vm")
+			#end
+		</header>
+
+		<div id="content">
+			#if ($selectable)
+				$theme.include($content_include)
+			#else
+				$portletDisplay.recycle()
+
+				$portletDisplay.setTitle($the_title)
+
+				$theme.wrapPortlet("portlet.vm", $content_include)
+			#end
+		</div>
+	</div>
+
+	<div id="footer">
+		<div class="row-fluid" id="footerContent">
+			<div class="span6" id="column-1" >
+				<h5>About Us</h5>
+
+				<p>This portion allows your users know more about you... and more about you... and more... and more.</p>
+			</div>
+
+			<div class="span2" id="column-2">
+				<h5>Pages</h5>
+
+				<ul>
+					<li>
+						<a href="/web/guest/home/">Home</a>
+					</li>
+					<li>
+						<a href="/web/guest/sample1">About Trees</a>
+					</li>
+					<li>
+						<a href="/web/guest/sample2">Blogs</a>
+					</li>
+					<li>
+						<a href="/web/guest/sample3">Sample Page 3</a>
+					</li>
+					<li>
+						<a href="/web/guest/sample4">Sample Page 4</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="span2" id="column-3">
+				<h5>Categories</h5>
+
+				<ul>
+					<li>
+						<a href="/web/guest/home/">A</a>
+					</li>
+					<li>
+						<a href="/web/guest/sample1">B</a>
+					</li>
+					<li>
+						<a href="/web/guest/sample2">C</a>
+					</li>
+					<li>
+						<a href="/web/guest/sample3">D</a>
+					</li>
+					<li>
+						<a href="/web/guest/sample4">E</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="span2" id="column-4">
+				<h5>Search</h5>
+
+				<div class="span12" id="page-search">
+					$theme.search()
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<copyright id="copyright" role="contentinfo">
+	<p class="powered-by">
+		Powered By <a href="http://www.liferay.com" rel="external">Liferay</a>
+	</p>
+</copyright>
+
+$theme.include($body_bottom_include)
+
+$theme.include($bottom_include)
+
+</body>
+
+</html>
