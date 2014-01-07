@@ -123,7 +123,7 @@ else {
 
 				return result;
 			},
-			source: Liferay.SO.Sites.createDataSource('<portlet:resourceURL id="getSites" />')
+			source: Liferay.SO.Sites.createDataSource('<portlet:resourceURL id="getSites" />', '<portlet:namespace />')
 		}
 	);
 
