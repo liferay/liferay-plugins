@@ -88,3 +88,49 @@ catch (NoSuchRoleException nsre) {
 		</div>
 	</liferay-util:body-top>
 </c:if>
+
+<aui:script>
+	function <portlet:namespace />openWindow() {
+		<liferay-portlet:renderURL portletName="5_WAR_soportlet" var="viewSitesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+			<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
+		</liferay-portlet:renderURL>
+
+		Liferay.Util.openWindow(
+			{
+				dialog: {
+					align: {
+						node: null,
+						points: ['tc', 'tc']
+					},
+					constrain2view: true,
+					cssClass: 'so-portlet-sites-dialog',
+					modal: true,
+					resizable: false,
+					width: 650
+				},
+				title: '<%= UnicodeLanguageUtil.get(pageContext, "sites-directory") %>',
+				uri: '<%= viewSitesURL %>'
+			}
+		);
+	}
+</aui:script>
+
+<aui:script use="aui-base">
+	var mySites = A.one('.portlet-dockbar .my-sites');
+
+	if (mySites) {
+		mySites.delegate(
+			'click',
+			function(event) {
+				var sitesDirectory = mySites.one('.sites-directory');
+
+				if (!sitesDirectory) {
+					var mySitesMenu = mySites.one('.my-sites-menu');
+
+					mySitesMenu.insert('<li class="sites-directory last"><a href="javascript:;" onclick="<portlet:namespace />openWindow()"><i class="icon-reorder"></i><span class="site-name"> ' + Liferay.Language.get('sites-directory') + '</span></a></li>')
+				}
+			},
+			'.dropdown-toggle'
+		);
+	}
+</aui:script>
