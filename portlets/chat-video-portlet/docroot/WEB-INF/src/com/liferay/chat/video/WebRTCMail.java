@@ -19,18 +19,18 @@ package com.liferay.chat.video;
  */
 public abstract class WebRTCMail {
 
-	public WebRTCMail(long fromUserId, String jsonMessage) {
-		_sourceUserId = fromUserId;
-		_jsonMessage = jsonMessage;
+	public WebRTCMail(long sourceUserId, String messageJSON) {
+		_sourceUserId = sourceUserId;
+		_messageJSON = messageJSON;
 	}
 
 	public WebRTCMail(WebRTCMail webRTCMail) {
 		_sourceUserId = webRTCMail._sourceUserId;
-		_jsonMessage = webRTCMail._jsonMessage;
+		_messageJSON = webRTCMail._messageJSON;
 	}
 
-	public String getJsonMessage() {
-		return _jsonMessage;
+	public String getMessageJSON() {
+		return _messageJSON;
 	}
 
 	public abstract String getMessageType();
@@ -39,7 +39,7 @@ public abstract class WebRTCMail {
 		return _sourceUserId;
 	}
 
-	private final String _jsonMessage;
+	private final String _messageJSON;
 	private final long _sourceUserId;
 
 }
