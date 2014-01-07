@@ -374,7 +374,7 @@ public class InstanceUtil {
 			group.getGroupId(), true, new ServiceContext());
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), "so_WAR_sotheme", "02", "", false);
+			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
 
 		// Dashboard
 
@@ -481,7 +481,7 @@ public class InstanceUtil {
 			group.getGroupId(), true, new ServiceContext());
 
 		LayoutSetLocalServiceUtil.updateLookAndFeel(
-			group.getGroupId(), "so_WAR_sotheme", "02", "", false);
+			group.getGroupId(), "so_WAR_sotheme", "01", "", false);
 
 		// Profile
 
