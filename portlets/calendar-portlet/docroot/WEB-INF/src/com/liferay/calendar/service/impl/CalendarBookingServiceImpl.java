@@ -248,7 +248,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			ActionKeys.MANAGE_BOOKINGS);
 
 		calendarBookingApprovalWorkflow.invokeTransition(
-			getUserId(), calendarBookingId, status, serviceContext);
+			getUserId(), calendarBooking, status, serviceContext);
 	}
 
 	@Override
