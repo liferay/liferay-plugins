@@ -337,11 +337,11 @@ $default-border-color: #E7E7E7;
 	}
 
 	.loading-bar.loaded {
-		visibility: hidden;
+		display: none;
 	}
 
-	.no-activities {
-		padding: 5px;
+	.manual-loader, .no-activities {
+		padding: 10px;
 		text-align: center;
 	}
 }
