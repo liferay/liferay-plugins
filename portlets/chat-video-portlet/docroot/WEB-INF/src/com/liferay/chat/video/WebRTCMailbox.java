@@ -22,8 +22,9 @@ import java.util.List;
  */
 public class WebRTCMailbox {
 
-	public List<WebRTCMail> popAllWebRTCMails() {
-		List<WebRTCMail> allWebRTCMails = new ArrayList<WebRTCMail>(_webRTCMails);
+	public List<WebRTCMail> popWebRTCMails() {
+		List<WebRTCMail> allWebRTCMails = new ArrayList<WebRTCMail>(
+			_webRTCMails);
 
 		_webRTCMails.clear();
 
