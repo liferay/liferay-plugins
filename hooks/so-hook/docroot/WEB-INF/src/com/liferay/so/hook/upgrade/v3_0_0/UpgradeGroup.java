@@ -50,7 +50,7 @@ public class UpgradeGroup extends UpgradeProcess {
 					}
 
 					LayoutSetLocalServiceUtil.updateLookAndFeel(
-						group.getGroupId(), "so_WAR_sotheme", "02",
+						group.getGroupId(), "so_WAR_sotheme", "01",
 						StringPool.BLANK, false);
 				}
 
