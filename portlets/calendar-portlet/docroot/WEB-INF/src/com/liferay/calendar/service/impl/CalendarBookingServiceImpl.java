@@ -252,7 +252,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(long calendarBookingId)
+	public CalendarBooking moveCalendarBookingToTrash(long calendarBookingId)
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking =
@@ -262,12 +262,13 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			getPermissionChecker(), calendarBooking.getCalendarId(),
 			ActionKeys.MANAGE_BOOKINGS);
 
-		calendarBookingLocalService.moveCalendarBookingToTrash(
+		return calendarBookingLocalService.moveCalendarBookingToTrash(
 			getUserId(), calendarBooking.getCalendarBookingId());
 	}
 
 	@Override
-	public void restoreCalendarBookingFromTrash(long calendarBookingId)
+	public CalendarBooking restoreCalendarBookingFromTrash(
+			long calendarBookingId)
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking =
@@ -277,7 +278,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			getPermissionChecker(), calendarBooking.getCalendarId(),
 			ActionKeys.MANAGE_BOOKINGS);
 
-		calendarBookingLocalService.restoreCalendarBookingFromTrash(
+		return calendarBookingLocalService.restoreCalendarBookingFromTrash(
 			getUserId(), calendarBooking.getCalendarBookingId());
 	}
 

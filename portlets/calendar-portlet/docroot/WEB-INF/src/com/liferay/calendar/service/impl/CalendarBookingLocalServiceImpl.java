@@ -492,12 +492,12 @@ public class CalendarBookingLocalServiceImpl
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(
+	public CalendarBooking moveCalendarBookingToTrash(
 			long userId, CalendarBooking calendarBooking)
 		throws PortalException, SystemException {
 
 		if (!calendarBooking.isMasterBooking()) {
-			return;
+			return calendarBooking;
 		}
 
 		updateStatus(
@@ -515,27 +515,30 @@ public class CalendarBookingLocalServiceImpl
 			calendarBooking.getCalendarBookingId(),
 			SocialActivityConstants.TYPE_MOVE_TO_TRASH,
 			getExtraDataJSON(calendarBooking), 0);
+
+		return calendarBooking;
 	}
 
 	@Override
-	public void moveCalendarBookingToTrash(long userId, long calendarBookingId)
+	public CalendarBooking moveCalendarBookingToTrash(
+			long userId, long calendarBookingId)
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		moveCalendarBookingToTrash(userId, calendarBooking);
+		return moveCalendarBookingToTrash(userId, calendarBooking);
 	}
 
 	@Override
-	public void restoreCalendarBookingFromTrash(
+	public CalendarBooking restoreCalendarBookingFromTrash(
 			long userId, long calendarBookingId)
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking = getCalendarBooking(calendarBookingId);
 
 		if (!calendarBooking.isMasterBooking()) {
-			return;
+			return calendarBooking;
 		}
 
 		TrashEntry trashEntry = trashEntryLocalService.getEntry(
@@ -553,6 +556,8 @@ public class CalendarBookingLocalServiceImpl
 			CalendarBooking.class.getName(), calendarBookingId,
 			SocialActivityConstants.TYPE_RESTORE_FROM_TRASH,
 			getExtraDataJSON(calendarBooking), 0);
+
+		return calendarBooking;
 	}
 
 	@Override
