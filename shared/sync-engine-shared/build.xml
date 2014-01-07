@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+
+<project name="sync-engine-shared" basedir="." default="compile">
+	<import file="../build-common-shared.xml" />
+</project>
