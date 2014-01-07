@@ -207,7 +207,12 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 		long[] groupIds = searchContext.getGroupIds();
 
 		if (!ArrayUtil.contains(groupIds, _GLOBAL_GROUP_ID)) {
-			groupIds = ArrayUtil.append(groupIds, _GLOBAL_GROUP_ID);
+			if (Validator.isNull(groupIds)) {
+				return new long[] {_GLOBAL_GROUP_ID};
+			}
+			else {
+				groupIds = ArrayUtil.append(groupIds, _GLOBAL_GROUP_ID);
+			}
 		}
 
 		return groupIds;
