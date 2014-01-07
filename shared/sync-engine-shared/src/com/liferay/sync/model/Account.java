@@ -24,14 +24,14 @@ import com.j256.ormlite.table.DatabaseTable;
 public class Account {
 
 	public long getAccountId() {
-		return _accountId;
+		return this.accountId;
 	}
 
 	public void setAccountId(long accountId) {
-		_accountId = accountId;
+		this.accountId = accountId;
 	}
 
 	@DatabaseField(generatedId = true, useGetSet = true)
-	private long _accountId;
+	protected long accountId;
 
 }
