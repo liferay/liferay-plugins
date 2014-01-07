@@ -167,15 +167,8 @@ public class CalendarBookingLocalServiceImpl
 		calendarBooking.setSecondReminder(secondReminder);
 		calendarBooking.setSecondReminderType(secondReminderType);
 		calendarBooking.setExpandoBridgeAttributes(serviceContext);
-
-		int status = CalendarBookingWorkflowConstants.STATUS_PENDING;
-
-		if (parentCalendarBookingId == 0) {
-			status = CalendarBookingWorkflowConstants.STATUS_APPROVED;
-		}
-
-		calendarBooking.setStatus(status);
-
+		calendarBooking.setStatus(
+			CalendarBookingWorkflowConstants.STATUS_PENDING);
 		calendarBooking.setStatusDate(serviceContext.getModifiedDate(now));
 
 		calendarBookingPersistence.update(calendarBooking);
@@ -205,7 +198,7 @@ public class CalendarBookingLocalServiceImpl
 		// Workflow
 
 		calendarBookingApprovalWorkflow.startWorkflow(
-			userId, calendarBookingId, serviceContext);
+			userId, calendarBooking, serviceContext);
 
 		return calendarBooking;
 	}
@@ -758,7 +751,7 @@ public class CalendarBookingLocalServiceImpl
 		// Workflow
 
 		calendarBookingApprovalWorkflow.invokeTransition(
-			userId, calendarBookingId, status, serviceContext);
+			userId, calendarBooking, status, serviceContext);
 
 		return calendarBooking;
 	}
@@ -852,7 +845,7 @@ public class CalendarBookingLocalServiceImpl
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public CalendarBooking updateStatus(
-			long userId, long calendarBookingId, int status,
+			long userId, CalendarBooking calendarBooking, int status,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -860,9 +853,6 @@ public class CalendarBookingLocalServiceImpl
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
-
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
 		int oldStatus = calendarBooking.getStatus();
 
@@ -886,7 +876,7 @@ public class CalendarBookingLocalServiceImpl
 				}
 
 				updateStatus(
-					userId, childCalendarBooking.getCalendarBookingId(),
+					userId, childCalendarBooking,
 					CalendarBookingWorkflowConstants.STATUS_IN_TRASH,
 					serviceContext);
 
@@ -920,7 +910,7 @@ public class CalendarBookingLocalServiceImpl
 				}
 
 				updateStatus(
-					userId, childCalendarBooking.getCalendarBookingId(),
+					userId, childCalendarBooking,
 					CalendarBookingWorkflowConstants.STATUS_PENDING,
 					serviceContext);
 
@@ -983,6 +973,17 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		return calendarBooking;
+	}
+
+	@Override
+	public CalendarBooking updateStatus(
+			long userId, long calendarBookingId, int status,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+		CalendarBooking calendarBooking =
+				calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		return updateStatus(userId, calendarBooking, status, serviceContext);
 	}
 
 	protected void addChildCalendarBookings(
