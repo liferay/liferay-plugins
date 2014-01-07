@@ -114,8 +114,12 @@ AUI().use(
 				}
 			},
 
-			createDataSource: function(url) {
+			createDataSource: function(url, namespace) {
 				var instance = this;
+
+				if (namespace) {
+					instance._namespace = namespace;
+				}
 
 				return new A.DataSource.IO(
 					{
