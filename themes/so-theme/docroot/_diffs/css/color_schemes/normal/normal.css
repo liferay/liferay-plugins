@@ -2135,9 +2135,20 @@ div#navigation {
 
 /* ---------- SO portlet sites ---------- */
 
-.aui-dialog-bd .so-sites-directory {
-	.taglib-header {
-		display: none;
+.dialog-iframe-popup, .so-portlet-sites-dialog {
+	.so-sites-directory {
+		.taglib-header {
+			display: none;
+		}
+
+		.buttons-right {
+			width: 100%;
+
+			button {
+				float: left;
+				min-width: 110px;
+			}
+		}
 	}
 }
 
