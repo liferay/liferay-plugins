@@ -206,16 +206,15 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 	protected long[] getGroupIdsForSuggestions(SearchContext searchContext) {
 		long[] groupIds = searchContext.getGroupIds();
 
-		if (!ArrayUtil.contains(groupIds, _GLOBAL_GROUP_ID)) {
-			if (Validator.isNull(groupIds)) {
-				return new long[] {_GLOBAL_GROUP_ID};
-			}
-			else {
-				groupIds = ArrayUtil.append(groupIds, _GLOBAL_GROUP_ID);
-			}
+		if (ArrayUtil.isEmpty(groupId)) {
+			return new long[] {_GLOBAL_GROUP_ID};
 		}
 
-		return groupIds;
+		if (ArrayUtil.contains(groupIds, _GLOBAL_GROUP_ID)) {
+			return groupIds;
+		}
+
+		return ArrayUtil.append(groupIds, _GLOBAL_GROUP_ID);
 	}
 
 	protected List<String> suggestKeywords(
