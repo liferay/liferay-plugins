@@ -129,10 +129,11 @@ public class CalendarBookingIndexer extends BaseIndexer {
 		}
 
 		document.addKeyword("calendarBookingId", calendarBookingId);
-		document.addNumber("endTime", calendarBooking.getEndTime());
-		document.addNumber("startTime", calendarBooking.getStartTime());
+
 		document.addText("defaultLanguageId", defaultLanguageId);
+		document.addNumber("endTime", calendarBooking.getEndTime());
 		document.addText("location", calendarBooking.getLocation());
+		document.addNumber("startTime", calendarBooking.getStartTime());
 
 		return document;
 	}

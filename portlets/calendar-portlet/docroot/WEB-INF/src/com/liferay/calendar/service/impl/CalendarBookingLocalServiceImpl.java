@@ -987,7 +987,7 @@ public class CalendarBookingLocalServiceImpl
 		throws PortalException, SystemException {
 
 		CalendarBooking calendarBooking =
-				calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
 		return calendarBookingLocalService.updateStatus(
 			userId, calendarBooking, status, serviceContext);
