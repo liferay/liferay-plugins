@@ -308,10 +308,9 @@ public class BBBServerLocalServiceWrapper implements BBBServerLocalService,
 
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _bbbServerLocalService.getBBBServers(groupId, start, end, obc);
+		return _bbbServerLocalService.getBBBServers(start, end, obc);
 	}
 
 	@Override

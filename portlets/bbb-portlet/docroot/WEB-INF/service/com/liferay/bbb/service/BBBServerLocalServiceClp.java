@@ -126,8 +126,7 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 		_methodName22 = "getBBBServers";
 
 		_methodParameterTypes22 = new String[] {
-				"long", "int", "int",
-				"com.liferay.portal.kernel.util.OrderByComparator"
+				"int", "int", "com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
 		_methodName23 = "updateBBBServer";
@@ -790,23 +789,14 @@ public class BBBServerLocalServiceClp implements BBBServerLocalService {
 
 	@Override
 	public java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName22,
 					_methodParameterTypes22,
-					new Object[] {
-						groupId,
-						
-					start,
-						
-					end,
-						
-					ClpSerializer.translateInput(obc)
-					});
+					new Object[] { start, end, ClpSerializer.translateInput(obc) });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

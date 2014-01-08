@@ -280,7 +280,7 @@ public class BBBServerLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-					.addBBBServer(userId, name, url, secret, serviceContext);
+				   .addBBBServer(userId, name, url, secret, serviceContext);
 	}
 
 	public static void checkBBBServers()
@@ -296,10 +296,9 @@ public class BBBServerLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.bbb.model.BBBServer> getBBBServers(
-		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator obc)
+		int start, int end, com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getBBBServers(groupId, start, end, obc);
+		return getService().getBBBServers(start, end, obc);
 	}
 
 	public static com.liferay.bbb.model.BBBServer updateBBBServer(

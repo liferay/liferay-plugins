@@ -18,6 +18,8 @@ import com.liferay.bbb.model.BBBMeetingClp;
 import com.liferay.bbb.model.BBBParticipantClp;
 import com.liferay.bbb.model.BBBServerClp;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
@@ -244,13 +246,6 @@ public class ClpSerializer {
 
 				return throwable;
 			}
-			catch (ClassNotFoundException cnfe) {
-				if (_log.isInfoEnabled()) {
-					_log.info("Do not use reflection to translate throwable");
-				}
-
-				_useReflectionToTranslateThrowable = false;
-			}
 			catch (SecurityException se) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Do not use reflection to translate throwable");
@@ -269,19 +264,24 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
+		if (className.equals(PortalException.class.getName())) {
+			return new PortalException();
+		}
+
+		if (className.equals(SystemException.class.getName())) {
+			return new SystemException();
+		}
+
 		if (className.equals("com.liferay.bbb.NoSuchMeetingException")) {
-			return new com.liferay.bbb.NoSuchMeetingException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.bbb.NoSuchMeetingException();
 		}
 
 		if (className.equals("com.liferay.bbb.NoSuchParticipantException")) {
-			return new com.liferay.bbb.NoSuchParticipantException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.bbb.NoSuchParticipantException();
 		}
 
 		if (className.equals("com.liferay.bbb.NoSuchServerException")) {
-			return new com.liferay.bbb.NoSuchServerException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.bbb.NoSuchServerException();
 		}
 
 		return throwable;
