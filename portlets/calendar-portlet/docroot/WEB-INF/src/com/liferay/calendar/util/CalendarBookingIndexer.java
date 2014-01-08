@@ -159,12 +159,13 @@ public class CalendarBookingIndexer extends BaseIndexer {
 	@Override
 	protected void doReindex(Object obj) throws Exception {
 		CalendarBooking calendarBooking = (CalendarBooking)obj;
-		Document document = getDocument(calendarBooking);
 
 		int status = calendarBooking.getStatus();
 
 		if ((status == CalendarBookingWorkflowConstants.STATUS_APPROVED) ||
 			(status == CalendarBookingWorkflowConstants.STATUS_MAYBE)) {
+
+			Document document = getDocument(calendarBooking);
 
 			SearchEngineUtil.updateDocument(
 				getSearchEngineId(), calendarBooking.getCompanyId(), document);
