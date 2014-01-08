@@ -16,7 +16,9 @@ package com.liferay.compat.portal.kernel.util;
 
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.Http;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 
@@ -27,6 +29,38 @@ import java.util.Map;
  * @author Shinn Lok
  */
 public class HttpUtil extends com.liferay.portal.kernel.util.HttpUtil {
+
+	public static String removePathParameters(String uri) {
+		if (Validator.isNull(uri)) {
+			return uri;
+		}
+
+		int pos = uri.indexOf(StringPool.SEMICOLON);
+
+		if (pos == -1) {
+			return uri;
+		}
+
+		String[] uriParts = StringUtil.split(
+			uri.substring(1), StringPool.SLASH);
+
+		StringBundler sb = new StringBundler(uriParts.length * 2);
+
+		for (String uriPart : uriParts) {
+			pos = uriPart.indexOf(StringPool.SEMICOLON);
+
+			if (pos == -1) {
+				sb.append(StringPool.SLASH);
+				sb.append(uriPart);
+			}
+			else {
+				sb.append(StringPool.SLASH);
+				sb.append(uriPart.substring(0, pos));
+			}
+		}
+
+		return sb.toString();
+	}
 
 	public static byte[] URLtoByteArray(String location) throws IOException {
 		Http.Options options = new Http.Options();
