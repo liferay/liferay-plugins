@@ -119,8 +119,7 @@ public class ResourceImporter extends FileSystemImporter {
 			}
 
 			addDDMTemplate(
-				groupId, ddmStructure.getStructureId(),
-				FileUtil.stripExtension(resourcePath),
+				groupId, ddmStructure.getStructureId(), resourcePath,
 				getDDMTemplateLanguage(resourcePath), script,
 				DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, StringPool.BLANK);
 		}

@@ -142,8 +142,7 @@ public class FileSystemImporter extends BaseImporter {
 		}
 
 		DDMTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, classNameId, 0, getKey(name),
-			getMap(file.getName()), null,
+			userId, groupId, classNameId, 0, getKey(name), getMap(name), null,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, StringPool.BLANK,
 			getDDMTemplateLanguage(name), script, false, false,
 			StringPool.BLANK, null, serviceContext);
@@ -293,7 +292,7 @@ public class FileSystemImporter extends BaseImporter {
 		ddmStructure = DDMStructureLocalServiceUtil.addStructure(
 			userId, groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
 			PortalUtil.getClassNameId(DDLRecordSet.class), getKey(name),
-			getMap(fileName), null, StringUtil.read(inputStream),
+			getMap(name), null, StringUtil.read(inputStream),
 			PropsUtil.get(PropsKeys.DYNAMIC_DATA_LISTS_STORAGE_TYPE),
 			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
@@ -372,7 +371,7 @@ public class FileSystemImporter extends BaseImporter {
 		ddmStructure = DDMStructureLocalServiceUtil.addStructure(
 			userId, groupId, parentDDMStructureKey,
 			PortalUtil.getClassNameId(JournalArticle.class), getKey(name),
-			getMap(fileName), null, xsd,
+			getMap(name), null, xsd,
 			PropsUtil.get(PropsKeys.JOURNAL_ARTICLE_STORAGE_TYPE),
 			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
@@ -417,7 +416,7 @@ public class FileSystemImporter extends BaseImporter {
 		DDMTemplateLocalServiceUtil.addTemplate(
 			userId, templateGroupId,
 			PortalUtil.getClassNameId(DDMStructure.class), ddmStructureId,
-			getKey(name), getMap(fileName), null, type, mode, language, script,
+			getKey(name), getMap(name), null, type, mode, language, script,
 			false, false, StringPool.BLANK, null, serviceContext);
 	}
 
@@ -483,7 +482,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, PortalUtil.getClassNameId(DDMStructure.class),
-			ddmStructure.getStructureId(), getKey(name), getMap(fileName), null,
+			ddmStructure.getStructureId(), getKey(name), getMap(name), null,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
 			getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl), false,
 			false, null, null, serviceContext);
