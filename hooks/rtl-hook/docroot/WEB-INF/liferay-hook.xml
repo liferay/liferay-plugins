@@ -5,7 +5,7 @@
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<servlet-filter>
 		<servlet-filter-name>Dynamic CSS Filter</servlet-filter-name>
-		<servlet-filter-impl>com.liferay.rtl.servlet.filters.dynamiccss.DynamicCSSFilter</servlet-filter-impl>
+		<servlet-filter-impl>com.liferay.rtl.servlet.filters.dynamiccss.PortalDynamicCSSFilter</servlet-filter-impl>
 	</servlet-filter>
 	<servlet-filter-mapping>
 		<servlet-filter-name>Dynamic CSS Filter</servlet-filter-name>

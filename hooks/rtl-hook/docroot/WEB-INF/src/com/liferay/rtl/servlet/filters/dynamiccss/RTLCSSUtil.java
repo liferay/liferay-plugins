@@ -71,7 +71,13 @@ public class RTLCSSUtil {
 	}
 
 	public static void init() {
-		init(PortletClassLoaderUtil.getClassLoader());
+		ClassLoader classLoader = PortletClassLoaderUtil.getClassLoader();
+
+		if (classLoader == null) {
+			classLoader = RTLCSSUtil.class.getClassLoader();
+		}
+
+		init(classLoader);
 	}
 
 	public static void init(ClassLoader classLoader) {

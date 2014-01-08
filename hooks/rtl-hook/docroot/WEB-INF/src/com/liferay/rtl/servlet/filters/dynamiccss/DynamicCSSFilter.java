@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.BufferCacheServletResponse;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
-import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -30,7 +29,6 @@ import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.rtl.servlet.filters.IgnoreModuleRequestFilter;
 
 import java.io.File;
@@ -58,12 +56,17 @@ public class DynamicCSSFilter extends IgnoreModuleRequestFilter {
 
 	@Override
 	public void init(FilterConfig filterConfig) {
+		doInit(filterConfig, filterConfig.getServletContext());
+	}
+
+	protected void doInit(
+		FilterConfig filterConfig, ServletContext servletContext) {
+
 		super.init(filterConfig);
 
-		_servletContext = ServletContextPool.get(
-			PortalUtil.getServletContextName());
+		_servletContext = servletContext;
 
-		File tempDir = (File)_servletContext.getAttribute(
+		File tempDir = (File)servletContext.getAttribute(
 			JavaConstants.JAVAX_SERVLET_CONTEXT_TEMPDIR);
 
 		_tempDir = new File(tempDir, _TEMP_DIR);
