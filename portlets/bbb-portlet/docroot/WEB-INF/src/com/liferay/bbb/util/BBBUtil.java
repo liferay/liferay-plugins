@@ -30,9 +30,11 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
-import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -120,18 +122,11 @@ public class BBBUtil {
 
 		StringBundler sb = new StringBundler(7);
 
-		long plid = PortalUtil.getPlidFromPortletId(
-			bbbParticipant.getGroupId(), PortletKeys.BBB_MEETINGS);
+		Group group = GroupLocalServiceUtil.getGroup(
+			bbbParticipant.getCompanyId(), GroupConstants.GUEST);
 
-		if (plid == 0) {
-			Layout layout = LayoutLocalServiceUtil.fetchFirstLayout(
-				bbbParticipant.getGroupId(), false,
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-			plid = layout.getPlid();
-		}
-
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+		Layout layout = LayoutLocalServiceUtil.getLayout(
+			group.getDefaultPublicPlid());
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
