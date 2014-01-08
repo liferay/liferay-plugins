@@ -18,7 +18,7 @@
 --%>
 
 <%
-String inputId = renderResponse.getNamespace() + fieldParam + "Month" + projectsEntriesIndex;
+String inputId = namespace + fieldParam + "Month" + projectsEntriesIndex;
 
 int selMonthValue = selDate.get(Calendar.MONTH);
 int selYearValue = selDate.get(Calendar.YEAR);
@@ -39,7 +39,7 @@ int selYearValue = selDate.get(Calendar.YEAR);
 </select>
 
 <%
-inputId = renderResponse.getNamespace() + fieldParam + "Year" + projectsEntriesIndex;
+inputId = namespace + fieldParam + "Year" + projectsEntriesIndex;
 %>
 
 <select id="<%= inputId %>" name="<%= inputId %>">
