@@ -32,49 +32,49 @@ if (user2 != null) {
 %>
 
 <c:if test="<%= (projectsEntries != null) && !projectsEntries.isEmpty() %>">
-	<div class="field-group" data-extension="true" data-sectionId="projects" data-title="<%= LanguageUtil.get(pageContext, "projects") %>">
 
-		<%
-		for (ProjectsEntry projectsEntry : projectsEntries) {
-			String startDate = dateFormatDate.format(projectsEntry.getStartDate());
+	<%
+	for (ProjectsEntry projectsEntry : projectsEntries) {
+		String startDate = dateFormatDate.format(projectsEntry.getStartDate());
 
-			String endDate = null;
+		String endDate = null;
 
-			if (projectsEntry.getEndDate() != null) {
-				endDate = dateFormatDate.format(projectsEntry.getEndDate());
-			}
-			else {
-				endDate = LanguageUtil.get(pageContext, "current");
-			}
-		%>
+		if (projectsEntry.getEndDate() != null) {
+			endDate = dateFormatDate.format(projectsEntry.getEndDate());
+		}
+		else {
+			endDate = LanguageUtil.get(pageContext, "current");
+		}
+	%>
 
-			<div class="projects section">
-				<h3><%= HtmlUtil.escape(projectsEntry.getTitle()) %>:</h3>
+		<div class="field-group projects section" data-extension="true" data-sectionId="projects" data-title="<%= LanguageUtil.get(pageContext, "projects") %>">
+			<h3><%= HtmlUtil.escape(projectsEntry.getTitle()) %>:</h3>
 
-				<div class="project-date property-list">
-					<span class="property"><%= startDate %> - <%= endDate %></span>
-				</div>
-
-				<div class="project-description property-list">
-					<div class="property"><%= HtmlUtil.escape(projectsEntry.getDescription()) %></div>
-				</div>
+			<div class="project-date property-list">
+				<span class="property"><%= startDate %> - <%= endDate %></span>
 			</div>
 
-		<%
-		}
-		%>
+			<div class="project-description property-list">
+				<div class="property"><%= HtmlUtil.escape(projectsEntry.getDescription()) %></div>
+			</div>
+		</div>
 
-	</div>
+	<%
+	}
+	%>
+
 </c:if>
 
 <c:if test="<%= showCompleteYourProfile && (themeDisplay.getUserId() == user2.getUserId()) && projectsEntries.isEmpty() %>">
 	<div class="profile-actions">
-		<p class="portlet-msg portlet-msg-info"><liferay-ui:message key="add-projects" />:</p>
+		<p class="portlet-msg alert alert-info"><liferay-ui:message key="add-projects" />:</p>
 
 		<div class="field-actions-toolbar">
 			<ul class="settings-actions">
 				<li class="action-field component lfr-token settings-field" data-extension="true" data-sectionId="projects" data-title="<%= LanguageUtil.get(pageContext, "projects") %>">
 					<div class="settings-field-content">
+						<i class="icon-plus-sign"></i>
+
 						<span class="settings-label"><liferay-ui:message key="add" /></span>
 					</div>
 				</li>
