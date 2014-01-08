@@ -22,7 +22,7 @@
 	total="<%= BBBServerLocalServiceUtil.getBBBServersCount() %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= BBBServerLocalServiceUtil.getBBBServers(themeDisplay.getScopeGroupId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+		results="<%= BBBServerLocalServiceUtil.getBBBServers(searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
 	/>
 
 	<aui:button-row>

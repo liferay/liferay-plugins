@@ -114,7 +114,7 @@ public class BBBServerLocalServiceImpl extends BBBServerLocalServiceBaseImpl {
 
 	@Override
 	public List<BBBServer> getBBBServers(
-			long groupId, int start, int end, OrderByComparator obc)
+			int start, int end, OrderByComparator obc)
 		throws SystemException {
 
 		return bbbServerPersistence.findAll(start, end, obc);
