@@ -114,7 +114,6 @@ portletURL.setParameter("tabs1", tabs1);
 										socialActivities.append(manualLoaderTemplate);
 									}
 								}
-
 							}
 						}
 					}
