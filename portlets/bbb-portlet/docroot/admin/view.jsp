@@ -19,10 +19,10 @@
 <liferay-ui:search-container
 	emptyResultsMessage="there-are-no-servers"
 	iteratorURL="<%= portletURL %>"
-	total="<%= BBBServerLocalServiceUtil.getBBBServersCount(themeDisplay.getScopeGroupId()) %>"
+	total="<%= BBBServerLocalServiceUtil.getBBBServersCount() %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= BBBLocalServerServiceUtil.getBBBServers(themeDisplay.getScopeGroupId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+		results="<%= BBBServerLocalServiceUtil.getBBBServers(themeDisplay.getScopeGroupId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
 	/>
 
 	<aui:button-row>

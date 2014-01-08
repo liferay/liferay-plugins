@@ -280,7 +280,7 @@ public class BBBServerLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addBBBServer(userId, name, url, secret, serviceContext);
+					.addBBBServer(userId, name, url, secret, serviceContext);
 	}
 
 	public static void checkBBBServers()
