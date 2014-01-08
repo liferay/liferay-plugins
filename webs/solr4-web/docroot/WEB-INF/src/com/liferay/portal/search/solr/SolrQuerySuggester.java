@@ -206,7 +206,7 @@ public class SolrQuerySuggester extends BaseQuerySuggester {
 	protected long[] getGroupIdsForSuggestions(SearchContext searchContext) {
 		long[] groupIds = searchContext.getGroupIds();
 
-		if (ArrayUtil.isEmpty(groupId)) {
+		if (ArrayUtil.isEmpty(groupIds)) {
 			return new long[] {_GLOBAL_GROUP_ID};
 		}
 
