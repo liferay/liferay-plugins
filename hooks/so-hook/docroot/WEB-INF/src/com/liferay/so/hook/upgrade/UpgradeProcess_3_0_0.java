@@ -20,6 +20,7 @@ package com.liferay.so.hook.upgrade;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.so.hook.upgrade.v3_0_0.UpgradeDocumentLibrary;
 import com.liferay.so.hook.upgrade.v3_0_0.UpgradeGroup;
+import com.liferay.so.hook.upgrade.v3_0_0.UpgradeLayout;
 
 /**
  * @author Matthew Kong
@@ -35,6 +36,7 @@ public class UpgradeProcess_3_0_0 extends UpgradeProcess {
 	protected void doUpgrade() throws Exception {
 		upgrade(UpgradeDocumentLibrary.class);
 		upgrade(UpgradeGroup.class);
+		upgrade(UpgradeLayout.class);
 	}
 
 }
