@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
@@ -32,7 +31,6 @@ import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.persistence.LayoutActionableDynamicQuery;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.util.PortletKeys;
 
@@ -43,12 +41,10 @@ public class UpgradeLayout extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		for (long companyId : PortalUtil.getCompanyIds()) {
-			updateSOAnnouncements(companyId);
-		}
+		updateSOAnnouncements();
 	}
 
-	protected void updateSOAnnouncements(long companyId) throws Exception {
+	protected void updateSOAnnouncements() throws Exception {
 		ActionableDynamicQuery actionableDynamicQuery =
 			new LayoutActionableDynamicQuery() {
 
@@ -83,8 +79,6 @@ public class UpgradeLayout extends UpgradeProcess {
 					UnicodeProperties typeSettingsProperties =
 						layout.getTypeSettingsProperties();
 
-					String columnProperty = StringPool.BLANK;
-
 					if (layoutTypePortlet.hasPortletId(
 							PortletKeys.ANNOUNCEMENTS)) {
 
@@ -92,8 +86,8 @@ public class UpgradeLayout extends UpgradeProcess {
 							layoutTypePortlet.getLayoutTemplate();
 
 						for (String columnName : layoutTemplate.getColumns()) {
-							columnProperty = typeSettingsProperties.getProperty(
-								columnName);
+							String columnProperty =
+								typeSettingsProperties.getProperty(columnName);
 
 							columnProperty = StringUtil.replace(
 								columnProperty, PortletKeys.ANNOUNCEMENTS,
@@ -105,31 +99,31 @@ public class UpgradeLayout extends UpgradeProcess {
 
 						layout.setTypeSettingsProperties(
 							typeSettingsProperties);
-
-						LayoutLocalServiceUtil.updateLayout(layout);
 					}
 					else {
-						columnProperty = typeSettingsProperties.getProperty(
-							"column-1");
+						String columnProperty =
+							typeSettingsProperties.getProperty("column-1");
 
-						if (Validator.isNotNull(columnProperty)) {
-							int columnPos = 0;
-
-							if (StringUtil.contains(
-									columnProperty, PortletKeys.MICROBLOGS)) {
-
-								columnPos = 1;
-							}
-
-							layoutTypePortlet.addPortletId(
-								0, PortletKeys.SO_ANNOUNCEMENTS, "column-1",
-								columnPos, false);
-
-							layout = layoutTypePortlet.getLayout();
-
-							LayoutLocalServiceUtil.updateLayout(layout);
+						if (Validator.isNull(columnProperty)) {
+							return;
 						}
+
+						int columnPos = 0;
+
+						if (StringUtil.contains(
+								columnProperty, PortletKeys.MICROBLOGS)) {
+
+							columnPos = 1;
+						}
+
+						layoutTypePortlet.addPortletId(
+							0, PortletKeys.SO_ANNOUNCEMENTS, "column-1",
+							columnPos, false);
+
+						layout = layoutTypePortlet.getLayout();
 					}
+
+					LayoutLocalServiceUtil.updateLayout(layout);
 				}
 			};
 
