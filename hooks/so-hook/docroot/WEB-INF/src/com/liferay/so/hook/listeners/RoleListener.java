@@ -188,10 +188,6 @@ public class RoleListener extends BaseModelListener<Role> {
 		}
 	}
 
-	/**
-	 * {@link
-	 * com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}
-	 */
 	private static final String _MAPPING_TABLE_USERS_ROLES_NAME_LEFT_TO_RIGHT =
 		TableMapper.class.getName() + "-" + "Users_Roles" + "-LeftToRight";
 

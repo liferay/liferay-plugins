@@ -210,10 +210,6 @@ public class UserListener extends BaseModelListener<User> {
 		SocialOfficeUtil.enableSocialOffice(group);
 	}
 
-	/**
-	 * {@link
-	 * com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}
-	 */
 	private static final String _MAPPING_TABLE_USERS_ROLES_NAME_LEFT_TO_RIGHT =
 		TableMapper.class.getName() + "-" + "Users_Roles" + "-LeftToRight";
 
