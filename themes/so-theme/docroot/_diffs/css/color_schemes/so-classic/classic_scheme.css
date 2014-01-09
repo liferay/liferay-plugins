@@ -118,8 +118,12 @@ body.so-classic {
 
 	#main-content {
 		background: none;
+		border-bottom: 1px solid #CCC;
+		border-left: 1px solid #CCC;
 
 		@include box-shadow(none);
+
+		margin-left: -1px;
 	}
 
 	.portlet-topper {
@@ -237,6 +241,18 @@ body.so-classic {
 
 	.hidden-accessible, #navigation h1 {
 		@include hidden-accessible;
+	}
+
+	#breadcrumbs {
+		padding-left: 154px;
+
+		.breadcrumb {
+			background:	transparent;
+			border-bottom: 1px solid #CCC;
+			border-left: 1px solid #CCC;
+
+			@include border-radius(0);
+		}
 	}
 
 	/* ---------- Layout ---------- */
