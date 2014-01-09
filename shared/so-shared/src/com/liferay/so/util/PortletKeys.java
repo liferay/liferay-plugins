@@ -22,6 +22,9 @@ package com.liferay.so.util;
  */
 public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
+	public static final String MICROBLOGS =
+		com.liferay.microblogs.util.PortletKeys.MICROBLOGS;
+
 	public static final String SO_ACTIVITIES = "1_WAR_soportlet";
 
 	public static final String SO_ANNOUNCEMENTS =
