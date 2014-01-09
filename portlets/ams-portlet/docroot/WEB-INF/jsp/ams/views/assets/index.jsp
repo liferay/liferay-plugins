@@ -22,53 +22,53 @@
 	<portlet:param name="format" value="html" />
 </portlet:renderURL>
 
-<div>
+<aui:button-row>
 	<aui:button href="${editAssetURL}" value="add-asset" />
-</div>
+</aui:button-row>
 
-<c:if test="${fn:length(assets) > 0}">
-	<br />
-</c:if>
+<liferay-ui:search-container emptyResultsMessage="there-are-no-assets" iteratorURL="${alloySearchResult.portletURL}">
+	<liferay-ui:search-container-results
+		results="${alloySearchResult.baseModels}"
+		total="${alloySearchResult.size}"
+	/>
 
-<table class="lfr-table">
+	<liferay-ui:search-container-row
+		className="com.liferay.ams.model.Asset"
+		escapedModel="<%= true %>"
+		keyProperty="assetId"
+		modelVar="asset"
+	>
+		<portlet:renderURL var="viewAssetURL">
+			<portlet:param name="controller" value="assets" />
+			<portlet:param name="action" value="view" />
+			<portlet:param name="id" value="${asset.assetId}" />
+			<portlet:param name="format" value="html" />
+		</portlet:renderURL>
 
-<c:if test="${fn:length(assets) > 0}">
-	<tr>
-		<th>
-			ID
-		</th>
-		<th>
-			Serial Number
-		</th>
-	</tr>
-</c:if>
+		<liferay-ui:search-container-column-text
+			href="${viewAssetURL}"
+			name="id"
+			property="assetId"
+		/>
 
-<c:forEach items="${assets}" var="asset">
-	<tr>
-		<td>
-			<portlet:renderURL var="viewAssetURL">
-				<portlet:param name="controller" value="assets" />
-				<portlet:param name="action" value="view" />
-				<portlet:param name="id" value="${asset.assetId}" />
-				<portlet:param name="format" value="html" />
-			</portlet:renderURL>
+		<liferay-ui:search-container-column-text
+			href="${viewAssetURL}"
+			name="serial-number"
+			property="serialNumber"
+		/>
 
-			<a href="${viewAssetURL}">${asset.assetId}</a>
-		</td>
-		<td>
-			<a href="${viewAssetURL}">${asset.serialNumber}</a>
-		</td>
-		<td>
-			<portlet:actionURL var="deleteAssetURL">
-				<portlet:param name="controller" value="assets" />
-				<portlet:param name="action" value="delete" />
-				<portlet:param name="id" value="${asset.assetId}" />
-				<portlet:param name="format" value="html" />
-			</portlet:actionURL>
+		<portlet:actionURL var="deleteAssetURL">
+			<portlet:param name="controller" value="assets" />
+			<portlet:param name="action" value="delete" />
+			<portlet:param name="id" value="${asset.assetId}" />
+			<portlet:param name="format" value="html" />
+		</portlet:actionURL>
 
-			<a href="javascript:submitForm(document.hrefFm, '${deleteAssetURL}&p_p_state=normal');">X</a>
-		</td>
-	</tr>
-</c:forEach>
+		<liferay-ui:search-container-column-text
+			href="javascript:submitForm(document.hrefFm, '${deleteAssetURL}&p_p_state=normal');"
+			value="X"
+		/>
+	</liferay-ui:search-container-row>
 
-</table>
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>

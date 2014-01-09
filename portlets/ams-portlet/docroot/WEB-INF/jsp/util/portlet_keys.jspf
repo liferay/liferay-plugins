@@ -14,16 +14,10 @@
  */
 --%>
 
-<%@ include file="/WEB-INF/jsp/util/init.jsp" %>
+<%!
+public static class PortletKeys {
 
-<%@ page import="com.liferay.util.bridges.alloy.BaseAlloyControllerImpl" %>
+	public static final String AMS = "1_WAR_amsportlet";
 
-<%
-AlloyController alloyController = new AlloyControllerImpl();
-
-alloyController.setPageContext(pageContext);
-
-alloyController.afterPropertiesSet();
-
-alloyController.execute();
+}
 %>
