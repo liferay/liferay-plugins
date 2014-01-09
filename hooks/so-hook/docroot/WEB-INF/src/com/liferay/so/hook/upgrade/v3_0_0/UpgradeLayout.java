@@ -48,84 +48,83 @@ public class UpgradeLayout extends UpgradeProcess {
 		ActionableDynamicQuery actionableDynamicQuery =
 			new LayoutActionableDynamicQuery() {
 
-				@Override
-				protected void performAction(Object object)
-					throws PortalException, SystemException {
+			@Override
+			protected void performAction(Object object)
+				throws PortalException, SystemException {
 
-					Layout layout = (Layout)object;
+				Layout layout = (Layout)object;
 
-					if (!SocialOfficeServiceUtil.isSocialOfficeGroup(
-							layout.getGroupId())) {
+				if (!SocialOfficeServiceUtil.isSocialOfficeGroup(
+						layout.getGroupId())) {
 
-						return;
-					}
-
-					Group group = GroupLocalServiceUtil.fetchGroup(
-						layout.getGroupId());
-
-					if (layout.isPublicLayout() && group.isUser()) {
-						return;
-					}
-
-					LayoutTypePortlet layoutTypePortlet =
-						(LayoutTypePortlet)layout.getLayoutType();
-
-					if (layoutTypePortlet.hasPortletId(
-							PortletKeys.SO_ANNOUNCEMENTS)) {
-
-						return;
-					}
-
-					UnicodeProperties typeSettingsProperties =
-						layout.getTypeSettingsProperties();
-
-					if (layoutTypePortlet.hasPortletId(
-							PortletKeys.ANNOUNCEMENTS)) {
-
-						LayoutTemplate layoutTemplate =
-							layoutTypePortlet.getLayoutTemplate();
-
-						for (String columnName : layoutTemplate.getColumns()) {
-							String columnProperty =
-								typeSettingsProperties.getProperty(columnName);
-
-							columnProperty = StringUtil.replace(
-								columnProperty, PortletKeys.ANNOUNCEMENTS,
-								PortletKeys.SO_ANNOUNCEMENTS);
-
-							typeSettingsProperties.setProperty(
-								columnName, columnProperty);
-						}
-
-						layout.setTypeSettingsProperties(
-							typeSettingsProperties);
-					}
-					else {
-						String columnProperty =
-							typeSettingsProperties.getProperty("column-1");
-
-						if (Validator.isNull(columnProperty)) {
-							return;
-						}
-
-						int columnPos = 0;
-
-						if (StringUtil.contains(
-								columnProperty, PortletKeys.MICROBLOGS)) {
-
-							columnPos = 1;
-						}
-
-						layoutTypePortlet.addPortletId(
-							0, PortletKeys.SO_ANNOUNCEMENTS, "column-1",
-							columnPos, false);
-
-						layout = layoutTypePortlet.getLayout();
-					}
-
-					LayoutLocalServiceUtil.updateLayout(layout);
+					return;
 				}
-			};
+
+				Group group = GroupLocalServiceUtil.fetchGroup(
+					layout.getGroupId());
+
+				if (layout.isPublicLayout() && group.isUser()) {
+					return;
+				}
+
+				LayoutTypePortlet layoutTypePortlet =
+					(LayoutTypePortlet)layout.getLayoutType();
+
+				if (layoutTypePortlet.hasPortletId(
+						PortletKeys.SO_ANNOUNCEMENTS)) {
+
+					return;
+				}
+
+				UnicodeProperties typeSettingsProperties =
+					layout.getTypeSettingsProperties();
+
+				if (layoutTypePortlet.hasPortletId(
+						PortletKeys.ANNOUNCEMENTS)) {
+
+					LayoutTemplate layoutTemplate =
+						layoutTypePortlet.getLayoutTemplate();
+
+					for (String columnName : layoutTemplate.getColumns()) {
+						String columnValue = typeSettingsProperties.getProperty(
+							columnName);
+
+						columnValue = StringUtil.replace(
+							columnValue, PortletKeys.ANNOUNCEMENTS,
+							PortletKeys.SO_ANNOUNCEMENTS);
+
+						typeSettingsProperties.setProperty(
+							columnName, columnValue);
+					}
+
+					layout.setTypeSettingsProperties(typeSettingsProperties);
+				}
+				else {
+					String columnValue = typeSettingsProperties.getProperty(
+						"column-1");
+
+					if (Validator.isNull(columnValue)) {
+						return;
+					}
+
+					int columnPos = 0;
+
+					if (StringUtil.contains(
+							columnValue, PortletKeys.MICROBLOGS)) {
+
+						columnPos = 1;
+					}
+
+					layoutTypePortlet.addPortletId(
+						0, PortletKeys.SO_ANNOUNCEMENTS, "column-1",
+						columnPos, false);
+
+					layout = layoutTypePortlet.getLayout();
+				}
+
+				LayoutLocalServiceUtil.updateLayout(layout);
+			}
+		};
 
 		actionableDynamicQuery.performActions();
 	}
