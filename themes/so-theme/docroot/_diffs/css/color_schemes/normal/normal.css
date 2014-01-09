@@ -81,21 +81,29 @@ html.aui {
 			}
 		}
 
-		.info-items, .info-link-container {
-			display: none;
-		}
-
 		.info-items {
 			left: auto;
-			position: absolute;
-			right: 293px;
-			top: 86px;
-			width: 575px;
+			position: relative;
+			right: 0;
+			top: 44px;
+
+			.page-customization-bar .page-customization-bar-text {
+				height: 74px;
+			}
+
+			.btn-link {
+				border-width: inherit;
+				padding: 4px 12px;
+				text-decoration: none;
+				text-shadow: inherit;
+			}
 		}
 
 		.info-link-container {
-			left: 50px;
-			top: 92px;
+			left: auto;
+			position: relative;
+			right: 0;
+			top: 56px;
 		}
 	}
 }
@@ -523,7 +531,6 @@ a {
 	}
 
 	#toggleDockbar {
-		border-left: 1px solid $defaultBorderColor;
 		display: block;
 		float: right;
 		height: 52px;
