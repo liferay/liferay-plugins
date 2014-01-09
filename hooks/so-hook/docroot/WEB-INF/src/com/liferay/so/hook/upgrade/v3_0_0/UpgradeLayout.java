@@ -79,9 +79,7 @@ public class UpgradeLayout extends UpgradeProcess {
 				UnicodeProperties typeSettingsProperties =
 					layout.getTypeSettingsProperties();
 
-				if (layoutTypePortlet.hasPortletId(
-						PortletKeys.ANNOUNCEMENTS)) {
-
+				if (layoutTypePortlet.hasPortletId(PortletKeys.ANNOUNCEMENTS)) {
 					LayoutTemplate layoutTemplate =
 						layoutTypePortlet.getLayoutTemplate();
 
@@ -116,8 +114,8 @@ public class UpgradeLayout extends UpgradeProcess {
 					}
 
 					layoutTypePortlet.addPortletId(
-						0, PortletKeys.SO_ANNOUNCEMENTS, "column-1",
-						columnPos, false);
+						0, PortletKeys.SO_ANNOUNCEMENTS, "column-1", columnPos,
+						false);
 
 					layout = layoutTypePortlet.getLayout();
 				}
