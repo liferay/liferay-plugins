@@ -28,6 +28,7 @@ import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.persistence.impl.TableMapper;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.RoleConstants;
@@ -159,7 +160,10 @@ public class RoleListener extends BaseModelListener<Role> {
 					continue;
 				}
 
-				FinderCacheUtil.clearCache(_MAPPING_TABLE_USERS_ROLES_NAME);
+				FinderCacheUtil.clearCache(
+					_MAPPING_TABLE_USERS_ROLES_NAME_LEFT_TO_RIGHT);
+				FinderCacheUtil.clearCache(
+					_MAPPING_TABLE_USERS_ROLES_NAME_RIGHT_TO_LEFT);
 
 				if (UserLocalServiceUtil.hasRoleUser(
 						user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER,
@@ -188,6 +192,10 @@ public class RoleListener extends BaseModelListener<Role> {
 	 * {@link
 	 * com.liferay.portal.model.impl.RoleModelImpl#MAPPING_TABLE_USERS_ROLES_NAME}
 	 */
-	private static final String _MAPPING_TABLE_USERS_ROLES_NAME = "Users_Roles";
+	private static final String _MAPPING_TABLE_USERS_ROLES_NAME_LEFT_TO_RIGHT =
+		TableMapper.class.getName() + "-" + "Users_Roles" + "-LeftToRight";
+
+	private static final String _MAPPING_TABLE_USERS_ROLES_NAME_RIGHT_TO_LEFT =
+		TableMapper.class.getName() + "-" + "Users_Roles" + "-RightToLeft";
 
 }
