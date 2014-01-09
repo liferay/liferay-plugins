@@ -15,9 +15,7 @@
 --%>
 
 <%@ include file="/WEB-INF/jsp/ams/controllers/init.jspf" %>
-
-<%@ page import="com.liferay.ams.model.Asset" %>
-<%@ page import="com.liferay.ams.service.AssetLocalServiceUtil" %>
+<%@ include file="/WEB-INF/jsp/util/asset_indexer.jspf" %>
 
 <%!
 public class AlloyControllerImpl extends BaseAlloyControllerImpl {
@@ -35,9 +33,9 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 	}
 
 	public void index() throws Exception {
-		List<Asset> assets = AssetLocalServiceUtil.getAssets(QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		AlloySearchResult alloySearchResult = search(null);
 
-		renderRequest.setAttribute("assets", assets);
+		renderRequest.setAttribute("alloySearchResult", alloySearchResult);
 	}
 
 	public void save() throws Exception {
@@ -58,6 +56,11 @@ public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 		Asset asset = AssetLocalServiceUtil.getAsset(assetId);
 
 		renderRequest.setAttribute("asset", asset);
+	}
+
+	@Override
+	protected Indexer buildIndexer() {
+		return AssetIndexer.getInstance();
 	}
 
 }
