@@ -106,6 +106,12 @@ html.aui {
 			top: 56px;
 		}
 	}
+
+	.btn-group, .btn-group.open {
+		.dropdown-toggle {
+			background-image: url(../../../images/portlet/options_borderless.png);
+		}
+	}
 }
 
 .aui .dockbar-split.show-dockbar {
