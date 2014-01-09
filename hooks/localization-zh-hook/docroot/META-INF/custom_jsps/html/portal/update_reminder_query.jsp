@@ -24,33 +24,47 @@
 int x = _indexOfOptionStart(html);
 int y = _indexOfOptionEnd(html, x);
 
-html = html.substring(0, x) + html.substring(y + 1);
+if ((x >= 0) && (y >= 0)) {
+	html = html.substring(0, x) + html.substring(y + 1);
+}
 %>
 
 <%= html %>
 
 <%!
 private int _indexOfOptionStart(String html) {
-	int x = html.indexOf(
-		_WHAT_IS_YOUR_FATHERS_MIDDLE_NAME,
-		_indexOfReminderQueryQuestionId(html));
+	int x = _indexOfReminderQueryQuestionId(html);
 
-	return html.lastIndexOf(StringPool.LESS_THAN, x);
+	if (x < 0) {
+		return x;
+	}
+
+	int y = html.indexOf(_VALUE_WHAT_IS_YOUR_FATHERS_MIDDLE_NAME, x);
+
+	if (y < 0) {
+		return y;
+	}
+
+	return html.lastIndexOf(StringPool.LESS_THAN, y);
 }
 
 private int _indexOfOptionEnd(String html, int fromIndex) {
 	int x = html.indexOf(_OPTION_CLOSE, fromIndex);
 
+	if (x < 0) {
+		return x;
+	}
+
 	return x + _OPTION_CLOSE.length();
 }
 
 private int _indexOfReminderQueryQuestionId(String html) {
-	return html.indexOf(_REMINDER_QUERY_QUESTION_ID);
+	return html.indexOf(_ID_REMINDER_QUERY_QUESTION);
 }
+
+private static final String _ID_REMINDER_QUERY_QUESTION = "id=\"reminderQueryQuestion\"";
 
 private static final String _OPTION_CLOSE = "</option>";
 
-private static final String _REMINDER_QUERY_QUESTION_ID = "id=\"reminderQueryQuestion\"";
-
-private static final String _WHAT_IS_YOUR_FATHERS_MIDDLE_NAME = "what-is-your-father's-middle-name";
+private static final String _VALUE_WHAT_IS_YOUR_FATHERS_MIDDLE_NAME = "value=\"what-is-your-father's-middle-name\"";
 %>
