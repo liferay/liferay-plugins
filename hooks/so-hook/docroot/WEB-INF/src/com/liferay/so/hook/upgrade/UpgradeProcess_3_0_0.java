@@ -35,11 +35,10 @@ public class UpgradeProcess_3_0_0 extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		upgrade(UpgradeDocumentLibrary.class);
-		upgrade(UpgradeGroup.class);
-
 		upgrade(UpgradeLayoutSetPrototype.class);
 
+		upgrade(UpgradeDocumentLibrary.class);
+		upgrade(UpgradeGroup.class);
 		upgrade(UpgradeLayout.class);
 	}
 
