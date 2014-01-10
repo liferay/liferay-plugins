@@ -108,7 +108,8 @@ public class UpgradeLayout extends UpgradeProcess {
 					int columnPos = 0;
 
 					if (StringUtil.contains(
-							columnValue, PortletKeys.MICROBLOGS_STATUS_UPDATE)) {
+							columnValue,
+							PortletKeys.MICROBLOGS_STATUS_UPDATE)) {
 
 						columnPos = 1;
 					}
