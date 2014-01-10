@@ -73,11 +73,14 @@
 	</target>
 
 	<target name="direct-deploy">
-		<ant dir="hooks" target="direct-deploy" inheritAll="false" />
-		<ant dir="layouttpl" target="direct-deploy" inheritAll="false" />
-		<ant dir="portlets" target="direct-deploy" inheritAll="false" />
-		<ant dir="themes" target="direct-deploy" inheritAll="false" />
-		<ant dir="webs" target="direct-deploy" inheritAll="false" />
+		<for list="hooks,layouttpl,portlets,themes,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="direct-deploy"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
 	</target>
 
 	<target name="ear">
