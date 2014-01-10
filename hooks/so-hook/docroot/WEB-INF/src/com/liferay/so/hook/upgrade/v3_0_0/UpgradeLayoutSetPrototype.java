@@ -30,7 +30,7 @@ import com.liferay.so.util.SocialOfficeConstants;
 /**
  * @author Lin Cui
  */
-public class UpgradeExpandoValue extends UpgradeProcess {
+public class UpgradeLayoutSetPrototype extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
