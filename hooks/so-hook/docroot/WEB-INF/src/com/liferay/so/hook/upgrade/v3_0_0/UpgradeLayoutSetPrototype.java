@@ -18,14 +18,12 @@
 package com.liferay.so.hook.upgrade.v3_0_0;
 
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutSetPrototype;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.expando.model.ExpandoTableConstants;
-import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
+import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.SocialOfficeConstants;
+import com.liferay.so.util.SocialOfficeUtil;
 
 /**
  * @author Lin Cui
@@ -34,36 +32,31 @@ public class UpgradeLayoutSetPrototype extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		updateExpandoValue();
+		for (long companyId : PortalUtil.getCompanyIds()) {
+			updateLayoutSetPrototype(companyId);
+		}
 	}
 
-	protected void updateExpandoValue() throws Exception {
-		for (long companyId : PortalUtil.getCompanyIds()) {
-			String[] layoutSetPrototypeKeys = new String[] {
-				SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE,
-				SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE};
+	protected void updateLayoutSetPrototype(long companyId) throws Exception {
+		for (String layoutSetPrototypeKey : _LAYOUT_SET_PROTOTYPE_KEYS) {
+			LayoutSetPrototype layoutSetPrototype =
+				LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
+					companyId, layoutSetPrototypeKey);
 
-			for (String layoutSetPrototypeKey : layoutSetPrototypeKeys) {
-				LayoutSetPrototype layoutSetPrototype =
-					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
-						companyId, layoutSetPrototypeKey);
+			if ((layoutSetPrototype != null) &&
+				!SocialOfficeServiceUtil.isSocialOfficeGroup(
+					layoutSetPrototype.getGroupId())) {
 
-				if (layoutSetPrototype == null) {
-					continue;
-				}
-
-				long layoutSetPrototypeId =
-					layoutSetPrototype.getLayoutSetPrototypeId();
-
-				Group group = GroupLocalServiceUtil.getLayoutSetPrototypeGroup(
-						companyId, layoutSetPrototypeId);
-
-				ExpandoValueLocalServiceUtil.addValue(
-					companyId, Group.class.getName(),
-					ExpandoTableConstants.DEFAULT_TABLE_NAME,
-					"socialOfficeEnabled", group.getGroupId(), true);
+				SocialOfficeUtil.enableSocialOffice(
+					layoutSetPrototype.getGroup());
 			}
 		}
 	}
+
+	private static final String[] _LAYOUT_SET_PROTOTYPE_KEYS = new String[] {
+		SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_SITE,
+		SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PRIVATE,
+		SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC
+	};
 
 }
