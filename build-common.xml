@@ -795,7 +795,7 @@ Please find a solution that does not require portal-impl.jar.
 					<isset property="theme.type" />
 				</not>
 				<then>
-					<property name="theme.type" value="vm" />
+					<var name="theme.type" value="vm" />
 				</then>
 			</if>
 
@@ -1301,7 +1301,20 @@ Please find a solution that does not require portal-impl.jar.
 				</else>
 			</if>
 
-			<var name="plugin.packaging" unset="true" />
+			<set-build-xml-var
+				build.xml.var.name="theme.type"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="theme.type" value="${set-build-xml-var.return}" />
+				</then>
+				<else>
+					<var name="theme.type" unset="true" />
+				</else>
+			</if>
 
 			<if>
 				<or>
@@ -1313,10 +1326,10 @@ Please find a solution that does not require portal-impl.jar.
 					<antelope:endswith string="${plugin.name}" with="-web" />
 				</or>
 				<then>
-					<property name="plugin.packaging" value="war" />
+					<var name="plugin.packaging" value="war" />
 				</then>
 				<else>
-					<property name="plugin.packaging" value="jar" />
+					<var name="plugin.packaging" value="jar" />
 				</else>
 			</if>
 
@@ -1508,10 +1521,10 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<available file="@{module.dir}/tmp" />
 				<then>
-					<property name="docroot.dir" value="@{module.dir}/tmp" />
+					<var name="docroot.dir" value="@{module.dir}/tmp" />
 				</then>
 				<else>
-					<property name="docroot.dir" value="@{module.dir}/docroot" />
+					<var name="docroot.dir" value="@{module.dir}/docroot" />
 				</else>
 			</if>
 
@@ -1524,10 +1537,10 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<available file="@{module.dir}/docroot/WEB-INF/liferay-hook.xml.processed" />
 				<then>
-					<property name="liferay-hook.xml.excludes" value="WEB-INF/liferay-hook.xml*" />
+					<var name="liferay-hook.xml.excludes" value="WEB-INF/liferay-hook.xml*" />
 				</then>
 				<else>
-					<property name="liferay-hook.xml.excludes" value="" />
+					<var name="liferay-hook.xml.excludes" value="" />
 				</else>
 			</if>
 
