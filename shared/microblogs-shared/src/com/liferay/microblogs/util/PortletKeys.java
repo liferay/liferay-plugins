@@ -24,4 +24,7 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 
 	public static final String MICROBLOGS = "1_WAR_microblogsportlet";
 
+	public static final String MICROBLOGS_STATUS_UPDATE =
+		"2_WAR_microblogsportlet";
+
 }
