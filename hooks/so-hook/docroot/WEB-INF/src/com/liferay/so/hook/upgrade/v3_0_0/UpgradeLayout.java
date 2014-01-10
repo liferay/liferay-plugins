@@ -98,7 +98,9 @@ public class UpgradeLayout extends UpgradeProcess {
 					layout.setTypeSettingsProperties(typeSettingsProperties);
 				}
 				else {
-					if (layout.getLayoutId() != 1) {
+					if ((group.isUser() && layout.isPublicLayout()) ||
+						(layout.getLayoutId() != 1)) {
+
 						return;
 					}
 
