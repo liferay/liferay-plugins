@@ -229,6 +229,14 @@ Error-Prone was automatically installed. Please rerun your task.
 							</then>
 						</elseif>
 						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="direct-deploy" />
+							<then>
+								<direct-deploy
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
 							<equals arg1="@{macrodef.name}" arg2="jar-macro" />
 							<then>
 								<jar-macro
@@ -977,6 +985,16 @@ Please find a solution that does not require portal-impl.jar.
 					<var name="deploy.build.xml.content" unset="true" />
 				</else>
 			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="direct-deploy">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
 		</sequential>
 	</macrodef>
 

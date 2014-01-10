@@ -57,6 +57,13 @@
 		/>
 	</target>
 
+	<target name="direct-deploy">
+		<loop-modules
+			loop.modules.cmd="direct-deploy"
+			loop.modules.dir="."
+		/>
+	</target>
+
 	<target name="jar">
 		<loop-modules
 			loop.modules.cmd="jar-macro"
