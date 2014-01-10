@@ -98,6 +98,10 @@ public class UpgradeLayout extends UpgradeProcess {
 					layout.setTypeSettingsProperties(typeSettingsProperties);
 				}
 				else {
+					if (layout.getLayoutId() != 1) {
+						return;
+					}
+
 					String columnValue = typeSettingsProperties.getProperty(
 						"column-1");
 
