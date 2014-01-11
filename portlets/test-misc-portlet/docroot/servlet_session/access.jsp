@@ -17,13 +17,12 @@
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.SessionParamUtil" %>
 
-<%@ page import="javax.servlet.http.HttpServletResponse" %>
-<%@ page import="javax.servlet.http.HttpSession" %>
-
 <%
 session.invalidate();
+
 response.sendRedirect("/");
 
 SessionParamUtil.getBoolean(request, "test");
+
 LanguageUtil.getLanguageId(request);
 %>
