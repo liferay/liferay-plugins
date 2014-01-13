@@ -125,6 +125,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 	@Override
 	public void execute() throws Exception {
+		Method method = getMethod(actionPath);
+
+		if (method == null) {
+			if (log.isDebugEnabled()) {
+				log.debug("No method found for action " + actionPath);
+			}
+		}
+
 		if (permissioned &&
 			!AlloyPermission.contains(
 				themeDisplay.getPermissionChecker(),
@@ -133,14 +141,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 			renderError(
 				"you-do-not-have-permission-to-access-the-requested-resource");
-		}
 
-		Method method = getMethod(actionPath);
-
-		if (method == null) {
-			if (log.isDebugEnabled()) {
-				log.debug("No method found for action " + actionPath);
-			}
+			method = null;
 		}
 
 		if (lifecycle.equals(PortletRequest.ACTION_PHASE)) {
