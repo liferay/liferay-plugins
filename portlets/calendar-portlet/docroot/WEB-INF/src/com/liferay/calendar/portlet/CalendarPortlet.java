@@ -313,6 +313,8 @@ public class CalendarPortlet extends MVCPortlet {
 		String[] remindersType = getRemindersType(actionRequest);
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
+		String redirect = getRedirect(actionRequest, actionResponse);
+
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarBooking.class.getName(), actionRequest);
 
@@ -327,6 +329,10 @@ public class CalendarPortlet extends MVCPortlet {
 				endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
 				reminders[0], remindersType[0], reminders[1], remindersType[1],
 				serviceContext);
+
+			redirect = HttpUtil.setParameter(
+				redirect, actionResponse.getNamespace() + "calendarBookingId",
+				calendarBooking.getCalendarBookingId());
 		}
 		else {
 			boolean updateCalendarBookingInstance = ParamUtil.getBoolean(
@@ -367,6 +373,7 @@ public class CalendarPortlet extends MVCPortlet {
 			}
 		}
 
+		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 		actionRequest.setAttribute(WebKeys.CALENDAR_BOOKING, calendarBooking);
 	}
 
