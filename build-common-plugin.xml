@@ -523,16 +523,14 @@
 	</target>
 
 	<target name="jar-javadoc" depends="javadoc">
-		<jar
-			basedir="javadoc"
-			jarfile="${plugin.javadoc.file}"
+		<jar-javadoc
+			module.dir="."
 		/>
 	</target>
 
 	<target name="jar-source">
-		<jar
-			basedir="src"
-			jarfile="${plugin.sources.file}"
+		<jar-source
+			module.dir="."
 		/>
 	</target>
 
