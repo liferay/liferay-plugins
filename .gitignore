@@ -17,6 +17,7 @@ _sass_cache_*.css
 
 /*/*/bin
 /*/*/classes
+/*/*/javadoc
 /*/*/temp
 /*/*/test-classes
 /*/*/test-results
