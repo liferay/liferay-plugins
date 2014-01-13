@@ -4,20 +4,6 @@
 <project name="build-common-shared">
 	<import file="../build-common-plugin.xml" />
 
-	<if>
-		<available file="${sdk.dir}/shared/portal-compat-shared" />
-		<then>
-			<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
-
-			<path id="plugin-lib.classpath">
-				<pathelement path="${plugin-lib.classpath.path}" />
-				<pathelement location="${sdk.dir}/shared/portal-compat-shared/classes" />
-			</path>
-
-			<var name="plugin-lib.classpath.path" unset="true" />
-		</then>
-	</if>
-
 	<target name="jar">
 		<jar-macro
 			module.dir="."
