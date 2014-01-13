@@ -237,6 +237,14 @@ Error-Prone was automatically installed. Please rerun your task.
 							</then>
 						</elseif>
 						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="javadoc-macro" />
+							<then>
+								<javadoc-macro
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
 							<equals arg1="@{macrodef.name}" arg2="jar-macro" />
 							<then>
 								<jar-macro
@@ -1201,6 +1209,22 @@ Please find a solution that does not require portal-impl.jar.
 			</if>
 		</sequential>
 	</macrodef>
+
+	<macrodef name="javadoc-macro">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<javadoc
+				classpathref="plugin.classpath"
+				destdir="javadoc"
+				sourcepath="${plugin.source.dir}"
+			/>
+		</sequential>
+	</macrodef>		
 
 	<macrodef name="jar-macro">
 		<attribute name="module.dir" />

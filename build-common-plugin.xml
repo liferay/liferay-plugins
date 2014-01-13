@@ -544,10 +544,8 @@
 	</target>
 
 	<target name="javadoc">
-		<javadoc
-			classpathref="${javac.classpathref}"
-			destdir="javadoc"
-			sourcepath="${javac.srcdir}"
+		<javadoc-macro
+			module.dir="."
 		/>
 	</target>
 
