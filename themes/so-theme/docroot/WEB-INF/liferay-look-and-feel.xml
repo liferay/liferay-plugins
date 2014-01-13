@@ -8,10 +8,10 @@
 	</compatibility>
 	<theme id="so" name="Social Office">
 		<color-scheme id="01" name="Classic">
+			<default-cs>true</default-cs>
 			<css-class>so-classic</css-class>
 		</color-scheme>
 		<color-scheme id="02" name="Strata">
-			<default-cs>true</default-cs>
 			<css-class>so-strata</css-class>
 		</color-scheme>
 	</theme>
