@@ -147,7 +147,6 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 					<portlet:renderURL var="editCalendarURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 						<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
-						<portlet:param name="redirect" value="<%= currentURL %>" />
 						<portlet:param name="calendarId" value="{calendarId}" />
 					</portlet:renderURL>
 
