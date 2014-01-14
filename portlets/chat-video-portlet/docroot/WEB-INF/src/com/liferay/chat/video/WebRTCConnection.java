@@ -19,8 +19,8 @@ package com.liferay.chat.video;
  */
 public class WebRTCConnection {
 
-	public WebRTCConnection(WebRTCClient webRTCClient) {
-		_webRTCClient = webRTCClient;
+	public WebRTCConnection(WebRTCClient sourceWebRTCClient) {
+		_sourceWebRTCClient = sourceWebRTCClient;
 	}
 
 	public long getInitiatedDurationTime() {
@@ -31,12 +31,12 @@ public class WebRTCConnection {
 		return System.currentTimeMillis() - _initiatedTime;
 	}
 
-	public State getState() {
-		return _state;
+	public WebRTCClient getSourceWebRTCClient() {
+		return _sourceWebRTCClient;
 	}
 
-	public WebRTCClient getWebRTCClient() {
-		return _webRTCClient;
+	public State getState() {
+		return _state;
 	}
 
 	public void setState(State state) {
@@ -57,7 +57,7 @@ public class WebRTCConnection {
 	}
 
 	private long _initiatedTime = 0;
+	private WebRTCClient _sourceWebRTCClient;
 	private State _state = State.DISCONNECTED;
-	private WebRTCClient _webRTCClient;
 
 }
