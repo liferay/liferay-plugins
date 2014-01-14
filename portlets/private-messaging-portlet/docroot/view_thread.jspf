@@ -25,7 +25,7 @@ boolean hasExistingRecipients = false;
 
 <portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
-<aui:button-row  cssClass="controls">
+<aui:button-row cssClass="controls">
 	<liferay-portlet:actionURL name="markMessagesAsUnread" var="markAsUnreadURL">
 		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
 	</liferay-portlet:actionURL>
