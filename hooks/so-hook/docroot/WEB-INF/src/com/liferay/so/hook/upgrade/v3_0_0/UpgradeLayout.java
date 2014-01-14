@@ -26,13 +26,16 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.LayoutTemplate;
 import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.persistence.LayoutActionableDynamicQuery;
 import com.liferay.so.service.SocialOfficeServiceUtil;
+import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.PortletKeys;
+import com.liferay.so.util.SocialOfficeConstants;
 
 /**
  * @author Matthew Kong
@@ -98,8 +101,22 @@ public class UpgradeLayout extends UpgradeProcess {
 					layout.setTypeSettingsProperties(typeSettingsProperties);
 				}
 				else {
-					if (layout.getLayoutId() != 1) {
+					if (layout.getPriority() != 0) {
 						return;
+					}
+
+					LayoutSetPrototype layoutSetPrototype =
+						LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
+							layout.getCompanyId(),
+							SocialOfficeConstants.
+								LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
+
+					if (layoutSetPrototype != null) {
+						long groupId = layoutSetPrototype.getGroupId();
+
+						if (groupId == layout.getGroupId()) {
+							return;
+						}
 					}
 
 					String columnValue = typeSettingsProperties.getProperty(
