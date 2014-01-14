@@ -17,23 +17,17 @@
  */
 --%>
 
-<aui:nav-bar>
-	<aui:nav cssClass="controls">
-		<aui:nav-item>
-			<aui:input cssClass="check-all" inline="<%= true %>" label="" name="checkAllMessages" title='<%= LanguageUtil.get(pageContext, "check-all-messages") %>' type="checkbox" />
-		</aui:nav-item>
+<aui:button-row cssClass="controls">
+	<aui:input cssClass="check-all" inline="<%= true %>" label="" name="checkAllMessages" title='<%= LanguageUtil.get(pageContext, "check-all-messages") %>' type="checkbox" />
 
-		<aui:button name="markMessagesAsUnread" value="mark-as-unread" />
+	<aui:button name="markMessagesAsUnread" value="mark-as-unread" />
 
-		<aui:button name="markMessagesAsRead" value="mark-as-read" />
+	<aui:button name="markMessagesAsRead" value="mark-as-read" />
 
-		<aui:button name="deleteMessages" value="delete" />
-	</aui:nav>
+	<aui:button name="deleteMessages" value="delete" />
 
-	<aui:nav cssClass="pull-right">
-		<aui:button name="newMessage" primary="<%= true %>" value="new-message" />
-	</aui:nav>
-</aui:nav-bar>
+	<aui:button cssClass="pull-right" name="newMessage" primary="<%= true %>" value="new-message" />
+</aui:button-row>
 
 <liferay-ui:search-container
 	emptyResultsMessage="no-messages-found"
