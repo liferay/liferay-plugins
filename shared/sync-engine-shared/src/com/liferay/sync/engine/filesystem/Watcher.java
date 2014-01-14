@@ -87,9 +87,9 @@ public class Watcher {
 				return;
 			}
 
-			Path path = _paths.get(watchKey);
+			Path parentPath = _paths.get(watchKey);
 
-			if (path == null) {
+			if (parentPath == null) {
 				continue;
 			}
 
@@ -98,9 +98,9 @@ public class Watcher {
 			for (WatchEvent<?> tempWatchEvent : watchEvents) {
 				WatchEvent<Path> watchEvent = (WatchEvent<Path>)tempWatchEvent;
 				
-				Path watchEventContextPath = path.resolve(watchEvent.context());
+				Path childPath = parentPath.resolve(watchEvent.context());
 
-				fireWatchEventListeners(watchEvent, watchEventContextPath);
+				fireWatchEventListeners(watchEvent, childPath);
 
 				WatchEvent.Kind kind = watchEvent.kind();
 
@@ -109,10 +109,10 @@ public class Watcher {
 
 					try {
 						if (Files.isDirectory(
-								watchEventContextPath,
+								childPath,
 								LinkOption.NOFOLLOW_LINKS)) {
 
-							register(watchEventContextPath, true);
+							register(childPath, true);
 						}
 					}
 					catch (IOException ioe) {
