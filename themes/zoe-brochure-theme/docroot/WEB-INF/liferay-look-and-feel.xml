@@ -8,7 +8,7 @@
 	<theme id="zoe-brochure" name="Zoe Brochure">
 		<settings>
 			<setting configurable="true" key="portlet-setup-show-borders-default" type="checkbox" value="false" />
-			<setting configurable="false" key="show-site-name-default" value="false" />
+			<setting configurable="false" key="show-site-name-default" value="true" />
 			<setting configurable="false" key="show-site-name-supported" value="true" />
 		</settings>
 		<layout-templates>

@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="title" type="text">
+		<dynamic-content><![CDATA[Media Contact Us Europe]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="number_of_columns" type="select">
+		<dynamic-content><![CDATA[3]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>Germany (EU HQ)<br>Liferay GmbH</b><br>Mergenthalerallee 77<br>65760 Eschborn (Taunus)<br>Germany<br>Tel: +49 (0) 6196 773 0680<br>Fax: +49 (0) 6196 773 0689<br>sales-de@liferay.com<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>Spain and Portugal<br>Liferay S.L.<br></b>Calle Joaquín Bau, 2 - Pl. 1. A-B<br>28036 - Madrid, Spain<br>Tel: +34 91 733 63 43<br>sales-es@liferay.com<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>Hungary<br>Liferay Hungary Kft.<br></b>1138 Budapest<br>Madarász Viktor Utca 47. a-b<br>Hungary<br>Tel: +36 (1) 786 4575<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>United Kingdom<br>Liferay UK<br></b>45 Moorfields<br>London<br>EC2Y 9AE<br>United Kingdom<br>Tel: +44 (0)20 7448 9770<br>Fax: +44 (0)20 7997 7301<br>sales-uk@liferay.com<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon_alignment" type="select">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>Ireland<br>Liferay Ireland<br></b>Grand Canal House<br>1, Upper Grand Canal Street<br>Dublin 4<br>Tel: +353 1 905 8021<br>Fax: +353 1 905 8029<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>France</b><br><b>Liferay France</b><br>15 rue Taitbout<br>75009 Paris<br>Tel: +33 (0)1 73 02 08 07<br>Fax: +33 (0)1 72 71 25 99<br>sales-fr@liferay.com<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+</root>

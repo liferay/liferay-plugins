@@ -1,0 +1,39 @@
+#if ($footer_column_title.getSiblings().size() == 6)
+	#set ($span = "span2")
+#elseif ($footer_column_title.getSiblings().size() == 5)
+	#set ($span = "span2-4")
+#elseif ($footer_column_title.getSiblings().size() == 4)
+	#set ($span = "span3")
+#elseif ($footer_column_title.getSiblings().size() == 3)
+	#set ($span = "span4")
+#elseif ($footer_column_title.getSiblings().size() == 2)
+	#set ($span = "span6")
+#else
+	#set ($span = "span12")
+#end
+
+<div class="row-fluid zoe-footer">
+	#if (!$footer_column_title.getSiblings().isEmpty())
+		#foreach ($cur_footer_column_title in $footer_column_title.getSiblings())
+			#if ($velocityCount == 1)
+				#set ($column_class = "footer-column first")
+			#elseif ($velocityCount == $footer_column_title.getSiblings().size())
+				#set ($column_class = "footer-column last")
+			#else
+				#set ($column_class = "footer-column")
+			#end
+
+			<div class="$column_class $span">
+				<h4>$cur_footer_column_title.data</h4>
+
+				<p>$cur_footer_column_title.column_content.data</p>
+			</div>
+		#end
+	#end
+</div>
+
+#if (!$secondary_footer_content.data.isEmpty())
+	<div class="row-fluid zoe-footer-secondary">
+		$secondary_footer_content.data
+	</div>
+#end

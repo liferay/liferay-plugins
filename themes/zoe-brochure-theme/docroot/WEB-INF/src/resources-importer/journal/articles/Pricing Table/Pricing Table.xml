@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+
+<root>
+	<dynamic-element name="title">
+		<dynamic-content><![CDATA[Pricing Page Pricing Table]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="number_of_columns" type="select">
+		<dynamic-content><![CDATA[4]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="pricing_table_heading" type="text">
+		<dynamic-content><![CDATA[Silver]]></dynamic-content>
+		<dynamic-element name="currency_symbol" type="text">
+			<dynamic-content><![CDATA[$]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="price" type="ddm-integer">
+			<dynamic-content><![CDATA[10]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="units_of_time" type="text">
+			<dynamic-content><![CDATA[mo]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Cras justo odio]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Dapibus ac facilisis in]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Egestas eget quam]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Fusce dapibus]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="button_text" type="text">
+			<dynamic-content><![CDATA[Purchase]]></dynamic-content>
+			<dynamic-element name="link" type="text">
+				<dynamic-content><![CDATA[1]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="style" type="select">
+				<dynamic-content><![CDATA[btn]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="size" type="select">
+				<dynamic-content><![CDATA[btn-large]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="pricing_table_heading" type="text">
+		<dynamic-content><![CDATA[Gold]]></dynamic-content>
+		<dynamic-element name="currency_symbol" type="text">
+			<dynamic-content><![CDATA[$]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="price" type="ddm-integer">
+			<dynamic-content><![CDATA[20]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="units_of_time" type="text">
+			<dynamic-content><![CDATA[mo]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Cras justo odio]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Dapibus ac facilisis in]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Egestas eget quam]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Fusce dapibus]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="button_text" type="text">
+			<dynamic-content><![CDATA[Purchase]]></dynamic-content>
+			<dynamic-element name="link" type="text">
+				<dynamic-content><![CDATA[1]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="style" type="select">
+				<dynamic-content><![CDATA[btn]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="size" type="select">
+				<dynamic-content><![CDATA[btn-large]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="pricing_table_heading" type="text">
+		<dynamic-content><![CDATA[Platinum]]></dynamic-content>
+		<dynamic-element name="currency_symbol" type="text">
+			<dynamic-content><![CDATA[$]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="price" type="ddm-integer">
+			<dynamic-content><![CDATA[50]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="units_of_time" type="text">
+			<dynamic-content><![CDATA[mo]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Cras justo odio]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Dapibus ac facilisis in]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Egestas eget quam]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Fusce dapibus]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="button_text" type="text">
+			<dynamic-content><![CDATA[Purchase]]></dynamic-content>
+			<dynamic-element name="link" type="text">
+				<dynamic-content><![CDATA[1]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="style" type="select">
+				<dynamic-content><![CDATA[btn]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="size" type="select">
+				<dynamic-content><![CDATA[btn-large]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="pricing_table_heading" type="text">
+		<dynamic-content><![CDATA[Diamond]]></dynamic-content>
+		<dynamic-element name="currency_symbol" type="text">
+			<dynamic-content><![CDATA[$]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="price" type="ddm-integer">
+			<dynamic-content><![CDATA[100]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="units_of_time" type="text">
+			<dynamic-content><![CDATA[mo]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Cras justo odio]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Dapibus ac facilisis in]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Egestas eget quam]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="feature" type="text">
+			<dynamic-content><![CDATA[Fusce dapibus]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="button_text" type="text">
+			<dynamic-content><![CDATA[Purchase]]></dynamic-content>
+			<dynamic-element name="link" type="text">
+				<dynamic-content><![CDATA[1]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="style" type="select">
+				<dynamic-content><![CDATA[btn]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="size" type="select">
+				<dynamic-content><![CDATA[btn-large]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+</root>

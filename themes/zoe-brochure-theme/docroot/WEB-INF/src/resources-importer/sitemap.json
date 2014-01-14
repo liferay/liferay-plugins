@@ -1,22 +1,59 @@
 {
-	"layoutTemplateId": "1_3_1_columns",
+	"layoutTemplateId": "1_column",
 	"privatePages": [
 		{
 			"columns": [
 				[
-					"Home Carousel.xml"
-				],
-				[
-					"How Do We Do It.xml"
-				],
-				[
-					"Our Strategy.xml"
-				],
-				[
-					"Our Achievements.xml"
-				],
-				[
-					"Banner 1.xml"
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Home Carousel.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Panel Home Page.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Banner 1.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Media Home Page.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Footer.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					}
 				]
 			],
 			"friendlyURL": "/home",
@@ -26,31 +63,308 @@
 		{
 			"columns": [
 				[
-					"Who We Are.xml"
-				],
-				[
-					"Download Pod.xml"
-				],
-				[
-					"Innovating For Over 30 Years.xml"
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Banner About Us.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Media About Us.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Full Page Divider.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Panel About Us.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US": "Meet the Team",
+							"portletSetupUseCustomTitle": "true"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Footer.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					}
 				]
 			],
 			"friendlyURL": "/about",
-			"layoutTemplateId": "2_1_2_columns",
+			"layoutTemplateId": "1_column",
 			"name": "About",
 			"title": "About"
 		},
 		{
+			"columns": [
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Pricing Heading Banner.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Pricing Table.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Full Page Divider.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Pricing Page Panel.xml",
+							"groupId": "${groupId}",
+							"portletSetupCss": {
+								"advancedData": {
+									"customCSSClassName": "zoe-panel-post"
+								}
+							},
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Footer.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					}
+				]
+			],
 			"friendlyURL": "/pricing",
 			"name": "Pricing",
 			"title": "Pricing"
 		},
 		{
+			"columns": [
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Banner Support.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US": "Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Panel Support Intro.xml",
+							"groupId": "${groupId}",
+							"portletSetupCss": {
+								"advancedData": {
+									"customCSSClassName": "zoe-panel-post"
+								}
+							},
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US":
+								"Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Full Page Divider.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US":
+								"Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Clickable Panel Support.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US":
+								"Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Footer.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US":
+								"Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					}
+				]
+			],
 			"friendlyURL": "/support",
 			"name": "Support",
 			"title": "Support"
 		},
 		{
+			"columns": [
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Banner Contact Us.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US":
+								"Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Location Map.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US":
+								"Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Media Contact Us Americas.xml",
+							"groupId": "${groupId}",
+							"portletSetupCss": {
+								"advancedData": {
+									"customCSSClassName": "media-portlet-bordered"
+								}
+							},
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US":
+								"Americas",
+							"portletSetupUseCustomTitle": "true"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Media Contact Us Europe.xml",
+							"groupId": "${groupId}",
+							"portletSetupCss": {
+								"advancedData": {
+									"customCSSClassName": "media-portlet-bordered"
+								}
+							},
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US":
+								"Europe",
+							"portletSetupUseCustomTitle": "true"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Media Contact Us Asia Pacific.xml",
+							"groupId": "${groupId}",
+							"portletSetupCss": {
+								"advancedData": {
+									"customCSSClassName": "media-portlet-bordered"
+								}
+							},
+							"portletSetupShowBorders": "true",
+							"portletSetupTitle_en_US":
+								"Asia Pacific",
+							"portletSetupUseCustomTitle": "true"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Full Page Divider.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US":
+								"Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Panel Contact Us.xml",
+							"groupId": "${groupId}",
+							"portletSetupCss": {
+								"advancedData": {
+									"customCSSClassName": "zoe-panel-post"
+								}
+							},
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US":
+								"Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					},
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Footer.xml",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "false",
+							"portletSetupTitle_en_US":
+								"Web Content Display",
+							"portletSetupUseCustomTitle": "false"
+						}
+					}
+				]
+			],
 			"friendlyURL": "/contact",
 			"name": "Contact",
 			"title": "Contact"

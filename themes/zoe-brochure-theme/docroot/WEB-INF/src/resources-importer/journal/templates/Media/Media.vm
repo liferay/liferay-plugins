@@ -1,0 +1,86 @@
+#set ($background_color = "")
+#set ($content_id = $reserved-article-id.data)
+#set ($icon_color = "")
+#set ($icon_padding = "")
+#set ($icon_size = "")
+#set ($integer = 0)
+#set ($media_image_size = "")
+#set ($num_cols = $integer.parseInt($number_of_columns.data))
+
+#if ($num_cols == 4)
+	#set ($span = "span3")
+#elseif ($num_cols == 3)
+	#set ($span = "span4")
+#elseif ($num_cols == 2)
+	#set ($span = "span6")
+#else
+	#set ($span = "")
+#end
+
+#if ($num_cols == 1)
+	<div class="media-${content_id} media-row row-fluid">
+#end
+
+#foreach ($heading in $media_heading.getSiblings())
+	#set ($media_icon = $heading.media_icon)
+	#set ($media_icon_alignment = $heading.media_icon.media_icon_alignment)
+	#set ($media_icon_background_color = $heading.media_icon.media_icon_background_color)
+	#set ($media_icon_color = $heading.media_icon.media_icon.media_icon_color)
+	#set ($media_icon_padding = $heading.media_icon.media_icon_padding)
+	#set ($media_icon_shape = $heading.media_icon.media_icon_shape)
+	#set ($media_icon_size = $heading.media_icon.media_icon_size)
+	#set ($media_image = $heading.media_icon.media_image)
+	#set ($mod = ${velocityCount}%${num_cols})
+
+	#if (!$media_icon_background_color.data.isEmpty())
+		#set ($background_color = "background-color: ${media_icon_background_color.data};")
+	#end
+
+	#if (!$media_icon_color.data.isEmpty())
+		#set ($icon_color = "color: ${media_icon_color.data};")
+	#end
+
+	#if (!$media_icon_size.data.isEmpty())
+		#set ($icon_size = "font-size: ${media_icon_size.data};")
+
+		#set ($media_image_size = "width: ${media_icon_size.data};")
+	#end
+
+	#if (!$media_icon_padding.data.isEmpty())
+		#set ($icon_padding = "padding: ${media_icon_padding.data};")
+	#end
+
+	#if ($mod == 1 && $num_cols != 1)
+		<div class="media-${content_id} media-row row-fluid">
+	#end
+		<div class="media $span">
+			#if (!$media_icon.data.isEmpty() || !$media_image.data.isEmpty())
+				<div class="media-image $media_icon_alignment.data $media_icon_shape.data" style="$background_color $icon_padding $media_image_size">
+					#if (!$heading.media_icon.data.isEmpty())
+						<i class="$media_icon.data" style="$icon_color $icon_size"></i>
+					#end
+
+					#if (!$media_image.data.isEmpty())
+						<img src="$media_image.data" />
+					#end
+				</div>
+			#end
+
+			<div class="media-body">
+				#if (!$heading.data.isEmpty())
+					<h4 class="media-heading">$heading.data</h4>
+				#end
+
+				#if (!$heading.media_content.data.isEmpty())
+					<p>$heading.media_content.data</p>
+				#end
+			</div>
+		</div>
+	#if ($mod == 0 && $num_cols != 1)
+		</div>
+	#end
+#end
+
+#if ($num_cols == 1)
+	</div>
+#end

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" name="zoe_divider_icon" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+		<dynamic-element dataType="string" indexType="keyword" name="size" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="medium">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Size]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Zoe Divider Icon]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

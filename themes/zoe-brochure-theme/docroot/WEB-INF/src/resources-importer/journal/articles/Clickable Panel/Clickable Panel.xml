@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="number_of_columns" type="select">
+		<dynamic-content><![CDATA[4]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="clickable_panel_heading" type="text">
+		<dynamic-content><![CDATA[Topic #1]]></dynamic-content>
+		<dynamic-element name="clickable_panel_icon" type="text">
+			<dynamic-content><![CDATA[icon-facetime-video]]></dynamic-content>
+			<dynamic-element name="clickable_panel_icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="content" type="textarea">
+			<dynamic-content><![CDATA[Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_url" type="text">
+			<dynamic-content><![CDATA[1]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="clickable_panel_heading" type="text">
+		<dynamic-content><![CDATA[Topic #2]]></dynamic-content>
+		<dynamic-element name="clickable_panel_icon" type="text">
+			<dynamic-content><![CDATA[icon-picture]]></dynamic-content>
+			<dynamic-element name="clickable_panel_icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="content" type="textarea">
+			<dynamic-content><![CDATA[Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_url" type="text">
+			<dynamic-content><![CDATA[1]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="clickable_panel_heading" type="text">
+		<dynamic-content><![CDATA[Topic #3]]></dynamic-content>
+		<dynamic-element name="clickable_panel_icon" type="text">
+			<dynamic-content><![CDATA[icon-bullhorn]]></dynamic-content>
+			<dynamic-element name="clickable_panel_icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="content" type="textarea">
+			<dynamic-content><![CDATA[Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_url" type="text">
+			<dynamic-content><![CDATA[1]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="clickable_panel_heading" type="text">
+		<dynamic-content><![CDATA[Topic #4]]></dynamic-content>
+		<dynamic-element name="clickable_panel_icon" type="text">
+			<dynamic-content><![CDATA[icon-cut]]></dynamic-content>
+			<dynamic-element name="clickable_panel_icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="content" type="textarea">
+			<dynamic-content><![CDATA[Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_url" type="text">
+			<dynamic-content><![CDATA[1]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="clickable_panel_heading" type="text">
+		<dynamic-content><![CDATA[Topic #5]]></dynamic-content>
+		<dynamic-element name="clickable_panel_icon" type="text">
+			<dynamic-content><![CDATA[icon-legal]]></dynamic-content>
+			<dynamic-element name="clickable_panel_icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="content" type="textarea">
+			<dynamic-content><![CDATA[Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_url" type="text">
+			<dynamic-content><![CDATA[1]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="clickable_panel_heading" type="text">
+		<dynamic-content><![CDATA[Topic #6]]></dynamic-content>
+		<dynamic-element name="clickable_panel_icon" type="text">
+			<dynamic-content><![CDATA[icon-dashboard]]></dynamic-content>
+			<dynamic-element name="clickable_panel_icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="content" type="textarea">
+			<dynamic-content><![CDATA[Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_url" type="text">
+			<dynamic-content><![CDATA[1]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="clickable_panel_heading" type="text">
+		<dynamic-content><![CDATA[Topic #7]]></dynamic-content>
+		<dynamic-element name="clickable_panel_icon" type="text">
+			<dynamic-content><![CDATA[icon-bolt]]></dynamic-content>
+			<dynamic-element name="clickable_panel_icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="content" type="textarea">
+			<dynamic-content><![CDATA[Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_url" type="text">
+			<dynamic-content><![CDATA[1]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="clickable_panel_heading" type="text">
+		<dynamic-content><![CDATA[Topic #8]]></dynamic-content>
+		<dynamic-element name="clickable_panel_icon" type="text">
+			<dynamic-content><![CDATA[icon-upload]]></dynamic-content>
+			<dynamic-element name="clickable_panel_icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="clickable_panel_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="content" type="textarea">
+			<dynamic-content><![CDATA[Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="link_url" type="text">
+			<dynamic-content><![CDATA[1]]></dynamic-content>
+		</dynamic-element>
+	</dynamic-element>
+</root>

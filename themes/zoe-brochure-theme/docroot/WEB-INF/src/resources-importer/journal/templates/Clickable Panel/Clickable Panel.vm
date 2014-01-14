@@ -1,0 +1,88 @@
+#set ($background_color = "")
+#set ($content_id = $reserved-article-id.getData())
+#set ($icon_color = "")
+#set ($icon_padding = "")
+#set ($icon_size = "")
+#set ($icon_width = "")
+#set ($integer = 0)
+#set ($num_cols = $integer.parseInt($number_of_columns.data))
+
+#if ($num_cols == 5)
+	#set ($span = "span2-4")
+#elseif ($num_cols == 4)
+	#set ($span = "span3")
+#elseif ($num_cols == 3)
+	#set ($span = "span4")
+#elseif ($num_cols == 2)
+	#set ($span = "span6")
+#else
+	#set ($span = "")
+#end
+
+#if ($num_cols == 1)
+	<div class="row-fluid" id="zoeClickablePanel${content_id}">
+#end
+
+#foreach ($cur_panel_heading in $clickable_panel_heading.getSiblings())
+	#set ($clickable_panel_icon = $cur_panel_heading.clickable_panel_icon)
+	#set ($clickable_panel_icon_background_color = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_background_color)
+	#set ($clickable_panel_icon_color = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_color)
+	#set ($clickable_panel_icon_padding = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_padding)
+	#set ($clickable_panel_icon_shape = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_shape)
+	#set ($clickable_panel_icon_size =$cur_panel_heading.clickable_panel_icon.clickable_panel_icon_size)
+	#set ($clickable_panel_image = $cur_panel_heading.clickable_panel_icon.clickable_panel_icon_image)
+	#set ($mod = ${velocityCount}%${num_cols})
+
+	#if (!$clickable_panel_icon_background_color.data.isEmpty())
+		#set ($background_color = "background: ${clickable_panel_icon_background_color.data};")
+	#end
+
+	#if (!$clickable_panel_icon_color.data.isEmpty())
+		#set ($icon_color = "color: ${clickable_panel_icon_color.data};")
+	#end
+
+	#if (!$clickable_panel_icon_padding.data.isEmpty())
+		#set ($icon_padding = "padding: ${clickable_panel_icon_padding.data};")
+	#end
+
+	#if (!$clickable_panel_icon_size.data.isEmpty())
+		#set ($icon_size = "font-size: ${clickable_panel_icon_size.data};")
+		#set ($icon_width = "width: ${clickable_panel_icon_size.data};")
+	#end
+
+	#if ($mod == 1 && $num_cols != 1)
+		<div class="row-fluid" id="zoeClickablePanel${content_id}">
+	#end
+
+	#if (!$cur_panel_heading.link_url.data.isEmpty())
+		<a class="$span zoe-clickable-panel zoe-panel" href="$cur_panel_heading.link_url.data">
+	#else
+		<div class="$span zoe-clickable-panel zoe-panel">
+	#end
+		<div class="zoe-panel-image $clickable_panel_icon_shape.data" style="$background_color $icon_padding $icon_width">
+			#if (!$clickable_panel_icon.data.isEmpty())
+				<i class="$clickable_panel_icon.data" style="$icon_color $icon_size"></i>
+			#end
+
+			#if (!$clickable_panel_image.data.isEmpty())
+				<img alt="" src="$clickable_panel_icon.data" />
+			#end
+		</div>
+
+		<h3>$cur_panel_heading.data</h3>
+
+		<p>$cur_panel_heading.content.data</p>
+	#if (!$cur_panel_heading.link_url.data.isEmpty())
+		</a>
+	#else
+		</div>
+	#end
+
+	#if ($mod == 0 && $num_cols != 1)
+		</div>
+	#end
+#end
+
+#if ($num_cols == 1)
+	</div>
+#end

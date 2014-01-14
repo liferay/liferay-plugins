@@ -1,0 +1,90 @@
+#set ($background_color = "")
+#set ($content_id = $reserved-article-id.getData())
+#set ($icon_color = "")
+#set ($icon_padding = "")
+#set ($icon_size = "")
+#set ($icon_width = "")
+#set ($integer = 0)
+#set ($num_cols = $integer.parseInt($number_of_columns.data))
+
+#if ($num_cols == 5)
+	#set ($span = "span2-4")
+#elseif ($num_cols == 4)
+	#set ($span = "span3")
+#elseif ($num_cols == 3)
+	#set ($span = "span4")
+#elseif ($num_cols == 2)
+	#set ($span = "span6")
+#else
+	#set ($span = "")
+#end
+
+#if ($num_cols == 1)
+	<div class="row-fluid zoe-panel-${content_id}">
+#end
+
+#foreach ($cur_panel_heading in $panel_heading.getSiblings())
+	#set ($mod = ${velocityCount}%${num_cols})
+	#set ($panel_button_text = $cur_panel_heading.panel_button_text)
+	#set ($panel_button_link = $panel_button_text.button_link)
+	#set ($panel_button_size = $panel_button_text.button_size)
+	#set ($panel_button_style = $panel_button_text.button_style)
+	#set ($panel_icon = $cur_panel_heading.panel_icon)
+	#set ($panel_icon_background_color = $panel_icon.icon_background_color)
+	#set ($panel_icon_color = $panel_icon.icon_color)
+	#set ($panel_icon_padding = $panel_icon.icon_padding)
+	#set ($panel_icon_shape = $panel_icon.icon_shape)
+	#set ($panel_icon_size = $panel_icon.icon_size)
+	#set ($panel_image = $panel_icon.icon_image)
+
+	#if (!$panel_icon_background_color.data.isEmpty())
+		#set ($background_color = "background: ${panel_icon_background_color.data};")
+	#end
+
+	#if (!$panel_icon_padding.data.isEmpty())
+		#set ($icon_padding = "padding: ${panel_icon_padding.data};")
+	#end
+
+	#if (!$panel_icon_color.data.isEmpty())
+		#set ($icon_color = "color: ${panel_icon_color.data};")
+	#end
+
+	#if (!$panel_icon_size.data.isEmpty())
+		#set ($icon_size = "font-size: ${panel_icon_size.data};")
+		#set ($icon_width = "width: ${panel_icon_size.data};")
+	#end
+
+	#if ($mod == 1 && $num_cols != 1)
+		<div class="row-fluid zoe-panel-${content_id}">
+	#end
+
+	<div class="$span zoe-panel">
+		#if (!$panel_icon.data.isEmpty() || !$panel_image.data.isEmpty())
+			<div class="zoe-panel-image $panel_icon_shape.data" style="$background_color $icon_padding $icon_width">
+				#if (!$panel_icon.data.isEmpty())
+					<i class="$panel_icon.data" style="$icon_color $icon_size"></i>
+				#end
+
+				#if (!$panel_image.data.isEmpty())
+					<img alt="" src="$panel_image.data" />
+				#end
+			</div>
+		#end
+
+		<h3>$cur_panel_heading.data</h3>
+
+		<p>$cur_panel_heading.panel_content.data</p>
+
+		#if (!$panel_button_text.data.isEmpty())
+			<a class="$panel_button_style.data $panel_button_size.data" href="$panel_button_link.data">$panel_button_text.data</a>
+		#end
+	</div>
+
+	#if ($mod == 0 && $num_cols != 1)
+		</div>
+	#end
+#end
+
+#if ($num_cols == 1)
+	</div>
+#end

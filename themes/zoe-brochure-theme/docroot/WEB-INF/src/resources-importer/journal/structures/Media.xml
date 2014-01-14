@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" multiple="false" name="number_of_columns" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="large">
+		<dynamic-element name="option_number_of_columns_1" type="option" value="1">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[1]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option_number_of_columns_2" type="option" value="2">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[2]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option_number_of_columns_3" type="option" value="3">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[3]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="option_number_of_columns_4" type="option" value="4">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[4]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Number Of Columns]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[[""]]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" name="media_heading" readOnly="false" repeatable="true" required="false" showLabel="true" type="text" width="large">
+		<dynamic-element dataType="string" indexType="keyword" name="media_content" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="large">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Media Content]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" name="media_icon" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+			<dynamic-element dataType="document-library" fieldNamespace="ddm" indexType="keyword" name="media_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-documentlibrary" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Media Image]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="media_icon_alignment" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="large">
+				<dynamic-element name="media_icon_alignment_left" type="option" value="align-left">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Left]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="media_icon_alignment_right" type="option" value="align-right">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Right]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Alignment]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[["align-left"]]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="media_icon_shape" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="large">
+				<dynamic-element name="option_media_icon_background_square" type="option" value=" ">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Square]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_media_icon_background_circle" type="option" value="img-circle">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Circle]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_media_icon_background_polaroid" type="option" value="img-polaroid">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Polaroid]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_media_icon_background_rounded" type="option" value="img-rounded">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Rounded]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Shape]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[[""]]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" name="media_icon_background_color" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Background Color (e.g. white, #FFF, rgb(255, 255, 255))]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" name="media_icon_color" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Color (e.g. white, #FFF, rgb(255, 255, 255))]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" name="media_icon_padding" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Padding (e.g. 20px or 1em)]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" name="media_icon_size" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Size (e.g. 50px or 1em)]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Media Icon]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Media Heading]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

@@ -1,0 +1,322 @@
+<?xml version="1.0"?>
+
+<root>
+	<dynamic-element name="title">
+		<dynamic-content><![CDATA[Panel About Us]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="number_of_columns" type="select">
+		<dynamic-content><![CDATA[4]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="panel_heading" type="text">
+		<dynamic-content><![CDATA[Nellie Henry]]></dynamic-content>
+		<dynamic-element name="panel_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[[$FILE=placeholder_user.png$]]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_shape" type="select">
+				<dynamic-content><![CDATA[img-circle]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="panel_content" type="textarea">
+			<dynamic-content><![CDATA[Chief Software Architect & Founder]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="panel_button_text" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="button_link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_size" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_style" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="panel_heading" type="text">
+		<dynamic-content><![CDATA[Stacey Chambers]]></dynamic-content>
+		<dynamic-element name="panel_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[[$FILE=placeholder_user.png$]]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_shape" type="select">
+				<dynamic-content><![CDATA[img-circle]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="panel_content" type="textarea">
+			<dynamic-content><![CDATA[Chief Executive Officer & Founder]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="panel_button_text" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="button_link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_size" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_style" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="panel_heading" type="text">
+		<dynamic-content><![CDATA[Gregory Murray]]></dynamic-content>
+		<dynamic-element name="panel_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[[$FILE=placeholder_user.png$]]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_shape" type="select">
+				<dynamic-content><![CDATA[img-circle]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="panel_content" type="textarea">
+			<dynamic-content><![CDATA[Chief Operating Office & Founder]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="panel_button_text" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="button_link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_size" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_style" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="panel_heading" type="text">
+		<dynamic-content><![CDATA[Neal Bowers]]></dynamic-content>
+		<dynamic-element name="panel_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[[$FILE=placeholder_user.png$]]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_shape" type="select">
+				<dynamic-content><![CDATA[img-circle]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="panel_content" type="textarea">
+			<dynamic-content><![CDATA[Chief Technology Officer & Founder]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="panel_button_text" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="button_link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_size" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_style" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="panel_heading" type="text">
+		<dynamic-content><![CDATA[Nettie Sherman]]></dynamic-content>
+		<dynamic-element name="panel_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[[$FILE=placeholder_user.png$]]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_shape" type="select">
+				<dynamic-content><![CDATA[img-circle]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="panel_content" type="textarea">
+			<dynamic-content><![CDATA[Chief Marketing Officer]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="panel_button_text" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="button_link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_size" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_style" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="panel_heading" type="text">
+		<dynamic-content><![CDATA[Larry Newton]]></dynamic-content>
+		<dynamic-element name="panel_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[[$FILE=placeholder_user.png$]]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_shape" type="select">
+				<dynamic-content><![CDATA[img-circle]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="panel_content" type="textarea">
+			<dynamic-content><![CDATA[Chief Administrative Officer & Founder]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="panel_button_text" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="button_link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_size" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_style" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="panel_heading" type="text">
+		<dynamic-content><![CDATA[Devin Washington]]></dynamic-content>
+		<dynamic-element name="panel_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[[$FILE=placeholder_user.png$]]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_shape" type="select">
+				<dynamic-content><![CDATA[img-circle]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="panel_content" type="textarea">
+			<dynamic-content><![CDATA[Chief Financial Officer]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="panel_button_text" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="button_link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_size" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_style" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="panel_heading" type="text">
+		<dynamic-content><![CDATA[Ebony Estrada]]></dynamic-content>
+		<dynamic-element name="panel_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[[$FILE=placeholder_user.png$]]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_shape" type="select">
+				<dynamic-content><![CDATA[img-circle]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="panel_content" type="textarea">
+			<dynamic-content><![CDATA[Product Management]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="panel_button_text" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="button_link" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_size" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_style" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+</root>

@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="title" type="text">
+		<dynamic-content><![CDATA[Media 4]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="number_of_columns" type="select">
+		<dynamic-content><![CDATA[1]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[Media Heading #4]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[Illud necessitatibus concludaturque ius id, regione volutpat mea te. Eum ad everti facilisis philosophia. An dicant evertitur sed, odio vidit te vim, ferri dictas vivendum per at. Mei ut aliquid dissentias, delectus placerat te vel. Eam cu enim probatus. Eos et atqui albucius.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[icon-asterisk]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[Media Heading #5]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[Illud necessitatibus concludaturque ius id, regione volutpat mea te. Eum ad everti facilisis philosophia. An dicant evertitur sed, odio vidit te vim, ferri dictas vivendum per at. Mei ut aliquid dissentias, delectus placerat te vel. Eam cu enim probatus. Eos et atqui albucius.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[icon-cloud]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[Media Heading #6]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[Illud necessitatibus concludaturque ius id, regione volutpat mea te. Eum ad everti facilisis philosophia. An dicant evertitur sed, odio vidit te vim, ferri dictas vivendum per at. Mei ut aliquid dissentias, delectus placerat te vel. Eam cu enim probatus. Eos et atqui albucius.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[icon-pushpin]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[Media Heading #7]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[Illud necessitatibus concludaturque ius id, regione volutpat mea te. Eum ad everti facilisis philosophia. An dicant evertitur sed, odio vidit te vim, ferri dictas vivendum per at. Mei ut aliquid dissentias, delectus placerat te vel. Eam cu enim probatus. Eos et atqui albucius.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[icon-fire]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[Media Heading #8]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[Illud necessitatibus concludaturque ius id, regione volutpat mea te. Eum ad everti facilisis philosophia. An dicant evertitur sed, odio vidit te vim, ferri dictas vivendum per at. Mei ut aliquid dissentias, delectus placerat te vel. Eam cu enim probatus. Eos et atqui albucius.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[icon-heart]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[Media Heading #9]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[Illud necessitatibus concludaturque ius id, regione volutpat mea te. Eum ad everti facilisis philosophia. An dicant evertitur sed, odio vidit te vim, ferri dictas vivendum per at. Mei ut aliquid dissentias, delectus placerat te vel. Eam cu enim probatus. Eos et atqui albucius.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[icon-coffee]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+</root>

@@ -2,19 +2,19 @@
 
 <root available-locales="en_US" default-locale="en_US">
 	<dynamic-element name="title" type="text">
-		<dynamic-content><![CDATA[Banner 1]]></dynamic-content>
+		<dynamic-content><![CDATA[Pricing Heading Banner]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element name="banner_message" type="textarea">
-		<dynamic-content><![CDATA[Use this element to promote a message or advertisement with a call to action.]]></dynamic-content>
+		<dynamic-content><![CDATA[Pricing]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element name="banner_secondary_message" type="textarea">
-		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-content><![CDATA[Donec id elit non mi porta gravida at eget metus.]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element name="banner_message_alignment" type="select">
-		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-content><![CDATA[left]]></dynamic-content>
 	</dynamic-element>
 	<dynamic-element name="banner_button_text" type="text">
-		<dynamic-content><![CDATA[Call to Action]]></dynamic-content>
+		<dynamic-content><![CDATA[]]></dynamic-content>
 		<dynamic-element name="banner_button_link" type="text">
 			<dynamic-content><![CDATA[1]]></dynamic-content>
 		</dynamic-element>

@@ -1,6 +1,18 @@
-<div class="banner">
-	<div class="banner-message">
+#set ($content_id = $reserved-article-id.data)
+
+#if (!$banner_message_alignment.data.isEmpty())
+	#set($text_align = $banner_message_alignment.data)
+#else
+	#set($text_align = "")
+#end
+
+<div class="banner" id="banner${content_id}">
+	<div class="banner-message" style="text-align: ${text_align};">
 		<h2>$banner_message.data</h2>
+
+		#if (!$banner_secondary_message.data.isEmpty())
+			<p class="banner-message-secondary">$banner_secondary_message.data</p>
+		#end
 	</div>
 
 	#if (!$banner_button_text.data.isEmpty())

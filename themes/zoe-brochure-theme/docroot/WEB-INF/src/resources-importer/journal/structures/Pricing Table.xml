@@ -1,0 +1,253 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" multiple="false" name="number_of_columns" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="">
+		<dynamic-element name="zoe_pricing_table_number_of_columns_1" type="option" value="1">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[1]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="zoe_pricing_table_number_of_columns_2" type="option" value="2">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[2]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="zoe_pricing_table_number_of_columns_3" type="option" value="3">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[3]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="zoe_pricing_table_number_of_columns_4" type="option" value="4">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[4]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="zoe_pricing_table_number_of_columns_5" type="option" value="5">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[5]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Number of Columns]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[[""]]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" name="pricing_table_heading" readOnly="false" repeatable="true" required="false" showLabel="true" type="text" width="large">
+		<dynamic-element dataType="string" indexType="keyword" name="currency_symbol" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Currency Symbol]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="integer" fieldNamespace="ddm" indexType="keyword" name="price" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-integer" width="small">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Price]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" name="units_of_time" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Units of Time]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" name="feature" readOnly="false" repeatable="true" required="false" showLabel="true" type="text" width="large">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Feature]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" name="button_text" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+			<dynamic-element dataType="string" indexType="keyword" name="link" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Link]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="style" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="">
+				<dynamic-element name="zoe_pricing_table_button_style_standard" type="option" value="btn">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Standard]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_style_primary" type="option" value="btn btn-primary">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Primary]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_style_info" type="option" value="btn btn-info">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Info]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_style_success" type="option" value="btn btn-success">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Success]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_style_warning" type="option" value="btn btn-warning">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Warning]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_style_danger" type="option" value="btn btn-danger">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Danger]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_style_inverse" type="option" value="btn btn-inverse">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Inverse]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_style_link" type="option" value="btn btn-link">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Link]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Style]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[[""]]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="size" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="">
+				<dynamic-element name="zoe_pricing_table_button_size_large" type="option" value="btn-large">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Large]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_size_default" type="option" value="btn-default">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Regular]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_size_small" type="option" value="btn-small">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Small]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="zoe_pricing_table_button_size_mini" type="option" value="btn-mini">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Mini]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Size]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[[""]]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Button Text]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Pricing Table Heading]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

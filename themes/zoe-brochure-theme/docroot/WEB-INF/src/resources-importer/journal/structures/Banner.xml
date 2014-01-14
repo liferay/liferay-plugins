@@ -14,6 +14,53 @@
 			</entry>
 		</meta-data>
 	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" name="banner_secondary_message" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="large">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Banner Secondary Message]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" multiple="false" name="banner_message_alignment" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="">
+		<dynamic-element name="banner_message_alignment_center" type="option" value="center">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Center]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="banner_message_alignment_left" type="option" value="left">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Left]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="banner_message_alignment_right" type="option" value="right">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Right]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Banner Message Alignment]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[[""]]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
 	<dynamic-element dataType="string" indexType="keyword" name="banner_button_text" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
 		<dynamic-element dataType="string" indexType="keyword" name="banner_button_link" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
 			<meta-data locale="en_US">

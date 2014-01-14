@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="title" type="text">
+		<dynamic-content><![CDATA[Media Contact Us Asia Pacific]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="number_of_columns" type="select">
+		<dynamic-content><![CDATA[3]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>China<br>Liferay Dalian Software Co., Ltd.</b><br>537 Huangpu Road<br>Taide Building, 1005<br>High-Tech Zone, Dalian<br>Liaoning, 116023<br>P.R. China<br>Tel: +86 (0411) 8812-0855<br>Fax: +86 (0411) 8812-0856<br>sales-cn@liferay.com<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>Japan<br>Liferay Japan K. K.</b><br>Level 15, Cerulean Tower<br>26-1 Sakuragaoka-cho Shibuya-ku<br>Tokyo 150-8512 JAPAN<br>Tel: +81 3-5456-5796<br>Fax: +81 3-5456-5511<br>sales-jp@liferay.com<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>India<br>Liferay India Pvt. Ltd.</b><br>#19, 1st Floor, 1st Cross<br>P&T Colony, RT Nagar,<br>Bangalore -560032<br>India<br>Tel : +91 080 23544426 / 41532222 <br>Fax : +91 080 41743896<br>sales-in@liferay.com<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+	<dynamic-element name="media_heading" type="text">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+		<dynamic-element name="media_content" type="textarea">
+			<dynamic-content><![CDATA[<b>United Kingdom<br>Liferay UK<br></b>45 Moorfields<br>London<br>EC2Y 9AE<br>United Kingdom<br>Tel: +44 (0)20 7448 9770<br>Fax: +44 (0)20 7997 7301<br>sales-uk@liferay.com<br>]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="media_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="media_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_alignment" type="select">
+				<dynamic-content><![CDATA[align-left]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="media_icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+</root>

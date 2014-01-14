@@ -3,41 +3,54 @@
 
 <style type="text/css">
 	#${content_class} {
-		height: ${height.getData()}px;
+		#if (!$carousel_maximum_height.data.isEmpty())
+			max-height: $carousel_maximum_height.data${carousel_maximum_height.units.data};
+		#end
+		overflow: hidden;
 		position: relative;
-		width: ${width.getData()}px;
+	}
+
+	.ie6 #${content_class}, .ie7 #${content_class}, .ie8 #${content_class} {
+		#if (!$carousel_maximum_height.data.isEmpty())
+			height: $carousel_maximum_height.data${carousel_maximum_height.units.data};
+		#end
 	}
 
 	#${content_class} .carousel-item {
-		height: ${height.getData()}px;
-		overflow: hidden;
-		position: absolute;
+		#if (!$carousel_maximum_height.data.isEmpty())
+			max-height: $carousel_maximum_height.data${carousel_maximum_height.units.data};
+		#end
 		top: 0;
-		width: ${width.getData()}px;
 	}
 
-	#if ($controls.data)
+	#if (!$controls.data)
 		#${content_class} menu {
 			display: none;
 		}
 	#end
 </style>
 
-<div id="$content_class">
-	#foreach ($item in $image.getSiblings())
-		<div class="carousel-item">
-			#if ($item.getData())
-				#if ($item.link.url-location.data != "")
-					<a href="$item.link.url-location.data">
-				#end
+<div class="zoe-carousel" id="$content_class">
+	#if (!$carousel_text.getSiblings().isEmpty())
+		#foreach ($cur_carousel_text in $carousel_text.getSiblings())
+			#set($caption_alignment = $cur_carousel_text.carousel_caption_alignment.data)
 
-				<img alt="$item.link.data" src="$item.getData()" title="$item.link.data" />
+			<div class="carousel-item item${velocityCount}">
+				<div class="carousel-panel-${caption_alignment}">
+					#if (!$cur_carousel_text.data.isEmpty())
+						<h2>$cur_carousel_text.data</h2>
+					#end
 
-				#if ($item.link.url-location.data != "")
-					</a>
-				#end
-			#end
-		</div>
+					#if (!$cur_carousel_text.carousel_button_text.data.isEmpty())
+						<a class="$cur_carousel_text.carousel_button_text.carousel_button_size.data $cur_carousel_text.carousel_button_text.carousel_button_style.data" href="$cur_carousel_text.carousel_button_text.carousel_button_link.data">$cur_carousel_text.carousel_button_text.data</a>
+					#end
+				</div>
+
+				<div class="carousel-image">
+					<img src="$cur_carousel_text.image.data" />
+				</div>
+			</div>
+		#end
 	#end
 </div>
 
@@ -47,11 +60,9 @@
 		function(A) {
 			new A.Carousel(
 				{
-					activeIndex: 'rand',
 					contentBox: '#${content_class}',
-					height: $height.getData(),
-					intervalTime: $duration.getData(),
-					width: $width.getData()
+					intervalTime: $duration.data,
+					itemSelector: '.carousel-item'
 				}
 			).render();
 		}

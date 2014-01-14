@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<root>
+	<dynamic-element name="title">
+		<dynamic-content><![CDATA[Pricing Page Panel]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="number_of_columns" type="select">
+		<dynamic-content><![CDATA[1]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="panel_heading" type="text">
+		<dynamic-content><![CDATA[Which plan is right for you?]]></dynamic-content>
+		<dynamic-element name="panel_icon" type="text">
+			<dynamic-content><![CDATA[]]></dynamic-content>
+			<dynamic-element name="icon_image" type="ddm-documentlibrary">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_shape" type="select">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_background_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_padding" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_color" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="icon_size" type="text">
+				<dynamic-content><![CDATA[]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+		<dynamic-element name="panel_content" type="textarea">
+			<dynamic-content><![CDATA[Cras sit amet nibh libero, in gravida nulla. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec ullamcorper nulla non metus auctor fringilla. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Donec ullamcorper nulla non metus auctor fringilla.]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="panel_button_text" type="text">
+			<dynamic-content><![CDATA[Talk to a Specialist]]></dynamic-content>
+			<dynamic-element name="button_link" type="text">
+				<dynamic-content><![CDATA[1]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_size" type="select">
+				<dynamic-content><![CDATA[btn-large]]></dynamic-content>
+			</dynamic-element>
+			<dynamic-element name="button_style" type="select">
+				<dynamic-content><![CDATA[btn]]></dynamic-content>
+			</dynamic-element>
+		</dynamic-element>
+	</dynamic-element>
+</root>

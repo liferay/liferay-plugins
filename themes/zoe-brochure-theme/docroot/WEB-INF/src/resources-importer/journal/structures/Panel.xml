@@ -1,0 +1,333 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" multiple="false" name="number_of_columns" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="large">
+		<dynamic-element name="zoe_panel_number_of_columns_1" type="option" value="1">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[1]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="zoe_panel_number_of_columns_2" type="option" value="2">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[2]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="zoe_panel_number_of_columns_3" type="option" value="3">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[3]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="zoe_panel_number_of_columns_4" type="option" value="4">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[4]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="zoe_panel_number_of_columns_5" type="option" value="5">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[5]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Number of Columns]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[[""]]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" name="panel_heading" readOnly="false" repeatable="true" required="false" showLabel="true" type="text" width="large">
+		<dynamic-element dataType="string" indexType="keyword" name="panel_icon" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+			<dynamic-element dataType="document-library" fieldNamespace="ddm" indexType="keyword" name="icon_image" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-documentlibrary" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Or Image]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="icon_shape" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="large">
+				<dynamic-element name="panel_icon_shape_none" type="option" value=" ">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Square]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_icon_shape_circle" type="option" value="img-circle">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Circle]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_icon_shape_polaroid" type="option" value="img-polaroid">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Polaroid]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_icon_shape_rounded" type="option" value="img-rounded">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Rounded]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Shape]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[[""]]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" name="icon_background_color" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Background Color (e.g. white, #FFF, rgb(255, 255,255))]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" name="icon_padding" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Padding (e.g. 12px 24px 12px 24px, 12px, or 1em)]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" name="icon_color" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Color (e.g. white, #FFF, rgb(255, 255,255))]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" name="icon_size" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Icon Size (e.g. 12px, 1em, 100%)]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Panel Icon]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[Enter class name or select an image below.]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" name="panel_content" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="large">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Panel Content]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element dataType="string" indexType="keyword" name="panel_button_text" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+			<dynamic-element dataType="string" indexType="keyword" name="button_link" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="large">
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Button Link]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="button_size" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="large">
+				<dynamic-element name="option_panel_button_size_large" type="option" value="btn-large">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Large]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_size_regular" type="option" value="btn-default">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Regular]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_size_small" type="option" value="btn-small">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Small]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_size_mini" type="option" value="btn-mini">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Mini]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Button Size]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[[""]]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<dynamic-element dataType="string" indexType="keyword" multiple="false" name="button_style" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="large">
+				<dynamic-element name="option_panel_button_style_standard" type="option" value="btn">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Standard]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_style_primary" type="option" value="btn btn-primary">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Primary]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_style_info" type="option" value="btn btn-info">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Info]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_style_success" type="option" value="btn btn-success">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Success]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_style_warning" type="option" value="btn btn-warning">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Warning]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_style_danger" type="option" value="btn btn-danger">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Danger]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_style_inverse" type="option" value="btn btn-inverse">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Inverse]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<dynamic-element name="option_panel_button_style_link" type="option" value="btn btn-link">
+					<meta-data locale="en_US">
+						<entry name="label">
+							<![CDATA[Link]]>
+						</entry>
+					</meta-data>
+				</dynamic-element>
+				<meta-data locale="en_US">
+					<entry name="label">
+						<![CDATA[Button Style]]>
+					</entry>
+					<entry name="predefinedValue">
+						<![CDATA[[""]]]>
+					</entry>
+					<entry name="tip">
+						<![CDATA[]]>
+					</entry>
+				</meta-data>
+			</dynamic-element>
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Panel Button Text]]>
+				</entry>
+				<entry name="predefinedValue">
+					<![CDATA[]]>
+				</entry>
+				<entry name="tip">
+					<![CDATA[]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Panel Heading]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>
