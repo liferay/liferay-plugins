@@ -13,13 +13,18 @@
 		margin: 0 20px 0 5px;
 	}
 
-	.navbar, .lfr-search-container {
+	.lfr-search-container {
 		margin: 0;
 	}
 
-	.navbar-inner {
+	.controls {
+		background: #EEE9E9;
 		border-bottom-width: 0;
-		padding: 0 10px;
+		padding: 5px 10px;
+
+		.check-all {
+			margin: 0 5px 0 0;
+		}
 	}
 
 	img.avatar {
@@ -33,10 +38,6 @@
 	.message-container .portlet-msg-error {
 		display: block;
 		margin-bottom: 10px;
-	}
-
-	.controls .check-all {
-		margin: 15px 10px 0 0;
 	}
 
 	.message-attachments {
@@ -145,6 +146,7 @@
 	.thread {
 		.taglib-header {
 			border-top: 1px solid #C8C9CA;
+			margin-top: 0;
 		}
 
 		.body {
@@ -202,6 +204,30 @@
 
 	.line-through {
 		text-decoration: line-through;
+	}
+}
+
+/* ---------- Responsive ---------- */
+
+html.aui {
+	@media (max-width: 979px) {
+		.private-messaging-portlet {
+			.btn-group, .button-holder {
+				width: auto;
+			}
+		}
+	}
+
+	@media (max-width: 767px) {
+		.private-messaging-portlet {
+			button, button:hover {
+				width: 100%;
+
+				&.close {
+					width: auto;
+				}
+			}
+		}
 	}
 }
 
