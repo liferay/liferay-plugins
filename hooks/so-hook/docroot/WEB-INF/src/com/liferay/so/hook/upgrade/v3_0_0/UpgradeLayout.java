@@ -32,6 +32,7 @@ import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.persistence.LayoutActionableDynamicQuery;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.util.LayoutSetPrototypeUtil;
 import com.liferay.so.util.PortletKeys;
@@ -44,10 +45,14 @@ public class UpgradeLayout extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		updateSOAnnouncements();
+		for (long companyId : PortalUtil.getCompanyIds()) {
+			updateSOAnnouncements(companyId);
+		}
 	}
 
-	protected void updateSOAnnouncements() throws Exception {
+	protected void updateSOAnnouncements(final long companyId)
+		throws Exception {
+
 		ActionableDynamicQuery actionableDynamicQuery =
 			new LayoutActionableDynamicQuery() {
 
@@ -105,18 +110,10 @@ public class UpgradeLayout extends UpgradeProcess {
 						return;
 					}
 
-					LayoutSetPrototype layoutSetPrototype =
-						LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
-							layout.getCompanyId(),
-							SocialOfficeConstants.
-								LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
+					if (layout.getGroupId() ==
+							_userPublicLayoutSetPrototypeGroupId) {
 
-					if (layoutSetPrototype != null) {
-						long groupId = layoutSetPrototype.getGroupId();
-
-						if (groupId == layout.getGroupId()) {
-							return;
-						}
+						return;
 					}
 
 					String columnValue = typeSettingsProperties.getProperty(
@@ -144,7 +141,30 @@ public class UpgradeLayout extends UpgradeProcess {
 
 				LayoutLocalServiceUtil.updateLayout(layout);
 			}
+
+			protected long getLayoutSetPrototypeGroupId(
+					long companyId, String layoutSetPrototypeKey)
+				throws Exception {
+
+				LayoutSetPrototype layoutSetPrototype =
+					LayoutSetPrototypeUtil.fetchLayoutSetPrototype(
+						companyId, layoutSetPrototypeKey);
+
+				if (layoutSetPrototype != null) {
+					return layoutSetPrototype.getGroupId();
+				}
+
+				return 0;
+			}
+
+			private long _userPublicLayoutSetPrototypeGroupId =
+				getLayoutSetPrototypeGroupId(
+					companyId,
+					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
+
 		};
+
+		actionableDynamicQuery.setCompanyId(companyId);
 
 		actionableDynamicQuery.performActions();
 	}
