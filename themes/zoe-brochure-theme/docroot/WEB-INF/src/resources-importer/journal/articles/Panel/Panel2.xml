@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<root>
+	<dynamic-element name="title">
+		<dynamic-content><![CDATA[Panel1]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Panel_Icon">
+		<dynamic-content><![CDATA[icon-signal]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Panel_Image">
+		<dynamic-content><![CDATA[]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Panel_Heading">
+		<dynamic-content><![CDATA[Marketing Message #2]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Panel_Content">
+		<dynamic-content><![CDATA[Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Panel_Button_Text">
+		<dynamic-content><![CDATA[Download]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Panel_Button_Link">
+		<dynamic-content><![CDATA[2]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Panel_Button_Style">
+		<dynamic-content><![CDATA[btn]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="Panel_Button_Size">
+		<dynamic-content><![CDATA[btn-large]]></dynamic-content>
+	</dynamic-element>
+</root>

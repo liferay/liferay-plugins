@@ -515,6 +515,33 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
+	/* ------- Panels -------- */
+
+	.panel {
+		background-color: #FAFAFA;
+
+		@include box-shadow(0 1px 1px #E7E7E7);
+
+		display: table-cell;
+		padding: 60px 40px;
+		text-align: center;
+		vertical-align: middle;
+
+		@include word-break(break-word);
+
+		.panel-image {
+			margin-bottom: 24px;
+
+			i {
+				font-size: 90px;
+			}
+		}
+
+		button {
+			margin-top: 24px;
+		}
+	}
+
 	/* -------- Internet explorer -------- */
 
 	.ie6 {
