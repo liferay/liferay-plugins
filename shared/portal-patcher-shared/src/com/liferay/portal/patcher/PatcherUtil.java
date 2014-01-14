@@ -66,6 +66,6 @@ public class PatcherUtil {
 		_patcher = patcher;
 	}
 
-	private static Patcher _patcher;
+	private static Patcher _patcher = new PatcherImpl();
 
 }
