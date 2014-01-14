@@ -28,4 +28,4 @@
 	<portlet:param name="testRenderParamName" value="" />
 </portlet:resourceURL>
 
-<%@ include file="/plt-26-6/portlet_url.jspf" %>
+<%@ include file="/portlet_url.jspf" %>
