@@ -126,6 +126,12 @@ body.so-classic {
 		margin-left: -1px;
 	}
 
+	&.dialog-iframe-popup, &.portal-popup {
+		#main-content {
+			border-width: 0;
+		}
+	}
+
 	.portlet-topper {
 		color: #929292;
 
