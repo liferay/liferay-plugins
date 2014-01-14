@@ -38,15 +38,14 @@ import java.util.Map;
  */
 public class Watcher {
 
-	public Watcher(Path dir, boolean recursive) throws IOException {
+	public Watcher(Path path, boolean recursive) throws IOException {
 		_recursive = recursive;
 
-		if (recursive) {
-			_registerRecursive(dir);
-		}
-		else {
-			_register(dir);
-		}
+		register(path, recursive);
+
+		FileSystems fileSystems = FileSystems.getDefault();
+
+		_watchService = fileSystems.newWatchService()
 	}
 
 	public void addWatchEventListener(WatchEventListener watchEventListener) {
@@ -80,7 +79,7 @@ public class Watcher {
 
 	public void processEvents() {
 		while (true) {
-			WatchKey watchKey;
+			WatchKey watchKey = null;
 
 			try {
 				watchKey = _watchService.take();
@@ -89,22 +88,18 @@ public class Watcher {
 				return;
 			}
 
-			Path dir = _watchKeys.get(watchKey);
+			Path path = _paths.get(watchKey);
 
-			if (dir == null) {
+			if (path == null) {
 				continue;
 			}
 
 			List<WatchEvent<?>> watchEvents = watchKey.pollEvents();
 
-			for (int i = 0; i < watchEvents.size(); i++) {
-				WatchEvent<Path> watchEvent = (WatchEvent<Path>)watchEvents.get(
-					i);
+			for (WatchEvent<Path> watchEvent : watchEvents) {
+				Path watchEventContextPath = path.resolve(watchEvent.context());
 
-				Path name = watchEvent.context();
-				Path child = dir.resolve(name);
-
-				fireWatchEventListeners(watchEvent, child);
+				fireWatchEventListeners(watchEvent, watchEventContextPath);
 
 				WatchEvent.Kind kind = watchEvent.kind();
 
@@ -112,11 +107,11 @@ public class Watcher {
 					(kind == StandardWatchEventKinds.ENTRY_CREATE)) {
 
 					try {
-						boolean isDirectory = Files.isDirectory(
-							child, LinkOption.NOFOLLOW_LINKS);
+						if (Files.isDirectory(
+								watchEventContextPath,
+								LinkOption.NOFOLLOW_LINKS)) {
 
-						if (isDirectory) {
-							_registerRecursive(child);
+							register(watchEventContextPath, true);
 						}
 					}
 					catch (IOException ioe) {
@@ -124,46 +119,49 @@ public class Watcher {
 				}
 			}
 
-			boolean valid = watchKey.reset();
+			if (!watchKey.reset()) {
+				_paths.remove(watchKey);
 
-			if (!valid) {
-				_watchKeys.remove(watchKey);
-
-				if (_watchKeys.isEmpty()) {
+				if (_paths.isEmpty()) {
 					break;
 				}
 			}
 		}
 	}
 
-	private void _register(Path dir) throws IOException {
-		WatchKey key = dir.register(
-			_watchService, StandardWatchEventKinds.ENTRY_CREATE,
-			StandardWatchEventKinds.ENTRY_DELETE,
-			StandardWatchEventKinds.ENTRY_MODIFY);
+	protected void register(Path path, boolean recursive) throws IOException {
+		if (recursive) {
+			Files.walkFileTree(
+				path,
+				new SimpleFileVisitor<Path>() {
 
-		_watchKeys.put(key, dir);
+					@Override
+					public FileVisitResult preVisitDirectory(
+							Path path, BasicFileAttributes basicFileAttributes)
+						throws IOException {
+
+						register(path, false);
+
+						return FileVisitResult.CONTINUE;
+					}
+
+				}
+			);
+		}
+		else {
+			WatchKey watchKey = path.register(
+				_watchService, StandardWatchEventKinds.ENTRY_CREATE,
+				StandardWatchEventKinds.ENTRY_DELETE,
+				StandardWatchEventKinds.ENTRY_MODIFY);
+
+			_paths.put(watchKey, path);
+		}
 	}
 
-	private void _registerRecursive(Path dir) throws IOException {
-		Files.walkFileTree(dir, new SimpleFileVisitor<Path>() {
-			@Override
-			public FileVisitResult preVisitDirectory(
-					Path dir, BasicFileAttributes basicFileAttributes)
-				throws IOException {
-
-				_register(dir);
-
-				return FileVisitResult.CONTINUE;
-			}
-		});
-	}
-
+	private Map<WatchKey, Path> _paths = new HashMap<WatchKey, Path>();
 	private boolean _recursive;
 	private List<WatchEventListener> _watchEventListeners =
 		new ArrayList<WatchEventListener>();
-	private Map<WatchKey, Path> _watchKeys = new HashMap<WatchKey, Path>();
-	private WatchService _watchService =
-		FileSystems.getDefault().newWatchService();
+	private WatchService _watchService;
 
 }
