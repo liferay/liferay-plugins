@@ -17,17 +17,19 @@
 <p>
 	Copy Current Render Parameters=<%= (portletURL1.contains("mvcPath") && portletURL1.contains("testRenderParamName")) ? "PASSED" : "FAILED" %>
 </p>
+
 <p>
 	Remove Regular Parameter=<%= (portletURL2.contains("mvcPath") && portletURL2.contains("testRenderParamName") && !portletURL2.contains("name1") && portletURL2.contains("name2")) ? "PASSED" : "FAILED" %>
 </p>
+
 <p>
 
 	<%
-		boolean checkTestRenderParamName = !portletURL3.contains("testRenderParamName");
+	boolean checkTestRenderParamName = !portletURL3.contains("testRenderParamName");
 
-		if (portletURL3.contains("p_p_lifecycle=2")) {
-			checkTestRenderParamName = !checkTestRenderParamName;
-		}
+	if (portletURL3.contains("p_p_lifecycle=2")) {
+		checkTestRenderParamName = !checkTestRenderParamName;
+	}
 	%>
 
 	Remove Copied Current Render Parameter=<%= (portletURL3.contains("mvcPath") && checkTestRenderParamName) ? "PASSED" : "FAILED" %>
