@@ -1815,11 +1815,14 @@ div#navigation {
 
 	.answer {
 		background-color: #AAD049;
-		margin-right: 91px;
+
+		@include border-radius(4px 0 0 4px);
+
+		margin-right: 82px;
 		padding: 4px;
 		position: absolute;
 		right: 100%;
-		text-align: right;
+		text-align: center;
 		top: 0;
 		width: 79px;
 	}
@@ -1828,6 +1831,7 @@ div#navigation {
 		border-color: $defaultBorderColor;
 		border-width: 0 0 1px 1px;
 		margin: 0;
+		overflow: inherit;
 		padding: 8px 5px;
 
 		&.reply {
