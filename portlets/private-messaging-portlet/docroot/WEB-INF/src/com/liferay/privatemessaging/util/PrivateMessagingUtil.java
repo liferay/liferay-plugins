@@ -98,6 +98,7 @@ public class PrivateMessagingUtil {
 				user.getCompanyId(), RoleConstants.SOCIAL_OFFICE_USER);
 
 			if (role != null) {
+				params.put("inherit", Boolean.TRUE);
 				params.put("usersRoles", new Long(role.getRoleId()));
 			}
 		}
