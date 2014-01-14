@@ -311,7 +311,7 @@ html.aui {
 	}
 }
 
-@media (max-width:860px) {
+@media (max-width: 860px) {
 	.so-portlet-user-bar {
 		a {
 			padding: 0.25em 0.7em;
@@ -381,7 +381,7 @@ html.aui {
 /* ---------- Responsive ---------- */
 
 html.aui {
-	@media (max-width:979px) {
+	@media (max-width: 979px) {
 		.so-portlet-user-bar {
 			padding-right: 0;
 
