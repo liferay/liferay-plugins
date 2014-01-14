@@ -110,9 +110,7 @@ public class UpgradeLayout extends UpgradeProcess {
 						return;
 					}
 
-					if (layout.getGroupId() ==
-							_userPublicLayoutSetPrototypeGroupId) {
-
+					if (layout.getGroupId() == _layoutSetPrototypeGroupId) {
 						return;
 					}
 
@@ -157,7 +155,7 @@ public class UpgradeLayout extends UpgradeProcess {
 				return 0;
 			}
 
-			private long _userPublicLayoutSetPrototypeGroupId =
+			private long _layoutSetPrototypeGroupId =
 				getLayoutSetPrototypeGroupId(
 					companyId,
 					SocialOfficeConstants.LAYOUT_SET_PROTOTYPE_KEY_USER_PUBLIC);
