@@ -1,0 +1,192 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword" name="Panel_Icon" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Panel Icon]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="document-library" fieldNamespace="ddm" indexType="keyword" name="Panel_Image" readOnly="false" repeatable="false" required="false" showLabel="true" type="ddm-documentlibrary" width="">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Panel Image]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" name="Panel_Heading" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Panel Heading]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" name="Panel_Content" readOnly="false" repeatable="false" required="false" showLabel="true" type="textarea" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Panel Content]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" name="Panel_Button_Text" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Panel Button Text]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" name="Panel_Button_Link" readOnly="false" repeatable="false" required="false" showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Panel Button Link]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" multiple="false" name="Panel_Button_Style" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="">
+		<dynamic-element name="optionPanelButtonStandard" type="option" value="btn">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Standard]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonPrimary" type="option" value="btn btn-primary">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Primary]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonInfo" type="option" value="btn btn-info">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Info]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonSuccess" type="option" value="btn btn-success">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Success]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonWarning" type="option" value="btn btn-warning">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Warning]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonDanger" type="option" value="btn btn-danger">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Danger]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonInverse" type="option" value="btn btn-inverse">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Inverse]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonLink" type="option" value="btn btn-link">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Link]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Panel Button Style]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[[""]]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword" multiple="false" name="Panel_Button_Size" readOnly="false" repeatable="false" required="false" showLabel="true" type="select" width="">
+		<dynamic-element name="optionPanelButtonLarge" type="option" value="btn-large">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Large]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonRegular" type="option" value="btn-default">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Regular]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonSmall" type="option" value="btn-small">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Small]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<dynamic-element name="optionPanelButtonMini" type="option" value="btn-mini">
+			<meta-data locale="en_US">
+				<entry name="label">
+					<![CDATA[Mini]]>
+				</entry>
+			</meta-data>
+		</dynamic-element>
+		<meta-data locale="en_US">
+			<entry name="label">
+				<![CDATA[Panel Button Size]]>
+			</entry>
+			<entry name="predefinedValue">
+				<![CDATA[[""]]]>
+			</entry>
+			<entry name="tip">
+				<![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>

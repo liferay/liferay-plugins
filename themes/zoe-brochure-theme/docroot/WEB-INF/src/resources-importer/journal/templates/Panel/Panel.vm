@@ -1,0 +1,19 @@
+<div class="panel">
+	<div class="panel-image">
+		#if (!$Panel_Icon.getData().isEmpty())
+			<i class="$Panel_Icon.getData()"></i>
+		#end
+
+		#if (!$Panel_Image.getData().isEmpty())
+			<img src="$Panel_Image.getData()" />
+		#end
+	</div>
+
+	<h3>$Panel_Heading.getData()</h3>
+
+	<p>$Panel_Content.getData()</p>
+
+	#if (!$Panel_Button_Text.getData().isEmpty())
+		<a class="$Panel_Button_Style.getData() $Panel_Button_Size.getData()" href="$Panel_Button_Link.getData()">$Panel_Button_Text.getData()</a>
+	#end
+</div>
