@@ -15,6 +15,7 @@
 package com.liferay.sync.engine.filesystem;
 
 import java.io.IOException;
+
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
@@ -27,6 +28,7 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.BasicFileAttributes;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -95,9 +97,10 @@ public class Watcher {
 
 			List<WatchEvent<?>> watchEvents = watchKey.pollEvents();
 
-			for (WatchEvent<?> tempWatchEvent : watchEvents) {
-				WatchEvent<Path> watchEvent = (WatchEvent<Path>)tempWatchEvent;
-				
+			for (int i = 0; i < watchEvents.size(); i++) {
+				WatchEvent<Path> watchEvent = (WatchEvent<Path>)watchEvents.get(
+					i);
+
 				Path childPath = parentPath.resolve(watchEvent.context());
 
 				fireWatchEventListeners(watchEvent, childPath);
@@ -109,9 +112,7 @@ public class Watcher {
 
 					try {
 						if (Files.isDirectory(
-								childPath,
-								LinkOption.NOFOLLOW_LINKS)) {
-
+								childPath, LinkOption.NOFOLLOW_LINKS)) {
 							register(childPath, true);
 						}
 					}
