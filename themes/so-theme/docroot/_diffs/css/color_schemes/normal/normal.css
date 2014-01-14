@@ -2251,7 +2251,7 @@ div#navigation {
 /* ---------- Responsive ---------- */
 
 html.aui {
-	@media (max-width:979px) {
+	@media (max-width: 979px) {
 		.navbar .nav-navigation {
 			display: block;
 		}

@@ -280,7 +280,7 @@ $microblogs-border-color: #EAEAEA;
 			width: 100%;
 		}
 
-		@media (max-width:979px) {
+		@media (max-width: 979px) {
 			font-size: 18px;
 		}
 	}
