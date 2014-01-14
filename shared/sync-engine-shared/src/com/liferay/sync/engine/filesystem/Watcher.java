@@ -15,7 +15,7 @@
 package com.liferay.sync.engine.filesystem;
 
 import java.io.IOException;
-
+import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -27,7 +27,6 @@ import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.BasicFileAttributes;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,9 +42,9 @@ public class Watcher {
 
 		register(path, recursive);
 
-		FileSystems fileSystems = FileSystems.getDefault();
+		FileSystem fileSystem = FileSystems.getDefault();
 
-		_watchService = fileSystems.newWatchService()
+		_watchService = fileSystem.newWatchService();
 	}
 
 	public void addWatchEventListener(WatchEventListener watchEventListener) {
@@ -96,7 +95,9 @@ public class Watcher {
 
 			List<WatchEvent<?>> watchEvents = watchKey.pollEvents();
 
-			for (WatchEvent<Path> watchEvent : watchEvents) {
+			for (WatchEvent<?> tempWatchEvent : watchEvents) {
+				WatchEvent<Path> watchEvent = (WatchEvent<Path>)tempWatchEvent;
+				
 				Path watchEventContextPath = path.resolve(watchEvent.context());
 
 				fireWatchEventListeners(watchEvent, watchEventContextPath);
