@@ -24,10 +24,10 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 	@Override
 	public void postProcessSearchQuery(BooleanQuery searchQuery, SearchContext searchContext) throws Exception {
 		addSearchTerm(searchQuery, searchContext, "active", false);
-		addSearchTerm(searchQuery, searchContext, "manufacturer", true);
-		addSearchTerm(searchQuery, searchContext, "model", true);
+		addSearchTerm(searchQuery, searchContext, "definitionManufacturer", true);
+		addSearchTerm(searchQuery, searchContext, "definitionModel", true);
 		addSearchTerm(searchQuery, searchContext, "serialNumber", false);
-		addSearchTerm(searchQuery, searchContext, "type", true);
+		addSearchTerm(searchQuery, searchContext, "typeName", true);
 	}
 
 	@Override
@@ -43,20 +43,20 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 			document.addText("active", "inactive");
 		}
 
-		document.addKeyword("serialNumber", asset.getSerialNumber());
-
 		Definition definition = DefinitionLocalServiceUtil.fetchDefinition(asset.getDefinitionId());
 
 		if (definition != null) {
-			document.addText("manufacturer", definition.getManufacturer());
-			document.addText("model", definition.getModel());
+			document.addText("definitionManufacturer", definition.getManufacturer());
+			document.addText("definitionModel", definition.getModel());
 
 			Type type = TypeLocalServiceUtil.fetchType(definition.getTypeId());
 
 			if (type != null) {
-				document.addText("model", type.getName());
+				document.addText("typeName", type.getName());
 			}
 		}
+
+		document.addKeyword("serialNumber", asset.getSerialNumber());
 
 		return document;
 	}
