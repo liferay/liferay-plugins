@@ -40,6 +40,12 @@ public class StartupAction extends SimpleAction {
 	protected void doRun() throws Exception {
 		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
 
+		Class<?> customSQLClass = portalClassLoader.loadClass(
+			"com.liferay.util.dao.orm.CustomSQL");
+
+		Method readMethod = ReflectionUtil.getDeclaredMethod(
+			customSQLClass, "read", ClassLoader.class, String.class);
+
 		Class<?> customSQLUtilClass = portalClassLoader.loadClass(
 			"com.liferay.util.dao.orm.CustomSQLUtil");
 
@@ -53,13 +59,9 @@ public class StartupAction extends SimpleAction {
 
 		Object customSQL = customSQLField.get(instance);
 
-		Class<?> customSQLClass = portalClassLoader.loadClass(
-			"com.liferay.util.dao.orm.CustomSQL");
+		Class<?> clazz = getClass();
 
-		Method readMethod = ReflectionUtil.getDeclaredMethod(
-			customSQLClass, "read", ClassLoader.class, String.class);
-
-		ClassLoader contextClassLoader = getClass().getClassLoader();
+		ClassLoader contextClassLoader = clazz.getClassLoader();
 
 		readMethod.invoke(
 			customSQL, contextClassLoader, "/custom-sql/announcements.xml");

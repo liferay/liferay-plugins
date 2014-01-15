@@ -16,7 +16,10 @@
 			/>
 		</copy>
 
-		<unzip src="${app.server.portal.dir}/WEB-INF/lib/portal-impl.jar" dest="docroot/WEB-INF/src/">
+		<unzip
+			dest="docroot/WEB-INF/src"
+			src="${app.server.portal.dir}/WEB-INF/lib/portal-impl.jar"
+		>
 			<patternset>
 				<include name="custom-sql/announcements.xml" />
 			</patternset>
