@@ -23,9 +23,9 @@
 <%
 String namespace = portletDisplay.getNamespace();
 
-String firstNameId = "id=\"" + namespace + "firstName\"";
-String middleNameId = "id=\"" + namespace + "middleName\"";
-String lastNameId = "id=\"" + namespace + "lastName\"";
+String firstNameId = namespace + "firstName";
+String middleNameId = namespace + "middleName";
+String lastNameId = namespace + "lastName";
 
 int middleNameStart = _getFormFieldStart(html, middleNameId);
 int middleNameEnd = _getFormFieldEnd(html, middleNameStart);
@@ -45,48 +45,44 @@ html = _reverseFirstNameLastName(html, firstNameStart, firstNameEnd, lastNameSta
 
 <%!
 private int _getFormFieldEnd(String html, int fromIndex) {
-	if(fromIndex >= 0) {
-		return html.indexOf(_DIV_CLOSE, fromIndex) + _DIV_CLOSE.length();
-	}
-	else {
+	if (fromIndex < 0) {
 		return fromIndex;
 	}
+
+	return html.indexOf(_DIV_CLOSE, fromIndex) + _DIV_CLOSE.length();
 }
 
-private int _getFormFieldStart(String html, String queryString) {
-	int x = html.indexOf(queryString);
+private int _getFormFieldStart(String html, String id) {
+	int x = html.indexOf("id=\"" + id + StringPool.QUOTE);
 
-	if(x >= 0) {
-		return html.lastIndexOf(_DIV_OPEN, x);
-	}
-	else {
+	if (x < 0) {
 		return x;
 	}
+
+	return html.lastIndexOf(_DIV_OPEN, x);
 }
 
-private String _removeMiddleName(String html, int fromIndex, int toIndex) {
-	if(fromIndex >= 0 && toIndex >= 0) {
-		String middleName = html.substring(fromIndex, toIndex);
-
-		html = StringUtil.replaceFirst(html, middleName, StringPool.BLANK);
+private String _removeMiddleName(String html, int middleNameStart, int middleNameEnd) {
+	if ((middleNameStart < 0) || (middleNameEnd < 0) {
+		return html;
 	}
 
-	return html;
+	return html.substring(0, middleNameStart) + html.substring(middleNameEnd + 1);
 }
 
 private String _reverseFirstNameLastName(String html, int firstNameStart, int firstNameEnd, int lastNameStart, int lastNameEnd) {
-	if (firstNameStart >= 0 && firstNameEnd >= 0) {
-		if (lastNameStart >= 0 && lastNameEnd >= 0) {
-			String lastName = html.substring(lastNameStart, lastNameEnd);
-			String firstName = html.substring(firstNameStart, firstNameEnd);
-
-			html = StringUtil.replaceFirst(html, lastName, firstName);
-
-			html = StringUtil.replaceFirst(html,firstName, lastName);
-		}
+	if ((firstNameStart < 0) || (firstNameEnd < 0) || (lastNameStart < 0) || (lastNameEnd < 0)) {
+		return html;
 	}
 
-	return html;
+	StringBundler sb = new StringBundler(4);
+
+	sb.append(html.substring(0, firstNameStart));
+	sb.append(html.substring(lastNameStart, lastNameEnd));
+	sb.append(html.substring(firstNameStart, firstNameEnd));
+	sb.append(html.substring(lastNameEnd));
+
+	return sb.toString();
 }
 
 private static final String _DIV_CLOSE = "</div>";

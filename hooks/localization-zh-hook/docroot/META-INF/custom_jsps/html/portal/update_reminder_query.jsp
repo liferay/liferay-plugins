@@ -25,7 +25,7 @@ int x = _indexOfOptionStart(html);
 int y = _indexOfOptionEnd(html, x);
 
 if ((x >= 0) && (y >= 0)) {
-	html = html.substring(0, x) + html.substring(y + 1);
+	html = html.substring(0, x) + html.substring(y);
 }
 %>
 
