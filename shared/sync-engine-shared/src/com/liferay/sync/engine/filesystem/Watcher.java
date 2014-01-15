@@ -33,11 +33,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @author Michael Young
  */
-public class Watcher {
+public class Watcher implements Runnable {
 
 	public Watcher(Path path, boolean recursive) throws IOException {
 		_recursive = recursive;
@@ -79,6 +81,11 @@ public class Watcher {
 	}
 
 	public void processEvents() {
+		_executorService.submit(this);
+	}
+
+	@Override
+	public void run() {
 		while (true) {
 			WatchKey watchKey = null;
 
@@ -113,6 +120,7 @@ public class Watcher {
 					try {
 						if (Files.isDirectory(
 								childPath, LinkOption.NOFOLLOW_LINKS)) {
+
 							register(childPath, true);
 						}
 					}
@@ -160,6 +168,8 @@ public class Watcher {
 		}
 	}
 
+	private ExecutorService _executorService =
+		Executors.newSingleThreadExecutor();
 	private Map<WatchKey, Path> _paths = new HashMap<WatchKey, Path>();
 	private boolean _recursive;
 	private List<WatchEventListener> _watchEventListeners =
