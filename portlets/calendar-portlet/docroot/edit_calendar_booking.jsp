@@ -96,14 +96,14 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 <liferay-portlet:actionURL name="updateCalendarBooking" var="updateCalendarBookingURL" />
 
-<liferay-portlet:renderURL var="redirect">
+<liferay-portlet:renderURL var="redirectURL">
 	<liferay-portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
 	<liferay-portlet:param name="calendarBookingId" value="<%= String.valueOf(calendarBookingId) %>" />
 </liferay-portlet:renderURL>
 
 <aui:form action="<%= updateCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'>
 	<aui:input name="mvcPath" type="hidden" value="/edit_calendar_booking.jsp" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
 	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBookingId %>" />
 	<aui:input name="childCalendarIds" type="hidden" />
 	<aui:input name="status" type="hidden" value ="<%= status %>" />
