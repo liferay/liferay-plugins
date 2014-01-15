@@ -1,0 +1,11 @@
+<div class="banner">
+	<div class="banner-message">
+		<h2>$banner_message.data</h2>
+	</div>
+
+	#if (!$banner_button_text.data.isEmpty())
+		<div class="banner-button">
+			<a href="$banner_button_text.banner_button_link.data" class="banner-link $banner_button_text.banner_button_style.data $banner_button_text.banner_button_size.data">$banner_button_text.data</a>
+		</div>
+	#end
+</div>

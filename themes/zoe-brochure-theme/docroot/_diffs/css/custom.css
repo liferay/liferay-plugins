@@ -334,6 +334,8 @@ $default-box-shadow-v-offset: 1px;
 	#footer {
 		background: url(../images/custom/footer_bg.png) repeat-x 0 0;
 		padding: 30px 0;
+		margin: -2px auto 0;
+		width: 1200px;
 
 		p {
 			background: url(../images/custom/footer_logo.png) no-repeat 0 0;
@@ -472,6 +474,10 @@ $default-box-shadow-v-offset: 1px;
 			padding: 8px 0 0;
 			width: 173px;
 		}
+	}
+
+	.portlet-boundary {
+		margin-bottom: 20px;
 	}
 
 	/* -------- Columns -------- */
@@ -662,6 +668,29 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
+	/* -------- Theme Modules -------- */
+
+	.banner {
+		background-color: #FAFAFA;
+
+		@include box-shadow(0 1px 1px #E7E7E7);
+		@include box-sizing(border-box);
+
+		float: left;
+		padding: 30px;
+		width: 100%;
+
+		.banner-button {
+			width: 30%;
+		}
+
+		.banner-button, .banner-message {
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+		}
+	}
+
 	/* -------- Hidden accessible -------- */
 
 	#breadcrumbs, #heading .page-title, #navigation h1, #skip-to-content {
@@ -726,6 +755,17 @@ $default-box-shadow-v-offset: 1px;
 
 		&:hover {
 			@include box-shadow(0 1px 1px -1px #000);
+		}
+	}
+
+	/* -------- Media Queries -------- */
+
+	@media (max-width: 979px) {
+		.banner {
+			.banner-button, .banner-message {
+				display: block;
+				width: 100%;
+			}
 		}
 	}
 }
