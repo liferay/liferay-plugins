@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="title" type="text">
+		<dynamic-content><![CDATA[Banner1]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="banner_message" type="textarea">
+		<dynamic-content><![CDATA[Use this element to promote a message or advertisement with a call to action.]]></dynamic-content>
+	</dynamic-element>
+	<dynamic-element name="banner_button_text" type="text">
+		<dynamic-element name="banner_button_link" type="text">
+			<dynamic-content><![CDATA[1]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="banner_button_style" type="select">
+			<dynamic-content><![CDATA[btn]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-element name="banner_button_size" type="select">
+			<dynamic-content><![CDATA[btn-large]]></dynamic-content>
+		</dynamic-element>
+		<dynamic-content><![CDATA[Call To Action]]></dynamic-content>
+	</dynamic-element>
+</root>
