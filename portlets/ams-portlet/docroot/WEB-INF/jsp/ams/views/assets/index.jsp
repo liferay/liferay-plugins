@@ -26,6 +26,20 @@
 	<aui:button href="${editAssetURL}" value="add-asset" />
 </aui:button-row>
 
+<portlet:renderURL var="viewAssetsURL">
+	<portlet:param name="controller" value="assets" />
+	<portlet:param name="action" value="index" />
+	<portlet:param name="format" value="html" />
+</portlet:renderURL>
+
+<aui:form action="${viewAssetsURL}" method="get" name="fm">
+	<aui:fieldset>
+		<aui:input inlineField="<%= true %>" label="" name="keywords" size="30" title="search-assets" type="text" />
+
+		<aui:button type="submit" value="search" />
+	</aui:fieldset>
+</aui:form>
+
 <liferay-ui:search-container emptyResultsMessage="there-are-no-assets" iteratorURL="${alloySearchResult.portletURL}">
 	<liferay-ui:search-container-results
 		results="${alloySearchResult.baseModels}"
