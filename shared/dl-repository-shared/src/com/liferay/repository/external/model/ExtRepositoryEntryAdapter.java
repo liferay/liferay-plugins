@@ -54,7 +54,6 @@ public abstract class ExtRepositoryEntryAdapter<T>
 		}
 	}
 
-	@SuppressWarnings("unused")
 	public List<Long> getAncestorFolderIds()
 		throws PortalException, SystemException {
 
@@ -71,7 +70,6 @@ public abstract class ExtRepositoryEntryAdapter<T>
 		return folderIds;
 	}
 
-	@SuppressWarnings("unused")
 	public List<Folder> getAncestors() throws PortalException, SystemException {
 		List<Folder> folders = new ArrayList<Folder>();
 
@@ -117,22 +115,18 @@ public abstract class ExtRepositoryEntryAdapter<T>
 		}
 	}
 
-	@SuppressWarnings("unused")
 	public boolean isInTrash() {
 		return false;
 	}
 
-	@SuppressWarnings("unused")
 	public boolean isInTrashContainer() {
 		return false;
 	}
 
-	@SuppressWarnings("unused")
 	public boolean isSupportsMetadata() {
 		return false;
 	}
 
-	@SuppressWarnings("unused")
 	public boolean isSupportsSocial() {
 		return false;
 	}

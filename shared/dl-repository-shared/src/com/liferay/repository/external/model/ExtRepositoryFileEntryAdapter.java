@@ -115,7 +115,7 @@ public class ExtRepositoryFileEntryAdapter
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({"rawtypes"})
 	public List<FileVersion> getFileVersions(int status)
 		throws SystemException {
 
@@ -156,12 +156,14 @@ public class ExtRepositoryFileEntryAdapter
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public FileVersion getLatestFileVersion()
 		throws PortalException, SystemException {
 
 		return getFileVersion();
 	}
 
+	@SuppressWarnings("unused")
 	public FileVersion getLatestFileVersion(boolean trusted)
 		throws PortalException, SystemException {
 
@@ -280,6 +282,7 @@ public class ExtRepositoryFileEntryAdapter
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public String getVersionUserUuid() throws SystemException {
 		return getUserUuid();
 	}
