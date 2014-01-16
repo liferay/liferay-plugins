@@ -62,7 +62,7 @@ public class Watcher implements Runnable {
 	public void fireWatchEventListeners(
 		WatchEvent<Path> watchEvent, Path path) {
 
-		WatchEvent.Kind kind = watchEvent.kind();
+		WatchEvent.Kind<?> kind = watchEvent.kind();
 
 		for (WatchEventListener watchEventListener : _watchEventListeners) {
 			if (kind == StandardWatchEventKinds.ENTRY_CREATE) {
@@ -112,7 +112,7 @@ public class Watcher implements Runnable {
 
 				fireWatchEventListeners(watchEvent, childPath);
 
-				WatchEvent.Kind kind = watchEvent.kind();
+				WatchEvent.Kind<?> kind = watchEvent.kind();
 
 				if (_recursive &&
 					(kind == StandardWatchEventKinds.ENTRY_CREATE)) {

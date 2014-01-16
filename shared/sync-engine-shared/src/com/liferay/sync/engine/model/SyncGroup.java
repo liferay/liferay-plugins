@@ -22,7 +22,7 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 /**
  * @author Shinn Lok
  */
-@DatabaseTable(tableName = "SyncGroup", daoClass = BasePersistenceImpl.class)
+@DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncGroup")
 public class SyncGroup {
 
 	public String getFilePath() {

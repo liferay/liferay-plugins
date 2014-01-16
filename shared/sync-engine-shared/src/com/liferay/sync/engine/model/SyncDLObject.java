@@ -23,7 +23,7 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
  * @author Shinn Lok
  */
 @DatabaseTable(
-	tableName = "SyncDLObject", daoClass = BasePersistenceImpl.class)
+	daoClass = BasePersistenceImpl.class, tableName = "SyncDLObject")
 public class SyncDLObject {
 
 	public String getChecksum() {
@@ -107,33 +107,33 @@ public class SyncDLObject {
 	}
 
 	@DatabaseField(useGetSet = true, width = 255)
-	private String checksum;
+	protected String checksum;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
-	private String description;
+	protected String description;
 
 	@DatabaseField(useGetSet = true, width = 255)
-	private String name;
+	protected String name;
 
 	@DatabaseField(useGetSet = true)
-	private long parentFolderId;
+	protected long parentFolderId;
 
 	@DatabaseField(useGetSet = true)
-	private long repositoryId;
+	protected long repositoryId;
 
 	@DatabaseField(useGetSet = true)
-	private long size;
+	protected long size;
 
 	@DatabaseField(generatedId = true, useGetSet = true)
-	private long syncDLObjectId;
+	protected long syncDLObjectId;
 
 	@DatabaseField(useGetSet = true, width = 255)
-	private String type;
+	protected String type;
 
 	@DatabaseField(useGetSet = true)
-	private long typePK;
+	protected long typePK;
 
 	@DatabaseField(useGetSet = true, width = 255)
-	private String version;
+	protected String version;
 
 }

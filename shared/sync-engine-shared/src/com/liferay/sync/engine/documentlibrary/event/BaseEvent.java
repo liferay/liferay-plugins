@@ -56,8 +56,8 @@ public abstract class BaseEvent implements Runnable {
 
 	private static Logger _logger = LoggerFactory.getLogger(BaseEvent.class);
 
-	private String _path;
 	private Map<String, Object> _parameters;
+	private String _path;
 	private long _syncAccountId;
 
 }

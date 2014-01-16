@@ -36,14 +36,14 @@ public class PathUtil {
 		return name;
 	}
 
-	public static String getWebDavPath(String repositoryPath, String path) {
+	public static String getWebDAVPath(String repositoryPath, String path) {
 		path = fixPath(path);
 
 		if (path.startsWith(repositoryPath)) {
 			return path.substring(repositoryPath.length());
 		}
 
-		_logger.error("Unable to get web dav path for {}", path);
+		_logger.error("Unable to get WebDAV path {}", path);
 
 		return null;
 	}

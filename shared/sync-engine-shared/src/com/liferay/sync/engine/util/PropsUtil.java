@@ -44,7 +44,7 @@ public class PropsUtil {
 				classLoader.getResourceAsStream("sync.properties"));
 		}
 		catch (Exception e) {
-			_logger.error("Unable to initialize PropsUtil", e);
+			_logger.error("Unable to initialize", e);
 		}
 	}
 

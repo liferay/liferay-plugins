@@ -25,7 +25,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 	@Override
 	public void upgrade() throws Exception {
 		SyncDLObjectPersistence syncDLObjectPersistence =
-			SyncDLObjectService.getPersistence();
+			SyncDLObjectService.getSyncDLObjectPersistence();
 
 		if (!syncDLObjectPersistence.isTableExists()) {
 			syncDLObjectPersistence.createTable();

@@ -102,15 +102,15 @@ public class SyncDLObject {
 		this.version = version;
 	}
 
-	private String checksum;
-	private String description;
-	private String name;
-	private long parentFolderId;
-	private long repositoryId;
-	private long size;
-	private long syncDLObjectId;
-	private String type;
-	private long typePK;
-	private String version;
+	protected String checksum;
+	protected String description;
+	protected String name;
+	protected long parentFolderId;
+	protected long repositoryId;
+	protected long size;
+	protected long syncDLObjectId;
+	protected String type;
+	protected long typePK;
+	protected String version;
 
 }

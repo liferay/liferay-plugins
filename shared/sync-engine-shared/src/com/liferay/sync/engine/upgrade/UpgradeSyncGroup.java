@@ -25,7 +25,7 @@ public class UpgradeSyncGroup extends UpgradeProcess {
 	@Override
 	public void upgrade() throws Exception {
 		SyncGroupPersistence syncGroupPersistence =
-			SyncGroupService.getPersistence();
+			SyncGroupService.getSyncGroupPersistence();
 
 		if (!syncGroupPersistence.isTableExists()) {
 			syncGroupPersistence.createTable();

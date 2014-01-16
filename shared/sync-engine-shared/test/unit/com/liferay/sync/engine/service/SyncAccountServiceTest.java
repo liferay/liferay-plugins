@@ -37,7 +37,7 @@ public class SyncAccountServiceTest extends BaseTestCase {
 	@After
 	public void tearDown() {
 		SyncAccountPersistence syncAccountPersistence =
-			SyncAccountService.getPersistence();
+			SyncAccountService.getSyncAccountPersistence();
 
 		try {
 			syncAccountPersistence.delete(_syncAccount);

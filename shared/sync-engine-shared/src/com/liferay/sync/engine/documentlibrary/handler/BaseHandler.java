@@ -31,14 +31,14 @@ import org.slf4j.LoggerFactory;
  */
 public class BaseHandler implements ResponseHandler<String> {
 
+	@Override
 	public String handleResponse(HttpResponse httpResponse)
 		throws HttpResponseException, IOException {
 
 		StatusLine statusLine = httpResponse.getStatusLine();
 
 		if (statusLine.getStatusCode() != 200) {
-			_logger.error(
-				"Received Error Code {} ", statusLine.getStatusCode());
+			_logger.error("Status code {}", statusLine.getStatusCode());
 
 			throw new HttpResponseException(
 				statusLine.getStatusCode(), statusLine.getReasonPhrase());

@@ -28,11 +28,11 @@ import java.sql.SQLException;
 /**
  * @author Shinn Lok
  */
-public class BasePersistenceImpl<TT, TID> extends BaseDaoImpl<TT, TID>
-	implements BasePersistence<TT, TID> {
+public class BasePersistenceImpl<TT, TID>
+	extends BaseDaoImpl<TT, TID> implements BasePersistence<TT, TID> {
 
-	public BasePersistenceImpl(Class<TT> dataClass) throws SQLException {
-		super(_getConnectionSource(), dataClass);
+	public BasePersistenceImpl(Class<TT> clazz) throws SQLException {
+		super(_getConnectionSource(), clazz);
 	}
 
 	@Override

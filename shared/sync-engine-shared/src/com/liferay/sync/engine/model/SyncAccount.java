@@ -22,7 +22,7 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 /**
  * @author Shinn Lok
  */
-@DatabaseTable(tableName = "SyncAccount", daoClass = BasePersistenceImpl.class)
+@DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncAccount")
 public class SyncAccount {
 
 	public String getLogin() {
@@ -66,18 +66,18 @@ public class SyncAccount {
 	}
 
 	@DatabaseField(useGetSet = true, width = 16777216)
-	private String login;
+	protected String login;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
-	private String password;
+	protected String password;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
-	private String rootPath;
+	protected String rootPath;
 
 	@DatabaseField(generatedId = true, useGetSet = true)
-	private long syncAccountId;
+	protected long syncAccountId;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
-	private String url;
+	protected String url;
 
 }

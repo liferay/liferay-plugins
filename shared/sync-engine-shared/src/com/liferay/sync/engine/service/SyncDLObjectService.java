@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
  */
 public class SyncDLObjectService {
 
-	public static SyncDLObjectPersistence getPersistence() {
+	public static SyncDLObjectPersistence getSyncDLObjectPersistence() {
 		if (_syncDLObjectPersistence != null) {
 			return _syncDLObjectPersistence;
 		}
@@ -46,6 +46,6 @@ public class SyncDLObjectService {
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncDLObjectService.class);
 	private static SyncDLObjectPersistence _syncDLObjectPersistence =
-		getPersistence();
+		getSyncDLObjectPersistence();
 
 }

@@ -42,23 +42,6 @@ public class SyncGroupService {
 		return syncGroup;
 	}
 
-	public static SyncGroupPersistence getPersistence() {
-		if (_syncGroupPersistence != null) {
-			return _syncGroupPersistence;
-		}
-
-		try {
-			_syncGroupPersistence = new SyncGroupPersistence();
-		}
-		catch (SQLException sqle) {
-			if (_logger.isDebugEnabled()) {
-				_logger.debug(sqle.getMessage(), sqle);
-			}
-		}
-
-		return _syncGroupPersistence;
-	}
-
 	public static SyncGroup getSyncGroup(long syncAccountId, long groupId) {
 		SyncGroup syncGroup = null;
 
@@ -75,9 +58,26 @@ public class SyncGroupService {
 		return syncGroup;
 	}
 
+	public static SyncGroupPersistence getSyncGroupPersistence() {
+		if (_syncGroupPersistence != null) {
+			return _syncGroupPersistence;
+		}
+
+		try {
+			_syncGroupPersistence = new SyncGroupPersistence();
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+		}
+
+		return _syncGroupPersistence;
+	}
+
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncGroupService.class);
 	private static SyncGroupPersistence _syncGroupPersistence =
-		getPersistence();
+		getSyncGroupPersistence();
 
 }

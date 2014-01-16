@@ -43,7 +43,22 @@ public class SyncAccountService {
 		return syncAccount;
 	}
 
-	public static SyncAccountPersistence getPersistence() {
+	public static SyncAccount getSyncAccount(long syncAccountId) {
+		SyncAccount syncAccount = null;
+
+		try {
+			syncAccount = _syncAccountPersistence.queryForId(syncAccountId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+		}
+
+		return syncAccount;
+	}
+
+	public static SyncAccountPersistence getSyncAccountPersistence() {
 		if (_syncAccountPersistence != null) {
 			return _syncAccountPersistence;
 		}
@@ -60,24 +75,9 @@ public class SyncAccountService {
 		return _syncAccountPersistence;
 	}
 
-	public static SyncAccount getSyncAccount(long syncAccountId) {
-		SyncAccount syncAccount = null;
-
-		try {
-			syncAccount = _syncAccountPersistence.queryForId(syncAccountId);
-		}
-		catch (SQLException sqle) {
-			if (_logger.isDebugEnabled()) {
-				_logger.debug(sqle.getMessage(), sqle);
-			}
-		}
-
-		return syncAccount;
-	}
-
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncAccountService.class);
 	private static SyncAccountPersistence _syncAccountPersistence =
-		getPersistence();
+		getSyncAccountPersistence();
 
 }

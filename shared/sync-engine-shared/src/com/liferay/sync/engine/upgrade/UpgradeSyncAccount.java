@@ -25,7 +25,7 @@ public class UpgradeSyncAccount extends UpgradeProcess {
 	@Override
 	public void upgrade() throws Exception {
 		SyncAccountPersistence syncAccountPersistence =
-			SyncAccountService.getPersistence();
+			SyncAccountService.getSyncAccountPersistence();
 
 		if (!syncAccountPersistence.isTableExists()) {
 			syncAccountPersistence.createTable();
