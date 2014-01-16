@@ -20,6 +20,7 @@ import java.sql.SQLException;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Shinn Lok
@@ -33,7 +34,7 @@ public class SyncGroupPersistence extends BasePersistenceImpl<SyncGroup, Long> {
 	public SyncGroup getSyncGroup(long syncAccountId, long groupId)
 		throws SQLException {
 
-		HashMap<String, Object> fieldValues = new HashMap<String, Object>(1);
+		Map<String, Object> fieldValues = new HashMap<String, Object>(1);
 
 		fieldValues.put("syncAccountId", syncAccountId);
 		fieldValues.put("groupId", groupId);
