@@ -313,12 +313,12 @@ public class CalendarPortlet extends MVCPortlet {
 		String[] remindersType = getRemindersType(actionRequest);
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
-		String redirect = getRedirect(actionRequest, actionResponse);
-
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			CalendarBooking.class.getName(), actionRequest);
 
 		CalendarBooking calendarBooking = null;
+
+		String redirect = getRedirect(actionRequest, actionResponse);
 
 		if (calendarBookingId <= 0) {
 			calendarBooking = CalendarBookingServiceUtil.addCalendarBooking(
@@ -373,8 +373,8 @@ public class CalendarPortlet extends MVCPortlet {
 			}
 		}
 
-		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 		actionRequest.setAttribute(WebKeys.CALENDAR_BOOKING, calendarBooking);
+		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
 	public void updateCalendarNotificationTemplate(
