@@ -194,11 +194,11 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			destFolderId);
 
 		ExtRepositoryFileEntry extRepositoryFileEntry =
-			_extRepository.getEntry(
+			_extRepository.getExtRepositoryEntry(
 				ExtRepositoryModelType.FILE, repositoryMappedFileEntryId);
 
 		ExtRepositoryFileEntry copyExtRepositoryFileEntry =
-			_extRepository.copyEntry(
+			_extRepository.copyExtRepositoryEntry(
 				ExtRepositoryModelType.FILE, repositoryMappedFileEntryId,
 				repositoryMappedDestFolderId,
 				extRepositoryFileEntry.getTitle());
@@ -214,7 +214,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String repositoryMappedFileEntryId = _getRepositoryEntryMappedId(
 			fileEntryId);
 
-		_extRepository.deleteEntry(
+		_extRepository.deleteExtRepositoryEntry(
 			ExtRepositoryModelType.FILE, repositoryMappedFileEntryId);
 	}
 
@@ -224,7 +224,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		String repositoryMappedFolderId = _getRepositoryEntryMappedId(folderId);
 
-		_extRepository.deleteEntry(
+		_extRepository.deleteExtRepositoryEntry(
 			ExtRepositoryModelType.FOLDER, repositoryMappedFolderId);
 	}
 
@@ -257,7 +257,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String repositoryMappedFolderId = _getRepositoryEntryMappedId(folderId);
 
 		List<ExtRepositoryFileEntry> extRepositoryFileEntries =
-			_extRepository.getEntries(
+			_extRepository.getExtRepositoryEntries(
 				ExtRepositoryModelType.FILE, repositoryMappedFolderId);
 
 		List<ExtRepositoryFileEntryAdapter> entries =
@@ -293,7 +293,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String repositoryMappedFolderId = _getRepositoryEntryMappedId(folderId);
 
 		List<ExtRepositoryFileEntry> extRepositoryFileEntries =
-			_extRepository.getEntries(
+			_extRepository.getExtRepositoryEntries(
 				ExtRepositoryModelType.FILE, repositoryMappedFolderId);
 
 		List<ExtRepositoryFileEntryAdapter> entries =
@@ -350,8 +350,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String repositoryMappedFileEntryId = _getRepositoryEntryMappedId(
 			fileEntryId);
 
-		ExtRepositoryEntry extRepositoryEntry = _extRepository.getEntry(
-			ExtRepositoryModelType.FILE, repositoryMappedFileEntryId);
+		ExtRepositoryEntry extRepositoryEntry =
+			_extRepository.getExtRepositoryEntry(
+				ExtRepositoryModelType.FILE, repositoryMappedFileEntryId);
 
 		return _toExtRepositoryEntryAdapter(
 			ExtRepositoryModelAdapterType.FILE, extRepositoryEntry);
@@ -363,8 +364,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		String repositoryMappedFolderId = _getRepositoryEntryMappedId(folderId);
 
-		ExtRepositoryEntry extRepositoryEntry = _extRepository.getEntry(
-			ExtRepositoryModelType.FILE, repositoryMappedFolderId, title);
+		ExtRepositoryEntry extRepositoryEntry =
+			_extRepository.getExtRepositoryEntry(
+				ExtRepositoryModelType.FILE, repositoryMappedFolderId, title);
 
 		return _toExtRepositoryEntryAdapter(
 			ExtRepositoryModelAdapterType.FILE, extRepositoryEntry);
@@ -376,8 +378,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		String repositoryMappedFileEntryId = _getRepositoryEntryMappedId(uuid);
 
-		ExtRepositoryFileEntry extRepositoryFileEntry = _extRepository.getEntry(
-			ExtRepositoryModelType.FILE, repositoryMappedFileEntryId);
+		ExtRepositoryFileEntry extRepositoryFileEntry =
+			_extRepository.getExtRepositoryEntry(
+				ExtRepositoryModelType.FILE, repositoryMappedFileEntryId);
 
 		return _toExtRepositoryEntryAdapter(
 			ExtRepositoryModelAdapterType.FILE, extRepositoryFileEntry);
@@ -397,7 +400,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String versionTag = parts[1];
 
 		ExtRepositoryFileEntry extRepositoryFileEntry =
-			_extRepository.getEntry(
+			_extRepository.getExtRepositoryEntry(
 				ExtRepositoryModelType.FILE, fileEntryMappedId);
 
 		ExtRepositoryFileVersion extRepositoryFileVersion =
@@ -421,8 +424,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		String repositoryMappedFolderId = _getRepositoryEntryMappedId(folderId);
 
-		ExtRepositoryEntry extRepositoryEntry = _extRepository.getEntry(
-			ExtRepositoryModelType.FOLDER, repositoryMappedFolderId);
+		ExtRepositoryEntry extRepositoryEntry =
+			_extRepository.getExtRepositoryEntry(
+				ExtRepositoryModelType.FOLDER, repositoryMappedFolderId);
 
 		return _toExtRepositoryEntryAdapter(
 			ExtRepositoryModelAdapterType.FOLDER, extRepositoryEntry);
@@ -436,9 +440,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String repositoryMappedParentFolderId = _getRepositoryEntryMappedId(
 			parentFolderId);
 
-		ExtRepositoryEntry folder = _extRepository.getEntry(
-			ExtRepositoryModelType.FOLDER, repositoryMappedParentFolderId,
-			title);
+		ExtRepositoryEntry folder =
+			_extRepository.getExtRepositoryEntry(
+				ExtRepositoryModelType.FOLDER, repositoryMappedParentFolderId,
+				title);
 
 		return _toExtRepositoryEntryAdapter(
 			ExtRepositoryModelAdapterType.FOLDER, folder);
@@ -455,7 +460,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			parentFolderId);
 
 		List<ExtRepositoryFolder> extRepositoryFolders =
-			_extRepository.getEntries(
+			_extRepository.getExtRepositoryEntries(
 				ExtRepositoryModelType.FOLDER, repositoryMappedParentFolderId);
 
 		List<ExtRepositoryFolderAdapter> entries =
@@ -476,7 +481,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				folderId);
 
 			List<? extends ExtRepositoryEntry> extRepositoryEntries =
-				_extRepository.getEntries(
+				_extRepository.getExtRepositoryEntries(
 					ExtRepositoryModelType.ENTRY, repositoryMappedFolderId);
 
 			List<ExtRepositoryEntryAdapter<?>> entries =
@@ -500,7 +505,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String repositoryMappedFolderId = _getRepositoryEntryMappedId(folderId);
 
 		List<ExtRepositoryEntry> extRepositoryEntries =
-			_extRepository.getEntries(
+			_extRepository.getExtRepositoryEntries(
 				ExtRepositoryModelType.ENTRY, repositoryMappedFolderId);
 
 		List<ExtRepositoryEntryAdapter<?>> entries =
@@ -719,11 +724,11 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			newFolderId);
 
 		ExtRepositoryFileEntry extRepositoryFileEntry =
-			_extRepository.getEntry(
+			_extRepository.getExtRepositoryEntry(
 				ExtRepositoryModelType.FILE, repositoryMappedFileEntryId);
 
 		ExtRepositoryFileEntry moveExtRepositoryFileEntry =
-			_extRepository.moveEntry(
+			_extRepository.moveExtRepositoryEntry(
 				ExtRepositoryModelType.FILE, repositoryMappedFileEntryId,
 				repositoryMappedNewFolderId, extRepositoryFileEntry.getTitle());
 
@@ -743,12 +748,14 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			newParentFolderId);
 
 		ExtRepositoryFolder extRepositoryFolder =
-			_extRepository.getEntry(
+			_extRepository.getExtRepositoryEntry(
 				ExtRepositoryModelType.FOLDER, repositoryMappedFolderId);
 
-		ExtRepositoryFolder moveExtRepositoryFolder = _extRepository.moveEntry(
-			ExtRepositoryModelType.FOLDER, repositoryMappedFolderId,
-			repositoryMappedNewParentFolderId, extRepositoryFolder.getName());
+		ExtRepositoryFolder moveExtRepositoryFolder =
+			_extRepository.moveExtRepositoryEntry(
+				ExtRepositoryModelType.FOLDER, repositoryMappedFolderId,
+				repositoryMappedNewParentFolderId,
+				extRepositoryFolder.getName());
 
 		return _toExtRepositoryEntryAdapter(
 			ExtRepositoryModelAdapterType.FOLDER, moveExtRepositoryFolder);
@@ -780,8 +787,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String repositoryMappedFileEntryId = _getRepositoryEntryMappedId(
 			fileEntryId);
 
-		ExtRepositoryFileEntry extRepositoryFileEntry = _extRepository.getEntry(
-			ExtRepositoryModelType.FILE, repositoryMappedFileEntryId);
+		ExtRepositoryFileEntry extRepositoryFileEntry =
+			_extRepository.getExtRepositoryEntry(
+				ExtRepositoryModelType.FILE, repositoryMappedFileEntryId);
 
 		ExtRepositoryFileVersion extRepositoryFileVersion = null;
 
@@ -985,7 +993,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			extRepositoryFileEntry);
 
 		if (!title.equals(extRepositoryFileEntry.getTitle())) {
-			_extRepository.moveEntry(
+			_extRepository.moveExtRepositoryEntry(
 				ExtRepositoryModelType.FILE, repositoryMappedFileEntryId,
 				folder.getId(), title);
 		}
@@ -1002,15 +1010,17 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		String repositoryMappedFolderId = _getRepositoryEntryMappedId(folderId);
 
-		ExtRepositoryFolder extRepositoryFolder = _extRepository.getEntry(
-			ExtRepositoryModelType.FOLDER, repositoryMappedFolderId);
+		ExtRepositoryFolder extRepositoryFolder =
+			_extRepository.getExtRepositoryEntry(
+				ExtRepositoryModelType.FOLDER, repositoryMappedFolderId);
 
 		ExtRepositoryFolder folder = _extRepository.getParentFolder(
 			extRepositoryFolder);
 
-		ExtRepositoryFolder moveExtRepositoryFolder = _extRepository.moveEntry(
-			ExtRepositoryModelType.FOLDER, repositoryMappedFolderId,
-			folder.getId(), title);
+		ExtRepositoryFolder moveExtRepositoryFolder =
+			_extRepository.moveExtRepositoryEntry(
+				ExtRepositoryModelType.FOLDER, repositoryMappedFolderId,
+				folder.getId(), title);
 
 		return _toExtRepositoryEntryAdapter(
 			ExtRepositoryModelAdapterType.FOLDER, moveExtRepositoryFolder);
@@ -1168,7 +1178,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		Object[] ids = getRepositoryEntryIds(extRepositoryEntry.getId());
 
-		long repositoryEntryId = (Long)ids[0];
+		long extRepositoryEntryId = (Long)ids[0];
 
 		String uuid = (String)ids[1];
 
@@ -1180,14 +1190,14 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					(ExtRepositoryFolder)extRepositoryEntry;
 
 				extRepositoryEntryAdapter = new ExtRepositoryFolderAdapter(
-					this, repositoryEntryId, uuid, extRepositoryFolder);
+					this, extRepositoryEntryId, uuid, extRepositoryFolder);
 			}
 			else {
 				ExtRepositoryFileEntry extRepositoryFileEntry =
 					(ExtRepositoryFileEntry)extRepositoryEntry;
 
 				extRepositoryEntryAdapter = new ExtRepositoryFileEntryAdapter(
-					this, repositoryEntryId, uuid, extRepositoryFileEntry);
+					this, extRepositoryEntryId, uuid, extRepositoryFileEntry);
 
 				_forceGetVersions(
 					(ExtRepositoryFileEntryAdapter)extRepositoryEntryAdapter);
@@ -1243,12 +1253,12 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		Object[] ids = getRepositoryEntryIds(extRepositoryFileVersion.getId());
 
-		long repositoryEntryId = (Long)ids[0];
+		long extRepositoryEntryId = (Long)ids[0];
 
 		String uuid = (String)ids[1];
 
 		return new ExtRepositoryFileVersionAdapter(
-			this, repositoryEntryId, uuid, extRepositoryFileEntryAdapter,
+			this, extRepositoryEntryId, uuid, extRepositoryFileEntryAdapter,
 			extRepositoryFileVersion);
 	}
 

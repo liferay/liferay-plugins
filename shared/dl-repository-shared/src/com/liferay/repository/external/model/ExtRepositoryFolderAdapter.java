@@ -33,11 +33,12 @@ public class ExtRepositoryFolderAdapter
 	extends ExtRepositoryEntryAdapter<Folder> implements Folder {
 
 	public ExtRepositoryFolderAdapter(
-		ExtRepositoryAdapter extRepositoryAdapter, long repositoryEntryId,
+		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryEntryId,
 		String uuid, ExtRepositoryFolder extRepositoryFolder) {
 
 		super(
-			extRepositoryAdapter, repositoryEntryId, uuid, extRepositoryFolder);
+			extRepositoryAdapter, extRepositoryEntryId, uuid,
+			extRepositoryFolder);
 
 		_extRepositoryFolder = extRepositoryFolder;
 	}

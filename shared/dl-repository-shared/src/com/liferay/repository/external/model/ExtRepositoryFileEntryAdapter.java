@@ -47,11 +47,11 @@ public class ExtRepositoryFileEntryAdapter
 	extends ExtRepositoryEntryAdapter<FileEntry> implements FileEntry {
 
 	public ExtRepositoryFileEntryAdapter(
-		ExtRepositoryAdapter extRepositoryAdapter, long repositoryEntryId,
+		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryEntryId,
 		String uuid, ExtRepositoryFileEntry extRepositoryFileEntry) {
 
 		super(
-			extRepositoryAdapter, repositoryEntryId, uuid,
+			extRepositoryAdapter, extRepositoryEntryId, uuid,
 			extRepositoryFileEntry);
 
 		_extRepositoryFileEntry = extRepositoryFileEntry;
