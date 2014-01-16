@@ -141,12 +141,12 @@ public class BundleRequestDispatcher implements RequestDispatcher {
 
 		if (contextPath != null) {
 			bundleServletRequest.setAttribute(
-				JavaConstants.JAVAX_SERVLET_FORWARD_CONTEXT_PATH, contextPath);
+				JavaConstants.JAVAX_SERVLET_INCLUDE_CONTEXT_PATH, contextPath);
 		}
 
 		if (_servletPath != null) {
 			bundleServletRequest.setAttribute(
-				JavaConstants.JAVAX_SERVLET_FORWARD_SERVLET_PATH, _servletPath);
+				JavaConstants.JAVAX_SERVLET_INCLUDE_SERVLET_PATH, _servletPath);
 		}
 
 		if (_queryString != null) {
