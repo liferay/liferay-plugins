@@ -42,6 +42,7 @@ public class ExtRepositoryFolderAdapter
 		_extRepositoryFolder = extRepositoryFolder;
 	}
 
+	@Override
 	public ExtRepositoryFolder getExtRepositoryModel() {
 		return _extRepositoryFolder;
 	}

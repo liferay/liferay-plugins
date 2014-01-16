@@ -173,6 +173,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public FileEntry checkOutFileEntry(
 			long fileEntryId, String owner, long expirationTime,
 			ServiceContext serviceContext)
@@ -249,7 +250,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List<FileEntry> getFileEntries(
 			long folderId, int start, int end, OrderByComparator obc)
 		throws PortalException, SystemException {
@@ -284,7 +285,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List<FileEntry> getFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
 			OrderByComparator obc)
@@ -445,7 +446,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List<Folder> getFolders(
 			long parentFolderId, boolean includeMountFolders, int start,
 			int end, OrderByComparator obc)
@@ -466,6 +467,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	public List getFoldersAndFileEntries(
 			long folderId, int start, int end, OrderByComparator obc)
 		throws SystemException {
@@ -490,7 +492,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public List<Object> getFoldersAndFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
 			OrderByComparator obc)
@@ -570,6 +572,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public List<Folder> getMountFolders(
 			long parentFolderId, int start, int end, OrderByComparator obc)
 		throws PortalException, SystemException {
@@ -578,6 +581,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public int getMountFoldersCount(long parentFolderId)
 		throws PortalException, SystemException {
 
@@ -688,6 +692,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public Lock lockFolder(long folderId)
 		throws PortalException, SystemException {
 
@@ -696,6 +701,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public Lock lockFolder(
 			long folderId, String owner, boolean inheritable,
 			long expirationTime)
@@ -752,6 +758,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public Lock refreshFileEntryLock(
 			String lockUuid, long companyId, long expirationTime)
 		throws PortalException, SystemException {
@@ -761,6 +768,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public Lock refreshFolderLock(
 			String lockUuid, long companyId, long expirationTime)
 		throws PortalException, SystemException {
@@ -817,6 +825,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public Hits search(long creatorUserId, int status, int start, int end)
 		throws PortalException, SystemException {
 
@@ -825,6 +834,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public Hits search(
 			long creatorUserId, long folderId, String[] mimeTypes, int status,
 			int start, int end)
@@ -946,6 +956,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public Hits search(SearchContext searchContext, Query query)
 		throws SearchException {
 
@@ -954,6 +965,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public void unlockFolder(long folderId, String lockUuid)
 		throws PortalException, SystemException {
 
@@ -1014,6 +1026,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public boolean verifyFileEntryCheckOut(long fileEntryId, String lockUuid)
 		throws PortalException, SystemException {
 
@@ -1022,6 +1035,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public boolean verifyInheritableLock(long folderId, String lockUuid)
 		throws PortalException, SystemException {
 

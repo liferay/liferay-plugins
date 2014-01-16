@@ -143,7 +143,6 @@ public abstract class ExtRepositoryModelAdapter<T>
 		return _uuid;
 	}
 
-	@SuppressWarnings("unused")
 	public boolean isDefaultRepository() {
 		return false;
 	}

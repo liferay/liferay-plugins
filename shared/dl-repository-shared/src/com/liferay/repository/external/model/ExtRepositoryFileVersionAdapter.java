@@ -71,11 +71,13 @@ public class ExtRepositoryFileVersionAdapter
 		return null;
 	}
 
+	@Override
 	public ExtRepositoryFileVersion getExtRepositoryModel() {
 		return _extRepositoryFileVersion;
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public FileEntry getFileEntry() throws PortalException, SystemException {
 		return _extRepositoryFileEntryAdapter;
 	}
@@ -131,6 +133,7 @@ public class ExtRepositoryFileVersionAdapter
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public String getStatusByUserUuid() throws SystemException {
 		return null;
 	}
