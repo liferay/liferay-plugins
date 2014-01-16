@@ -99,7 +99,7 @@
 		<field indexed="true" name="entryClassName" omitNorms="false" stored="true" type="string" />
 		<field indexed="true" name="firstName" stored="true" type="string_lowercase" />
 		<field indexed="true" name="folderId" omitNorms="false" stored="true" type="string" />
-		<field indexed="true" name="groupId" omitNorms="false" stored="true" type="string" />
+		<field indexed="true" multiValued="true" name="groupId" omitNorms="false" stored="true" type="string" />
 		<field indexed="true" name="id" stored="true" type="string" />
 		<field indexed="true" name="keywordSearch" omitNorms="true" omitTermFreqAndPositions="true" stored="true" type="textAuto" />
 		<field indexed="true" name="languageId" stored="true" type="string" />
@@ -111,7 +111,7 @@
 		<field indexed="true" name="portletId" omitNorms="false" stored="true" type="string" />
 		<field indexed="true" name="properties" stored="true" type="string" />
 		<field indexed="true" name="rightOrganizationId" stored="true" type="slong" />
-		<field indexed="true" name="scopeGroupId" omitNorms="false" stored="true" type="string" />
+		<field indexed="true" multiValued="true" name="scopeGroupId" omitNorms="false" stored="true" type="string" />
 		<field indexed="true" name="spellCheckWeight" stored="true" type="string" />
 		<field indexed="true" multiValued="true" name="spellCheckWord" stored="true" type="textSpell" />
 		<field indexed="true" name="title" stored="true" type="text" />
