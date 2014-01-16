@@ -23,7 +23,7 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
-import com.liferay.repository.external.api.ExtRepositoryModel;
+import com.liferay.repository.external.ExtRepositoryModel;
 
 import java.io.Serializable;
 

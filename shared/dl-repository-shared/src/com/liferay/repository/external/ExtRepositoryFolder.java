@@ -12,16 +12,16 @@
  * details.
  */
 
-package com.liferay.repository.external.api;
+package com.liferay.repository.external;
 
 /**
  * @author Iván Zaera
  * @author Sergio González
  */
-public interface ExtRepositoryFileEntry extends ExtRepositoryEntry {
+public interface ExtRepositoryFolder extends ExtRepositoryEntry {
 
-	public String getCheckedOutBy();
+	public String getName();
 
-	public String getTitle();
+	public boolean isRoot();
 
 }

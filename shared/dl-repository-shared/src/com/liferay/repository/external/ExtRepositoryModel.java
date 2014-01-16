@@ -12,34 +12,22 @@
  * details.
  */
 
-package com.liferay.repository.external.api;
+package com.liferay.repository.external;
+
+import java.util.Date;
 
 /**
  * @author Iván Zaera
  * @author Sergio González
  */
-public class ExtRepositorySearchResult<T extends ExtRepositoryEntry> {
+public interface ExtRepositoryModel {
 
-	public ExtRepositorySearchResult(T entry, float score, String snippet) {
-		_entry = entry;
-		_score = score;
-		_snippet = snippet;
-	}
+	public Date getCreatedDate();
 
-	public T getEntry() {
-		return _entry;
-	}
+	public String getId();
 
-	public float getScore() {
-		return _score;
-	}
+	public String getOwner();
 
-	public String getSnippet() {
-		return _snippet;
-	}
-
-	private T _entry;
-	private float _score;
-	private String _snippet;
+	public long getSize();
 
 }

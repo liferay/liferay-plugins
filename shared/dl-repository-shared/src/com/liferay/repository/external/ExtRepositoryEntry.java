@@ -12,16 +12,30 @@
  * details.
  */
 
-package com.liferay.repository.external.api;
+package com.liferay.repository.external;
+
+import java.util.Date;
 
 /**
  * @author Iván Zaera
  * @author Sergio González
  */
-public interface CredentialsProvider {
+public interface ExtRepositoryEntry extends ExtRepositoryModel {
 
-	public String getPassword();
+	public boolean containsPermission(
+		ExtRepositoryPermission extRepositoryPermission);
 
-	public String getUser();
+	public String getExtension();
+
+	public Date getModifiedDate();
+
+	public String getParentFolderId();
+
+	public enum ExtRepositoryPermission {
+
+		ACCESS, ADD_DOCUMENT, ADD_FOLDER, ADD_SUBFOLDER, DELETE, UPDATE, VIEW,
+		ADD_SHORTCUT
+
+	}
 
 }

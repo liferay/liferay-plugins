@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
-import com.liferay.repository.external.api.ExtRepositoryFolder;
+import com.liferay.repository.external.ExtRepositoryFolder;
 
 import java.util.Date;
 

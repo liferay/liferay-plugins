@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.repository.external.api;
+package com.liferay.repository.external;
 
 /**
  * @author Iván Zaera

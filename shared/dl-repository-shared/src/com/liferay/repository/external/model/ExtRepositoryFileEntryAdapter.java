@@ -31,7 +31,7 @@ import com.liferay.portal.service.persistence.LockUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
-import com.liferay.repository.external.api.ExtRepositoryFileEntry;
+import com.liferay.repository.external.ExtRepositoryFileEntry;
 
 import java.io.InputStream;
 
