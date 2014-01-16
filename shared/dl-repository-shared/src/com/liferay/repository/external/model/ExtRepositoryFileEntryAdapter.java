@@ -74,6 +74,7 @@ public class ExtRepositoryFileEntryAdapter
 			(ExtRepositoryFileVersionAdapter)fileVersion);
 	}
 
+	@Override
 	public ExtRepositoryFileEntry getExtRepositoryModel() {
 		return _extRepositoryFileEntry;
 	}
