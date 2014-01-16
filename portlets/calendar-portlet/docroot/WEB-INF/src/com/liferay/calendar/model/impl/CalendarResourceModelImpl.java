@@ -113,9 +113,8 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	public static long CODE_COLUMN_BITMASK = 8L;
 	public static long COMPANYID_COLUMN_BITMASK = 16L;
 	public static long GROUPID_COLUMN_BITMASK = 32L;
-	public static long NAME_COLUMN_BITMASK = 64L;
-	public static long RESOURCEBLOCKID_COLUMN_BITMASK = 128L;
-	public static long UUID_COLUMN_BITMASK = 256L;
+	public static long RESOURCEBLOCKID_COLUMN_BITMASK = 64L;
+	public static long UUID_COLUMN_BITMASK = 128L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -657,12 +656,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 	@Override
 	public void setName(String name) {
-		_columnBitmask |= NAME_COLUMN_BITMASK;
-
-		if (_originalName == null) {
-			_originalName = _name;
-		}
-
 		_name = name;
 	}
 
@@ -704,10 +697,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 		setName(LocalizationUtil.updateLocalization(nameMap, getName(), "Name",
 				LocaleUtil.toLanguageId(defaultLocale)));
-	}
-
-	public String getOriginalName() {
-		return GetterUtil.getString(_originalName);
 	}
 
 	@JSON
@@ -1041,8 +1030,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 
 		calendarResourceModelImpl._originalCode = calendarResourceModelImpl._code;
 
-		calendarResourceModelImpl._originalName = calendarResourceModelImpl._name;
-
 		calendarResourceModelImpl._originalActive = calendarResourceModelImpl._active;
 
 		calendarResourceModelImpl._setOriginalActive = false;
@@ -1290,7 +1277,6 @@ public class CalendarResourceModelImpl extends BaseModelImpl<CalendarResource>
 	private String _originalCode;
 	private String _name;
 	private String _nameCurrentLanguageId;
-	private String _originalName;
 	private String _description;
 	private String _descriptionCurrentLanguageId;
 	private boolean _active;
