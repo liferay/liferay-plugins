@@ -14,7 +14,9 @@
 
 package com.liferay.sync.engine.util;
 
-import java.util.Properties;
+import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.PropertiesConfiguration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,23 +35,16 @@ public class PropsUtil {
 	}
 
 	private PropsUtil() {
-		_properties = new Properties();
-
-		Thread thread = Thread.currentThread();
-
-		ClassLoader classLoader = thread.getContextClassLoader();
-
 		try {
-			_properties.load(
-				classLoader.getResourceAsStream("sync.properties"));
+			_configuration = new PropertiesConfiguration("sync.properties");
 		}
-		catch (Exception e) {
-			_logger.error("Unable to initialize", e);
+		catch (ConfigurationException ce) {
+			_logger.error("Unable to initialize", ce);
 		}
 	}
 
 	private String _get(String key) {
-		String value = _properties.getProperty(key);
+		String value = _configuration.getString(key);
 
 		if (value == null) {
 			return "";
@@ -59,13 +54,13 @@ public class PropsUtil {
 	}
 
 	private void _set(String key, String value) {
-		_properties.setProperty(key, value);
+		_configuration.setProperty(key, value);
 	}
 
 	private static PropsUtil _instance = new PropsUtil();
 
 	private static Logger _logger = LoggerFactory.getLogger(PropsUtil.class);
 
-	private Properties _properties;
+	private Configuration _configuration;
 
 }
