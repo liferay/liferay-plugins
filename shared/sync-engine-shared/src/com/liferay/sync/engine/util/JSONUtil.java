@@ -49,7 +49,8 @@ import org.apache.http.protocol.BasicHttpContext;
 public class JSONUtil {
 
 	public static String executeRequest(
-			long syncAccountId, String path, Map<String, Object> parameters)
+			long syncAccountId, String servicePath,
+			Map<String, Object> parameters)
 		throws Exception {
 
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
@@ -75,7 +76,7 @@ public class JSONUtil {
 		HttpHost httpHost = new HttpHost(
 			url.getHost(), url.getPort(), url.getProtocol());
 
-		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + path);
+		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + servicePath);
 
 		httpPost.setEntity(_getHttpEntity(parameters));
 

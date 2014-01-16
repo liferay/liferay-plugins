@@ -41,10 +41,10 @@ import java.util.concurrent.Executors;
  */
 public class Watcher implements Runnable {
 
-	public Watcher(Path path, boolean recursive) throws IOException {
+	public Watcher(Path filePath, boolean recursive) throws IOException {
 		_recursive = recursive;
 
-		register(path, recursive);
+		register(filePath, recursive);
 
 		FileSystem fileSystem = FileSystems.getDefault();
 
@@ -60,22 +60,22 @@ public class Watcher implements Runnable {
 	}
 
 	public void fireWatchEventListeners(
-		WatchEvent<Path> watchEvent, Path path) {
+		WatchEvent<Path> watchEvent, Path filePath) {
 
 		WatchEvent.Kind<?> kind = watchEvent.kind();
 
 		for (WatchEventListener watchEventListener : _watchEventListeners) {
 			if (kind == StandardWatchEventKinds.ENTRY_CREATE) {
-				watchEventListener.entryCreate(watchEvent, path);
+				watchEventListener.entryCreate(watchEvent, filePath);
 			}
 			else if (kind == StandardWatchEventKinds.ENTRY_DELETE) {
-				watchEventListener.entryDelete(watchEvent, path);
+				watchEventListener.entryDelete(watchEvent, filePath);
 			}
 			else if (kind == StandardWatchEventKinds.ENTRY_MODIFY) {
-				watchEventListener.entryModify(watchEvent, path);
+				watchEventListener.entryModify(watchEvent, filePath);
 			}
 			else if (kind == StandardWatchEventKinds.OVERFLOW) {
-				watchEventListener.overflow(watchEvent, path);
+				watchEventListener.overflow(watchEvent, filePath);
 			}
 		}
 	}
@@ -96,9 +96,9 @@ public class Watcher implements Runnable {
 				return;
 			}
 
-			Path parentPath = _paths.get(watchKey);
+			Path parentFilePath = _filePaths.get(watchKey);
 
-			if (parentPath == null) {
+			if (parentFilePath == null) {
 				continue;
 			}
 
@@ -108,9 +108,9 @@ public class Watcher implements Runnable {
 				WatchEvent<Path> watchEvent = (WatchEvent<Path>)watchEvents.get(
 					i);
 
-				Path childPath = parentPath.resolve(watchEvent.context());
+				Path childFilePath = parentFilePath.resolve(watchEvent.context());
 
-				fireWatchEventListeners(watchEvent, childPath);
+				fireWatchEventListeners(watchEvent, childFilePath);
 
 				WatchEvent.Kind<?> kind = watchEvent.kind();
 
@@ -119,9 +119,9 @@ public class Watcher implements Runnable {
 
 					try {
 						if (Files.isDirectory(
-								childPath, LinkOption.NOFOLLOW_LINKS)) {
+								childFilePath, LinkOption.NOFOLLOW_LINKS)) {
 
-							register(childPath, true);
+							register(childFilePath, true);
 						}
 					}
 					catch (IOException ioe) {
@@ -130,27 +130,28 @@ public class Watcher implements Runnable {
 			}
 
 			if (!watchKey.reset()) {
-				_paths.remove(watchKey);
+				_filePaths.remove(watchKey);
 
-				if (_paths.isEmpty()) {
+				if (_filePaths.isEmpty()) {
 					break;
 				}
 			}
 		}
 	}
 
-	protected void register(Path path, boolean recursive) throws IOException {
+	protected void register(Path filePath, boolean recursive) throws IOException {
 		if (recursive) {
 			Files.walkFileTree(
-				path,
+				filePath,
 				new SimpleFileVisitor<Path>() {
 
 					@Override
 					public FileVisitResult preVisitDirectory(
-							Path path, BasicFileAttributes basicFileAttributes)
+							Path filePath, 
+							BasicFileAttributes basicFileAttributes)
 						throws IOException {
 
-						register(path, false);
+						register(filePath, false);
 
 						return FileVisitResult.CONTINUE;
 					}
@@ -159,18 +160,18 @@ public class Watcher implements Runnable {
 			);
 		}
 		else {
-			WatchKey watchKey = path.register(
+			WatchKey watchKey = filePath.register(
 				_watchService, StandardWatchEventKinds.ENTRY_CREATE,
 				StandardWatchEventKinds.ENTRY_DELETE,
 				StandardWatchEventKinds.ENTRY_MODIFY);
 
-			_paths.put(watchKey, path);
+			_filePaths.put(watchKey, filePath);
 		}
 	}
 
 	private ExecutorService _executorService =
 		Executors.newSingleThreadExecutor();
-	private Map<WatchKey, Path> _paths = new HashMap<WatchKey, Path>();
+	private Map<WatchKey, Path> _filePaths = new HashMap<WatchKey, Path>();
 	private boolean _recursive;
 	private List<WatchEventListener> _watchEventListeners =
 		new ArrayList<WatchEventListener>();

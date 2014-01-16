@@ -25,16 +25,16 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 @DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncAccount")
 public class SyncAccount {
 
+	public String getFilePath() {
+		return filePath;
+	}
+
 	public String getLogin() {
 		return login;
 	}
 
 	public String getPassword() {
 		return password;
-	}
-
-	public String getRootPath() {
-		return rootPath;
 	}
 
 	public long getSyncAccountId() {
@@ -45,16 +45,16 @@ public class SyncAccount {
 		return url;
 	}
 
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public void setRootPath(String rootPath) {
-		this.rootPath = rootPath;
 	}
 
 	public void setSyncAccountId(long syncAccountId) {
@@ -66,13 +66,13 @@ public class SyncAccount {
 	}
 
 	@DatabaseField(useGetSet = true, width = 16777216)
+	protected String filePath;
+
+	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String login;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String password;
-
-	@DatabaseField(useGetSet = true, width = 16777216)
-	protected String rootPath;
 
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected long syncAccountId;

@@ -22,30 +22,18 @@ import org.slf4j.LoggerFactory;
  */
 public class PathUtil {
 
-	public static String fixPath(String name) {
-		if (name == null) {
+	public static String fixPath(String filePath) {
+		if (filePath == null) {
 			return "";
 		}
 
-		name = name.replace("\\", "/");
+		filePath = filePath.replace("\\", "/");
 
-		if (name.endsWith("/")) {
-			name = name.substring(0, name.length() - 1);
+		if (filePath.endsWith("/")) {
+			filePath = filePath.substring(0, filePath.length() - 1);
 		}
 
-		return name;
-	}
-
-	public static String getWebDAVPath(String repositoryPath, String path) {
-		path = fixPath(path);
-
-		if (path.startsWith(repositoryPath)) {
-			return path.substring(repositoryPath.length());
-		}
-
-		_logger.error("Unable to get WebDAV path {}", path);
-
-		return null;
+		return filePath;
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(PathUtil.class);

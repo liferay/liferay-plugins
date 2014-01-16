@@ -22,12 +22,12 @@ import java.nio.file.WatchEvent;
  */
 public interface WatchEventListener {
 
-	public void entryCreate(WatchEvent<Path> watchEvent, Path path);
+	public void entryCreate(WatchEvent<Path> watchEvent, Path filePath);
 
-	public void entryDelete(WatchEvent<Path> watchEvent, Path path);
+	public void entryDelete(WatchEvent<Path> watchEvent, Path filePath);
 
-	public void entryModify(WatchEvent<Path> watchEvent, Path path);
+	public void entryModify(WatchEvent<Path> watchEvent, Path filePath);
 
-	public void overflow(WatchEvent<Path> watchEvent, Path path);
+	public void overflow(WatchEvent<Path> watchEvent, Path filePath);
 
 }
