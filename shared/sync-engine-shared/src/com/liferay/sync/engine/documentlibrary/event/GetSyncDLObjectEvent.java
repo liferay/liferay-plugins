@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.sync.engine.remote.portlet.documentlibrary.event;
+package com.liferay.sync.engine.documentlibrary.event;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.liferay.sync.engine.remote.portlet.documentlibrary.model.SyncDLObject;
+import com.liferay.sync.engine.documentlibrary.model.SyncDLObject;
 
 import java.util.List;
 import java.util.Map;

@@ -14,8 +14,8 @@
 
 package com.liferay.sync.engine.util;
 
+import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
 import com.liferay.sync.engine.model.SyncAccount;
-import com.liferay.sync.engine.remote.portlet.documentlibrary.handler.BaseHandler;
 import com.liferay.sync.engine.service.SyncAccountService;
 
 import java.net.URL;

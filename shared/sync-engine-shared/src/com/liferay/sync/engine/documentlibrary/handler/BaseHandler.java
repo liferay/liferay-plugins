@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.engine.remote.portlet.documentlibrary.handler;
+package com.liferay.sync.engine.documentlibrary.handler;
 
 import java.io.IOException;
 

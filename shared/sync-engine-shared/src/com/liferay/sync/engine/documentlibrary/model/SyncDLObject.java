@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.engine.remote.portlet.documentlibrary.model;
+package com.liferay.sync.engine.documentlibrary.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

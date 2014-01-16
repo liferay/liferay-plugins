@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.engine.remote.portlet.documentlibrary.event;
+package com.liferay.sync.engine.documentlibrary.event;
 
 import com.liferay.sync.engine.util.JSONUtil;
 
