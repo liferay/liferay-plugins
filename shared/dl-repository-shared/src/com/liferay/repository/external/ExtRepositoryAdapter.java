@@ -179,8 +179,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Checkout with expiration not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -676,7 +675,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Cannot initialize repository: " + _extRepository, pe);
+					"Unable to initialize repository " + _extRepository, pe);
 			}
 
 			throw pe;
@@ -684,7 +683,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		catch (SystemException se) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Cannot initialize repository: " + _extRepository, se);
+					"Unable to initialize repository " + _extRepository, se);
 			}
 
 			throw se;
@@ -696,8 +695,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	public Lock lockFolder(long folderId)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Folder locks are not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -707,8 +705,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			long expirationTime)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Folder locks are not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -763,8 +760,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			String lockUuid, long companyId, long expirationTime)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Lock refresh is not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -773,8 +769,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			String lockUuid, long companyId, long expirationTime)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Folder locks are not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -829,8 +824,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	public Hits search(long creatorUserId, int status, int start, int end)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Search by creator and status is not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -840,8 +834,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			int start, int end)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Search by creator, folder, mime type and status is not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -865,10 +858,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			}
 		}
 		catch (SystemException se) {
-			throw new SearchException("Cannot perform search", se);
+			throw new SearchException("Unable to perform search", se);
 		}
 		catch (PortalException pe) {
-			throw new SearchException("Cannot perform search", pe);
+			throw new SearchException("Unable to perform search", pe);
 		}
 
 		List<ExtRepositorySearchResult<?>> extRepositorySearchResults = null;
@@ -880,10 +873,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				searchContext.getEnd());
 		}
 		catch (PortalException pe) {
-			throw new SearchException("Error performing search", pe);
+			throw new SearchException("Unable to perform search", pe);
 		}
 		catch (SystemException e) {
-			throw new SearchException("Error performing search", e);
+			throw new SearchException("Unable to perform search", e);
 		}
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
@@ -960,8 +953,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	public Hits search(SearchContext searchContext, Query query)
 		throws SearchException {
 
-		throw new UnsupportedOperationException(
-			"Search by context and query is not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -969,8 +961,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	public void unlockFolder(long folderId, String lockUuid)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Folder locking is not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -1030,8 +1021,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	public boolean verifyFileEntryCheckOut(long fileEntryId, String lockUuid)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Verification of file check outs is not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -1039,8 +1029,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	public boolean verifyInheritableLock(long folderId, String lockUuid)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException(
-			"Inheritable locks are not supported");
+		throw new UnsupportedOperationException();
 	}
 
 	protected ExtRepositoryAdapter(ExtRepository extRepository) {
@@ -1108,7 +1097,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		catch (PortalException e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Cannot obtain user name to connect to ext repository: " +
+					"Unable to get login to connect to external repository " +
 						_extRepository,
 					e);
 			}
@@ -1118,7 +1107,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		catch (SystemException e) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Cannot obtain user name to connect to ext repository: " +
+					"Unable to get login to connect to external repository " +
 						_extRepository,
 					e);
 			}
@@ -1155,7 +1144,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		if (repositoryEntry == null) {
 			throw new NoSuchRepositoryEntryException(
-				"No repository entry exits with {Uuid='" + entryUuid + "}");
+				"No repository entry exits with {uuid='" + entryUuid + "}");
 		}
 
 		return repositoryEntry.getMappedId();
@@ -1210,7 +1199,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					ExtRepositoryFileEntryAdapter)) {
 
 				throw new NoSuchFileEntryException(
-					"Ext repository entry is not a file: " +
+					"External repository entry is not a file " +
 						extRepositoryEntry);
 			}
 		}
@@ -1219,13 +1208,13 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					ExtRepositoryFolderAdapter)) {
 
 				throw new NoSuchFolderException(
-					"Ext repository entry is not a folder: " +
+					"External repository entry is not a folder " +
 						extRepositoryEntry);
 			}
 		}
 		else if (entryType != ExtRepositoryModelAdapterType.ENTRY) {
 			throw new IllegalArgumentException(
-				"Unsupported repository entry type: " + entryType);
+				"Unsupported repository entry type " + entryType);
 		}
 
 		return (T)extRepositoryEntryAdapter;
