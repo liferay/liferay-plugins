@@ -161,6 +161,12 @@ public class ExtRepositoryFileEntryAdapter
 		return getFileVersion();
 	}
 
+	public FileVersion getLatestFileVersion(boolean trusted)
+		throws PortalException, SystemException {
+
+		return getFileVersion();
+	}
+
 	@Override
 	public Lock getLock() {
 		if (!isCheckedOut()) {
