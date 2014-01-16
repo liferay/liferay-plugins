@@ -132,11 +132,12 @@ public abstract class ExtRepositoryEntryAdapter<T>
 	}
 
 	protected ExtRepositoryEntryAdapter(
-		ExtRepositoryAdapter extRepositoryAdapter, long repositoryEntryId,
+		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryEntryId,
 		String uuid, ExtRepositoryEntry extRepositoryEntry) {
 
 		super(
-			extRepositoryAdapter, repositoryEntryId, uuid, extRepositoryEntry);
+			extRepositoryAdapter, extRepositoryEntryId, uuid,
+			extRepositoryEntry);
 
 		_extRepositoryEntry = extRepositoryEntry;
 	}
