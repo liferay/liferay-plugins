@@ -12,22 +12,16 @@
  * details.
  */
 
-package com.liferay.repository.external.api;
-
-import java.util.Date;
+package com.liferay.repository.external;
 
 /**
  * @author Iván Zaera
  * @author Sergio González
  */
-public interface ExtRepositoryModel {
+public interface CredentialsProvider {
 
-	public Date getCreatedDate();
+	public String getPassword();
 
-	public String getId();
-
-	public String getOwner();
-
-	public long getSize();
+	public String getUser();
 
 }

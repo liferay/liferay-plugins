@@ -22,8 +22,8 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
-import com.liferay.repository.external.api.ExtRepositoryEntry;
-import com.liferay.repository.external.api.ExtRepositoryEntry.ExtRepositoryPermission;
+import com.liferay.repository.external.ExtRepositoryEntry;
+import com.liferay.repository.external.ExtRepositoryEntry.ExtRepositoryPermission;
 
 import java.util.ArrayList;
 import java.util.Date;

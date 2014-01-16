@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
-import com.liferay.repository.external.api.ExtRepositoryFileVersion;
+import com.liferay.repository.external.ExtRepositoryFileVersion;
 
 import java.io.InputStream;
 

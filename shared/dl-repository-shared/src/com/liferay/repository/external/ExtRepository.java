@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.repository.external.api;
+package com.liferay.repository.external;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
