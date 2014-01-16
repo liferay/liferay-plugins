@@ -12,26 +12,13 @@
  * details.
  */
 
-package com.liferay.sync.engine.model;
-
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
+package com.liferay.sync.engine.upgrade;
 
 /**
  * @author Shinn Lok
  */
-@DatabaseTable(tableName = "Account")
-public class Account {
+public abstract class UpgradeProcess {
 
-	public long getAccountId() {
-		return this.accountId;
-	}
-
-	public void setAccountId(long accountId) {
-		this.accountId = accountId;
-	}
-
-	@DatabaseField(generatedId = true, useGetSet = true)
-	protected long accountId;
+	public abstract void upgrade() throws Exception;
 
 }
