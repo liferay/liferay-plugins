@@ -140,16 +140,6 @@ $theme.include($body_top_include)
 		#end
 	</div>
 
-	#if (!$page_group.isUser())
-		<nav class="site-breadcrumbs" id="breadcrumbs">
-			<h1 class="hidden-accessible">
-				<span>#language("breadcrumbs")</span>
-			</h1>
-
-			#breadcrumbs()
-		</nav>
-	#end
-
 	<footer id="footer" role="contentinfo">
 		<p class="powered-by">
 			#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
