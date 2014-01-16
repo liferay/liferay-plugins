@@ -33,16 +33,30 @@ String backURL = PortalUtil.getCurrentURL(request);
 						var calendarResourceId = instance.calendarResourceId;
 
 						if (calendarResourceId) {
-							<portlet:renderURL var="editCalendarURL">
+							<portlet:renderURL var="editCalendarURL"  windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 								<portlet:param name="mvcPath" value="/edit_calendar.jsp" />
-								<portlet:param name="redirect" value="<%= currentURL %>" />
 								<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
 							</portlet:renderURL>
 
-							window.location.href = A.Lang.sub(
-								decodeURIComponent('<%= editCalendarURL %>'),
+							Liferay.Util.openWindow(
 								{
-									calendarResourceId: calendarResourceId
+									dialog: {
+										after: {
+											destroy: function(event) {
+												scheduler.load();
+											}
+										},
+										destroyOnClose: true,
+										modal: true
+									},
+									refreshWindow: window,
+									title: Liferay.Language.get('add-calendar'),
+									uri: A.Lang.sub(
+										decodeURIComponent('<%= editCalendarURL %>'),
+										{
+											calendarResourceId: calendarResourceId
+										}
+									)
 								}
 							);
 						}

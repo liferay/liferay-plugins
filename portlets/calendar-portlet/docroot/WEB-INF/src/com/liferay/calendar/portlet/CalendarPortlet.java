@@ -610,7 +610,11 @@ public class CalendarPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String editCalendarURL = PortalUtil.getLayoutFullURL(themeDisplay);
+		String editCalendarURL = getRedirect(actionRequest, actionResponse);
+
+		if (Validator.isNull(editCalendarURL)) {
+			editCalendarURL = PortalUtil.getLayoutFullURL(themeDisplay);
+		}
 
 		String namespace = actionResponse.getNamespace();
 
