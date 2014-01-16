@@ -36,8 +36,8 @@ public class SyncGroupPersistence extends BasePersistenceImpl<SyncGroup, Long> {
 
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
 
-		fieldValues.put("syncAccountId", syncAccountId);
 		fieldValues.put("groupId", groupId);
+		fieldValues.put("syncAccountId", syncAccountId);
 
 		List<SyncGroup> groups = queryForFieldValues(fieldValues);
 
