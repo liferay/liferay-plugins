@@ -26,6 +26,7 @@ import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -35,7 +36,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
@@ -52,15 +52,15 @@ public class JSONUtil {
 			long syncAccountId, String path, Map<String, Object> parameters)
 		throws Exception {
 
-		SyncAccount syncAccount = SyncAccountService.getSyncAccount(
-			syncAccountId);
-
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
-
-		URL url = new URL(syncAccount.getUrl());
 
 		CredentialsProvider credentialsProvider =
 			new BasicCredentialsProvider();
+
+		SyncAccount syncAccount = SyncAccountService.getSyncAccount(
+			syncAccountId);
+
+		URL url = new URL(syncAccount.getUrl());
 
 		credentialsProvider.setCredentials(
 			new AuthScope(url.getHost(), url.getPort()),
@@ -75,45 +75,47 @@ public class JSONUtil {
 		HttpHost httpHost = new HttpHost(
 			url.getHost(), url.getPort(), url.getProtocol());
 
+		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + path);
+
+		httpPost.setEntity(_getHttpEntity(parameters));
+
+		return httpClient.execute(
+			httpHost, httpPost, new BaseHandler(),
+			_getBasicHttpContext(httpHost));
+	}
+
+	private static BasicAuthCache _getBasicAuthCache(HttpHost httpHost) {
 		BasicAuthCache basicAuthCache = new BasicAuthCache();
 
 		BasicScheme basicScheme = new BasicScheme();
 
 		basicAuthCache.put(httpHost, basicScheme);
 
+		return basicAuthCache;
+	}
+
+	private static BasicHttpContext _getBasicHttpContext(HttpHost httpHost) {
 		BasicHttpContext basicHttpContext = new BasicHttpContext();
 
 		basicHttpContext.setAttribute(
-			HttpClientContext.AUTH_CACHE, basicAuthCache);
+			HttpClientContext.AUTH_CACHE, _getBasicAuthCache(httpHost));
 
-		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + path);
-
-		MultipartEntityBuilder multipartEntityBuilder =
-			getMultipartEntityBuilder(parameters);
-
-		httpPost.setEntity(multipartEntityBuilder.build());
-
-		BaseHandler baseHandler = new BaseHandler();
-
-		return httpClient.execute(
-			httpHost, httpPost, baseHandler, basicHttpContext);
+		return basicHttpContext;
 	}
 
-	protected static MultipartEntityBuilder getMultipartEntityBuilder(
-		Map<String, Object> parameters) {
-
+	private static HttpEntity _getHttpEntity(Map<String, Object> parameters) {
 		MultipartEntityBuilder multipartEntityBuilder =
 			MultipartEntityBuilder.create();
 
 		for (Map.Entry<String, Object> entry : parameters.entrySet()) {
 			multipartEntityBuilder.addPart(
-				entry.getKey(), getStringBody(entry.getValue()));
+				entry.getKey(), _getStringBody(entry.getValue()));
 		}
 
-		return multipartEntityBuilder;
+		return multipartEntityBuilder.build();
 	}
 
-	protected static ContentBody getStringBody(Object value) {
+	private static StringBody _getStringBody(Object value) {
 		return new StringBody(
 			String.valueOf(value),
 			ContentType.create(MediaType.TEXT_PLAIN, Charset.defaultCharset()));
