@@ -1826,6 +1826,8 @@ AUI.add(
 
 						var templateData = instance.getTemplateData();
 
+						var titleNode = instance.popover.get('contentBox').one('.popover-title');
+
 						if (A.instanceOf(bodyTemplate, A.Template) && A.instanceOf(headerTemplate, A.Template)) {
 							instance.popover.setStdModContent('body', bodyTemplate.parse(templateData));
 							instance.popover.setStdModContent('header', headerTemplate.parse(templateData));
@@ -1849,6 +1851,8 @@ AUI.add(
 							],
 							'header'
 						);
+
+						titleNode.toggleClass('hide', !templateData.permissions.VIEW_BOOKING_DETAILS);
 					},
 
 					_afterPopoverVisibleChange: function(event) {
