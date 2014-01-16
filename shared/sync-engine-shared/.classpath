@@ -23,7 +23,9 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="lib/commons-codec.jar" />
+	<classpathentry kind="lib" path="lib/commons-configuration.jar" />
 	<classpathentry kind="lib" path="lib/commons-io.jar" />
+	<classpathentry kind="lib" path="lib/commons-lang.jar" />
 	<classpathentry kind="lib" path="lib/h2.jar" />
 	<classpathentry kind="lib" path="lib/httpclient.jar" />
 	<classpathentry kind="lib" path="lib/httpcore.jar" />
