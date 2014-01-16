@@ -49,7 +49,7 @@ import org.apache.http.protocol.BasicHttpContext;
 public class JSONUtil {
 
 	public static String executeRequest(
-			long syncAccountId, String method, Map<String, Object> parameters)
+			long syncAccountId, String path, Map<String, Object> parameters)
 		throws Exception {
 
 		SyncAccount syncAccount = SyncAccountService.getSyncAccount(
@@ -86,7 +86,7 @@ public class JSONUtil {
 		basicHttpContext.setAttribute(
 			HttpClientContext.AUTH_CACHE, basicAuthCache);
 
-		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + method);
+		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + path);
 
 		MultipartEntityBuilder multipartEntityBuilder =
 			getMultipartEntityBuilder(parameters);

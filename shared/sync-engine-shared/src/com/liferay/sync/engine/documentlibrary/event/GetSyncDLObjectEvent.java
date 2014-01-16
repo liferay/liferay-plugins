@@ -30,7 +30,7 @@ public class GetSyncDLObjectEvent extends BaseEvent {
 	public GetSyncDLObjectEvent(
 		long syncAccountId, Map<String, Object> parameters) {
 
-		super(syncAccountId, _METHOD, parameters);
+		super(syncAccountId, _PATH, parameters);
 	}
 
 	@Override
@@ -41,12 +41,11 @@ public class GetSyncDLObjectEvent extends BaseEvent {
 			response, new TypeReference<List<SyncDLObject>>() {});
 
 		for (SyncDLObject syncDLObject : syncDLObjects) {
-
-			//TO-DO
+			System.out.println(syncDLObject);
 		}
 	}
 
-	private static final String _METHOD =
+	private static final String _PATH =
 		"/sync-web.syncdlobject/get-file-entry-sync-dl-objects";
 
 }
