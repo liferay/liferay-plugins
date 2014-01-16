@@ -1703,6 +1703,25 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 			</if>
 
+			<set-build-xml-var
+				build.xml.var.name="plugin-lib.additional.dir"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
+
+					<path id="plugin-lib.classpath">
+						<fileset dir="@{module.dir}/${set-build-xml-var.return}" includes="*.jar" />
+						<pathelement path="${plugin-lib.classpath.path}" />
+					</path>
+
+					<var name="plugin-lib.classpath.path" unset="true" />
+				</then>
+			</if>
+
 			<var name="set-module-properties.build.xml.content" unset="true" />
 			<var name="set-module-properties.plugin.version" unset="true" />
 		</sequential>
