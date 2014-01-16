@@ -1153,7 +1153,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		RepositoryEntry repositoryEntry = RepositoryEntryUtil.fetchByUUID_G(
 			entryUuid, getGroupId(), true);
 
-		if (repositoryEntry != null) {
+		if (repositoryEntry == null) {
 			throw new NoSuchRepositoryEntryException(
 				"No repository entry exits with {Uuid='" + entryUuid + "}");
 		}
