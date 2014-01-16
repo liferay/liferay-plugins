@@ -34,7 +34,7 @@ public class SyncGroupPersistence extends BasePersistenceImpl<SyncGroup, Long> {
 	public SyncGroup getSyncGroup(long syncAccountId, long groupId)
 		throws SQLException {
 
-		Map<String, Object> fieldValues = new HashMap<String, Object>(1);
+		Map<String, Object> fieldValues = new HashMap<String, Object>();
 
 		fieldValues.put("syncAccountId", syncAccountId);
 		fieldValues.put("groupId", groupId);
