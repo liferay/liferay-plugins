@@ -18,6 +18,7 @@ import com.liferay.compat.util.bridges.mvc.MVCPortlet;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -33,6 +34,7 @@ import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.MembershipRequestLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -115,42 +117,13 @@ public class SummaryPortlet extends MVCPortlet {
 				group.getGroupId(), new long[] {themeDisplay.getUserId()});
 		}
 		else {
-			Role siteAdminRole = RoleLocalServiceUtil.getRole(
-				themeDisplay.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				actionRequest);
 
-			LinkedHashMap<String, Object> userParams =
-				new LinkedHashMap<String, Object>();
-
-			userParams.put(
-				"userGroupRole",
-				new Long[] {group.getGroupId(), siteAdminRole.getRoleId()});
-
-			List<User> users = UserLocalServiceUtil.search(
-				themeDisplay.getCompanyId(), null,
-				WorkflowConstants.STATUS_APPROVED, userParams,
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
-
-			if (users.isEmpty()) {
-				Role adminRole = RoleLocalServiceUtil.getRole(
-					themeDisplay.getCompanyId(), RoleConstants.ADMINISTRATOR);
-
-				userParams.clear();
-
-				userParams.put("usersRoles", adminRole.getRoleId());
-
-				users = UserLocalServiceUtil.search(
-					themeDisplay.getCompanyId(), null,
-					WorkflowConstants.STATUS_APPROVED, userParams,
-					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-					(OrderByComparator)null);
-			}
-
-			for (User user : users) {
-				SocialRequestLocalServiceUtil.addRequest(
-					themeDisplay.getUserId(), 0, Group.class.getName(),
-					group.getGroupId(), MembersRequestKeys.ADD_MEMBER,
-					StringPool.BLANK, user.getUserId());
-			}
+			MembershipRequestLocalServiceUtil.addMembershipRequest(
+				themeDisplay.getUserId(), group.getGroupId(),
+				LanguageUtil.get(themeDisplay.getLocale(),
+				"requested-via-summary-portlet"), serviceContext);
 		}
 	}
 
