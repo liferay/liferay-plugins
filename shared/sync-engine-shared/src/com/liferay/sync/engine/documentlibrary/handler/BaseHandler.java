@@ -44,9 +44,9 @@ public class BaseHandler implements ResponseHandler<String> {
 				statusLine.getStatusCode(), statusLine.getReasonPhrase());
 		}
 
-		HttpEntity entity = httpResponse.getEntity();
+		HttpEntity httpEntity = httpResponse.getEntity();
 
-		return EntityUtils.toString(entity);
+		return EntityUtils.toString(httpEntity);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(BaseHandler.class);

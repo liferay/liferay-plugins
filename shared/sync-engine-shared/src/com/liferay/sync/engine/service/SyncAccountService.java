@@ -52,7 +52,9 @@ public class SyncAccountService {
 			_syncAccountPersistence = new SyncAccountPersistence();
 		}
 		catch (SQLException sqle) {
-			_logger.debug(sqle.getMessage(), sqle);
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
 		}
 
 		return _syncAccountPersistence;
@@ -65,7 +67,9 @@ public class SyncAccountService {
 			syncAccount = _syncAccountPersistence.queryForId(syncAccountId);
 		}
 		catch (SQLException sqle) {
-			_logger.debug(sqle.getMessage(), sqle);
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
 		}
 
 		return syncAccount;

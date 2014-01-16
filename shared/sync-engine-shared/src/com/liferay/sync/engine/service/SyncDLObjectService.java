@@ -35,7 +35,9 @@ public class SyncDLObjectService {
 			_syncDLObjectPersistence = new SyncDLObjectPersistence();
 		}
 		catch (SQLException sqle) {
-			_logger.debug(sqle.getMessage(), sqle);
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
 		}
 
 		return _syncDLObjectPersistence;

@@ -51,7 +51,9 @@ public class SyncGroupService {
 			_syncGroupPersistence = new SyncGroupPersistence();
 		}
 		catch (SQLException sqle) {
-			_logger.debug(sqle.getMessage(), sqle);
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
 		}
 
 		return _syncGroupPersistence;
@@ -65,7 +67,9 @@ public class SyncGroupService {
 				syncAccountId, groupId);
 		}
 		catch (SQLException sqle) {
-			_logger.debug(sqle.getMessage(), sqle);
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
 		}
 
 		return syncGroup;
