@@ -235,7 +235,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				</li>
 
 				<li class="message-count">
-					<liferay-ui:message arguments='<%= new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), messagesDisplay.getMessageCount()} %>' key="x-of-x" />
+					<liferay-ui:message arguments='<%= new Object[] {messagesDisplay.getStartMessageNumber() + " - " + messagesDisplay.getEndMessageNumber(), messagesDisplay.getMessageCount()} %>' key="x-of-x" translateArguments="<%= false %>" />
 				</li>
 
 				<li class="<%= (messagesDisplay.getPageNumber() < messagesDisplay.getPageCount() ? StringPool.BLANK : "disabled ") + "next" %>">

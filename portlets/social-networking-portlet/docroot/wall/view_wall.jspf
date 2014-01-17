@@ -31,7 +31,7 @@
 		}
 
 		if (wallToWallUser != null) {
-			renderResponse.setTitle(LanguageUtil.format(pageContext, "my-wall-to-wall-with-x", wallToWallUser.getFullName()));
+			renderResponse.setTitle(LanguageUtil.format(pageContext, "my-wall-to-wall-with-x", wallToWallUser.getFullName(), false));
 		}
 		%>
 
@@ -124,7 +124,7 @@
 					<br />
 
 					<div>
-						<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(wallEntry.getCreateDate())) %>
+						<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(wallEntry.getCreateDate()), false) %>
 					</div>
 
 					<c:if test="<%= themeDisplay.isSignedIn() && UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
@@ -168,7 +168,7 @@
 								postMessage = "write-on-my-wall";
 							}
 							else {
-								postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", HtmlUtil.escape(wallUser.getFirstName()));
+								postMessage = LanguageUtil.format(pageContext, "write-on-x-wall", HtmlUtil.escape(wallUser.getFirstName()), false);
 							}
 
 							String postHREF = themeDisplay.getPathFriendlyURLPublic() + StringPool.SLASH + wallUser.getScreenName() + wallLayoutFriendlyURL + "/-/wall";
@@ -224,23 +224,23 @@
 	</c:when>
 	<c:when test="<%= user.getUserId() != user2.getUserId() %>">
 		<div class="alert alert-info">
-			<%= LanguageUtil.format(pageContext, (user2.isMale() ? "you-have-to-be-x's-friend-to-access-his-wall" : "you-have-to-be-x's-friend-to-access-her-wall"), HtmlUtil.escape(user2.getFirstName())) %>
+			<%= LanguageUtil.format(pageContext, (user2.isMale() ? "you-have-to-be-x's-friend-to-access-his-wall" : "you-have-to-be-x's-friend-to-access-her-wall"), HtmlUtil.escape(user2.getFirstName()), false) %>
 
 			<c:choose>
 				<c:when test="<%= themeDisplay.isSignedIn() %>">
 					<c:choose>
 						<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user.getUserId(), User.class.getName(), user.getUserId(), FriendsRequestKeys.ADD_FRIEND, user2.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
-							<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-needs-to-approve-you-as-his-friend" : "x-needs-to-approve-you-as-her-friend"), HtmlUtil.escape(user2.getFirstName())) %>
+							<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-needs-to-approve-you-as-his-friend" : "x-needs-to-approve-you-as-her-friend"), HtmlUtil.escape(user2.getFirstName()), false) %>
 						</c:when>
 						<c:when test="<%= SocialRequestLocalServiceUtil.hasRequest(user2.getUserId(), User.class.getName(), user2.getUserId(), FriendsRequestKeys.ADD_FRIEND, user.getUserId(), SocialRequestConstants.STATUS_PENDING) %>">
-							<%= LanguageUtil.format(pageContext, "you-need-to-approve-x-as-your-friend", HtmlUtil.escape(user2.getFirstName())) %>
+							<%= LanguageUtil.format(pageContext, "you-need-to-approve-x-as-your-friend", HtmlUtil.escape(user2.getFirstName()), false) %>
 						</c:when>
 						<c:when test="<%= layoutTypePortlet.hasPortletId(PortletKeys.SUMMARY) %>">
 							<liferay-portlet:actionURL name="addFriend" portletName="<%= PortletKeys.SUMMARY %>" var="addAsFriendURL">
 								<portlet:param name="redirect" value="<%= currentURL %>" />
 							</liferay-portlet:actionURL>
 
-							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", HtmlUtil.escape(user2.getFirstName())) %></a>
+							<a href="<%= addAsFriendURL %>"><%= LanguageUtil.format(pageContext, "ask-x-to-be-your-friend", HtmlUtil.escape(user2.getFirstName()), false) %></a>
 						</c:when>
 					</c:choose>
 				</c:when>

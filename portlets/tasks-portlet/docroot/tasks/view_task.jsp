@@ -57,7 +57,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 						}
 						%>
 
-						<liferay-ui:message arguments="<%= taglibAssigneeDisplayURL %>" key="assigned-to-x" />
+						<liferay-ui:message arguments="<%= taglibAssigneeDisplayURL %>" key="assigned-to-x" translateArguments="<%= false %>" />
 					</c:when>
 					<c:otherwise>
 						<liferay-ui:message key="unassigned" />
@@ -80,11 +80,11 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 				}
 				%>
 
-				<liferay-ui:message arguments="<%= taglibReporterDisplayURL %>" key="created-by-x" />
+				<liferay-ui:message arguments="<%= taglibReporterDisplayURL %>" key="created-by-x" translateArguments="<%= false %>" />
 			</div>
 
 			<div class="task-data last modified-date">
-				<liferay-ui:message arguments="<%= dateFormatDateTime.format(tasksEntry.getModifiedDate()) %>" key="modified-on-x" />
+				<liferay-ui:message arguments="<%= dateFormatDateTime.format(tasksEntry.getModifiedDate()) %>" key="modified-on-x" translateArguments="<%= false %>" />
 			</div>
 		</div>
 

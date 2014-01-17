@@ -36,13 +36,13 @@ else {
 }
 
 if (organizationProfileMap || siteProfileMap) {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-the-x-members", group.getDescriptiveName(locale)));
+	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-the-x-members", group.getDescriptiveName(locale), false));
 }
 else if (friendsProfileMap) {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-x's-friends", user2.getFirstName()));
+	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-x's-friends", user2.getFirstName(), false));
 }
 else {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-is-x", user2.getFirstName()));
+	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-is-x", user2.getFirstName(), false));
 }
 %>
 

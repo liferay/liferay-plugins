@@ -40,10 +40,10 @@
 	String title = null;
 
 	if (all) {
-		title = LanguageUtil.format(pageContext, "all-commits-on-x", svnURL);
+		title = LanguageUtil.format(pageContext, "all-commits-on-x", svnURL, false);
 	}
 	else {
-		title = LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {HtmlUtil.escape(user2.getFullName()), svnURL});
+		title = LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {HtmlUtil.escape(user2.getFullName()), svnURL}, false);
 	}
 
 	SyndFeed syndFeed = new SyndFeedImpl();

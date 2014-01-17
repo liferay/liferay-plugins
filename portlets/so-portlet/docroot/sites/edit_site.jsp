@@ -41,7 +41,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 	</div>
 
 	<div class="section-container">
-		<div class="section site-information" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {1, 2}) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-information") %>'>
+		<div class="section site-information" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {1, 2}, false) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-information") %>'>
 			<aui:fieldset>
 				<aui:input name="name" />
 
@@ -53,7 +53,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		LayoutSetPrototype defaultLayoutSetPrototype = null;
 		%>
 
-		<div class="hide section site-settings" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {2, 2}) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-settings") %>'>
+		<div class="hide section site-settings" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new Integer[] {2, 2}, false) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-settings") %>'>
 			<div class="site-options">
 
 				<%
@@ -161,7 +161,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 
 		<div class="step" id="<portlet:namespace />step">
 			<span>
-				<liferay-ui:message arguments="<%= new Integer[] {1, 2} %>" key="step-x-of-x" />
+				<liferay-ui:message arguments="<%= new Integer[] {1, 2} %>" key="step-x-of-x" translateArguments="<%= false %>" />
 			</span>
 		</div>
 

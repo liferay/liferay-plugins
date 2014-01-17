@@ -53,7 +53,7 @@
 					removeFriendURL.setParameter(ActionRequest.ACTION_NAME, "deleteFriend");
 					removeFriendURL.setParameter("redirect", currentURL);
 
-					String removeFriendHREF = "javascript:if (confirm('" + LanguageUtil.format(pageContext, "are-you-sure-you-want-to-remove-x-as-a-friend-x-will-not-be-notified", user2.getFullName()) + "')) { submitForm(document.hrefFm, '" + removeFriendURL + "'); }";
+					String removeFriendHREF = "javascript:if (confirm('" + LanguageUtil.format(pageContext, "are-you-sure-you-want-to-remove-x-as-a-friend-x-will-not-be-notified", user2.getFullName(), false) + "')) { submitForm(document.hrefFm, '" + removeFriendURL + "'); }";
 					%>
 
 					<p class="remove-friend">
@@ -167,7 +167,7 @@
 										<liferay-ui:icon
 											image="view"
 											label="<%= true %>"
-											message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>'
+											message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}, false) %>'
 											url='<%= mbFriendlyURL + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
 										/>
 									</span>
@@ -185,7 +185,7 @@
 								</c:when>
 								<c:otherwise>
 									<span>
-										<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}) %>
+										<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}, false) %>
 									</span>
 								</c:otherwise>
 							</c:choose>
@@ -206,7 +206,7 @@
 										<liferay-ui:icon
 											image="view"
 											label="<%= true %>"
-											message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>'
+											message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}, false) %>'
 											url="<%= blogsFriendlyURL %>"
 										/>
 									</span>
@@ -224,7 +224,7 @@
 								</c:when>
 								<c:otherwise>
 									<span>
-										<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}) %>
+										<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}, false) %>
 									</span>
 								</c:otherwise>
 							</c:choose>

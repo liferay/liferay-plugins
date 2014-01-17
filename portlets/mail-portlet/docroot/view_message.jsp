@@ -53,7 +53,7 @@ MailManager mailManager = MailManager.getInstance(request);
 	<div class="row-fluid">
 		<aui:nav-bar>
 			<aui:nav>
-				<aui:nav-item cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" iconClass="icon-arrow-left" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName) %>' />
+				<aui:nav-item cssClass="messages-link" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>" data-pageNumber="<%= pageNumber %>" href="javascript:;" iconClass="icon-arrow-left" label='<%= LanguageUtil.format(pageContext, "back-to-x", folderName, false) %>' />
 
 				<aui:nav-item cssClass="compose-message" data-messageType="reply" data-replyMessageId="<%= message.getMessageId() %>" iconClass="icon-reply" label="reply" />
 
@@ -70,7 +70,7 @@ MailManager mailManager = MailManager.getInstance(request);
 				</li>
 
 				<li class="message-count">
-					<liferay-ui:message arguments="<%= new Object[] {messageNumber, messageCount} %>" key="x-of-x" />
+					<liferay-ui:message arguments="<%= new Object[] {messageNumber, messageCount} %>" key="x-of-x" translateArguments="<%= false %>" />
 				</li>
 
 				<li class="<%= (messageNumber < messageCount ? StringPool.BLANK : "disabled ") + "next" %>">

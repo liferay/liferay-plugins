@@ -51,7 +51,7 @@ for (int i = 0; i < results.size(); i++) {
 		</span>
 
 		<span>
-			<liferay-ui:message arguments="<%= new Object[] {(start + 1), ((total >= end) ? end : total), total} %>" key="showing-x-x-of-x-results" />
+			<liferay-ui:message arguments="<%= new Object[] {(start + 1), ((total >= end) ? end : total), total} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" />
 		</span>
 
 		<span class="right-nav <%= (total <= end) ? "hide" : "next" %>">

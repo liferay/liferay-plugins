@@ -53,15 +53,15 @@ else {
 
 	if (messageType.equals("reply")) {
 		to = replyMessage.getSender();
-		subject = LanguageUtil.format(pageContext, "re-x", replyMessage.getSubject());
+		subject = LanguageUtil.format(pageContext, "re-x", replyMessage.getSubject(), false);
 	}
 	else if (messageType.equals("reply-all")) {
 		to = replyMessage.getSender() + ", " + replyMessage.getTo();
 		cc = replyMessage.getCc();
-		subject = LanguageUtil.format(pageContext, "re-x", replyMessage.getSubject());
+		subject = LanguageUtil.format(pageContext, "re-x", replyMessage.getSubject(), false);
 	}
 	else if (messageType.equals("forward")) {
-		subject = LanguageUtil.format(pageContext, "fwd-x", replyMessage.getSubject());
+		subject = LanguageUtil.format(pageContext, "fwd-x", replyMessage.getSubject(), false);
 	}
 
 	StringBundler sb = new StringBundler(4);

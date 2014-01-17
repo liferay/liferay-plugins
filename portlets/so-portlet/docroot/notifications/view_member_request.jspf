@@ -67,7 +67,7 @@ catch (Exception e) {
 				userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
 				%>
 
-				<liferay-ui:message arguments="<%= new Object[] {userFullName, siteDescriptiveName} %>" key='<%= notificationEventJSONObject.getString("title") %>' />
+				<liferay-ui:message arguments="<%= new Object[] {userFullName, siteDescriptiveName} %>" key='<%= notificationEventJSONObject.getString("title") %>' translateArguments="<%= false %>" />
 			</div>
 
 			<div class="request">
