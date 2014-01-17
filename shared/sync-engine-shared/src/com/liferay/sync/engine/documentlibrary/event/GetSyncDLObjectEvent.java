@@ -17,7 +17,7 @@ package com.liferay.sync.engine.documentlibrary.event;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.liferay.sync.engine.documentlibrary.model.SyncDLObject;
+import com.liferay.sync.engine.model.File;
 
 import java.util.List;
 import java.util.Map;
@@ -28,20 +28,20 @@ import java.util.Map;
 public class GetSyncDLObjectEvent extends BaseEvent {
 
 	public GetSyncDLObjectEvent(
-		long syncAccountId, Map<String, Object> parameters) {
+		long accountId, Map<String, Object> parameters) {
 
-		super(syncAccountId, _URL_PATH, parameters);
+		super(accountId, _URL_PATH, parameters);
 	}
 
 	@Override
 	protected void processResponse(String response) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		List<SyncDLObject> syncDLObjects = objectMapper.readValue(
-			response, new TypeReference<List<SyncDLObject>>() {});
+		List<File> files = objectMapper.readValue(
+			response, new TypeReference<List<File>>() {});
 
-		for (SyncDLObject syncDLObject : syncDLObjects) {
-			System.out.println(syncDLObject);
+		for (File file : files) {
+			System.out.println(file);
 		}
 	}
 

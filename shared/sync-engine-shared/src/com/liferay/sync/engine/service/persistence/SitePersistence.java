@@ -14,7 +14,7 @@
 
 package com.liferay.sync.engine.service.persistence;
 
-import com.liferay.sync.engine.model.SyncGroup;
+import com.liferay.sync.engine.model.Site;
 
 import java.sql.SQLException;
 
@@ -25,21 +25,19 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class SyncGroupPersistence extends BasePersistenceImpl<SyncGroup, Long> {
+public class SitePersistence extends BasePersistenceImpl<Site, Long> {
 
-	public SyncGroupPersistence() throws SQLException {
-		super(SyncGroup.class);
+	public SitePersistence() throws SQLException {
+		super(Site.class);
 	}
 
-	public SyncGroup getSyncGroup(long syncAccountId, long groupId)
-		throws SQLException {
-
+	public Site getSite(long accountId, long groupId) throws SQLException {
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
 
+		fieldValues.put("accountId", accountId);
 		fieldValues.put("groupId", groupId);
-		fieldValues.put("syncAccountId", syncAccountId);
 
-		List<SyncGroup> groups = queryForFieldValues(fieldValues);
+		List<Site> groups = queryForFieldValues(fieldValues);
 
 		if ((groups == null) || (groups.size() == 0)) {
 			return null;

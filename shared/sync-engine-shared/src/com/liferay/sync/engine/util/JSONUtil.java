@@ -15,8 +15,8 @@
 package com.liferay.sync.engine.util;
 
 import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
-import com.liferay.sync.engine.model.SyncAccount;
-import com.liferay.sync.engine.service.SyncAccountService;
+import com.liferay.sync.engine.model.Account;
+import com.liferay.sync.engine.service.AccountService;
 
 import java.net.URL;
 
@@ -49,8 +49,7 @@ import org.apache.http.protocol.BasicHttpContext;
 public class JSONUtil {
 
 	public static String execute(
-			long syncAccountId, String urlPath,
-			Map<String, Object> parameters)
+			long accountId, String urlPath, Map<String, Object> parameters)
 		throws Exception {
 
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
@@ -58,16 +57,14 @@ public class JSONUtil {
 		CredentialsProvider credentialsProvider =
 			new BasicCredentialsProvider();
 
-		SyncAccount syncAccount = SyncAccountService.getSyncAccount(
-			syncAccountId);
+		Account account = AccountService.getAccount(accountId);
 
-		URL url = new URL(syncAccount.getUrl());
+		URL url = new URL(account.getUrl());
 
 		credentialsProvider.setCredentials(
 			new AuthScope(url.getHost(), url.getPort()),
 			new UsernamePasswordCredentials(
-				syncAccount.getLogin(),
-				Encryptor.decrypt(syncAccount.getPassword())));
+				account.getLogin(), Encryptor.decrypt(account.getPassword())));
 
 		httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
 
@@ -76,7 +73,7 @@ public class JSONUtil {
 		HttpHost httpHost = new HttpHost(
 			url.getHost(), url.getPort(), url.getProtocol());
 
-		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + urlPath);
+		HttpPost httpPost = new HttpPost(account.getUrl() + urlPath);
 
 		httpPost.setEntity(_getHttpEntity(parameters));
 

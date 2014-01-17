@@ -12,15 +12,21 @@
  * details.
  */
 
-package com.liferay.sync.engine.documentlibrary.model;
+package com.liferay.sync.engine.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
+import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 
 /**
  * @author Shinn Lok
  */
+@DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "File")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SyncDLObject {
+public class File {
 
 	public String getChecksum() {
 		return checksum;
@@ -28,6 +34,10 @@ public class SyncDLObject {
 
 	public String getDescription() {
 		return description;
+	}
+
+	public long getFileId() {
+		return fileId;
 	}
 
 	public String getName() {
@@ -44,10 +54,6 @@ public class SyncDLObject {
 
 	public long getSize() {
 		return size;
-	}
-
-	public long getSyncDLObjectId() {
-		return syncDLObjectId;
 	}
 
 	public String getType() {
@@ -70,6 +76,10 @@ public class SyncDLObject {
 		this.description = description;
 	}
 
+	public void setFileId(long fileId) {
+		this.fileId = fileId;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -86,10 +96,6 @@ public class SyncDLObject {
 		this.size = size;
 	}
 
-	public void setSyncDLObjectId(long syncDLObjectId) {
-		this.syncDLObjectId = syncDLObjectId;
-	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
@@ -102,15 +108,34 @@ public class SyncDLObject {
 		this.version = version;
 	}
 
+	@DatabaseField(useGetSet = true, width = 255)
 	protected String checksum;
+
+	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String description;
+
+	@DatabaseField(generatedId = true, useGetSet = true)
+	protected long fileId;
+
+	@DatabaseField(useGetSet = true, width = 255)
 	protected String name;
+
+	@DatabaseField(useGetSet = true)
 	protected long parentFolderId;
+
+	@DatabaseField(useGetSet = true)
 	protected long repositoryId;
+
+	@DatabaseField(useGetSet = true)
 	protected long size;
-	protected long syncDLObjectId;
+
+	@DatabaseField(useGetSet = true, width = 255)
 	protected String type;
+
+	@DatabaseField(useGetSet = true)
 	protected long typePK;
+
+	@DatabaseField(useGetSet = true, width = 255)
 	protected String version;
 
 }

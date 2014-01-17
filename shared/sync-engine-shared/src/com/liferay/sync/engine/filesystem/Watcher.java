@@ -108,7 +108,8 @@ public class Watcher implements Runnable {
 				WatchEvent<Path> watchEvent = (WatchEvent<Path>)watchEvents.get(
 					i);
 
-				Path childFilePath = parentFilePath.resolve(watchEvent.context());
+				Path childFilePath = parentFilePath.resolve(
+					watchEvent.context());
 
 				fireWatchEventListeners(watchEvent, childFilePath);
 
@@ -139,7 +140,9 @@ public class Watcher implements Runnable {
 		}
 	}
 
-	protected void register(Path filePath, boolean recursive) throws IOException {
+	protected void register(Path filePath, boolean recursive)
+		throws IOException {
+
 		if (recursive) {
 			Files.walkFileTree(
 				filePath,
@@ -147,7 +150,7 @@ public class Watcher implements Runnable {
 
 					@Override
 					public FileVisitResult preVisitDirectory(
-							Path filePath, 
+							Path filePath,
 							BasicFileAttributes basicFileAttributes)
 						throws IOException {
 

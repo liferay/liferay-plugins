@@ -12,24 +12,19 @@
  * details.
  */
 
-package com.liferay.sync.engine.upgrade;
+package com.liferay.sync.engine.service.persistence;
 
-import com.liferay.sync.engine.service.SyncDLObjectService;
-import com.liferay.sync.engine.service.persistence.SyncDLObjectPersistence;
+import com.liferay.sync.engine.model.Account;
+
+import java.sql.SQLException;
 
 /**
  * @author Shinn Lok
  */
-public class UpgradeSyncDLObject extends UpgradeProcess {
+public class AccountPersistence extends BasePersistenceImpl<Account, Long> {
 
-	@Override
-	public void upgrade() throws Exception {
-		SyncDLObjectPersistence syncDLObjectPersistence =
-			SyncDLObjectService.getSyncDLObjectPersistence();
-
-		if (!syncDLObjectPersistence.isTableExists()) {
-			syncDLObjectPersistence.createTable();
-		}
+	public AccountPersistence() throws SQLException {
+		super(Account.class);
 	}
 
 }

@@ -12,20 +12,23 @@
  * details.
  */
 
-package com.liferay.sync.engine.service.persistence;
+package com.liferay.sync.engine.upgrade;
 
-import com.liferay.sync.engine.model.SyncAccount;
-
-import java.sql.SQLException;
+import com.liferay.sync.engine.service.SiteService;
+import com.liferay.sync.engine.service.persistence.SitePersistence;
 
 /**
  * @author Shinn Lok
  */
-public class SyncAccountPersistence
-	extends BasePersistenceImpl<SyncAccount, Long> {
+public class UpgradeSite extends UpgradeProcess {
 
-	public SyncAccountPersistence() throws SQLException {
-		super(SyncAccount.class);
+	@Override
+	public void upgrade() throws Exception {
+		SitePersistence sitePersistence = SiteService.getSitePersistence();
+
+		if (!sitePersistence.isTableExists()) {
+			sitePersistence.createTable();
+		}
 	}
 
 }

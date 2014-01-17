@@ -20,9 +20,9 @@ package com.liferay.sync.engine.upgrade;
 public class UpgradeProcessSuite {
 
 	public void upgrade() throws Exception {
-		upgrade(UpgradeSyncAccount.class);
-		upgrade(UpgradeSyncDLObject.class);
-		upgrade(UpgradeSyncGroup.class);
+		upgrade(UpgradeAccount.class);
+		upgrade(UpgradeFile.class);
+		upgrade(UpgradeSite.class);
 	}
 
 	protected void upgrade(Class<?> upgradeProcessClass) throws Exception {

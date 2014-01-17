@@ -27,10 +27,9 @@ import org.slf4j.LoggerFactory;
 public abstract class BaseEvent implements Runnable {
 
 	public BaseEvent(
-		long syncAccountId, String urlPath, 
-		Map<String, Object> parameters) {
+		long accountId, String urlPath, Map<String, Object> parameters) {
 
-		_syncAccountId = syncAccountId;
+		_accountId = accountId;
 		_urlPath = urlPath;
 		_parameters = parameters;
 	}
@@ -39,7 +38,7 @@ public abstract class BaseEvent implements Runnable {
 	public void run() {
 		try {
 			String response = JSONUtil.execute(
-				_syncAccountId, _urlPath, _parameters);
+				_accountId, _urlPath, _parameters);
 
 			processResponse(response);
 		}
@@ -48,8 +47,8 @@ public abstract class BaseEvent implements Runnable {
 		}
 	}
 
-	protected long getSyncAccountId() {
-		return _syncAccountId;
+	protected long getAccountId() {
+		return _accountId;
 	}
 
 	protected abstract void processResponse(String httpResponse)
@@ -57,8 +56,8 @@ public abstract class BaseEvent implements Runnable {
 
 	private static Logger _logger = LoggerFactory.getLogger(BaseEvent.class);
 
+	private long _accountId;
 	private Map<String, Object> _parameters;
 	private String _urlPath;
-	private long _syncAccountId;
 
 }
