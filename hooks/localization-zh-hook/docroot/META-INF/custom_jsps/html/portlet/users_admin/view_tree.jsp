@@ -22,119 +22,173 @@
 <%
 String namespace = portletDisplay.getNamespace();
 
-String firstNameThId = namespace + "usersSearchContainer_col-first-name";
+String firstNameHeaderColId = namespace + "usersSearchContainer_col-first-name";
+String lastNameHeaderColId = namespace + "usersSearchContainer_col-last-name";
 
-String lasteNameThId = namespace + "usersSearchContainer_col-last-name";
+int firstNameHeaderColStart = _getHeaderColStart(html, firstNameHeaderColId);
+int firstNameHeaderColEnd = _getHeaderColEnd(html, firstNameHeaderColStart);
 
-_TD_NAME_ROWCHECKER ="name=\"" + namespace + "rowIds\"";
+int lastNameHeaderColStart = _getHeaderColStart(html, lastNameHeaderColId);
+int lastNameHeaderColEnd = _getHeaderColEnd(html, lastNameHeaderColStart);
 
-int firstNameThStart = _getTableElementStart(html, firstNameThId, _TH);
+html = _reverseHeaderCols(html, firstNameHeaderColStart, firstNameHeaderColEnd, lastNameHeaderColStart, lastNameHeaderColEnd);
 
-int firstNameThEnd = _getTableElementEnd(html, firstNameThStart, _TH);
+int tableDataStart = _getTableDataStart(html, firstNameHeaderColStart);
+int tableDataEnd = _getTableDataEnd(html, tableDataStart);
 
-int lastNameThStart = _getTableElementStart(html, lasteNameThId, _TH);
+if ((tableDataStart >= 0) && (tableDataEnd >= 0)) {
+	String tableData = html.substring(tableDataStart, tableDataEnd);
 
-int lastNameThEnd = _getTableElementEnd(html, lastNameThStart, _TH);
+	List<String> userRows = _getUserRows(tableData);
 
-html = _reverseFirstNameThLastNameTh(html, firstNameThStart, firstNameThEnd, lastNameThStart, lastNameThEnd);
+	StringBundler sb = new StringBundler(userRows.size() + 2);
 
-int tbodyStart = _getTableElementStart(html, lastNameThEnd, _TBODY);
+	sb.append(html.substring(0, tableDataStart));
 
-int tbodyEnd = _getTableElementEnd(html, tbodyStart, _TBODY);
+	for (String userRow : userRows) {
+		String reversedUserRow = _reverseName(userRow);
 
-html = _reverseFirstNameTdLastNameTd(html, tbodyStart, tbodyEnd);
+		sb.append(reversedUserRow);
+	}
+
+	sb.append(html.substring(tableDataEnd));
+
+	html = sb.toString();
+}
 %>
 
 <%= html %>
 
 <%!
-private int _getTableElementStart(String html, int fromIndex, int elementId) {
+private int _getHeaderColEnd(String html, int fromIndex) {
 	if (fromIndex < 0) {
-		return fromIndex;
+		return -1;
 	}
 
-	return html.indexOf(_ELEMENTS_OPEN[elementId], fromIndex);
+	return html.indexOf(_TH_CLOSE, fromIndex) + _TH_CLOSE.length();
 }
 
-private int _getTableElementStart(String html, String id, int elementId) {
+private int _getHeaderColStart(String html, String id) {
 	int x = html.indexOf("id=\"" + id + StringPool.QUOTE);
+
 	if (x < 0) {
-		return x;
+		return -1;
 	}
 
-	return html.lastIndexOf(_ELEMENTS_OPEN[elementId], x);
+	return html.lastIndexOf(_TH_OPEN, x);
 }
 
-private int _getTableElementEnd(String html, int fromIndex, int elementId) {
+private int _getTableDataEnd(String html, int fromIndex) {
 	if (fromIndex < 0) {
-		return fromIndex;
+		return -1;
 	}
 
-	return html.indexOf(_ELEMENTS_CLOSE[elementId], fromIndex) + _ELEMENTS_CLOSE[elementId].length();
+	int x = html.indexOf(_TBODY_CLOSE, fromIndex);
+
+	if (x < 0) {
+		return -1;
+	}
+
+	return html.lastIndexOf(_TR_CLOSE, x) + _TR_CLOSE.length();
 }
 
-private String _reverseFirstNameTdLastNameTd(String html, int fromIndex, int toIndex) {
-
-	int tdCheckBoxIndex = html.indexOf(_TD_NAME_ROWCHECKER, fromIndex);
-
-	if (tdCheckBoxIndex < 0) {
-		return html;
+private int _getTableDataStart(String html, int fromIndex) {
+	if (fromIndex < 0) {
+		return -1;
 	}
 
-	int firstNameTdStart = _getTableElementStart(html, tdCheckBoxIndex, _TD);
-	int firstNameTdEnd = _getTableElementEnd(html, firstNameTdStart, _TD);
-	int lastNameTdStart = _getTableElementStart(html, firstNameTdEnd, _TD);
-	int lastNameTdEnd = _getTableElementEnd(html, lastNameTdStart, _TD);
+	int x = html.indexOf(_TBODY_OPEN, fromIndex);
 
-	if ((firstNameTdStart < 0) || (firstNameTdEnd < 0) || (lastNameTdStart < 0) || (lastNameTdEnd < 0)) {
-		return html;
+	if (x < 0) {
+		return -1;
 	}
 
-	int tdAndTdSpace = lastNameTdStart - firstNameTdEnd; 
-
-	StringBundler sb = new StringBundler(4);
-	sb.append(html.substring(0, firstNameTdStart));
-	sb.append(html.substring(lastNameTdStart, lastNameTdEnd + tdAndTdSpace));
-	sb.append(html.substring(firstNameTdStart, firstNameTdEnd + tdAndTdSpace));
-	sb.append(html.substring(lastNameTdEnd + tdAndTdSpace));
-
-	html = sb.toString();
-
-	int nextTrStart = _getTableElementStart(html, firstNameTdStart, _TR);
-
-	toIndex = _getTableElementEnd(html, firstNameTdStart, _TBODY);
-
-	if (nextTrStart < 0 || nextTrStart > toIndex) {
-		return html;
-	}
-
-	html = _reverseFirstNameTdLastNameTd(html, nextTrStart, toIndex);
-
-	return html;
+	return html.indexOf(_TR_OPEN, x);
 }
 
-private String _reverseFirstNameThLastNameTh(String html, int firstNameThStart, int firstNameThEnd, int lastNameThStart, int lastNameThEnd) {
-	if ((firstNameThStart < 0) || (firstNameThEnd < 0) || (lastNameThStart < 0) || (lastNameThEnd < 0)) {
+private List<String> _getUserRows(String tableData) {
+	List<String> userRows = new ArrayList<String>();
+
+	int pos = 0;
+
+	while (true) {
+		int x = tableData.indexOf(_TR_OPEN, pos);
+
+		if (x < 0) {
+			break;
+		}
+
+		int y = tableData.indexOf(_TR_CLOSE, x);
+
+		if (y < 0) {
+			userRows.add(tableData.substring(x));
+
+			break;
+		}
+		else {
+			y = y + _TR_CLOSE.length();
+
+			userRows.add(tableData.substring(x, y));
+		}
+
+		pos = y;
+	}
+
+	return userRows;
+}
+
+private String _reverseHeaderCols(String html, int firstNameHeaderColStart, int firstNameHeaderColEnd, int lastNameHeaderColStart, int lastNameHeaderColEnd) {
+	if ((firstNameHeaderColStart < 0) || (firstNameHeaderColEnd < 0) || (lastNameHeaderColStart < 0) || (lastNameHeaderColEnd < 0)) {
 		return html;
 	}
 
-	int thAndThSpace = lastNameThStart - firstNameThEnd;
-
 	StringBundler sb = new StringBundler(4);
-	sb.append(html.substring(0, firstNameThStart));
-	sb.append(html.substring(lastNameThStart, lastNameThEnd + thAndThSpace));
-	sb.append(html.substring(firstNameThStart, firstNameThEnd + thAndThSpace));
-	sb.append(html.substring(lastNameThEnd + thAndThSpace));
+
+	sb.append(html.substring(0, firstNameHeaderColStart));
+	sb.append(html.substring(lastNameHeaderColStart, lastNameHeaderColEnd));
+	sb.append(html.substring(firstNameHeaderColStart, firstNameHeaderColEnd));
+	sb.append(html.substring(lastNameHeaderColEnd));
 
 	return sb.toString();
 }
 
-private static final String _ELEMENTS_OPEN[] = {"<tbody","<th","<tr","<td"};
-private static final String _ELEMENTS_CLOSE[] = {"</tbody>","</th>","</tr>","</td>"};
-private static final int _TH = 1;
-private static final int _TD = 3;
-private static final int _TR = 2;
-private static final int _TBODY = 0;
-private static String _TD_NAME_ROWCHECKER = new String();
-%>
+private String _reverseName(String userRow) {
+	int checkboxStart = userRow.indexOf(_TD_OPEN);
+	int checkboxEnd = userRow.indexOf(_TD_CLOSE, checkboxStart);
 
+	int firstNameStart = userRow.indexOf(_TD_OPEN, checkboxEnd);
+	int firstNameEnd = userRow.indexOf(_TD_CLOSE, firstNameStart);
+
+	int lastNameStart = userRow.indexOf(_TD_OPEN, firstNameEnd);
+	int lastNameEnd = userRow.indexOf(_TD_CLOSE, lastNameStart);
+
+	if ((lastNameStart < 0) || (lastNameEnd < 0)) {
+		return userRow;
+	}
+
+	StringBundler sb = new StringBundler();
+
+	sb.append(userRow.substring(0, firstNameStart));
+	sb.append(userRow.substring(lastNameStart, lastNameEnd));
+	sb.append(userRow.substring(firstNameStart, firstNameEnd));
+	sb.append(userRow.substring(lastNameEnd));
+
+	return sb.toString();
+}
+
+private static final String _TBODY_CLOSE ="</tbody>";
+
+private static final String _TBODY_OPEN ="<tbody";
+
+private static final String _TD_CLOSE = "</td>";
+
+private static final String _TD_OPEN = "<td";
+
+private static final String _TH_CLOSE = "</th>";
+
+private static final String _TH_OPEN = "<th";
+
+private static final String _TR_CLOSE = "</tr>";
+
+private static final String _TR_OPEN = "<tr";
+%>

@@ -36,23 +36,23 @@ private int _indexOfOptionStart(String html) {
 	int x = _indexOfReminderQueryQuestionId(html);
 
 	if (x < 0) {
-		return x;
+		return -1;
 	}
 
 	int y = html.indexOf(_VALUE_WHAT_IS_YOUR_FATHERS_MIDDLE_NAME, x);
 
 	if (y < 0) {
-		return y;
+		return -1;
 	}
 
-	return html.lastIndexOf(StringPool.LESS_THAN, y);
+	return html.lastIndexOf(_OPTION_OPEN, y);
 }
 
 private int _indexOfOptionEnd(String html, int fromIndex) {
 	int x = html.indexOf(_OPTION_CLOSE, fromIndex);
 
 	if (x < 0) {
-		return x;
+		return -1;
 	}
 
 	return x + _OPTION_CLOSE.length();
@@ -65,6 +65,8 @@ private int _indexOfReminderQueryQuestionId(String html) {
 private static final String _ID_REMINDER_QUERY_QUESTION = "id=\"reminderQueryQuestion\"";
 
 private static final String _OPTION_CLOSE = "</option>";
+
+private static final String _OPTION_OPEN = "<option";
 
 private static final String _VALUE_WHAT_IS_YOUR_FATHERS_MIDDLE_NAME = "value=\"what-is-your-father's-middle-name\"";
 %>
