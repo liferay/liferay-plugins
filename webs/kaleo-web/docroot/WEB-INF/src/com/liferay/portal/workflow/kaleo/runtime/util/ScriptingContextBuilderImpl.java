@@ -26,6 +26,7 @@ import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
