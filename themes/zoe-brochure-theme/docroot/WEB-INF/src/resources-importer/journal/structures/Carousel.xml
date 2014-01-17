@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 
-
 <root available-locales="en_US" default-locale="en_US">
 	<dynamic-element dataType="string" indexType="" name="width" readOnly="false" repeatable="false" required="true" showLabel="true" type="text" width="small">
 		<meta-data locale="en_US">
