@@ -14,9 +14,6 @@
 
 package com.liferay.sync.engine.util;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * @author Dennis Ju
  */
@@ -35,7 +32,5 @@ public class PathUtil {
 
 		return filePath;
 	}
-
-	private static Logger _logger = LoggerFactory.getLogger(PathUtil.class);
 
 }
