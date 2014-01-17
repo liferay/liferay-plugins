@@ -32,28 +32,26 @@ public class SiteService {
 
 		Site site = new Site();
 
-		site.setGroupId(groupId);
-		site.setFilePath(filePath);
 		site.setAccountId(accountId);
+		site.setFilePath(filePath);
+		site.setGroupId(groupId);
 
 		_sitePersistence.create(site);
 
 		return site;
 	}
 
-	public static Site getSite(long accountId, long groupId) {
-		Site site = null;
-
+	public static Site fetchSite(long accountId, long groupId) {
 		try {
-			site = _sitePersistence.getSite(accountId, groupId);
+			return _sitePersistence.fetchSite(accountId, groupId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
-		}
 
-		return site;
+			return site;
+		}
 	}
 
 	public static SitePersistence getSitePersistence() {

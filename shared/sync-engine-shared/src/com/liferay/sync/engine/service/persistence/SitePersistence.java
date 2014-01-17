@@ -31,19 +31,19 @@ public class SitePersistence extends BasePersistenceImpl<Site, Long> {
 		super(Site.class);
 	}
 
-	public Site getSite(long accountId, long groupId) throws SQLException {
+	public Site fetchSite(long accountId, long groupId) throws SQLException {
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
 
 		fieldValues.put("accountId", accountId);
 		fieldValues.put("groupId", groupId);
 
-		List<Site> groups = queryForFieldValues(fieldValues);
+		List<Site> sites = queryForFieldValues(fieldValues);
 
-		if ((groups == null) || (groups.size() == 0)) {
+		if ((sites == null) || sites.isEmpty()) {
 			return null;
 		}
 
-		return groups.get(0);
+		return sites.get(0);
 	}
 
 }

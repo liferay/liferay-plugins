@@ -42,19 +42,17 @@ public class AccountService {
 		return account;
 	}
 
-	public static Account getAccount(long accountId) {
-		Account account = null;
-
+	public static Account fetchAccount(long accountId) {
 		try {
-			account = _accountPersistence.queryForId(accountId);
+			return _accountPersistence.queryForId(accountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
-		}
 
-		return account;
+			return null;
+		}
 	}
 
 	public static AccountPersistence getAccountPersistence() {
