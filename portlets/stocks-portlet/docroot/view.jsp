@@ -196,7 +196,7 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<%= LanguageUtil.format(pageContext, "no-information-was-found-associated-with-the-symbol-x", symbol) %>
+					<%= LanguageUtil.format(pageContext, "no-information-was-found-associated-with-the-symbol-x", symbol, false) %>
 				</c:otherwise>
 			</c:choose>
 		</c:otherwise>

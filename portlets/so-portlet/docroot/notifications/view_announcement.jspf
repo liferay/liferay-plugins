@@ -50,7 +50,7 @@ if (portletPlid == 0) {
 			userFullName = "<a href=\"" + userDisplayURL + "\">" + userFullName + "</a>";
 			%>
 
-			<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSONObject.getString("title") %>' />
+			<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSONObject.getString("title") %>' translateArguments="<%= false %>" />
 		</div>
 
 		<div class="body">

@@ -60,7 +60,7 @@
 
 			<div class="lfr-user-data">
 				<div class="lfr-user-data-title">
-					<liferay-ui:message arguments="<%= creatorUserName %>" key="request-social-networking-summary-add-connection" />
+					<liferay-ui:message arguments="<%= creatorUserName %>" key="request-social-networking-summary-add-connection" translateArguments="<%= false %>" />
 				</div>
 			</div>
 

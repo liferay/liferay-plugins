@@ -31,7 +31,7 @@
 	<div class="notification-entry">
 		<div class="title">
 			<span>
-				<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSONObject.getString("title") %>' />
+				<liferay-ui:message arguments="<%= userFullName %>" key='<%= notificationEventJSONObject.getString("title") %>' translateArguments="<%= false %>" />
 			</span>
 		</div>
 

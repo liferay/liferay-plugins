@@ -74,7 +74,7 @@ $theme.include($body_top_include)
 
 							#set ($arguments = [$user_name, $community_name])
 
-							$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray()))
+							$membership_request_url.setParameter("comments", $languageUtil.format($locale, "x-wishes-to-join-x", $arguments.toArray(), false))
 
 							<a class="aui-button button action request member-button" href="$membership_request_url" id="memberButton">
 								<span class="aui-button-content">

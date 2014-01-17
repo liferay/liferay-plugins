@@ -31,7 +31,7 @@ MailManager mailManager = MailManager.getInstance(request);
 	<%
 	Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
-	String taglibLabel = LanguageUtil.format(pageContext, "please-enter-your-password-for-x", mailAccount.getAddress());
+	String taglibLabel = LanguageUtil.format(pageContext, "please-enter-your-password-for-x", mailAccount.getAddress(), false);
 	%>
 
 	<aui:input label="<%= taglibLabel %>" name="password" type="password" />

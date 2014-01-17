@@ -47,7 +47,7 @@ String twitterSn = contact.getTwitterSn();
 		sb.append("</a>");
 		%>
 
-		<liferay-ui:message arguments="<%= sb.toString() %>" key="your-twitter-screen-name-is-x" />
+		<liferay-ui:message arguments="<%= sb.toString() %>" key="your-twitter-screen-name-is-x" translateArguments="<%= false %>" />
 	</c:when>
 	<c:otherwise>
 

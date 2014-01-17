@@ -78,7 +78,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 							{
 								on: {
 									click: function(event) {
-										var confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x-from-your-contacts", entry.getFullName()) %>';
+										var confirmMessage = '<%= UnicodeLanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x-from-your-contacts", entry.getFullName(), false) %>';
 
 										if (confirm(confirmMessage)) {
 											A.io.request(

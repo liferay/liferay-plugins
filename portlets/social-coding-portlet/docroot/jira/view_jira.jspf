@@ -65,7 +65,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 						<a href="<liferay-portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>" />">Set your JIRA login.</a>
 					</c:when>
 					<c:otherwise>
-						<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-has-not-configured-his-jira-login" : "x-has-not-configured-her-jira-login"), HtmlUtil.escape(user2.getFullName())) %>
+						<%= LanguageUtil.format(pageContext, (user2.isMale() ? "x-has-not-configured-his-jira-login" : "x-has-not-configured-her-jira-login"), HtmlUtil.escape(user2.getFullName()), false) %>
 					</c:otherwise>
 				</c:choose>
 			</c:otherwise>
@@ -78,7 +78,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 			<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 
 			<div class="alert alert-info">
-				<%= LanguageUtil.format(pageContext, "set-your-login-for-x-to-track-your-jira-activity", "http://support.liferay.com") %>
+				<%= LanguageUtil.format(pageContext, "set-your-login-for-x-to-track-your-jira-activity", "http://support.liferay.com", false) %>
 			</div>
 
 			<table class="lfr-table">

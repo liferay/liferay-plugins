@@ -110,7 +110,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 
 			<c:if test="<%= yesTotal > 1 %>">
 				<div>
-					<%= LanguageUtil.format(pageContext, "x-people-are-planning-to-attend-this-meetup", String.valueOf(yesTotal)) %>
+					<%= LanguageUtil.format(pageContext, "x-people-are-planning-to-attend-this-meetup", String.valueOf(yesTotal), false) %>
 				</div>
 
 				<br />

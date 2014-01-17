@@ -136,7 +136,7 @@ private String _getSubscribers(PageContext pageContext, MBCategory mbCategory) t
 	sb.append("<a href=\"");
 	sb.append(HtmlUtil.escape(portletURL.toString()));
 	sb.append("\">");
-	sb.append(LanguageUtil.format(pageContext, "and-x-more", String.valueOf(count)));
+	sb.append(LanguageUtil.format(pageContext, "and-x-more", String.valueOf(count), false));
 	sb.append("</a>");
 
 	return sb.toString();

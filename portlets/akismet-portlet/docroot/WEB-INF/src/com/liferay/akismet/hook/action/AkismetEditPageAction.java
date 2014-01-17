@@ -225,7 +225,7 @@ public class AkismetEditPageAction extends BaseStrutsPortletAction {
 		}
 
 		String value = LanguageUtil.format(
-			themeDisplay.getLocale(), pattern, wikiPage.getVersion());
+			themeDisplay.getLocale(), pattern, wikiPage.getVersion(), false);
 
 		SessionMessages.add(actionRequest, "requestProcessed", value);
 	}
