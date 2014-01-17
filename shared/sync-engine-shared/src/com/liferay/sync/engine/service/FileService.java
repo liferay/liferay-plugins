@@ -43,7 +43,8 @@ public class FileService {
 		return _filePersistence;
 	}
 
-	private static FilePersistence _filePersistence = getFilePersistence();
 	private static Logger _logger = LoggerFactory.getLogger(FileService.class);
+
+	private static FilePersistence _filePersistence = getFilePersistence();
 
 }

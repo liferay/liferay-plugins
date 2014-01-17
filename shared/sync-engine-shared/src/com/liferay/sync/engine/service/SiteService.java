@@ -72,6 +72,7 @@ public class SiteService {
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(SiteService.class);
+
 	private static SitePersistence _sitePersistence = getSitePersistence();
 
 }

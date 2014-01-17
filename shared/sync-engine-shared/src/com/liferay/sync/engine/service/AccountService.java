@@ -72,9 +72,10 @@ public class AccountService {
 		return _accountPersistence;
 	}
 
-	private static AccountPersistence _accountPersistence =
-		getAccountPersistence();
 	private static Logger _logger = LoggerFactory.getLogger(
 		AccountService.class);
+
+	private static AccountPersistence _accountPersistence =
+		getAccountPersistence();
 
 }

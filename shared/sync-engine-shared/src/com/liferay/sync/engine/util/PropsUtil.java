@@ -57,9 +57,9 @@ public class PropsUtil {
 		_configuration.setProperty(key, value);
 	}
 
-	private static PropsUtil _instance = new PropsUtil();
-
 	private static Logger _logger = LoggerFactory.getLogger(PropsUtil.class);
+
+	private static PropsUtil _instance = new PropsUtil();
 
 	private Configuration _configuration;
 
