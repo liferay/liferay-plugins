@@ -21,19 +21,27 @@
 </liferay-util:buffer>
 
 <%
-int x = _indexOfOptionStart(html);
-int y = _indexOfOptionEnd(html, x);
+int optionStart = _getOptionStart(html);
+int optionEnd = _getOptionEnd(html, x);
 
-if ((x >= 0) && (y >= 0)) {
-	html = html.substring(0, x) + html.substring(y);
-}
+html = _removeOption(html, optionStart, optionEnd);
 %>
 
 <%= html %>
 
 <%!
-private int _indexOfOptionStart(String html) {
-	int x = _indexOfReminderQueryQuestionId(html);
+private int _getOptionEnd(String html, int fromIndex) {
+	int x = html.indexOf(_OPTION_CLOSE, fromIndex);
+
+	if (x < 0) {
+		return -1;
+	}
+
+	return x + _OPTION_CLOSE.length();
+}
+
+private int _getOptionStart(String html) {
+	int x = html.indexOf(_ID_REMINDER_QUERY_QUESTION);
 
 	if (x < 0) {
 		return -1;
@@ -48,18 +56,12 @@ private int _indexOfOptionStart(String html) {
 	return html.lastIndexOf(_OPTION_OPEN, y);
 }
 
-private int _indexOfOptionEnd(String html, int fromIndex) {
-	int x = html.indexOf(_OPTION_CLOSE, fromIndex);
-
-	if (x < 0) {
-		return -1;
+private String _removeOption(String html, int optionStart, int optionEnd) {
+	if ((optionStart < 0) || (optionEnd < 0)) {
+		return html;
 	}
 
-	return x + _OPTION_CLOSE.length();
-}
-
-private int _indexOfReminderQueryQuestionId(String html) {
-	return html.indexOf(_ID_REMINDER_QUERY_QUESTION);
+	return html.substring(0, optionStart) + html.substring(optionEnd);
 }
 
 private static final String _ID_REMINDER_QUERY_QUESTION = "id=\"reminderQueryQuestion\"";
