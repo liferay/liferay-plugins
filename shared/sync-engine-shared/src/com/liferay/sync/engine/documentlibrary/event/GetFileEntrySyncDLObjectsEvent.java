@@ -25,9 +25,9 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class GetSyncDLObjectEvent extends BaseEvent {
+public class GetFileEntrySyncDLObjectsEvent extends BaseEvent {
 
-	public GetSyncDLObjectEvent(
+	public GetFileEntrySyncDLObjectsEvent(
 		long accountId, Map<String, Object> parameters) {
 
 		super(accountId, _URL_PATH, parameters);
