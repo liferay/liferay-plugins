@@ -14,8 +14,8 @@
 
 package com.liferay.sync.engine.service;
 
-import com.liferay.sync.engine.model.Account;
-import com.liferay.sync.engine.service.persistence.AccountPersistence;
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.persistence.SyncAccountPersistence;
 import com.liferay.sync.engine.util.Encryptor;
 
 import java.sql.SQLException;
@@ -26,25 +26,26 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Shinn Lok
  */
-public class AccountService {
+public class SyncAccountService {
 
-	public static Account addAccount(String login, String password, String url)
+	public static SyncAccount addSyncAccount(
+			String login, String password, String url)
 		throws Exception {
 
-		Account account = new Account();
+		SyncAccount syncAccount = new SyncAccount();
 
-		account.setLogin(login);
-		account.setPassword(Encryptor.encrypt(password));
-		account.setUrl(url);
+		syncAccount.setLogin(login);
+		syncAccount.setPassword(Encryptor.encrypt(password));
+		syncAccount.setUrl(url);
 
-		_accountPersistence.create(account);
+		_syncAccountPersistence.create(syncAccount);
 
-		return account;
+		return syncAccount;
 	}
 
-	public static Account fetchAccount(long accountId) {
+	public static SyncAccount fetchSyncAccount(long syncAccountId) {
 		try {
-			return _accountPersistence.queryForId(accountId);
+			return _syncAccountPersistence.queryForId(syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -55,13 +56,13 @@ public class AccountService {
 		}
 	}
 
-	public static AccountPersistence getAccountPersistence() {
-		if (_accountPersistence != null) {
-			return _accountPersistence;
+	public static SyncAccountPersistence getSyncAccountPersistence() {
+		if (_syncAccountPersistence != null) {
+			return _syncAccountPersistence;
 		}
 
 		try {
-			_accountPersistence = new AccountPersistence();
+			_syncAccountPersistence = new SyncAccountPersistence();
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -69,13 +70,13 @@ public class AccountService {
 			}
 		}
 
-		return _accountPersistence;
+		return _syncAccountPersistence;
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
-		AccountService.class);
+		SyncAccountService.class);
 
-	private static AccountPersistence _accountPersistence =
-		getAccountPersistence();
+	private static SyncAccountPersistence _syncAccountPersistence =
+		getSyncAccountPersistence();
 
 }

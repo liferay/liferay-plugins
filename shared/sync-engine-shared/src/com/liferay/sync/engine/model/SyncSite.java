@@ -22,62 +22,51 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 /**
  * @author Shinn Lok
  */
-@DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "Account")
-public class Account {
-
-	public long getAccountId() {
-		return accountId;
-	}
+@DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncSite")
+public class SyncSite {
 
 	public String getFilePath() {
 		return filePath;
 	}
 
-	public String getLogin() {
-		return login;
+	public long getGroupId() {
+		return groupId;
 	}
 
-	public String getPassword() {
-		return password;
+	public long getSyncAccountId() {
+		return syncAccountId;
 	}
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setAccountId(long accountId) {
-		this.accountId = accountId;
+	public long getSyncSiteId() {
+		return syncSiteId;
 	}
 
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
+	public void setGroupId(long groupId) {
+		this.groupId = groupId;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setSyncAccountId(long syncAccountId) {
+		this.syncAccountId = syncAccountId;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setSyncSiteId(long syncSiteId) {
+		this.syncSiteId = syncSiteId;
 	}
-
-	@DatabaseField(generatedId = true, useGetSet = true)
-	protected long accountId;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String filePath;
 
-	@DatabaseField(useGetSet = true, width = 16777216)
-	protected String login;
+	@DatabaseField(useGetSet = true)
+	protected long groupId;
 
-	@DatabaseField(useGetSet = true, width = 16777216)
-	protected String password;
+	@DatabaseField(useGetSet = true)
+	protected long syncAccountId;
 
-	@DatabaseField(useGetSet = true, width = 16777216)
-	protected String url;
+	@DatabaseField(generatedId = true, useGetSet = true)
+	protected long syncSiteId;
 
 }

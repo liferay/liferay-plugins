@@ -14,8 +14,8 @@
 
 package com.liferay.sync.engine.service;
 
-import com.liferay.sync.engine.model.Site;
-import com.liferay.sync.engine.service.persistence.SitePersistence;
+import com.liferay.sync.engine.model.SyncSite;
+import com.liferay.sync.engine.service.persistence.SyncSitePersistence;
 
 import java.sql.SQLException;
 
@@ -25,42 +25,43 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Shinn Lok
  */
-public class SiteService {
+public class SyncSiteService {
 
-	public static Site addSite(long accountId, long groupId, String filePath)
+	public static SyncSite addSyncSite(
+			long syncAccountId, long groupId, String filePath)
 		throws Exception {
 
-		Site site = new Site();
+		SyncSite syncSite = new SyncSite();
 
-		site.setAccountId(accountId);
-		site.setFilePath(filePath);
-		site.setGroupId(groupId);
+		syncSite.setFilePath(filePath);
+		syncSite.setGroupId(groupId);
+		syncSite.setSyncAccountId(syncAccountId);
 
-		_sitePersistence.create(site);
+		_syncSitePersistence.create(syncSite);
 
-		return site;
+		return syncSite;
 	}
 
-	public static Site fetchSite(long accountId, long groupId) {
+	public static SyncSite fetchSyncSite(long syncAccountId, long groupId) {
 		try {
-			return _sitePersistence.fetchSite(accountId, groupId);
+			return _syncSitePersistence.fetchSyncSite(syncAccountId, groupId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
 
-			return site;
+			return null;
 		}
 	}
 
-	public static SitePersistence getSitePersistence() {
-		if (_sitePersistence != null) {
-			return _sitePersistence;
+	public static SyncSitePersistence getSyncSitePersistence() {
+		if (_syncSitePersistence != null) {
+			return _syncSitePersistence;
 		}
 
 		try {
-			_sitePersistence = new SitePersistence();
+			_syncSitePersistence = new SyncSitePersistence();
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -68,11 +69,13 @@ public class SiteService {
 			}
 		}
 
-		return _sitePersistence;
+		return _syncSitePersistence;
 	}
 
-	private static Logger _logger = LoggerFactory.getLogger(SiteService.class);
+	private static Logger _logger = LoggerFactory.getLogger(
+		SyncSiteService.class);
 
-	private static SitePersistence _sitePersistence = getSitePersistence();
+	private static SyncSitePersistence _syncSitePersistence =
+		getSyncSitePersistence();
 
 }
