@@ -48,7 +48,7 @@ public class CalendarBookingFinderImpl
 			".countByC_G_C_C_P_T_D_L_S_E_S";
 
 	public static final String FIND_BY_FUTURE_REMINDERS =
-	CalendarBookingFinder.class.getName() + ".findByFutureReminders";
+		CalendarBookingFinder.class.getName() + ".findByFutureReminders";
 
 	public static final String FIND_BY_C_G_C_C_P_T_D_L_S_E_S =
 		CalendarBookingFinder.class.getName() +
