@@ -14,17 +14,17 @@
 
 package com.liferay.sync.engine.service.persistence;
 
-import com.liferay.sync.engine.model.File;
+import com.liferay.sync.engine.model.SyncFile;
 
 import java.sql.SQLException;
 
 /**
  * @author Shinn Lok
  */
-public class FilePersistence extends BasePersistenceImpl<File, Long> {
+public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 
-	public FilePersistence() throws SQLException {
-		super(File.class);
+	public SyncFilePersistence() throws SQLException {
+		super(SyncFile.class);
 	}
 
 }

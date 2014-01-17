@@ -14,21 +14,21 @@
 
 package com.liferay.sync.engine.upgrade;
 
-import com.liferay.sync.engine.service.AccountService;
-import com.liferay.sync.engine.service.persistence.AccountPersistence;
+import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 
 /**
  * @author Shinn Lok
  */
-public class UpgradeAccount extends UpgradeProcess {
+public class UpgradeSyncFile extends UpgradeProcess {
 
 	@Override
 	public void upgrade() throws Exception {
-		AccountPersistence accountPersistence =
-			AccountService.getAccountPersistence();
+		SyncFilePersistence syncFilePersistence =
+			SyncFileService.getSyncFilePersistence();
 
-		if (!accountPersistence.isTableExists()) {
-			accountPersistence.createTable();
+		if (!syncFilePersistence.isTableExists()) {
+			syncFilePersistence.createTable();
 		}
 	}
 

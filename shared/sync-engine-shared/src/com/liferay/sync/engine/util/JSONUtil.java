@@ -15,8 +15,8 @@
 package com.liferay.sync.engine.util;
 
 import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
-import com.liferay.sync.engine.model.Account;
-import com.liferay.sync.engine.service.AccountService;
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.SyncAccountService;
 
 import java.net.URL;
 
@@ -57,14 +57,16 @@ public class JSONUtil {
 		CredentialsProvider credentialsProvider =
 			new BasicCredentialsProvider();
 
-		Account account = AccountService.getAccount(accountId);
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			accountId);
 
-		URL url = new URL(account.getUrl());
+		URL url = new URL(syncAccount.getUrl());
 
 		credentialsProvider.setCredentials(
 			new AuthScope(url.getHost(), url.getPort()),
 			new UsernamePasswordCredentials(
-				account.getLogin(), Encryptor.decrypt(account.getPassword())));
+				syncAccount.getLogin(),
+				Encryptor.decrypt(syncAccount.getPassword())));
 
 		httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
 
@@ -73,7 +75,7 @@ public class JSONUtil {
 		HttpHost httpHost = new HttpHost(
 			url.getHost(), url.getPort(), url.getProtocol());
 
-		HttpPost httpPost = new HttpPost(account.getUrl() + urlPath);
+		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + urlPath);
 
 		httpPost.setEntity(_getHttpEntity(parameters));
 

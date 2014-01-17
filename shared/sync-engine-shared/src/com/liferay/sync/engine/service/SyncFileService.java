@@ -14,7 +14,7 @@
 
 package com.liferay.sync.engine.service;
 
-import com.liferay.sync.engine.service.persistence.FilePersistence;
+import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 
 import java.sql.SQLException;
 
@@ -24,15 +24,15 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Shinn Lok
  */
-public class FileService {
+public class SyncFileService {
 
-	public static FilePersistence getFilePersistence() {
-		if (_filePersistence != null) {
-			return _filePersistence;
+	public static SyncFilePersistence getSyncFilePersistence() {
+		if (_syncFilePersistence != null) {
+			return _syncFilePersistence;
 		}
 
 		try {
-			_filePersistence = new FilePersistence();
+			_syncFilePersistence = new SyncFilePersistence();
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -40,11 +40,13 @@ public class FileService {
 			}
 		}
 
-		return _filePersistence;
+		return _syncFilePersistence;
 	}
 
-	private static Logger _logger = LoggerFactory.getLogger(FileService.class);
+	private static Logger _logger = LoggerFactory.getLogger(
+		SyncFileService.class);
 
-	private static FilePersistence _filePersistence = getFilePersistence();
+	private static SyncFilePersistence _syncFilePersistence =
+		getSyncFilePersistence();
 
 }
