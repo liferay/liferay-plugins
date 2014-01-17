@@ -22,12 +22,12 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -58,6 +58,11 @@ public class RulesContextBuilder {
 			workflowContext.size() + 4);
 
 		facts.add(
+			new Fact<KaleoInstanceToken>(
+				"kaleoInstanceToken",
+				executionContext.getKaleoInstanceToken()));
+
+		facts.add(
 			new Fact<Map<String, Serializable>>(
 				"workflowContext", workflowContext));
 
@@ -65,6 +70,10 @@ public class RulesContextBuilder {
 			executionContext.getKaleoTaskInstanceToken();
 
 		if (kaleoTaskInstanceToken != null) {
+			facts.add(
+				new Fact<KaleoTaskInstanceToken>(
+					"kaleoTaskInstanceToken", kaleoTaskInstanceToken));
+
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
 			facts.add(new Fact<String>("taskName", kaleoTask.getName()));
@@ -94,6 +103,13 @@ public class RulesContextBuilder {
 				executionContext.getKaleoInstanceToken();
 
 			facts.add(new Fact<Long>("userId", kaleoInstanceToken.getUserId()));
+		}
+
+		if (executionContext.getKaleoTimerInstanceToken() != null) {
+			facts.add(
+				new Fact<KaleoTimerInstanceToken>(
+					"kaleoTimerInstanceToken",
+					executionContext.getKaleoTimerInstanceToken()));
 		}
 
 		return facts;
