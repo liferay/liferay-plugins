@@ -167,7 +167,7 @@
 										<liferay-ui:icon
 											image="view"
 											label="<%= true %>"
-											message='<%= LanguageUtil.format(pageContext, "x-forum-posts", new Object[] {"<strong>" + mbMessagesCount + "</strong>"}, false) %>'
+											message='<%= LanguageUtil.format(pageContext, "x-forum-posts", "<strong>" + mbMessagesCount + "</strong>", false) %>'
 											url='<%= mbFriendlyURL + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
 										/>
 									</span>
@@ -206,7 +206,7 @@
 										<liferay-ui:icon
 											image="view"
 											label="<%= true %>"
-											message='<%= LanguageUtil.format(pageContext, "x-blog-entries", new Object[] {"<strong>" + blogsEntriesCount + "</strong>"}, false) %>'
+											message='<%= LanguageUtil.format(pageContext, "x-blog-entries", "<strong>" + blogsEntriesCount + "</strong>", false) %>'
 											url="<%= blogsFriendlyURL %>"
 										/>
 									</span>
