@@ -527,9 +527,20 @@ public class CalendarImporterLocalServiceImpl
 
 		serviceContext.setUserId(userId);
 
-		CalendarResource calendarResource =
-			CalendarResourceUtil.getGroupCalendarResource(
-				groupId, serviceContext);
+		CalendarResource calendarResource = null;
+
+		Group group = groupLocalService.getGroup(groupId);
+
+		if (group.isUser()) {
+			calendarResource =
+				CalendarResourceUtil.getUserCalendarResource(
+					group.getCreatorUserId(), serviceContext);
+		}
+		else {
+			calendarResource =
+				CalendarResourceUtil.getGroupCalendarResource(
+					groupId, serviceContext);
+		}
 
 		return calendarResource;
 	}
