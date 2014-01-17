@@ -52,7 +52,7 @@ public class MicroblogsEntryFinderImpl
 		MicroblogsEntryFinder.class.getName() + ".countByU_MU";
 
 	public static final String COUNT_BY_U_ATN =
-	MicroblogsEntryFinder.class.getName() + ".countByU_ATN";
+		MicroblogsEntryFinder.class.getName() + ".countByU_ATN";
 
 	public static final String COUNT_BY_U_T_MU =
 		MicroblogsEntryFinder.class.getName() + ".countByU_T_MU";
@@ -64,7 +64,7 @@ public class MicroblogsEntryFinderImpl
 		MicroblogsEntryFinder.class.getName() + ".findByU_MU";
 
 	public static final String FIND_BY_U_ATN =
-	MicroblogsEntryFinder.class.getName() + ".findByU_ATN";
+		MicroblogsEntryFinder.class.getName() + ".findByU_ATN";
 
 	public static final String FIND_BY_U_T_MU =
 		MicroblogsEntryFinder.class.getName() + ".findByU_T_MU";
