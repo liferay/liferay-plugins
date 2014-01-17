@@ -17,9 +17,9 @@ package com.liferay.sync.engine.util;
 /**
  * @author Dennis Ju
  */
-public class PathUtil {
+public class FilePathUtil {
 
-	public static String fixPath(String filePath) {
+	public static String fixFilePath(String filePath) {
 		if (filePath == null) {
 			return "";
 		}
