@@ -20,7 +20,6 @@
 	<portlet:param name="mvcPath" value="/search/search.jsp" />
 </liferay-portlet:renderURL>
 
-
 <aui:nav-bar>
 	<aui:nav-bar-search cssClass="pull-right">
 		<div class="form-search">
