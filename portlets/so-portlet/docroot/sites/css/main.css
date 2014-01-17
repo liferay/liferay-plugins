@@ -488,7 +488,7 @@ $defaultTextColor: #202020;
 
 	.search-focus .so-portlet-sites {
 		width: 350px;
-		
+
 		.portlet-body {
 			visibility: visible;
 			z-index: 3;
