@@ -129,7 +129,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				WorkflowConstants.CONTEXT_TRANSITION_NAME, transitionName);
 
 			ExecutionContext executionContext = new ExecutionContext(
-				kaleoInstanceToken, workflowContext, serviceContext);
+				kaleoInstanceToken, kaleoTaskInstanceToken, workflowContext,
+				serviceContext);
 
 			_kaleoSignaler.signalExit(transitionName, executionContext);
 		}
