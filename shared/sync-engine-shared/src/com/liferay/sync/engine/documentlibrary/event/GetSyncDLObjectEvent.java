@@ -30,7 +30,7 @@ public class GetSyncDLObjectEvent extends BaseEvent {
 	public GetSyncDLObjectEvent(
 		long syncAccountId, Map<String, Object> parameters) {
 
-		super(syncAccountId, _SERVICE_PATH, parameters);
+		super(syncAccountId, _URL_PATH, parameters);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class GetSyncDLObjectEvent extends BaseEvent {
 		}
 	}
 
-	private static final String _SERVICE_PATH =
+	private static final String _URL_PATH =
 		"/sync-web.syncdlobject/get-file-entry-sync-dl-objects";
 
 }

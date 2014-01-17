@@ -48,8 +48,8 @@ import org.apache.http.protocol.BasicHttpContext;
  */
 public class JSONUtil {
 
-	public static String executeRequest(
-			long syncAccountId, String servicePath,
+	public static String execute(
+			long syncAccountId, String urlPath,
 			Map<String, Object> parameters)
 		throws Exception {
 
@@ -76,7 +76,7 @@ public class JSONUtil {
 		HttpHost httpHost = new HttpHost(
 			url.getHost(), url.getPort(), url.getProtocol());
 
-		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + servicePath);
+		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + urlPath);
 
 		httpPost.setEntity(_getHttpEntity(parameters));
 
