@@ -55,7 +55,7 @@ public class EntryFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_EMPTY_CONTENT);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("Chat_Entry", EntryImpl.class);
 
@@ -90,7 +90,7 @@ public class EntryFinderImpl
 				sql = StringUtil.replace(sql, _FLAG_SQL, _CREATE_DATE_SQL);
 			}
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("Chat_Entry", EntryImpl.class);
 
@@ -127,7 +127,7 @@ public class EntryFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_OLD);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("Chat_Entry", EntryImpl.class);
 

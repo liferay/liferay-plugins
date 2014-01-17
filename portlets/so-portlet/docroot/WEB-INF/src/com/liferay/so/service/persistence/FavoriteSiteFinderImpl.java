@@ -55,7 +55,7 @@ public class FavoriteSiteFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_U_N);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -99,7 +99,7 @@ public class FavoriteSiteFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_U_N);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar("userId", Type.LONG);
 			q.addScalar("groupId", Type.LONG);

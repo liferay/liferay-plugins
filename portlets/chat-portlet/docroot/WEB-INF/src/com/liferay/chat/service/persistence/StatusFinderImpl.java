@@ -57,7 +57,7 @@ public class StatusFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_MODIFIED_DATE);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar("userId", Type.LONG);
 			q.addScalar("screenName", Type.STRING);
@@ -95,7 +95,7 @@ public class StatusFinderImpl
 
 			String sql = getFindBySocialRelationTypes_SQL(types);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar("userId", Type.LONG);
 			q.addScalar("screenName", Type.STRING);
@@ -139,7 +139,7 @@ public class StatusFinderImpl
 
 			String sql = getFindByUsersGroups_SQL(groupNames);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar("userId", Type.LONG);
 			q.addScalar("screenName", Type.STRING);

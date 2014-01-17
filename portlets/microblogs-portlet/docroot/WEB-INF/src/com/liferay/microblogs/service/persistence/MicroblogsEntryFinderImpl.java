@@ -97,7 +97,7 @@ public class MicroblogsEntryFinderImpl
 			sql = StringUtil.replace(
 				sql, "[$JOIN_BY_SOCIAL_RELATION$]", _joinBySocialRelationSQL);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -139,7 +139,7 @@ public class MicroblogsEntryFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_U_MU);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -180,7 +180,7 @@ public class MicroblogsEntryFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_U_ATN);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -222,7 +222,7 @@ public class MicroblogsEntryFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_U_T_MU);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -266,7 +266,7 @@ public class MicroblogsEntryFinderImpl
 			sql = StringUtil.replace(
 				sql, "[$JOIN_BY_SOCIAL_RELATION$]", _joinBySocialRelationSQL);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
 
@@ -300,7 +300,7 @@ public class MicroblogsEntryFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_U_MU);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
 
@@ -333,7 +333,7 @@ public class MicroblogsEntryFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_U_ATN);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
 
@@ -368,7 +368,7 @@ public class MicroblogsEntryFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_U_T_MU);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
 

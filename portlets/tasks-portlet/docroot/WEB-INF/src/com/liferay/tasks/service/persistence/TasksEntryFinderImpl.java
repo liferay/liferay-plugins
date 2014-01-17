@@ -121,7 +121,7 @@ public class TasksEntryFinderImpl
 
 			sql = StringUtil.replaceFirst(sql, " WHERE AND ", " WHERE ");
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -249,7 +249,7 @@ public class TasksEntryFinderImpl
 
 			sql = StringUtil.replaceFirst(sql, " WHERE AND ", " WHERE ");
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("TMS_TasksEntry", TasksEntryImpl.class);
 

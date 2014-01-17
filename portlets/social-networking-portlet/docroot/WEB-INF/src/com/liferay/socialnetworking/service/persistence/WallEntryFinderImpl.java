@@ -51,7 +51,7 @@ public class WallEntryFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_G1_G2_U1_U2);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
@@ -94,7 +94,7 @@ public class WallEntryFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_G1_G2_U1_U2);
 
-			SQLQuery q = session.createSQLQuery(sql);
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("SN_WallEntry", WallEntryImpl.class);
 
