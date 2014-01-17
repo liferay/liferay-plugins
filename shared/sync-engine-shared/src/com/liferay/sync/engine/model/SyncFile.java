@@ -24,9 +24,9 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 /**
  * @author Shinn Lok
  */
-@DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "File")
+@DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncFile")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class File {
+public class SyncFile {
 
 	public String getChecksum() {
 		return checksum;
@@ -34,10 +34,6 @@ public class File {
 
 	public String getDescription() {
 		return description;
-	}
-
-	public long getFileId() {
-		return fileId;
 	}
 
 	public String getName() {
@@ -54,6 +50,10 @@ public class File {
 
 	public long getSize() {
 		return size;
+	}
+
+	public long getSyncFileId() {
+		return syncFileId;
 	}
 
 	public String getType() {
@@ -76,10 +76,6 @@ public class File {
 		this.description = description;
 	}
 
-	public void setFileId(long fileId) {
-		this.fileId = fileId;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -94,6 +90,10 @@ public class File {
 
 	public void setSize(long size) {
 		this.size = size;
+	}
+
+	public void setSyncFileId(long syncFileId) {
+		this.syncFileId = syncFileId;
 	}
 
 	public void setType(String type) {
@@ -114,9 +114,6 @@ public class File {
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String description;
 
-	@DatabaseField(generatedId = true, useGetSet = true)
-	protected long fileId;
-
 	@DatabaseField(useGetSet = true, width = 255)
 	protected String name;
 
@@ -128,6 +125,9 @@ public class File {
 
 	@DatabaseField(useGetSet = true)
 	protected long size;
+
+	@DatabaseField(generatedId = true, useGetSet = true)
+	protected long syncFileId;
 
 	@DatabaseField(useGetSet = true, width = 255)
 	protected String type;

@@ -15,8 +15,8 @@
 package com.liferay.sync.engine.service;
 
 import com.liferay.sync.engine.BaseTestCase;
-import com.liferay.sync.engine.model.Account;
-import com.liferay.sync.engine.service.persistence.AccountPersistence;
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.persistence.SyncAccountPersistence;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -32,15 +32,15 @@ import org.slf4j.LoggerFactory;
  * @author Shinn Lok
  */
 @RunWith(PowerMockRunner.class)
-public class AccountServiceTest extends BaseTestCase {
+public class SyncAccountServiceTest extends BaseTestCase {
 
 	@After
 	public void tearDown() {
-		AccountPersistence accountPersistence =
-			AccountService.getAccountPersistence();
+		SyncAccountPersistence syncAccountPersistence =
+			SyncAccountService.getSyncAccountPersistence();
 
 		try {
-			accountPersistence.delete(_account);
+			syncAccountPersistence.delete(_syncAccount);
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
@@ -49,17 +49,18 @@ public class AccountServiceTest extends BaseTestCase {
 
 	@Test
 	public void testAddAccount() throws Exception {
-		Account account = AccountService.addAccount(
+		SyncAccount syncAccount = SyncAccountService.addSyncAccount(
 			"test@liferay.com", "test", "http://localhost:8080/api/jsonws/");
 
-		_account = AccountService.getAccount(account.getAccountId());
+		_syncAccount = SyncAccountService.fetchSyncAccount(
+			syncAccount.getSyncAccountId());
 
-		Assert.assertNotNull(_account);
+		Assert.assertNotNull(_syncAccount);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
-		AccountServiceTest.class);
+		SyncAccountServiceTest.class);
 
-	private Account _account;
+	private SyncAccount _syncAccount;
 
 }
