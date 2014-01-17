@@ -26,7 +26,6 @@ import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
 
 import java.io.Serializable;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,12 +56,17 @@ public class ScriptingContextBuilderImpl implements ScriptingContextBuilder {
 		Map<String, Object> inputObjects = new HashMap<String, Object>(
 			workflowContext);
 
+		inputObjects.put(
+			"kaleoInstanceToken", executionContext.getKaleoInstanceToken());
+
 		inputObjects.put("workflowContext", workflowContext);
 
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			executionContext.getKaleoTaskInstanceToken();
 
 		if (kaleoTaskInstanceToken != null) {
+			inputObjects.put("kaleoTaskInstanceToken", kaleoTaskInstanceToken);
+
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
 			inputObjects.put("taskName", kaleoTask.getName());
@@ -86,6 +90,12 @@ public class ScriptingContextBuilderImpl implements ScriptingContextBuilder {
 				executionContext.getKaleoInstanceToken();
 
 			inputObjects.put("userId", kaleoInstanceToken.getUserId());
+		}
+
+		if (executionContext.getKaleoTimerInstanceToken() != null) {
+			inputObjects.put(
+				"kaleoTimerInstanceToken",
+				executionContext.getKaleoTimerInstanceToken());
 		}
 
 		return inputObjects;

@@ -23,6 +23,7 @@ import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
+import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.util.KaleoTaskAssignmentInstanceUtil;
 import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
@@ -109,22 +110,20 @@ public class TemplateNotificationMessageGenerator
 			template.put(entry.getKey(), entry.getValue());
 		}
 
+		template.put(
+			"kaleoInstanceToken", executionContext.getKaleoInstanceToken());
+
 		KaleoTaskInstanceToken kaleoTaskInstanceToken =
 			executionContext.getKaleoTaskInstanceToken();
 
 		if (kaleoTaskInstanceToken != null) {
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 
+			template.put("kaleoTaskInstanceToken", kaleoTaskInstanceToken);
+
 			template.put("taskName", kaleoTask.getName());
 
-			if (kaleoTaskInstanceToken.getCompletionUserId() != 0) {
-				template.put(
-					"userId", kaleoTaskInstanceToken.getCompletionUserId());
-			}
-			else {
-				template.put("userId", kaleoTaskInstanceToken.getUserId());
-			}
-
+			template.put("userId", kaleoTaskInstanceToken.getUserId());
 			template.put("userName", kaleoTaskInstanceToken.getUserName());
 
 			List<WorkflowTaskAssignee> workflowTaskAssignees =
@@ -139,6 +138,14 @@ public class TemplateNotificationMessageGenerator
 
 			template.put("userId", kaleoInstanceToken.getUserId());
 			template.put("userName", kaleoInstanceToken.getUserName());
+		}
+
+		KaleoTimerInstanceToken kaleoTimerInstanceToken =
+			executionContext.getKaleoTimerInstanceToken();
+
+		if (kaleoTimerInstanceToken != null) {
+			template.put(
+				"kaleoTimerInstanceToken", kaleoTimerInstanceToken);
 		}
 	}
 
