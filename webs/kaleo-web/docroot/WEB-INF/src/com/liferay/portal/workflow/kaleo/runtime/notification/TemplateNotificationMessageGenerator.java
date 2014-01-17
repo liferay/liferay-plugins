@@ -144,8 +144,7 @@ public class TemplateNotificationMessageGenerator
 			executionContext.getKaleoTimerInstanceToken();
 
 		if (kaleoTimerInstanceToken != null) {
-			template.put(
-				"kaleoTimerInstanceToken", kaleoTimerInstanceToken);
+			template.put("kaleoTimerInstanceToken", kaleoTimerInstanceToken);
 		}
 	}
 
