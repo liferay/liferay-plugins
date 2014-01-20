@@ -2,7 +2,7 @@
 
 #set -x
 
-if [ -z "$1" ] || [ -z "$2" ]; then
+if [ $# -lt 2 ]; then
 	echo
 	echo Usage: ./create.sh hello-world \"Hello World\"
 	echo
