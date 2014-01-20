@@ -17,11 +17,15 @@
 <%@ include file="/html/portal/init.jsp" %>
 
 <liferay-util:buffer var="html">
-	<liferay-util:include page="/html/portal/update_reminder_query.portal.jsp" />
+	<liferay-util:include page="/html/portlet/users_admin/user/password.portal.jsp" />
 </liferay-util:buffer>
 
 <%
-int optionStart = _getOptionStart(html);
+String namespace = portletDisplay.getNamespace();
+
+String reminderQueryQuestionId = namespace + "reminderQueryQuestion";
+
+int optionStart = _getOptionStart(html, reminderQueryQuestionId);
 int optionEnd = _getOptionEnd(html, optionStart);
 
 html = _removeOption(html, optionStart, optionEnd);
@@ -40,9 +44,8 @@ private int _getOptionEnd(String html, int fromIndex) {
 	return x + _OPTION_CLOSE.length();
 }
 
-private int _getOptionStart(String html) {
-	int x = html.indexOf(_ID_REMINDER_QUERY_QUESTION);
-
+private int _getOptionStart(String html, String id) {
+	int x = html.indexOf("id=\"" + id + StringPool.QUOTE);
 	if (x < 0) {
 		return -1;
 	}
@@ -63,8 +66,6 @@ private String _removeOption(String html, int optionStart, int optionEnd) {
 
 	return html.substring(0, optionStart) + html.substring(optionEnd);
 }
-
-private static final String _ID_REMINDER_QUERY_QUESTION = "id=\"reminderQueryQuestion\"";
 
 private static final String _OPTION_CLOSE = "</option>";
 

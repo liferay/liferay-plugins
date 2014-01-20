@@ -1,23 +1,23 @@
 <%--
-/**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ /**
+  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+  *
+  * This library is free software; you can redistribute it and/or modify it under
+  * the terms of the GNU Lesser General Public License as published by the Free
+  * Software Foundation; either version 2.1 of the License, or (at your option)
+  * any later version.
+  *
+  * This library is distributed in the hope that it will be useful, but WITHOUT
+  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
 --%>
-
+ 
 <%@ include file="/html/portlet/login/init.jsp" %>
 
 <liferay-util:buffer var="html">
-	<liferay-util:include page="/html/portlet/login/create_account.portal.jsp" />
+	<liferay-util:include page="/html/portlet/users_admin/user/details.portal.jsp" />
 </liferay-util:buffer>
 
 <%
@@ -46,7 +46,7 @@ html = _reverseFirstNameLastName(html, firstNameStart, firstNameEnd, lastNameSta
 <%!
 private int _getFormFieldEnd(String html, int fromIndex) {
 	if (fromIndex < 0) {
-		return -1;
+		return fromIndex;
 	}
 
 	return html.indexOf(_DIV_CLOSE, fromIndex) + _DIV_CLOSE.length();
@@ -56,7 +56,7 @@ private int _getFormFieldStart(String html, String id) {
 	int x = html.indexOf("id=\"" + id + StringPool.QUOTE);
 
 	if (x < 0) {
-		return -1;
+		return x;
 	}
 
 	return html.lastIndexOf(_DIV_OPEN, x);

@@ -17,7 +17,7 @@
 <%@ include file="/html/portlet/login/init.jsp" %>
 
 <liferay-util:buffer var="html">
-	<liferay-util:include page="/html/portlet/login/create_account.portal.jsp" />
+	<liferay-util:include page="/html/portlet/users_admin/user_search.portal.jsp" />
 </liferay-util:buffer>
 
 <%

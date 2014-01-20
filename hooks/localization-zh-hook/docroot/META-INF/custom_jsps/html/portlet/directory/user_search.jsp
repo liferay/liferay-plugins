@@ -14,10 +14,10 @@
  */
 --%>
 
-<%@ include file="/html/portlet/login/init.jsp" %>
+<%@ include file="/html/portlet/directory/init.jsp" %>
 
 <liferay-util:buffer var="html">
-	<liferay-util:include page="/html/portlet/login/create_account.portal.jsp" />
+	<liferay-util:include page="/html/portlet/directory/user_search.portal.jsp" />
 </liferay-util:buffer>
 
 <%
