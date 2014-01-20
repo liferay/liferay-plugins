@@ -29,7 +29,6 @@ import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
 import java.nio.file.attribute.BasicFileAttributes;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,32 +50,26 @@ public class Watcher implements Runnable {
 		_watchService = fileSystem.newWatchService();
 	}
 
-	public void addWatchEventListener(WatchEventListener watchEventListener) {
-		_watchEventListeners.add(watchEventListener);
-	}
-
 	public void close() throws IOException {
 		_watchService.close();
 	}
 
-	public void fireWatchEventListeners(
+	public void fireWatchEventListener(
 		WatchEvent<Path> watchEvent, Path filePath) {
 
 		WatchEvent.Kind<?> kind = watchEvent.kind();
 
-		for (WatchEventListener watchEventListener : _watchEventListeners) {
-			if (kind == StandardWatchEventKinds.ENTRY_CREATE) {
-				watchEventListener.entryCreate(watchEvent, filePath);
-			}
-			else if (kind == StandardWatchEventKinds.ENTRY_DELETE) {
-				watchEventListener.entryDelete(watchEvent, filePath);
-			}
-			else if (kind == StandardWatchEventKinds.ENTRY_MODIFY) {
-				watchEventListener.entryModify(watchEvent, filePath);
-			}
-			else if (kind == StandardWatchEventKinds.OVERFLOW) {
-				watchEventListener.overflow(watchEvent, filePath);
-			}
+		if (kind == StandardWatchEventKinds.ENTRY_CREATE) {
+			_watchEventListener.entryCreate(filePath, watchEvent);
+		}
+		else if (kind == StandardWatchEventKinds.ENTRY_DELETE) {
+			_watchEventListener.entryDelete(filePath, watchEvent);
+		}
+		else if (kind == StandardWatchEventKinds.ENTRY_MODIFY) {
+			_watchEventListener.entryModify(filePath, watchEvent);
+		}
+		else if (kind == StandardWatchEventKinds.OVERFLOW) {
+			_watchEventListener.overflow(filePath, watchEvent);
 		}
 	}
 
@@ -109,9 +102,9 @@ public class Watcher implements Runnable {
 					i);
 
 				Path childFilePath = parentFilePath.resolve(
-					watchEvent.context());
+					watchEvent.context()).normalize();
 
-				fireWatchEventListeners(watchEvent, childFilePath);
+				fireWatchEventListener(watchEvent, childFilePath);
 
 				WatchEvent.Kind<?> kind = watchEvent.kind();
 
@@ -138,6 +131,10 @@ public class Watcher implements Runnable {
 				}
 			}
 		}
+	}
+
+	public void setWatchEventListener(WatchEventListener watchEventListener) {
+		_watchEventListener = watchEventListener;
 	}
 
 	protected void register(Path filePath, boolean recursive)
@@ -176,8 +173,7 @@ public class Watcher implements Runnable {
 		Executors.newSingleThreadExecutor();
 	private Map<WatchKey, Path> _filePaths = new HashMap<WatchKey, Path>();
 	private boolean _recursive;
-	private List<WatchEventListener> _watchEventListeners =
-		new ArrayList<WatchEventListener>();
+	private WatchEventListener _watchEventListener;
 	private WatchService _watchService;
 
 }
