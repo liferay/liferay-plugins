@@ -1,4 +1,4 @@
-Bundle-SymbolicName: ${ant.project.name}
+Bundle-SymbolicName: ${plugin.name}
 Bundle-Vendor: ${release.info.vendor}
 Bundle-Version: ${release.info.version}.${plugin.version}
 Git-Descriptor: ${system-allow-fail;git describe --dirty --always}
