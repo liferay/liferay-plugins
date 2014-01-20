@@ -38,7 +38,7 @@
 
 		<div class="scheduler-event-recorder-body">
 			<table>
-				<tpl if="status != Liferay.CalendarWorkflow.STATUS_DRAFT && values.permissions.MANAGE_BOOKINGS">
+				<tpl if="values.permissions.MANAGE_BOOKINGS && (status != Liferay.CalendarWorkflow.STATUS_DRAFT)">
 					<tr class="calendar-portlet-event-recorder-status-row">
 						<td>
 							<liferay-ui:message key="attend" />?
@@ -90,22 +90,24 @@
 					</td>
 				</tr>
 
-				<tr <tpl if="!values.editing || !values.permissions.VIEW_BOOKING_DETAILS">class="hide"</tpl> id="<portlet:namespace />eventRecorderUsers">
-					<td>
-						<liferay-ui:message key="users" />:
-					</td>
-					<td>
-						<label class="calendar-portlet-invitees"><liferay-ui:message key="loading" /></label>
-					</td>
-				</tr>
-				<tr <tpl if="!values.editing || !values.permissions.VIEW_BOOKING_DETAILS"">class="hide"</tpl> id="<portlet:namespace />eventRecorderResources">
-					<td>
-						<liferay-ui:message key="resources" />:
-					</td>
-					<td>
-						<label class="calendar-portlet-invitees"><liferay-ui:message key="loading" /></label>
-					</td>
-				</tr>
+				<tpl if="values.editing && values.permissions.VIEW_BOOKING_DETAILS">
+					<tr id="<portlet:namespace />eventRecorderUsers">
+						<td>
+							<liferay-ui:message key="users" />:
+						</td>
+						<td>
+							<label class="calendar-portlet-invitees"><liferay-ui:message key="loading" /></label>
+						</td>
+					</tr>
+					<tr id="<portlet:namespace />eventRecorderResources">
+						<td>
+							<liferay-ui:message key="resources" />:
+						</td>
+						<td>
+							<label class="calendar-portlet-invitees"><liferay-ui:message key="loading" /></label>
+						</td>
+					</tr>
+				</tpl>
 			</table>
 		</div>
 	</div>
