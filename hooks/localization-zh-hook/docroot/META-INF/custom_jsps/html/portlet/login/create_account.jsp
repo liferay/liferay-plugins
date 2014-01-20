@@ -32,7 +32,7 @@ int middleNameEnd = _getFormFieldEnd(html, middleNameStart);
 
 html = _removeMiddleName(html, middleNameStart, middleNameEnd);
 
-int firstNameStart = _getFormFieldStart(html,firstNameId);
+int firstNameStart = _getFormFieldStart(html, firstNameId);
 int firstNameEnd = _getFormFieldEnd(html, firstNameStart);
 
 int lastNameStart = _getFormFieldStart(html, lastNameId);

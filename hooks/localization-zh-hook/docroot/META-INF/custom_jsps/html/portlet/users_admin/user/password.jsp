@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/html/portal/init.jsp" %>
+<%@ include file="/html/portlet/users_admin/init.jsp" %>
 
 <liferay-util:buffer var="html">
 	<liferay-util:include page="/html/portlet/users_admin/user/password.portal.jsp" />
@@ -46,6 +46,7 @@ private int _getOptionEnd(String html, int fromIndex) {
 
 private int _getOptionStart(String html, String id) {
 	int x = html.indexOf("id=\"" + id + StringPool.QUOTE);
+
 	if (x < 0) {
 		return -1;
 	}
