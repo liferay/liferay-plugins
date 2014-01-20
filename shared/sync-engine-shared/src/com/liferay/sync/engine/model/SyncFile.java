@@ -28,6 +28,10 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SyncFile {
 
+	public static final String TYPE_FILE = "file";
+
+	public static final String TYPE_FOLDER = "folder";
+
 	public String getChecksum() {
 		return checksum;
 	}

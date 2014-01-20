@@ -17,7 +17,6 @@ package com.liferay.sync.engine.documentlibrary.event;
 import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
-import com.liferay.sync.engine.model.SyncFileConstants;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.util.HttpUtil;
@@ -60,7 +59,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 			_filePath);
 		_filePathSyncFile = SyncFileService.addSyncFile(
 			_syncAccount.getSyncAccountId(), 0, 0, "test",
-			_syncAccount.getFilePath(), 0, SyncFileConstants.TYPE_FOLDER);
+			_syncAccount.getFilePath(), 0, SyncFile.TYPE_FOLDER);
 	}
 
 	@After
