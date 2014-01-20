@@ -1,66 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE project>
 
-<project name="build-common-osgi-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
+<project name="build-common-osgi-plugin">
 	<import file="build-common-plugin.xml" />
 
 	<target name="jar">
 		<jar-macro
 			module.dir="."
 		/>
-	</target>
-
-	<target name="manifest">
-		<if>
-			<not>
-				<available file="${plugin.classes.dir}/META-INF/MANIFEST.MF" />
-			</not>
-			<then>
-				<manifest-helper analyze="true" />
-
-				<mkdir dir="${plugin.classes.dir}/META-INF" />
-
-				<tstamp>
-					<format property="build.time" pattern="EEE MMM d HH:mm:ss z yyyy" />
-				</tstamp>
-
-				<manifest file="${plugin.classes.dir}/META-INF/MANIFEST.MF">
-					<attribute name="Bundle-ManifestVersion" value="2" />
-					<attribute name="Bundle-RequiredExecutionEnvironment" value="J2SE-1.5" />
-					<attribute name="Bundle-Vendor" value="${release.info.vendor}" />
-					<attribute name="Bundle-Version" value="${release.info.version}" />
-					<attribute name="Export-Package" value="${export.packages}" />
-					<attribute name="Import-Package" value="${import.packages}" />
-					<attribute name="Javac-Compiler" value="${javac.compiler}" />
-					<attribute name="Javac-Debug" value="${javac.debug}" />
-					<attribute name="Javac-Deprecation" value="${javac.deprecation}" />
-					<attribute name="Javac-Encoding" value="${javac.encoding}" />
-				</manifest>
-
-				<if>
-					<and>
-						<isset property="manifest.bundle.name" />
-						<isset property="manifest.bundle.symbolic.name" />
-					</and>
-					<then>
-						<manifest file="${plugin.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-							<attribute name="Bundle-Name" value="${manifest.bundle.name}" />
-							<attribute name="Bundle-SymbolicName" value="${manifest.bundle.symbolic.name}" />
-						</manifest>
-					</then>
-				</if>
-
-				<if>
-					<isset property="manifest.premain.class" />
-					<then>
-						<manifest file="${plugin.classes.dir}/META-INF/MANIFEST.MF" mode="update">
-							<attribute name="Can-Redefine-Classes" value="${manifest.can.redefine.classes}" />
-							<attribute name="Can-Retransform-Classes" value="${manifest.can.retransform.classes}" />
-							<attribute name="Premain-Class" value="${manifest.premain.class}" />
-						</manifest>
-					</then>
-				</if>
-			</then>
-		</if>
 	</target>
 </project>
