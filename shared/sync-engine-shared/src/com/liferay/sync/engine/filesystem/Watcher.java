@@ -102,7 +102,9 @@ public class Watcher implements Runnable {
 					i);
 
 				Path childFilePath = parentFilePath.resolve(
-					watchEvent.context()).normalize();
+					watchEvent.context());
+
+				childFilePath = childFilePath.normalize();
 
 				fireWatchEventListener(watchEvent, childFilePath);
 
