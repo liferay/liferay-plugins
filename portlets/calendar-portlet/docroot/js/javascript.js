@@ -1826,8 +1826,6 @@ AUI.add(
 
 						var templateData = instance.getTemplateData();
 
-						var titleNode = instance.popover.get('contentBox').one('.popover-title');
-
 						if (A.instanceOf(bodyTemplate, A.Template) && A.instanceOf(headerTemplate, A.Template)) {
 							instance.popover.setStdModContent('body', bodyTemplate.parse(templateData));
 							instance.popover.setStdModContent('header', headerTemplate.parse(templateData));
@@ -1852,7 +1850,7 @@ AUI.add(
 							'header'
 						);
 
-						titleNode.toggleClass('hide', !templateData.permissions.VIEW_BOOKING_DETAILS);
+						instance.popover.headerNode.toggleClass('hide', !templateData.permissions.VIEW_BOOKING_DETAILS);
 					},
 
 					_afterPopoverVisibleChange: function(event) {
@@ -2069,16 +2067,19 @@ AUI.add(
 					_syncInvitees: function() {
 						var instance = this;
 
-						var portletNamespace = instance.get('portletNamespace');
 						var schedulerEvent = instance.get('event');
 
 						if (schedulerEvent) {
 							var calendar = CalendarUtil.availableCalendars[schedulerEvent.get('calendarId')];
 
-							if (calendar.get('permissions').VIEW_BOOKING_DETAILS) {
-								var parentCalendarBookingId = schedulerEvent.get('parentCalendarBookingId');
+							if (calendar) {
+								var permissions = calendar.get('permissions');
 
-								CalendarUtil.getCalendarBookingInvitees(
+								if (permissions.VIEW_BOOKING_DETAILS) {
+									var parentCalendarBookingId = schedulerEvent.get('parentCalendarBookingId');
+									var portletNamespace = instance.get('portletNamespace');
+
+									CalendarUtil.getCalendarBookingInvitees(
 										parentCalendarBookingId,
 										function(data) {
 											var results = AArray.partition(
@@ -2091,7 +2092,8 @@ AUI.add(
 											instance._syncInviteesContent('#' + portletNamespace + 'eventRecorderUsers', results.matches);
 											instance._syncInviteesContent('#' + portletNamespace + 'eventRecorderResources', results.rejects);
 										}
-								);
+									);
+								}
 							}
 						}
 					},
