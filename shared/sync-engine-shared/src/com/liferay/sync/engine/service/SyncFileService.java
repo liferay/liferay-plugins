@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine.service;
 
+import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 
 import java.sql.SQLException;
@@ -25,6 +26,66 @@ import org.slf4j.LoggerFactory;
  * @author Shinn Lok
  */
 public class SyncFileService {
+
+	public static SyncFile addSyncFile(
+			long syncAccountId, long repositoryId, long parentFolderId,
+			String name, String filePath, long typePK, String type)
+		throws Exception {
+
+		SyncFile syncFile = new SyncFile();
+
+		syncFile.setRepositoryId(repositoryId);
+		syncFile.setParentFolderId(parentFolderId);
+		syncFile.setName(name);
+		syncFile.setFilePath(filePath);
+		syncFile.setSyncAccountId(syncAccountId);
+		syncFile.setTypePK(typePK);
+		syncFile.setType(type);
+
+		_syncFilePersistence.create(syncFile);
+
+		return syncFile;
+	}
+
+	public static void deleteSyncFile(long syncFileId) {
+		try {
+			_syncFilePersistence.deleteById(syncFileId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+		}
+	}
+
+	public static SyncFile fetchSyncFile(
+		long syncAccountId, long repositoryId, long parentFolderId) {
+
+		try {
+			return _syncFilePersistence.fetchSyncFile(
+				syncAccountId, repositoryId, parentFolderId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
+
+	public static SyncFile fetchSyncFile(long syncAccountId, String filePath) {
+		try {
+			return _syncFilePersistence.fetchSyncFile(syncAccountId, filePath);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
 
 	public static SyncFilePersistence getSyncFilePersistence() {
 		if (_syncFilePersistence != null) {
@@ -41,6 +102,21 @@ public class SyncFileService {
 		}
 
 		return _syncFilePersistence;
+	}
+
+	public static SyncFile update(SyncFile syncFile) {
+		try {
+			_syncFilePersistence.createOrUpdate(syncFile);
+
+			return syncFile;
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(

@@ -18,6 +18,10 @@ import com.liferay.sync.engine.model.SyncFile;
 
 import java.sql.SQLException;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author Shinn Lok
  */
@@ -25,6 +29,42 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 
 	public SyncFilePersistence() throws SQLException {
 		super(SyncFile.class);
+	}
+
+	public SyncFile fetchSyncFile(
+			long syncAccountId, long repositoryId, long parentFolderId)
+		throws SQLException {
+
+		Map<String, Object> fieldValues = new HashMap<String, Object>();
+
+		fieldValues.put("parentFolderId", parentFolderId);
+		fieldValues.put("repositoryId", repositoryId);
+		fieldValues.put("syncAccountId", syncAccountId);
+
+		List<SyncFile> syncFiles = queryForFieldValues(fieldValues);
+
+		if ((syncFiles == null) || syncFiles.isEmpty()) {
+			return null;
+		}
+
+		return syncFiles.get(0);
+	}
+
+	public SyncFile fetchSyncFile(long syncAccountId, String filePath)
+		throws SQLException {
+
+		Map<String, Object> fieldValues = new HashMap<String, Object>();
+
+		fieldValues.put("filePath", filePath);
+		fieldValues.put("syncAccountId", syncAccountId);
+
+		List<SyncFile> syncFiles = queryForFieldValues(fieldValues);
+
+		if ((syncFiles == null) || syncFiles.isEmpty()) {
+			return null;
+		}
+
+		return syncFiles.get(0);
 	}
 
 }

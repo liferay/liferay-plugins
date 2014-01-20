@@ -16,7 +16,6 @@ package com.liferay.sync.engine.service;
 
 import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.model.SyncAccount;
-import com.liferay.sync.engine.service.persistence.SyncAccountPersistence;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -36,21 +35,14 @@ public class SyncAccountServiceTest extends BaseTestCase {
 
 	@After
 	public void tearDown() {
-		SyncAccountPersistence syncAccountPersistence =
-			SyncAccountService.getSyncAccountPersistence();
-
-		try {
-			syncAccountPersistence.delete(_syncAccount);
-		}
-		catch (Exception e) {
-			_logger.error(e.getMessage(), e);
-		}
+		SyncAccountService.deleteSyncAccount(_syncAccount.getSyncAccountId());
 	}
 
 	@Test
 	public void testAddAccount() throws Exception {
 		SyncAccount syncAccount = SyncAccountService.addSyncAccount(
-			"test@liferay.com", "test", "http://localhost:8080/api/jsonws/");
+			"test@liferay.com", "test", "http://localhost:8080/api/jsonws/",
+			null);
 
 		_syncAccount = SyncAccountService.fetchSyncAccount(
 			syncAccount.getSyncAccountId());

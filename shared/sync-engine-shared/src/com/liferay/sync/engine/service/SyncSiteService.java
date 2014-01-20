@@ -72,6 +72,21 @@ public class SyncSiteService {
 		return _syncSitePersistence;
 	}
 
+	public static SyncSite update(SyncSite syncSite) {
+		try {
+			_syncSitePersistence.createOrUpdate(syncSite);
+
+			return syncSite;
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
+
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncSiteService.class);
 

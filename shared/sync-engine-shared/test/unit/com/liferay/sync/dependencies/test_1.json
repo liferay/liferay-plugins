@@ -1,0 +1,29 @@
+{
+	"lastAccessTime":1390243017230,
+	"syncDLObjects": [
+		{
+			"changeLog": "",
+			"checksum": "2jmj7l5rSw0yVb/vlWAYkK/YBwk=",
+			"companyId": 10157,
+			"createTime": 1390242926021,
+			"description": "",
+			"event": "get",
+			"extension": "",
+			"extraSettings": "",
+			"lockExpirationDate": null,
+			"lockUserId": 0,
+			"lockUserName": "",
+			"mimeType": "application/octet-stream",
+			"modifiedTime": 1390242926021,
+			"name": "Document_1.txt",
+			"objectId": 0,
+			"parentFolderId": 0,
+			"repositoryId": 0,
+			"size": 0,
+			"type": "file",
+			"typePK": 10465,
+			"typeUuid": "107e5cc4-1f44-4f5f-84fd-06b8465b949d",
+			"version": "1.0"
+		}
+	]
+}

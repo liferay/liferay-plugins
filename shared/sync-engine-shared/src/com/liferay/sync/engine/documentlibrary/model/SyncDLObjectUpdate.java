@@ -12,37 +12,26 @@
  * details.
  */
 
-package com.liferay.sync.engine.util;
+package com.liferay.sync.engine.documentlibrary.model;
 
-import java.io.File;
+import com.liferay.sync.engine.model.SyncFile;
+
+import java.util.List;
 
 /**
- * @author Dennis Ju
+ * @author Michael Young
  */
-public class FilePathUtil {
+public class SyncDLObjectUpdate {
 
-	public static String fixFilePath(String filePath) {
-		if (filePath == null) {
-			return "";
-		}
-
-		filePath = filePath.replace("\\", "/");
-
-		if (filePath.endsWith("/")) {
-			filePath = filePath.substring(0, filePath.length() - 1);
-		}
-
-		return filePath;
+	public long getLastAccessTime() {
+		return lastAccessTime;
 	}
 
-	public static String getFilePath(String parentFilePath, String fileName) {
-		StringBuilder sb = new StringBuilder(3);
-
-		sb.append(parentFilePath);
-		sb.append(File.separator);
-		sb.append(fileName);
-
-		return fixFilePath(sb.toString());
+	public List<SyncFile> getSyncDLObjects() {
+		return syncDLObjects;
 	}
+
+	protected long lastAccessTime;
+	protected List<SyncFile> syncDLObjects;
 
 }

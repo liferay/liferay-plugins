@@ -32,6 +32,7 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.ContentType;
@@ -48,29 +49,36 @@ import org.apache.http.protocol.BasicHttpContext;
  */
 public class JSONUtil {
 
-	public static String execute(
-			long accountId, String urlPath, Map<String, Object> parameters)
+	public static String executeGet(long syncAccountId, String urlPath)
 		throws Exception {
 
-		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
-
-		CredentialsProvider credentialsProvider =
-			new BasicCredentialsProvider();
-
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-			accountId);
+			syncAccountId);
 
 		URL url = new URL(syncAccount.getUrl());
 
-		credentialsProvider.setCredentials(
-			new AuthScope(url.getHost(), url.getPort()),
-			new UsernamePasswordCredentials(
-				syncAccount.getLogin(),
-				Encryptor.decrypt(syncAccount.getPassword())));
+		HttpHost httpHost = new HttpHost(
+			url.getHost(), url.getPort(), url.getProtocol());
 
-		httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+		HttpGet httpGet = new HttpGet(urlPath);
 
-		HttpClient httpClient = httpClientBuilder.build();
+		HttpClient httpClient = _getHttpClient(syncAccount, url);
+
+		return httpClient.execute(
+			httpHost, httpGet, new BaseHandler(),
+			_getBasicHttpContext(httpHost));
+	}
+
+	public static String executePost(
+			long syncAccountId, String urlPath, Map<String, Object> parameters)
+		throws Exception {
+
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			syncAccountId);
+
+		URL url = new URL(syncAccount.getUrl());
+
+		HttpClient httpClient = _getHttpClient(syncAccount, url);
 
 		HttpHost httpHost = new HttpHost(
 			url.getHost(), url.getPort(), url.getProtocol());
@@ -101,6 +109,25 @@ public class JSONUtil {
 			HttpClientContext.AUTH_CACHE, _getBasicAuthCache(httpHost));
 
 		return basicHttpContext;
+	}
+
+	private static HttpClient _getHttpClient(SyncAccount syncAccount, URL url)
+		throws Exception {
+
+		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
+
+		CredentialsProvider credentialsProvider =
+			new BasicCredentialsProvider();
+
+		credentialsProvider.setCredentials(
+			new AuthScope(url.getHost(), url.getPort()),
+			new UsernamePasswordCredentials(
+				syncAccount.getLogin(),
+				Encryptor.decrypt(syncAccount.getPassword())));
+
+		httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+
+		return httpClientBuilder.build();
 	}
 
 	private static HttpEntity _getHttpEntity(Map<String, Object> parameters) {

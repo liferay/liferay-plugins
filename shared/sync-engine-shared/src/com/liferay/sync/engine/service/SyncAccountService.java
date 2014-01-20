@@ -29,11 +29,12 @@ import org.slf4j.LoggerFactory;
 public class SyncAccountService {
 
 	public static SyncAccount addSyncAccount(
-			String login, String password, String url)
+			String login, String password, String url, String filePath)
 		throws Exception {
 
 		SyncAccount syncAccount = new SyncAccount();
 
+		syncAccount.setFilePath(filePath);
 		syncAccount.setLogin(login);
 		syncAccount.setPassword(Encryptor.encrypt(password));
 		syncAccount.setUrl(url);
@@ -41,6 +42,17 @@ public class SyncAccountService {
 		_syncAccountPersistence.create(syncAccount);
 
 		return syncAccount;
+	}
+
+	public static void deleteSyncAccount(long syncAccountId) {
+		try {
+			_syncAccountPersistence.deleteById(syncAccountId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+		}
 	}
 
 	public static SyncAccount fetchSyncAccount(long syncAccountId) {
@@ -71,6 +83,21 @@ public class SyncAccountService {
 		}
 
 		return _syncAccountPersistence;
+	}
+
+	public static SyncAccount update(SyncAccount syncAccount) {
+		try {
+			_syncAccountPersistence.createOrUpdate(syncAccount);
+
+			return syncAccount;
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
