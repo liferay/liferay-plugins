@@ -536,7 +536,6 @@ public class CalendarImporterLocalServiceImpl
 
 		return CalendarResourceUtil.getGroupCalendarResource(
 			groupId, serviceContext);
-		}
 	}
 
 	protected String getRecurrence(TZSRecurrence tzsRecurrence) {
