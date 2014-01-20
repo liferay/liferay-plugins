@@ -33,7 +33,6 @@ import java.net.URL;
 import java.net.URLConnection;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -86,19 +85,19 @@ public class ResourceImporter extends FileSystemImporter {
 
 	@Override
 	protected void addDDLDisplayTemplates(
-			String ddmStructureKey, String displayTemplateDir)
+			String fileName, String ddmStructureKey, String displayTemplateDir)
 		throws Exception {
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
 			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
 
-		StringBundler sb = new StringBundler(6);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(resourcesDir);
 		sb.append(displayTemplateDir);
 		sb.append("/");
-		sb.append(ddmStructure.getName(Locale.getDefault()));
+		sb.append(fileName);
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			sb.toString());
@@ -127,19 +126,19 @@ public class ResourceImporter extends FileSystemImporter {
 
 	@Override
 	protected void addDDLFormTemplates(
-			String ddmStructureKey, String formTemplateDir)
+			String fileName, String ddmStructureKey, String formTemplateDir)
 		throws Exception {
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
 			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
 
-		StringBundler sb = new StringBundler(6);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(resourcesDir);
 		sb.append(formTemplateDir);
 		sb.append("/");
-		sb.append(ddmStructure.getName(Locale.getDefault()));
+		sb.append(fileName);
 
 		Set<String> resourcePaths = servletContext.getResourcePaths(
 			sb.toString());
