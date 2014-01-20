@@ -20,7 +20,7 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncFileConstants;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
-import com.liferay.sync.engine.util.JSONUtil;
+import com.liferay.sync.engine.util.HttpUtil;
 
 import java.io.File;
 import java.io.InputStream;
@@ -44,8 +44,8 @@ import org.powermock.modules.junit4.PowerMockRunner;
 /**
  * @author Shinn Lok
  */
-@PowerMockIgnore({"javax.crypto.*" })
-@PrepareForTest(JSONUtil.class)
+@PowerMockIgnore({"javax.crypto.*"})
+@PrepareForTest(HttpUtil.class)
 @RunWith(PowerMockRunner.class)
 public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
@@ -76,7 +76,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 	@Test
 	public void testRun() throws Exception {
-		PowerMockito.mockStatic(JSONUtil.class);
+		PowerMockito.mockStatic(HttpUtil.class);
 
 		Thread thread = new Thread();
 
@@ -90,7 +90,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 		inputStream.close();
 
 		Mockito.when(
-			JSONUtil.executePost(
+			HttpUtil.executePost(
 				Mockito.anyLong(), Mockito.anyString(), Mockito.anyMap())
 		).thenReturn(
 			response

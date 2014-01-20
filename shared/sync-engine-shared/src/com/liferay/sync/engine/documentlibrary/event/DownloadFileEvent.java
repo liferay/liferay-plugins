@@ -17,7 +17,7 @@ package com.liferay.sync.engine.documentlibrary.event;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
-import com.liferay.sync.engine.util.JSONUtil;
+import com.liferay.sync.engine.util.HttpUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -47,7 +47,7 @@ public class DownloadFileEvent extends BaseEvent {
 		sb.append("/");
 		sb.append(_patch);
 
-		return JSONUtil.executeGet(getSyncAccountId(), sb.toString());
+		return HttpUtil.executeGet(getSyncAccountId(), sb.toString());
 	}
 
 	@Override

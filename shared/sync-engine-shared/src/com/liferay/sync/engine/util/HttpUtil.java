@@ -47,7 +47,7 @@ import org.apache.http.protocol.BasicHttpContext;
 /**
  * @author Shinn Lok
  */
-public class JSONUtil {
+public class HttpUtil {
 
 	public static String executeGet(long syncAccountId, String urlPath)
 		throws Exception {
