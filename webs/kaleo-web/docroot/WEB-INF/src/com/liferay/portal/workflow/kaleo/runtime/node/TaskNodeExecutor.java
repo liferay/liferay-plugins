@@ -214,7 +214,8 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		}
 
 		ExecutionContext newExecutionContext = new ExecutionContext(
-			executionContext.getKaleoInstanceToken(), workflowContext,
+			executionContext.getKaleoInstanceToken(),
+			executionContext.getKaleoTaskInstanceToken(), workflowContext,
 			serviceContext);
 
 		PathElement pathElement = new PathElement(
