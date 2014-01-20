@@ -47,7 +47,7 @@ public class SyncWatchEvent {
 		return kind;
 	}
 
-	public Long getSyncWatchEventId() {
+	public long getSyncWatchEventId() {
 		return syncWatchEventId;
 	}
 
@@ -59,7 +59,7 @@ public class SyncWatchEvent {
 		this.kind = kind;
 	}
 
-	public void setSyncWatchEventId(Long syncWatchEventId) {
+	public void setSyncWatchEventId(long syncWatchEventId) {
 		this.syncWatchEventId = syncWatchEventId;
 	}
 
@@ -70,6 +70,6 @@ public class SyncWatchEvent {
 	protected String kind;
 
 	@DatabaseField(generatedId = true, useGetSet = true)
-	protected Long syncWatchEventId;
+	protected long syncWatchEventId;
 
 }
