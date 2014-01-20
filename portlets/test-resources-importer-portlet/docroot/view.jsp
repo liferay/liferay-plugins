@@ -181,8 +181,8 @@ for (String importer : importers) {
 
 		dynamicQuery.setProjection(ProjectionFactoryUtil.distinct(ProjectionFactoryUtil.property("name")));
 
-		Criterion layout1Criterion = RestrictionsFactoryUtil.eq("description", "Page 1");
-		Criterion layout2Criterion = RestrictionsFactoryUtil.eq("description", "Page 2");
+		Criterion layout1Criterion = RestrictionsFactoryUtil.eq("description", "Page 1 - " + pluginPackage.getVersion());
+		Criterion layout2Criterion = RestrictionsFactoryUtil.eq("description", "Page 2 - " + pluginPackage.getVersion());
 
 		dynamicQuery.add(RestrictionsFactoryUtil.or(layout1Criterion, layout2Criterion));
 
