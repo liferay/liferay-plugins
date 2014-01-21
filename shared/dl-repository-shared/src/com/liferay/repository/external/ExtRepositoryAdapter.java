@@ -47,12 +47,15 @@ import com.liferay.portal.model.Lock;
 import com.liferay.portal.model.RepositoryEntry;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
+import com.liferay.portal.service.RepositoryEntryLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.persistence.RepositoryEntryUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFileVersionException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryTypeConstants;
+import com.liferay.portlet.documentlibrary.model.DLFolder;
+import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
 import com.liferay.repository.external.model.ExtRepositoryEntryAdapter;
 import com.liferay.repository.external.model.ExtRepositoryFileEntryAdapter;
 import com.liferay.repository.external.model.ExtRepositoryFileVersionAdapter;
@@ -1147,10 +1150,14 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		RepositoryEntry repositoryEntry = RepositoryEntryUtil.fetchByPrimaryKey(
 			entryId);
 
-		if (repositoryEntry == null) {
-			throw new NoSuchRepositoryEntryException(
-				"No repository entry exists with {entryId=" + entryId + "}");
+		if (repositoryEntry != null) {
+			return repositoryEntry.getMappedId();
 		}
+
+		DLFolder rootMountFolder = DLFolderLocalServiceUtil.getDLFolder(
+			entryId);
+
+		repositoryEntry = _getRootRepositoryEntry(rootMountFolder);
 
 		return repositoryEntry.getMappedId();
 	}
@@ -1167,6 +1174,29 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		}
 
 		return repositoryEntry.getMappedId();
+	}
+
+	private RepositoryEntry _getRootRepositoryEntry(DLFolder rootMountFolder)
+		throws PortalException, SystemException {
+
+		RepositoryEntry repositoryEntry = RepositoryEntryUtil.fetchByR_M(
+			getRepositoryId(), _extRepository.getRootFolderId());
+
+		if (repositoryEntry == null) {
+			try {
+				repositoryEntry =
+					RepositoryEntryLocalServiceUtil.addRepositoryEntry(
+						rootMountFolder.getUserId(), getGroupId(),
+						getRepositoryId(), _extRepository.getRootFolderId(),
+						new ServiceContext());
+			}
+			catch (PortalException pe) {
+				throw new SystemException(
+					"Cannot create root folder entry", pe);
+			}
+		}
+
+		return repositoryEntry;
 	}
 
 	@SuppressWarnings("unchecked")
