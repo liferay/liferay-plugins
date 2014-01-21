@@ -17,6 +17,7 @@ package com.liferay.repository.external.model;
 import com.liferay.portal.kernel.repository.model.RepositoryModel;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -223,27 +224,30 @@ public abstract class ExtRepositoryModelAdapter<T>
 	}
 
 	protected User getUser(String creatorName) {
-		String screenName = _extRepositoryAdapter.getLiferayUserId(creatorName);
-
 		User user = null;
 
-		try {
-			String authType = _extRepositoryAdapter.getAuthType();
+		if (Validator.isNotNull(creatorName)) {
+			String screenName = _extRepositoryAdapter.getLiferayUserId(
+				creatorName);
 
-			if (authType.equals(CompanyConstants.AUTH_TYPE_ID)) {
-				user = UserLocalServiceUtil.getUser(
-					GetterUtil.getLong(screenName));
+			try {
+				String authType = _extRepositoryAdapter.getAuthType();
+
+				if (authType.equals(CompanyConstants.AUTH_TYPE_ID)) {
+					user = UserLocalServiceUtil.getUser(
+						GetterUtil.getLong(screenName));
+				}
+				else if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
+					user = UserLocalServiceUtil.getUserByEmailAddress(
+						getCompanyId(), screenName);
+				}
+				else if (authType.equals(CompanyConstants.AUTH_TYPE_SN)) {
+					user = UserLocalServiceUtil.getUserByScreenName(
+						getCompanyId(), screenName);
+				}
 			}
-			else if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
-				user = UserLocalServiceUtil.getUserByEmailAddress(
-					getCompanyId(), screenName);
+			catch (Exception e) {
 			}
-			else if (authType.equals(CompanyConstants.AUTH_TYPE_SN)) {
-				user = UserLocalServiceUtil.getUserByScreenName(
-					getCompanyId(), screenName);
-			}
-		}
-		catch (Exception e) {
 		}
 
 		if (user == null) {
