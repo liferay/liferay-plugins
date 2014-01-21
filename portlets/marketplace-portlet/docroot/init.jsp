@@ -73,7 +73,7 @@ long appId = ParamUtil.getLong(request, "appId");
 
 String portletId = portletDisplay.getId();
 
-String iFrameURL = MarketplaceConstants.MARKETPLACE_URL_LOGOUT;
+String iFrameURL = MarketplaceConstants.MARKETPLACE_URL + "/logout";
 
 String referer = StringPool.BLANK;
 
