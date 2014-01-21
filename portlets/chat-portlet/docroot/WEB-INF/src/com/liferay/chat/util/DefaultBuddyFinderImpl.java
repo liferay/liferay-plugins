@@ -26,8 +26,14 @@ import java.util.List;
 
 /**
  * @author Ankit Srivastava
+ * @author Tibor Lipusz
  */
 public class DefaultBuddyFinderImpl implements BuddyFinder {
+
+	public static final int[] SOCIAL_RELATION_TYPES = {
+		SocialRelationConstants.TYPE_BI_CONNECTION,
+		SocialRelationConstants.TYPE_BI_COWORKER,
+		SocialRelationConstants.TYPE_BI_FRIEND};
 
 	@Override
 	public List<Object[]> getBuddies(long companyId, long userId)
@@ -53,7 +59,7 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("friends")) {
 			buddies = StatusLocalServiceUtil.getSocialStatuses(
-				userId, SocialRelationConstants.TYPE_BI_FRIEND, modifiedDate, 0,
+				userId, SOCIAL_RELATION_TYPES, modifiedDate, 0,
 				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
@@ -68,8 +74,8 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 					PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 			List<Object[]> socialBuddies =
 				StatusLocalServiceUtil.getSocialStatuses(
-					userId, SocialRelationConstants.TYPE_BI_FRIEND,
-					modifiedDate, 0, PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
+					userId, SOCIAL_RELATION_TYPES, modifiedDate, 0,
+					PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 
 			buddies = new ArrayList<Object[]>(
 				groupBuddies.size() + socialBuddies.size());
