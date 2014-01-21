@@ -126,11 +126,6 @@ public interface ExtRepository {
 			String extRepositoryEntryId, String newFolderId, String newTitle)
 		throws PortalException, SystemException;
 
-	public List<ExtRepositorySearchResult<?>> search(
-			List<String> folderIds, String keywords, QueryConfig queryConfig,
-			int start, int end)
-		throws PortalException, SystemException;
-
 	public ExtRepositoryFileEntry updateFileEntry(
 			String fileId, String mimeType, InputStream is)
 		throws PortalException, SystemException;
