@@ -16,7 +16,6 @@ package com.liferay.repository.external;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
 import java.io.InputStream;
@@ -29,7 +28,7 @@ import java.util.List;
  */
 public interface ExtRepository {
 
-	public ExtRepositoryFileEntry addFileEntry(
+	public ExtRepositoryFileEntry addFile(
 			String parentFolderId, String mimeType, String title,
 			String description, String changeLog, InputStream is)
 		throws PortalException, SystemException;
@@ -38,26 +37,25 @@ public interface ExtRepository {
 			String parentFolderId, String name, String description)
 		throws PortalException, SystemException;
 
-	public ExtRepositoryFileVersion cancelCheckOut(String extRepositoryEntryId)
+	public ExtRepositoryFileVersion cancelCheckOut(String entryId)
 		throws PortalException, SystemException;
 
-	public void checkInFileEntry(
-			String extRepositoryEntryId, boolean createMajorVersion,
-			String changeLog)
+	public void checkInFile(
+			String fileId, boolean createMajorVersion, String changeLog)
 		throws PortalException, SystemException;
 
-	public ExtRepositoryFileEntry checkOutFileEntry(String extRepositoryEntryId)
+	public ExtRepositoryFileEntry checkOutFile(String entryId)
 		throws PortalException, SystemException;
 
-	public <T extends ExtRepositoryEntry> T copyExtRepositoryEntry(
-			ExtRepositoryModelType<T> extRepositoryModelType,
-			String extRepositoryEntryId, String newFolderId, String newTitle)
+	public <T extends ExtRepositoryEntry> T copyEntry(
+			ExtRepositoryModelType<T> extRepositoryModelType, String entryId,
+			String newFolderId, String newTitle)
 		throws PortalException, SystemException;
 
-	public void deleteExtRepositoryEntry(
+	public void deleteEntry(
 			ExtRepositoryModelType<? extends ExtRepositoryEntry>
 				extRepositoryModelType,
-			String extRepositoryEntryId)
+			String entryId)
 		throws PortalException, SystemException;
 
 	public String getAuthType();
@@ -70,22 +68,21 @@ public interface ExtRepository {
 			ExtRepositoryFileVersion extRepositoryFileVersion)
 		throws PortalException, SystemException;
 
+	public <T extends ExtRepositoryEntry> List<T> getEntries(
+			ExtRepositoryModelType<T> extRepositoryModelType, String folderId)
+		throws PortalException, SystemException;
+
 	public int getEntriesCount(
 			ExtRepositoryModelType<? extends ExtRepositoryEntry>
 				extRepositoryModelType,
 			String folderId)
 		throws PortalException, SystemException;
 
-	public <T extends ExtRepositoryEntry> List<T> getExtRepositoryEntries(
-			ExtRepositoryModelType<T> extRepositoryModelType, String folderId)
+	public <T extends ExtRepositoryEntry> T getEntry(
+			ExtRepositoryModelType<T> extRepositoryModelType, String entryId)
 		throws PortalException, SystemException;
 
-	public <T extends ExtRepositoryEntry> T getExtRepositoryEntry(
-			ExtRepositoryModelType<T> extRepositoryModelType,
-			String extRepositoryEntryId)
-		throws PortalException, SystemException;
-
-	public <T extends ExtRepositoryEntry> T getExtRepositoryEntry(
+	public <T extends ExtRepositoryEntry> T getEntry(
 			ExtRepositoryModelType<T> extRepositoryModelType, String folderId,
 			String title)
 		throws PortalException, SystemException;
@@ -121,12 +118,12 @@ public interface ExtRepository {
 			CredentialsProvider credentialsProvider)
 		throws PortalException, SystemException;
 
-	public <T extends ExtRepositoryEntry> T moveExtRepositoryEntry(
-			ExtRepositoryModelType<T> extRepositoryModelType,
-			String extRepositoryEntryId, String newFolderId, String newTitle)
+	public <T extends ExtRepositoryEntry> T moveEntry(
+			ExtRepositoryModelType<T> extRepositoryModelType, String entryId,
+			String newFolderId, String newTitle)
 		throws PortalException, SystemException;
 
-	public ExtRepositoryFileEntry updateFileEntry(
+	public ExtRepositoryFileEntry updateFile(
 			String fileId, String mimeType, InputStream is)
 		throws PortalException, SystemException;
 
