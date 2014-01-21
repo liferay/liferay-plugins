@@ -39,7 +39,7 @@ public class SyncAccountServiceTest extends BaseTestCase {
 	public void testAddAccount() throws Exception {
 		SyncAccount syncAccount = SyncAccountService.addSyncAccount(
 			null, "test@liferay.com", "test",
-			"http://localhost:8080/api/jsonws/");
+			"http://localhost:8080/api/jsonws");
 
 		_syncAccount = SyncAccountService.fetchSyncAccount(
 			syncAccount.getSyncAccountId());

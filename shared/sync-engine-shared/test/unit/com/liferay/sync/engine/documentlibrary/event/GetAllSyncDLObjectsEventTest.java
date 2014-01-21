@@ -57,7 +57,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 		_syncAccount = SyncAccountService.addSyncAccount(
 			_filePath, "test@liferay.com", "test",
-			"http://localhost:8080/api/jsonws/");
+			"http://localhost:8080/api/jsonws");
 
 		_filePathSyncFile = SyncFileService.addSyncFile(
 			_syncAccount.getFilePath(), "test", 0, 0,
