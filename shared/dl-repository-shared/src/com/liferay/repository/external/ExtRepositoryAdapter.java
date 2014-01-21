@@ -394,11 +394,14 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String repositoryMappedFileVersionId = _getRepositoryEntryMappedId(
 			fileVersionId);
 
-		String[] parts = repositoryMappedFileVersionId.split("@");
+		ExtRepositoryFileVersionDescriptor extRepositoryFileVersionDescriptor =
+			_extRepository.getFileVersionDescriptor(
+				repositoryMappedFileVersionId);
 
-		String fileEntryMappedId = parts[0];
+		String fileEntryMappedId =
+			extRepositoryFileVersionDescriptor.getFileId();
 
-		String versionTag = parts[1];
+		String versionTag = extRepositoryFileVersionDescriptor.getVersion();
 
 		ExtRepositoryFileEntry extRepositoryFileEntry =
 			_extRepository.getExtRepositoryEntry(
