@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
 import com.liferay.repository.external.ExtRepositoryFileVersion;
@@ -99,7 +100,13 @@ public class ExtRepositoryFileVersionAdapter
 
 	@Override
 	public String getMimeType() {
-		return MimeTypesUtil.getContentType(getTitle());
+		String mimeType = _extRepositoryFileVersion.getMimeType();
+
+		if (Validator.isNull(mimeType)) {
+			mimeType = MimeTypesUtil.getContentType(getTitle());
+		}
+
+		return mimeType;
 	}
 
 	@Override

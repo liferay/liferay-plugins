@@ -196,7 +196,13 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	public String getMimeType() {
-		return MimeTypesUtil.getContentType(getTitle());
+		String mimeType = _extRepositoryFileEntry.getMimeType();
+
+		if (Validator.isNull(mimeType)) {
+			mimeType = MimeTypesUtil.getContentType(getTitle());
+		}
+
+		return mimeType;
 	}
 
 	@Override

@@ -30,11 +30,12 @@ import java.util.List;
 public interface ExtRepository {
 
 	public ExtRepositoryFileEntry addFileEntry(
-			String parentFolderId, String title, String changeLog,
-			InputStream is)
+			String parentFolderId, String mimeType, String title,
+			String description, String changeLog, InputStream is)
 		throws PortalException, SystemException;
 
-	public ExtRepositoryFolder addFolder(String parentFolderId, String name)
+	public ExtRepositoryFolder addFolder(
+			String parentFolderId, String name, String description)
 		throws PortalException, SystemException;
 
 	public ExtRepositoryFileVersion cancelCheckOut(String extRepositoryEntryId)
@@ -127,7 +128,8 @@ public interface ExtRepository {
 			int start, int end)
 		throws PortalException, SystemException;
 
-	public ExtRepositoryFileEntry updateFileEntry(String fileId, InputStream is)
+	public ExtRepositoryFileEntry updateFileEntry(
+			String fileId, String mimeType, InputStream is)
 		throws PortalException, SystemException;
 
 }

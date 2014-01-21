@@ -93,7 +93,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		ExtRepositoryFileEntry extRepositoryFileEntry =
 			_extRepository.addFileEntry(
-				repositoryMappedFolderId, fileName, changeLog, is);
+				repositoryMappedFolderId, mimeType, fileName, description,
+				changeLog, is);
 
 		return _toExtRepositoryEntryAdapter(
 			ExtRepositoryModelAdapterType.FILE, extRepositoryFileEntry);
@@ -109,7 +110,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			parentFolderId);
 
 		ExtRepositoryFolder extRepositoryFolder = _extRepository.addFolder(
-			repositoryMappedParentFolderId, title);
+			repositoryMappedParentFolderId, title, description);
 
 		return _toExtRepositoryEntryAdapter(
 			ExtRepositoryModelAdapterType.FOLDER, extRepositoryFolder);
@@ -814,7 +815,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 			_extRepository.checkOutFileEntry(repositoryMappedFileEntryId);
 
-			_extRepository.updateFileEntry(repositoryMappedFileEntryId, is);
+			_extRepository.updateFileEntry(
+				repositoryMappedFileEntryId,
+				extRepositoryFileVersion.getMimeType(), is);
 
 			String changeLog = "Reverted to " + version;
 
@@ -984,7 +987,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			fileEntryId);
 
 		ExtRepositoryFileEntry extRepositoryFileEntry =
-			_extRepository.updateFileEntry(repositoryMappedFileEntryId, is);
+			_extRepository.updateFileEntry(
+				repositoryMappedFileEntryId, mimeType, is);
 
 		_extRepository.checkInFileEntry(
 			repositoryMappedFileEntryId, majorVersion, changeLog);

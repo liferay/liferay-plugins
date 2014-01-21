@@ -22,6 +22,8 @@ public interface ExtRepositoryFileEntry extends ExtRepositoryEntry {
 
 	public String getCheckedOutBy();
 
+	public String getMimeType();
+
 	public String getTitle();
 
 }

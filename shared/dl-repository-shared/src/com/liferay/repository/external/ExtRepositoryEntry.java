@@ -25,6 +25,8 @@ public interface ExtRepositoryEntry extends ExtRepositoryModel {
 	public boolean containsPermission(
 		ExtRepositoryPermission extRepositoryPermission);
 
+	public String getDescription();
+
 	public String getExtension();
 
 	public Date getModifiedDate();
