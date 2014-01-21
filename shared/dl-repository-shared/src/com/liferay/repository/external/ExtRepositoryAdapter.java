@@ -1091,7 +1091,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	private <T extends ExtRepositoryEntryAdapter<?>> List<T> _subList(
 		List<T> list, int start, int end, OrderByComparator obc) {
 
-		list = ListUtil.sort(list, obc);
+		if (obc != null) {
+			list = ListUtil.sort(list, obc);
+		}
 
 		return ListUtil.subList(list, start, end);
 	}
