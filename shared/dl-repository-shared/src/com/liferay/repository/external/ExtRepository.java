@@ -94,6 +94,9 @@ public interface ExtRepository {
 			ExtRepositoryFileEntry extRepositoryFileEntry, String version)
 		throws PortalException, SystemException;
 
+	public ExtRepositoryFileVersionDescriptor getFileVersionDescriptor(
+		String fileVersionId);
+
 	public List<ExtRepositoryFileVersion> getFileVersions(
 			ExtRepositoryFileEntry extRepositoryFileEntry)
 		throws SystemException;
