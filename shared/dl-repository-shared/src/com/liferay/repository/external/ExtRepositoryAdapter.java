@@ -840,6 +840,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
+	@SuppressWarnings("unused")
 	public Hits search(SearchContext searchContext) throws SearchException {
 		throw new UnsupportedOperationException();
 	}
