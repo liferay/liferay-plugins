@@ -300,11 +300,11 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	public boolean isCheckedOut() {
-		if (_extRepositoryFileEntry.getCheckedOutBy() != null) {
-			return true;
+		if (Validator.isNull(_extRepositoryFileEntry.getCheckedOutBy())) {
+			return false;
 		}
 		else {
-			return false;
+			return true;
 		}
 	}
 
