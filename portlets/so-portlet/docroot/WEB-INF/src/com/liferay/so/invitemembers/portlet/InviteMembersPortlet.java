@@ -197,8 +197,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 
 		serviceContext.setAttribute("createAccountURL", createAccountURL);
 
-		String loginURL =
-			themeDisplay.getPortalURL() + themeDisplay.getURLSignIn();
+		String loginURL = themeDisplay.getURLSignIn();
 
 		serviceContext.setAttribute("loginURL", loginURL);
 
