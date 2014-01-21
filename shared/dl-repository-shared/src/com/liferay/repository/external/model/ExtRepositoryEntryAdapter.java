@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.RepositoryException;
 import com.liferay.portal.kernel.repository.model.Folder;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
@@ -105,13 +104,13 @@ public abstract class ExtRepositoryEntryAdapter<T>
 	public abstract String getName();
 
 	public Folder getParentFolder() throws PortalException, SystemException {
-		String parentFolderPath = _extRepositoryEntry.getParentFolderId();
+		Folder parentFolder = getRepository().getParentFolder(this);
 
-		if (parentFolderPath.equals(StringPool.FORWARD_SLASH)) {
+		if (parentFolder.isRoot()) {
 			return DLAppLocalServiceUtil.getMountFolder(getRepositoryId());
 		}
 		else {
-			return getRepository().getParentFolder(this);
+			return parentFolder;
 		}
 	}
 
