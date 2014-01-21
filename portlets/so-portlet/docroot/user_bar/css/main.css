@@ -175,18 +175,13 @@ html.aui {
 
 					.user-avatar-link {
 						.nav-item-label {
-							padding-left: 20px;
 							position: relative;
 						}
 
-						img {
-							@include border-radius(12px);
-
+						img.user-avatar-image {
 							border-width: 0;
-							clip: rect(0px, 23px, 23px, 0px);
-							left: -6px;
-							position: absolute;
-							top: -3px;
+							height: 23px;
+							width: auto;
 						}
 					}
 				}
@@ -409,10 +404,6 @@ html.aui {
 				&:hover {
 					color: #000;
 				}
-
-				.user-avatar-image {
-					width: 20px;
-				}
 			}
 
 			.navbar-inner {
@@ -439,11 +430,12 @@ html.aui {
 					}
 
 					.user-avatar-image {
-						@include border-radius(12px);
+						@include border-radius(50%);
 
 						box-shadow: none;
+						height: 23px;
 						top: 0;
-						width: 23px;
+						width: auto;
 					}
 				}
 
@@ -522,11 +514,6 @@ html.aui {
 
 			.collapse .nav.nav-account-controls {
 				top: 44px;
-			}
-
-			.navbar-inner .btn-navbar .user-avatar-image {
-				top: 0;
-				width: 23px;
 			}
 
 			.brand {
