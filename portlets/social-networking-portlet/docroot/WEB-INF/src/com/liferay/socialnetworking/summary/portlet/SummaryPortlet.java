@@ -123,7 +123,7 @@ public class SummaryPortlet extends MVCPortlet {
 			MembershipRequestLocalServiceUtil.addMembershipRequest(
 				themeDisplay.getUserId(), group.getGroupId(),
 				LanguageUtil.get(themeDisplay.getLocale(),
-				"requested-via-summary-portlet"), serviceContext);
+				"membership-requested"), serviceContext);
 		}
 	}
 
