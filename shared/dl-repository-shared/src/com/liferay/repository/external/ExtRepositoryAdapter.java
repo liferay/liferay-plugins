@@ -15,6 +15,7 @@
 package com.liferay.repository.external;
 
 import com.liferay.portal.NoSuchRepositoryEntryException;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -401,14 +402,14 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String fileEntryMappedId =
 			extRepositoryFileVersionDescriptor.getFileId();
 
-		String versionTag = extRepositoryFileVersionDescriptor.getVersion();
+		String version = extRepositoryFileVersionDescriptor.getVersion();
 
 		ExtRepositoryFileEntry extRepositoryFileEntry =
 			_extRepository.getExtRepositoryEntry(
 				ExtRepositoryModelType.FILE, fileEntryMappedId);
 
 		ExtRepositoryFileVersion extRepositoryFileVersion =
-			_extRepository.getFileVersion(extRepositoryFileEntry, versionTag);
+			_extRepository.getFileVersion(extRepositoryFileEntry, version);
 
 		if (extRepositoryFileVersion == null) {
 			return null;
@@ -542,7 +543,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		throws PortalException, SystemException {
 
 		List<Object> entries = getFoldersAndFileEntries(
-			folderId, mimeTypes, 0, -1, null);
+			folderId, mimeTypes, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		return entries.size();
 	}
@@ -803,9 +804,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		for (ExtRepositoryFileVersion curExtRepositoryFileVersion :
 				extRepositoryFileVersions) {
 
-			String tag = curExtRepositoryFileVersion.getVersion();
+			String curVersion = curExtRepositoryFileVersion.getVersion();
 
-			if (tag.equals(version)) {
+			if (curVersion.equals(version)) {
 				extRepositoryFileVersion = curExtRepositoryFileVersion;
 
 				break;
@@ -829,7 +830,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		}
 		else {
 			throw new NoSuchFileVersionException(
-				extRepositoryFileEntry.getTitle() + "@" + version);
+				"No file version with {id=" + extRepositoryFileEntry.getId() +
+					", version: " + version + "}");
 		}
 	}
 
@@ -1053,10 +1055,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		_extRepository = extRepository;
 	}
 
-	private <T extends ExtRepositoryEntryAdapter<?>> List<T>
-		_filterByMimeType(List<T> entries, String[] mimeTypes) {
+	private <T extends ExtRepositoryEntryAdapter<?>> List<T> _filterByMimeType(
+		List<T> entries, String[] mimeTypes) {
 
-		if ( mimeTypes == null ) {
+		if (mimeTypes == null) {
 			return entries;
 		}
 		else {
