@@ -15,6 +15,12 @@
 	#set ($site_logo_width = "32px")
 #end
 
+#if ($layout.isPublicLayout())
+	#set ($logo_url = $community_default_public_url)
+#else
+	#set ($logo_url = $community_default_private_url)
+#end
+
 #if ($is_signed_in)
 	#set ($liferay_toggle_controls = $sessionClicks.get($request, "liferay_toggle_controls", ""))
 	#set ($themeNamespace = "_" + $themeDisplay.getThemeId() + "_")
@@ -85,10 +91,4 @@
 
 #if ($is_user_dashboard)
 	#set ($css_class = "${css_class} user-dashboard")
-#end
-
-#if ($layout.isPublicLayout())
-	#set ($logo_url = $community_default_public_url)
-#else
-	#set ($logo_url = $community_default_private_url)
 #end
