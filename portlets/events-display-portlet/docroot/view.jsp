@@ -24,7 +24,9 @@ List<Long> groupIds = new ArrayList<Long>();
 
 Group group = GroupLocalServiceUtil.getGroup(layout.getGroupId());
 
-if (group.isRegularSite()) {
+boolean regularSite = group.isRegularSite();
+
+if (regularSite) {
 	groupIds.add(group.getGroupId());
 }
 else if (group.isUser() && themeDisplay.isSignedIn()) {
@@ -49,17 +51,19 @@ long displayEndTime = jCalendar.getTimeInMillis() + (Time.DAY * maxDaysDisplayed
 
 List<Long> calendarResourceIds = new ArrayList<Long>();
 
-for (long groupId : groupIds) {
-	long classNameId = PortalUtil.getClassNameId(Group.class);
+if (!regularSite) {
+	for (long groupId : groupIds) {
+		long classNameId = PortalUtil.getClassNameId(Group.class);
 
-	if (group.isUser()) {
-		classNameId = PortalUtil.getClassNameId(User.class);
-	}
+		if (group.isUser()) {
+			classNameId = PortalUtil.getClassNameId(User.class);
+		}
 
-	CalendarResource calendarResource = CalendarResourceLocalServiceUtil.fetchCalendarResource(classNameId, groupId);
+		CalendarResource calendarResource = CalendarResourceLocalServiceUtil.fetchCalendarResource(classNameId, groupId);
 
-	if (calendarResource != null) {
-		calendarResourceIds.add(calendarResource.getCalendarResourceId());
+		if (calendarResource != null) {
+			calendarResourceIds.add(calendarResource.getCalendarResourceId());
+		}
 	}
 }
 
