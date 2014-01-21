@@ -36,7 +36,8 @@ public interface ExtRepositoryEntry extends ExtRepositoryModel {
 	public enum ExtRepositoryPermission {
 
 		ACCESS, ADD_DOCUMENT, ADD_FOLDER, ADD_SUBFOLDER, DELETE, UPDATE, VIEW,
-		ADD_SHORTCUT
+		ADD_DISCUSSION, ADD_SHORTCUT, DELETE_DISCUSSION, PERMISSIONS,
+		UPDATE_DISCUSSION
 
 	}
 
