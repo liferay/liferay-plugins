@@ -30,13 +30,13 @@ boolean hasExistingRecipients = false;
 		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
 	</liferay-portlet:actionURL>
 
-	<aui:button href="<%= markAsUnreadURL %>" name="markMessageAsUnread" value="mark-as-unread" />
+	<aui:button data-markAsUnreadURL="<%= markAsUnreadURL %>" name="markMessageAsUnread" value="mark-as-unread" />
 
 	<liferay-portlet:actionURL name="deleteMessages" var="deleteMessageURL">
 		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
 	</liferay-portlet:actionURL>
 
-	<aui:button href="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
+	<aui:button data-deleteMessageURL="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 </aui:button-row >
 
 <%
@@ -311,52 +311,54 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 <aui:script use="aui-image-viewer-gallery,aui-io-request-deprecated">
 	var form = A.one('#<portlet:namespace />fm');
 
-	form.on(
-		'submit',
-		function(event) {
-			var loadingMask = new A.LoadingMask(
-				{
-					'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "sending-message") %>',
-					target: A.one('.private-messaging-portlet .private-messaging-container')
-				}
-			);
+	if (form) {
+		form.on(
+			'submit',
+			function(event) {
+				var loadingMask = new A.LoadingMask(
+					{
+						'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "sending-message") %>',
+						target: A.one('.private-messaging-portlet .private-messaging-container')
+					}
+				);
 
-			loadingMask.show();
+				loadingMask.show();
 
-			A.io.request(
-				'<liferay-portlet:resourceURL id="sendMessage"></liferay-portlet:resourceURL>',
-				{
-					dataType: 'json',
-					form: {
-						id: form,
-						upload: true
-					},
-					on: {
-						complete: function(event, id, obj) {
-							var responseText = obj.responseText;
+				A.io.request(
+					'<liferay-portlet:resourceURL id="sendMessage"></liferay-portlet:resourceURL>',
+					{
+						dataType: 'json',
+						form: {
+							id: form,
+							upload: true
+						},
+						on: {
+							complete: function(event, id, obj) {
+								var responseText = obj.responseText;
 
-							var responseData = A.JSON.parse(responseText);
+								var responseData = A.JSON.parse(responseText);
 
-							if (responseData.success) {
-								document.location.href = '<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>';
+								if (responseData.success) {
+									document.location.href = '<liferay-portlet:renderURL windowState="<%= WindowState.NORMAL.toString() %>"><portlet:param name="mbThreadId" value="<%= String.valueOf(mbThreadId) %>" /></liferay-portlet:renderURL>';
 
-								loadingMask.hide();
-							}
-							else {
-								var messageContainer = A.one('#<portlet:namespace />messageContainer');
-
-								if (messageContainer) {
-									messageContainer.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+									loadingMask.hide();
 								}
+								else {
+									var messageContainer = A.one('#<portlet:namespace />messageContainer');
 
-								loadingMask.hide();
+									if (messageContainer) {
+										messageContainer.html('<span class="portlet-msg-error">' + responseData.message + '</span>');
+									}
+
+									loadingMask.hide();
+								}
 							}
 						}
 					}
-				}
-			);
-		}
-	);
+				);
+			}
+		);
+	}	
 
 	var viewportRegion = A.getDoc().get('viewportRegion');
 
