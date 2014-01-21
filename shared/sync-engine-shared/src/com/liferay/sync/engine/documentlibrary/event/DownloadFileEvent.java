@@ -36,8 +36,9 @@ public class DownloadFileEvent extends BaseEvent {
 		_patch = patch;
 	}
 
+	@Override
 	protected String processRequest() throws Exception {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(7);
 
 		sb.append(replaceUrlPath(getSyncAccountId()));
 		sb.append("/");

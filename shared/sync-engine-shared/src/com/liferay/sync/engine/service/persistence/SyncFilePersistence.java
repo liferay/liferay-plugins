@@ -32,7 +32,7 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 	}
 
 	public SyncFile fetchSyncFile(
-			long syncAccountId, long repositoryId, long parentFolderId)
+			long parentFolderId, long repositoryId, long syncAccountId)
 		throws SQLException {
 
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
@@ -50,7 +50,7 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		return syncFiles.get(0);
 	}
 
-	public SyncFile fetchSyncFile(long syncAccountId, String filePath)
+	public SyncFile fetchSyncFile(String filePath, long syncAccountId)
 		throws SQLException {
 
 		Map<String, Object> fieldValues = new HashMap<String, Object>();

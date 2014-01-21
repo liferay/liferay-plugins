@@ -28,19 +28,19 @@ import org.slf4j.LoggerFactory;
 public class SyncFileService {
 
 	public static SyncFile addSyncFile(
-			long syncAccountId, long repositoryId, long parentFolderId,
-			String name, String filePath, long typePK, String type)
+			String filePath, String name, long parentFolderId,
+			long repositoryId, long syncAccountId, String type, long typePK)
 		throws Exception {
 
 		SyncFile syncFile = new SyncFile();
 
+		syncFile.setFilePath(filePath);
+		syncFile.setName(name);
 		syncFile.setRepositoryId(repositoryId);
 		syncFile.setParentFolderId(parentFolderId);
-		syncFile.setName(name);
-		syncFile.setFilePath(filePath);
 		syncFile.setSyncAccountId(syncAccountId);
-		syncFile.setTypePK(typePK);
 		syncFile.setType(type);
+		syncFile.setTypePK(typePK);
 
 		_syncFilePersistence.create(syncFile);
 
@@ -59,11 +59,11 @@ public class SyncFileService {
 	}
 
 	public static SyncFile fetchSyncFile(
-		long syncAccountId, long repositoryId, long parentFolderId) {
+		long parentFolderId, long repositoryId, long syncAccountId) {
 
 		try {
 			return _syncFilePersistence.fetchSyncFile(
-				syncAccountId, repositoryId, parentFolderId);
+				parentFolderId, repositoryId, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -74,9 +74,9 @@ public class SyncFileService {
 		}
 	}
 
-	public static SyncFile fetchSyncFile(long syncAccountId, String filePath) {
+	public static SyncFile fetchSyncFile(String filePath, long syncAccountId) {
 		try {
-			return _syncFilePersistence.fetchSyncFile(syncAccountId, filePath);
+			return _syncFilePersistence.fetchSyncFile(filePath, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

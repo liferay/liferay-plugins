@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 public class SyncAccountService {
 
 	public static SyncAccount addSyncAccount(
-			String login, String password, String url, String filePath)
+			String filePath, String login, String password, String url)
 		throws Exception {
 
 		SyncAccount syncAccount = new SyncAccount();

@@ -49,17 +49,19 @@ import org.powermock.modules.junit4.PowerMockRunner;
 public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 	@Before
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 
 		_filePath = System.getProperty("user.home") + "/liferay-sync-test";
 
 		_syncAccount = SyncAccountService.addSyncAccount(
-			"test@liferay.com", "test", "http://localhost:8080/api/jsonws/",
-			_filePath);
+			_filePath, "test@liferay.com", "test",
+			"http://localhost:8080/api/jsonws/");
+
 		_filePathSyncFile = SyncFileService.addSyncFile(
-			_syncAccount.getSyncAccountId(), 0, 0, "test",
-			_syncAccount.getFilePath(), 0, SyncFile.TYPE_FOLDER);
+			_syncAccount.getFilePath(), "test", 0, 0,
+			_syncAccount.getSyncAccountId(), SyncFile.TYPE_FOLDER, 0);
 	}
 
 	@After
@@ -101,7 +103,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 		getAllSyncDLObjectsEvent.run();
 
 		_syncFile = SyncFileService.fetchSyncFile(
-			_syncAccount.getSyncAccountId(), _filePath + "/Document_1.txt");
+			_filePath + "/Document_1.txt", _syncAccount.getSyncAccountId());
 
 		Assert.assertNotNull(_syncFile);
 

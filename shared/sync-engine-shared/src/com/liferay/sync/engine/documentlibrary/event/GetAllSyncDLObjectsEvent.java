@@ -44,8 +44,8 @@ public class GetAllSyncDLObjectsEvent extends BaseEvent {
 
 		for (SyncFile syncFile : syncDLObjectUpdate.getSyncDLObjects()) {
 			SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-				getSyncAccountId(), syncFile.getRepositoryId(),
-				syncFile.getParentFolderId());
+				syncFile.getParentFolderId(), syncFile.getRepositoryId(),
+				getSyncAccountId());
 
 			String filePath = null;
 
@@ -55,6 +55,7 @@ public class GetAllSyncDLObjectsEvent extends BaseEvent {
 			}
 
 			syncFile.setFilePath(filePath);
+
 			syncFile.setSyncAccountId(getSyncAccountId());
 
 			SyncFileService.update(syncFile);

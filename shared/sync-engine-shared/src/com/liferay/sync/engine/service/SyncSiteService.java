@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 public class SyncSiteService {
 
 	public static SyncSite addSyncSite(
-			long syncAccountId, long groupId, String filePath)
+			String filePath, long groupId, long syncAccountId)
 		throws Exception {
 
 		SyncSite syncSite = new SyncSite();
@@ -42,9 +42,9 @@ public class SyncSiteService {
 		return syncSite;
 	}
 
-	public static SyncSite fetchSyncSite(long syncAccountId, long groupId) {
+	public static SyncSite fetchSyncSite(long groupId, long syncAccountId) {
 		try {
-			return _syncSitePersistence.fetchSyncSite(syncAccountId, groupId);
+			return _syncSitePersistence.fetchSyncSite(groupId, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

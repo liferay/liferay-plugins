@@ -31,7 +31,7 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 		super(SyncSite.class);
 	}
 
-	public SyncSite fetchSyncSite(long syncAccountId, long groupId)
+	public SyncSite fetchSyncSite(long groupId, long syncAccountId)
 		throws SQLException {
 
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
