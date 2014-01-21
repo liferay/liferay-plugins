@@ -23,8 +23,8 @@ import com.liferay.portal.kernel.util.StringPool;
  */
 public class MarketplaceConstants {
 
-	public static final String MARKETPLACE_URL_LOGOUT = GetterUtil.getString(
-		PortletPropsValues.MARKETPLACE_URL_LOGOUT,
+	public static final String MARKETPLACE_URL = GetterUtil.getString(
+		PortletPropsValues.MARKETPLACE_URL,
 		"https://mp.liferay.com/c/portal/logout");
 
 	public static String getPathPurchased() {

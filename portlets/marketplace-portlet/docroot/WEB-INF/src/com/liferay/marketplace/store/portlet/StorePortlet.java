@@ -17,6 +17,7 @@ package com.liferay.marketplace.store.portlet;
 import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 import com.liferay.marketplace.service.AppServiceUtil;
+import com.liferay.marketplace.util.MarketplaceConstants;
 import com.liferay.marketplace.util.MarketplaceLicenseUtil;
 import com.liferay.marketplace.util.MarketplaceUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -66,6 +67,17 @@ public class StorePortlet extends MVCPortlet {
 
 		url = getRemoteAppPackageURL(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token, url);
+
+		if (!url.startsWith(MarketplaceConstants.MARKETPLACE_URL)) {
+			JSONObject jsonObject = getAppJSONObject(remoteAppId);
+
+			jsonObject.put("cmd", "downloadApp");
+			jsonObject.put("message", "fail");
+
+			writeJSON(actionRequest, actionResponse, jsonObject);
+
+			return;
+		}
 
 		URL urlObj = new URL(url);
 
@@ -225,6 +237,17 @@ public class StorePortlet extends MVCPortlet {
 
 		url = getRemoteAppPackageURL(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(), token, url);
+
+		if (!url.startsWith(MarketplaceConstants.MARKETPLACE_URL)) {
+			JSONObject jsonObject = getAppJSONObject(remoteAppId);
+
+			jsonObject.put("cmd", "downloadApp");
+			jsonObject.put("message", "fail");
+
+			writeJSON(actionRequest, actionResponse, jsonObject);
+
+			return;
+		}
 
 		URL urlObj = new URL(url);
 
