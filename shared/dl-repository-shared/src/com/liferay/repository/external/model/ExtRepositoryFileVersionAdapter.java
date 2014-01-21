@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
 import com.liferay.repository.external.ExtRepositoryFileVersion;
@@ -126,23 +127,23 @@ public class ExtRepositoryFileVersionAdapter
 
 	@Override
 	public int getStatus() {
-		return 0;
+		return WorkflowConstants.STATUS_APPROVED;
 	}
 
 	@Override
 	public long getStatusByUserId() {
-		return 0;
+		return getUserId();
 	}
 
 	@Override
 	public String getStatusByUserName() {
-		return null;
+		return getUserName();
 	}
 
 	@Override
 	@SuppressWarnings("unused")
 	public String getStatusByUserUuid() throws SystemException {
-		return null;
+		return getUserUuid();
 	}
 
 	@Override
