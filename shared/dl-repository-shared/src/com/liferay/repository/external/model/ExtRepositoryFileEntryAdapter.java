@@ -87,7 +87,7 @@ public class ExtRepositoryFileEntryAdapter
 	@Override
 	public FileVersion getFileVersion() throws SystemException {
 		List<ExtRepositoryFileVersionAdapter> extRepositoryFileVersionAdapters =
-			_loadVersions();
+			_getVersions();
 
 		return extRepositoryFileVersionAdapters.get(0);
 	}
@@ -97,14 +97,14 @@ public class ExtRepositoryFileEntryAdapter
 		throws PortalException, SystemException {
 
 		List<ExtRepositoryFileVersionAdapter> extRepositoryFileVersionAdapters =
-			_loadVersions();
+			_getVersions();
 
 		for (ExtRepositoryFileVersionAdapter extRepositoryFileVersionAdapter :
 				extRepositoryFileVersionAdapters) {
 
 			String curVersion = extRepositoryFileVersionAdapter.getVersion();
 
-			if (curVersion.equals(extRepositoryFileVersionAdapter)) {
+			if (curVersion.equals(version)) {
 				return extRepositoryFileVersionAdapter;
 			}
 		}
@@ -122,7 +122,7 @@ public class ExtRepositoryFileEntryAdapter
 		if ((status == WorkflowConstants.STATUS_ANY) ||
 			(status == WorkflowConstants.STATUS_APPROVED)) {
 
-			return (List)_loadVersions();
+			return (List)_getVersions();
 		}
 		else {
 			return Collections.emptyList();
@@ -268,7 +268,7 @@ public class ExtRepositoryFileEntryAdapter
 	@Override
 	public String getVersion() {
 		try {
-			FileVersion fileVersion = _loadVersions().get(0);
+			FileVersion fileVersion = _getVersions().get(0);
 
 			return fileVersion.getVersion();
 		}
@@ -318,7 +318,7 @@ public class ExtRepositoryFileEntryAdapter
 		return true;
 	}
 
-	private List<ExtRepositoryFileVersionAdapter> _loadVersions()
+	private List<ExtRepositoryFileVersionAdapter> _getVersions()
 		throws SystemException {
 
 		if (_extRepositoryFileVersionAdapters == null) {
