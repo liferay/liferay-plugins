@@ -78,13 +78,11 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 	@Test
 	public void testRun() throws Exception {
 		PowerMockito.mockStatic(HttpUtil.class);
+		
+		Class<?> clazz = getClass();
 
-		Thread thread = new Thread();
-
-		ClassLoader classLoader = thread.getContextClassLoader();
-
-		InputStream inputStream = classLoader.getResourceAsStream(
-			"com/liferay/sync/dependencies/test_1.json");
+		InputStream inputStream = clazz.getResourceAsStream(
+			"dependencies/test_1.json");
 
 		String response = IOUtils.toString(inputStream);
 
