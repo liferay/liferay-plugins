@@ -86,3 +86,9 @@
 #if ($is_user_dashboard)
 	#set ($css_class = "${css_class} user-dashboard")
 #end
+
+#if ($layout.isPublicLayout())
+	#set ($logo_url = $community_default_public_url)
+#else
+	#set ($logo_url = $community_default_private_url)
+#end
