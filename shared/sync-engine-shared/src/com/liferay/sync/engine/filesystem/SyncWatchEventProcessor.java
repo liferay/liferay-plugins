@@ -11,6 +11,7 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+
 package com.liferay.sync.engine.filesystem;
 
 import com.liferay.sync.engine.model.SyncWatchEvent;
@@ -36,10 +37,10 @@ public class SyncWatchEventProcessor implements Runnable {
 	@Override
 	public void run() {
 		if (_logger.isTraceEnabled()) {
-			_logger.trace("Processing SyncWatchEvents");
+			_logger.trace("Processing sync watch events");
 		}
 
-		List<SyncWatchEvent> syncWatchEvents = SyncWatchEventService.fetchAll();
+		List<SyncWatchEvent> syncWatchEvents = SyncWatchEventService.findAll();
 
 		for (SyncWatchEvent syncWatchEvent : syncWatchEvents) {
 			if (_logger.isTraceEnabled()) {
