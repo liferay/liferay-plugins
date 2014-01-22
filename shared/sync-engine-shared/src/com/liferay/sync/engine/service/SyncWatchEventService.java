@@ -45,9 +45,9 @@ public class SyncWatchEventService {
 		return syncWatchEvent;
 	}
 
-	public static SyncWatchEvent fetchSyncWatchEvent(long syncWatchEventId) {
+	public static List<SyncWatchEvent> fetchAll() {
 		try {
-			return _syncWatchEventPersistence.queryForId(syncWatchEventId);
+			return _syncWatchEventPersistence.queryForAll();
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -58,9 +58,9 @@ public class SyncWatchEventService {
 		}
 	}
 
-	public static List<SyncWatchEvent> findAll() {
+	public static SyncWatchEvent fetchSyncWatchEvent(long syncWatchEventId) {
 		try {
-			return _syncWatchEventPersistence.queryForAll();
+			return _syncWatchEventPersistence.queryForId(syncWatchEventId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
