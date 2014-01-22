@@ -323,7 +323,7 @@ public class ExtRepositoryFileEntryAdapter
 
 		if (_extRepositoryFileVersionAdapters == null) {
 			_extRepositoryFileVersionAdapters =
-				getRepository().getVersions(this);
+				getRepository().getExtRepositoryFileVersionAdapters(this);
 		}
 
 		return _extRepositoryFileVersionAdapters;

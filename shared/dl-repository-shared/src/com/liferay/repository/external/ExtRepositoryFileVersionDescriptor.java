@@ -21,21 +21,21 @@ package com.liferay.repository.external;
 public class ExtRepositoryFileVersionDescriptor {
 
 	public ExtRepositoryFileVersionDescriptor(
-		String fileEntryKey, String version) {
+		String extRepositoryFileEntryKey, String version) {
 
-		_fileEntryKey = fileEntryKey;
+		_extRepositoryFileEntryKey = extRepositoryFileEntryKey;
 		_version = version;
 	}
 
 	public String getExtRepositoryFileEntryKey() {
-		return _fileEntryKey;
+		return _extRepositoryFileEntryKey;
 	}
 
 	public String getVersion() {
 		return _version;
 	}
 
-	private String _fileEntryKey;
+	private String _extRepositoryFileEntryKey;
 	private String _version;
 
 }
