@@ -40,10 +40,14 @@ import java.util.concurrent.Executors;
  */
 public class Watcher implements Runnable {
 
-	public Watcher(Path filePath, boolean recursive) throws IOException {
+	public Watcher(Path filePath, boolean recursive, long syncAccountId)
+		throws IOException {
+
 		_recursive = recursive;
 
 		register(filePath, recursive);
+
+		_syncAccountId = syncAccountId;
 
 		FileSystem fileSystem = FileSystems.getDefault();
 
@@ -175,6 +179,7 @@ public class Watcher implements Runnable {
 		Executors.newSingleThreadExecutor();
 	private Map<WatchKey, Path> _filePaths = new HashMap<WatchKey, Path>();
 	private boolean _recursive;
+	private long _syncAccountId;
 	private WatchEventListener _watchEventListener;
 	private WatchService _watchService;
 

@@ -27,13 +27,16 @@ import org.slf4j.LoggerFactory;
  */
 public class SyncWatchEventService {
 
-	public static SyncWatchEvent addSyncWatchEvent(String filePath, String kind)
+	public static SyncWatchEvent addSyncWatchEvent(
+			String filePath, String kind, long syncAccountId)
 		throws Exception {
 
 		SyncWatchEvent syncWatchEvent = new SyncWatchEvent();
 
 		syncWatchEvent.setFilePath(filePath);
 		syncWatchEvent.setKind(kind);
+		syncWatchEvent.setSyncAccountId(syncAccountId);
+		syncWatchEvent.setTimestamp(System.currentTimeMillis());
 
 		_syncWatchEventPersistence.create(syncWatchEvent);
 

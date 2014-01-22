@@ -25,8 +25,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Michael Young
  */
-public class SyncSiteWatchEventListener
-	implements Runnable, WatchEventListener {
+public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 
 	@Override
 	public void entryCreate(Path filePath, WatchEvent<Path> watchEvent) {
@@ -48,16 +47,13 @@ public class SyncSiteWatchEventListener
 		addSyncWatchEvent(filePath, watchEvent);
 	}
 
-	@Override
-	public void run() {
-	}
-
 	protected void addSyncWatchEvent(
 		Path filePath, WatchEvent<Path> watchEvent) {
 
 		try {
 			SyncWatchEventService.addSyncWatchEvent(
-				filePath.toString(), watchEvent.kind().name());
+				filePath.toString(), watchEvent.kind().name(),
+				getSyncAccountId());
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);

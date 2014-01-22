@@ -48,8 +48,16 @@ public class SyncWatchEvent {
 		return kind;
 	}
 
+	public long getSyncAccountId() {
+		return syncAccountId;
+	}
+
 	public long getSyncWatchEventId() {
 		return syncWatchEventId;
+	}
+
+	public long getTimestamp() {
+		return timestamp;
 	}
 
 	public void setFilePath(String filePath) {
@@ -60,8 +68,16 @@ public class SyncWatchEvent {
 		this.kind = kind;
 	}
 
+	public void setSyncAccountId(long syncAccountId) {
+		this.syncAccountId = syncAccountId;
+	}
+
 	public void setSyncWatchEventId(long syncWatchEventId) {
 		this.syncWatchEventId = syncWatchEventId;
+	}
+
+	public void setTimestamp(long timestamp) {
+		this.timestamp = timestamp;
 	}
 
 	@DatabaseField(useGetSet = true, width = 16777216)
@@ -70,7 +86,13 @@ public class SyncWatchEvent {
 	@DatabaseField(useGetSet = true)
 	protected String kind;
 
+	@DatabaseField(useGetSet = true)
+	protected long syncAccountId;
+
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected long syncWatchEventId;
+
+	@DatabaseField(useGetSet = true)
+	protected long timestamp;
 
 }
