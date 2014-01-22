@@ -17,6 +17,6 @@
 		<dynamic-element name="banner_button_size" type="select">
 			<dynamic-content><![CDATA[btn-large]]></dynamic-content>
 		</dynamic-element>
-		<dynamic-content><![CDATA[Call To Action]]></dynamic-content>
+		<dynamic-content><![CDATA[Call to Action]]></dynamic-content>
 	</dynamic-element>
 </root>
