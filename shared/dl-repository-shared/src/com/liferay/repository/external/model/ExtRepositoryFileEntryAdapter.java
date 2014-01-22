@@ -44,14 +44,14 @@ import java.util.List;
  * @author Sergio González
  */
 public class ExtRepositoryFileEntryAdapter
-	extends ExtRepositoryEntryAdapter<FileEntry> implements FileEntry {
+	extends ExtRepositoryObjectAdapter<FileEntry> implements FileEntry {
 
 	public ExtRepositoryFileEntryAdapter(
-		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryEntryId,
+		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryObjectId,
 		String uuid, ExtRepositoryFileEntry extRepositoryFileEntry) {
 
 		super(
-			extRepositoryAdapter, extRepositoryEntryId, uuid,
+			extRepositoryAdapter, extRepositoryObjectId, uuid,
 			extRepositoryFileEntry);
 
 		_extRepositoryFileEntry = extRepositoryFileEntry;

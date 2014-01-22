@@ -30,14 +30,14 @@ import java.util.Date;
  * @author Sergio González
  */
 public class ExtRepositoryFolderAdapter
-	extends ExtRepositoryEntryAdapter<Folder> implements Folder {
+	extends ExtRepositoryObjectAdapter<Folder> implements Folder {
 
 	public ExtRepositoryFolderAdapter(
-		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryEntryId,
+		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryObjectId,
 		String uuid, ExtRepositoryFolder extRepositoryFolder) {
 
 		super(
-			extRepositoryAdapter, extRepositoryEntryId, uuid,
+			extRepositoryAdapter, extRepositoryObjectId, uuid,
 			extRepositoryFolder);
 
 		_extRepositoryFolder = extRepositoryFolder;

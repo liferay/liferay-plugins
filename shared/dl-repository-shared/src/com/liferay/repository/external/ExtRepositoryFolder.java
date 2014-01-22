@@ -18,7 +18,7 @@ package com.liferay.repository.external;
  * @author Iván Zaera
  * @author Sergio González
  */
-public interface ExtRepositoryFolder extends ExtRepositoryEntry {
+public interface ExtRepositoryFolder extends ExtRepositoryObject {
 
 	public String getName();
 

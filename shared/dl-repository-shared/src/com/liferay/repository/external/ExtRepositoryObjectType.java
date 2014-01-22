@@ -18,23 +18,23 @@ package com.liferay.repository.external;
  * @author Iván Zaera
  * @author Sergio González
  */
-public final class ExtRepositoryModelType<T extends ExtRepositoryModel> {
+public final class ExtRepositoryObjectType<T extends ExtRepositoryModel> {
 
-	public static final ExtRepositoryModelType<ExtRepositoryEntry> ENTRY =
-		new ExtRepositoryModelType<ExtRepositoryEntry>("ENTRY");
+	public static final ExtRepositoryObjectType<ExtRepositoryObject> ENTRY =
+		new ExtRepositoryObjectType<ExtRepositoryObject>("OBJECT");
 
-	public static final ExtRepositoryModelType<ExtRepositoryFileEntry> FILE =
-		new ExtRepositoryModelType<ExtRepositoryFileEntry>("FILE");
+	public static final ExtRepositoryObjectType<ExtRepositoryFileEntry> FILE =
+		new ExtRepositoryObjectType<ExtRepositoryFileEntry>("FILE");
 
-	public static final ExtRepositoryModelType<ExtRepositoryFolder> FOLDER =
-		new ExtRepositoryModelType<ExtRepositoryFolder>("FOLDER");
+	public static final ExtRepositoryObjectType<ExtRepositoryFolder> FOLDER =
+		new ExtRepositoryObjectType<ExtRepositoryFolder>("FOLDER");
 
 	@Override
 	public String toString() {
 		return _name;
 	}
 
-	private ExtRepositoryModelType(String name) {
+	private ExtRepositoryObjectType(String name) {
 		_name = name;
 	}
 

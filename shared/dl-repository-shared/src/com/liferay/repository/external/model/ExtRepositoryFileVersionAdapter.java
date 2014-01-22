@@ -38,13 +38,13 @@ public class ExtRepositoryFileVersionAdapter
 	extends ExtRepositoryModelAdapter<FileVersion> implements FileVersion {
 
 	public ExtRepositoryFileVersionAdapter(
-		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryEntryId,
+		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryObjectId,
 		String uuid,
 		ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter,
 		ExtRepositoryFileVersion extRepositoryFileVersion) {
 
 		super(
-			extRepositoryAdapter, extRepositoryEntryId, uuid,
+			extRepositoryAdapter, extRepositoryObjectId, uuid,
 			extRepositoryFileVersion);
 
 		_extRepositoryFileEntryAdapter = extRepositoryFileEntryAdapter;

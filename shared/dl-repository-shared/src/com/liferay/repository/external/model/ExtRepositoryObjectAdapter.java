@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
-import com.liferay.repository.external.ExtRepositoryEntry;
-import com.liferay.repository.external.ExtRepositoryEntry.ExtRepositoryPermission;
+import com.liferay.repository.external.ExtRepositoryObject;
+import com.liferay.repository.external.ExtRepositoryObject.ExtRepositoryPermission;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +32,7 @@ import java.util.List;
  * @author Iván Zaera
  * @author Sergio González
  */
-public abstract class ExtRepositoryEntryAdapter<T>
+public abstract class ExtRepositoryObjectAdapter<T>
 	extends ExtRepositoryModelAdapter<T> {
 
 	@SuppressWarnings("unused")
@@ -44,7 +44,7 @@ public abstract class ExtRepositoryEntryAdapter<T>
 			ExtRepositoryPermission extRepositoryPermission =
 				ExtRepositoryPermission.valueOf(actionId);
 
-			return _extRepositoryEntry.containsPermission(
+			return _extRepositoryObject.containsPermission(
 				extRepositoryPermission);
 		}
 		catch (IllegalArgumentException iae) {
@@ -88,17 +88,17 @@ public abstract class ExtRepositoryEntryAdapter<T>
 	}
 
 	public String getExtension() {
-		return _extRepositoryEntry.getExtension();
+		return _extRepositoryObject.getExtension();
 	}
 
 	@Override
-	public ExtRepositoryEntry getExtRepositoryModel() {
-		return _extRepositoryEntry;
+	public ExtRepositoryObject getExtRepositoryModel() {
+		return _extRepositoryObject;
 	}
 
 	@Override
 	public Date getModifiedDate() {
-		return _extRepositoryEntry.getModifiedDate();
+		return _extRepositoryObject.getModifiedDate();
 	}
 
 	public abstract String getName();
@@ -130,17 +130,17 @@ public abstract class ExtRepositoryEntryAdapter<T>
 		return false;
 	}
 
-	protected ExtRepositoryEntryAdapter(
-		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryEntryId,
-		String uuid, ExtRepositoryEntry extRepositoryEntry) {
+	protected ExtRepositoryObjectAdapter(
+		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryObjectId,
+		String uuid, ExtRepositoryObject extRepositoryObject) {
 
 		super(
-			extRepositoryAdapter, extRepositoryEntryId, uuid,
-			extRepositoryEntry);
+			extRepositoryAdapter, extRepositoryObjectId, uuid,
+			extRepositoryObject);
 
-		_extRepositoryEntry = extRepositoryEntry;
+		_extRepositoryObject = extRepositoryObject;
 	}
 
-	private ExtRepositoryEntry _extRepositoryEntry;
+	private ExtRepositoryObject _extRepositoryObject;
 
 }

@@ -20,7 +20,7 @@ import java.util.Date;
  * @author Iván Zaera
  * @author Sergio González
  */
-public interface ExtRepositoryEntry extends ExtRepositoryModel {
+public interface ExtRepositoryObject extends ExtRepositoryModel {
 
 	public boolean containsPermission(
 		ExtRepositoryPermission extRepositoryPermission);

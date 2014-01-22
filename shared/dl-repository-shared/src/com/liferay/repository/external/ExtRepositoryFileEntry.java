@@ -18,7 +18,7 @@ package com.liferay.repository.external;
  * @author Iván Zaera
  * @author Sergio González
  */
-public interface ExtRepositoryFileEntry extends ExtRepositoryEntry {
+public interface ExtRepositoryFileEntry extends ExtRepositoryObject {
 
 	public String getCheckedOutBy();
 
