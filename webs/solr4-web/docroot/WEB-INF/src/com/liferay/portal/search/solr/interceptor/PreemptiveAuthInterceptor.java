@@ -40,7 +40,7 @@ public class PreemptiveAuthInterceptor implements HttpRequestInterceptor {
 		AuthState authState = (AuthState)context.getAttribute(
 			ClientContext.TARGET_AUTH_STATE);
 
-		CredentialsProvider credsProvider =
+		CredentialsProvider credentialsProvider =
 			(CredentialsProvider)context.getAttribute(
 				ClientContext.CREDS_PROVIDER);
 
@@ -55,7 +55,8 @@ public class PreemptiveAuthInterceptor implements HttpRequestInterceptor {
 
 			// Obtain credentials matching the target host
 
-			Credentials credentials = credsProvider.getCredentials(authScope);
+			Credentials credentials = credentialsProvider.getCredentials(
+				authScope);
 
 			// If found, generate BasicScheme preemptively
 
