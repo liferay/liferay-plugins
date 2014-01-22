@@ -27,7 +27,7 @@ public class ExtRepositoryFileVersionDescriptor {
 		_version = version;
 	}
 
-	public String getFileEntryKey() {
+	public String getExtRepositoryFileEntryKey() {
 		return _fileEntryKey;
 	}
 

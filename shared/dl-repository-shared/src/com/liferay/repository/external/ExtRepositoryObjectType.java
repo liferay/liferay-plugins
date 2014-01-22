@@ -20,14 +20,14 @@ package com.liferay.repository.external;
  */
 public final class ExtRepositoryObjectType<T extends ExtRepositoryModel> {
 
-	public static final ExtRepositoryObjectType<ExtRepositoryObject> ENTRY =
-		new ExtRepositoryObjectType<ExtRepositoryObject>("OBJECT");
-
 	public static final ExtRepositoryObjectType<ExtRepositoryFileEntry> FILE =
 		new ExtRepositoryObjectType<ExtRepositoryFileEntry>("FILE");
 
 	public static final ExtRepositoryObjectType<ExtRepositoryFolder> FOLDER =
 		new ExtRepositoryObjectType<ExtRepositoryFolder>("FOLDER");
+
+	public static final ExtRepositoryObjectType<ExtRepositoryObject> OBJECT =
+		new ExtRepositoryObjectType<ExtRepositoryObject>("OBJECT");
 
 	@Override
 	public String toString() {

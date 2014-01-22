@@ -33,7 +33,7 @@ public interface ExtRepository {
 
 	public ExtRepositoryFileEntry addExtRepositoryFileEntry(
 			String extRepositoryParentFolderKey, String mimeType, String title,
-			String description, String changeLog, InputStream is)
+			String description, String changeLog, InputStream inputStream)
 		throws PortalException, SystemException;
 
 	public ExtRepositoryFolder addExtRepositoryFolder(
@@ -42,7 +42,7 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	public ExtRepositoryFileVersion cancelCheckOut(
-			String extRepositoryObjectKey)
+			String extRepositoryFileEntryKey)
 		throws PortalException, SystemException;
 
 	public void checkInExtRepositoryFileEntry(
@@ -51,12 +51,12 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	public ExtRepositoryFileEntry checkOutExtRepositoryFileEntry(
-			String extRepositoryObjectKey)
+			String extRepositoryFileEntryKey)
 		throws PortalException, SystemException;
 
 	public <T extends ExtRepositoryObject> T copyExtRepositoryObject(
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
-			String extRepositoryObjectKey, String newExtRepositoryFolderKey,
+			String extRepositoryFileEntryKey, String newExtRepositoryFolderKey,
 			String newTitle)
 		throws PortalException, SystemException;
 
@@ -142,7 +142,8 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	public ExtRepositoryFileEntry updateExtRepositoryFileEntry(
-			String extRepositoryFileEntryKey, String mimeType, InputStream is)
+			String extRepositoryFileEntryKey, String mimeType,
+			InputStream inputStream)
 		throws PortalException, SystemException;
 
 }
