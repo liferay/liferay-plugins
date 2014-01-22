@@ -255,6 +255,19 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			extRepositoryFileVersionAdapter.getExtRepositoryModel());
 	}
 
+	public List<ExtRepositoryFileVersionAdapter>
+			getExtRepositoryFileVersionAdapters(
+				ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter)
+		throws SystemException {
+
+		List<ExtRepositoryFileVersion> extRepositoryFileVersions =
+			_extRepository.getExtRepositoryFileVersions(
+				extRepositoryFileEntryAdapter.getExtRepositoryModel());
+
+		return _toExtRepositoryFileVersionAdapters(
+			extRepositoryFileEntryAdapter, extRepositoryFileVersions);
+	}
+
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List<FileEntry> getFileEntries(
@@ -580,8 +593,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		return count;
 	}
 
-	public String getLiferayUserId(String repositoryUserName) {
-		return _extRepository.getLiferayLogin(repositoryUserName);
+	public String getLiferayLogin(String extRepositoryUserName) {
+		return _extRepository.getLiferayLogin(extRepositoryUserName);
 	}
 
 	@Override
@@ -656,25 +669,12 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		return _extRepository.getSupportedParameters();
 	}
 
-	public List<ExtRepositoryFileVersionAdapter>
-			getExtRepositoryFileVersionAdapters(
-				ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter)
-		throws SystemException {
-
-		List<ExtRepositoryFileVersion> extRepositoryFileVersions =
-			_extRepository.getExtRepositoryFileVersions(
-				extRepositoryFileEntryAdapter.getExtRepositoryModel());
-
-		return _toExtRepositoryFileVersionAdapters(
-			extRepositoryFileEntryAdapter, extRepositoryFileVersions);
-	}
-
 	@Override
 	public void initRepository() throws PortalException, SystemException {
 		try {
 			CredentialsProvider credentialsProvider =
 				new CredentialsProvider() {
-				
+
 					@Override
 					public String getLogin() {
 						return _getLogin();
@@ -684,7 +684,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					public String getPassword() {
 						return _getPassword();
 					}
-					
+
 				};
 
 			_extRepository.initRepository(

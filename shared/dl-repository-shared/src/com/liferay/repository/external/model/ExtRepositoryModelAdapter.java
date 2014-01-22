@@ -91,7 +91,9 @@ public abstract class ExtRepositoryModelAdapter<T>
 
 	@Override
 	public String getModelClassName() {
-		return getModelClass().getName();
+		Class<?> modelClass = getModelClass();
+
+		return modelClass.getName();
 	}
 
 	@Override
@@ -223,27 +225,27 @@ public abstract class ExtRepositoryModelAdapter<T>
 		return _extRepositoryAdapter;
 	}
 
-	protected User getUser(String creatorName) {
+	protected User getUser(String extRepositoryUserName) {
 		User user = null;
 
-		if (Validator.isNotNull(creatorName)) {
-			String screenName = _extRepositoryAdapter.getLiferayUserId(
-				creatorName);
+		if (Validator.isNotNull(extRepositoryUserName)) {
+			String liferayLogin = _extRepositoryAdapter.getLiferayLogin(
+				extRepositoryUserName);
 
 			try {
 				String authType = _extRepositoryAdapter.getAuthType();
 
 				if (authType.equals(CompanyConstants.AUTH_TYPE_ID)) {
 					user = UserLocalServiceUtil.getUser(
-						GetterUtil.getLong(screenName));
+						GetterUtil.getLong(liferayLogin));
 				}
 				else if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
 					user = UserLocalServiceUtil.getUserByEmailAddress(
-						getCompanyId(), screenName);
+						getCompanyId(), liferayLogin);
 				}
 				else if (authType.equals(CompanyConstants.AUTH_TYPE_SN)) {
 					user = UserLocalServiceUtil.getUserByScreenName(
-						getCompanyId(), screenName);
+						getCompanyId(), liferayLogin);
 				}
 			}
 			catch (Exception e) {

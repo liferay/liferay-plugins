@@ -63,8 +63,7 @@ public class ExtRepositoryQueryMapperImpl implements ExtRepositoryQueryMapper {
 			}
 		}
 		else {
-			throw new SearchException(
-					"Field '" + field + "'is not of type date");
+			throw new SearchException("Field " + field + " is not a date");
 		}
 	}
 
@@ -76,8 +75,8 @@ public class ExtRepositoryQueryMapperImpl implements ExtRepositoryQueryMapper {
 			field.equals(Field.MODIFIED_DATE)) {
 
 			throw new SearchException(
-				"Field " + field + " is of type Date: use " +
-					"formatDateParameterValue()");
+				"Use the method formatDateParameterValue to format the date " +
+					"field " + field);
 		}
 		else if (field.equals(Field.FOLDER_ID)) {
 			try {
@@ -86,13 +85,13 @@ public class ExtRepositoryQueryMapperImpl implements ExtRepositoryQueryMapper {
 				return _extRepositoryAdapter.getExtRepositoryObjectKey(
 					folderId);
 			}
-			catch (SystemException se) {
-				throw new SearchException(
-					"Unable to get folder {folderId=" + value + "}", se);
-			}
 			catch (PortalException pe) {
 				throw new SearchException(
-					"Unable to get folder {folderId=" + value + "}", pe);
+					"Unable to get folder folder " + value, pe);
+			}
+			catch (SystemException se) {
+				throw new SearchException(
+					"Unable to get folder folder " + value, se);
 			}
 		}
 		else if (field.equals(Field.USER_ID)) {
@@ -105,7 +104,7 @@ public class ExtRepositoryQueryMapperImpl implements ExtRepositoryQueryMapper {
 			}
 			catch (Exception e) {
 				throw new SearchException(
-					"Unable to get user {userId=" + value + "}", e);
+					"Unable to get user user " + value, e);
 			}
 		}
 		else {

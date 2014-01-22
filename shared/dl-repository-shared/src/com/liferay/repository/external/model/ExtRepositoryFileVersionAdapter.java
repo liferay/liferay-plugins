@@ -60,7 +60,9 @@ public class ExtRepositoryFileVersionAdapter
 	public InputStream getContentStream(boolean incrementCounter)
 		throws PortalException, SystemException {
 
-		return getRepository().getContentStream(this);
+		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
+
+		return extRepositoryAdapter.getContentStream(this);
 	}
 
 	@Override

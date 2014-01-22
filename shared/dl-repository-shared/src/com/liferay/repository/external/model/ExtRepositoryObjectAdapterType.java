@@ -22,17 +22,17 @@ public class ExtRepositoryObjectAdapterType<
 	T extends ExtRepositoryModelAdapter<?>> {
 
 	public static final ExtRepositoryObjectAdapterType<
-			ExtRepositoryFileEntryAdapter> FILE =
+		ExtRepositoryFileEntryAdapter> FILE =
 			new ExtRepositoryObjectAdapterType<ExtRepositoryFileEntryAdapter>(
 				"FILE");
 
 	public static final ExtRepositoryObjectAdapterType<
-			ExtRepositoryFolderAdapter> FOLDER =
+		ExtRepositoryFolderAdapter> FOLDER =
 			new ExtRepositoryObjectAdapterType<ExtRepositoryFolderAdapter>(
 				"FOLDER");
 
 	public static final ExtRepositoryObjectAdapterType<
-			ExtRepositoryObjectAdapter<?>> OBJECT =
+		ExtRepositoryObjectAdapter<?>> OBJECT =
 			new ExtRepositoryObjectAdapterType<ExtRepositoryObjectAdapter<?>>(
 				"OBJECT");
 
