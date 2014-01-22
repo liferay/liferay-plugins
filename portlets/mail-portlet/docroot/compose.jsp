@@ -67,7 +67,7 @@ else {
 	StringBundler sb = new StringBundler(4);
 
 	sb.append("<br /><br />");
-	sb.append(LanguageUtil.format(pageContext, "on-x-x-wrote", new Object[] {dateFormatDateTime.format(replyMessage.getSentDate()), replyMessage.getSender()}));
+	sb.append(LanguageUtil.format(pageContext, "on-x-x-wrote", new Object[] {dateFormatDateTime.format(replyMessage.getSentDate()), replyMessage.getSender()}, false));
 	sb.append("<br />");
 	sb.append(replyMessage.getBody());
 
