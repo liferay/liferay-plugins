@@ -33,6 +33,10 @@ public class UpgradeSocial extends UpgradeProcess {
 	}
 
 	protected void updateSOSocialActivities() throws Exception {
+		if (!hasTable("SO_SocialActivity")) {
+			return;
+		}
+
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
