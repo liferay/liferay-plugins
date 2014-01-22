@@ -15,6 +15,8 @@
 package com.liferay.so.activities.hook.upgrade.v1_0_1;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringBundler;
 
@@ -58,12 +60,19 @@ public class UpgradeSocial extends UpgradeProcess {
 
 				runSQL(sb.toString());
 			}
+
+			runSQL("drop table SO_SocialActivity");
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Table \'SO_SocialActivity\' doesn't exist.");
+			}
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
-
-		runSQL("drop table SO_SocialActivity");
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(UpgradeSocial.class);
 
 }
