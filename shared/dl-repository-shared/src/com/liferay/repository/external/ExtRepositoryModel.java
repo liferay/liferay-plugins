@@ -24,7 +24,7 @@ public interface ExtRepositoryModel {
 
 	public Date getCreatedDate();
 
-	public String getId();
+	public String getKey();
 
 	public String getOwner();
 
