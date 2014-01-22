@@ -16,20 +16,19 @@
 
 <%@ include file="/html/portlet/directory/init.jsp" %>
 
+<%
+List<Address> addresses = _getAddresses((String)request.getAttribute("addresses.className"), (Long)request.getAttribute("addresses.classPK"));
+%>
+
 <liferay-util:buffer var="html">
 	<liferay-util:include page="/html/portlet/directory/user/addresses.portal.jsp" />
 </liferay-util:buffer>
 
 <%
-int addressDataStart = _getDataStart(html, html.indexOf(_CLASS_MAILING_NAME));
-
-int addressDataEnd = _getDataEnd(html, addressDataStart);
+int addressDataStart = _getAddressDataStart(html);
+int addressDataEnd = _getAddressDataEnd(html, addressDataStart);
 
 if ((addressDataStart >= 0) && (addressDataEnd >= 0)) {
-	String addressData = html.substring(addressDataStart, addressDataEnd);
-
-	List<Address> addresses = _getAddresses((String)request.getAttribute("addresses.className"), (Long)request.getAttribute("addresses.classPK"));
-
 	StringBundler sb = new StringBundler(addresses.size() + 2);
 
 	sb.append(html.substring(0, addressDataStart));
@@ -41,6 +40,7 @@ if ((addressDataStart >= 0) && (addressDataEnd >= 0)) {
 
 		String zipCode = address.getZip();
 		String city = address.getCity();
+		Region region = address.getRegion();
 
 		String mailingName = address.getType().getName();
 	%>
@@ -48,11 +48,6 @@ if ((addressDataStart >= 0) && (addressDataEnd >= 0)) {
 		<liferay-util:buffer var="newAddress">
 
 			<li class="<%= address.isPrimary() ? "primary" : "" %>">
-
-				<%
-				Region region = address.getRegion();
-				%>
-
 				<em class="mailing-name"> <liferay-ui:message key="<%= mailingName %>" /> </em>
 
 				<c:if test="<%= Validator.isNotNull(region.getName()) %>">
@@ -84,12 +79,10 @@ if ((addressDataStart >= 0) && (addressDataEnd >= 0)) {
 				</c:if>
 
 				<c:if test="<%= address.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
-
 			</li>
-
 		</liferay-util:buffer>
 
-	<%
+<%
 		sb.append(newAddress);
 	}
 
@@ -97,23 +90,12 @@ if ((addressDataStart >= 0) && (addressDataEnd >= 0)) {
 
 	html = sb.toString();
 }
-
 %>
 
 <%= html %>
 
 <%!
-private List<Address> _getAddresses(String className, long classPK) throws PortalException, SystemException{
-	List<Address> personalAddresses = new ArrayList<Address>();
-
-	if (classPK > 0) {
-		personalAddresses = AddressServiceUtil.getAddresses(className, classPK);
-	}
-
-	return personalAddresses;
-}
-
-private int _getDataEnd(String html, int fromIndex) {
+private int _getAddressDataEnd(String html, int fromIndex) {
 	if (fromIndex < 0) {
 		return -1;
 	}
@@ -125,15 +107,26 @@ private int _getDataEnd(String html, int fromIndex) {
 	}
 
 	return html.lastIndexOf(_LI_CLOSE, x) + _LI_CLOSE.length();
-
 }
 
-private int _getDataStart(String html, int fromIndex) {
-	if (fromIndex < 0) {
+private int _getAddressDataStart(String html) {
+	int x = html.indexOf(_CLASS_MAILING_NAME);
+
+	if (x < 0) {
 		return -1;
 	}
 
-	return html.lastIndexOf(_LI_OPEN, fromIndex);
+	return html.lastIndexOf(_LI_OPEN, x);
+}
+
+private List<Address> _getAddresses(String className, long classPK) throws PortalException, SystemException {
+	List<Address> personalAddresses = new ArrayList<Address>();
+
+	if (classPK > 0) {
+		personalAddresses = AddressServiceUtil.getAddresses(className, classPK);
+	}
+
+	return personalAddresses;
 }
 
 private static final String _CLASS_MAILING_NAME = "class=\"mailing-name\"";

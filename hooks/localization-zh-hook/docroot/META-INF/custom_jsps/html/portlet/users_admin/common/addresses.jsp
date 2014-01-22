@@ -29,10 +29,10 @@ while (true) {
 	String street1Id = namespace + "addressStreet1_" + i;
 	String street2Id = namespace + "addressStreet2_" + i;
 	String street3Id = namespace + "addressStreet3_" + i;
-	String countryId = namespace + "addressCountryId" + i;
-	String regionId = namespace + "addressRegionId" + i ;
-	String postalCodeId = namespace + "addressZip" + i ;
 	String cityId = namespace + "addressCity" + i ;
+	String zipId = namespace + "addressZip" + i ;
+	String regionId = namespace + "addressRegionId" + i ;
+	String countryId = namespace + "addressCountryId" + i;
 
 	int street1Start = _getFormFieldStart(html, street1Id);
 	int street1End = _getFormFieldEnd(html, street1Start);
@@ -43,23 +43,23 @@ while (true) {
 	int street3Start = _getFormFieldStart(html, street3Id);
 	int street3End = _getFormFieldEnd(html, street3Start);
 
-	int countryStart = _getFormFieldStart(html, countryId);
-	int countryEnd = _getFormFieldEnd(html, countryStart);
+	int cityStart = _getFormFieldStart(html, cityId);
+	int cityEnd = _getFormFieldEnd(html, cityStart);
+
+	int zipStart = _getFormFieldStart(html, zipId);
+	int zipEnd = _getFormFieldEnd(html, zipStart);
 
 	int regionStart = _getFormFieldStart(html, regionId);
 	int regionEnd = _getFormFieldEnd(html, regionStart);
 
-	int postalCodeStart = _getFormFieldStart(html, postalCodeId);
-	int postalCodeEnd = _getFormFieldEnd(html, postalCodeStart);
+	int countryStart = _getFormFieldStart(html, countryId);
+	int countryEnd = _getFormFieldEnd(html, countryStart);
 
-	int cityStart = _getFormFieldStart(html, cityId);
-	int cityEnd = _getFormFieldEnd(html, cityStart);
-
-	if ((street1Start < 0) || (street1Start < 0) || (street2Start < 0) || (street2End < 0) || (street3Start < 0) || (street3End < 0) || (countryStart < 0) || (countryEnd < 0) || (regionStart < 0) || (regionEnd < 0) || (postalCodeStart < 0) || (postalCodeEnd < 0)) {
+	if ((street1Start < 0) || (street1End < 0) || (street2Start < 0) || (street2End < 0) || (street3Start < 0) || (street3End < 0) || (cityStart < 0) || (cityEnd < 0) || (zipStart < 0) || (zipEnd < 0) || (regionStart < 0) || (regionEnd < 0) || (countryStart < 0) || (countryEnd < 0)) {
 		break;
 	}
 
-	html = _createAddressForm(html, street1Start, street1End, street2Start, street2End, street3Start, street3End, countryStart, countryEnd, regionStart, regionEnd, postalCodeStart, postalCodeEnd, cityStart, cityEnd);
+	html = _rearrangeFormFields(html, street1Start, street1End, street2Start, street2End, street3Start, street3End, cityStart, cityEnd, zipStart, zipEnd, regionStart, regionEnd, countryStart, countryEnd);
 
 	i++;
 }
@@ -68,16 +68,18 @@ while (true) {
 <%= html %>
 
 <%!
-private String _createAddressForm(String html, int street1Start, int street1End, int street2Start, int street2End, int street3Start, int street3End, int countryStart, int countryEnd, int regionStart, int regionEnd, int postalCodeStart, int postalCodeEnd, int cityStart, int cityEnd) {
-	StringBundler sb = new StringBundler(8);
+private String _rearrangeFormFields(String html, int street1Start, int street1End, int street2Start, int street2End, int street3Start, int street3End, int cityStart, int cityEnd, int zipStart, int zipEnd, int regionStart, int regionEnd, int countryStart, int countryEnd) {
+	StringBundler sb = new StringBundler(10);
 
 	sb.append(html.substring(0, street1Start));
-	sb.append(html.substring(countryStart, regionEnd));
+	sb.append(html.substring(countryStart, countryEnd));
+	sb.append(html.substring(regionStart, regionEnd));
 	sb.append(html.substring(cityStart, cityEnd));
 	sb.append(html.substring(street3Start, street3End));
-	sb.append(html.substring(street1Start, street2End));
-	sb.append(html.substring(postalCodeStart, postalCodeEnd));
-	sb.append(html.substring(regionEnd, postalCodeStart));
+	sb.append(html.substring(street1Start, street1End));
+	sb.append(html.substring(street2Start, street2End));
+	sb.append(html.substring(zipStart, zipEnd));
+	sb.append(html.substring(regionEnd, zipStart));
 	sb.append(html.substring(cityEnd));
 
 	return sb.toString();
