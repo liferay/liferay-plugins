@@ -113,7 +113,7 @@ public interface ExtRepository {
 			ExtRepositoryObject extRepositoryObject)
 		throws PortalException, SystemException;
 
-	public String getLiferayUserId(String extRepositoryUserName);
+	public String getLiferayLogin(String extRepositoryLogin);
 
 	public String getRootFolderKey() throws PortalException, SystemException;
 

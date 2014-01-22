@@ -580,7 +580,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	public String getLiferayUserId(String repositoryUserName) {
-		return _extRepository.getLiferayUserId(repositoryUserName);
+		return _extRepository.getLiferayLogin(repositoryUserName);
 	}
 
 	@Override
@@ -673,7 +673,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			CredentialsProvider credentialsProvider =
 				new CredentialsProvider() {
 					@Override
-					public String getUser() {
+					public String getLogin() {
 						return _getLogin();
 					}
 
