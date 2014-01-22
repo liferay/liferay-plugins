@@ -78,7 +78,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 	@Test
 	public void testRun() throws Exception {
 		PowerMockito.mockStatic(HttpUtil.class);
-		
+
 		Class<?> clazz = getClass();
 
 		InputStream inputStream = clazz.getResourceAsStream(
