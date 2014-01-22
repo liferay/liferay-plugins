@@ -21,7 +21,7 @@ $dockbarOpenGradientStart: #4F98B6;
 
 $default-box-shadow-blur-offset: 6px;
 $default-box-shadow-color: #999;
-$default-box-shadow-h-offset: 0px;
+$default-box-shadow-h-offset: 0;
 $default-box-shadow-spread: 1px;
 $default-box-shadow-v-offset: 1px;
 
@@ -200,7 +200,7 @@ $default-box-shadow-v-offset: 1px;
 		z-index: 300;
 
 		&:hover {
-			color: #FF3333;
+			color: #F33;
 		}
 	}
 
@@ -333,8 +333,8 @@ $default-box-shadow-v-offset: 1px;
 
 	#footer {
 		background: url(../images/custom/footer_bg.png) repeat-x 0 0;
-		padding: 30px 0;
 		margin: -2px auto 0;
+		padding: 30px 0;
 		width: 1200px;
 
 		p {
