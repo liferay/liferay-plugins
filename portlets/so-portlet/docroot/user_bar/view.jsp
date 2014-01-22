@@ -116,6 +116,34 @@ catch (NoSuchRoleException nsre) {
 </aui:script>
 
 <aui:script use="aui-base">
+	if (!('placeholder' in document.createElement('input'))) {
+		var searchInput = A.one('#<%= PortalUtil.getPortletNamespace(PortletKeys.SO_SITES) %>name')
+
+		if (searchInput) {
+			var placeholder = searchInput.getAttribute('placeholder');
+
+			searchInput.val(placeholder);
+
+			searchInput.on(
+				'click',
+				function(event) {
+					if (searchInput.val() == placeholder) {
+						searchInput.val('');
+					}
+				}
+			);
+
+			searchInput.on(
+				'blur',
+				function(event) {
+					if (!searchInput.val()) {
+						searchInput.val(placeholder);
+					}
+				}
+			);
+		}
+	}
+
 	var mySites = A.one('.portlet-dockbar .my-sites');
 
 	if (mySites) {
