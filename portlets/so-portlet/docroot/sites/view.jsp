@@ -57,30 +57,29 @@ pageContext.setAttribute("portletURL", portletURL);
 <div id="<portlet:namespace />messages"><!-- --></div>
 
 <form action="<%= portletURL.toString() %>" method="get" name="<portlet:namespace />fm">
-<liferay-portlet:renderURLParams varImpl="portletURL" />
+	<liferay-portlet:renderURLParams varImpl="portletURL" />
 
-<div class="sites-tabs">
-	<aui:select label="" name="tabs1">
-		<aui:option label="all-sites" selected='<%= tabs1.equals("all-sites") %>' value="all-sites" />
-		<aui:option label="my-sites" selected='<%= tabs1.equals("my-sites") %>' value="my-sites" />
-		<aui:option label="my-favorites" selected='<%= tabs1.equals("my-favorites") %>' value="my-favorites" />
-	</aui:select>
-</div>
+	<div class="sites-tabs">
+		<aui:select label="" name="tabs1">
+			<aui:option label="all-sites" selected='<%= tabs1.equals("all-sites") %>' value="all-sites" />
+			<aui:option label="my-sites" selected='<%= tabs1.equals("my-sites") %>' value="my-sites" />
+			<aui:option label="my-favorites" selected='<%= tabs1.equals("my-favorites") %>' value="my-favorites" />
+		</aui:select>
+	</div>
 
-<div class="search">
-	<input class="search-input" id="<portlet:namespace />name" name="<portlet:namespace />name" placeholder="<liferay-ui:message key="go-to" />" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
+	<div class="search">
+		<input class="search-input" id="<portlet:namespace />name" name="<portlet:namespace />name" placeholder="<liferay-ui:message key="go-to" />" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
 
-	<input src="<%= themeDisplay.getPathThemeImages() %>/common/search.png" type="image" value='<liferay-ui:message key="search" />' />
-</div>
+		<input src="<%= themeDisplay.getPathThemeImages() %>/common/search.png" type="image" value='<liferay-ui:message key="search" />' />
+	</div>
 
-<div class="site-list-container">
-	<ul class="site-list">
-	</ul>
-</div>
+	<div class="site-list-container">
+		<ul class="site-list">
+		</ul>
+	</div>
 
-<div class="control-container">
-</div>
-
+	<div class="control-container">
+	</div>
 </form>
 
 <aui:script use="aui-base,aui-io-deprecated,aui-toolbar,liferay-so-user-menu">

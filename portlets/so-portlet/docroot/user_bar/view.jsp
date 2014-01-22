@@ -91,7 +91,7 @@ catch (NoSuchRoleException nsre) {
 
 <aui:script>
 	function <portlet:namespace />openWindow() {
-		<liferay-portlet:renderURL portletName="5_WAR_soportlet" var="viewSitesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+		<liferay-portlet:renderURL portletName="<%= PortletKeys.SO_SITES %>" var="viewSitesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 			<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 		</liferay-portlet:renderURL>
 
