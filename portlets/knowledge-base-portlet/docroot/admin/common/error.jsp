@@ -17,10 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <c:if test="<%= !rootPortletId.equals(PortletKeys.KNOWLEDGE_BASE_ARTICLE) %>">
-	<liferay-ui:header
-		backURL="javascript:history.go(-1);"
-		title="error"
-	/>
+	<liferay-ui:error-header />
 </c:if>
 
 <c:choose>
