@@ -227,7 +227,7 @@ public class ExtRepositoryFileEntryAdapter
 		catch (SystemException se) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Cannot obtain version " + version + " for external " +
+					"Unable to obtain version " + version + " for external " +
 						"repository file entry " + getTitle(),
 					se);
 			}

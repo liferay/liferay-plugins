@@ -839,7 +839,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		}
 		else {
 			throw new NoSuchFileVersionException(
-				"No file version with {key=" +
+				"No file version with {extRepositoryModelKey=" +
 					extRepositoryFileEntry.getExtRepositoryModelKey() +
 						", version: " + version + "}");
 		}
@@ -884,8 +884,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		catch (PortalException pe) {
 			throw new SearchException("Unable to perform search", pe);
 		}
-		catch (SystemException e) {
-			throw new SearchException("Unable to perform search", e);
+		catch (SystemException se) {
+			throw new SearchException("Unable to perform search", se);
 		}
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
@@ -1094,15 +1094,15 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			WorkflowConstants.STATUS_ANY);
 	}
 
-	private String _getExtRepositoryObjectKey(String entryUuid)
+	private String _getExtRepositoryObjectKey(String uuid)
 		throws PortalException, SystemException {
 
 		RepositoryEntry repositoryEntry = RepositoryEntryUtil.fetchByUUID_G(
-			entryUuid, getGroupId(), true);
+			uuid, getGroupId(), true);
 
 		if (repositoryEntry == null) {
 			throw new NoSuchRepositoryEntryException(
-				"No repository entry exits with {uuid='" + entryUuid + "}");
+				"No repository entry exits with UUID " + uuid);
 		}
 
 		return repositoryEntry.getMappedId();
@@ -1175,7 +1175,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			}
 			catch (PortalException pe) {
 				throw new SystemException(
-					"Cannot create root folder entry", pe);
+					"Unable to create root folder entry", pe);
 			}
 		}
 
@@ -1277,7 +1277,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					ExtRepositoryFileEntryAdapter)) {
 
 				throw new NoSuchFileEntryException(
-					"External repository entry is not a file " +
+					"External repository object is not a file " +
 						extRepositoryObject);
 			}
 		}
@@ -1288,7 +1288,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					ExtRepositoryFolderAdapter)) {
 
 				throw new NoSuchFolderException(
-					"External repository entry is not a folder " +
+					"External repository object is not a folder " +
 						extRepositoryObject);
 			}
 		}
@@ -1296,7 +1296,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					ExtRepositoryObjectAdapterType.OBJECT) {
 
 			throw new IllegalArgumentException(
-				"Unsupported repository entry type " +
+				"Unsupported repository object type " +
 					extRepositoryObjectAdapterType);
 		}
 
