@@ -832,8 +832,9 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		}
 		else {
 			throw new NoSuchFileVersionException(
-				"No file version with {id=" + extRepositoryFileEntry.getKey() +
-					", version: " + version + "}");
+				"No file version with {key=" +
+					extRepositoryFileEntry.getExtRepositoryModelKey() +
+						", version: " + version + "}");
 		}
 	}
 
@@ -901,7 +902,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		if (!title.equals(extRepositoryFileEntry.getTitle())) {
 			_extRepository.moveExtRepositoryObject(
 				ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey,
-				folder.getKey(), title);
+				folder.getExtRepositoryModelKey(), title);
 		}
 
 		return _toExtRepositoryObjectAdapter(
@@ -926,7 +927,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		ExtRepositoryFolder moveExtRepositoryFolder =
 			_extRepository.moveExtRepositoryObject(
 				ExtRepositoryObjectType.FOLDER, extRepositoryFolderKey,
-				folder.getKey(), title);
+				folder.getExtRepositoryModelKey(), title);
 
 		return _toExtRepositoryObjectAdapter(
 			ExtRepositoryObjectAdapterType.FOLDER, moveExtRepositoryFolder);
@@ -1111,7 +1112,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			ExtRepositoryFileVersion extRepositoryFileVersion)
 		throws SystemException {
 
-		Object[] ids = getRepositoryEntryIds(extRepositoryFileVersion.getKey());
+		Object[] ids = getRepositoryEntryIds(
+			extRepositoryFileVersion.getExtRepositoryModelKey());
 
 		long extRepositoryObjectId = (Long)ids[0];
 
@@ -1151,7 +1153,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			ExtRepositoryObject extRepositoryObject)
 		throws PortalException, SystemException {
 
-		Object[] ids = getRepositoryEntryIds(extRepositoryObject.getKey());
+		Object[] ids = getRepositoryEntryIds(
+			extRepositoryObject.getExtRepositoryModelKey());
 
 		long extRepositoryObjectId = (Long)ids[0];
 
