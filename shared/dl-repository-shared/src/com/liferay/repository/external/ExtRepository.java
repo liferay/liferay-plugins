@@ -16,7 +16,10 @@ package com.liferay.repository.external;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Query;
+import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.repository.external.search.ExtRepositoryQueryMapper;
 
 import java.io.InputStream;
 
@@ -131,6 +134,11 @@ public interface ExtRepository {
 			ExtRepositoryObjectType<T> extRepositoryObjectType,
 			String extRepositoryObjectKey, String newExtRepositoryFolderKey,
 			String newTitle)
+		throws PortalException, SystemException;
+
+	public List<ExtRepositorySearchResult<?>> search(
+			SearchContext searchContext, Query query,
+			ExtRepositoryQueryMapper extRepositoryQueryMapper)
 		throws PortalException, SystemException;
 
 	public ExtRepositoryFileEntry updateExtRepositoryFileEntry(
