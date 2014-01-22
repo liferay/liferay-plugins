@@ -32,6 +32,4 @@ public interface WatchEventListener {
 
 	public void overflow(Path filePath, WatchEvent<Path> watchEvent);
 
-	public void setSyncAccountId(long syncAccountId);
-
 }

@@ -19,14 +19,13 @@ package com.liferay.sync.engine.filesystem;
  */
 public abstract class BaseWatchEventListener implements WatchEventListener {
 
-	@Override
-	public long getSyncAccountId() {
-		return _syncAccountId;
+	public BaseWatchEventListener(long syncAccountId) {
+		_syncAccountId = syncAccountId;
 	}
 
 	@Override
-	public void setSyncAccountId(long syncAccountId) {
-		_syncAccountId = syncAccountId;
+	public long getSyncAccountId() {
+		return _syncAccountId;
 	}
 
 	private long _syncAccountId;

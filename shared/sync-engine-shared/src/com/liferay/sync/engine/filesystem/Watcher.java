@@ -40,10 +40,16 @@ import java.util.concurrent.Executors;
  */
 public class Watcher implements Runnable {
 
-	public Watcher(Path filePath, boolean recursive) throws IOException {
+	public Watcher(
+			Path filePath, boolean recursive,
+			WatchEventListener watchEventListener)
+		throws IOException {
+
 		_recursive = recursive;
 
 		register(filePath, recursive);
+
+		_watchEventListener = watchEventListener;
 
 		FileSystem fileSystem = FileSystems.getDefault();
 
@@ -133,10 +139,6 @@ public class Watcher implements Runnable {
 				}
 			}
 		}
-	}
-
-	public void setWatchEventListener(WatchEventListener watchEventListener) {
-		_watchEventListener = watchEventListener;
 	}
 
 	protected void register(Path filePath, boolean recursive)

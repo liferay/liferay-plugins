@@ -27,6 +27,10 @@ import org.slf4j.LoggerFactory;
  */
 public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 
+	public SyncSiteWatchEventListener(long syncAccountId) {
+		super(syncAccountId);
+	}
+
 	@Override
 	public void entryCreate(Path filePath, WatchEvent<Path> watchEvent) {
 		addSyncWatchEvent(filePath, watchEvent);
