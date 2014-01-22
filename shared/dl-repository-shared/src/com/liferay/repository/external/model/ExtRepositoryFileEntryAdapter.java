@@ -61,16 +61,20 @@ public class ExtRepositoryFileEntryAdapter
 	public InputStream getContentStream()
 		throws PortalException, SystemException {
 
-		return getRepository().getContentStream(this);
+		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
+
+		return extRepositoryAdapter.getContentStream(this);
 	}
 
 	@Override
 	public InputStream getContentStream(String version)
 		throws PortalException, SystemException {
 
+		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
+
 		FileVersion fileVersion = getFileVersion(version);
 
-		return getRepository().getContentStream(
+		return extRepositoryAdapter.getContentStream(
 			(ExtRepositoryFileVersionAdapter)fileVersion);
 	}
 
@@ -87,7 +91,7 @@ public class ExtRepositoryFileEntryAdapter
 	@Override
 	public FileVersion getFileVersion() throws SystemException {
 		List<ExtRepositoryFileVersionAdapter> extRepositoryFileVersionAdapters =
-			_getVersions();
+			_getExtRepositoryFileVersionAdapters();
 
 		return extRepositoryFileVersionAdapters.get(0);
 	}
@@ -97,7 +101,7 @@ public class ExtRepositoryFileEntryAdapter
 		throws PortalException, SystemException {
 
 		List<ExtRepositoryFileVersionAdapter> extRepositoryFileVersionAdapters =
-			_getVersions();
+			_getExtRepositoryFileVersionAdapters();
 
 		for (ExtRepositoryFileVersionAdapter extRepositoryFileVersionAdapter :
 				extRepositoryFileVersionAdapters) {
@@ -122,7 +126,7 @@ public class ExtRepositoryFileEntryAdapter
 		if ((status == WorkflowConstants.STATUS_ANY) ||
 			(status == WorkflowConstants.STATUS_APPROVED)) {
 
-			return (List)_getVersions();
+			return (List)_getExtRepositoryFileVersionAdapters();
 		}
 		else {
 			return Collections.emptyList();
@@ -215,16 +219,16 @@ public class ExtRepositoryFileEntryAdapter
 		catch (PortalException pe) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Cannot obtain version '" + version + "' for ext " +
-						"repository file entry: " + getTitle(),
+					"Unable to obtain version " + version + " for external " +
+						"repository file entry " + getTitle(),
 					pe);
 			}
 		}
 		catch (SystemException se) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Cannot obtain version '" + version + "' for ext " +
-						"repository file entry: " + getTitle(),
+					"Cannot obtain version " + version + " for external " +
+						"repository file entry " + getTitle(),
 					se);
 			}
 		}
@@ -268,7 +272,11 @@ public class ExtRepositoryFileEntryAdapter
 	@Override
 	public String getVersion() {
 		try {
-			FileVersion fileVersion = _getVersions().get(0);
+			List<ExtRepositoryFileVersionAdapter>
+				extRepositoryFileVersionAdapters =
+					_getExtRepositoryFileVersionAdapters();
+
+			FileVersion fileVersion = extRepositoryFileVersionAdapters.get(0);
 
 			return fileVersion.getVersion();
 		}
@@ -303,9 +311,8 @@ public class ExtRepositoryFileEntryAdapter
 		if (Validator.isNull(_extRepositoryFileEntry.getCheckedOutBy())) {
 			return false;
 		}
-		else {
-			return true;
-		}
+
+		return true;
 	}
 
 	@Override
@@ -318,12 +325,15 @@ public class ExtRepositoryFileEntryAdapter
 		return true;
 	}
 
-	private List<ExtRepositoryFileVersionAdapter> _getVersions()
+	private List<ExtRepositoryFileVersionAdapter>
+			_getExtRepositoryFileVersionAdapters()
 		throws SystemException {
 
 		if (_extRepositoryFileVersionAdapters == null) {
+			ExtRepositoryAdapter extRepositoryAdapter = getRepository();
+
 			_extRepositoryFileVersionAdapters =
-				getRepository().getExtRepositoryFileVersionAdapters(this);
+				extRepositoryAdapter.getExtRepositoryFileVersionAdapters(this);
 		}
 
 		return _extRepositoryFileVersionAdapters;

@@ -104,7 +104,9 @@ public abstract class ExtRepositoryObjectAdapter<T>
 	public abstract String getName();
 
 	public Folder getParentFolder() throws PortalException, SystemException {
-		Folder parentFolder = getRepository().getParentFolder(this);
+		ExtRepositoryAdapter extRepositoryAdapter = getRepository();
+
+		Folder parentFolder = extRepositoryAdapter.getParentFolder(this);
 
 		if (parentFolder.isRoot()) {
 			return DLAppLocalServiceUtil.getMountFolder(getRepositoryId());
