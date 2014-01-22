@@ -96,7 +96,7 @@ public abstract class ExtRepositoryModelAdapter<T>
 
 	@Override
 	public long getPrimaryKey() {
-		return _extRepositoryEntryId;
+		return _extRepositoryObjectId;
 	}
 
 	@Override
@@ -210,11 +210,11 @@ public abstract class ExtRepositoryModelAdapter<T>
 	}
 
 	protected ExtRepositoryModelAdapter(
-		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryEntryId,
+		ExtRepositoryAdapter extRepositoryAdapter, long extRepositoryObjectId,
 		String uuid, ExtRepositoryModel extRepositoryModel) {
 
 		_extRepositoryAdapter = extRepositoryAdapter;
-		_extRepositoryEntryId = extRepositoryEntryId;
+		_extRepositoryObjectId = extRepositoryObjectId;
 		_uuid = uuid;
 		_extRepositoryModel = extRepositoryModel;
 	}
@@ -262,8 +262,8 @@ public abstract class ExtRepositoryModelAdapter<T>
 	}
 
 	private ExtRepositoryAdapter _extRepositoryAdapter;
-	private long _extRepositoryEntryId;
 	private ExtRepositoryModel _extRepositoryModel;
+	private long _extRepositoryObjectId;
 	private String _uuid;
 
 }

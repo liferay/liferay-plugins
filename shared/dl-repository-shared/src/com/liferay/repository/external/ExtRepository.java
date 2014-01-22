@@ -37,25 +37,25 @@ public interface ExtRepository {
 			String parentFolderId, String name, String description)
 		throws PortalException, SystemException;
 
-	public ExtRepositoryFileVersion cancelCheckOut(String entryId)
+	public ExtRepositoryFileVersion cancelCheckOut(String extRepositoryObjectId)
 		throws PortalException, SystemException;
 
 	public void checkInFile(
 			String fileId, boolean createMajorVersion, String changeLog)
 		throws PortalException, SystemException;
 
-	public ExtRepositoryFileEntry checkOutFile(String entryId)
+	public ExtRepositoryFileEntry checkOutFile(String extRepositoryObjectId)
 		throws PortalException, SystemException;
 
-	public <T extends ExtRepositoryEntry> T copyEntry(
-			ExtRepositoryModelType<T> extRepositoryModelType, String entryId,
-			String newFolderId, String newTitle)
+	public <T extends ExtRepositoryObject> T copyExtRepositoryObject(
+			ExtRepositoryObjectType<T> extRepositoryObjectType,
+			String extRepositoryObjectId, String newFolderId, String newTitle)
 		throws PortalException, SystemException;
 
-	public void deleteEntry(
-			ExtRepositoryModelType<? extends ExtRepositoryEntry>
-				extRepositoryModelType,
-			String entryId)
+	public void deleteExtRepositoryObject(
+			ExtRepositoryObjectType<? extends ExtRepositoryObject>
+				extRepositoryObjectType,
+			String extRepositoryObjectId)
 		throws PortalException, SystemException;
 
 	public String getAuthType();
@@ -68,23 +68,24 @@ public interface ExtRepository {
 			ExtRepositoryFileVersion extRepositoryFileVersion)
 		throws PortalException, SystemException;
 
-	public <T extends ExtRepositoryEntry> List<T> getEntries(
-			ExtRepositoryModelType<T> extRepositoryModelType, String folderId)
+	public <T extends ExtRepositoryObject> T getExtRepositoryObject(
+			ExtRepositoryObjectType<T> extRepositoryObjectType,
+			String extRepositoryObjectId)
 		throws PortalException, SystemException;
 
-	public int getEntriesCount(
-			ExtRepositoryModelType<? extends ExtRepositoryEntry>
-				extRepositoryModelType,
-			String folderId)
-		throws PortalException, SystemException;
-
-	public <T extends ExtRepositoryEntry> T getEntry(
-			ExtRepositoryModelType<T> extRepositoryModelType, String entryId)
-		throws PortalException, SystemException;
-
-	public <T extends ExtRepositoryEntry> T getEntry(
-			ExtRepositoryModelType<T> extRepositoryModelType, String folderId,
+	public <T extends ExtRepositoryObject> T getExtRepositoryObject(
+			ExtRepositoryObjectType<T> extRepositoryObjectType, String folderId,
 			String title)
+		throws PortalException, SystemException;
+
+	public <T extends ExtRepositoryObject> List<T> getExtRepositoryObjects(
+			ExtRepositoryObjectType<T> extRepositoryObjectType, String folderId)
+		throws PortalException, SystemException;
+
+	public int getExtRepositoryObjectsCount(
+			ExtRepositoryObjectType<? extends ExtRepositoryObject>
+				extRepositoryObjectType,
+			String folderId)
 		throws PortalException, SystemException;
 
 	public ExtRepositoryFileVersion getFileVersion(
@@ -101,7 +102,7 @@ public interface ExtRepository {
 	public String getLiferayUserId(String extRepositoryUserName);
 
 	public ExtRepositoryFolder getParentFolder(
-			ExtRepositoryEntry extRepositoryEntry)
+			ExtRepositoryObject extRepositoryObject)
 		throws PortalException, SystemException;
 
 	public String getRootFolderId() throws PortalException, SystemException;
@@ -118,9 +119,9 @@ public interface ExtRepository {
 			CredentialsProvider credentialsProvider)
 		throws PortalException, SystemException;
 
-	public <T extends ExtRepositoryEntry> T moveEntry(
-			ExtRepositoryModelType<T> extRepositoryModelType, String entryId,
-			String newFolderId, String newTitle)
+	public <T extends ExtRepositoryObject> T moveExtRepositoryObject(
+			ExtRepositoryObjectType<T> extRepositoryObjectType,
+			String extRepositoryObjectId, String newFolderId, String newTitle)
 		throws PortalException, SystemException;
 
 	public ExtRepositoryFileEntry updateFile(

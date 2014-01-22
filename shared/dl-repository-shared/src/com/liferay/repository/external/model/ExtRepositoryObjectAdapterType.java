@@ -18,30 +18,30 @@ package com.liferay.repository.external.model;
  * @author Iván Zaera
  * @author Sergio González
  */
-public class ExtRepositoryModelAdapterType<
+public class ExtRepositoryObjectAdapterType<
 	T extends ExtRepositoryModelAdapter<?>> {
 
-	public static final ExtRepositoryModelAdapterType<
-		ExtRepositoryEntryAdapter<?>> ENTRY =
-			new ExtRepositoryModelAdapterType<ExtRepositoryEntryAdapter<?>>(
-				"ENTRY");
-
-	public static final ExtRepositoryModelAdapterType<
-		ExtRepositoryFileEntryAdapter> FILE =
-			new ExtRepositoryModelAdapterType<ExtRepositoryFileEntryAdapter>(
+	public static final ExtRepositoryObjectAdapterType<
+			ExtRepositoryFileEntryAdapter> FILE =
+			new ExtRepositoryObjectAdapterType<ExtRepositoryFileEntryAdapter>(
 				"FILE");
 
-	public static final ExtRepositoryModelAdapterType<
-		ExtRepositoryFolderAdapter> FOLDER =
-			new ExtRepositoryModelAdapterType<ExtRepositoryFolderAdapter>(
+	public static final ExtRepositoryObjectAdapterType<
+			ExtRepositoryFolderAdapter> FOLDER =
+			new ExtRepositoryObjectAdapterType<ExtRepositoryFolderAdapter>(
 				"FOLDER");
+
+	public static final ExtRepositoryObjectAdapterType<
+			ExtRepositoryObjectAdapter<?>> OBJECT =
+			new ExtRepositoryObjectAdapterType<ExtRepositoryObjectAdapter<?>>(
+				"OBJECT");
 
 	@Override
 	public String toString() {
 		return _name;
 	}
 
-	private ExtRepositoryModelAdapterType(String name) {
+	private ExtRepositoryObjectAdapterType(String name) {
 		_name = name;
 	}
 
