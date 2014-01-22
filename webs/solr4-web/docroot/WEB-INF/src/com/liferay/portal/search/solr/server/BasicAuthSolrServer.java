@@ -16,6 +16,7 @@ package com.liferay.portal.search.solr.server;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.search.solr.interceptor.PreemptiveAuthInterceptor;
 
 import java.io.IOException;
 
@@ -63,6 +64,9 @@ public class BasicAuthSolrServer extends SolrServer {
 			credentialsProvider.setCredentials(
 				authScope,
 				new UsernamePasswordCredentials(_username, _password));
+
+			defaultHttpClient.addRequestInterceptor(
+				new PreemptiveAuthInterceptor(), 0);
 		}
 
 		_server = new HttpSolrServer(url, defaultHttpClient);
