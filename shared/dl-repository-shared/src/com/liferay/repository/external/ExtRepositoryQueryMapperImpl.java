@@ -44,59 +44,60 @@ public class ExtRepositoryQueryMapperImpl implements ExtRepositoryQueryMapper {
 	}
 
 	@Override
-	public Date formatDateParameterValue(String field, String value)
+	public Date formatDateParameterValue(String fieldName, String fieldValue)
 		throws SearchException {
 
-		if (field.equals(Field.CREATE_DATE) ||
-			field.equals(Field.MODIFIED_DATE)) {
+		if (fieldName.equals(Field.CREATE_DATE) ||
+			fieldName.equals(Field.MODIFIED_DATE)) {
 
 			try {
 				DateFormat searchSimpleDateFormat =
 					DateFormatFactoryUtil.getSimpleDateFormat(
 						_INDEX_DATE_FORMAT_PATTERN);
 
-				return searchSimpleDateFormat.parse(value);
+				return searchSimpleDateFormat.parse(fieldValue);
 			}
 			catch (ParseException pe) {
 				throw new SearchException(
-					"Unable to parse date " + value + " for field " + field);
+					"Unable to parse date " + fieldValue + " for field " +
+						fieldName);
 			}
 		}
 		else {
-			throw new SearchException("Field " + field + " is not a date");
+			throw new SearchException("Field " + fieldName + " is not a date");
 		}
 	}
 
 	@Override
-	public String formatParameterValue(String field, String value)
+	public String formatParameterValue(String fieldName, String fieldValue)
 		throws SearchException {
 
-		if (field.equals(Field.CREATE_DATE) ||
-			field.equals(Field.MODIFIED_DATE)) {
+		if (fieldName.equals(Field.CREATE_DATE) ||
+			fieldName.equals(Field.MODIFIED_DATE)) {
 
 			throw new SearchException(
 				"Use the method formatDateParameterValue to format the date " +
-					"field " + field);
+					"field " + fieldName);
 		}
-		else if (field.equals(Field.FOLDER_ID)) {
+		else if (fieldName.equals(Field.FOLDER_ID)) {
 			try {
-				long folderId = GetterUtil.getLong(value);
+				long folderId = GetterUtil.getLong(fieldValue);
 
 				return _extRepositoryAdapter.getExtRepositoryObjectKey(
 					folderId);
 			}
 			catch (PortalException pe) {
 				throw new SearchException(
-					"Unable to get folder folder " + value, pe);
+					"Unable to get folder folder " + fieldValue, pe);
 			}
 			catch (SystemException se) {
 				throw new SearchException(
-					"Unable to get folder folder " + value, se);
+					"Unable to get folder folder " + fieldValue, se);
 			}
 		}
-		else if (field.equals(Field.USER_ID)) {
+		else if (fieldName.equals(Field.USER_ID)) {
 			try {
-				long userId = GetterUtil.getLong(value);
+				long userId = GetterUtil.getLong(fieldValue);
 
 				User user = UserLocalServiceUtil.getUserById(userId);
 
@@ -104,11 +105,11 @@ public class ExtRepositoryQueryMapperImpl implements ExtRepositoryQueryMapper {
 			}
 			catch (Exception e) {
 				throw new SearchException(
-					"Unable to get user user " + value, e);
+					"Unable to get user user " + fieldValue, e);
 			}
 		}
 		else {
-			return value;
+			return fieldValue;
 		}
 	}
 

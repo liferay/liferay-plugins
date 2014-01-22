@@ -24,10 +24,10 @@ import java.util.Date;
  */
 public interface ExtRepositoryQueryMapper {
 
-	public Date formatDateParameterValue(String field, String value)
+	public Date formatDateParameterValue(String fieldName, String fieldValue)
 		throws SearchException;
 
-	public String formatParameterValue(String field, String value)
+	public String formatParameterValue(String fieldName, String fieldValue)
 		throws SearchException;
 
 }
