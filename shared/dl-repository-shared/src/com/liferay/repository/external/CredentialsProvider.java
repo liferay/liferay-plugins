@@ -20,8 +20,8 @@ package com.liferay.repository.external;
  */
 public interface CredentialsProvider {
 
-	public String getPassword();
+	public String getLogin();
 
-	public String getUser();
+	public String getPassword();
 
 }
