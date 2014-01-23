@@ -825,8 +825,12 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			InputStream inputStream = _extRepository.getContentStream(
 				extRepositoryFileVersion);
 
-			_extRepository.checkOutExtRepositoryFileEntry(
-				extRepositoryFileEntryKey);
+			try {
+				_extRepository.checkOutExtRepositoryFileEntry(
+					extRepositoryFileEntryKey);
+			}
+			catch (UnsupportedOperationException uoe) {
+			}
 
 			_extRepository.updateExtRepositoryFileEntry(
 				extRepositoryFileEntryKey,
@@ -834,8 +838,12 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 			String changeLog = "Reverted to " + version;
 
-			_extRepository.checkInExtRepositoryFileEntry(
-				extRepositoryFileEntryKey, true, changeLog);
+			try {
+				_extRepository.checkInExtRepositoryFileEntry(
+					extRepositoryFileEntryKey, true, changeLog);
+			}
+			catch (UnsupportedOperationException uoe) {
+			}
 		}
 		else {
 			throw new NoSuchFileVersionException(
@@ -978,16 +986,23 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey);
 		}
 		else {
-			extRepositoryFileEntry =
+			try {
 				_extRepository.checkOutExtRepositoryFileEntry(
 					extRepositoryFileEntryKey);
+			}
+			catch (UnsupportedOperationException uoe) {
+			}
 
 			extRepositoryFileEntry =
 				_extRepository.updateExtRepositoryFileEntry(
 					extRepositoryFileEntryKey, mimeType, is);
 
-			_extRepository.checkInExtRepositoryFileEntry(
-				extRepositoryFileEntryKey, majorVersion, changeLog);
+			try {
+				_extRepository.checkInExtRepositoryFileEntry(
+					extRepositoryFileEntryKey, majorVersion, changeLog);
+			}
+			catch (UnsupportedOperationException uoe) {
+			}
 		}
 
 		if (!title.equals(extRepositoryFileEntry.getTitle())) {
