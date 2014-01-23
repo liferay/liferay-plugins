@@ -36,9 +36,9 @@
 		</copy>
 
 		<replace dir="${web.dir}">
+			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
 			<replacefilter token="@web.display.name@" value="${web.display.name}" />
 			<replacefilter token="@web.name@" value="${web.name}" />
-			<replacefilter token="@plugin.type.dir@" value="${plugin.type.dir}" />
 		</replace>
 	</target>
 </project>
