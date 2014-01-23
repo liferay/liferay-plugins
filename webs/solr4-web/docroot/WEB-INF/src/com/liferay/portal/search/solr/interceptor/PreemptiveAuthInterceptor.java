@@ -57,8 +57,7 @@ public class PreemptiveAuthInterceptor implements HttpRequestInterceptor {
 		Credentials credentials = credentialsProvider.getCredentials(authScope);
 
 		if (credentials != null) {
-			authState.setAuthScheme(new BasicScheme());
-			authState.setCredentials(credentials);
+			authState.update(new BasicScheme(), credentials);
 		}
 	}
 
