@@ -77,7 +77,7 @@ public abstract class ExtRepositoryObjectAdapter<T>
 		while ((folder != null) && !folder.isRoot()) {
 			folders.add(folder);
 
-			folder = getParentFolder();
+			folder = folder.getParentFolder();
 		}
 
 		if (folder != null) {
