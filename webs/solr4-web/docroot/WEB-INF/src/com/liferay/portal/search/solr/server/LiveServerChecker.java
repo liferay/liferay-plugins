@@ -32,16 +32,13 @@ import org.apache.solr.client.solrj.response.SolrPingResponse;
  */
 public class LiveServerChecker implements Runnable {
 
-	public LiveServerChecker(
-		final SolrServerFactory solrServerFactory, Long delay) {
-
-		_solrServerFactory = solrServerFactory;
+	public void afterPropertiesSet() {
 
 		_scheduledExecutorService =
 			Executors.newSingleThreadScheduledExecutor();
 
 		_scheduledExecutorService.scheduleWithFixedDelay(
-			this, 0, delay, TimeUnit.SECONDS);
+			this, 0, _delay, TimeUnit.SECONDS);
 
 		SolrServletContextListener.registerLiveServerChecker(this);
 	}
@@ -74,6 +71,14 @@ public class LiveServerChecker implements Runnable {
 				_solrServerFactory.killServer(solrServerWrapper);
 			}
 		}
+	}
+
+	public void setDelay(long delay) {
+		_delay = delay;
+	}
+
+	public void setSolrServerFactory(SolrServerFactory solrServerFactory) {
+		_solrServerFactory = solrServerFactory;
 	}
 
 	public void shutdown() {
@@ -109,6 +114,7 @@ public class LiveServerChecker implements Runnable {
 		_scheduledExecutorService.shutdownNow();
 	}
 
+	private long _delay;
 	private ScheduledExecutorService _scheduledExecutorService;
 	private SolrServerFactory _solrServerFactory;
 

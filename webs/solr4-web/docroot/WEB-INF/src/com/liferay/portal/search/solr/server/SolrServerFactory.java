@@ -27,20 +27,6 @@ import org.apache.solr.client.solrj.SolrServerException;
  */
 public class SolrServerFactory {
 
-	public SolrServerFactory(Map<String, SolrServer> solrServers) {
-		for (Map.Entry<String, SolrServer> entry : solrServers.entrySet()) {
-			String id = entry.getKey();
-			SolrServer solrServer = entry.getValue();
-
-			SolrServerWrapper solrServerWrapper = new SolrServerWrapper(
-				id, solrServer);
-
-			solrServerWrapper.setSolrServerFactory(this);
-
-			_liveServers.put(id, solrServerWrapper);
-		}
-	}
-
 	public List<SolrServerWrapper> getDeadServers() {
 		synchronized (this) {
 			return new ArrayList<SolrServerWrapper>(_deadServers.values());
@@ -74,6 +60,20 @@ public class SolrServerFactory {
 
 			_deadServers.put(solrServerWrapper.getId(), solrServerWrapper);
 			_liveServers.remove(solrServerWrapper.getId());
+		}
+	}
+
+	public void setSolrServers(Map<String, SolrServer> solrServers) {
+		for (Map.Entry<String, SolrServer> entry : solrServers.entrySet()) {
+			String id = entry.getKey();
+			SolrServer solrServer = entry.getValue();
+
+			SolrServerWrapper solrServerWrapper = new SolrServerWrapper(
+				id, solrServer);
+
+			solrServerWrapper.setSolrServerFactory(this);
+
+			_liveServers.put(id, solrServerWrapper);
 		}
 	}
 

@@ -29,10 +29,6 @@ import org.apache.solr.common.util.NamedList;
  */
 public class BroadcastWriterSolrServer extends BaseDelegatedSolrServer {
 
-	public BroadcastWriterSolrServer(SolrServerFactory solrServerFactory) {
-		super(solrServerFactory);
-	}
-
 	@Override
 	public NamedList<Object> request(SolrRequest solrRequest)
 		throws SolrServerException {

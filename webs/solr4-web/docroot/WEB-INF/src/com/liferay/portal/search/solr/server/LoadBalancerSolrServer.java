@@ -24,10 +24,6 @@ import org.apache.solr.common.util.NamedList;
  */
 public class LoadBalancerSolrServer extends BaseDelegatedSolrServer {
 
-	public LoadBalancerSolrServer(SolrServerFactory solrServerFactory) {
-		super(solrServerFactory);
-	}
-
 	@Override
 	public NamedList<Object> request(SolrRequest solrRequest)
 		throws SolrServerException {
