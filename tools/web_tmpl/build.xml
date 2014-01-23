@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="@web.name@-web" basedir="." default="deploy">
+	<import file="@plugin.type.dir@/build-common-web.xml" />
+</project>
