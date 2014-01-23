@@ -283,6 +283,13 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 			modifiedDate, start, end);
 	}
 
+	public java.util.List<java.lang.Object[]> getSocialStatuses(long userId,
+		int[] types, long modifiedDate, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _statusLocalService.getSocialStatuses(userId, types,
+			modifiedDate, start, end);
+	}
+
 	public com.liferay.chat.model.Status getUserStatus(long userId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _statusLocalService.getUserStatus(userId);
