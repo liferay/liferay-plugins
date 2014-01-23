@@ -14,9 +14,6 @@
 
 package com.liferay.portal.search.solr.interceptor;
 
-import java.io.IOException;
-
-import org.apache.http.HttpException;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpRequestInterceptor;
@@ -34,10 +31,9 @@ import org.apache.http.protocol.HttpContext;
  */
 public class PreemptiveAuthInterceptor implements HttpRequestInterceptor {
 
-	public void process(HttpRequest request, HttpContext context)
-		throws HttpException, IOException {
-
-		AuthState authState = (AuthState)context.getAttribute(
+	@Override
+	public void process(HttpRequest request, HttpContext httpContext) {
+		AuthState authState = (AuthState)httpContext.getAttribute(
 			ClientContext.TARGET_AUTH_STATE);
 
 		if (authState.getAuthScheme() != null) {
@@ -45,14 +41,14 @@ public class PreemptiveAuthInterceptor implements HttpRequestInterceptor {
 		}
 
 		CredentialsProvider credentialsProvider =
-			(CredentialsProvider)context.getAttribute(
+			(CredentialsProvider)httpContext.getAttribute(
 				ClientContext.CREDS_PROVIDER);
 
-		HttpHost targetHost = (HttpHost)context.getAttribute(
+		HttpHost targetHttpHost = (HttpHost)httpContext.getAttribute(
 			ExecutionContext.HTTP_TARGET_HOST);
 
 		AuthScope authScope = new AuthScope(
-			targetHost.getHostName(), targetHost.getPort());
+			targetHttpHost.getHostName(), targetHttpHost.getPort());
 
 		Credentials credentials = credentialsProvider.getCredentials(authScope);
 
