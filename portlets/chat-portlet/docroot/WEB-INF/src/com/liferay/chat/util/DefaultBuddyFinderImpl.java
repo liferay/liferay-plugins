@@ -18,7 +18,6 @@ import com.liferay.chat.jabber.JabberUtil;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 import com.liferay.chat.util.comparator.BuddyComparator;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portlet.social.model.SocialRelationConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,11 +28,6 @@ import java.util.List;
  * @author Tibor Lipusz
  */
 public class DefaultBuddyFinderImpl implements BuddyFinder {
-
-	public static final int[] SOCIAL_RELATION_TYPES = {
-		SocialRelationConstants.TYPE_BI_CONNECTION,
-		SocialRelationConstants.TYPE_BI_COWORKER,
-		SocialRelationConstants.TYPE_BI_FRIEND};
 
 	@Override
 	public List<Object[]> getBuddies(long companyId, long userId)
@@ -57,13 +51,18 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 				PortletPropsValues.BUDDY_LIST_SITE_EXCLUDES, 0,
 				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
-		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("friends")) {
+		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals("friends") ||
+				 PortletPropsValues.BUDDY_LIST_STRATEGY.equals("social")) {
+
 			buddies = StatusLocalServiceUtil.getSocialStatuses(
-				userId, SOCIAL_RELATION_TYPES, modifiedDate, 0,
-				PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
+				userId,
+				PortletPropsValues.BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES,
+				modifiedDate, 0, PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 		}
 		else if (PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"communities,friends") ||
+				 PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
+					"sites,social") ||
 				 PortletPropsValues.BUDDY_LIST_STRATEGY.equals(
 					"friends,sites")) {
 
@@ -74,8 +73,9 @@ public class DefaultBuddyFinderImpl implements BuddyFinder {
 					PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 			List<Object[]> socialBuddies =
 				StatusLocalServiceUtil.getSocialStatuses(
-					userId, SOCIAL_RELATION_TYPES, modifiedDate, 0,
-					PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
+					userId,
+					PortletPropsValues.BUDDY_LIST_ALLOWED_SOCIAL_RELATION_TYPES,
+					modifiedDate, 0, PortletPropsValues.BUDDY_LIST_MAX_BUDDIES);
 
 			buddies = new ArrayList<Object[]>(
 				groupBuddies.size() + socialBuddies.size());
