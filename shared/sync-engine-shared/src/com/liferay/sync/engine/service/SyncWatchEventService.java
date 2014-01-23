@@ -19,6 +19,7 @@ import com.liferay.sync.engine.service.persistence.SyncWatchEventPersistence;
 
 import java.sql.SQLException;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -67,7 +68,7 @@ public class SyncWatchEventService {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
 
-			return null;
+			return Collections.emptyList();
 		}
 	}
 
