@@ -23,7 +23,7 @@ import org.apache.solr.client.solrj.SolrServer;
  */
 public abstract class BaseDelegatedSolrServer extends SolrServer {
 
-	public BaseDelegatedSolrServer(SolrServerFactory solrServerFactory) {
+	public void setSolrServerFactory(SolrServerFactory solrServerFactory) {
 		this.solrServerFactory = solrServerFactory;
 	}
 
