@@ -668,7 +668,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Theme Modules -------- */
+	/* -------- Theme modules -------- */
 
 	.banner {
 		background-color: #FAFAFA;
@@ -758,7 +758,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Media Queries -------- */
+	/* -------- Media queries -------- */
 
 	@media (max-width: 979px) {
 		.banner {
