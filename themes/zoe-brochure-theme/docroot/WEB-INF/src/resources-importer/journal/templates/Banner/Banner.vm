@@ -5,7 +5,7 @@
 
 	#if (!$banner_button_text.data.isEmpty())
 		<div class="banner-button">
-			<a href="$banner_button_text.banner_button_link.data" class="banner-link $banner_button_text.banner_button_style.data $banner_button_text.banner_button_size.data">$banner_button_text.data</a>
+			<a class="banner-link $banner_button_text.banner_button_style.data $banner_button_text.banner_button_size.data" href="$banner_button_text.banner_button_link.data">$banner_button_text.data</a>
 		</div>
 	#end
 </div>
