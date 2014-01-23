@@ -971,20 +971,33 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String extRepositoryFileEntryKey = getExtRepositoryObjectKey(
 			fileEntryId);
 
-		ExtRepositoryFileEntry extRepositoryFileEntry =
-			_extRepository.updateExtRepositoryFileEntry(
-				extRepositoryFileEntryKey, mimeType, is);
+		ExtRepositoryFileEntry extRepositoryFileEntry = null;
 
-		_extRepository.checkInExtRepositoryFileEntry(
-			extRepositoryFileEntryKey, majorVersion, changeLog);
+		if (is == null) {
+			extRepositoryFileEntry = _extRepository.getExtRepositoryObject(
+					ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey);
+		}
+		else {
+			extRepositoryFileEntry =
+				_extRepository.checkOutExtRepositoryFileEntry(
+					extRepositoryFileEntryKey);
 
-		ExtRepositoryFolder extRepositoryFolder =
-			_extRepository.getExtRepositoryParentFolder(extRepositoryFileEntry);
+			extRepositoryFileEntry =
+				_extRepository.updateExtRepositoryFileEntry(
+					extRepositoryFileEntryKey, mimeType, is);
+
+			_extRepository.checkInExtRepositoryFileEntry(
+				extRepositoryFileEntryKey, majorVersion, changeLog);
+		}
 
 		if (!title.equals(extRepositoryFileEntry.getTitle())) {
-			_extRepository.moveExtRepositoryObject(
+			ExtRepositoryFolder folder =
+				_extRepository.getExtRepositoryParentFolder(
+					extRepositoryFileEntry);
+
+			extRepositoryFileEntry = _extRepository.moveExtRepositoryObject(
 				ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey,
-				extRepositoryFolder.getExtRepositoryModelKey(), title);
+				folder.getExtRepositoryModelKey(), title);
 		}
 
 		return _toExtRepositoryObjectAdapter(
