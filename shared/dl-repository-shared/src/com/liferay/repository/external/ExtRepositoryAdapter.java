@@ -972,7 +972,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	public FileEntry updateFileEntry(
 			long fileEntryId, String sourceFileName, String mimeType,
 			String title, String description, String changeLog,
-			boolean majorVersion, InputStream is, long size,
+			boolean majorVersion, InputStream inputStream, long size,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -981,7 +981,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		ExtRepositoryFileEntry extRepositoryFileEntry = null;
 
-		if (is == null) {
+		if (inputStream == null) {
 			extRepositoryFileEntry = _extRepository.getExtRepositoryObject(
 					ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey);
 		}
@@ -995,7 +995,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 			extRepositoryFileEntry =
 				_extRepository.updateExtRepositoryFileEntry(
-					extRepositoryFileEntryKey, mimeType, is);
+					extRepositoryFileEntryKey, mimeType, inputStream);
 
 			try {
 				_extRepository.checkInExtRepositoryFileEntry(
