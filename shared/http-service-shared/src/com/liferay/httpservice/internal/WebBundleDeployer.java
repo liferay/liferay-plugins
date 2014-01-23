@@ -96,6 +96,8 @@ public class WebBundleDeployer {
 					_webExtenderServlet.getServletContext());
 
 			bundleServletContext.open();
+
+			ServletContextPool.put(servletContextName, bundleServletContext);
 		}
 		catch (Exception e) {
 			EventUtil.sendEvent(bundle, EventUtil.FAILED, e, false);
@@ -119,6 +121,8 @@ public class WebBundleDeployer {
 		if (bundleServletContext == null) {
 			EventUtil.sendEvent(bundle, EventUtil.UNDEPLOYED, null, false);
 
+			ServletContextPool.remove(servletContextName);
+
 			return;
 		}
 
@@ -130,6 +134,8 @@ public class WebBundleDeployer {
 		}
 
 		EventUtil.sendEvent(bundle, EventUtil.UNDEPLOYED, null, false);
+
+		ServletContextPool.remove(servletContextName);
 
 		handleCollidedWABs(bundle, servletContextName);
 	}
