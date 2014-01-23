@@ -14,8 +14,8 @@
 
 package com.liferay.knowledgebase.hook.upgrade.v1_0_0;
 
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.StringBundler;
 
 import java.sql.Connection;
