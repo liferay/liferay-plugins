@@ -358,7 +358,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 				);
 			}
 		);
-	}	
+	}
 
 	var viewportRegion = A.getDoc().get('viewportRegion');
 

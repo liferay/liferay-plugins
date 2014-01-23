@@ -142,7 +142,7 @@ AUI.add(
 									function(event) {
 										if (confirm(Liferay.Language.get('are-your-sure-you-want-to-delete-the-message'))) {
 											var currentTarget = event.currentTarget;
-											
+
 											instance._sendRequest(currentTarget.getAttribute('data-delete-message-url'));
 										}
 									},
@@ -234,7 +234,7 @@ AUI.add(
 									function(event) {
 										if (confirm(Liferay.Language.get('are-your-sure-you-want-to-mark-the-message-as-unread'))) {
 											var currentTarget = event.currentTarget;
-											
+
 											instance._sendRequest(currentTarget.getAttribute('data-mark-as-unread-url'));
 										}
 									},
