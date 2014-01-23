@@ -20,6 +20,10 @@
 		</property>
 		<property name="url" value="http://localhost:8080/solr" />
 	</bean>
+	<bean id="com.liferay.portal.search.solr.server.LiveServerChecker" class="com.liferay.portal.search.solr.server.LiveServerChecker">
+		<property name="delay" value="10" />
+		<property name="solrServerFactory" ref="com.liferay.portal.search.solr.server.SolrServerFactory" />
+	</bean>
 	<bean id="com.liferay.portal.search.solr.server.SolrServerFactory" class="com.liferay.portal.search.solr.server.SolrServerFactory">
 		<property name="solrServers">
 			<map key-type="java.lang.String" value-type="org.apache.solr.client.solrj.SolrServer">
@@ -31,10 +35,6 @@
 		<property name="solrServerSelector">
 			<bean class="com.liferay.portal.search.solr.server.LoadBalancedSolrServerSelector" />
 		</property>
-	</bean>
-	<bean id="com.liferay.portal.search.solr.server.LiveServerChecker" class="com.liferay.portal.search.solr.server.LiveServerChecker">
-		<property name="delay" value="10" />
-		<property name="solrServerFactory" ref="com.liferay.portal.search.solr.server.SolrServerFactory" />
 	</bean>
 
 	<!-- Solr search engine adapter -->

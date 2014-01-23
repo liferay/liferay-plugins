@@ -33,7 +33,6 @@ import org.apache.solr.client.solrj.response.SolrPingResponse;
 public class LiveServerChecker implements Runnable {
 
 	public void afterPropertiesSet() {
-
 		_scheduledExecutorService =
 			Executors.newSingleThreadScheduledExecutor();
 
