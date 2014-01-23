@@ -31,8 +31,6 @@ public interface ExtRepositoryObject extends ExtRepositoryModel {
 
 	public Date getModifiedDate();
 
-	public String getParentFolderId();
-
 	public enum ExtRepositoryPermission {
 
 		ACCESS, ADD_DISCUSSION, ADD_DOCUMENT, ADD_FOLDER, ADD_SHORTCUT,
