@@ -17,7 +17,14 @@
 <%@ include file="/html/portlet/directory/init.jsp" %>
 
 <%
-List<Address> addresses = _getAddresses((String)request.getAttribute("addresses.className"), (Long)request.getAttribute("addresses.classPK"));
+List<Organization> organizations = (List<Organization>)request.getAttribute("user.organizations");
+List<Address> organizationAddresses = new ArrayList<Address>();
+
+for (int i = 0; i < organizations.size(); i++) {
+	organizationAddresses.addAll(_getAddresses(Organization.class.getName(), organizations.get(i).getOrganizationId()));
+}
+
+List<Address> personalAddresses = _getAddresses((String)request.getAttribute("addresses.className"), (Long)request.getAttribute("addresses.classPK"));
 %>
 
 <liferay-util:buffer var="html">
@@ -25,29 +32,33 @@ List<Address> addresses = _getAddresses((String)request.getAttribute("addresses.
 </liferay-util:buffer>
 
 <%
-int addressDataStart = _getAddressDataStart(html);
-int addressDataEnd = _getAddressDataEnd(html, addressDataStart);
 
-if ((addressDataStart >= 0) && (addressDataEnd >= 0)) {
-	StringBundler sb = new StringBundler(addresses.size() + 2);
+String organzationAddressTitle = LanguageUtil.get(pageContext, "organization-address");
+String personalAddressTitle = LanguageUtil.get(pageContext, "personal-address");
 
-	sb.append(html.substring(0, addressDataStart));
+int organizationAddressDataStart = _getAddressDataStart(html, organzationAddressTitle);
+int organizationAddressDataEnd = _getAddressDataEnd(html, organizationAddressDataStart);
 
-	for (Address address : addresses) {
-		String street1 = address.getStreet1();
-		String street2 = address.getStreet2();
-		String street3 = address.getStreet3();
+if ((organizationAddressDataStart >= 0) && (organizationAddressDataEnd >= 0)) {
+	StringBundler sb = new StringBundler(organizationAddresses.size() + 2);
 
-		String zipCode = address.getZip();
-		String city = address.getCity();
-		Region region = address.getRegion();
+	sb.append(html.substring(0, organizationAddressDataStart));
 
-		String mailingName = address.getType().getName();
+	for (Address origanizationAddress : organizationAddresses) {
+		String street1 = origanizationAddress.getStreet1();
+		String street2 = origanizationAddress.getStreet2();
+		String street3 = origanizationAddress.getStreet3();
+
+		String zipCode = origanizationAddress.getZip();
+		String city = origanizationAddress.getCity();
+		Region region = origanizationAddress.getRegion();
+
+		String mailingName = origanizationAddress.getType().getName();
 	%>
 
-		<liferay-util:buffer var="newAddress">
+		<liferay-util:buffer var="newOriganizationAddress">
 
-			<li class="<%= address.isPrimary() ? "primary" : "" %>">
+			<li class="<%= origanizationAddress.isPrimary() ? "primary" : "" %>">
 				<em class="mailing-name"> <liferay-ui:message key="<%= mailingName %>" /> </em>
 
 				<c:if test="<%= Validator.isNotNull(region.getName()) %>">
@@ -78,18 +89,85 @@ if ((addressDataStart >= 0) && (addressDataEnd >= 0)) {
 					<liferay-ui:message key="zip-code-label" /> <%= HtmlUtil.escape(zipCode) %>
 				</c:if>
 
-				<c:if test="<%= address.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
+				<c:if test="<%= origanizationAddress.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
 			</li>
 		</liferay-util:buffer>
 
 <%
-		sb.append(newAddress);
+		sb.append(newOriganizationAddress);
 	}
 
-	sb.append(html.substring(addressDataEnd));
+	sb.append(html.substring(organizationAddressDataEnd));
 
 	html = sb.toString();
 }
+
+int personalAddressDataStart = _getAddressDataStart(html, personalAddressTitle);
+int personalAddressDataEnd = _getAddressDataEnd(html, personalAddressDataStart);
+
+if ((personalAddressDataStart >= 0) && (personalAddressDataEnd >= 0)) {
+	StringBundler sb = new StringBundler(personalAddresses.size() + 2);
+
+	sb.append(html.substring(0, personalAddressDataStart));
+
+	for (Address personalAddress : personalAddresses) {
+		String street1 = personalAddress.getStreet1();
+		String street2 = personalAddress.getStreet2();
+		String street3 = personalAddress.getStreet3();
+
+		String zipCode = personalAddress.getZip();
+		String city = personalAddress.getCity();
+		Region region = personalAddress.getRegion();
+
+		String mailingName = personalAddress.getType().getName();
+	%>
+
+		<liferay-util:buffer var="newPersonalAddress">
+
+			<li class="<%= personalAddress.isPrimary() ? "primary" : "" %>">
+				<em class="mailing-name"> <liferay-ui:message key="<%= mailingName %>" /> </em>
+
+				<c:if test="<%= Validator.isNotNull(region.getName()) %>">
+					<%= HtmlUtil.escape(region.getName()) %>
+				</c:if>
+
+				<c:if test="<%= Validator.isNotNull(city) %>">
+					<%= HtmlUtil.escape(city) %><liferay-ui:message key="city-label" />
+				</c:if>
+
+				<c:if test="<%= Validator.isNotNull(street3) %>">
+					<%= HtmlUtil.escape(street3) %>
+				</c:if>
+
+				<c:if test="<%= Validator.isNotNull(street1) %>">
+					<%= HtmlUtil.escape(street1) %>
+				</c:if>
+
+				<c:if test="<%= Validator.isNotNull(street2) %>">
+					<%= HtmlUtil.escape(street2) %>
+				</c:if>
+
+				<c:if test="<%= Validator.isNotNull(region.getName()) || Validator.isNotNull(city) || Validator.isNotNull(street3) || Validator.isNotNull(street1) || Validator.isNotNull(street2) %>">
+					<br />
+				</c:if>
+
+				<c:if test="<%= Validator.isNotNull(zipCode) %>">
+					<liferay-ui:message key="zip-code-label" /> <%= HtmlUtil.escape(zipCode) %>
+				</c:if>
+
+				<c:if test="<%= personalAddress.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
+			</li>
+		</liferay-util:buffer>
+
+<%
+		sb.append(newPersonalAddress);
+	}
+
+	sb.append(html.substring(personalAddressDataEnd));
+
+	html = sb.toString();
+}
+
 %>
 
 <%= html %>
@@ -109,27 +187,31 @@ private int _getAddressDataEnd(String html, int fromIndex) {
 	return html.lastIndexOf(_LI_CLOSE, x) + _LI_CLOSE.length();
 }
 
-private int _getAddressDataStart(String html) {
-	int x = html.indexOf(_CLASS_MAILING_NAME);
+private int _getAddressDataStart(String html, String title) {
+	int x = html.indexOf(_H4_OPEN + title + _H4_CLOSE);
 
 	if (x < 0) {
 		return -1;
 	}
 
-	return html.lastIndexOf(_LI_OPEN, x);
+	return html.indexOf(_LI_OPEN, x);
 }
 
 private List<Address> _getAddresses(String className, long classPK) throws PortalException, SystemException {
-	List<Address> personalAddresses = new ArrayList<Address>();
+	List<Address> addresses = new ArrayList<Address>();
 
 	if (classPK > 0) {
-		personalAddresses = AddressServiceUtil.getAddresses(className, classPK);
+		addresses = AddressServiceUtil.getAddresses(className, classPK);
 	}
 
-	return personalAddresses;
+	return addresses;
 }
 
 private static final String _CLASS_MAILING_NAME = "class=\"mailing-name\"";
+
+private static final String _H4_CLOSE = "</h4>";
+
+private static final String _H4_OPEN = "<h4>";
 
 private static final String _LI_CLOSE = "</li>";
 
