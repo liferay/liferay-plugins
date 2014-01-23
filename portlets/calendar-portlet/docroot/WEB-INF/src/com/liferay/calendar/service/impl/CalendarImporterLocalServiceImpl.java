@@ -619,6 +619,8 @@ public class CalendarImporterLocalServiceImpl
 			linkId, assetLink.getCompanyId(), assetLink.getUserId(),
 			assetLink.getUserName(), assetLink.getCreateDate(), entryId1,
 			entryId2, assetLink.getType(), assetLink.getWeight());
+
+		assetLinkLocalService.deleteAssetLink(assetLink);
 	}
 
 	protected void importAssets(CalEvent calEvent, long calendarBookingId)
