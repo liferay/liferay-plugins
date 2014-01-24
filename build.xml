@@ -241,7 +241,7 @@
 		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
 			<sequential>
 				<loop-modules
-					loop.modules.cmd="war-macro"
+					loop.modules.cmd="war"
 					loop.modules.dir="@{loop.modules.dir}"
 				/>
 			</sequential>
