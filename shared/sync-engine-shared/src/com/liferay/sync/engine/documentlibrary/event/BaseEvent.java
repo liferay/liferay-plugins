@@ -54,7 +54,7 @@ public abstract class BaseEvent implements Runnable {
 		return HttpUtil.executePost(_syncAccountId, _urlPath, _parameters);
 	}
 
-	protected abstract void processResponse(String httpResponse)
+	protected abstract void processResponse(String response)
 		throws Exception;
 
 	private static Logger _logger = LoggerFactory.getLogger(BaseEvent.class);
