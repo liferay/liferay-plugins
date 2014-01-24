@@ -243,9 +243,9 @@ Error-Prone was automatically installed. Please rerun your task.
 							</then>
 						</elseif>
 						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="javadoc-macro" />
+							<equals arg1="@{macrodef.name}" arg2="jar" />
 							<then>
-								<javadoc-macro
+								<jar-macro
 									module.dir="@{module.dir}"
 								/>
 							</then>
@@ -259,17 +259,17 @@ Error-Prone was automatically installed. Please rerun your task.
 							</then>
 						</elseif>
 						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="jar-macro" />
+							<equals arg1="@{macrodef.name}" arg2="jar-source" />
 							<then>
-								<jar-macro
+								<jar-source
 									module.dir="@{module.dir}"
 								/>
 							</then>
 						</elseif>
 						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="jar-source" />
+							<equals arg1="@{macrodef.name}" arg2="javadoc" />
 							<then>
-								<jar-source
+								<javadoc-macro
 									module.dir="@{module.dir}"
 								/>
 							</then>
@@ -291,7 +291,7 @@ Error-Prone was automatically installed. Please rerun your task.
 							</then>
 						</elseif>
 						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="war-macro" />
+							<equals arg1="@{macrodef.name}" arg2="war" />
 							<then>
 								<war-macro
 									module.dir="@{module.dir}"
@@ -570,7 +570,7 @@ Error-Prone was automatically installed. Please rerun your task.
 								<available file="${sdk.dir}/shared/@{import.shared.current}/src" />
 								<then>
 									<call-macrodef-or-target
-										macrodef.name="jar-macro"
+										macrodef.name="jar"
 										module.dir="${sdk.dir}/shared/@{import.shared.current}"
 									/>
 
@@ -987,7 +987,7 @@ Please find a solution that does not require portal-impl.jar.
 				</or>
 				<then>
 					<call-macrodef-or-target
-						macrodef.name="war-macro"
+						macrodef.name="war"
 						module.dir="@{module.dir}"
 					/>
 
@@ -995,7 +995,7 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 				<else>
 					<call-macrodef-or-target
-						macrodef.name="jar-macro"
+						macrodef.name="jar"
 						module.dir="@{module.dir}"
 					/>
 
@@ -1027,7 +1027,7 @@ Please find a solution that does not require portal-impl.jar.
 			/>
 
 			<call-macrodef-or-target
-				macrodef.name="war-macro"
+				macrodef.name="war"
 				module.dir="@{module.dir}"
 			/>
 
@@ -1812,7 +1812,7 @@ Please find a solution that does not require portal-impl.jar.
 				</elseif>
 				<else>
 					<call-macrodef-or-target
-						macrodef.name="jar-macro"
+						macrodef.name="jar"
 						module.dir="@{module.dir}"
 					/>
 				</else>
