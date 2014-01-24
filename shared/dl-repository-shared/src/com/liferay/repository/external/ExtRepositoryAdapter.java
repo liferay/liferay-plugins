@@ -1069,6 +1069,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	protected ExtRepositoryAdapter(ExtRepository extRepository) {
+		if (extRepository == null) {
+			extRepository = (ExtRepository)this;
+		}
+
 		_extRepository = extRepository;
 	}
 
