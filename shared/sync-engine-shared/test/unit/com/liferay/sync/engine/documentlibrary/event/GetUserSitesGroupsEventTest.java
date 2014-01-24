@@ -64,7 +64,7 @@ public class GetUserSitesGroupsEventTest extends BaseTestCase {
 
 		getUserSitesGroupsEvent.run();
 
-		_syncSites = SyncSiteService.fetchSyncSites(
+		_syncSites = SyncSiteService.findSyncSites(
 			_syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(_syncSites.size(), 2);

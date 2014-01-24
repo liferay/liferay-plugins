@@ -90,9 +90,9 @@ public class SyncFileService {
 		}
 	}
 
-	public static List<SyncFile> fetchSyncFiles(long syncAccountId) {
+	public static List<SyncFile> findSyncFiles(long syncAccountId) {
 		try {
-			return _syncFilePersistence.fetchSyncFiles(syncAccountId);
+			return _syncFilePersistence.findSyncFiles(syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

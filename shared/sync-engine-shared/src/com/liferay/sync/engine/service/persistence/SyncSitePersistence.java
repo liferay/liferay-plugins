@@ -31,12 +31,6 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 		super(SyncSite.class);
 	}
 
-	public List<SyncSite> fetchSyncSite(long syncAccountId)
-		throws SQLException {
-
-		return queryForEq("syncAccountId", syncAccountId);
-	}
-
 	public SyncSite fetchSyncSite(long groupId, long syncAccountId)
 		throws SQLException {
 
@@ -52,6 +46,12 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 		}
 
 		return syncSites.get(0);
+	}
+
+	public List<SyncSite> findSyncSites(long syncAccountId)
+		throws SQLException {
+
+		return queryForEq("syncAccountId", syncAccountId);
 	}
 
 }

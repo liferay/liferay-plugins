@@ -79,7 +79,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 		getAllSyncDLObjectsEvent.run();
 
-		_syncFiles = SyncFileService.fetchSyncFiles(
+		_syncFiles = SyncFileService.findSyncFiles(
 			_syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(_syncFiles.size(), 2);

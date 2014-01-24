@@ -62,7 +62,7 @@ public abstract class BaseTestCase {
 			HttpUtil.executePost(
 				Mockito.anyLong(), Mockito.anyString(), Mockito.anyMap())
 		).thenReturn(
-				response
+			response
 		);
 	}
 
