@@ -29,6 +29,10 @@ import java.util.TimeZone;
  */
 public class Time extends com.liferay.portal.kernel.util.Time {
 
+	public static String getDuration(long milliseconds) {
+		return Time.getSimpleDate(new Date(milliseconds), Time.DURATION_FORMAT);
+	}
+
 	public static String getRelativeTimeDescription(
 		Date date, Locale locale, TimeZone timeZone) {
 
