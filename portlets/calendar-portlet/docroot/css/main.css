@@ -96,6 +96,15 @@
 		text-align: center;
 	}
 
+	@include respond-to(tablet) {
+		.calendar-portlet-column-parent {
+			.calendar-portlet-column-grid, .calendar-portlet-column-options {
+				float: none;
+				width: 100%;
+			}
+		}
+	}
+
 	.calendar-portlet-column-grid {
 		position: relative;
 
@@ -456,6 +465,14 @@
 /* --- YUI calendar --- */
 
 .yui3-skin-sam .calendar-portlet {
+	.yui3-calendar-content {
+		padding: 10px 0;
+
+		@include respond-to(phone, tablet) {
+			padding: 10px;
+		}
+	}
+
 	.yui3-calendar-day, .yui3-calendar-header-label, .yui3-calendar-weekday {
 		font-weight: 200;
 	}
@@ -469,8 +486,8 @@
 	}
 
 	.yui3-calendar-day {
-		@include border-radius(2px);
-		padding-bottom: 10px;
+		padding: 5px 0 10px;
+		width: 14.286%;
 	}
 
 	.yui3-calendar-day:hover, .yui3-calendar-day.yui3-calendar-day-selected:hover, .yui3-calendar-day.yui3-calendar-day-selected.lfr-busy-day:hover {
@@ -508,9 +525,12 @@
 
 .scheduler-event-recorder-content {
 	@include background-image(linear-gradient(top, #F7F7F7, white));
-	@include border-radius(2px);
 	@include box-shadow(inset 0 1px 2px #ddd);
 	@include transition(background 0.3s ease-in, border-color 0.3s ease-out);
+}
+
+.scheduler-event-recorder-content, .calendar-portlet .yui3-calendar-day {
+	@include border-radius(2px);
 }
 
 .calendar-portlet-wrapper {
