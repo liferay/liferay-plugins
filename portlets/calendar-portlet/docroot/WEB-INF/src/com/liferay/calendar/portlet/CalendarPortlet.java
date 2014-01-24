@@ -622,6 +622,9 @@ public class CalendarPortlet extends MVCPortlet {
 			editCalendarURL, namespace + "redirect",
 			getRedirect(actionRequest, actionResponse));
 		editCalendarURL = HttpUtil.setParameter(
+			editCalendarURL, namespace + "backURL",
+			ParamUtil.getString(actionRequest, "backURL"));
+		editCalendarURL = HttpUtil.setParameter(
 			editCalendarURL, namespace + "calendarId",
 			calendar.getCalendarId());
 
