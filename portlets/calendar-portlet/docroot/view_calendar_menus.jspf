@@ -46,7 +46,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 												window.location.reload();
 											}
 										},
-										destroyOnClose: true,
+										destroyOnHide: true,
 										modal: true
 									},
 									refreshWindow: window,
@@ -119,7 +119,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 										scheduler.load();
 									}
 								},
-								destroyOnClose: true,
+								destroyOnHide: true,
 								modal: true
 							},
 							refreshWindow: window,
@@ -172,7 +172,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 										scheduler.load();
 									}
 								},
-								destroyOnClose: true,
+								destroyOnHide: true,
 								modal: true
 							},
 							refreshWindow: window,
@@ -215,7 +215,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 										scheduler.load();
 									}
 								},
-								destroyOnClose: true,
+								destroyOnHide: true,
 								modal: true
 							},
 							refreshWindow: window,
