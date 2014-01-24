@@ -62,7 +62,7 @@ public abstract class ExtRepositoryModelAdapter<T>
 
 	@Override
 	public Date getCreateDate() {
-		return _extRepositoryModel.getCreatedDate();
+		return _extRepositoryModel.getCreateDate();
 	}
 
 	public String getDescription() {
