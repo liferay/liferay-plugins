@@ -277,15 +277,10 @@ public class CalendarPortlet extends MVCPortlet {
 				enableComments, enableRatings, serviceContext);
 		}
 
-		boolean saveAndContinue = ParamUtil.getBoolean(
-			actionRequest, "saveAndContinue");
+		String redirect = getEditCalendarURL(
+			actionRequest, actionResponse, calendar);
 
-		if (saveAndContinue) {
-			String redirect = getEditCalendarURL(
-				actionRequest, actionResponse, calendar);
-
-			actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
-		}
+		actionRequest.setAttribute(WebKeys.REDIRECT, redirect);
 	}
 
 	public void updateCalendarBooking(
