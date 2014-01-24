@@ -14,7 +14,7 @@
 
 package com.liferay.socialnetworking.hook.upgrade;
 
-import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.compat.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.socialnetworking.hook.upgrade.v1_0_0.UpgradeNamespace;
 
 /**
