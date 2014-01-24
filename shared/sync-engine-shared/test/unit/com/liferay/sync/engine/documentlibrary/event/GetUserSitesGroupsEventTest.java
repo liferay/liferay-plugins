@@ -16,15 +16,11 @@ package com.liferay.sync.engine.documentlibrary.event;
 
 import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.model.SyncAccount;
-import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncAccountService;
-import com.liferay.sync.engine.service.SyncFileService;
-
-import java.io.File;
+import com.liferay.sync.engine.service.SyncSiteService;
 
 import java.util.List;
-
-import org.apache.commons.io.FileUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -38,60 +34,43 @@ import org.powermock.modules.junit4.PowerMockRunner;
  * @author Shinn Lok
  */
 @RunWith(PowerMockRunner.class)
-public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
+public class GetUserSitesGroupsEventTest extends BaseTestCase {
 
 	@Before
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_filePath = System.getProperty("user.home") + "/liferay-sync-test";
-
 		_syncAccount = SyncAccountService.addSyncAccount(
-			_filePath, "test@liferay.com", "test",
+			null, "test@liferay.com", "test",
 			"http://localhost:8080/api/jsonws");
-
-		_filePathSyncFile = SyncFileService.addSyncFile(
-			_syncAccount.getFilePath(), "test", 0, 0,
-			_syncAccount.getSyncAccountId(), SyncFile.TYPE_FOLDER, 0);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		File file = new File(_filePath);
-
-		FileUtils.deleteDirectory(file);
-
 		SyncAccountService.deleteSyncAccount(_syncAccount.getSyncAccountId());
-		SyncFileService.deleteSyncFile(_filePathSyncFile.getSyncFileId());
 
-		for (SyncFile syncFile : _syncFiles) {
-			SyncFileService.deleteSyncFile(syncFile.getSyncFileId());
+		for (SyncSite syncSite : _syncSites) {
+			SyncSiteService.deleteSyncSite(syncSite.getSyncSiteId());
 		}
 	}
 
 	@Test
 	public void testRun() throws Exception {
-		setMockPostResponse("dependencies/get_all_sync_dl_objects.json");
+		setMockPostResponse("dependencies/get_user_sites_groups.json");
 
-		GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
-			new GetAllSyncDLObjectsEvent(_syncAccount.getSyncAccountId(), null);
+		GetUserSitesGroupsEvent getUserSitesGroupsEvent =
+			new GetUserSitesGroupsEvent(_syncAccount.getSyncAccountId(), null);
 
-		getAllSyncDLObjectsEvent.run();
+		getUserSitesGroupsEvent.run();
 
-		_syncFiles = SyncFileService.fetchSyncFiles(
+		_syncSites = SyncSiteService.fetchSyncSites(
 			_syncAccount.getSyncAccountId());
 
-		Assert.assertEquals(_syncFiles.size(), 2);
-
-		File file = new File(_filePath + "/Document_1.txt");
-
-		Assert.assertTrue(file.exists());
+		Assert.assertEquals(_syncSites.size(), 2);
 	}
 
-	private String _filePath;
-	private SyncFile _filePathSyncFile;
 	private SyncAccount _syncAccount;
-	private List<SyncFile> _syncFiles;
+	private List<SyncSite> _syncSites;
 
 }

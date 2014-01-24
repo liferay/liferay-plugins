@@ -14,6 +14,8 @@
 
 package com.liferay.sync.engine.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -23,14 +25,43 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
  * @author Shinn Lok
  */
 @DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncSite")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class SyncSite {
+
+	public long getCompanyId() {
+		return companyId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public boolean getEnabled() {
+		return enabled;
+	}
 
 	public String getFilePath() {
 		return filePath;
 	}
 
+	public String getFriendlyURL() {
+		return friendlyURL;
+	}
+
 	public long getGroupId() {
 		return groupId;
+	}
+
+	public long getLastRemoteSyncTime() {
+		return lastRemoteSyncTime;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public boolean getSite() {
+		return site;
 	}
 
 	public long getSyncAccountId() {
@@ -41,12 +72,48 @@ public class SyncSite {
 		return syncSiteId;
 	}
 
+	public long getType() {
+		return type;
+	}
+
+	public String getTypeSettings() {
+		return typeSettings;
+	}
+
+	public void setCompanyId(long companyId) {
+		this.companyId = companyId;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
 
+	public void setFriendlyURL(String friendlyURL) {
+		this.friendlyURL = friendlyURL;
+	}
+
 	public void setGroupId(long groupId) {
 		this.groupId = groupId;
+	}
+
+	public void setLastRemoteSyncTime(long lastRemoteSyncTime) {
+		this.lastRemoteSyncTime = lastRemoteSyncTime;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setSite(boolean site) {
+		this.site = site;
 	}
 
 	public void setSyncAccountId(long syncAccountId) {
@@ -57,16 +124,51 @@ public class SyncSite {
 		this.syncSiteId = syncSiteId;
 	}
 
+	public void setType(long type) {
+		this.type = type;
+	}
+
+	public void setTypeSettings(String typeSettings) {
+		this.typeSettings = typeSettings;
+	}
+
+	@DatabaseField(useGetSet = true)
+	protected long companyId;
+
+	@DatabaseField(useGetSet = true, width = 16777216)
+	protected String description;
+
+	@DatabaseField(useGetSet = true)
+	protected boolean enabled;
+
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String filePath;
 
 	@DatabaseField(useGetSet = true)
+	protected String friendlyURL;
+
+	@DatabaseField(useGetSet = true)
 	protected long groupId;
+
+	@DatabaseField(useGetSet = true)
+	protected long lastRemoteSyncTime;
+
+	@DatabaseField(useGetSet = true)
+	protected String name;
+
+	@DatabaseField(useGetSet = true)
+	protected boolean site;
 
 	@DatabaseField(useGetSet = true)
 	protected long syncAccountId;
 
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected long syncSiteId;
+
+	@DatabaseField(useGetSet = true)
+	protected long type;
+
+	@DatabaseField(useGetSet = true, width = 16777216)
+	protected String typeSettings;
 
 }

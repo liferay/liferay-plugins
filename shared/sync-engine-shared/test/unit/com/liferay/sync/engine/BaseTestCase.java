@@ -15,14 +15,27 @@
 package com.liferay.sync.engine;
 
 import com.liferay.sync.engine.upgrade.UpgradeProcessSuite;
+import com.liferay.sync.engine.util.HttpUtil;
 import com.liferay.sync.engine.util.PropsKeys;
 import com.liferay.sync.engine.util.PropsUtil;
 
+import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
+
 import org.junit.Before;
+
+import org.mockito.Mockito;
+
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 
 /**
  * @author Shinn Lok
  */
+@PowerMockIgnore("javax.crypto.*")
+@PrepareForTest(HttpUtil.class)
 public abstract class BaseTestCase {
 
 	@Before
@@ -32,6 +45,25 @@ public abstract class BaseTestCase {
 		UpgradeProcessSuite upgradeProcessSuite = new UpgradeProcessSuite();
 
 		upgradeProcessSuite.upgrade();
+	}
+
+	protected void setMockPostResponse(String fileName) throws Exception {
+		PowerMockito.mockStatic(HttpUtil.class);
+
+		Class<?> clazz = getClass();
+
+		InputStream inputStream = clazz.getResourceAsStream(fileName);
+
+		String response = IOUtils.toString(inputStream);
+
+		inputStream.close();
+
+		Mockito.when(
+			HttpUtil.executePost(
+				Mockito.anyLong(), Mockito.anyString(), Mockito.anyMap())
+		).thenReturn(
+				response
+		);
 	}
 
 }

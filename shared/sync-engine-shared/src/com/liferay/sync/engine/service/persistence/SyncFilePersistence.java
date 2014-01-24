@@ -67,4 +67,10 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		return syncFiles.get(0);
 	}
 
+	public List<SyncFile> fetchSyncFiles(long syncAccountId)
+		throws SQLException {
+
+		return queryForEq("syncAccountId", syncAccountId);
+	}
+
 }

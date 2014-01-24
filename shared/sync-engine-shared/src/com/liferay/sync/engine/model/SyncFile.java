@@ -32,16 +32,56 @@ public class SyncFile {
 
 	public static final String TYPE_FOLDER = "folder";
 
+	public String getChangeLog() {
+		return changeLog;
+	}
+
 	public String getChecksum() {
 		return checksum;
+	}
+
+	public long getCompanyId() {
+		return companyId;
+	}
+
+	public long getCreateTime() {
+		return createTime;
 	}
 
 	public String getDescription() {
 		return description;
 	}
 
+	public String getExtension() {
+		return extension;
+	}
+
+	public String getExtraSettings() {
+		return extraSettings;
+	}
+
 	public String getFilePath() {
 		return filePath;
+	}
+
+	public long getLockExpirationDate() {
+		return lockExpirationDate;
+	}
+
+	public String getLockUserId() {
+		return lockUserId;
+	}
+
+	public String getLockUserName() {
+		return lockUserName;
+	}
+
+	public String getMimeType() {
+		return mimeType;
+	}
+
+	public long getModifiedTime() {
+		return modifiedTime;
 	}
 
 	public String getName() {
@@ -80,20 +120,60 @@ public class SyncFile {
 		return typeUuid;
 	}
 
-	public String getVersion() {
+	public double getVersion() {
 		return version;
+	}
+
+	public void setChangeLog(String changeLog) {
+		this.changeLog = changeLog;
 	}
 
 	public void setChecksum(String checksum) {
 		this.checksum = checksum;
 	}
 
+	public void setCompanyId(long companyId) {
+		this.companyId = companyId;
+	}
+
+	public void setCreateTime(long createTime) {
+		this.createTime = createTime;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+	public void setExtension(String extension) {
+		this.extension = extension;
+	}
+
+	public void setExtraSettings(String extraSettings) {
+		this.extraSettings = extraSettings;
+	}
+
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
+	}
+
+	public void setLockExpirationDate(long lockExpirationDate) {
+		this.lockExpirationDate = lockExpirationDate;
+	}
+
+	public void setLockUserId(String lockUserId) {
+		this.lockUserId = lockUserId;
+	}
+
+	public void setLockUserName(String lockUserName) {
+		this.lockUserName = lockUserName;
+	}
+
+	public void setMimeType(String mimeType) {
+		this.mimeType = mimeType;
+	}
+
+	public void setModifiedTime(long modifiedTime) {
+		this.modifiedTime = modifiedTime;
 	}
 
 	public void setName(String name) {
@@ -132,20 +212,50 @@ public class SyncFile {
 		this.typeUuid = typeUuid;
 	}
 
-	public void setVersion(String version) {
+	public void setVersion(double version) {
 		this.version = version;
 	}
 
-	@DatabaseField(useGetSet = true, width = 255)
+	@DatabaseField(useGetSet = true)
+	protected String changeLog;
+
+	@DatabaseField(useGetSet = true)
 	protected String checksum;
+
+	@DatabaseField(useGetSet = true)
+	protected long companyId;
+
+	@DatabaseField(useGetSet = true)
+	protected long createTime;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String description;
 
+	@DatabaseField(useGetSet = true)
+	protected String extension;
+
+	@DatabaseField(useGetSet = true, width = 16777216)
+	protected String extraSettings;
+
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String filePath;
 
-	@DatabaseField(useGetSet = true, width = 255)
+	@DatabaseField(useGetSet = true)
+	protected long lockExpirationDate;
+
+	@DatabaseField(useGetSet = true)
+	protected String lockUserId;
+
+	@DatabaseField(useGetSet = true)
+	protected String lockUserName;
+
+	@DatabaseField(useGetSet = true)
+	protected String mimeType;
+
+	@DatabaseField(useGetSet = true)
+	protected long modifiedTime;
+
+	@DatabaseField(useGetSet = true)
 	protected String name;
 
 	@DatabaseField(useGetSet = true)
@@ -163,16 +273,16 @@ public class SyncFile {
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected long syncFileId;
 
-	@DatabaseField(useGetSet = true, width = 255)
+	@DatabaseField(useGetSet = true)
 	protected String type;
 
 	@DatabaseField(useGetSet = true)
 	protected long typePK;
 
-	@DatabaseField(useGetSet = true, width = 75)
+	@DatabaseField(useGetSet = true)
 	protected String typeUuid;
 
-	@DatabaseField(useGetSet = true, width = 255)
-	protected String version;
+	@DatabaseField(useGetSet = true)
+	protected double version;
 
 }
