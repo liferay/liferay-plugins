@@ -22,7 +22,7 @@ import java.util.Date;
  */
 public interface ExtRepositoryModel {
 
-	public Date getCreatedDate();
+	public Date getCreateDate();
 
 	public String getExtRepositoryModelKey();
 

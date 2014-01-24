@@ -90,10 +90,16 @@ public class ExtRepositoryFileEntryAdapter
 
 	@Override
 	public FileVersion getFileVersion() throws SystemException {
-		List<ExtRepositoryFileVersionAdapter> extRepositoryFileVersionAdapters =
-			_getExtRepositoryFileVersionAdapters();
+		try {
+			List<ExtRepositoryFileVersionAdapter>
+				extRepositoryFileVersionAdapters =
+					_getExtRepositoryFileVersionAdapters();
 
-		return extRepositoryFileVersionAdapters.get(0);
+			return extRepositoryFileVersionAdapters.get(0);
+		}
+		catch (PortalException pe) {
+			throw new SystemException(pe);
+		}
 	}
 
 	@Override
@@ -126,7 +132,12 @@ public class ExtRepositoryFileEntryAdapter
 		if ((status == WorkflowConstants.STATUS_ANY) ||
 			(status == WorkflowConstants.STATUS_APPROVED)) {
 
-			return (List)_getExtRepositoryFileVersionAdapters();
+			try {
+				return (List)_getExtRepositoryFileVersionAdapters();
+			}
+			catch (PortalException pe) {
+				throw new SystemException(pe);
+			}
 		}
 		else {
 			return Collections.emptyList();
@@ -327,7 +338,7 @@ public class ExtRepositoryFileEntryAdapter
 
 	private List<ExtRepositoryFileVersionAdapter>
 			_getExtRepositoryFileVersionAdapters()
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		if (_extRepositoryFileVersionAdapters == null) {
 			ExtRepositoryAdapter extRepositoryAdapter = getRepository();

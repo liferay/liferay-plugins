@@ -86,7 +86,7 @@ public interface ExtRepository {
 
 	public List<ExtRepositoryFileVersion> getExtRepositoryFileVersions(
 			ExtRepositoryFileEntry extRepositoryFileEntry)
-		throws SystemException;
+		throws PortalException, SystemException;
 
 	public <T extends ExtRepositoryObject> T getExtRepositoryObject(
 			ExtRepositoryObjectType<T> extRepositoryObjectType,

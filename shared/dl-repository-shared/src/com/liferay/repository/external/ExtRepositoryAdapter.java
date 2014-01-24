@@ -258,7 +258,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	public List<ExtRepositoryFileVersionAdapter>
 			getExtRepositoryFileVersionAdapters(
 				ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		List<ExtRepositoryFileVersion> extRepositoryFileVersions =
 			_extRepository.getExtRepositoryFileVersions(
@@ -872,7 +872,6 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("unused")
 	public Hits search(SearchContext searchContext, Query query)
 		throws SearchException {
 
