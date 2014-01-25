@@ -2765,7 +2765,7 @@ public class UserThreadPersistenceImpl extends BasePersistenceImpl<UserThread>
 		}
 
 		EntityCacheUtil.putResult(UserThreadModelImpl.ENTITY_CACHE_ENABLED,
-			UserThreadImpl.class, userThread.getPrimaryKey(), userThread);
+			UserThreadImpl.class, userThread.getPrimaryKey(), userThread, false);
 
 		clearUniqueFindersCache(userThread);
 		cacheUniqueFindersCache(userThread);

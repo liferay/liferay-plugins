@@ -1904,7 +1904,7 @@ public class KaleoNotificationRecipientPersistenceImpl
 		EntityCacheUtil.putResult(KaleoNotificationRecipientModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoNotificationRecipientImpl.class,
 			kaleoNotificationRecipient.getPrimaryKey(),
-			kaleoNotificationRecipient);
+			kaleoNotificationRecipient, false);
 
 		kaleoNotificationRecipient.resetOriginalValues();
 

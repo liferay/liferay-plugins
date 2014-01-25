@@ -27836,7 +27836,7 @@ public class KBArticlePersistenceImpl extends BasePersistenceImpl<KBArticle>
 		}
 
 		EntityCacheUtil.putResult(KBArticleModelImpl.ENTITY_CACHE_ENABLED,
-			KBArticleImpl.class, kbArticle.getPrimaryKey(), kbArticle);
+			KBArticleImpl.class, kbArticle.getPrimaryKey(), kbArticle, false);
 
 		clearUniqueFindersCache(kbArticle);
 		cacheUniqueFindersCache(kbArticle);

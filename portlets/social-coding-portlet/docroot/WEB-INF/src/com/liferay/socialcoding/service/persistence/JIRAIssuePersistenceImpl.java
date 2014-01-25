@@ -6664,7 +6664,7 @@ public class JIRAIssuePersistenceImpl extends BasePersistenceImpl<JIRAIssue>
 		}
 
 		EntityCacheUtil.putResult(JIRAIssueModelImpl.ENTITY_CACHE_ENABLED,
-			JIRAIssueImpl.class, jiraIssue.getPrimaryKey(), jiraIssue);
+			JIRAIssueImpl.class, jiraIssue.getPrimaryKey(), jiraIssue, false);
 
 		clearUniqueFindersCache(jiraIssue);
 		cacheUniqueFindersCache(jiraIssue);

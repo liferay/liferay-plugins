@@ -842,7 +842,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 
 		EntityCacheUtil.putResult(JIRAChangeItemModelImpl.ENTITY_CACHE_ENABLED,
 			JIRAChangeItemImpl.class, jiraChangeItem.getPrimaryKey(),
-			jiraChangeItem);
+			jiraChangeItem, false);
 
 		jiraChangeItem.resetOriginalValues();
 

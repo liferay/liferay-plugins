@@ -880,7 +880,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 
 		EntityCacheUtil.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
 			TestBlobEntryImpl.class, testBlobEntry.getPrimaryKey(),
-			testBlobEntry);
+			testBlobEntry, false);
 
 		testBlobEntry.resetOriginalValues();
 

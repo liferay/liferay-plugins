@@ -1890,7 +1890,7 @@ public class KaleoNodePersistenceImpl extends BasePersistenceImpl<KaleoNode>
 		}
 
 		EntityCacheUtil.putResult(KaleoNodeModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoNodeImpl.class, kaleoNode.getPrimaryKey(), kaleoNode);
+			KaleoNodeImpl.class, kaleoNode.getPrimaryKey(), kaleoNode, false);
 
 		kaleoNode.resetOriginalValues();
 

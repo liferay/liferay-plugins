@@ -1123,7 +1123,8 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		}
 
 		EntityCacheUtil.putResult(AkismetDataModelImpl.ENTITY_CACHE_ENABLED,
-			AkismetDataImpl.class, akismetData.getPrimaryKey(), akismetData);
+			AkismetDataImpl.class, akismetData.getPrimaryKey(), akismetData,
+			false);
 
 		clearUniqueFindersCache(akismetData);
 		cacheUniqueFindersCache(akismetData);

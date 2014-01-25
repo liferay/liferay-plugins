@@ -1604,7 +1604,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 		}
 
 		EntityCacheUtil.putResult(KaleoTaskModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTaskImpl.class, kaleoTask.getPrimaryKey(), kaleoTask);
+			KaleoTaskImpl.class, kaleoTask.getPrimaryKey(), kaleoTask, false);
 
 		clearUniqueFindersCache(kaleoTask);
 		cacheUniqueFindersCache(kaleoTask);

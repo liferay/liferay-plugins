@@ -1866,7 +1866,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 		}
 
 		EntityCacheUtil.putResult(WallEntryModelImpl.ENTITY_CACHE_ENABLED,
-			WallEntryImpl.class, wallEntry.getPrimaryKey(), wallEntry);
+			WallEntryImpl.class, wallEntry.getPrimaryKey(), wallEntry, false);
 
 		wallEntry.resetOriginalValues();
 

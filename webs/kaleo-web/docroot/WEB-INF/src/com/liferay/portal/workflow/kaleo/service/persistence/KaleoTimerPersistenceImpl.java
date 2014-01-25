@@ -1562,7 +1562,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 		}
 
 		EntityCacheUtil.putResult(KaleoTimerModelImpl.ENTITY_CACHE_ENABLED,
-			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey(), kaleoTimer);
+			KaleoTimerImpl.class, kaleoTimer.getPrimaryKey(), kaleoTimer, false);
 
 		kaleoTimer.resetOriginalValues();
 

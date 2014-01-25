@@ -298,7 +298,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		}
 
 		EntityCacheUtil.putResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
-			TypeImpl.class, type.getPrimaryKey(), type);
+			TypeImpl.class, type.getPrimaryKey(), type, false);
 
 		type.resetOriginalValues();
 

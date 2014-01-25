@@ -4894,7 +4894,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 		EntityCacheUtil.putResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			MicroblogsEntryImpl.class, microblogsEntry.getPrimaryKey(),
-			microblogsEntry);
+			microblogsEntry, false);
 
 		microblogsEntry.resetOriginalValues();
 

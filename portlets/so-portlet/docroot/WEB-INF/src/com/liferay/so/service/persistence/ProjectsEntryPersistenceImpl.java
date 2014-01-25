@@ -824,7 +824,7 @@ public class ProjectsEntryPersistenceImpl extends BasePersistenceImpl<ProjectsEn
 
 		EntityCacheUtil.putResult(ProjectsEntryModelImpl.ENTITY_CACHE_ENABLED,
 			ProjectsEntryImpl.class, projectsEntry.getPrimaryKey(),
-			projectsEntry);
+			projectsEntry, false);
 
 		projectsEntry.resetOriginalValues();
 

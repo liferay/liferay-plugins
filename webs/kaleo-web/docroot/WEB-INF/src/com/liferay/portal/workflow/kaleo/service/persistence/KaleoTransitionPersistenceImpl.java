@@ -2494,7 +2494,7 @@ public class KaleoTransitionPersistenceImpl extends BasePersistenceImpl<KaleoTra
 
 		EntityCacheUtil.putResult(KaleoTransitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoTransitionImpl.class, kaleoTransition.getPrimaryKey(),
-			kaleoTransition);
+			kaleoTransition, false);
 
 		clearUniqueFindersCache(kaleoTransition);
 		cacheUniqueFindersCache(kaleoTransition);

@@ -822,7 +822,7 @@ public class AttachmentPersistenceImpl extends BasePersistenceImpl<Attachment>
 		}
 
 		EntityCacheUtil.putResult(AttachmentModelImpl.ENTITY_CACHE_ENABLED,
-			AttachmentImpl.class, attachment.getPrimaryKey(), attachment);
+			AttachmentImpl.class, attachment.getPrimaryKey(), attachment, false);
 
 		attachment.resetOriginalValues();
 

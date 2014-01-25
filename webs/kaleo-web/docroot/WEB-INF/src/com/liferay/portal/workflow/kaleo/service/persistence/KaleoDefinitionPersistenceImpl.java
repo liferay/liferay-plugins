@@ -2980,7 +2980,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 
 		EntityCacheUtil.putResult(KaleoDefinitionModelImpl.ENTITY_CACHE_ENABLED,
 			KaleoDefinitionImpl.class, kaleoDefinition.getPrimaryKey(),
-			kaleoDefinition);
+			kaleoDefinition, false);
 
 		clearUniqueFindersCache(kaleoDefinition);
 		cacheUniqueFindersCache(kaleoDefinition);

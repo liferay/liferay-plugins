@@ -3465,7 +3465,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 		}
 
 		EntityCacheUtil.putResult(GadgetModelImpl.ENTITY_CACHE_ENABLED,
-			GadgetImpl.class, gadget.getPrimaryKey(), gadget);
+			GadgetImpl.class, gadget.getPrimaryKey(), gadget, false);
 
 		clearUniqueFindersCache(gadget);
 		cacheUniqueFindersCache(gadget);

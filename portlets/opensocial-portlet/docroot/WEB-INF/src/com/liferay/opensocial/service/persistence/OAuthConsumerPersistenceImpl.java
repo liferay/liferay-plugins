@@ -1234,7 +1234,7 @@ public class OAuthConsumerPersistenceImpl extends BasePersistenceImpl<OAuthConsu
 
 		EntityCacheUtil.putResult(OAuthConsumerModelImpl.ENTITY_CACHE_ENABLED,
 			OAuthConsumerImpl.class, oAuthConsumer.getPrimaryKey(),
-			oAuthConsumer);
+			oAuthConsumer, false);
 
 		clearUniqueFindersCache(oAuthConsumer);
 		cacheUniqueFindersCache(oAuthConsumer);

@@ -1104,7 +1104,8 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		}
 
 		EntityCacheUtil.putResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
-			FavoriteSiteImpl.class, favoriteSite.getPrimaryKey(), favoriteSite);
+			FavoriteSiteImpl.class, favoriteSite.getPrimaryKey(), favoriteSite,
+			false);
 
 		clearUniqueFindersCache(favoriteSite);
 		cacheUniqueFindersCache(favoriteSite);

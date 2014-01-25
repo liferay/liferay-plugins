@@ -2299,7 +2299,8 @@ public class WSRPProducerPersistenceImpl extends BasePersistenceImpl<WSRPProduce
 		}
 
 		EntityCacheUtil.putResult(WSRPProducerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey(), wsrpProducer);
+			WSRPProducerImpl.class, wsrpProducer.getPrimaryKey(), wsrpProducer,
+			false);
 
 		clearUniqueFindersCache(wsrpProducer);
 		cacheUniqueFindersCache(wsrpProducer);

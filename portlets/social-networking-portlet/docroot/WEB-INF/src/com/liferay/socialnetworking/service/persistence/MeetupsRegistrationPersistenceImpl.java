@@ -1706,7 +1706,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 
 		EntityCacheUtil.putResult(MeetupsRegistrationModelImpl.ENTITY_CACHE_ENABLED,
 			MeetupsRegistrationImpl.class, meetupsRegistration.getPrimaryKey(),
-			meetupsRegistration);
+			meetupsRegistration, false);
 
 		clearUniqueFindersCache(meetupsRegistration);
 		cacheUniqueFindersCache(meetupsRegistration);

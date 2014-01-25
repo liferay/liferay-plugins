@@ -1978,7 +1978,8 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 		}
 
 		EntityCacheUtil.putResult(WSRPConsumerModelImpl.ENTITY_CACHE_ENABLED,
-			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey(), wsrpConsumer);
+			WSRPConsumerImpl.class, wsrpConsumer.getPrimaryKey(), wsrpConsumer,
+			false);
 
 		wsrpConsumer.resetOriginalValues();
 

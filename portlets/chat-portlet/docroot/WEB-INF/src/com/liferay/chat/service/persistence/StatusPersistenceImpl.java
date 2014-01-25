@@ -2127,7 +2127,7 @@ public class StatusPersistenceImpl extends BasePersistenceImpl<Status>
 		}
 
 		EntityCacheUtil.putResult(StatusModelImpl.ENTITY_CACHE_ENABLED,
-			StatusImpl.class, status.getPrimaryKey(), status);
+			StatusImpl.class, status.getPrimaryKey(), status, false);
 
 		clearUniqueFindersCache(status);
 		cacheUniqueFindersCache(status);
