@@ -41,10 +41,9 @@ public abstract class BaseTestCase {
 
 	@Before
 	public void setUp() throws Exception {
+		PropsUtil.set(PropsKeys.SYNC_DATABASE_NAME, "sync-test");
 		PropsUtil.set(
 			PropsKeys.SYNC_LOGGER_CONFIGURATION_FILE, "sync-test-log4j.xml");
-
-		PropsUtil.set(PropsKeys.SYNC_DATABASE_NAME, "sync-test");
 
 		LoggerUtil.initLogger();
 
