@@ -80,7 +80,7 @@ List<CalendarBooking> calendarBookings = (List<CalendarBooking>)request.getAttri
 
 			<div class="event">
 				<span class="event-name">
-					<a href="<%= eventHREF %>"><%= StringUtil.shorten(calendarBooking.getTitle(locale), 40) %></a>
+					<a href="<%= eventHREF %>"><%= StringUtil.shorten(HtmlUtil.escape(calendarBooking.getTitle(locale)), 40) %></a>
 				</span>
 
 				<c:if test="<%= !calendarBooking.isAllDay() %>">
