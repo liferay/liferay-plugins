@@ -117,7 +117,7 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 
 		BookmarksEntry entry = BookmarksEntryLocalServiceUtil.getEntry(classPK);
 
-		sb.append(entry.getDescription());
+		sb.append(HtmlUtil.stripHtml(entry.getDescription()));
 
 		sb.append("</div></div>");
 
@@ -165,7 +165,7 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 			activity.getClassName(), activity.getClassPK());
 
 		String body = StringUtil.shorten(
-			assetRenderer.getSummary(serviceContext.getLocale()), 200);
+			HtmlUtil.escape(assetRenderer.getSummary(serviceContext.getLocale())), 200);
 
 		return new SocialActivityFeedEntry(title, body);
 	}
