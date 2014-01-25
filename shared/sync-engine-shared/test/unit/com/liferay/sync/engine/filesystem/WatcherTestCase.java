@@ -14,20 +14,23 @@
 
 package com.liferay.sync.engine.filesystem;
 
+import com.liferay.sync.engine.BaseTestCase;
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.SyncAccountService;
+
 import java.io.File;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.apache.commons.io.FileUtils;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.powermock.modules.junit4.PowerMockRunner;
 
-import com.liferay.sync.engine.BaseTestCase;
-import com.liferay.sync.engine.model.SyncAccount;
-import com.liferay.sync.engine.service.SyncAccountService;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 /**
  * @author Michael Young
@@ -43,21 +46,21 @@ public class WatcherTestCase extends BaseTestCase {
 		_filePath = System.getProperty("user.home") + "/liferay-sync-test";
 
 		_file = new File(_filePath);
-		
+
 		_file.mkdir();
-		
+
 		_syncAccount = SyncAccountService.addSyncAccount(
 			_filePath, "test@liferay.com", "test",
 			"http://localhost:8080/api/jsonws");
 	}
-	
+
 	@After
 	public void tearDown() throws Exception {
 		FileUtils.deleteDirectory(_file);
 
 		SyncAccountService.deleteSyncAccount(_syncAccount.getSyncAccountId());
 	}
-	
+
 	@Test
 	public void testRun() throws Exception {
 		SyncWatchEventProcessor syncWatchEventProcessor =
@@ -67,11 +70,11 @@ public class WatcherTestCase extends BaseTestCase {
 
 		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
 			_syncAccount.getSyncAccountId());
-		
+
 		Path filePath = Paths.get(_syncAccount.getFilePath());
-		
+
 		Watcher watcher = new Watcher(filePath, true, watchEventListener);
-		
+
 		watcher.run();
 	}
 
