@@ -224,7 +224,6 @@
 		</if>
 
 		<delete file="ServiceBuilder.temp" />
-		<delete file="${basedir}/docroot/WEB-INF/sql/indexes.properties" />
 
 		<echo>${build-service.output}</echo>
 
