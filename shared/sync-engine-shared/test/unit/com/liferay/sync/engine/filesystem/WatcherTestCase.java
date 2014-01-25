@@ -60,6 +60,11 @@ public class WatcherTestCase extends BaseTestCase {
 	
 	@Test
 	public void testRun() throws Exception {
+		SyncWatchEventProcessor syncWatchEventProcessor =
+			new SyncWatchEventProcessor();
+
+		syncWatchEventProcessor.process();
+
 		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
 			_syncAccount.getSyncAccountId());
 		

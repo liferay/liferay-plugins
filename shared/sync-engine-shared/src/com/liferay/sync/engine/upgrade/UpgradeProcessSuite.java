@@ -23,6 +23,7 @@ public class UpgradeProcessSuite {
 		upgrade(UpgradeSyncAccount.class);
 		upgrade(UpgradeSyncFile.class);
 		upgrade(UpgradeSyncSite.class);
+		upgrade(UpgradeSyncWatchEvent.class);
 	}
 
 	protected void upgrade(Class<?> upgradeProcessClass) throws Exception {
