@@ -208,7 +208,6 @@
 			<arg value="service.sql.dir=${basedir}/docroot/WEB-INF/sql" />
 			<arg value="service.sql.file=tables.sql" />
 			<arg value="service.sql.indexes.file=indexes.sql" />
-			<arg value="service.sql.indexes.properties.file=indexes.properties" />
 			<arg value="service.sql.sequences.file=sequences.sql" />
 			<arg value="service.auto.namespace.tables=true" />
 			<arg value="service.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
@@ -225,6 +224,7 @@
 		</if>
 
 		<delete file="ServiceBuilder.temp" />
+		<delete file="${basedir}/docroot/WEB-INF/sql/indexes.properties" />
 
 		<echo>${build-service.output}</echo>
 
