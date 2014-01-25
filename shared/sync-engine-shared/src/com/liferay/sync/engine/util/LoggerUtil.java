@@ -14,18 +14,22 @@
 
 package com.liferay.sync.engine.util;
 
+import java.net.URL;
+
+import org.apache.log4j.xml.DOMConfigurator;
+
 /**
- * @author Shinn Lok
+ * @author Michael Young
  */
-public class PropsValues {
+public class LoggerUtil {
 
-	public static String SYNC_CONFIGURATION_DIRECTORY = PropsUtil.get(
-		PropsKeys.SYNC_CONFIGURATION_DIRECTORY);
+	public static void initLogger() {
+		ClassLoader classLoader = LoggerUtil.class.getClassLoader();
 
-	public static String SYNC_DATABASE_NAME = PropsUtil.get(
-		PropsKeys.SYNC_DATABASE_NAME);
+		URL url = classLoader.getResource(
+			PropsValues.SYNC_LOGGER_CONFIGURATION_FILE);
 
-	public static String SYNC_LOGGER_CONFIGURATION_FILE = PropsUtil.get(
-		PropsKeys.SYNC_LOGGER_CONFIGURATION_FILE);
+		DOMConfigurator.configure(url);
+	}
 
 }

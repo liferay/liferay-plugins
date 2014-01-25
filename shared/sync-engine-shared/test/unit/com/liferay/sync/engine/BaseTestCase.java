@@ -16,6 +16,7 @@ package com.liferay.sync.engine;
 
 import com.liferay.sync.engine.upgrade.UpgradeProcessSuite;
 import com.liferay.sync.engine.util.HttpUtil;
+import com.liferay.sync.engine.util.LoggerUtil;
 import com.liferay.sync.engine.util.PropsKeys;
 import com.liferay.sync.engine.util.PropsUtil;
 
@@ -40,7 +41,12 @@ public abstract class BaseTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		PropsUtil.set(PropsKeys.SYNC_DATABASE_NAME, "liferay-sync-test");
+		PropsUtil.set(
+			PropsKeys.SYNC_LOGGER_CONFIGURATION_FILE, "sync-test-log4j.xml");
+
+		PropsUtil.set(PropsKeys.SYNC_DATABASE_NAME, "sync-test");
+
+		LoggerUtil.initLogger();
 
 		UpgradeProcessSuite upgradeProcessSuite = new UpgradeProcessSuite();
 
