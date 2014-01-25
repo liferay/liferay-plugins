@@ -68,23 +68,6 @@ while (true) {
 <%= html %>
 
 <%!
-private String _rearrangeFormFields(String html, int street1Start, int street1End, int street2Start, int street2End, int street3Start, int street3End, int cityStart, int cityEnd, int zipStart, int zipEnd, int regionStart, int regionEnd, int countryStart, int countryEnd) {
-	StringBundler sb = new StringBundler(10);
-
-	sb.append(html.substring(0, street1Start));
-	sb.append(html.substring(countryStart, countryEnd));
-	sb.append(html.substring(regionStart, regionEnd));
-	sb.append(html.substring(cityStart, cityEnd));
-	sb.append(html.substring(street3Start, street3End));
-	sb.append(html.substring(street1Start, street1End));
-	sb.append(html.substring(street2Start, street2End));
-	sb.append(html.substring(zipStart, zipEnd));
-	sb.append(html.substring(regionEnd, zipStart));
-	sb.append(html.substring(cityEnd));
-
-	return sb.toString();
-}
-
 private int _getFormFieldEnd(String html, int fromIndex) {
 	if (fromIndex < 0) {
 		return -1;
@@ -101,6 +84,23 @@ private int _getFormFieldStart(String html, String id) {
 	}
 
 	return html.lastIndexOf(_DIV_OPEN, x);
+}
+
+private String _rearrangeFormFields(String html, int street1Start, int street1End, int street2Start, int street2End, int street3Start, int street3End, int cityStart, int cityEnd, int zipStart, int zipEnd, int regionStart, int regionEnd, int countryStart, int countryEnd) {
+	StringBundler sb = new StringBundler(10);
+
+	sb.append(html.substring(0, street1Start));
+	sb.append(html.substring(countryStart, countryEnd));
+	sb.append(html.substring(regionStart, regionEnd));
+	sb.append(html.substring(cityStart, cityEnd));
+	sb.append(html.substring(street3Start, street3End));
+	sb.append(html.substring(street1Start, street1End));
+	sb.append(html.substring(street2Start, street2End));
+	sb.append(html.substring(zipStart, zipEnd));
+	sb.append(html.substring(regionEnd, zipStart));
+	sb.append(html.substring(cityEnd));
+
+	return sb.toString();
 }
 
 private static final String _DIV_CLOSE = "</div>";

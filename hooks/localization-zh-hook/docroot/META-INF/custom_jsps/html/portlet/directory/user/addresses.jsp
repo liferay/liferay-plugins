@@ -65,7 +65,7 @@ if ((organizationAddressesStart >= 0) && (organizationAddressesEnd >= 0)) {
 		String mailingName = address.getType().getName();
 	%>
 
-		<liferay-util:buffer var="organizationAddres">
+		<liferay-util:buffer var="organizationAddress">
 			<li class="<%= address.isPrimary() ? "primary" : "" %>">
 				<em class="mailing-name"> <liferay-ui:message key="<%= mailingName %>" /> </em>
 
@@ -102,7 +102,7 @@ if ((organizationAddressesStart >= 0) && (organizationAddressesEnd >= 0)) {
 		</liferay-util:buffer>
 
 <%
-		sb.append(organizationAddres);
+		sb.append(organizationAddress);
 	}
 
 	sb.append(html.substring(organizationAddressesEnd));
