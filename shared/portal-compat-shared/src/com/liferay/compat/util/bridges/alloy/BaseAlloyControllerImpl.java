@@ -779,11 +779,11 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		if (!GroupedModel.class.isAssignableFrom(indexerClass)) {
 			searchContext.setGroupIds(null);
 		}
-		else if ((attributes != null) &&
-				 attributes.containsKey(Field.GROUP_ID)) {
+		else if (searchContext.getAttribute(Field.GROUP_ID) != null) {
+			long groupId = GetterUtil.getLong(
+				searchContext.getAttribute(Field.GROUP_ID));
 
-			searchContext.setGroupIds(
-				new long[] {(Long)attributes.get(Field.GROUP_ID)});
+			searchContext.setGroupIds(new long[] {groupId});
 		}
 
 		if (Validator.isNotNull(keywords)) {
