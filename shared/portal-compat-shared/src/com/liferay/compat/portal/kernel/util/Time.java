@@ -32,7 +32,7 @@ public class Time extends com.liferay.portal.kernel.util.Time {
 	public static final String DURATION_FORMAT = "HH:mm:ss.SSS";
 
 	public static String getDuration(long milliseconds) {
-		return getSimpleDate(new Date(milliseconds), Time.DURATION_FORMAT);
+		return getSimpleDate(new Date(milliseconds), DURATION_FORMAT);
 	}
 
 	public static String getRelativeTimeDescription(
