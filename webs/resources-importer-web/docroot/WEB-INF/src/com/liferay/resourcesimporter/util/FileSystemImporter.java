@@ -126,10 +126,8 @@ public class FileSystemImporter extends BaseImporter {
 
 		String name = getName(fileName);
 
-		String templateKey = getKey(fileName);
-
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.fetchTemplate(
-			groupId, classNameId, templateKey);
+			groupId, classNameId, getKey(fileName));
 
 		if (ddmTemplate != null) {
 			if (!developerModeEnabled) {
@@ -146,8 +144,8 @@ public class FileSystemImporter extends BaseImporter {
 		}
 
 		DDMTemplateLocalServiceUtil.addTemplate(
-			userId, groupId, classNameId, 0, templateKey, getMap(name), null,
-			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, StringPool.BLANK,
+			userId, groupId, classNameId, 0, getKey(fileName), getMap(name),
+			null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, StringPool.BLANK,
 			getDDMTemplateLanguage(name), script, false, false,
 			StringPool.BLANK, null, serviceContext);
 	}
@@ -156,7 +154,8 @@ public class FileSystemImporter extends BaseImporter {
 			String parentDirName, String dirName, long classNameId)
 		throws Exception {
 
-		File dir = new File(_resourcesDir, parentDirName + "/" + dirName);
+		File dir = new File(
+			_resourcesDir, parentDirName + StringPool.SLASH + dirName);
 
 		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
@@ -190,14 +189,15 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void addDDLDisplayTemplates(
-			String fileName, String ddmStructureKey, String dirName)
+			String ddmStructureKey, String dirName, String fileName)
 		throws Exception {
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
 			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
 
-		File dir = new File(_resourcesDir, dirName + "/" + fileName);
+		File dir = new File(
+			_resourcesDir, dirName + StringPool.SLASH + fileName);
 
 		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
@@ -222,14 +222,15 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected void addDDLFormTemplates(
-			String fileName, String ddmStructureKey, String dirName)
+			String ddmStructureKey, String dirName, String fileName)
 		throws Exception {
 
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.getStructure(
 			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
 			ddmStructureKey);
 
-		File dir = new File(_resourcesDir,dirName + "/" + fileName);
+		File dir = new File(
+			_resourcesDir, dirName + StringPool.SLASH + fileName);
 
 		if (!dir.isDirectory() || !dir.canRead()) {
 			return;
@@ -274,11 +275,9 @@ public class FileSystemImporter extends BaseImporter {
 
 		String name = getName(fileName);
 
-		String structureKey = getKey(fileName);
-
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.fetchStructure(
 			groupId, PortalUtil.getClassNameId(DDLRecordSet.class),
-			structureKey);
+			getKey(fileName));
 
 		if (ddmStructure != null) {
 			if (!developerModeEnabled) {
@@ -296,18 +295,18 @@ public class FileSystemImporter extends BaseImporter {
 
 		ddmStructure = DDMStructureLocalServiceUtil.addStructure(
 			userId, groupId, DDMStructureConstants.DEFAULT_PARENT_STRUCTURE_ID,
-			PortalUtil.getClassNameId(DDLRecordSet.class), structureKey,
+			PortalUtil.getClassNameId(DDLRecordSet.class), getKey(fileName),
 			getMap(name), null, StringUtil.read(inputStream),
 			PropsUtil.get(PropsKeys.DYNAMIC_DATA_LISTS_STORAGE_TYPE),
 			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
 
 		addDDLDisplayTemplates(
-			fileName, ddmStructure.getStructureKey(),
-			_DDL_STRUCTURE_DISPLAY_TEMPLATE_DIR_NAME);
+			ddmStructure.getStructureKey(),
+			_DDL_STRUCTURE_DISPLAY_TEMPLATE_DIR_NAME, fileName);
 
 		addDDLFormTemplates(
-			fileName, ddmStructure.getStructureKey(),
-			_DDL_STRUCTURE_FORM_TEMPLATE_DIR_NAME);
+			ddmStructure.getStructureKey(),
+			_DDL_STRUCTURE_FORM_TEMPLATE_DIR_NAME, fileName);
 	}
 
 	protected void addDDMStructures(
@@ -349,11 +348,9 @@ public class FileSystemImporter extends BaseImporter {
 
 		String name = getName(fileName);
 
-		String structureKey = getKey(fileName);
-
 		DDMStructure ddmStructure = DDMStructureLocalServiceUtil.fetchStructure(
 			groupId, PortalUtil.getClassNameId(JournalArticle.class),
-			structureKey);
+			getKey(fileName));
 
 		if (ddmStructure != null) {
 			if (!developerModeEnabled) {
@@ -379,7 +376,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		ddmStructure = DDMStructureLocalServiceUtil.addStructure(
 			userId, groupId, parentDDMStructureKey,
-			PortalUtil.getClassNameId(JournalArticle.class), structureKey,
+			PortalUtil.getClassNameId(JournalArticle.class), getKey(fileName),
 			getMap(name), null, xsd,
 			PropsUtil.get(PropsKeys.JOURNAL_ARTICLE_STORAGE_TYPE),
 			DDMStructureConstants.TYPE_DEFAULT, serviceContext);
@@ -406,11 +403,9 @@ public class FileSystemImporter extends BaseImporter {
 
 		String name = getName(fileName);
 
-		String templateKey = getKey(fileName);
-
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.fetchTemplate(
 			groupId, PortalUtil.getClassNameId(DDMStructure.class),
-			templateKey);
+			getKey(fileName));
 
 		if (ddmTemplate != null) {
 			if (!developerModeEnabled) {
@@ -429,7 +424,7 @@ public class FileSystemImporter extends BaseImporter {
 		DDMTemplateLocalServiceUtil.addTemplate(
 			userId, templateGroupId,
 			PortalUtil.getClassNameId(DDMStructure.class), ddmStructureId,
-			templateKey, getMap(name), null, type, mode, language, script,
+			getKey(fileName), getMap(name), null, type, mode, language, script,
 			false, false, StringPool.BLANK, null, serviceContext);
 	}
 
@@ -469,8 +464,6 @@ public class FileSystemImporter extends BaseImporter {
 
 		String name = getName(fileName);
 
-		String templateKey = getKey(fileName);
-
 		String xsl = StringUtil.read(inputStream);
 
 		setServiceContext(fileName);
@@ -481,7 +474,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		DDMTemplate ddmTemplate = DDMTemplateLocalServiceUtil.fetchTemplate(
 			groupId, PortalUtil.getClassNameId(DDMStructure.class),
-			templateKey);
+			getKey(fileName));
 
 		if (ddmTemplate != null) {
 			if (!developerModeEnabled) {
@@ -499,7 +492,7 @@ public class FileSystemImporter extends BaseImporter {
 
 		ddmTemplate = DDMTemplateLocalServiceUtil.addTemplate(
 			userId, groupId, PortalUtil.getClassNameId(DDMStructure.class),
-			ddmStructure.getStructureId(), templateKey, getMap(name), null,
+			ddmStructure.getStructureId(), getKey(fileName), getMap(name), null,
 			DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY, null,
 			getDDMTemplateLanguage(fileName), replaceFileEntryURL(xsl), false,
 			false, null, null, serviceContext);
@@ -920,9 +913,7 @@ public class FileSystemImporter extends BaseImporter {
 		JSONObject layoutTemplateJSONObject = jsonObject.getJSONObject(
 			"layoutTemplate");
 
-		String layoutTemplateName = layoutTemplateJSONObject.getString("name");
-
-		String name = getName(layoutTemplateName);
+		String name = getName(layoutTemplateJSONObject.getString("name"));
 
 		LayoutPrototype layoutPrototype = getLayoutPrototype(companyId, name);
 
@@ -1097,13 +1088,7 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected String getName(String name) {
-		StringBundler sb = new StringBundler(3);
-
-		sb.append(name);
-		sb.append(" - ");
-		sb.append(version);
-
-		return sb.toString();
+		return name + " - " + version;
 	}
 
 	protected boolean isJournalStructureXSD(String xsd) throws Exception {
