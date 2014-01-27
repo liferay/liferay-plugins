@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.MemberRequestAlreadyUsedException;
 import com.liferay.so.MemberRequestInvalidUserException;
 import com.liferay.so.invitemembers.util.InviteMembersConstants;
@@ -257,6 +258,18 @@ public class MemberRequestLocalServiceImpl
 		return memberRequest;
 	}
 
+	protected static String addParameterWithPortletNamespace(
+		String url, String name, String value) {
+
+		String portletId = HttpUtil.getParameter(url, "p_p_id", false);
+
+		if (Validator.isNotNull(portletId)) {
+			name = PortalUtil.getPortletNamespace(portletId) + name;
+		}
+
+		return HttpUtil.addParameter(url, name, value);
+	}
+
 	protected String getCreateAccountURL(
 		MemberRequest memberRequest, ServiceContext serviceContext) {
 
@@ -269,10 +282,10 @@ public class MemberRequestLocalServiceImpl
 
 		String redirectURL = getRedirectURL(serviceContext);
 
-		redirectURL = HttpUtil.addParameter(
+		redirectURL = addParameterWithPortletNamespace(
 			redirectURL, "key", memberRequest.getKey());
 
-		createAccountURL = HttpUtil.addParameter(
+		createAccountURL = addParameterWithPortletNamespace(
 			createAccountURL, "redirect", redirectURL);
 
 		return createAccountURL;
