@@ -21,6 +21,7 @@
 		<dependency name="jackson-core" org="com.fasterxml.jackson.core" rev="2.1.5" />
 		<dependency name="jackson-databind" org="com.fasterxml.jackson.core" rev="2.1.5" />
 		<dependency name="jsr311-api" org="javax.ws.rs" rev="1.1.1" />
+		<dependency name="log4j" org="log4j" rev="1.2.17" />
 		<dependency name="ormlite-core" org="com.j256.ormlite" rev="4.47" />
 		<dependency name="ormlite-jdbc" org="com.j256.ormlite" rev="4.47" />
 		<dependency name="slf4j-api" org="org.slf4j" rev="1.7.5" />
