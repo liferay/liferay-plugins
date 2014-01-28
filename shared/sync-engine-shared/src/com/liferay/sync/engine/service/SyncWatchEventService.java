@@ -31,14 +31,15 @@ import org.slf4j.LoggerFactory;
 public class SyncWatchEventService {
 
 	public static SyncWatchEvent addSyncWatchEvent(
-			String filePath, String fileType, String kind, long syncAccountId)
+			String filePath, String fileType, String kindName,
+			long syncAccountId)
 		throws Exception {
 
 		SyncWatchEvent syncWatchEvent = new SyncWatchEvent();
 
 		syncWatchEvent.setFilePath(filePath);
 		syncWatchEvent.setFileType(fileType);
-		syncWatchEvent.setKind(kind);
+		syncWatchEvent.setKindName(kindName);
 		syncWatchEvent.setSyncAccountId(syncAccountId);
 		syncWatchEvent.setTimestamp(System.currentTimeMillis());
 

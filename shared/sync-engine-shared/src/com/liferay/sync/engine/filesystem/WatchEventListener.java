@@ -23,6 +23,6 @@ public interface WatchEventListener {
 
 	public long getSyncAccountId();
 
-	public void watchEvent(Path filePath, String kind);
+	public void watchEvent(Path filePath, String kindName);
 
 }

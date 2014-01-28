@@ -133,8 +133,8 @@ public class Watcher implements Runnable {
 		}
 	}
 
-	protected void fireWatchEventListener(Path filePath, String kind) {
-		_watchEventListener.watchEvent(filePath, kind);
+	protected void fireWatchEventListener(Path filePath, String kindName) {
+		_watchEventListener.watchEvent(filePath, kindName);
 	}
 
 	protected void fireWatchEventListener(

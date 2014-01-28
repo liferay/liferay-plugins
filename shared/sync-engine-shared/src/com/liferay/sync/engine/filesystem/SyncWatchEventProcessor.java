@@ -46,9 +46,10 @@ public class SyncWatchEventProcessor implements Runnable {
 		for (SyncWatchEvent syncWatchEvent : syncWatchEvents) {
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(
-					"Event file path {} file type {} kind {} timestamp {}",
+					"Event file path {} file type {} kind name {} timestamp {}",
 					syncWatchEvent.getFilePath(), syncWatchEvent.getFileType(),
-					syncWatchEvent.getKind(), syncWatchEvent.getTimestamp());
+					syncWatchEvent.getKindName(),
+					syncWatchEvent.getTimestamp());
 			}
 
 			SyncWatchEventService.deleteSyncWatchEvent(

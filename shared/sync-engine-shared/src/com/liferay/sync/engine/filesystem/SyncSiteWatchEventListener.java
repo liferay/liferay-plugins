@@ -34,11 +34,11 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 	}
 
 	@Override
-	public void watchEvent(Path filePath, String kind) {
-		addSyncWatchEvent(filePath, kind);
+	public void watchEvent(Path filePath, String kindName) {
+		addSyncWatchEvent(filePath, kindName);
 	}
 
-	protected void addSyncWatchEvent(Path filePath, String kind) {
+	protected void addSyncWatchEvent(Path filePath, String kindName) {
 		String fileType;
 
 		if (Files.isDirectory(filePath, LinkOption.NOFOLLOW_LINKS)) {
@@ -50,7 +50,7 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 
 		try {
 			SyncWatchEventService.addSyncWatchEvent(
-				filePath.toString(), fileType, kind, getSyncAccountId());
+				filePath.toString(), fileType, kindName, getSyncAccountId());
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);

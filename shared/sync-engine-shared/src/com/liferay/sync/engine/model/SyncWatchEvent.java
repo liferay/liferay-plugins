@@ -48,8 +48,8 @@ public class SyncWatchEvent {
 		return fileType;
 	}
 
-	public String getKind() {
-		return kind;
+	public String getKindName() {
+		return kindName;
 	}
 
 	public long getSyncAccountId() {
@@ -72,8 +72,8 @@ public class SyncWatchEvent {
 		this.fileType = fileType;
 	}
 
-	public void setKind(String kind) {
-		this.kind = kind;
+	public void setKindName(String kindName) {
+		this.kindName = kindName;
 	}
 
 	public void setSyncAccountId(long syncAccountId) {
@@ -95,7 +95,7 @@ public class SyncWatchEvent {
 	protected String fileType;
 
 	@DatabaseField(useGetSet = true)
-	protected String kind;
+	protected String kindName;
 
 	@DatabaseField(useGetSet = true)
 	protected long syncAccountId;
