@@ -618,8 +618,11 @@ public class CalendarImporterLocalServiceImpl
 
 			importCalEvent(calEvent);
 
+			CalendarResource calendarResource = getCalendarResource(
+					calEvent.getCompanyId(), calEvent.getGroupId());
+
 			linkedAssetEntry = assetEntryPersistence.findByG_CU(
-				calEvent.getGroupId(), calEvent.getUuid());
+				calendarResource.getGroupId(), calEvent.getUuid());
 
 			if (assetLink.getEntryId1() == oldEntryId) {
 				entryId2 = linkedAssetEntry.getEntryId();
@@ -948,12 +951,12 @@ public class CalendarImporterLocalServiceImpl
 	protected boolean isImported(CalEvent calEvent)
 		throws PortalException, SystemException {
 
-		Group group = groupLocalService.getCompanyGroup(
-			calEvent.getCompanyId());
+		CalendarResource calendarResource = getCalendarResource(
+				calEvent.getCompanyId(), calEvent.getGroupId());
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.fetchByUUID_G(
-				calEvent.getUuid(), group.getGroupId());
+				calEvent.getUuid(), calendarResource.getGroupId());
 
 		if (calendarBooking != null) {
 			return true;
