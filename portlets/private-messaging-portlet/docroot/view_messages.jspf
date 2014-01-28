@@ -22,11 +22,11 @@
 		<aui:input cssClass="check-all" inline="<%= true %>" label="" name="checkAllMessages" title='<%= LanguageUtil.get(pageContext, "check-all-messages") %>' type="checkbox" />
 	</c:if>
 
-	<aui:button name="markMessagesAsUnread" value="mark-as-unread" />
+	<aui:button cssClass="hide" name="markMessagesAsUnread" value="mark-as-unread" />
 
-	<aui:button name="markMessagesAsRead" value="mark-as-read" />
+	<aui:button cssClass="hide" name="markMessagesAsRead" value="mark-as-read" />
 
-	<aui:button name="deleteMessages" value="delete" />
+	<aui:button cssClass="hide" name="deleteMessages" value="delete" />
 
 	<aui:button cssClass="pull-right" name="newMessage" primary="<%= true %>" value="new-message" />
 </aui:button-row>
