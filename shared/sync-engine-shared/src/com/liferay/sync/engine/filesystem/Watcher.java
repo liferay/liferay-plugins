@@ -14,6 +14,8 @@
 
 package com.liferay.sync.engine.filesystem;
 
+import com.liferay.sync.engine.model.SyncWatchEvent;
+
 import java.io.IOException;
 
 import java.nio.file.FileSystem;
@@ -37,8 +39,6 @@ import java.util.concurrent.Executors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.liferay.sync.engine.model.SyncWatchEvent;
 
 /**
  * @author Michael Young

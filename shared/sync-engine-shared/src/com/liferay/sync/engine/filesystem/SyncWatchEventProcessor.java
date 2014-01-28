@@ -44,11 +44,11 @@ public class SyncWatchEventProcessor implements Runnable {
 		List<SyncWatchEvent> syncWatchEvents = SyncWatchEventService.findAll();
 
 		for (SyncWatchEvent syncWatchEvent : syncWatchEvents) {
-			if (_logger.isTraceEnabled()) {
-				_logger.trace(
-					"Event file path {} kind {} timestamp {}",
-					syncWatchEvent.getFilePath(), syncWatchEvent.getKind(),
-					syncWatchEvent.getTimestamp());
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(
+					"Event file path {} file type {} kind {} timestamp {}",
+					syncWatchEvent.getFilePath(), syncWatchEvent.getFileType(),
+					syncWatchEvent.getKind(), syncWatchEvent.getTimestamp());
 			}
 
 			SyncWatchEventService.deleteSyncWatchEvent(

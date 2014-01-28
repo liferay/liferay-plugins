@@ -14,8 +14,11 @@
 
 package com.liferay.sync.engine.filesystem;
 
+import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncWatchEventService;
 
+import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 
 import org.slf4j.Logger;
@@ -36,9 +39,18 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 	}
 
 	protected void addSyncWatchEvent(Path filePath, String kind) {
+		String fileType;
+
+		if (Files.isDirectory(filePath, LinkOption.NOFOLLOW_LINKS)) {
+			fileType = SyncFile.TYPE_FOLDER;
+		}
+		else {
+			fileType = SyncFile.TYPE_FILE;
+		}
+
 		try {
 			SyncWatchEventService.addSyncWatchEvent(
-				filePath.toString(), kind, getSyncAccountId());
+				filePath.toString(), fileType, kind, getSyncAccountId());
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
