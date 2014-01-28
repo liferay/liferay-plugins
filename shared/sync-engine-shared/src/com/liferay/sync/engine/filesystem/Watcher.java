@@ -35,6 +35,11 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.liferay.sync.engine.model.SyncWatchEvent;
+
 /**
  * @author Michael Young
  */
@@ -58,25 +63,6 @@ public class Watcher implements Runnable {
 
 	public void close() throws IOException {
 		_watchService.close();
-	}
-
-	public void fireWatchEventListener(
-		WatchEvent<Path> watchEvent, Path filePath) {
-
-		WatchEvent.Kind<?> kind = watchEvent.kind();
-
-		if (kind == StandardWatchEventKinds.ENTRY_CREATE) {
-			_watchEventListener.entryCreate(filePath, watchEvent);
-		}
-		else if (kind == StandardWatchEventKinds.ENTRY_DELETE) {
-			_watchEventListener.entryDelete(filePath, watchEvent);
-		}
-		else if (kind == StandardWatchEventKinds.ENTRY_MODIFY) {
-			_watchEventListener.entryModify(filePath, watchEvent);
-		}
-		else if (kind == StandardWatchEventKinds.OVERFLOW) {
-			_watchEventListener.overflow(filePath, watchEvent);
-		}
 	}
 
 	public void processEvents() {
@@ -112,7 +98,7 @@ public class Watcher implements Runnable {
 
 				childFilePath = childFilePath.normalize();
 
-				fireWatchEventListener(watchEvent, childFilePath);
+				fireWatchEventListener(childFilePath, watchEvent);
 
 				WatchEvent.Kind<?> kind = watchEvent.kind();
 
@@ -132,13 +118,31 @@ public class Watcher implements Runnable {
 			}
 
 			if (!watchKey.reset()) {
-				_filePaths.remove(watchKey);
+				Path filePath = _filePaths.remove(watchKey);
+
+				if (_logger.isTraceEnabled()) {
+					_logger.trace("Unregistered file path {}", filePath);
+				}
+
+				fireWatchEventListener(filePath, SyncWatchEvent.ENTRY_DELETE);
 
 				if (_filePaths.isEmpty()) {
 					break;
 				}
 			}
 		}
+	}
+
+	protected void fireWatchEventListener(Path filePath, String kind) {
+		_watchEventListener.watchEvent(filePath, kind);
+	}
+
+	protected void fireWatchEventListener(
+		Path filePath, WatchEvent<Path> watchEvent) {
+
+		WatchEvent.Kind<?> kind = watchEvent.kind();
+
+		fireWatchEventListener(filePath, kind.name());
 	}
 
 	protected void register(Path filePath, boolean recursive)
@@ -170,8 +174,16 @@ public class Watcher implements Runnable {
 				StandardWatchEventKinds.ENTRY_MODIFY);
 
 			_filePaths.put(watchKey, filePath);
+
+			fireWatchEventListener(filePath, SyncWatchEvent.ENTRY_CREATE);
+
+			if (_logger.isTraceEnabled()) {
+				_logger.trace("Registered file path {}", filePath);
+			}
 		}
 	}
+
+	private static Logger _logger = LoggerFactory.getLogger(Watcher.class);
 
 	private ExecutorService _executorService =
 		Executors.newSingleThreadExecutor();

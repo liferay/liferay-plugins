@@ -31,7 +31,8 @@ import org.slf4j.LoggerFactory;
 public class SyncWatchEventProcessor implements Runnable {
 
 	public void process() {
-		_scheduledExecutorService.schedule(this, 3, TimeUnit.SECONDS);
+		_scheduledExecutorService.scheduleAtFixedRate(
+			this, 0, 3, TimeUnit.SECONDS);
 	}
 
 	@Override
@@ -45,10 +46,13 @@ public class SyncWatchEventProcessor implements Runnable {
 		for (SyncWatchEvent syncWatchEvent : syncWatchEvents) {
 			if (_logger.isTraceEnabled()) {
 				_logger.trace(
-					"Event file path {} kind {} timestamp{}",
+					"Event file path {} kind {} timestamp {}",
 					syncWatchEvent.getFilePath(), syncWatchEvent.getKind(),
 					syncWatchEvent.getTimestamp());
 			}
+
+			SyncWatchEventService.deleteSyncWatchEvent(
+				syncWatchEvent.getSyncWatchEventId());
 		}
 	}
 

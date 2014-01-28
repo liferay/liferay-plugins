@@ -46,6 +46,17 @@ public class SyncWatchEventService {
 		return syncWatchEvent;
 	}
 
+	public static void deleteSyncWatchEvent(long syncWatchEventId) {
+		try {
+			_syncWatchEventPersistence.deleteById(syncWatchEventId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+		}
+	}
+
 	public static SyncWatchEvent fetchSyncWatchEvent(long syncWatchEventId) {
 		try {
 			return _syncWatchEventPersistence.queryForId(syncWatchEventId);

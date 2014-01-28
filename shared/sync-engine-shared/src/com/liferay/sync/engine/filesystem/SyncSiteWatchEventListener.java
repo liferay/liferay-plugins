@@ -17,7 +17,6 @@ package com.liferay.sync.engine.filesystem;
 import com.liferay.sync.engine.service.SyncWatchEventService;
 
 import java.nio.file.Path;
-import java.nio.file.WatchEvent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,32 +31,14 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 	}
 
 	@Override
-	public void entryCreate(Path filePath, WatchEvent<Path> watchEvent) {
-		addSyncWatchEvent(filePath, watchEvent);
+	public void watchEvent(Path filePath, String kind) {
+		addSyncWatchEvent(filePath, kind);
 	}
 
-	@Override
-	public void entryDelete(Path filePath, WatchEvent<Path> watchEvent) {
-		addSyncWatchEvent(filePath, watchEvent);
-	}
-
-	@Override
-	public void entryModify(Path filePath, WatchEvent<Path> watchEvent) {
-		addSyncWatchEvent(filePath, watchEvent);
-	}
-
-	@Override
-	public void overflow(Path filePath, WatchEvent<Path> watchEvent) {
-		addSyncWatchEvent(filePath, watchEvent);
-	}
-
-	protected void addSyncWatchEvent(
-		Path filePath, WatchEvent<Path> watchEvent) {
-
+	protected void addSyncWatchEvent(Path filePath, String kind) {
 		try {
 			SyncWatchEventService.addSyncWatchEvent(
-				filePath.toString(), watchEvent.kind().name(),
-				getSyncAccountId());
+				filePath.toString(), kind, getSyncAccountId());
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
