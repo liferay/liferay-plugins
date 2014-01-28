@@ -68,13 +68,13 @@ protected User getUser(HttpServletRequest request, long companyId)
 	HttpSession session = request.getSession();
 
 	String emailAddress = GetterUtil.getString(
-		session.getAttribute("GOOGLE_USER_EMAIL_ADDRESS"));
+		session.getAttribute(GoogleOAuth.GOOGLE_USER_EMAIL_ADDRESS));
 
 	if (Validator.isNull(emailAddress)) {
 		return null;
 	}
 
-	session.removeAttribute("GOOGLE_USER_EMAIL_ADDRESS");
+	session.removeAttribute(GoogleOAuth.GOOGLE_USER_EMAIL_ADDRESS);
 
 	User user = UserLocalServiceUtil.getUserByEmailAddress(
 		companyId, emailAddress);

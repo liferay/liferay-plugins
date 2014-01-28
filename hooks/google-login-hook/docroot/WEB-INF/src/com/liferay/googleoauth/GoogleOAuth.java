@@ -76,7 +76,13 @@ public class GoogleOAuth extends BaseStrutsAction {
 
 	public static final String GOOGLE_ACCESS_TOKEN = "googleAccessToken";
 
+	public static final String GOOGLE_INCOMPLETE_USER_ID =
+		"GOOGLE_INCOMPLETE_USER_ID";
+
 	public static final String GOOGLE_REFRESH_TOKEN = "googleRefreshToken";
+
+	public static final String GOOGLE_USER_EMAIL_ADDRESS =
+		"GOOGLE_USER_EMAIL_ADDRESS";
 
 	public static final String GOOGLE_USER_ID = "googleUserId";
 
@@ -189,7 +195,7 @@ public class GoogleOAuth extends BaseStrutsAction {
 		user = UserLocalServiceUtil.updateEmailAddressVerified(
 			user.getUserId(), true);
 
-		session.setAttribute("GOOGLE_USER_EMAIL_ADDRESS", emailAddress);
+		session.setAttribute(GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
 
 		return user;
 	}
@@ -361,14 +367,14 @@ public class GoogleOAuth extends BaseStrutsAction {
 			if ((user != null) &&
 				(user.getStatus() != WorkflowConstants.STATUS_INCOMPLETE)) {
 
-				session.setAttribute("GOOGLE_USER_EMAIL_ADDRESS", emailAddress);
+				session.setAttribute(GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
 			}
 		}
 
 		if (user != null) {
 			if (user.getStatus() == WorkflowConstants.STATUS_INCOMPLETE) {
 				session.setAttribute(
-					"GOOGLE_INCOMPLETE_USER_ID", userinfo.getId());
+					GOOGLE_INCOMPLETE_USER_ID, userinfo.getId());
 
 				user.setEmailAddress(userinfo.getEmail());
 				user.setFirstName(userinfo.getGivenName());
