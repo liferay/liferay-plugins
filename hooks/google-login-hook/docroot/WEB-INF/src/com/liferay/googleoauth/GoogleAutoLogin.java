@@ -17,6 +17,7 @@ package com.liferay.googleoauth;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.BaseAutoLogin;
@@ -38,6 +39,13 @@ protected String[] doLogin(
 	throws Exception {
 
 	long companyId = PortalUtil.getCompanyId(request);
+
+	boolean googleAuthEnabled = PrefsPropsUtil.getBoolean(
+		companyId, "google-auth-enabled", true);
+
+	if (!googleAuthEnabled) {
+		return null;
+	}
 
 	User user = getUser(request, companyId);
 
