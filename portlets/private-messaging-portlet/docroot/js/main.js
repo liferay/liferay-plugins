@@ -39,6 +39,10 @@ AUI.add(
 
 						instance._privateMessagingContainer = instance.byId('privateMessagingContainer');
 
+						instance._deleteMessagesButton = instance.byId('deleteMessages');
+						instance._markMessagesAsReadButton = instance.byId('markMessagesAsRead');
+						instance._markMessagesAsUnreadButton = instance.byId('markMessagesAsUnread');
+
 						instance._eventHandles = [];
 
 						instance._bindUI();
@@ -270,6 +274,29 @@ AUI.add(
 						}
 					},
 
+					_bindToggleMessageButtons: function() {
+						var instance = this;
+
+						instance._privateMessagingContainer.delegate(
+							STR_CLICK,
+							function() {
+								var messageIds = instance._getSelectedMessageIds();
+
+								if (messageIds.length > 0 ) {
+									instance._deleteMessagesButton.show();
+									instance._markMessagesAsReadButton.show();
+									instance._markMessagesAsUnreadButton.show();
+								}
+								else {
+									instance._deleteMessagesButton.hide();
+									instance._markMessagesAsReadButton.hide();
+									instance._markMessagesAsUnreadButton.hide();
+								}
+							},
+							'input[type=checkbox]'
+						);
+					},
+
 					_bindUI: function() {
 						var instance = this;
 
@@ -289,6 +316,8 @@ AUI.add(
 							instance._bindMarkMessagesUnread();
 
 							instance._bindCheckAllMessages();
+
+							instance._bindToggleMessageButtons();
 						}
 					},
 
