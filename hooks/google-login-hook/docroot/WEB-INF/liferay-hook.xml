@@ -3,4 +3,8 @@
 
 <hook>
 	<portal-properties>portal.properties</portal-properties>
+	<struts-action>
+		<struts-action-path>/portal/google_login</struts-action-path>
+		<struts-action-impl>com.liferay.googleoauth.GoogleOAuth</struts-action-impl>
+	</struts-action>
 </hook>
