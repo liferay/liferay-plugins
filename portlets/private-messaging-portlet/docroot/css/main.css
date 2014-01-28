@@ -14,7 +14,7 @@
 	}
 
 	.lfr-search-container {
-		margin: 0;
+		margin: 0 0 0 -1px;
 	}
 
 	.controls {
@@ -23,7 +23,7 @@
 		padding: 5px 10px;
 
 		.check-all {
-			margin: 0 5px 0 0;
+			margin: 9px 6px 9px 0;
 		}
 	}
 
@@ -220,11 +220,39 @@ html.aui {
 
 	@media (max-width: 767px) {
 		.private-messaging-portlet {
+			.messages {
+				.button-holder{
+					padding-left: 51px;
+					position: relative;
+
+					.check-all {
+						height: 24px;
+						left: 16px;
+						margin-top: -12px;
+						position: absolute;
+						top: 50%;
+						width: 24px;
+					}
+				}
+
+				.table .first input {
+					height: 24px;
+					margin-left: 6px;
+					width: 24px;
+				}
+			}
+
 			button, button:hover {
+				margin-bottom: 5px;
+				margin-top: 0;
 				width: 100%;
 
 				&.close {
 					width: auto;
+				}
+
+				&:last-child {
+					margin-bottom: 0;
 				}
 			}
 		}
