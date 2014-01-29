@@ -62,7 +62,6 @@ public class RulesContextBuilder {
 			new Fact<KaleoInstanceToken>(
 				"kaleoInstanceToken",
 				executionContext.getKaleoInstanceToken()));
-
 		facts.add(
 			new Fact<Map<String, Serializable>>(
 				"workflowContext", workflowContext));

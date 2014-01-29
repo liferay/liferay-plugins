@@ -119,7 +119,7 @@ public class VelocityNotificationMessageGenerator
 		}
 
 		KaleoTimerInstanceToken kaleoTimerInstanceToken =
-				executionContext.getKaleoTimerInstanceToken();
+			executionContext.getKaleoTimerInstanceToken();
 
 		if (kaleoTimerInstanceToken != null) {
 			velocityContext.put(
