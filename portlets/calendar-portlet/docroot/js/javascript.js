@@ -39,6 +39,8 @@ AUI.add(
 
 		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}ruleName={ruleName}';
 
+		var TPL_RESOURCE_CALENDARS_URL = '{resourceCalendarsURL}&{portletNamespace}calendarResourceId={calendarResourceId}';
+
 		var CONTROLS_NODE = 'controlsNode';
 
 		var ICON_ADD_EVENT_NODE = 'iconAddEventNode';
@@ -100,6 +102,7 @@ AUI.add(
 			NOTIFICATION_DEFAULT_TYPE: 'email',
 			PORTLET_NAMESPACE: STR_BLANK,
 			RENDERING_RULES_URL: null,
+			RESOURCE_CALENDARS_URL: null,
 			USER_TIME_ZONE: 'UTC',
 
 			availableCalendars: {},
@@ -396,6 +399,31 @@ AUI.add(
 
 				A.io.request(
 					renderingRulesURL,
+					{
+						dataType: 'json',
+						on: {
+							success: function() {
+								callback(this.get('responseData'));
+							}
+						}
+					}
+				);
+			},
+
+			getResourceCalendars: function(calendarResourceId, callback) {
+				var instance = this;
+
+				var resourceCalendarsURL = Lang.sub(
+					TPL_RESOURCE_CALENDARS_URL,
+					{
+						calendarResourceId: calendarResourceId,
+						portletNamespace: instance.PORTLET_NAMESPACE,
+						resourceCalendarsURL: instance.RESOURCE_CALENDARS_URL
+					}
+				);
+
+				A.io.request(
+					resourceCalendarsURL,
 					{
 						dataType: 'json',
 						on: {
