@@ -5,7 +5,8 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<icon>/icon.png</icon>
-		<control-panel-entry-category>users</control-panel-entry-category>
+		<control-panel-entry-category>configuration</control-panel-entry-category>
+		<control-panel-entry-weight>30.0</control-panel-entry-weight>
 		<header-portlet-css>/css/main.css</header-portlet-css>
 		<css-class-wrapper>so-portlet-configurations</css-class-wrapper>
 		<add-default-resource>true</add-default-resource>
