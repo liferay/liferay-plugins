@@ -243,19 +243,11 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 					var activeCalendar = calendarList.activeItem;
 
-					<portlet:actionURL name="deleteCalendar" var="deleteURL">
-						<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
-						<portlet:param name="redirect" value="<%= currentURL %>" />
-						<portlet:param name="calendarId" value="{calendarId}" />
-						<portlet:param name="calendarResourceId" value="{calendarResourceId}" />
-					</portlet:actionURL>
-
 					if (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this" />')) {
-						window.location.href = A.Lang.sub(
-							decodeURIComponent('<%= deleteURL %>'),
-							{
-								calendarId: activeCalendar.get('calendarId'),
-								calendarResourceId: activeCalendar.get('calendarResourceId')
+						Liferay.CalendarUtil.deleteCalendar(
+							activeCalendar.get('calendarId'),
+							function() {
+								window.location.reload();
 							}
 						);
 					}
