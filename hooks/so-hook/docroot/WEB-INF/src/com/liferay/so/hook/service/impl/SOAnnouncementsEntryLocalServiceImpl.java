@@ -196,6 +196,7 @@ public class SOAnnouncementsEntryLocalServiceImpl
 			throws PortalException, SystemException {
 
 			int count = 0;
+			long teamId = 0;
 
 			LinkedHashMap<String, Object> params =
 				new LinkedHashMap<String, Object>();
@@ -208,50 +209,57 @@ public class SOAnnouncementsEntryLocalServiceImpl
 
 				long classPK = announcementEntry.getClassPK();
 
-				if (classPK > 0) {
-					if (className.equals(Group.class.getName())) {
-						params.put("inherit", Boolean.TRUE);
-						params.put("usersGroups", classPK);
-					}
-					else if (className.equals(Organization.class.getName())) {
-						Organization organization =
-							OrganizationLocalServiceUtil.fetchOrganization(
-								classPK);
-
-						if (organization == null) {
-							return;
-						}
-
-						params.put(
-							"usersOrgsTree",
-							ListUtil.fromArray(
-								new Organization[]{organization}));
-					}
-					else if (className.equals(Role.class.getName())) {
-						Role role = RoleLocalServiceUtil.fetchRole(classPK);
-
-						if (role == null) {
-							return;
-						}
-
-						if (role.getType() == RoleConstants.TYPE_REGULAR) {
-							params.put("inherit", Boolean.TRUE);
-							params.put("usersRoles", classPK);
-						}
-						else {
-							params.put(
-								"userGroupRole",
-								new Long[] {Long.valueOf(0), classPK});
-						}
-					}
-					else if (className.equals(UserGroup.class.getName())) {
-						params.put("usersUserGroups", classPK);
-					}
+				if (classPK <= 0) {
+					return;
 				}
 
-				count = UserLocalServiceUtil.searchCount(
-					announcementEntry.getCompanyId(), null,
-					WorkflowConstants.STATUS_APPROVED, params);
+				if (className.equals(Group.class.getName())) {
+					params.put("inherit", Boolean.TRUE);
+					params.put("usersGroups", classPK);
+				}
+				else if (className.equals(Organization.class.getName())) {
+					Organization organization =
+						OrganizationLocalServiceUtil.fetchOrganization(classPK);
+
+					if (organization == null) {
+						return;
+					}
+
+					params.put(
+						"usersOrgsTree",
+						ListUtil.fromArray(new Organization[]{organization}));
+				}
+				else if (className.equals(Role.class.getName())) {
+					Role role = RoleLocalServiceUtil.fetchRole(classPK);
+
+					if (role == null) {
+						return;
+					}
+
+					if (role.getType() == RoleConstants.TYPE_REGULAR) {
+						params.put("inherit", Boolean.TRUE);
+						params.put("usersRoles", classPK);
+					}
+					else if (role.isTeam()) {
+						teamId = role.getClassPK();
+
+						count = UserLocalServiceUtil.getTeamUsersCount(teamId);
+					}
+					else {
+						params.put(
+							"userGroupRole",
+							new Long[] {Long.valueOf(0), classPK});
+					}
+				}
+				else if (className.equals(UserGroup.class.getName())) {
+					params.put("usersUserGroups", classPK);
+				}
+
+				if (!params.isEmpty()) {
+					count = UserLocalServiceUtil.searchCount(
+						announcementEntry.getCompanyId(), null,
+						WorkflowConstants.STATUS_APPROVED, params);
+				}
 			}
 
 			int pages = count / Indexer.DEFAULT_INTERVAL;
@@ -264,6 +272,10 @@ public class SOAnnouncementsEntryLocalServiceImpl
 
 				if (announcementEntry.getClassNameId() == 0) {
 					users = UserLocalServiceUtil.getUsers(start, end);
+				}
+				else if (teamId > 0) {
+					users = UserLocalServiceUtil.getTeamUsers(
+						teamId, start, end);
 				}
 				else {
 					users = UserLocalServiceUtil.search(
