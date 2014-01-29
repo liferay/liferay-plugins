@@ -21,6 +21,7 @@ import com.liferay.compat.portal.kernel.util.ServiceBeanMethodInvocationFactoryU
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -195,7 +196,13 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		if (baseModel instanceof PersistedModel) {
 			PersistedModel persistedModel = (PersistedModel)baseModel;
 
-			persistedModel.persist();
+			try {
+				persistedModel.persist();
+			}
+			catch (SystemException se) {
+				renderError(
+					"an-error-occured-while-updating-the-database");
+			}
 		}
 
 		if ((indexer != null) &&
