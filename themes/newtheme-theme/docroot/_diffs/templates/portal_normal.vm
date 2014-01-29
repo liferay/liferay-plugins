@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+#parse ($init)
+
+<html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
+
+<head>
+	<title>$the_title - $company_name</title>
+
+	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
+
+	<script src="http://cdn.alloyui.com/2.0.0/aui/aui-min.js"></script>
+	<link href="http://cdn.alloyui.com/2.0.0/aui-css/css/bootstrap.min.css" rel="stylesheet"></link>
+
+	$theme.include($top_head_include)
+</head>
+
+<body class="$css_class">
+
+<a href="#main-content" id="skip-to-content">#language ("skip-to-content")</a>
+
+$theme.include($body_top_include)
+
+#if ($is_signed_in)
+	#dockbar()
+#end
+
+<div class="container-fluid" id="wrapper">
+	<header id="banner" role="banner">
+		<div id="heading">
+			<h1 class="site-title">
+				<a class="$logo_css_class" href="$site_default_url" title="#language_format ("go-to-x", [$site_name])">
+					<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
+				</a>
+
+				#if ($show_site_name)
+					<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
+						$site_name
+					</span>
+				#end
+			</h1>
+
+			<h2 class="page-title">
+				<span>$the_title</span>
+			</h2>
+		</div>
+
+		#if (!$is_signed_in)
+			<a data-redirect="$is_login_redirect_required" href="$sign_in_url" id="sign-in" rel="nofollow">$sign_in_text</a>
+		#end
+
+		#if ($has_navigation || $is_signed_in)
+			#parse ("$full_templates_path/navigation.vm")
+		#end
+	</header>
+
+	<div id="myCarousel" class="large-picture">
+		<div class="carousel-item" style="background: url(http://best-responsive.techsaran.com/sites/all/themes/best_responsive/images/slide-image-2.jpg);"></div>
+	   <div class="carousel-item" style="background: url(http://2ndcitystudios.com/wp-content/uploads/2013/05/old-world-map-copy2.jpeg);"></div>
+	   <div class="carousel-item" style="background: url(http://mirrorofjustice.blogs.com/.a/6a00d834515a9a69e2019affe1a57c970c-pi);"></div>
+	   <div class="carousel-item" style="background: url(http://rack.0.mshcdn.com/media/ZgkyMDEzLzA0LzEwL2NlL3BlbmFuZHBhcGVyLjZkNThmLmpwZwpwCXRodW1iCTk1MHg1MzQjCmUJanBn/800c6c0c/8eb/pen-and-paper.jpg);"></div>
+	</div>
+
+	<div id="content">
+		<nav id="breadcrumbs">#breadcrumbs()</nav>
+
+		#if ($selectable)
+			$theme.include($content_include)
+		#else
+			$portletDisplay.recycle()
+
+			$portletDisplay.setTitle($the_title)
+
+			$theme.wrapPortlet("portlet.vm", $content_include)
+		#end
+	</div>
+
+	<footer id="footer" role="contentinfo">
+		<p class="powered-by">
+			#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+		</p>
+	</footer>
+</div>
+
+$theme.include($body_bottom_include)
+
+$theme.include($bottom_include)
+
+</body>
+<script>
+	YUI().use(
+	  'aui-carousel',
+	  function(Y) {
+	    new Y.Carousel(
+	      {
+	        contentBox: '#myCarousel',
+	        height: 400,
+	        intervalTime: 3,
+	        width: 920
+	      }
+	    ).render();
+	  }
+	);
+</script>
+</html>

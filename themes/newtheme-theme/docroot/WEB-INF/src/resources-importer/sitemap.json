@@ -1,0 +1,251 @@
+{
+	"layoutTemplateId": "2_columns_ii",
+	"layouts": [
+		{
+			"friendlyURL": "/home",
+			"name": "Home",
+			"title": "Home",
+			"columns": [
+				[
+					"Welcome.html"
+				],
+				[
+					{
+						"portletId": "82",
+					},
+					{
+						"portletId": "3"
+					},
+					"Theme.html"
+				]
+			]
+		},
+		{
+			"friendlyURL": "/writtenworks",
+			"layoutTemplateId": "2_columns_ii",
+			"name": "Written Works",
+			"title": "Written Works",
+			"layouts": [
+				{
+					"friendlyURL": "/edwardFeser",
+					"layoutTemplateId": "2_columns_ii",
+					"name": "Edward Feser",
+					"title": "Edward Feser",
+					"columns": [
+						[
+							"Does Existence Exist.html"
+						],
+						[
+							{
+								"portletId": "3",
+							},
+							{
+								"portletId": "23"
+							}
+						]
+					]
+				},
+				{
+					"friendlyURL": "/brianLeftow",
+					"layoutTemplateId": "2_columns_ii",
+					"name": "Brian Leftow",
+					"title": "Brian Leftow",
+					"columns": [
+						[
+							"Aquinas on Attributes.html"
+						],
+						[
+							{
+								"portletId": "3",
+							},
+							{
+								"portletId": "23"
+							}
+						]
+					]
+				},
+				{
+					"friendlyURL": "/alexanderPruss",
+					"layoutTemplateId": "2_columns_ii",
+					"name": "Alexander Pruss",
+					"title": "Alexander Pruss",
+					"columns": [
+						[
+							"Consequentialism and doing what is very likely wrong.html"
+						],
+						[
+							{
+								"portletId": "3",
+							},
+							{
+								"portletId": "23"
+							}
+						]
+					]
+				},
+				{
+					"friendlyURL": "/davidOderberg",
+					"layoutTemplateId": "2_columns_ii",
+					"name": "David Oderberg",
+					"title": "David Oderberg",
+					"columns": [
+						[
+							"Oderberg.html"
+						],
+						[
+							{
+								"portletId": "3",
+							},
+							{
+								"portletId": "23"
+							}
+						]
+					]
+				},
+			],
+			"columns": [
+				[
+					{
+						"portletId": "71",
+						"portletPreferences": {
+							"displayStyle": "from-level-1-with-title"
+						}
+					}
+				],
+				[
+					{
+						"portletId": "23"
+					},
+					{
+						"portletId": "33"
+					}
+				]
+			]	
+		},
+		{
+			"friendlyURL": "/contributors",
+			"layoutTemplateId": "2_columns_ii",
+			"name": "Contributors",
+			"title": "Contributors",
+			"columns": [
+				[
+					{
+						"portletId": "56",
+						"portletPreferences": {
+							"articleId": "Contributors.html",
+							"groupId": "${groupId}",
+							"portletSetupShowBorders": "true",
+							"portletSetupUseCustomTitle": "true",
+							"portletSetupTitle_en_US": "Meet the Crew"
+						}
+					}
+				],
+				[	
+					"Recent Blog Posts.html"
+				]
+			]
+		},
+		{
+			"friendlyURL": "/events",
+			"layoutTemplateId": "2_columns_ii",
+			"name": "Events",
+			"title": "Events",
+			"layouts": [
+				{
+					"friendlyURL": "/conferences",
+					"layoutTemplateId": "2_columns_ii",
+					"name": "Conferences",
+					"title": "Conferences",
+					"columns": [
+						[
+							"Possible and Impossible Worlds Conference.html"
+						],
+						[
+							"Conference Topics.html"
+						]
+					]
+				},
+				{
+					"friendlyURL": "/symposiums",
+					"layoutTemplateId": "2_columns_ii",
+					"name": "Symposiums",
+					"title": "Symposiums",
+					"columns": [
+						[
+							"Symposiums.html"
+						],
+						[
+							"Recent Blog Posts.html"
+						]
+					]		
+				}
+			],
+			"columns": [
+				[
+					{
+						"portletId": "71"
+					}
+				],
+				[
+					{
+						"portletId": "84"
+					}
+				]
+			]	
+		},
+		{
+			"friendlyURL": "/more",
+			"layoutTemplateId": "2_columns_ii",
+			"name": "+",
+			"title": "+",
+			"layouts": [
+				{
+					"friendlyURL": "/newsletter",
+					"layoutTemplateId": "2_columns_ii",
+					"name": "Newsletter",
+					"title": "Newsletter",
+					"columns": [
+						[
+							"Newsletter.html"
+						],
+						[
+							"Theme.html",
+							{
+								"portletId": "187"
+							}
+						]
+					]
+				},
+				{
+					"friendlyURL": "/siteMap",
+					"layoutTemplateId": "2_columns_ii",
+					"name": "Site Map",
+					"title": "Site Map",
+					"columns": [
+						[
+							{
+								"portletId": "85"
+							}
+						],
+						[
+							"Theme.html"
+						]
+					]
+				}
+			],
+			"columns": [
+				[
+					{
+						"portletId": "71"
+					}
+				],
+				[
+					"Theme.html",
+					{
+						"portletId": "187"
+					}
+				]
+			]
+		},
+	]
+}

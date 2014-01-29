@@ -1,0 +1,60 @@
+<html>
+   <head>
+      <script src="http://cdn.alloyui.com/2.0.0/aui/aui-min.js"></script>
+      <link href="http://cdn.alloyui.com/2.0.0/aui-css/css/bootstrap.min.css" rel="stylesheet"></link>
+   </head>
+   <body>
+      <h4>Subscribe to our newsletter</h4>
+      <br />
+      <form id="myForm">
+         <div class="control-group">
+            <label class="control-label" for="name">First Name:</label>
+            <div class="controls">
+               <input name="fName" id="fName" type="text">
+            </div>
+         </div>
+         <div class="control-group">
+            <label class="control-label" for="name">Last Name:</label>
+            <div class="controls">
+               <input name="lName" id="lName" type="text">
+            </div>
+         </div>
+         <div class="control-group">
+            <label class="control-label" for="email">E-mail:</label>
+            <div class="controls">
+               <input name="email" id="email" class="field-required field-email" type="text">
+            </div>
+         </div>
+         <input class="btn btn-info" type="submit" value="Submit">
+         <input class="btn btn-primary" type="reset" value="Reset">
+      </form>
+      <hr />
+      <p>
+         A confirmation email will be sent to the email address given to finalize your subscription.
+      </p>
+   </body>
+   <script>
+      YUI().use(
+        'aui-form-validator',
+         function(Y) {
+            new Y.FormValidator(
+               {
+                  boundingBox: '#myForm',
+                  rules: {
+                     fName: {
+                        required: true
+                     },
+                     lName: {
+                        required: true
+                     },
+                     email: {
+                        email: true,
+                        required: true
+                     }
+                  }
+               }
+            );
+         }
+      );
+   </script>
+</html>
