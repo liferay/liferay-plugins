@@ -112,13 +112,16 @@ public class ContactsUtil {
 
 		jsonObject.put("block", block);
 
+		jsonObject.put("contactId", String.valueOf(user.getContactId()));
 		jsonObject.put("emailAddress", user.getEmailAddress());
 		jsonObject.put("firstName", user.getFirstName());
 		jsonObject.put("fullName", user.getFullName());
 		jsonObject.put("jobTitle", user.getJobTitle());
 		jsonObject.put("lastName", user.getLastName());
 		jsonObject.put("portalUser", true);
+		jsonObject.put("portraitId", String.valueOf(user.getPortraitId()));
 		jsonObject.put("userId", String.valueOf(user.getUserId()));
+		jsonObject.put("uuid", user.getUuid());
 
 		if (!SocialRelationLocalServiceUtil.hasRelation(
 				user.getUserId(), userId,
