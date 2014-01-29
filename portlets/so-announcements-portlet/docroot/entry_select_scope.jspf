@@ -82,14 +82,14 @@
 						continue;
 					}
 				}
-
-				if (RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+				else if (!RolePermissionUtil.contains(permissionChecker, role.getRoleId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+					continue;
+				}
 			%>
 
-					<aui:option label="<%= HtmlUtil.escape(role.getTitle(locale)) %>" selected="<%= classPK == role.getRoleId() %>" value="<%= PortalUtil.getClassNameId(Role.class) + StringPool.COMMA + role.getRoleId() %>" />
+				<aui:option label="<%= HtmlUtil.escape(role.getTitle(locale)) %>" selected="<%= classPK == role.getRoleId() %>" value="<%= PortalUtil.getClassNameId(Role.class) + StringPool.COMMA + role.getRoleId() %>" />
 
 			<%
-				}
 			}
 			%>
 
