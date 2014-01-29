@@ -277,6 +277,24 @@ AUI.add(
 				return schedulerEvent;
 			},
 
+
+			deleteCalendar: function(calendarId, callback) {
+				var instance = this;
+
+				instance.invokeService(
+						{
+							'/calendar-portlet/calendar/delete-calendar': {
+								calendarId: calendarId
+							},
+						},
+						{
+							success: function() {
+								callback(this.get('responseData'));
+							}
+						}
+				);
+			},
+
 			deleteEvent: function(schedulerEvent, success) {
 				var instance = this;
 
