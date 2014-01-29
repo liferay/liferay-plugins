@@ -1665,7 +1665,7 @@ AUI.add(
 						return io;
 					},
 
-					_showConfirmationDialog: function(message, callback, node, entryId) {
+					_showConfirmationDialog: function(message, callback) {
 						var instance = this;
 
 						var args = arguments;
@@ -1676,23 +1676,21 @@ AUI.add(
 								label: Liferay.Language.get('yes'),
 								on: {
 									click: function(event) {
-										var lastSelected = instance._treeViewEditor.get(LAST_SELECTED);
+										var node = args[2];
 
-										var parentNode = node.get(PARENT_NODE);
+										if (A.instanceOf(node, A.TreeNodeEditor)) {
+											var parentNode = node.get(PARENT_NODE);
+
+											if (parentNode) {
+												parentNode.select();
+											}
+										}
 
 										if (callback) {
 											callback.apply(instance, AArray(args, 2, true));
 										}
 
 										instance._confirmationDialog.destroy();
-
-										if (lastSelected) {
-											lastSelected.unselect();
-										}
-
-										if (parentNode) {
-											parentNode.select();
-										}
 									}
 								}
 							},
