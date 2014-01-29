@@ -200,8 +200,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				persistedModel.persist();
 			}
 			catch (SystemException se) {
-				renderError(
-					"an-error-occured-while-updating-the-database");
+				renderError("an-unexpected-system-error-occurred");
+
+				return;
 			}
 		}
 
