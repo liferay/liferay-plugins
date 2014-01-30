@@ -14,7 +14,7 @@
 
 package com.liferay.googlelogin.hook.security.auth;
 
-import com.liferay.googlelogin.GoogleOAuth;
+import com.liferay.googlelogin.hook.action.GoogleOAuthAction;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -69,13 +69,13 @@ public class GoogleAutoLogin extends BaseAutoLogin {
 		HttpSession session = request.getSession();
 
 		String emailAddress = GetterUtil.getString(
-			session.getAttribute(GoogleOAuth.GOOGLE_USER_EMAIL_ADDRESS));
+			session.getAttribute(GoogleOAuthAction.GOOGLE_USER_EMAIL_ADDRESS));
 
 		if (Validator.isNull(emailAddress)) {
 			return null;
 		}
 
-		session.removeAttribute(GoogleOAuth.GOOGLE_USER_EMAIL_ADDRESS);
+		session.removeAttribute(GoogleOAuthAction.GOOGLE_USER_EMAIL_ADDRESS);
 
 		User user = UserLocalServiceUtil.getUserByEmailAddress(
 			companyId, emailAddress);
