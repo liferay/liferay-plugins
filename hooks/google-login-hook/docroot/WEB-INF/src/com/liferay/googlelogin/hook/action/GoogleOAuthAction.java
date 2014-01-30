@@ -74,17 +74,11 @@ import javax.servlet.http.HttpSession;
  */
 public class GoogleOAuthAction extends BaseStrutsAction {
 
-	public static final String GOOGLE_ACCESS_TOKEN = "googleAccessToken";
-
 	public static final String GOOGLE_INCOMPLETE_USER_ID =
 		"GOOGLE_INCOMPLETE_USER_ID";
 
-	public static final String GOOGLE_REFRESH_TOKEN = "googleRefreshToken";
-
 	public static final String GOOGLE_USER_EMAIL_ADDRESS =
 		"GOOGLE_USER_EMAIL_ADDRESS";
-
-	public static final String GOOGLE_USER_ID = "googleUserId";
 
 	@Override
 	public String execute(
@@ -406,17 +400,17 @@ public class GoogleOAuthAction extends BaseStrutsAction {
 
 		ExpandoValueLocalServiceUtil.addValue(
 			user.getCompanyId(), User.class.getName(),
-			ExpandoTableConstants.DEFAULT_TABLE_NAME, GOOGLE_ACCESS_TOKEN,
+			ExpandoTableConstants.DEFAULT_TABLE_NAME, "googleAccessToken",
 			user.getUserId(), accessToken);
 
 		ExpandoValueLocalServiceUtil.addValue(
 			user.getCompanyId(), User.class.getName(),
-			ExpandoTableConstants.DEFAULT_TABLE_NAME, GOOGLE_REFRESH_TOKEN,
+			ExpandoTableConstants.DEFAULT_TABLE_NAME, "googleRefreshToken",
 			user.getUserId(), refreshToken);
 
 		ExpandoValueLocalServiceUtil.addValue(
 			user.getCompanyId(), User.class.getName(),
-			ExpandoTableConstants.DEFAULT_TABLE_NAME, GOOGLE_USER_ID,
+			ExpandoTableConstants.DEFAULT_TABLE_NAME, "googleUserId",
 			user.getUserId(), userinfo.getId());
 	}
 
