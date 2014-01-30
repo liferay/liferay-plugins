@@ -47,18 +47,18 @@ public class AddGoogleOAuthExpandoFieldsAction extends SimpleAction {
 			long tableId, String name, UnicodeProperties properties)
 		throws PortalException, SystemException {
 
-		ExpandoColumn expandoColum = ExpandoColumnLocalServiceUtil.getColumn(
+		ExpandoColumn expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
 			tableId, name);
 
-		if (expandoColum != null) {
+		if (expandoColumn != null) {
 			return;
 		}
 
-		expandoColum = ExpandoColumnLocalServiceUtil.addColumn(
+		expandoColumn = ExpandoColumnLocalServiceUtil.addColumn(
 			tableId, name, ExpandoColumnConstants.STRING);
 
 		ExpandoColumnLocalServiceUtil.updateTypeSettings(
-			expandoColum.getColumnId(), properties.toString());
+			expandoColumn.getColumnId(), properties.toString());
 	}
 
 	protected void doRun(long companyId) throws Exception {
