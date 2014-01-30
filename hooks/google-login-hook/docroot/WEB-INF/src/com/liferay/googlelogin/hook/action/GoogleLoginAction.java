@@ -90,9 +90,8 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			googleAuthorizationCodeRequestUrl.setRedirectUri(
 				getRedirectURI(request));
 
-			String url = googleAuthorizationCodeRequestUrl.build();
-
-			response.sendRedirect(url);
+			response.sendRedirect(
+				googleAuthorizationCodeRequestUrl.build());
 		}
 		else if (cmd.equals("token")) {
 			HttpSession session = request.getSession();
@@ -100,7 +99,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			String code = ParamUtil.getString(request, "code");
 
 			if (Validator.isNotNull(code)) {
-				Credential credential = exchangeCode(
+				Credential credential = getCredential(
 					themeDisplay.getCompanyId(), code, getRedirectURI(request));
 
 				User user = setCredential(
@@ -183,7 +182,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		return user;
 	}
 
-	protected Credential exchangeCode(
+	protected Credential getCredential(
 			long companyId, String authorizationCode, String redirectURI)
 		throws Exception {
 
