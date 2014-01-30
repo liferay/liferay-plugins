@@ -56,6 +56,7 @@ import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryTypeConstants;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
+import com.liferay.repository.external.cache.ExtRepositoryAdapterCache;
 import com.liferay.repository.external.model.ExtRepositoryFileEntryAdapter;
 import com.liferay.repository.external.model.ExtRepositoryFileVersionAdapter;
 import com.liferay.repository.external.model.ExtRepositoryFolderAdapter;
@@ -223,6 +224,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		_extRepository.deleteExtRepositoryObject(
 			ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey);
+
+		ExtRepositoryAdapterCache cache =
+			ExtRepositoryAdapterCache.getInstance();
+		cache.remove(extRepositoryFileEntryKey);
 	}
 
 	@Override
@@ -233,6 +238,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		_extRepository.deleteExtRepositoryObject(
 			ExtRepositoryObjectType.FOLDER, extRepositoryFolderKey);
+
+		ExtRepositoryAdapterCache.getInstance().remove(extRepositoryFolderKey);
 	}
 
 	public String getAuthType() {
@@ -269,7 +276,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<FileEntry> getFileEntries(
 			long folderId, int start, int end, OrderByComparator obc)
 		throws PortalException, SystemException {
@@ -304,7 +311,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<FileEntry> getFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
 			OrderByComparator obc)
@@ -1220,16 +1227,30 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			ExtRepositoryFileVersion extRepositoryFileVersion)
 		throws SystemException {
 
-		Object[] repositoryEntryIds = getRepositoryEntryIds(
-			extRepositoryFileVersion.getExtRepositoryModelKey());
+		ExtRepositoryAdapterCache cache =
+			ExtRepositoryAdapterCache.getInstance();
 
-		long extRepositoryObjectId = (Long)repositoryEntryIds[0];
+		String modelKey = extRepositoryFileVersion.getExtRepositoryModelKey();
 
-		String uuid = (String)repositoryEntryIds[1];
+		ExtRepositoryFileVersionAdapter extRepositoryVersionAdapter = cache.get(
+			modelKey);
 
-		return new ExtRepositoryFileVersionAdapter(
-			this, extRepositoryObjectId, uuid, extRepositoryFileEntryAdapter,
-			extRepositoryFileVersion);
+		if (extRepositoryVersionAdapter == null) {
+			Object[] repositoryEntryIds = getRepositoryEntryIds(modelKey);
+
+			long extRepositoryObjectId = (Long)repositoryEntryIds[0];
+
+			String uuid = (String)repositoryEntryIds[1];
+
+			extRepositoryVersionAdapter =
+				new ExtRepositoryFileVersionAdapter(
+					this, extRepositoryObjectId, uuid,
+					extRepositoryFileEntryAdapter, extRepositoryFileVersion);
+
+			cache.put(extRepositoryVersionAdapter);
+		}
+
+		return extRepositoryVersionAdapter;
 	}
 
 	private List<ExtRepositoryFileVersionAdapter>
@@ -1263,16 +1284,21 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				ExtRepositoryObject extRepositoryObject)
 		throws PortalException, SystemException {
 
-		Object[] repositoryEntryIds = getRepositoryEntryIds(
-			extRepositoryObject.getExtRepositoryModelKey());
+		ExtRepositoryAdapterCache cache =
+			ExtRepositoryAdapterCache.getInstance();
 
-		long extRepositoryObjectId = (Long)repositoryEntryIds[0];
+		String modelKey = extRepositoryObject.getExtRepositoryModelKey();
 
-		String uuid = (String)repositoryEntryIds[1];
-
-		ExtRepositoryObjectAdapter<?> extRepositoryObjectAdapter = null;
+		ExtRepositoryObjectAdapter<?> extRepositoryObjectAdapter = cache.get(
+			modelKey);
 
 		if (extRepositoryObjectAdapter == null) {
+			Object[] repositoryEntryIds = getRepositoryEntryIds(modelKey);
+
+			long extRepositoryObjectId = (Long)repositoryEntryIds[0];
+
+			String uuid = (String)repositoryEntryIds[1];
+
 			if (extRepositoryObject instanceof ExtRepositoryFolder) {
 				ExtRepositoryFolder extRepositoryFolder =
 					(ExtRepositoryFolder)extRepositoryObject;
@@ -1290,6 +1316,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				_forceGetVersions(
 					(ExtRepositoryFileEntryAdapter)extRepositoryObjectAdapter);
 			}
+
+			cache.put(extRepositoryObjectAdapter);
 		}
 
 		if (extRepositoryObjectAdapterType ==
