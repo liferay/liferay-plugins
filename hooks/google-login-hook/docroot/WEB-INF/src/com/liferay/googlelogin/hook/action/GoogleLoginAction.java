@@ -473,9 +473,9 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		"/c/portal/google_login?cmd=token";
 
 	private static final List<String> _SCOPES_DRIVE = Arrays.asList(
+		"https://www.googleapis.com/auth/drive",
 		"https://www.googleapis.com/auth/userinfo.email",
-		"https://www.googleapis.com/auth/userinfo.profile",
-		"https://www.googleapis.com/auth/drive");
+		"https://www.googleapis.com/auth/userinfo.profile");
 
 	private static final List<String> _SCOPES_LOGIN = Arrays.asList(
 		"https://www.googleapis.com/auth/userinfo.email",
