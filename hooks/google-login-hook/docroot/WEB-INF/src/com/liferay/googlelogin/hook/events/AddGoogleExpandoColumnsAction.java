@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googlelogin.action;
+package com.liferay.googlelogin.hook.events;
 
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
