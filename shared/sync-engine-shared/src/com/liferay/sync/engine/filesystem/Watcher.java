@@ -50,13 +50,12 @@ public class Watcher implements Runnable {
 			WatchEventListener watchEventListener)
 		throws IOException {
 
+		_recursive = recursive;
+		_watchEventListener = watchEventListener;
+
 		FileSystem fileSystem = FileSystems.getDefault();
 
 		_watchService = fileSystem.newWatchService();
-
-		_watchEventListener = watchEventListener;
-
-		_recursive = recursive;
 
 		register(filePath, recursive);
 	}

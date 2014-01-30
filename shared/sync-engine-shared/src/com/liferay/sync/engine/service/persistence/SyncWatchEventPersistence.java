@@ -42,9 +42,13 @@ public class SyncWatchEventPersistence
 		Where where = queryBuilder.where();
 
 		where.eq("filePathName", filePathName);
+
 		where.and();
+
 		where.eq("kindName", kindName);
+
 		where.and();
+
 		where.le("timestamp", timestamp);
 
 		List<SyncWatchEvent> syncWatchEvents = query(queryBuilder.prepare());
