@@ -19,7 +19,9 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.util.List;
 
@@ -71,9 +73,9 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 		Assert.assertEquals(3, _syncFiles.size());
 
-		File file = new File(filePath + "/Document_1.txt");
+		Path filePath = Paths.get(filePath + "/Document_1.txt");
 
-		Assert.assertTrue(file.exists());
+		Assert.assertTrue(Files.exists(filePath));
 	}
 
 	private SyncFile _filePathSyncFile;

@@ -23,8 +23,7 @@ import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
 
-import java.io.File;
-
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -92,9 +91,9 @@ public class WatcherTest extends BaseTestCase {
 
 		thread.start();
 
-		File file = new File(_syncSite.getFilePath() + "/test.txt");
+		Path addFilePath = Paths.get(_syncSite.getFilePath() + "/test.txt");
 
-		file.createNewFile();
+		Files.createFile(addFilePath);
 
 		thread.sleep(15000);
 

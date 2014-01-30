@@ -17,7 +17,9 @@ package com.liferay.sync.engine.service;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 
-import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.sql.SQLException;
 
@@ -33,13 +35,13 @@ import org.slf4j.LoggerFactory;
 public class SyncFileService {
 
 	public static SyncFile addSyncFile(
-			String filePath, String name, long parentFolderId,
+			String filePathName, String name, long parentFolderId,
 			long repositoryId, long syncAccountId, String type)
 		throws Exception {
 
 		SyncFile syncFile = new SyncFile();
 
-		syncFile.setFilePath(filePath);
+		syncFile.setFilePath(filePathName);
 		syncFile.setName(name);
 		syncFile.setRepositoryId(repositoryId);
 		syncFile.setParentFolderId(parentFolderId);
@@ -49,9 +51,9 @@ public class SyncFileService {
 		_syncFilePersistence.create(syncFile);
 
 		if (type.equals(SyncFile.TYPE_FOLDER)) {
-			File file = new File(filePath);
+			Path filePath = Paths.get(filePathName);
 
-			file.mkdirs();
+			Files.createDirectories(filePath);
 		}
 
 		return syncFile;
@@ -159,7 +161,7 @@ public class SyncFileService {
 
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncFileService.class);
-`
+
 	private static SyncFilePersistence _syncFilePersistence =
 		getSyncFilePersistence();
 
