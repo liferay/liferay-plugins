@@ -114,7 +114,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 				if ((user != null) &&
 					(user.getStatus() == WorkflowConstants.STATUS_INCOMPLETE)) {
 
-					redirectUpdateAccount(request, response, user);
+					sendUpdateAccountRedirect(request, response, user);
 
 					return null;
 				}
@@ -189,7 +189,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 	}
 
 	protected Credential exchangeCode(
-			long companyId, String authorizationCode, String redirectUri)
+			long companyId, String authorizationCode, String redirectURI)
 		throws SystemException {
 
 		try {
@@ -201,7 +201,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 					googleAuthorizationCodeFlow.newTokenRequest(
 						authorizationCode);
 
-			googleAuthorizationCodeTokenRequest.setRedirectUri(redirectUri);
+			googleAuthorizationCodeTokenRequest.setRedirectUri(redirectURI);
 
 			GoogleTokenResponse googleTokenResponse =
 				googleAuthorizationCodeTokenRequest.execute();
@@ -222,7 +222,6 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 		HttpTransport httpTransport = new NetHttpTransport();
 		JacksonFactory jsonFactory = new JacksonFactory();
-
 		String googleClientId = PrefsPropsUtil.getString(
 			companyId, "google-client-id");
 		String googleClientSecret = PrefsPropsUtil.getString(
@@ -249,6 +248,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		}
 
 		builder.setAccessType(accessType);
+
 		builder.setApprovalPrompt("force");
 
 		return builder.build();
@@ -258,7 +258,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		return PortalUtil.getPortalURL(request) + _REDIRECT_URI;
 	}
 
-	protected Userinfo getUserInfo(Credential credentials)
+	protected Userinfo getUserinfo(Credential credentials)
 		throws SystemException {
 
 		Oauth2.Builder builder = new Oauth2.Builder(
@@ -266,10 +266,10 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 		Oauth2 oauth2 = builder.build();
 
-		Userinfo userInfo = null;
+		Userinfo userinfo = null;
 
 		try {
-			userInfo = oauth2.userinfo().get().execute();
+			userinfo = oauth2.userinfo().get().execute();
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
@@ -277,15 +277,15 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			throw new SystemException();
 		}
 
-		if ((userInfo != null) && (userInfo.getId() != null)) {
-			return userInfo;
+		if ((userinfo != null) && (userinfo.getId() != null)) {
+			return userinfo;
 		}
 		else {
 			throw new SystemException();
 		}
 	}
 
-	protected void redirectUpdateAccount(
+	protected void sendUpdateAccountRedirect(
 			HttpServletRequest request, HttpServletResponse response, User user)
 		throws Exception {
 
@@ -331,9 +331,8 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			request, PortletKeys.FAST_LOGIN, themeDisplay.getPlid(),
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
-
 		portletURL.setParameter("struts_action", "/login/login_redirect");
+		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		response.sendRedirect(portletURL.toString());
 	}
@@ -342,7 +341,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			HttpSession session, long companyId, Credential credential)
 		throws Exception {
 
-		Userinfo userinfo = getUserInfo(credential);
+		Userinfo userinfo = getUserinfo(credential);
 
 		if (userinfo == null) {
 			return null;
