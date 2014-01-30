@@ -25,6 +25,7 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.oauth2.Oauth2;
 import com.google.api.services.oauth2.model.Userinfo;
 
+import com.liferay.googlelogin.util.WebKeys;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -40,7 +41,6 @@ import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
@@ -73,12 +73,6 @@ import javax.servlet.http.HttpSession;
  * @author Sergio González
  */
 public class GoogleOAuthAction extends BaseStrutsAction {
-
-	public static final String GOOGLE_INCOMPLETE_USER_ID =
-		"GOOGLE_INCOMPLETE_USER_ID";
-
-	public static final String GOOGLE_USER_EMAIL_ADDRESS =
-		"GOOGLE_USER_EMAIL_ADDRESS";
 
 	@Override
 	public String execute(
@@ -190,7 +184,7 @@ public class GoogleOAuthAction extends BaseStrutsAction {
 		user = UserLocalServiceUtil.updateEmailAddressVerified(
 			user.getUserId(), true);
 
-		session.setAttribute(GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
+		session.setAttribute(WebKeys.GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
 
 		return user;
 	}
@@ -362,14 +356,15 @@ public class GoogleOAuthAction extends BaseStrutsAction {
 			if ((user != null) &&
 				(user.getStatus() != WorkflowConstants.STATUS_INCOMPLETE)) {
 
-				session.setAttribute(GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
+				session.setAttribute(
+					WebKeys.GOOGLE_USER_EMAIL_ADDRESS, emailAddress);
 			}
 		}
 
 		if (user != null) {
 			if (user.getStatus() == WorkflowConstants.STATUS_INCOMPLETE) {
 				session.setAttribute(
-					GOOGLE_INCOMPLETE_USER_ID, userinfo.getId());
+					WebKeys.GOOGLE_INCOMPLETE_USER_ID, userinfo.getId());
 
 				user.setEmailAddress(userinfo.getEmail());
 				user.setFirstName(userinfo.getGivenName());
