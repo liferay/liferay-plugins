@@ -54,11 +54,11 @@ public class Watcher implements Runnable {
 
 		_watchService = fileSystem.newWatchService();
 
+		_watchEventListener = watchEventListener;
+
 		_recursive = recursive;
 
 		register(filePath, recursive);
-
-		_watchEventListener = watchEventListener;
 	}
 
 	public void close() throws IOException {
