@@ -86,6 +86,7 @@ public class GoogleOAuth extends BaseStrutsAction {
 
 	public static final String GOOGLE_USER_ID = "googleUserId";
 
+	@Override
 	public String execute(
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {
@@ -230,7 +231,7 @@ public class GoogleOAuth extends BaseStrutsAction {
 
 	protected GoogleAuthorizationCodeFlow getGoogleAuthorizationCodeFlow(
 			long companyId)
-		throws IOException, SystemException {
+		throws SystemException {
 
 		HttpTransport httpTransport = new NetHttpTransport();
 		JacksonFactory jsonFactory = new JacksonFactory();
