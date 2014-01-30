@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googlelogin.security.auth;
+package com.liferay.googlelogin.hook.security.auth;
 
 import com.liferay.googlelogin.GoogleOAuth;
 import com.liferay.portal.kernel.exception.PortalException;
