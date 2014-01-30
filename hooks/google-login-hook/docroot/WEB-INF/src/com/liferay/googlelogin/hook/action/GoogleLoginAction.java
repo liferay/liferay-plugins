@@ -277,12 +277,11 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			throw new SystemException();
 		}
 
-		if ((userinfo != null) && (userinfo.getId() != null)) {
-			return userinfo;
-		}
-		else {
+		if ((userinfo == null) || (userinfo.getId() == null)) {
 			throw new SystemException();
 		}
+
+		return userinfo;
 	}
 
 	protected void sendLoginRedirect(
@@ -327,6 +326,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		redirectURL.setWindowState(LiferayWindowState.POP_UP);
 
 		portletURL.setParameter("redirect", redirectURL.toString());
+
 		portletURL.setParameter("userId", String.valueOf(user.getUserId()));
 		portletURL.setParameter("emailAddress", user.getEmailAddress());
 		portletURL.setParameter("firstName", user.getFirstName());
