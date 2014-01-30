@@ -18,12 +18,31 @@
 
 <h3>hibernate-clustered</h3>
 
+<%
+	if (!GetterUtil.getBoolean(PropsUtil.get(PropsKeys.HIBERNATE_CACHE_USE_QUERY_CACHE)) || !GetterUtil.getBoolean(PropsUtil.get(PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE))) {
+%>
+
+<p>
+	Hibernate cache test has been disabled, to turn it on, you need to set:
+	<p>hibernate.cache.use_query_cache=true</p>
+	<p>hibernate.cache.use_second_level_cache=true</p>
+</p>
+
+<%
+	}
+	else {
+%>
+
 <p>
 
 	<%= _testAttributeList("hibernate-clustered", "com.liferay.portlet.asset.model.impl.AssetTagPropertyImpl", false, 1000, 60) %>
 	<%= _testAttributeList("hibernate-clustered", "com.liferay.testcacheconfiguration.HibernateClusteredObject", false, 100000, 6000) %>
 
 </p>
+
+<%
+	}
+%>
 
 <h3>liferay-multi-vm-clustered</h3>
 
