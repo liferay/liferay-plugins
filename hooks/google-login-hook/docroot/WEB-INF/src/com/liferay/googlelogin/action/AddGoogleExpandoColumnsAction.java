@@ -16,8 +16,6 @@ package com.liferay.googlelogin.action;
 
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.User;
@@ -43,19 +41,20 @@ public class AddGoogleExpandoColumnsAction extends SimpleAction {
 		}
 	}
 
-	protected void addColumn(
-			long tableId, String name, UnicodeProperties properties)
-		throws PortalException, SystemException {
+	protected void addExpandoColumn(
+			ExpandoTable expandoTable, String name,
+			UnicodeProperties properties)
+		throws Exception {
 
 		ExpandoColumn expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
-			tableId, name);
+			expandoTable.getTableId(), name);
 
 		if (expandoColumn != null) {
 			return;
 		}
 
 		expandoColumn = ExpandoColumnLocalServiceUtil.addColumn(
-			tableId, name, ExpandoColumnConstants.STRING);
+			expandoTable.getTableId(), name, ExpandoColumnConstants.STRING);
 
 		ExpandoColumnLocalServiceUtil.updateTypeSettings(
 			expandoColumn.getColumnId(), properties.toString());
@@ -80,9 +79,9 @@ public class AddGoogleExpandoColumnsAction extends SimpleAction {
 		properties.setProperty("hidden", "true");
 		properties.setProperty("visible-with-update-permission", "false");
 
-		addColumn(expandoTable.getTableId(), "googleAccessToken", properties);
-		addColumn(expandoTable.getTableId(), "googleRefreshToken", properties);
-		addColumn(expandoTable.getTableId(), "googleUserId", properties);
+		addExpandoColumn(expandoTable, "googleAccessToken", properties);
+		addExpandoColumn(expandoTable, "googleRefreshToken", properties);
+		addExpandoColumn(expandoTable, "googleUserId", properties);
 	}
 
 }
