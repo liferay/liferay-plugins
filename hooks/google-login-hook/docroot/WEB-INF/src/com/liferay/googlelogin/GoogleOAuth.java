@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googleoauth;
+package com.liferay.googlelogin;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
