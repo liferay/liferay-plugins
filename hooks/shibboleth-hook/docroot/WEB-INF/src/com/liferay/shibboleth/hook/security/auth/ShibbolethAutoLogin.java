@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.shibboleth.security.auth;
+package com.liferay.shibboleth.hook.security.auth;
 
 import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.portal.kernel.exception.SystemException;
