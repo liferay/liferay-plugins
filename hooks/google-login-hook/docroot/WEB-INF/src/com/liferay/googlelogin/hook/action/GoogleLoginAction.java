@@ -285,6 +285,23 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		}
 	}
 
+	protected void sendLoginRedirect(
+			HttpServletRequest request, HttpServletResponse response)
+		throws Exception {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			request, PortletKeys.FAST_LOGIN, themeDisplay.getPlid(),
+			PortletRequest.RENDER_PHASE);
+
+		portletURL.setParameter("struts_action", "/login/login_redirect");
+		portletURL.setWindowState(LiferayWindowState.POP_UP);
+
+		response.sendRedirect(portletURL.toString());
+	}
+
 	protected void sendUpdateAccountRedirect(
 			HttpServletRequest request, HttpServletResponse response, User user)
 		throws Exception {
@@ -315,23 +332,6 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		portletURL.setParameter("firstName", user.getFirstName());
 		portletURL.setParameter("lastName", user.getLastName());
 		portletURL.setPortletMode(PortletMode.VIEW);
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
-
-		response.sendRedirect(portletURL.toString());
-	}
-
-	protected void sendLoginRedirect(
-			HttpServletRequest request, HttpServletResponse response)
-		throws Exception {
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			request, PortletKeys.FAST_LOGIN, themeDisplay.getPlid(),
-			PortletRequest.RENDER_PHASE);
-
-		portletURL.setParameter("struts_action", "/login/login_redirect");
 		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		response.sendRedirect(portletURL.toString());
