@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.shibboleth.events;
+package com.liferay.shibboleth.hook.events;
 
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
