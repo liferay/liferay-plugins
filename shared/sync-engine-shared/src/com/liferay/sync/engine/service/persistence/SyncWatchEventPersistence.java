@@ -14,9 +14,14 @@
 
 package com.liferay.sync.engine.service.persistence;
 
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
+
 import com.liferay.sync.engine.model.SyncWatchEvent;
 
 import java.sql.SQLException;
+
+import java.util.List;
 
 /**
  * @author Michael Young
@@ -26,6 +31,39 @@ public class SyncWatchEventPersistence
 
 	public SyncWatchEventPersistence() throws SQLException {
 		super(SyncWatchEvent.class);
+	}
+
+	public SyncWatchEvent fetchSyncWatchEvent(
+			String filePath, String kindName, long timestamp)
+		throws SQLException {
+
+		QueryBuilder<SyncWatchEvent, Long> queryBuilder = queryBuilder();
+
+		Where where = queryBuilder.where();
+
+		where.eq("filePath", filePath);
+		where.and();
+		where.eq("kindName", kindName);
+		where.and();
+		where.le("timestamp", timestamp);
+
+		List<SyncWatchEvent> syncWatchEvents = query(queryBuilder.prepare());
+
+		if ((syncWatchEvents == null) || syncWatchEvents.isEmpty()) {
+			return null;
+		}
+
+		return syncWatchEvents.get(0);
+	}
+
+	public List<SyncWatchEvent> findAll(String orderByColumn, boolean ascending)
+		throws SQLException {
+
+		QueryBuilder<SyncWatchEvent, Long> queryBuilder = queryBuilder();
+
+		queryBuilder.orderBy(orderByColumn, ascending);
+
+		return query(queryBuilder.prepare());
 	}
 
 }

@@ -14,6 +14,8 @@
 
 package com.liferay.sync.engine;
 
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.upgrade.UpgradeProcessSuite;
 import com.liferay.sync.engine.util.HttpUtil;
 import com.liferay.sync.engine.util.LoggerUtil;
@@ -22,8 +24,13 @@ import com.liferay.sync.engine.util.PropsUtil;
 
 import java.io.InputStream;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 
+import org.junit.After;
 import org.junit.Before;
 
 import org.mockito.Mockito;
@@ -50,6 +57,21 @@ public abstract class BaseTestCase {
 		UpgradeProcessSuite upgradeProcessSuite = new UpgradeProcessSuite();
 
 		upgradeProcessSuite.upgrade();
+
+		filePath = System.getProperty("user.home") + "/liferay-sync-test";
+
+		syncAccount = SyncAccountService.addSyncAccount(
+			filePath, "test@liferay.com", "test",
+			"http://localhost:8080/api/jsonws");
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		Path path = Paths.get(filePath);
+
+		FileUtils.deleteDirectory(path.toFile());
+
+		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
 	}
 
 	protected void setMockPostResponse(String fileName) throws Exception {
@@ -70,5 +92,8 @@ public abstract class BaseTestCase {
 			response
 		);
 	}
+
+	protected String filePath;
+	protected SyncAccount syncAccount;
 
 }

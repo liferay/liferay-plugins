@@ -15,7 +15,6 @@
 package com.liferay.sync.engine.documentlibrary.event;
 
 import com.liferay.sync.engine.BaseTestCase;
-import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncSiteService;
@@ -24,7 +23,6 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -36,19 +34,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 @RunWith(PowerMockRunner.class)
 public class GetUserSitesGroupsEventTest extends BaseTestCase {
 
-	@Before
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-
-		_syncAccount = SyncAccountService.addSyncAccount(
-			null, "test@liferay.com", "test",
-			"http://localhost:8080/api/jsonws");
-	}
-
 	@After
 	public void tearDown() throws Exception {
-		SyncAccountService.deleteSyncAccount(_syncAccount.getSyncAccountId());
+		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
 
 		for (SyncSite syncSite : _syncSites) {
 			SyncSiteService.deleteSyncSite(syncSite.getSyncSiteId());
@@ -60,17 +48,16 @@ public class GetUserSitesGroupsEventTest extends BaseTestCase {
 		setMockPostResponse("dependencies/get_user_sites_groups.json");
 
 		GetUserSitesGroupsEvent getUserSitesGroupsEvent =
-			new GetUserSitesGroupsEvent(_syncAccount.getSyncAccountId(), null);
+			new GetUserSitesGroupsEvent(syncAccount.getSyncAccountId(), null);
 
 		getUserSitesGroupsEvent.run();
 
 		_syncSites = SyncSiteService.findSyncSites(
-			_syncAccount.getSyncAccountId());
+			syncAccount.getSyncAccountId());
 
-		Assert.assertEquals(_syncSites.size(), 2);
+		Assert.assertEquals(2, _syncSites.size());
 	}
 
-	private SyncAccount _syncAccount;
 	private List<SyncSite> _syncSites;
 
 }

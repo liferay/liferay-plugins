@@ -34,7 +34,7 @@ public class SyncAccountServiceTest extends BaseTestCase {
 	@Test
 	public void testAddAccount() throws Exception {
 		SyncAccount syncAccount = SyncAccountService.addSyncAccount(
-			null, "test@liferay.com", "test",
+			filePath, "test@liferay.com", "test",
 			"http://localhost:8080/api/jsonws");
 
 		_syncAccount = SyncAccountService.fetchSyncAccount(

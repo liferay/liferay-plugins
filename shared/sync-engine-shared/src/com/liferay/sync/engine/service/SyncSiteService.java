@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine.service;
 
+import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.persistence.SyncSitePersistence;
 
@@ -41,6 +42,10 @@ public class SyncSiteService {
 		syncSite.setSyncAccountId(syncAccountId);
 
 		_syncSitePersistence.create(syncSite);
+
+		SyncFileService.addSyncFile(
+			filePath, filePath, 0, groupId, syncAccountId,
+			SyncFile.TYPE_FOLDER);
 
 		return syncSite;
 	}

@@ -72,9 +72,40 @@ public class SyncWatchEventService {
 		}
 	}
 
+	public static SyncWatchEvent fetchSyncWatchEvent(
+		String filePath, String kindName, long timestamp) {
+
+		try {
+			return _syncWatchEventPersistence.fetchSyncWatchEvent(
+				filePath, kindName, timestamp);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
+
 	public static List<SyncWatchEvent> findAll() {
 		try {
 			return _syncWatchEventPersistence.queryForAll();
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return Collections.emptyList();
+		}
+	}
+
+	public static List<SyncWatchEvent> findAll(
+		String orderByColumn, boolean ascending) {
+
+		try {
+			return _syncWatchEventPersistence.findAll(orderByColumn, ascending);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

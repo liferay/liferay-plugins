@@ -39,7 +39,7 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 	}
 
 	protected void addSyncWatchEvent(Path filePath, String kindName) {
-		String fileType;
+		String fileType = null;
 
 		if (Files.isDirectory(filePath, LinkOption.NOFOLLOW_LINKS)) {
 			fileType = SyncFile.TYPE_FOLDER;

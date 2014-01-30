@@ -17,6 +17,8 @@ package com.liferay.sync.engine.service;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 
+import java.io.File;
+
 import java.sql.SQLException;
 
 import java.util.Collections;
@@ -32,7 +34,7 @@ public class SyncFileService {
 
 	public static SyncFile addSyncFile(
 			String filePath, String name, long parentFolderId,
-			long repositoryId, long syncAccountId, String type, long typePK)
+			long repositoryId, long syncAccountId, String type)
 		throws Exception {
 
 		SyncFile syncFile = new SyncFile();
@@ -43,9 +45,14 @@ public class SyncFileService {
 		syncFile.setParentFolderId(parentFolderId);
 		syncFile.setSyncAccountId(syncAccountId);
 		syncFile.setType(type);
-		syncFile.setTypePK(typePK);
 
 		_syncFilePersistence.create(syncFile);
+
+		if (type.equals(SyncFile.TYPE_FOLDER)) {
+			File file = new File(filePath);
+
+			file.mkdirs();
+		}
 
 		return syncFile;
 	}
@@ -103,6 +110,21 @@ public class SyncFileService {
 		}
 	}
 
+	public static List<SyncFile> findSyncFiles(
+		String checksum, long syncAccountId) {
+
+		try {
+			return _syncFilePersistence.findSyncFiles(checksum, syncAccountId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return Collections.emptyList();
+		}
+	}
+
 	public static SyncFilePersistence getSyncFilePersistence() {
 		if (_syncFilePersistence != null) {
 			return _syncFilePersistence;
@@ -137,7 +159,7 @@ public class SyncFileService {
 
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncFileService.class);
-
+`
 	private static SyncFilePersistence _syncFilePersistence =
 		getSyncFilePersistence();
 

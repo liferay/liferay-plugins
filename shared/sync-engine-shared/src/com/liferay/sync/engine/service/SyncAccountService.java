@@ -15,6 +15,7 @@
 package com.liferay.sync.engine.service;
 
 import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.persistence.SyncAccountPersistence;
 import com.liferay.sync.engine.util.Encryptor;
 
@@ -40,6 +41,10 @@ public class SyncAccountService {
 		syncAccount.setUrl(url);
 
 		_syncAccountPersistence.create(syncAccount);
+
+		SyncFileService.addSyncFile(
+			filePath, filePath, 0, 0, syncAccount.getSyncAccountId(),
+			SyncFile.TYPE_FOLDER);
 
 		return syncAccount;
 	}

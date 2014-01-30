@@ -15,7 +15,6 @@
 package com.liferay.sync.engine.documentlibrary.event;
 
 import com.liferay.sync.engine.BaseTestCase;
-import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
@@ -23,8 +22,6 @@ import com.liferay.sync.engine.service.SyncFileService;
 import java.io.File;
 
 import java.util.List;
-
-import org.apache.commons.io.FileUtils;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -45,24 +42,14 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_filePath = System.getProperty("user.home") + "/liferay-sync-test";
-
-		_syncAccount = SyncAccountService.addSyncAccount(
-			_filePath, "test@liferay.com", "test",
-			"http://localhost:8080/api/jsonws");
-
 		_filePathSyncFile = SyncFileService.addSyncFile(
-			_syncAccount.getFilePath(), "test", 0, 0,
-			_syncAccount.getSyncAccountId(), SyncFile.TYPE_FOLDER, 0);
+			syncAccount.getFilePath(), "test", 0, 0,
+			syncAccount.getSyncAccountId(), SyncFile.TYPE_FOLDER);
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		File file = new File(_filePath);
-
-		FileUtils.deleteDirectory(file);
-
-		SyncAccountService.deleteSyncAccount(_syncAccount.getSyncAccountId());
+		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
 		SyncFileService.deleteSyncFile(_filePathSyncFile.getSyncFileId());
 
 		for (SyncFile syncFile : _syncFiles) {
@@ -75,23 +62,21 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 		setMockPostResponse("dependencies/get_all_sync_dl_objects.json");
 
 		GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
-			new GetAllSyncDLObjectsEvent(_syncAccount.getSyncAccountId(), null);
+			new GetAllSyncDLObjectsEvent(syncAccount.getSyncAccountId(), null);
 
 		getAllSyncDLObjectsEvent.run();
 
 		_syncFiles = SyncFileService.findSyncFiles(
-			_syncAccount.getSyncAccountId());
+			syncAccount.getSyncAccountId());
 
-		Assert.assertEquals(_syncFiles.size(), 2);
+		Assert.assertEquals(3, _syncFiles.size());
 
-		File file = new File(_filePath + "/Document_1.txt");
+		File file = new File(filePath + "/Document_1.txt");
 
 		Assert.assertTrue(file.exists());
 	}
 
-	private String _filePath;
 	private SyncFile _filePathSyncFile;
-	private SyncAccount _syncAccount;
 	private List<SyncFile> _syncFiles;
 
 }
