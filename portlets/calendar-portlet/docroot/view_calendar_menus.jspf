@@ -247,7 +247,16 @@ String backURL = PortalUtil.getCurrentURL(request);
 						Liferay.CalendarUtil.deleteCalendar(
 							activeCalendar.get('calendarId'),
 							function() {
-								window.location.reload();
+								Liferay.CalendarUtil.getResourceCalendars(
+									activeCalendar.get('calendarResourceId'),
+									function(calendars) {
+										calendarList.set('calendars', calendars);
+
+										<portlet:namespace />syncCalendarsMap();
+
+										<portlet:namespace />scheduler.load();
+									}
+								);
 							}
 						);
 					}
