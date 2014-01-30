@@ -17,14 +17,17 @@
 <%@ include file="/html/portlet/login/init.jsp" %>
 
 <%
-String googleAuthURL = PortalUtil.getPathContext() + "/c/portal/google_login?cmd=login";
-
-String taglibOpenGoogleLoginWindow = "javascript:var googleLoginWindow = window.open('" + googleAuthURL.toString() + "', 'google', 'align=center,directories=no,height=560,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=1000'); void(''); googleLoginWindow.focus();";
-
 boolean googleAuthEnabled = PrefsPropsUtil.getBoolean(themeDisplay.getCompanyId(), "google-auth-enabled", true);
 %>
 
 <c:if test="<%= googleAuthEnabled %>">
+
+	<%
+	String googleAuthURL = PortalUtil.getPathContext() + "/c/portal/google_login?cmd=login";
+
+	String taglibOpenGoogleLoginWindow = "javascript:var googleLoginWindow = window.open('" + googleAuthURL.toString() + "', 'google', 'align=center,directories=no,height=560,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=1000'); void(''); googleLoginWindow.focus();";
+	%>
+
 	<liferay-ui:icon
 		message="google"
 		src="/html/portlet/login/navigation/google.png"
