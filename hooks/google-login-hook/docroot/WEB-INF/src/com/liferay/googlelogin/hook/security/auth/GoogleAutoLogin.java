@@ -15,8 +15,6 @@
 package com.liferay.googlelogin.hook.security.auth;
 
 import com.liferay.googlelogin.util.WebKeys;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -64,7 +62,7 @@ public class GoogleAutoLogin extends BaseAutoLogin {
 	}
 
 	protected User getUser(HttpServletRequest request, long companyId)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		HttpSession session = request.getSession();
 

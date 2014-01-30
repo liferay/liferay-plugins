@@ -90,8 +90,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 			googleAuthorizationCodeRequestUrl.setRedirectUri(
 				getRedirectURI(request));
 
-			response.sendRedirect(
-				googleAuthorizationCodeRequestUrl.build());
+			response.sendRedirect(googleAuthorizationCodeRequestUrl.build());
 		}
 		else if (cmd.equals("token")) {
 			HttpSession session = request.getSession();
