@@ -1,0 +1,7 @@
+**/.git/**
+**/bin/**
+**/classes/**
+**/test-classes/**
+**/test-coverage/**
+**/test-results/**
+**/tmp/**
