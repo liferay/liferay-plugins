@@ -84,8 +84,6 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 		String cmd = ParamUtil.getString(request, Constants.CMD);
 
-		String redirectUri = PortalUtil.getPortalURL(request) + _REDIRECT_URI;
-
 		if (cmd.equals("login")) {
 			GoogleAuthorizationCodeFlow googleAuthorizationCodeFlow =
 				getGoogleAuthorizationCodeFlow(themeDisplay.getCompanyId());
@@ -94,7 +92,8 @@ public class GoogleLoginAction extends BaseStrutsAction {
 				googleAuthorizationCodeRequestUrl =
 					googleAuthorizationCodeFlow.newAuthorizationUrl();
 
-			googleAuthorizationCodeRequestUrl.setRedirectUri(redirectUri);
+			googleAuthorizationCodeRequestUrl.setRedirectUri(
+				getRedirectURI(request));
 
 			String url = googleAuthorizationCodeRequestUrl.build();
 
@@ -107,7 +106,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 			if (Validator.isNotNull(code)) {
 				Credential credential = exchangeCode(
-					themeDisplay.getCompanyId(), code, redirectUri);
+					themeDisplay.getCompanyId(), code, getRedirectURI(request));
 
 				User user = setGoogleCredentials(
 					session, themeDisplay.getCompanyId(), credential);
@@ -253,6 +252,10 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		builder.setApprovalPrompt("force");
 
 		return builder.build();
+	}
+
+	protected String getRedirectURI(HttpServletRequest request) {
+		return PortalUtil.getPortalURL(request) + _REDIRECT_URI;
 	}
 
 	protected Userinfo getUserInfo(Credential credentials)
