@@ -27,10 +27,6 @@ import com.google.api.services.oauth2.model.Userinfo;
 
 import com.liferay.googlelogin.util.WebKeys;
 import com.liferay.portal.kernel.deploy.DeployManagerUtil;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.struts.BaseStrutsAction;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
@@ -45,6 +41,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
+import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -53,8 +50,6 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil;
-
-import java.io.IOException;
 
 import java.util.Arrays;
 import java.util.Calendar;
@@ -190,35 +185,27 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 	protected Credential exchangeCode(
 			long companyId, String authorizationCode, String redirectURI)
-		throws SystemException {
+		throws Exception {
 
-		try {
-			GoogleAuthorizationCodeFlow googleAuthorizationCodeFlow =
-				getGoogleAuthorizationCodeFlow(companyId);
+		GoogleAuthorizationCodeFlow googleAuthorizationCodeFlow =
+			getGoogleAuthorizationCodeFlow(companyId);
 
-			GoogleAuthorizationCodeTokenRequest
-				googleAuthorizationCodeTokenRequest =
-					googleAuthorizationCodeFlow.newTokenRequest(
-						authorizationCode);
+		GoogleAuthorizationCodeTokenRequest
+			googleAuthorizationCodeTokenRequest =
+				googleAuthorizationCodeFlow.newTokenRequest(authorizationCode);
 
-			googleAuthorizationCodeTokenRequest.setRedirectUri(redirectURI);
+		googleAuthorizationCodeTokenRequest.setRedirectUri(redirectURI);
 
-			GoogleTokenResponse googleTokenResponse =
-				googleAuthorizationCodeTokenRequest.execute();
+		GoogleTokenResponse googleTokenResponse =
+			googleAuthorizationCodeTokenRequest.execute();
 
-			return googleAuthorizationCodeFlow.createAndStoreCredential(
-				googleTokenResponse, null);
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-
-			throw new SystemException();
-		}
+		return googleAuthorizationCodeFlow.createAndStoreCredential(
+			googleTokenResponse, null);
 	}
 
 	protected GoogleAuthorizationCodeFlow getGoogleAuthorizationCodeFlow(
 			long companyId)
-		throws SystemException {
+		throws Exception {
 
 		HttpTransport httpTransport = new NetHttpTransport();
 		JacksonFactory jsonFactory = new JacksonFactory();
@@ -260,7 +247,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 	protected Userinfo getUserinfo(
 			com.google.api.services.oauth2.Oauth2.Userinfo oAuth2Userinfo)
-		throws IOException {
+		throws Exception {
 
 		com.google.api.services.oauth2.Oauth2.Userinfo.Get oAuth2UserinfoGet =
 			oAuth2Userinfo.get();
@@ -268,27 +255,16 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		return oAuth2UserinfoGet.execute();
 	}
 
-	protected Userinfo getUserinfo(Credential credentials)
-		throws SystemException {
-
+	protected Userinfo getUserinfo(Credential credentials) throws Exception {
 		Oauth2.Builder builder = new Oauth2.Builder(
 			new NetHttpTransport(), new JacksonFactory(), credentials);
 
 		Oauth2 oauth2 = builder.build();
 
-		Userinfo userinfo = null;
-
-		try {
-			userinfo = getUserinfo(oauth2.userinfo());
-		}
-		catch (IOException ioe) {
-			_log.error(ioe, ioe);
-
-			throw new SystemException();
-		}
+		Userinfo userinfo = getUserinfo(oauth2.userinfo());
 
 		if ((userinfo == null) || (userinfo.getId() == null)) {
-			throw new SystemException();
+			throw new PrincipalException();
 		}
 
 		return userinfo;
@@ -403,7 +379,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 	protected void updateExpandoValues(
 			User user, Userinfo userinfo, String accessToken,
 			String refreshToken)
-		throws PortalException, SystemException {
+		throws Exception {
 
 		ExpandoValueLocalServiceUtil.addValue(
 			user.getCompanyId(), User.class.getName(),
@@ -490,7 +466,5 @@ public class GoogleLoginAction extends BaseStrutsAction {
 	private static final List<String> _SCOPES_LOGIN = Arrays.asList(
 		"https://www.googleapis.com/auth/userinfo.email",
 		"https://www.googleapis.com/auth/userinfo.profile");
-
-	private static Log _log = LogFactoryUtil.getLog(GoogleLoginAction.class);
 
 }
