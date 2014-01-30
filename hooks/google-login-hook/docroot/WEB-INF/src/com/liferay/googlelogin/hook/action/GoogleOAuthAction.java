@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googlelogin;
+package com.liferay.googlelogin.hook.action;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
@@ -72,7 +72,7 @@ import javax.servlet.http.HttpSession;
 /**
  * @author Sergio González
  */
-public class GoogleOAuth extends BaseStrutsAction {
+public class GoogleOAuthAction extends BaseStrutsAction {
 
 	public static final String GOOGLE_ACCESS_TOKEN = "googleAccessToken";
 
@@ -490,6 +490,6 @@ public class GoogleOAuth extends BaseStrutsAction {
 		"https://www.googleapis.com/auth/userinfo.email",
 		"https://www.googleapis.com/auth/userinfo.profile");
 
-	private static Log _log = LogFactoryUtil.getLog(GoogleOAuth.class);
+	private static Log _log = LogFactoryUtil.getLog(GoogleOAuthAction.class);
 
 }
