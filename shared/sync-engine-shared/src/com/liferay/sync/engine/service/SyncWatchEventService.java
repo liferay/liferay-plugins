@@ -31,13 +31,13 @@ import org.slf4j.LoggerFactory;
 public class SyncWatchEventService {
 
 	public static SyncWatchEvent addSyncWatchEvent(
-			String filePath, String fileType, String kindName,
+			String filePathName, String fileType, String kindName,
 			long syncAccountId)
 		throws Exception {
 
 		SyncWatchEvent syncWatchEvent = new SyncWatchEvent();
 
-		syncWatchEvent.setFilePath(filePath);
+		syncWatchEvent.setFilePathName(filePathName);
 		syncWatchEvent.setFileType(fileType);
 		syncWatchEvent.setKindName(kindName);
 		syncWatchEvent.setSyncAccountId(syncAccountId);
@@ -73,11 +73,11 @@ public class SyncWatchEventService {
 	}
 
 	public static SyncWatchEvent fetchSyncWatchEvent(
-		String filePath, String kindName, long timestamp) {
+		String filePathName, String kindName, long timestamp) {
 
 		try {
 			return _syncWatchEventPersistence.fetchSyncWatchEvent(
-				filePath, kindName, timestamp);
+				filePathName, kindName, timestamp);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

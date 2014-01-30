@@ -56,7 +56,7 @@ public class DownloadFileEvent extends BaseEvent {
 		FileOutputStream fileOutputStream = null;
 
 		try {
-			File file = new File(_syncFile.getFilePath());
+			File file = new File(_syncFile.getFilePathName());
 
 			File dir = file.getParentFile();
 

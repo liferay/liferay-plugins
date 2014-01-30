@@ -50,7 +50,7 @@ public class WatcherTest extends BaseTestCase {
 		super.setUp();
 
 		_syncSite = SyncSiteService.addSyncSite(
-			filePath + "/test-site", 10184, syncAccount.getSyncAccountId());
+			filePathName + "/test-site", 10184, syncAccount.getSyncAccountId());
 	}
 
 	@After
@@ -83,7 +83,7 @@ public class WatcherTest extends BaseTestCase {
 		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
 			syncAccount.getSyncAccountId());
 
-		Path filePath = Paths.get(syncAccount.getFilePath());
+		Path filePath = Paths.get(syncAccount.getFilePathName());
 
 		Watcher watcher = new Watcher(filePath, true, watchEventListener);
 
@@ -91,7 +91,7 @@ public class WatcherTest extends BaseTestCase {
 
 		thread.start();
 
-		Path addFilePath = Paths.get(_syncSite.getFilePath() + "/test.txt");
+		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
 		Files.createFile(addFilePath);
 

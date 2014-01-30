@@ -40,8 +40,8 @@ public class SyncWatchEvent {
 	public static final String OVERFLOW =
 		StandardWatchEventKinds.OVERFLOW.name();
 
-	public String getFilePath() {
-		return filePath;
+	public String getFilePathName() {
+		return filePathName;
 	}
 
 	public String getFileType() {
@@ -64,8 +64,8 @@ public class SyncWatchEvent {
 		return timestamp;
 	}
 
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
+	public void setFilePathName(String filePathName) {
+		this.filePathName = filePathName;
 	}
 
 	public void setFileType(String fileType) {
@@ -89,7 +89,7 @@ public class SyncWatchEvent {
 	}
 
 	@DatabaseField(useGetSet = true, width = 16777216)
-	protected String filePath;
+	protected String filePathName;
 
 	@DatabaseField(useGetSet = true)
 	protected String fileType;

@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.sync.engine.documentlibrary.model.SyncDLObjectUpdate;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncFileService;
-import com.liferay.sync.engine.util.FilePathUtil;
+import com.liferay.sync.engine.util.FilePathNameUtil;
 
 import java.util.Map;
 
@@ -47,14 +47,14 @@ public class GetAllSyncDLObjectsEvent extends BaseEvent {
 				syncFile.getParentFolderId(), syncFile.getRepositoryId(),
 				getSyncAccountId());
 
-			String filePath = null;
+			String filePathName = null;
 
 			if (parentSyncFile != null) {
-				filePath = FilePathUtil.getFilePath(
-					parentSyncFile.getFilePath(), syncFile.getName());
+				filePathName = FilePathNameUtil.getFilePathName(
+					parentSyncFile.getFilePathName(), syncFile.getName());
 			}
 
-			syncFile.setFilePath(filePath);
+			syncFile.setFilePathName(filePathName);
 
 			syncFile.setSyncAccountId(getSyncAccountId());
 

@@ -19,30 +19,32 @@ import java.io.File;
 /**
  * @author Dennis Ju
  */
-public class FilePathUtil {
+public class FilePathNameUtil {
 
-	public static String fixFilePath(String filePath) {
-		if (filePath == null) {
+	public static String fixFilePathName(String filePathName) {
+		if (filePathName == null) {
 			return "";
 		}
 
-		filePath = filePath.replace("\\", "/");
+		filePathName = filePathName.replace("\\", "/");
 
-		if (filePath.endsWith("/")) {
-			filePath = filePath.substring(0, filePath.length() - 1);
+		if (filePathName.endsWith("/")) {
+			filePathName = filePathName.substring(0, filePathName.length() - 1);
 		}
 
-		return filePath;
+		return filePathName;
 	}
 
-	public static String getFilePath(String parentFilePath, String fileName) {
+	public static String getFilePathName(
+		String parentFilePathName, String fileName) {
+
 		StringBuilder sb = new StringBuilder(3);
 
-		sb.append(parentFilePath);
+		sb.append(parentFilePathName);
 		sb.append(File.separator);
 		sb.append(fileName);
 
-		return fixFilePath(sb.toString());
+		return fixFilePathName(sb.toString());
 	}
 
 }

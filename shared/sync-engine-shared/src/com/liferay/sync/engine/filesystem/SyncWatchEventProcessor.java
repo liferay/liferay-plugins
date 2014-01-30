@@ -66,8 +66,8 @@ public class SyncWatchEventProcessor implements Runnable {
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(
 					"Event file path {} file type {} kind name {} timestamp {}",
-					syncWatchEvent.getFilePath(), syncWatchEvent.getFileType(),
-					syncWatchEvent.getKindName(),
+					syncWatchEvent.getFilePathName(),
+					syncWatchEvent.getFileType(), syncWatchEvent.getKindName(),
 					syncWatchEvent.getTimestamp());
 			}
 
@@ -94,7 +94,7 @@ public class SyncWatchEventProcessor implements Runnable {
 	}
 
 	protected void addFile(SyncWatchEvent syncWatchEvent) throws Exception {
-		Path path = Paths.get(syncWatchEvent.getFilePath());
+		Path path = Paths.get(syncWatchEvent.getFilePathName());
 
 		Path parentPath = path.getParent();
 
@@ -107,13 +107,13 @@ public class SyncWatchEventProcessor implements Runnable {
 		for (SyncFile syncFile : syncFiles) {
 			SyncWatchEvent relatedSyncWatchEvent =
 				SyncWatchEventService.fetchSyncWatchEvent(
-					syncFile.getFilePath(), SyncWatchEvent.ENTRY_DELETE,
+					syncFile.getFilePathName(), SyncWatchEvent.ENTRY_DELETE,
 					syncWatchEvent.getTimestamp());
 
 			if (relatedSyncWatchEvent != null) {
-				Path srcPath = Paths.get(syncWatchEvent.getFilePath());
+				Path srcFilePath = Paths.get(syncWatchEvent.getFilePathName());
 
-				if (parentPath.equals(srcPath.getParent())) {
+				if (parentPath.equals(srcFilePath.getParent())) {
 					Map<String, Object> parameters =
 						new HashMap<String, Object>();
 

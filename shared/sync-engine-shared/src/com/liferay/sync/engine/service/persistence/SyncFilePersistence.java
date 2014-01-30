@@ -50,12 +50,12 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		return syncFiles.get(0);
 	}
 
-	public SyncFile fetchSyncFile(String filePath, long syncAccountId)
+	public SyncFile fetchSyncFile(String filePathName, long syncAccountId)
 		throws SQLException {
 
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
 
-		fieldValues.put("filePath", filePath);
+		fieldValues.put("filePathName", filePathName);
 		fieldValues.put("syncAccountId", syncAccountId);
 
 		List<SyncFile> syncFiles = queryForFieldValues(fieldValues);

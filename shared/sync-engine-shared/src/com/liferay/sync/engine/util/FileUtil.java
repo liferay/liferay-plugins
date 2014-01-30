@@ -59,10 +59,10 @@ public class FileUtil {
 		return null;
 	}
 
-	public static String getChecksum(String filePath) {
-		Path path = Paths.get(filePath);
+	public static String getChecksum(String filePathName) {
+		Path filePath = Paths.get(filePathName);
 
-		return getChecksum(path);
+		return getChecksum(filePath);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(FileUtil.class);

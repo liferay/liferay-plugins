@@ -34,14 +34,14 @@ public class SyncWatchEventPersistence
 	}
 
 	public SyncWatchEvent fetchSyncWatchEvent(
-			String filePath, String kindName, long timestamp)
+			String filePathName, String kindName, long timestamp)
 		throws SQLException {
 
 		QueryBuilder<SyncWatchEvent, Long> queryBuilder = queryBuilder();
 
 		Where where = queryBuilder.where();
 
-		where.eq("filePath", filePath);
+		where.eq("filePathName", filePathName);
 		where.and();
 		where.eq("kindName", kindName);
 		where.and();

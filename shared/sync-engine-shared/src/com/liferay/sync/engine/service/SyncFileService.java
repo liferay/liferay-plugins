@@ -41,7 +41,7 @@ public class SyncFileService {
 
 		SyncFile syncFile = new SyncFile();
 
-		syncFile.setFilePath(filePathName);
+		syncFile.setFilePathName(filePathName);
 		syncFile.setName(name);
 		syncFile.setRepositoryId(repositoryId);
 		syncFile.setParentFolderId(parentFolderId);
@@ -86,9 +86,12 @@ public class SyncFileService {
 		}
 	}
 
-	public static SyncFile fetchSyncFile(String filePath, long syncAccountId) {
+	public static SyncFile fetchSyncFile(
+		String filePathName, long syncAccountId) {
+
 		try {
-			return _syncFilePersistence.fetchSyncFile(filePath, syncAccountId);
+			return _syncFilePersistence.fetchSyncFile(
+				filePathName, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

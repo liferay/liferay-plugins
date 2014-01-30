@@ -44,15 +44,15 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_filePathSyncFile = SyncFileService.addSyncFile(
-			syncAccount.getFilePath(), "test", 0, 0,
+		_testFolderSyncFile = SyncFileService.addSyncFile(
+			syncAccount.getFilePathName(), "test", 0, 0,
 			syncAccount.getSyncAccountId(), SyncFile.TYPE_FOLDER);
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
-		SyncFileService.deleteSyncFile(_filePathSyncFile.getSyncFileId());
+		SyncFileService.deleteSyncFile(_testFolderSyncFile.getSyncFileId());
 
 		for (SyncFile syncFile : _syncFiles) {
 			SyncFileService.deleteSyncFile(syncFile.getSyncFileId());
@@ -73,12 +73,14 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 		Assert.assertEquals(3, _syncFiles.size());
 
-		Path filePath = Paths.get(filePath + "/Document_1.txt");
+		Path filePath = Paths.get(
+			_testFolderSyncFile.getFilePathName() +
+			_testFolderSyncFile.getName() + "/Document_1.txt");
 
 		Assert.assertTrue(Files.exists(filePath));
 	}
 
-	private SyncFile _filePathSyncFile;
 	private List<SyncFile> _syncFiles;
+	private SyncFile _testFolderSyncFile;
 
 }

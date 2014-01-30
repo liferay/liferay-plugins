@@ -58,16 +58,16 @@ public abstract class BaseTestCase {
 
 		upgradeProcessSuite.upgrade();
 
-		filePath = System.getProperty("user.home") + "/liferay-sync-test";
+		filePathName = System.getProperty("user.home") + "/liferay-sync-test";
 
 		syncAccount = SyncAccountService.addSyncAccount(
-			filePath, "test@liferay.com", "test",
+			filePathName, "test@liferay.com", "test",
 			"http://localhost:8080/api/jsonws");
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		Path path = Paths.get(filePath);
+		Path path = Paths.get(filePathName);
 
 		FileUtils.deleteDirectory(path.toFile());
 
@@ -93,7 +93,7 @@ public abstract class BaseTestCase {
 		);
 	}
 
-	protected String filePath;
+	protected String filePathName;
 	protected SyncAccount syncAccount;
 
 }

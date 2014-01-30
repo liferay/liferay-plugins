@@ -30,12 +30,12 @@ import org.slf4j.LoggerFactory;
 public class SyncAccountService {
 
 	public static SyncAccount addSyncAccount(
-			String filePath, String login, String password, String url)
+			String filePathName, String login, String password, String url)
 		throws Exception {
 
 		SyncAccount syncAccount = new SyncAccount();
 
-		syncAccount.setFilePath(filePath);
+		syncAccount.setFilePathName(filePathName);
 		syncAccount.setLogin(login);
 		syncAccount.setPassword(Encryptor.encrypt(password));
 		syncAccount.setUrl(url);
@@ -43,7 +43,7 @@ public class SyncAccountService {
 		_syncAccountPersistence.create(syncAccount);
 
 		SyncFileService.addSyncFile(
-			filePath, filePath, 0, 0, syncAccount.getSyncAccountId(),
+			filePathName, filePathName, 0, 0, syncAccount.getSyncAccountId(),
 			SyncFile.TYPE_FOLDER);
 
 		return syncAccount;
