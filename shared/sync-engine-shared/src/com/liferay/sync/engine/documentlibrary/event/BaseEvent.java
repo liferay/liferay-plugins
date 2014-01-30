@@ -46,6 +46,14 @@ public abstract class BaseEvent implements Runnable {
 		}
 	}
 
+	protected Map<String, Object> getParameters() {
+		return _parameters;
+	}
+
+	protected Object getParameterValue(String key) {
+		return _parameters.get(key);
+	}
+
 	protected long getSyncAccountId() {
 		return _syncAccountId;
 	}

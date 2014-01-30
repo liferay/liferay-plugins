@@ -32,15 +32,15 @@ import org.slf4j.LoggerFactory;
  */
 public class FileUtil {
 
-	public static String getChecksum(Path path) {
+	public static String getChecksum(Path filePath) {
 		InputStream fileInputStream = null;
 
 		try {
-			fileInputStream = new FileInputStream(path.toFile());
+			fileInputStream = new FileInputStream(filePath.toFile());
 
 			byte[] bytes = DigestUtils.sha1(fileInputStream);
 
-			return Base64.encodeBase64URLSafeString(bytes);
+			return Base64.encodeBase64String(bytes);
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);

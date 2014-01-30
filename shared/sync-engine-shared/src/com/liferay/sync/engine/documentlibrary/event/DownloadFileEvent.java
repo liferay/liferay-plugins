@@ -19,58 +19,60 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.util.HttpUtil;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.OutputStream;
 
 import java.net.URL;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import java.util.Map;
 
 /**
  * @author Shinn Lok
  */
 public class DownloadFileEvent extends BaseEvent {
 
-	public DownloadFileEvent(long accountId, SyncFile syncFile, boolean patch) {
-		super(accountId, _URL_PATH, null);
+	public DownloadFileEvent(
+		long syncAccountId, Map<String, Object> parameters) {
 
-		_syncFile = syncFile;
-		_patch = patch;
+		super(syncAccountId, _URL_PATH, parameters);
 	}
 
 	@Override
 	protected String processRequest() throws Exception {
+		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
 		StringBuilder sb = new StringBuilder(7);
 
 		sb.append(replaceUrlPath(getSyncAccountId()));
 		sb.append("/");
-		sb.append(_syncFile.getRepositoryId());
+		sb.append(syncFile.getRepositoryId());
 		sb.append("/");
-		sb.append(_syncFile.getTypeUuid());
+		sb.append(syncFile.getTypeUuid());
 		sb.append("/");
-		sb.append(_patch);
+		sb.append(getParameterValue("patch"));
 
 		return HttpUtil.executeGet(getSyncAccountId(), sb.toString());
 	}
 
 	@Override
 	protected void processResponse(String response) throws Exception {
-		FileOutputStream fileOutputStream = null;
+		OutputStream outputStream = null;
 
 		try {
-			File file = new File(_syncFile.getFilePathName());
+			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
-			File dir = file.getParentFile();
+			Path filePath = Paths.get(syncFile.getFilePathName());
 
-			if (!dir.exists()) {
-				dir.mkdirs();
-			}
+			outputStream = Files.newOutputStream(filePath);
 
-			fileOutputStream = new FileOutputStream(file);
-
-			fileOutputStream.write(response.getBytes());
+			outputStream.write(response.getBytes());
 		}
 		finally {
-			if (fileOutputStream != null) {
-				fileOutputStream.close();
+			if (outputStream != null) {
+				outputStream.close();
 			}
 		}
 	}
@@ -87,8 +89,5 @@ public class DownloadFileEvent extends BaseEvent {
 	}
 
 	private static final String _URL_PATH = "/sync-web/download";
-
-	private static boolean _patch;
-	private static SyncFile _syncFile;
 
 }

@@ -22,6 +22,7 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -60,8 +61,13 @@ public class GetAllSyncDLObjectsEvent extends BaseEvent {
 
 			SyncFileService.update(syncFile);
 
+			Map<String, Object> parameters = new HashMap<String, Object>();
+
+			parameters.put("patch", false);
+			parameters.put("syncFile", syncFile);
+
 			DownloadFileEvent downloadFileEvent = new DownloadFileEvent(
-				getSyncAccountId(), syncFile, false);
+				getSyncAccountId(), parameters);
 
 			downloadFileEvent.run();
 		}

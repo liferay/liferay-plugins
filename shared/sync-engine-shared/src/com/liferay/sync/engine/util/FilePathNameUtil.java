@@ -14,7 +14,8 @@
 
 package com.liferay.sync.engine.util;
 
-import java.io.File;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 
 /**
  * @author Dennis Ju
@@ -41,7 +42,11 @@ public class FilePathNameUtil {
 		StringBuilder sb = new StringBuilder(3);
 
 		sb.append(parentFilePathName);
-		sb.append(File.separator);
+
+		FileSystem fileSystem = FileSystems.getDefault();
+
+		sb.append(fileSystem.getSeparator());
+
 		sb.append(fileName);
 
 		return fixFilePathName(sb.toString());

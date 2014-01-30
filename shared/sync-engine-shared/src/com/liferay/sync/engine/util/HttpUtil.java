@@ -21,12 +21,13 @@ import com.liferay.sync.engine.service.SyncAccountService;
 import java.net.URL;
 
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import java.util.Map;
 
 import javax.ws.rs.core.MediaType;
 
-import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -37,6 +38,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.entity.mime.content.ByteArrayBody;
+import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
@@ -85,7 +88,21 @@ public class HttpUtil {
 
 		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + urlPath);
 
-		httpPost.setEntity(_getHttpEntity(parameters));
+		Path filePath = (Path)parameters.remove("filePath");
+
+		MultipartEntityBuilder multipartEntityBuilder =
+			_getMultipartEntityBuilder(parameters);
+
+		if (filePath != null) {
+			multipartEntityBuilder.addPart(
+				"file",
+				_getByteArrayBody(
+					Files.readAllBytes(filePath),
+					(String)parameters.get("mimeType"),
+					(String)parameters.get("title")));
+		}
+
+		httpPost.setEntity(multipartEntityBuilder.build());
 
 		return httpClient.execute(
 			httpHost, httpPost, new BaseHandler(),
@@ -111,6 +128,13 @@ public class HttpUtil {
 		return basicHttpContext;
 	}
 
+	private static ContentBody _getByteArrayBody(
+			byte[] bytes, String mimeType, String fileName)
+		throws Exception {
+
+		return new ByteArrayBody(bytes, ContentType.create(mimeType), fileName);
+	}
+
 	private static HttpClient _getHttpClient(SyncAccount syncAccount, URL url)
 		throws Exception {
 
@@ -130,7 +154,9 @@ public class HttpUtil {
 		return httpClientBuilder.build();
 	}
 
-	private static HttpEntity _getHttpEntity(Map<String, Object> parameters) {
+	private static MultipartEntityBuilder _getMultipartEntityBuilder(
+		Map<String, Object> parameters) {
+
 		MultipartEntityBuilder multipartEntityBuilder =
 			MultipartEntityBuilder.create();
 
@@ -139,7 +165,7 @@ public class HttpUtil {
 				entry.getKey(), _getStringBody(entry.getValue()));
 		}
 
-		return multipartEntityBuilder.build();
+		return multipartEntityBuilder;
 	}
 
 	private static StringBody _getStringBody(Object value) {

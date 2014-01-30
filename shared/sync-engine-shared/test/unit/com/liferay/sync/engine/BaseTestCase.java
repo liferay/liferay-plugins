@@ -67,9 +67,9 @@ public abstract class BaseTestCase {
 
 	@After
 	public void tearDown() throws Exception {
-		Path path = Paths.get(filePathName);
+		Path filePath = Paths.get(filePathName);
 
-		FileUtils.deleteDirectory(path.toFile());
+		FileUtils.deleteDirectory(filePath.toFile());
 
 		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
 	}

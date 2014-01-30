@@ -94,15 +94,15 @@ public class SyncWatchEventProcessor implements Runnable {
 	}
 
 	protected void addFile(SyncWatchEvent syncWatchEvent) throws Exception {
-		Path path = Paths.get(syncWatchEvent.getFilePathName());
+		Path filePath = Paths.get(syncWatchEvent.getFilePathName());
 
-		Path parentPath = path.getParent();
+		Path parentFilePath = filePath.getParent();
 
 		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-			parentPath.toString(), syncWatchEvent.getSyncAccountId());
+			parentFilePath.toString(), syncWatchEvent.getSyncAccountId());
 
 		List<SyncFile> syncFiles = SyncFileService.findSyncFiles(
-			FileUtil.getChecksum(path), syncWatchEvent.getSyncAccountId());
+			FileUtil.getChecksum(filePath), syncWatchEvent.getSyncAccountId());
 
 		for (SyncFile syncFile : syncFiles) {
 			SyncWatchEvent relatedSyncWatchEvent =
@@ -113,20 +113,20 @@ public class SyncWatchEventProcessor implements Runnable {
 			if (relatedSyncWatchEvent == null) {
 				continue;
 			}
+
 			Path srcFilePath = Paths.get(syncWatchEvent.getFilePathName());
 
-
-			if (parentPath.equals(srcFilePath.getParent())) {
+			if (parentFilePath.equals(srcFilePath.getParent())) {
 				Map<String, Object> parameters = new HashMap<String, Object>();
 
 				parameters.put("changeLog", syncFile.getVersion() + .1);
-				parameters.put("checksum", FileUtil.getChecksum(path));
+				parameters.put("checksum", FileUtil.getChecksum(filePath));
 				parameters.put("description", syncFile.getDescription());
-				parameters.put("file", path.toFile());
 				parameters.put("fileEntryId", syncFile.getTypePK());
+				parameters.put("filePath", filePath);
 				parameters.put("mimeType", syncFile.getMimeType());
-				parameters.put("sourceFileName", path.getFileName());
-				parameters.put("title", path.getFileName());
+				parameters.put("sourceFileName", filePath.getFileName());
+				parameters.put("title", String.valueOf(filePath.getFileName()));
 
 				UpdateFileEntryEvent updateFileEntryEvent =
 					new UpdateFileEntryEvent(
@@ -135,8 +135,7 @@ public class SyncWatchEventProcessor implements Runnable {
 				updateFileEntryEvent.run();
 			}
 			else {
-				Map<String, Object> parameters =
-					new HashMap<String, Object>();
+				Map<String, Object> parameters = new HashMap<String, Object>();
 
 				parameters.put("fileEntryId", syncFile.getTypePK());
 				parameters.put("newFolderId", parentSyncFile.getTypePK());
@@ -155,14 +154,14 @@ public class SyncWatchEventProcessor implements Runnable {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("changeLog", "1.0");
-		parameters.put("checksum", FileUtil.getChecksum(path));
+		parameters.put("checksum", FileUtil.getChecksum(filePath));
 		parameters.put("description", null);
-		parameters.put("file", path.toFile());
+		parameters.put("filePath", filePath);
 		parameters.put("folderId", parentSyncFile.getTypePK());
-		parameters.put("mimeType", Files.probeContentType(path));
+		parameters.put("mimeType", Files.probeContentType(filePath));
 		parameters.put("repositoryId", parentSyncFile.getRepositoryId());
-		parameters.put("sourceFileName", path.getFileName());
-		parameters.put("title", path.getFileName());
+		parameters.put("sourceFileName", filePath.getFileName());
+		parameters.put("title", String.valueOf(filePath.getFileName()));
 
 		AddFileEntryEvent addFileEntryEvent = new AddFileEntryEvent(
 			syncWatchEvent.getSyncAccountId(), parameters);

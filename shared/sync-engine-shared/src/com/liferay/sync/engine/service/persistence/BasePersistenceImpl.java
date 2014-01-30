@@ -21,7 +21,8 @@ import com.j256.ormlite.table.TableUtils;
 
 import com.liferay.sync.engine.util.PropsValues;
 
-import java.io.File;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
 
 import java.sql.SQLException;
 
@@ -49,7 +50,11 @@ public class BasePersistenceImpl<TT, TID>
 
 		sb.append("jdbc:h2:");
 		sb.append(PropsValues.SYNC_CONFIGURATION_DIRECTORY);
-		sb.append(File.separator);
+
+		FileSystem fileSystem = FileSystems.getDefault();
+
+		sb.append(fileSystem.getSeparator());
+
 		sb.append(PropsValues.SYNC_DATABASE_NAME);
 		sb.append(";AUTO_SERVER=TRUE");
 

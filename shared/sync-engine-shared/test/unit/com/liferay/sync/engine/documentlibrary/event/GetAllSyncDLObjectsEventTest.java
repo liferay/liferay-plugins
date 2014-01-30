@@ -73,9 +73,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 		Assert.assertEquals(3, _syncFiles.size());
 
-		Path filePath = Paths.get(
-			_testFolderSyncFile.getFilePathName() +
-			_testFolderSyncFile.getName() + "/Document_1.txt");
+		Path filePath = Paths.get(filePathName + "/Document_1.txt");
 
 		Assert.assertTrue(Files.exists(filePath));
 	}
