@@ -15,13 +15,30 @@
 package com.liferay.repository.external;
 
 /**
+ * An external repository folder object describes a folder contained in an
+ * external repository. Implementors of external repositories must provide an
+ * implementation of this class to make the bridge between Liferay and external
+ * repository domains.
+ *
+ * All data returned by implementations is in native repository format.
+ *
  * @author Iván Zaera
  * @author Sergio González
  */
 public interface ExtRepositoryFolder extends ExtRepositoryObject {
 
+	/**
+	 * Gets the name of the folder.
+	 *
+	 * @return the name of the folder
+	 */
 	public String getName();
 
+	/**
+	 * Checks whether or not this is the root folder.
+	 *
+	 * @return true if this is the root folder
+	 */
 	public boolean isRoot();
 
 }
