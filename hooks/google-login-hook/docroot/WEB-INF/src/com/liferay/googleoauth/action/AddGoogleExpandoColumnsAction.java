@@ -31,7 +31,7 @@ import com.liferay.portlet.expando.service.ExpandoTableLocalServiceUtil;
 /**
  * @author Sergio González
  */
-public class AddGoogleOAuthExpandoFieldsAction extends SimpleAction {
+public class AddGoogleExpandoColumnsAction extends SimpleAction {
 
 	@Override
 	public void run(String[] ids) throws ActionException {
