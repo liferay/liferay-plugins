@@ -269,7 +269,12 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		Userinfo userinfo = null;
 
 		try {
-			userinfo = oauth2.userinfo().get().execute();
+			com.google.api.services.oauth2.Oauth2.Userinfo oAuth2Userinfo =
+				oauth2.userinfo();
+
+			com.google.api.services.oauth2.Oauth2.Userinfo.Get oAuth2UserinfoGet = oAuth2Userinfo.get();
+
+			userinfo = oAuth2UserinfoGet.execute();
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
