@@ -33,53 +33,53 @@ import javax.servlet.http.HttpSession;
 */
 public class GoogleAutoLogin extends BaseAutoLogin {
 
-@Override
-protected String[] doLogin(
-		HttpServletRequest request, HttpServletResponse response)
-	throws Exception {
+	@Override
+	protected String[] doLogin(
+			HttpServletRequest request, HttpServletResponse response)
+		throws Exception {
 
-	long companyId = PortalUtil.getCompanyId(request);
+		long companyId = PortalUtil.getCompanyId(request);
 
-	boolean googleAuthEnabled = PrefsPropsUtil.getBoolean(
-		companyId, "google-auth-enabled", true);
+		boolean googleAuthEnabled = PrefsPropsUtil.getBoolean(
+			companyId, "google-auth-enabled", true);
 
-	if (!googleAuthEnabled) {
-		return null;
+		if (!googleAuthEnabled) {
+			return null;
+		}
+
+		User user = getUser(request, companyId);
+
+		if (user == null) {
+			return null;
+		}
+
+		String[] credentials = new String[3];
+
+		credentials[0] = String.valueOf(user.getUserId());
+		credentials[1] = user.getPassword();
+		credentials[2] = Boolean.TRUE.toString();
+
+		return credentials;
 	}
 
-	User user = getUser(request, companyId);
+	protected User getUser(HttpServletRequest request, long companyId)
+		throws PortalException, SystemException {
 
-	if (user == null) {
-		return null;
+		HttpSession session = request.getSession();
+
+		String emailAddress = GetterUtil.getString(
+			session.getAttribute(GoogleOAuth.GOOGLE_USER_EMAIL_ADDRESS));
+
+		if (Validator.isNull(emailAddress)) {
+			return null;
+		}
+
+		session.removeAttribute(GoogleOAuth.GOOGLE_USER_EMAIL_ADDRESS);
+
+		User user = UserLocalServiceUtil.getUserByEmailAddress(
+			companyId, emailAddress);
+
+		return user;
 	}
-
-	String[] credentials = new String[3];
-
-	credentials[0] = String.valueOf(user.getUserId());
-	credentials[1] = user.getPassword();
-	credentials[2] = Boolean.TRUE.toString();
-
-	return credentials;
-}
-
-protected User getUser(HttpServletRequest request, long companyId)
-	throws PortalException, SystemException {
-
-	HttpSession session = request.getSession();
-
-	String emailAddress = GetterUtil.getString(
-		session.getAttribute(GoogleOAuth.GOOGLE_USER_EMAIL_ADDRESS));
-
-	if (Validator.isNull(emailAddress)) {
-		return null;
-	}
-
-	session.removeAttribute(GoogleOAuth.GOOGLE_USER_EMAIL_ADDRESS);
-
-	User user = UserLocalServiceUtil.getUserByEmailAddress(
-		companyId, emailAddress);
-
-	return user;
-}
 
 }
