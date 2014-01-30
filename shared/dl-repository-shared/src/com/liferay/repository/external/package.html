@@ -1,0 +1,57 @@
+<p>
+This package contains the interfaces exported by the <b>dl-repository-shared</b> 
+framework to allow for third party implementation of external repositories for
+Liferay Portal.
+</p>
+<p>
+The best way to know how to use this framework is to look at an existing 
+implementation (like Sharepoint or Google Drive external repositories) but we 
+will explain the overall idea here.
+</p>
+<p>
+When implementing an external repository, you need to provide implementations
+for four main interfaces, namely: ExtRepository, ExtRepositoryFileEntry, 
+ExtRepositoryFolder and ExtRepositoryFileVersion. The first is in charge of the
+communication between Liferay and the back end repositories. The three last 
+interfaces describe the objects stored in the back end repository: folders, 
+files and versions.
+<p>
+<p>
+The classes implementing ExtRepositoryFileEntry, ExtRepositoryFolder and 
+ExtRepositoryFileVersion usually make a bridge between the methods of these 
+interfaces and the methods in the back end repository API. For instance, they 
+may map Liferay's filename field to the back end repository field holding the 
+filename (example: field ows_BaseName in Sharepoint).
+<p>
+<p>
+The ExtRepositoryFileEntry, ExtRepositoryFolder and ExtRepositoryFileVersion
+are inside a hierarchy where two more interfaces exist: ExtRepositoryObject and
+ExtRepositoryModel. The first one defines the properties which files and folders
+have in common, while the latter has properties which are common to all three
+main types: files, folders and versions. Implementors are free to define their
+own class hierarchy to implement these interfaces, but are advised to create 
+one abstract class for ExtRepositoryObject and another one for 
+ExtRepositoryModel so that they can be extended by the implementations of 
+ExtRepositoryFileEntry, ExtRepositoryFolder and ExtRepositoryFileVersion. It 
+should be noted that the abstract implementation of ExtRepositoryObject should
+extends the abstract implementation of ExtRepositoryObject to be coherent.
+<p>
+
+<p>
+When implementing ExtRepository, all methods returning or receiving and 
+ExtRepositoryFileEntry, ExtRepositoryFolder and ExtRepositoryFileVersion must
+assume that even if the instances have the types of the interfaces, they, in 
+reality, are implemented by the classes described in the previous paragraph.
+That is, if you are implementing a Sharepoint external repository, you return 
+SharepointFileEntry objects when called by Liferay, and Liferay will give you
+SharepointFileEntry as arguments to the methods.
+<p>
+
+<p>
+To finish with, all data interchanged between Liferay and the implementations
+is in the back end repository native format. These includes object keys and
+user names. Liferay automatically converts these keys and user names to 
+Liferay's ids and user names, possibly with the help of some methods defined in
+ExtRepository (for instance: getLiferayUserName() must map back end repository 
+user names to Liferay user names).
+</p>

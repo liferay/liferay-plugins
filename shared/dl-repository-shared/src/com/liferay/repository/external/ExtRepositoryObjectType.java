@@ -15,17 +15,39 @@
 package com.liferay.repository.external;
 
 /**
+ * This class holds constants to meta-describe the types of
+ * {@link ExtRepositoryObject}'s available. Each constant is tied to an
+ * {@link ExtRepositoryObject} derived interface and can be used as parameters
+ * to methods that need to differentiate between, for example, files or folders.
+ *
+ * The constants are designed so that Java generics can be used to make the
+ * return of methods type-safe. See method
+ * {@link ExtRepository#getExtRepositoryObject(ExtRepositoryObjectType, String, String)}
+ * for an example of a method signature using these constants.
+ *
  * @author Iván Zaera
  * @author Sergio González
  */
 public final class ExtRepositoryObjectType<T extends ExtRepositoryModel> {
 
+	/**
+	 * An {@link ExtRepositoryObjectType} constant referring to interface
+	 * {@link ExtRepositoryFileEntry}
+	 */
 	public static final ExtRepositoryObjectType<ExtRepositoryFileEntry> FILE =
 		new ExtRepositoryObjectType<ExtRepositoryFileEntry>("FILE");
 
+	/**
+	 * An {@link ExtRepositoryObjectType} constant referring to interface
+	 * {@link ExtRepositoryFolder}
+	 */
 	public static final ExtRepositoryObjectType<ExtRepositoryFolder> FOLDER =
 		new ExtRepositoryObjectType<ExtRepositoryFolder>("FOLDER");
 
+	/**
+	 * An {@link ExtRepositoryObjectType} constant referring to interface
+	 * {@link ExtRepositoryObject} (includes both files and folders)
+	 */
 	public static final ExtRepositoryObjectType<ExtRepositoryObject> OBJECT =
 		new ExtRepositoryObjectType<ExtRepositoryObject>("OBJECT");
 
