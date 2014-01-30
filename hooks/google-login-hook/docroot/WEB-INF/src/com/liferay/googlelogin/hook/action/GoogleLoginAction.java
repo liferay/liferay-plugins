@@ -258,6 +258,16 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		return PortalUtil.getPortalURL(request) + _REDIRECT_URI;
 	}
 
+	protected Userinfo getUserinfo(
+			com.google.api.services.oauth2.Oauth2.Userinfo oAuth2Userinfo)
+		throws IOException {
+
+		com.google.api.services.oauth2.Oauth2.Userinfo.Get oAuth2UserinfoGet =
+			oAuth2Userinfo.get();
+
+		return oAuth2UserinfoGet.execute();
+	}
+
 	protected Userinfo getUserinfo(Credential credentials)
 		throws SystemException {
 
@@ -269,12 +279,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		Userinfo userinfo = null;
 
 		try {
-			com.google.api.services.oauth2.Oauth2.Userinfo oAuth2Userinfo =
-				oauth2.userinfo();
-
-			com.google.api.services.oauth2.Oauth2.Userinfo.Get oAuth2UserinfoGet = oAuth2Userinfo.get();
-
-			userinfo = oAuth2UserinfoGet.execute();
+			userinfo = getUserinfo(oauth2.userinfo());
 		}
 		catch (IOException ioe) {
 			_log.error(ioe, ioe);
