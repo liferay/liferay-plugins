@@ -108,7 +108,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 				Credential credential = exchangeCode(
 					themeDisplay.getCompanyId(), code, getRedirectURI(request));
 
-				User user = setGoogleCredentials(
+				User user = setCredential(
 					session, themeDisplay.getCompanyId(), credential);
 
 				if ((user != null) &&
@@ -337,7 +337,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		response.sendRedirect(portletURL.toString());
 	}
 
-	protected User setGoogleCredentials(
+	protected User setCredential(
 			HttpSession session, long companyId, Credential credential)
 		throws Exception {
 
@@ -382,7 +382,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		}
 
 		if (DeployManagerUtil.isDeployed(_GOOGLE_DRIVE_CONTEXT)) {
-			updateCustomFields(
+			updateExpandoValues(
 				user, userinfo, credential.getAccessToken(),
 				credential.getRefreshToken());
 		}
@@ -390,7 +390,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 		return user;
 	}
 
-	protected void updateCustomFields(
+	protected void updateExpandoValues(
 			User user, Userinfo userinfo, String accessToken,
 			String refreshToken)
 		throws PortalException, SystemException {
