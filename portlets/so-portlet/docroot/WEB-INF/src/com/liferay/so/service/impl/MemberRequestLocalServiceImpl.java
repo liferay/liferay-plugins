@@ -294,11 +294,11 @@ public class MemberRequestLocalServiceImpl
 		catch (NoSuchWorkflowDefinitionLinkException nswdle) {
 			String redirectURL = getRedirectURL(serviceContext);
 
-		redirectURL = addParameterWithPortletNamespace(
-			redirectURL, "key", memberRequest.getKey());
+			redirectURL = addParameterWithPortletNamespace(
+				redirectURL, "key", memberRequest.getKey());
 
-		createAccountURL = addParameterWithPortletNamespace(
-			createAccountURL, "redirect", redirectURL);
+			createAccountURL = addParameterWithPortletNamespace(
+				createAccountURL, "redirect", redirectURL);
 		}
 
 		return createAccountURL;
