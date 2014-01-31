@@ -16,11 +16,11 @@ package com.liferay.repository.external;
 
 /**
  * An external repository file version object describes a version of a file
- * contained in an external repository. Implementors of external repositories
+ * contained in an external repository. Developers of external repositories
  * must provide an implementation of this class to make the bridge between
  * Liferay and external repository domains.
  *
- * All data returned by implementations is in native repository format.
+ * All data returned by implementations is in native ext repository format.
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -37,18 +37,18 @@ public interface ExtRepositoryFileVersion extends ExtRepositoryModel {
 	/**
 	 * Get the MIME type of this version of a file. This method may return
 	 * <code>null</code> if the MIME type is not available in the back end
-	 * repository. In that case, Liferay Portal will guess the MIME type
+	 * ext repository. In that case, Liferay Portal will guess the MIME type
 	 * (usually by looking at the extension).
 	 *
-	 * @return the MIME type of this file's version or <code>null</code> if it
-	 *         is unknown
+	 * @return the MIME type of this ext repository file version's version or
+	 *         <code>null</code> if it is unknown
 	 */
 	public String getMimeType();
 
 	/**
-	 * Get the tag (name) of the version. For example: "1.0".
+	 * Get the tag (name) of the ext repository version. For example: "1.0".
 	 *
-	 * @return the name of the version
+	 * @return the ext repository file version version
 	 */
 	public String getVersion();
 
