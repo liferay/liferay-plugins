@@ -28,11 +28,12 @@ import java.util.Date;
 public interface ExtRepositoryObject extends ExtRepositoryModel {
 
 	/**
-	 * Checks whether the user has permission to perform the specified action
-	 * on this object.
+	 * Checks whether the user has permission to perform the specified action on
+	 * this object.
 	 *
-	 * @param extRepositoryPermission the action to check for permission
-	 * @return true if the user is allowed to perform the action in this object
+	 * @param  extRepositoryPermission the action to check for permission
+	 * @return <code>true</code> if the user is allowed to perform the action in
+	 *         this object
 	 */
 	public boolean containsPermission(
 		ExtRepositoryPermission extRepositoryPermission);

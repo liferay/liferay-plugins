@@ -21,7 +21,7 @@ package com.liferay.repository.external;
  * Liferay and external repository domains.
  *
  * All data returned by implementations is in native repository format.
-
+ *
  * @author Iván Zaera
  * @author Sergio González
  */
@@ -35,12 +35,13 @@ public interface ExtRepositoryFileVersion extends ExtRepositoryModel {
 	public String getChangeLog();
 
 	/**
-	 * Get the MIME type of this version of a file. This method may return null
-	 * if the MIME type is not available in the back end repository. In that
-	 * case, Liferay Portal will guess the MIME type (usually by looking at the
-	 * extension).
+	 * Get the MIME type of this version of a file. This method may return
+	 * <code>null</code> if the MIME type is not available in the back end
+	 * repository. In that case, Liferay Portal will guess the MIME type
+	 * (usually by looking at the extension).
 	 *
-	 * @return the MIME type of this file's version or null if it is unknown
+	 * @return the MIME type of this file's version or <code>null</code> if it
+	 *         is unknown
 	 */
 	public String getMimeType();
 
