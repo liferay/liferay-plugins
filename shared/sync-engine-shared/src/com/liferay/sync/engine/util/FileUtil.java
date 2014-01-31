@@ -18,8 +18,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -59,10 +61,26 @@ public class FileUtil {
 		return null;
 	}
 
-	public static String getChecksum(String filePathName) {
+	public static String getFileKey(Path filePath) {
+		try {
+			BasicFileAttributes basicFileAttributes = Files.readAttributes(
+				filePath, BasicFileAttributes.class);
+
+			Object fileKey = basicFileAttributes.fileKey();
+
+			return fileKey.toString();
+		}
+		catch (Exception e) {
+			_logger.error(e.getMessage(), e);
+		}
+
+		return null;
+	}
+
+	public static String getFileKey(String filePathName) {
 		Path filePath = Paths.get(filePathName);
 
-		return getChecksum(filePath);
+		return getFileKey(filePath);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(FileUtil.class);

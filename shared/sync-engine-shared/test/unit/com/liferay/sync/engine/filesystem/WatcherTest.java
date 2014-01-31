@@ -94,12 +94,30 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createFile(addFilePath);
 
-		thread.sleep(15000);
+		thread.sleep(5000);
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(3, _syncFiles.size());
+
+		setMockPostResponse("dependencies/watcher_test_rename_file.json");
+
+		Path renameFilePath = Paths.get(
+			_syncSite.getFilePathName() + "/test2.txt");
+
+		Files.move(addFilePath, renameFilePath);
+
+		thread.sleep(5000);
+
+		_syncFiles = SyncFileService.findSyncFiles(
+			syncAccount.getSyncAccountId());
+
+		Assert.assertEquals(3, _syncFiles.size());
+
+		Assert.assertNotNull(
+			SyncFileService.fetchSyncFile(
+				renameFilePath.toString(), syncAccount.getSyncAccountId()));
 	}
 
 	private List<SyncFile> _syncFiles;

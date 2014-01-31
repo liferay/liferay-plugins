@@ -14,6 +14,13 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.util.FilePathNameUtil;
+
 import java.util.Map;
 
 /**
@@ -29,7 +36,35 @@ public class UpdateFileEntryEvent extends BaseEvent {
 
 	@Override
 	protected void processResponse(String response) throws Exception {
-		System.out.println(response);
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		SyncFile fileEntry = objectMapper.readValue(
+			response, new TypeReference<SyncFile>() {});
+
+		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
+			fileEntry.getParentFolderId(), fileEntry.getRepositoryId(),
+			getSyncAccountId());
+
+		String filePathName = null;
+
+		if (parentSyncFile != null) {
+			filePathName = FilePathNameUtil.getFilePathName(
+				parentSyncFile.getFilePathName(), fileEntry.getName());
+		}
+
+		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+		syncFile.setDescription(fileEntry.getDescription());
+		syncFile.setFilePathName(filePathName);
+		syncFile.setName(fileEntry.getName());
+		syncFile.setParentFolderId(fileEntry.getParentFolderId());
+		syncFile.setRepositoryId(fileEntry.getRepositoryId());
+		syncFile.setSize(fileEntry.getSize());
+		syncFile.setTypePK(fileEntry.getTypePK());
+		syncFile.setTypeUuid(fileEntry.getTypeUuid());
+		syncFile.setVersion(fileEntry.getVersion());
+
+		SyncFileService.update(syncFile);
 	}
 
 	private static final String _URL_PATH =

@@ -24,7 +24,10 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.ws.rs.core.MediaType;
 
@@ -161,6 +164,10 @@ public class HttpUtil {
 			MultipartEntityBuilder.create();
 
 		for (Map.Entry<String, Object> entry : parameters.entrySet()) {
+			if (_IGNORED_PARAMETER_KEYS.contains(entry.getKey())) {
+				continue;
+			}
+
 			multipartEntityBuilder.addPart(
 				entry.getKey(), _getStringBody(entry.getValue()));
 		}
@@ -173,5 +180,8 @@ public class HttpUtil {
 			String.valueOf(value),
 			ContentType.create(MediaType.TEXT_PLAIN, Charset.defaultCharset()));
 	}
+
+	private static final Set<String> _IGNORED_PARAMETER_KEYS =
+		new HashSet<String>(Arrays.asList("filePath", "syncFile"));
 
 }

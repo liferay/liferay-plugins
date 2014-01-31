@@ -21,6 +21,7 @@ import com.liferay.sync.engine.documentlibrary.model.SyncDLObjectUpdate;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
+import com.liferay.sync.engine.util.FileUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +56,7 @@ public class GetAllSyncDLObjectsEvent extends BaseEvent {
 					parentSyncFile.getFilePathName(), syncFile.getName());
 			}
 
+			syncFile.setFileKey(FileUtil.getFileKey(filePathName));
 			syncFile.setFilePathName(filePathName);
 
 			syncFile.setSyncAccountId(getSyncAccountId());
