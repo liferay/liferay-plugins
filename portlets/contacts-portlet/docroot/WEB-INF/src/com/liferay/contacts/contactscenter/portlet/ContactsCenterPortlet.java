@@ -331,6 +331,9 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			else if (actionName.equals("updateFieldGroup")) {
 				updateFieldGroup(actionRequest, actionResponse);
 			}
+			else if (actionName.equals("updateSocialRequest")) {
+				updateSocialRequest(actionRequest, actionResponse);
+			}
 			else {
 				super.processAction(actionRequest, actionResponse);
 			}
@@ -626,6 +629,8 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		UserNotificationEventLocalServiceUtil.deleteUserNotificationEvent(
 			userNotificationEventId);
+
+		sendRedirect(actionRequest, actionResponse);
 	}
 
 	protected void deleteEntry(
