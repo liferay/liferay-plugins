@@ -63,7 +63,7 @@ public class SyncSiteService {
 
 	public static SyncSite fetchSyncSite(long groupId, long syncAccountId) {
 		try {
-			return _syncSitePersistence.fetchSyncSite(groupId, syncAccountId);
+			return _syncSitePersistence.fetchByG_S(groupId, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -76,7 +76,7 @@ public class SyncSiteService {
 
 	public static List<SyncSite> findSyncSites(long syncAccountId) {
 		try {
-			return _syncSitePersistence.findSyncSites(syncAccountId);
+			return _syncSitePersistence.findBySyncAccountId(syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

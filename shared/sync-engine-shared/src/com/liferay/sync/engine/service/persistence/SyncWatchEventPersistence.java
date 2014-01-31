@@ -33,7 +33,7 @@ public class SyncWatchEventPersistence
 		super(SyncWatchEvent.class);
 	}
 
-	public SyncWatchEvent fetchSyncWatchEvent(
+	public SyncWatchEvent fetchByF_K_T(
 			String filePathName, String kindName, long timestamp)
 		throws SQLException {
 

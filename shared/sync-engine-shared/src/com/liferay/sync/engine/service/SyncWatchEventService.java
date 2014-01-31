@@ -76,7 +76,7 @@ public class SyncWatchEventService {
 		String filePathName, String kindName, long timestamp) {
 
 		try {
-			return _syncWatchEventPersistence.fetchSyncWatchEvent(
+			return _syncWatchEventPersistence.fetchByF_K_T(
 				filePathName, kindName, timestamp);
 		}
 		catch (SQLException sqle) {

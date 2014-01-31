@@ -31,7 +31,7 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 		super(SyncSite.class);
 	}
 
-	public SyncSite fetchSyncSite(long groupId, long syncAccountId)
+	public SyncSite fetchByG_S(long groupId, long syncAccountId)
 		throws SQLException {
 
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
@@ -48,7 +48,7 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 		return syncSites.get(0);
 	}
 
-	public List<SyncSite> findSyncSites(long syncAccountId)
+	public List<SyncSite> findBySyncAccountId(long syncAccountId)
 		throws SQLException {
 
 		return queryForEq("syncAccountId", syncAccountId);

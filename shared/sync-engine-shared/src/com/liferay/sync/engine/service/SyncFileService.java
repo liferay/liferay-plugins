@@ -74,7 +74,7 @@ public class SyncFileService {
 		long parentFolderId, long repositoryId, long syncAccountId) {
 
 		try {
-			return _syncFilePersistence.fetchSyncFile(
+			return _syncFilePersistence.fetchByP_R_S(
 				parentFolderId, repositoryId, syncAccountId);
 		}
 		catch (SQLException sqle) {
@@ -90,8 +90,7 @@ public class SyncFileService {
 		String filePathName, long syncAccountId) {
 
 		try {
-			return _syncFilePersistence.fetchSyncFile(
-				filePathName, syncAccountId);
+			return _syncFilePersistence.fetchByF_S(filePathName, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -104,7 +103,7 @@ public class SyncFileService {
 
 	public static List<SyncFile> findSyncFiles(long syncAccountId) {
 		try {
-			return _syncFilePersistence.findSyncFiles(syncAccountId);
+			return _syncFilePersistence.findBySyncAccountId(syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -119,7 +118,7 @@ public class SyncFileService {
 		String checksum, long syncAccountId) {
 
 		try {
-			return _syncFilePersistence.findSyncFiles(checksum, syncAccountId);
+			return _syncFilePersistence.findByC_S(checksum, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
