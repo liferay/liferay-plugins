@@ -31,7 +31,24 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		super(SyncFile.class);
 	}
 
-	public SyncFile fetchByF_S(String filePathName, long syncAccountId)
+	public SyncFile fetchByFK_S(String fileKey, long syncAccountId)
+		throws SQLException {
+
+		Map<String, Object> fieldValues = new HashMap<String, Object>();
+
+		fieldValues.put("fileKey", fileKey);
+		fieldValues.put("syncAccountId", syncAccountId);
+
+		List<SyncFile> syncFiles = queryForFieldValues(fieldValues);
+
+		if ((syncFiles == null) || syncFiles.isEmpty()) {
+			return null;
+		}
+
+		return syncFiles.get(0);
+	}
+
+	public SyncFile fetchByFPN_S(String filePathName, long syncAccountId)
 		throws SQLException {
 
 		Map<String, Object> fieldValues = new HashMap<String, Object>();

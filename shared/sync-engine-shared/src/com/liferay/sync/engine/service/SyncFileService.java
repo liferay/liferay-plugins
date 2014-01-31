@@ -90,7 +90,23 @@ public class SyncFileService {
 		String filePathName, long syncAccountId) {
 
 		try {
-			return _syncFilePersistence.fetchByF_S(filePathName, syncAccountId);
+			return _syncFilePersistence.fetchByFPN_S(
+				filePathName, syncAccountId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
+
+	public static SyncFile fetchSyncFileByFileKey(
+		String fileKey, long syncAccountId) {
+
+		try {
+			return _syncFilePersistence.fetchByFK_S(fileKey, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
