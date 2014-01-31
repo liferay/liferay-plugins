@@ -28,13 +28,13 @@ import java.util.Map;
 public class ExtRepositoryAdapterCache implements Cloneable {
 
 	public static ExtRepositoryAdapterCache getInstance() {
-		return _threadLocal.get();
+		return _extRepositoryAdapterThreadLocal.get();
 	}
 
 	@Override
 	public ExtRepositoryAdapterCache clone() {
 		if (_log.isInfoEnabled()) {
-			_log.info("Cache created: " + Thread.currentThread().getName() );
+			_log.info("Cache created: " + Thread.currentThread().getName());
 		}
 
 		try {
@@ -46,59 +46,79 @@ public class ExtRepositoryAdapterCache implements Cloneable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T extends ExtRepositoryModelAdapter<?>> T get(String modelKey) {
-		T adapter = (T)_getAdaptersCache().get(modelKey);
+	public <T extends ExtRepositoryModelAdapter<?>> T get(
+		String extRepositoryModelKey) {
 
-		if (_log.isDebugEnabled()) {
-			if (adapter != null) {
-				_log.debug("Cache hit: " + modelKey);
+		Map<String, ExtRepositoryModelAdapter<?>> extRepositoryAdaptersCache =
+			_getExtRepositoryAdaptersCache();
+
+		T extRepositoryAdapter = (T)extRepositoryAdaptersCache.get(
+			extRepositoryModelKey);
+
+		if (extRepositoryAdapter != null) {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Cache hit: " + extRepositoryModelKey);
 			}
-			else {
-				_log.debug("Cache miss: " + modelKey);
+		}
+		else {
+			if (_log.isDebugEnabled()) {
+				_log.debug("Cache miss: " + extRepositoryModelKey);
 			}
 		}
 
-		return adapter;
+		return extRepositoryAdapter;
 	}
 
-	public void put(ExtRepositoryModelAdapter<?> adapter) {
-		ExtRepositoryModel model = adapter.getExtRepositoryModel();
+	public void put(ExtRepositoryModelAdapter<?> extRepositoryModelAdapter) {
+		ExtRepositoryModel extRepositoryModel =
+			extRepositoryModelAdapter.getExtRepositoryModel();
 
-		String modelKey = model.getExtRepositoryModelKey();
+		String extRepositoryModelKey =
+			extRepositoryModel.getExtRepositoryModelKey();
 
-		_getAdaptersCache().put(modelKey, adapter);
+		Map<String, ExtRepositoryModelAdapter<?>> extRepositoryAdaptersCache =
+			_getExtRepositoryAdaptersCache();
+
+		extRepositoryAdaptersCache.put(
+			extRepositoryModelKey, extRepositoryModelAdapter);
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Cache put: " + modelKey);
+			_log.info("Cache put: " + extRepositoryModelKey);
 		}
 	}
 
-	public void remove(String modelKey) {
-		_getAdaptersCache().remove(modelKey);
+	public void remove(String extRepositoryModelKey) {
+		Map<String, ExtRepositoryModelAdapter<?>> extRepositoryAdaptersCache =
+			_getExtRepositoryAdaptersCache();
+
+		extRepositoryAdaptersCache.remove(extRepositoryModelKey);
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Cache remove: " + modelKey);
+			_log.info("Cache remove: " + extRepositoryModelKey);
 		}
 	}
 
-	private Map<String, ExtRepositoryModelAdapter<?>> _getAdaptersCache() {
-		if (_adaptersCache == null) {
-			_adaptersCache =
+	private Map<String, ExtRepositoryModelAdapter<?>>
+		_getExtRepositoryAdaptersCache() {
+
+		if (_extRepositoryAdaptersCache == null) {
+			_extRepositoryAdaptersCache =
 				new HashMap<String, ExtRepositoryModelAdapter<?>>();
 		}
 
-		return _adaptersCache;
+		return _extRepositoryAdaptersCache;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ExtRepositoryAdapterCache.class);
 
-	private static AutoResetThreadLocal<ExtRepositoryAdapterCache>
-		_threadLocal =
+	private static ThreadLocal<ExtRepositoryAdapterCache>
+		_extRepositoryAdapterThreadLocal =
 			new AutoResetThreadLocal<ExtRepositoryAdapterCache>(
-				ExtRepositoryAdapterCache.class + "._tls",
-				new ExtRepositoryAdapterCache() );
+				ExtRepositoryAdapterCache.class.getName(),
+				new ExtRepositoryAdapterCache());
 
-	private Map<String, ExtRepositoryModelAdapter<?>> _adaptersCache;
+	private Map<String, ExtRepositoryModelAdapter<?>>
+		_extRepositoryAdaptersCache;
 
 }
