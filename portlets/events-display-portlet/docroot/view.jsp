@@ -101,7 +101,7 @@ for (CalendarBooking calendarBooking : calendarBookings) {
 
 	startTimeJCalendar.setTimeInMillis(startTime);
 
-	if (startTimeJCalendar.get(Calendar.DAY_OF_MONTH) <= jCalendar.get(Calendar.DAY_OF_MONTH)) {
+	if ((startTimeJCalendar.get(Calendar.DAY_OF_YEAR) <= jCalendar.get(Calendar.DAY_OF_YEAR)) && (startTimeJCalendar.get(Calendar.YEAR) <= jCalendar.get(Calendar.YEAR))) {
 		todayBookings.add(calendarBooking);
 	}
 	else {
