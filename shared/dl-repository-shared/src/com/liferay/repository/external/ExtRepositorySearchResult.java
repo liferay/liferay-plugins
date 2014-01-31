@@ -26,12 +26,12 @@ package com.liferay.repository.external;
 public class ExtRepositorySearchResult<T extends ExtRepositoryObject> {
 
 	/**
-	 * Create a search result with the given object (file or folder), score and
+	 * Create a search result with the given ext repository object, score and
 	 * snippet.
 	 *
-	 * @param object the file or folder found by the search
-	 * @param score the score assigned to the object by the search engine (must
-	 *        be between 0 and 1)
+	 * @param object the ext repository object found by the search
+	 * @param score the score assigned to the ext repository object by the
+	 *        search engine (must be between 0 and 1)
 	 * @param snippet the snippet to be used for highlighting when showing the
 	 *        search results in the UI
 	 */
@@ -42,9 +42,9 @@ public class ExtRepositorySearchResult<T extends ExtRepositoryObject> {
 	}
 
 	/**
-	 * Gets the object (file or folder) associated to this search result.
+	 * Gets the ext repository object associated to this search result.
 	 *
-	 * @return the object (file or folder) associated to this search result
+	 * @return the ext repository object associated to this search result
 	 */
 	public T getObject() {
 		return _object;

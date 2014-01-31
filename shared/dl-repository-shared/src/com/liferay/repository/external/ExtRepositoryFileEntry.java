@@ -20,7 +20,7 @@ package com.liferay.repository.external;
  * implementation of this class to make the bridge between Liferay and external
  * repository domains.
  *
- * All data returned by implementations is in native repository format.
+ * All data returned by implementations is in native ext repository format.
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -28,18 +28,18 @@ package com.liferay.repository.external;
 public interface ExtRepositoryFileEntry extends ExtRepositoryObject {
 
 	/**
-	 * Gets repository login of the user who has checked out this file. The
+	 * Gets ext repository login of the user who has checked out this file. The
 	 * returned user identifier is converted from native to Liferay format by
 	 * means of the method {@link ExtRepository#getLiferayLogin(String)}.
 	 *
-	 * @return a native repository user identifier or <code>null</code> if the
-	 *         file is not currently checked out
+	 * @return a native ext repository user identifier or <code>null</code> if
+	 * the file is not currently checked out
 	 */
 	public String getCheckedOutBy();
 
 	/**
 	 * Gets the MIME type of the file. This method may return <code>null</code>
-	 * if the MIME type is not available in the back end repository. In that
+	 * if the MIME type is not available in the back end ext repository. In that
 	 * case, Liferay Portal will guess the MIME type (usually by looking at the
 	 * extension).
 	 *
@@ -48,9 +48,9 @@ public interface ExtRepositoryFileEntry extends ExtRepositoryObject {
 	public String getMimeType();
 
 	/**
-	 * Get the name of the file.
+	 * Get the name of the ext repository file entry.
 	 *
-	 * @return the name of the file (including extension)
+	 * @return the name of the ext repository file entry (including extension)
 	 */
 	public String getTitle();
 

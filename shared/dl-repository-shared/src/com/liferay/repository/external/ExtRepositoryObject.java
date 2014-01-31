@@ -29,46 +29,47 @@ public interface ExtRepositoryObject extends ExtRepositoryModel {
 
 	/**
 	 * Checks whether the user has permission to perform the specified action on
-	 * this object.
+	 * this ext repository object.
 	 *
 	 * @param  extRepositoryPermission the action to check for permission
 	 * @return <code>true</code> if the user is allowed to perform the action in
-	 *         this object
+	 *         this ext repository object
 	 */
 	public boolean containsPermission(
 		ExtRepositoryPermission extRepositoryPermission);
 
 	/**
-	 * Gets the long description of this file or folder (note that the
+	 * Gets the long description of this ext repository object (note that the
 	 * description is not the name).
 	 *
-	 * @return a long description of the object
+	 * @return a long description of the ext repository object
 	 */
 	public String getDescription();
 
 	/**
-	 * Gets the file/folder extension of this object.
+	 * Gets the file/folder extension of this ext repository object.
 	 *
 	 * @return the extension (without the leading period)
 	 */
 	public String getExtension();
 
 	/**
-	 * Get the date when this object was last modified.
+	 * Get the date when this ext repository object was last modified.
 	 *
-	 * @return the last modified date of the object
+	 * @return the last modified date of the ext repository object
 	 */
 	public Date getModifiedDate();
 
 	/**
 	 * This enum holds permissions that external repositories must support. In
-	 * this context, "support" means that the external repository implementation
-	 * may be asked about that permission and it must answer correctly, not that
-	 * it must fully implement it.
+	 * this context, "support" means that the ext repository implementation may
+	 * be asked about that permission and it must answer correctly, not that it
+	 * must fully implement it.
 	 *
-	 * For instance, a repository must not fail when asked about ADD_SHORTCUT
-	 * even if the back end repository does not support shortcuts. But it may
-	 * well return always false when asked for that permission.
+	 * For instance, an ext repository must not fail when asked about
+	 * ADD_SHORTCUT even if the back end ext repository does not support
+	 * shortcuts. But it may well return always false when asked for that
+	 * permission.
 	 *
 	 * @author Iván Zaera
 	 */
