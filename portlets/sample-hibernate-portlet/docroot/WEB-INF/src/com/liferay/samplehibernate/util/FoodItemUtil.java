@@ -106,7 +106,7 @@ public class FoodItemUtil {
 
 			session.beginTransaction();
 
-			SQLQuery q = session.createSynchronizedSQLQuery(_GET_FOOD_ITEMS);
+			SQLQuery q = session.createSQLQuery(_GET_FOOD_ITEMS);
 
 			q.addEntity("FoodItem", FoodItem.class);
 
