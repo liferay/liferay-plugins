@@ -60,6 +60,10 @@ public class SyncFile {
 		return extraSettings;
 	}
 
+	public String getFileKey() {
+		return fileKey;
+	}
+
 	public String getFilePathName() {
 		return filePathName;
 	}
@@ -152,6 +156,10 @@ public class SyncFile {
 		this.extraSettings = extraSettings;
 	}
 
+	public void setFileKey(String fileKey) {
+		this.fileKey = fileKey;
+	}
+
 	public void setFilePathName(String filePathName) {
 		this.filePathName = filePathName;
 	}
@@ -236,6 +244,9 @@ public class SyncFile {
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String extraSettings;
+
+	@DatabaseField(useGetSet = true)
+	protected String fileKey;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String filePathName;
