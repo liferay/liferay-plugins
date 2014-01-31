@@ -22,6 +22,7 @@ import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
+import com.liferay.sync.engine.util.FilePathNameUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -117,7 +118,8 @@ public class WatcherTest extends BaseTestCase {
 
 		Assert.assertNotNull(
 			SyncFileService.fetchSyncFile(
-				renameFilePath.toString(), syncAccount.getSyncAccountId()));
+				FilePathNameUtil.getFilePathName(renameFilePath),
+				syncAccount.getSyncAccountId()));
 	}
 
 	private List<SyncFile> _syncFiles;

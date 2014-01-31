@@ -16,6 +16,7 @@ package com.liferay.sync.engine.util;
 
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
+import java.nio.file.Path;
 
 /**
  * @author Dennis Ju
@@ -34,6 +35,10 @@ public class FilePathNameUtil {
 		}
 
 		return filePathName;
+	}
+
+	public static String getFilePathName(Path filePath) {
+		return fixFilePathName(filePath.toString());
 	}
 
 	public static String getFilePathName(

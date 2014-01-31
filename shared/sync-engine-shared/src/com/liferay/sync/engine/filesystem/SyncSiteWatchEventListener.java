@@ -16,6 +16,7 @@ package com.liferay.sync.engine.filesystem;
 
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncWatchEventService;
+import com.liferay.sync.engine.util.FilePathNameUtil;
 
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
@@ -50,7 +51,8 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 
 		try {
 			SyncWatchEventService.addSyncWatchEvent(
-				filePath.toString(), fileType, kindName, getSyncAccountId());
+				FilePathNameUtil.getFilePathName(filePath), fileType, kindName,
+				getSyncAccountId());
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);

@@ -21,6 +21,7 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncWatchEvent;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
+import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
 
 import java.nio.file.Files;
@@ -99,7 +100,8 @@ public class SyncWatchEventProcessor implements Runnable {
 		Path parentFilePath = filePath.getParent();
 
 		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-			parentFilePath.toString(), syncWatchEvent.getSyncAccountId());
+			FilePathNameUtil.getFilePathName(parentFilePath),
+			syncWatchEvent.getSyncAccountId());
 
 		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
 			FileUtil.getFileKey(filePath), syncWatchEvent.getSyncAccountId());
