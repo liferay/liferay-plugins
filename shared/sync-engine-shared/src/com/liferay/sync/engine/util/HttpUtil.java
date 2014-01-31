@@ -164,7 +164,7 @@ public class HttpUtil {
 			MultipartEntityBuilder.create();
 
 		for (Map.Entry<String, Object> entry : parameters.entrySet()) {
-			if (_IGNORED_PARAMETER_KEYS.contains(entry.getKey())) {
+			if (_ignoredParameterKeys.contains(entry.getKey())) {
 				continue;
 			}
 
@@ -181,7 +181,7 @@ public class HttpUtil {
 			ContentType.create(MediaType.TEXT_PLAIN, Charset.defaultCharset()));
 	}
 
-	private static final Set<String> _IGNORED_PARAMETER_KEYS =
+	private static Set<String> _ignoredParameterKeys =
 		new HashSet<String>(Arrays.asList("filePath", "syncFile"));
 
 }

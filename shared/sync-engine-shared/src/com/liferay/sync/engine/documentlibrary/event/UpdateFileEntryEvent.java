@@ -38,33 +38,34 @@ public class UpdateFileEntryEvent extends BaseEvent {
 	protected void processResponse(String response) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		SyncFile fileEntry = objectMapper.readValue(
+		SyncFile remoteSyncFile = objectMapper.readValue(
 			response, new TypeReference<SyncFile>() {});
 
-		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-			fileEntry.getParentFolderId(), fileEntry.getRepositoryId(),
+		SyncFile parentLocalSyncFile = SyncFileService.fetchSyncFile(
+			remoteSyncFile.getParentFolderId(), remoteSyncFile.getRepositoryId(),
 			getSyncAccountId());
 
 		String filePathName = null;
 
-		if (parentSyncFile != null) {
+		if (parentLocalSyncFile != null) {
 			filePathName = FilePathNameUtil.getFilePathName(
-				parentSyncFile.getFilePathName(), fileEntry.getName());
+				parentLocalSyncFile.getFilePathName(),
+				remoteSyncFile.getName());
 		}
 
-		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
 
-		syncFile.setDescription(fileEntry.getDescription());
-		syncFile.setFilePathName(filePathName);
-		syncFile.setName(fileEntry.getName());
-		syncFile.setParentFolderId(fileEntry.getParentFolderId());
-		syncFile.setRepositoryId(fileEntry.getRepositoryId());
-		syncFile.setSize(fileEntry.getSize());
-		syncFile.setTypePK(fileEntry.getTypePK());
-		syncFile.setTypeUuid(fileEntry.getTypeUuid());
-		syncFile.setVersion(fileEntry.getVersion());
+		localSyncFile.setDescription(remoteSyncFile.getDescription());
+		localSyncFile.setFilePathName(filePathName);
+		localSyncFile.setName(remoteSyncFile.getName());
+		localSyncFile.setParentFolderId(remoteSyncFile.getParentFolderId());
+		localSyncFile.setRepositoryId(remoteSyncFile.getRepositoryId());
+		localSyncFile.setSize(remoteSyncFile.getSize());
+		localSyncFile.setTypePK(remoteSyncFile.getTypePK());
+		localSyncFile.setTypeUuid(remoteSyncFile.getTypeUuid());
+		localSyncFile.setVersion(remoteSyncFile.getVersion());
 
-		SyncFileService.update(syncFile);
+		SyncFileService.update(localSyncFile);
 	}
 
 	private static final String _URL_PATH =
