@@ -32,17 +32,18 @@ public interface ExtRepositoryFileEntry extends ExtRepositoryObject {
 	 * returned user identifier is converted from native to Liferay format by
 	 * means of the method {@link ExtRepository#getLiferayLogin(String)}.
 	 *
-	 * @return a native repository user identifier or null if the file is not
-	 *         currently checked out
+	 * @return a native repository user identifier or <code>null</code> if the
+	 *         file is not currently checked out
 	 */
 	public String getCheckedOutBy();
 
 	/**
-	 * Gets the MIME type of the file. This method may return null if the MIME
-	 * type is not available in the back end repository. In that case, Liferay
-	 * Portal will guess the MIME type (usually by looking at the extension).
+	 * Gets the MIME type of the file. This method may return <code>null</code>
+	 * if the MIME type is not available in the back end repository. In that
+	 * case, Liferay Portal will guess the MIME type (usually by looking at the
+	 * extension).
 	 *
-	 * @return the MIME type of the file or null if it is unknown
+	 * @return the MIME type of the file or <code>null</code> if it is unknown
 	 */
 	public String getMimeType();
 

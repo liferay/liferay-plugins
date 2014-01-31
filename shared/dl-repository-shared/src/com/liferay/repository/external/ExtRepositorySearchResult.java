@@ -15,9 +15,10 @@
 package com.liferay.repository.external;
 
 /**
- * This class holds results to be returned by the
- * {@link ExtRepository#search(com.liferay.portal.kernel.search.SearchContext, com.liferay.portal.kernel.search.Query, com.liferay.repository.external.search.ExtRepositoryQueryMapper)}
- * method.
+ * This class holds results to be returned by the {@link
+ * ExtRepository#search(com.liferay.portal.kernel.search.SearchContext,
+ * com.liferay.portal.kernel.search.Query,
+ * com.liferay.repository.external.search.ExtRepositoryQueryMapper)} method.
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -29,8 +30,8 @@ public class ExtRepositorySearchResult<T extends ExtRepositoryObject> {
 	 * snippet.
 	 *
 	 * @param object the file or folder found by the search
-	 * @param score the score assigned to the object by the search engine
-	 *        (must be between 0 and 1)
+	 * @param score the score assigned to the object by the search engine (must
+	 *        be between 0 and 1)
 	 * @param snippet the snippet to be used for highlighting when showing the
 	 *        search results in the UI
 	 */

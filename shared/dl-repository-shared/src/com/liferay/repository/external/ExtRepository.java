@@ -38,7 +38,7 @@ import java.util.List;
  * {@link ExtRepository#search(SearchContext, Query, ExtRepositoryQueryMapper)}
  * method where the given {@link Query} contains Liferay identifiers and user
  * names. To help with this, implementers of that method are given an
- * {@link ExtRepositoryQueryMapper} instance that can translate such ids to the
+ * {@link ExtRepositoryQueryMapper} instance that can translate such IDs to the
  * native repository format.
  *
  * @author Iván Zaera
@@ -88,7 +88,7 @@ public interface ExtRepository {
 	 *
 	 * @param  extRepositoryFileEntryKey the repository primary key of the file
 	 *         entry
-	 * @return the discarded file version or null if not available
+	 * @return the discarded file version or <code>null</code> if not available
 	 * @throws PortalException if file entry's information was invalid
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -198,9 +198,9 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Translate a version key into an
-	 * {@link ExtRepositoryFileVersionDescriptor} describing the file entry key
-	 * and the version name.
+	 * Translate a version key into an {@link
+	 * ExtRepositoryFileVersionDescriptor} describing the file entry key and the
+	 * version name.
 	 *
 	 * @param  extRepositoryFileVersionKey a file version key
 	 * @return the translated {@link ExtRepositoryFileVersionDescriptor}
@@ -301,15 +301,14 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Map a repository user login to its equivalent Liferay's login. A
-	 * Liferay login can be a user id, screen name, e-mail, ... depending on
-	 * the value returned by the {@link ExtRepository#getAuthType()} method. The
-	 * format of the repository login is specific for each repository
-	 * implementation.
+	 * Map a repository user login to its equivalent Liferay's login. A Liferay
+	 * login can be a user ID, screen name, e-mail, ... depending on the value
+	 * returned by the {@link ExtRepository#getAuthType()} method. The format of
+	 * the repository login is specific for each repository implementation.
 	 *
 	 * @param  extRepositoryLogin a repository login
-	 * @return a Liferay's login in the format specified by the
-	 *         {@link ExtRepository#getAuthType()} method
+	 * @return a Liferay's login in the format specified by the {@link
+	 *         ExtRepository#getAuthType()} method
 	 */
 	public String getLiferayLogin(String extRepositoryLogin);
 
@@ -348,25 +347,25 @@ public interface ExtRepository {
 	/**
 	 * Get the list of supported repository specific configuration parameters.
 	 * These parameters are stored in the database when the repository is
-	 * configured and  made available through a {@link UnicodeProperties} to the
-	 * {@link ExtRepository#initRepository(UnicodeProperties, CredentialsProvider)}
-	 * method.
+	 * configured and made available through a {@link UnicodeProperties} to the
+	 * {@link ExtRepository#initRepository(UnicodeProperties,
+	 * CredentialsProvider)} method.
 	 *
-	 * @return a 2D array of supported configuration parameters lists indexed
-	 *         by configuration types
+	 * @return a 2D array of supported configuration parameters lists indexed by
+	 *         configuration types
 	 * @see    ExtRepository#getSupportedConfigurations()
 	 */
 	public String[][] getSupportedParameters();
 
 	/**
 	 * Checks the connectivity between Liferay and a repository. Implementors of
-	 * this method must use the credentials provided by the
-	 * {@link CredentialsProvider} object to authenticate to the repository. In
+	 * this method must use the credentials provided by the {@link
+	 * CredentialsProvider} object to authenticate to the repository. In
 	 * addition, they should get the repository specific configuration
 	 * parameters from the typeSettingsProperties parameter. The parameters
 	 * contained in this variable are indexed by the key names returned by the
-	 * {@link ExtRepository#getSupportedParameters()} method.
-	 * This method is called only once, the first time the repository is used.
+	 * {@link ExtRepository#getSupportedParameters()} method. This method is
+	 * called only once, the first time the repository is used.
 	 *
 	 * @param  typeSettingsProperties the type settings properties
 	 * @param  credentialsProvider the liferay user and pass
@@ -399,16 +398,16 @@ public interface ExtRepository {
 
 	/**
 	 * Perform a search inside the repository. The objects to look for must
-	 * fulfill the given {@link Query} as close as possible (possibly limited
-	 * by the back end repository constraints.
+	 * fulfill the given {@link Query} as close as possible (possibly limited by
+	 * the back end repository constraints.
 	 *
 	 * @param  searchContext the context of the search (implementors of this
-	 * 	       method are required to honor the "folderIds", "start" and "end"
-	 * 		   attributes contained in this search context)
-	 * @param  query the logical expression describing the query to be
-	 * 		   performed (implementors may need to translate this to an
-	 * 		   equivalent native repository query)
-	 * @param  extRepositoryQueryMapper a helper object to translate Liferay ids
+	 *         method are required to honor the "folderIds", "start" and "end"
+	 *         attributes contained in this search context)
+	 * @param  query the logical expression describing the query to be performed
+	 *         (implementors may need to translate this to an equivalent native
+	 *         repository query)
+	 * @param  extRepositoryQueryMapper a helper object to translate Liferay IDs
 	 *         to native repository format
 	 * @return a list of results fulfilling the query
 	 * @throws PortalException if the search failed or is invalid

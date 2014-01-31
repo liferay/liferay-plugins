@@ -37,7 +37,7 @@ public interface ExtRepositoryFolder extends ExtRepositoryObject {
 	/**
 	 * Checks whether or not this is the root folder.
 	 *
-	 * @return true if this is the root folder
+	 * @return <code>true</code> if this is the root folder
 	 */
 	public boolean isRoot();
 
