@@ -46,6 +46,8 @@ public class FileUtil {
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
+
+			return null;
 		}
 		finally {
 			if (fileInputStream != null) {
@@ -57,8 +59,6 @@ public class FileUtil {
 				}
 			}
 		}
-
-		return null;
 	}
 
 	public static String getFileKey(Path filePath) {
@@ -66,15 +66,20 @@ public class FileUtil {
 			BasicFileAttributes basicFileAttributes = Files.readAttributes(
 				filePath, BasicFileAttributes.class);
 
-			Object fileKey = basicFileAttributes.fileKey();
+			if (OSDetector.isWindows()) {
+				return String.valueOf(basicFileAttributes.creationTime());
+			}
+			else {
+				Object fileKey = basicFileAttributes.fileKey();
 
-			return fileKey.toString();
+				return fileKey.toString();
+			}
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
-		}
 
-		return null;
+			return null;
+		}
 	}
 
 	public static String getFileKey(String filePathName) {
