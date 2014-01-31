@@ -50,13 +50,14 @@ public interface ExtRepository {
 	 * Adds a file entry and associated metadata based on an {@link InputStream}
 	 * object.
 	 *
-	 * @param  extRepositoryParentFolderKey the primary key of the folder
+	 * @param  extRepositoryParentFolderKey the primary key of ext repository
+	 *         file entry's parent folder
 	 * @param  mimeType the file's MIME type
 	 * @param  title the name to be assigned to the file
 	 * @param  description the file's description
 	 * @param  changeLog the file's version change log
 	 * @param  inputStream the file's data (optionally <code>null</code>)
-	 * @return the file entry
+	 * @return the ext repository file entry
 	 * @throws PortalException if the parent folder could not be found or if the
 	 *         file entry's information was invalid
 	 * @throws SystemException if a system exception occurred
@@ -69,9 +70,9 @@ public interface ExtRepository {
 	/**
 	 * Adds a folder.
 	 *
-	 * @param  extRepositoryParentFolderKey the repository primary key of the
-	 *         folder where the new folder will be created
-	 * @param  name the new folder's name
+	 * @param  extRepositoryParentFolderKey the primary key of the ext
+	 *         repository folder where the new folder will be created
+	 * @param  name the folder's name
 	 * @param  description the new folder's description
 	 * @return the folder
 	 * @throws PortalException if the parent folder could not be found or if the
@@ -84,10 +85,12 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Cancels the file's checkout.
+	 * Cancels the check out of the ext repository file. If a user has not
+	 * checked out the specified ext repository file entry, invoking this method
+	 * will result in no changes.
 	 *
-	 * @param  extRepositoryFileEntryKey the repository primary key of the file
-	 *         entry
+	 * @param  extRepositoryFileEntryKey the primary key of the ext repository
+	 *         file entry
 	 * @return the discarded file version or <code>null</code> if not available
 	 * @throws PortalException if file entry's information was invalid
 	 * @throws SystemException if a system exception occurred
@@ -97,9 +100,12 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Checks in the file.
+	 * Checks in the ext repositoy file entry. If a user has not checked out the
+	 * specified ext repository file entry, invoking this method will result in
+	 * no changes.
 	 *
-	 * @param  extRepositoryFileEntryKey the primary key of the file entry
+	 * @param  extRepositoryFileEntryKey the primary key of the ext repository
+	 *         file entry
 	 * @param  createMajorVersion whether to increase major or minor version
 	 *         number
 	 * @param  changeLog the description of the changes being checked in
@@ -112,10 +118,11 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Checks out the file.
+	 * Check out the ext repository file entry.
 	 *
-	 * @param  extRepositoryFileEntryKey the repository primary key of the file
-	 * @return the checked out file entry
+	 * @param  extRepositoryFileEntryKey the primary key of the ext repository
+	 *         file entry
+	 * @return the checked out ext repository file entry
 	 * @throws PortalException if the file entry's information was invalid
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -124,12 +131,14 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Copies a file or folder to a different location.
+	 * Copies a ext repository file entry or ext repository folder to a
+	 * different location.
 	 *
-	 * @param  extRepositoryObjectType the type of object (file or folder)
-	 * @param  extRepositoryFileEntryKey the repository primary key of the
+	 * @param  extRepositoryObjectType the type of ext repository object (file
+	 *         or folder)
+	 * @param  extRepositoryFileEntryKey the primary key of the ext repository
 	 *         object
-	 * @param  newExtRepositoryFolderKey the repository primary key of the
+	 * @param  newExtRepositoryFolderKey the primary key of the ext repository
 	 *         destination folder
 	 * @param  newTitle the new name of the object in the destination location
 	 * @return the file or folder being copied
