@@ -12,6 +12,17 @@ body {
 }
 
 html.aui {
+	.row-fluid {
+		.span4 {
+			margin-left: 0;
+			width: 34%;
+		}
+
+		.span8 {
+			width: 66%;
+		}
+	}
+
 	.alert .close {
 		background: inherit;
 		border-width: 0;
@@ -1083,6 +1094,17 @@ div#navigation {
 		}
 	}
 
+	.row-fluid {
+		.span2 {
+			width: 12.66667%;
+		}
+
+		.span10 {
+			margin-left: 0;
+			width: 87.33333%;
+		}
+	}
+
 	.alert, .breadcrumb, .form {
 		margin-bottom: 0;
 	}
@@ -1219,18 +1241,6 @@ div#navigation {
 
 	.label-success {
 		background-color: #488F06;
-	}
-
-	@media (min-width: 1201px) {
-		.row-fluid {
-			.span2 {
-				width: 12.66667%;
-			}
-
-			.span10 {
-				width: 87.33333%;
-			}
-		}
 	}
 }
 
@@ -2351,6 +2361,18 @@ div#navigation {
 /* ---------- Responsive ---------- */
 
 html.aui {
+	@media (max-width: 1200px) {
+		.portlet-document-library .row-fluid {
+			.span2 {
+				width: 15%;
+			}
+
+			.span10 {
+				width: 85%;
+			}
+		}
+	}
+
 	@media (max-width: 979px) {
 		.navbar .nav-navigation {
 			display: block;
@@ -2547,6 +2569,10 @@ html.aui {
 	@media (max-width: 767px) {
 		body {
 			padding: 0;
+		}
+
+		.row-fluid [class*="span"] {
+			width: 100%;
 		}
 
 		.so-portlet-user-bar {
