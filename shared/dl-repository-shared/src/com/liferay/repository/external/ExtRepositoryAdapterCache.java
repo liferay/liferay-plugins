@@ -11,12 +11,12 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
-package com.liferay.repository.external.cache;
+
+package com.liferay.repository.external;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.AutoResetThreadLocal;
-import com.liferay.repository.external.ExtRepositoryModel;
 import com.liferay.repository.external.model.ExtRepositoryModelAdapter;
 
 import java.util.HashMap;
@@ -34,7 +34,9 @@ public class ExtRepositoryAdapterCache implements Cloneable {
 	@Override
 	public ExtRepositoryAdapterCache clone() {
 		if (_log.isInfoEnabled()) {
-			_log.info("Cache created: " + Thread.currentThread().getName());
+			Thread currentThread = Thread.currentThread();
+
+			_log.info("Create " + currentThread.getName());
 		}
 
 		try {
@@ -45,24 +47,23 @@ public class ExtRepositoryAdapterCache implements Cloneable {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public <T extends ExtRepositoryModelAdapter<?>> T get(
 		String extRepositoryModelKey) {
 
-		Map<String, ExtRepositoryModelAdapter<?>> extRepositoryAdaptersCache =
-			_getExtRepositoryAdaptersCache();
+		Map<String, ExtRepositoryModelAdapter<?>> extRepositoryAdapters =
+			_getExtRepositoryAdapters();
 
-		T extRepositoryAdapter = (T)extRepositoryAdaptersCache.get(
+		T extRepositoryAdapter = (T)extRepositoryAdapters.get(
 			extRepositoryModelKey);
 
 		if (extRepositoryAdapter != null) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Cache hit: " + extRepositoryModelKey);
+				_log.debug("Hit " + extRepositoryModelKey);
 			}
 		}
 		else {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Cache miss: " + extRepositoryModelKey);
+				_log.debug("Miss " + extRepositoryModelKey);
 			}
 		}
 
@@ -70,43 +71,43 @@ public class ExtRepositoryAdapterCache implements Cloneable {
 	}
 
 	public void put(ExtRepositoryModelAdapter<?> extRepositoryModelAdapter) {
+		Map<String, ExtRepositoryModelAdapter<?>> extRepositoryAdapters =
+			_getExtRepositoryAdapters();
+
 		ExtRepositoryModel extRepositoryModel =
 			extRepositoryModelAdapter.getExtRepositoryModel();
 
 		String extRepositoryModelKey =
 			extRepositoryModel.getExtRepositoryModelKey();
 
-		Map<String, ExtRepositoryModelAdapter<?>> extRepositoryAdaptersCache =
-			_getExtRepositoryAdaptersCache();
-
-		extRepositoryAdaptersCache.put(
-			extRepositoryModelKey, extRepositoryModelAdapter);
-
 		if (_log.isInfoEnabled()) {
-			_log.info("Cache put: " + extRepositoryModelKey);
+			_log.info("Put " + extRepositoryModelKey);
 		}
+
+		extRepositoryAdapters.put(
+			extRepositoryModelKey, extRepositoryModelAdapter);
 	}
 
 	public void remove(String extRepositoryModelKey) {
-		Map<String, ExtRepositoryModelAdapter<?>> extRepositoryAdaptersCache =
-			_getExtRepositoryAdaptersCache();
-
-		extRepositoryAdaptersCache.remove(extRepositoryModelKey);
+		Map<String, ExtRepositoryModelAdapter<?>> extRepositoryAdapters =
+			_getExtRepositoryAdapters();
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Cache remove: " + extRepositoryModelKey);
+			_log.info("Remove " + extRepositoryModelKey);
 		}
+
+		extRepositoryAdapters.remove(extRepositoryModelKey);
 	}
 
 	private Map<String, ExtRepositoryModelAdapter<?>>
-		_getExtRepositoryAdaptersCache() {
+		_getExtRepositoryAdapters() {
 
-		if (_extRepositoryAdaptersCache == null) {
-			_extRepositoryAdaptersCache =
+		if (_extRepositoryAdapters == null) {
+			_extRepositoryAdapters =
 				new HashMap<String, ExtRepositoryModelAdapter<?>>();
 		}
 
-		return _extRepositoryAdaptersCache;
+		return _extRepositoryAdapters;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
@@ -119,6 +120,6 @@ public class ExtRepositoryAdapterCache implements Cloneable {
 				new ExtRepositoryAdapterCache());
 
 	private Map<String, ExtRepositoryModelAdapter<?>>
-		_extRepositoryAdaptersCache;
+		_extRepositoryAdapters;
 
 }
