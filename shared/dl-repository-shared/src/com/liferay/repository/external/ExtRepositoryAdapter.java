@@ -56,7 +56,6 @@ import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryTypeConstants;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
-import com.liferay.repository.external.cache.ExtRepositoryAdapterCache;
 import com.liferay.repository.external.model.ExtRepositoryFileEntryAdapter;
 import com.liferay.repository.external.model.ExtRepositoryFileVersionAdapter;
 import com.liferay.repository.external.model.ExtRepositoryFolderAdapter;
@@ -280,7 +279,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("rawtypes")
 	public List<FileEntry> getFileEntries(
 			long folderId, int start, int end, OrderByComparator obc)
 		throws PortalException, SystemException {
@@ -315,7 +314,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	@Override
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings("rawtypes")
 	public List<FileEntry> getFileEntries(
 			long folderId, String[] mimeTypes, int start, int end,
 			OrderByComparator obc)
