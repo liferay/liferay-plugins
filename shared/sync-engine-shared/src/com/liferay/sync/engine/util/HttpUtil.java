@@ -181,7 +181,7 @@ public class HttpUtil {
 			ContentType.create(MediaType.TEXT_PLAIN, Charset.defaultCharset()));
 	}
 
-	private static Set<String> _ignoredParameterKeys =
-		new HashSet<String>(Arrays.asList("filePath", "syncFile"));
+	private static Set<String> _ignoredParameterKeys = new HashSet<String>(
+		Arrays.asList("filePath", "syncFile"));
 
 }

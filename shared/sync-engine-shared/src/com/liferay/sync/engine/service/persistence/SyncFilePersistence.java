@@ -65,15 +65,15 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		return syncFiles.get(0);
 	}
 
-	public SyncFile fetchByP_R_S(
-			long parentFolderId, long repositoryId, long syncAccountId)
+	public SyncFile fetchByR_S_T(
+			long repositoryId, long syncAccountId, long typePK)
 		throws SQLException {
 
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
 
-		fieldValues.put("parentFolderId", parentFolderId);
 		fieldValues.put("repositoryId", repositoryId);
 		fieldValues.put("syncAccountId", syncAccountId);
+		fieldValues.put("typePK", typePK);
 
 		List<SyncFile> syncFiles = queryForFieldValues(fieldValues);
 

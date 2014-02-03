@@ -15,11 +15,19 @@
 package com.liferay.sync.engine.filesystem;
 
 import com.liferay.sync.engine.documentlibrary.event.AddFileEntryEvent;
+import com.liferay.sync.engine.documentlibrary.event.AddFolderEvent;
 import com.liferay.sync.engine.documentlibrary.event.MoveFileEntryEvent;
+import com.liferay.sync.engine.documentlibrary.event.MoveFileEntryToTrashEvent;
+import com.liferay.sync.engine.documentlibrary.event.MoveFolderEvent;
+import com.liferay.sync.engine.documentlibrary.event.MoveFolderToTrashEvent;
 import com.liferay.sync.engine.documentlibrary.event.UpdateFileEntryEvent;
+import com.liferay.sync.engine.documentlibrary.event.UpdateFolderEvent;
+import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncWatchEvent;
+import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
@@ -72,14 +80,42 @@ public class SyncWatchEventProcessor implements Runnable {
 					syncWatchEvent.getTimestamp());
 			}
 
+			String fileType = syncWatchEvent.getFileType();
+
 			String kindName = syncWatchEvent.getKindName();
 
 			if (kindName.equals(SyncWatchEvent.ENTRY_CREATE)) {
-				String fileType = syncWatchEvent.getFileType();
-
 				if (fileType.equals(SyncFile.TYPE_FILE)) {
 					try {
 						addFile(syncWatchEvent);
+					}
+					catch (Exception e) {
+						_logger.error(e.getMessage(), e);
+					}
+				}
+				else {
+					try {
+						addFolder(syncWatchEvent);
+					}
+					catch (Exception e) {
+						_logger.error(e.getMessage(), e);
+					}
+				}
+			}
+			else if (kindName.equals(SyncWatchEvent.ENTRY_DELETE)) {
+				System.out.println(fileType);
+
+				if (fileType.equals(SyncFile.TYPE_FILE)) {
+					try {
+						deleteFile(syncWatchEvent);
+					}
+					catch (Exception e) {
+						_logger.error(e.getMessage(), e);
+					}
+				}
+				else {
+					try {
+						deleteFolder(syncWatchEvent);
 					}
 					catch (Exception e) {
 						_logger.error(e.getMessage(), e);
@@ -163,6 +199,8 @@ public class SyncWatchEventProcessor implements Runnable {
 
 			parameters.put("fileEntryId", syncFile.getTypePK());
 			parameters.put("newFolderId", parentSyncFile.getTypePK());
+			parameters.put(
+				"serviceContext.scopeGroupId", syncFile.getRepositoryId());
 
 			MoveFileEntryEvent moveFileEntryEvent = new MoveFileEntryEvent(
 				syncWatchEvent.getSyncAccountId(), parameters);
@@ -171,6 +209,127 @@ public class SyncWatchEventProcessor implements Runnable {
 		}
 
 		_processedSyncWatchEvents.add(relatedSyncWatchEvent);
+	}
+
+	protected void addFolder(SyncWatchEvent syncWatchEvent) throws Exception {
+		Path filePath = Paths.get(syncWatchEvent.getFilePathName());
+
+		String filePathName = FilePathNameUtil.getFilePathName(filePath);
+
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			syncWatchEvent.getSyncAccountId());
+
+		if (filePathName.equals(syncAccount.getFilePathName()) ||
+			(SyncSiteService.fetchSyncSite(
+				filePathName, syncWatchEvent.getSyncAccountId()) != null)) {
+
+			return;
+		}
+
+		Path parentFilePath = filePath.getParent();
+
+		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(parentFilePath),
+			syncWatchEvent.getSyncAccountId());
+
+		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
+			FileUtil.getFileKey(filePath), syncWatchEvent.getSyncAccountId());
+
+		if (syncFile == null) {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+
+			parameters.put("repositoryId", parentSyncFile.getRepositoryId());
+			parameters.put("parentFolderId", parentSyncFile.getTypePK());
+			parameters.put("name", filePath.getFileName());
+			parameters.put("description", filePath);
+
+			AddFolderEvent addFolderEvent = new AddFolderEvent(
+				syncWatchEvent.getSyncAccountId(), parameters);
+
+			addFolderEvent.run();
+
+			return;
+		}
+
+		SyncWatchEvent relatedSyncWatchEvent =
+			SyncWatchEventService.fetchSyncWatchEvent(
+				syncFile.getFilePathName(), SyncWatchEvent.ENTRY_DELETE,
+				syncWatchEvent.getTimestamp());
+
+		if (relatedSyncWatchEvent == null) {
+			return;
+		}
+
+		Path srcFilePath = Paths.get(relatedSyncWatchEvent.getFilePathName());
+
+		if (parentFilePath.equals(srcFilePath.getParent())) {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+
+			parameters.put("description", syncFile.getDescription());
+			parameters.put("folderId", syncFile.getTypePK());
+			parameters.put("name", filePath.getFileName());
+
+			UpdateFolderEvent updateFolderEvent =
+				new UpdateFolderEvent(
+					syncWatchEvent.getSyncAccountId(), parameters);
+
+			updateFolderEvent.run();
+		}
+		else {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+
+			parameters.put("folderId", syncFile.getTypePK());
+			parameters.put("parentFolderId", parentSyncFile.getTypePK());
+			parameters.put(
+				"serviceContext.scopeGroupId", syncFile.getRepositoryId());
+
+			MoveFolderEvent moveFolderEvent = new MoveFolderEvent(
+				syncWatchEvent.getSyncAccountId(), parameters);
+
+			moveFolderEvent.run();
+		}
+
+		_processedSyncWatchEvents.add(relatedSyncWatchEvent);
+	}
+
+	protected void deleteFile(SyncWatchEvent syncWatchEvent) throws Exception {
+		Path filePath = Paths.get(syncWatchEvent.getFilePathName());
+
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(filePath),
+			syncWatchEvent.getSyncAccountId());
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		parameters.put("fileEntryId", syncFile.getTypePK());
+		parameters.put("syncFile", syncFile);
+
+		MoveFileEntryToTrashEvent moveFileEntryToTrashEvent =
+			new MoveFileEntryToTrashEvent(
+				syncWatchEvent.getSyncAccountId(), parameters);
+
+		moveFileEntryToTrashEvent.run();
+	}
+
+	protected void deleteFolder(SyncWatchEvent syncWatchEvent)
+		throws Exception {
+
+		Path filePath = Paths.get(syncWatchEvent.getFilePathName());
+
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(filePath),
+			syncWatchEvent.getSyncAccountId());
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		parameters.put("folderId", syncFile.getTypePK());
+		parameters.put("syncFile", syncFile);
+
+		MoveFolderToTrashEvent moveFolderToTrashEvent =
+			new MoveFolderToTrashEvent(
+				syncWatchEvent.getSyncAccountId(), parameters);
+
+		moveFolderToTrashEvent.run();
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(

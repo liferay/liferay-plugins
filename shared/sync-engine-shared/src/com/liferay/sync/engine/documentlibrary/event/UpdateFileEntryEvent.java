@@ -42,8 +42,8 @@ public class UpdateFileEntryEvent extends BaseEvent {
 			response, new TypeReference<SyncFile>() {});
 
 		SyncFile parentLocalSyncFile = SyncFileService.fetchSyncFile(
-			remoteSyncFile.getParentFolderId(), remoteSyncFile.getRepositoryId(),
-			getSyncAccountId());
+			remoteSyncFile.getParentFolderId(),
+			remoteSyncFile.getRepositoryId(), getSyncAccountId());
 
 		String filePathName = null;
 

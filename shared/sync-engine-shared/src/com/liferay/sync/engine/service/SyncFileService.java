@@ -71,11 +71,11 @@ public class SyncFileService {
 	}
 
 	public static SyncFile fetchSyncFile(
-		long parentFolderId, long repositoryId, long syncAccountId) {
+		long repositoryId, long syncAccountId, long typePK) {
 
 		try {
-			return _syncFilePersistence.fetchByP_R_S(
-				parentFolderId, repositoryId, syncAccountId);
+			return _syncFilePersistence.fetchByR_S_T(
+				repositoryId, syncAccountId, typePK);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {

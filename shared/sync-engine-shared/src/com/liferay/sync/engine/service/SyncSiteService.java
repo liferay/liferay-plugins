@@ -74,6 +74,21 @@ public class SyncSiteService {
 		}
 	}
 
+	public static SyncSite fetchSyncSite(
+		String filePathName, long syncAccountId) {
+
+		try {
+			return _syncSitePersistence.fetchByF_S(filePathName, syncAccountId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
+
 	public static List<SyncSite> findSyncSites(long syncAccountId) {
 		try {
 			return _syncSitePersistence.findBySyncAccountId(syncAccountId);

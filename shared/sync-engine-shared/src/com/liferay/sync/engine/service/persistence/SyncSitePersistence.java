@@ -31,6 +31,23 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 		super(SyncSite.class);
 	}
 
+	public SyncSite fetchByF_S(String filePathName, long syncAccountId)
+		throws SQLException {
+
+		Map<String, Object> fieldValues = new HashMap<String, Object>();
+
+		fieldValues.put("filePathName", filePathName);
+		fieldValues.put("syncAccountId", syncAccountId);
+
+		List<SyncSite> syncSites = queryForFieldValues(fieldValues);
+
+		if ((syncSites == null) || syncSites.isEmpty()) {
+			return null;
+		}
+
+		return syncSites.get(0);
+	}
+
 	public SyncSite fetchByG_S(long groupId, long syncAccountId)
 		throws SQLException {
 

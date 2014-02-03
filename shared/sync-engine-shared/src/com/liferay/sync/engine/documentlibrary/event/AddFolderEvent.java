@@ -14,6 +14,14 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.util.FilePathNameUtil;
+import com.liferay.sync.engine.util.FileUtil;
+
 import java.util.Map;
 
 /**
@@ -27,7 +35,28 @@ public class AddFolderEvent extends BaseEvent {
 
 	@Override
 	protected void processResponse(String response) throws Exception {
-		System.out.println(response);
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		SyncFile syncFile = objectMapper.readValue(
+			response, new TypeReference<SyncFile>() {});
+
+		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
+			syncFile.getRepositoryId(), getSyncAccountId(),
+			syncFile.getParentFolderId());
+
+		String filePathName = null;
+
+		if (parentSyncFile != null) {
+			filePathName = FilePathNameUtil.getFilePathName(
+				parentSyncFile.getFilePathName(), syncFile.getName());
+		}
+
+		syncFile.setFileKey(FileUtil.getFileKey(filePathName));
+		syncFile.setFilePathName(filePathName);
+
+		syncFile.setSyncAccountId(getSyncAccountId());
+
+		SyncFileService.update(syncFile);
 	}
 
 	private static final String _URL_PATH = "/sync-web.syncdlobject/add-folder";

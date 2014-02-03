@@ -43,8 +43,8 @@ public class AddFileEntryEvent extends BaseEvent {
 			response, new TypeReference<SyncFile>() {});
 
 		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-			syncFile.getParentFolderId(), syncFile.getRepositoryId(),
-			getSyncAccountId());
+			syncFile.getRepositoryId(), getSyncAccountId(),
+			syncFile.getParentFolderId());
 
 		String filePathName = null;
 

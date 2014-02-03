@@ -14,6 +14,9 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.service.SyncFileService;
+
 import java.util.Map;
 
 /**
@@ -29,7 +32,9 @@ public class MoveFileEntryToTrashEvent extends BaseEvent {
 
 	@Override
 	protected void processResponse(String response) throws Exception {
-		System.out.println(response);
+		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+		SyncFileService.deleteSyncFile(syncFile.getSyncFileId());
 	}
 
 	private static final String _URL_PATH =
