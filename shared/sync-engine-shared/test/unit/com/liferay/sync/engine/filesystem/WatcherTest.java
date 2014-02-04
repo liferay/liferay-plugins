@@ -72,7 +72,7 @@ public class WatcherTest extends BaseTestCase {
 	}
 
 	@Test
-	public void testRun() throws Exception {
+	public void testRunAddFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_add_file.json");
 
 		SyncWatchEventProcessor syncWatchEventProcessor =
@@ -101,8 +101,120 @@ public class WatcherTest extends BaseTestCase {
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(3, _syncFiles.size());
+	}
 
+	@Test
+	public void testRunDeleteFile() throws Exception {
+		setMockPostResponse("dependencies/watcher_test_delete_file.json");
+
+		SyncWatchEventProcessor syncWatchEventProcessor =
+			new SyncWatchEventProcessor();
+
+		syncWatchEventProcessor.process();
+
+		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
+			syncAccount.getSyncAccountId());
+
+		Path filePath = Paths.get(syncAccount.getFilePathName());
+
+		Watcher watcher = new Watcher(filePath, true, watchEventListener);
+
+		Thread thread = new Thread(watcher);
+
+		thread.start();
+
+		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+
+		Files.createFile(addFilePath);
+
+		thread.sleep(5000);
+
+		Files.delete(addFilePath);
+
+		thread.sleep(5000);
+
+		_syncFiles = SyncFileService.findSyncFiles(
+			syncAccount.getSyncAccountId());
+
+		Assert.assertEquals(2, _syncFiles.size());
+
+		Assert.assertNull(
+			SyncFileService.fetchSyncFile(
+				FilePathNameUtil.getFilePathName(addFilePath),
+				syncAccount.getSyncAccountId()));
+	}
+
+	@Test
+	public void testRunMoveFile() throws Exception {
+		setMockPostResponse("dependencies/watcher_test_move_file.json");
+
+		SyncWatchEventProcessor syncWatchEventProcessor =
+			new SyncWatchEventProcessor();
+
+		syncWatchEventProcessor.process();
+
+		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
+			syncAccount.getSyncAccountId());
+
+		Path filePath = Paths.get(syncAccount.getFilePathName());
+
+		Watcher watcher = new Watcher(filePath, true, watchEventListener);
+
+		Thread thread = new Thread(watcher);
+
+		thread.start();
+
+		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+
+		Files.createFile(addFilePath);
+
+		Path moveFilePath = Paths.get(_syncSite.getFilePathName() + "/test");
+
+		Files.createDirectory(moveFilePath);
+
+		thread.sleep(5000);
+
+		Files.move(
+			addFilePath, moveFilePath.resolve(addFilePath.getFileName()));
+
+		thread.sleep(5000);
+
+		_syncFiles = SyncFileService.findSyncFiles(
+			syncAccount.getSyncAccountId());
+
+		Assert.assertEquals(4, _syncFiles.size());
+
+		Assert.assertNotNull(
+			SyncFileService.fetchSyncFile(
+				FilePathNameUtil.getFilePathName(moveFilePath),
+				syncAccount.getSyncAccountId()));
+	}
+
+	@Test
+	public void testRunRenameFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_rename_file.json");
+
+		SyncWatchEventProcessor syncWatchEventProcessor =
+			new SyncWatchEventProcessor();
+
+		syncWatchEventProcessor.process();
+
+		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
+			syncAccount.getSyncAccountId());
+
+		Path filePath = Paths.get(syncAccount.getFilePathName());
+
+		Watcher watcher = new Watcher(filePath, true, watchEventListener);
+
+		Thread thread = new Thread(watcher);
+
+		thread.start();
+
+		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+
+		Files.createFile(addFilePath);
+
+		thread.sleep(5000);
 
 		Path renameFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test2.txt");
