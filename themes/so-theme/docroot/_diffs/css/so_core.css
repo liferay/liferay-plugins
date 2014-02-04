@@ -27,7 +27,6 @@
 		}
 
 		a:hover {
-			color: $blue;
 			text-decoration: none;
 		}
 
@@ -88,30 +87,6 @@
 
 	input[type="image"], select {
 		display: none;
-	}
-
-	.search-controls {
-		background: #FFF;
-		display: none;
-
-		@include border-radius(4px);
-
-		left: 0;
-
-		@include menu-style;
-
-		padding: 0.4em;
-		right: 0;
-		top: 100%;
-		z-index: 1;
-
-		input[type="image"], select {
-			display: inline-block;
-		}
-	}
-
-	&.focus .search-controls {
-		display: block;
 	}
 }
 
@@ -177,23 +152,12 @@ div#navigation {
 		}
 	}
 
-	.selected a, .aui-combobox {
+	.selected a {
 		border-bottom: none;
 		border-top: 1px solid #0E50A9;
 
 		@include box-shadow(0 1px 0 #7FBBF4 inset);
 		@include button-primary-gradient;
-	}
-
-	.aui-combobox {
-		padding: 0.45em 0.5em 0.4em;
-		position: relative;
-		z-index: 1;
-
-		input[type="text"] {
-			width: 8.6em;
-			margin-right: 0.1em;
-		}
 	}
 }
 
@@ -277,24 +241,6 @@ a {
 
 .hidden-accessible, #navigation h1 {
 	@include hidden-accessible;
-}
-
-.aui-state-default {
-	@include button-default;
-}
-
-.aui-state-hover {
-	@include button-hover;
-}
-
-.aui-state-active {
-	@include button-focus;
-}
-
-.lfr-page-templates {
-	input[type="radio"] {
-		margin-left: 10px;
-	}
 }
 
 .aui-dialog-iframe-popup, .portal-popup {
@@ -459,52 +405,6 @@ html.aui {
 	}
 }
 
-/* ---------- Dragging/sorting indicators ---------- */
-
-.aui-proxy {
-	cursor: move;
-	opacity: 0.65;
-	position: absolute;
-
-	&.generic-portlet {
-		height: 200px;
-		width: 300px;
-
-		.portlet-title {
-			padding: 10px;
-		}
-	}
-
-	&.not-intersecting .forbidden-action {
-		background: url(../images/application/forbidden_action.png) no-repeat;
-		display: block;
-		height: 32px;
-		position: absolute;
-		right: -15px;
-		top: -15px;
-		width: 32px;
-	}
-}
-
-.aui-resizable-proxy {
-	border: 1px dashed #828F95;
-	position: absolute;
-	visibility: hidden;
-}
-
-.aui-sortable-proxy {
-	background: #727C81;
-	margin-top: 1px;
-}
-
-.lfr-freeform-layout-drag-indicator {
-	visibility: hidden;
-}
-
-.aui-portal-layout-drag-target-indicator {
-	margin: 2px 0;
-}
-
 /* ---------- Forms ---------- */
 
 .aui {
@@ -518,15 +418,11 @@ html.aui {
 		padding: 8px;
 	}
 
-	.aui-legend {
-		border-bottom-color: $defaultBorderColor;
-	}
-
-	input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button, .aui-field-input-text {
+	input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button {
 		@include input-field-default;
 	}
 
-	.btn, a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
+	.btn, input[type="submit"], input[type="button"], input[type="reset"], button {
 		&, &:active, &.active, &:hover, &:focus {
 			@include button-default;
 		}
@@ -550,74 +446,8 @@ html.aui {
 		}
 	}
 
-	.aui-buttonitem-content.aui-buttonitem-icon-only {
-		padding: 4px;
-	}
-
-	.lfr-actions {
-		&, &.lfr-extended, ul {
-			@include button-default;
-
-			padding: 0;
-		}
-
-		&:focus {
-			&, ul {
-				@include button-focus;
-			}
-		}
-
-		&.disabled, &.disabled:hover {
-			&, ul {
-				@include button-disabled;
-			}
-		}
-
-		&:hover, &.lfr-extended:hover {
-			&, ul {
-				@include button-hover;
-			}
-		}
-	}
-
-	.rtl .lfr-header-row .lfr-actions.show-arrow.direction-down .lfr-trigger strong a {
-		padding: 0 20px 0 4px;
-	}
-
-	.aui-menu-content, .lfr-menu-list ul {
-		@include menu-style;
-
-		li {
-			border-bottom-color: $defaultBorderColor;
-			border-top-width: 0;
-		}
-	}
-
-	.aui-menu-content li a.aui-focus, .lfr-menu-list ul .taglib-icon.aui-focus, .lfr-menu-expanded li a:focus {
+	.lfr-menu-list ul .taglib-icon.aui-focus, .lfr-menu-expanded li a:focus {
 		background-color: #1D87EB;
-	}
-
-	.aui-button-disabled {
-		input[type], button {
-			&, &:hover, &:focus {
-				@include button-disabled;
-			}
-		}
-	}
-
-	.aui-buttonitem-disabled {
-		@include button-disabled;
-	}
-
-	input.aui-form-validator-error, textarea.aui-form-validator-error, select.aui-form-validator-error {
-		border-color: $red;
-	}
-
-	legend {
-		border: 0;
-		margin: 0;
-		padding: 0 0.25em;
-		width: auto;
 	}
 }
 
@@ -626,14 +456,8 @@ html.aui {
 		@include input-field-default;
 	}
 
-	input.submit, input.button, button, .aui-button-disabled input.submit, .aui-button-disabled input.button, .aui-button-disabled button {
+	input.submit, input.button, button {
 		@include button-default;
-	}
-
-	.aui-button-disabled {
-		input.submit, input.button, button {
-			color: #555;
-		}
 	}
 
 	input, textarea {
@@ -645,24 +469,13 @@ html.aui {
 
 /* ---------- Forms custom ---------- */
 
-.aui-panel-hd .aui-toolbar-content {
-	padding: 0.125em;
-
-	.aui-state-default {
-		background: transparent none;
-		border-width: 0;
-
-		@include box-shadow(none);
-	}
-}
-
-.aui-panel-hd, .lfr-panel.lfr-extended .lfr-panel-titlebar {
+.lfr-panel.lfr-extended .lfr-panel-titlebar {
 	@include default-border;
 
 	@include normal-gradient;
 }
 
-.invite-members, .social-relations a, .aui-buttonitem-content, .aui-tabview-list .aui-tab-label {
+.invite-members, .social-relations a {
 	@include button-default;
 }
 
@@ -677,73 +490,6 @@ html.aui {
 
 	&:active {
 		@include button-active;
-	}
-}
-
-.aui-dialog-content {
-	padding: 0;
-
-	.aui-dialog-hd {
-		border: 1px solid $defaultBorderColor;
-
-		@include border-radius(4px 4px 0 0);
-
-		border-width: 0 0 1px;
-
-		@include box-shadow(none);
-
-		padding: 0 0 0 0.5em;
-
-		.aui-toolbar {
-			margin: -1px;
-		}
-	}
-}
-
-.aui-panel-hd-text {
-	font-weight: normal;
-}
-
-.aui-panel-bd {
-	padding: 0 1em 1em;
-}
-
-.aui-button-holder {
-	overflow: visible;
-
-	.aui-toolbar-item {
-		margin: 0 -1px;
-	}
-
-	.aui-toolbar-first {
-		margin-left: 0;
-	}
-}
-
-.aui-buttonitem-content {
-	margin-right: -1px;
-
-	&.aui-toolbar-last {
-		margin-right: 0;
-	}
-}
-
-.aui-textboxlist-content {
-	overflow: hidden;
-}
-
-.aui-tooltip-content {
-	@include box-shadow(0 2px 10px -4px rgba(0, 0, 0, 1));
-}
-
-.aui-overlaycontextpanel-arrow-bl {
-	.aui-overlaycontextpanel-pointer {
-		border-right: 12px dashed transparent;
-		padding: 0;
-	}
-
-	.aui-overlaycontextpanel-pointer-inner {
-		left: 1px;
 	}
 }
 
@@ -778,70 +524,7 @@ html.aui {
 	border-left-width: 0;
 }
 
-/* ---------- LFR header row ---------- */
-
-.lfr-header-row {
-	.lfr-actions {
-		&.lfr-extended {
-			@include button-default;
-
-			margin-right: 0.125em;
-			padding: 0.125em 0.60em 0.15em;
-		}
-
-		&:hover {
-			@include button-hover;
-		}
-
-		&.aui-state-active {
-			@include button-active;
-		}
-	}
-
-	.lfr-trigger {
-		margin: 0 -0.3em;
-
-		strong {
-			font-weight: normal;
-		}
-	}
-
-	.aui-buttonitem-content, .aui-button-input, .lfr-actions.lfr-extended, .lfr-search-combobox {
-		border-color: $defaultBorderColor;
-	}
-}
-
-/* ---------- Portal tool tips ---------- */
-
-.aui-tooltip {
-	max-width: 200px;
-}
-
 /* ---------- Portlet base styling ---------- */
-
-.portlet {
-	border-bottom: 1px solid $defaultBorderColor;
-	margin-bottom: -1px;
-
-	.portlet-topper, .portlet-content {
-		padding: 1em;
-	}
-
-	.portlet-topper {
-		padding-bottom: 0;
-	}
-
-	.portlet-title {
-		font-size: 1.5em;
-		font-weight: 200;
-		line-height: 1.25em;
-		margin: 0;
-
-		.icon, img {
-			display: none;
-		}
-	}
-}
 
 .portlet-borderless-container {
 	min-height: 0;
@@ -1083,54 +766,6 @@ html.aui {
 		width: auto;
 	}
 
-	.lfr-discussion-form-reply {
-		background-color: $btnBackgroundDefault;
-	}
-
-	.lfr-discussion-details-content, .lfr-discussion-form-reply {
-		padding: 0;
-		position: relative;
-
-		.user-name {
-			text-align: left;
-			text-decoration: none;
-		}
-
-		.user-name, .user-profile-image {
-			display: inline-block;
-		}
-
-		.user-profile-image {
-			float: none;
-			position: relative;
-
-			img {
-				left: -56px;
-				position: absolute;
-			}
-		}
-	}
-
-	.lfr-discussion-form-reply .user-profile-image img {
-		left: 0;
-		position: relative;
-	}
-
-	.lfr-discussion-body-content {
-		margin-left: 55px;
-	}
-
-	.lfr-discussion-body {
-		clear: both;
-		float: none;
-	}
-
-	.aui-thumbrating-content {
-		position: absolute;
-		right: 0;
-		top: 2px;
-	}
-
 	.user-details {
 		display: none;
 	}
@@ -1210,152 +845,6 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Breadcrumbs ---------- */
-
-.breadcrumbs-horizontal {
-	border: solid $defaultBorderColor;
-	border-width: 1px 0;
-	margin: -1px 0;
-
-	li {
-		background: transparent url(../images/custom/so_breadcrumbs.png) right 50% no-repeat;
-		border-bottom: 1px solid $defaultBorderColor;
-		margin-bottom: -1px;
-		max-width: 33.333%;
-
-		span, a {
-			padding: 0.4em 25px 0.4em 0.75em;
-		}
-
-		span {
-			display: block;
-		}
-
-		a {
-			color: $defaultTextColor;
-			display: block;
-			font-weight: normal;
-			margin: -0.4em -25px -0.4em -0.75em;
-			margin-left: -5px;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: pre;
-
-			&:hover {
-				color: $blue;
-				text-decoration: none;
-			}
-		}
-
-		&.first a {
-			padding-left: 20px;
-		}
-
-		&.last {
-			background-image: none;
-
-			a {
-				color: $red;
-			}
-		}
-	}
-}
-
-/* ---------- Portlet: Calendar ---------- */
-
-.portlet-calendar {
-	.calendar-container, .calendar-container .taglib-calendar, .calendar-day {
-		float: none;
-	}
-
-	form {
-		padding: 0.5em 0.5em 0.6em;
-	}
-
-	.aui-tabview-list {
-		margin-bottom: 0;
-	}
-
-	.calendar-container, .calendar-container .day-text {
-		background: transparent none;
-		border: none;
-	}
-
-	.aui-field-wrapper, .aui-field .aui-field-content {
-		padding: 0 10px;
-	}
-
-	.calendar-container {
-		border-right: 1px solid $btnBorderDefault;
-		width: auto;
-
-		.calendar-day {
-			border-bottom: 1px solid $btnBorderDefault;
-			width: auto;
-		}
-
-		.day-text {
-			color: #333;
-		}
-
-		.taglib-calendar {
-			border-top: $btnBorderDefault;
-		}
-	}
-
-	.date-selector, .event-selector {
-		bottom: -13px;
-		float: left;
-		margin: 4px 10px;
-		position: relative;
-	}
-
-	.day-grid {
-		border-top: 1px solid #CCC;
-		clear: both;
-
-		.hour, .half-hour {
-			border-bottom: 1px dotted $defaultBorderColor;
-		}
-
-		.half-hour {
-			border-bottom-style: solid;
-			height: 24px;
-		}
-
-		.half-hour, .night-hour {
-			background: none;
-		}
-
-		.event-box {
-			background: $btnBackgroundDefault;
-			border: 1px solid #CCC;
-			margin-top: 1px;
-			padding-top: 6px;
-		}
-	}
-
-	p {
-		word-wrap: break-word;
-	}
-
-	.lfr-top {
-		.aui-button {
-			display: inline-block;
-			margin-top: 10px;
-		}
-
-		.lfr-search-container {
-			margin-right: 10px;
-		}
-	}
-}
-
-.portlet-column-content-only .portlet-calendar .aui-column-content {
-	max-width: 550px;
-	padding: 10px;
-}
-
 /* ---------- Portlet: Contacts ---------- */
 
 .contacts-portlet {
@@ -1389,15 +878,6 @@ html.aui {
 		.taglib-header, .contacts-profile {
 			border-bottom-width: 0;
 		}
-
-		.aui-column:before {
-			border-right-width: 0;
-			margin-left: 0;
-		}
-
-		.aui-column-content {
-			border-right-width: 0;
-		}
 	}
 
 	.contact-group-filter .contact-group-filter-content {
@@ -1424,25 +904,9 @@ html.aui {
 		padding: 5px;
 	}
 
-	.members-container, .members-container .lfr-members-grid-item {
+	.members-container {
 		margin: 0;
 		padding: 10px;
-	}
-
-	.members-container .lfr-members-grid-item {
-		.lfr-user-data-extra, .lfr-user-data-name, .lfr-user-data-job-title {
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
-		}
-
-		.lfr-members-thumb {
-			margin: 0;
-		}
-
-		&:hover {
-			background: $btnBorderDefault;
-		}
 	}
 
 	.contacts-search {
@@ -1671,7 +1135,11 @@ html.aui {
 	border: 1px solid $defaultBorderColor;
 	border-width: 1px 0;
 	margin-top: -1px;
-	padding: 0.8em 1em;
+	
+	.invite-members {
+		display: inline-block;
+		margin: 4px;
+	}
 }
 
 /* ---------- Portlet: Message boards ---------- */
@@ -2173,7 +1641,7 @@ html.aui {
 /* ---------- Portlet: Tasks ---------- */
 
 .tasks-portlet {
-	.aui-tabview-list, .control-wrapper, .filter-wrapper, .list-wrapper, .tasks-options {
+	.control-wrapper, .filter-wrapper, .list-wrapper, .tasks-options {
 		margin: 1em;
 	}
 
@@ -2206,32 +1674,10 @@ html.aui {
 		display: inline-block;
 		vertical-align: baseline;
 	}
-
-	.toc {
-		border: 1px solid $defaultBorderColor;
-		margin-bottom: 1.5em;
-		padding: 1em;
-
-		h4 {
-			color: $red;
-			margin: 0;
-		}
-
-
-		ul, ol {
-			li {
-				margin-bottom: 0;
-			}
-
-			ul, ol {
-				margin: 0 0 0 2em;
-			}
-		}
-	}
 }
 
 @media print {
-	.portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a, .portlet-wiki .page-actions a, .portlet-wiki .toc a.toc-trigger, .popup-print {
+	.portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a, .portlet-wiki .page-actions a, .popup-print {
 		display: none;
 	}
 }
@@ -2250,88 +1696,11 @@ html.aui {
 
 /* ---------- Tags ---------- */
 
-.aui-tagselector-content .aui-textboxlistentry-holder {
-	background: #FFF;
-	border-width: 0;
-
-	@include input-field-default;
-
-	margin-bottom: 5px;
-}
-
-.aui-tagselector-focused .aui-textboxlistentry-holder {
-	@include input-field-focus;
-}
-
 .autocomplete-content .toolbar {
 	position: relative;
 }
 
 /* ---------- Top links component ---------- */
-
-.top-links {
-	background: $controlBgColor;
-	float: none;
-	width: auto;
-
-	.top-links-navigation {
-		float: left;
-
-		.taglib-text {
-			border-right-width: 0;
-			margin-right: 0;
-			padding-right: 0;
-			text-decoration: none;
-		}
-
-		a {
-			@include border-radius(4px);
-			@include button-default;
-
-			display: inline-block;
-			line-height: 1em;
-			padding: 6px 4px;
-			text-decoration: none;
-
-			&:active {
-				@include button-active;
-			}
-
-			&:hover, &:focus {
-				@include button-hover;
-			}
-
-			img.icon {
-				vertical-align: bottom;
-			}
-		}
-	}
-
-	.category-search, .page-search {
-		float: right;
-		padding: 0;
-		margin: 0;
-	}
-
-	&:after {
-		clear: both;
-		content: "";
-		display: block;
-		width: 100%;
-	}
-}
-
-.portlet-boundary {
-	.top-links {
-		float: none;
-	}
-
-	.top-links .top-link {
-		border-right: 0;
-		margin: 0;
-		padding: 0;
-	}
-}
 
 .taglib-header {
 	margin: 1em 0;
