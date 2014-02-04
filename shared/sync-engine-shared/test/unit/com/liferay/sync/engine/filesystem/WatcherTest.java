@@ -95,7 +95,7 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createFile(addFilePath);
 
-		thread.sleep(5000);
+		Thread.sleep(5000);
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -127,11 +127,11 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createFile(addFilePath);
 
-		thread.sleep(5000);
+		Thread.sleep(5000);
 
 		Files.delete(addFilePath);
 
-		thread.sleep(5000);
+		Thread.sleep(5000);
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -172,12 +172,12 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createDirectory(moveFilePath);
 
-		thread.sleep(5000);
+		Thread.sleep(5000);
 
 		Files.move(
 			addFilePath, moveFilePath.resolve(addFilePath.getFileName()));
 
-		thread.sleep(5000);
+		Thread.sleep(5000);
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -214,14 +214,14 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createFile(addFilePath);
 
-		thread.sleep(5000);
+		Thread.sleep(5000);
 
 		Path renameFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test2.txt");
 
 		Files.move(addFilePath, renameFilePath);
 
-		thread.sleep(5000);
+		Thread.sleep(5000);
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
