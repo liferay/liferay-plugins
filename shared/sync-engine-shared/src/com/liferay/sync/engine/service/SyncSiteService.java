@@ -17,6 +17,10 @@ package com.liferay.sync.engine.service;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.persistence.SyncSitePersistence;
+import com.liferay.sync.engine.util.FileUtil;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import java.sql.SQLException;
 
@@ -35,6 +39,8 @@ public class SyncSiteService {
 			String filePathName, long groupId, long syncAccountId)
 		throws Exception {
 
+		// Sync site
+
 		SyncSite syncSite = new SyncSite();
 
 		syncSite.setFilePathName(filePathName);
@@ -43,9 +49,16 @@ public class SyncSiteService {
 
 		_syncSitePersistence.create(syncSite);
 
+		// Sync file
+
+		if (Files.notExists(Paths.get(filePathName))) {
+			Files.createDirectory(Paths.get(filePathName));
+		}
+
 		SyncFileService.addSyncFile(
-			filePathName, filePathName, 0, groupId, syncAccountId,
-			SyncFile.TYPE_FOLDER);
+			null, null, filePathName, FileUtil.getFileKey(filePathName),
+			filePathName, null, filePathName, 0, groupId,
+			syncSite.getSyncAccountId(), SyncFile.TYPE_FOLDER);
 
 		return syncSite;
 	}

@@ -19,8 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncFileService;
-import com.liferay.sync.engine.util.FilePathNameUtil;
-import com.liferay.sync.engine.util.FileUtil;
 
 import java.util.Map;
 
@@ -37,26 +35,28 @@ public class AddFolderEvent extends BaseEvent {
 	protected void processResponse(String response) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		SyncFile syncFile = objectMapper.readValue(
+		SyncFile remoteSyncFile = objectMapper.readValue(
 			response, new TypeReference<SyncFile>() {});
 
-		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-			syncFile.getRepositoryId(), getSyncAccountId(),
-			syncFile.getParentFolderId());
+		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
 
-		String filePathName = null;
+		localSyncFile.setCompanyId(remoteSyncFile.getCompanyId());
+		localSyncFile.setCreateTime(remoteSyncFile.getCreateTime());
+		localSyncFile.setExtension(remoteSyncFile.getExtension());
+		localSyncFile.setExtraSettings(remoteSyncFile.getExtraSettings());
+		localSyncFile.setLockExpirationDate(
+			remoteSyncFile.getLockExpirationDate());
+		localSyncFile.setLockUserId(remoteSyncFile.getLockUserId());
+		localSyncFile.setLockUserName(remoteSyncFile.getLockUserName());
+		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
+		localSyncFile.setParentFolderId(remoteSyncFile.getParentFolderId());
+		localSyncFile.setSize(remoteSyncFile.getSize());
+		localSyncFile.setSyncAccountId(getSyncAccountId());
+		localSyncFile.setTypePK(remoteSyncFile.getTypePK());
+		localSyncFile.setTypeUuid(remoteSyncFile.getTypeUuid());
+		localSyncFile.setVersion(remoteSyncFile.getVersion());
 
-		if (parentSyncFile != null) {
-			filePathName = FilePathNameUtil.getFilePathName(
-				parentSyncFile.getFilePathName(), syncFile.getName());
-		}
-
-		syncFile.setFileKey(FileUtil.getFileKey(filePathName));
-		syncFile.setFilePathName(filePathName);
-
-		syncFile.setSyncAccountId(getSyncAccountId());
-
-		SyncFileService.update(syncFile);
+		SyncFileService.update(localSyncFile);
 	}
 
 	private static final String _URL_PATH = "/sync-web.syncdlobject/add-folder";

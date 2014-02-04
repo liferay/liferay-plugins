@@ -18,6 +18,10 @@ import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.persistence.SyncAccountPersistence;
 import com.liferay.sync.engine.util.Encryptor;
+import com.liferay.sync.engine.util.FileUtil;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import java.sql.SQLException;
 
@@ -33,6 +37,8 @@ public class SyncAccountService {
 			String filePathName, String login, String password, String url)
 		throws Exception {
 
+		// Sync account
+
 		SyncAccount syncAccount = new SyncAccount();
 
 		syncAccount.setFilePathName(filePathName);
@@ -42,9 +48,16 @@ public class SyncAccountService {
 
 		_syncAccountPersistence.create(syncAccount);
 
+		// Sync file
+
+		if (Files.notExists(Paths.get(filePathName))) {
+			Files.createDirectory(Paths.get(filePathName));
+		}
+
 		SyncFileService.addSyncFile(
-			filePathName, filePathName, 0, 0, syncAccount.getSyncAccountId(),
-			SyncFile.TYPE_FOLDER);
+			null, null, filePathName, FileUtil.getFileKey(filePathName),
+			filePathName, null, filePathName, 0, 0,
+			syncAccount.getSyncAccountId(), SyncFile.TYPE_FOLDER);
 
 		return syncAccount;
 	}

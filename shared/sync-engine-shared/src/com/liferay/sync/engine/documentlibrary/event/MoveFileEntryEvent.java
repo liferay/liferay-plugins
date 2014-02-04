@@ -19,7 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncFileService;
-import com.liferay.sync.engine.util.FilePathNameUtil;
 
 import java.util.Map;
 
@@ -41,21 +40,8 @@ public class MoveFileEntryEvent extends BaseEvent {
 		SyncFile remoteSyncFile = objectMapper.readValue(
 			response, new TypeReference<SyncFile>() {});
 
-		SyncFile parentLocalSyncFile = SyncFileService.fetchSyncFile(
-			remoteSyncFile.getParentFolderId(),
-			remoteSyncFile.getRepositoryId(), getSyncAccountId());
-
-		String filePathName = null;
-
-		if (parentLocalSyncFile != null) {
-			filePathName = FilePathNameUtil.getFilePathName(
-				parentLocalSyncFile.getFilePathName(),
-				remoteSyncFile.getName());
-		}
-
 		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
 
-		localSyncFile.setFilePathName(filePathName);
 		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
 
 		SyncFileService.update(localSyncFile);
