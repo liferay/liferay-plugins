@@ -33,7 +33,9 @@ public class ActivitiesUtil {
 		long classPK = activitySet.getClassPK();
 
 		if (className.equals(DLFileEntry.class.getName()) &&
-			(activitySet.getActivityCount() > 1)) {
+			(activitySet.getActivityCount() > 1) &&
+			(activitySet.getType() ==
+				SocialActivityKeyConstants.DL_ADD_FILE_ENTRY)) {
 
 			className = SocialActivitySet.class.getName();
 			classPK = activitySet.getActivitySetId();
