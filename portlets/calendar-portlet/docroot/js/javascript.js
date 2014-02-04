@@ -174,38 +174,6 @@ AUI.add(
 				);
 			},
 
-			countChildrenCalendarBookings: function(schedulerEvent, callback) {
-				var instance = this;
-
-				var endDate = instance.toUTC(schedulerEvent.get('endDate'));
-
-				var startDate = instance.toUTC(schedulerEvent.get('startDate'));
-
-				var statuses = [CalendarWorkflow.STATUS_APPROVED, CalendarWorkflow.STATUS_MAYBE, CalendarWorkflow.STATUS_PENDING];
-
-				instance.invokeService(
-					{
-						'/calendar-portlet.calendarbooking/search-count': {
-							calendarIds: STR_BLANK,
-							calendarResourceIds: STR_BLANK,
-							companyId: COMPANY_ID,
-							endTime: endDate.getTime(),
-							groupIds: STR_BLANK,
-							keywords: STR_BLANK,
-							parentCalendarBookingId: schedulerEvent.get('calendarBookingId'),
-							recurring: schedulerEvent.isRecurring(),
-							startTime: startDate.getTime(),
-							statuses: statuses.join(',')
-						}
-					},
-					{
-						success: function() {
-							callback(this.get('responseData'));
-						}
-					}
-				);
-			},
-
 			createCalendarsAutoComplete: function(resourceURL, input, afterSelectFn) {
 				var instance = this;
 
@@ -490,6 +458,23 @@ AUI.add(
 							if (success) {
 								success.call(this, schedulerEvent);
 							}
+						}
+					}
+				);
+			},
+
+			hasChildCalendarBookings: function(schedulerEvent, callback) {
+				var instance = this;
+
+				instance.invokeService(
+					{
+						'/calendar-portlet/calendarbooking/has-child-calendar-bookings': {
+							parentCalendarBookingId: schedulerEvent.get('calendarBookingId')
+						}
+					},
+					{
+						success: function() {
+							callback(this.get('responseData'));
 						}
 					}
 				);
@@ -1461,10 +1446,10 @@ AUI.add(
 										'update',
 										schedulerEvent.isMasterBooking(),
 										function() {
-											CalendarUtil.countChildrenCalendarBookings(
+											CalendarUtil.hasChildCalendarBookings(
 												schedulerEvent,
 												function(data) {
-													if (data > 1) {
+													if (data) {
 														Liferay.CalendarMessageUtil.confirm(
 															TPL_MESSAGE_UPDATE_ALL_INVITED,
 															Liferay.Language.get('continue'),
@@ -1487,10 +1472,10 @@ AUI.add(
 											this.hide();
 										},
 										function() {
-											CalendarUtil.countChildrenCalendarBookings(
+											CalendarUtil.hasChildCalendarBookings(
 												schedulerEvent,
 												function(data) {
-													if (data > 1) {
+													if (data) {
 														Liferay.CalendarMessageUtil.confirm(
 															TPL_MESSAGE_UPDATE_ALL_INVITED,
 															Liferay.Language.get('continue'),
@@ -1522,10 +1507,10 @@ AUI.add(
 											CalendarUtil.getEvent(
 												calendarBookingId,
 												function(calendarBooking) {
-													CalendarUtil.countChildrenCalendarBookings(
+													CalendarUtil.hasChildCalendarBookings(
 														schedulerEvent,
 														function(data) {
-															if (data > 1) {
+															if (data) {
 																Liferay.CalendarMessageUtil.confirm(
 																	TPL_MESSAGE_UPDATE_ALL_INVITED,
 																	Liferay.Language.get('continue'),
@@ -1594,10 +1579,10 @@ AUI.add(
 									);
 								}
 								else if (schedulerEvent.isMasterBooking()) {
-									CalendarUtil.countChildrenCalendarBookings(
+									CalendarUtil.hasChildCalendarBookings(
 										schedulerEvent,
 										function(data) {
-											if (data > 1) {
+											if (data) {
 												Liferay.CalendarMessageUtil.confirm(
 													TPL_MESSAGE_UPDATE_ALL_INVITED,
 													Liferay.Language.get('continue'),
