@@ -14,25 +14,24 @@
 
 package com.liferay.wsrp.admin.lar;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
+import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelType;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.wsrp.NoSuchConsumerException;
-import com.liferay.wsrp.NoSuchConsumerPortletException;
-import com.liferay.wsrp.NoSuchProducerException;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPConsumerLocalServiceUtil;
-import com.liferay.wsrp.service.WSRPConsumerPortletLocalServiceUtil;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
+import com.liferay.wsrp.service.persistence.WSRPConsumerExportActionableDynamicQuery;
+import com.liferay.wsrp.service.persistence.WSRPConsumerPortletExportActionableDynamicQuery;
+import com.liferay.wsrp.service.persistence.WSRPProducerExportActionableDynamicQuery;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 	public static final String NAMESPACE = "wsrp";
 
 	public AdminPortletDataHandler() {
-		setDataLevel(DataLevel.SITE);
+		setDataLevel(DataLevel.PORTAL);
 		setDeletionSystemEventStagedModelTypes(
 			new StagedModelType(WSRPConsumer.class),
 			new StagedModelType(WSRPConsumerPortlet.class),
@@ -67,6 +66,12 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
 		throws Exception {
+
+		if (portletDataContext.addPrimaryKey(
+				AdminPortletDataHandler.class, "deleteData")) {
+
+			return portletPreferences;
+		}
 
 		long companyId = portletDataContext.getCompanyId();
 
@@ -97,37 +102,38 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 		Element rootElement = addExportDataRootElement(portletDataContext);
 
+		rootElement.addAttribute(
+			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
+
 		if (portletDataContext.getBooleanParameter(
 				NAMESPACE, "wsrp-producers")) {
 
-			Element wsrpProducersElement = rootElement.addElement(
-				"wsrp-producers");
+			ActionableDynamicQuery wsrpProducerExportActionableDynamicQuery =
+				new WSRPProducerExportActionableDynamicQuery(
+					portletDataContext);
 
-			List<WSRPProducer> wsrpProducers =
-				WSRPProducerLocalServiceUtil.getWSRPProducers(
-					portletDataContext.getCompanyId(), QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS);
-
-			for (WSRPProducer wsrpProducer : wsrpProducers) {
-				exportWSRPProducer(
-					portletDataContext, wsrpProducersElement, wsrpProducer);
-			}
+			wsrpProducerExportActionableDynamicQuery.performActions();
 		}
 
 		if (portletDataContext.getBooleanParameter(
 				NAMESPACE, "wsrp-consumers")) {
 
-			Element wsrpConsumersElement = rootElement.addElement(
-				"wsrp-consumers");
+			ActionableDynamicQuery wsrpConsumerExportActionableDynamicQuery =
+				new WSRPConsumerExportActionableDynamicQuery(
+					portletDataContext);
 
-			List<WSRPConsumer> wsrpConsumers =
-				WSRPConsumerLocalServiceUtil.getWSRPConsumers(
-					portletDataContext.getCompanyId(), QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS);
+			wsrpConsumerExportActionableDynamicQuery.performActions();
 
-			for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
-				exportWSRPConsumer(
-					portletDataContext, wsrpConsumersElement, wsrpConsumer);
+			if (portletDataContext.getBooleanParameter(
+					NAMESPACE, "wsrp-consumer-portlets")) {
+
+				ActionableDynamicQuery
+					wsrpConsumerPortletExportActionableDynamicQuery =
+						new WSRPConsumerPortletExportActionableDynamicQuery(
+							portletDataContext);
+
+				wsrpConsumerPortletExportActionableDynamicQuery.
+					performActions();
 			}
 		}
 
@@ -140,339 +146,81 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences, String data)
 		throws Exception {
 
-		Element rootElement = portletDataContext.getImportDataRootElement();
-
 		if (portletDataContext.getBooleanParameter(
 				NAMESPACE, "wsrp-producers")) {
 
-			Element wsrpProducersElement = rootElement.element(
-				"wsrp-producers");
+			Element wsrpProducersElement =
+				portletDataContext.getImportDataGroupElement(
+					WSRPProducer.class);
 
-			importWSRPProducers(portletDataContext, wsrpProducersElement);
+			List<Element> wsrpProducerElements =
+				wsrpProducersElement.elements();
+
+			for (Element wsrpProducerElement : wsrpProducerElements) {
+				StagedModelDataHandlerUtil.importStagedModel(
+					portletDataContext, wsrpProducerElement);
+			}
 		}
 
 		if (portletDataContext.getBooleanParameter(
 				NAMESPACE, "wsrp-consumers")) {
 
-			Element wsrpConsumersElement = rootElement.element(
-				"wsrp-consumers");
+			Element wsrpConsumersElement =
+				portletDataContext.getImportDataGroupElement(
+					WSRPConsumer.class);
 
-			importWSRPConsumers(portletDataContext, wsrpConsumersElement);
-		}
+			List<Element> wsrpConsumerElements =
+				wsrpConsumersElement.elements();
 
-		return null;
-	}
-
-	protected void exportWSRPConsumer(
-			PortletDataContext portletDataContext, Element wsrpConsumersElement,
-			WSRPConsumer wsrpConsumer)
-		throws Exception {
-
-		String path = getWSRPConsumerPath(portletDataContext, wsrpConsumer);
-
-		if (!portletDataContext.isPathNotProcessed(path)) {
-			return;
-		}
-
-		Element wsrpConsumerElement = wsrpConsumersElement.addElement(
-			"wsrp-consumer");
-
-		portletDataContext.addClassedModel(
-			wsrpConsumerElement, path, wsrpConsumer);
-
-		if (portletDataContext.getBooleanParameter(
-				NAMESPACE, "wsrp-consumer-portlets")) {
-
-			List<WSRPConsumerPortlet> wsrpConsumerPortlets =
-				WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlets(
-					wsrpConsumer.getWsrpConsumerId(), QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS);
-
-			Element wsrpConsumerPortletsElement =
-				wsrpConsumerElement.addElement("wsrp-consumer-portlets");
-
-			for (WSRPConsumerPortlet wsrpConsumerPortlet :
-					wsrpConsumerPortlets) {
-
-				exportWSRPConsumerPortlet(
-					portletDataContext, wsrpConsumerPortletsElement,
-					wsrpConsumerPortlet);
+			for (Element wsrpConsumerElement : wsrpConsumerElements) {
+				StagedModelDataHandlerUtil.importStagedModel(
+					portletDataContext, wsrpConsumerElement);
 			}
-		}
-	}
-
-	protected void exportWSRPConsumerPortlet(
-			PortletDataContext portletDataContext,
-			Element wsrpConsumerPortletsElement,
-			WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws Exception {
-
-		String path = getWSRPConsumerPortletsPath(
-			portletDataContext, wsrpConsumerPortlet);
-
-		if (!portletDataContext.isPathNotProcessed(path)) {
-			return;
-		}
-
-		Element wsrpConsumerPortletElement =
-			wsrpConsumerPortletsElement.addElement("wsrp-consumer-portlet");
-
-		portletDataContext.addClassedModel(
-			wsrpConsumerPortletElement, path, wsrpConsumerPortlet);
-	}
-
-	protected void exportWSRPProducer(
-			PortletDataContext portletDataContext, Element wsrpProducersElement,
-			WSRPProducer wsrpProducer)
-		throws Exception {
-
-		String path = getWSRPProducerPath(portletDataContext, wsrpProducer);
-
-		if (!portletDataContext.isPathNotProcessed(path)) {
-			return;
-		}
-
-		Element wsrpProducerElement = wsrpProducersElement.addElement(
-			"wsrp-producer");
-
-		portletDataContext.addClassedModel(
-			wsrpProducerElement, path, wsrpProducer);
-	}
-
-	protected String getWSRPConsumerPath(
-		PortletDataContext portletDataContext, WSRPConsumer wsrpConsumer) {
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(portletDataContext.getPortletPath(_PORTLET_ID));
-		sb.append("/wsrp-consumers/");
-		sb.append(wsrpConsumer.getUuid());
-		sb.append(".xml");
-
-		return sb.toString();
-	}
-
-	protected String getWSRPConsumerPortletsPath(
-		PortletDataContext portletDataContext,
-		WSRPConsumerPortlet wsrpConsumerPortlet) {
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(portletDataContext.getPortletPath(_PORTLET_ID));
-		sb.append("/wsrp-consumer-portlets/");
-		sb.append(wsrpConsumerPortlet.getWsrpConsumerPortletId());
-		sb.append(".xml");
-
-		return sb.toString();
-	}
-
-	protected String getWSRPProducerPath(
-		PortletDataContext portletDataContext, WSRPProducer wsrpProducer) {
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(portletDataContext.getPortletPath(_PORTLET_ID));
-		sb.append("/wsrp-producers/");
-		sb.append(wsrpProducer.getWsrpProducerId());
-		sb.append(".xml");
-
-		return sb.toString();
-	}
-
-	protected WSRPConsumer importWSRPConsumer(
-			PortletDataContext portletDataContext, Element wsrpConsumerElement,
-			WSRPConsumer wsrpConsumer)
-		throws Exception {
-
-		WSRPConsumer importedWSRPConsumer = null;
-
-		try {
-			importedWSRPConsumer = WSRPConsumerLocalServiceUtil.getWSRPConsumer(
-				wsrpConsumer.getUuid());
-
-			importedWSRPConsumer.setName(wsrpConsumer.getName());
-			importedWSRPConsumer.setUrl(wsrpConsumer.getUrl());
-			importedWSRPConsumer.setWsdl(wsrpConsumer.getWsdl());
-			importedWSRPConsumer.setForwardCookies(
-				wsrpConsumer.getForwardCookies());
-			importedWSRPConsumer.setForwardHeaders(
-				wsrpConsumer.getForwardHeaders());
-			importedWSRPConsumer.setMarkupCharacterSets(
-				wsrpConsumer.getMarkupCharacterSets());
-
-			WSRPConsumerLocalServiceUtil.updateWSRPConsumer(
-				importedWSRPConsumer);
-		}
-		catch (NoSuchConsumerException nsce) {
-			ServiceContext serviceContext =
-				portletDataContext.createServiceContext(
-					wsrpConsumerElement, wsrpConsumer);
-
-			serviceContext.setUuid(wsrpConsumer.getUuid());
-
-			importedWSRPConsumer = WSRPConsumerLocalServiceUtil.addWSRPConsumer(
-				portletDataContext.getCompanyId(), null, wsrpConsumer.getName(),
-				wsrpConsumer.getUrl(), wsrpConsumer.getForwardCookies(),
-				wsrpConsumer.getForwardHeaders(),
-				wsrpConsumer.getMarkupCharacterSets(), serviceContext);
-		}
-
-		return importedWSRPConsumer;
-	}
-
-	protected void importWSRPConsumerPortlet(
-			PortletDataContext portletDataContext, WSRPConsumer wsrpConsumer,
-			Element wsrpConsumerPortletElement,
-			WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws Exception {
-
-		try {
-			WSRPConsumerPortlet importedWSRPConsumerPortlet =
-				WSRPConsumerPortletLocalServiceUtil.getWSRPConsumerPortlet(
-					wsrpConsumerPortlet.getUuid());
-
-			importedWSRPConsumerPortlet.setWsrpConsumerId(
-				wsrpConsumer.getWsrpConsumerId());
-			importedWSRPConsumerPortlet.setName(wsrpConsumerPortlet.getName());
-			importedWSRPConsumerPortlet.setPortletHandle(
-				wsrpConsumerPortlet.getPortletHandle());
-
-			WSRPConsumerPortletLocalServiceUtil.updateWSRPConsumerPortlet(
-				importedWSRPConsumerPortlet);
-		}
-		catch (NoSuchConsumerPortletException nscpe) {
-			ServiceContext serviceContext =
-				portletDataContext.createServiceContext(
-					wsrpConsumerPortletElement, wsrpConsumerPortlet);
-
-			serviceContext.setUuid(wsrpConsumerPortlet.getUuid());
-
-			WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(
-				wsrpConsumer.getUuid(), wsrpConsumerPortlet.getName(),
-				wsrpConsumerPortlet.getPortletHandle(), serviceContext);
-		}
-	}
-
-	protected void importWSRPConsumerPortlets(
-			PortletDataContext portletDataContext, WSRPConsumer wsrpConsumer,
-			Element wsrpConsumerPortletsElement)
-		throws Exception {
-
-		if (wsrpConsumerPortletsElement == null) {
-			return;
-		}
-
-		for (Element wsrpConsumerPortletElement :
-				wsrpConsumerPortletsElement.elements("wsrp-consumer-portlet")) {
-
-			String path = wsrpConsumerPortletElement.attributeValue("path");
-
-			if (!portletDataContext.isPathNotProcessed(path)) {
-				continue;
-			}
-
-			WSRPConsumerPortlet wsrpConsumerPortlet =
-				(WSRPConsumerPortlet)portletDataContext.getZipEntryAsObject(
-					path);
-
-			importWSRPConsumerPortlet(
-				portletDataContext, wsrpConsumer, wsrpConsumerPortletElement,
-				wsrpConsumerPortlet);
-		}
-	}
-
-	protected void importWSRPConsumers(
-			PortletDataContext portletDataContext, Element wsrpConsumersElement)
-		throws Exception {
-
-		if (wsrpConsumersElement == null) {
-			return;
-		}
-
-		for (Element wsrpConsumerElement :
-				wsrpConsumersElement.elements("wsrp-consumer")) {
-
-			String path = wsrpConsumerElement.attributeValue("path");
-
-			if (!portletDataContext.isPathNotProcessed(path)) {
-				continue;
-			}
-
-			WSRPConsumer wsrpConsumer =
-				(WSRPConsumer)portletDataContext.getZipEntryAsObject(path);
-
-			WSRPConsumer importedWSRPConsumer = importWSRPConsumer(
-				portletDataContext, wsrpConsumerElement, wsrpConsumer);
 
 			if (portletDataContext.getBooleanParameter(
 					NAMESPACE, "wsrp-consumer-portlets")) {
 
 				Element wsrpConsumerPortletsElement =
-					wsrpConsumerElement.element("wsrp-consumer-portlets");
+					portletDataContext.getImportDataGroupElement(
+						WSRPConsumerPortlet.class);
 
-				importWSRPConsumerPortlets(
-					portletDataContext, importedWSRPConsumer,
-					wsrpConsumerPortletsElement);
+				List<Element> wsrpConsumerPortletElements =
+					wsrpConsumerPortletsElement.elements();
+
+				for (Element wsrpConsumerPortletElement :
+						wsrpConsumerPortletElements) {
+
+					StagedModelDataHandlerUtil.importStagedModel(
+						portletDataContext, wsrpConsumerPortletElement);
+				}
 			}
 		}
+
+		return null;
 	}
 
-	protected void importWSRPProducer(
-			PortletDataContext portletDataContext, Element wsrpProducerElement,
-			WSRPProducer wsrpProducer)
+	@Override
+	protected void doPrepareManifestSummary(
+			PortletDataContext portletDataContext,
+			PortletPreferences portletPreferences)
 		throws Exception {
 
-		try {
-			WSRPProducer importedWSRPProducer =
-				WSRPProducerLocalServiceUtil.getWSRPProducer(
-					wsrpProducer.getUuid());
+		ActionableDynamicQuery wsrpProducerExportActionableDynamicQuery =
+			new WSRPProducerExportActionableDynamicQuery(portletDataContext);
 
-			importedWSRPProducer.setName(wsrpProducer.getName());
-			importedWSRPProducer.setVersion(wsrpProducer.getVersion());
-			importedWSRPProducer.setPortletIds(wsrpProducer.getPortletIds());
+		wsrpProducerExportActionableDynamicQuery.performCount();
 
-			WSRPProducerLocalServiceUtil.updateWSRPProducer(
-				importedWSRPProducer);
-		}
-		catch (NoSuchProducerException nspe) {
-			ServiceContext serviceContext =
-				portletDataContext.createServiceContext(
-					wsrpProducerElement, wsrpProducer);
+		ActionableDynamicQuery wsrpConsumerExportActionableDynamicQuery =
+			new WSRPConsumerExportActionableDynamicQuery(portletDataContext);
 
-			serviceContext.setUuid(wsrpProducer.getUuid());
+		wsrpConsumerExportActionableDynamicQuery.performCount();
 
-			WSRPProducerLocalServiceUtil.addWSRPProducer(
-				portletDataContext.getUserId(null), wsrpProducer.getName(),
-				wsrpProducer.getVersion(), wsrpProducer.getPortletIds(),
-				serviceContext);
-		}
+		ActionableDynamicQuery
+			wsrpConsumerPortletExportActionableDynamicQuery =
+				new WSRPConsumerPortletExportActionableDynamicQuery(
+					portletDataContext);
+
+		wsrpConsumerPortletExportActionableDynamicQuery.performCount();
 	}
-
-	protected void importWSRPProducers(
-			PortletDataContext portletDataContext, Element wsrpProducersElement)
-		throws Exception {
-
-		if (wsrpProducersElement == null) {
-			return;
-		}
-
-		for (Element wsrpProducerElement :
-				wsrpProducersElement.elements("wsrp-producer")) {
-
-			String path = wsrpProducerElement.attributeValue("path");
-
-			if (!portletDataContext.isPathNotProcessed(path)) {
-				continue;
-			}
-
-			WSRPProducer wsrpProducer =
-				(WSRPProducer)portletDataContext.getZipEntryAsObject(path);
-
-			importWSRPProducer(
-				portletDataContext, wsrpProducerElement, wsrpProducer);
-		}
-	}
-
-	private static final String _PORTLET_ID = "1_WAR_wsrpportlet";
 
 }
