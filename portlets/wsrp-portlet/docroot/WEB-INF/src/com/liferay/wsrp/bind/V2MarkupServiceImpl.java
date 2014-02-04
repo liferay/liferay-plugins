@@ -38,6 +38,7 @@ import com.liferay.portal.model.LayoutTypePortlet;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.util.Encryptor;
 import com.liferay.util.axis.ServletUtil;
 import com.liferay.wsrp.model.WSRPProducer;
@@ -556,6 +557,10 @@ public class V2MarkupServiceImpl
 				LayoutLocalServiceUtil.updateLayout(
 					layout.getGroupId(), layout.isPrivateLayout(),
 					layout.getLayoutId(), layout.getTypeSettings());
+
+				// add portlet preferences
+				PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+						layout, portletId);
 			}
 
 			return layout;
