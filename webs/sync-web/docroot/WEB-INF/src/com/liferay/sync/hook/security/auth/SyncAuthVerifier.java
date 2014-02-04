@@ -95,7 +95,12 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 
 				method.setAccessible(true);
 
-				return (String[])method.invoke(object, request, response);
+				String[] credentials = (String[])method.invoke(
+					object, request, response);
+
+				if (credentials != null) {
+					return credentials;					
+				}
 			}
 			finally {
 				currentThread.setContextClassLoader(classLoader);
