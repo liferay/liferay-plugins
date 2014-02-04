@@ -99,7 +99,7 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 					object, request, response);
 
 				if (credentials != null) {
-					return credentials;					
+					return credentials;
 				}
 			}
 			finally {
