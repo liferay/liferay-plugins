@@ -258,6 +258,20 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	@Override
+	public boolean hasChildCalendarBookings(long parentCalendarBookingId)
+		throws PortalException, SystemException {
+
+		int total = calendarBookingPersistence.countByParentCalendarBookingId(
+			parentCalendarBookingId);
+
+		if (total > 1) {
+			return true;
+		}
+
+		return false;
+	}
+
+	@Override
 	public void invokeTransition(
 			long calendarBookingId, int status, ServiceContext serviceContext)
 		throws PortalException, SystemException {
