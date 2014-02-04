@@ -76,7 +76,7 @@ public class Watcher implements Runnable {
 			try {
 				watchKey = _watchService.take();
 			}
-			catch (InterruptedException ie) {
+			catch (Exception e) {
 				return;
 			}
 
