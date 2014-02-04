@@ -14,17 +14,18 @@
 
 package com.liferay.opensocial.admin.lar;
 
-import com.liferay.opensocial.NoSuchGadgetException;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
+import com.liferay.opensocial.service.permission.GadgetPermission;
+import com.liferay.opensocial.service.persistence.GadgetExportActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.lar.StagedModelType;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.xml.Element;
-import com.liferay.portal.service.ServiceContext;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ import javax.portlet.PortletPreferences;
 public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 	public AdminPortletDataHandler() {
-		setDataLevel(DataLevel.SITE);
+		setDataLevel(DataLevel.PORTAL);
 		setDeletionSystemEventStagedModelTypes(
 			new StagedModelType(Gadget.class));
 		setPublishToLiveByDefault(true);
@@ -47,6 +48,12 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
 		throws Exception {
+
+		if (portletDataContext.addPrimaryKey(
+				AdminPortletDataHandler.class, "deleteData")) {
+
+			return portletPreferences;
+		}
 
 		List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
 			portletDataContext.getCompanyId(), QueryUtil.ALL_POS,
@@ -61,21 +68,22 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 	@Override
 	protected String doExportData(
-			PortletDataContext portletDataContext, String portletId,
+			final PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)
 		throws Exception {
 
 		Element rootElement = addExportDataRootElement(portletDataContext);
 
-		Element gadgetsElement = rootElement.addElement("gadgets");
+		portletDataContext.addPortletPermissions(
+			GadgetPermission.RESOURCE_NAME);
 
-		List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
-			portletDataContext.getCompanyId(), QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS);
+		rootElement.addAttribute(
+			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
 
-		for (Gadget gadget : gadgets) {
-			exportGadget(portletDataContext, gadgetsElement, gadget);
-		}
+		ActionableDynamicQuery actionableDynamicQuery =
+			new GadgetExportActionableDynamicQuery(portletDataContext);
+
+		actionableDynamicQuery.performActions();
 
 		return getExportDataRootElementString(rootElement);
 	}
@@ -86,85 +94,31 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences, String data)
 		throws Exception {
 
-		Element rootElement = portletDataContext.getImportDataRootElement();
+		portletDataContext.importPortalPermissions();
 
-		Element gadgetsElement = rootElement.element("gadgets");
+		Element gadgetsElement = portletDataContext.getImportDataGroupElement(
+			Gadget.class);
 
-		for (Element gadgetElement : gadgetsElement.elements("gadget")) {
-			String gadgetPath = gadgetElement.attributeValue("path");
+		List<Element> gadgetElements = gadgetsElement.elements();
 
-			if (!portletDataContext.isPathNotProcessed(gadgetPath)) {
-				continue;
-			}
-
-			Gadget gadget = (Gadget)portletDataContext.getZipEntryAsObject(
-				gadgetPath);
-
-			importGadget(portletDataContext, gadgetElement, gadget);
+		for (Element gadgetElement : gadgetElements) {
+			StagedModelDataHandlerUtil.importStagedModel(
+				portletDataContext, gadgetElement);
 		}
 
 		return null;
 	}
 
-	protected void exportGadget(
-			PortletDataContext portletDataContext, Element gadgetsElement,
-			Gadget gadget)
+	@Override
+	protected void doPrepareManifestSummary(
+			PortletDataContext portletDataContext,
+			PortletPreferences portletPreferences)
 		throws Exception {
 
-		String path = getGadgetPath(portletDataContext, gadget);
+		ActionableDynamicQuery actionableDynamicQuery =
+			new GadgetExportActionableDynamicQuery(portletDataContext);
 
-		if (!portletDataContext.isPathNotProcessed(path)) {
-			return;
-		}
-
-		Element gadgetElement = gadgetsElement.addElement("gadget");
-
-		portletDataContext.addClassedModel(gadgetElement, path, gadget);
+		actionableDynamicQuery.performCount();
 	}
-
-	protected String getGadgetPath(
-		PortletDataContext portletDataContext, Gadget gadget) {
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(portletDataContext.getPortletPath(_PORTLET_ID));
-		sb.append("/gadgets/");
-		sb.append(gadget.getUuid());
-		sb.append(".xml");
-
-		return sb.toString();
-	}
-
-	protected void importGadget(
-			PortletDataContext portletDataContext, Element gadgetElement,
-			Gadget gadget)
-		throws Exception {
-
-		Gadget importedGadget = null;
-
-		try {
-			importedGadget = GadgetLocalServiceUtil.getGadget(
-				gadget.getUuid(), portletDataContext.getCompanyId());
-
-			importedGadget.setName(gadget.getName());
-			importedGadget.setUrl(gadget.getUrl());
-			importedGadget.setPortletCategoryNames(
-				gadget.getPortletCategoryNames());
-
-			GadgetLocalServiceUtil.updateGadget(importedGadget);
-		}
-		catch (NoSuchGadgetException nsge) {
-			ServiceContext serviceContext =
-				portletDataContext.createServiceContext(gadgetElement, gadget);
-
-			serviceContext.setUuid(gadget.getUuid());
-
-			GadgetLocalServiceUtil.addGadget(
-				portletDataContext.getCompanyId(), gadget.getUrl(),
-				gadget.getPortletCategoryNames(), serviceContext);
-		}
-	}
-
-	private static final String _PORTLET_ID = "1_WAR_opensocialportlet";
 
 }
