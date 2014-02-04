@@ -1126,6 +1126,7 @@
 						{
 							dialog:	{
 								bodyContent: content.join(''),
+								destroyOnHide: true,
 								height: 250,
 								hideOn: [],
 								resizable: false,
