@@ -36,9 +36,8 @@ import java.util.Map;
 public class WSRPConsumerPortletStagedModelDataHandler
 	extends BaseStagedModelDataHandler<WSRPConsumerPortlet> {
 
-	public static final String[] CLASS_NAMES = {
-		WSRPConsumerPortlet.class.getName()
-	};
+	public static final String[] CLASS_NAMES =
+		{WSRPConsumerPortlet.class.getName()};
 
 	@Override
 	public void deleteStagedModel(
@@ -54,92 +53,90 @@ public class WSRPConsumerPortletStagedModelDataHandler
 	}
 
 	@Override
-	public String getDisplayName(WSRPConsumerPortlet wsrpConsumerPortlet) {
-		return wsrpConsumerPortlet.getName();
+	public String getDisplayName(WSRPConsumerPortlet consumerPortlet) {
+		return consumerPortlet.getName();
 	}
 
 	@Override
 	protected void doExportStagedModel(
 			PortletDataContext portletDataContext,
-			WSRPConsumerPortlet wsrpConsumerPortlet)
+			WSRPConsumerPortlet consumerPortlet)
 		throws Exception {
 
-		WSRPConsumer wsrpConsumer =
+		WSRPConsumer consumer =
 			WSRPConsumerLocalServiceUtil.getWSRPConsumer(
-				wsrpConsumerPortlet.getWsrpConsumerId());
+				consumerPortlet.getWsrpConsumerId());
 
 		StagedModelDataHandlerUtil.exportReferenceStagedModel(
-			portletDataContext, wsrpConsumerPortlet, wsrpConsumer,
+			portletDataContext, consumerPortlet, consumer,
 			PortletDataContext.REFERENCE_TYPE_STRONG);
 
 		Element entryElement = portletDataContext.getExportDataElement(
-			wsrpConsumerPortlet);
+			consumerPortlet);
 
 		portletDataContext.addClassedModel(
-			entryElement,
-			ExportImportPathUtil.getModelPath(wsrpConsumerPortlet),
-			wsrpConsumerPortlet);
+			entryElement, ExportImportPathUtil.getModelPath(consumerPortlet),
+			consumerPortlet);
 	}
 
 	@Override
 	protected void doImportStagedModel(
 			PortletDataContext portletDataContext,
-			WSRPConsumerPortlet wsrpConsumerPortlet)
+			WSRPConsumerPortlet consumerPortlet)
 		throws Exception {
 
 		StagedModelDataHandlerUtil.importReferenceStagedModel(
-			portletDataContext, wsrpConsumerPortlet, WSRPConsumer.class,
-			wsrpConsumerPortlet.getWsrpConsumerId());
+			portletDataContext, consumerPortlet, WSRPConsumer.class,
+			consumerPortlet.getWsrpConsumerId());
 
-		Map<Long, Long> wsrpConsumerIds =
+		Map<Long, Long> consumerIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				WSRPConsumer.class);
 
-		long wsrpConsumerId = MapUtil.getLong(
-			wsrpConsumerIds, wsrpConsumerPortlet.getWsrpConsumerId(),
-			wsrpConsumerPortlet.getWsrpConsumerId());
+		long consumerId = MapUtil.getLong(
+			consumerIds, consumerPortlet.getWsrpConsumerId(),
+			consumerPortlet.getWsrpConsumerId());
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			wsrpConsumerPortlet);
+			consumerPortlet);
 
-		WSRPConsumerPortlet importedWSRPConsumerPortlet = null;
+		WSRPConsumerPortlet importedConsumerPortlet = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			WSRPConsumerPortlet existingWSRPConsumerPortlet =
+			WSRPConsumerPortlet existingConsumerPortlet =
 				WSRPConsumerPortletLocalServiceUtil.
 					fetchWSRPConsumerPortletByUuidAndCompanyId(
-						wsrpConsumerPortlet.getUuid(),
+						consumerPortlet.getUuid(),
 						portletDataContext.getCompanyId());
 
-			if (existingWSRPConsumerPortlet == null) {
-				serviceContext.setUuid(wsrpConsumerPortlet.getUuid());
+			if (existingConsumerPortlet == null) {
+				serviceContext.setUuid(consumerPortlet.getUuid());
 
-				importedWSRPConsumerPortlet =
+				importedConsumerPortlet =
 					WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(
-						wsrpConsumerId, wsrpConsumerPortlet.getName(),
-						wsrpConsumerPortlet.getPortletHandle(), serviceContext);
+						consumerId, consumerPortlet.getName(),
+						consumerPortlet.getPortletHandle(), serviceContext);
 			}
 			else {
-				existingWSRPConsumerPortlet.setWsrpConsumerId(wsrpConsumerId);
-				existingWSRPConsumerPortlet.setName(
-					wsrpConsumerPortlet.getName());
-				existingWSRPConsumerPortlet.setPortletHandle(
-					wsrpConsumerPortlet.getPortletHandle());
+				existingConsumerPortlet.setWsrpConsumerId(consumerId);
+				existingConsumerPortlet.setName(consumerPortlet.getName());
+				existingConsumerPortlet.setPortletHandle(
+					consumerPortlet.getPortletHandle());
 
-				importedWSRPConsumerPortlet =
+				importedConsumerPortlet =
 					WSRPConsumerPortletLocalServiceUtil.
-						updateWSRPConsumerPortlet(existingWSRPConsumerPortlet);
+						updateWSRPConsumerPortlet(existingConsumerPortlet);
 			}
 		}
 		else {
-			importedWSRPConsumerPortlet =
+			importedConsumerPortlet =
 				WSRPConsumerPortletLocalServiceUtil.addWSRPConsumerPortlet(
-					wsrpConsumerId, wsrpConsumerPortlet.getName(),
-					wsrpConsumerPortlet.getPortletHandle(), serviceContext);
+					consumerId, consumerPortlet.getName(),
+					consumerPortlet.getPortletHandle(), serviceContext);
 		}
 
 		portletDataContext.importClassedModel(
-			wsrpConsumerPortlet, importedWSRPConsumerPortlet);
+			consumerPortlet, importedConsumerPortlet);
 	}
 
 	@Override
@@ -147,11 +144,11 @@ public class WSRPConsumerPortletStagedModelDataHandler
 			String uuid, long companyId, long groupId)
 		throws Exception {
 
-		WSRPConsumerPortlet wsrpConsumerPortlet =
+		WSRPConsumerPortlet consumerPortlet =
 			WSRPConsumerPortletLocalServiceUtil.
 				fetchWSRPConsumerPortletByUuidAndCompanyId(uuid, companyId);
 
-		if (wsrpConsumerPortlet == null) {
+		if (consumerPortlet == null) {
 			return false;
 		}
 
