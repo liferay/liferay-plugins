@@ -129,48 +129,52 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName22 = "destroyGadget";
+		_methodName22 = "deleteGadgets";
 
-		_methodParameterTypes22 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes22 = new String[] { "long" };
 
-		_methodName23 = "destroyGadgets";
+		_methodName23 = "destroyGadget";
 
-		_methodParameterTypes23 = new String[] {  };
+		_methodParameterTypes23 = new String[] { "java.lang.String", "long" };
 
-		_methodName24 = "fetchGadget";
+		_methodName24 = "destroyGadgets";
 
-		_methodParameterTypes24 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes24 = new String[] {  };
 
-		_methodName25 = "getGadget";
+		_methodName25 = "fetchGadget";
 
 		_methodParameterTypes25 = new String[] { "long", "java.lang.String" };
 
 		_methodName26 = "getGadget";
 
-		_methodParameterTypes26 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes26 = new String[] { "long", "java.lang.String" };
 
-		_methodName27 = "getGadgets";
+		_methodName27 = "getGadget";
 
-		_methodParameterTypes27 = new String[] { "long", "int", "int" };
+		_methodParameterTypes27 = new String[] { "java.lang.String", "long" };
 
-		_methodName28 = "getGadgetsCount";
+		_methodName28 = "getGadgets";
 
-		_methodParameterTypes28 = new String[] { "long" };
+		_methodParameterTypes28 = new String[] { "long", "int", "int" };
 
-		_methodName29 = "initGadget";
+		_methodName29 = "getGadgetsCount";
 
-		_methodParameterTypes29 = new String[] {
+		_methodParameterTypes29 = new String[] { "long" };
+
+		_methodName30 = "initGadget";
+
+		_methodParameterTypes30 = new String[] {
 				"java.lang.String", "long", "long", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName30 = "initGadgets";
+		_methodName31 = "initGadgets";
 
-		_methodParameterTypes30 = new String[] {  };
+		_methodParameterTypes31 = new String[] {  };
 
-		_methodName31 = "updateGadget";
+		_methodName32 = "updateGadget";
 
-		_methodParameterTypes31 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes32 = new String[] { "long", "java.lang.String" };
 	}
 
 	@Override
@@ -829,11 +833,35 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	}
 
 	@Override
-	public void destroyGadget(java.lang.String uuid, long companyId)
+	public void deleteGadgets(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
-				_methodParameterTypes22,
+				_methodParameterTypes22, new Object[] { companyId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void destroyGadget(java.lang.String uuid, long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName23,
+				_methodParameterTypes23,
 				new Object[] { ClpSerializer.translateInput(uuid), companyId });
 		}
 		catch (Throwable t) {
@@ -857,8 +885,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	public void destroyGadgets()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName23,
-				_methodParameterTypes23, new Object[] {  });
+			_invokableLocalService.invokeMethod(_methodName24,
+				_methodParameterTypes24, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -884,8 +912,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] { companyId, ClpSerializer.translateInput(url) });
 		}
 		catch (Throwable t) {
@@ -915,8 +943,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { companyId, ClpSerializer.translateInput(url) });
 		}
 		catch (Throwable t) {
@@ -950,8 +978,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { ClpSerializer.translateInput(uuid), companyId });
 		}
 		catch (Throwable t) {
@@ -984,8 +1012,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] { companyId, start, end });
 		}
 		catch (Throwable t) {
@@ -1013,8 +1041,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28, new Object[] { companyId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29, new Object[] { companyId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1042,8 +1070,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName29,
-				_methodParameterTypes29,
+			_invokableLocalService.invokeMethod(_methodName30,
+				_methodParameterTypes30,
 				new Object[] {
 					ClpSerializer.translateInput(uuid),
 					
@@ -1082,8 +1110,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName30,
-				_methodParameterTypes30, new Object[] {  });
+			_invokableLocalService.invokeMethod(_methodName31,
+				_methodParameterTypes31, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1114,8 +1142,8 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName31,
-					_methodParameterTypes31,
+			returnObj = _invokableLocalService.invokeMethod(_methodName32,
+					_methodParameterTypes32,
 					new Object[] {
 						gadgetId,
 						
@@ -1208,4 +1236,6 @@ public class GadgetLocalServiceClp implements GadgetLocalService {
 	private String[] _methodParameterTypes30;
 	private String _methodName31;
 	private String[] _methodParameterTypes31;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
 }
