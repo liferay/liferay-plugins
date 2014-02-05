@@ -111,6 +111,18 @@ public class WSRPProducerLocalServiceImpl
 		return wsrpProducer;
 	}
 
+	@Override
+	public void deleteWSRPProducers(long companyId)
+		throws PortalException, SystemException {
+
+		List<WSRPProducer> wsrpProducers =
+			wsrpProducerPersistence.findByCompanyId(companyId);
+
+		for (WSRPProducer wsrpProducer : wsrpProducers) {
+			wsrpProducerLocalService.deleteWSRPProducer(wsrpProducer);
+		}
+	}
+
 	public WSRPProducer getWSRPProducer(String wsrpProducerUuid)
 		throws PortalException, SystemException {
 
