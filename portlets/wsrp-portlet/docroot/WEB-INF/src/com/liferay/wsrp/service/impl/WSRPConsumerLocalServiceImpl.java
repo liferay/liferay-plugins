@@ -108,6 +108,18 @@ public class WSRPConsumerLocalServiceImpl
 		return wsrpConsumerPersistence.remove(wsrpConsumer);
 	}
 
+	@Override
+	public void deleteWSRPConsumers(long companyId)
+		throws PortalException, SystemException {
+
+		List<WSRPConsumer> wsrpConsumers =
+			wsrpConsumerPersistence.findByCompanyId(companyId);
+
+		for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
+			wsrpConsumerLocalService.deleteWSRPConsumer(wsrpConsumer);
+		}
+	}
+
 	public WSRPConsumer getWSRPConsumer(String wsrpConsumerUuid)
 		throws PortalException, SystemException {
 
