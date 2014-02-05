@@ -23,7 +23,11 @@ import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
+import com.liferay.sync.engine.util.FileUtil;
 
+import java.io.BufferedWriter;
+
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -128,6 +132,39 @@ public class WatcherTest extends BaseTestCase {
 			SyncFileService.fetchSyncFile(
 				FilePathNameUtil.getFilePathName(filePath),
 				syncAccount.getSyncAccountId()));
+	}
+
+	@Test
+	public void testRunModifyFile() throws Exception {
+		setMockPostResponse("dependencies/watcher_test_modify_file.json");
+
+		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+
+		Files.createFile(filePath);
+
+		Thread.sleep(5000);
+
+		BufferedWriter bufferedWriter = Files.newBufferedWriter(
+			filePath, StandardCharsets.UTF_8);
+
+		bufferedWriter.write("Hello World");
+
+		bufferedWriter.close();
+
+		Thread.sleep(5000);
+
+		_syncFiles = SyncFileService.findSyncFiles(
+			syncAccount.getSyncAccountId());
+
+		Assert.assertEquals(3, _syncFiles.size());
+
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(filePath),
+			syncAccount.getSyncAccountId());
+
+		Assert.assertEquals(
+			FileUtil.getChecksum(filePath), syncFile.getChecksum());
+		Assert.assertEquals(Files.size(filePath), syncFile.getSize());
 	}
 
 	@Test

@@ -96,6 +96,11 @@ public class SyncWatchEventProcessor implements Runnable {
 						deleteFolder(syncWatchEvent);
 					}
 				}
+				else if (eventType.equals(SyncWatchEvent.EVENT_TYPE_MODIFY)) {
+					if (fileType.equals(SyncFile.TYPE_FILE)) {
+						modifyFile(syncWatchEvent);
+					}
+				}
 			}
 			catch (Exception e) {
 				_logger.error(e.getMessage(), e);
@@ -242,6 +247,22 @@ public class SyncWatchEventProcessor implements Runnable {
 
 		SyncFileService.deleteFolderSyncFile(
 			syncWatchEvent.getSyncAccountId(), syncFile);
+	}
+
+	protected void modifyFile(SyncWatchEvent syncWatchEvent) throws Exception {
+		Path filePath = Paths.get(syncWatchEvent.getFilePathName());
+
+		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
+			FileUtil.getFileKey(filePath), syncWatchEvent.getSyncAccountId());
+
+		String checksum = syncFile.getChecksum();
+
+		if (checksum.equals(FileUtil.getChecksum(filePath))) {
+			return;
+		}
+
+		SyncFileService.updateFileSyncFile(
+			filePath, syncWatchEvent.getSyncAccountId(), syncFile);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
