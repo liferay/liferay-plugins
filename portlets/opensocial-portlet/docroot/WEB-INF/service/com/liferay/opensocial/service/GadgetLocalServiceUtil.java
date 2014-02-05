@@ -314,6 +314,11 @@ public class GadgetLocalServiceUtil {
 			serviceContext);
 	}
 
+	public static void deleteGadgets(long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteGadgets(companyId);
+	}
+
 	public static void destroyGadget(java.lang.String uuid, long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().destroyGadget(uuid, companyId);

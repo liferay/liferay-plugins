@@ -139,48 +139,52 @@ public class GadgetLocalServiceClpInvoker {
 
 		_methodParameterTypes58 = new String[] { "long" };
 
-		_methodName59 = "destroyGadget";
+		_methodName59 = "deleteGadgets";
 
-		_methodParameterTypes59 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes59 = new String[] { "long" };
 
-		_methodName60 = "destroyGadgets";
+		_methodName60 = "destroyGadget";
 
-		_methodParameterTypes60 = new String[] {  };
+		_methodParameterTypes60 = new String[] { "java.lang.String", "long" };
 
-		_methodName61 = "fetchGadget";
+		_methodName61 = "destroyGadgets";
 
-		_methodParameterTypes61 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes61 = new String[] {  };
 
-		_methodName62 = "getGadget";
+		_methodName62 = "fetchGadget";
 
 		_methodParameterTypes62 = new String[] { "long", "java.lang.String" };
 
 		_methodName63 = "getGadget";
 
-		_methodParameterTypes63 = new String[] { "java.lang.String", "long" };
+		_methodParameterTypes63 = new String[] { "long", "java.lang.String" };
 
-		_methodName64 = "getGadgets";
+		_methodName64 = "getGadget";
 
-		_methodParameterTypes64 = new String[] { "long", "int", "int" };
+		_methodParameterTypes64 = new String[] { "java.lang.String", "long" };
 
-		_methodName65 = "getGadgetsCount";
+		_methodName65 = "getGadgets";
 
-		_methodParameterTypes65 = new String[] { "long" };
+		_methodParameterTypes65 = new String[] { "long", "int", "int" };
 
-		_methodName66 = "initGadget";
+		_methodName66 = "getGadgetsCount";
 
-		_methodParameterTypes66 = new String[] {
+		_methodParameterTypes66 = new String[] { "long" };
+
+		_methodName67 = "initGadget";
+
+		_methodParameterTypes67 = new String[] {
 				"java.lang.String", "long", "long", "java.lang.String",
 				"java.lang.String"
 			};
 
-		_methodName67 = "initGadgets";
+		_methodName68 = "initGadgets";
 
-		_methodParameterTypes67 = new String[] {  };
+		_methodParameterTypes68 = new String[] {  };
 
-		_methodName68 = "updateGadget";
+		_methodName69 = "updateGadget";
 
-		_methodParameterTypes68 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes69 = new String[] { "long", "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -315,51 +319,58 @@ public class GadgetLocalServiceClpInvoker {
 
 		if (_methodName59.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
-			GadgetLocalServiceUtil.destroyGadget((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			GadgetLocalServiceUtil.deleteGadgets(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
-			GadgetLocalServiceUtil.destroyGadgets();
+			GadgetLocalServiceUtil.destroyGadget((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
 
 			return null;
 		}
 
 		if (_methodName61.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
-			return GadgetLocalServiceUtil.fetchGadget(((Long)arguments[0]).longValue(),
-				(java.lang.String)arguments[1]);
+			GadgetLocalServiceUtil.destroyGadgets();
+
+			return null;
 		}
 
 		if (_methodName62.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
-			return GadgetLocalServiceUtil.getGadget(((Long)arguments[0]).longValue(),
+			return GadgetLocalServiceUtil.fetchGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName63.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
-			return GadgetLocalServiceUtil.getGadget((java.lang.String)arguments[0],
-				((Long)arguments[1]).longValue());
+			return GadgetLocalServiceUtil.getGadget(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName64.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+			return GadgetLocalServiceUtil.getGadget((java.lang.String)arguments[0],
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			return GadgetLocalServiceUtil.getGadgets(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName65.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
+		if (_methodName66.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
 			return GadgetLocalServiceUtil.getGadgetsCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName67.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
 			GadgetLocalServiceUtil.initGadget((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(),
 				((Long)arguments[2]).longValue(),
@@ -368,15 +379,15 @@ public class GadgetLocalServiceClpInvoker {
 			return null;
 		}
 
-		if (_methodName67.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
+		if (_methodName68.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
 			GadgetLocalServiceUtil.initGadgets();
 
 			return null;
 		}
 
-		if (_methodName68.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
 			return GadgetLocalServiceUtil.updateGadget(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1]);
 		}
@@ -450,4 +461,6 @@ public class GadgetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes67;
 	private String _methodName68;
 	private String[] _methodParameterTypes68;
+	private String _methodName69;
+	private String[] _methodParameterTypes69;
 }
