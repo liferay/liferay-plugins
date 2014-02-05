@@ -133,6 +133,15 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 		return deleteGadget(gadget);
 	}
 
+	@Override
+	public void deleteGadgets(long companyId) throws SystemException {
+		List<Gadget> gadgets = gadgetPersistence.findByCompanyId(companyId);
+
+		for (Gadget gadget : gadgets) {
+			gadgetLocalService.deleteGadget(gadget);
+		}
+	}
+
 	@Clusterable
 	public void destroyGadget(String uuid, long companyId)
 		throws SystemException {
