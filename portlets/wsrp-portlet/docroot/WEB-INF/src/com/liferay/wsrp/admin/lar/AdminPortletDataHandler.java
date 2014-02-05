@@ -15,7 +15,6 @@
 package com.liferay.wsrp.admin.lar;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
@@ -75,21 +74,9 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 		long companyId = portletDataContext.getCompanyId();
 
-		List<WSRPProducer> wsrpProducers =
-			WSRPProducerLocalServiceUtil.getWSRPProducers(
-				companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		WSRPProducerLocalServiceUtil.deleteWSRPProducers(companyId);
 
-		for (WSRPProducer wsrpProducer : wsrpProducers) {
-			WSRPProducerLocalServiceUtil.deleteWSRPProducer(wsrpProducer);
-		}
-
-		List<WSRPConsumer> wsrpConsumers =
-			WSRPConsumerLocalServiceUtil.getWSRPConsumers(
-				companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		for (WSRPConsumer wsrpConsumer : wsrpConsumers) {
-			WSRPConsumerLocalServiceUtil.deleteWSRPConsumer(wsrpConsumer);
-		}
+		WSRPConsumerLocalServiceUtil.deleteWSRPConsumers(companyId);
 
 		return portletPreferences;
 	}
