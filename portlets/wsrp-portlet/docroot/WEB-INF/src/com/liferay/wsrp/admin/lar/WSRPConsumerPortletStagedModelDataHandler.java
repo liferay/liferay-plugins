@@ -38,9 +38,8 @@ import java.util.Map;
 public class WSRPConsumerPortletStagedModelDataHandler
 	extends BaseStagedModelDataHandler<WSRPConsumerPortlet> {
 
-	public static final String[] CLASS_NAMES = {
-		WSRPConsumerPortlet.class.getName()
-	};
+	public static final String[] CLASS_NAMES =
+		{WSRPConsumerPortlet.class.getName()};
 
 	@Override
 	public void deleteStagedModel(
@@ -49,14 +48,14 @@ public class WSRPConsumerPortletStagedModelDataHandler
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		WSRPConsumerPortlet consumerPortlet =
+		WSRPConsumerPortlet wsrpConsumerPortlet =
 			WSRPConsumerPortletLocalServiceUtil.
 				fetchWSRPConsumerPortletByUuidAndCompanyId(
 					uuid, group.getCompanyId());
 
-		if (consumerPortlet != null) {
+		if (wsrpConsumerPortlet != null) {
 			WSRPConsumerPortletLocalServiceUtil.deleteWSRPConsumerPortlet(
-				consumerPortlet);
+				wsrpConsumerPortlet);
 		}
 	}
 
@@ -84,11 +83,11 @@ public class WSRPConsumerPortletStagedModelDataHandler
 			portletDataContext, wsrpConsumerPortlet, wsrpConsumer,
 			PortletDataContext.REFERENCE_TYPE_STRONG);
 
-		Element entryElement = portletDataContext.getExportDataElement(
-			wsrpConsumerPortlet);
+		Element wsrpConsumerPortletElement =
+			portletDataContext.getExportDataElement(wsrpConsumerPortlet);
 
 		portletDataContext.addClassedModel(
-			entryElement,
+			wsrpConsumerPortletElement,
 			ExportImportPathUtil.getModelPath(wsrpConsumerPortlet),
 			wsrpConsumerPortlet);
 	}
