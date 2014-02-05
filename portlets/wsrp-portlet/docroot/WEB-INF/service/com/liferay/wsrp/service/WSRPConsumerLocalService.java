@@ -287,6 +287,10 @@ public interface WSRPConsumerLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void deleteWSRPConsumers(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
 		java.lang.String wsrpConsumerUuid)

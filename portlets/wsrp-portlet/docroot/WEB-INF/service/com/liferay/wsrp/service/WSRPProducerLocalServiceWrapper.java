@@ -380,6 +380,13 @@ public class WSRPProducerLocalServiceWrapper implements WSRPProducerLocalService
 	}
 
 	@Override
+	public void deleteWSRPProducers(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_wsrpProducerLocalService.deleteWSRPProducers(companyId);
+	}
+
+	@Override
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
 		java.lang.String wsrpProducerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,

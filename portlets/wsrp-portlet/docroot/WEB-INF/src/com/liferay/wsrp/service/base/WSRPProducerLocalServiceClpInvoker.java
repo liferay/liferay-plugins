@@ -154,21 +154,25 @@ public class WSRPProducerLocalServiceClpInvoker {
 				"com.liferay.wsrp.model.WSRPProducer"
 			};
 
-		_methodName72 = "getWSRPProducer";
+		_methodName72 = "deleteWSRPProducers";
 
-		_methodParameterTypes72 = new String[] { "java.lang.String" };
+		_methodParameterTypes72 = new String[] { "long" };
 
-		_methodName73 = "getWSRPProducers";
+		_methodName73 = "getWSRPProducer";
 
-		_methodParameterTypes73 = new String[] { "long", "int", "int" };
+		_methodParameterTypes73 = new String[] { "java.lang.String" };
 
-		_methodName74 = "getWSRPProducersCount";
+		_methodName74 = "getWSRPProducers";
 
-		_methodParameterTypes74 = new String[] { "long" };
+		_methodParameterTypes74 = new String[] { "long", "int", "int" };
 
-		_methodName75 = "updateWSRPProducer";
+		_methodName75 = "getWSRPProducersCount";
 
-		_methodParameterTypes75 = new String[] {
+		_methodParameterTypes75 = new String[] { "long" };
+
+		_methodName76 = "updateWSRPProducer";
+
+		_methodParameterTypes76 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
@@ -328,23 +332,30 @@ public class WSRPProducerLocalServiceClpInvoker {
 
 		if (_methodName72.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
-			return WSRPProducerLocalServiceUtil.getWSRPProducer((java.lang.String)arguments[0]);
+			WSRPProducerLocalServiceUtil.deleteWSRPProducers(((Long)arguments[0]).longValue());
+
+			return null;
 		}
 
 		if (_methodName73.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
+			return WSRPProducerLocalServiceUtil.getWSRPProducer((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return WSRPProducerLocalServiceUtil.getWSRPProducers(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName74.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
+		if (_methodName75.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
 			return WSRPProducerLocalServiceUtil.getWSRPProducersCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName75.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes75, parameterTypes)) {
+		if (_methodName76.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes76, parameterTypes)) {
 			return WSRPProducerLocalServiceUtil.updateWSRPProducer(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3]);
@@ -413,4 +424,6 @@ public class WSRPProducerLocalServiceClpInvoker {
 	private String[] _methodParameterTypes74;
 	private String _methodName75;
 	private String[] _methodParameterTypes75;
+	private String _methodName76;
+	private String[] _methodParameterTypes76;
 }
