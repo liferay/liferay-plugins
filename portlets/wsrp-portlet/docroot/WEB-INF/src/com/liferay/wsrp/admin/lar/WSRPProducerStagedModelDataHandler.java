@@ -41,12 +41,12 @@ public class WSRPProducerStagedModelDataHandler
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
-		WSRPProducer producer =
+		WSRPProducer wsrpProducer =
 			WSRPProducerLocalServiceUtil.fetchWSRPProducerByUuidAndCompanyId(
 				uuid, group.getCompanyId());
 
-		if (producer != null) {
-			WSRPProducerLocalServiceUtil.deleteWSRPProducer(producer);
+		if (wsrpProducer != null) {
+			WSRPProducerLocalServiceUtil.deleteWSRPProducer(wsrpProducer);
 		}
 	}
 
@@ -56,70 +56,73 @@ public class WSRPProducerStagedModelDataHandler
 	}
 
 	@Override
-	public String getDisplayName(WSRPProducer producer) {
-		return producer.getName();
+	public String getDisplayName(WSRPProducer wsrpProducer) {
+		return wsrpProducer.getName();
 	}
 
 	@Override
 	protected void doExportStagedModel(
-			PortletDataContext portletDataContext, WSRPProducer producer)
+			PortletDataContext portletDataContext, WSRPProducer wsrpProducer)
 		throws Exception {
 
 		Element entryElement = portletDataContext.getExportDataElement(
-			producer);
+			wsrpProducer);
 
 		portletDataContext.addClassedModel(
-			entryElement, ExportImportPathUtil.getModelPath(producer),
-			producer);
+			entryElement, ExportImportPathUtil.getModelPath(wsrpProducer),
+			wsrpProducer);
 	}
 
 	@Override
 	protected void doImportStagedModel(
-			PortletDataContext portletDataContext, WSRPProducer producer)
+			PortletDataContext portletDataContext, WSRPProducer wsrpProducer)
 		throws Exception {
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			producer);
+			wsrpProducer);
 
-		WSRPProducer importedProducer = null;
+		WSRPProducer importedWSRPProducer = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
-			WSRPProducer existingProducer =
+			WSRPProducer existingWSRPProducer =
 				WSRPProducerLocalServiceUtil.
 					fetchWSRPProducerByUuidAndCompanyId(
-						producer.getUuid(), portletDataContext.getCompanyId());
+						wsrpProducer.getUuid(),
+						portletDataContext.getCompanyId());
 
-			if (existingProducer == null) {
-				serviceContext.setUuid(producer.getUuid());
+			if (existingWSRPProducer == null) {
+				serviceContext.setUuid(wsrpProducer.getUuid());
 
-				importedProducer =
+				importedWSRPProducer =
 					WSRPProducerLocalServiceUtil.addWSRPProducer(
-						portletDataContext.getUserId(null), producer.getName(),
-						producer.getVersion(), producer.getPortletIds(),
-						serviceContext);
+						portletDataContext.getUserId(null),
+						wsrpProducer.getName(), wsrpProducer.getVersion(),
+						wsrpProducer.getPortletIds(), serviceContext);
 			}
 			else {
-				existingProducer.setName(producer.getName());
-				existingProducer.setVersion(producer.getVersion());
-				existingProducer.setPortletIds(producer.getPortletIds());
+				existingWSRPProducer.setName(wsrpProducer.getName());
+				existingWSRPProducer.setVersion(wsrpProducer.getVersion());
+				existingWSRPProducer.setPortletIds(
+					wsrpProducer.getPortletIds());
 
 				WSRPProducerLocalServiceUtil.updateWSRPProducer(
-					existingProducer);
+					existingWSRPProducer);
 
-				importedProducer =
+				importedWSRPProducer =
 					WSRPProducerLocalServiceUtil.updateWSRPProducer(
-						existingProducer);
+						existingWSRPProducer);
 			}
 		}
 		else {
-			importedProducer =
+			importedWSRPProducer =
 				WSRPProducerLocalServiceUtil.addWSRPProducer(
-					portletDataContext.getUserId(null), producer.getName(),
-					producer.getVersion(), producer.getPortletIds(),
+					portletDataContext.getUserId(null), wsrpProducer.getName(),
+					wsrpProducer.getVersion(), wsrpProducer.getPortletIds(),
 					serviceContext);
 		}
 
-		portletDataContext.importClassedModel(producer, importedProducer);
+		portletDataContext.importClassedModel(
+			wsrpProducer, importedWSRPProducer);
 	}
 
 }
