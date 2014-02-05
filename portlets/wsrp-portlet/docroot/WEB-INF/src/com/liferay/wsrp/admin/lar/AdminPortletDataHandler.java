@@ -72,11 +72,11 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			return portletPreferences;
 		}
 
-		long companyId = portletDataContext.getCompanyId();
+		WSRPProducerLocalServiceUtil.deleteWSRPProducers(
+			portletDataContext.getCompanyId());
 
-		WSRPProducerLocalServiceUtil.deleteWSRPProducers(companyId);
-
-		WSRPConsumerLocalServiceUtil.deleteWSRPConsumers(companyId);
+		WSRPConsumerLocalServiceUtil.deleteWSRPConsumers(
+			portletDataContext.getCompanyId());
 
 		return portletPreferences;
 	}
@@ -192,22 +192,21 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		ActionableDynamicQuery wsrpProducerExportActionableDynamicQuery =
-			new WSRPProducerExportActionableDynamicQuery(portletDataContext);
-
-		wsrpProducerExportActionableDynamicQuery.performCount();
-
 		ActionableDynamicQuery wsrpConsumerExportActionableDynamicQuery =
 			new WSRPConsumerExportActionableDynamicQuery(portletDataContext);
 
 		wsrpConsumerExportActionableDynamicQuery.performCount();
 
-		ActionableDynamicQuery
-			wsrpConsumerPortletExportActionableDynamicQuery =
-				new WSRPConsumerPortletExportActionableDynamicQuery(
-					portletDataContext);
+		ActionableDynamicQuery wsrpConsumerPortletExportActionableDynamicQuery =
+			new WSRPConsumerPortletExportActionableDynamicQuery(
+				portletDataContext);
 
 		wsrpConsumerPortletExportActionableDynamicQuery.performCount();
+
+		ActionableDynamicQuery wsrpProducerExportActionableDynamicQuery =
+			new WSRPProducerExportActionableDynamicQuery(portletDataContext);
+
+		wsrpProducerExportActionableDynamicQuery.performCount();
 	}
 
 }

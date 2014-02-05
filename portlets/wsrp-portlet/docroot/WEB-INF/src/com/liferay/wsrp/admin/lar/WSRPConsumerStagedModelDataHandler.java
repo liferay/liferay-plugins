@@ -65,12 +65,12 @@ public class WSRPConsumerStagedModelDataHandler
 			PortletDataContext portletDataContext, WSRPConsumer wsrpConsumer)
 		throws Exception {
 
-		Element entryElement = portletDataContext.getExportDataElement(
+		Element wsrpConsumerElement = portletDataContext.getExportDataElement(
 			wsrpConsumer);
 
 		portletDataContext.addClassedModel(
-			entryElement, ExportImportPathUtil.getModelPath(wsrpConsumer),
-			wsrpConsumer);
+			wsrpConsumerElement,
+			ExportImportPathUtil.getModelPath(wsrpConsumer), wsrpConsumer);
 	}
 
 	@Override
