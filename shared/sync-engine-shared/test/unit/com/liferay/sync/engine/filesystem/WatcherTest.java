@@ -94,9 +94,9 @@ public class WatcherTest extends BaseTestCase {
 	public void testRunAddFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_add_file.json");
 
-		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
-		Files.createFile(addFilePath);
+		Files.createFile(filePath);
 
 		Thread.sleep(5000);
 
@@ -110,13 +110,13 @@ public class WatcherTest extends BaseTestCase {
 	public void testRunDeleteFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_delete_file.json");
 
-		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
-		Files.createFile(addFilePath);
+		Files.createFile(filePath);
 
 		Thread.sleep(5000);
 
-		Files.delete(addFilePath);
+		Files.delete(filePath);
 
 		Thread.sleep(5000);
 
@@ -126,7 +126,7 @@ public class WatcherTest extends BaseTestCase {
 		Assert.assertEquals(2, _syncFiles.size());
 		Assert.assertNull(
 			SyncFileService.fetchSyncFile(
-				FilePathNameUtil.getFilePathName(addFilePath),
+				FilePathNameUtil.getFilePathName(filePath),
 				syncAccount.getSyncAccountId()));
 	}
 
@@ -134,18 +134,21 @@ public class WatcherTest extends BaseTestCase {
 	public void testRunMoveFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_move_file.json");
 
-		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+		Path sourceFilePath = Paths.get(
+			_syncSite.getFilePathName() + "/test.txt");
 
-		Files.createFile(addFilePath);
+		Files.createFile(sourceFilePath);
 
-		Path moveFilePath = Paths.get(_syncSite.getFilePathName() + "/test");
+		Path destinationFilePath = Paths.get(
+			_syncSite.getFilePathName() + "/test");
 
-		Files.createDirectory(moveFilePath);
+		Files.createDirectory(destinationFilePath);
 
 		Thread.sleep(5000);
 
 		Files.move(
-			addFilePath, moveFilePath.resolve(addFilePath.getFileName()));
+			sourceFilePath,
+			destinationFilePath.resolve(sourceFilePath.getFileName()));
 
 		Thread.sleep(5000);
 
@@ -155,7 +158,7 @@ public class WatcherTest extends BaseTestCase {
 		Assert.assertEquals(4, _syncFiles.size());
 		Assert.assertNotNull(
 			SyncFileService.fetchSyncFile(
-				FilePathNameUtil.getFilePathName(moveFilePath),
+				FilePathNameUtil.getFilePathName(destinationFilePath),
 				syncAccount.getSyncAccountId()));
 	}
 
@@ -163,16 +166,17 @@ public class WatcherTest extends BaseTestCase {
 	public void testRunRenameFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_rename_file.json");
 
-		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+		Path sourceFilePath = Paths.get(
+			_syncSite.getFilePathName() + "/test.txt");
 
-		Files.createFile(addFilePath);
+		Files.createFile(sourceFilePath);
 
 		Thread.sleep(5000);
 
-		Path renameFilePath = Paths.get(
+		Path destinationFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test2.txt");
 
-		Files.move(addFilePath, renameFilePath);
+		Files.move(sourceFilePath, destinationFilePath);
 
 		Thread.sleep(5000);
 
@@ -182,7 +186,7 @@ public class WatcherTest extends BaseTestCase {
 		Assert.assertEquals(3, _syncFiles.size());
 		Assert.assertNotNull(
 			SyncFileService.fetchSyncFile(
-				FilePathNameUtil.getFilePathName(renameFilePath),
+				FilePathNameUtil.getFilePathName(destinationFilePath),
 				syncAccount.getSyncAccountId()));
 	}
 
