@@ -51,11 +51,29 @@ public class WatcherTest extends BaseTestCase {
 
 		_syncSite = SyncSiteService.addSyncSite(
 			filePathName + "/test-site", 10184, syncAccount.getSyncAccountId());
+
+		SyncWatchEventProcessor syncWatchEventProcessor =
+			new SyncWatchEventProcessor();
+
+		syncWatchEventProcessor.process();
+
+		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
+			syncAccount.getSyncAccountId());
+
+		Path filePath = Paths.get(syncAccount.getFilePathName());
+
+		_watcher = new Watcher(filePath, true, watchEventListener);
+
+		Thread thread = new Thread(_watcher);
+
+		thread.start();
 	}
 
 	@After
 	@Override
 	public void tearDown() throws Exception {
+		_watcher.close();
+
 		super.tearDown();
 
 		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
@@ -76,22 +94,6 @@ public class WatcherTest extends BaseTestCase {
 	public void testRunAddFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_add_file.json");
 
-		SyncWatchEventProcessor syncWatchEventProcessor =
-			new SyncWatchEventProcessor();
-
-		syncWatchEventProcessor.process();
-
-		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
-			syncAccount.getSyncAccountId());
-
-		Path filePath = Paths.get(syncAccount.getFilePathName());
-
-		Watcher watcher = new Watcher(filePath, true, watchEventListener);
-
-		Thread thread = new Thread(watcher);
-
-		thread.start();
-
 		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
 		Files.createFile(addFilePath);
@@ -107,22 +109,6 @@ public class WatcherTest extends BaseTestCase {
 	@Test
 	public void testRunDeleteFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_delete_file.json");
-
-		SyncWatchEventProcessor syncWatchEventProcessor =
-			new SyncWatchEventProcessor();
-
-		syncWatchEventProcessor.process();
-
-		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
-			syncAccount.getSyncAccountId());
-
-		Path filePath = Paths.get(syncAccount.getFilePathName());
-
-		Watcher watcher = new Watcher(filePath, true, watchEventListener);
-
-		Thread thread = new Thread(watcher);
-
-		thread.start();
 
 		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -147,22 +133,6 @@ public class WatcherTest extends BaseTestCase {
 	@Test
 	public void testRunMoveFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_move_file.json");
-
-		SyncWatchEventProcessor syncWatchEventProcessor =
-			new SyncWatchEventProcessor();
-
-		syncWatchEventProcessor.process();
-
-		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
-			syncAccount.getSyncAccountId());
-
-		Path filePath = Paths.get(syncAccount.getFilePathName());
-
-		Watcher watcher = new Watcher(filePath, true, watchEventListener);
-
-		Thread thread = new Thread(watcher);
-
-		thread.start();
 
 		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -193,22 +163,6 @@ public class WatcherTest extends BaseTestCase {
 	public void testRunRenameFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_rename_file.json");
 
-		SyncWatchEventProcessor syncWatchEventProcessor =
-			new SyncWatchEventProcessor();
-
-		syncWatchEventProcessor.process();
-
-		WatchEventListener watchEventListener = new SyncSiteWatchEventListener(
-			syncAccount.getSyncAccountId());
-
-		Path filePath = Paths.get(syncAccount.getFilePathName());
-
-		Watcher watcher = new Watcher(filePath, true, watchEventListener);
-
-		Thread thread = new Thread(watcher);
-
-		thread.start();
-
 		Path addFilePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
 		Files.createFile(addFilePath);
@@ -234,5 +188,6 @@ public class WatcherTest extends BaseTestCase {
 
 	private List<SyncFile> _syncFiles;
 	private SyncSite _syncSite;
+	private Watcher _watcher;
 
 }

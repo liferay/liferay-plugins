@@ -103,7 +103,7 @@ public class SyncFileService {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("description", name);
-		parameters.put("name", filePath.getFileName());
+		parameters.put("name", name);
 		parameters.put("parentFolderId", parentFolderId);
 		parameters.put("repositoryId", repositoryId);
 		parameters.put("syncFile", syncFile);
@@ -338,6 +338,7 @@ public class SyncFileService {
 		parameters.put("parentFolderId", parentFolderId);
 		parameters.put(
 			"serviceContext.scopeGroupId", syncFile.getRepositoryId());
+		parameters.put("syncFile", syncFile);
 
 		MoveFolderEvent moveFolderEvent = new MoveFolderEvent(
 			syncAccountId, parameters);
@@ -391,9 +392,9 @@ public class SyncFileService {
 		parameters.put("filePath", filePath);
 		parameters.put("majorVersion", false);
 		parameters.put("mimeType", syncFile.getMimeType());
-		parameters.put("sourceFileName", filePath.getFileName());
+		parameters.put("sourceFileName", name);
 		parameters.put("syncFile", syncFile);
-		parameters.put("title", String.valueOf(filePath.getFileName()));
+		parameters.put("title", name);
 
 		UpdateFileEntryEvent updateFileEntryEvent = new UpdateFileEntryEvent(
 			syncAccountId, parameters);
@@ -424,6 +425,7 @@ public class SyncFileService {
 		parameters.put("description", name);
 		parameters.put("folderId", syncFile.getTypePK());
 		parameters.put("name", name);
+		parameters.put("syncFile", syncFile);
 
 		UpdateFolderEvent updateFolderEvent = new UpdateFolderEvent(
 			syncAccountId, parameters);

@@ -49,11 +49,7 @@ public class SyncWatchEventPersistence
 
 		where.and();
 
-		where.ge("timestamp", timestamp - 1000);
-
-		where.or();
-
-		where.le("timestamp", timestamp + 1000);
+		where.between("timestamp", timestamp - 1000, timestamp + 1000);
 
 		List<SyncWatchEvent> syncWatchEvents = query(queryBuilder.prepare());
 
