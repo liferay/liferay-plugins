@@ -319,6 +319,12 @@ public class WSRPConsumerLocalServiceUtil {
 			forwardCookies, forwardHeaders, markupCharacterSets, serviceContext);
 	}
 
+	public static void deleteWSRPConsumers(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteWSRPConsumers(companyId);
+	}
+
 	public static com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
 		java.lang.String wsrpConsumerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,

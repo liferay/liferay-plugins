@@ -145,21 +145,25 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName25 = "getWSRPProducer";
+		_methodName25 = "deleteWSRPProducers";
 
-		_methodParameterTypes25 = new String[] { "java.lang.String" };
+		_methodParameterTypes25 = new String[] { "long" };
 
-		_methodName26 = "getWSRPProducers";
+		_methodName26 = "getWSRPProducer";
 
-		_methodParameterTypes26 = new String[] { "long", "int", "int" };
+		_methodParameterTypes26 = new String[] { "java.lang.String" };
 
-		_methodName27 = "getWSRPProducersCount";
+		_methodName27 = "getWSRPProducers";
 
-		_methodParameterTypes27 = new String[] { "long" };
+		_methodParameterTypes27 = new String[] { "long", "int", "int" };
 
-		_methodName28 = "updateWSRPProducer";
+		_methodName28 = "getWSRPProducersCount";
 
-		_methodParameterTypes28 = new String[] {
+		_methodParameterTypes28 = new String[] { "long" };
+
+		_methodName29 = "updateWSRPProducer";
+
+		_methodParameterTypes29 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String"
 			};
@@ -947,6 +951,35 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	}
 
 	@Override
+	public void deleteWSRPProducers(long companyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		try {
+			_invokableLocalService.invokeMethod(_methodName25,
+				_methodParameterTypes25, new Object[] { companyId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
+				throw (com.liferay.portal.kernel.exception.PortalException)t;
+			}
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
 	public com.liferay.wsrp.model.WSRPProducer getWSRPProducer(
 		java.lang.String wsrpProducerUuid)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -954,8 +987,8 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { ClpSerializer.translateInput(
 							wsrpProducerUuid) });
 		}
@@ -989,8 +1022,8 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { companyId, start, end });
 		}
 		catch (Throwable t) {
@@ -1018,8 +1051,8 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27, new Object[] { companyId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28, new Object[] { companyId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1049,8 +1082,8 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
 					new Object[] {
 						wsrpProducerId,
 						
@@ -1141,4 +1174,6 @@ public class WSRPProducerLocalServiceClp implements WSRPProducerLocalService {
 	private String[] _methodParameterTypes27;
 	private String _methodName28;
 	private String[] _methodParameterTypes28;
+	private String _methodName29;
+	private String[] _methodParameterTypes29;
 }
