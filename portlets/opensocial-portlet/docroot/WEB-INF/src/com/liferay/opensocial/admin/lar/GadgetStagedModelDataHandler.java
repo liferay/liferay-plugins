@@ -64,10 +64,10 @@ public class GadgetStagedModelDataHandler
 			PortletDataContext portletDataContext, Gadget gadget)
 		throws Exception {
 
-		Element entryElement = portletDataContext.getExportDataElement(gadget);
+		Element gadgetElement = portletDataContext.getExportDataElement(gadget);
 
 		portletDataContext.addClassedModel(
-			entryElement, ExportImportPathUtil.getModelPath(gadget), gadget);
+			gadgetElement, ExportImportPathUtil.getModelPath(gadget), gadget);
 	}
 
 	@Override
