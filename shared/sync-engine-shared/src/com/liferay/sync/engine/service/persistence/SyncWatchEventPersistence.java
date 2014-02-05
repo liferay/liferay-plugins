@@ -39,7 +39,7 @@ public class SyncWatchEventPersistence
 
 		QueryBuilder<SyncWatchEvent, Long> queryBuilder = queryBuilder();
 
-		Where where = queryBuilder.where();
+		Where<SyncWatchEvent, Long> where = queryBuilder.where();
 
 		where.eq("filePathName", filePathName);
 
