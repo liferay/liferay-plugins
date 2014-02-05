@@ -27,7 +27,10 @@ import org.junit.Test;
 public class SyncAccountServiceTest extends BaseTestCase {
 
 	@After
-	public void tearDown() {
+	@Override
+	public void tearDown() throws Exception {
+		super.tearDown();
+
 		SyncAccountService.deleteSyncAccount(_syncAccount.getSyncAccountId());
 	}
 
