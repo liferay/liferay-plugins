@@ -28,17 +28,21 @@ import java.nio.file.StandardWatchEventKinds;
 	daoClass = BasePersistenceImpl.class, tableName = "SyncWatchEvent")
 public class SyncWatchEvent {
 
-	public static final String ENTRY_CREATE =
+	public static final String EVENT_TYPE_CREATE =
 		StandardWatchEventKinds.ENTRY_CREATE.name();
 
-	public static final String ENTRY_DELETE =
+	public static final String EVENT_TYPE_DELETE =
 		StandardWatchEventKinds.ENTRY_DELETE.name();
 
-	public static final String ENTRY_MODIFY =
+	public static final String EVENT_TYPE_MODIFY =
 		StandardWatchEventKinds.ENTRY_MODIFY.name();
 
-	public static final String OVERFLOW =
+	public static final String EVENT_TYPE_OVERFLOW =
 		StandardWatchEventKinds.OVERFLOW.name();
+
+	public String getEventType() {
+		return eventType;
+	}
 
 	public String getFilePathName() {
 		return filePathName;
@@ -46,10 +50,6 @@ public class SyncWatchEvent {
 
 	public String getFileType() {
 		return fileType;
-	}
-
-	public String getKindName() {
-		return kindName;
 	}
 
 	public long getSyncAccountId() {
@@ -64,16 +64,16 @@ public class SyncWatchEvent {
 		return timestamp;
 	}
 
+	public void setEventType(String eventType) {
+		this.eventType = eventType;
+	}
+
 	public void setFilePathName(String filePathName) {
 		this.filePathName = filePathName;
 	}
 
 	public void setFileType(String fileType) {
 		this.fileType = fileType;
-	}
-
-	public void setKindName(String kindName) {
-		this.kindName = kindName;
 	}
 
 	public void setSyncAccountId(long syncAccountId) {
@@ -88,14 +88,14 @@ public class SyncWatchEvent {
 		this.timestamp = timestamp;
 	}
 
+	@DatabaseField(useGetSet = true)
+	protected String eventType;
+
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String filePathName;
 
 	@DatabaseField(useGetSet = true)
 	protected String fileType;
-
-	@DatabaseField(useGetSet = true)
-	protected String kindName;
 
 	@DatabaseField(useGetSet = true)
 	protected long syncAccountId;

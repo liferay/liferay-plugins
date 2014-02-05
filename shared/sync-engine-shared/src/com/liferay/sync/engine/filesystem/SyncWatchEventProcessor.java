@@ -54,7 +54,7 @@ public class SyncWatchEventProcessor implements Runnable {
 		}
 
 		List<SyncWatchEvent> syncWatchEvents = SyncWatchEventService.findAll(
-			"kindName", true);
+			"eventType", true);
 
 		for (SyncWatchEvent syncWatchEvent : syncWatchEvents) {
 			if (_processedSyncWatchEventIds.contains(
@@ -68,18 +68,19 @@ public class SyncWatchEventProcessor implements Runnable {
 
 			if (_logger.isDebugEnabled()) {
 				_logger.debug(
-					"Event file path {} file type {} kind name {} timestamp {}",
+					"Event type {} file path {} file type {} timestamp {}",
+					syncWatchEvent.getEventType(),
 					syncWatchEvent.getFilePathName(),
-					syncWatchEvent.getFileType(), syncWatchEvent.getKindName(),
+					syncWatchEvent.getFileType(),
 					syncWatchEvent.getTimestamp());
 			}
 
 			String fileType = syncWatchEvent.getFileType();
 
-			String kindName = syncWatchEvent.getKindName();
+			String eventType = syncWatchEvent.getEventType();
 
 			try {
-				if (kindName.equals(SyncWatchEvent.ENTRY_CREATE)) {
+				if (eventType.equals(SyncWatchEvent.EVENT_TYPE_CREATE)) {
 					if (fileType.equals(SyncFile.TYPE_FILE)) {
 						addFile(syncWatchEvent);
 					}
@@ -87,7 +88,7 @@ public class SyncWatchEventProcessor implements Runnable {
 						addFolder(syncWatchEvent);
 					}
 				}
-				else if (kindName.equals(SyncWatchEvent.ENTRY_DELETE)) {
+				else if (eventType.equals(SyncWatchEvent.EVENT_TYPE_DELETE)) {
 					if (fileType.equals(SyncFile.TYPE_FILE)) {
 						deleteFile(syncWatchEvent);
 					}
@@ -131,7 +132,7 @@ public class SyncWatchEventProcessor implements Runnable {
 
 		SyncWatchEvent relatedSyncWatchEvent =
 			SyncWatchEventService.fetchSyncWatchEvent(
-				syncFile.getFilePathName(), SyncWatchEvent.ENTRY_DELETE,
+				SyncWatchEvent.EVENT_TYPE_DELETE, syncFile.getFilePathName(),
 				syncWatchEvent.getTimestamp());
 
 		if (relatedSyncWatchEvent == null) {
@@ -194,7 +195,7 @@ public class SyncWatchEventProcessor implements Runnable {
 
 		SyncWatchEvent relatedSyncWatchEvent =
 			SyncWatchEventService.fetchSyncWatchEvent(
-				syncFile.getFilePathName(), SyncWatchEvent.ENTRY_DELETE,
+				SyncWatchEvent.EVENT_TYPE_DELETE, syncFile.getFilePathName(),
 				syncWatchEvent.getTimestamp());
 
 		if (relatedSyncWatchEvent == null) {
