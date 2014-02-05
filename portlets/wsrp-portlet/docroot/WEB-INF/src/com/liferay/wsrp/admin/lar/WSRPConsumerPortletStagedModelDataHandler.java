@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.wsrp.model.WSRPConsumer;
 import com.liferay.wsrp.model.WSRPConsumerPortlet;
@@ -45,7 +47,17 @@ public class WSRPConsumerPortletStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException, SystemException {
 
-		throw new UnsupportedOperationException();
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+		WSRPConsumerPortlet consumerPortlet =
+			WSRPConsumerPortletLocalServiceUtil.
+				fetchWSRPConsumerPortletByUuidAndCompanyId(
+					uuid, group.getCompanyId());
+
+		if (consumerPortlet != null) {
+			WSRPConsumerPortletLocalServiceUtil.deleteWSRPConsumerPortlet(
+				consumerPortlet);
+		}
 	}
 
 	@Override
