@@ -137,7 +137,6 @@ public class WatcherTest extends BaseTestCase {
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(2, _syncFiles.size());
-
 		Assert.assertNull(
 			SyncFileService.fetchSyncFile(
 				FilePathNameUtil.getFilePathName(addFilePath),
@@ -183,7 +182,6 @@ public class WatcherTest extends BaseTestCase {
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(4, _syncFiles.size());
-
 		Assert.assertNotNull(
 			SyncFileService.fetchSyncFile(
 				FilePathNameUtil.getFilePathName(moveFilePath),
@@ -227,7 +225,6 @@ public class WatcherTest extends BaseTestCase {
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(3, _syncFiles.size());
-
 		Assert.assertNotNull(
 			SyncFileService.fetchSyncFile(
 				FilePathNameUtil.getFilePathName(renameFilePath),

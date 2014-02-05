@@ -49,18 +49,18 @@ public class SyncFileService {
 			Path filePath, long folderId, long repositoryId, long syncAccountId)
 		throws Exception {
 
+		// Local sync file
+
 		String checksum = FileUtil.getChecksum(filePath);
 		String name = String.valueOf(filePath.getFileName());
 		String mimeType = Files.probeContentType(filePath);
-
-		// Local
 
 		SyncFile syncFile = addSyncFile(
 			"1.0", checksum, name, FileUtil.getFileKey(filePath),
 			FilePathNameUtil.getFilePathName(filePath), mimeType, name,
 			folderId, repositoryId, syncAccountId, SyncFile.TYPE_FILE);
 
-		// Remote
+		// Remote sync file
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -88,9 +88,9 @@ public class SyncFileService {
 			long syncAccountId)
 		throws Exception {
 
-		String name = String.valueOf(filePath.getFileName());
+		// Local sync file
 
-		// Local
+		String name = String.valueOf(filePath.getFileName());
 
 		SyncFile syncFile = addSyncFile(
 			null, null, name, FileUtil.getFileKey(filePath),
@@ -98,7 +98,7 @@ public class SyncFileService {
 			Files.probeContentType(filePath), name, parentFolderId,
 			repositoryId, syncAccountId, SyncFile.TYPE_FOLDER);
 
-		// Remote
+		// Remote sync file
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -146,11 +146,11 @@ public class SyncFileService {
 			long syncAccountId, SyncFile syncFile)
 		throws Exception {
 
-		// Local
+		// Local sync file
 
 		deleteSyncFile(syncFile.getSyncFileId());
 
-		// Remote
+		// Remote sync file
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -168,11 +168,11 @@ public class SyncFileService {
 			long syncAccountId, SyncFile syncFile)
 		throws Exception {
 
-		// Local
+		// Local sync file
 
 		deleteSyncFile(syncFile.getSyncFileId());
 
-		// Remote
+		// Remote sync file
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -293,14 +293,14 @@ public class SyncFileService {
 			Path filePath, long folderId, long syncAccountId, SyncFile syncFile)
 		throws Exception {
 
-		// Local
+		// Local sync file
 
 		syncFile.setFilePathName(FilePathNameUtil.getFilePathName(filePath));
 		syncFile.setParentFolderId(folderId);
 
 		update(syncFile);
 
-		// Remote
+		// Remote sync file
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -323,14 +323,14 @@ public class SyncFileService {
 			SyncFile syncFile)
 		throws Exception {
 
-		// Local
+		// Local sync file
 
 		syncFile.setFilePathName(FilePathNameUtil.getFilePathName(filePath));
 		syncFile.setParentFolderId(parentFolderId);
 
 		update(syncFile);
 
-		// Remote
+		// Remote sync file
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -366,11 +366,11 @@ public class SyncFileService {
 			Path filePath, long syncAccountId, SyncFile syncFile)
 		throws Exception {
 
+		// Local sync file
+
 		String changeLog = String.valueOf(syncFile.getVersion() + .1);
 		String checksum = FileUtil.getChecksum(filePath);
 		String name = String.valueOf(filePath.getFileName());
-
-		// Local
 
 		syncFile.setChangeLog(changeLog);
 		syncFile.setChecksum(checksum);
@@ -380,7 +380,7 @@ public class SyncFileService {
 
 		update(syncFile);
 
-		// Remote
+		// Remote sync file
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -407,9 +407,9 @@ public class SyncFileService {
 			Path filePath, long syncAccountId, SyncFile syncFile)
 		throws Exception {
 
-		String name = String.valueOf(filePath.getFileName());
+		// Local sync file
 
-		// Local
+		String name = String.valueOf(filePath.getFileName());
 
 		syncFile.setDescription(name);
 		syncFile.setFilePathName(FilePathNameUtil.getFilePathName(filePath));
@@ -417,7 +417,7 @@ public class SyncFileService {
 
 		update(syncFile);
 
-		// Remote
+		// Remote sync file
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
