@@ -19,7 +19,6 @@ import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.service.permission.GadgetPermission;
 import com.liferay.opensocial.service.persistence.GadgetExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.DataLevel;
 import com.liferay.portal.kernel.lar.PortletDataContext;
@@ -55,13 +54,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			return portletPreferences;
 		}
 
-		List<Gadget> gadgets = GadgetLocalServiceUtil.getGadgets(
-			portletDataContext.getCompanyId(), QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS);
-
-		for (Gadget gadget : gadgets) {
-			GadgetLocalServiceUtil.deleteGadget(gadget);
-		}
+		GadgetLocalServiceUtil.deleteGadgets(portletDataContext.getCompanyId());
 
 		return portletPreferences;
 	}
