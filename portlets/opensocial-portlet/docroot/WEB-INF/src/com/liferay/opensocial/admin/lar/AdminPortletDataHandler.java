@@ -87,7 +87,8 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences, String data)
 		throws Exception {
 
-		portletDataContext.importPortalPermissions();
+		portletDataContext.importPortletPermissions(
+			GadgetPermission.RESOURCE_NAME);
 
 		Element gadgetsElement = portletDataContext.getImportDataGroupElement(
 			Gadget.class);
