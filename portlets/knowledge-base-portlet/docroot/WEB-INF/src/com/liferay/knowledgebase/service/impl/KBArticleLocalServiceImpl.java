@@ -49,6 +49,8 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
+import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntryThreadLocal;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -68,6 +70,7 @@ import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Subscription;
+import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.Ticket;
 import com.liferay.portal.model.User;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
@@ -276,7 +279,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			new KBArticlePriorityComparator());
 
 		for (KBArticle kbArticle : kbArticles) {
-			deleteKBArticle(kbArticle);
+			kbArticleLocalService.deleteKBArticle(kbArticle);
 		}
 
 		// Subscriptions
@@ -293,6 +296,9 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
+	@SystemEvent(
+		action = SystemEventConstants.ACTION_SKIP,
+		type = SystemEventConstants.TYPE_DELETE)
 	public KBArticle deleteKBArticle(KBArticle kbArticle)
 		throws PortalException, SystemException {
 
@@ -304,7 +310,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			new KBArticlePriorityComparator());
 
 		for (KBArticle siblingKBArticle : siblingKBArticles) {
-			deleteKBArticle(siblingKBArticle);
+			kbArticleLocalService.deleteKBArticle(siblingKBArticle);
 		}
 
 		// Resources
@@ -367,7 +373,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		KBArticle kbArticle = getLatestKBArticle(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY);
 
-		return deleteKBArticle(kbArticle);
+		return kbArticleLocalService.deleteKBArticle(kbArticle);
 	}
 
 	public void deleteKBArticles(long[] resourcePrimKeys)
@@ -377,7 +383,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKeys, WorkflowConstants.STATUS_ANY, null);
 
 		for (KBArticle kbArticle : kbArticles) {
-			deleteKBArticle(kbArticle);
+			kbArticleLocalService.deleteKBArticle(kbArticle);
 		}
 	}
 
@@ -998,8 +1004,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			userId, kbArticle, assetEntry.getCategoryIds(),
 			assetEntry.getTagNames());
 
-		assetEntryLocalService.deleteEntry(
-			KBArticle.class.getName(), kbArticle.getKbArticleId());
+		SystemEventHierarchyEntryThreadLocal.push(KBArticle.class);
+
+		try {
+			assetEntryLocalService.deleteEntry(
+				KBArticle.class.getName(), kbArticle.getKbArticleId());
+		}
+		finally {
+			SystemEventHierarchyEntryThreadLocal.pop(KBArticle.class);
+		}
 
 		assetEntryLocalService.updateVisible(
 			KBArticle.class.getName(), kbArticle.getResourcePrimKey(), true);
