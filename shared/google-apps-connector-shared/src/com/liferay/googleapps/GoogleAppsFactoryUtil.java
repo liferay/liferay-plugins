@@ -14,7 +14,6 @@
 
 package com.liferay.googleapps;
 
-import com.liferay.googleapps.internal.GoogleAppsFactoryImpl;
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 
 /**
