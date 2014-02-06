@@ -14,6 +14,7 @@
 
 package com.liferay.googleapps;
 
+import com.liferay.googleapps.internal.GoogleAppsFactoryImpl;
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 
 /**
@@ -52,6 +53,7 @@ public class GoogleAppsFactoryUtil {
 		_googleAppsFactory = googleAppsFactory;
 	}
 
-	private static GoogleAppsFactory _googleAppsFactory;
+	private static GoogleAppsFactory _googleAppsFactory =
+		new GoogleAppsFactoryImpl();
 
 }
