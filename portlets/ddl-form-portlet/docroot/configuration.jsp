@@ -19,8 +19,6 @@
 <%
 int cur = ParamUtil.getInteger(request, SearchContainer.DEFAULT_CUR_PARAM);
 
-String redirect = ParamUtil.getString(renderRequest, "redirect");
-
 String keywords = ParamUtil.getString(request, "keywords");
 
 DDLRecordSet selRecordSet = null;
@@ -42,7 +40,7 @@ catch (NoSuchRecordSetException nsrse) {
 <liferay-portlet:renderURL portletConfiguration="true" varImpl="portletURL" />
 
 <aui:form action="<%= configurationURL %>" method="post" name="fm1">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input name="redirect" type="hidden" value="<%= portletURL %>" />
 
 	<div class="alert alert-info">
 		<span class="displaying-help-message-holder <%= (selRecordSet == null) ? StringPool.BLANK : "hide" %>">
