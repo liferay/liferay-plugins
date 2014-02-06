@@ -57,22 +57,26 @@
 								</or>
 								<then>
 									<ivy:retrieve
+										overwriteMode="always"
 										pattern="@{ivy.xml.dir}/lib/[artifact].[ext]"
 										type="bundle,jar,orbit"
 									/>
 
 									<ivy:retrieve
+										overwriteMode="always"
 										pattern="@{ivy.xml.dir}/lib/[artifact]-[type]s.[ext]"
 										type="source"
 									/>
 								</then>
 								<else>
 									<ivy:retrieve
+										overwriteMode="always"
 										pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact].[ext]"
 										type="bundle,jar,orbit"
 									/>
 
 									<ivy:retrieve
+										overwriteMode="always"
 										pattern="@{ivy.xml.dir}/docroot/WEB-INF/lib/[artifact]-[type]s.[ext]"
 										type="source"
 									/>
