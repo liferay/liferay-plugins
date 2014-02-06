@@ -24,6 +24,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 			align: {
 				points: [A.WidgetPositionAlign.TL, A.WidgetPositionAlign.BL]
 			},
+			constrain: true,
 			items: [
 				{
 					caption: '<liferay-ui:message key="add-calendar" />',
@@ -392,7 +393,7 @@ String backURL = PortalUtil.getCurrentURL(request);
 
 			window.<portlet:namespace />calendarListsMenu.setAttrs(
 				{
-					'align.node': target,
+					alignNode: target,
 					visible: !window.<portlet:namespace />calendarListsMenu.get('visible')
 				}
 			);
