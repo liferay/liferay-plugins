@@ -34,11 +34,13 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
@@ -107,11 +109,14 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 			groupId);
 
 		for (KBTemplate kbTemplate : kbTemplates) {
-			deleteKBTemplate(kbTemplate);
+			kbTemplateLocalService.deleteKBTemplate(kbTemplate);
 		}
 	}
 
 	@Override
+	@SystemEvent(
+		action = SystemEventConstants.ACTION_SKIP,
+		type = SystemEventConstants.TYPE_DELETE)
 	public KBTemplate deleteKBTemplate(KBTemplate kbTemplate)
 		throws PortalException, SystemException {
 
@@ -145,7 +150,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 		KBTemplate kbTemplate = kbTemplatePersistence.findByPrimaryKey(
 			kbTemplateId);
 
-		return deleteKBTemplate(kbTemplate);
+		return kbTemplateLocalService.deleteKBTemplate(kbTemplate);
 	}
 
 	public void deleteKBTemplates(long[] kbTemplateIds)
@@ -162,7 +167,7 @@ public class KBTemplateLocalServiceImpl extends KBTemplateLocalServiceBaseImpl {
 				continue;
 			}
 
-			deleteKBTemplate(kbTemplate);
+			kbTemplateLocalService.deleteKBTemplate(kbTemplate);
 		}
 	}
 
