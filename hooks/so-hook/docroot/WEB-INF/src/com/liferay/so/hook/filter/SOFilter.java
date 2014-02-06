@@ -17,8 +17,6 @@
 
 package com.liferay.so.hook.filter;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
@@ -41,10 +39,6 @@ public class SOFilter implements Filter {
 
 	@Override
 	public void destroy() {
-
-		if (_log.isInfoEnabled()) {
-			_log.info("called SOFilter destroy()");
-		}
 	}
 
 	@Override
@@ -60,36 +54,27 @@ public class SOFilter implements Filter {
 
 			if ((user == null) || !user.hasPrivateLayouts()) {
 				filterChain.doFilter(servletRequest, servletResponse);
+
 				return;
 			}
 
-			Boolean secure = PortalUtil.isSecure(request);
-
-			String portalURL = PortalUtil.getPortalURL(request, secure);
+			String portalURL = PortalUtil.getPortalURL(
+				request, PortalUtil.isSecure(request));
 
 			String redirect = user.getDisplayURL(
-				portalURL, PortalUtil.getPathMain(), Boolean.TRUE);
+				portalURL, PortalUtil.getPathMain(), true);
 
 			HttpServletResponse response = (HttpServletResponse)servletResponse;
 
-			response.sendRedirect(redirect.toString());
+			response.sendRedirect(redirect);
 		}
 		catch (Exception e) {
 			filterChain.doFilter(servletRequest, servletResponse);
-
-			if (_log.isDebugEnabled())
-			_log.debug(e, e);
 		}
 	}
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-
-		if (_log.isInfoEnabled()) {
-			_log.info("called SOFilter init()");
-		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(SOFilter.class);
 
 }
