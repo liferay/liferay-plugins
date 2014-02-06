@@ -12,40 +12,31 @@
  * details.
  */
 
-package com.liferay.googleapps.internal;
-
-import com.liferay.googleapps.GoogleAppsException;
-import com.liferay.portal.kernel.xml.Element;
+package com.liferay.googleapps;
 
 import java.util.List;
 
 /**
  * @author Brian Wing Shun Chan
  */
-public abstract class GetNextItems {
+public interface GUserManager {
 
-	public GetNextItems(String url, Element atomFeedElement)
-		throws GoogleAppsException {
+	public void addGUser(
+			long userId, String password, String firstName, String lastName)
+		throws GoogleAppsException;
 
-		List<Element> atomLinkElements = atomFeedElement.elements(
-			GHelperUtil.getAtomQName("link"));
+	public void deleteGUser(long userId) throws GoogleAppsException;
 
-		for (Element atomLinkElement : atomLinkElements) {
-			String rel = atomLinkElement.attributeValue("rel");
+	public GUser getGUser(long userId) throws GoogleAppsException;
 
-			if (rel.equals("next")) {
-				String href = atomLinkElement.attributeValue("href");
+	public GUser getGUser(String emailAddress) throws GoogleAppsException;
 
-				if (!href.equals(url)) {
-					getNextItems(href);
-				}
+	public List<GUser> getGUsers() throws GoogleAppsException;
 
-				break;
-			}
-		}
-	}
+	public void updateActive(long userId, boolean active)
+		throws GoogleAppsException;
 
-	public abstract void getNextItems(String nextURL)
+	public void updatePassword(long userId, String password)
 		throws GoogleAppsException;
 
 }

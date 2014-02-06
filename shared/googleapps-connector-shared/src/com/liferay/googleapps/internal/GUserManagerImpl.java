@@ -14,11 +14,11 @@
 
 package com.liferay.googleapps.internal;
 
-import com.liferay.portal.kernel.googleapps.GNickname;
-import com.liferay.portal.kernel.googleapps.GNicknameManager;
-import com.liferay.portal.kernel.googleapps.GUser;
-import com.liferay.portal.kernel.googleapps.GUserManager;
-import com.liferay.portal.kernel.googleapps.GoogleAppsException;
+import com.liferay.googleapps.GNickname;
+import com.liferay.googleapps.GNicknameManager;
+import com.liferay.googleapps.GUser;
+import com.liferay.googleapps.GUserManager;
+import com.liferay.googleapps.GoogleAppsException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;

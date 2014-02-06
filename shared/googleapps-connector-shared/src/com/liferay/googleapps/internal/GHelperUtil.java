@@ -14,7 +14,7 @@
 
 package com.liferay.googleapps.internal;
 
-import com.liferay.portal.kernel.googleapps.GoogleAppsException;
+import com.liferay.googleapps.GoogleAppsException;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;

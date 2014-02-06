@@ -14,8 +14,8 @@
 
 package com.liferay.googleapps.internal;
 
-import com.liferay.portal.kernel.googleapps.GEmailSettingsManager;
-import com.liferay.portal.kernel.googleapps.GoogleAppsException;
+import com.liferay.googleapps.GEmailSettingsManager;
+import com.liferay.googleapps.GoogleAppsException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
