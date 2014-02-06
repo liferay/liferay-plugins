@@ -56,9 +56,9 @@ public class SOFilter implements Filter {
 		try {
 			HttpServletRequest request = (HttpServletRequest)servletRequest;
 
-			User user = PortalUtil.initUser(request);
+			User user = PortalUtil.getUser(request);
 
-			if (!user.hasPrivateLayouts()) {
+			if ((user == null) || !user.hasPrivateLayouts()) {
 				filterChain.doFilter(servletRequest, servletResponse);
 				return;
 			}
