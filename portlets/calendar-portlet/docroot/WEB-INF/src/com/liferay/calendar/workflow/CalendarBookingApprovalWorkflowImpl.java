@@ -77,13 +77,10 @@ public class CalendarBookingApprovalWorkflowImpl
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if (status == CalendarBookingWorkflowConstants.STATUS_PENDING) {
-			if (isAutoApproveCalendarBooking(userId, calendarBooking)) {
-				status = CalendarBookingWorkflowConstants.STATUS_APPROVED;
-			}
-			else {
-				status = CalendarBookingWorkflowConstants.STATUS_PENDING;
-			}
+		if ((status == CalendarBookingWorkflowConstants.STATUS_PENDING) &&
+			isAutoApproveCalendarBooking(userId, calendarBooking)) {
+
+			status = CalendarBookingWorkflowConstants.STATUS_APPROVED;
 		}
 
 		CalendarBookingLocalServiceUtil.updateStatus(
