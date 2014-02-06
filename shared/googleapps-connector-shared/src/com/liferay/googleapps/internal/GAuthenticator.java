@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.model.Company;
@@ -82,9 +81,9 @@ public class GAuthenticator {
 
 			_domain = company.getMx();
 			_userName = PrefsPropsUtil.getString(
-				_companyId, PropsKeys.GOOGLE_APPS_USERNAME);
+				_companyId, "google.apps.username");
 			_password = PrefsPropsUtil.getString(
-				_companyId, PropsKeys.GOOGLE_APPS_PASSWORD);
+				_companyId, "google.apps.password");
 		}
 
 		Http.Options options = new Http.Options();
