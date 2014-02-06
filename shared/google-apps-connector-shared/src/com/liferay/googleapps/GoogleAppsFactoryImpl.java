@@ -12,13 +12,8 @@
  * details.
  */
 
-package com.liferay.googleapps.internal;
+package com.liferay.googleapps;
 
-import com.liferay.googleapps.GEmailSettingsManager;
-import com.liferay.googleapps.GGroupManager;
-import com.liferay.googleapps.GNicknameManager;
-import com.liferay.googleapps.GUserManager;
-import com.liferay.googleapps.GoogleAppsFactory;
 import com.liferay.portal.kernel.security.pacl.DoPrivileged;
 
 import java.util.Map;

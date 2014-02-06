@@ -12,15 +12,8 @@
  * details.
  */
 
-package com.liferay.googleapps.internal;
+package com.liferay.googleapps;
 
-import com.liferay.googleapps.GGroup;
-import com.liferay.googleapps.GGroupManager;
-import com.liferay.googleapps.GGroupMember;
-import com.liferay.googleapps.GGroupOwner;
-import com.liferay.googleapps.GUser;
-import com.liferay.googleapps.GUserManager;
-import com.liferay.googleapps.GoogleAppsException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;

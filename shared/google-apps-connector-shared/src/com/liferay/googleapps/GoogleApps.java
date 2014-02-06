@@ -12,12 +12,7 @@
  * details.
  */
 
-package com.liferay.googleapps.internal;
-
-import com.liferay.googleapps.GEmailSettingsManager;
-import com.liferay.googleapps.GGroupManager;
-import com.liferay.googleapps.GNicknameManager;
-import com.liferay.googleapps.GUserManager;
+package com.liferay.googleapps;
 
 /**
  * @author Brian Wing Shun Chan

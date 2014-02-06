@@ -12,9 +12,8 @@
  * details.
  */
 
-package com.liferay.googleapps.internal;
+package com.liferay.googleapps;
 
-import com.liferay.googleapps.GoogleAppsException;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Namespace;

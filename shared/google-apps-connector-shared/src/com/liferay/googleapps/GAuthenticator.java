@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.googleapps.internal;
+package com.liferay.googleapps;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
