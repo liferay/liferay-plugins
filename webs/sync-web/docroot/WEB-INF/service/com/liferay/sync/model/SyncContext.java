@@ -33,14 +33,6 @@ public class SyncContext {
 		return _portalBuildNumber;
 	}
 
-	public String getPortalEELicenseDigest() {
-		return _portalEELicenseDigest;
-	}
-
-	public String getSocialOfficeEELicenseDigest() {
-		return _socialOfficeEELicenseDigest;
-	}
-
 	public long getUserId() {
 		return _userId;
 	}
@@ -62,16 +54,6 @@ public class SyncContext {
 		_portalBuildNumber = portalBuildNumber;
 	}
 
-	public void setPortalEELicenseDigest(String portalEELicenseDigest) {
-		_portalEELicenseDigest = portalEELicenseDigest;
-	}
-
-	public void setSocialOfficeEELicenseDigest(
-		String socialOfficeEELicenseDigest) {
-
-		_socialOfficeEELicenseDigest = socialOfficeEELicenseDigest;
-	}
-
 	public void setSocialOfficeInstalled(boolean socialOfficeInstalled) {
 		_socialOfficeInstalled = socialOfficeInstalled;
 	}
@@ -86,8 +68,6 @@ public class SyncContext {
 
 	private String _pluginVersion;
 	private int _portalBuildNumber;
-	private String _portalEELicenseDigest;
-	private String _socialOfficeEELicenseDigest;
 	private boolean _socialOfficeInstalled;
 	private long _userId;
 	private List<Group> _userSitesGroups;
