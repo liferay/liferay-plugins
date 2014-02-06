@@ -14,13 +14,13 @@
 
 package com.liferay.googleapps.internal;
 
-import com.liferay.portal.kernel.googleapps.GGroup;
-import com.liferay.portal.kernel.googleapps.GGroupManager;
-import com.liferay.portal.kernel.googleapps.GGroupMember;
-import com.liferay.portal.kernel.googleapps.GGroupOwner;
-import com.liferay.portal.kernel.googleapps.GUser;
-import com.liferay.portal.kernel.googleapps.GUserManager;
-import com.liferay.portal.kernel.googleapps.GoogleAppsException;
+import com.liferay.googleapps.GGroup;
+import com.liferay.googleapps.GGroupManager;
+import com.liferay.googleapps.GGroupMember;
+import com.liferay.googleapps.GGroupOwner;
+import com.liferay.googleapps.GUser;
+import com.liferay.googleapps.GUserManager;
+import com.liferay.googleapps.GoogleAppsException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
