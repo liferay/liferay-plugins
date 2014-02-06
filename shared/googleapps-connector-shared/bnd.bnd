@@ -1,0 +1,4 @@
+Bundle-Name: Google Apps Connector
+Include-Resource: classes
+Private-Package:\
+	com.liferay.googleapps.internal.*
