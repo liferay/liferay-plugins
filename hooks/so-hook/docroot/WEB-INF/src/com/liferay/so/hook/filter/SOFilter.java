@@ -19,8 +19,6 @@ package com.liferay.so.hook.filter;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.PrefsPropsUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 
@@ -57,18 +55,6 @@ public class SOFilter implements Filter {
 
 		try {
 			HttpServletRequest request = (HttpServletRequest)servletRequest;
-
-			long companyId = PortalUtil.getCompanyId(request);
-
-			String path = PrefsPropsUtil.getString(
-				companyId, PropsKeys.DEFAULT_LANDING_PAGE_PATH);
-
-			String homeURL = PortalUtil.getRelativeHomeURL(request);
-
-			if (!homeURL.equals("/user") && (!path.equals("/user"))) {
-				filterChain.doFilter(servletRequest, servletResponse);
-				return;
-			}
 
 			User user = PortalUtil.initUser(request);
 
