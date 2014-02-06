@@ -15,7 +15,17 @@
 --%>
 
 <%
+String street1 = address.getStreet1();
+String street2 = address.getStreet2();
+
+String zipCode = address.getZip();
+String city = address.getCity();
+
 Region region = address.getRegion();
+
+String regionName = region.getName();
+
+String mailingName = LanguageUtil.get(pageContext, address.getType().getName());
 %>
 
 <em class="mailing-name"><%= mailingName %></em>
@@ -24,8 +34,8 @@ Region region = address.getRegion();
 	<liferay-ui:message key="zip-code-label" /><%= HtmlUtil.escape(zipCode) %><br />
 </c:if>
 
-<c:if test="<%= Validator.isNotNull(region.getName()) || Validator.isNotNull(city) %>">
-	<%= HtmlUtil.escape(region.getName()) + HtmlUtil.escape(city) %><br />
+<c:if test="<%= Validator.isNotNull(regionName) || Validator.isNotNull(city) %>">
+	<%= HtmlUtil.escape(regionName) + HtmlUtil.escape(city) %><br />
 </c:if>
 
 <c:if test="<%= Validator.isNotNull(street1) %>">
