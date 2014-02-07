@@ -22,10 +22,12 @@ import com.liferay.mail.model.Filter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.model.User;
-import com.liferay.portal.security.auth.DefaultFullNameGenerator;
 import com.liferay.portal.security.auth.FullNameGenerator;
 import com.liferay.portal.service.UserLocalServiceUtil;
+
+import java.lang.reflect.Method;
 
 import java.util.List;
 
@@ -61,8 +63,7 @@ public class GoogleHook implements Hook {
 			GEmailSettingsManager gEmailSettingsManager =
 				GoogleAppsFactoryUtil.getGEmailSettingsManager(companyId);
 
-			FullNameGenerator fullNameGenerator =
-				new DefaultFullNameGenerator();
+			FullNameGenerator fullNameGenerator = _getFullNameGenerator();
 
 			gEmailSettingsManager.addSendAs(
 				userId,
@@ -153,6 +154,17 @@ public class GoogleHook implements Hook {
 		catch (Exception e) {
 			_log.error(e, e);
 		}
+	}
+
+	private FullNameGenerator _getFullNameGenerator() throws Exception {
+		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
+
+		Class<?> clazz = classLoader.loadClass(
+			"com.liferay.portal.security.auth.FullNameGeneratorFactory");
+
+		Method method = clazz.getMethod("getInstance");
+
+		return (FullNameGenerator)method.invoke(null);
 	}
 
 	private String _getNickname(String emailAddress) {
