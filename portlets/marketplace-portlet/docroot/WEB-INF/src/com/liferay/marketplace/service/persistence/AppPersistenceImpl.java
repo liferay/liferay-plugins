@@ -2462,7 +2462,7 @@ public class AppPersistenceImpl extends BasePersistenceImpl<App>
 			CacheRegistryUtil.clear(AppImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(AppImpl.class.getName());
+		EntityCacheUtil.clearCache(AppImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

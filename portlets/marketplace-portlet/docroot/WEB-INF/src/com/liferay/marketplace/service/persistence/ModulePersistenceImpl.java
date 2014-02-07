@@ -1955,7 +1955,7 @@ public class ModulePersistenceImpl extends BasePersistenceImpl<Module>
 			CacheRegistryUtil.clear(ModuleImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(ModuleImpl.class.getName());
+		EntityCacheUtil.clearCache(ModuleImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
