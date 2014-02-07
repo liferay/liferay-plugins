@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.DefaultFullNameGenerator;
 import com.liferay.portal.security.auth.FullNameGenerator;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -61,7 +62,7 @@ public class GoogleHook implements Hook {
 				GoogleAppsFactoryUtil.getGEmailSettingsManager(companyId);
 
 			FullNameGenerator fullNameGenerator =
-				FullNameGeneratorFactory.getInstance();
+				new DefaultFullNameGenerator();
 
 			gEmailSettingsManager.addSendAs(
 				userId,
