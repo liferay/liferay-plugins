@@ -17,9 +17,9 @@
 <%@ include file="/html/portlet/portal_settings/init.jsp" %>
 
 <%
-String googleAppsUsername = PrefsPropsUtil.getString(company.getCompanyId(), PropsKeys.GOOGLE_APPS_USERNAME);
+String googleAppsUsername = PrefsPropsUtil.getString(company.getCompanyId(), "google.apps.username");
 
-String googleAppsPassword = PrefsPropsUtil.getString(company.getCompanyId(), PropsKeys.GOOGLE_APPS_PASSWORD);
+String googleAppsPassword = PrefsPropsUtil.getString(company.getCompanyId(), "google.apps.password");
 
 if (Validator.isNotNull(googleAppsPassword)) {
 	googleAppsPassword = Portal.TEMP_OBFUSCATION_VALUE;
@@ -29,7 +29,7 @@ if (Validator.isNotNull(googleAppsPassword)) {
 <h3><liferay-ui:message key="google-apps" /></h3>
 
 <aui:fieldset>
-	<aui:input autocomplete="off" cssClass="lfr-input-text-container" label="user-name" name='<%= "settings--" + PropsKeys.GOOGLE_APPS_USERNAME + "--" %>' type="text" value="<%= googleAppsUsername %>" />
+	<aui:input autocomplete="off" cssClass="lfr-input-text-container" label="user-name" name='<%= "settings--google.apps.username--" %>' type="text" value="<%= googleAppsUsername %>" />
 
-	<aui:input autocomplete="off" cssClass="lfr-input-text-container" label="password" name='<%= "settings--" + PropsKeys.GOOGLE_APPS_PASSWORD + "--" %>' type="password" value="<%= googleAppsPassword %>" />
+	<aui:input autocomplete="off" cssClass="lfr-input-text-container" label="password" name='<%= "settings--google.apps.password--" %>' type="password" value="<%= googleAppsPassword %>" />
 </aui:fieldset>
