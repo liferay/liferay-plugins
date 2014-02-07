@@ -24,11 +24,11 @@
 <aui:form action="<%= configurationURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
-	<aui:select label="maximum-result-size" name="preferences--maxResultSize--">
-		<aui:option label="<%= 5 %>" selected="<%= 5 == maxResultSize %>" value="<%= 5 %>" />
-		<aui:option label="<%= 10 %>" selected="<%= 10 == maxResultSize %>" value="<%= 10 %>" />
-		<aui:option label="<%= 15 %>" selected="<%= 15 == maxResultSize %>" value="<%= 15 %>" />
-		<aui:option label="<%= 20 %>" selected="<%= 20 == maxResultSize %>" value="<%= 20 %>" />
+	<aui:select label="maximum-result-size" name="preferences--maxResultSize--" value="<%= maxResultSize %>">
+		<aui:option label="<%= 5 %>" value="<%= 5 %>" />
+		<aui:option label="<%= 10 %>" />
+		<aui:option label="<%= 15 %>" />
+		<aui:option label="<%= 20 %>" />
 	</aui:select>
 
 	<aui:button-row>

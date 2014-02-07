@@ -204,10 +204,10 @@ if (comment) {
 			}
 			%>
 
-			<aui:select inlineLabel="true" label="viewable-by" name="socialRelationType">
-				<aui:option label="everyone" selected="<%= socialRelationType == MicroblogsEntryConstants.TYPE_EVERYONE %>" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
-				<aui:option label="connections" selected="<%= socialRelationType == SocialRelationConstants.TYPE_BI_CONNECTION %>" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
-				<aui:option label="followers" selected="<%= socialRelationType == SocialRelationConstants.TYPE_UNI_FOLLOWER %>" value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
+			<aui:select inlineLabel="true" label="viewable-by" name="socialRelationType" value="<%= socialRelationType %>">
+				<aui:option label="everyone" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
+				<aui:option label="connections" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
+				<aui:option label="followers" value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
 			</aui:select>
 		</c:if>
 	</div>

@@ -90,18 +90,18 @@ portletURL.setWindowState(WindowState.NORMAL);
 						<aui:input label="" name="checkAll" type="checkbox" />
 
 						<c:if test="<%= !userPublicPage %>">
-							<aui:select cssClass="contact-group-filter-select" inlineField="true" label="" name="filterBy">
-								<aui:option label="all" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_DEFAULT) %>" value="<%= ContactsConstants.FILTER_BY_DEFAULT %>" />
+							<aui:select cssClass="contact-group-filter-select" inlineField="true" label="" name="filterBy" value="<%= filterBy %>">
+								<aui:option label="all" value="<%= ContactsConstants.FILTER_BY_DEFAULT %>" />
 
 								<c:if test="<%= showOnlySiteMembers %>">
-									<aui:option label="administrators" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_ADMINS) %>" value="<%= ContactsConstants.FILTER_BY_ADMINS %>" />
+									<aui:option label="administrators" value="<%= ContactsConstants.FILTER_BY_ADMINS %>" />
 								</c:if>
 
-								<aui:option label="connections" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION) %>" value="<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>" />
-								<aui:option label="following" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER) %>" value="<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>" />
+								<aui:option label="connections" value="<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>" />
+								<aui:option label="following" value="<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>" />
 
 								<c:if test="<%= !showOnlySiteMembers %>">
-									<aui:option label="my-contacts" selected="<%= filterBy.equals(ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS) %>" value="<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>" />
+									<aui:option label="my-contacts" value="<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>" />
 
 									<%
 									List<Group> groups = user.getGroups();
@@ -115,7 +115,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 											String filterByGroupId = ContactsConstants.FILTER_BY_GROUP + curGroup.getGroupId();
 										%>
 
-											<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" selected="<%= filterBy.equals(filterByGroupId) %>" value="<%= filterByGroupId %>" />
+											<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" value="<%= filterByGroupId %>" />
 
 										<%
 										}

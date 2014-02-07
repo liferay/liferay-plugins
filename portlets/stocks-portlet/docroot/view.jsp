@@ -110,23 +110,23 @@
 
 			<aui:input label="" maxlength="10" name="symbol" size="10" type="text" value="<%= symbol %>" />
 
-			<aui:select class="stock-options" label="" name="time" onChange="submitForm(document.<portlet:namespace />fm);">
-				<aui:option selected="<%= time == 1 %>" value="1">1 <liferay-ui:message key="day" /></aui:option>
-				<aui:option selected="<%= time == 2 %>" value="2">2 <liferay-ui:message key="days" /></aui:option>
-				<aui:option selected="<%= time == 3 %>" value="3">5 <liferay-ui:message key="days" /></aui:option>
-				<aui:option selected="<%= time == 18 %>" value="18">10 <liferay-ui:message key="days" /></aui:option>
-				<aui:option selected="<%= time == 4 %>" value="4">1 <liferay-ui:message key="month" /></aui:option>
-				<aui:option selected="<%= time == 5 %>" value="5">2 <liferay-ui:message key="months" /></aui:option>
-				<aui:option selected="<%= time == 6 %>" value="6">3 <liferay-ui:message key="months" /></aui:option>
-				<aui:option selected="<%= time == 7 %>" value="7">6 <liferay-ui:message key="months" /></aui:option>
-				<aui:option selected="<%= time == 19 %>" value="19"><liferay-ui:message key="year-to-date" /></aui:option>
-				<aui:option selected="<%= time == 8 %>" value="8">1 <liferay-ui:message key="year" /></aui:option>
-				<aui:option selected="<%= time == 9 %>" value="9">2 <liferay-ui:message key="years" /></aui:option>
-				<aui:option selected="<%= time == 10 %>" value="10">3 <liferay-ui:message key="years" /></aui:option>
-				<aui:option selected="<%= time == 11 %>" value="11">4 <liferay-ui:message key="years" /></aui:option>
-				<aui:option selected="<%= time == 12 %>" value="12">5 <liferay-ui:message key="years" /></aui:option>
-				<aui:option selected="<%= time == 13 %>" value="13">1 <liferay-ui:message key="decade" /></aui:option>
-				<aui:option selected="<%= time == 20 %>" value="20"><liferay-ui:message key="all-data" /></aui:option>
+			<aui:select class="stock-options" label="" name="time" onChange="submitForm(document.<portlet:namespace />fm);" value="<%= time %>">
+				<aui:option value="1">1 <liferay-ui:message key="day" /></aui:option>
+				<aui:option value="2">2 <liferay-ui:message key="days" /></aui:option>
+				<aui:option value="3">5 <liferay-ui:message key="days" /></aui:option>
+				<aui:option value="18">10 <liferay-ui:message key="days" /></aui:option>
+				<aui:option value="4">1 <liferay-ui:message key="month" /></aui:option>
+				<aui:option value="5">2 <liferay-ui:message key="months" /></aui:option>
+				<aui:option value="6">3 <liferay-ui:message key="months" /></aui:option>
+				<aui:option value="7">6 <liferay-ui:message key="months" /></aui:option>
+				<aui:option value="19"><liferay-ui:message key="year-to-date" /></aui:option>
+				<aui:option value="8">1 <liferay-ui:message key="year" /></aui:option>
+				<aui:option value="9">2 <liferay-ui:message key="years" /></aui:option>
+				<aui:option value="10">3 <liferay-ui:message key="years" /></aui:option>
+				<aui:option value="11">4 <liferay-ui:message key="years" /></aui:option>
+				<aui:option value="12">5 <liferay-ui:message key="years" /></aui:option>
+				<aui:option value="13">1 <liferay-ui:message key="decade" /></aui:option>
+				<aui:option value="20"><liferay-ui:message key="all-data" /></aui:option>
 			</aui:select>
 
 			<aui:button type="submit" value="get-quote" />

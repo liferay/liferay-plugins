@@ -112,10 +112,10 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 					</optgroup>
 				</aui:select>
 
-				<aui:select name="priority">
-					<aui:option label="high" selected="<%= (priority == 1) %>" value="1" />
-					<aui:option label="normal" selected="<%= (priority == 2) %>" value="2" />
-					<aui:option label="low" selected="<%= (priority == 3) %>" value="3" />
+				<aui:select name="priority" value="<%= priority %>">
+					<aui:option label="high" value="1" />
+					<aui:option label="normal" value="2" />
+					<aui:option label="low" value="3" />
 				</aui:select>
 
 				<%

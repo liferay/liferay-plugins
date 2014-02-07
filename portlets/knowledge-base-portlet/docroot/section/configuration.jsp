@@ -71,28 +71,28 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 
 				</aui:select>
 
-				<aui:select label="article-display-style" name="preferences--kbArticleDisplayStyle--">
-					<aui:option label="title" selected='<%= kbArticleDisplayStyle.equals("title") %>' />
-					<aui:option label="abstract" selected='<%= kbArticleDisplayStyle.equals("abstract") %>' />
+				<aui:select label="article-display-style" name="preferences--kbArticleDisplayStyle--" value="<%= kbArticleDisplayStyle %>">
+					<aui:option label="title" />
+					<aui:option label="abstract" />
 				</aui:select>
 
-				<aui:select label="article-window-state" name="preferences--kbArticleWindowState--">
-					<aui:option label="maximized" selected="<%= kbArticleWindowState.equals(WindowState.MAXIMIZED.toString()) %>" value="<%= WindowState.MAXIMIZED.toString() %>" />
-					<aui:option label="normal" selected="<%= kbArticleWindowState.equals(WindowState.NORMAL.toString()) %>" value="<%= WindowState.NORMAL.toString() %>" />
+				<aui:select label="article-window-state" name="preferences--kbArticleWindowState--" value="<%= kbArticleWindowState %>">
+					<aui:option label="maximized" value="<%= WindowState.MAXIMIZED.toString() %>" />
+					<aui:option label="normal" value="<%= WindowState.NORMAL.toString() %>" />
 				</aui:select>
 
 				<div class="kb-block-labels kb-field-wrapper">
-					<aui:select inlineField="<%= true %>" label="order-by" name="preferences--kbArticlesOrderByCol--">
-						<aui:option label="create-date" selected='<%= kbArticlesOrderByCol.equals("create-date") %>' />
-						<aui:option label="modified-date" selected='<%= kbArticlesOrderByCol.equals("modified-date") %>' />
-						<aui:option label="priority" selected='<%= kbArticlesOrderByCol.equals("priority") %>' />
-						<aui:option label="title" selected='<%= kbArticlesOrderByCol.equals("title") %>' />
-						<aui:option label="view-count" selected='<%= kbArticlesOrderByCol.equals("view-count") %>' />
+					<aui:select inlineField="<%= true %>" label="order-by" name="preferences--kbArticlesOrderByCol--" value="<%= kbArticlesOrderByCol %>">
+						<aui:option label="create-date" />
+						<aui:option label="modified-date" />
+						<aui:option label="priority" />
+						<aui:option label="title" />
+						<aui:option label="view-count" />
 					</aui:select>
 
-					<aui:select inlineField="<%= true %>" label="<%= StringPool.NBSP %>" name="preferences--kbArticlesOrderByType--">
-						<aui:option label="ascending" selected='<%= kbArticlesOrderByType.equals("asc") %>' value="asc" />
-						<aui:option label="descending" selected='<%= kbArticlesOrderByType.equals("desc") %>' value="desc" />
+					<aui:select inlineField="<%= true %>" label="<%= StringPool.NBSP %>" name="preferences--kbArticlesOrderByType--" value="<%= kbArticlesOrderByType %>">
+						<aui:option label="ascending" value="asc" />
+						<aui:option label="descending" value="desc" />
 					</aui:select>
 				</div>
 

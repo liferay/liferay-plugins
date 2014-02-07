@@ -70,13 +70,13 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:select ignoreRequestValue="<%= ignoreRequestValue %>" label="type" name='<%= "fieldType" + index %>'>
-				<aui:option selected='<%= fieldType.equals("text") %>' value="text"><liferay-ui:message key="text" /></aui:option>
-				<aui:option selected='<%= fieldType.equals("textarea") %>' value="textarea"><liferay-ui:message key="text-box" /></aui:option>
-				<aui:option selected='<%= fieldType.equals("options") %>' value="options"><liferay-ui:message key="options" /></aui:option>
-				<aui:option selected='<%= fieldType.equals("radio") %>' value="radio"><liferay-ui:message key="radio-buttons" /></aui:option>
-				<aui:option selected='<%= fieldType.equals("paragraph") %>' value="paragraph"><liferay-ui:message key="paragraph" /></aui:option>
-				<aui:option selected='<%= fieldType.equals("checkbox") %>' value="checkbox"><liferay-ui:message key="check-box" /></aui:option>
+			<aui:select ignoreRequestValue="<%= ignoreRequestValue %>" label="type" name='<%= "fieldType" + index %>' value="<%= fieldType %>">
+				<aui:option label="text" />
+				<aui:option label="text-box" value="textarea" />
+				<aui:option label="options" />
+				<aui:option label="radio-buttons" value="radio" />
+				<aui:option label="paragraph" />
+				<aui:option label="check-box" value="checkbox" />
 			</aui:select>
 		</c:when>
 		<c:otherwise>
