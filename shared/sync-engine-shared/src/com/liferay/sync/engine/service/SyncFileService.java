@@ -189,17 +189,20 @@ public class SyncFileService {
 
 	public static void deleteSyncFile(long syncFileId) {
 		try {
+
+			// Sync file
+
+			_syncFilePersistence.deleteById(syncFileId);
+
 			SyncFile syncFile = _syncFilePersistence.queryForId(syncFileId);
 
 			String type = syncFile.getType();
 
 			if (type.equals(SyncFile.TYPE_FILE)) {
-				_syncFilePersistence.deleteById(syncFileId);
-
 				return;
 			}
 
-			// Child sync files
+			// Sync files
 
 			List<SyncFile> childSyncFiles = _syncFilePersistence.queryForEq(
 				"parentFolderId", syncFileId);
@@ -215,10 +218,6 @@ public class SyncFileService {
 					deleteSyncFile(childSyncFile.getSyncFileId());
 				}
 			}
-
-			// Sync file
-
-			_syncFilePersistence.deleteById(syncFileId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -458,15 +457,25 @@ public class SyncFileService {
 		Path filePath, long parentFolderId, SyncFile syncFile) {
 
 		try {
+
+			// Sync file
+
 			String type = syncFile.getType();
 
 			if (type.equals(SyncFile.TYPE_FILE)) {
 				return update(syncFile);
 			}
 
-			String filePathName = FilePathNameUtil.getFilePathName(filePath);
+			String oldFilePathName = syncFile.getFilePathName();
+			String newFilePathName = FilePathNameUtil.getFilePathName(filePath);
 
-			// Child sync files
+			syncFile.setFilePathName(newFilePathName);
+			syncFile.setName(String.valueOf(filePath.getFileName()));
+			syncFile.setParentFolderId(parentFolderId);
+
+			update(syncFile);
+
+			// Sync files
 
 			List<SyncFile> childSyncFiles = _syncFilePersistence.queryForEq(
 				"parentFolderId", syncFile.getTypePK());
@@ -475,7 +484,7 @@ public class SyncFileService {
 				String childFilePathName = childSyncFile.getFilePathName();
 
 				childFilePathName = childFilePathName.replace(
-					syncFile.getFilePathName(), filePathName);
+					oldFilePathName, newFilePathName);
 
 				type = childSyncFile.getType();
 
@@ -491,13 +500,7 @@ public class SyncFileService {
 				}
 			}
 
-			// Sync file
-
-			syncFile.setFilePathName(filePathName);
-			syncFile.setName(String.valueOf(filePath.getFileName()));
-			syncFile.setParentFolderId(parentFolderId);
-
-			return update(syncFile);
+			return syncFile;
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
