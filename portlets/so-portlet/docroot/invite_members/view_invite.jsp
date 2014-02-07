@@ -90,7 +90,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 					for (Role role : roles) {
 					%>
 
-						<option value="<%= role.getRoleId() %>"><%= HtmlUtil.escape(role.getTitle(themeDisplay.getLocale())) %></option>
+						<option value="<%= role.getRoleId() %>"><%= HtmlUtil.escape(role.getTitle(locale)) %></option>
 
 					<%
 					}
