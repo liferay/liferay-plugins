@@ -14,17 +14,16 @@
 
 package com.liferay.mail.util;
 
+import com.liferay.googleapps.GEmailSettingsManager;
+import com.liferay.googleapps.GNicknameManager;
+import com.liferay.googleapps.GUserManager;
+import com.liferay.googleapps.GoogleAppsFactoryUtil;
 import com.liferay.mail.model.Filter;
-import com.liferay.portal.kernel.googleapps.GEmailSettingsManager;
-import com.liferay.portal.kernel.googleapps.GNicknameManager;
-import com.liferay.portal.kernel.googleapps.GUserManager;
-import com.liferay.portal.kernel.googleapps.GoogleAppsFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.FullNameGenerator;
-import com.liferay.portal.security.auth.FullNameGeneratorFactory;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.List;
