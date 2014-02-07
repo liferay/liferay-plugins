@@ -897,7 +897,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 			CacheRegistryUtil.clear(SyncDLObjectImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(SyncDLObjectImpl.class.getName());
+		EntityCacheUtil.clearCache(SyncDLObjectImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

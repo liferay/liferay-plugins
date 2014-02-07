@@ -855,7 +855,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 			CacheRegistryUtil.clear(FavoriteSiteImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(FavoriteSiteImpl.class.getName());
+		EntityCacheUtil.clearCache(FavoriteSiteImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

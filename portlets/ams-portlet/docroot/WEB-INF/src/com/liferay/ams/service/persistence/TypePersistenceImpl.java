@@ -129,7 +129,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			CacheRegistryUtil.clear(TypeImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(TypeImpl.class.getName());
+		EntityCacheUtil.clearCache(TypeImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

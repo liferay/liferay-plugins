@@ -1343,7 +1343,7 @@ public class KaleoTaskPersistenceImpl extends BasePersistenceImpl<KaleoTask>
 			CacheRegistryUtil.clear(KaleoTaskImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(KaleoTaskImpl.class.getName());
+		EntityCacheUtil.clearCache(KaleoTaskImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

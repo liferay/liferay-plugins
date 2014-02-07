@@ -1695,7 +1695,7 @@ public class JIRAActionPersistenceImpl extends BasePersistenceImpl<JIRAAction>
 			CacheRegistryUtil.clear(JIRAActionImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(JIRAActionImpl.class.getName());
+		EntityCacheUtil.clearCache(JIRAActionImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

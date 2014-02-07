@@ -1425,7 +1425,7 @@ public class MeetupsRegistrationPersistenceImpl extends BasePersistenceImpl<Meet
 			CacheRegistryUtil.clear(MeetupsRegistrationImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(MeetupsRegistrationImpl.class.getName());
+		EntityCacheUtil.clearCache(MeetupsRegistrationImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

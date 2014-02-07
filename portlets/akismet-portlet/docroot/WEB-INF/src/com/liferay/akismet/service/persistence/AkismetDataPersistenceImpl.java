@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -46,6 +45,8 @@ import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
+
+import java.sql.Timestamp;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -218,7 +219,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindModifiedDate) {
-					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+					qPos.add(new Timestamp(modifiedDate.getTime()));
 				}
 
 				if (!pagination) {
@@ -499,7 +500,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 		QueryPos qPos = QueryPos.getInstance(q);
 
 		if (bindModifiedDate) {
-			qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+			qPos.add(new Timestamp(modifiedDate.getTime()));
 		}
 
 		if (orderByComparator != null) {
@@ -580,7 +581,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindModifiedDate) {
-					qPos.add(CalendarUtil.getTimestamp(modifiedDate));
+					qPos.add(new Timestamp(modifiedDate.getTime()));
 				}
 
 				count = (Long)q.uniqueResult();
@@ -895,7 +896,7 @@ public class AkismetDataPersistenceImpl extends BasePersistenceImpl<AkismetData>
 			CacheRegistryUtil.clear(AkismetDataImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(AkismetDataImpl.class.getName());
+		EntityCacheUtil.clearCache(AkismetDataImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

@@ -4246,7 +4246,14 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	public List<CalendarBooking> findByC_S(long calendarId, int[] statuses,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
-		if ((statuses != null) && (statuses.length == 1)) {
+		if (statuses == null) {
+			statuses = new int[0];
+		}
+		else {
+			statuses = ArrayUtil.unique(statuses);
+		}
+
+		if (statuses.length == 1) {
 			return findByC_S(calendarId, statuses[0], start, end,
 				orderByComparator);
 		}
@@ -4287,35 +4294,22 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 			query.append(_SQL_SELECT_CALENDARBOOKING_WHERE);
 
-			boolean conjunctionable = false;
+			query.append(_FINDER_COLUMN_C_S_CALENDARID_2);
 
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_C_S_CALENDARID_5);
-
-			conjunctionable = true;
-
-			if ((statuses == null) || (statuses.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
+			if (statuses.length > 0) {
 				query.append(StringPool.OPEN_PARENTHESIS);
 
-				for (int i = 0; i < statuses.length; i++) {
-					query.append(_FINDER_COLUMN_C_S_STATUS_5);
+				query.append(_FINDER_COLUMN_C_S_STATUS_7);
 
-					if ((i + 1) < statuses.length) {
-						query.append(WHERE_OR);
-					}
-				}
+				query.append(StringUtil.merge(statuses));
 
 				query.append(StringPool.CLOSE_PARENTHESIS);
 
-				conjunctionable = true;
+				query.append(StringPool.CLOSE_PARENTHESIS);
 			}
+
+			query.setStringAt(removeConjunction(query.stringAt(query.index() -
+						1)), query.index() - 1);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -4338,10 +4332,6 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(calendarId);
-
-				if (statuses != null) {
-					qPos.add(statuses);
-				}
 
 				if (!pagination) {
 					list = (List<CalendarBooking>)QueryUtil.list(q,
@@ -4461,6 +4451,13 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	@Override
 	public int countByC_S(long calendarId, int[] statuses)
 		throws SystemException {
+		if (statuses == null) {
+			statuses = new int[0];
+		}
+		else {
+			statuses = ArrayUtil.unique(statuses);
+		}
+
 		Object[] finderArgs = new Object[] {
 				calendarId, StringUtil.merge(statuses)
 			};
@@ -4473,35 +4470,22 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 
 			query.append(_SQL_COUNT_CALENDARBOOKING_WHERE);
 
-			boolean conjunctionable = false;
+			query.append(_FINDER_COLUMN_C_S_CALENDARID_2);
 
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
-			query.append(_FINDER_COLUMN_C_S_CALENDARID_5);
-
-			conjunctionable = true;
-
-			if ((statuses == null) || (statuses.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
+			if (statuses.length > 0) {
 				query.append(StringPool.OPEN_PARENTHESIS);
 
-				for (int i = 0; i < statuses.length; i++) {
-					query.append(_FINDER_COLUMN_C_S_STATUS_5);
+				query.append(_FINDER_COLUMN_C_S_STATUS_7);
 
-					if ((i + 1) < statuses.length) {
-						query.append(WHERE_OR);
-					}
-				}
+				query.append(StringUtil.merge(statuses));
 
 				query.append(StringPool.CLOSE_PARENTHESIS);
 
-				conjunctionable = true;
+				query.append(StringPool.CLOSE_PARENTHESIS);
 			}
+
+			query.setStringAt(removeConjunction(query.stringAt(query.index() -
+						1)), query.index() - 1);
 
 			String sql = query.toString();
 
@@ -4515,10 +4499,6 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				qPos.add(calendarId);
-
-				if (statuses != null) {
-					qPos.add(statuses);
-				}
 
 				count = (Long)q.uniqueResult();
 
@@ -4540,11 +4520,8 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 	}
 
 	private static final String _FINDER_COLUMN_C_S_CALENDARID_2 = "calendarBooking.calendarId = ? AND ";
-	private static final String _FINDER_COLUMN_C_S_CALENDARID_5 = "(" +
-		removeConjunction(_FINDER_COLUMN_C_S_CALENDARID_2) + ")";
 	private static final String _FINDER_COLUMN_C_S_STATUS_2 = "calendarBooking.status = ?";
-	private static final String _FINDER_COLUMN_C_S_STATUS_5 = "(" +
-		removeConjunction(_FINDER_COLUMN_C_S_STATUS_2) + ")";
+	private static final String _FINDER_COLUMN_C_S_STATUS_7 = "calendarBooking.status IN (";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_P_S = new FinderPath(CalendarBookingModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarBookingModelImpl.FINDER_CACHE_ENABLED,
 			CalendarBookingImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -5143,7 +5120,7 @@ public class CalendarBookingPersistenceImpl extends BasePersistenceImpl<Calendar
 			CacheRegistryUtil.clear(CalendarBookingImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(CalendarBookingImpl.class.getName());
+		EntityCacheUtil.clearCache(CalendarBookingImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

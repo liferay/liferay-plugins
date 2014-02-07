@@ -1749,7 +1749,7 @@ public class SVNRevisionPersistenceImpl extends BasePersistenceImpl<SVNRevision>
 			CacheRegistryUtil.clear(SVNRevisionImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(SVNRevisionImpl.class.getName());
+		EntityCacheUtil.clearCache(SVNRevisionImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

@@ -2019,7 +2019,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 			CacheRegistryUtil.clear(KaleoTimerInstanceTokenImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(KaleoTimerInstanceTokenImpl.class.getName());
+		EntityCacheUtil.clearCache(KaleoTimerInstanceTokenImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

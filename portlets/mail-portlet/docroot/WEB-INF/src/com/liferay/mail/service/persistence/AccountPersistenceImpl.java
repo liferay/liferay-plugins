@@ -894,7 +894,7 @@ public class AccountPersistenceImpl extends BasePersistenceImpl<Account>
 			CacheRegistryUtil.clear(AccountImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(AccountImpl.class.getName());
+		EntityCacheUtil.clearCache(AccountImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

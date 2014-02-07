@@ -2396,7 +2396,7 @@ public class KaleoTaskAssignmentPersistenceImpl extends BasePersistenceImpl<Kale
 			CacheRegistryUtil.clear(KaleoTaskAssignmentImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(KaleoTaskAssignmentImpl.class.getName());
+		EntityCacheUtil.clearCache(KaleoTaskAssignmentImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

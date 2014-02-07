@@ -1338,7 +1338,7 @@ public class KaleoTimerPersistenceImpl extends BasePersistenceImpl<KaleoTimer>
 			CacheRegistryUtil.clear(KaleoTimerImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(KaleoTimerImpl.class.getName());
+		EntityCacheUtil.clearCache(KaleoTimerImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

@@ -2659,7 +2659,7 @@ public class KaleoDefinitionPersistenceImpl extends BasePersistenceImpl<KaleoDef
 			CacheRegistryUtil.clear(KaleoDefinitionImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(KaleoDefinitionImpl.class.getName());
+		EntityCacheUtil.clearCache(KaleoDefinitionImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

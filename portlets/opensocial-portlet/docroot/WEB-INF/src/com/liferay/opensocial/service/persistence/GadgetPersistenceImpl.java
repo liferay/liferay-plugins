@@ -3177,7 +3177,7 @@ public class GadgetPersistenceImpl extends BasePersistenceImpl<Gadget>
 			CacheRegistryUtil.clear(GadgetImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(GadgetImpl.class.getName());
+		EntityCacheUtil.clearCache(GadgetImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

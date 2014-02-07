@@ -130,7 +130,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 			CacheRegistryUtil.clear(CheckoutImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(CheckoutImpl.class.getName());
+		EntityCacheUtil.clearCache(CheckoutImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

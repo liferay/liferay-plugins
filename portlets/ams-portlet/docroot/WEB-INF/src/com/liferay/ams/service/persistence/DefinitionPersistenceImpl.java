@@ -130,7 +130,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			CacheRegistryUtil.clear(DefinitionImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(DefinitionImpl.class.getName());
+		EntityCacheUtil.clearCache(DefinitionImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

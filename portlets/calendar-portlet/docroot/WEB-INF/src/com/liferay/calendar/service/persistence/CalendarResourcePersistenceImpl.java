@@ -4107,51 +4107,47 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			return findByG_C(groupIds, code, start, end, orderByComparator);
 		}
 
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else {
+			groupIds = ArrayUtil.unique(groupIds);
+		}
+
 		StringBundler query = new StringBundler();
 
 		query.append(_SQL_SELECT_CALENDARRESOURCE_WHERE);
 
-		boolean conjunctionable = false;
-
-		if ((groupIds == null) || (groupIds.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
+		if (groupIds.length > 0) {
 			query.append(StringPool.OPEN_PARENTHESIS);
 
-			for (int i = 0; i < groupIds.length; i++) {
-				query.append(_FINDER_COLUMN_G_C_GROUPID_5);
+			query.append(_FINDER_COLUMN_G_C_GROUPID_7);
 
-				if ((i + 1) < groupIds.length) {
-					query.append(WHERE_OR);
-				}
-			}
+			query.append(StringUtil.merge(groupIds));
 
 			query.append(StringPool.CLOSE_PARENTHESIS);
 
-			conjunctionable = true;
-		}
+			query.append(StringPool.CLOSE_PARENTHESIS);
 
-		if (conjunctionable) {
 			query.append(WHERE_AND);
 		}
 
 		boolean bindCode = false;
 
 		if (code == null) {
-			query.append(_FINDER_COLUMN_G_C_CODE_4);
+			query.append(_FINDER_COLUMN_G_C_CODE_1);
 		}
 		else if (code.equals(StringPool.BLANK)) {
-			query.append(_FINDER_COLUMN_G_C_CODE_6);
+			query.append(_FINDER_COLUMN_G_C_CODE_3);
 		}
 		else {
 			bindCode = true;
 
-			query.append(_FINDER_COLUMN_G_C_CODE_5);
+			query.append(_FINDER_COLUMN_G_C_CODE_2);
 		}
 
-		conjunctionable = true;
+		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+			query.index() - 1);
 
 		if (orderByComparator != null) {
 			appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -4174,10 +4170,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (groupIds != null) {
-				qPos.add(groupIds);
-			}
 
 			if (bindCode) {
 				qPos.add(code);
@@ -4252,7 +4244,14 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	public List<CalendarResource> findByG_C(long[] groupIds, String code,
 		int start, int end, OrderByComparator orderByComparator)
 		throws SystemException {
-		if ((groupIds != null) && (groupIds.length == 1)) {
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else {
+			groupIds = ArrayUtil.unique(groupIds);
+		}
+
+		if (groupIds.length == 1) {
 			return findByG_C(groupIds[0], code, start, end, orderByComparator);
 		}
 
@@ -4291,47 +4290,36 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			query.append(_SQL_SELECT_CALENDARRESOURCE_WHERE);
 
-			boolean conjunctionable = false;
-
-			if ((groupIds == null) || (groupIds.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
+			if (groupIds.length > 0) {
 				query.append(StringPool.OPEN_PARENTHESIS);
 
-				for (int i = 0; i < groupIds.length; i++) {
-					query.append(_FINDER_COLUMN_G_C_GROUPID_5);
+				query.append(_FINDER_COLUMN_G_C_GROUPID_7);
 
-					if ((i + 1) < groupIds.length) {
-						query.append(WHERE_OR);
-					}
-				}
+				query.append(StringUtil.merge(groupIds));
 
 				query.append(StringPool.CLOSE_PARENTHESIS);
 
-				conjunctionable = true;
-			}
+				query.append(StringPool.CLOSE_PARENTHESIS);
 
-			if (conjunctionable) {
 				query.append(WHERE_AND);
 			}
 
 			boolean bindCode = false;
 
 			if (code == null) {
-				query.append(_FINDER_COLUMN_G_C_CODE_4);
+				query.append(_FINDER_COLUMN_G_C_CODE_1);
 			}
 			else if (code.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_G_C_CODE_6);
+				query.append(_FINDER_COLUMN_G_C_CODE_3);
 			}
 			else {
 				bindCode = true;
 
-				query.append(_FINDER_COLUMN_G_C_CODE_5);
+				query.append(_FINDER_COLUMN_G_C_CODE_2);
 			}
 
-			conjunctionable = true;
+			query.setStringAt(removeConjunction(query.stringAt(query.index() -
+						1)), query.index() - 1);
 
 			if (orderByComparator != null) {
 				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
@@ -4352,10 +4340,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (groupIds != null) {
-					qPos.add(groupIds);
-				}
 
 				if (bindCode) {
 					qPos.add(code);
@@ -4492,6 +4476,13 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	@Override
 	public int countByG_C(long[] groupIds, String code)
 		throws SystemException {
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else {
+			groupIds = ArrayUtil.unique(groupIds);
+		}
+
 		Object[] finderArgs = new Object[] { StringUtil.merge(groupIds), code };
 
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_WITH_PAGINATION_COUNT_BY_G_C,
@@ -4502,47 +4493,36 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 
 			query.append(_SQL_COUNT_CALENDARRESOURCE_WHERE);
 
-			boolean conjunctionable = false;
-
-			if ((groupIds == null) || (groupIds.length > 0)) {
-				if (conjunctionable) {
-					query.append(WHERE_AND);
-				}
-
+			if (groupIds.length > 0) {
 				query.append(StringPool.OPEN_PARENTHESIS);
 
-				for (int i = 0; i < groupIds.length; i++) {
-					query.append(_FINDER_COLUMN_G_C_GROUPID_5);
+				query.append(_FINDER_COLUMN_G_C_GROUPID_7);
 
-					if ((i + 1) < groupIds.length) {
-						query.append(WHERE_OR);
-					}
-				}
+				query.append(StringUtil.merge(groupIds));
 
 				query.append(StringPool.CLOSE_PARENTHESIS);
 
-				conjunctionable = true;
-			}
+				query.append(StringPool.CLOSE_PARENTHESIS);
 
-			if (conjunctionable) {
 				query.append(WHERE_AND);
 			}
 
 			boolean bindCode = false;
 
 			if (code == null) {
-				query.append(_FINDER_COLUMN_G_C_CODE_4);
+				query.append(_FINDER_COLUMN_G_C_CODE_1);
 			}
 			else if (code.equals(StringPool.BLANK)) {
-				query.append(_FINDER_COLUMN_G_C_CODE_6);
+				query.append(_FINDER_COLUMN_G_C_CODE_3);
 			}
 			else {
 				bindCode = true;
 
-				query.append(_FINDER_COLUMN_G_C_CODE_5);
+				query.append(_FINDER_COLUMN_G_C_CODE_2);
 			}
 
-			conjunctionable = true;
+			query.setStringAt(removeConjunction(query.stringAt(query.index() -
+						1)), query.index() - 1);
 
 			String sql = query.toString();
 
@@ -4554,10 +4534,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
-
-				if (groupIds != null) {
-					qPos.add(groupIds);
-				}
 
 				if (bindCode) {
 					qPos.add(code);
@@ -4664,51 +4640,47 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			return countByG_C(groupIds, code);
 		}
 
+		if (groupIds == null) {
+			groupIds = new long[0];
+		}
+		else {
+			groupIds = ArrayUtil.unique(groupIds);
+		}
+
 		StringBundler query = new StringBundler();
 
 		query.append(_SQL_COUNT_CALENDARRESOURCE_WHERE);
 
-		boolean conjunctionable = false;
-
-		if ((groupIds == null) || (groupIds.length > 0)) {
-			if (conjunctionable) {
-				query.append(WHERE_AND);
-			}
-
+		if (groupIds.length > 0) {
 			query.append(StringPool.OPEN_PARENTHESIS);
 
-			for (int i = 0; i < groupIds.length; i++) {
-				query.append(_FINDER_COLUMN_G_C_GROUPID_5);
+			query.append(_FINDER_COLUMN_G_C_GROUPID_7);
 
-				if ((i + 1) < groupIds.length) {
-					query.append(WHERE_OR);
-				}
-			}
+			query.append(StringUtil.merge(groupIds));
 
 			query.append(StringPool.CLOSE_PARENTHESIS);
 
-			conjunctionable = true;
-		}
+			query.append(StringPool.CLOSE_PARENTHESIS);
 
-		if (conjunctionable) {
 			query.append(WHERE_AND);
 		}
 
 		boolean bindCode = false;
 
 		if (code == null) {
-			query.append(_FINDER_COLUMN_G_C_CODE_4);
+			query.append(_FINDER_COLUMN_G_C_CODE_1);
 		}
 		else if (code.equals(StringPool.BLANK)) {
-			query.append(_FINDER_COLUMN_G_C_CODE_6);
+			query.append(_FINDER_COLUMN_G_C_CODE_3);
 		}
 		else {
 			bindCode = true;
 
-			query.append(_FINDER_COLUMN_G_C_CODE_5);
+			query.append(_FINDER_COLUMN_G_C_CODE_2);
 		}
 
-		conjunctionable = true;
+		query.setStringAt(removeConjunction(query.stringAt(query.index() - 1)),
+			query.index() - 1);
 
 		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
 				CalendarResource.class.getName(),
@@ -4723,10 +4695,6 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			Query q = session.createQuery(sql);
 
 			QueryPos qPos = QueryPos.getInstance(q);
-
-			if (groupIds != null) {
-				qPos.add(groupIds);
-			}
 
 			if (bindCode) {
 				qPos.add(code);
@@ -4745,17 +4713,10 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 	}
 
 	private static final String _FINDER_COLUMN_G_C_GROUPID_2 = "calendarResource.groupId = ? AND ";
-	private static final String _FINDER_COLUMN_G_C_GROUPID_5 = "(" +
-		removeConjunction(_FINDER_COLUMN_G_C_GROUPID_2) + ")";
+	private static final String _FINDER_COLUMN_G_C_GROUPID_7 = "calendarResource.groupId IN (";
 	private static final String _FINDER_COLUMN_G_C_CODE_1 = "calendarResource.code IS NULL";
 	private static final String _FINDER_COLUMN_G_C_CODE_2 = "calendarResource.code = ?";
 	private static final String _FINDER_COLUMN_G_C_CODE_3 = "(calendarResource.code IS NULL OR calendarResource.code = '')";
-	private static final String _FINDER_COLUMN_G_C_CODE_4 = "(" +
-		removeConjunction(_FINDER_COLUMN_G_C_CODE_1) + ")";
-	private static final String _FINDER_COLUMN_G_C_CODE_5 = "(" +
-		removeConjunction(_FINDER_COLUMN_G_C_CODE_2) + ")";
-	private static final String _FINDER_COLUMN_G_C_CODE_6 = "(" +
-		removeConjunction(_FINDER_COLUMN_G_C_CODE_3) + ")";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_G_A = new FinderPath(CalendarResourceModelImpl.ENTITY_CACHE_ENABLED,
 			CalendarResourceModelImpl.FINDER_CACHE_ENABLED,
 			CalendarResourceImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -6504,7 +6465,7 @@ public class CalendarResourcePersistenceImpl extends BasePersistenceImpl<Calenda
 			CacheRegistryUtil.clear(CalendarResourceImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(CalendarResourceImpl.class.getName());
+		EntityCacheUtil.clearCache(CalendarResourceImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

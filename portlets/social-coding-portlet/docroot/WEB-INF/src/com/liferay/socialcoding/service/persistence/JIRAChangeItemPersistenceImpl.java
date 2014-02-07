@@ -642,7 +642,7 @@ public class JIRAChangeItemPersistenceImpl extends BasePersistenceImpl<JIRAChang
 			CacheRegistryUtil.clear(JIRAChangeItemImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(JIRAChangeItemImpl.class.getName());
+		EntityCacheUtil.clearCache(JIRAChangeItemImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

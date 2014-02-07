@@ -1354,7 +1354,7 @@ public class KaleoConditionPersistenceImpl extends BasePersistenceImpl<KaleoCond
 			CacheRegistryUtil.clear(KaleoConditionImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(KaleoConditionImpl.class.getName());
+		EntityCacheUtil.clearCache(KaleoConditionImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

@@ -2380,7 +2380,7 @@ public class KaleoActionPersistenceImpl extends BasePersistenceImpl<KaleoAction>
 			CacheRegistryUtil.clear(KaleoActionImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(KaleoActionImpl.class.getName());
+		EntityCacheUtil.clearCache(KaleoActionImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

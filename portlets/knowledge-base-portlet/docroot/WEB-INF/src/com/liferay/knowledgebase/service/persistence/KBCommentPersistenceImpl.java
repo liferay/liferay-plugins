@@ -3312,7 +3312,7 @@ public class KBCommentPersistenceImpl extends BasePersistenceImpl<KBComment>
 			CacheRegistryUtil.clear(KBCommentImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(KBCommentImpl.class.getName());
+		EntityCacheUtil.clearCache(KBCommentImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

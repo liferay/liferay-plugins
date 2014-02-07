@@ -3783,7 +3783,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 			CacheRegistryUtil.clear(CalendarImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(CalendarImpl.class.getName());
+		EntityCacheUtil.clearCache(CalendarImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

@@ -1633,7 +1633,7 @@ public class WallEntryPersistenceImpl extends BasePersistenceImpl<WallEntry>
 			CacheRegistryUtil.clear(WallEntryImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(WallEntryImpl.class.getName());
+		EntityCacheUtil.clearCache(WallEntryImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

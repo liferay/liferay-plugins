@@ -1733,7 +1733,7 @@ public class WSRPConsumerPersistenceImpl extends BasePersistenceImpl<WSRPConsume
 			CacheRegistryUtil.clear(WSRPConsumerImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(WSRPConsumerImpl.class.getName());
+		EntityCacheUtil.clearCache(WSRPConsumerImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

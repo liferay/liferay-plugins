@@ -3418,7 +3418,7 @@ public class KaleoLogPersistenceImpl extends BasePersistenceImpl<KaleoLog>
 			CacheRegistryUtil.clear(KaleoLogImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(KaleoLogImpl.class.getName());
+		EntityCacheUtil.clearCache(KaleoLogImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);

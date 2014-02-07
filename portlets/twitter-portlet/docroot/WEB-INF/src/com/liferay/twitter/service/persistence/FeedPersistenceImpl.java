@@ -407,7 +407,7 @@ public class FeedPersistenceImpl extends BasePersistenceImpl<Feed>
 			CacheRegistryUtil.clear(FeedImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(FeedImpl.class.getName());
+		EntityCacheUtil.clearCache(FeedImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
