@@ -218,7 +218,16 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		if (baseModel instanceof PersistedModel) {
 			PersistedModel persistedModel = (PersistedModel)baseModel;
 
-			persistedModel.persist();
+			try {
+				persistedModel.persist();
+			}
+			catch (Exception e) {
+				log.error(e, e);
+
+				renderError("an-unexpected-system-error-occurred");
+
+				return;
+			}
 		}
 
 		if ((indexer != null) &&
