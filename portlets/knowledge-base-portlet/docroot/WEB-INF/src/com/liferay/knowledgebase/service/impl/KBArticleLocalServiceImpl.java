@@ -825,6 +825,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			kbArticle = kbArticlePersistence.create(kbArticleId);
 
+			kbArticle.setUuid(serviceContext.getUuid());
 			kbArticle.setResourcePrimKey(oldKBArticle.getResourcePrimKey());
 			kbArticle.setGroupId(oldKBArticle.getGroupId());
 			kbArticle.setCompanyId(user.getCompanyId());
