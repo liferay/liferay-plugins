@@ -26,16 +26,16 @@ Map<String, UserPref> userPrefs = (Map<String, UserPref>)renderRequest.getAttrib
 Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderRequest.getAttribute(WebKeys.OAUTH_SERVICES);
 %>
 
-<liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
+
+<liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
+<liferay-portlet:renderURL portletConfiguration="true" var="configurationRenderURL">
 	<portlet:param name="tabs2" value="<%= tabs2 %>" />
 </liferay-portlet:renderURL>
 
-<liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
-
-<aui:form action="<%= configurationURL %>" method="post" name="fm">
+<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
-	<aui:input name="redirect" type="hidden" value="<%= portletURL %>" />
+	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
 
 	<%
 	String tabs2Names = "gadget";
@@ -61,7 +61,7 @@ Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderReque
 		<liferay-ui:tabs
 			names="<%= tabs2Names %>"
 			param="tabs2"
-			url="<%= portletURL %>"
+			url="<%= configurationRenderURL %>"
 		/>
 	</c:if>
 

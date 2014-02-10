@@ -19,9 +19,9 @@
 
 <%@ include file="/sites/init.jsp" %>
 
-<liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
+<liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
 
-<aui:form action="<%= configurationURL %>" method="post" name="fm">
+<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<aui:select label="maximum-result-size" name="preferences--maxResultSize--">

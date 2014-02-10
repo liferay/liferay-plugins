@@ -29,9 +29,9 @@ String htmlAttributes =
 	"width=" + width + "\n";
 %>
 
-<liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
+<liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
 
-<aui:form action="<%= actionURL %>" method="post" name="fm">
+<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="preferences--link--" type="hidden" />
 	<aui:input name="preferences--title--" type="hidden" />

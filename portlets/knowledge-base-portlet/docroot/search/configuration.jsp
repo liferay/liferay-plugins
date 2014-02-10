@@ -18,13 +18,7 @@
 
 <%
 String tabs2 = ParamUtil.getString(request, "tabs2", "general");
-%>
 
-<liferay-portlet:renderURL portletConfiguration="true" var="portletURL">
-	<portlet:param name="tabs2" value="<%= tabs2 %>" />
-</liferay-portlet:renderURL>
-
-<%
 String tabs2Names = "general,display-settings";
 
 if (PortalUtil.isRSSFeedsEnabled()) {
@@ -32,15 +26,18 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 }
 %>
 
+<liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
+<liferay-portlet:renderURL portletConfiguration="true" var="configurationRenderURL">
+	<portlet:param name="tabs2" value="<%= tabs2 %>" />
+</liferay-portlet:renderURL>
+
 <liferay-ui:tabs
 	names="<%= tabs2Names %>"
 	param="tabs2"
-	url="<%= portletURL %>"
+	url="<%= configurationRenderURL %>"
 />
 
-<liferay-portlet:actionURL portletConfiguration="true" var="configurationURL" />
-
-<aui:form action="<%= configurationURL %>" method="post" name="fm">
+<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 
