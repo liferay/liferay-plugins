@@ -37,6 +37,7 @@ catch (NoSuchRecordSetException nsrse) {
 %>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
+
 <liferay-portlet:renderURL portletConfiguration="true" varImpl="configurationRenderURL" />
 
 <aui:form action="<%= configurationActionURL %>" method="post" name="fm1">
