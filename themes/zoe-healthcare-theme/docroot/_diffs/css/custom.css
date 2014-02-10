@@ -10,7 +10,7 @@ $dockbarOpenGradientStart: #A7C86C;
 /* -------- Global -------- */
 
 .aui {
-	#breadcrumbs, #heading .page-title, #navigation .child-menu, #navigation h1, #skip-to-content {
+	#navigation .child-menu, #skip-to-content {
 		clip: rect(0 0 0 0);
 		height: 0;
 		margin: 0;
