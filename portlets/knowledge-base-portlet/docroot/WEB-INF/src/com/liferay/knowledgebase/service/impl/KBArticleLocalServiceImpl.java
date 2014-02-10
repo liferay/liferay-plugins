@@ -382,6 +382,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
+	public KBArticle fetchLatestKBArticle(long resourcePrimKey, int status)
+		throws PortalException, SystemException {
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			return kbArticlePersistence.fetchByResourcePrimKey_First(
+				resourcePrimKey, new KBArticleVersionComparator());
+		}
+
+		return kbArticlePersistence.fetchByR_S_First(
+			resourcePrimKey, status, new KBArticleVersionComparator());
+	}
+
 	public List<KBArticle> getCompanyKBArticles(
 			long companyId, int status, int start, int end,
 			OrderByComparator orderByComparator)
