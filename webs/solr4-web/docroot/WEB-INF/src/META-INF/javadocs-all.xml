@@ -920,42 +920,6 @@
 		</field>
 	</javadoc>
 	<javadoc>
-		<name>SolrTermCollector</name>
-		<type>com.liferay.portal.search.solr.facet.SolrTermCollector</type>
-		<author><![CDATA[Raymond Augé]]></author>
-		<method>
-			<name>SolrTermCollector</name>
-			<param>
-				<name>term</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>frequency</name>
-				<type>int</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-		</method>
-		<method>
-			<name>getFrequency</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>getTerm</name>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<field>
-			<name>_frequency</name>
-		</field>
-		<field>
-			<name>_term</name>
-		</field>
-	</javadoc>
-	<javadoc>
 		<name>BaseDelegatedSolrServer</name>
 		<type>com.liferay.portal.search.solr.server.BaseDelegatedSolrServer</type>
 		<author><![CDATA[Michael C. Han]]></author>
