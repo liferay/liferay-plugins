@@ -12,19 +12,39 @@
  * details.
  */
 
-package com.liferay.sync.engine.service.persistence;
+package com.liferay.sync.engine.model;
 
-import com.liferay.sync.engine.model.SyncProps;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
-import java.sql.SQLException;
+import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 
 /**
  * @author Shinn Lok
  */
-public class SyncPropsPersistence extends BasePersistenceImpl<SyncProps, Long> {
+@DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncProp")
+public class SyncProp {
 
-	public SyncPropsPersistence() throws SQLException {
-		super(SyncProps.class);
+	public String getKey() {
+		return key;
 	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	@DatabaseField(useGetSet = true)
+	protected String key;
+
+	@DatabaseField(useGetSet = true)
+	protected String value;
 
 }

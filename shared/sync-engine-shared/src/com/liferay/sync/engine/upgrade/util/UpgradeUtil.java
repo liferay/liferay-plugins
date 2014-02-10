@@ -16,12 +16,12 @@ package com.liferay.sync.engine.upgrade.util;
 
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
-import com.liferay.sync.engine.service.SyncPropsService;
+import com.liferay.sync.engine.service.SyncPropService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
 import com.liferay.sync.engine.service.persistence.SyncAccountPersistence;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
-import com.liferay.sync.engine.service.persistence.SyncPropsPersistence;
+import com.liferay.sync.engine.service.persistence.SyncPropPersistence;
 import com.liferay.sync.engine.service.persistence.SyncSitePersistence;
 import com.liferay.sync.engine.service.persistence.SyncWatchEventPersistence;
 import com.liferay.sync.engine.util.ReleaseInfo;
@@ -32,7 +32,7 @@ import com.liferay.sync.engine.util.ReleaseInfo;
 public class UpgradeUtil {
 
 	public static void upgrade() throws Exception {
-		int buildNumber = SyncPropsService.getInteger("buildNumber");
+		int buildNumber = SyncPropService.getInteger("buildNumber");
 
 		if (buildNumber == 0) {
 			createTables();
@@ -41,7 +41,7 @@ public class UpgradeUtil {
 			return;
 		}
 
-		SyncPropsService.addSyncProps(
+		SyncPropService.addSyncProp(
 			"buildNumber", ReleaseInfo.getBuildNumber());
 	}
 
@@ -60,11 +60,11 @@ public class UpgradeUtil {
 			syncFilePersistence.createTable();
 		}
 
-		SyncPropsPersistence syncPropsPersistence =
-			SyncPropsService.getSyncPropsPersistence();
+		SyncPropPersistence syncPropPersistence =
+			SyncPropService.getSyncPropPersistence();
 
-		if (!syncPropsPersistence.isTableExists()) {
-			syncPropsPersistence.createTable();
+		if (!syncPropPersistence.isTableExists()) {
+			syncPropPersistence.createTable();
 		}
 
 		SyncSitePersistence syncSitePersistence =

@@ -14,8 +14,8 @@
 
 package com.liferay.sync.engine.service;
 
-import com.liferay.sync.engine.model.SyncProps;
-import com.liferay.sync.engine.service.persistence.SyncPropsPersistence;
+import com.liferay.sync.engine.model.SyncProp;
+import com.liferay.sync.engine.service.persistence.SyncPropPersistence;
 
 import java.sql.SQLException;
 
@@ -27,33 +27,33 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Shinn Lok
  */
-public class SyncPropsService {
+public class SyncPropService {
 
-	public static SyncProps addSyncProps(String key, Object value)
+	public static SyncProp addSyncProp(String key, Object value)
 		throws Exception {
 
-		SyncProps syncProps = new SyncProps();
+		SyncProp syncProp = new SyncProp();
 
-		syncProps.setKey(key);
-		syncProps.setValue(String.valueOf(value));
+		syncProp.setKey(key);
+		syncProp.setValue(String.valueOf(value));
 
-		_syncPropsPersistence.create(syncProps);
+		_syncPropPersistence.create(syncProp);
 
-		return syncProps;
+		return syncProp;
 	}
 
 	public static int getInteger(String key) {
 		try {
-			List<SyncProps> syncPropsList = _syncPropsPersistence.queryForEq(
+			List<SyncProp> syncPropList = _syncPropPersistence.queryForEq(
 				"key", key);
 
-			SyncProps syncProps = syncPropsList.get(0);
+			SyncProp syncProp = syncPropList.get(0);
 
-			if (syncProps == null) {
+			if (syncProp == null) {
 				return 0;
 			}
 
-			return Integer.parseInt(syncProps.getValue());
+			return Integer.parseInt(syncProp.getValue());
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -64,13 +64,13 @@ public class SyncPropsService {
 		}
 	}
 
-	public static SyncPropsPersistence getSyncPropsPersistence() {
-		if (_syncPropsPersistence != null) {
-			return _syncPropsPersistence;
+	public static SyncPropPersistence getSyncPropPersistence() {
+		if (_syncPropPersistence != null) {
+			return _syncPropPersistence;
 		}
 
 		try {
-			_syncPropsPersistence = new SyncPropsPersistence();
+			_syncPropPersistence = new SyncPropPersistence();
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -78,13 +78,13 @@ public class SyncPropsService {
 			}
 		}
 
-		return _syncPropsPersistence;
+		return _syncPropPersistence;
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
-		SyncPropsService.class);
+		SyncPropService.class);
 
-	private static SyncPropsPersistence _syncPropsPersistence =
-		getSyncPropsPersistence();
+	private static SyncPropPersistence _syncPropPersistence =
+		getSyncPropPersistence();
 
 }
