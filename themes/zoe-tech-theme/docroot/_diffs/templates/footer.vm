@@ -3,7 +3,9 @@
 		<div class="column column-first span3" id="footerSection1">
 			<div class="column-content column-content-first">
 				#if ($footer_section_1)
-					$footer_section_1
+					<section>
+						$footer_section_1
+					</section>
 				#end
 			</div>
 		</div>
@@ -12,7 +14,9 @@
 			<div class="column-content">
 				#if ($theme_settings.footer-section-2-article-id)
 					#if ($footer_section_2)
-						$footer_section_2
+						<section>
+							$footer_section_2
+						</section>
 					#end
 				#else
 					#if ($theme_settings.footer-nav-title)
@@ -49,7 +53,9 @@
 		<div class="column span3" id="footerSection3">
 			<div class="column-content">
 				#if ($footer_section_3)
-					$footer_section_3
+					<section>
+						$footer_section_3
+					</section>
 				#end
 			</div>
 		</div>
@@ -57,7 +63,9 @@
 		<div class="column column-last span3" id="footerSection4">
 			<div class="column-content column-content-last">
 				#if ($footer_section_4)
-					$footer_section_4
+					<section>
+						$footer_section_4
+					</section>
 				#end
 			</div>
 		</div>
