@@ -11,7 +11,7 @@ $default-box-shadow-v-offset: 1px;
 /* -------- Global -------- */
 
 .aui {
-	#breadcrumbs, #heading .page-title, #navigation .child-menu, #navigation h1, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
+	#breadcrumbs, #navigation .child-menu, #navigation h1, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
 		clip: rect(0 0 0 0);
 		position: absolute;
 	}
