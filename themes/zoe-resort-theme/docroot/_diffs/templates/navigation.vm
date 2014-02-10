@@ -1,7 +1,5 @@
 <nav class="$nav_css_class" id="navigation">
-	<h1>
-		<span>#language ("navigation")</span>
-	</h1>
+	<h1 class="hide-accessible">#language ("navigation")</h1>
 
 	<ul>
 		#foreach ($nav_item in $nav_items)
