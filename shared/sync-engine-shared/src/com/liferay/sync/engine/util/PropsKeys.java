@@ -27,4 +27,6 @@ public interface PropsKeys {
 	public static final String SYNC_LOGGER_CONFIGURATION_FILE =
 		"sync.logger.configuration.file";
 
+	public static final String SYNC_PRODUCT_NAME = "sync.product.name";
+
 }

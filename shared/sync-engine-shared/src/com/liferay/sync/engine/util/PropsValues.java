@@ -28,4 +28,7 @@ public class PropsValues {
 	public static String SYNC_LOGGER_CONFIGURATION_FILE = PropsUtil.get(
 		PropsKeys.SYNC_LOGGER_CONFIGURATION_FILE);
 
+	public static String SYNC_PRODUCT_NAME = PropsUtil.get(
+		PropsKeys.SYNC_PRODUCT_NAME);
+
 }

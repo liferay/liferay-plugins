@@ -16,7 +16,7 @@ package com.liferay.sync.engine;
 
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.service.SyncAccountService;
-import com.liferay.sync.engine.upgrade.UpgradeProcessSuite;
+import com.liferay.sync.engine.upgrade.util.UpgradeUtil;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.HttpUtil;
 import com.liferay.sync.engine.util.LoggerUtil;
@@ -55,9 +55,7 @@ public abstract class BaseTestCase {
 
 		LoggerUtil.initLogger();
 
-		UpgradeProcessSuite upgradeProcessSuite = new UpgradeProcessSuite();
-
-		upgradeProcessSuite.upgrade();
+		UpgradeUtil.upgrade();
 
 		filePathName = FilePathNameUtil.fixFilePathName(
 			System.getProperty("user.home") + "/liferay-sync-test");
