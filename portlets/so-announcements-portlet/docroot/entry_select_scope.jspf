@@ -31,7 +31,7 @@
 
 			<%
 			for (Group curGroup : groups) {
-				if ((curGroup.isOrganization() || (curGroup.isRegularSite() && curGroup.isSite())) && GroupPermissionUtil.contains(permissionChecker, curGroup.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+				if (((curGroup.isOrganization() && curGroup.isSite()) || curGroup.isRegularSite()) && GroupPermissionUtil.contains(permissionChecker, curGroup.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 			%>
 
 					<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" selected="<%= classPK == curGroup.getGroupId() %>" value="<%= PortalUtil.getClassNameId(Group.class) + StringPool.COMMA + curGroup.getGroupId() %>" />
