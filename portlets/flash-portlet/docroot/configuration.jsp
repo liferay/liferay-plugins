@@ -49,9 +49,9 @@ flashAttributes = ParamUtil.getString(request, "flashAttributes", flashAttribute
 flashVariables = ParamUtil.getString(request, "flashVariables", flashVariables);
 %>
 
-<liferay-portlet:actionURL portletConfiguration="true" var="actionURL" />
+<liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
 
-<aui:form action="<%= actionURL %>" method="post" name="fm">
+<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<aui:fieldset>
