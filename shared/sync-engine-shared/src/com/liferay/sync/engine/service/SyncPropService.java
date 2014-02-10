@@ -44,10 +44,10 @@ public class SyncPropService {
 
 	public static int getInteger(String key) {
 		try {
-			List<SyncProp> syncPropList = _syncPropPersistence.queryForEq(
+			List<SyncProp> syncProps = _syncPropPersistence.queryForEq(
 				"key", key);
 
-			SyncProp syncProp = syncPropList.get(0);
+			SyncProp syncProp = syncProps.get(0);
 
 			if (syncProp == null) {
 				return 0;

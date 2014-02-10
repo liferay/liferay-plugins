@@ -42,19 +42,21 @@ public class SyncEngineUtil {
 		for (final SyncEngineListener syncEngineListener :
 				_syncEngineListeners) {
 
-			_executor.submit(
+			_executorService.submit(
 				new Runnable() {
+
 					@Override
 					public void run() {
 						syncEngineListener.syncEngineStateChanged(
 								syncEngineState);
 					}
+
 				}
 			);
 		}
 	}
 
-	private static ExecutorService _executor =
+	private static ExecutorService _executorService =
 		Executors.newSingleThreadScheduledExecutor();
 	private static List<SyncEngineListener> _syncEngineListeners =
 		new ArrayList<SyncEngineListener>();
