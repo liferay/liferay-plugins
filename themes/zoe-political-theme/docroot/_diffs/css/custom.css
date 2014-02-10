@@ -13,7 +13,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 /* -------- Global -------- */
 
 .aui {
-	#breadcrumbs, #footer, #heading, #navigation h1, #navigation .child-menu, #skip-to-content, .page-title, .powered-by {
+	#breadcrumbs, #footer, #heading, #navigation .child-menu, #skip-to-content, .powered-by {
 		clip: rect(0 0 0 0);
 		margin: 0;
 		padding: 0;

@@ -37,10 +37,6 @@ $theme.include($body_top_include)
 				#end
 			</h1>
 
-			<h2 class="page-title">
-				<span>$the_title</span>
-			</h2>
-
 			#if ($theme_settings.display-header-social == true && $header_social)
 				$header_social
 			#end
@@ -55,11 +51,11 @@ $theme.include($body_top_include)
 		#end
 	</header>
 
-	<div id="content">
+	<section id="content">
+		<h1 class="hide-accessible">$the_title</h1>
+
 		<nav class="site-breadcrumbs" id="breadcrumbs">
-			<h1>
-				<span>#language("breadcrumbs")</span>
-			</h1>
+			<h1 class="hide-accessible">#language ("breadcrumbs")</h1>
 
 			#breadcrumbs()
 		</nav>
@@ -73,7 +69,7 @@ $theme.include($body_top_include)
 
 			$theme.wrapPortlet("portlet.vm", $content_include)
 		#end
-	</div>
+	</section>
 </div>
 
 $theme.include($body_bottom_include)

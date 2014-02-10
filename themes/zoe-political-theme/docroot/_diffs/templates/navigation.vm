@@ -1,4 +1,6 @@
 <nav class="$nav_css_class" id="navigation">
+	<h1 class="hide-accessible">#language ("navigation")</h1>
+
 	<ul role="menubar">
 		#foreach ($nav_item in $nav_items)
 			#set ($nav_item_attr_has_popup="")
