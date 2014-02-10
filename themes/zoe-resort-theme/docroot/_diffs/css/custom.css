@@ -431,7 +431,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 
 	/* -------- Hidden accessible -------- */
 
-	#breadcrumbs h1, #footer-social a span, #heading .page-title, #navigation .child-menu, #navigation h1, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
+	#footer-social a span, #navigation .child-menu, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
 		clip: rect(0 0 0 0);
 		margin: 0;
 		padding: 0;

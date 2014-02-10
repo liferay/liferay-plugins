@@ -44,10 +44,6 @@ $theme.include($body_top_include)
 					$theme.journalContentSearch()
 				</div>
 			</h1>
-
-			<h2 class="page-title">
-				<span>$the_title</span>
-			</h2>
 		</div>
 
 		#if ($has_navigation || $is_signed_in)
@@ -55,12 +51,12 @@ $theme.include($body_top_include)
 		#end
 	</header>
 
-	<div id="content">
+	<section id="content">
+		<h1 class="hide-accessible">$the_title</h1>
+
 		#if ($show_breadcrumbs)
 			<nav class="site-breadcrumbs" id="breadcrumbs">
-				<h1>
-					<span>#language ("breadcrumbs")</span>
-				</h1>
+				<h1 class="hide-accessible">#language ("breadcrumbs")</h1>
 
 				#breadcrumbs()
 			</nav>
@@ -75,7 +71,7 @@ $theme.include($body_top_include)
 
 			$theme.wrapPortlet("portlet.vm", $content_include)
 		#end
-	</div>
+	</section>
 
 	#parse ("$full_templates_path/footer.vm")
 </div>
