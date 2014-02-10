@@ -14,12 +14,21 @@
 
 package com.liferay.knowledgebase.model.impl;
 
+import com.liferay.knowledgebase.model.KBComment;
+import com.liferay.portal.kernel.lar.StagedModelType;
+
 /**
  * @author Peter Shin
+ * @author Daniel Kocsis
  */
 public class KBCommentImpl extends KBCommentBaseImpl {
 
 	public KBCommentImpl() {
+	}
+
+	@Override
+	public StagedModelType getStagedModelType() {
+		return new StagedModelType(KBComment.class);
 	}
 
 }
