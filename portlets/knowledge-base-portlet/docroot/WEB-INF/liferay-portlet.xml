@@ -21,6 +21,9 @@
 		<friendly-url-mapping>knowledge_base_admin</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/admin/portlet/admin-friendly-url-routes.xml</friendly-url-routes>
 		<portlet-data-handler-class>com.liferay.knowledgebase.admin.lar.AdminPortletDataHandler</portlet-data-handler-class>
+		<staged-model-data-handler-class>com.liferay.knowledgebase.admin.lar.KBArticleStagedModelDataHandler</staged-model-data-handler-class>
+		<staged-model-data-handler-class>com.liferay.knowledgebase.admin.lar.KBCommentStagedModelDataHandler</staged-model-data-handler-class>
+		<staged-model-data-handler-class>com.liferay.knowledgebase.admin.lar.KBTemplateStagedModelDataHandler</staged-model-data-handler-class>
 		<social-activity-interpreter-class>com.liferay.knowledgebase.admin.social.AdminActivityInterpreter</social-activity-interpreter-class>
 		<control-panel-entry-category>site_administration.content</control-panel-entry-category>
 		<control-panel-entry-weight>17.5</control-panel-entry-weight>
