@@ -17,6 +17,7 @@ package com.liferay.sync.engine;
 import com.liferay.sync.engine.upgrade.util.UpgradeUtil;
 import com.liferay.sync.engine.util.LoggerUtil;
 import com.liferay.sync.engine.util.PropsValues;
+import com.liferay.sync.engine.util.SyncEngineUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,11 +37,17 @@ public class SyncEngine {
 	}
 
 	private static void _doStart() throws Exception {
+		SyncEngineUtil.fireSyncEngineStateChanged(
+			SyncEngineUtil.SYNC_ENGINE_STATE_STARTING);
+
 		LoggerUtil.initLogger();
 
 		_logger.info("Starting " + PropsValues.SYNC_PRODUCT_NAME);
 
 		UpgradeUtil.upgrade();
+
+		SyncEngineUtil.fireSyncEngineStateChanged(
+			SyncEngineUtil.SYNC_ENGINE_STATE_STARTED);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);
