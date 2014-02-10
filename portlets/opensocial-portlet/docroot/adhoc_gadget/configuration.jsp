@@ -28,6 +28,7 @@ Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderReque
 
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
+
 <liferay-portlet:renderURL portletConfiguration="true" var="configurationRenderURL">
 	<portlet:param name="tabs2" value="<%= tabs2 %>" />
 </liferay-portlet:renderURL>
