@@ -4,9 +4,17 @@
 <hook>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
 	<servlet-filter>
+		<servlet-filter-name>Combo Servlet Filter</servlet-filter-name>
+		<servlet-filter-impl>com.liferay.rtl.servlet.filters.ComboServletFilter</servlet-filter-impl>
+	</servlet-filter>
+	<servlet-filter>
 		<servlet-filter-name>Dynamic CSS Filter</servlet-filter-name>
 		<servlet-filter-impl>com.liferay.rtl.servlet.filters.dynamiccss.PortalDynamicCSSFilter</servlet-filter-impl>
 	</servlet-filter>
+	<servlet-filter-mapping>
+		<servlet-filter-name>Combo Servlet Filter</servlet-filter-name>
+		<url-pattern>/combo/*</url-pattern>
+	</servlet-filter-mapping>
 	<servlet-filter-mapping>
 		<servlet-filter-name>Dynamic CSS Filter</servlet-filter-name>
 		<url-pattern>*.css</url-pattern>
