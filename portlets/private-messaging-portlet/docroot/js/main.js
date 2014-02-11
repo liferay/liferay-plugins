@@ -35,13 +35,11 @@ AUI.add(
 					initializer: function(config) {
 						var instance = this;
 
-						instance._userThreadsContainer = instance.byId('userThreadsSearchContainer');
-
-						instance._privateMessagingContainer = instance.byId('privateMessagingContainer');
-
 						instance._deleteMessagesButton = instance.byId('deleteMessages');
 						instance._markMessagesAsReadButton = instance.byId('markMessagesAsRead');
 						instance._markMessagesAsUnreadButton = instance.byId('markMessagesAsUnread');
+						instance._privateMessagingContainer = instance.byId('privateMessagingContainer');
+						instance._userThreadsContainer = instance.byId('userThreadsSearchContainer');
 
 						instance._eventHandles = [];
 
