@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.BaseAssetRendererFactory;
@@ -88,13 +89,6 @@ public class CalendarBookingAssetRendererFactory
 
 		Calendar calendar = calendarResource.getDefaultCalendar();
 
-		if (!CalendarPermission.contains(
-				themeDisplay.getPermissionChecker(), calendar.getCalendarId(),
-				ActionKeys.MANAGE_BOOKINGS)) {
-
-			return null;
-		}
-
 		PortletURL portletURL = liferayPortletResponse.createRenderURL(
 			PortletKeys.CALENDAR);
 
@@ -103,6 +97,26 @@ public class CalendarBookingAssetRendererFactory
 			"calendarId", String.valueOf(calendar.getCalendarId()));
 
 		return portletURL;
+	}
+
+	@Override
+	public boolean hasAddPermission(
+			PermissionChecker permissionChecker, long groupId, long typeId)
+		throws Exception {
+
+		CalendarResource calendarResource =
+			CalendarResourceUtil.getGroupCalendarResource(
+				groupId, new ServiceContext());
+
+		if (calendarResource == null) {
+			return false;
+		}
+
+		Calendar calendar = calendarResource.getDefaultCalendar();
+
+		return CalendarPermission.contains(
+			permissionChecker, calendar.getCalendarId(),
+			ActionKeys.MANAGE_BOOKINGS);
 	}
 
 	@Override

@@ -96,13 +96,6 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 			(ThemeDisplay)liferayPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		if (!AdminPermission.contains(
-				themeDisplay.getPermissionChecker(),
-				themeDisplay.getScopeGroupId(), ActionKeys.ADD_KB_ARTICLE)) {
-
-			return null;
-		}
-
 		PortletURL portletURL = PortletURLFactoryUtil.create(
 			liferayPortletRequest, PortletKeys.KNOWLEDGE_BASE_ADMIN,
 			getControlPanelPlid(themeDisplay), PortletRequest.RENDER_PHASE);
@@ -110,6 +103,15 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 		portletURL.setParameter("mvcPath", "/admin/edit_article.jsp");
 
 		return portletURL;
+	}
+
+	@Override
+	public boolean hasAddPermission(
+			PermissionChecker permissionChecker, long groupId, long typeId)
+		throws Exception {
+
+		return AdminPermission.contains(
+			permissionChecker, groupId, ActionKeys.ADD_KB_ARTICLE);
 	}
 
 	@Override
