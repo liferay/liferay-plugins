@@ -1,4 +1,4 @@
 @import "compass";
 
-@import url(./color_schemes/normal/normal.css);
-@import url(./color_schemes/so-classic/classic_scheme.css);
+@import url(./so_core.css);
+@import url(./color_schemes/so_classic.css);
