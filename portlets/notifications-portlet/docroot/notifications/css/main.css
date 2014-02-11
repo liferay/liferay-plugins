@@ -114,12 +114,18 @@
 				float: left;
 				position: relative;
 
-				.user-thumbnail img {
+				.user-thumbnail {
 					@include border-radius(50%);
 					@include box-shadow(0 0 0 2px #5594E0);
 
+					display: block;
+					height: 30px;
 					margin: 5px 10px 0 0;
-					width: 30px;
+					overflow: hidden;
+
+					img {
+						width: 30px;
+					}
 				}
 
 				.portlet-icon {
@@ -266,4 +272,8 @@
 			right: 20px;
 		}
 	}
+}
+
+.ie8 .user-thumbnail img {
+	max-width: none;
 }
