@@ -77,15 +77,13 @@ AUI().use(
 
 				time = new Date(time);
 
-				var formattedTime = A.DataType.Date.format(
+				return A.DataType.Date.format(
 					time,
 					{
 						format: '%X',
 						locale: themeDisplay.getLanguageId()
 					}
 				);
-
-				return formattedTime;
 			},
 
 			getCurrentTimestamp: function() {
