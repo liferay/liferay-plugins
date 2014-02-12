@@ -34,7 +34,6 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author Sherry Yang
  */
-
 public class SOFilter implements Filter {
 
 	@Override
