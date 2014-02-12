@@ -79,7 +79,7 @@ public class CalendarBookingAssetRendererFactory
 				WebKeys.THEME_DISPLAY);
 
 		CalendarResource calendarResource =
-			CalendarResourceUtil.getGroupCalendarResource(
+			CalendarResourceUtil.getScopedGroupCalendarResource(
 				liferayPortletRequest, themeDisplay.getScopeGroupId());
 
 		if (calendarResource == null) {
