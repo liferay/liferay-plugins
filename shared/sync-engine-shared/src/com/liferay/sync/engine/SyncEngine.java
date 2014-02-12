@@ -87,10 +87,10 @@ public class SyncEngine {
 
 			syncWatchEventProcessor.process();
 
+			Path filePath = Paths.get(syncAccount.getFilePathName());
+
 			WatchEventListener watchEventListener =
 				new SyncSiteWatchEventListener(syncAccount.getSyncAccountId());
-
-			Path filePath = Paths.get(syncAccount.getFilePathName());
 
 			Watcher watcher = new Watcher(filePath, true, watchEventListener);
 
@@ -105,7 +105,6 @@ public class SyncEngine {
 
 	private static ExecutorService _executorService = 
 		Executors.newCachedThreadPool();
-	
 	private static ScheduledExecutorService _scheduledExecutorService =
 		Executors.newScheduledThreadPool(5);
 
