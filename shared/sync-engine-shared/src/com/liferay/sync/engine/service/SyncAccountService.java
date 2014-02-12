@@ -25,6 +25,9 @@ import java.nio.file.Paths;
 
 import java.sql.SQLException;
 
+import java.util.Collections;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +37,8 @@ import org.slf4j.LoggerFactory;
 public class SyncAccountService {
 
 	public static SyncAccount addSyncAccount(
-			String filePathName, String login, String password, String url)
+			String filePathName, int interval, String login, String password,
+			String url)
 		throws Exception {
 
 		// Sync account
@@ -42,6 +46,7 @@ public class SyncAccountService {
 		SyncAccount syncAccount = new SyncAccount();
 
 		syncAccount.setFilePathName(filePathName);
+		syncAccount.setInterval(interval);
 		syncAccount.setLogin(login);
 		syncAccount.setPassword(Encryptor.encrypt(password));
 		syncAccount.setUrl(url);
@@ -83,6 +88,19 @@ public class SyncAccountService {
 			}
 
 			return null;
+		}
+	}
+
+	public static List<SyncAccount> findAll() {
+		try {
+			return _syncAccountPersistence.queryForAll();
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return Collections.emptyList();
 		}
 	}
 

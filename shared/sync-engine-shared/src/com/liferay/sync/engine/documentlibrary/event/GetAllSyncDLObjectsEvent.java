@@ -23,6 +23,10 @@ import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,8 +50,8 @@ public class GetAllSyncDLObjectsEvent extends BaseEvent {
 
 		for (SyncFile syncFile : syncDLObjectUpdate.getSyncDLObjects()) {
 			SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-				syncFile.getParentFolderId(), syncFile.getRepositoryId(),
-				getSyncAccountId());
+				syncFile.getRepositoryId(), getSyncAccountId(),
+				syncFile.getParentFolderId());
 
 			String filePathName = null;
 
@@ -62,6 +66,18 @@ public class GetAllSyncDLObjectsEvent extends BaseEvent {
 			syncFile.setSyncAccountId(getSyncAccountId());
 
 			SyncFileService.update(syncFile);
+
+			String type = syncFile.getType();
+
+			if (type.equals(SyncFile.TYPE_FOLDER)) {
+				Path filePath = Paths.get(filePathName);
+
+				if (Files.notExists(filePath)) {
+					Files.createDirectory(filePath);
+				}
+
+				continue;
+			}
 
 			Map<String, Object> parameters = new HashMap<String, Object>();
 

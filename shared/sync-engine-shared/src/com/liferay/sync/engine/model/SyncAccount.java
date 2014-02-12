@@ -29,6 +29,10 @@ public class SyncAccount {
 		return filePathName;
 	}
 
+	public int getInterval() {
+		return interval;
+	}
+
 	public String getLogin() {
 		return login;
 	}
@@ -49,6 +53,10 @@ public class SyncAccount {
 		this.filePathName = filePathName;
 	}
 
+	public void setInterval(int interval) {
+		this.interval = interval;
+	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
@@ -67,6 +75,9 @@ public class SyncAccount {
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String filePathName;
+
+	@DatabaseField(useGetSet = true)
+	protected int interval;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String login;

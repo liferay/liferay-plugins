@@ -14,10 +14,30 @@
 
 package com.liferay.sync.engine;
 
+import com.liferay.sync.engine.documentlibrary.event.GetAllSyncDLObjectsEvent;
+import com.liferay.sync.engine.filesystem.SyncSiteWatchEventListener;
+import com.liferay.sync.engine.filesystem.SyncWatchEventProcessor;
+import com.liferay.sync.engine.filesystem.WatchEventListener;
+import com.liferay.sync.engine.filesystem.Watcher;
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.model.SyncSite;
+import com.liferay.sync.engine.service.SyncAccountService;
+import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.upgrade.util.UpgradeUtil;
 import com.liferay.sync.engine.util.LoggerUtil;
 import com.liferay.sync.engine.util.PropsValues;
 import com.liferay.sync.engine.util.SyncEngineUtil;
+
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,10 +66,47 @@ public class SyncEngine {
 
 		UpgradeUtil.upgrade();
 
+		for (SyncAccount syncAccount : SyncAccountService.findAll()) {
+			List<SyncSite> syncSites = SyncSiteService.findSyncSites(
+				syncAccount.getSyncAccountId());
+
+			for (SyncSite syncSite : syncSites) {
+				Map<String, Object> map = new HashMap<String, Object>();
+
+				map.put("folderId", 0);
+				map.put("repositoryId", syncSite.getGroupId());
+
+				_scheduledExecutorService.scheduleAtFixedRate(
+					new GetAllSyncDLObjectsEvent(
+						syncAccount.getSyncAccountId(), map),
+					0, syncAccount.getInterval(), TimeUnit.SECONDS);
+			}
+
+			SyncWatchEventProcessor syncWatchEventProcessor =
+				new SyncWatchEventProcessor();
+
+			syncWatchEventProcessor.process();
+
+			WatchEventListener watchEventListener =
+				new SyncSiteWatchEventListener(syncAccount.getSyncAccountId());
+
+			Path filePath = Paths.get(syncAccount.getFilePathName());
+
+			Watcher watcher = new Watcher(filePath, true, watchEventListener);
+
+			ExecutorService executorService =
+				Executors.newSingleThreadScheduledExecutor();
+
+			executorService.execute(watcher);
+		}
+
 		SyncEngineUtil.fireSyncEngineStateChanged(
 			SyncEngineUtil.SYNC_ENGINE_STATE_STARTED);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);
+
+	private static ScheduledExecutorService _scheduledExecutorService =
+		Executors.newSingleThreadScheduledExecutor();
 
 }
