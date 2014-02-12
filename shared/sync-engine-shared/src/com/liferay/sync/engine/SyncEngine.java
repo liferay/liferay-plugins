@@ -66,6 +66,11 @@ public class SyncEngine {
 
 		UpgradeUtil.upgrade();
 
+		SyncWatchEventProcessor syncWatchEventProcessor =
+				new SyncWatchEventProcessor();
+
+		syncWatchEventProcessor.process();
+
 		for (SyncAccount syncAccount : SyncAccountService.findAll()) {
 			List<SyncSite> syncSites = SyncSiteService.findSyncSites(
 				syncAccount.getSyncAccountId());
@@ -81,11 +86,6 @@ public class SyncEngine {
 						syncAccount.getSyncAccountId(), map),
 					0, syncAccount.getInterval(), TimeUnit.SECONDS);
 			}
-
-			SyncWatchEventProcessor syncWatchEventProcessor =
-				new SyncWatchEventProcessor();
-
-			syncWatchEventProcessor.process();
 
 			Path filePath = Paths.get(syncAccount.getFilePathName());
 
@@ -103,7 +103,7 @@ public class SyncEngine {
 
 	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);
 
-	private static ExecutorService _executorService = 
+	private static ExecutorService _executorService =
 		Executors.newCachedThreadPool();
 	private static ScheduledExecutorService _scheduledExecutorService =
 		Executors.newScheduledThreadPool(5);
