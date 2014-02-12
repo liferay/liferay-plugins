@@ -67,9 +67,10 @@ public class SyncEngine {
 		UpgradeUtil.upgrade();
 
 		SyncWatchEventProcessor syncWatchEventProcessor =
-				new SyncWatchEventProcessor();
+			new SyncWatchEventProcessor();
 
-		syncWatchEventProcessor.process();
+		_syncWatchEventProcessorExecutorService.scheduleAtFixedRate(
+			syncWatchEventProcessor, 0, 3, TimeUnit.SECONDS);
 
 		for (SyncAccount syncAccount : SyncAccountService.findAll()) {
 			List<SyncSite> syncSites = SyncSiteService.findSyncSites(
@@ -81,7 +82,7 @@ public class SyncEngine {
 				map.put("folderId", 0);
 				map.put("repositoryId", syncSite.getGroupId());
 
-				_scheduledExecutorService.scheduleAtFixedRate(
+				_eventExecutorService.scheduleAtFixedRate(
 					new GetAllSyncDLObjectsEvent(
 						syncAccount.getSyncAccountId(), map),
 					0, syncAccount.getInterval(), TimeUnit.SECONDS);
@@ -94,7 +95,7 @@ public class SyncEngine {
 
 			Watcher watcher = new Watcher(filePath, true, watchEventListener);
 
-			_executorService.execute(watcher);
+			_watcherExecutorService.execute(watcher);
 		}
 
 		SyncEngineUtil.fireSyncEngineStateChanged(
@@ -103,9 +104,12 @@ public class SyncEngine {
 
 	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);
 
-	private static ExecutorService _executorService =
-		Executors.newCachedThreadPool();
-	private static ScheduledExecutorService _scheduledExecutorService =
+	private static ScheduledExecutorService _eventExecutorService =
 		Executors.newScheduledThreadPool(5);
+	private static ScheduledExecutorService
+		_syncWatchEventProcessorExecutorService =
+			Executors.newSingleThreadScheduledExecutor();
+	private static ExecutorService _watcherExecutorService =
+		Executors.newCachedThreadPool();
 
 }

@@ -30,9 +30,6 @@ import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,11 +38,6 @@ import org.slf4j.LoggerFactory;
  * @author Michael Young
  */
 public class SyncWatchEventProcessor implements Runnable {
-
-	public void process() {
-		_scheduledExecutorService.scheduleAtFixedRate(
-			this, 0, 3, TimeUnit.SECONDS);
-	}
 
 	@Override
 	public void run() {
@@ -269,7 +261,5 @@ public class SyncWatchEventProcessor implements Runnable {
 		SyncWatchEventProcessor.class);
 
 	private Set<Long> _processedSyncWatchEventIds = new HashSet<Long>();
-	private ScheduledExecutorService _scheduledExecutorService =
-		Executors.newSingleThreadScheduledExecutor();
 
 }

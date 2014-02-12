@@ -34,8 +34,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -62,10 +60,6 @@ public class Watcher implements Runnable {
 
 	public void close() throws IOException {
 		_watchService.close();
-	}
-
-	public void processEvents() {
-		_executorService.submit(this);
 	}
 
 	@Override
@@ -185,8 +179,6 @@ public class Watcher implements Runnable {
 
 	private static Logger _logger = LoggerFactory.getLogger(Watcher.class);
 
-	private ExecutorService _executorService =
-		Executors.newSingleThreadExecutor();
 	private Map<WatchKey, Path> _filePaths = new HashMap<WatchKey, Path>();
 	private boolean _recursive;
 	private WatchEventListener _watchEventListener;
