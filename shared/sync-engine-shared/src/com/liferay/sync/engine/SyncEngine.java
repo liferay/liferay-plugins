@@ -94,10 +94,7 @@ public class SyncEngine {
 
 			Watcher watcher = new Watcher(filePath, true, watchEventListener);
 
-			ExecutorService executorService =
-				Executors.newSingleThreadScheduledExecutor();
-
-			executorService.execute(watcher);
+			_executorService.execute(watcher);
 		}
 
 		SyncEngineUtil.fireSyncEngineStateChanged(
@@ -106,7 +103,10 @@ public class SyncEngine {
 
 	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);
 
+	private static ExecutorService _executorService = 
+		Executors.newCachedThreadPool();
+	
 	private static ScheduledExecutorService _scheduledExecutorService =
-		Executors.newSingleThreadScheduledExecutor();
+		Executors.newScheduledThreadPool(5);
 
 }
