@@ -101,7 +101,7 @@ public class CalendarBookingAssetRendererFactory
 
 	@Override
 	public boolean hasAddPermission(
-			PermissionChecker permissionChecker, long groupId, long typeId)
+			PermissionChecker permissionChecker, long groupId, long classTypeId)
 		throws Exception {
 
 		CalendarResource calendarResource =
