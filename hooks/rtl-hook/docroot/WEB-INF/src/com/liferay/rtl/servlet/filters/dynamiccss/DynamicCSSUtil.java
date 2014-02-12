@@ -119,7 +119,7 @@ public class DynamicCSSUtil {
 				}
 
 				if (isRightToLeft(request)) {
-					content = RTLCSSUtil.getRtlCss(resourcePath, content);
+					content = RTLCSSUtil.getRtlCss(content);
 				}
 
 				return content;
@@ -169,8 +169,7 @@ public class DynamicCSSUtil {
 				content);
 
 			if (isRightToLeft(request)) {
-				parsedContent = RTLCSSUtil.getRtlCss(
-					resourcePath, parsedContent);
+				parsedContent = RTLCSSUtil.getRtlCss(parsedContent);
 
 				// Append custom CSS for RTL
 
