@@ -78,6 +78,16 @@ public class DynamicCSSUtil {
 		}
 	}
 
+	public static boolean isRightToLeft(HttpServletRequest request) {
+		String languageId = LanguageUtil.getLanguageId(request);
+
+		Locale locale = LocaleUtil.fromLanguageId(languageId);
+
+		String langDir = LanguageUtil.get(locale, "lang.dir");
+
+		return langDir.equals("rtl");
+	}
+
 	public static String parseSass(
 			ServletContext servletContext, HttpServletRequest request,
 			String resourcePath, String content)
@@ -108,7 +118,7 @@ public class DynamicCSSUtil {
 					_log.warn("No theme found for " + currentURL);
 				}
 
-				if (_isRightToLeft(request)) {
+				if (isRightToLeft(request)) {
 					content = RTLCSSUtil.getRtlCss(resourcePath, content);
 				}
 
@@ -158,7 +168,7 @@ public class DynamicCSSUtil {
 				servletContext, request, themeDisplay, theme, resourcePath,
 				content);
 
-			if (_isRightToLeft(request)) {
+			if (isRightToLeft(request)) {
 				parsedContent = RTLCSSUtil.getRtlCss(
 					resourcePath, parsedContent);
 
@@ -234,7 +244,7 @@ public class DynamicCSSUtil {
 
 		String suffix = StringPool.BLANK;
 
-		if (_isRightToLeft(request)) {
+		if (isRightToLeft(request)) {
 			suffix = "_rtl";
 		}
 
@@ -385,16 +395,6 @@ public class DynamicCSSUtil {
 		}
 
 		return themeImagesPath;
-	}
-
-	private static boolean _isRightToLeft(HttpServletRequest request) {
-		String languageId = LanguageUtil.getLanguageId(request);
-
-		Locale locale = LocaleUtil.fromLanguageId(languageId);
-
-		String langDir = LanguageUtil.get(locale, "lang.dir");
-
-		return langDir.equals("rtl");
 	}
 
 	private static boolean _isThemeCssFastLoad(

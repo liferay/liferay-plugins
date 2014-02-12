@@ -272,6 +272,12 @@ public class ComboServletFilter extends BasePortalFilter {
 		if (!PropsValues.COMBO_CHECK_TIMESTAMP) {
 			modulePathsString = Arrays.toString(modulePaths);
 
+			if (minifierType.equals("css") &&
+				DynamicCSSUtil.isRightToLeft(request)) {
+
+				modulePathsString += ".rtl";
+			}
+
 			bytesArray = _bytesArrayPortalCache.get(modulePathsString);
 		}
 
