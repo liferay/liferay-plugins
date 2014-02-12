@@ -192,9 +192,9 @@ public class SyncFileService {
 
 			// Sync file
 
-			_syncFilePersistence.deleteById(syncFileId);
-
 			SyncFile syncFile = _syncFilePersistence.queryForId(syncFileId);
+
+			_syncFilePersistence.deleteById(syncFileId);
 
 			String type = syncFile.getType();
 

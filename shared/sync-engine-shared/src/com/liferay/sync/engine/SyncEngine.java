@@ -29,14 +29,14 @@ public class SyncEngine {
 
 	public static void start() {
 		try {
-			_doStart();
+			doStart();
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
 		}
 	}
 
-	private static void _doStart() throws Exception {
+	protected static void doStart() throws Exception {
 		SyncEngineUtil.fireSyncEngineStateChanged(
 			SyncEngineUtil.SYNC_ENGINE_STATE_STARTING);
 

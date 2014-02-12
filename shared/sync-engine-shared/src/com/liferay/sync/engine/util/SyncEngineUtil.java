@@ -48,7 +48,7 @@ public class SyncEngineUtil {
 					@Override
 					public void run() {
 						syncEngineListener.syncEngineStateChanged(
-								syncEngineState);
+							syncEngineState);
 					}
 
 				}
