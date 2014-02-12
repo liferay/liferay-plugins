@@ -1507,12 +1507,8 @@ html.aui {
 /* ---------- Portlet: Microblogs ---------- */
 
 .microblogs-portlet {
-	.aui-tabview-list {
-		margin: 1em;
-	}
-
-	.yui3-aclist-hidden {
-		z-index: 4;
+	.nav-tabs {
+		margin: 10px;
 	}
 
 	.autocomplete {
@@ -1641,8 +1637,12 @@ html.aui {
 /* ---------- Portlet: Tasks ---------- */
 
 .tasks-portlet {
+	.nav-tabs {
+		margin: 10px;
+	}
+
 	.control-wrapper, .filter-wrapper, .list-wrapper, .tasks-options {
-		margin: 1em;
+		margin: 15px;
 	}
 
 	.filter-wrapper {
