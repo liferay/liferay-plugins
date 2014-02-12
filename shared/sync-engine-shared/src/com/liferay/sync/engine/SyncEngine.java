@@ -82,7 +82,7 @@ public class SyncEngine {
 				map.put("folderId", 0);
 				map.put("repositoryId", syncSite.getGroupId());
 
-				_eventExecutorService.scheduleAtFixedRate(
+				_eventScheduledExecutorService.scheduleAtFixedRate(
 					new GetAllSyncDLObjectsEvent(
 						syncAccount.getSyncAccountId(), map),
 					0, syncAccount.getInterval(), TimeUnit.SECONDS);
@@ -104,7 +104,7 @@ public class SyncEngine {
 
 	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);
 
-	private static ScheduledExecutorService _eventExecutorService =
+	private static ScheduledExecutorService _eventScheduledExecutorService =
 		Executors.newScheduledThreadPool(5);
 	private static ScheduledExecutorService
 		_syncWatchEventProcessorExecutorService =
