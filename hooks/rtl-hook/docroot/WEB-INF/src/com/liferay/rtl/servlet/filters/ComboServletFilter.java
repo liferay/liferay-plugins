@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.cache.SingleVMPoolUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.servlet.ServletContextUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CharPool;
@@ -79,7 +80,8 @@ public class ComboServletFilter extends BasePortalFilter {
 
 		super.init(filterConfig);
 
-		_servletContext = servletContext;
+		_servletContext = ServletContextPool.get(
+			PortalUtil.getServletContextName());
 	}
 
 	protected byte[] getResourceContent(
@@ -91,7 +93,7 @@ public class ComboServletFilter extends BasePortalFilter {
 			minifierType);
 
 		FileContentBag fileContentBag = _fileContentBagPortalCache.get(
-			fileContentKey);
+				fileContentKey);
 
 		if ((fileContentBag != null) && !PropsValues.COMBO_CHECK_TIMESTAMP) {
 			return fileContentBag._fileContent;
@@ -373,7 +375,7 @@ public class ComboServletFilter extends BasePortalFilter {
 	private PortalCache<String, FileContentBag> _fileContentBagPortalCache =
 		SingleVMPoolUtil.getCache(FileContentBag.class.getName());
 	private Set<String> _protectedParameters = SetUtil.fromArray(
-		new String[] {"b", "browserId", "minifierType", "languageId", "t"});
+			new String[]{"b", "browserId", "minifierType", "languageId", "t"});
 	private ServletContext _servletContext;
 
 	private static class FileContentBag implements Serializable {
