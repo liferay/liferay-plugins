@@ -967,6 +967,11 @@ html.aui {
 
 .portlet-column-only .contacts-portlet .contacts-profile {
 	border-bottom-width: 1px;
+	overflow: hidden;
+
+	.social-relations {
+		border-bottom: 1px solid $defaultBorderColor;
+	}
 }
 
 /* ---------- Portlet: Document library ---------- */
@@ -1568,6 +1573,7 @@ html.aui {
 }
 
 .profile-page .microblogs-status-container {
+	margin-top: 10px;
 	top: 0;
 }
 
