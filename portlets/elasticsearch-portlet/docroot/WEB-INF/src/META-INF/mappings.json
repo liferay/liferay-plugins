@@ -1,0 +1,236 @@
+{
+	"LiferayDocumentType": {
+		"properties": {
+			"articleId": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"comments": {
+				"type": "string",
+				"store": "yes",
+				"index": "analyzed"
+			},
+			"content": {
+				"type": "string",
+				"store": "yes",
+				"index": "analyzed"
+			},
+			"createDate": {
+				"type": "string",
+				"store": "yes",
+				"index": "analyzed"
+			},
+			"description": {
+				"type": "string",
+				"store": "yes",
+				"index": "analyzed"
+			},
+			"entryClassPK": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"entryClassName": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"firstName": {
+				"type": "string",
+				"store": "yes",
+				"index": "analyzed"
+			},
+			"folderId": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"groupId": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"id": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"keywordSearch": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed",
+				"omit_norms": "yes",
+				"omit_term_freq_and_positions": "yes"
+			},
+			"languageId": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"lastName": {
+				"type": "string",
+				"store": "yes",
+				"index": "analyzed"
+			},
+			"leftOrganizationId": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"modified": {
+				"type": "long",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"name": {
+				"type": "string",
+				"store": "yes",
+				"index": "analyzed"
+			},
+			"nodeId": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"path": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"portletId": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"properties": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"rightOrganizationId": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"scopeGroupId": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"spellCheckWeight": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"spellCheckWord": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"title": {
+				"type": "string",
+				"store": "yes",
+				"index": "analyzed"
+			},
+			"type": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"uid": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"url": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"userName": {
+				"type": "string",
+				"store": "yes",
+				"index": "analyzed"
+			},
+			"version": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			},
+			"_version_": {
+				"type": "string",
+				"store": "yes",
+				"index": "not_analyzed"
+			}
+		},
+		"dynamic_templates": [
+			{
+				"template_CategoryNames": {
+					"match": "*CategoryNames",
+					"match_mapping_type": "string",
+					"mapping": {
+						"type": "string",
+						"store": "yes",
+						"index": "not_analyzed"
+					}
+				}
+			},
+			{
+				"template_CategoryIds": {
+					"match": "*CategoryIds",
+					"match_mapping_type": "string",
+					"mapping": {
+						"type": "string",
+						"store": "yes",
+						"index": "not_analyzed"
+					}
+				}
+			},
+			{
+				"template__sortable": {
+					"match": "*_sortable",
+					"match_mapping_type": "string",
+					"mapping": {
+						"type": "string",
+						"store": "yes",
+						"index": "not_analyzed"
+					}
+				}
+			},
+			{
+				"template_expando/": {
+					"match": "expando/*",
+					"match_mapping_type": "string",
+					"mapping": {
+						"type": "string",
+						"store": "yes",
+						"index": "analyzed"
+					}
+				}
+			},
+			{
+				"template_web_content/": {
+					"match": "web_content/*",
+					"match_mapping_type": "string",
+					"mapping": {
+						"type": "string",
+						"store": "yes",
+						"index": "analyzed"
+					}
+				}
+			},
+			{
+				"template_": {
+					"match": "*",
+					"match_mapping_type": "string",
+					"mapping": {
+						"type": "string",
+						"store": "yes",
+						"index": "not_analyzed"
+					}
+				}
+			}
+		]
+	}
+}
