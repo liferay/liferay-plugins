@@ -440,6 +440,16 @@
 		padding: 3px 15px 2px;
 
 		li {
+			a {
+				display: inline-block;
+
+				@include ellipsis;
+
+				line-height: normal;
+				max-width: 300px;
+				vertical-align: text-bottom;
+			}
+
 			span.divider {
 				color: #999;
 				font-weight: bold;
@@ -473,12 +483,7 @@
 
 				&.breadcrumb-truncate {
 					&.only, &.first a, &.last a, &.active, &.current-parent a {
-						display: inline-block;
 						max-width: 65px;
-						overflow: hidden;
-						text-overflow: ellipsis;
-						vertical-align: bottom;
-						white-space: nowrap;
 					}
 
 					&.current-parent:before {
