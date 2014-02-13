@@ -23,7 +23,6 @@ import java.nio.file.Paths;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,25 +31,12 @@ import org.junit.Test;
  */
 public class SyncFileServiceTest extends BaseTestCase {
 
-	@After
-	@Override
-	public void tearDown() throws Exception {
-		super.tearDown();
-
-		_syncFiles = SyncFileService.findSyncFiles(
-			syncAccount.getSyncAccountId());
-
-		for (SyncFile syncFile : _syncFiles) {
-			SyncFileService.deleteSyncFile(syncFile.getSyncFileId());
-		}
-	}
-
 	@Test
 	public void testDeleteFolderSyncFile() throws Exception {
-		_syncFiles = SyncFileService.findSyncFiles(
+		List<SyncFile> syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
 
-		Assert.assertEquals(1, _syncFiles.size());
+		Assert.assertEquals(1, syncFiles.size());
 
 		SyncFile folderSyncFileA = SyncFileTestUtil.addFolderSyncFile(
 			null, syncAccount.getSyncAccountId());
@@ -73,17 +59,17 @@ public class SyncFileServiceTest extends BaseTestCase {
 		SyncFileTestUtil.addFileSyncFile(
 			null, folderSyncFileAA.getTypePK(), syncAccount.getSyncAccountId());
 
-		_syncFiles = SyncFileService.findSyncFiles(
+		syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
 
-		Assert.assertEquals(8, _syncFiles.size());
+		Assert.assertEquals(8, syncFiles.size());
 
 		SyncFileService.deleteSyncFile(folderSyncFileA.getSyncFileId());
 
-		_syncFiles = SyncFileService.findSyncFiles(
+		syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
 
-		Assert.assertEquals(1, _syncFiles.size());
+		Assert.assertEquals(1, syncFiles.size());
 	}
 
 	@Test
@@ -125,7 +111,5 @@ public class SyncFileServiceTest extends BaseTestCase {
 			"/home/liferay/liferay-sync-test/b/a/a.txt",
 			fileSyncFileAA.getFilePathName());
 	}
-
-	private List<SyncFile> _syncFiles;
 
 }

@@ -63,6 +63,8 @@ public abstract class BaseTestCase {
 		syncAccount = SyncAccountService.addSyncAccount(
 			filePathName, 10, "test@liferay.com", "test",
 			"http://localhost:8080/api/jsonws");
+
+		PowerMockito.mockStatic(HttpUtil.class);
 	}
 
 	@After
@@ -74,9 +76,24 @@ public abstract class BaseTestCase {
 		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
 	}
 
-	protected void setMockPostResponse(String fileName) throws Exception {
-		PowerMockito.mockStatic(HttpUtil.class);
+	protected void setMockGetResponse(String fileName) throws Exception {
+		Class<?> clazz = getClass();
 
+		InputStream inputStream = clazz.getResourceAsStream(fileName);
+
+		String response = IOUtils.toString(inputStream);
+
+		inputStream.close();
+
+		Mockito.when(
+			HttpUtil.executeGet(
+				Mockito.anyLong(), Mockito.anyString())
+		).thenReturn(
+			response
+		);
+	}
+
+	protected void setMockPostResponse(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
 		InputStream inputStream = clazz.getResourceAsStream(fileName);
