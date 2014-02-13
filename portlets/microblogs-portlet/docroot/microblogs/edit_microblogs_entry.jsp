@@ -391,9 +391,11 @@ if (comment) {
 
 			var contentInputHeight = contentInput.height();
 
-			autocomplete.height(contentInputHeight);
+			if (contentInputHeight > 45) {
+				autocomplete.height(contentInputHeight);
 
-			highlighterContent.height(contentInputHeight);
+				highlighterContent.height(contentInputHeight);
+			}
 		};
 
 		var updateContentTextbox = function(event) {
