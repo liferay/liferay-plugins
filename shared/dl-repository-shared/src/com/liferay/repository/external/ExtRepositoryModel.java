@@ -17,10 +17,9 @@ package com.liferay.repository.external;
 import java.util.Date;
 
 /**
- * An external repository model object describes a folder, file or version
- * contained in an external repository.
- *
- * All data returned by implementations is in native repository format.
+ * Represents the external repository model, which describes a folder, file, or
+ * file version in the external repository. All data returned by this class'
+ * implementation is in native repository format.
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -28,32 +27,33 @@ import java.util.Date;
 public interface ExtRepositoryModel {
 
 	/**
-	 * Gets the creation date of this ext repository model.
+	 * Returns the external repository model's creation date.
 	 *
-	 * @return the creation date of this ext repository model
+	 * @return the external repository model's creation date
 	 */
 	public Date getCreateDate();
 
 	/**
-	 * Gets the primary key of this model in the ext repository.
+	 * Returns the external repository model's primary key.
 	 *
-	 * @return a primary key in ext repository format
+	 * @return the external repository model's primary key
 	 */
 	public String getExtRepositoryModelKey();
 
 	/**
-	 * Gets the owner of this ext repository model. The returned user identifier
-	 * is converted from native to Liferay format by means of the method
-	 * {@link ExtRepository#getLiferayLogin(String)}.
+	 * Returns the external repository model's owner. The returned user
+	 * identifier is converted from the native repository format to the Liferay
+	 * Portal format by calling the {@link
+	 * ExtRepository#getLiferayLogin(String)} method.
 	 *
-	 * @return a user identifier in the native ext repository format
+	 * @return the external repository model's owner
 	 */
 	public String getOwner();
 
 	/**
-	 * Get the size of this ext repository model in bytes.
+	 * Returns the external repository's model size in bytes.
 	 *
-	 * @return the size of this ext repository model in bytes
+	 * @return the external repository's model size in bytes
 	 */
 	public long getSize();
 

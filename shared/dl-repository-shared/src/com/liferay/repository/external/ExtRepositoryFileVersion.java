@@ -15,12 +15,10 @@
 package com.liferay.repository.external;
 
 /**
- * An external repository file version object describes a version of a file
- * contained in an external repository. Developers of external repositories
- * must provide an implementation of this class to make the bridge between
- * Liferay and external repository domains.
- *
- * All data returned by implementations is in native ext repository format.
+ * Represents the external repository file version. Implementors of external
+ * repositories must provide an implementation of this class to make the bridge
+ * between Liferay Portal and external repository domains. All data returned by
+ * these implementations are in native repository format.
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -28,27 +26,28 @@ package com.liferay.repository.external;
 public interface ExtRepositoryFileVersion extends ExtRepositoryModel {
 
 	/**
-	 * Get the comments associated to the commit of this version.
+	 * Returns the comments associated with the file version's commit.
 	 *
-	 * @return the description of this version's commit
+	 * @return the comments associated with the file version's commit
 	 */
 	public String getChangeLog();
 
 	/**
-	 * Get the MIME type of this version of a file. This method may return
-	 * <code>null</code> if the MIME type is not available in the back end
-	 * ext repository. In that case, Liferay Portal will guess the MIME type
-	 * (usually by looking at the extension).
+	 * Returns the MIME type of the file version, or <code>null</code> if the
+	 * MIME type is not available in the external repository. If the MIME type
+	 * is unavailable, Liferay Portal will guess the MIME type (usually by
+	 * looking at the extension).
 	 *
-	 * @return the MIME type of this ext repository file version's version or
-	 *         <code>null</code> if it is unknown
+	 * @return the MIME type of the file version, or <code>null</code> if the
+	 *         MIME type is not available in the external repository
 	 */
 	public String getMimeType();
 
 	/**
-	 * Get the tag (name) of the ext repository version. For example: "1.0".
+	 * Returns the external repository file version's tag name (e.g.
+	 * <code>1.0</code>).
 	 *
-	 * @return the ext repository file version version
+	 * @return the external repository file version's tag name
 	 */
 	public String getVersion();
 
