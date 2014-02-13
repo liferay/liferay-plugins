@@ -597,16 +597,19 @@ public class CalendarImporterLocalServiceImpl
 
 		long entryId1;
 		long entryId2;
+
 		AssetEntry linkedAssetEntry;
 
 		if (assetLink.getEntryId1() == oldEntryId) {
 			entryId1 = newEntryId;
 			entryId2 = assetLink.getEntryId2();
+
 			linkedAssetEntry = assetEntryPersistence.findByPrimaryKey(entryId2);
 		}
 		else {
 			entryId1 = assetLink.getEntryId1();
 			entryId2 = newEntryId;
+
 			linkedAssetEntry = assetEntryPersistence.findByPrimaryKey(entryId1);
 		}
 
@@ -619,7 +622,7 @@ public class CalendarImporterLocalServiceImpl
 			importCalEvent(calEvent);
 
 			CalendarResource calendarResource = getCalendarResource(
-					calEvent.getCompanyId(), calEvent.getGroupId());
+				calEvent.getCompanyId(), calEvent.getGroupId());
 
 			linkedAssetEntry = assetEntryPersistence.findByG_CU(
 				calendarResource.getGroupId(), calEvent.getUuid());
@@ -631,10 +634,9 @@ public class CalendarImporterLocalServiceImpl
 				entryId1 = linkedAssetEntry.getEntryId();
 			}
 
-			int countingAssetLink = assetLinkPersistence.countByE_E_T(
-				entryId1, entryId2, assetLink.getType());
+			if (assetLinkPersistence.countByE_E_T(
+					entryId1, entryId2, assetLink.getType()) > 0) {
 
-			if (countingAssetLink > 0) {
 				return;
 			}
 		}
@@ -950,7 +952,7 @@ public class CalendarImporterLocalServiceImpl
 		throws PortalException, SystemException {
 
 		CalendarResource calendarResource = getCalendarResource(
-				calEvent.getCompanyId(), calEvent.getGroupId());
+			calEvent.getCompanyId(), calEvent.getGroupId());
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.fetchByUUID_G(
