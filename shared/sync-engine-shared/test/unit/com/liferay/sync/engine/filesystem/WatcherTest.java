@@ -115,6 +115,22 @@ public class WatcherTest extends BaseTestCase {
 	}
 
 	@Test
+	public void testRunAddIgnoredFile() throws Exception {
+		setMockPostResponse("dependencies/watcher_test_add_file.json");
+
+		Path filePath = Paths.get(_syncSite.getFilePathName() + "/.DS_Store");
+
+		Files.createFile(filePath);
+
+		Thread.sleep(1000);
+
+		_syncFiles = SyncFileService.findSyncFiles(
+			syncAccount.getSyncAccountId());
+
+		Assert.assertEquals(2, _syncFiles.size());
+	}
+
+	@Test
 	public void testRunDeleteFile() throws Exception {
 		setMockPostResponse("dependencies/watcher_test_delete_file.json");
 

@@ -24,6 +24,9 @@ public interface PropsKeys {
 
 	public static final String SYNC_DATABASE_NAME = "sync.database.name";
 
+	public static final String SYNC_IGNORE_FILE_NAMES =
+		"sync.ignore.file.names";
+
 	public static final String SYNC_LOGGER_CONFIGURATION_FILE =
 		"sync.logger.configuration.file";
 

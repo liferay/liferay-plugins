@@ -23,6 +23,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 
@@ -88,6 +92,19 @@ public class FileUtil {
 		return getFileKey(filePath);
 	}
 
+	public static boolean isIgnoredFilePath(Path filePath) {
+		if (_syncIgnoreFileNames.contains(
+				String.valueOf(filePath.getFileName()))) {
+
+			return true;
+		}
+
+		return false;
+	}
+
 	private static Logger _logger = LoggerFactory.getLogger(FileUtil.class);
+
+	private static Set<String> _syncIgnoreFileNames = new HashSet<String>(
+		Arrays.asList(PropsValues.SYNC_IGNORE_FILE_NAMES));
 
 }
