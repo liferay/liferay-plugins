@@ -250,8 +250,8 @@ public interface ExtRepository {
 	/**
 	 * Returns the external repository object matching the key.
 	 *
-	 * @param  extRepositoryObjectType the repository object's type (file or
-	 *         folder)
+	 * @param  extRepositoryObjectType the repository object's type (file,
+	 *         folder, or both)
 	 * @param  extRepositoryObjectKey the primary key of the repository object
 	 * @return the repository object matching the key
 	 * @throws PortalException if a portal exception occurred
@@ -266,8 +266,8 @@ public interface ExtRepository {
 	 * Returns the external repository object matching the name and parent
 	 * folder.
 	 *
-	 * @param  extRepositoryObjectType the repository object's type (file or
-	 *         folder)
+	 * @param  extRepositoryObjectType the repository object's type (file,
+	 *         folder, or both)
 	 * @param  extRepositoryFolderKey the primary key of the repository object's
 	 *         parent folder
 	 * @param  title the repository object's name
@@ -287,6 +287,7 @@ public interface ExtRepository {
 	 * folders.
 	 *
 	 * @param  extRepositoryObjectType the type of repository objects to return
+	 *         (file, folder, or both)
 	 * @param  extRepositoryFolderKey the primary key of the repository folder
 	 *         to search
 	 * @return the repository objects contained in the folder
@@ -305,6 +306,7 @@ public interface ExtRepository {
 	 * repository folders, or the number of both repository files and folders.
 	 *
 	 * @param  extRepositoryObjectType the repository object type to count
+	 *         (file, folder, or both)
 	 * @param  extRepositoryFolderKey the primary key of the repository folder
 	 *         to search
 	 * @return the number of elements in the repository folder matching the
@@ -440,6 +442,16 @@ public interface ExtRepository {
 	/**
 	 * Returns the external repository objects fulfilling the query. There may
 	 * be some limitations due to back-end repository constraints.
+	 *
+	 * <p>
+	 * The limitations are repository specific, which means there is a specific
+	 * set of constraints for each type of external repository (Documentum,
+	 * SharePoint, etc). This method is given a {@link Query} object, which is a
+	 * logic expression matching Lucene's capabilities. Implementors of external
+	 * repositories must map that query to a native repository query. Some
+	 * external repositories may be missing some of Lucene's capabilities, so
+	 * the query may not be fully translated.
+	 * </p>
 	 *
 	 * @param  searchContext the search context to be applied. The folder ID,
 	 *         start bound, and end bound attributes must be set in this search
