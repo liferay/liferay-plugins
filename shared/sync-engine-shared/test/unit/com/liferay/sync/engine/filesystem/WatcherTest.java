@@ -24,6 +24,7 @@ import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
+import com.liferay.sync.engine.util.OSDetector;
 
 import java.io.BufferedWriter;
 
@@ -106,7 +107,7 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createFile(filePath);
 
-		Thread.sleep(1000);
+		sleep();
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -122,7 +123,7 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createFile(filePath);
 
-		Thread.sleep(1000);
+		sleep();
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -138,11 +139,11 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createFile(filePath);
 
-		Thread.sleep(1000);
+		sleep();
 
 		Files.delete(filePath);
 
-		Thread.sleep(1000);
+		sleep();
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -162,7 +163,7 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createFile(filePath);
 
-		Thread.sleep(1000);
+		sleep();
 
 		BufferedWriter bufferedWriter = Files.newBufferedWriter(
 			filePath, StandardCharsets.UTF_8);
@@ -171,7 +172,7 @@ public class WatcherTest extends BaseTestCase {
 
 		bufferedWriter.close();
 
-		Thread.sleep(1000);
+		sleep();
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -201,13 +202,13 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createDirectory(destinationFilePath);
 
-		Thread.sleep(1000);
+		sleep();
 
 		Files.move(
 			sourceFilePath,
 			destinationFilePath.resolve(sourceFilePath.getFileName()));
 
-		Thread.sleep(1000);
+		sleep();
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -228,14 +229,14 @@ public class WatcherTest extends BaseTestCase {
 
 		Files.createFile(sourceFilePath);
 
-		Thread.sleep(1000);
+		sleep();
 
 		Path destinationFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test2.txt");
 
 		Files.move(sourceFilePath, destinationFilePath);
 
-		Thread.sleep(1000);
+		sleep();
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
@@ -245,6 +246,15 @@ public class WatcherTest extends BaseTestCase {
 			SyncFileService.fetchSyncFile(
 				FilePathNameUtil.getFilePathName(destinationFilePath),
 				syncAccount.getSyncAccountId()));
+	}
+
+	protected void sleep() throws InterruptedException {
+		if (OSDetector.isApple()) {
+			Thread.sleep(12000);
+		}
+		else {
+			Thread.sleep(1000);
+		}
 	}
 
 	private List<SyncFile> _syncFiles;
