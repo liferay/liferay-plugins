@@ -1,0 +1,3 @@
+client.transport.sniff: true
+path.logs: ${liferay.home}/logs
+path.work: ${java.io.tmpdir}
