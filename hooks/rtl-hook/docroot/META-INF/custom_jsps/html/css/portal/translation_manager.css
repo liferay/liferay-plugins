@@ -38,6 +38,10 @@
 		}
 	}
 
+	.lfr-translation-manager-change-default-locale {
+		margin: 0 0.4em;
+	}
+
 	.lfr-translation-manager-delete-translation {
 		display: inline-block;
 	}
