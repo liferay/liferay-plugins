@@ -153,6 +153,14 @@
 	}
 }
 
+.ltr .form-builder-rtl-inputs, .rtl .form-builder-ltr-inputs {
+	.portlet-dynamic-data-mapping .form-builder-content, .textcelleditor, .textareacelleditor {
+		input[type="text"], textarea {
+			direction: rtl;
+		}
+	}
+}
+
 .ie6, .ie7 {
 	.lfr-editor-container {
 		zoom: 1;
