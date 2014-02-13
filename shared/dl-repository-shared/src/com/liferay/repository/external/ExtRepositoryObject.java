@@ -17,10 +17,9 @@ package com.liferay.repository.external;
 import java.util.Date;
 
 /**
- * An external repository object instance describes a folder or a file contained
- * in an external repository.
- *
- * All data returned by implementations is in native repository format.
+ * Represents the external repository object, which describes a file or folder
+ * in the external repository. All data returned by this class' implementation
+ * is in native repository format.
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -28,48 +27,53 @@ import java.util.Date;
 public interface ExtRepositoryObject extends ExtRepositoryModel {
 
 	/**
-	 * Checks whether the user has permission to perform the specified action on
-	 * this ext repository object.
+	 * Returns <code>true</code> if the user has permission to perform the
+	 * action on the external repository object.
 	 *
 	 * @param  extRepositoryPermission the action to check for permission
-	 * @return <code>true</code> if the user is allowed to perform the action in
-	 *         this ext repository object
+	 * @return <code>true</code> if the user has permission to perform the
+	 *         action on the external repository object; <code>false</code>
+	 *         otherwise
 	 */
 	public boolean containsPermission(
 		ExtRepositoryPermission extRepositoryPermission);
 
 	/**
-	 * Gets the long description of this ext repository object (note that the
-	 * description is not the name).
+	 * Returns the external repository object's description. The object's
+	 * description is not its name.
 	 *
-	 * @return a long description of the ext repository object
+	 * @return the external repository object's description
 	 */
 	public String getDescription();
 
 	/**
-	 * Gets the file/folder extension of this ext repository object.
+	 * Returns the external repository object's file or folder extension,
+	 * excluding the leading period.
 	 *
-	 * @return the extension (without the leading period)
+	 * @return the external repository object's file or folder extension,
+	 *         excluding the leading period
 	 */
 	public String getExtension();
 
 	/**
-	 * Get the date when this ext repository object was last modified.
+	 * Returns the external repository object's last modified date.
 	 *
-	 * @return the last modified date of the ext repository object
+	 * @return the external repository object's last modified date
 	 */
 	public Date getModifiedDate();
 
 	/**
-	 * This enum holds permissions that external repositories must support. In
-	 * this context, "support" means that the ext repository implementation may
-	 * be asked about that permission and it must answer correctly, not that it
-	 * must fully implement it.
-	 *
-	 * For instance, an ext repository must not fail when asked about
-	 * ADD_SHORTCUT even if the back end ext repository does not support
-	 * shortcuts. But it may well return always false when asked for that
-	 * permission.
+	 * Returns the permissions that external repositories must support. In this
+	 * context, the external repository implementation may be asked about a
+	 * permission, and it must answer correctly, but is not required to fully
+	 * implement it.
+	 * 
+	 * <p>
+	 * For instance, an external repository must not fail when asked about the
+	 * <code>ADD_SHORTCUT</code> permission, even if the back-end external
+	 * repository does not support shortcuts. However, it can return
+	 * <code>false</code> when asked for that permission.
+	 * </p>
 	 *
 	 * @author Iván Zaera
 	 */

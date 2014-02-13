@@ -15,10 +15,8 @@
 package com.liferay.repository.external;
 
 /**
- * This class holds results to be returned by the {@link
- * ExtRepository#search(com.liferay.portal.kernel.search.SearchContext,
- * com.liferay.portal.kernel.search.Query,
- * com.liferay.repository.external.search.ExtRepositoryQueryMapper)} method.
+ * Provides search results to be returned by the {@link
+ * ExtRepository#search(SearchContext, Query, ExtRepositoryQueryMapper)} method.
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -26,13 +24,14 @@ package com.liferay.repository.external;
 public class ExtRepositorySearchResult<T extends ExtRepositoryObject> {
 
 	/**
-	 * Create a search result with the given ext repository object, score and
-	 * snippet.
+	 * Creates the search result matching the external repository object, score,
+	 * and snippet.
 	 *
-	 * @param object the ext repository object found by the search
-	 * @param score the score assigned to the ext repository object by the
-	 *        search engine (must be between 0 and 1)
-	 * @param snippet the snippet to be used for highlighting when showing the
+	 * @param object the repository object found by the search (file, folder, or
+	 *        both)
+	 * @param score the score assigned to the repository object by the search
+	 *        engine, which must be between <code>0</code> and <code>1</code>
+	 * @param snippet the snippet used for highlighting when displaying the
 	 *        search results in the UI
 	 */
 	public ExtRepositorySearchResult(T object, float score, String snippet) {
@@ -42,28 +41,30 @@ public class ExtRepositorySearchResult<T extends ExtRepositoryObject> {
 	}
 
 	/**
-	 * Gets the ext repository object associated to this search result.
+	 * Returns the external repository object associated with the search result.
 	 *
-	 * @return the ext repository object associated to this search result
+	 * @return the external repository object associated with the search result
 	 */
 	public T getObject() {
 		return _object;
 	}
 
 	/**
-	 * Gets the score associated to this search result.
+	 * Returns the score associated with the search result, which must be
+	 * between <code>0</code> and <code>1</code>.
 	 *
-	 * @return a number between 0 and 1
+	 * @return the score associated with the search result
 	 */
 	public float getScore() {
 		return _score;
 	}
 
 	/**
-	 * Get the snippet used for highlighting when showing the search results in
-	 * the UI.
+	 * Returns the snippet used for highlighting when displaying the search
+	 * results in the UI.
 	 *
-	 * @return the text to highlight
+	 * @return the snippet used for highlighting when displaying the search
+	 *         results in the UI
 	 */
 	public String getSnippet() {
 		return _snippet;

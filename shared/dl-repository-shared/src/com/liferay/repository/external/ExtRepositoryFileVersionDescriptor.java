@@ -15,9 +15,9 @@
 package com.liferay.repository.external;
 
 /**
- * This class describes how to locate a file version. It consists of two fields:
- * an {@link ExtRepositoryFileEntry} key and a version name belonging to that
- * file.
+ * Provides methods to locate an external repository file version. This class
+ * retrieves an {@link ExtRepositoryFileEntry} key and the version name
+ * belonging to that file entry.
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -25,12 +25,11 @@ package com.liferay.repository.external;
 public class ExtRepositoryFileVersionDescriptor {
 
 	/**
-	 * Create an ext repository file version descriptor with the given ext
-	 * repository file entry key and ext repository version name.
+	 * Creates an external repository file version descriptor with the
+	 * repository file entry key and version name.
 	 *
-	 * @param extRepositoryFileEntryKey the ext repository file entry key
-	 * @param version the name of a version belonging to the specified ext
-	 *        repository file entry
+	 * @param extRepositoryFileEntryKey the repository file entry key
+	 * @param version the repository file entry's version name
 	 */
 	public ExtRepositoryFileVersionDescriptor(
 		String extRepositoryFileEntryKey, String version) {
@@ -40,18 +39,18 @@ public class ExtRepositoryFileVersionDescriptor {
 	}
 
 	/**
-	 * Gets the ext repository file entry key.
+	 * Returns the external repository file entry key.
 	 *
-	 * @return the ext repository file entry key
+	 * @return the external repository file entry key
 	 */
 	public String getExtRepositoryFileEntryKey() {
 		return _extRepositoryFileEntryKey;
 	}
 
 	/**
-	 * Gets the ext repository version name.
+	 * Returns the external repository version name.
 	 *
-	 * @return the ext repository version name
+	 * @return the external repository version name
 	 */
 	public String getVersion() {
 		return _version;
