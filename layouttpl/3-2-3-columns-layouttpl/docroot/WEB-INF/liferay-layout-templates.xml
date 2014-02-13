@@ -3,7 +3,7 @@
 
 <layout-templates>
 	<custom>
-		<layout-template id="3_2_3_columns" name="3-2-3 Columns">
+		<layout-template id="3_2_3_columns">
 			<template-path>/3_2_3_columns.tpl</template-path>
 			<wap-template-path>/3_2_3_columns.wap.tpl</wap-template-path>
 			<thumbnail-path>/3_2_3_columns.png</thumbnail-path>

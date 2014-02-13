@@ -30,6 +30,7 @@ page import="com.liferay.marketplace.util.PortletKeys" %><%@
 page import="com.liferay.marketplace.util.comparator.PluginComparator" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
 page import="com.liferay.portal.kernel.deploy.DeployManagerUtil" %><%@
+page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.plugin.RequiredPluginPackageException" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayPortletURL" %><%@
 page import="com.liferay.portal.kernel.servlet.ServletContextPool" %><%@
