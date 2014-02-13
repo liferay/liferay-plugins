@@ -1512,7 +1512,7 @@ html.aui {
 /* ---------- Portlet: Microblogs ---------- */
 
 .microblogs-portlet {
-	.alert {
+	.alert, .microblogs-entry-form {
 		margin: 10px;
 	}
 

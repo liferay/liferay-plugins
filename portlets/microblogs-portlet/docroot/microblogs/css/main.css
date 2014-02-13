@@ -12,7 +12,6 @@ $microblogs-border-color: #EAEAEA;
 	}
 
 	.microblogs-entry-form {
-		padding: 10px 11px;
 		position: relative;
 
 		.field-text {
