@@ -595,8 +595,8 @@ public class CalendarImporterLocalServiceImpl
 			AssetLink assetLink, long oldEntryId, long newEntryId)
 		throws PortalException, SystemException {
 
-		long entryId1;
-		long entryId2;
+		long entryId1 = 0;
+		long entryId2 = 0;
 
 		AssetEntry linkedAssetEntry;
 
