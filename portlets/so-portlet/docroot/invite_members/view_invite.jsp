@@ -104,7 +104,7 @@
 							for (Role role : roles) {
 							%>
 
-								<option value="<%= role.getRoleId() %>"><%= HtmlUtil.escape(role.getName()) %></option>
+								<option value="<%= role.getRoleId() %>"><%= HtmlUtil.escape(role.getTitle(locale)) %></option>
 
 							<%
 							}
