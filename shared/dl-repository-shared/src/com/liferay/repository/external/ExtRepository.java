@@ -26,20 +26,23 @@ import java.io.InputStream;
 import java.util.List;
 
 /**
- * This interface must be implemented by classes willing to provide support for
- * a new external repository for Liferay's Document Library.
+ * Represents the external repository for Liferay's Document Library, providing
+ * utility methods for adding, deleting, retrieving, searching, and updating
+ * external repository file entries and folders.
  *
- * All data going back and forth is in ext repository's domain format unless
- * otherwise stated in the javadoc. Thus, all ext repository object keys are
- * strings expressed in the native ext repository format. The same can be said
- * for user names and the rest of data.
+ * <p>
+ * Most data transferred in this class is in the external repository's domain
+ * format. For example, external repository data such as object keys and user
+ * names are strings expressed in the native external repository format.
+ * </p>
  *
- * One exception is the
- * {@link ExtRepository#search(SearchContext, Query, ExtRepositoryQueryMapper)}
- * method where the given {@link Query} contains Liferay identifiers and user
- * names. To help with this, developers of that method are given an
- * {@link ExtRepositoryQueryMapper} instance that can translate such IDs to the
- * native ext repository format.
+ * <p>
+ * One exception is the {@link #search(SearchContext, Query,
+ * ExtRepositoryQueryMapper)} method where the {@link Query} contains Liferay
+ * identifiers and user names. To help with this, the {@link
+ * ExtRepositoryQueryMapper} instance can be used to translate such IDs to the
+ * native external repository format.
+ * </p>
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -47,21 +50,20 @@ import java.util.List;
 public interface ExtRepository {
 
 	/**
-	 * Adds an Ext repository file entry and associated metadata based on the
-	 * {@link InputStream} object.
+	 * Adds an external repository file entry and associated metadata based on
+	 * the {@link InputStream} object.
 	 *
-	 * @param  extRepositoryParentFolderKey the primary key of the Ext
-	 *         repository file entry's parent folder
-	 * @param  mimeType the Ext repository file entry's MIME type
-	 * @param  title the Ext repository file entry's name
-	 * @param  description the Ext repository file entry's description
-	 * @param  changeLog the Ext repository file entry's version change log
-	 * @param  inputStream the Ext repository file entry's data (optionally
+	 * @param  extRepositoryParentFolderKey the primary key of the repository
+	 *         file entry's parent folder
+	 * @param  mimeType the repository file entry's MIME type
+	 * @param  title the repository file entry's name
+	 * @param  description the repository file entry's description
+	 * @param  changeLog the repository file entry's version change log
+	 * @param  inputStream the repository file entry's data (optionally
 	 *         <code>null</code>)
-	 * @return the Ext repository file entry and associated metadata
-	 * @throws PortalException if the Ext repository parent folder could not be
-	 *         found or if the Ext repository file entry's information was
-	 *         invalid
+	 * @return a repository file entry and associated metadata
+	 * @throws PortalException if the repository parent folder could not be
+	 *         found or if the repository file entry's information was invalid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public ExtRepositoryFileEntry addExtRepositoryFileEntry(
@@ -70,15 +72,15 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Adds an Ext repository folder.
+	 * Adds an external repository folder.
 	 *
-	 * @param  extRepositoryParentFolderKey the primary key of the Ext
-	 *         repository folder's parent folder
-	 * @param  name the Ext repository folder's name
-	 * @param  description the Ext repository folder's description
-	 * @return the Ext repository folder
-	 * @throws PortalException if the Ext repository parent folder could not be
-	 *         found or if the Ext repository folder's information was invalid
+	 * @param  extRepositoryParentFolderKey the primary key of the repository
+	 *         folder's parent folder
+	 * @param  name the repository folder's name
+	 * @param  description the repository folder's description
+	 * @return a repository folder
+	 * @throws PortalException if the repository parent folder could not be
+	 *         found or if the repository folder's information was invalid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public ExtRepositoryFolder addExtRepositoryFolder(
@@ -87,16 +89,16 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Cancels the check out of the Ext repository file. If a user has not
-	 * checked out the Ext repository file entry, invoking this method results
-	 * in no changes.
+	 * Cancels the check out of the external repository file. If a user has not
+	 * checked out the external repository file entry, invoking this method
+	 * results in no changes.
 	 *
-	 * @param  extRepositoryFileEntryKey the primary key of the Ext repository
-	 *         file entry
-	 * @return the discarded Ext repository file version (optionally
+	 * @param  extRepositoryFileEntryKey the primary key of the repository file
+	 *         entry
+	 * @return the discarded repository file version (optionally
 	 *         <code>null</code>)
-	 * @throws PortalException if the Ext repository file entry's information
-	 *         was invalid
+	 * @throws PortalException if the repository file entry's information was
+	 *         invalid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public ExtRepositoryFileVersion cancelCheckOut(
@@ -104,17 +106,17 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Checks in the Ext repository file entry. If a user has not checked out
-	 * the Ext repository file entry, invoking this method results in no
-	 * changes.
+	 * Checks in the external repository file entry. If a user has not checked
+	 * out the external repository file entry, invoking this method results in
+	 * no changes.
 	 *
-	 * @param  extRepositoryFileEntryKey the primary key of the ext repository
-	 *         file entry
+	 * @param  extRepositoryFileEntryKey the primary key of the repository file
+	 *         entry
 	 * @param  createMajorVersion whether to increase the major or minor version
 	 *         number
 	 * @param  changeLog the description of the changes being checked in
-	 * @throws PortalException if the Ext repository file entry's information
-	 *         was invalid
+	 * @throws PortalException if the repository file entry's information was
+	 *         invalid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public void checkInExtRepositoryFileEntry(
@@ -123,13 +125,13 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Checks out the Ext repository file entry.
+	 * Checks out the external repository file entry.
 	 *
-	 * @param  extRepositoryFileEntryKey the primary key of the Ext repository
-	 *         file entry
-	 * @return the checked out Ext repository file entry
-	 * @throws PortalException if the Ext repository file entry's information
-	 *         was invalid
+	 * @param  extRepositoryFileEntryKey the primary key of the repository file
+	 *         entry
+	 * @return the checked out repository file entry
+	 * @throws PortalException if the repository file entry's information was
+	 *         invalid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public ExtRepositoryFileEntry checkOutExtRepositoryFileEntry(
@@ -137,18 +139,17 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Copies the Ext repository file entry or folder to a different parent
-	 * folder.
+	 * Copies the external repository object to a different parent folder.
 	 *
-	 * @param  extRepositoryObjectType the Ext repository object's type (file or
+	 * @param  extRepositoryObjectType the repository object's type (file or
 	 *         folder)
-	 * @param  extRepositoryFileEntryKey the primary key of the ext repository
+	 * @param  extRepositoryFileEntryKey the primary key of the repository
 	 *         object
-	 * @param  newExtRepositoryFolderKey the primary key of the Ext repository
+	 * @param  newExtRepositoryFolderKey the primary key of the repository
 	 *         destination folder
-	 * @param  newTitle the new name of the Ext repository object in the
-	 *         destination folder
-	 * @return the Ext repository file entry or folder
+	 * @param  newTitle the new name of the repository object in the destination
+	 *         folder
+	 * @return the repository object
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -159,12 +160,11 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Deletes the Ext repository file entry or folder.
+	 * Deletes the external repository object.
 	 *
-	 * @param  extRepositoryObjectType the Ext repository object's type (file or
+	 * @param  extRepositoryObjectType the repository object's type (file or
 	 *         folder)
-	 * @param  extRepositoryObjectKey the primary key of the Ext repository
-	 *         object
+	 * @param  extRepositoryObjectKey the primary key of the repository object
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -177,13 +177,13 @@ public interface ExtRepository {
 	public String getAuthType();
 
 	/**
-	 * Returns the content stream of the Ext repository file entry.
+	 * Returns the content stream of the external repository file entry.
 	 *
-	 * @param  extRepositoryFileEntry the primary key of the Ext repository file
+	 * @param  extRepositoryFileEntry the primary key of the repository file
 	 *         entry
-	 * @return the content stream of the Ext repository file entry
-	 * @throws PortalException if the Ext repository file entry's information
-	 *         was invalid
+	 * @return the content stream of the repository file entry
+	 * @throws PortalException if the repository file entry's information was
+	 *         invalid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public InputStream getContentStream(
@@ -191,13 +191,13 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the content stream of the Ext repository file version.
+	 * Returns the content stream of the external repository file version.
 	 *
-	 * @param  extRepositoryFileVersion the primary key of the ext repository
-	 *         file version
-	 * @return the content stream of the Ext repository file version
-	 * @throws PortalException if the Ext repository file version's information
-	 *         was invalid
+	 * @param  extRepositoryFileVersion the primary key of the repository file
+	 *         version
+	 * @return the content stream of the repository file version
+	 * @throws PortalException if the repository file version's information was
+	 *         invalid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public InputStream getContentStream(
@@ -205,14 +205,14 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the Ext repository file version of the file entry, identified by
-	 * its version name (e.g. "1.0").
+	 * Returns the external repository file version of the file entry,
+	 * identified by its version name (e.g. <code>1.0</code>).
 	 *
-	 * @param  extRepositoryFileEntry the primary key of the Ext repository file
+	 * @param  extRepositoryFileEntry the primary key of the repository file
 	 *         entry
-	 * @param  version the Ext repository version name
-	 * @return the Ext repository file version of the file entry
-	 * @throws PortalException if the Ext repository file entry or version
+	 * @param  version the repository version name
+	 * @return the repository file version of the file entry
+	 * @throws PortalException if the repository file entry or version
 	 *         information was invalid
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -221,11 +221,11 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Translates the Ext repository file version key into an {@link
-	 * ExtRepositoryFileVersionDescriptor}, describing the Ext repository file
-	 * entry key and version name.
+	 * Translates the external repository file version key into an {@link
+	 * ExtRepositoryFileVersionDescriptor}, describing the external repository
+	 * file entry key and version name.
 	 *
-	 * @param  extRepositoryFileVersionKey the Ext repository file version's key
+	 * @param  extRepositoryFileVersionKey the repository file version's key
 	 * @return the translated {@link ExtRepositoryFileVersionDescriptor}
 	 */
 	public ExtRepositoryFileVersionDescriptor
@@ -233,14 +233,14 @@ public interface ExtRepository {
 			String extRepositoryFileVersionKey);
 
 	/**
-	 * Returns the Ext repository file versions of the Ext repository file
-	 * entry. The list is ordered by version age, starting with the newest
+	 * Returns the external repository file versions of the external repository
+	 * file entry. The list is ordered by version age, starting with the newest
 	 * version at index <code>0</code>.
 	 *
-	 * @param  extRepositoryFileEntry the primary key of the Ext repository file
+	 * @param  extRepositoryFileEntry the primary key of the repository file
 	 *         entry
-	 * @return the Ext repository file versions of the Ext repository file entry
-	 * @throws PortalException if the Ext repository file entry was invalid
+	 * @return the repository file versions of the repository file entry
+	 * @throws PortalException if the repository file entry was invalid
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<ExtRepositoryFileVersion> getExtRepositoryFileVersions(
@@ -248,13 +248,12 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the Ext repository file entry or folder matching the key.
+	 * Returns the external repository object matching the key.
 	 *
-	 * @param  extRepositoryObjectType the Ext repository object's type (file or
+	 * @param  extRepositoryObjectType the repository object's type (file or
 	 *         folder)
-	 * @param  extRepositoryObjectKey the primary key of the Ext repository
-	 *         object
-	 * @return the Ext repository file entry or folder with the key
+	 * @param  extRepositoryObjectKey the primary key of the repository object
+	 * @return the repository object matching the key
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -264,15 +263,15 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the Ext repository object matching the name and parent folder.
+	 * Returns the external repository object matching the name and parent
+	 * folder.
 	 *
-	 * @param  extRepositoryObjectType the Ext repository object's type (file or
+	 * @param  extRepositoryObjectType the repository object's type (file or
 	 *         folder)
-	 * @param  extRepositoryFolderKey the primary key of the Ext repository
-	 *         object's parent folder
-	 * @param  title the Ext repository object's name
-	 * @return the Ext repository file entry or folder matching the name and
+	 * @param  extRepositoryFolderKey the primary key of the repository object's
 	 *         parent folder
+	 * @param  title the repository object's name
+	 * @return the repository object matching the name and parent folder
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -282,16 +281,15 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the Ext repository objects in the folder. Depending on the type
-	 * of Ext repository object requested, this method may return only Ext
-	 * repository files, only Ext repository folders, or both Ext repository
-	 * files and folders.
+	 * Returns the external repository objects in the folder. Depending on the
+	 * type of repository object requested, this method may return only
+	 * repository files, only repository folders, or both repository files and
+	 * folders.
 	 *
-	 * @param  extRepositoryObjectType the type of Ext repository objects to
-	 *         return
-	 * @param  extRepositoryFolderKey the primary key of the Ext repository
-	 *         folder to search
-	 * @return the Ext repository objects contained in a given folder
+	 * @param  extRepositoryObjectType the type of repository objects to return
+	 * @param  extRepositoryFolderKey the primary key of the repository folder
+	 *         to search
+	 * @return the repository objects contained in the folder
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -301,16 +299,15 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the number of elements in the Ext repository folder matching the
-	 * object type. Depending on the Ext repository object type requested, this
-	 * method may only return the number of Ext repository files, the number of
-	 * Ext repository folders, or the number of both Ext repository files and
-	 * folders.
+	 * Returns the number of elements in the external repository folder matching
+	 * the object type. Depending on the repository object type requested, this
+	 * method may only return the number of repository files, the number of
+	 * repository folders, or the number of both repository files and folders.
 	 *
-	 * @param  extRepositoryObjectType the Ext repository object type to count
-	 * @param  extRepositoryFolderKey the primary key of the Ext repository
-	 *         folder to search
-	 * @return the number of elements in the Ext repository folder matching the
+	 * @param  extRepositoryObjectType the repository object type to count
+	 * @param  extRepositoryFolderKey the primary key of the repository folder
+	 *         to search
+	 * @return the number of elements in the repository folder matching the
 	 *         object type
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
@@ -322,11 +319,12 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the Ext repository parent folder of the Ext repository object.
+	 * Returns the external repository parent folder of the external repository
+	 * object.
 	 *
-	 * @param  extRepositoryObject the Ext repository object (file or folder)
-	 * @return the Ext repository parent folder of the Ext repository object
-	 * @throws PortalException if the Ext repository object's information was
+	 * @param  extRepositoryObject the repository object (file or folder)
+	 * @return the repository parent folder of the repository object
+	 * @throws PortalException if the repository object's information was
 	 *         invalid
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -335,38 +333,37 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the Liferay login value, which is mapped from the user's Ext
+	 * Returns the Liferay login value, which is mapped from the user's external
 	 * repository login value. A Liferay login value can be a user ID, screen
 	 * name, e-mail, etc, depending on the value returned by the {@link
 	 * #getAuthType()} method. The format of the repository login is specific
-	 * for each Ext repository implementation.
+	 * for each repository implementation.
 	 *
-	 * @param  extRepositoryLogin the user's Ext repository login value
-	 * @return the Liferay login value, which is mapped from the user's Ext
+	 * @param  extRepositoryLogin the user's repository login value
+	 * @return the Liferay login value, which is mapped from the user's
 	 *         repository login value
 	 */
 	public String getLiferayLogin(String extRepositoryLogin);
 
 	/**
-	 * Returns the primary key of the Ext repository root folder.
+	 * Returns the primary key of the external repository root folder.
 	 *
-	 * @return the primary key of the Ext repository root folder
-	 * @throws PortalException if the Ext repository root folder could not be
+	 * @return the primary key of the repository root folder
+	 * @throws PortalException if the repository root folder could not be
 	 *         accessed
 	 * @throws SystemException if a system exception occurred
 	 */
 	public String getRootFolderKey() throws PortalException, SystemException;
 
 	/**
-	 * Returns the keys of the Ext repository subfolders stored inside the Ext
-	 * repository folder.
+	 * Returns the keys of the external repository subfolders stored inside the
+	 * external repository folder.
 	 *
-	 * @param  extRepositoryFolderKey the primary key of the Ext repository
-	 *         folder
-	 * @param  recurse whether to recurse through each Ext repository subfolder
-	 * @return the keys of the Ext repository subfolders stored inside the Ext
+	 * @param  extRepositoryFolderKey the primary key of the repository folder
+	 * @param  recurse whether to recurse through each repository subfolder
+	 * @return the keys of the repository subfolders stored inside the Ext
 	 *         repository folder
-	 * @throws PortalException if the Ext repository folder's information was
+	 * @throws PortalException if the repository folder's information was
 	 *         invalid
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -375,33 +372,34 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the supported configurations for the Ext repository, which may
-	 * each have different supported parameters.
+	 * Returns the supported configurations for the external repository, which
+	 * may each have different supported parameters.
 	 *
-	 * @return the supported configurations
+	 * @return the supported configurations for the repository
 	 * @see    #getSupportedParameters()
 	 */
 	public String[] getSupportedConfigurations();
 
 	/**
-	 * Returns the supported Ext repository configuration parameters indexed by
-	 * configuration type. These parameters are stored in the database when the
-	 * Ext repository is configured and made available using the {@link
-	 * #initRepository(UnicodeProperties, CredentialsProvider)} method.
+	 * Returns the supported external repository configuration parameters
+	 * indexed by configuration type. These parameters are stored in the
+	 * database when the repository is configured and made available using the
+	 * {@link #initRepository(UnicodeProperties, CredentialsProvider)} method.
 	 *
-	 * @return the supported Ext repository configuration parameters indexed by
+	 * @return the supported repository configuration parameters indexed by
 	 *         configuration type
 	 * @see    #getSupportedConfigurations()
 	 */
 	public String[][] getSupportedParameters();
 
 	/**
-	 * Checks the connectivity between Liferay Portal and the Ext repository.
+	 * Initializes the external repository and checks the connectivity between
+	 * the external repository and Liferay Portal.
 	 *
 	 * <p>
 	 * This method uses the credentials provided by the {@link
-	 * CredentialsProvider} object to authenticate to the Ext repository. In
-	 * addition, the method acquires the Ext repository-specific configuration
+	 * CredentialsProvider} object to authenticate to the repository. In
+	 * addition, the method acquires the repository-specific configuration
 	 * parameters from the type settings properties parameter. The parameters
 	 * contained in this variable are indexed by the key names returned by the
 	 * {@link #getSupportedParameters()} method. This method is called only
@@ -419,20 +417,18 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Moves the Ext repository object to a different location. This method can
-	 * also be used to rename Ext repository objects.
+	 * Moves the external repository object to a different location. This method
+	 * can also be used to rename repository objects.
 	 *
-	 * @param  extRepositoryObjectType the Ext repository object's type (file or
+	 * @param  extRepositoryObjectType the repository object's type (file or
 	 *         folder)
-	 * @param  extRepositoryObjectKey the primary key of the Ext repository
-	 *         object
-	 * @param  newExtRepositoryFolderKey the primary key of the Ext repository
+	 * @param  extRepositoryObjectKey the primary key of the repository object
+	 * @param  newExtRepositoryFolderKey the primary key of the repository
 	 *         destination folder
-	 * @param  newTitle the new name of the Ext repository object (may not
-	 *         change)
-	 * @return the Ext repository object
-	 * @throws PortalException if the Ext repository object could not be moved
-	 *         or if a portal exception occurred
+	 * @param  newTitle the new name of the repository object (may not change)
+	 * @return the repository object
+	 * @throws PortalException if the repository object could not be moved or if
+	 *         a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
 	public <T extends ExtRepositoryObject> T moveExtRepositoryObject(
@@ -442,21 +438,19 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Performs a search inside the Ext repository. The Ext repository objects to
-	 * look for must fulfill the given {@link Query} as close as possible
-	 * (possibly limited by the back end Ext repository constraints).
+	 * Returns the external repository objects fulfilling the query. There may
+	 * be some limitations due to back-end repository constraints.
 	 *
-	 * @param  searchContext the context of the search (developers of this
-	 *         method are required to honor the "folderIds", "start" and "end"
-	 *         attributes contained in this search context)
-	 * @param  query the logical expression describing the query to be performed
-	 *         (developers may need to translate this to an equivalent native
-	 *         repository query)
-	 * @param  extRepositoryQueryMapper a helper ext repository query mapper to
-	 *         translate Liferay IDs to native repository format
-	 * @return a list of results fulfilling the query
-	 * @throws PortalException if the search failed or is invalid, or if a
-	 *         portal exception occurred
+	 * @param  searchContext the search context to be applied. The folder ID,
+	 *         start bound, and end bound attributes must be set in this search
+	 *         context.
+	 * @param  query the logical expression describing the query to be
+	 *         performed. This may need to be translated to an equivalent native
+	 *         repository query.
+	 * @param  extRepositoryQueryMapper the repository query mapper to translate
+	 *         Liferay IDs to the native repository format
+	 * @return the repository objects fulfilling the query
+	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
 	public List<ExtRepositorySearchResult<?>> search(
@@ -465,12 +459,12 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Updates the Ext repository file entry's content.
+	 * Updates the external repository file entry's content.
 	 *
-	 * @param  extRepositoryFileEntryKey the primary key of the Ext repository
-	 *         file entry
-	 * @param  mimeType the Ext repository file entry's MIME type
-	 * @param  inputStream the new Ext repository file entry's content
+	 * @param  extRepositoryFileEntryKey the primary key of the repository file
+	 *         entry
+	 * @param  mimeType the repository file entry's MIME type
+	 * @param  inputStream the new repository file entry's content
 	 * @return the updated file entry
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
