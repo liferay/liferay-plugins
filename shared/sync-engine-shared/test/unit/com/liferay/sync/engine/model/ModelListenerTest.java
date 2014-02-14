@@ -18,8 +18,8 @@ import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.util.SyncFileTestUtil;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -37,15 +37,17 @@ public class ModelListenerTest extends BaseTestCase {
 		SyncFileService.registerListener(new SyncFileModelListener());
 
 		syncFile.setFilePathName("/home/liferay/test2");
+		syncFile.setSize(256);
 
 		SyncFileService.update(syncFile);
 
-		Assert.assertEquals("/home/liferay/test", _filePathName);
-		Assert.assertTrue(_onUpdateCalled);
+		Assert.assertEquals(
+			"/home/liferay/test", _updatedFields.get("filePathName"));
+		Assert.assertEquals(2, _updatedFields.size());
 	}
 
 	@Test
-	public void testUpdateSyncFile() throws Exception {
+	public void testUpdateSyncFileIdSyncFile() throws Exception {
 		SyncFile syncFile = SyncFileTestUtil.addFileSyncFile(
 			"/home/liferay/test", 0, syncAccount.getSyncAccountId());
 
@@ -55,11 +57,10 @@ public class ModelListenerTest extends BaseTestCase {
 
 		SyncFileService.update(syncFile);
 
-		Assert.assertFalse(_onUpdateCalled);
+		Assert.assertTrue(_updatedFields.isEmpty());
 	}
 
-	private String _filePathName;
-	private boolean _onUpdateCalled;
+	private Map<String, Object> _updatedFields = new HashMap<String, Object>();
 
 	private class SyncFileModelListener implements ModelListener<SyncFile> {
 
@@ -67,9 +68,7 @@ public class ModelListenerTest extends BaseTestCase {
 		public void onUpdate(
 			SyncFile syncFile, Map<String, Object> updatedFields) {
 
-			_filePathName = (String)updatedFields.get("filePathName");
-
-			_onUpdateCalled = true;
+			_updatedFields = updatedFields;
 		}
 
 	}

@@ -63,22 +63,19 @@ public class BasePersistenceImpl<TT, TID>
 	}
 
 	protected String[] getSyncNotificationFields(String className) {
-		String[] syncNotificationFieldsArray = _syncNotificationFieldsCache.get(
+		String[] syncNotificationFields = _syncNotificationFieldsCache.get(
 			className);
 
-		if (syncNotificationFieldsArray != null) {
-			return syncNotificationFieldsArray;
+		if (syncNotificationFields != null) {
+			return syncNotificationFields;
 		}
 
-		String syncNotificationFields = PropsUtil.get(
+		syncNotificationFields = PropsUtil.getArray(
 			PropsKeys.SYNC_NOTIFICATION_FIELDS_PREFIX + "." + className);
 
-		syncNotificationFieldsArray = syncNotificationFields.split(",");
+		_syncNotificationFieldsCache.put(className, syncNotificationFields);
 
-		_syncNotificationFieldsCache.put(
-			className, syncNotificationFieldsArray);
-
-		return syncNotificationFieldsArray;
+		return syncNotificationFields;
 	}
 
 	protected void notifyListeners(TT targetModel) throws SQLException {

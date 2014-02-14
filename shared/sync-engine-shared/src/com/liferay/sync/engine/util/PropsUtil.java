@@ -30,6 +30,10 @@ public class PropsUtil {
 		return _instance._get(key);
 	}
 
+	public static String[] getArray(String key) {
+		return _instance._getArray(key);
+	}
+
 	public static void set(String key, String value) {
 		_instance._set(key, value);
 	}
@@ -51,6 +55,10 @@ public class PropsUtil {
 		}
 
 		return value.replace("${user.home}", System.getProperty("user.home"));
+	}
+
+	private String[] _getArray(String key) {
+		return _configuration.getStringArray(key);
 	}
 
 	private void _set(String key, String value) {
