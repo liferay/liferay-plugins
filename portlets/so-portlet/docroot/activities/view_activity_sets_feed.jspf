@@ -100,6 +100,8 @@ for (SocialActivitySet activitySet : results) {
 
 						<span class="action hide toggle">
 							<a class="toggle-entry" data-entryId="<%= activitySet.getActivitySetId() %>" href="javascript:;">
+								<i class="icon-expand-alt"></i>
+
 								<span><liferay-ui:message key="view-more" /></span>
 							</a>
 						</span>

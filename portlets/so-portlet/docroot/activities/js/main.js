@@ -233,7 +233,7 @@ AUI().use(
 
 				entry.toggleClass('toggler-content-collapsed', !collapsed);
 
-				var viewText = Liferay.Language.get('view-more');
+				var viewText = '<i class="icon-expand-alt"></i><span> ' + Liferay.Language.get('view-more') + '</span>';
 
 				if (collapsed) {
 					bodyContainer.setStyles(
@@ -245,7 +245,7 @@ AUI().use(
 
 					bodyHeight = body.height();
 
-					viewText = Liferay.Language.get('view-less');
+					viewText = '<i class="icon-collapse-alt"></i><span> ' + Liferay.Language.get('view-less') + '</span>';
 				}
 
 				if (control) {
