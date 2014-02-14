@@ -2,6 +2,7 @@ AUI().use(
 	'anim-color',
 	'anim-easing',
 	'aui-base',
+	'datatype-date',
 	'aui-live-search',
 	'liferay-poller',
 	'stylesheet',
@@ -76,27 +77,13 @@ AUI().use(
 
 				time = new Date(time);
 
-				var meridian = 'am';
-				var hour = time.getHours();
-				var minute = time.getMinutes();
-
-				if (hour >= 12) {
-					meridian = 'pm';
-				}
-
-				if (hour > 12) {
-					hour -= 12;
-				}
-
-				if (hour === 0) {
-					hour += 12;
-				}
-
-				if (minute < 10) {
-					minute = '0' + minute;
-				}
-
-				return hour + ':' + minute + ' ' + meridian;
+				return A.DataType.Date.format(
+					time,
+					{
+						format: '%X',
+						locale: themeDisplay.getLanguageId()
+					}
+				);
 			},
 
 			getCurrentTimestamp: function() {
