@@ -165,8 +165,7 @@ public class SyncDLObjectServiceUtil {
 	}
 
 	public static long getLatestModifiedTime()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getLatestModifiedTime();
 	}
 
