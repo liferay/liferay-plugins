@@ -76,7 +76,7 @@ public abstract class BaseTestCase {
 		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
 	}
 
-	protected void setMockGetResponse(String fileName) throws Exception {
+	protected String readMockResponse(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
 		InputStream inputStream = clazz.getResourceAsStream(fileName);
@@ -84,6 +84,12 @@ public abstract class BaseTestCase {
 		String response = IOUtils.toString(inputStream);
 
 		inputStream.close();
+
+		return response;
+	}
+
+	protected void setMockGetResponse(String fileName) throws Exception {
+		String response = readMockResponse(fileName);
 
 		Mockito.when(
 			HttpUtil.executeGet(
@@ -94,13 +100,7 @@ public abstract class BaseTestCase {
 	}
 
 	protected void setMockPostResponse(String fileName) throws Exception {
-		Class<?> clazz = getClass();
-
-		InputStream inputStream = clazz.getResourceAsStream(fileName);
-
-		String response = IOUtils.toString(inputStream);
-
-		inputStream.close();
+		String response = readMockResponse(fileName);
 
 		Mockito.when(
 			HttpUtil.executePost(
