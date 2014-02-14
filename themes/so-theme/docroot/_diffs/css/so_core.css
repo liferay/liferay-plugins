@@ -738,8 +738,7 @@ html.aui {
 	}
 
 	h1.header-title, #blogsCommentsPanelContainer, #_33_fm1 .aui-form, .entry {
-		margin: 0 auto;
-		max-width: 640px;
+		margin: 0 10px;
 	}
 
 	h1.header-title, .entry-title h2 {
@@ -755,7 +754,6 @@ html.aui {
 
 	.entry {
 		position: relative;
-		width: 512px;
 	}
 
 	.entry-date, .entry-title h2 {
