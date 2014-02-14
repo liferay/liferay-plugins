@@ -257,9 +257,19 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
+	.comments-container .control-group {
+		margin: 0 2px 0 34px;
+		padding: 0;
+
+		.comment-form {
+			padding: 5px 0;
+		}
+	}
+
 	.comment-entry, .comments-container .form {
 		background: #EAEAEA;
 		border-top: 1px solid #FFF;
+		margin-bottom: 0;
 		padding: 2px;
 	}
 
