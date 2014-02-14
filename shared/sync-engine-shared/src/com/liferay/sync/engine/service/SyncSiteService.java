@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine.service;
 
+import com.liferay.sync.engine.model.ModelListener;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.persistence.SyncSitePersistence;
@@ -130,6 +131,10 @@ public class SyncSiteService {
 		}
 
 		return _syncSitePersistence;
+	}
+
+	public static void registerListener(ModelListener<SyncSite> listener) {
+		_syncSitePersistence.registerListener(listener);
 	}
 
 	public static SyncSite update(SyncSite syncSite) {

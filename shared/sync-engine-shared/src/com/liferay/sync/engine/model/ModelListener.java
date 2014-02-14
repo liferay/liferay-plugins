@@ -12,27 +12,15 @@
  * details.
  */
 
-package com.liferay.sync.engine.util;
+package com.liferay.sync.engine.model;
+
+import java.util.Map;
 
 /**
  * @author Shinn Lok
  */
-public interface PropsKeys {
+public interface ModelListener<T> {
 
-	public static final String SYNC_CONFIGURATION_DIRECTORY =
-		"sync.configuration.directory";
-
-	public static final String SYNC_DATABASE_NAME = "sync.database.name";
-
-	public static final String SYNC_IGNORE_FILE_NAMES =
-		"sync.ignore.file.names";
-
-	public static final String SYNC_LOGGER_CONFIGURATION_FILE =
-		"sync.logger.configuration.file";
-
-	public static final String SYNC_NOTIFICATION_FIELDS_PREFIX =
-		"sync.notification.fields";
-
-	public static final String SYNC_PRODUCT_NAME = "sync.product.name";
+	public void onUpdate(T model, Map<String, Object> updatedFields);
 
 }

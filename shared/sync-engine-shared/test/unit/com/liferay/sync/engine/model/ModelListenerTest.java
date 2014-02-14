@@ -1,0 +1,77 @@
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.sync.engine.model;
+
+import com.liferay.sync.engine.BaseTestCase;
+import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.util.SyncFileTestUtil;
+
+import java.util.Map;
+import java.util.Set;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+/**
+ * @author Shinn Lok
+ */
+public class ModelListenerTest extends BaseTestCase {
+
+	@Test
+	public void testUpdateFilePathNameSyncFile() throws Exception {
+		SyncFile syncFile = SyncFileTestUtil.addFileSyncFile(
+			"/home/liferay/test", 0, syncAccount.getSyncAccountId());
+
+		SyncFileService.registerListener(new SyncFileModelListener());
+
+		syncFile.setFilePathName("/home/liferay/test2");
+
+		SyncFileService.update(syncFile);
+
+		Assert.assertEquals("/home/liferay/test", _filePathName);
+		Assert.assertTrue(_onUpdateCalled);
+	}
+
+	@Test
+	public void testUpdateSyncFile() throws Exception {
+		SyncFile syncFile = SyncFileTestUtil.addFileSyncFile(
+			"/home/liferay/test", 0, syncAccount.getSyncAccountId());
+
+		SyncFileService.registerListener(new SyncFileModelListener());
+
+		syncFile.setSyncFileId(12345);
+
+		SyncFileService.update(syncFile);
+
+		Assert.assertFalse(_onUpdateCalled);
+	}
+
+	private String _filePathName;
+	private boolean _onUpdateCalled;
+
+	private class SyncFileModelListener implements ModelListener<SyncFile> {
+
+		@Override
+		public void onUpdate(
+			SyncFile syncFile, Map<String, Object> updatedFields) {
+
+			_filePathName = (String)updatedFields.get("filePathName");
+
+			_onUpdateCalled = true;
+		}
+
+	}
+
+}

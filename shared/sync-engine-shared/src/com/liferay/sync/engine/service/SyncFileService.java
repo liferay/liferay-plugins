@@ -22,6 +22,7 @@ import com.liferay.sync.engine.documentlibrary.event.MoveFolderEvent;
 import com.liferay.sync.engine.documentlibrary.event.MoveFolderToTrashEvent;
 import com.liferay.sync.engine.documentlibrary.event.UpdateFileEntryEvent;
 import com.liferay.sync.engine.documentlibrary.event.UpdateFolderEvent;
+import com.liferay.sync.engine.model.ModelListener;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 import com.liferay.sync.engine.util.FilePathNameUtil;
@@ -372,6 +373,10 @@ public class SyncFileService {
 		moveFolderEvent.run();
 
 		return syncFile;
+	}
+
+	public static void registerListener(ModelListener<SyncFile> listener) {
+		_syncFilePersistence.registerListener(listener);
 	}
 
 	public static SyncFile update(SyncFile syncFile) {
