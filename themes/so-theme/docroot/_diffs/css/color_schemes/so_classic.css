@@ -29,7 +29,7 @@ $red: #8F0920;
 
 @mixin input-field-default {
 	background: #FFF;
-	border: 1px solid $grayDark;
+	border: 1px solid $defaultBorderColor;
 	vertical-align: middle;
 
 	&:active, &:focus, &:hover, &.focus {
@@ -40,8 +40,6 @@ $red: #8F0920;
 		background: none;
 		border-width: 0;
 	}
-
-	@include default-border;
 }
 
 @mixin input-field-focus {
@@ -78,7 +76,7 @@ body.so-classic {
 
 		a {
 			border: solid transparent;
-			border-width: 1px 0;
+			border-width: 0 0 1px;
 			color: $linkColor;
 
 			&, &:active, &:focus, &:hover {
@@ -113,8 +111,8 @@ body.so-classic {
 
 	#main-content {
 		background: none;
-		border-bottom: 1px solid #CCC;
-		border-left: 1px solid #CCC;
+		border-bottom: 1px solid $defaultBorderColor;
+		border-left: 1px solid $defaultBorderColor;
 
 		@include box-shadow(none);
 

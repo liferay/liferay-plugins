@@ -526,6 +526,30 @@ html.aui {
 
 /* ---------- Portlet base styling ---------- */
 
+.portlet {
+	border-bottom: 1px solid $defaultBorderColor;
+	margin-bottom: -1px;
+
+	.portlet-topper, .portlet-content {
+		padding: 1em;
+	}
+
+	.portlet-topper {
+		padding-bottom: 0;
+	}
+
+	.portlet-title {
+		font-size: 1.5em;
+		font-weight: 200;
+		line-height: 1.25em;
+		margin: 0;
+
+		.icon, img {
+			display: none;
+		}
+	}
+}
+
 .portlet-borderless-container {
 	min-height: 0;
 }
