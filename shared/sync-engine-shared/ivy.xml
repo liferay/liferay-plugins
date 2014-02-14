@@ -20,6 +20,7 @@
 		<dependency name="jackson-annotations" org="com.fasterxml.jackson.core" rev="2.1.5" />
 		<dependency name="jackson-core" org="com.fasterxml.jackson.core" rev="2.1.5" />
 		<dependency name="jackson-databind" org="com.fasterxml.jackson.core" rev="2.1.5" />
+		<dependency name="jpathwatch" org="net.sf.jpathwatch" rev="0.95" />
 		<dependency name="jsr311-api" org="javax.ws.rs" rev="1.1.1" />
 		<dependency name="log4j" org="log4j" rev="1.2.17" />
 		<dependency name="ormlite-core" org="com.j256.ormlite" rev="4.47" />
