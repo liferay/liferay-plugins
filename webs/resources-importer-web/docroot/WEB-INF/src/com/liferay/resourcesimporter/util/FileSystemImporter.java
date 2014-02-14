@@ -1228,6 +1228,8 @@ public class FileSystemImporter extends BaseImporter {
 			setupAssets(assetsJSONArray);
 		}
 
+		addDLFileEntries(_DL_DOCUMENTS_DIR_NAME);
+
 		addApplicationDisplayTemplates(_APPLICATION_DISPLAY_TEMPLATE_DIR_NAME);
 
 		addDDLStructures(_DDL_STRUCTURE_DIR_NAME);
@@ -1235,8 +1237,6 @@ public class FileSystemImporter extends BaseImporter {
 		addDDMStructures(StringPool.BLANK, _JOURNAL_DDM_STRUCTURES_DIR_NAME);
 
 		addDDMTemplates(StringPool.BLANK, _JOURNAL_DDM_TEMPLATES_DIR_NAME);
-
-		addDLFileEntries(_DL_DOCUMENTS_DIR_NAME);
 
 		addJournalArticles(
 			StringPool.BLANK, StringPool.BLANK, _JOURNAL_ARTICLES_DIR_NAME);
