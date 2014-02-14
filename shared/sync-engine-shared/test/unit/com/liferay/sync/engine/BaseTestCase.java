@@ -76,7 +76,7 @@ public abstract class BaseTestCase {
 		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
 	}
 
-	protected String readMockResponse(String fileName) throws Exception {
+	protected String readResponse(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
 		InputStream inputStream = clazz.getResourceAsStream(fileName);
@@ -88,19 +88,18 @@ public abstract class BaseTestCase {
 		return response;
 	}
 
-	protected void setMockGetResponse(String fileName) throws Exception {
-		String response = readMockResponse(fileName);
+	protected void setGetResponse(String fileName) throws Exception {
+		String response = readResponse(fileName);
 
 		Mockito.when(
-			HttpUtil.executeGet(
-				Mockito.anyLong(), Mockito.anyString())
+			HttpUtil.executeGet(Mockito.anyLong(), Mockito.anyString())
 		).thenReturn(
 			response
 		);
 	}
 
-	protected void setMockPostResponse(String fileName) throws Exception {
-		String response = readMockResponse(fileName);
+	protected void setPostResponse(String fileName) throws Exception {
+		String response = readResponse(fileName);
 
 		Mockito.when(
 			HttpUtil.executePost(

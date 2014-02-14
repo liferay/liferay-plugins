@@ -66,8 +66,8 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 	@Test
 	public void testRun() throws Exception {
-		setMockGetResponse("dependencies/get_all_sync_dl_objects.json");
-		setMockPostResponse("dependencies/get_all_sync_dl_objects.json");
+		setGetResponse("dependencies/get_all_sync_dl_objects.json");
+		setPostResponse("dependencies/get_all_sync_dl_objects.json");
 
 		GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
 			new GetAllSyncDLObjectsEvent(syncAccount.getSyncAccountId(), null);

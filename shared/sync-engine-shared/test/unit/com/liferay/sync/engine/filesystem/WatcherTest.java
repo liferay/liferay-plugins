@@ -101,7 +101,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunAddFile() throws Exception {
-		setMockPostResponse("dependencies/watcher_test_add_file.json");
+		setPostResponse("dependencies/watcher_test_add_file.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -117,7 +117,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunAddIgnoredFile() throws Exception {
-		setMockPostResponse("dependencies/watcher_test_add_file.json");
+		setPostResponse("dependencies/watcher_test_add_file.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/.DS_Store");
 
@@ -133,7 +133,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunDeleteFile() throws Exception {
-		setMockPostResponse("dependencies/watcher_test_delete_file.json");
+		setPostResponse("dependencies/watcher_test_delete_file.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -157,7 +157,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunModifyFile() throws Exception {
-		setMockPostResponse("dependencies/watcher_test_modify_file.json");
+		setPostResponse("dependencies/watcher_test_modify_file.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -190,7 +190,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunMoveFile() throws Exception {
-		setMockPostResponse("dependencies/watcher_test_move_file.json");
+		setPostResponse("dependencies/watcher_test_move_file.json");
 
 		Path sourceFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test.txt");
@@ -222,7 +222,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunRenameFile() throws Exception {
-		setMockPostResponse("dependencies/watcher_test_rename_file.json");
+		setPostResponse("dependencies/watcher_test_rename_file.json");
 
 		Path sourceFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test.txt");

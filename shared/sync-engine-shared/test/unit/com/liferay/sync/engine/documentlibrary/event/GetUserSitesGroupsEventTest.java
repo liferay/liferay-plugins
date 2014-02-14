@@ -48,7 +48,7 @@ public class GetUserSitesGroupsEventTest extends BaseTestCase {
 
 	@Test
 	public void testRun() throws Exception {
-		setMockPostResponse("dependencies/get_user_sites_groups.json");
+		setPostResponse("dependencies/get_user_sites_groups.json");
 
 		GetUserSitesGroupsEvent getUserSitesGroupsEvent =
 			new GetUserSitesGroupsEvent(syncAccount.getSyncAccountId(), null);
