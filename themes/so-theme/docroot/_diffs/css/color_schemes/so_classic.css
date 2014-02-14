@@ -29,7 +29,9 @@ $red: #8F0920;
 
 @mixin input-field-default {
 	background: #FFF;
-	border: 1px solid $defaultBorderColor;
+
+	@include default-border;
+
 	vertical-align: middle;
 
 	&:active, &:focus, &:hover, &.focus {

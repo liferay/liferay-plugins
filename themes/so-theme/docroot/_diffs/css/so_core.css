@@ -530,7 +530,7 @@ html.aui {
 	border-bottom: 1px solid $defaultBorderColor;
 	margin-bottom: -1px;
 
-	.portlet-topper, .portlet-content {
+	.portlet-content, .portlet-topper {
 		padding: 1em;
 	}
 
@@ -1536,11 +1536,7 @@ html.aui {
 /* ---------- Portlet: Microblogs ---------- */
 
 .microblogs-portlet {
-	.alert, .microblogs-entry-form {
-		margin: 10px;
-	}
-
-	.nav-tabs {
+	.alert, .nav-tabs, .microblogs-entry-form {
 		margin: 10px;
 	}
 
