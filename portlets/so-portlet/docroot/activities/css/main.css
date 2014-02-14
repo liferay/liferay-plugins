@@ -222,14 +222,17 @@ $default-border-color: #E7E7E7;
 	}
 
 	.activity-footer-toolbar {
-		background: #EAEAEA;
-		padding: 0.5em 1em;
+		background: #EAEAEA;;
+		padding: 0 1em;
 
 		.action {
 			border-left: 1px solid #2571AD;
 			display: inline-block;
 			height: 16px;
-			padding: 0 0.5em 0 0.6em;
+			line-height: 16px;
+			margin: .5em 0;
+			padding: 0 .6em 0 .8em;
+			vertical-align: middle;
 
 			&:first-child {
 				border-left-width: 0;
