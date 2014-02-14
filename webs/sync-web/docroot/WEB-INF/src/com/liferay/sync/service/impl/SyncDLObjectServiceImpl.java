@@ -264,9 +264,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	@Override
-	public long getLatestModifiedTime()
-		throws PortalException, SystemException {
-
+	public long getLatestModifiedTime() throws SystemException {
 		return syncDLObjectLocalService.getLatestModifiedTime();
 	}
 
