@@ -1550,9 +1550,6 @@ html.aui {
 }
 
 .user-group .microblogs-status-container {
-	position: relative;
-	top: -6px;
-
 	.microblogs-entry, .portlet-msg-info {
 		background-color: #FFF;
 		border: 1px solid $defaultBorderColor;
