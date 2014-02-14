@@ -18,22 +18,25 @@ import com.liferay.sync.engine.model.SyncWatchEvent;
 
 import java.io.IOException;
 
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
-import java.nio.file.StandardWatchEventKinds;
-import java.nio.file.WatchEvent;
-import java.nio.file.WatchKey;
-import java.nio.file.WatchService;
 import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import name.pachler.nio.file.FileSystem;
+import name.pachler.nio.file.FileSystems;
+import name.pachler.nio.file.Paths;
+import name.pachler.nio.file.StandardWatchEventKind;
+import name.pachler.nio.file.WatchEvent;
+import name.pachler.nio.file.WatchKey;
+import name.pachler.nio.file.WatchService;
+import name.pachler.nio.file.impl.PathImpl;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,17 +89,17 @@ public class Watcher implements Runnable {
 				WatchEvent<Path> watchEvent = (WatchEvent<Path>)watchEvents.get(
 					i);
 
-				Path childFilePath = parentFilePath.resolve(
-					watchEvent.context());
+				PathImpl pathImpl = (PathImpl)watchEvent.context();
 
-				childFilePath = childFilePath.normalize();
+				Path childFilePath = parentFilePath.resolve(
+					pathImpl.toString());
 
 				fireWatchEventListener(childFilePath, watchEvent);
 
 				WatchEvent.Kind<?> kind = watchEvent.kind();
 
 				if (_recursive &&
-					(kind == StandardWatchEventKinds.ENTRY_CREATE)) {
+					(kind == StandardWatchEventKind.ENTRY_CREATE)) {
 
 					try {
 						if (Files.isDirectory(
@@ -162,10 +165,13 @@ public class Watcher implements Runnable {
 			);
 		}
 		else {
-			WatchKey watchKey = filePath.register(
-				_watchService, StandardWatchEventKinds.ENTRY_CREATE,
-				StandardWatchEventKinds.ENTRY_DELETE,
-				StandardWatchEventKinds.ENTRY_MODIFY);
+			name.pachler.nio.file.Path jpathwatchFilePath = Paths.get(
+				filePath.toString());
+
+			WatchKey watchKey = jpathwatchFilePath.register(
+				_watchService, StandardWatchEventKind.ENTRY_CREATE,
+				StandardWatchEventKind.ENTRY_DELETE,
+				StandardWatchEventKind.ENTRY_MODIFY);
 
 			_filePaths.put(watchKey, filePath);
 

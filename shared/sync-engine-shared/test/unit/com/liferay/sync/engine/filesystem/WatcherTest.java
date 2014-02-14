@@ -250,7 +250,7 @@ public class WatcherTest extends BaseTestCase {
 
 	protected void sleep() throws InterruptedException {
 		if (OSDetector.isApple()) {
-			Thread.sleep(12000);
+			Thread.sleep(3000);
 		}
 		else {
 			Thread.sleep(1000);
