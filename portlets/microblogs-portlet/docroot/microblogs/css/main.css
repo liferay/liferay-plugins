@@ -21,8 +21,9 @@ $microblogs-border-color: #EAEAEA;
 			textarea {
 				@include box-shadow(none);
 
-				margin: 0 -12px;
+				margin: 0 -13px;
 				overflow: hidden;
+				padding: 4px 8px;
 				width: 100%;
 			}
 		}
@@ -66,8 +67,8 @@ $microblogs-border-color: #EAEAEA;
 			opacity: 0.5;
 			padding: 2px;
 			position: absolute;
-			right: 14px;
-			top: 14px;
+			right: 6px;
+			top: 6px;
 		}
 
 		.microblogs-countdown-warned {
@@ -246,7 +247,7 @@ $microblogs-border-color: #EAEAEA;
 
 		@include force-wrap;
 
-		left: 3px;
+		left: 4px;
 		line-height: 1.5em;
 		padding: 4px;
 		position: absolute;
@@ -265,7 +266,6 @@ $microblogs-border-color: #EAEAEA;
 			background-color: #97D1FF;
 			border-radius: 3px;
 			color: rgba(0,0,0,0.9);
-			font-weight: normal;
 			padding: 2px 0;
 			visibility: visible;
 			zoom: 1;
