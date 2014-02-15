@@ -563,7 +563,7 @@ public class SitesPortlet extends MVCPortlet {
 		}
 
 		PortalClassInvoker.invoke(
-			true, _updateLayoutSetPrototypesMethodKey, group,
+			_updateLayoutSetPrototypesMethodKey, group,
 			publicLayoutSetPrototypeId, privateLayoutSetPrototypeId,
 			!privateLayout, privateLayout);
 
@@ -571,7 +571,7 @@ public class SitesPortlet extends MVCPortlet {
 				group.getGroupId(), privateLayout);
 
 		PortalClassInvoker.invoke(
-			true, _mergeLayoutSetPrototypeLayoutsMethodKey, group, layoutSet);
+			_mergeLayoutSetPrototypeLayoutsMethodKey, group, layoutSet);
 
 		long[] deleteLayoutIds = getLongArray(actionRequest, "deleteLayoutIds");
 

@@ -63,7 +63,7 @@ public class MarketplaceLicenseUtil {
 				String.class);
 
 			response = (String)PortalClassInvoker.invoke(
-				false, methodKey, jsonObject.toString());
+				methodKey, jsonObject.toString());
 		}
 		finally {
 			currentThread.setContextClassLoader(classLoader);
@@ -101,7 +101,7 @@ public class MarketplaceLicenseUtil {
 				String.class, String.class, int.class);
 
 			PortalClassInvoker.invoke(
-				false, methodKey, orderUuid, productEntryName, 0);
+				methodKey, orderUuid, productEntryName, 0);
 		}
 		finally {
 			currentThread.setContextClassLoader(classLoader);

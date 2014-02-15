@@ -50,7 +50,7 @@ public class ContactsHotDeployMessageListener extends HotDeployMessageListener {
 		}
 
 		PortletClassInvoker.invoke(
-			false, "1_WAR_chatportlet", _registerMethodKey,
+			"1_WAR_chatportlet", _registerMethodKey,
 			ClpSerializer.getServletContextName(), "/chat/view.jsp");
 	}
 

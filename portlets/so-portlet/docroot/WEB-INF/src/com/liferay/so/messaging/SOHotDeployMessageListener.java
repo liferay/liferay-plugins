@@ -47,7 +47,7 @@ public class SOHotDeployMessageListener extends HotDeployMessageListener {
 
 	protected void registerContactsExtension() throws Exception {
 		PortletClassInvoker.invoke(
-			false, "1_WAR_contactsportlet", _registerMethodKey,
+			"1_WAR_contactsportlet", _registerMethodKey,
 			ClpSerializer.getServletContextName(), "/contacts/projects.jsp");
 	}
 
