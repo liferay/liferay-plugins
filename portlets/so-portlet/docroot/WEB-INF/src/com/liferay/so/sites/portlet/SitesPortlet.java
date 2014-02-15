@@ -17,6 +17,7 @@
 
 package com.liferay.so.sites.portlet;
 
+import com.liferay.compat.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.DuplicateGroupException;
 import com.liferay.portal.GroupNameException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -29,7 +30,6 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;

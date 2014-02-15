@@ -17,13 +17,13 @@
 
 package com.liferay.contacts.messaging;
 
+import com.liferay.compat.portal.kernel.util.PortletClassInvoker;
 import com.liferay.contacts.service.ClpSerializer;
 import com.liferay.contacts.util.ContactsExtensionsUtil;
 import com.liferay.portal.kernel.messaging.HotDeployMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
-import com.liferay.portal.kernel.util.PortletClassInvoker;
 
 /**
  * @author Ryan Park

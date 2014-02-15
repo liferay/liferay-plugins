@@ -18,6 +18,8 @@
 package com.liferay.so.activities.util;
 
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.model.DLFileVersion;
+import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivitySet;
 
 /**
@@ -32,13 +34,23 @@ public class ActivitiesUtil {
 		String className = activitySet.getClassName();
 		long classPK = activitySet.getClassPK();
 
-		if (className.equals(DLFileEntry.class.getName()) &&
-			(activitySet.getActivityCount() > 1) &&
-			(activitySet.getType() ==
-				SocialActivityKeyConstants.DL_ADD_FILE_ENTRY)) {
+		if (className.equals(DLFileEntry.class.getName())) {
+			if ((activitySet.getActivityCount() > 1) &&
+				(activitySet.getType() ==
+					SocialActivityKeyConstants.DL_ADD_FILE_ENTRY)) {
 
-			className = SocialActivitySet.class.getName();
-			classPK = activitySet.getActivitySetId();
+				className = SocialActivitySet.class.getName();
+				classPK = activitySet.getActivitySetId();
+			}
+			else {
+				className = DLFileVersion.class.getName();
+
+				DLFileVersion dlFileVersion =
+					DLFileVersionLocalServiceUtil.getLatestFileVersion(
+						classPK, false);
+
+				classPK = dlFileVersion.getFileVersionId();
+			}
 		}
 
 		return new Object[] {className, classPK};

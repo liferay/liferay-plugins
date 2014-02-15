@@ -14,11 +14,11 @@
 
 package com.liferay.wikinavigation.service.permission;
 
+import com.liferay.compat.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.MethodKey;
-import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.wiki.model.WikiPage;
 
