@@ -597,7 +597,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Activities ---------- */
+/* ---------- Portlet: activities ---------- */
 
 .so-portlet-activities {
 	h3 {
@@ -657,7 +657,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Announcements ---------- */
+/* ---------- Portlet: announcements ---------- */
 
 .so-announcements-portlet {
 	.unread-entries {
@@ -705,7 +705,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Blogs ---------- */
+/* ---------- Portlet: blogs ---------- */
 
 .portlet-blogs {
 	.portlet-borderless-container .portlet-body {
@@ -809,7 +809,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Blogs aggregator ---------- */
+/* ---------- Portlet: blogs aggregator ---------- */
 
 .portlet-blogs-aggregator {
 	.entry-author, .entry-date {
@@ -833,7 +833,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Bookmarks ---------- */
+/* ---------- Portlet: bookmarks ---------- */
 
 .portlet-bookmarks {
 	.control-wrapper {
@@ -851,7 +851,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Contacts ---------- */
+/* ---------- Portlet: contacts ---------- */
 
 .contacts-portlet {
 	form {
@@ -980,7 +980,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Document library ---------- */
+/* ---------- Portlet: document library ---------- */
 
 .portlet-document-library {
 	.span6 {
@@ -1139,21 +1139,21 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Invite members ---------- */
+/* ---------- Portlet: invite members ---------- */
 
 .so-portlet-invite-members {
 	background-color: $controlBgColor;
 	border: 1px solid $defaultBorderColor;
 	border-width: 1px 0;
 	margin-top: -1px;
-	
+
 	.invite-members {
 		display: inline-block;
 		margin: 4px;
 	}
 }
 
-/* ---------- Portlet: Message boards ---------- */
+/* ---------- Portlet: message boards ---------- */
 
 .portlet-message-boards {
 	.category-current {
@@ -1515,7 +1515,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Microblogs ---------- */
+/* ---------- Portlet: microblogs ---------- */
 
 .microblogs-portlet {
 	.alert, .nav-tabs, .microblogs-entry-form {
@@ -1580,7 +1580,7 @@ html.aui {
 	top: 0;
 }
 
-/* ---------- Portlet: Private messaging ---------- */
+/* ---------- Portlet: private messaging ---------- */
 
 .private-messaging-portlet {
 	.controls {
@@ -1643,7 +1643,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Tasks ---------- */
+/* ---------- Portlet: tasks ---------- */
 
 .tasks-portlet {
 	.nav-tabs {
@@ -1672,7 +1672,7 @@ html.aui {
 	}
 }
 
-/* ---------- Portlet: Wiki ---------- */
+/* ---------- Portlet: wiki ---------- */
 
 .portlet-wiki {
 	.page-actions {
