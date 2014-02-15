@@ -422,24 +422,6 @@ html.aui {
 		@include input-field-default;
 	}
 
-	.btn, input[type="submit"], input[type="button"], input[type="reset"], button {
-		&, &:active, &.active, &:hover, &:focus {
-			@include button-default;
-		}
-
-		&:active, &.active {
-			@include button-active;
-		}
-
-		&:hover, &:focus {
-			@include button-hover;
-		}
-
-		&.btn-primary {
-			@include button-primary-gradient;
-		}
-	}
-
 	input, textarea {
 		&.focus {
 			@include input-field-focus;
