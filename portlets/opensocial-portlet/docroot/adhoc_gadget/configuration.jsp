@@ -26,7 +26,6 @@ Map<String, UserPref> userPrefs = (Map<String, UserPref>)renderRequest.getAttrib
 Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderRequest.getAttribute(WebKeys.OAUTH_SERVICES);
 %>
 
-
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
 
 <liferay-portlet:renderURL portletConfiguration="true" var="configurationRenderURL">
