@@ -77,7 +77,7 @@ public class MicroblogsEntryFinderImpl
 				"get", String.class);
 
 			_joinBySocialRelationSQL = (String)PortalClassInvoker.invoke(
-				true, methodKey,
+				methodKey,
 				"com.liferay.portal.service.persistence." +
 					"UserFinder.joinBySocialRelation");
 		}

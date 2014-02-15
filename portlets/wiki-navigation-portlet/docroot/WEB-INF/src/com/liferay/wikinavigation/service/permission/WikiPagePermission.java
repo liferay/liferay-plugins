@@ -34,8 +34,7 @@ public class WikiPagePermission {
 
 		try {
 			return (Boolean)PortalClassInvoker.invoke(
-				true, _containsMethodKey, permissionChecker, wikiPage,
-				actionId);
+				_containsMethodKey, permissionChecker, wikiPage, actionId);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
