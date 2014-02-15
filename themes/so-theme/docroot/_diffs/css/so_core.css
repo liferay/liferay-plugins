@@ -1743,8 +1743,14 @@ html.aui {
 	}
 
 	@media (max-width: 979px) {
-		.navbar .nav-navigation {
-			display: block;
+		.navbar {
+			.info-items, .info-link-container {
+				display: none;
+			}
+
+			.nav-navigation {
+				display: block;
+			}
 		}
 
 		.so-portlet-user-bar {

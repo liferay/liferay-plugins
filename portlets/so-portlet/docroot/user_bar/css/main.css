@@ -467,8 +467,26 @@ html.aui {
 							}
 						}
 
+						.user-notifications-list li {
+							@include border-radius(0);
+
+							margin-bottom: 0;
+
+							&:hover {
+								background: rgba(0, 0, 0, 0.2);
+							}
+						}
+
 						&:hover, &:focus {
-							background: rgba(0, 0, 0, 0.2);
+							> a {
+								background: rgba(0, 0, 0, 0.2);
+							}
+
+							ul li:hover {
+								> a {
+									background: rgba(0, 0, 0, 0.2);
+								}
+							}
 						}
 					}
 
