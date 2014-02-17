@@ -216,14 +216,12 @@ public class KBArticleStagedModelDataHandler
 			KBArticle article)
 		throws Exception {
 
-		String rootPath = ExportImportPathUtil.getModelPath(
-			article, String.valueOf(article.getResourcePrimKey()));
-
 		List<FileEntry> attachmentsFileEntries =
 			article.getAttachmentsFileEntries();
 
 		for (FileEntry fileEntry : attachmentsFileEntries) {
-			String path = rootPath + StringPool.SLASH + fileEntry.getTitle();
+			String path = ExportImportPathUtil.getModelPath(
+				article, fileEntry.getTitle());
 
 			Element fileElement = portletDataContext.getExportDataElement(
 				fileEntry);
