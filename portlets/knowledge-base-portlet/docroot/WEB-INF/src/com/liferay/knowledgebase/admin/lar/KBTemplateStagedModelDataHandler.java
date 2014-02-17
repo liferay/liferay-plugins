@@ -38,12 +38,12 @@ public class KBTemplateStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException, SystemException {
 
-		KBTemplate template =
+		KBTemplate kbTemplate =
 			KBTemplateLocalServiceUtil.fetchKBTemplateByUuidAndGroupId(
 				uuid, groupId);
 
-		if (template != null) {
-			KBTemplateLocalServiceUtil.deleteKBTemplate(template);
+		if (kbTemplate != null) {
+			KBTemplateLocalServiceUtil.deleteKBTemplate(kbTemplate);
 		}
 	}
 
@@ -53,61 +53,61 @@ public class KBTemplateStagedModelDataHandler
 	}
 
 	@Override
-	public String getDisplayName(KBTemplate template) {
-		return template.getTitle();
+	public String getDisplayName(KBTemplate kbTemplate) {
+		return kbTemplate.getTitle();
 	}
 
 	@Override
 	protected void doExportStagedModel(
-			PortletDataContext portletDataContext, KBTemplate template)
+			PortletDataContext portletDataContext, KBTemplate kbTemplate)
 		throws Exception {
 
-		Element templateElement = portletDataContext.getExportDataElement(
-			template);
+		Element kbTemplateElement = portletDataContext.getExportDataElement(
+			kbTemplate);
 
 		portletDataContext.addClassedModel(
-			templateElement, ExportImportPathUtil.getModelPath(template),
-			template);
+			kbTemplateElement, ExportImportPathUtil.getModelPath(kbTemplate),
+			kbTemplate);
 	}
 
 	@Override
 	protected void doImportStagedModel(
-			PortletDataContext portletDataContext, KBTemplate template)
+			PortletDataContext portletDataContext, KBTemplate kbTemplate)
 		throws Exception {
 
-		long userId = portletDataContext.getUserId(template.getUserUuid());
+		long userId = portletDataContext.getUserId(kbTemplate.getUserUuid());
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			template);
+			kbTemplate);
 
 		KBTemplate importedKBTemplate = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			KBTemplate existingKBTemplate = KBTemplateUtil.fetchByUUID_G(
-				template.getUuid(), portletDataContext.getScopeGroupId());
+				kbTemplate.getUuid(), portletDataContext.getScopeGroupId());
 
 			if (existingKBTemplate == null) {
-				serviceContext.setUuid(template.getUuid());
+				serviceContext.setUuid(kbTemplate.getUuid());
 
 				importedKBTemplate = KBTemplateLocalServiceUtil.addKBTemplate(
-					userId, template.getTitle(), template.getContent(),
+					userId, kbTemplate.getTitle(), kbTemplate.getContent(),
 					serviceContext);
 			}
 			else {
 				importedKBTemplate =
 					KBTemplateLocalServiceUtil.updateKBTemplate(
 						existingKBTemplate.getKbTemplateId(),
-						template.getTitle(), template.getContent(),
+						kbTemplate.getTitle(), kbTemplate.getContent(),
 						serviceContext);
 			}
 		}
 		else {
 			importedKBTemplate = KBTemplateLocalServiceUtil.addKBTemplate(
-				userId, template.getTitle(), template.getContent(),
+				userId, kbTemplate.getTitle(), kbTemplate.getContent(),
 				serviceContext);
 		}
 
-		portletDataContext.importClassedModel(template, importedKBTemplate);
+		portletDataContext.importClassedModel(kbTemplate, importedKBTemplate);
 	}
 
 }

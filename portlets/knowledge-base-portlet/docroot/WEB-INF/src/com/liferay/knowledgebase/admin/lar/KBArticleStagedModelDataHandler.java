@@ -56,12 +56,12 @@ public class KBArticleStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException, SystemException {
 
-		KBArticle article =
+		KBArticle kbArticle =
 			KBArticleLocalServiceUtil.fetchKBArticleByUuidAndGroupId(
 				uuid, groupId);
 
-		if (article != null) {
-			KBArticleLocalServiceUtil.deleteKBArticle(article);
+		if (kbArticle != null) {
+			KBArticleLocalServiceUtil.deleteKBArticle(kbArticle);
 		}
 	}
 
@@ -71,180 +71,182 @@ public class KBArticleStagedModelDataHandler
 	}
 
 	@Override
-	public String getDisplayName(KBArticle article) {
-		return article.getTitle();
+	public String getDisplayName(KBArticle kbArticle) {
+		return kbArticle.getTitle();
 	}
 
 	@Override
 	protected boolean countStagedModel(
-		PortletDataContext portletDataContext, KBArticle article) {
+		PortletDataContext portletDataContext, KBArticle kbArticle) {
 
 		return !portletDataContext.isModelCounted(
-			KBArticle.class.getName(), article.getResourcePrimKey());
+			KBArticle.class.getName(), kbArticle.getResourcePrimKey());
 	}
 
 	@Override
 	protected void doExportStagedModel(
-			PortletDataContext portletDataContext, KBArticle article)
+			PortletDataContext portletDataContext, KBArticle kbArticle)
 		throws Exception {
 
-		if (article.getParentResourcePrimKey() !=
+		if (kbArticle.getParentResourcePrimKey() !=
 				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
-			KBArticle parentArticle =
+			KBArticle parentKBArticle =
 				KBArticleLocalServiceUtil.getLatestKBArticle(
-					article.getParentResourcePrimKey(),
+					kbArticle.getParentResourcePrimKey(),
 					WorkflowConstants.STATUS_APPROVED);
 
 			StagedModelDataHandlerUtil.exportReferenceStagedModel(
-				portletDataContext, article, parentArticle,
+				portletDataContext, kbArticle, parentKBArticle,
 				PortletDataContext.REFERENCE_TYPE_PARENT);
 		}
 
-		Element articleElement = portletDataContext.getExportDataElement(
-			article);
+		Element kbArticleElement = portletDataContext.getExportDataElement(
+			kbArticle);
 
-		exportKBArticleAttachments(portletDataContext, articleElement, article);
+		exportKBArticleAttachments(
+			portletDataContext, kbArticleElement, kbArticle);
 
 		portletDataContext.addClassedModel(
-			articleElement, ExportImportPathUtil.getModelPath(article),
-			article);
+			kbArticleElement, ExportImportPathUtil.getModelPath(kbArticle),
+			kbArticle);
 	}
 
 	@Override
 	protected void doImportStagedModel(
-			PortletDataContext portletDataContext, KBArticle article)
+			PortletDataContext portletDataContext, KBArticle kbArticle)
 		throws Exception {
 
-		long userId = portletDataContext.getUserId(article.getUserUuid());
+		long userId = portletDataContext.getUserId(kbArticle.getUserUuid());
 
-		if (article.getParentResourcePrimKey() !=
+		if (kbArticle.getParentResourcePrimKey() !=
 				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 
 			StagedModelDataHandlerUtil.importReferenceStagedModels(
-				portletDataContext, article, KBArticle.class);
+				portletDataContext, kbArticle, KBArticle.class);
 		}
 
-		Map<Long, Long> articleResourcePrimaryKeys =
+		Map<Long, Long> kbArticleResourcePrimKeys =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 				KBArticle.class);
 
 		long parentResourcePrimKey = MapUtil.getLong(
-			articleResourcePrimaryKeys, article.getParentResourcePrimKey());
+			kbArticleResourcePrimKeys, kbArticle.getParentResourcePrimKey());
 
 		long resourcePrimaryKey = MapUtil.getLong(
-			articleResourcePrimaryKeys, article.getResourcePrimKey(), 0);
+			kbArticleResourcePrimKeys, kbArticle.getResourcePrimKey(), 0);
 
-		String[] sections = AdminUtil.unescapeSections(article.getSections());
+		String[] sections = AdminUtil.unescapeSections(kbArticle.getSections());
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			article);
+			kbArticle);
 
-		KBArticle importedArticle = null;
+		KBArticle importedKBArticle = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			KBArticle existingKBArticle = KBArticleUtil.fetchByR_V(
-				resourcePrimaryKey, article.getVersion());
+				resourcePrimaryKey, kbArticle.getVersion());
 
 			if (existingKBArticle == null) {
 				existingKBArticle = KBArticleUtil.fetchByUUID_G(
-					article.getUuid(), portletDataContext.getScopeGroupId());
+					kbArticle.getUuid(), portletDataContext.getScopeGroupId());
 			}
 
 			if (existingKBArticle == null) {
-				serviceContext.setUuid(article.getUuid());
+				serviceContext.setUuid(kbArticle.getUuid());
 
 				existingKBArticle =
 					KBArticleLocalServiceUtil.fetchLatestKBArticle(
 						resourcePrimaryKey, WorkflowConstants.STATUS_ANY);
 
 				if (existingKBArticle == null) {
-					importedArticle = KBArticleLocalServiceUtil.addKBArticle(
-						userId, parentResourcePrimKey, article.getTitle(),
-						article.getContent(), article.getDescription(),
+					importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
+						userId, parentResourcePrimKey, kbArticle.getTitle(),
+						kbArticle.getContent(), kbArticle.getDescription(),
 						sections, StringPool.BLANK, serviceContext);
 
 					KBArticleLocalServiceUtil.updatePriority(
-						importedArticle.getResourcePrimKey(),
-						article.getPriority());
+						importedKBArticle.getResourcePrimKey(),
+						kbArticle.getPriority());
 				}
 				else {
 					KBArticleLocalServiceUtil.updateKBArticle(
 						userId, existingKBArticle.getResourcePrimKey(),
-						article.getTitle(), article.getContent(),
-						article.getDescription(), sections, StringPool.BLANK,
+						kbArticle.getTitle(), kbArticle.getContent(),
+						kbArticle.getDescription(), sections, StringPool.BLANK,
 						serviceContext);
 
 					KBArticleLocalServiceUtil.moveKBArticle(
 						userId, existingKBArticle.getResourcePrimKey(),
-						parentResourcePrimKey, article.getPriority());
+						parentResourcePrimKey, kbArticle.getPriority());
 
-					importedArticle =
+					importedKBArticle =
 						KBArticleLocalServiceUtil.getLatestKBArticle(
 							existingKBArticle.getResourcePrimKey(),
 							WorkflowConstants.STATUS_APPROVED);
 				}
 			}
 			else {
-				importedArticle = existingKBArticle;
+				importedKBArticle = existingKBArticle;
 			}
 		}
 		else {
-			importedArticle = KBArticleLocalServiceUtil.addKBArticle(
-				userId, parentResourcePrimKey, article.getTitle(),
-				article.getContent(), article.getDescription(), sections,
+			importedKBArticle = KBArticleLocalServiceUtil.addKBArticle(
+				userId, parentResourcePrimKey, kbArticle.getTitle(),
+				kbArticle.getContent(), kbArticle.getDescription(), sections,
 				StringPool.BLANK, serviceContext);
 
 			KBArticleLocalServiceUtil.updatePriority(
-				importedArticle.getResourcePrimKey(), article.getPriority());
+				importedKBArticle.getResourcePrimKey(),
+				kbArticle.getPriority());
 		}
 
 		importKBArticleAttachments(
-			portletDataContext, article, importedArticle);
+			portletDataContext, kbArticle, importedKBArticle);
 
-		portletDataContext.importClassedModel(article, importedArticle);
+		portletDataContext.importClassedModel(kbArticle, importedKBArticle);
 
-		if (!article.isMain()) {
-			articleResourcePrimaryKeys.put(
-				article.getResourcePrimKey(),
-				importedArticle.getResourcePrimKey());
+		if (!kbArticle.isMain()) {
+			kbArticleResourcePrimKeys.put(
+				kbArticle.getResourcePrimKey(),
+				importedKBArticle.getResourcePrimKey());
 		}
 	}
 
 	protected void exportKBArticleAttachments(
-			PortletDataContext portletDataContext, Element articleElement,
-			KBArticle article)
+			PortletDataContext portletDataContext, Element kbArticleElement,
+			KBArticle kbArticle)
 		throws Exception {
 
 		List<FileEntry> attachmentsFileEntries =
-			article.getAttachmentsFileEntries();
+			kbArticle.getAttachmentsFileEntries();
 
 		for (FileEntry fileEntry : attachmentsFileEntries) {
 			String path = ExportImportPathUtil.getModelPath(
-				article, fileEntry.getTitle());
+				kbArticle, fileEntry.getTitle());
 
-			Element fileElement = portletDataContext.getExportDataElement(
+			Element fileEntryElement = portletDataContext.getExportDataElement(
 				fileEntry);
 
-			fileElement.addAttribute("path", path);
-			fileElement.addAttribute("file-name", fileEntry.getTitle());
+			fileEntryElement.addAttribute("path", path);
+			fileEntryElement.addAttribute("file-name", fileEntry.getTitle());
 
 			portletDataContext.addZipEntry(path, fileEntry.getContentStream());
 
 			portletDataContext.addReferenceElement(
-				article, articleElement, fileEntry,
+				kbArticle, kbArticleElement, fileEntry,
 				PortletDataContext.REFERENCE_TYPE_WEAK, false);
 		}
 	}
 
 	protected void importKBArticleAttachments(
-			PortletDataContext portletDataContext, KBArticle article,
-			KBArticle importedArticle)
+			PortletDataContext portletDataContext, KBArticle kbArticle,
+			KBArticle importedKBArticle)
 		throws Exception {
 
-		List<Element> fileElements =
+		List<Element> dlFileEntryElements =
 			portletDataContext.getReferenceDataElements(
-				article, DLFileEntry.class);
+				kbArticle, DLFileEntry.class);
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -253,22 +255,24 @@ public class KBArticleStagedModelDataHandler
 
 		InputStream inputStream = null;
 
-		for (Element fileElement : fileElements) {
+		for (Element dlFileEntryElement : dlFileEntryElements) {
 			try {
 				inputStream = portletDataContext.getZipEntryAsInputStream(
-					fileElement.attributeValue("path"));
+					dlFileEntryElement.attributeValue("path"));
 
-				String fileName = fileElement.attributeValue("file-name");
+				String fileName = dlFileEntryElement.attributeValue(
+					"file-name");
 
 				String mimeType = MimeTypesUtil.getContentType(
 					inputStream, fileName);
 
 				PortletFileRepositoryUtil.addPortletFileEntry(
 					portletDataContext.getScopeGroupId(),
-					portletDataContext.getUserId(importedArticle.getUserUuid()),
-					KBArticle.class.getName(), importedArticle.getClassPK(),
+					portletDataContext.getUserId(
+						importedKBArticle.getUserUuid()),
+					KBArticle.class.getName(), importedKBArticle.getClassPK(),
 					PortletKeys.KNOWLEDGE_BASE_ADMIN,
-					importedArticle.getAttachmentsFolderId(), inputStream,
+					importedKBArticle.getAttachmentsFolderId(), inputStream,
 					fileName, mimeType, true);
 			}
 			catch (DuplicateFileException dfe) {

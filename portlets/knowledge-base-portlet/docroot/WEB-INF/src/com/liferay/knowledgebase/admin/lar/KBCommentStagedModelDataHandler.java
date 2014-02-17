@@ -41,12 +41,12 @@ public class KBCommentStagedModelDataHandler
 			String uuid, long groupId, String className, String extraData)
 		throws PortalException, SystemException {
 
-		KBComment comment =
+		KBComment kbComment =
 			KBCommentLocalServiceUtil.fetchKBCommentByUuidAndGroupId(
 				uuid, groupId);
 
-		if (comment != null) {
-			KBCommentLocalServiceUtil.deleteKBComment(comment);
+		if (kbComment != null) {
+			KBCommentLocalServiceUtil.deleteKBComment(kbComment);
 		}
 	}
 
@@ -56,67 +56,69 @@ public class KBCommentStagedModelDataHandler
 	}
 
 	@Override
-	public String getDisplayName(KBComment comment) {
-		return comment.getUuid();
+	public String getDisplayName(KBComment kbComment) {
+		return kbComment.getUuid();
 	}
 
 	@Override
 	protected void doExportStagedModel(
-			PortletDataContext portletDataContext, KBComment comment)
+			PortletDataContext portletDataContext, KBComment kbComment)
 		throws Exception {
 
-		Element commentElement = portletDataContext.getExportDataElement(
-			comment);
+		Element kbCommentElement = portletDataContext.getExportDataElement(
+			kbComment);
 
 		portletDataContext.addClassedModel(
-			commentElement, ExportImportPathUtil.getModelPath(comment),
-			comment);
+			kbCommentElement, ExportImportPathUtil.getModelPath(kbComment),
+			kbComment);
 	}
 
 	@Override
 	protected void doImportStagedModel(
-			PortletDataContext portletDataContext, KBComment comment)
+			PortletDataContext portletDataContext, KBComment kbComment)
 		throws Exception {
 
-		long userId = portletDataContext.getUserId(comment.getUserUuid());
+		long userId = portletDataContext.getUserId(kbComment.getUserUuid());
 
-		Map<Long, Long> relatedEntityIds =
+		Map<Long, Long> relatedClassPKs =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
-				comment.getClassName());
+				kbComment.getClassName());
 
 		long newClassPK = MapUtil.getLong(
-			relatedEntityIds, comment.getClassPK(), comment.getClassPK());
+			relatedClassPKs, kbComment.getClassPK(), kbComment.getClassPK());
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
-			comment);
+			kbComment);
 
-		KBComment importedComment = null;
+		KBComment importedKBComment = null;
 
 		if (portletDataContext.isDataStrategyMirror()) {
 			KBComment existingKBComment = KBCommentUtil.fetchByUUID_G(
-				comment.getUuid(), portletDataContext.getScopeGroupId());
+				kbComment.getUuid(), portletDataContext.getScopeGroupId());
 
 			if (existingKBComment == null) {
-				serviceContext.setUuid(comment.getUuid());
+				serviceContext.setUuid(kbComment.getUuid());
 
-				importedComment = KBCommentLocalServiceUtil.addKBComment(
-					userId, comment.getClassNameId(), newClassPK,
-					comment.getContent(), comment.getHelpful(), serviceContext);
+				importedKBComment = KBCommentLocalServiceUtil.addKBComment(
+					userId, kbComment.getClassNameId(), newClassPK,
+					kbComment.getContent(), kbComment.getHelpful(),
+					serviceContext);
 			}
 			else {
-				importedComment = KBCommentLocalServiceUtil.updateKBComment(
+				importedKBComment = KBCommentLocalServiceUtil.updateKBComment(
 					existingKBComment.getKbCommentId(),
-					comment.getClassNameId(), newClassPK, comment.getContent(),
-					comment.getHelpful(), serviceContext);
+					kbComment.getClassNameId(), newClassPK,
+					kbComment.getContent(), kbComment.getHelpful(),
+					serviceContext);
 			}
 		}
 		else {
-			importedComment = KBCommentLocalServiceUtil.addKBComment(
-				userId, comment.getClassNameId(), newClassPK,
-				comment.getContent(), comment.getHelpful(), serviceContext);
+			importedKBComment = KBCommentLocalServiceUtil.addKBComment(
+				userId, kbComment.getClassNameId(), newClassPK,
+				kbComment.getContent(), kbComment.getHelpful(), serviceContext);
 		}
 
-		portletDataContext.importClassedModel(comment, importedComment);
+		portletDataContext.importClassedModel(kbComment, importedKBComment);
 	}
 
 }
