@@ -99,20 +99,20 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		rootElement.addAttribute(
 			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
 
-		ActionableDynamicQuery KBArticleActionableDynamicQuery =
-			getKBArticlesActionableDynamicQuery(portletDataContext);
+		ActionableDynamicQuery kbArticleActionableDynamicQuery =
+			getKBArticleActionableDynamicQuery(portletDataContext);
 
-		KBArticleActionableDynamicQuery.performActions();
+		kbArticleActionableDynamicQuery.performActions();
 
-		ActionableDynamicQuery KBTemplateActionableDynamicQuery =
+		ActionableDynamicQuery kbTemplateActionableDynamicQuery =
 			new KBTemplateExportActionableDynamicQuery(portletDataContext);
 
-		KBTemplateActionableDynamicQuery.performActions();
+		kbTemplateActionableDynamicQuery.performActions();
 
-		ActionableDynamicQuery KBCommentActionableDynamicQuery =
-			getKBCommentsActionableDynamicQuery(portletDataContext);
+		ActionableDynamicQuery kbCommentActionableDynamicQuery =
+			getKBCommentActionableDynamicQuery(portletDataContext);
 
-		KBCommentActionableDynamicQuery.performActions();
+		kbCommentActionableDynamicQuery.performActions();
 
 		return getExportDataRootElementString(rootElement);
 	}
@@ -125,34 +125,34 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 
 		portletDataContext.importPortletPermissions(RESOURCE_NAME);
 
-		Element KBArticlesElement =
+		Element kbArticlesElement =
 			portletDataContext.getImportDataGroupElement(KBArticle.class);
 
-		List<Element> KBArticleElements = KBArticlesElement.elements();
+		List<Element> kbArticleElements = kbArticlesElement.elements();
 
-		for (Element KBArticleElement : KBArticleElements) {
+		for (Element kbArticleElement : kbArticleElements) {
 			StagedModelDataHandlerUtil.importStagedModel(
-				portletDataContext, KBArticleElement);
+				portletDataContext, kbArticleElement);
 		}
 
-		Element KBTemplatesElement =
+		Element kbTemplatesElement =
 			portletDataContext.getImportDataGroupElement(KBTemplate.class);
 
-		List<Element> KBTemplateElements = KBTemplatesElement.elements();
+		List<Element> kbTemplateElements = kbTemplatesElement.elements();
 
-		for (Element KBTemplateElement : KBTemplateElements) {
+		for (Element kbTemplateElement : kbTemplateElements) {
 			StagedModelDataHandlerUtil.importStagedModel(
-				portletDataContext, KBTemplateElement);
+				portletDataContext, kbTemplateElement);
 		}
 
-		Element KBCommentsElement =
+		Element kbCommentsElement =
 			portletDataContext.getImportDataGroupElement(KBComment.class);
 
-		List<Element> KBCommentElements = KBCommentsElement.elements();
+		List<Element> kbCommentElements = kbCommentsElement.elements();
 
-		for (Element KBCommentElement : KBCommentElements) {
+		for (Element kbCommentElement : kbCommentElements) {
 			StagedModelDataHandlerUtil.importStagedModel(
-				portletDataContext, KBCommentElement);
+				portletDataContext, kbCommentElement);
 		}
 
 		return null;
@@ -164,23 +164,23 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		ActionableDynamicQuery KBArticleActionableDynamicQuery =
+		ActionableDynamicQuery kbArticleActionableDynamicQuery =
 			new KBArticleExportActionableDynamicQuery(portletDataContext);
 
-		KBArticleActionableDynamicQuery.performCount();
+		kbArticleActionableDynamicQuery.performCount();
 
-		ActionableDynamicQuery KBTemplateActionableDynamicQuery =
+		ActionableDynamicQuery kbTemplateActionableDynamicQuery =
 			new KBTemplateExportActionableDynamicQuery(portletDataContext);
 
-		KBTemplateActionableDynamicQuery.performCount();
+		kbTemplateActionableDynamicQuery.performCount();
 
-		ActionableDynamicQuery KBCommentActionableDynamicQuery =
-			getKBCommentsActionableDynamicQuery(portletDataContext);
+		ActionableDynamicQuery kbCommentActionableDynamicQuery =
+			getKBCommentActionableDynamicQuery(portletDataContext);
 
-		KBCommentActionableDynamicQuery.performCount();
+		kbCommentActionableDynamicQuery.performCount();
 	}
 
-	protected ActionableDynamicQuery getKBArticlesActionableDynamicQuery(
+	protected ActionableDynamicQuery getKBArticleActionableDynamicQuery(
 			final PortletDataContext portletDataContext)
 		throws Exception {
 
@@ -197,7 +197,7 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 		};
 	}
 
-	protected ActionableDynamicQuery getKBCommentsActionableDynamicQuery(
+	protected ActionableDynamicQuery getKBCommentActionableDynamicQuery(
 			final PortletDataContext portletDataContext)
 		throws Exception {
 
