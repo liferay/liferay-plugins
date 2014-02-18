@@ -382,6 +382,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
+	@Override
 	public KBArticle fetchLatestKBArticle(long resourcePrimKey, int status)
 		throws PortalException, SystemException {
 
