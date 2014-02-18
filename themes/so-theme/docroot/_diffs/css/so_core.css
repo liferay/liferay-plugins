@@ -364,8 +364,8 @@ html.aui {
 
 		.info-items {
 			left: auto;
-			position: relative;
-			right: 0;
+			position: absolute;
+			right: 332px;
 			top: 44px;
 
 			.page-customization-bar .page-customization-bar-text {
