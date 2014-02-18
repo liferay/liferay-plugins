@@ -74,6 +74,14 @@ public class RTLCSSUtil {
 		}
 	}
 
+	public static boolean isExcludedPath(String filePath) {
+		if (filePath.matches(".*\\/ckeditor\\/.*")) {
+			return true;
+		}
+
+		return false;
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(RTLCSSUtil.class);
 
 	private static String _jsScript;
