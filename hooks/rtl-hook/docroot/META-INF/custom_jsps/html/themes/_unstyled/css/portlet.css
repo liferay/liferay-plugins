@@ -1,0 +1,429 @@
+/* ---------- Portlet wrapper and icons ---------- */
+
+.freeform .portlet {
+}
+
+body.portlet {
+}
+
+.portlet-topper {
+}
+
+.portlet-title {
+	img {
+	}
+}
+
+.portlet-title-editable {
+}
+
+.portlet-title-text {
+}
+
+.panel-page-content, .panel-page-body {
+	.portlet-title-text {
+	}
+}
+
+.portlet-topper-toolbar {
+	.nobr {
+	}
+}
+
+.portlet-content, .portlet-minimized .portlet-content-container {
+}
+
+.portlet-minimized .portlet-content {
+}
+
+.portlet-icon-back {
+}
+
+.portlet-nested-portlets .portlet-boundary {
+}
+
+.portlet-borderless-bar, .portlet-journal-content .lfr-icon-actions {
+	a {
+	}
+}
+
+.portlet-journal-content .lfr-icon-actions {
+	.taglib-text {
+	}
+
+	.lfr-icon-action a {
+		.icon {
+		}
+	}
+
+	.lfr-icon-action-add a {
+	}
+
+	.lfr-icon-action-edit a {
+	}
+
+	.lfr-icon-action-edit-template a {
+	}
+
+	.lfr-icon-action-configuration a {
+	}
+}
+
+/* ---------- Borderless portlet ---------- */
+
+.portlet-borderless-container {
+}
+
+.portlet-borderless-bar {
+	a {
+	}
+
+	.portlet-actions {
+	}
+
+	.portlet-title-default, .portlet-actions {
+	}
+
+	.portlet-action-separator {
+	}
+
+	.portlet-back a {
+	}
+
+	.portlet-close a {
+	}
+}
+
+.lfr-configurator-visibility {
+	.portlet-borderless-bar {
+	}
+
+	&.portlet-journal-content .lfr-icon-actions {
+	}
+}
+
+.portlet-borderless-container:hover .portlet-borderless-bar, .portlet-journal-content:hover .lfr-icon-actions {
+}
+
+.portlet-borderless-container:hover .portlet-borderless-bar .portlet-actions, .portlet-journal-content:hover .lfr-icon-actions .taglib-text {
+}
+
+.portlet-title-default {
+}
+
+.portlet-draggable {
+	.portlet-topper {
+	}
+
+	.portlet-title-default {
+	}
+}
+
+/* ---------- Panel page ---------- */
+
+.lfr-panel-page {
+	.portlet-title {
+	}
+
+	.lfr-add-content h2 span {
+	}
+}
+
+/* ---------- Standard styles defined in the JSR 168 ---------- */
+
+/* ---------- Fonts ---------- */
+
+/* ---------- Font attributes for the 'normal' fragment font ---------- */
+
+.portlet-font {
+}
+
+/* ---------- Font attributes similar to the .portlet-font but the color is lighter ---------- */
+
+.portlet-font-dim {
+}
+
+/* ---------- Messages ---------- */
+
+.portlet-msg {
+}
+
+/* ---------- Status labels ---------- */
+
+.lfr-status-alert-label, .lfr-status-error-label, .lfr-status-info-label, .lfr-status-progress-label, .lfr-status-success-label {
+}
+
+.lfr-status-alert-label {
+}
+
+.lfr-status-error-label {
+}
+
+.lfr-status-help-label, .lfr-status-info-label, .lfr-status-progress-label {
+}
+
+.lfr-status-help-label {
+}
+
+.lfr-status-progress-label {
+}
+
+.lfr-status-success-label {
+}
+
+/* ---------- Liferay messages ---------- */
+
+.lfr-message-content {
+}
+
+/* ---------- Sections ---------- */
+
+/* ---------- Text in a selected cell range ---------- */
+
+.portlet-section-selected {
+	&, a {
+	}
+
+	a:hover, a:focus {
+	}
+}
+
+/* ---------- Text of a subheading ---------- */
+
+.portlet-section-subheader {
+}
+
+/* ---------- Table or section footnote ---------- */
+
+.portlet-section-footer {
+}
+
+/* ---------- Text that belongs to the table but does not fall in one of the other categories (e.g. explanatory or help text that is associated with the section) ---------- */
+
+.portlet-section-text {
+}
+
+/* ---------- Forms ---------- */
+
+/* ---------- Text used for the descriptive label of the whole form (not the labels for fields) ---------- */
+
+.portlet-form-label {
+}
+
+/* ---------- Text of the user-input in an input field ---------- */
+
+.portlet-form-input-field {
+}
+
+/* ---------- Text on a button ---------- */
+
+.portlet-form-button {
+}
+
+/* ---------- Text that appears beside a context dependent action icon ---------- */
+
+.portlet-icon-label {
+}
+
+/* ---------- Text that appears beside a 'standard' icon (e.g. Ok, or cancel) ---------- */
+
+.portlet-dlg-icon-label {
+}
+
+/* ---------- Text for a separator of fields (e.g. checkboxes, etc.) ---------- */
+
+.portlet-form-field-label {
+}
+
+/* ---------- Text for a field (not input field, e.g. checkboxes, etc.) ---------- */
+
+.portlet-form-field {
+}
+
+/* ---------- Menus ---------- */
+
+/* ---------- General menu settings such as background color, margins, etc. ---------- */
+
+.portlet-menu {
+}
+
+/* ---------- Normal, unselected menu item ---------- */
+
+.portlet-menu-item {
+}
+
+/* ---------- Selected menu item ---------- */
+
+.portlet-menu-item-selected {
+}
+
+/* ---------- Normal, unselected menu item when the mouse hovers over it ---------- */
+
+.portlet-menu-item-hover {
+}
+
+/* ---------- Selected menu item when the mouse hovers over it ---------- */
+
+.portlet-menu-item-hover-selected {
+}
+
+/* ---------- Normal, unselected menu item that has sub-menus ---------- */
+
+.portlet-menu-cascade-item {
+}
+
+/* ---------- Selected sub-menu item that has sub-menus ---------- */
+
+.portlet-menu-cascade-item-selected {
+}
+
+/* ---------- Descriptive text for the menu (e.g. in a help context below the menu) ---------- */
+
+.portlet-menu-description {
+}
+
+/* ---------- Menu caption ---------- */
+
+.portlet-menu-caption {
+}
+
+/* ---------- Miscellaneous portlet styles ---------- */
+
+.restricted {
+	&, & td {
+	}
+
+	* {
+	}
+}
+
+.alt.restricted td {
+}
+
+.hover.restricted td {
+}
+
+.restricted, .alt.restricted {
+	td.first {
+	}
+}
+
+/* ---------- Permissions ---------- */
+
+.results-row, .results-row.hover {
+	&.lfr-role .first {
+	}
+
+	&.lfr-role-guest .first {
+	}
+
+	&.lfr-role-regular .first {
+	}
+
+	&.lfr-role-site .first {
+	}
+
+	&.lfr-role-organization .first {
+	}
+
+	&.lfr-role-team .first {
+	}
+}
+
+/* ---------- Miscellaneous component styles ---------- */
+
+/* ---------- Add content dialog ---------- */
+
+.lfr-portlet-item {
+	&, & p a {
+	}
+}
+
+/* ---------- Calendar taglib ---------- */
+
+.taglib-calendar {
+	tr {
+		&.portlet-section-header th, & td {
+		}
+
+		td {
+			a {
+				&:hover {
+				}
+			}
+
+			&.calendar-inactive {
+			}
+		}
+
+		th {
+		}
+	}
+
+	table td {
+	}
+
+	.calendar-current-day {
+		&, & a {
+		}
+
+		a {
+		}
+	}
+}
+
+.ie {
+	.portlet-borderless-bar, .portlet-journal-content .lfr-icon-actions {
+	}
+
+	.portlet-borderless-container:hover .portlet-borderless-bar, .portlet-journal-content .lfr-icon-actions:hover {
+	}
+
+	.taglib-calendar tr td.first a {
+	}
+}
+
+/* ---------- navbar form search ---------- */
+
+.navbar .navbar-inner .form-search {
+	form {
+	}
+
+	.input-append .control-group {
+	}
+}
+
+.ie6, .ie7 {
+	.portlet-journal-content {
+		.icons-container {
+		}
+
+		.lfr-icon-actions .taglib-text {
+		}
+	}
+
+	.portlet-borderless-bar .portlet-actions {
+	}
+
+	.portlet-title-default {
+	}
+
+	.lfr-message .lfr-message-close {
+	}
+}
+
+.ie6 {
+	.portlet-topper-toolbar .icon {
+	}
+
+	.portlet-borderless-container {
+	}
+
+	.portlet-borderless-bar {
+		.portlet-actions {
+		}
+	}
+
+	.breadcrumbs {
+	}
+}

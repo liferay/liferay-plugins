@@ -1,0 +1,17 @@
+.portlet-site-settings {
+	.trash-entries-max-age {
+		margin-left: 1.5em;
+	}
+
+	.staging-section {
+		margin-left: 1.5em;
+	}
+
+	.staging-types .field-choice label {
+		font-weight: normal;
+	}
+
+	.membership-restriction-container {
+		margin-top: 1em;
+	}
+}

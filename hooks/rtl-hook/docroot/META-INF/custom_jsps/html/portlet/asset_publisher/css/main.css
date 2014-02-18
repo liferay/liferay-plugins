@@ -1,0 +1,314 @@
+.portlet-asset-publisher {
+	.asset-abstract {
+		margin-bottom: 2em;
+
+		.asset-content p {
+			margin-bottom: 0;
+		}
+
+		.asset-description {
+			clear: left;
+		}
+	}
+
+	.asset-back-to {
+		text-align: right;
+	}
+
+	.asset-content {
+		clear: right;
+		margin-bottom: 10px;
+		margin-left: 25px;
+		margin-right: 10px;
+
+		.asset-description {
+			clear: left;
+			font-style: italic;
+		}
+	}
+
+	.asset-flag {
+		margin-top: 1.8em;
+	}
+
+	.asset-full-content {
+		.asset-content {
+			margin-right: 25px;
+		}
+
+		&.show-asset-title .asset-content {
+			margin-right: 10px;
+		}
+
+		&.no-title .asset-user-actions{
+			padding-bottom: 2em;
+		}
+	}
+
+	.asset-edit {
+		float: right;
+		margin-left: 1em;
+	}
+
+	.asset-metadata {
+		clear: both;
+		margin-left: 25px;
+		overflow: hidden;
+
+		span {
+			float: left;
+		}
+
+		.metadata-categories span {
+			float: none;
+		}
+	}
+
+	.asset-more {
+		clear: left;
+	}
+
+	.asset-small-image {
+		float: right;
+		padding-left: 0.5em;
+		width: 150px;
+	}
+
+	.asset-actions {
+		float: right;
+		font-size: 11px;
+		font-weight: normal;
+		margin-bottom: 3px;
+		margin-top: 0;
+	}
+
+	.asset-title {
+		border-bottom: 1px solid #DDD;
+		margin-right: 8px;
+		padding-bottom: 1px;
+
+		.asset-actions img {
+			margin-left: 5px;
+		}
+
+		a {
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.asset-user-actions {
+		.export-actions, .print-action, .locale-actions {
+			float: right;
+		}
+
+		.locale-separator {
+			border-right: 1px solid #CCC;
+			float: right;
+			margin-right: 1em;
+			padding: 0.8em 0.5em;
+		}
+
+		.print-action {
+			margin: 0 1em;
+		}
+	}
+
+	.edit-controls {
+		margin-bottom: 20px;
+	}
+
+	.lfr-meta-actions {
+		margin-right: 1em;
+		padding-top: 0;
+	}
+
+	.add-asset-selector {
+		margin-right: 0;
+	}
+
+	.metadata-author {
+		background: url(@theme_image_path@/portlet/edit_guest.png) no-repeat 0 0;
+		float: left;
+		font-weight: bold;
+		margin-right: 10px;
+		padding-left: 25px;
+	}
+
+	.metadata-entry {
+		color: #999;
+	}
+
+	.metadata-modified-date, .metadata-create-date, .metadata-publish-date, .metadata-expiration-date {
+		background: url(@theme_image_path@/common/date.png) no-repeat 0 0;
+		color: #999;
+		margin-bottom: 1em;
+		padding-left: 25px;
+	}
+
+	.metadata-priority {
+		background: url(@theme_image_path@/common/top.png) no-repeat 0 20%;
+		margin-right: 10px;
+		padding-left: 25px;
+	}
+
+	.metadata-view-count {
+		margin-right: 10px;
+	}
+
+	.subscribe-action {
+		text-align: right;
+
+		.taglib-rss {
+			margin-left: 10px;
+		}
+	}
+
+	.taglib-asset-categories-summary {
+		float: left;
+	}
+
+	.taglib-asset-tags-summary {
+		float: left;
+	}
+
+	.title-list {
+		.asset-actions {
+			left: 10px;
+			position: relative;
+		}
+
+		.asset-metadata {
+			padding: 0;
+		}
+
+		a {
+			float: left;
+		}
+	}
+
+	li.title-list {
+		clear: both;
+		list-style: none;
+		margin-bottom: 0.15em;
+		margin-right: 8px;
+		padding-bottom: 1px;
+	}
+
+	ul.title-list {
+		margin-left: 0;
+	}
+}
+
+.portlet-configuration {
+	.form {
+		.queryRules fieldset {
+			padding: 0;
+
+			legend {
+				font-size: 1em;
+				font-weight: normal;
+				padding: 0;
+			}
+		}
+
+		.lfr-form-row {
+			background-color: #F3F3F3;
+
+			&:hover {
+				background-color: #DFFCCB;
+			}
+
+			.field {
+				line-height: 2;
+
+				&.tags-selector, &.categories-selector {
+					clear: both;
+					line-height: 1.5;
+					margin-top: 5px;
+					width: 100%;
+				}
+			}
+		}
+
+		.asset-query-rule-error {
+			background-color: #fee5e2;
+		}
+
+		.general-display-settings {
+			margin-bottom: 1em;
+		}
+	}
+
+	.lfr-panel .lfr-panel-titlebar {
+		margin-bottom: 0;
+	}
+
+	.lfr-panel-content {
+		background-color: #F8F8F8;
+		padding: 10px;
+	}
+
+	.dl-file-icon {
+		border-width: 0;
+		margin-right: 0.3em;
+		position: relative;
+		text-align: left;
+		top: 0.4em;
+	}
+
+	.add-asset-selector {
+		overflow: auto;
+	}
+
+	.asset-search {
+		margin-bottom: 1em;
+	}
+
+	.asset-subtype, .asset-subtypefields-wrapper-enable {
+		margin-left: 2em;
+	}
+
+	.asset-subtypefields-wrapper {
+		display: inline;
+	}
+
+	.asset-subtypefields-message {
+		margin-left: 4em;
+	}
+
+	.asset-subtypefields-popup {
+		color: #5B677D;
+		cursor: pointer;
+		text-decoration: underline;
+	}
+
+	.asset-subtypefield-selected {
+		padding-top: 10px;
+		margin-left: 6em;
+	}
+
+	.select-asset-selector {
+		margin: 1em 0;
+		overflow: auto;
+
+		.select-existing-selector {
+			margin: 0;
+		}
+	}
+}
+
+.ie {
+	.portlet-asset-publisher {
+		.asset-metadata {
+			height: 1%;
+		}
+	}
+}
+
+.social-boomarks-options {
+	margin-left: 2em;
+}

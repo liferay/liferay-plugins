@@ -1,0 +1,27 @@
+.taglib-social-bookmarks {
+  clear: both;
+  margin-top: 1.5em; }
+  .taglib-social-bookmarks ul {
+    display: block;
+    padding: 1em; }
+    .taglib-social-bookmarks ul:after {
+      clear: both;
+      content: ".";
+      display: block;
+      height: 0;
+      visibility: hidden; }
+  .taglib-social-bookmarks li {
+    float: left;
+    margin-right: 1em; }
+    .taglib-social-bookmarks li .social-bookmark-link {
+      padding: 3px 2px 3px 20px; }
+
+.ie .taglib-social-bookmarks ul {
+  height: 1%; }
+
+/* Skin */
+.taglib-social-bookmarks {
+  background: #F0F5F7; }
+  .taglib-social-bookmarks li .social-bookmark-link {
+    background: url() no-repeat 0 50%; }
+

@@ -1,0 +1,129 @@
+@import "compass";
+@import "mixins";
+
+.lfr-search-container {
+	margin-top: 1.5em;
+	overflow: auto;
+
+	@include respond-to(phone, tablet) {
+		@include experimental(overflow-scrolling, touch);
+
+		.searchcontainer-content .table {
+			max-width: none;
+		}
+	}
+}
+
+.taglib-search-iterator {
+	border-collapse: collapse;
+	width: 100%;
+
+	td {
+		padding: 4px;
+
+		&.align-center {
+			text-align: center;
+		}
+
+		&.align-left {
+			text-align: left;
+		}
+
+		&.align-right {
+			text-align: right;
+		}
+
+		&.valign-bottom {
+			vertical-align: bottom;
+		}
+
+		&.valign-middle {
+			vertical-align: middle;
+		}
+
+		&.valign-top {
+			vertical-align: top;
+		}
+	}
+}
+
+.taglib-search-iterator-page-iterator-top {
+	margin-bottom: 15px;
+}
+
+.taglib-page-iterator {
+	clear: both;
+	height: auto;
+	overflow: hidden;
+	width: auto;
+
+	.lfr-pagination-buttons {
+		float: right;
+		margin: 0;
+
+		@include respond-to(phone, tablet) {
+			@include respond-to(phone) {
+				float: none;
+				margin-top: 20px;
+				width: 100%;
+			}
+
+			@include respond-to(tablet) {
+				width: 50%;
+			}
+
+			> li {
+				display: inline-block;
+				float: left;
+				width: 50%;
+
+				&.first, &.last {
+					display: none;
+				}
+
+				> a {
+					line-height: 20px;
+					padding: 11px 19px;
+					width: 65%;
+				}
+			}
+		}
+	}
+
+	.lfr-pagination-config {
+		float: left;
+		line-height: 46px;
+
+		@include respond-to(phone) {
+			float: none;
+
+			.current-page-menu {
+				display: block;
+
+				.btn {
+					display: block;
+				}
+			}
+		}
+
+		.lfr-pagination-delta-selector, .lfr-pagination-page-selector {
+			display: inline;
+		}
+
+		@include respond-to(phone, tablet) {
+			.lfr-pagination-delta-selector {
+				display: none;
+			}
+		}
+	}
+
+	.search-results {
+		float: left;
+		line-height: 46px;
+		margin-left: 10px;
+
+		@include respond-to(phone, tablet) {
+			display: none;
+		}
+	}
+}

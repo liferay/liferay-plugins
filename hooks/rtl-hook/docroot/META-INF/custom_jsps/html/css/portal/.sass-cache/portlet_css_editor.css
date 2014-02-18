@@ -1,0 +1,34 @@
+#portlet-set-properties fieldset {
+  margin-bottom: 1em; }
+  #portlet-set-properties fieldset fieldset {
+    margin-top: 1em; }
+#portlet-set-properties .form {
+  clear: both; }
+  #portlet-set-properties .form .text-input {
+    margin-right: 5px;
+    width: 80px; }
+  #portlet-set-properties .form fieldset.col {
+    width: 29%; }
+  #portlet-set-properties .form #custom-css {
+    height: 300px;
+    width: 400px; }
+#portlet-set-properties .common {
+  width: 27%; }
+#portlet-set-properties .extra {
+  width: 20%; }
+#portlet-set-properties .use-for-all-column .field-row .field-label {
+  width: 50px; }
+#portlet-set-properties .form-hint {
+  float: none; }
+#portlet-set-properties .lfr-bg-image-properties {
+  display: none; }
+#portlet-set-properties #border-note {
+  margin-top: 10px; }
+#portlet-set-properties .colorpicker-trigger {
+  margin-top: 0;
+  vertical-align: top; }
+
+/* Skin */
+#portlet-set-properties fieldset fieldset legend {
+  font-size: 1.1em; }
+

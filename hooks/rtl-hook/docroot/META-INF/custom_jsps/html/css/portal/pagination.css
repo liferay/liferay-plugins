@@ -1,0 +1,53 @@
+.aui {
+	.lfr-pagination {
+		&:after {
+			clear: both;
+			content: ".";
+			display: block;
+			height: 0;
+			visibility: hidden;
+		}
+
+		.dropdown-menu {
+			display: none;
+		}
+
+		.dropdown-toggle .icon-caret-down {
+			margin-left: 5px;
+		}
+
+		.lfr-pagination-controls {
+			float: left;
+
+			.search-results {
+				display: inline-block;
+				margin-left: 10px;
+				margin-top: 5px;
+				top: 10px;
+			}
+
+			li {
+				.lfr-pagination-link {
+					border: none;
+					clear: both;
+					color: #333;
+					display: block;
+					font-weight: normal;
+					line-height: 20px;
+					padding: 3px 20px;
+					text-align: left;
+					white-space: nowrap;
+					width: 100%;
+				}
+			}
+		}
+
+		.lfr-pagination-delta-selector {
+			float: left;
+		}
+
+		.pagination-content {
+			float: right;
+		}
+	}
+}

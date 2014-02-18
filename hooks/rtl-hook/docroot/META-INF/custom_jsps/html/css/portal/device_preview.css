@@ -1,0 +1,302 @@
+@import "compass";
+
+.lfr-device-preview-panel {
+	width: 200px;
+
+	.nav-list {
+		margin: 20px -10px;
+		padding: 0;
+	}
+
+	.control-group-inline {
+		display: inline;
+	}
+
+	.lfr-device-item {
+		cursor: pointer;
+		height: 60px;
+		padding: 10px;
+
+		.device-info {
+			height: 60px;
+			padding-left: 70px;
+
+			.device-name, .device-dimensions {
+				display: block;
+			}
+
+			.device-dimensions {
+				font-size: 13px;
+			}
+		}
+	}
+}
+
+.lfr-device {
+	.modal-header {
+		display: none;
+	}
+
+	.lfr-device-size-status {
+		position: absolute;
+		width: 100%;
+
+		.lfr-device-size-status-content {
+			display: inline-block;
+			font-size: 11px;
+			height: 22px;
+			margin-left: 10px;
+			margin-right: 10px;
+			padding: 4px;
+		}
+
+		&.b, &.bl, &.br {
+			bottom: 10px;
+		}
+
+		&.t, &.tl, &.tr {
+			top: 10px;
+		}
+
+		&.b, &.t {
+			text-align: center;
+		}
+
+		&.r, &.br, &.tr {
+			text-align: right;
+		}
+
+		&.l, &.bl, &.tl {
+			text-align: left;
+		}
+
+		&.r, &.l {
+			margin-top: -15px;
+			top: 50%;
+		}
+	}
+
+	&:after {
+		bottom: 10px;
+		content: '';
+		display: none;
+		height: 30px;
+		left: 0;
+		margin: 0 auto;
+		position: absolute;
+		right: 0;
+		width: 30px;
+	}
+
+	&:before {
+		content: '';
+		display: none;
+		left: 0;
+		margin: 0 auto;
+		position: absolute;
+		right: 0;
+		top: 20px;
+	}
+
+	&.rotated {
+		&:after {
+			bottom: 0;
+			left: 10px;
+			margin: auto;
+			right: auto;
+			top: 0;
+		}
+
+		&:before {
+			bottom: 0;
+			left: auto;
+			margin: auto;
+			right: 20px;
+			top: 0;
+		}
+	}
+
+	&.smartphone, &.tablet {
+		&:after, &:before {
+			display: block;
+		}
+	}
+
+	&.smartphone {
+		padding: 50px 10px;
+
+		&.rotated {
+			padding: 10px 50px;
+
+			&:before {
+				height: 50px;
+				width: 5px;
+			}
+		}
+
+		&:before {
+			height: 5px;
+			width: 50px;
+		}
+	}
+
+	&.tablet {
+		padding: 50px 20px;
+
+		&.rotated {
+			padding: 20px 50px;
+
+			&:before {
+				width: 10px;
+				height: 10px;
+			}
+		}
+
+		&:before {
+			height: 10px;
+			width: 10px;
+		}
+	}
+}
+
+.ie8 .lfr-device {
+	&.smartphone, &.tablet {
+		padding: 0;
+
+		&:after, &:before {
+			display: none;
+		}
+	}
+}
+
+.lfr-device-preview {
+	bottom: 0;
+	display: none;
+	left: 220px;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 500;
+}
+
+.lfr-has-device-preview {
+	overflow: hidden;
+
+	.lfr-device-preview {
+		display: block;
+	}
+}
+
+/*Skin*/
+
+.lfr-device-preview {
+	background-color: rgba(255, 255, 255, 0.95);
+}
+
+.lfr-device-preview-panel .lfr-device-item {
+	&:hover {
+		background-color: #E5F2FC;
+		background-position: 10px center;
+		background-repeat: no-repeat;
+		color: #006076;
+	}
+
+	&.selected {
+		background-color: #3EA9DB;
+		color: #FFFFFF;
+	}
+
+	.device-info {
+		background-position: 0 center;
+		background-repeat: no-repeat;
+	}
+
+	&.autosize {
+		.device-info {
+			background-image: url(@theme_image_path@/device_preview/full_size_off.png);
+		}
+
+		&.selected .device-info {
+			background-image: url(@theme_image_path@/device_preview/full_size_active.png);
+		}
+	}
+
+	&.desktop {
+		.device-info {
+			background-image: url(@theme_image_path@/device_preview/desktop_off.png);
+		}
+
+		&.selected .device-info {
+			background-image: url(@theme_image_path@/device_preview/desktop_active.png);
+		}
+	}
+
+	&.smartphone {
+		.device-info {
+			background-image: url(@theme_image_path@/device_preview/mobile_off.png);
+		}
+
+		&.selected {
+			&:hover {
+				background-image: url(@theme_image_path@/device_preview/mobile_horizontal_opacity.png);
+			}
+
+			.device-info {
+				background-image: url(@theme_image_path@/device_preview/mobile_vertical_with_arrow.png);
+			}
+
+			&.rotated {
+				.device-info {
+					background-image: url(@theme_image_path@/device_preview/mobile_horizontal_with_arrow.png);
+				}
+
+				&:hover {
+					background-image: url(@theme_image_path@/device_preview/mobile_vertical_opacity.png);
+				}
+			}
+		}
+	}
+
+	&.tablet {
+		.device-info {
+			background-image: url(@theme_image_path@/device_preview/tablet_off.png);
+		}
+
+		&.selected {
+			&:hover {
+				background-image: url(@theme_image_path@/device_preview/tablet_horizontal_opacity.png);
+			}
+
+			.device-info {
+				background-image: url(@theme_image_path@/device_preview/tablet_vertical_with_arrow.png);
+			}
+
+			&.rotated {
+				.device-info {
+					background-image: url(@theme_image_path@/device_preview/tablet_horizontal_with_arrow.png);
+				}
+
+				&:hover {
+					background-image: url(@theme_image_path@/device_preview/tablet_vertical_opacity.png);
+				}
+			}
+		}
+	}
+}
+
+.lfr-device {
+	.lfr-device-size-status {
+		.lfr-device-size-status-content {
+			background-color: #000;
+			color: #FFF;
+		}
+	}
+
+	&:after, &:before {
+		background: #666;
+	}
+
+	&.smartphone, &.tablet {
+		background: #333;
+	}
+}

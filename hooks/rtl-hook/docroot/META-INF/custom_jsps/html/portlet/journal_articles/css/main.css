@@ -1,0 +1,10 @@
+.portlet-journal-articles .journal-content-article:after {
+	clear: both;
+	content: "";
+	display: block;
+	height: 0;
+}
+
+.ie .portlet-journal-articles .journal-content-article {
+	zoom: 1;
+}

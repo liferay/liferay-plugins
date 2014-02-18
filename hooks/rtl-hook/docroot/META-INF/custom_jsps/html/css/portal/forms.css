@@ -1,0 +1,144 @@
+@import "compass";
+@import "mixins";
+
+.control-group-inline {
+	display: inline-block;
+}
+
+.button-holder {
+	margin: 20px 0;
+}
+
+.input-flex-add-on {
+	width: 100%;
+
+	&.input-append {
+		input[type="text"] {
+			margin-bottom: 0;
+			margin-left: -1px;
+		}
+	}
+
+	&.input-prepend {
+		input[type="text"] {
+			margin-bottom: 0;
+		}
+
+		.add-on {
+			height: auto;
+			text-align: left;
+			white-space: normal;
+			word-break: break-all;
+		}
+	}
+
+	input {
+		float: left;
+		margin-top: -1px;
+	}
+
+	.add-on {
+		float: left;
+		margin-top: -1px;
+	}
+
+	.input-localized-content {
+		clear: both;
+		padding-top: 10px;
+	}
+}
+
+.lfr-ddm-container {
+	.control-group label {
+		margin-left: 0;
+	}
+
+	.field-wrapper {
+		position: relative;
+
+		.aui-field-wrapper {
+			margin-left: 20px;
+		}
+
+		.datepicker-display {
+			float: none;
+
+			.datepicker-button-wrapper, .datepicker-select-wrapper {
+				display: inline;
+				float: none;
+			}
+		}
+
+		.lfr-ddm-repeatable-add-button, .lfr-ddm-repeatable-delete-button {
+			display: block;
+			height: 16px;
+			position: absolute;
+			top: 4px;
+			width: 16px;
+
+			&.lfr-ddm-repeatable-add-button {
+				right: 4px;
+			}
+
+			&.lfr-ddm-repeatable-delete-button {
+				right: 24px;
+			}
+		}
+	}
+
+	.field-wrapper-content {
+		margin-bottom: 6px;
+
+		label {
+			font-weight: bold;
+			margin-left: 0;
+		}
+	}
+}
+
+.field-wrapper .btn {
+	margin-top: 6px;
+}
+
+.lfr-input-resource {
+	width: @model_hints_constants_text_display_width@px;
+}
+
+.lfr-input-text, .form .fieldset .field.lfr-input-text-container input {
+	max-width: @model_hints_constants_text_display_width@px;
+	width: 100%;
+}
+
+.lfr-textarea, .form .fieldset .field.lfr-textarea-container textarea {
+	height: @model_hints_constants_textarea_display_height@px;
+	max-width: @model_hints_constants_textarea_display_width@px;
+	width: 100%;
+}
+
+@include respond-to(phone, tablet) {
+	.aui {
+		input[type="color"],
+		input[type="date"],
+		input[type="datetime"],
+		input[type="datetime-local"],
+		input[type="email"],
+		input[type="month"],
+		input[type="number"],
+		input[type="password"],
+		input[type="search"],
+		input[type="tel"],
+		input[type="text"],
+		input[type="time"],
+		input[type="url"],
+		input[type="week"],
+		select,
+		textarea,
+		.input-prepend .add-on,
+		.navbar-search .search-query,
+		.uneditable-input {
+			font-size: 18px;
+			height: auto;
+			line-height: normal;
+		}
+	}
+}

@@ -1,0 +1,168 @@
+.lfr-device-preview-panel {
+  width: 200px; }
+  .lfr-device-preview-panel .nav-list {
+    margin: 20px -10px;
+    padding: 0; }
+  .lfr-device-preview-panel .control-group-inline {
+    display: inline; }
+  .lfr-device-preview-panel .lfr-device-item {
+    cursor: pointer;
+    height: 60px;
+    padding: 10px; }
+    .lfr-device-preview-panel .lfr-device-item .device-info {
+      height: 60px;
+      padding-left: 70px; }
+      .lfr-device-preview-panel .lfr-device-item .device-info .device-name, .lfr-device-preview-panel .lfr-device-item .device-info .device-dimensions {
+        display: block; }
+      .lfr-device-preview-panel .lfr-device-item .device-info .device-dimensions {
+        font-size: 13px; }
+
+.lfr-device .modal-header {
+  display: none; }
+.lfr-device .lfr-device-size-status {
+  position: absolute;
+  width: 100%; }
+  .lfr-device .lfr-device-size-status .lfr-device-size-status-content {
+    display: inline-block;
+    font-size: 11px;
+    height: 22px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 4px; }
+  .lfr-device .lfr-device-size-status.b, .lfr-device .lfr-device-size-status.bl, .lfr-device .lfr-device-size-status.br {
+    bottom: 10px; }
+  .lfr-device .lfr-device-size-status.t, .lfr-device .lfr-device-size-status.tl, .lfr-device .lfr-device-size-status.tr {
+    top: 10px; }
+  .lfr-device .lfr-device-size-status.b, .lfr-device .lfr-device-size-status.t {
+    text-align: center; }
+  .lfr-device .lfr-device-size-status.r, .lfr-device .lfr-device-size-status.br, .lfr-device .lfr-device-size-status.tr {
+    text-align: right; }
+  .lfr-device .lfr-device-size-status.l, .lfr-device .lfr-device-size-status.bl, .lfr-device .lfr-device-size-status.tl {
+    text-align: left; }
+  .lfr-device .lfr-device-size-status.r, .lfr-device .lfr-device-size-status.l {
+    margin-top: -15px;
+    top: 50%; }
+.lfr-device:after {
+  bottom: 10px;
+  content: '';
+  display: none;
+  height: 30px;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  width: 30px; }
+.lfr-device:before {
+  content: '';
+  display: none;
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  top: 20px; }
+.lfr-device.rotated:after {
+  bottom: 0;
+  left: 10px;
+  margin: auto;
+  right: auto;
+  top: 0; }
+.lfr-device.rotated:before {
+  bottom: 0;
+  left: auto;
+  margin: auto;
+  right: 20px;
+  top: 0; }
+.lfr-device.smartphone:after, .lfr-device.smartphone:before, .lfr-device.tablet:after, .lfr-device.tablet:before {
+  display: block; }
+.lfr-device.smartphone {
+  padding: 50px 10px; }
+  .lfr-device.smartphone.rotated {
+    padding: 10px 50px; }
+    .lfr-device.smartphone.rotated:before {
+      height: 50px;
+      width: 5px; }
+  .lfr-device.smartphone:before {
+    height: 5px;
+    width: 50px; }
+.lfr-device.tablet {
+  padding: 50px 20px; }
+  .lfr-device.tablet.rotated {
+    padding: 20px 50px; }
+    .lfr-device.tablet.rotated:before {
+      width: 10px;
+      height: 10px; }
+  .lfr-device.tablet:before {
+    height: 10px;
+    width: 10px; }
+
+.ie8 .lfr-device.smartphone, .ie8 .lfr-device.tablet {
+  padding: 0; }
+  .ie8 .lfr-device.smartphone:after, .ie8 .lfr-device.smartphone:before , .ie8 .lfr-device.tablet:after, .ie8 .lfr-device.tablet:before  {
+    display: none; }
+
+.lfr-device-preview {
+  bottom: 0;
+  display: none;
+  left: 220px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 500; }
+
+.lfr-has-device-preview {
+  overflow: hidden; }
+  .lfr-has-device-preview .lfr-device-preview {
+    display: block; }
+
+/*Skin*/
+.lfr-device-preview {
+  background-color: rgba(255, 255, 255, 0.95); }
+
+.lfr-device-preview-panel .lfr-device-item:hover {
+  background-color: #E5F2FC;
+  background-position: 10px center;
+  background-repeat: no-repeat;
+  color: #006076; }
+.lfr-device-preview-panel .lfr-device-item.selected {
+  background-color: #3EA9DB;
+  color: #FFFFFF; }
+.lfr-device-preview-panel .lfr-device-item .device-info {
+  background-position: 0 center;
+  background-repeat: no-repeat; }
+.lfr-device-preview-panel .lfr-device-item.autosize .device-info {
+  background-image: url(@theme_image_path@/device_preview/full_size_off.png); }
+.lfr-device-preview-panel .lfr-device-item.autosize.selected .device-info {
+  background-image: url(@theme_image_path@/device_preview/full_size_active.png); }
+.lfr-device-preview-panel .lfr-device-item.desktop .device-info {
+  background-image: url(@theme_image_path@/device_preview/desktop_off.png); }
+.lfr-device-preview-panel .lfr-device-item.desktop.selected .device-info {
+  background-image: url(@theme_image_path@/device_preview/desktop_active.png); }
+.lfr-device-preview-panel .lfr-device-item.smartphone .device-info {
+  background-image: url(@theme_image_path@/device_preview/mobile_off.png); }
+.lfr-device-preview-panel .lfr-device-item.smartphone.selected:hover {
+  background-image: url(@theme_image_path@/device_preview/mobile_horizontal_opacity.png); }
+.lfr-device-preview-panel .lfr-device-item.smartphone.selected .device-info {
+  background-image: url(@theme_image_path@/device_preview/mobile_vertical_with_arrow.png); }
+.lfr-device-preview-panel .lfr-device-item.smartphone.selected.rotated .device-info {
+  background-image: url(@theme_image_path@/device_preview/mobile_horizontal_with_arrow.png); }
+.lfr-device-preview-panel .lfr-device-item.smartphone.selected.rotated:hover {
+  background-image: url(@theme_image_path@/device_preview/mobile_vertical_opacity.png); }
+.lfr-device-preview-panel .lfr-device-item.tablet .device-info {
+  background-image: url(@theme_image_path@/device_preview/tablet_off.png); }
+.lfr-device-preview-panel .lfr-device-item.tablet.selected:hover {
+  background-image: url(@theme_image_path@/device_preview/tablet_horizontal_opacity.png); }
+.lfr-device-preview-panel .lfr-device-item.tablet.selected .device-info {
+  background-image: url(@theme_image_path@/device_preview/tablet_vertical_with_arrow.png); }
+.lfr-device-preview-panel .lfr-device-item.tablet.selected.rotated .device-info {
+  background-image: url(@theme_image_path@/device_preview/tablet_horizontal_with_arrow.png); }
+.lfr-device-preview-panel .lfr-device-item.tablet.selected.rotated:hover {
+  background-image: url(@theme_image_path@/device_preview/tablet_vertical_opacity.png); }
+
+.lfr-device .lfr-device-size-status .lfr-device-size-status-content {
+  background-color: #000;
+  color: #FFF; }
+.lfr-device:after, .lfr-device:before {
+  background: #666; }
+.lfr-device.smartphone, .lfr-device.tablet {
+  background: #333; }
+

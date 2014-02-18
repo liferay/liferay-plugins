@@ -1,0 +1,79 @@
+.portlet-document-library-display {
+	.entry-title {
+		display: block;
+		font-size: 1.15em;
+		font-weight: bold;
+		padding: 1.4em 0 0;
+	}
+
+	.view-folders .repository-error {
+		background-color: #FDD;
+		color: #5B677D;
+
+		td {
+			background-color: #FDD;
+		}
+	}
+
+	.file-entry-list-description {
+		font-style: italic;
+		margin-left: 10px;
+	}
+
+	.file-entry-tags {
+		margin-top: 5px;
+	}
+
+	.folder-search {
+		float: right;
+		margin: 0 0 0.5em 0.5em;
+	}
+
+	.search-root-entry {
+		color: #999;
+		float: right;
+	}
+
+	.entry-thumbnail {
+		float: left;
+		margin-right: 1em;
+		position: relative;
+
+		.thumbnail {
+			float: left;
+			max-height: 128px;
+			max-width: 128px;
+		}
+	}
+
+	.entry-title {
+		float: left;
+	}
+
+	.taglib-webdav {
+		margin-top: 3em;
+	}
+
+	.taglib-workflow-status {
+		margin-bottom: 5px;
+		position: relative;
+
+		.workflow-status {
+			display: block;
+			position: absolute;
+
+			.label {
+				position: absolute;
+				top: 1px;
+				left: 1px;
+			}
+		}
+	}
+}
+
+.ie6 .portlet-document-library-display {
+	img.entry-thumbnail {
+		height: expression(this.height > 128 ? '128px' : this.height);
+		width: expression(this.width > 128 ? '128px' : this.width);
+	}
+}

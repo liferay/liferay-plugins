@@ -1,0 +1,590 @@
+.journal-article-component-list {
+  margin: 10px 0 0 0; }
+
+.portlet-journal .add-article-selector {
+  display: inline-block;
+  vertical-align: top; }
+  .portlet-journal .add-article-selector .lfr-meta-actions {
+    padding-top: 0; }
+.portlet-journal .add-permission-button-row {
+  float: left; }
+.portlet-journal .article-separator {
+  clear: both; }
+.portlet-journal .article-toolbar {
+  margin-bottom: 1em; }
+  .portlet-journal .article-toolbar .icon-delete {
+    background-image: url(@theme_image_path@/common/delete.png); }
+  .portlet-journal .article-toolbar .icon-download {
+    background-image: url(@theme_image_path@/common/download.png); }
+  .portlet-journal .article-toolbar .icon-expire {
+    background-image: url(@theme_image_path@/common/time.png); }
+  .portlet-journal .article-toolbar .icon-permissions {
+    background-image: url(@theme_image_path@/common/permissions.png); }
+  .portlet-journal .article-toolbar .icon-preview {
+    background-image: url(@theme_image_path@/common/preview.png); }
+  .portlet-journal .article-toolbar .icon-history {
+    background-image: url(@theme_image_path@/common/history.png); }
+.portlet-journal .form-section h3 {
+  border-bottom: 1px solid #666; }
+.portlet-journal .journal-metadata {
+  min-height: 1.8em; }
+.portlet-journal .article-structure-template-toolbar, .portlet-journal .article-translation-toolbar {
+  color: #34404F;
+  display: block;
+  margin: 0 auto;
+  padding: 0; }
+.portlet-journal .article-structure-template-toolbar .article-structure-toolbar, .portlet-journal .article-structure-template-toolbar .article-template-toolbar {
+  display: inline;
+  margin-left: 0.5em;
+  margin-bottom: 0; }
+.portlet-journal .article-structure-template-toolbar .article-template-image {
+  max-height: 50px;
+  max-width: 50px;
+  vertical-align: middle; }
+.portlet-journal .article-translation-toolbar .add-translations-menu {
+  display: inline;
+  float: none;
+  margin-left: 2em;
+  padding: 0.4em 0; }
+  .portlet-journal .article-translation-toolbar .add-translations-menu li {
+    display: inline; }
+    .portlet-journal .article-translation-toolbar .add-translations-menu li strong {
+      display: inline; }
+.portlet-journal .article-translation-toolbar .contains-translations {
+  margin-top: 1em; }
+.portlet-journal .article-translation-toolbar {
+  padding: 1em 0 0 0; }
+.portlet-journal .journal-article-header-edit {
+  background: #FCFCFC;
+  border: solid #DDD;
+  border-width: 1px 0;
+  margin: 0 0 1em;
+  padding: 1em; }
+.portlet-journal .lfr-panel-basic .lfr-panel-title {
+  border-bottom: 1px solid #ccc;
+  float: none;
+  position: relative;
+  top: -0.5em; }
+  .portlet-journal .lfr-panel-basic .lfr-panel-title span {
+    background: #fff;
+    padding: 0 8px 0 4px;
+    position: relative;
+    top: 0.55em; }
+.portlet-journal .lfr-panel-basic .lfr-panel-content {
+  background-color: #F0F5F7;
+  padding: 10px; }
+.portlet-journal .lfr-panel-basic .lfr-tag-selector-input {
+  width: 100%; }
+.portlet-journal .lfr-app-column-view .lfr-app-column-view-content {
+  background-color: #FAFAFA; }
+.portlet-journal .journal-article-container .lfr-ddm-container .field-wrapper .field-wrapper {
+  border: 1px solid #D0D0D0;
+  border-left-width: 10px;
+  margin: 7px 0 0 5px;
+  padding: 7px 10px 10px; }
+.portlet-journal .journal-article-container ul {
+  margin: 0; }
+.portlet-journal .move-list .move-article, .portlet-journal .move-list .move-folder {
+  background: #f0faf0 url() no-repeat 5px 50%;
+  border-bottom: 1px solid #CCC;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 1px;
+  padding: 5px;
+  padding-left: 25px;
+  position: relative; }
+.portlet-journal .move-list .move-article {
+  background-image: url(@theme_image_path@/file_system/small/html.png); }
+.portlet-journal .move-list .move-folder {
+  background-image: url(@theme_image_path@/common/folder.png); }
+.portlet-journal .move-list .move-error {
+  background-color: #FDD;
+  background-image: url(@theme_image_path@/messages/error.png);
+  font-weight: normal;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6; }
+  .portlet-journal .move-list .move-error .error-message {
+    position: absolute;
+    right: 5px; }
+.portlet-journal .move-list .unstyled {
+  margin: 0; }
+.portlet-journal .journal-breadcrumb ul {
+  margin-bottom: 0; }
+.portlet-journal .move-list-info {
+  margin: 5px 0; }
+  .portlet-journal .move-list-info h4 {
+    font-size: 1.3em; }
+.portlet-journal .structure-tree {
+  list-style: none;
+  position: relative; }
+  .portlet-journal .structure-tree li {
+    position: relative; }
+  .portlet-journal .structure-tree li.structure-field.repeatable-border {
+    background: #F7FAFB; }
+  .portlet-journal .structure-tree li.structure-field.selected {
+    background: #EBFFEE;
+    border: 1px #C3E7CC solid; }
+  .portlet-journal .structure-tree li.structure-field.repeated-field .journal-article-variable-name {
+    display: none; }
+  .portlet-journal .structure-tree .placeholder {
+    display: none; }
+  .portlet-journal .structure-tree .tree-sub-placeholder {
+    margin-top: 10px; }
+  .portlet-journal .structure-tree .folder .field-container .journal-article-required-message {
+    display: none; }
+  .portlet-journal .structure-tree .folder .field-container.required-field .journal-article-required-message {
+    display: block;
+    margin: 0; }
+  .portlet-journal .structure-tree .folder-droppable {
+    clear: both; }
+  .portlet-journal .structure-tree .journal-subfield input {
+    float: left; }
+  .portlet-journal .structure-tree .journal-subfield .journal-article-field-label {
+    float: left;
+    font-weight: normal;
+    padding: 0 0 0 3px; }
+  .portlet-journal .structure-tree .journal-article-move-handler {
+    display: none; }
+  .portlet-journal .structure-tree .journal-article-localized {
+    font-size: 13px;
+    padding-top: 5px; }
+  .portlet-journal .structure-tree .structure-field .structure-field {
+    border: 1px solid #D0D0D0;
+    border-left-width: 10px;
+    margin: 7px 0 0 5px;
+    padding: 7px 10px 10px; }
+.portlet-journal .component-group .tree-placeholder {
+  display: none; }
+.portlet-journal .journal-article-localized-checkbox {
+  display: block;
+  margin-top: 10px; }
+.portlet-journal .journal-article-header-edit .journal-article-localized-checkbox {
+  margin-bottom: 10px; }
+.portlet-journal .journal-article-variable-name {
+  float: right; }
+  .portlet-journal .journal-article-variable-name .field-label {
+    font-weight: normal;
+    margin-right: 5px; }
+.portlet-journal .component-group-title {
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 4px 0 0; }
+.portlet-journal .journal-article-component-container {
+  margin: 3px;
+  overflow: hidden; }
+.portlet-journal .journal-component {
+  color: #0E3F6F;
+  cursor: move;
+  line-height: 25px;
+  padding-left: 30px; }
+  .portlet-journal .journal-component.dragging {
+    font-weight: bold; }
+.portlet-journal .journal-container .group-info dl {
+  margin: 0 0 0 20px; }
+  .portlet-journal .journal-container .group-info dl dt {
+    float: left;
+    margin-right: 3px; }
+.portlet-journal .journal-container .search-info {
+  background-color: #D3E8F1;
+  padding: 10px;
+  padding-right: 50px;
+  position: relative; }
+  .portlet-journal .journal-container .search-info .keywords {
+    float: none;
+    font-size: 1.4em;
+    font-weight: bold; }
+  .portlet-journal .journal-container .search-info .change-search-folder {
+    font-size: 0.8em;
+    font-weight: normal; }
+  .portlet-journal .journal-container .search-info .close-search {
+    margin-top: -8px;
+    position: absolute;
+    right: 15px;
+    top: 50%; }
+.portlet-journal .journal-container, .portlet-journal .article-entries-pagination {
+  clear: both; }
+.portlet-journal .article-entries-pagination {
+  text-align: center;
+  margin: 10px 0; }
+  .portlet-journal .article-entries-pagination .pagination-content {
+    margin: 0; }
+.portlet-journal .lfr-header-row-content {
+  padding-left: 0;
+  padding-top: 0; }
+.portlet-journal .lfr-journal-small-image-content img {
+  margin-right: 1em; }
+.portlet-journal .context-pane .context-pane-content {
+  border-left: 1px solid #7B7B7B;
+  position: relative; }
+.portlet-journal .taglib-search-iterator-page-iterator-top, .portlet-journal .taglib-search-iterator-page-iterator-bottom, .portlet-journal .paginator-container {
+  clear: both;
+  padding: 5px;
+  position: relative; }
+.portlet-journal .taglib-search-iterator-page-iterator-top.page-iterator-bottom, .portlet-journal .lfr-app-column-view .taglib-search-iterator-page-iterator-bottom {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0; }
+.portlet-journal .taglib-search-iterator {
+  table-layout: fixed; }
+  .portlet-journal .taglib-search-iterator .align-left {
+    word-wrap: break-word; }
+.portlet-journal .entry-thumbnail .taglib-workflow-status {
+  left: 6px;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 4px; }
+  .portlet-journal .entry-thumbnail .taglib-workflow-status .workflow-status {
+    margin: 0;
+    padding: 0; }
+.portlet-journal .journal-article-instructions-container {
+  display: normal; }
+.portlet-journal .journal-container {
+  margin-top: 5px; }
+.portlet-journal .journal-field-template {
+  display: none; }
+.portlet-journal .journal-fieldmodel-container {
+  display: none; }
+.portlet-journal .journal-icon-button {
+  cursor: pointer; }
+.portlet-journal .portlet-section-header td {
+  background: #CFE5FF; }
+.portlet-journal .journal-form-presentation-label {
+  color: #0E3F6F;
+  padding-top: 3px; }
+.portlet-journal .journal-edit-field-control, .portlet-journal .journal-list-subfield .journal-icon-button {
+  display: none; }
+.portlet-journal .journal-icon-button span img {
+  margin-bottom: 3px; }
+.portlet-journal .journal-article-instructions-message {
+  margin: 5px 0 0 0; }
+.portlet-journal .structure-links {
+  margin-right: 0.5em; }
+.portlet-journal .taglib-workflow-status {
+  margin: 0 0 1em 0; }
+.portlet-journal .default-link {
+  font-size: 0.9em;
+  font-weight: normal; }
+.portlet-journal .journal-image-preview {
+  border: 1px dotted;
+  margin-top: 2px;
+  overflow: scroll;
+  padding: 4px;
+  width: 500px; }
+.portlet-journal .repeatable-field-image {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px; }
+.portlet-journal .repeatable-field-delete {
+  display: none; }
+.portlet-journal .repeated-field .repeatable-field-delete {
+  display: inline; }
+.portlet-journal .lfr-textarea {
+  width: 350px; }
+.portlet-journal .localization-disabled .journal-article-language-options, .portlet-journal .localization-disabled .structure-field .journal-article-localized-checkbox {
+  display: none; }
+.portlet-journal .journal-structure-selection-break .journal-article-field-label, .portlet-journal .journal-structure-selection-break .journal-article-localized-checkbox, .portlet-journal .journal-structure-selection-break .journal-article-buttons {
+  display: none; }
+.portlet-journal .journal-article-buttons {
+  display: none; }
+.portlet-journal .form-navigator .article-info {
+  font-weight: bold;
+  margin-bottom: 15px; }
+  .portlet-journal .form-navigator .article-info .article-name {
+    color: #036;
+    display: block;
+    font-size: 14px; }
+  .portlet-journal .form-navigator .article-info .article-image {
+    float: left;
+    margin-right: 10px;
+    padding: 0;
+    width: 35px; }
+.portlet-journal .display-page-item-container {
+  margin-bottom: 1em;
+  margin-top: 1em; }
+  .portlet-journal .display-page-item-container .display-page-item {
+    background-color: #DEE7F8;
+    border: 1px solid #CAD8F3;
+    padding: 5px 28px 5px 11px;
+    position: relative; }
+    .portlet-journal .display-page-item-container .display-page-item .display-page-item-remove {
+      cursor: pointer;
+      display: block;
+      height: 16px;
+      overflow: hidden;
+      position: absolute;
+      right: 8px;
+      top: 3px;
+      width: 16px; }
+      .portlet-journal .display-page-item-container .display-page-item .display-page-item-remove:hover {
+        background-color: #CAD8F3; }
+.portlet-journal .display-page-toolbar {
+  margin-top: 0.5em; }
+.portlet-journal .wcm-image-preview img {
+  max-width: 600px; }
+
+.portlet-journal-edit-mode .structure-tree li {
+  background: url(@theme_image_path@/journal/form_builder_bg.png);
+  border: 1px solid #C6D9F0;
+  margin: 15px;
+  padding: 10px 10px 10px 22px; }
+  .portlet-journal-edit-mode .structure-tree li.structure-field .structure-field {
+    border-left: 10px solid #C6D9F0; }
+  .portlet-journal-edit-mode .structure-tree li.structure-field.repeated-field {
+    background: #F7FAFB;
+    border: 1px dashed #C6D9F0; }
+    .portlet-journal-edit-mode .structure-tree li.structure-field.repeated-field.selected {
+      border: 1px dashed #C3E7CC; }
+    .portlet-journal-edit-mode .structure-tree li.structure-field.repeated-field .journal-edit-field-control, .portlet-journal-edit-mode .structure-tree li.structure-field.repeated-field .journal-delete-field {
+      display: none; }
+  .portlet-journal-edit-mode .structure-tree li.structure-field.yui3-dd-draggable .journal-article-move-handler {
+    background: transparent url(@theme_image_path@/application/handle_sort_vertical.png) no-repeat scroll right 50%;
+    cursor: move;
+    display: block;
+    height: 20px;
+    left: 7px;
+    position: absolute;
+    top: 8px;
+    width: 16px;
+    z-index: 420; }
+  .portlet-journal-edit-mode .structure-tree li.structure-field .journal-article-close {
+    background: url(@theme_image_path@/journal/form_builder_close.png);
+    cursor: pointer;
+    display: block;
+    height: 29px;
+    position: absolute;
+    right: -10px;
+    top: -9px;
+    width: 29px;
+    z-index: 420; }
+  .portlet-journal-edit-mode .structure-tree li.structure-field .journal-edit-field-control {
+    display: block; }
+  .portlet-journal-edit-mode .structure-tree li.structure-field .journal-article-instructions-container {
+    display: none; }
+  .portlet-journal-edit-mode .structure-tree li.parent-structure-field {
+    background: none;
+    background-color: #FFFFE6;
+    border: 1px dotted #FFE67F;
+    padding-bottom: 30px; }
+    .portlet-journal-edit-mode .structure-tree li.parent-structure-field .journal-article-close, .portlet-journal-edit-mode .structure-tree li.parent-structure-field .journal-delete-field {
+      display: none; }
+.portlet-journal-edit-mode .structure-tree span.folder, .portlet-journal-edit-mode .structure-tree span.file {
+  display: block;
+  padding: 10px;
+  padding-top: 0; }
+.portlet-journal-edit-mode .structure-tree .placeholder, .portlet-journal-edit-mode .structure-tree .tree-placeholder, .portlet-journal-edit-mode .structure-tree .tree-sub-placeholder {
+  background: #fff;
+  border: 1px #cdcdcd dashed;
+  height: 100px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=75);
+  opacity: 0.75; }
+.portlet-journal-edit-mode .structure-tree li {
+  margin: 10px;
+  padding-top: 5px;
+  position: relative; }
+.portlet-journal-edit-mode .repeatable-field-delete {
+  display: inline; }
+.portlet-journal-edit-mode .journal-article-buttons {
+  display: block;
+  margin-top: 18px;
+  text-align: right; }
+  .portlet-journal-edit-mode .journal-article-buttons .edit-button, .portlet-journal-edit-mode .journal-article-buttons .repeatable-button {
+    float: left;
+    margin-left: 3px; }
+  .portlet-journal-edit-mode .journal-article-buttons:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden; }
+.portlet-journal-edit-mode .journal-list-subfield .journal-icon-button {
+  display: inline; }
+.portlet-journal-edit-mode .portlet-journal .structure-field .journal-article-localized-checkbox {
+  display: none; }
+.portlet-journal-edit-mode .journal-article-header-edit {
+  width: 100%; }
+.portlet-journal-edit-mode .taglib-form-navigator .form-section.selected {
+  width: 100%; }
+.portlet-journal-edit-mode .taglib-form-navigator .form-navigator, .portlet-journal-edit-mode .article-translation-toolbar, .portlet-journal-edit-mode .journal-article-general-fields, .portlet-journal-edit-mode .article-toolbar {
+  display: none; }
+
+.display-page-dialog .tree-label a {
+  color: black; }
+.display-page-dialog .tree-label .layout-page-invalid {
+  color: #AAA;
+  font-style: italic; }
+.display-page-dialog .selected-page-message {
+  margin: 5px 0; }
+
+.ie .journal-article-edit-field-wrapper form {
+  width: auto; }
+.ie .journal-article-helper .not-intersecting .forbidden-action {
+  right: 2px;
+  top: 2px; }
+.ie .portlet-journal .structure-tree li {
+  zoom: 1; }
+
+.journal-component {
+  background: transparent url() no-repeat scroll 3px 3px; }
+
+.journal-component-text {
+  background-image: url(@theme_image_path@/journal/text_field.png);
+  background-position: 3px 9px; }
+
+.journal-component-textbox {
+  background-image: url(@theme_image_path@/journal/textbox.png);
+  background-position: 3px 6px; }
+
+.journal-component-textarea {
+  background-image: url(@theme_image_path@/journal/textarea.png);
+  background-position: 3px 4px; }
+
+.journal-component-image {
+  background-image: url(@theme_image_path@/journal/image_uploader.png);
+  background-position: 3px 7px; }
+
+.journal-component-documentlibrary {
+  background-image: url(@theme_image_path@/journal/document_library.png); }
+
+.journal-component-boolean {
+  background-image: url(@theme_image_path@/journal/checkbox.png);
+  background-position: 3px 7px; }
+
+.journal-component-options {
+  background-image: url(@theme_image_path@/journal/options.png);
+  background-position: 3px 5px; }
+
+.journal-component-list {
+  background-image: url(@theme_image_path@/journal/selectbox.png);
+  background-position: 3px 9px; }
+
+.journal-component-multilist {
+  background-image: url(@theme_image_path@/journal/multiselection_list.png);
+  background-position: 3px 4px; }
+
+.journal-component-linktolayout {
+  background-image: url(@theme_image_path@/journal/link_to_page.png);
+  background-position: 3px 9px; }
+
+.journal-component-formgroup {
+  background-image: url(@theme_image_path@/journal/form_group.png);
+  background-position: 3px 5px; }
+
+.journal-component-selectionbreak {
+  background-image: url(@theme_image_path@/journal/selection_break.png);
+  background-position: 3px 12px; }
+
+.component-group.form-controls {
+  border-top: 1px solid #E0ECFF; }
+.component-group .component-dragging {
+  background-color: #fff !important; }
+
+.journal-article-helper {
+  background: #dedede;
+  border: 1px #555 dashed;
+  cursor: move;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
+  opacity: 0.8;
+  position: absolute;
+  visibility: hidden;
+  width: 100px; }
+  .journal-article-helper.draggable-dragging {
+    font-size: 15px; }
+  .journal-article-helper.not-intersecting .forbidden-action {
+    background: url(@theme_image_path@/application/forbidden_action.png) no-repeat;
+    height: 32px;
+    position: absolute;
+    right: -15px;
+    top: -15px;
+    width: 32px; }
+  .journal-article-helper .journal-component {
+    height: 25px;
+    line-height: 25px;
+    margin-left: 5px;
+    padding-left: 25px; }
+
+.journal-article-edit-field-wrapper.overlaycontextpanel {
+  margin: 0 13px 0 0;
+  padding: 0;
+  position: relative; }
+.journal-article-edit-field-wrapper.overlaycontextpanel-container, .journal-article-edit-field-wrapper .overlaycontextpanel-container {
+  background-color: #EBFFEE;
+  border-color: #C3E7CC; }
+.journal-article-edit-field-wrapper.overlaycontextpanel-arrow-tl .overlaycontextpanel-pointer-inner {
+  border-bottom: 10px solid #EBFFEE; }
+.journal-article-edit-field-wrapper .container-close {
+  display: none; }
+
+.journal-article-edit-field {
+  padding: 5px;
+  position: relative;
+  width: 180px;
+  z-index: 420; }
+  .journal-article-edit-field .field {
+    padding: 0; }
+    .journal-article-edit-field .field .textarea {
+      height: 6em; }
+  .journal-article-edit-field strong {
+    font-size: 14px;
+    text-decoration: underline; }
+  .journal-article-edit-field .journal-edit-label {
+    margin-top: 10px; }
+
+.journal-article-edit-field-wrapper .cancel-button, .journal-article-edit-field-wrapper .save-button {
+  display: none; }
+.journal-article-edit-field-wrapper.save-mode .close-button {
+  display: none; }
+.journal-article-edit-field-wrapper.save-mode .save-button, .journal-article-edit-field-wrapper.save-mode .cancel-button {
+  display: inline; }
+.journal-article-edit-field-wrapper .user-instructions {
+  border-width: 0;
+  padding: 0;
+  margin-bottom: 1em; }
+.journal-article-edit-field-wrapper .button-holder {
+  margin-top: 1.5em; }
+
+.structure-message {
+  margin-top: 5px; }
+
+.save-structure-template-dialog textarea {
+  height: 150px;
+  width: 450px; }
+
+.save-structure-name {
+  width: 470px; }
+
+.save-structure-description {
+  height: 150px;
+  width: 470px; }
+
+.journal-template-error .scroll-pane {
+  border: 1px solid #BFBFBF;
+  max-height: 200px;
+  min-height: 50px;
+  overflow: auto;
+  width: 100%; }
+  .journal-template-error .scroll-pane .inner-scroll-pane {
+    min-width: 104%; }
+  .journal-template-error .scroll-pane .error-line {
+    background: #fdd; }
+  .journal-template-error .scroll-pane pre {
+    margin: 0;
+    white-space: pre; }
+    .journal-template-error .scroll-pane pre span {
+      background: #B5BFC4;
+      border-right: 1px solid #BFBFBF;
+      display: block;
+      float: left;
+      margin-right: 4px;
+      padding-right: 4px;
+      text-align: right;
+      width: 40px; }
+
+.active-area-proxy {
+  background: lightyellow url(@theme_image_path@/portlet/pop_up.png) no-repeat 10px 50%;
+  font-size: 1.2em;
+  padding: 0.3em 0.3em 0.3em 2em; }
+

@@ -1,0 +1,19 @@
+.taglib-user-display {
+  padding: 0.5em; }
+  .taglib-user-display.display-style-1 .user-profile-image {
+    float: left;
+    margin-right: 1.5em; }
+  .taglib-user-display.display-style-2 .user-profile-image, .taglib-user-display.display-style-2 .user-name {
+    clear: both;
+    display: block;
+    text-align: center; }
+  .taglib-user-display .user-details {
+    margin-top: 1em; }
+
+/* Skin */
+.taglib-user-display a .user-name {
+  text-decoration: underline; }
+.taglib-user-display .user-name {
+  font-size: 1.1em;
+  font-weight: bold; }
+

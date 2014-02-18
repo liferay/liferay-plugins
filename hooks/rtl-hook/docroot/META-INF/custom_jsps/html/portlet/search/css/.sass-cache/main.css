@@ -1,0 +1,139 @@
+.portlet-search .entry-tags {
+  margin: 3px 0 0; }
+.portlet-search .menu-column .search-layout-content {
+  padding-left: 24em; }
+  .portlet-search .menu-column .search-layout-content .menu {
+    margin-left: -24em;
+    position: relative;
+    width: 24em; }
+  .portlet-search .menu-column .search-layout-content .result {
+    display: inline-block;
+    float: none;
+    width: 100%; }
+.portlet-search .more-results {
+  font-size: 1.1em;
+  padding: 5px 0; }
+.portlet-search .no-results {
+  font-size: 1.3em;
+  margin: 10px 0 0; }
+.portlet-search .open-search-panel {
+  margin-top: 1em; }
+.portlet-search .search-layout .lfr-panel-container {
+  border-width: 0; }
+.portlet-search .search-layout .search-facet {
+  border-top: 1px solid #CCC;
+  padding: 8px 0; }
+  .portlet-search .search-layout .search-facet .field-wrapper-content {
+    margin: 0 0 1em; }
+  .portlet-search .search-layout .search-facet .facet-value.active .frequency {
+    display: none; }
+  .portlet-search .search-layout .search-facet .date .calendar {
+    margin: 0 auto; }
+  .portlet-search .search-layout .search-facet .keywords {
+    margin-top: 6px;
+    width: 18em; }
+  .portlet-search .search-layout .search-facet .modified-custom-range {
+    padding-left: 10px; }
+    .portlet-search .search-layout .search-facet .modified-custom-range .field-content {
+      margin: 5px 0; }
+    .portlet-search .search-layout .search-facet .modified-custom-range .button {
+      margin-right: 5px; }
+  .portlet-search .search-layout .search-facet ul {
+    margin: 0; }
+  .portlet-search .search-layout .search-facet.search-asset-tags .lfr-panel-content ul {
+    padding: 0; }
+  .portlet-search .search-layout .search-facet.search-asset-vocabulary li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+  .portlet-search .search-layout .search-facet.search-asset-vocabulary ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0; }
+.portlet-search .search-layout .result .asset-entry .asset-entry-content {
+  margin-top: 0.8em; }
+.portlet-search .search-layout .result .asset-entry .asset-entry-categories, .portlet-search .search-layout .result .asset-entry .asset-entry-tags {
+  float: left;
+  margin-bottom: 0.5em;
+  padding-right: 6px; }
+.portlet-search .search-layout .result .asset-entry .asset-entry-fields {
+  table-layout: fixed;
+  width: 100%; }
+  .portlet-search .search-layout .result .asset-entry .asset-entry-fields th {
+    background-color: #CCC;
+    padding: 2px; }
+    .portlet-search .search-layout .result .asset-entry .asset-entry-fields th.key {
+      width: 240px; }
+  .portlet-search .search-layout .result .asset-entry .asset-entry-fields td {
+    border-bottom: 1px solid #CCC;
+    padding: 2px; }
+    .portlet-search .search-layout .result .asset-entry .asset-entry-fields td.value .container {
+      max-height: 100px;
+      overflow: auto; }
+      .portlet-search .search-layout .result .asset-entry .asset-entry-fields td.value .container code {
+        word-wrap: break-word; }
+.portlet-search .search-layout .result .asset-entry .asset-entry-summary {
+  display: block;
+  margin-bottom: 1em; }
+.portlet-search .search-layout .result .asset-entry .asset-entry-title {
+  color: #5B677D;
+  display: block;
+  font-size: 1.5em;
+  font-weight: bold; }
+  .portlet-search .search-layout .result .asset-entry .asset-entry-title a {
+    text-decoration: none; }
+    .portlet-search .search-layout .result .asset-entry .asset-entry-title a img {
+      position: relative;
+      top: 0.1em; }
+.portlet-search .search-layout .result .asset-entry .asset-entry-type {
+  float: right;
+  font-size: 0.8em;
+  color: #777; }
+.portlet-search .search-layout .result .asset-entry .toggle-details {
+  cursor: pointer;
+  float: left;
+  font-family: monospace;
+  font-weight: bold; }
+.portlet-search .search-layout .result .full-query {
+  border: 1px solid #CCC;
+  table-layout: fixed;
+  width: 100%; }
+  .portlet-search .search-layout .result .full-query .container {
+    max-height: 100px;
+    overflow: auto; }
+    .portlet-search .search-layout .result .full-query .container code {
+      word-wrap: break-word; }
+.portlet-search .search-msg {
+  border-bottom: 1px solid #DEDEDE;
+  color: #777;
+  margin: 15px 0;
+  padding: 2px 5px;
+  text-align: right; }
+.portlet-search .search-paginator-container {
+  padding: 5px 0; }
+.portlet-search .search-suggested-spelling {
+  margin: 0; }
+  .portlet-search .search-suggested-spelling .suggested-keywords a {
+    font-size: 1.3em; }
+  .portlet-search .search-suggested-spelling .changed-keyword {
+    font-weight: bold;
+    font-style: italic; }
+.portlet-search .section-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 10px 0; }
+.portlet-search .taglib-asset-categories-summary .asset-vocabulary {
+  background: url(@theme_image_path@/common/folder.png) no-repeat 0 50%;
+  padding: 2px 5px 2px 20px; }
+
+.portlet-search.portlet-configuration .fieldset-content {
+  padding-top: 0.5em; }
+.portlet-search.portlet-configuration .options-container {
+  margin-left: 1.8em; }
+.portlet-search.portlet-configuration .search-configuration-text {
+  height: 15em;
+  width: 100%; }
+
+.ie .portlet-search .full-query .container, .ie .portlet-search .result td.value .container {
+  height: expression(this.scrollHeight > 100 ? "100px" : "auto"); }
+

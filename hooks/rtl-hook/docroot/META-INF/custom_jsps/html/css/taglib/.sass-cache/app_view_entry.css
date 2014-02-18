@@ -1,0 +1,76 @@
+.app-view-entry-taglib.entry-display-style.display-icon {
+  display: inline-block;
+  float: left;
+  margin: 0 5px;
+  padding: 10px 0;
+  position: relative;
+  vertical-align: top;
+  width: 200px;
+  height: 160px; }
+  @media (max-width: 979px) {
+    .app-view-entry-taglib.entry-display-style.display-icon {
+      height: 210px; } }
+  .app-view-entry-taglib.entry-display-style.display-icon .entry-title {
+    clear: both;
+    font-size: 1em;
+    font-weight: normal;
+    padding: 0 10px; }
+  .app-view-entry-taglib.entry-display-style.display-icon .entry-link {
+    overflow: visible;
+    text-align: center; }
+  .app-view-entry-taglib.entry-display-style.display-icon .folder-action, .app-view-entry-taglib.entry-display-style.display-icon .entry-action {
+    top: 14px; }
+    @media (max-width: 979px) {
+      .app-view-entry-taglib.entry-display-style.display-icon .folder-action, .app-view-entry-taglib.entry-display-style.display-icon .entry-action {
+        bottom: 8px;
+        right: 31px;
+        top: auto; }
+        .app-view-entry-taglib.entry-display-style.display-icon .folder-action a, .app-view-entry-taglib.entry-display-style.display-icon .entry-action a {
+          padding: 10px 0;
+          width: 136px; } }
+  .app-view-entry-taglib.entry-display-style.display-icon .entry-selector {
+    left: 10px; }
+  .app-view-entry-taglib.entry-display-style.display-icon .entry-thumbnail {
+    float: none;
+    margin: 0; }
+.app-view-entry-taglib.entry-display-style.display-descriptive {
+  display: block;
+  margin: 5px;
+  padding: 5px 0;
+  padding-left: 20px;
+  position: relative;
+  text-align: left; }
+  .app-view-entry-taglib.entry-display-style.display-descriptive:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden; }
+  .app-view-entry-taglib.entry-display-style.display-descriptive .entry-title {
+    word-wrap: normal; }
+  @media (max-width: 979px) {
+    .app-view-entry-taglib.entry-display-style.display-descriptive .folder-action a, .app-view-entry-taglib.entry-display-style.display-descriptive .entry-action a {
+      padding: 10px 12px;
+      width: auto; } }
+@media (max-width: 979px) {
+  .app-view-entry-taglib.entry-display-style.display-icon, .app-view-entry-taglib.entry-display-style.display-descriptive {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 5px; }
+    .app-view-entry-taglib.entry-display-style.display-icon .entry-selector.overlay, .app-view-entry-taglib.entry-display-style.display-icon .folder-action.overlay, .app-view-entry-taglib.entry-display-style.display-icon .entry-action.overlay, .app-view-entry-taglib.entry-display-style.display-descriptive .entry-selector.overlay, .app-view-entry-taglib.entry-display-style.display-descriptive .folder-action.overlay, .app-view-entry-taglib.entry-display-style.display-descriptive .entry-action.overlay {
+      clip: rect(auto, auto, auto, auto); }
+    .app-view-entry-taglib.entry-display-style.display-icon .img-polaroid, .app-view-entry-taglib.entry-display-style.display-descriptive .img-polaroid {
+      border-width: 0;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none; } }
+.app-view-entry-taglib.entry-display-style.display-list.locked {
+  background: url(@theme_image_path@/common/lock.png) no-repeat 100% 50%;
+  padding-right: 20px; }
+.app-view-entry-taglib.entry-display-style .categories {
+  margin-top: 10px; }
+.app-view-entry-taglib.entry-display-style .tags {
+  margin-top: 5px; }
+
+.ie6 .entry-display-style.display-descriptive, .ie7 .entry-display-style.display-descriptive {
+  zoom: 1; }
+

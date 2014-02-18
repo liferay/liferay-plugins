@@ -1,0 +1,122 @@
+.portlet-social-activity h4 {
+  font-size: 1.2em;
+  margin-bottom: 10px; }
+
+.social-activity-items h4 {
+  font-size: 1.1em;
+  margin-bottom: 0px; }
+.social-activity-items .field-choice {
+  display: inline-block; }
+.social-activity-items .social-activity-item {
+  cursor: pointer;
+  padding: 6px 0px 6px 3px;
+  position: relative; }
+  .social-activity-items .social-activity-item .social-activity-item-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .social-activity-items .social-activity-item a {
+    color: #000;
+    text-decoration: none; }
+.social-activity-items .social-activity-item:hover {
+  background-color: #CDE5FD; }
+.social-activity-items .social-activity-item.selected {
+  background-color: #83BFFA; }
+.social-activity-items .social-activity-item.selected:after {
+  border: 14px solid #83BFFA;
+  border-color: transparent transparent transparent #83BFFA;
+  content: '';
+  display: block;
+  left: 100%;
+  margin-top: -14px;
+  position: absolute;
+  top: 50%;
+  z-index: 2; }
+
+.social-activity-details .settings-display .settings-display-content {
+  background-color: #FFF;
+  border: 1px solid #CCC;
+  margin: 0px 15px 5px 0px;
+  padding: 0px 15px; }
+  .social-activity-details .settings-display .settings-display-content .settings-field {
+    font-weight: bold;
+    list-style: none; }
+    .social-activity-details .settings-display .settings-display-content .settings-field .settings-field-content {
+      position: relative; }
+      .social-activity-details .settings-display .settings-display-content .settings-field .settings-field-content select {
+        margin: 0px 4px;
+        padding: 3px; }
+    .social-activity-details .settings-display .settings-display-content .settings-field .field-text {
+      font-weight: normal;
+      margin-bottom: 3px; }
+    .social-activity-details .settings-display .settings-display-content .settings-field .field-contribution-text {
+      color: #333;
+      display: block;
+      font-size: 0.95em;
+      margin-top: 3px; }
+    .social-activity-details .settings-display .settings-display-content .settings-field .settings-controls {
+      display: none; }
+  .social-activity-details .settings-display .settings-display-content .container-drop-box {
+    margin: 0;
+    min-height: 130px; }
+    .social-activity-details .settings-display .settings-display-content .container-drop-box .content-field {
+      border-bottom: 1px solid #ccc;
+      padding: 8px 0 8px 10px; }
+      .social-activity-details .settings-display .settings-display-content .container-drop-box .content-field .settings-controls {
+        display: block; }
+      .social-activity-details .settings-display .settings-display-content .container-drop-box .content-field .settings-label {
+        display: block;
+        margin-bottom: 0.5em; }
+  .social-activity-details .settings-display .settings-display-content .button-row {
+    padding: 5px 0; }
+  .social-activity-details .settings-display .settings-display-content .settings-header {
+    padding: 10px 0 5px 0; }
+    .social-activity-details .settings-display .settings-display-content .settings-header .actions-conjunction {
+      display: inline-block;
+      font-weight: bold;
+      list-style: none;
+      padding: 10px 5px; }
+    .social-activity-details .settings-display .settings-display-content .settings-header .settings-actions {
+      display: inline-block;
+      margin: 0px; }
+    .social-activity-details .settings-display .settings-display-content .settings-header .settings-header-label {
+      padding: 0 5px; }
+    .social-activity-details .settings-display .settings-display-content .settings-header .action-field {
+      background-image: url(@theme_image_path@/common/add.png);
+      background-position: 5px 50%;
+      background-repeat: no-repeat;
+      padding-left: 25px; }
+  .social-activity-details .settings-display .settings-display-content .settings-container-label {
+    border-bottom: 1px solid #ccc;
+    font-size: 1.2em;
+    margin-top: 10px;
+    padding: 0 5px; }
+  .social-activity-details .settings-display .settings-display-content .settings-field-buttons {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0; }
+    .social-activity-details .settings-display .settings-display-content .settings-field-buttons .settings-button {
+      float: left; }
+    .social-activity-details .settings-display .settings-display-content .settings-field-buttons .settings-icon {
+      background: none no-repeat 0 50%;
+      display: block;
+      height: 16px;
+      padding: 0;
+      right: 0;
+      width: 16px; }
+    .social-activity-details .settings-display .settings-display-content .settings-field-buttons .settings-icon-close {
+      background-image: url(@theme_image_path@/portlet/close.png); }
+    .social-activity-details .settings-display .settings-display-content .settings-field-buttons .settings-icon-toggle {
+      background-image: url(@theme_image_path@/arrows/05_right.png);
+      font-size: 0.9em;
+      font-weight: normal;
+      padding: 0 16px 0 12px;
+      width: auto; }
+    .social-activity-details .settings-display .settings-display-content .settings-field-buttons .settings-icon-expanded {
+      background-image: url(@theme_image_path@/arrows/05_down.png); }
+  .social-activity-details .settings-display .settings-display-content .settings-limit {
+    margin-left: 12px; }
+    .social-activity-details .settings-display .settings-display-content .settings-limit .settings-limit-row {
+      margin: 5px 0; }
+

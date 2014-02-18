@@ -1,0 +1,11 @@
+.taglib-logo-selector {
+	text-align: center;
+
+	.portrait-icons {
+		margin: 1em 0;
+	}
+
+	.lfr-change-logo.show-background {
+		padding: 10px;
+	}
+}

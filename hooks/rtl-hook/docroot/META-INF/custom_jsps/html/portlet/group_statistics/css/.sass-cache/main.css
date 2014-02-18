@@ -1,0 +1,27 @@
+.portlet-group-statistics .group-statistics-body {
+  border-collapse: collapse;
+  border-spacing: 0;
+  clear: both;
+  display: table;
+  table-layout: auto;
+  width: 100%; }
+.portlet-group-statistics .group-statistics-chart {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  z-index: 0; }
+.portlet-group-statistics .group-statistics-info {
+  padding: 10px;
+  padding-right: 0; }
+  .portlet-group-statistics .group-statistics-info table {
+    margin-left: 10px; }
+  .portlet-group-statistics .group-statistics-info td {
+    padding: 0 3px; }
+.portlet-group-statistics .group-statistics-color-marker {
+  height: 8px;
+  margin-right: 4px;
+  width: 8px; }
+.portlet-group-statistics .field-row .inline-text {
+  margin: 1px 3px 0 0;
+  padding: 1px; }
+

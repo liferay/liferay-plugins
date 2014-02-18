@@ -1,0 +1,192 @@
+.lfr-preview-file {
+  position: relative; }
+
+.lfr-preview-file-content {
+  border-bottom: 1px solid transparent;
+  height: 480px;
+  padding: 0 0 0 135px;
+  position: relative; }
+
+.lfr-preview-image-content {
+  text-align: center; }
+
+.lfr-preview-audio-content, .lfr-preview-image-content, .lfr-preview-video-content {
+  padding-left: 0; }
+
+.lfr-preview-image-content img, .lfr-preview-video-content .video-node {
+  max-height: 440px;
+  max-width: 100%; }
+
+.lfr-preview-file-image-current-column, .lfr-preview-file-video-current-column {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 20px;
+  position: relative; }
+
+.lfr-preview-file-image-container, .lfr-preview-video-content .video-content {
+  height: 440px;
+  text-align: center;
+  vertical-align: middle; }
+
+.lfr-preview-file-actions {
+  bottom: 0.5em;
+  left: 0;
+  margin: 0 10px;
+  position: absolute;
+  right: 0; }
+
+.lfr-preview-file-toolbar {
+  display: block;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5; }
+
+.lfr-preview-file-image-current-column:hover .lfr-preview-file-toolbar {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1; }
+
+.lfr-preview-file-actions .toolbar {
+  bottom: 0;
+  position: absolute;
+  right: 10px; }
+
+.lfr-preview-file-info {
+  display: inline-block;
+  margin-top: 0.5em;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+  padding: 3px 15px; }
+  .lfr-preview-file-info:hover {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1; }
+
+.lfr-preview-file-index {
+  line-height: 0; }
+
+.lfr-preview-file-image-current {
+  max-height: 440px;
+  max-width: 100%;
+  vertical-align: middle; }
+
+.lfr-preview-file-images {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding: 0 10px 0 0;
+  position: absolute;
+  right: 2px;
+  text-align: center;
+  top: 0;
+  width: 125px; }
+
+.lfr-preview-file-images-content {
+  position: absolute;
+  width: 100%; }
+
+.lfr-preview-file-image {
+  display: block;
+  margin: 5px;
+  width: 100%; }
+  .lfr-preview-file-image img {
+    border: 1px solid transparent;
+    display: inline-block;
+    min-height: 40px;
+    padding: 3px;
+    width: 72px; }
+
+.lfr-preview-file-loading-indicator {
+  bottom: 0;
+  left: 0;
+  margin: 2px;
+  padding: 2px 5px;
+  position: absolute; }
+
+.lfr-preview-file-image-overlay {
+  height: 90%;
+  width: 70%; }
+  .lfr-preview-file-image-overlay .modal-header {
+    height: 20px;
+    padding-bottom: 0 5px 0; }
+    .lfr-preview-file-image-overlay .modal-header .close {
+      font-size: 30px; }
+
+.lfr-preview-file-image-overlay-content {
+  border: 2px solid transparent;
+  overflow: auto;
+  text-align: center; }
+
+.lfr-preview-file-image-overlay-controls .image-viewer-control.carousel-control.left {
+  left: 80px; }
+.lfr-preview-file-image-overlay-controls .image-viewer-control.carousel-control.right {
+  right: 80px; }
+
+.ie8 .lfr-preview-file-image-current-column {
+  display: table;
+  height: 480px;
+  table-layout: fixed;
+  width: 100%; }
+.ie8 .lfr-preview-file-image-container {
+  width: 100%; }
+
+.ie6 .lfr-preview-file-image-container, .ie7 .lfr-preview-file-image-container {
+  display: block;
+  height: 440px; }
+
+.ie6 .lfr-preview-file-image-current {
+  height: 440px;
+  width: 536px; }
+.ie6 .lfr-preview-file-image-overlay-content img {
+  position: static; }
+.ie6 .lfr-preview-file {
+  zoom: 1; }
+
+/* Skin */
+.lfr-preview-file-content {
+  border-bottom-color: #6D6D6E; }
+
+.lfr-preview-file-image-current-column, .lfr-preview-file-video-current-column {
+  background: url(@theme_image_path@/common/checkerboard.png); }
+
+.lfr-preview-file-toolbar {
+  background: #333; }
+  .lfr-preview-file-toolbar .icon-arrow-1-l {
+    background: url(@theme_image_path@/document_library/preview_left.png) no-repeat 0 50%; }
+  .lfr-preview-file-toolbar .icon-arrow-1-r {
+    background: url(@theme_image_path@/document_library/preview_right.png) no-repeat 0 50%; }
+  .lfr-preview-file-toolbar .icon-zoomin {
+    background: url(@theme_image_path@/document_library/preview_zoom.png) no-repeat 0 50%; }
+
+.lfr-preview-file-info {
+  background: #333;
+  color: #FFF; }
+
+.lfr-preview-file-index {
+  font-weight: bold; }
+
+.lfr-preview-file-image-current {
+  background: url(@theme_image_path@/aui/loading_indicator.gif) no-repeat 50% 50%; }
+
+.lfr-preview-file-image img {
+  background: url(@theme_image_path@/aui/loading_indicator.gif) no-repeat 50% 50%;
+  border-color: #AEB8BC; }
+
+.lfr-preview-file-image-selected img, .lfr-preview-file-image:hover img {
+  border-color: #00a2ea; }
+
+.lfr-preview-file-loading-indicator {
+  background: #333;
+  color: #fff; }
+
+.lfr-preview-file-image-overlay-content {
+  background: url(@theme_image_path@/common/checkerboard.png);
+  border-color: #555; }
+
+.ie6 .lfr-preview-file-image-container, .ie7 .lfr-preview-file-image-container {
+  font-size: 398.2px;
+  line-height: 1; }
+
+.firefox .lfr-preview-video-content div.video-node {
+  height: 100%; }
+

@@ -1,0 +1,24 @@
+.portlet-users-stats {
+	.taglib-search-iterator-page-iterator-bottom {
+		.taglib-page-iterator {
+			padding-top: 5px;
+		}
+
+		.search-results {
+			display: none;
+		}
+
+		.search-pages {
+			float: none;
+
+			.page-links {
+				float: none;
+				text-align: left;
+
+				.previous {
+					border-width: 0;
+				}
+			}
+		}
+	}
+}

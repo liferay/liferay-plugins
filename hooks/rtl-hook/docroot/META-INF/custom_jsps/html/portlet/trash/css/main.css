@@ -1,0 +1,43 @@
+.portlet-trash {
+	.asset-ratings {
+		clear: both;
+		margin: 1em 0;
+	}
+
+	.asset-discussion .taglib-discussion {
+		width: 100%;
+	}
+
+	.edit-toolbar {
+		margin: 0 0 1em 0;
+	}
+
+	.form-search {
+		display: block;
+		float: right;
+	}
+
+	.lfr-header-row {
+		.icon-delete {
+			background-image: url(@theme_image_path@/common/delete.png);
+		}
+
+		.icon-undo {
+			background-image: url(@theme_image_path@/common/undo.png);
+		}
+	}
+
+	.trash-root-entry {
+		color: #999;
+		float: right;
+	}
+}
+
+.trash-restore-popup {
+	.form {
+		fieldset {
+			margin-bottom: 0;
+			padding: 0 15px;
+		}
+	}
+}

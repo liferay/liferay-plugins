@@ -1,0 +1,28 @@
+.taglib-portlet-preview {
+	&.show-borders {
+		border: 1px solid transparent;
+		margin-bottom: 1em;
+		padding: 3px 3px 1em;
+
+		.title {
+			padding: 0.5em;
+		}
+	}
+
+	.preview {
+		margin: 1em;
+		min-height: 90px;
+	}
+}
+
+/* Skin */
+
+.taglib-portlet-preview.show-borders {
+	border-color: #828F95;
+
+	.title {
+		background-color: #D3DADD;
+		font-size: 1.4em;
+		font-weight: bold;
+	}
+}

@@ -1,0 +1,59 @@
+.lfr-edit-layout-panel {
+	width: 440px;
+
+	.navbar {
+		margin-bottom: 0;
+		margin-top: 20px;
+	}
+
+	.site-admin-link {
+		bottom: 0;
+		padding: 14px;
+		position: fixed;
+	}
+
+	.taglib-form-navigator {
+		.button-holder {
+			bottom: 0;
+			margin-bottom: 0;
+			margin-top: 0;
+			padding: 10px 15px;
+			position: fixed;
+			text-align: right;
+			width: 405px;
+		}
+
+		.accordion {
+			margin: 20px 0 50px;
+
+			.accordion-group.lfr-panel-extended {
+				.accordion-heading {
+					cursor: pointer;
+				}
+
+				.accordion-inner {
+					padding: 15px;
+
+					h3 {
+						display: none;
+					}
+				}
+			}
+		}
+
+		.lfr-theme-options, .lfr-inherit-theme-options {
+			padding: 10px 20px;
+
+			.lfr-current-theme {
+				background: inherit;
+				border-width: 0;
+			}
+		}
+	}
+}
+
+/* Skin */
+
+.lfr-edit-layout-panel .taglib-form-navigator .button-holder {
+	background-color: #FFF;
+}

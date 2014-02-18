@@ -1,0 +1,12 @@
+.portlet-users-stats .taglib-search-iterator-page-iterator-bottom .taglib-page-iterator {
+  padding-top: 5px; }
+.portlet-users-stats .taglib-search-iterator-page-iterator-bottom .search-results {
+  display: none; }
+.portlet-users-stats .taglib-search-iterator-page-iterator-bottom .search-pages {
+  float: none; }
+  .portlet-users-stats .taglib-search-iterator-page-iterator-bottom .search-pages .page-links {
+    float: none;
+    text-align: left; }
+    .portlet-users-stats .taglib-search-iterator-page-iterator-bottom .search-pages .page-links .previous {
+      border-width: 0; }
+

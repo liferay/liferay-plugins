@@ -1,0 +1,31 @@
+.lfr-flyout ul {
+	display: none;
+}
+
+.js {
+	li.lfr-flyout {
+		display: block;
+		position: relative;
+	}
+
+	.lfr-flyout-has-children {
+		padding-left: 12px;
+
+		ul {
+			min-width: 150px;
+			position: absolute;
+			right: 100%;
+			top: -1px;
+		}
+	}
+}
+
+/* Skin */
+
+.js .lfr-flyout-has-children {
+	background: url(@theme_image_path@/arrows/04_left.png) no-repeat 5px 50%;
+
+	&.send-right {
+		background-image: url(@theme_image_path@/arrows/04_right.png);
+	}
+}

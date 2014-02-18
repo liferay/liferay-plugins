@@ -1,0 +1,196 @@
+@import "compass/css3/user-interface";
+
+td {
+	&.lfr-center {
+		text-align: center;
+	}
+
+	&.lfr-top {
+		vertical-align: top;
+	}
+
+	&.lfr-middle {
+		vertical-align: middle;
+	}
+}
+
+.definition-of-terms {
+	margin-bottom: 2em;
+
+	dd {
+		margin-left: 20em;
+	}
+
+	dl {
+		margin-left: 0;
+	}
+
+	dt {
+		float: left;
+	}
+}
+
+.dialog-iframe-bd {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.lfr-code {
+	border: 1px solid transparent;
+	font-family: monospace;
+	overflow: hidden;
+	overflow-x: auto;
+	white-space: pre;
+	word-break: normal;
+
+	table {
+		table-layout: auto;
+		width: 100%;
+
+		tr td {
+			&.lines, &.line-numbers {
+				border-width: 0;
+			}
+
+			&.line-numbers {
+				border-right-width: 1px;
+				text-align: right;
+
+				@include user-select(none);
+
+				vertical-align: top;
+				width: 1%;
+
+				.number {
+					cursor: default;
+					display: block;
+					padding: 0 8px;
+					text-align: right;
+				}
+			}
+		}
+	}
+}
+
+.lfr-grid {
+	width: 100%;
+}
+
+img.icon {
+	vertical-align: middle;
+}
+
+#layout-grid.dragging .lfr-portlet-column.empty {
+	padding: 20px;
+}
+
+.lfr-js-required {
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
+
+.js .lfr-js-required {
+	clip: rect(auto auto auto auto);
+	position: static;
+}
+
+.popup-alert-close {
+	margin-left: 5px;
+}
+
+.popup-alert-notice, .popup-alert-warning {
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 10000;
+}
+
+.lfr-token-list {
+	clear: both;
+	margin: 1em 0;
+}
+
+.lfr-token {
+	border: 1px solid transparent;
+	cursor: pointer;
+	display: inline-block;
+	line-height: 1;
+	padding: 0.3em 0.5em 0.3em;
+	margin: 0.1em 0.2em;
+}
+
+.lfr-token-primary {
+	border-width: 0;
+
+	&, &:hover {
+		cursor: auto;
+	}
+}
+
+.lfr-token-close, .lfr-token-text {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.lfr-token-close {
+	margin-left: 0.3em;
+}
+
+.ie6 {
+	.popup-alert-notice, .popup-alert-warning {
+		bottom: auto;
+		left: expression( ( LFR_IGNORE_ME2 = document.documentElement.scrollLeft ? document.documentElement.scrollLeft : document.body.scrollLeft ) + 'px' );
+		position: absolute;
+		right: auto;
+		top: expression( ( LFR_IGNORE_ME = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ) + 'px' );
+	}
+}
+
+/* Skin */
+
+.definition-of-terms dt {
+	font-weight: bold;
+}
+
+.lfr-code {
+	background: #FFF;
+	border-color: #777;
+
+	tr td.line-numbers {
+		background: #FAFAFA;
+
+		.number {
+			color: #AAA;
+			text-shadow: 1px 1px #FFF;
+		}
+	}
+}
+
+.popup-alert-notice .countdown-timer {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.lfr-token {
+	background-color: #B3DAEF;
+	border-color: #5FA8FF;
+	color: #444;
+	text-decoration: none;
+
+	&:hover {
+		background-color: #D1E5EF;
+	}
+}
+
+.lfr-token-primary {
+	font-weight: bold;
+
+	&, &:hover {
+		background-color: #B3DAEF;
+	}
+}
+
+.lfr-token-close:hover {
+	text-decoration: none;
+}

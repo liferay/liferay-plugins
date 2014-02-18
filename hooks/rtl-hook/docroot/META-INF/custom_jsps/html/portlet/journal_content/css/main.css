@@ -1,0 +1,79 @@
+@import "compass";
+
+.portlet-journal-content {
+	.journal-content-article {
+		clear: right;
+
+		&:after {
+			clear: both;
+			content: "";
+			display: block;
+			height: 0;
+		}
+	}
+
+	.taglib-discussion {
+		margin-top: 18px;
+	}
+
+	.taglib-ratings-wrapper {
+		margin-top: 1em;
+	}
+
+	.tabview-list {
+		margin: 18px 0;
+	}
+
+	.user-actions {
+		padding-bottom: 2.5em;
+
+		.export-actions, .print-action, .locale-actions {
+			float: right;
+		}
+
+		.print-action {
+			margin-left: 1em;
+		}
+
+		.locale-separator {
+			border-right: 1px solid #CCC;
+			float: right;
+			margin-right: 1em;
+			padding: 0.8em 0.5em;
+		}
+	}
+}
+
+.portlet-configuration {
+	.displaying-article-id.modified {
+		color: #4DCF0C;
+	}
+}
+
+.ie {
+	.portlet-journal-content {
+		.journal-content-article {
+			zoom: 1;
+		}
+
+		.lfr-icon-actions {
+			@include opacity(0.2);
+		}
+
+		&:hover .lfr-icon-actions {
+			@include opacity(1);
+		}
+	}
+}
+
+.ie6 {
+	.portlet-journal-content {
+		.icons-container {
+			height: 1%;
+		}
+
+		.lfr-icon-actions {
+			@include opacity(0.9);
+		}
+	}
+}

@@ -1,0 +1,30 @@
+.navigation-pane .body-row {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%; }
+  .navigation-pane .body-row ul li a .icon {
+    float: left;
+    margin-right: 5px; }
+.navigation-pane .lfr-component {
+  margin-left: 0; }
+.navigation-pane .app-view-navigation-entry {
+  position: relative; }
+  .navigation-pane .app-view-navigation-entry.folder.error {
+    color: #34404F;
+    display: block;
+    padding: 6px 8px;
+    text-decoration: none; }
+  .navigation-pane .app-view-navigation-entry .overlay.entry-action {
+    bottom: 0;
+    display: block;
+    overflow: hidden;
+    position: absolute;
+    right: -15px;
+    top: 0; }
+    .navigation-pane .app-view-navigation-entry .overlay.entry-action .btn {
+      background: transparent;
+      border-width: 0;
+      margin: 0;
+      padding: 9px 9px 4px; }
+

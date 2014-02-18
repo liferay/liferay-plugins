@@ -1,0 +1,24 @@
+img {
+	&.label-icon {
+		border-width: 0;
+		float: left;
+	}
+
+	&.icon {
+		border-width: 0;
+		float: absmiddle;
+	}
+}
+
+label.hidden-label {
+	clip: rect(0 0 0 0);
+	position: absolute;
+}
+
+td.stretch {
+	width: 99%;
+}
+
+.nobr {
+	white-space: nowrap;
+}

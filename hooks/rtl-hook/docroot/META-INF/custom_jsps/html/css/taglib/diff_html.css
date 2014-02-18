@@ -1,0 +1,62 @@
+@import "compass";
+
+.taglib-diff-html span {
+	&.diff-html-added img, &.diff-html-removed img {
+		border: 2px solid transparent;
+	}
+
+	&.diff-html-changed img {
+		border: 2px dotted transparent;
+	}
+}
+
+.taglib-diff-html div.diff-removed-image, div.diff-added-image {
+	height: 300px;
+	margin: 2px;
+	@include opacity(0.55);
+	position: absolute;
+	width: 200px;
+}
+
+/* Skin */
+
+.taglib-diff-html {
+	div {
+		&.diff-removed-image {
+			background: #fdc6c6 url(@theme_image_path@/diff/minus.png);
+		}
+
+		&.diff-added-image {
+			background: #cfc url(@theme_image_path@/diff/plus.png) no-repeat;
+		}
+	}
+
+	span {
+		&.diff-html-added {
+			background-color: #cfc;
+			font-size: 1em;
+
+			img {
+				border-color: #cfc;
+			}
+		}
+
+		&.diff-html-changed {
+			background: url(@theme_image_path@/diff/underline.png) bottom repeat-x;
+
+			img {
+				border-color: #009;
+			}
+		}
+
+		&.diff-html-removed {
+			background-color: #fdc6c6;
+			font-size: 1em;
+			text-decoration: line-through;
+
+			img {
+				border-color: #fdc6c6;
+			}
+		}
+	}
+}

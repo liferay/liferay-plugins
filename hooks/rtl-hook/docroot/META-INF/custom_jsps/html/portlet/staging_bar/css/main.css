@@ -1,0 +1,195 @@
+@import "compass";
+@import "compass/css3/user-interface";
+
+.portlet-staging-bar {
+	button.history {
+		float: right;
+	}
+
+	button.mark-as-ready {
+		float: left;
+	}
+
+	.button-holder {
+		margin: 20px 0 10px;
+	}
+
+	.layout-actions .taglib-workflow-status {
+		margin: 0;
+
+		.workflow-id, .workflow-version, .workflow-status {
+			color: inherit;
+			display: block;
+			padding: 0;
+		}
+	}
+
+	.row-fluid .layout-revision-info {
+		float: right;
+		line-height: 16px;
+		padding-left: 5px;
+
+		&.incomplete {
+			float: none;
+			padding: 0 5px;
+
+			.label.label-submit {
+				float: right;
+				margin-top: 10px;
+			}
+
+			&.loading {
+				.label.label-submit {
+					background-color: transparent;
+				}
+			}
+		}
+
+		.layout-revision-version {
+			display: block;
+			font-size: 0.8em;
+
+			label {
+				display: inline;
+				font-size: 0.9em;
+			}
+		}
+
+		.submit-link {
+			margin-left: 1em;
+		}
+
+		.workflow-status, .taglib-workflow-status {
+			margin: 0;
+			padding: 0;
+		}
+
+		a.taglib-icon:hover .taglib-text {
+			text-decoration: none;
+		}
+	}
+
+	.layout-branch-selector, .layout-set-branch-selector {
+		font-size: inherit;
+
+		.icon-caret-down {
+			position: absolute;
+			right: 5px;
+			top: 5px;
+		}
+	}
+
+	.layout-revision-actions {
+		font-size: 17px;
+
+		[class^="icon-"] {
+			margin-left: 10px;
+		}
+	}
+
+	.layout-revision-details.alert-error {
+		float: right;
+		margin: 10px 5px 0;
+		padding: 0 5px;
+	}
+
+	.page-variation-label, .site-pages-variation-label {
+		font-weight: 300;
+	}
+
+	.page-variations-options, .site-pages-variation-options, .staging-details {
+		padding: 0 5px;
+	}
+
+	.staging-details {
+		line-height: 20px;
+	}
+
+	.staging-toggle .variations-options {
+		position: relative;
+
+		.staging-variation-selector {
+			display: block;
+			margin: 0 15px 0 0;
+
+			.icon-globe, .icon-file {
+				padding: 7px;
+			}
+
+			.dropdown-toggle {
+				display: block;
+			}
+		}
+
+		.page-variations {
+			font-size: 17px;
+			position: absolute;
+			right: -5px;
+			top: 0;
+		}
+
+		.lfr-icon-menu-text {
+			display: inline-block;
+
+			@include ellipsis;
+
+			max-width: 75%;
+			padding-left: 5px;
+			vertical-align: bottom;
+		}
+	}
+
+	.dropdown-menu .publish-link-container {
+		margin-left: 5px;
+
+		&.branching-enabled {
+			bottom: 5px;
+			position: absolute;
+		}
+
+		.publish-link {
+			@include ellipsis;
+
+			padding: 5px;
+			max-width: 95%;
+
+			em {
+				display: inline-block;
+
+				@include ellipsis;
+
+				max-width: 100px;
+				vertical-align: bottom;
+			}
+
+			&.btn.btn-success:hover {
+				background-color: #0ABA1D;
+				text-decoration: none;
+			}
+		}
+	}
+
+	.site-pages-variation-options {
+		position: relative;
+
+		.icon-angle-right {
+			font-size: 30px;
+			position: absolute;
+			right: -14px;
+			top: 38px;
+		}
+	}
+
+	.status-message {
+		float: left;
+		line-height: 20px;
+	}
+
+	.toolbar-spacer {
+		display: none;
+	}
+
+	.variations-content {
+		clear: both;
+	}
+}

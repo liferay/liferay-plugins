@@ -1,0 +1,227 @@
+.portlet-asset-publisher .category-buttons, .portlet-message-boards .category-buttons, .portlet-trash .category-buttons {
+  clear: both;
+  margin-bottom: 1em; }
+.portlet-asset-publisher .category-subscriptions, .portlet-message-boards .category-subscriptions, .portlet-trash .category-subscriptions {
+  clear: both;
+  margin-bottom: 1em;
+  overflow: hidden; }
+.portlet-asset-publisher .category-subscription-types, .portlet-message-boards .category-subscription-types, .portlet-trash .category-subscription-types {
+  float: right;
+  margin-bottom: 0; }
+.portlet-asset-publisher .quote, .portlet-message-boards .quote, .portlet-trash .quote {
+  background: white url(@theme_image_path@/message_boards/quoteleft.png) left top no-repeat;
+  border: 1px solid #777;
+  padding: 5px 0px 0px 5px; }
+.portlet-asset-publisher .quote-content, .portlet-message-boards .quote-content, .portlet-trash .quote-content {
+  background: transparent url(@theme_image_path@/message_boards/quoteright.png) right bottom no-repeat;
+  padding: 5px 30px 10px 30px; }
+.portlet-asset-publisher .quote-title, .portlet-message-boards .quote-title, .portlet-trash .quote-title {
+  font-weight: bold;
+  padding: 5px 0px 5px 0px; }
+.portlet-asset-publisher .title, .portlet-message-boards .title, .portlet-trash .title {
+  border-bottom: 1px solid #CCC;
+  font-size: large;
+  font-weight: normal;
+  padding: 5px; }
+.portlet-asset-publisher .trash-attachments, .portlet-message-boards .trash-attachments, .portlet-trash .trash-attachments {
+  float: right; }
+.portlet-asset-publisher #messageBoardsPanelContainer, .portlet-message-boards #messageBoardsPanelContainer, .portlet-trash #messageBoardsPanelContainer {
+  border-width: 0; }
+.portlet-asset-publisher .message-attachments h3, .portlet-message-boards .message-attachments h3, .portlet-trash .message-attachments h3 {
+  color: #333;
+  font-size: 1em; }
+.portlet-asset-publisher .message-attachments ul, .portlet-message-boards .message-attachments ul, .portlet-trash .message-attachments ul {
+  list-style: none; }
+.portlet-asset-publisher .message-attachments .message-attachment, .portlet-message-boards .message-attachments .message-attachment, .portlet-trash .message-attachments .message-attachment {
+  padding: 0.5em; }
+.portlet-asset-publisher .message-attachments .deleted-input, .portlet-message-boards .message-attachments .deleted-input, .portlet-trash .message-attachments .deleted-input {
+  list-style: none;
+  margin-left: -2em;
+  padding: 0; }
+.portlet-asset-publisher .message-attachments .undo, .portlet-message-boards .message-attachments .undo, .portlet-trash .message-attachments .undo {
+  font-weight: bold; }
+.portlet-asset-publisher .message-container, .portlet-message-boards .message-container, .portlet-trash .message-container {
+  border: 1px solid #CCC;
+  margin: 5px 0 0 0;
+  overflow: auto; }
+  .portlet-asset-publisher .message-container table, .portlet-message-boards .message-container table, .portlet-trash .message-container table {
+    border-collapse: collapse;
+    table-layout: fixed; }
+  .portlet-asset-publisher .message-container .lfr-code table, .portlet-message-boards .message-container .lfr-code table, .portlet-trash .message-container .lfr-code table {
+    table-layout: auto; }
+  .portlet-asset-publisher .message-container td, .portlet-message-boards .message-container td, .portlet-trash .message-container td {
+    border-width: 0; }
+.portlet-asset-publisher .thread-top, .portlet-message-boards .thread-top, .portlet-trash .thread-top {
+  border-bottom: 1px solid #CCC;
+  padding: 3px 5px; }
+.portlet-asset-publisher .thread-bottom, .portlet-message-boards .thread-bottom, .portlet-trash .thread-bottom {
+  padding: 3px 5px;
+  vertical-align: bottom; }
+.portlet-asset-publisher .taglib-ratings.thumbs .total-rating, .portlet-message-boards .taglib-ratings.thumbs .total-rating, .portlet-trash .taglib-ratings.thumbs .total-rating {
+  padding: 0 5px 0 10px; }
+.portlet-asset-publisher td.user-info, .portlet-message-boards td.user-info, .portlet-trash td.user-info {
+  border-right: 1px solid #CCC;
+  width: 150px; }
+.portlet-asset-publisher .subject, .portlet-message-boards .subject, .portlet-trash .subject {
+  float: left; }
+.portlet-asset-publisher .edit-controls, .portlet-message-boards .edit-controls, .portlet-trash .edit-controls {
+  float: right; }
+  .portlet-asset-publisher .edit-controls li, .portlet-message-boards .edit-controls li, .portlet-trash .edit-controls li {
+    float: left;
+    margin-right: 10px; }
+.portlet-asset-publisher .thread-body, .portlet-message-boards .thread-body, .portlet-trash .thread-body {
+  overflow: hidden;
+  padding: 15px; }
+  .portlet-asset-publisher .thread-body td, .portlet-message-boards .thread-body td, .portlet-trash .thread-body td {
+    border: 1px solid #CCC; }
+.portlet-asset-publisher .message-container .user-info, .portlet-message-boards .message-container .user-info, .portlet-trash .message-container .user-info {
+  border-right: 1px solid #CCC;
+  padding: 5px; }
+.portlet-asset-publisher .clear, .portlet-message-boards .clear, .portlet-trash .clear {
+  clear: both; }
+.portlet-asset-publisher .taglib-custom-attributes-list, .portlet-message-boards .taglib-custom-attributes-list, .portlet-trash .taglib-custom-attributes-list {
+  margin-bottom: 1em; }
+.portlet-asset-publisher .message-boards-panels, .portlet-message-boards .message-boards-panels, .portlet-trash .message-boards-panels {
+  border-width: 0; }
+.portlet-asset-publisher .statistics-panel, .portlet-message-boards .statistics-panel, .portlet-trash .statistics-panel {
+  border-width: 0; }
+.portlet-asset-publisher .statistics-panel-content, .portlet-message-boards .statistics-panel-content, .portlet-trash .statistics-panel-content {
+  margin: 1em; }
+  .portlet-asset-publisher .statistics-panel-content dt, .portlet-message-boards .statistics-panel-content dt, .portlet-trash .statistics-panel-content dt {
+    float: left;
+    font-weight: bold;
+    margin-right: 1em; }
+.portlet-asset-publisher .question-details, .portlet-message-boards .question-details, .portlet-trash .question-details {
+  float: left;
+  white-space: nowrap; }
+.portlet-asset-publisher .views, .portlet-message-boards .views, .portlet-trash .views {
+  color: #999;
+  clear: both;
+  float: left;
+  padding: 5px 0;
+  text-align: center;
+  width: 100%; }
+  .portlet-asset-publisher .views .count, .portlet-message-boards .views .count, .portlet-trash .views .count {
+    display: inline;
+    font-size: 1em; }
+.portlet-asset-publisher .status, .portlet-asset-publisher .votes, .portlet-message-boards .status, .portlet-message-boards .votes, .portlet-trash .status, .portlet-trash .votes {
+  display: inline-block;
+  height: 38px;
+  margin: 0 3px 0 0;
+  padding: 5px;
+  text-align: center; }
+.portlet-asset-publisher .votes, .portlet-message-boards .votes, .portlet-trash .votes {
+  color: #555;
+  width: 40px; }
+.portlet-asset-publisher .status, .portlet-message-boards .status, .portlet-trash .status {
+  width: 48px; }
+.portlet-asset-publisher .answered, .portlet-message-boards .answered, .portlet-trash .answered {
+  background-color: #5BA018;
+  color: #FFF; }
+.portlet-asset-publisher .unanswered, .portlet-message-boards .unanswered, .portlet-trash .unanswered {
+  background-color: #CF4937;
+  color: #FFF; }
+.portlet-asset-publisher .count, .portlet-message-boards .count, .portlet-trash .count {
+  display: block;
+  font-size: 190%;
+  font-weight: bold;
+  height: 25px; }
+.portlet-asset-publisher .toggle_id_message_boards_view_message_thread, .portlet-message-boards .toggle_id_message_boards_view_message_thread, .portlet-trash .toggle_id_message_boards_view_message_thread {
+  border: 1px solid #CCC;
+  clear: both;
+  margin: 5px 0 0 0;
+  width: 100%; }
+.portlet-asset-publisher .thread-controls, .portlet-message-boards .thread-controls, .portlet-trash .thread-controls {
+  border: 1px solid #CCC;
+  margin-bottom: 5px;
+  padding: 3px 5px; }
+.portlet-asset-publisher .thread-navigation, .portlet-message-boards .thread-navigation, .portlet-trash .thread-navigation {
+  float: left; }
+.portlet-asset-publisher .thread-actions, .portlet-message-boards .thread-actions, .portlet-trash .thread-actions {
+  float: right; }
+.portlet-asset-publisher .thread-user-rank, .portlet-message-boards .thread-user-rank, .portlet-trash .thread-user-rank {
+  display: block; }
+.portlet-asset-publisher .thread-priority, .portlet-message-boards .thread-priority, .portlet-trash .thread-priority {
+  border-width: 0;
+  float: left; }
+.portlet-asset-publisher .message-container .thread-message-view, .portlet-asset-publisher .thread-view, .portlet-message-boards .message-container .thread-message-view, .portlet-message-boards .thread-view, .portlet-trash .message-container .thread-message-view, .portlet-trash .thread-view {
+  border-collapse: collapse;
+  min-width: 400px;
+  padding: 0;
+  width: 100%; }
+.portlet-asset-publisher .thread-view-controls, .portlet-message-boards .thread-view-controls, .portlet-trash .thread-view-controls {
+  list-style: none;
+  margin: 0;
+  text-align: right; }
+  .portlet-asset-publisher .thread-view-controls li, .portlet-message-boards .thread-view-controls li, .portlet-trash .thread-view-controls li {
+    display: inline-block; }
+.portlet-asset-publisher .emoticons, .portlet-message-boards .emoticons, .portlet-trash .emoticons {
+  border: 1px solid #CCC;
+  margin-left: 10px; }
+.portlet-asset-publisher .tree, .portlet-message-boards .tree, .portlet-trash .tree {
+  vertical-align: middle; }
+.portlet-asset-publisher .message-scroll, .portlet-message-boards .message-scroll, .portlet-trash .message-scroll {
+  margin: 5px 0 0 0; }
+.portlet-asset-publisher .lfr-textarea.message-edit, .portlet-message-boards .lfr-textarea.message-edit, .portlet-trash .lfr-textarea.message-edit {
+  height: 100%;
+  width: 100%; }
+  .portlet-asset-publisher .lfr-textarea.message-edit textarea, .portlet-message-boards .lfr-textarea.message-edit textarea, .portlet-trash .lfr-textarea.message-edit textarea {
+    height: 378px;
+    min-height: 100%;
+    width: 99.5%; }
+.portlet-asset-publisher .subcategories, .portlet-message-boards .subcategories, .portlet-trash .subcategories {
+  text-decoration: underline; }
+.portlet-asset-publisher .taglib-flags, .portlet-message-boards .taglib-flags, .portlet-trash .taglib-flags {
+  float: left;
+  margin-left: 20px; }
+.portlet-asset-publisher .threads-panel, .portlet-message-boards .threads-panel, .portlet-trash .threads-panel {
+  margin-top: 1em; }
+.portlet-asset-publisher .displayStyle-question .action-question .taglib-text, .portlet-message-boards .displayStyle-question .action-question .taglib-text, .portlet-trash .displayStyle-question .action-question .taglib-text {
+  display: none; }
+.portlet-asset-publisher .displayStyle-question .last-post, .portlet-message-boards .displayStyle-question .last-post, .portlet-trash .displayStyle-question .last-post {
+  margin-left: 1em;
+  width: 15%; }
+.portlet-asset-publisher .displayStyle-question .stats, .portlet-message-boards .displayStyle-question .stats, .portlet-trash .displayStyle-question .stats {
+  width: 20%; }
+.portlet-asset-publisher .displayStyle-question .question, .portlet-message-boards .displayStyle-question .question, .portlet-trash .displayStyle-question .question {
+  vertical-align: top;
+  width: 65%; }
+.portlet-asset-publisher .displayStyle-question .last-post .portrait, .portlet-message-boards .displayStyle-question .last-post .portrait, .portlet-trash .displayStyle-question .last-post .portrait {
+  text-align: center; }
+.portlet-asset-publisher .displayStyle-question .username, .portlet-message-boards .displayStyle-question .username, .portlet-trash .displayStyle-question .username {
+  text-align: center; }
+.portlet-asset-publisher .displayStyle-question .time, .portlet-message-boards .displayStyle-question .time, .portlet-trash .displayStyle-question .time {
+  color: #777;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-top: 0.5em;
+  text-align: center; }
+.portlet-asset-publisher .displayStyle-question .tags, .portlet-message-boards .displayStyle-question .tags, .portlet-trash .displayStyle-question .tags {
+  float: left;
+  margin-top: 0.5em; }
+.portlet-asset-publisher .displayStyle-question .question-subject, .portlet-message-boards .displayStyle-question .question-subject, .portlet-trash .displayStyle-question .question-subject {
+  font-size: 125%; }
+  .portlet-asset-publisher .displayStyle-question .question-subject #a, .portlet-message-boards .displayStyle-question .question-subject #a, .portlet-trash .displayStyle-question .question-subject #a {
+    color: #06C; }
+.portlet-asset-publisher .displayStyle-question .summary, .portlet-message-boards .displayStyle-question .summary, .portlet-trash .displayStyle-question .summary {
+  color: #444;
+  font-size: 120%; }
+.portlet-asset-publisher .search-root-entry, .portlet-message-boards .search-root-entry, .portlet-trash .search-root-entry {
+  color: #999;
+  float: right; }
+
+.ie .portlet-message-boards .message-container, .ie .portlet-trash .message-container {
+  width: 100%; }
+  .ie .portlet-message-boards .message-container .thread-body table, .ie .portlet-trash .message-container .thread-body table {
+    table-layout: auto; }
+
+.ie6 .portlet-message-boards .code, .ie6 .portlet-trash .code {
+  width: 100%; }
+
+.ie8 .question-details {
+  white-space: normal; }
+
+.trash-restore-popup .form fieldset {
+  margin-bottom: 0;
+  padding: 0 15px; }
+

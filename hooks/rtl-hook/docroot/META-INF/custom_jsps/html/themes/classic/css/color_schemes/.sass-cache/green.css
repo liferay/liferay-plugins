@@ -1,0 +1,130 @@
+body.green, .green .portlet {
+  background-color: #F1F3EF; }
+
+.green {
+  /* ---------- Links ---------- */
+  /* ---------- Application styling ---------- */
+  /* ---------- Portlet wrapper and icons ---------- */
+  /* ---------- Calendar portlet ---------- */
+  /* ---------- Miscellaneous portlet styles ---------- */
+  /* This CSS sets the default styles for forms. */ }
+  .green .icon {
+    background-image: url(@theme_image_path@/color_schemes/green/aui/icon_sprite.png); }
+  .green a {
+    color: #677D5B; }
+    .green a:hover {
+      color: #66CD00; }
+  .green .drop-area {
+    background-color: #DBDED4; }
+  .green .resizable-proxy {
+    border-color: #909683; }
+  .green .sortable-proxy {
+    background-color: #7C8272; }
+  .green .menugroup-content h4 {
+    background-color: #D7DFD3;
+    color: #677D5B; }
+  .green .menu-content li a {
+    color: #2F342C; }
+  .green .menu-content li a.focus, .green .lfr-menu-expanded li a:focus {
+    background-color: #677D5B;
+    color: #FFF;
+    text-shadow: -1px -1px #2F342C; }
+  .green .tab {
+    background: none; }
+  .green .tab-active {
+    background-color: #333; }
+  .green .tab-active, .green .tab-active a {
+    color: #FFF; }
+  .green .portlet-communities .portlet-enterprise-admin .lfr-current-theme {
+    background-color: #F6F8F1;
+    border-color: #909683; }
+  .green .portlet-communities .portlet-enterprise-admin .theme-entry .theme-title {
+    background-color: #909488;
+    border-color: #909683; }
+  .green .portlet-communities .portlet-enterprise-admin .lfr-theme-list h3 {
+    background-color: #DBDED4; }
+  .green .portlet-communities .portlet-enterprise-admin .selected-color-scheme .theme-entry {
+    border-color: #669A33; }
+  .green .portlet-communities .portlet-enterprise-admin .lfr-theme-list .theme-entry:hover {
+    background-color: #F5FFE0;
+    border-color: #CFE0A8;
+    color: #BBC99F; }
+  .green .portlet-communities .portlet-enterprise-admin .theme-entry:hover .theme-thumbnail {
+    border-color: #CFE0A8; }
+  .green .portlet-document-library .detail-column-last {
+    background-color: #F2FFD8; }
+    .green .portlet-document-library .detail-column-last .detail-column-content {
+      border-color: #C6DA89; }
+  .green .dockbar {
+    background-color: #A2AF98;
+    background-image: url(@theme_image_path@/color_schemes/green/dockbar/dockbar_bg.png); }
+    .green .dockbar .menu-button-active {
+      background-color: #95DB5C;
+      background-image: url(@theme_image_path@/color_schemes/green/dockbar/button_active_bg.png); }
+      .green .dockbar .menu-button-active a {
+        color: #FFF; }
+  .green .sortable-layout-drag-indicator {
+    background-color: #57B63C; }
+  .green .autocomplete-results-content {
+    border-color: #C1F599; }
+  .green .autocomplete-selected {
+    background-color: #E9F7E0;
+    border-color: #BBEAA4; }
+  .green .textboxlistentry {
+    background-color: #D9F4CB;
+    border-color: #BBEAA4; }
+  .green .textboxlistentry-focused {
+    background-color: #57B63C;
+    border-color: #404F34; }
+  .green .textboxlistentry-close-hover {
+    background-color: #BBEAA4; }
+  .green .portlet {
+    border-color: #909683; }
+  .green .portlet-topper {
+    background-color: #D9DDD3;
+    border-bottom-color: #B7BCAE; }
+  .green .panel-page .portlet-topper {
+    border-bottom-color: #909683; }
+  .green .portlet-section-selected, .green .portlet-section-selected a {
+    background-color: #909683; }
+  .green .portlet-section-selected a:focus, .green .portlet-section-selected a:hover {
+    background-color: #909683; }
+  .green .portlet-calendar .calendar-day .day-text {
+    background-color: #909683; }
+  .green .portlet-calendar .taglib-calendar tr td.calendar-current-day a:focus, .green .portlet-calendar .taglib-calendar tr td.calendar-current-day a:hover {
+    background-color: #F2FFDF;
+    border-color: #B7BCAE;
+    color: #5BCC00; }
+  .green .taglib-calendar tr td a {
+    background-color: #EFF3EA; }
+    .green .taglib-calendar tr td a:hover {
+      background-color: #909683; }
+  .green .taglib-calendar .calendar-current-day a {
+    border-color: #909683;
+    color: #5F9930; }
+  .green .taglib-calendar .calendar-current-day, .green .taglib-calendar .calendar-current-day a {
+    background-color: #FFF; }
+  .green .taglib-calendar tr td.calendar-inactive {
+    color: #BEC4B5; }
+  .green .journal-template-error .scroll-pane pre span {
+    background-color: #BEC4B5; }
+  .green .restricted * {
+    color: #909683; }
+  .green .lfr-tag-selector-popup .textfield-content {
+    background-color: #DBDED4;
+    border-color: #B9BDAF; }
+  .green button, .green input[type="button"], .green input[type="reset"], .green input[type="submit"] {
+    color: #404F34; }
+  .green button:hover, .green input[type="button"]:hover, .green input[type="reset"]:hover, .green input[type="submit"]:hover {
+    background-color: #CFDABA;
+    background-image: url(@theme_image_path@/color_schemes/green/application/state_hover_bg.png);
+    border-color: #778362;
+    color: #669A33; }
+  .green button:focus, .green input[type="button"]:focus, .green input[type="reset"]:focus, .green input[type="submit"]:focus {
+    background-color: #ECECEC;
+    background-image: url(@theme_image_path@/application/state_active_bg.png); }
+
+/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
+.ie6 .green button, .ie6 .green input.button, .ie6 .green input.submit, .ie6 .green .button-disabled button, .ie6 .green .button-disabled input.button, .ie6 .green .button-disabled input.submit {
+  color: #404F34; }
+

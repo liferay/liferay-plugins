@@ -1,0 +1,58 @@
+.portlet-quick-note {
+	margin: 2px;
+	padding: 5px;
+
+	textarea {
+		min-height: 100px;
+		padding: 3px;
+		width: 95%;
+	}
+
+	.portlet-title-default {
+		float: none;
+		width: 100%;
+	}
+
+	.note-color {
+		border: 1px solid;
+		cursor: pointer;
+		float: right;
+		font-size: 0;
+		height: 10px;
+		margin: 3px 5px;
+		width: 10px;
+
+		&.yellow {
+			background-color: #FFC;
+			border-color: #FC0;
+			margin-left: 0;
+		}
+
+		&.green {
+			background-color: #CFC;
+			border-color: #0C0;
+		}
+
+		&.blue {
+			background-color: #CCF;
+			border-color: #309;
+		}
+
+		&.red {
+			background-color: #FCC;
+			border-color: #F00;
+		}
+	}
+
+	a.close-note {
+		float: right;
+	}
+}
+
+.ie6 {
+	.portlet-quick-note {
+		textarea {
+			height: expression(this.height < 100 ? '100px' : this.height);
+		}
+	}
+}

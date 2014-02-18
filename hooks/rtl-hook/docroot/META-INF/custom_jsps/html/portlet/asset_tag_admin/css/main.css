@@ -1,0 +1,211 @@
+.portlet-asset-tag-admin {
+	.lfr-app-column-view {
+		border: none;
+	}
+
+	.navbar-inner {
+		padding-left: 12px;
+
+		.search-query {
+			width: 260px;
+		}
+	}
+
+	.tags-admin-actions {
+		clear: none;
+		float: left;
+		margin: 0;
+	}
+
+	.tags-admin-container {
+		.toolbar-container {
+			position: relative;
+
+			.tags-admin-toolbar {
+				background: #F6F8FB;
+				border-bottom: 1px solid #dedede;
+				overflow: hidden;
+				padding: 5px 0;
+			}
+
+			.tags-search-combobox {
+				position: absolute;
+				right: 5px;
+				top: 2px;
+			}
+		}
+	}
+
+	.header-title, .tree-node-content .tree-label {
+		word-wrap: break-word;
+	}
+
+	.tags-admin-edit-tag {
+		.tag-view-container {
+			padding: 0 0.5em 0 0;
+		}
+
+		.tag-details {
+			font-weight: bold;
+			vertical-align: middle;
+		}
+	}
+
+	.tag-item a {
+		display: block;
+		padding: 8px 20px 8px 25px;
+		text-decoration: none;
+	}
+
+	.tag-item-actions-trigger {
+		background-image: url(@theme_image_path@/common/edit.png);
+		background-repeat: no-repeat;
+		clip: rect(0pt, 0pt, 0pt, 0pt);
+		display: block;
+		height: 16px;
+		margin-top: -8px;
+		padding: 0;
+		position: absolute;
+		right: 5px;
+		top: 50%;
+		width: 16px;
+	}
+
+	input.tag-item-check {
+		margin-right: 10px;
+		margin-top: 0;
+		position: static;
+	}
+
+	.tags-admin-content {
+		.tag-item-container {
+			position: relative;
+
+			.tag-item-name {
+				margin-top: 2px;
+			}
+		}
+
+		li.tag-item-container, li.tag-item {
+			font-weight: bold;
+		}
+	}
+
+	.tag-item-container {
+		&:hover, &:focus {
+			.tag-item-actions-trigger {
+				clip: rect(auto auto auto auto);
+			}
+		}
+	}
+
+	.tag-item-actions-trigger:focus {
+		clip: rect(auto auto auto auto);
+	}
+
+	.tags-admin-list {
+		ul {
+			margin-left: 0;
+		}
+
+		.active {
+			a:hover {
+				color: #D9EDF7;
+			}
+		}
+
+		.active-area {
+			border: 1px solid #008000;
+
+			a {
+				background-color: #90EE90;
+				color: #90EE90;
+			}
+		}
+	}
+
+	.select-tags {
+		margin-left: 12px;
+		margin-top: -5px;
+	}
+
+	.tags-admin-list-container {
+		.tags-header {
+			display: inline-block;
+			margin-left: 2px;
+		}
+
+		&:after {
+			clear: both;
+			content: "";
+			display: block;
+			height: 0;
+		}
+	}
+
+	.tags-admin-search {
+		background-image: url(@theme_image_path@/common/search.png);
+		background-position: 5px center;
+		background-repeat: no-repeat;
+		padding-left: 25px;
+	}
+
+	.tags-pagination {
+		margin: 10px 0;
+		text-align: center;
+
+		.pagination-content {
+			margin: 0;
+		}
+	}
+
+	.view-tag {
+		.tag-field {
+			clear: left;
+			margin: 1em auto;
+		}
+	}
+}
+
+.tag-item-merge {
+	border: 1px solid #4E4848;
+	display: block;
+	font-weight: bold;
+	list-style: none;
+	padding: 8px 20px 8px 10px;
+
+	a {
+		text-decoration: none;
+	}
+}
+
+.ie {
+	.portlet-asset-tag-admin {
+		.tag-item a {
+			zoom: 1;
+		}
+	}
+}
+
+.ie6, .ie7 {
+	.portlet-asset-tag-admin {
+		.tag-item-actions-trigger, .tag-item-check {
+			cursor: pointer;
+		}
+	}
+
+	.portlet-asset-tag-admin-dialog {
+		.yui3-widget-bd .asset-tag-layer .field {
+			width: 200px;
+		}
+	}
+}
+
+.ie6, .ie7, .ie8 {
+	.portlet-asset-tag-admin {
+		.tag-item-merge {
+			font-weight: normal;
+			font-size: 120%;
+		}
+	}
+}

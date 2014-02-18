@@ -1,0 +1,238 @@
+.portlet-wiki .wiki-body ol ol {
+  list-style: decimal outside; }
+.portlet-wiki .wiki-body pre {
+  background: #fff;
+  border: 1px dashed #2f6fab;
+  margin: 5px 0;
+  padding: 0.5em; }
+.portlet-wiki a.createpage {
+  color: #f00; }
+.portlet-wiki .toc {
+  border: 1px solid #aaa;
+  background-color: #f9f9f9;
+  padding: 0 1em; }
+  .portlet-wiki .toc h4 {
+    margin-bottom: 0.7em; }
+  .portlet-wiki .toc ul {
+    margin-top: 0; }
+  .portlet-wiki .toc li.toclevel-1 {
+    list-style-type: none;
+    margin-left: 0; }
+  .portlet-wiki .toc li.toclevel-2 {
+    list-style-type: none;
+    margin-left: 15px; }
+  .portlet-wiki .toc li.toclevel-3 {
+    list-style-type: none;
+    margin-left: 30px; }
+.portlet-wiki .page-categorization {
+  margin: -8px 0 10px; }
+.portlet-wiki .page-categories {
+  color: #7d7d7d; }
+.portlet-wiki .taglib-discussion {
+  margin: 1em; }
+.portlet-wiki .page-tags {
+  color: #7d7d7d; }
+.portlet-wiki .portlet-body h2 a.hashlink,
+.portlet-wiki .portlet-body h3 a.hashlink,
+.portlet-wiki .portlet-body h4 a.hashlink {
+  color: #DDE0E1;
+  font-size: 12px;
+  text-decoration: none; }
+.portlet-wiki .portlet-body h2:hover a.hashlink,
+.portlet-wiki .portlet-body h3:hover a.hashlink,
+.portlet-wiki .portlet-body h4:hover a.hashlink {
+  color: #777; }
+.portlet-wiki .portlet-body h1.page-title .return-to-page {
+  background: url(@theme_image_path@/wiki/return_to_page.png) no-repeat 0 50%;
+  padding-left: 20px;
+  text-decoration: none; }
+.portlet-wiki .preview {
+  background: #ffc;
+  border: 1px dotted gray;
+  padding: 3px; }
+.portlet-wiki .taglib-custom-attributes-list {
+  margin-bottom: 1em; }
+.portlet-wiki .taglib-custom-attributes-list label {
+  display: block; }
+.portlet-wiki .child-pages {
+  margin: 2em 0; }
+.portlet-wiki .child-pages h2 {
+  background-color: #DDD;
+  border-width: 0;
+  font-weight: normal;
+  margin: 0 0 0.5em;
+  padding: 0.2em; }
+.portlet-wiki .child-pages h3 {
+  font-size: 1.2em;
+  margin-bottom: 0.3em; }
+.portlet-wiki .child-pages ul {
+  margin-top: 0; }
+.portlet-wiki .child-pages li {
+  font-weight: bold;
+  font-size: 1.1em; }
+.portlet-wiki .content-body .wiki-code {
+  background: #fff;
+  border: 1px solid #777;
+  font-family: monospace;
+  white-space: pre; }
+.portlet-wiki .content-body .code-lines {
+  border-right: 1px solid #ccc;
+  color: #000;
+  margin-right: 5px;
+  padding: 0 5px; }
+.portlet-wiki .content-body a.external-link {
+  background: transparent url(@theme_image_path@/wiki/external.png) right top no-repeat;
+  text-decoration: none;
+  padding-right: 10px; }
+.portlet-wiki .content-body a.external-link:hover {
+  background: transparent url(@theme_image_path@/wiki/external.png) right top no-repeat;
+  text-decoration: underline;
+  padding-right: 11px; }
+.portlet-wiki .history-navigation .central-info a.change-mode {
+  font-weight: bold; }
+.portlet-wiki .history-navigation .central-info span.change-mode {
+  color: #999;
+  font-weight: bold; }
+.portlet-wiki .history-navigation .central-info {
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  width: 66%; }
+.portlet-wiki .history-navigation .central-title {
+  font-weight: bold;
+  padding-right: 20px; }
+.portlet-wiki .history-navigation .central-username {
+  font-weight: bold; }
+.portlet-wiki .history-navigation .next {
+  background-image: url(@theme_image_path@/arrows/paging_next.png);
+  background-position: 100% 0;
+  float: right;
+  padding-right: 15px; }
+.portlet-wiki .history-navigation .previous {
+  background-image: url(@theme_image_path@/arrows/paging_previous.png);
+  float: left;
+  padding-left: 15px; }
+.portlet-wiki .history-navigation a, .portlet-wiki .history-navigation span {
+  background: url() no-repeat; }
+.portlet-wiki .history-navigation span.next {
+  background-position: 100% 100%; }
+.portlet-wiki .history-navigation span.previous {
+  background-position: 0 100%; }
+.portlet-wiki .history-navigation {
+  background: #eee;
+  border-top: 1px solid #ccc;
+  margin: 15px 0 20px;
+  overflow: hidden;
+  padding: 5px; }
+.portlet-wiki .node-current {
+  text-decoration: none;
+  font-weight: bold; }
+.portlet-wiki .page-actions {
+  margin-top: 1.5em; }
+  .portlet-wiki .page-actions:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden; }
+.portlet-wiki .page-actions .article-actions {
+  border-right: 1px solid #999;
+  float: left;
+  margin-right: 10px;
+  padding-right: 10px; }
+.portlet-wiki .page-actions .stats {
+  color: #999; }
+.portlet-wiki .page-actions.top-actions {
+  margin-bottom: 15px;
+  margin-top: 0;
+  text-align: right; }
+.portlet-wiki .page-actions.top-actions img {
+  margin-left: 5px; }
+.portlet-wiki .page-activities .activity-status {
+  color: #666;
+  font-weight: bold;
+  text-transform: uppercase; }
+.portlet-wiki .page-activities .activity-summary {
+  color: #999;
+  display: block;
+  margin-left: 3em; }
+.portlet-wiki .entry-links h2 {
+  border-width: 0;
+  font-size: 1em;
+  font-weight: bold; }
+.portlet-wiki .page-info {
+  width: 100%; }
+.portlet-wiki .page-info tr th, .portlet-wiki .page-info tr td {
+  border: 1px solid #ccc;
+  border-left: none;
+  border-right: none;
+  padding: 0.3em 1em; }
+.portlet-wiki .page-old-version a {
+  color: #f93; }
+.portlet-wiki .page-old-version {
+  color: #f93;
+  line-height: 1.2em;
+  margin: -1em 0 1.4em 0;
+  width: auto; }
+.portlet-wiki .page-ratings {
+  margin: 2em 0; }
+.portlet-wiki .page-redirect {
+  color: #7d7d7d;
+  cursor: pointer;
+  line-height: 1.2em;
+  margin: -1em 0 1.4em 0;
+  width: auto; }
+.portlet-wiki .page-redirect:hover {
+  text-decoration: underline; }
+.portlet-wiki .popup-print {
+  float: right; }
+.portlet-wiki .syntax-help-content {
+  border: 1px dotted gray;
+  padding-left: 10px; }
+.portlet-wiki .syntax-help h4 {
+  margin-bottom: 0.5em; }
+.portlet-wiki .syntax-help pre {
+  margin-left: 1em;
+  margin-bottom: 1em; }
+.portlet-wiki .top-links {
+  padding-bottom: 10px; }
+.portlet-wiki .top-links-nodes {
+  border: 1px solid #ddd;
+  float: left;
+  list-style-type: none;
+  margin: 0 0.5em 0.5em;
+  padding: 0.2em 0.5em; }
+  .portlet-wiki .top-links-nodes .top-link-node {
+    border-right: 1px solid #aaa;
+    display: inline-block;
+    list-style-type: none;
+    margin: 0.3em;
+    padding-right: 0.2em; }
+    .portlet-wiki .top-links-nodes .top-link-node.last {
+      border-width: 0; }
+.portlet-wiki .top-links .page-search {
+  float: right;
+  margin: 0 0 0.5em 0.5em; }
+.portlet-wiki .search-root-entry {
+  color: #999;
+  float: right; }
+.portlet-wiki .top-links-configuration {
+  float: left; }
+.portlet-wiki .subscription-info tr td {
+  border: none;
+  padding: 0.1em 10px 0.1em 0; }
+.portlet-wiki .trash-attachments {
+  float: right; }
+.portlet-wiki #wikiCommentsPanelContainer {
+  border-width: 0; }
+
+.trash-restore-popup .form fieldset {
+  margin-bottom: 0;
+  padding: 0 15px; }
+
+.ie .portlet-wiki .child-pages h3 {
+  margin-bottom: 0.2em; }
+.ie .portlet-wiki .syntax-help h4 {
+  margin-bottom: 0.3em; }
+

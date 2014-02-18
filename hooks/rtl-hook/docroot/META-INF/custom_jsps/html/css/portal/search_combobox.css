@@ -1,0 +1,30 @@
+.lfr-search-combobox {
+	float: right;
+	white-space: nowrap;
+
+	.field-content, .button {
+		border-width: 0;
+		display: inline-block;
+		float: left;
+		vertical-align: top;
+	}
+
+	&:after {
+		clear: both;
+		content: "";
+		display: block;
+		height: 0;
+	}
+
+	.lfr-search-combobox-item {
+		margin-right: 0;
+	}
+
+	.button-input {
+		padding: 4px;
+	}
+}
+
+.ie6 .lfr-search-combobox {
+	position: relative;
+}

@@ -1,0 +1,58 @@
+.lfr-form-row {
+  border-bottom: 1px solid transparent;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 5px;
+  padding-bottom: 25px;
+  padding-top: 1px;
+  position: relative; }
+
+.ie .lfr-form-row {
+  width: 100%; }
+
+.lfr-form-row:after {
+  clear: both;
+  content: "";
+  display: block;
+  height: 0; }
+
+.lfr-form-row:hover {
+  border: solid transparent;
+  border-width: 1px 0;
+  padding-top: 0; }
+
+.lfr-form-row-inline .control-group {
+  margin-right: 5px; }
+
+.lfr-form-row legend .field-label {
+  float: left;
+  margin-right: 10px; }
+
+.lfr-form-row .handle-sort-vertical {
+  cursor: move;
+  padding-left: 20px; }
+
+.lfr-form-row fieldset {
+  border-width: 0;
+  margin: 0;
+  padding: 0; }
+
+.lfr-autorow-controls {
+  bottom: 5px;
+  position: absolute;
+  right: 5px; }
+
+.ie6 .lfr-form-row, .ie7 .lfr-form-row {
+  zoom: 1; }
+
+/* Skin */
+.lfr-form-row {
+  border-bottom-color: #CCC; }
+
+.lfr-form-row:hover {
+  background-color: #DFFCCB;
+  border-color: #B2FF3A; }
+
+.lfr-form-row .handle-sort-vertical {
+  background: url(@theme_image_path@/application/handle_sort_vertical.png) no-repeat 0 50%; }
+

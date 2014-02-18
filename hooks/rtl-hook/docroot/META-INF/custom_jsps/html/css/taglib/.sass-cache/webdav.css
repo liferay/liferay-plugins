@@ -1,0 +1,26 @@
+.js .taglib-webdav .show-webdav {
+  display: block; }
+.js .taglib-webdav table {
+  border: 1px solid transparent;
+  border-left-width: 0;
+  border-right-width: 0;
+  display: none; }
+.js .taglib-webdav.visible table {
+  display: block; }
+
+.taglib-webdav table:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden; }
+
+.ie .taglib-webdav table {
+  height: 1%; }
+
+/* Skin */
+.js .taglib-webdav.visible {
+  background: #F0F5F7; }
+.js .taglib-webdav table {
+  border-color: #828F95; }
+

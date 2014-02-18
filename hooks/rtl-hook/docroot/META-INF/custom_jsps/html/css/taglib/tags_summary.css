@@ -1,0 +1,11 @@
+.taglib-asset-tags-summary .tag {
+	margin-bottom: 3px;
+	margin-right: 3px;
+	padding: 2px 5px 2px 20px;
+}
+
+/* Skin */
+
+.taglib-asset-tags-summary .tag {
+	background: url(@theme_image_path@/common/tag.png) no-repeat 0 50%;
+}

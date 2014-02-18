@@ -1,0 +1,25 @@
+.portlet-image-uploader {
+	.lfr-change-logo {
+		background: url(@theme_image_path@/common/checkerboard.png) repeat 50%;
+		display: block;
+		margin-bottom: 10px;
+	}
+
+	.lfr-portrait-preview {
+		&:after {
+			clear: both;
+			content: ".";
+			display: block;
+			height: 0;
+			visibility: hidden;
+		}
+
+		.lfr-portrait-preview-img.loading {
+			background: #FFF url(@theme_image_path@/application/loading_indicator.gif) no-repeat 50%;
+			border-color: #ccc;
+			border: 1px solid transparent;
+			min-height: 50px;
+			min-width: 50px;
+		}
+	}
+}

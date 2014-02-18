@@ -1,0 +1,19 @@
+.taglib-asset-links {
+  margin-top: 0.5em; }
+  .taglib-asset-links h2 {
+    margin: 0 1em 0.2em 0;
+    padding-left: 25px; }
+  .taglib-asset-links .asset-links-list {
+    list-style-type: none;
+    margin-left: 1.2em; }
+  .taglib-asset-links .asset-links-list-item {
+    margin-bottom: 0.4em; }
+
+/* Skin */
+.taglib-asset-links {
+  border-radius: 4px; }
+  .taglib-asset-links h2 {
+    background: url(@theme_image_path@/common/links.png) no-repeat 0 50%;
+    color: #999;
+    font-size: 1em; }
+

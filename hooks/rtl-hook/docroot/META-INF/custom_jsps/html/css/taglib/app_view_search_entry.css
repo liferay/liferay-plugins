@@ -1,0 +1,94 @@
+.app-view-search-entry-taglib {
+	display: block;
+	margin: 5px;
+	padding: 5px 0 5px 20px;
+	position: relative;
+	text-align: left;
+
+	dl {
+		margin: 0;
+
+		dt {
+			float: left;
+			margin-right: 3px;
+		}
+	}
+
+	.tabview-list {
+		margin-bottom: 0;
+	}
+
+	.taglib-workflow-status {
+		display: inline;
+
+		.workflow-status {
+			padding-left: .2em;
+		}
+	}
+
+	.entry-description {
+		margin-top: 20px;
+	}
+
+	.entry-discussion, .entry-attachment {
+		border-top: 1px solid #CCC;
+		display: block;
+		margin: 0.5em 4em;
+		overflow: hidden;
+		padding-top: 5px;
+
+		a {
+			display: block;
+			overflow: hidden;
+			text-decoration: none;
+		}
+
+		.image {
+			float: left;
+			padding: 5px;
+
+			img.avatar, img.attachment {
+				width: 45px;
+			}
+		}
+
+		.title {
+			display: block;
+		}
+
+		&:hover {
+			background-color: #D3E8F1;
+		}
+	}
+
+	.entry-folder {
+		color: #999;
+	}
+
+	.entry-link .entry-thumbnail-image {
+		border-width: 0;
+		color: #000;
+		text-decoration: none;
+		width: 128px;
+	}
+
+	&.alt {
+		background-color: #EDF0F3;
+	}
+
+	&.search {
+		background-color: #FFF;
+
+		&.alt {
+			background-color: #E2E5E8;
+		}
+	}
+
+	&:after {
+		clear: both;
+		content: ".";
+		display: block;
+		height: 0;
+		visibility: hidden;
+	}
+}
