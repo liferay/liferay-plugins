@@ -353,6 +353,10 @@ public abstract class SOSocialActivityInterpreter
 
 		String titlePattern = getTitlePattern(null, activity);
 
+		if (Validator.isNull(titlePattern)) {
+			return null;
+		}
+
 		Object[] titleArguments = getTitleArguments(
 			null, activity, null, null, serviceContext);
 
@@ -377,6 +381,10 @@ public abstract class SOSocialActivityInterpreter
 		sb.append("<div class=\"activity-action\">");
 
 		String titlePattern = getTitlePattern(null, activitySet);
+
+		if (Validator.isNull(titlePattern)) {
+			return null;
+		}
 
 		Object[] titleArguments = getTitleArguments(
 			null, activitySet, null, null, serviceContext);
