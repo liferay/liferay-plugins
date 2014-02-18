@@ -1,0 +1,55 @@
+/* ---------- Add/remove page ---------- */
+
+.modify-pages {
+	li {
+	}
+
+	.delete-tab {
+	}
+}
+
+/* ---------- Navigation portlet ---------- */
+
+.nav-menu {
+	ul {
+	}
+
+	li {
+		a {
+			&.ancestor {
+			}
+
+			&.selected {
+			}
+		}
+	}
+}
+
+/* ---------- Page template selector ---------- */
+
+.form-options {
+	input {
+	}
+}
+
+.form-triggers {
+}
+
+.form-trigger {
+	img {
+	}
+
+	&:focus, &:hover {
+	}
+}
+
+.trigger-selected {
+	&:focus, &:hover {
+	}
+}
+
+.options-trigger img {
+}
+
+.save-trigger img {
+}

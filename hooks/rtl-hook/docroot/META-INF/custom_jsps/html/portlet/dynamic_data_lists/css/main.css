@@ -1,0 +1,9 @@
+.portlet-dynamic-data-lists, .portlet-dynamic-data-list-display {
+	.lfr-spreadsheet-container .table {
+		overflow: auto;
+
+		&.yui3-datatable td:after {
+			content: '\0000a0';
+		}
+	}
+}

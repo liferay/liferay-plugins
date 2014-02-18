@@ -1,0 +1,37 @@
+.portlet-quick-note {
+  margin: 2px;
+  padding: 5px; }
+  .portlet-quick-note textarea {
+    min-height: 100px;
+    padding: 3px;
+    width: 95%; }
+  .portlet-quick-note .portlet-title-default {
+    float: none;
+    width: 100%; }
+  .portlet-quick-note .note-color {
+    border: 1px solid;
+    cursor: pointer;
+    float: right;
+    font-size: 0;
+    height: 10px;
+    margin: 3px 5px;
+    width: 10px; }
+    .portlet-quick-note .note-color.yellow {
+      background-color: #FFC;
+      border-color: #FC0;
+      margin-left: 0; }
+    .portlet-quick-note .note-color.green {
+      background-color: #CFC;
+      border-color: #0C0; }
+    .portlet-quick-note .note-color.blue {
+      background-color: #CCF;
+      border-color: #309; }
+    .portlet-quick-note .note-color.red {
+      background-color: #FCC;
+      border-color: #F00; }
+  .portlet-quick-note a.close-note {
+    float: right; }
+
+.ie6 .portlet-quick-note textarea {
+  height: expression(this.height < 100 ? '100px' : this.height); }
+

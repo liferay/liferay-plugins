@@ -1,0 +1,34 @@
+@media (max-width: 979px) {
+  .navbar .container {
+    position: relative; }
+    .navbar .container .btn-navbar {
+      color: #000;
+      display: inline-block;
+      margin-bottom: 5px;
+      width: auto; }
+      .navbar .container .btn-navbar > .icon-bar:first-child {
+        margin-top: 6px; }
+      .navbar .container .btn-navbar > .icon-bar:last-child {
+        margin-bottom: 5px; }
+    .navbar .container .nav-collapse {
+      display: none; }
+      .navbar .container .nav-collapse.open {
+        display: block;
+        height: auto;
+        overflow: visible; }
+      .navbar .container .nav-collapse .btn {
+        padding: 11px 19px; }
+    .navbar .container .navbar-search {
+      margin: 0;
+      padding: 5px; }
+      .navbar .container .navbar-search .btn, .navbar .container .navbar-search .btn-link {
+        clip: rect(0, 0, 0, 0);
+        position: absolute; }
+      .navbar .container .navbar-search .form-search {
+        margin: 0; }
+        .navbar .container .navbar-search .form-search .input-append {
+          display: block;
+          padding-right: 0; }
+          .navbar .container .navbar-search .form-search .input-append .search-query {
+            width: 100%; } }
+

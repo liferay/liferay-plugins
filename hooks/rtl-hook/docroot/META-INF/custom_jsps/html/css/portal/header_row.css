@@ -1,0 +1,32 @@
+.lfr-header-row {
+	border: 1px solid transparent;
+	min-height: 31px;
+
+	.lfr-search-combobox {
+		float: right;
+		margin: -2px 0 0 2px;
+	}
+}
+
+.lfr-header-row-content {
+	padding: 3px 4px 0;
+}
+
+.lfr-header-row, .lfr-header-row-content {
+	&:after {
+		clear: both;
+		content: "";
+		display: block;
+		height: 0;
+	}
+}
+
+/* Skin */
+
+.lfr-header-row {
+	border-bottom-color: #7B7B7B;
+
+	.lfr-search-combobox {
+		border-color: #5F5F5F;
+	}
+}

@@ -1,0 +1,94 @@
+.control-group-inline {
+  display: inline-block; }
+
+.button-holder {
+  margin: 20px 0; }
+
+.input-flex-add-on {
+  width: 100%; }
+  .input-flex-add-on.input-append input[type="text"] {
+    margin-bottom: 0;
+    margin-left: -1px; }
+  .input-flex-add-on.input-prepend input[type="text"] {
+    margin-bottom: 0; }
+  .input-flex-add-on.input-prepend .add-on {
+    height: auto;
+    text-align: left;
+    white-space: normal;
+    word-break: break-all; }
+  .input-flex-add-on input {
+    float: left;
+    margin-top: -1px; }
+  .input-flex-add-on .add-on {
+    float: left;
+    margin-top: -1px; }
+  .input-flex-add-on .input-localized-content {
+    clear: both;
+    padding-top: 10px; }
+
+.lfr-ddm-container .control-group label {
+  margin-left: 0; }
+.lfr-ddm-container .field-wrapper {
+  position: relative; }
+  .lfr-ddm-container .field-wrapper .aui-field-wrapper {
+    margin-left: 20px; }
+  .lfr-ddm-container .field-wrapper .datepicker-display {
+    float: none; }
+    .lfr-ddm-container .field-wrapper .datepicker-display .datepicker-button-wrapper, .lfr-ddm-container .field-wrapper .datepicker-display .datepicker-select-wrapper {
+      display: inline;
+      float: none; }
+  .lfr-ddm-container .field-wrapper .lfr-ddm-repeatable-add-button, .lfr-ddm-container .field-wrapper .lfr-ddm-repeatable-delete-button {
+    display: block;
+    height: 16px;
+    position: absolute;
+    top: 4px;
+    width: 16px; }
+    .lfr-ddm-container .field-wrapper .lfr-ddm-repeatable-add-button.lfr-ddm-repeatable-add-button, .lfr-ddm-container .field-wrapper .lfr-ddm-repeatable-delete-button.lfr-ddm-repeatable-add-button {
+      right: 4px; }
+    .lfr-ddm-container .field-wrapper .lfr-ddm-repeatable-add-button.lfr-ddm-repeatable-delete-button, .lfr-ddm-container .field-wrapper .lfr-ddm-repeatable-delete-button.lfr-ddm-repeatable-delete-button {
+      right: 24px; }
+.lfr-ddm-container .field-wrapper-content {
+  margin-bottom: 6px; }
+  .lfr-ddm-container .field-wrapper-content label {
+    font-weight: bold;
+    margin-left: 0; }
+
+.field-wrapper .btn {
+  margin-top: 6px; }
+
+.lfr-input-resource {
+  width: 350px; }
+
+.lfr-input-text, .form .fieldset .field.lfr-input-text-container input {
+  max-width: 350px;
+  width: 100%; }
+
+.lfr-textarea, .form .fieldset .field.lfr-textarea-container textarea {
+  height: 100px;
+  max-width: 500px;
+  width: 100%; }
+
+@media (max-width: 979px) {
+  .aui input[type="color"],
+  .aui input[type="date"],
+  .aui input[type="datetime"],
+  .aui input[type="datetime-local"],
+  .aui input[type="email"],
+  .aui input[type="month"],
+  .aui input[type="number"],
+  .aui input[type="password"],
+  .aui input[type="search"],
+  .aui input[type="tel"],
+  .aui input[type="text"],
+  .aui input[type="time"],
+  .aui input[type="url"],
+  .aui input[type="week"],
+  .aui select,
+  .aui textarea,
+  .aui .input-prepend .add-on,
+  .aui .navbar-search .search-query,
+  .aui .uneditable-input {
+    font-size: 18px;
+    height: auto;
+    line-height: normal; } }
+

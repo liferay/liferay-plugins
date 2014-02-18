@@ -1,0 +1,39 @@
+.lfr-tags-selector-list {
+  border: 0 solid transparent;
+  border-width: 0 1px 1px;
+  margin-bottom: 0.5em; }
+
+.lfr-tag-selector-popup {
+  width: 250px; }
+  .lfr-tag-selector-popup fieldset {
+    border-width: 0;
+    margin: 0;
+    padding: 0; }
+  .lfr-tag-selector-popup label {
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    display: block;
+    padding: 2px; }
+    .lfr-tag-selector-popup label input {
+      margin-right: 5px;
+      vertical-align: middle; }
+  .lfr-tag-selector-popup ul {
+    margin: 0; }
+  .lfr-tag-selector-popup li li {
+    list-style: none;
+    margin-left: 1em; }
+  .lfr-tag-selector-popup .lfr-tag-selector-search, .lfr-tag-selector-popup .lfr-tag-selector-input {
+    margin-bottom: 0; }
+  .lfr-tag-selector-popup .lfr-tag-message {
+    display: none; }
+  .lfr-tag-selector-popup .no-matches {
+    padding: 3px; }
+    .lfr-tag-selector-popup .no-matches .lfr-tag-message {
+      display: block; }
+
+/* Skin */
+.lfr-tag-selector-popup label {
+  border-bottom-color: #EEE; }
+.lfr-tag-selector-popup .no-matches {
+  color: #999; }
+

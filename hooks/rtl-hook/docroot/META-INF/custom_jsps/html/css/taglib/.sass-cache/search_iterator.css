@@ -1,0 +1,84 @@
+.lfr-search-container {
+  margin-top: 1.5em;
+  overflow: auto; }
+  @media (max-width: 979px) {
+    .lfr-search-container {
+      -webkit-overflow-scrolling: touch;
+      -moz-overflow-scrolling: touch;
+      -ms-overflow-scrolling: touch;
+      -o-overflow-scrolling: touch;
+      overflow-scrolling: touch; }
+      .lfr-search-container .searchcontainer-content .table {
+        max-width: none; } }
+
+.taglib-search-iterator {
+  border-collapse: collapse;
+  width: 100%; }
+  .taglib-search-iterator td {
+    padding: 4px; }
+    .taglib-search-iterator td.align-center {
+      text-align: center; }
+    .taglib-search-iterator td.align-left {
+      text-align: left; }
+    .taglib-search-iterator td.align-right {
+      text-align: right; }
+    .taglib-search-iterator td.valign-bottom {
+      vertical-align: bottom; }
+    .taglib-search-iterator td.valign-middle {
+      vertical-align: middle; }
+    .taglib-search-iterator td.valign-top {
+      vertical-align: top; }
+
+.taglib-search-iterator-page-iterator-top {
+  margin-bottom: 15px; }
+
+.taglib-page-iterator {
+  clear: both;
+  height: auto;
+  overflow: hidden;
+  width: auto; }
+  .taglib-page-iterator .lfr-pagination-buttons {
+    float: right;
+    margin: 0; }
+    @media (max-width: 979px) {
+      .taglib-page-iterator .lfr-pagination-buttons > li {
+        display: inline-block;
+        float: left;
+        width: 50%; }
+        .taglib-page-iterator .lfr-pagination-buttons > li.first, .taglib-page-iterator .lfr-pagination-buttons > li.last {
+          display: none; }
+        .taglib-page-iterator .lfr-pagination-buttons > li > a {
+          line-height: 20px;
+          padding: 11px 19px;
+          width: 65%; } }
+    @media (max-width: 979px) and (max-width: 767px) {
+      .taglib-page-iterator .lfr-pagination-buttons {
+        float: none;
+        margin-top: 20px;
+        width: 100%; } }
+    @media (max-width: 979px) and (min-width: 768px) and (max-width: 979px) {
+      .taglib-page-iterator .lfr-pagination-buttons {
+        width: 50%; } }
+  .taglib-page-iterator .lfr-pagination-config {
+    float: left;
+    line-height: 46px; }
+    @media (max-width: 767px) {
+      .taglib-page-iterator .lfr-pagination-config {
+        float: none; }
+        .taglib-page-iterator .lfr-pagination-config .current-page-menu {
+          display: block; }
+          .taglib-page-iterator .lfr-pagination-config .current-page-menu .btn {
+            display: block; } }
+    .taglib-page-iterator .lfr-pagination-config .lfr-pagination-delta-selector, .taglib-page-iterator .lfr-pagination-config .lfr-pagination-page-selector {
+      display: inline; }
+    @media (max-width: 979px) {
+      .taglib-page-iterator .lfr-pagination-config .lfr-pagination-delta-selector {
+        display: none; } }
+  .taglib-page-iterator .search-results {
+    float: left;
+    line-height: 46px;
+    margin-left: 10px; }
+    @media (max-width: 979px) {
+      .taglib-page-iterator .search-results {
+        display: none; } }
+

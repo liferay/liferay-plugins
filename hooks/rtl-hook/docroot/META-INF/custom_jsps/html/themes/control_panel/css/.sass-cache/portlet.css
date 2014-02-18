@@ -1,0 +1,420 @@
+/* ---------- Portlet wrapper and icons ---------- */
+.freeform .portlet {
+  margin-bottom: 0; }
+
+body.portlet {
+  border: none; }
+
+.portlet-topper {
+  position: relative; }
+  .portlet-topper .portlet-topper-toolbar {
+    margin: 0;
+    padding: 2px;
+    position: absolute;
+    right: 3px;
+    text-align: right;
+    top: 3px;
+    z-index: 300; }
+    .portlet-topper .portlet-topper-toolbar a {
+      color: inherit; }
+      .portlet-topper .portlet-topper-toolbar a, .portlet-topper .portlet-topper-toolbar a:hover {
+        text-decoration: none; }
+      .portlet-topper .portlet-topper-toolbar a i {
+        font-size: 19px; }
+    .portlet-topper .portlet-topper-toolbar .nobr {
+      display: block;
+      float: left;
+      padding: 1px; }
+    .portlet-topper .portlet-topper-toolbar .portlet-icon-back {
+      background: url(../images/arrows/12_left.png) no-repeat 0 50%;
+      color: #FFF;
+      font-weight: bold;
+      padding: 5px 5px 5px 18px; }
+      .portlet-topper .portlet-topper-toolbar .portlet-icon-back:hover {
+        color: #FFF; }
+    .portlet-topper .portlet-topper-toolbar .portlet-options .lfr-icon-menu-text {
+      color: transparent;
+      font-size: 0; }
+
+.portlet-title {
+  display: block; }
+  .portlet-title img {
+    vertical-align: middle; }
+
+.portlet-title-editable {
+  cursor: pointer; }
+
+.portlet-title-text {
+  display: inline-block;
+  max-width: 95%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  white-space: nowrap; }
+
+.panel-page-content .portlet-title-text, .panel-page-body .portlet-title-text {
+  cursor: auto; }
+
+.portlet-content, .portlet-minimized .portlet-content-container {
+  padding: 12px 10px 10px; }
+
+.portlet-minimized .portlet-content {
+  padding: 0; }
+
+.portlet-nested-portlets .portlet-boundary {
+  position: relative !important;
+  top: 0 !important;
+  left: 0 !important; }
+
+.portlet-borderless-bar, .portlet-content .lfr-icon-actions {
+  background: #333;
+  color: #FFF;
+  text-shadow: -1px -1px #000; }
+  .portlet-borderless-bar a, .portlet-content .lfr-icon-actions a {
+    color: #3AF; }
+
+.portlet-borderless-container:hover .portlet-borderless-bar, .portlet-content:hover .lfr-icon-actions {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1; }
+
+.portlet-borderless-container:hover .portlet-borderless-bar .portlet-actions, .portlet-content:hover .lfr-icon-actions .taglib-text {
+  display: inline-block; }
+
+.portlet-content .lfr-icon-actions {
+  float: left;
+  margin: 1px 10px 1px 1px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+  padding: 2px 7px; }
+  .portlet-content .lfr-icon-actions .taglib-text {
+    color: #FFF;
+    display: none;
+    font-weight: bold;
+    margin-right: 1em;
+    text-decoration: none;
+    vertical-align: middle; }
+  .portlet-content .lfr-icon-actions .lfr-icon-action a {
+    background: url() no-repeat 0 50%;
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: top; }
+    .portlet-content .lfr-icon-actions .lfr-icon-action a:hover {
+      text-decoration: none; }
+      .portlet-content .lfr-icon-actions .lfr-icon-action a:hover span {
+        text-decoration: underline; }
+    .portlet-content .lfr-icon-actions .lfr-icon-action a img {
+      visibility: hidden; }
+  .portlet-content .lfr-icon-actions .lfr-icon-action-add a {
+    background-image: url(../images/common/add_white.png); }
+  .portlet-content .lfr-icon-actions .lfr-icon-action-edit a {
+    background-image: url(../images/common/edit_white.png); }
+  .portlet-content .lfr-icon-actions .lfr-icon-action-edit-template a {
+    background-image: url(../images/common/edit_template_white.png); }
+  .portlet-content .lfr-icon-actions .lfr-icon-action-configuration a {
+    background-image: url(../images/common/configuration_white.png); }
+.portlet-content .lfr-url-error {
+  display: inline-block;
+  white-space: normal; }
+
+/* ---------- Borderless portlet ---------- */
+.portlet-borderless-container {
+  min-height: 2.5em;
+  position: relative; }
+
+.portlet-borderless-bar {
+  font-size: 10px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
+  opacity: 0.3;
+  padding: 2px 5px 1px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 200; }
+  .portlet-borderless-bar a {
+    background: url() no-repeat 0 50%;
+    display: inline-block;
+    height: 16px;
+    margin-left: 5px;
+    text-indent: -9999px;
+    vertical-align: middle;
+    width: 16px; }
+  .portlet-borderless-bar .portlet-actions {
+    display: none;
+    float: left;
+    margin-right: 10px;
+    overflow: hidden; }
+  .portlet-borderless-bar .portlet-actions, .portlet-borderless-bar .portlet-title-default {
+    min-height: 20px;
+    vertical-align: top; }
+  .portlet-borderless-bar .portlet-action-separator {
+    display: none; }
+  .portlet-borderless-bar .portlet-back a {
+    height: auto;
+    text-indent: 0;
+    width: auto; }
+  .portlet-borderless-bar .portlet-close a {
+    background-image: url(../images/portlet/close_borderless.png); }
+  .portlet-borderless-bar .portlet-options li.lfr-trigger strong a {
+    background-image: url(../images/portlet/options_borderless.png); }
+
+.lfr-configurator-visibility .portlet-borderless-bar {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6; }
+.lfr-configurator-visibility .portlet-content .lfr-icon-actions {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1; }
+
+.portlet-content .icons-container {
+  clear: both;
+  height: auto;
+  margin-top: 1em;
+  overflow: hidden;
+  width: auto; }
+
+.portlet-title-default {
+  display: inline-block;
+  float: right;
+  font-weight: bold;
+  text-transform: uppercase; }
+
+.portlet-draggable .portlet-topper {
+  cursor: move; }
+.portlet-draggable .portlet-title-default {
+  background: url(../images/portlet/draggable_borderless.png) no-repeat 0 50%;
+  cursor: move;
+  padding-left: 20px; }
+
+/* ---------- Panel page ---------- */
+.lfr-panel-page {
+  width: 100%; }
+  .lfr-panel-page .portlet-title {
+    font-size: 13px; }
+  .lfr-panel-page .lfr-add-content h2 span {
+    background-color: #D3DADD; }
+
+/* ---------- Standard styles defined in the JSR 168 ---------- */
+/* ---------- Fonts ---------- */
+/* ---------- Font attributes for the 'normal' fragment font ---------- */
+/* ---------- Font attributes similar to the .portlet-font but the color is lighter ---------- */
+/* ---------- Messages ---------- */
+.portlet-msg {
+  background: #EEE none no-repeat 6px 50%;
+  border: 1px solid #555;
+  color: #34404F;
+  font-weight: bold;
+  margin: 2px auto 14px;
+  padding: 6px 6px 6px 30px;
+  text-align: left; }
+
+/* ---------- Status labels ---------- */
+.lfr-status-alert-label, .lfr-status-error-label, .lfr-status-info-label, .lfr-status-progress-label, .lfr-status-success-label {
+  background: none no-repeat 0 50%;
+  padding: 3px 3px 3px 20px; }
+
+.lfr-status-alert-label {
+  background-image: url(../images/messages/alert.png);
+  color: #663; }
+
+.lfr-status-error-label {
+  background-image: url(../images/messages/error.png);
+  color: #900; }
+
+.lfr-status-help-label, .lfr-status-info-label, .lfr-status-progress-label {
+  background-image: url(../images/messages/info.png);
+  color: #34404F; }
+
+.lfr-status-help-label {
+  background-image: url(../images/portlet/help.png); }
+
+.lfr-status-progress-label {
+  background-image: url(../images/aui/loading_indicator.gif); }
+
+.lfr-status-success-label {
+  background-image: url(../images/messages/success.png);
+  color: #384F34; }
+
+/* ---------- Liferay messages ---------- */
+.lfr-message {
+  position: relative; }
+  .lfr-message .lfr-message-control {
+    background-color: #333;
+    display: inline-block; }
+  .lfr-message .lfr-message-controls {
+    display: none;
+    left: 3px;
+    margin: -8px 8px 0 3px;
+    position: absolute;
+    top: 50%;
+    z-index: 10; }
+  .lfr-message .lfr-message-close {
+    background-image: url(../images/portlet/close_borderless.png);
+    background-position: 0 0;
+    background-repeat: no-repeat; }
+  .lfr-message .lfr-message-close-all {
+    color: #FFF;
+    display: none;
+    font-size: 0.8em;
+    margin-left: 10px;
+    padding: 1px 10px;
+    text-shadow: 1px 1px 0 #000;
+    vertical-align: top; }
+    .lfr-message .lfr-message-close-all a {
+      color: #FFF; }
+  .lfr-message .lfr-message-controls-hover .lfr-message-close-all {
+    display: inline-block; }
+  .lfr-message.pending {
+    background-image: url(../images/common/time.png); }
+
+.lfr-message-content.alert {
+  margin-bottom: 0; }
+
+.lfr-message-close {
+  cursor: pointer; }
+
+/* ---------- Sections ---------- */
+/* ---------- Text in a selected cell range ---------- */
+.portlet-section-selected, .portlet-section-selected a {
+  background: #727C81;
+  color: #FFF;
+  font-weight: bold;
+  text-decoration: none; }
+.portlet-section-selected a:hover, .portlet-section-selected a:focus {
+  background-color: #727C81; }
+
+/* ---------- Text of a subheading ---------- */
+/* ---------- Table or section footnote ---------- */
+/* ---------- Text that belongs to the table but does not fall in one of the other categories (e.g. explanatory or help text that is associated with the section) ---------- */
+/* ---------- Forms ---------- */
+.alert .form {
+  margin: 0; }
+
+/* ---------- Text used for the descriptive label of the whole form (not the labels for fields) ---------- */
+/* ---------- Text of the user-input in an input field ---------- */
+/* ---------- Text on a button ---------- */
+/* ---------- Text that appears beside a context dependent action icon ---------- */
+/* ---------- Text that appears beside a 'standard' icon (e.g. Ok, or cancel) ---------- */
+/* ---------- Text for a separator of fields (e.g. checkboxes, etc.) ---------- */
+/* ---------- Text for a field (not input field, e.g. checkboxes, etc.) ---------- */
+/* ---------- Menus ---------- */
+/* ---------- General menu settings such as background color, margins, etc. ---------- */
+/* ---------- Normal, unselected menu item ---------- */
+/* ---------- Selected menu item ---------- */
+/* ---------- Normal, unselected menu item when the mouse hovers over it ---------- */
+/* ---------- Selected menu item when the mouse hovers over it ---------- */
+/* ---------- Normal, unselected menu item that has sub-menus ---------- */
+/* ---------- Selected sub-menu item that has sub-menus ---------- */
+/* ---------- Descriptive text for the menu (e.g. in a help context below the menu) ---------- */
+/* ---------- Menu caption ---------- */
+/* ---------- Miscellaneous portlet styles ---------- */
+.restricted, .restricted td {
+  background: #FDD;
+  border: none; }
+.restricted * {
+  color: #727C81; }
+
+.alt.restricted td {
+  background-color: #FFC0C0; }
+
+.hover.restricted td {
+  background-color: #D3BDC0; }
+
+.alt.restricted td.first, .restricted td.first {
+  background-image: url(../images/messages/error.png);
+  background-position: 5px 50%;
+  background-repeat: no-repeat;
+  padding-left: 28px; }
+
+/* ---------- Permissions ---------- */
+.table-data tr.lfr-role .first {
+  background-image: url();
+  background-position: 5px 50%;
+  background-repeat: no-repeat;
+  padding-left: 30px; }
+.table-data tr.lfr-role-guest .first {
+  background-image: url(../images/common/guest_icon.png); }
+.table-data tr.lfr-role-regular .first {
+  background-image: url(../images/common/user_icon.png); }
+.table-data tr.lfr-role-site .first {
+  background-image: url(../images/common/site_icon.png); }
+.table-data tr.lfr-role-organization .first {
+  background-image: url(../images/common/organization_icon.png); }
+.table-data tr.lfr-role-team .first {
+  background-image: url(../images/common/team_icon.png); }
+
+/* ---------- Miscellaneous component styles ---------- */
+/* ---------- Add content dialog ---------- */
+.lfr-portlet-item, .lfr-portlet-item p a {
+  font-size: 1em; }
+
+/* ---------- Calendar taglib ---------- */
+.taglib-calendar tr.portlet-section-header th, .taglib-calendar tr td {
+  border: none; }
+.taglib-calendar tr td a {
+  background-color: #F0F5F7;
+  border: 1px solid #FFF;
+  border-bottom: none;
+  border-left: none;
+  display: block;
+  height: 15px;
+  padding: 5px 0; }
+  .taglib-calendar tr td a:hover {
+    background-color: #727C81;
+    color: #FFF; }
+.taglib-calendar tr td.calendar-inactive {
+  background-color: #FFF;
+  color: #B5BFC4; }
+.taglib-calendar tr th {
+  border-bottom-color: #D7D7D7; }
+.taglib-calendar table td {
+  border-width: 0; }
+.taglib-calendar .calendar-current-day, .taglib-calendar .calendar-current-day a {
+  background-color: #FFF; }
+.taglib-calendar .calendar-current-day a {
+  border: 1px solid #727C81;
+  color: #369;
+  text-decoration: underline; }
+
+/* ---------- navbar form search ---------- */
+.navbar form {
+  margin: 0; }
+
+.ie .portlet-borderless-bar {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5; }
+.ie .portlet-content .lfr-icon-actions {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5; }
+.ie .portlet-borderless-container:hover .portlet-borderless-bar, .ie .portlet-journal-content .lfr-icon-actions:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1; }
+.ie .taglib-calendar tr td.first a {
+  border-right: none; }
+
+.ie6 .portlet-content .icons-container, .ie7 .portlet-content .icons-container {
+  overflow: visible; }
+.ie6 .portlet-content .lfr-icon-actions .taglib-text, .ie7 .portlet-content .lfr-icon-actions .taglib-text {
+  display: inline-block; }
+.ie6 .portlet-borderless-bar .portlet-actions, .ie7 .portlet-borderless-bar .portlet-actions {
+  margin-left: 20px;
+  margin-right: 0; }
+.ie6 .portlet-title-default, .ie7 .portlet-title-default {
+  float: left; }
+.ie6 .lfr-message .lfr-message-close, .ie7 .lfr-message .lfr-message-close {
+  float: left; }
+
+.ie6 .portlet-topper-toolbar .icon {
+  height: 16px;
+  width: 16px; }
+.ie6 .portlet-borderless-container {
+  height: 2.5em; }
+.ie6 .portlet-borderless-bar {
+  filter: alpha(opacity=90); }
+  .ie6 .portlet-borderless-bar .portlet-actions {
+    display: inline;
+    filter: alpha(opacity=90); }
+.ie6 .breadcrumbs {
+  zoom: 1; }
+
+.ie8 .dockbar img, .ie8 .lfr-icon-action img, .ie8 .logo img {
+  max-width: none; }
+

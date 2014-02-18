@@ -1,0 +1,170 @@
+.portlet-users-admin .form fieldset {
+  border-width: 0;
+  padding: 0; }
+.portlet-users-admin .form .fieldset select {
+  width: auto; }
+.portlet-users-admin .form .fieldset textarea {
+  width: 90%; }
+.portlet-users-admin .form .fieldset .field.mailing-ctrl {
+  clear: both; }
+  .portlet-users-admin .form .fieldset .field.mailing-ctrl span {
+    margin-right: 0.5em; }
+.portlet-users-admin .form .fieldset .field.localized-language-selector {
+  margin-bottom: 0; }
+.portlet-users-admin .form .fieldset .email-field, .portlet-users-admin .form .fieldset .url-field {
+  width: 200px; }
+.portlet-users-admin #header-bottom {
+  background-color: #F6F8FB;
+  height: 34px;
+  margin: 0 0 10px; }
+.portlet-users-admin #header-menu {
+  background-color: #F3F5F5;
+  font-size: 11px;
+  line-height: 34px;
+  margin: 0 0 10px;
+  padding: 0 10px;
+  text-align: right; }
+.portlet-users-admin #header-title {
+  background-color: #C1CABC;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 10px;
+  padding: 7px 10px; }
+.portlet-users-admin .company-logo {
+  border-width: 0;
+  width: 100px; }
+.portlet-users-admin .email-user-add .password-changed-notification {
+  display: none; }
+.portlet-users-admin .label-holder {
+  font-weight: 700;
+  padding: 15px 0 5px; }
+.portlet-users-admin .org-labor-entry {
+  float: left;
+  margin-right: 2%;
+  width: 12%; }
+  @media (max-width: 767px) {
+    .portlet-users-admin .org-labor-entry {
+      float: none;
+      width: auto; } }
+  .portlet-users-admin .org-labor-entry select {
+    width: 100%; }
+  .portlet-users-admin .org-labor-entry > .control-group {
+    margin-bottom: 0; }
+.portlet-users-admin .organization-details {
+  margin-left: 21px; }
+.portlet-users-admin .organization-information {
+  overflow: hidden; }
+.portlet-users-admin .organization-search {
+  float: right;
+  margin: 0 0 0.5em 0.5em; }
+.portlet-users-admin .password-policy-options {
+  margin-left: 2em; }
+.portlet-users-admin .section {
+  float: left;
+  margin-left: 10px;
+  width: 47%; }
+  .portlet-users-admin .section h3 {
+    background: url() no-repeat scroll 2px 50%;
+    border-bottom: 1px solid #CCC;
+    line-height: 1.5;
+    margin-bottom: 0.5em;
+    padding-left: 25px; }
+  .portlet-users-admin .section li {
+    list-style: none;
+    margin: 0;
+    padding-left: 25px; }
+  .portlet-users-admin .section ul {
+    margin: 0; }
+.portlet-users-admin .entity-addresses .primary {
+  background-position: 3px 5px; }
+.portlet-users-admin .entity-addresses .mailing-name {
+  display: block;
+  font-style: italic; }
+.portlet-users-admin .entity-addresses h3 {
+  background-image: url(@theme_image_path@/common/home.png); }
+.portlet-users-admin .entity-details {
+  clear: both; }
+.portlet-users-admin .entity-comments h3 {
+  background-image: url(@theme_image_path@/common/welcome_message.png); }
+.portlet-users-admin .entity-email-addresses h3 {
+  background-image: url(@theme_image_path@/mail/unread.png); }
+.portlet-users-admin .entity-phones h3 {
+  background-image: url(@theme_image_path@/common/telephone.png); }
+.portlet-users-admin .entity-websites h3 {
+  background-image: url(@theme_image_path@/common/history.png); }
+.portlet-users-admin .radio-holder {
+  line-height: 12px; }
+.portlet-users-admin .form-navigator .user-info .user-logo, .portlet-users-admin .form-navigator .user-info .organization-logo, .portlet-users-admin .form-navigator .organization-info .user-logo, .portlet-users-admin .form-navigator .organization-info .organization-logo {
+  margin-right: 5px;
+  width: 35px; }
+.portlet-users-admin .membership-restriction-container {
+  margin-top: 1em; }
+.portlet-users-admin .instant-messenger, .portlet-users-admin .social-network {
+  clear: both;
+  margin-bottom: 2em;
+  overflow: hidden; }
+  .portlet-users-admin .instant-messenger img, .portlet-users-admin .social-network img {
+    margin-left: 1em; }
+  .portlet-users-admin .instant-messenger .control-group, .portlet-users-admin .social-network .control-group {
+    margin: 0; }
+  .portlet-users-admin .instant-messenger .field, .portlet-users-admin .social-network .field {
+    float: left; }
+.portlet-users-admin .addresses .field {
+  float: none;
+  width: auto; }
+.portlet-users-admin .permission-scopes {
+  margin-right: 10px; }
+  .portlet-users-admin .permission-scopes.empty {
+    display: none; }
+.portlet-users-admin .permission-group {
+  margin: 10px 0 0 10px; }
+.portlet-users-admin .lfr-permission-navigation-container .search {
+  margin: 20px 0px; }
+.portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation {
+  overflow: auto;
+  width: 100%; }
+  .portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation .permission-navigation-item-header {
+    font-weight: bold; }
+    .portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation .permission-navigation-item-header .permission-navigation-item-header-icon {
+      background: url() no-repeat 50%;
+      display: inline-block;
+      height: 10px;
+      width: 9px; }
+  .portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation .selected {
+    font-weight: bold; }
+  .portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation .toggler-header-collapsed .permission-navigation-item-header-icon {
+    background-image: url(@theme_image_path@/arrows/05_right.png); }
+  .portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation .toggler-header-expanded .permission-navigation-item-header-icon {
+    background-image: url(@theme_image_path@/arrows/05_down.png);
+    vertical-align: middle; }
+  .portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation .permission-navigation-item-header {
+    cursor: pointer;
+    margin: 0.5em; }
+  .portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation .permission-navigation-item-content .permission-navigation-item-container {
+    cursor: pointer;
+    line-height: 1.8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+  .portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation .permission-navigation-item-summary {
+    margin: 0.5em 0em 1.5em .5em; }
+  .portlet-users-admin .lfr-permission-navigation-container .lfr-permission-navigation .permission-navigation-section .permission-navigation-section {
+    margin-left: 1em; }
+.portlet-users-admin .view-all-link {
+  color: #666;
+  font-weight: normal;
+  margin-bottom: 15px; }
+.portlet-users-admin .lfr-asset-column-details {
+  margin-top: 1em; }
+.portlet-users-admin .lfr-asset-summary img.avatar {
+  max-width: 210px; }
+
+.lfr-floating-container .field input, .lfr-floating-container .field img {
+  vertical-align: top; }
+
+.ie .portlet-users-admin .permission-scopes {
+  height: 1%; }
+
+.ie6 .portlet-users-admin .organization-information {
+  height: 1%; }
+

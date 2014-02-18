@@ -1,0 +1,40 @@
+.aui .dark {
+  background: #363636;
+  color: #E3E3E3;
+  /* ---------- Dockbar ---------- */
+  /* ---------- Nav#Navigation ---------- */
+  /* ---------- Breadcrumbs ---------- */
+  /* ---------- Portlet ---------- */
+  /* ---------- Tables ---------- */ }
+  .aui .dark.portal-popup {
+    background-color: transparent;
+    color: #555; }
+    .aui .dark.portal-popup legend {
+      color: #555; }
+  .aui .dark.yui3-skin-sam .yui3-widget-mask {
+    background-color: #111; }
+  .aui .dark a {
+    color: #009CEB; }
+  .aui .dark legend, .aui .dark .portlet-wiki .portlet-body h3, .aui .dark .taglib-header {
+    color: #E3E3E3; }
+  .aui .dark .modal-content, .aui .dark .modal-content legend {
+    color: #555; }
+  .aui .dark .dockbar .nav li.dropdown .dropdown-menu {
+    background: #007BB3; }
+  .aui .dark #breadcrumbs {
+    padding-left: 10px; }
+  .aui .dark #navigation .navbar-inner {
+    background: #2F2F2F; }
+    .aui .dark #navigation .navbar-inner .nav > li > a {
+      color: #E3E3E3; }
+  .aui .dark .breadcrumb li a {
+    color: #E3E3E3; }
+  .aui .dark .lfr-header-row-content {
+    padding: 3px 0 0; }
+  .aui .dark .portlet {
+    background: #363636; }
+  .aui .dark .portlet-title {
+    color: #00CAFF; }
+  .aui .dark .table {
+    color: #555; }
+

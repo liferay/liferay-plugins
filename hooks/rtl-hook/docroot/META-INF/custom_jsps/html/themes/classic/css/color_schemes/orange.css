@@ -1,0 +1,240 @@
+body.orange, .orange .portlet {
+	background-color: #F3F1EF;
+}
+
+.orange {
+	.icon {
+		background-image: url(@theme_image_path@/color_schemes/orange/aui/icon_sprite.png);
+	}
+
+	/* ---------- Links ---------- */
+
+	a {
+		color: #7D745B;
+
+		&:hover {
+			color: #CD7700;
+		}
+	}
+
+	/* ---------- Application styling ---------- */
+
+	.resizable-proxy {
+		border-color: #968A83;
+	}
+
+	.sortable-proxy {
+		background-color: #827972;
+	}
+
+	.menugroup-content h4 {
+		background-color: #DFDCD3;
+		color: #7D745B;
+	}
+
+	.menu-content li a {
+		color: #34322C;
+	}
+
+	.menu-content li a.focus, .lfr-menu-expanded li a:focus {
+		background-color: #7D745B;
+		color: #FFF;
+		text-shadow: -1px -1px #34322C;
+	}
+
+	.tab {
+		background: none;
+	}
+
+	.tab-active {
+		background-color: #333;
+
+		&, a {
+			color: #FFF;
+		}
+	}
+
+	.portlet-communities, .portlet-enterprise-admin {
+		.lfr-current-theme, .lfr-current-theme {
+			background-color: #F8F4F1;
+			border-color: #968A83;
+		}
+
+		.theme-entry .theme-title  {
+			background-color: #948D88;
+			border-color: #968A83;
+		}
+
+		.lfr-theme-list h3 {
+			background-color: #DED8D4;
+		}
+
+		.selected-color-scheme .theme-entry {
+			border-color: #9A6F33;
+		}
+
+		.lfr-theme-list .theme-entry:hover {
+			background-color: #FFEEE0;
+			border-color: #E0BDA8;
+			color: #C9B09F;
+		}
+
+		.theme-entry:hover .theme-thumbnail {
+			border-color: #E0BDA8;
+		}
+	}
+
+	.portlet-document-library .detail-column-last {
+		background-color: #FFE9D8;
+
+		.detail-column-content {
+			border-color: #DAA489;
+		}
+	}
+
+	.dockbar {
+		background-color: #AFA798;
+		background-image: url(@theme_image_path@/color_schemes/orange/dockbar/dockbar_bg.png);
+
+		.menu-button-active {
+			background-color: #DBAC5C;
+			background-image: url(@theme_image_path@/color_schemes/orange/dockbar/button_active_bg.png);
+
+			a {
+				color: #FFF;
+			}
+		}
+	}
+
+	.sortable-layout-drag-indicator {
+		background-color: #B6A63C;
+	}
+
+	.autocomplete-results-content {
+		border-color: #F5D599;
+	}
+
+	.autocomplete-selected {
+		background-color: #F7F0E0;
+		border-color: #EAD8A4;
+	}
+
+	.textboxlistentry {
+		background-color: #F4EACB;
+		border-color: #EAD8A4;
+	}
+
+	.textboxlistentry-focused {
+		background-color: #B6A63C;
+		border-color: #4F4534;
+	}
+
+	.textboxlistentry-close-hover {
+		background-color: #EAD8A4;
+	}
+
+	/* ---------- Portlet wrapper and icons ---------- */
+
+	.portlet {
+		border-color: #968A83;
+	}
+
+	.portlet-topper {
+		background-color: #D9DDD3;
+		border-bottom-color: #B7BCAE;
+	}
+
+	.panel-page .portlet-topper {
+		border-bottom-color: #968A83;
+	}
+
+	.portlet-section-selected {
+		&, a {
+			background-color: #968A83;
+		}
+
+		a:focus, a:hover {
+			background-color: #968A83;
+		}
+	}
+
+	/* ---------- Calendar portlet ---------- */
+
+	.portlet-calendar {
+		.calendar-day .day-text {
+			background-color: #968A83;
+		}
+
+		.taglib-calendar tr td.calendar-current-day a {
+			&:focus, &:hover {
+				background-color: #F2FFDF;
+				border-color: #B7BCAE;
+				color: #5BCC00;
+			}
+		}
+	}
+
+	.taglib-calendar {
+		tr td a {
+			background-color: #EFF3EA;
+
+			&:hover {
+				background-color: #968A83;
+			}
+		}
+
+		.calendar-current-day a {
+			border-color: #968A83;
+			color: #5F9930;
+		}
+
+		.calendar-current-day, .calendar-current-day a {
+			background-color: #FFF;
+		}
+
+		tr td.calendar-inactive {
+			color: #BEC4B5;
+		}
+	}
+
+	/* ---------- Miscellaneous portlet styles ---------- */
+
+	.journal-template-error .scroll-pane pre span {
+		background-color: #BEC4B5;
+	}
+
+	.restricted * {
+		color: #968A83;
+	}
+
+	.lfr-tag-selector-popup .textfield-content {
+		background-color: #DED8D4;
+		border-color: #BDB4AF;
+	}
+
+	/* This CSS sets the default styles for forms. */
+
+	button, input[type="button"], input[type="reset"], input[type="submit"] {
+		color: #4F4534;
+	}
+
+	button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover {
+		background-color: #DAC8BA;
+		background-image: url(@theme_image_path@/color_schemes/orange/application/state_hover_bg.png);
+		border-color: #837062;
+		color: #9A6F33;
+	}
+
+	button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus {
+		background-color: #ECECEC;
+		background-image: url(@theme_image_path@/application/state_active_bg.png);
+	}
+}
+
+/* ---------- IE6 chokes on attribute selectors in a chain, so we separate them into their own rule ---------- */
+
+.ie6 .orange {
+	button, input.button, input.submit, .button-disabled button, .button-disabled input.button, .button-disabled input.submit {
+		color: #4F4534;
+	}
+}

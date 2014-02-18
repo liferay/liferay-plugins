@@ -1,0 +1,88 @@
+.breadcrumbs {
+  margin-bottom: 10px;
+  margin-left: 0; }
+
+.lfr-button {
+  padding: 2px 0 2px 20px; }
+
+.js .controls-hidden .lfr-meta-actions, .js .controls-hidden .portlet-borderless-bar, .js .controls-hidden .portlet-topper-toolbar, .js .controls-hidden .lfr-configurator-visibility {
+  display: none; }
+.js .page-maximized .portlet-topper-toolbar {
+  display: block; }
+
+.configuration-frame, .control-panel-frame {
+  border-width: 0;
+  overflow: auto;
+  width: 100%; }
+
+.float-container:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden; }
+
+.lfr-meta-actions {
+  padding-top: 1em; }
+
+.lfr-table {
+  border-collapse: collapse;
+  clear: both; }
+  .lfr-table tr td, .lfr-table tr th {
+    padding: 0 5px; }
+    .lfr-table tr td:first-child, .lfr-table tr td.first-child, .lfr-table tr th:first-child, .lfr-table tr th.first-child {
+      padding-left: 0; }
+    .lfr-table tr td:last-child, .lfr-table tr td.last-child, .lfr-table tr th:last-child, .lfr-table tr th.last-child {
+      padding-right: 0; }
+
+.lfr-table-grid .field-hint {
+  float: none; }
+
+.lfr-control-links a {
+  margin-right: 1em; }
+
+.portlet-toolbar {
+  margin-bottom: 1.5em; }
+
+.lfr-change-logo {
+  display: block;
+  margin-bottom: 10px; }
+
+.lfr-portrait-preview:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden; }
+.lfr-portrait-preview .lfr-portrait-preview-img.loading {
+  border: 1px solid transparent;
+  min-height: 50px;
+  min-width: 50px; }
+
+.ie .float-container {
+  height: 1%; }
+
+.gecko .lfr-portrait-editor {
+  display: table-column; }
+
+/* Skin */
+.lfr-button {
+  background: url() no-repeat 0 50%; }
+
+.lfr-table tr th {
+  font-weight: bold; }
+
+.lfr-checkbox-preselected, .lfr-configurator-visibility {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5; }
+
+.lfr-change-logo {
+  background: url(@theme_image_path@/common/checkerboard.png) repeat 50%; }
+
+.lfr-portrait-preview .lfr-portrait-preview-img.loading {
+  background: white url(@theme_image_path@/application/loading_indicator.gif) no-repeat 50%;
+  border-color: #ccc; }
+
+.ie .lfr-checkbox-preselected, .ie .lfr-configurator-visibility, .ie .lfr-configurator-visibility .portlet-topper {
+  zoom: 1; }
+

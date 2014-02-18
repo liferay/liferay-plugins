@@ -1,0 +1,22 @@
+.lfr-editor-textarea {
+	padding: 0;
+	width: 100%;
+}
+
+.lfr-rich-editor.ace_editor {
+	border: 1px solid transparent;
+	height: 400px;
+	position: relative;
+	width: 100%;
+}
+
+/* Skin */
+
+.lfr-rich-editor.ace_editor {
+	border-color: #A1A2A4;
+}
+
+.lfr-plain-editor textarea, .lfr-rich-editor.ace_editor {
+	font-family: 'Monaco', 'Menlo', 'Droid Sans Mono', 'Courier New', monospace;
+	font-size: 12px;
+}

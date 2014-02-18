@@ -1,0 +1,123 @@
+@import "compass";
+@import "mixins";
+
+.app-view-entry-taglib.entry-display-style {
+	&.display-icon {
+		display: inline-block;
+		float: left;
+		margin: 0 5px;
+		padding: 10px 0;
+		position: relative;
+		vertical-align: top;
+		width: 200px;
+		height: 160px;
+
+		@include respond-to(phone, tablet) {
+			height: 210px;
+		}
+
+		.entry-title {
+			clear: both;
+			font-size: 1em;
+			font-weight: normal;
+			padding: 0 10px;
+		}
+
+		.entry-link {
+			overflow: visible;
+			text-align: center;
+		}
+
+		.folder-action, .entry-action {
+			top: 14px;
+
+			@include respond-to(phone, tablet) {
+				bottom: 8px;
+				right: 31px;
+				top: auto;
+
+				a {
+					padding: 10px 0;
+					width: 136px;
+				}
+			}
+		}
+
+		.entry-selector {
+			left: 10px;
+		}
+
+		.entry-thumbnail {
+			float: none;
+			margin: 0;
+		}
+	}
+
+	&.display-descriptive {
+		display: block;
+		margin: 5px;
+		padding: 5px 0;
+		padding-left: 20px;
+		position: relative;
+		text-align: left;
+
+		&:after {
+			clear: both;
+			content: ".";
+			display: block;
+			height: 0;
+			visibility: hidden;
+		}
+
+		.entry-title {
+			word-wrap: normal;
+		}
+
+		@include respond-to(phone, tablet) {
+			.folder-action, .entry-action {
+				a {
+					padding: 10px 12px;
+					width: auto;
+				}
+			}
+		}
+	}
+
+	@include respond-to(phone, tablet) {
+		&.display-icon, &.display-descriptive {
+			border: 1px solid rgba(0, 0, 0, 0.1);
+			margin: 5px;
+
+			.entry-selector, .folder-action, .entry-action {
+				&.overlay {
+					clip: rect(auto, auto, auto, auto);
+				}
+			}
+
+			.img-polaroid {
+				border-width: 0;
+
+				@include box-shadow(none);
+			}
+		}
+	}
+
+	&.display-list.locked {
+		background: url(@theme_image_path@/common/lock.png) no-repeat 100% 50%;
+		padding-right: 20px;
+	}
+
+	.categories {
+		margin-top: 10px;
+	}
+
+	.tags {
+		margin-top: 5px;
+	}
+}
+
+.ie6, .ie7 {
+	.entry-display-style.display-descriptive {
+		zoom: 1;
+	}
+}

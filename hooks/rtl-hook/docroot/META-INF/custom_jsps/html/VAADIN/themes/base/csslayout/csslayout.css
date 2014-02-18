@@ -1,0 +1,15 @@
+.v-csslayout {
+	overflow: hidden;
+}
+.v-csslayout-margin-top {
+	padding-top: 12px;	
+}
+.v-csslayout-margin-bottom {
+	padding-bottom: 12px;	
+}
+.v-csslayout-margin-left {
+	padding-left: 12px;	
+}
+.v-csslayout-margin-right {
+	padding-right: 12px;	
+}

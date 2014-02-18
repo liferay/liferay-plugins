@@ -1,0 +1,44 @@
+.navigation-pane {
+	.body-row {
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+		width: 100%;
+
+		ul li a .icon {
+			float: left;
+			margin-right: 5px;
+		}
+	}
+
+	.lfr-component {
+		margin-left: 0;
+	}
+
+	.app-view-navigation-entry {
+		position: relative;
+
+		&.folder.error {
+			color: #34404F;
+			display: block;
+			padding: 6px 8px;
+			text-decoration: none;
+		}
+
+		.overlay.entry-action {
+			bottom: 0;
+			display: block;
+			overflow: hidden;
+			position: absolute;
+			right: -15px;
+			top: 0;
+
+			.btn {
+				background: transparent;
+				border-width: 0;
+				margin: 0;
+				padding: 9px 9px 4px;
+			}
+		}
+	}
+}

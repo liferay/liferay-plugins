@@ -1,0 +1,36 @@
+.taglib-workflow-status {
+	display: inline-block;
+	margin: 0.5em 0;
+
+	.workflow-id, .workflow-version {
+		padding: 2px 20px;
+	}
+
+	.workflow-version, .workflow-status {
+		margin-right: 5px;
+	}
+
+	.workflow-status {
+		padding: 2px 0 2px 20px;
+	}
+}
+
+.table-cell .taglib-workflow-status {
+	margin: 0;
+
+	.workflow-status {
+		padding-left: 0;
+	}
+}
+
+/* Skin */
+
+.taglib-workflow-status {
+	.workflow-id, .workflow-version, .workflow-status {
+		color: #999;
+	}
+
+	.workflow-status-icon {
+		background: url(@theme_image_path@/common/recent_changes.png) no-repeat 0 50%;
+	}
+}

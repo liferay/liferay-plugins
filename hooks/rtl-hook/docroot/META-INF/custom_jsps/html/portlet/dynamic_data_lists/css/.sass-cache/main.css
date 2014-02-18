@@ -1,0 +1,5 @@
+.portlet-dynamic-data-lists .lfr-spreadsheet-container .table, .portlet-dynamic-data-list-display .lfr-spreadsheet-container .table {
+  overflow: auto; }
+  .portlet-dynamic-data-lists .lfr-spreadsheet-container .table.yui3-datatable td:after, .portlet-dynamic-data-list-display .lfr-spreadsheet-container .table.yui3-datatable td:after {
+    content: '\0000a0'; }
+

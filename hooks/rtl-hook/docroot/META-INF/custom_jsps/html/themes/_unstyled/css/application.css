@@ -1,0 +1,319 @@
+@import "compass";
+
+/* ---------- Dragging/sorting indicators ---------- */
+
+.portlet-layout.dragging {
+}
+
+.drop-area {
+}
+
+.active-area {
+}
+
+.portlet-boundary.yui3-dd-dragging {
+
+	.portlet {
+	}
+}
+
+.sortable-layout-proxy {
+
+	.portlet-topper {
+	}
+}
+
+.proxy {
+	&.generic-portlet {
+
+		.portlet-title {
+		}
+	}
+
+	&.not-intersecting .forbidden-action {
+	}
+}
+
+.resizable-proxy {
+}
+
+.sortable-proxy {
+}
+
+.lfr-freeform-layout-drag-indicator {
+}
+
+.sortable-layout-drag-target-indicator {
+}
+
+/* ---------- Portal tool tips ---------- */
+
+.tooltip {
+}
+
+/* ---------- Tags ---------- */
+
+.tagselector-content {
+
+	.textboxlistentry-holder {
+
+		.lfr-tag-selector-input {
+		}
+	}
+}
+
+.tagselector {
+	.lfr-tag-selector-input {
+	}
+
+	.field .field-content {
+	}
+
+	.textboxlist-input-container {
+	}
+}
+
+.tagselector-focused .textboxlistentry-holder {
+}
+
+.categoriesselector-content .textboxlistentry-holder {
+}
+
+/* ---------- Tag cloud and tag list ---------- */
+
+.tag-items {
+
+	li {
+	}
+
+	a {
+	}
+}
+
+.tag-selected {
+}
+
+.tag-cloud {
+
+
+	@for $i from 1 through 6 {
+		.tag-popularity-#{$i} {
+			/*font-size: $tag-popularity-font-size + ($i * 0.3);*/
+		}
+	}
+}
+
+/* ---------- Underlay ---------- */
+
+.underlay {
+
+	.yui3-widget-hd {
+	}
+
+	.lfr-portlet-item {
+	}
+}
+
+.underlay-hidden {
+}
+
+.underlay-content {
+}
+
+.underlay-close {
+}
+
+/* ---------- Tabs ---------- */
+
+.tab-active strong {
+}
+
+.tab-back {
+}
+
+.tab-back-content {
+}
+
+/* ---------- Miscellaneous ---------- */
+
+.lfr-panel-container {
+}
+
+.lfr-panel-content {
+}
+
+.lfr-panel-basic .lfr-panel-content {
+}
+
+.dialog-bd {
+}
+
+.dialog-content {
+}
+
+.panel-hd {
+}
+
+.app-view-drop-active {
+}
+
+/* ---------- Menus ---------- */
+
+.lfr-menu-list {
+}
+
+.lfr-page-templates li {
+	a {
+
+		label {
+		}
+	}
+}
+
+.menu {
+
+	.notice-message {
+	}
+}
+
+.menu-content {
+
+	li {
+
+		.disabled {
+		}
+	}
+}
+
+.menu-content {
+}
+
+.menugroup-content .menu-label {
+}
+
+.menugroup-content ul {
+}
+
+.menu-content li {
+
+	&.first {
+	}
+
+	&.last {
+	}
+}
+
+.menu-content li a, .menu-content li .disabled {
+}
+
+.menu-content li a.focus, .lfr-menu-expanded li a:focus {
+}
+
+/* ---------- Loading mask ---------- */
+
+.loadingmask-content {
+}
+
+.loadingmask-message {
+}
+
+/* ---------- Tree view ---------- */
+
+.tree-node-selected .tree-label {
+}
+
+/* ---------- Page customization ---------- */
+
+.dragging .portlet-column.customizable {
+}
+
+.customizable-layout-column-content {
+
+	&.yui3-widget-content-expanded {
+	}
+}
+
+.customizable .customizable-layout-column-content {
+}
+
+.layout-customizable-controls {
+
+
+}
+
+/* ---------- Pagination ---------- */
+
+.paginator-link {
+}
+
+.paginator-page-link {
+}
+
+.paginator-current-page {
+}
+
+.paginator-first-link {
+}
+
+.paginator-prev-link {
+}
+
+.paginator-last-link {
+}
+
+.paginator-next-link {
+}
+
+.paginator-current-page-report, .paginator-total {
+}
+
+.paginator-current-page-report {
+}
+
+.taglib-page-iterator .search-pages .page-links {
+}
+
+/* ---------- Inline editing ---------- */
+
+.lfr-editable {
+
+
+	&:after {
+	}
+
+	&:focus {
+		&:after {
+		}
+
+		&:hover {
+		}
+	}
+
+	&:hover {
+
+		&:after {
+		}
+	}
+}
+
+.lfr-editable-notice-close {
+}
+
+.ie {
+	.proxy.not-intersecting .forbidden-action {
+	}
+}
+
+.ie7 {
+	.menu-content li {
+	}
+
+	.paginator-link {
+	}
+
+	.paginator-page-link {
+	}
+
+	.paginator-current-page {
+	}
+}

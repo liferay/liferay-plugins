@@ -1,0 +1,13 @@
+.popup-alert-notice  {
+	.notice-date {
+		margin: 0 10px;
+	}
+
+	.current-user-language {
+		border: solid transparent;
+		border-width: 0 1px;
+		display: inline;
+		margin: 0 10px;
+		padding: 0 15px;
+	}
+}

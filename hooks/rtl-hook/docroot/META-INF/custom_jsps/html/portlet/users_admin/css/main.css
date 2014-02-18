@@ -1,0 +1,316 @@
+@import "mixins";
+
+.portlet-users-admin {
+	.form {
+		fieldset {
+			border-width: 0;
+			padding: 0;
+		}
+
+		.fieldset {
+			select {
+				width: auto;
+			}
+
+			textarea {
+				width: 90%;
+			}
+
+			.field {
+				&.mailing-ctrl {
+					clear: both;
+
+					span {
+						margin-right: 0.5em;
+					}
+				}
+
+				&.localized-language-selector {
+					margin-bottom: 0;
+				}
+			}
+
+			.email-field, .url-field {
+				width: 200px;
+			}
+		}
+	}
+
+	#header-bottom {
+		background-color: #F6F8FB;
+		height: 34px;
+		margin: 0 0 10px;
+	}
+
+	#header-menu {
+		background-color: #F3F5F5;
+		font-size: 11px;
+		line-height: 34px;
+		margin: 0 0 10px;
+		padding: 0 10px;
+		text-align: right;
+	}
+
+	#header-title {
+		background-color: #C1CABC;
+		font-size: 20px;
+		font-weight: 500;
+		margin: 0 0 10px;
+		padding: 7px 10px;
+	}
+
+	.company-logo {
+		border-width: 0;
+		width: 100px;
+	}
+
+	.email-user-add .password-changed-notification {
+		display: none;
+	}
+
+	.label-holder {
+		font-weight: 700;
+		padding: 15px 0 5px;
+	}
+
+	.org-labor-entry {
+		float: left;
+		margin-right: 2%;
+		width: 12%;
+
+		@include respond-to(phone) {
+			float: none;
+			width: auto;
+		}
+
+		select {
+			width: 100%;
+		}
+
+		> .control-group {
+			margin-bottom: 0;
+		}
+	}
+
+	.organization-details {
+		margin-left: 21px;
+	}
+
+	.organization-information {
+		overflow: hidden;
+	}
+
+	.organization-search {
+		float: right;
+		margin: 0 0 0.5em 0.5em;
+	}
+
+	.password-policy-options {
+		margin-left: 2em;
+	}
+
+	.section {
+		float: left;
+		margin-left: 10px;
+		width: 47%;
+
+		h3 {
+			background: url() no-repeat scroll 2px 50%;
+			border-bottom: 1px solid #CCC;
+			line-height: 1.5;
+			margin-bottom: 0.5em;
+			padding-left: 25px;
+		}
+
+		li {
+			list-style: none;
+			margin: 0;
+			padding-left: 25px;
+		}
+
+		ul {
+			margin: 0;
+		}
+	}
+
+	.entity-addresses {
+		.primary {
+			background-position: 3px 5px;
+		}
+
+		.mailing-name {
+			display: block;
+			font-style: italic;
+		}
+
+		h3 {
+			background-image: url(@theme_image_path@/common/home.png);
+		}
+	}
+
+	.entity-details {
+		clear: both;
+	}
+
+	.entity-comments h3 {
+		background-image: url(@theme_image_path@/common/welcome_message.png);
+	}
+
+	.entity-email-addresses h3 {
+		background-image: url(@theme_image_path@/mail/unread.png);
+	}
+
+	.entity-phones h3 {
+		background-image: url(@theme_image_path@/common/telephone.png);
+	}
+
+	.entity-websites h3 {
+		background-image: url(@theme_image_path@/common/history.png);
+	}
+
+	.radio-holder {
+		line-height: 12px;
+	}
+
+	.form-navigator {
+		.user-info, .organization-info {
+			.user-logo, .organization-logo {
+				margin-right: 5px;
+				width: 35px;
+			}
+		}
+	}
+
+	.membership-restriction-container {
+		margin-top: 1em;
+	}
+
+	.instant-messenger, .social-network {
+		clear: both;
+		margin-bottom: 2em;
+		overflow: hidden;
+
+		img {
+			margin-left: 1em;
+		}
+
+		.control-group {
+			margin: 0;
+		}
+
+		.field {
+			float: left;
+		}
+	}
+
+	.addresses .field {
+		float: none;
+		width: auto;
+	}
+
+	.permission-scopes {
+		margin-right: 10px;
+
+		&.empty {
+			display: none;
+		}
+	}
+
+	.permission-group {
+		margin: 10px 0 0 10px;
+	}
+
+	.lfr-permission-navigation-container {
+		.search {
+			margin: 20px 0px;
+		}
+
+		.lfr-permission-navigation {
+			overflow: auto;
+			width: 100%;
+
+			.permission-navigation-item-header {
+				font-weight: bold;
+
+				.permission-navigation-item-header-icon {
+					background: url() no-repeat 50%;
+					display: inline-block;
+					height: 10px;
+					width: 9px;
+				}
+			}
+
+			.selected {
+				font-weight: bold;
+			}
+
+			.toggler-header-collapsed .permission-navigation-item-header-icon {
+				background-image: url(@theme_image_path@/arrows/05_right.png);
+			}
+
+			.toggler-header-expanded .permission-navigation-item-header-icon {
+				background-image: url(@theme_image_path@/arrows/05_down.png);
+				vertical-align: middle;
+			}
+
+			.permission-navigation-item-header {
+				cursor: pointer;
+				margin: 0.5em;
+			}
+
+			.permission-navigation-item-content .permission-navigation-item-container {
+				cursor: pointer;
+				line-height: 1.8em;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.permission-navigation-item-summary {
+				margin: 0.5em 0em 1.5em .5em;
+			}
+
+			.permission-navigation-section .permission-navigation-section {
+				margin-left: 1em;
+			}
+		}
+	}
+
+	.view-all-link {
+		color: #666;
+		font-weight: normal;
+		margin-bottom: 15px;
+	}
+
+	.lfr-asset-column-details {
+		margin-top: 1em;
+	}
+
+	.lfr-asset-summary img.avatar {
+		max-width: 210px;
+	}
+}
+
+.lfr-floating-container {
+	.field {
+		input, img {
+			vertical-align: top;
+		}
+	}
+}
+
+.ie {
+	.portlet-users-admin {
+		.permission-scopes {
+			height: 1%;
+		}
+	}
+}
+
+.ie6 {
+	.portlet-users-admin {
+		.organization-information {
+			height: 1%;
+		}
+	}
+}

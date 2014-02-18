@@ -1,0 +1,25 @@
+.taglib-categorization-filter .asset-entry {
+	border: 1px solid transparent;
+	margin-right: .5em;
+	padding: 3px 18px 3px 7px;
+	position: relative;
+}
+
+/* Skin */
+
+.taglib-categorization-filter {
+	&.entry-title {
+		color: #333;
+		font-size: 1em;
+		line-height: inherit;
+	}
+
+	.asset-entry {
+		background-color: #DEE7F8;
+		border-color: #CAD8F3;
+
+		&:hover .icon-close {
+			background-color: #CAD8F3;
+		}
+	}
+}

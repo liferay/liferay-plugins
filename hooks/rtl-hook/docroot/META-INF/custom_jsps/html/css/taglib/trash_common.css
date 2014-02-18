@@ -1,0 +1,19 @@
+.taglib-trash-empty, .taglib-trash-undo {
+	.trash-empty-button, .trash-undo-button {
+		display: inline;
+	}
+
+	.trash-empty-link, .trash-undo-link {
+		display: none;
+	}
+}
+
+.js .taglib-trash-empty, .js .taglib-trash-undo {
+	.trash-empty-button, .trash-undo-button {
+		display: none;
+	}
+
+	.trash-empty-link, .trash-undo-link {
+		display: inline;
+	}
+}

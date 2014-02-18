@@ -1,0 +1,92 @@
+.lfr-translation-manager {
+	border: 1px solid transparent;
+	display: block;
+	margin: 0 auto;
+	min-height: 1.8em;
+	padding: 0.5em;
+
+	.lfr-translation-manager-content .lfr-translation-manager-icon-menu {
+		display: inline;
+		float: none;
+		margin-left: 2em;
+		padding: 0.4em 0;
+
+		li {
+			&, strong {
+				display: inline;
+			}
+		}
+	}
+
+	.lfr-translation-manager-available-translations {
+		margin-top: 1em;
+	}
+
+	.lfr-translation-manager-translation {
+		border: 1px solid transparent;
+		cursor: pointer;
+		display: inline-block;
+		margin: 0.2em;
+		padding: 0.4em 0.3em 0.4em 0.5em;
+
+		* {
+			vertical-align: middle;
+		}
+
+		img {
+			margin-right: 0.3em;
+		}
+	}
+
+	.lfr-translation-manager-delete-translation {
+		display: inline-block;
+	}
+}
+
+.lfr-translation-manager-selector, .lfr-translation-manager-add-menu {
+	display: inline-block;
+	margin: 0.5em 0;
+	white-space: nowrap;
+}
+
+/* Skin */
+
+.lfr-translation-manager {
+	background: #EEE;
+	border-color: #979798 #FAFAFB #FAFAFB #BDBDBE;
+	color: #34404F;
+
+	.lfr-translation-manager-available-translations {
+		.lfr-translation-manager-available-translations-links {
+			line-height: 1;
+		}
+	}
+
+	.lfr-translation-manager-translation {
+		background-color: #B3DAEF;
+		border-color: #5FA8FF;
+		color: #444;
+		text-decoration: none;
+		text-shadow: 1px 1px #EEE;
+
+		&:hover {
+			background-color: #D1E5EF;
+		}
+
+		&.lfr-translation-manager-translation-editing {
+			background-color: #598BEC;
+			border-color: #224FA8;
+			color: #FFFFFF;
+			font-weight: bold;
+			text-shadow: -1px -1px #555;
+
+			.lfr-translation-manager-delete-translation {
+				background-color: #FFF;
+			}
+		}
+	}
+
+	label {
+		font-weight: bold;
+	}
+}

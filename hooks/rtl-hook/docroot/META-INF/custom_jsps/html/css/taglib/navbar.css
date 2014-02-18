@@ -1,0 +1,64 @@
+@import "compass";
+@import "mixins";
+
+@include respond-to(phone, tablet) {
+	.navbar {
+		.container {
+			position: relative;
+
+			.btn-navbar {
+				color: #000;
+				display: inline-block;
+				margin-bottom: 5px;
+				width: auto;
+
+				> .icon-bar {
+					&:first-child {
+						margin-top: 6px;
+					}
+
+					&:last-child {
+						margin-bottom: 5px;
+					}
+				}
+			}
+
+			.nav-collapse {
+				display: none;
+
+				&.open {
+					display: block;
+					height: auto;
+					overflow: visible;
+				}
+
+				.btn {
+					padding: 11px 19px;
+				}
+			}
+
+			.navbar-search {
+				margin: 0;
+				padding: 5px;
+
+				.btn, .btn-link {
+					clip: rect(0, 0, 0, 0);
+					position: absolute;
+				}
+
+				.form-search {
+					margin: 0;
+
+					.input-append {
+						display: block;
+						padding-right: 0;
+
+						.search-query {
+							width: 100%;
+						}
+					}
+				}
+			}
+		}
+	}
+}

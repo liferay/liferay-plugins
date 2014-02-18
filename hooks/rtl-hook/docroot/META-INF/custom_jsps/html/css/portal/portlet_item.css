@@ -1,0 +1,68 @@
+.lfr-portlet-item {
+	border: 1px solid transparent;
+	cursor: move;
+	display: block;
+	margin-bottom: 3px;
+	padding: 0 5px 0 20px;
+
+	p {
+		margin: 0;
+		padding-right: 30px;
+		position: relative;
+
+		a {
+			cursor: pointer;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+	}
+}
+
+.lfr-add-content .lfr-portlet-item.lfr-archived-setup {
+	margin-left: 20px;
+}
+
+.ie .lfr-portlet-item {
+	height: 1%;
+
+	p a {
+		top: -2px;
+	}
+}
+
+.ie6 .lfr-portlet-item p a {
+	right: 20px;
+}
+
+/* Skin */
+
+.lfr-portlet-item {
+	background: url(@theme_image_path@/add_content/portlet_item.png) no-repeat 0 50%;
+	border-color: #fff;
+	font-size: 1.1em;
+
+	&:hover, &.over {
+		background-color: #ffc;
+		border-color: #fc0;
+	}
+
+	p {
+		font-size: 1em;
+
+		a {
+			font-size: 0.9em;
+			font-weight: bold;
+		}
+	}
+}
+
+.lfr-add-content .lfr-portlet-item {
+	&.lfr-instanceable {
+		background-image: url(@theme_image_path@/add_content/portlet_item_instanceable.png);
+	}
+
+	&.lfr-archived-setup {
+		background-image: url(@theme_image_path@/add_content/portlet_item_archived_setup.png);
+	}
+}

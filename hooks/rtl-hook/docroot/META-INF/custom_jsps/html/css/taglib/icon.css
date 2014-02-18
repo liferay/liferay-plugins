@@ -1,0 +1,19 @@
+a.taglib-icon {
+	&, &:focus, &:hover {
+		text-decoration: none;
+	}
+
+	&:focus, &:hover {
+		.taglib-text {
+			text-decoration: underline;
+		}
+	}
+
+	&.btn {
+		&:focus, &:hover {
+			.taglib-text {
+				text-decoration: none;
+			}
+		}
+	}
+}

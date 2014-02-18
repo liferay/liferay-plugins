@@ -1,0 +1,58 @@
+.portlet-alerts .entry {
+  border: 6px solid #c00;
+  margin: 8px 0px;
+  padding: 6px; }
+.portlet-alerts .entry-content {
+  display: block;
+  padding: 2px 2px 2px 30px; }
+.portlet-alerts .entry-scope {
+  color: #ccc;
+  display: block; }
+.portlet-alerts .entry-type-general {
+  background: white url("@theme_image_path@/common/page.png") left top no-repeat;
+  clear: both; }
+.portlet-alerts .entry-type-news {
+  background: white url("@theme_image_path@/common/page.png") left top no-repeat;
+  clear: both; }
+.portlet-alerts .entry-type-test {
+  background: white url("@theme_image_path@/common/page.png") left top no-repeat;
+  clear: both; }
+
+.portlet-announcements .entry {
+  margin: 4px 0px 1.2em;
+  padding-bottom: 0.5em; }
+.portlet-announcements .entry-content {
+  display: block;
+  margin-bottom: 0.5em;
+  padding: 2px 2px 2px 30px; }
+.portlet-announcements .entry-scope {
+  color: #555;
+  display: block; }
+.portlet-announcements .delete-entry {
+  padding-right: 2em; }
+.portlet-announcements .entry-type-general {
+  background: white url("@theme_image_path@/common/all_pages.png") 4px 4px no-repeat;
+  clear: both; }
+.portlet-announcements .entry-type-news {
+  background: white url("@theme_image_path@/common/page.png") 4px 4px no-repeat;
+  clear: both; }
+.portlet-announcements .entry-type-test {
+  background: white url("@theme_image_path@/common/page.png") 4px 4px no-repeat;
+  clear: both; }
+
+.portlet-announcements .important, .portlet-alerts .important {
+  font-weight: normal; }
+.portlet-announcements .entry-title, .portlet-alerts .entry-title {
+  display: block;
+  margin-bottom: 0;
+  position: relative; }
+.portlet-announcements .read-entries .entry-title, .portlet-alerts .read-entries .entry-title {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5; }
+.portlet-announcements .edit-actions, .portlet-alerts .edit-actions {
+  float: right;
+  font-size: 0.7em;
+  font-weight: normal;
+  right: 0;
+  top: 0; }
+

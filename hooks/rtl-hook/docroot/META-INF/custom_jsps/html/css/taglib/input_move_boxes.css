@@ -1,0 +1,43 @@
+.taglib-move-boxes {
+	margin-bottom: 1em;
+
+	label {
+		border-bottom: 1px solid transparent;
+		display: block;
+		margin-bottom: 5px;
+		padding: 5px;
+	}
+
+	.toolbar {
+		text-align: center;
+	}
+
+	.arrow-button img {
+		border-width: 0;
+		height: 16px;
+		width: 16px;
+	}
+
+	.choice-selector {
+		width: 100%;
+	}
+
+	.field-content {
+		margin-bottom: 0;
+	}
+
+	.move-arrow-buttons {
+		margin-top: 5em;
+
+		.arrow-button {
+			display: block;
+		}
+	}
+}
+
+/* Skin */
+
+.taglib-move-boxes .choice-selector label {
+	background: #ebf1f9;
+	border-bottom-color: #8db2f3;
+}

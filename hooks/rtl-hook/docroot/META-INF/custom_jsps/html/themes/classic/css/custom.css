@@ -1,0 +1,661 @@
+@import "compass";
+@import "mixins";
+
+@import url(custom_common.css);
+@import url(color_schemes/common.css);
+@import url(color_schemes/dark.css);
+@import url(color_schemes/light.css);
+
+$dockbarGradientEnd: #1273C7;
+$dockbarGradientStart: #118ADE;
+
+$dockbarOpenGradientEnd: #0993DD;
+$dockbarOpenGradientStart: #0EA6F9;
+
+/* ---------- Base styles ---------- */
+
+.aui {
+	.separator {
+		border-color: #BFBFBF transparent #FFF;
+		border-style: solid;
+		border-width: 1px 0;
+	}
+
+	#wrapper {
+		position: relative;
+	}
+
+	.site-title {
+		a:hover {
+			text-decoration: none;
+		}
+
+		.site-name {
+			display: inline-block;
+		}
+	}
+
+	#skip-to-content:focus {
+		clip: rect(auto auto auto auto);
+		margin-top: 35px;
+		right: 5px;
+		z-index: 200;
+	}
+
+	#sign-in {
+		background: url(@theme_image_path@/common/key.png) no-repeat 3px 50%;
+		font-weight: bold;
+		padding: 5px 5px 5px 25px;
+		position: absolute;
+		right: 0;
+		top: -1.2em;
+	}
+
+	.redirected-to-message {
+		margin-right: 10px;
+
+		a {
+			background: #ECFBFF;
+			border: 1px solid #ADE5FA;
+			color: #8D8D8D;
+			padding: 5px;
+		}
+	}
+
+	.site-navigation {
+		margin-bottom: 6px;
+	}
+
+	.taglib-portal-message {
+		margin-bottom: 0;
+	}
+
+	/* ---------- Dockbar ---------- */
+
+	.dockbar {
+		&.navbar {
+			.nav {
+				li {
+					&.dropdown {
+						&.active {
+							.dropdown-toggle {
+								background-color: transparent;
+
+								&:hover {
+									color: #FFF;
+								}
+							}
+						}
+
+						&.staging-toggle .dropdown-menu {
+							background-color: #55B8EC;
+						}
+					}
+				}
+
+				> li {
+					> a {
+						margin: 0 5px 0 0;
+						padding: 6px 10px;
+
+						&:hover {
+							background-color: #2FA4F5;
+						}
+					}
+				}
+			}
+		}
+
+		.info-button {
+			top: 9px;
+
+			a {
+				margin-top: -4px;
+
+				&:hover {
+					color: #FFF;
+				}
+			}
+		}
+
+		.staging-bar {
+			.staging-toggle {
+				color: #FFF;
+
+				li a {
+					color: #FFF;
+					font-weight: 300;
+					text-decoration: none;
+				}
+
+				.btn-link {
+					color: #FFF;
+					font-size: 12px;
+				}
+			}
+		}
+
+		.page-customization-bar .btn {
+			border-color: transparent;
+
+			&:hover, &:focus {
+				background: transparent;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.dockbar, .dockbar-split .dockbar {
+		.navbar-inner {
+			background-color: $dockbarGradientStart;
+
+			@include background-image(linear-gradient($dockbarGradientStart 0%, $dockbarGradientStart 47%, $dockbarGradientEnd 100%));
+
+			.nav {
+				> li {
+					background-color: $dockbarGradientStart;
+
+					@include background-image(linear-gradient($dockbarGradientStart 0%, $dockbarGradientStart 47%, $dockbarGradientEnd 100%));
+				}
+			}
+		}
+	}
+
+	.dockbar-split .dockbar {
+		.info-button {
+			top: 9px;
+		}
+
+		.navbar-inner {
+			.nav-account-controls {
+				border-top: 1px solid #00AEFF;
+
+				&.nav-account-controls-notice {
+					margin-top: 10px;
+					top: 50px;
+				}
+			}
+
+			.nav-add-controls {
+				background: transparent;
+				border-top-width: 0;
+
+				&.nav-add-controls-notice {
+					top: 70px;
+				}
+
+				> li {
+					background-color: transparent;
+
+					@include background-image(none);
+
+					> a {
+						background: #45CBF5;
+						line-height: inherit;
+						padding: 6px 8px;
+
+						@include respond-to(phone, tablet) {
+							background: transparent;
+						}
+
+						&:hover {
+							background: #5BBAE8;
+						}
+
+						&.toggle-controls-link {
+							background: #92F545;
+
+							@include respond-to(phone, tablet) {
+								background: transparent;
+							}
+						}
+					}
+				}
+			}
+
+			.page-customization-bar {
+				background-color: #6DA4E4;
+				background-color: rgba(109, 168, 228, 0.9);
+				line-height: 20px;
+			}
+
+			.page-customization-bar-text {
+				height: 43px;
+			}
+
+			.staging-bar {
+				margin: 6px 0;
+
+				> li {
+					background: transparent;
+				}
+			}
+		}
+	}
+
+	/* ---------- Main navigation ---------- */
+
+	#navigation {
+		.add-page-editor {
+			input {
+				margin-top: 0;
+			}
+		}
+
+		.brand {
+			padding: 0;
+			padding-right: 20px;
+			margin-left: 0;
+
+			img {
+				height: 40px;
+				width: auto;
+			}
+		}
+
+		.nav {
+			li {
+				&.dropdown {
+					> .dropdown-toggle {
+						.caret {
+							border-bottom-color: #FFF;
+							border-top-color: #FFF;
+						}
+					}
+				}
+
+				&.open {
+					> a {
+						background-color: #A3A3A3;
+						color: #FFF;
+					}
+				}
+
+				&.active > a {
+					background-color: $dockbarGradientStart;
+				}
+			}
+
+			> li > a {
+				padding: 4px 15px 5px;
+			}
+
+			.dropdown-menu {
+				background: #00ACFF;
+				border-width: 0;
+				margin: 0;
+
+				&:after, &:before {
+					border-width: 0;
+				}
+
+				a {
+					color: #FFF;
+
+					&:hover {
+						background: none;
+						text-decoration: underline;
+					}
+				}
+			}
+		}
+
+		.navbar-inner {
+			background: #555;
+			border-width: 0;
+			min-height: 36px;
+
+			li a {
+				color: #FFF;
+			}
+		}
+	}
+
+	.modify-pages .delete-tab {
+		background: #555;
+		border: 2px solid #FFF;
+		color: #FFF;
+		font-size: 16px;
+		padding: 4px;
+		right: -10px;
+		top: 0;
+		z-index: 300;
+	}
+
+	/* ---------- Breadcrumbs ---------- */
+
+	.breadcrumb {
+		background-color: #FAFAFA;
+	}
+
+	#breadcrumbs {
+		margin-bottom: 45px;
+
+		.breadcrumb {
+			margin-bottom: 0;
+		}
+	}
+
+	/* ---------- Portlet wrapper and icons ---------- */
+
+	.portlet-content, .portlet-minimized .portlet-content-container {
+		border: 1px solid #EAEAEA;
+		border-top-width: 0;
+		padding: 12px 10px 10px;
+	}
+
+	.portlet-topper {
+		background: #D3D3D3;
+		color: #FFF;
+		padding: 0;
+
+		.portlet-title {
+			font-size: 1em;
+			font-weight: normal;
+			line-height: 2.2;
+			margin: 0;
+
+			i, span img {
+				display: none;
+			}
+		}
+
+		.portlet-topper-toolbar {
+			font-size: 0.8em;
+			margin: -10px 0 0;
+			padding: 0;
+			right: 10px;
+			top: 50%;
+		}
+	}
+
+	.lfr-configurator-visibility .portlet-topper {
+		background-color: #A9A9A9;
+	}
+
+	.portlet-borderless-bar .portlet-options {
+		.dropdown-toggle {
+			background-image: url(../images/portlet/options_borderless.png);
+		}
+	}
+
+	.signed-in.controls-visible .portlet-title {
+		padding-right: 80px;
+	}
+
+	.portlet-asset-publisher .asset-content, .portlet-asset-publisher .asset-summary, .portlet-asset-publisher .asset-title, .portlet-asset-publisher .header-title, .portlet-asset-publisher li.title-list, .portlet-blogs .entry-body, .portlet-blogs .entry-title, .portlet-blogs .header-title, .portlet-journal-content .journal-content-article, .portlet-message-boards .header-title, .portlet-message-boards .thread-body {
+		@include hyphenation;
+	}
+
+	.portlet-icons {
+		float: none;
+	}
+
+	.page-maximized .portlet-icons {
+		font-size: 11px;
+	}
+
+	.dropdown-menu > li.portlet-close > a {
+		color: #C00;
+		font-weight: bold;
+
+		&:focus, &:hover {
+			background-color: #C00;
+			background-image: none;
+			color: #FFF;
+		}
+	}
+
+	/* ---------- Set password reminder portlet ---------- */
+
+	.update-reminder-query {
+		.control-group {
+			max-width: 350px;
+		}
+
+		.reminder-query-answer {
+			height: 30px;
+			width: 100%;
+		}
+
+		.reminder-query-question {
+			width: 100%;
+		}
+	}
+
+	/* ---------- Staging bar ---------- */
+
+	.navbar-inner .nav.staging-bar {
+		border-top-width: 0;
+		position: static;
+
+		li {
+			.page-variations {
+				display: inline-block;
+				margin-left: 8px;
+
+				a {
+					text-decoration: none;
+				}
+			}
+		}
+
+		li.dropdown {
+			position: static;
+		}
+	}
+
+	.portlet-staging-bar {
+		.row-fluid .layout-revision-info {
+			.layout-revision-version {
+				label {
+					color: #B6DDF5;
+				}
+			}
+		}
+
+		.label-submit {
+			background-color: #469DE3;
+		}
+
+		.layout-branch-selector, .layout-set-branch-selector {
+			.icon-caret-down {
+				background-color: #469DE3;
+			}
+		}
+
+		.page-variations-options, .site-pages-variation-options {
+			.lfr-icon-menu {
+				background-color: #50AFE9;
+
+				.icon-globe, .icon-file {
+					background-color: #469DE3;
+				}
+			}
+		}
+	}
+
+	/* ---------- Footer ---------- */
+
+	#footer {
+		text-align: right;
+	}
+
+	/* ---------- Hudcrumbs ---------- */
+
+	.lfr-hudcrumbs {
+		position: fixed;
+		top: 0;
+		z-index: 300;
+
+		.breadcrumb {
+			background: #414445;
+			background: rgba(0, 0, 0, 0.8);
+
+			li {
+				a, span {
+					color: #FFF;
+				}
+			}
+		}
+	}
+
+	/* ---------- Miscellaneous ---------- */
+
+	.lfr-panel-container {
+		background-color: transparent;
+	}
+
+	.lfr-portlet-title-editable-content .field {
+		display: inline;
+		float: none;
+	}
+
+	.portlet-journal-content .lfr-icon-actions {
+		margin-bottom: 3px;
+	}
+
+	/* ---------- Extras ---------- */
+
+	#navigation {
+		.nav {
+			li {
+				&.open {
+					> a {
+						@include box-shadow(none);
+					}
+				}
+			}
+
+			.dropdown-menu {
+				@include border-radius(0);
+			}
+
+			> .active > a {
+				background-color: $dockbarGradientStart;
+
+				@include background-image(linear-gradient($dockbarGradientStart 0%, $dockbarGradientStart 47%, $dockbarGradientEnd 100%));
+				@include box-shadow(none);
+				@include filter-gradient($dockbarGradientStart, $dockbarGradientEnd, vertical);
+			}
+		}
+
+		.navbar-inner {
+			@include border-radius(0);
+			@include box-shadow(none);
+
+			li a {
+				@include text-shadow(none);
+			}
+		}
+	}
+
+	.update-reminder-query .reminder-query-answer {
+		@include box-sizing(border-box);
+	}
+
+	.modify-pages .delete-tab {
+		@include border-radius(50%);
+		@include text-shadow(none);
+		@include transition(opacity 0.3s ease);
+
+		&:hover {
+			@include box-shadow(0 1px 1px -1px #000);
+		}
+	}
+
+	%portlet-action-bar-custom {
+		@include border-radius(20px);
+		@include box-shadow(inset 0 1px 3px #000);
+	}
+
+	.portlet-borderless-bar {
+		@extend %portlet-action-bar-custom;
+	}
+
+	.portlet-content, .portlet-minimized .portlet-content-container {
+		@include border-radius(0 0 3px 3px);
+	}
+
+	.portlet-content {
+		.lfr-icon-actions {
+			@extend %portlet-action-bar-custom;
+		}
+	}
+
+	.portlet-minimized {
+		.portlet-content {
+			border-width: 0;
+		}
+
+		.portlet-topper {
+			@include border-radius(3px);
+		}
+	}
+
+	.portlet-nested-portlets .portlet-body {
+		.portlet, .portlet-borderless-container {
+			@include box-shadow(none);
+		}
+	}
+
+	.portlet-topper {
+		@include border-radius(3px 3px 0 0);
+	}
+
+	.dockbar .staging-bar .staging-toggle > a {
+		@include border-radius(3px);
+	}
+
+	.dockbar-split .dockbar {
+		.navbar-inner {
+			@include box-shadow(none);
+			@include text-shadow(none);
+
+			@include respond-to(phone, tablet) {
+				background-color: $dockbarGradientStart;
+
+				@include background-image(linear-gradient($dockbarGradientStart, $dockbarGradientEnd));
+			}
+
+			.nav {
+				li.dropdown.open {
+					> .dropdown-toggle {
+						background-color: $dockbarOpenGradientStart;
+
+						@include background-image(linear-gradient($dockbarOpenGradientStart, $dockbarOpenGradientEnd));
+						@include box-shadow(none);
+					}
+				}
+
+				li.dropdown.active {
+					> .staging-link.dropdown-toggle {
+						background-color: #55B8EC;
+						background-image: none;
+					}
+				}
+			}
+		}
+	}
+
+	.lfr-hudcrumbs {
+		ul {
+			@include border-top-left-radius(0);
+			@include border-top-right-radius(0);
+		}
+
+		.breadcrumb li {
+			a, span {
+				@include text-shadow(-1px -1px #000);
+			}
+		}
+	}
+
+	/* ---------- IE8 ---------- */
+
+	&.ie8 {
+		.dockbar-split .dockbar .navbar-inner .info-button a {
+			margin-top: -2px;
+		}
+	}
+}

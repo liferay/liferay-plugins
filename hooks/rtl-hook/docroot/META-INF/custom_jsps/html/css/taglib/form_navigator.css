@@ -1,0 +1,26 @@
+.taglib-form-navigator {
+	ul.form-navigator.well {
+		float: right;
+	}
+
+	.error-notice, .modified-notice {
+		display: none;
+	}
+
+	.form-navigator-content{
+		overflow: visible;
+
+		&[class*="span"] {
+			margin-left: 0;
+		}
+	}
+
+	.section-modified .modified-notice {
+		display: inline-block;
+	}
+
+	.section-error .error-notice {
+		display: inline-block;
+		margin-right: 5px;
+	}
+}

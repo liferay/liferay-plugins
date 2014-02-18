@@ -1,0 +1,16 @@
+/* ---------- Column widths ---------- */
+.portlet-column-content.empty {
+  padding: 50px; }
+
+/* ---------- Wrapper ---------- */
+#wrapper {
+  padding: 2em 5em 0; }
+  @media (max-width: 767px) {
+    #wrapper {
+      padding-left: 0.5em;
+      padding-right: 0.5em; } }
+  @media (min-width: 768px) and (max-width: 979px) {
+    #wrapper {
+      padding-left: 2em;
+      padding-right: 2em; } }
+

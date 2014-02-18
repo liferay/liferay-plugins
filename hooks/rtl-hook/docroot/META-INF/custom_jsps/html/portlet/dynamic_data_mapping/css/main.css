@@ -1,0 +1,160 @@
+@import "compass";
+
+.document-library-file-entry-cell-editor-hidden {
+	display: none;
+}
+
+.portlet-document-library, .portlet-dynamic-data-mapping {
+	.diagram-builder-drop-container {
+		overflow: auto;
+	}
+
+	.diagram-builder-field-icon {
+		font-size: 24px;
+	}
+
+	.field-labels-inline {
+		clear: both;
+		display: block;
+
+		.field-label {
+			margin-top: 0;
+		}
+	}
+
+	.field {
+		.field-content {
+			clear: both;
+		}
+	}
+
+	.lfr-structure-entry-details-container {
+		margin-top: 10px;
+	}
+
+	.lfr-translation-manager {
+		margin-bottom: 15px;
+	}
+
+	.lfr-ddm-link-to-page a {
+		clear: both;
+		display: block;
+	}
+
+	.lfr-ddm-small-image-preview {
+		background-color: #FFF;
+		border: 1px solid #CCC;
+		padding: 4px;
+		max-width: 120px;
+	}
+
+	.lfr-ddm-small-image-preview div {
+		background: #CCC;
+		height: 80px;
+		width: 80px;
+	}
+
+	.lfr-ddm-small-image-content {
+		background-color: #F5F5F5;
+		padding: 5px;
+
+		th {
+			padding: 5px;
+			white-space: nowrap;
+			width: 1%;
+		}
+	}
+
+	.lfr-ddm-small-image-content img {
+		margin-right: 1em;
+	}
+
+	.lfr-ddm-types-form-column .column-content-first {
+		margin-right: 10px;
+	}
+
+	.lfr-ddm-search-form .column {
+		margin-right: 10px;
+	}
+
+	.lfr-document-library-add-menu {
+		margin-bottom: 10px;
+	}
+
+	.lfr-template-editor-container {
+		.lfr-template-palette-container {
+			width: 275px;
+
+			.lfr-template-palette {
+				height: 372px;
+				overflow: auto;
+				width: 100%;
+
+				.palette-item-header {
+					font-weight: bold;
+
+					.palette-item-header-icon {
+						background: url() no-repeat 50%;
+						display: inline-block;
+						height: 10px;
+						width: 9px;
+					}
+				}
+
+				.toggler-header-collapsed .palette-item-header-icon {
+					background-image: url(@theme_image_path@/arrows/05_right.png);
+				}
+
+				.toggler-header-expanded .palette-item-header-icon {
+					background-image: url(@theme_image_path@/arrows/05_down.png);
+					vertical-align: middle;
+				}
+
+				.palette-item-header {
+					cursor: pointer;
+					margin: 0.5em;
+				}
+
+				.palette-item-content .palette-item-container {
+					cursor: pointer;
+					line-height: 1.8em;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+			}
+		}
+
+		.lfr-editor-container {
+			margin-left: 275px;
+
+			.lfr-template-editor .lfr-rich-editor {
+				padding-left: 0.2em;
+			}
+		}
+
+		.lfr-editor-container-full {
+			margin-left: 0;
+		}
+	}
+
+	.lfr-wcm-image-icon {
+		background-position: 50%;
+		padding: 0;
+	}
+
+	.form-builder-source-wrapper {
+		height: 600px;
+		position: relative;
+
+		.form-builder-source {
+			position: relative;
+		}
+	}
+}
+
+.ie6, .ie7 {
+	.lfr-editor-container {
+		zoom: 1;
+	}
+}

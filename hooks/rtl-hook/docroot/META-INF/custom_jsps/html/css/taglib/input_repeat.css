@@ -1,0 +1,11 @@
+.taglib-input-repeat {
+	.end-date-field {
+		clear: both;
+		padding-left: 1em;
+	}
+
+	.weekdays {
+		clear: both;
+		padding-top: 1em;
+	}
+}

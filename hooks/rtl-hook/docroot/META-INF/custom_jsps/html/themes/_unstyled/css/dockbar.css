@@ -1,0 +1,309 @@
+.portlet-dockbar, .portlet-staging-bar {
+}
+
+.portlet-dockbar {
+}
+
+.dockbar, .staging-bar {
+}
+
+.dockbar-ready .dockbar, .live-view .staging-bar, .staging .staging-bar {
+}
+
+.dockbar-ready .portlet-dockbar, .portal-popup .portlet-dockbar, .portal-popup .portlet-staging-bar, .staging-ready .portlet-staging-bar {
+}
+
+.dockbar {
+	&:after {
+	}
+}
+
+.ie7 .dockbar {
+}
+
+.ie6 {
+	.dockbar, .lfr-dockbar-pinned .dockbar {
+	}
+}
+
+.dockbar {
+	a {
+	}
+
+	.menu-button-active {
+		a {
+		}
+	}
+
+	.user-avatar .sign-out {
+	}
+
+	ul {
+	}
+
+	li li {
+	}
+}
+
+html > .lfr-dockbar-pinned {
+}
+
+.lfr-dockbar-pinned .dockbar {
+}
+
+.dockbar .pin-dockbar {
+}
+
+.ie6 .dockbar .pin-dockbar {
+}
+
+.pin-dockbar img {
+}
+
+.lfr-dockbar-pinned .pin-dockbar img {
+}
+
+.dockbar {
+	.user-portrait {
+	}
+
+	.user-avatar img {
+	}
+
+	.impersonating-user {
+		.user-links a {
+		}
+	}
+}
+
+/* ---------- Staging dockbar ---------- */
+
+.variation-selector {
+}
+
+.layout-revision-container {
+	.aproximate-date {
+	}
+
+	.current-version {
+	}
+
+	.current-version-pointer {
+		img {
+		}
+	}
+
+	.layout-variation-name {
+	}
+
+	.layout-revision-current {
+	}
+
+	.real-date {
+	}
+
+	.taglib-workflow-status .workflow-status {
+		.workflow-status-ready-for-publication {
+		}
+	}
+}
+
+.layout-revision-container-root {
+}
+
+.staging-details {
+}
+
+.staging .staging-details {
+}
+
+.live-view .staging-details {
+}
+
+.staging .staging-tabview-list {
+}
+
+.live-view .staging-tabview-list {
+}
+
+/* ---------- Menus ---------- */
+
+.dockbarmenu-hidden {
+}
+
+.dockbar {
+	.toolbar {
+	}
+
+	.user-toolbar {
+	}
+}
+
+.underlay {
+	.portal-add-content {
+	}
+
+	.portal-add-content .portlet-dd-placeholder {
+	}
+}
+
+.add-application .yui3-widget-bd, .dockbar-messages .yui3-widget-bd {
+}
+
+.add-application {
+}
+
+.lfr-has-sidebar #main-content {
+}
+
+.manage-layouts {
+}
+
+.my-sites-menu {
+	ul {
+	}
+
+	li, ul {
+	}
+
+	a {
+	}
+
+	.control-panel a {
+	}
+
+	.site-name {
+	}
+
+	.site-type {
+	}
+}
+
+.ie7 .my-sites-menu .site-type {
+}
+
+.my-sites-menu a:hover .site-type {
+}
+
+.ie7 {
+	.my-sites-menu {
+		a {
+		}
+
+		.site-name {
+		}
+
+		.site-type {
+		}
+	}
+}
+
+.ie6 {
+	.my-sites-menu {
+		a {
+		}
+	}
+
+	.menu-scroll {
+	}
+}
+
+.dockbar .toggle-controls a {
+}
+
+.controls-hidden .toggle-controls a {
+}
+
+.toggle-controls a {
+}
+
+.dockbar {
+	.menu-button {
+		span {
+		}
+	}
+
+	.add-content .menu-button span {
+	}
+
+	.manage-content .menu-button span {
+	}
+
+	.my-sites .menu-button span {
+	}
+}
+
+.dockbar-messages-container {
+}
+
+.dockbar-messages {
+}
+
+.showing-messages .dockbar-messages {
+}
+
+.multiple-messages {
+	.dockbar-message {
+	}
+
+	.first {
+	}
+}
+
+.add-content-menu {
+	.add-page a {
+	}
+
+	.add-application a {
+	}
+
+	a.lfr-portlet-used {
+	}
+}
+
+.manage-content-menu {
+	li a, li .disabled {
+	}
+
+	.manage-page a {
+	}
+
+	.manage-site-content a {
+	}
+
+	.manage-site-memberships a {
+	}
+
+	.manage-page-customization a, .manage-page-customization .disabled {
+	}
+
+	.page-layout a {
+	}
+
+	.sitemap a {
+	}
+
+	.settings a {
+	}
+}
+
+/* ---------- Customization bar ---------- */
+
+.page-customization-bar {
+}
+
+.controls-hidden .page-customization-bar {
+}
+
+.page-customization-bar {
+	.customized-icon {
+	}
+
+	.page-customization-actions {
+		a {
+		}
+	}
+
+	.reset-prototype {
+	}
+}

@@ -1,0 +1,55 @@
+@import "compass";
+
+/* ---------- Logo ---------- */
+
+.logo {
+}
+
+/* ---------- HTML editor ---------- */
+
+body.html-editor {
+}
+
+.html-editor.portlet-message-boards {
+	blockquote {
+
+		&:after {
+		}
+
+		cite {
+		}
+	}
+
+	pre {
+	}
+}
+
+/* ---------- Text formatting ---------- */
+
+.important {
+}
+
+/* ---------- Main content body ---------- */
+
+.portal-iframe #main-content {
+}
+
+/* ---------- Loading animation ---------- */
+
+.loading-animation {
+}
+
+/* ---------- Separator ---------- */
+
+.separator {
+}
+
+/* ---------- Update manager ---------- */
+
+.update-available {
+}
+
+/* ---------- Text highlighting ---------- */
+
+.highlight {
+}

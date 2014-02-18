@@ -1,0 +1,7 @@
+@import "compass";
+
+.portlet-activities {
+	.activity-data {
+		@include hyphenation;
+	}
+}

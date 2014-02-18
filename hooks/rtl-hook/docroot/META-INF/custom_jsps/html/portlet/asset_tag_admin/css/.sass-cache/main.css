@@ -1,0 +1,113 @@
+.portlet-asset-tag-admin .lfr-app-column-view {
+  border: none; }
+.portlet-asset-tag-admin .navbar-inner {
+  padding-left: 12px; }
+  .portlet-asset-tag-admin .navbar-inner .search-query {
+    width: 260px; }
+.portlet-asset-tag-admin .tags-admin-actions {
+  clear: none;
+  float: left;
+  margin: 0; }
+.portlet-asset-tag-admin .tags-admin-container .toolbar-container {
+  position: relative; }
+  .portlet-asset-tag-admin .tags-admin-container .toolbar-container .tags-admin-toolbar {
+    background: #F6F8FB;
+    border-bottom: 1px solid #dedede;
+    overflow: hidden;
+    padding: 5px 0; }
+  .portlet-asset-tag-admin .tags-admin-container .toolbar-container .tags-search-combobox {
+    position: absolute;
+    right: 5px;
+    top: 2px; }
+.portlet-asset-tag-admin .header-title, .portlet-asset-tag-admin .tree-node-content .tree-label {
+  word-wrap: break-word; }
+.portlet-asset-tag-admin .tags-admin-edit-tag .tag-view-container {
+  padding: 0 0.5em 0 0; }
+.portlet-asset-tag-admin .tags-admin-edit-tag .tag-details {
+  font-weight: bold;
+  vertical-align: middle; }
+.portlet-asset-tag-admin .tag-item a {
+  display: block;
+  padding: 8px 20px 8px 25px;
+  text-decoration: none; }
+.portlet-asset-tag-admin .tag-item-actions-trigger {
+  background-image: url(@theme_image_path@/common/edit.png);
+  background-repeat: no-repeat;
+  clip: rect(0pt, 0pt, 0pt, 0pt);
+  display: block;
+  height: 16px;
+  margin-top: -8px;
+  padding: 0;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  width: 16px; }
+.portlet-asset-tag-admin input.tag-item-check {
+  margin-right: 10px;
+  margin-top: 0;
+  position: static; }
+.portlet-asset-tag-admin .tags-admin-content .tag-item-container {
+  position: relative; }
+  .portlet-asset-tag-admin .tags-admin-content .tag-item-container .tag-item-name {
+    margin-top: 2px; }
+.portlet-asset-tag-admin .tags-admin-content li.tag-item-container, .portlet-asset-tag-admin .tags-admin-content li.tag-item {
+  font-weight: bold; }
+.portlet-asset-tag-admin .tag-item-container:hover .tag-item-actions-trigger, .portlet-asset-tag-admin .tag-item-container:focus .tag-item-actions-trigger {
+  clip: rect(auto auto auto auto); }
+.portlet-asset-tag-admin .tag-item-actions-trigger:focus {
+  clip: rect(auto auto auto auto); }
+.portlet-asset-tag-admin .tags-admin-list ul {
+  margin-left: 0; }
+.portlet-asset-tag-admin .tags-admin-list .active a:hover {
+  color: #D9EDF7; }
+.portlet-asset-tag-admin .tags-admin-list .active-area {
+  border: 1px solid #008000; }
+  .portlet-asset-tag-admin .tags-admin-list .active-area a {
+    background-color: #90EE90;
+    color: #90EE90; }
+.portlet-asset-tag-admin .select-tags {
+  margin-left: 12px;
+  margin-top: -5px; }
+.portlet-asset-tag-admin .tags-admin-list-container .tags-header {
+  display: inline-block;
+  margin-left: 2px; }
+.portlet-asset-tag-admin .tags-admin-list-container:after {
+  clear: both;
+  content: "";
+  display: block;
+  height: 0; }
+.portlet-asset-tag-admin .tags-admin-search {
+  background-image: url(@theme_image_path@/common/search.png);
+  background-position: 5px center;
+  background-repeat: no-repeat;
+  padding-left: 25px; }
+.portlet-asset-tag-admin .tags-pagination {
+  margin: 10px 0;
+  text-align: center; }
+  .portlet-asset-tag-admin .tags-pagination .pagination-content {
+    margin: 0; }
+.portlet-asset-tag-admin .view-tag .tag-field {
+  clear: left;
+  margin: 1em auto; }
+
+.tag-item-merge {
+  border: 1px solid #4E4848;
+  display: block;
+  font-weight: bold;
+  list-style: none;
+  padding: 8px 20px 8px 10px; }
+  .tag-item-merge a {
+    text-decoration: none; }
+
+.ie .portlet-asset-tag-admin .tag-item a {
+  zoom: 1; }
+
+.ie6 .portlet-asset-tag-admin .tag-item-actions-trigger, .ie6 .portlet-asset-tag-admin .tag-item-check, .ie7 .portlet-asset-tag-admin .tag-item-actions-trigger, .ie7 .portlet-asset-tag-admin .tag-item-check {
+  cursor: pointer; }
+.ie6 .portlet-asset-tag-admin-dialog .yui3-widget-bd .asset-tag-layer .field, .ie7 .portlet-asset-tag-admin-dialog .yui3-widget-bd .asset-tag-layer .field {
+  width: 200px; }
+
+.ie6 .portlet-asset-tag-admin .tag-item-merge, .ie7 .portlet-asset-tag-admin .tag-item-merge, .ie8 .portlet-asset-tag-admin .tag-item-merge {
+  font-weight: normal;
+  font-size: 120%; }
+

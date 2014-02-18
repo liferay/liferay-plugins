@@ -1,0 +1,55 @@
+@import "compass";
+@import "mixins";
+
+.lfr-menu-list-overflow {
+	overflow: auto;
+	overflow-x: hidden;
+}
+
+.lfr-menu-list-search-container .lfr-menu-list-search {
+	margin-bottom: 0;
+	margin-top: 2px;
+	width: 215px;
+}
+
+.lfr-menu-list {
+	float: none;
+	overflow-y: auto;
+	position: relative;
+
+	&.direction-left, &.direction-right {
+		margin: 0 2px;
+	}
+
+	&.dropdown-menu {
+		position: relative;
+		float: none;
+
+		@include respond-to(phone, tablet) {
+			> li > a {
+				font-size: 22px;
+				line-height: 40px;
+
+				img {
+					margin-bottom: 3px;
+				}
+			}
+		}
+	}
+}
+
+@include respond-to(phone) {
+	.table-cell.last .lfr-icon-menu .dropdown-toggle {
+		text-align: center;
+
+		> img, .lfr-icon-menu-text {
+			display: none;
+		}
+	}
+}
+
+.ie6, .ie7 {
+	.lfr-menu-list-search {
+		width: auto;
+	}
+}

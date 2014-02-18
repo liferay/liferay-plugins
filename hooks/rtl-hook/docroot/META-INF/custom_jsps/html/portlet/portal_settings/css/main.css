@@ -1,0 +1,18 @@
+.portlet-users-admin {
+	.available-languages {
+		margin-top: 1em;
+
+		.fieldset-legend {
+			font-size: 100%;
+		}
+
+		.legend {
+			border-bottom-width: 0;
+		}
+
+		legend {
+			padding: 0;
+			padding-bottom: 0.5em;
+		}
+	}
+}

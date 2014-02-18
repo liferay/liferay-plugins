@@ -1,0 +1,57 @@
+.app-view-taglib .display-style .icon {
+  background-image: url(@theme_image_path@/application/layouts.png);
+  background-repeat: no-repeat; }
+@media (max-width: 979px) {
+  .app-view-taglib .form-search {
+    margin-top: 5px; } }
+.app-view-taglib .icon-display-descriptive {
+  background-position: -32px 0; }
+.app-view-taglib .icon-display-icon {
+  background-position: -16px 0; }
+.app-view-taglib .icon-display-list {
+  background-position: 0 0; }
+@media (max-width: 979px) {
+  .app-view-taglib .navbar .navbar-search {
+    margin-left: 5px; } }
+.app-view-taglib .navbar .nav-display-style-buttons {
+  margin-left: 15px; }
+.app-view-taglib .state-active .icon-display-descriptive {
+  background-position: -32px 100%; }
+.app-view-taglib .state-active .icon-display-icon {
+  background-position: -16px 100%; }
+@media (max-width: 979px) {
+  .app-view-taglib .navbar-inner .nav-display-style-buttons {
+    margin: 0; }
+    .app-view-taglib .navbar-inner .nav-display-style-buttons .display-style-buttons-container {
+      margin-top: 0; }
+      .app-view-taglib .navbar-inner .nav-display-style-buttons .display-style-buttons-container .btn-group {
+        margin: 0; }
+      .app-view-taglib .navbar-inner .nav-display-style-buttons .display-style-buttons-container .btn {
+        display: inline-block;
+        font-size: 17.5px;
+        margin: 5px;
+        padding: 7px 10px;
+        width: auto; }
+        .app-view-taglib .navbar-inner .nav-display-style-buttons .display-style-buttons-container .btn > i {
+          display: inline-block; }
+      .app-view-taglib .navbar-inner .nav-display-style-buttons .display-style-buttons-container .toolbar {
+        margin-top: 0; } }
+.app-view-taglib .lfr-header-row-content {
+  position: relative; }
+  .app-view-taglib .lfr-header-row-content .display-style {
+    float: right; }
+  .app-view-taglib .lfr-header-row-content .select-all-entries {
+    left: 7px;
+    position: absolute;
+    top: 15px; }
+    @media (max-width: 979px) {
+      .app-view-taglib .lfr-header-row-content .select-all-entries {
+        top: 17px; } }
+
+.ie6 .app-view-taglib.lfr-header-row .lfr-header-row-content .toolbar {
+  position: relative; }
+  .ie6 .app-view-taglib.lfr-header-row .lfr-header-row-content .toolbar .field-choice {
+    width: 24px; }
+.ie6 .app-view-taglib.lfr-header-row .lfr-header-row-content .display-style {
+  position: relative; }
+

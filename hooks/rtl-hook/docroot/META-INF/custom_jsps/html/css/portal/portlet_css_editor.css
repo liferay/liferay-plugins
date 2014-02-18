@@ -1,0 +1,62 @@
+#portlet-set-properties {
+	fieldset {
+		margin-bottom: 1em;
+
+		fieldset {
+			margin-top: 1em;
+		}
+	}
+
+	.form {
+		clear: both;
+
+		.text-input {
+			margin-right: 5px;
+			width: 80px;
+		}
+
+		fieldset.col {
+			width: 29%;
+		}
+
+		#custom-css {
+			height: 300px;
+			width: 400px;
+		}
+	}
+
+	.common {
+		width: 27%;
+	}
+
+	.extra {
+		width: 20%;
+	}
+
+	.use-for-all-column .field-row .field-label {
+		width: 50px;
+	}
+
+	.form-hint {
+		float: none;
+	}
+
+	.lfr-bg-image-properties {
+		display: none;
+	}
+
+	#border-note {
+		margin-top: 10px;
+	}
+
+	.colorpicker-trigger {
+		margin-top: 0;
+		vertical-align: top;
+	}
+}
+
+/* Skin */
+
+#portlet-set-properties fieldset fieldset legend {
+	font-size: 1.1em;
+}

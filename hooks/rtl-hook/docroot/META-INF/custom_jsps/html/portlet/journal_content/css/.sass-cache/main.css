@@ -1,0 +1,43 @@
+.portlet-journal-content .journal-content-article {
+  clear: right; }
+  .portlet-journal-content .journal-content-article:after {
+    clear: both;
+    content: "";
+    display: block;
+    height: 0; }
+.portlet-journal-content .taglib-discussion {
+  margin-top: 18px; }
+.portlet-journal-content .taglib-ratings-wrapper {
+  margin-top: 1em; }
+.portlet-journal-content .tabview-list {
+  margin: 18px 0; }
+.portlet-journal-content .user-actions {
+  padding-bottom: 2.5em; }
+  .portlet-journal-content .user-actions .export-actions, .portlet-journal-content .user-actions .print-action, .portlet-journal-content .user-actions .locale-actions {
+    float: right; }
+  .portlet-journal-content .user-actions .print-action {
+    margin-left: 1em; }
+  .portlet-journal-content .user-actions .locale-separator {
+    border-right: 1px solid #CCC;
+    float: right;
+    margin-right: 1em;
+    padding: 0.8em 0.5em; }
+
+.portlet-configuration .displaying-article-id.modified {
+  color: #4DCF0C; }
+
+.ie .portlet-journal-content .journal-content-article {
+  zoom: 1; }
+.ie .portlet-journal-content .lfr-icon-actions {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
+  opacity: 0.2; }
+.ie .portlet-journal-content:hover .lfr-icon-actions {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1; }
+
+.ie6 .portlet-journal-content .icons-container {
+  height: 1%; }
+.ie6 .portlet-journal-content .lfr-icon-actions {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=90);
+  opacity: 0.9; }
+

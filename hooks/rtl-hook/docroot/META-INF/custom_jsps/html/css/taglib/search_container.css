@@ -1,0 +1,19 @@
+.user-status-tooltip {
+	.user-status-avatar {
+		float: left;
+		margin-right: 5px;
+
+		.user-status-avatar-image {
+			width: 27px;
+		}
+	}
+
+	.user-status-info {
+		display: inline-block;
+		overflow: hidden;
+
+		.user-status-date {
+			font-size: 11px;
+		}
+	}
+}

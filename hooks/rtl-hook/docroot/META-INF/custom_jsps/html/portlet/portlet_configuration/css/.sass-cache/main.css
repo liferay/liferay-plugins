@@ -1,0 +1,44 @@
+.portlet-configuration .archived-setups {
+  margin-bottom: 1em;
+  margin-right: 0.5em;
+  text-align: right; }
+.portlet-configuration .edit-permissions form:after {
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden; }
+.portlet-configuration .edit-permissions .assign-permissions {
+  float: left; }
+  .portlet-configuration .edit-permissions .assign-permissions .button-holder {
+    position: relative; }
+    .portlet-configuration .edit-permissions .assign-permissions .button-holder .finished {
+      position: absolute;
+      right: 0; }
+.portlet-configuration .relative-range {
+  width: 165px; }
+.portlet-configuration .process-list .background-task-status-column {
+  width: 700px; }
+  .portlet-configuration .process-list .background-task-status-column .background-task-status-message {
+    margin-top: 1em; }
+    .portlet-configuration .process-list .background-task-status-column .background-task-status-message .error-list-items li {
+      list-style: disc inside; }
+  .portlet-configuration .process-list .background-task-status-column .details-link {
+    margin-left: 1em; }
+  .portlet-configuration .process-list .background-task-status-column .publish-error {
+    margin-bottom: 0; }
+  .portlet-configuration .process-list .background-task-status-column .toggler-header-collapsed:after {
+    content: " »"; }
+  .portlet-configuration .process-list .background-task-status-column .toggler-header-expanded:after {
+    content: " «"; }
+  .portlet-configuration .process-list .background-task-status-column .background-task-status-in-progress {
+    float: left;
+    margin-right: 1em; }
+  .portlet-configuration .process-list .background-task-status-column .progress {
+    margin-bottom: 0.3em; }
+  .portlet-configuration .process-list .background-task-status-column .progress-current-item {
+    font-size: 0.7em; }
+
+.ie .portlet-configuration .edit-permissions form {
+  height: 1%; }
+

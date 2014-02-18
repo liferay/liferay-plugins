@@ -1,0 +1,34 @@
+.taglib-diff-html span.diff-html-added img, .taglib-diff-html span.diff-html-removed img {
+  border: 2px solid transparent; }
+.taglib-diff-html span.diff-html-changed img {
+  border: 2px dotted transparent; }
+
+.taglib-diff-html div.diff-removed-image, div.diff-added-image {
+  height: 300px;
+  margin: 2px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=55);
+  opacity: 0.55;
+  position: absolute;
+  width: 200px; }
+
+/* Skin */
+.taglib-diff-html div.diff-removed-image {
+  background: #fdc6c6 url(@theme_image_path@/diff/minus.png); }
+.taglib-diff-html div.diff-added-image {
+  background: #ccffcc url(@theme_image_path@/diff/plus.png) no-repeat; }
+.taglib-diff-html span.diff-html-added {
+  background-color: #cfc;
+  font-size: 1em; }
+  .taglib-diff-html span.diff-html-added img {
+    border-color: #cfc; }
+.taglib-diff-html span.diff-html-changed {
+  background: url(@theme_image_path@/diff/underline.png) bottom repeat-x; }
+  .taglib-diff-html span.diff-html-changed img {
+    border-color: #009; }
+.taglib-diff-html span.diff-html-removed {
+  background-color: #fdc6c6;
+  font-size: 1em;
+  text-decoration: line-through; }
+  .taglib-diff-html span.diff-html-removed img {
+    border-color: #fdc6c6; }
+

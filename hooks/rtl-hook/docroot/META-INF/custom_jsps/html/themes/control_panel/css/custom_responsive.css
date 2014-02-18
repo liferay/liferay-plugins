@@ -1,0 +1,37 @@
+@import "compass";
+@import "mixins";
+
+@include respond-to(phone, tablet) {
+	.aui {
+		.dockbar .navbar-inner .container {
+			#_145_navSiteNavigationNavbarBtn {
+				float: none;
+			}
+
+			#_145_navAddControlsNavbarBtn {
+				display: none;
+			}
+
+			.brand {
+				font-size: 16px;
+				padding: 22px 0 0 0;
+			}
+
+			.btn-navbar {
+				float: right;
+			}
+
+			.nav-navigation > li {
+				margin-left: 5px;
+			}
+		}
+	}
+}
+
+@include respond-to(phone) {
+	.aui{
+		.control-panel-home-actions {
+			display: none;
+		}
+	}
+}

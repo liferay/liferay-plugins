@@ -1,0 +1,14 @@
+.taglib-form-navigator ul.form-navigator.well {
+  float: right; }
+.taglib-form-navigator .error-notice, .taglib-form-navigator .modified-notice {
+  display: none; }
+.taglib-form-navigator .form-navigator-content {
+  overflow: visible; }
+  .taglib-form-navigator .form-navigator-content[class*="span"] {
+    margin-left: 0; }
+.taglib-form-navigator .section-modified .modified-notice {
+  display: inline-block; }
+.taglib-form-navigator .section-error .error-notice {
+  display: inline-block;
+  margin-right: 5px; }
+

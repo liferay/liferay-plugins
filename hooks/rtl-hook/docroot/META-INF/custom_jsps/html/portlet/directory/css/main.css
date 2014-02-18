@@ -1,0 +1,183 @@
+.portlet-directory {
+	.details {
+		overflow: hidden;
+
+		.avatar {
+			float: left;
+			width: 100px;
+		}
+
+		dd {
+			margin-bottom: 0.8em;
+		}
+
+		dl {
+			margin-left: 115px;
+		}
+
+		dt, dd {
+			clear: both;
+		}
+
+		dt {
+			font-weight: bold;
+			line-height: 1.1;
+			margin-bottom: 0;
+		}
+	}
+
+	table.org-labor-table {
+		border: 1px solid white;
+		margin-bottom: 30px;
+		margin-top: 10px;
+
+		td {
+			background-color: #EFEFEF;
+			padding: 5px;
+			text-align: center;
+
+			&.no-color {
+				background-color: #FFF;
+			}
+		}
+
+		th {
+			background-color: #999;
+			color: white;
+			padding: 1px 5px 1px 5px;
+		}
+	}
+
+	.primary {
+		background: #EEE url(@theme_image_path@/common/check.png) no-repeat 3px 50%;
+		color: #020509;
+		font-weight: bold;
+		margin-bottom: 10px;
+		padding: 5px;
+		padding-left: 10px;
+	}
+
+	dl.property-list {
+		margin-top: 0;
+		overflow: hidden;
+		padding: 0;
+
+		dd {
+			padding-left: 5px;
+
+			img {
+				vertical-align: middle;
+			}
+		}
+
+		li {
+			margin-bottom: 5px;
+		}
+
+		dt, dd {
+			float: left;
+			line-height: 1.5;
+			margin: 0;
+		}
+
+		dt {
+			clear: left;
+			font-weight: bold;
+			min-width: 5em;
+		}
+	}
+
+	.section {
+		float: left;
+		margin-left: 10px;
+		min-width: 250px;
+		width: 47%;
+
+		h3 {
+			background: url() no-repeat 2px 50%;
+			border-bottom: 1px solid #CCC;
+			line-height: 1.5;
+			margin-bottom: 0.5em;
+			padding-left: 25px;
+		}
+
+		li {
+			list-style: none;
+			margin: 0;
+			padding-left: 25px;
+		}
+
+		ul {
+			margin: 0;
+		}
+	}
+
+	.entity-addresses {
+		.mailing-name {
+			display: block;
+			font-style: italic;
+		}
+
+		h3 {
+			background-image: url(@theme_image_path@/common/home.png);
+		}
+
+		.primary {
+			background-position: 3px 5px;
+		}
+	}
+
+	.entity-comments h3 {
+		background-image: url(@theme_image_path@/common/welcome_message.png);
+	}
+
+	.entity-details {
+		clear: both;
+	}
+
+	.entity-email-addresses h3 {
+		background-image: url(@theme_image_path@/mail/unread.png);
+	}
+
+	.user-information, .organization-information {
+		overflow: hidden;
+	}
+
+	.entity-instant-messenger h3 {
+		background-image: url(@theme_image_path@/common/conversation.png);
+	}
+
+	.entity-phones h3 {
+		background-image: url(@theme_image_path@/common/telephone.png);
+	}
+
+	.entity-sms h3 {
+		background-image: url(@theme_image_path@/common/telephone_mobile.png);
+	}
+
+	.entity-social-network h3 {
+		background-image: url(@theme_image_path@/common/group.png);
+	}
+
+	.entity-websites h3 {
+		background-image: url(@theme_image_path@/common/history.png);
+	}
+
+	.entity-services h3 {
+		background-image: url(@theme_image_path@/common/services.png);
+	}
+}
+
+.ie6 {
+	.portlet-directory {
+		height: 1%;
+
+		dl.property-list {
+			height: 1%;
+		}
+
+		.user-information, .organization-information {
+			height: 1%;
+		}
+	}
+}

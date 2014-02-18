@@ -1,0 +1,113 @@
+@import "compass";
+@import "mixins";
+
+.app-view-taglib {
+	.display-style .icon {
+		background-image: url(@theme_image_path@/application/layouts.png);
+		background-repeat: no-repeat;
+	}
+
+	.form-search {
+		@include respond-to(phone, tablet) {
+			margin-top: 5px;
+		}
+	}
+
+	.icon-display-descriptive {
+		background-position: -32px 0;
+	}
+
+	.icon-display-icon {
+		background-position: -16px 0;
+	}
+
+	.icon-display-list {
+		background-position: 0 0;
+	}
+
+	.navbar {
+		.navbar-search {
+			@include respond-to(phone, tablet) {
+				margin-left: 5px;
+			}
+		}
+
+		.nav-display-style-buttons {
+			margin-left: 15px;
+		}
+	}
+
+	.state-active {
+		.icon-display-descriptive {
+			background-position: -32px 100%;
+		}
+
+		.icon-display-icon {
+			background-position: -16px 100%;
+		}
+	}
+
+	@include respond-to(phone, tablet) {
+		.navbar-inner .nav-display-style-buttons {
+			margin: 0;
+
+			.display-style-buttons-container {
+				margin-top: 0;
+
+				.btn-group {
+					margin: 0;
+				}
+
+				.btn {
+					display: inline-block;
+					font-size: 17.5px;
+					margin: 5px;
+					padding: 7px 10px;
+					width: auto;
+
+					> i {
+						display: inline-block;
+					}
+				}
+
+				.toolbar {
+					margin-top: 0;
+				}
+			}
+		}
+	}
+
+	.lfr-header-row-content {
+		position: relative;
+
+		.display-style {
+			float: right;
+		}
+
+		.select-all-entries {
+			left: 7px;
+			position: absolute;
+			top: 15px;
+
+			@include respond-to(phone, tablet) {
+				top: 17px;
+			}
+		}
+	}
+}
+
+.ie6 {
+	.app-view-taglib.lfr-header-row .lfr-header-row-content {
+		.toolbar {
+			position: relative;
+
+			.field-choice {
+				width: 24px;
+			}
+		}
+
+		.display-style {
+			position: relative;
+		}
+	}
+}

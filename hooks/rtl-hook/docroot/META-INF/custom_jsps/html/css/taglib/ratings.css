@@ -1,0 +1,53 @@
+.taglib-ratings {
+	&.stars {
+		overflow: hidden;
+		padding-top: 10px;
+
+		.liferay-rating-score {
+			padding-left: 15px;
+		}
+
+		.liferay-rating-vote, .liferay-rating-score {
+			float: left;
+		}
+	}
+
+	.rating-content {
+		display: block;
+	}
+
+	&.score {
+		white-space: nowrap;
+	}
+
+	&.thumbs {
+		float: left;
+		margin: 0;
+
+		.thumbrating {
+			height: 20px;
+
+			.rating-label {
+				padding: 0 5px;
+			}
+		}
+	}
+
+	.rating-input-container .rating-input {
+		margin-left: 1px;
+	}
+}
+
+.js .taglib-ratings .liferay-rating-vote .rating-input-container {
+	display: none;
+}
+
+.ie6 .taglib-ratings {
+	.rating-content {
+		display: inline;
+	}
+
+	&.stars {
+		display: inline-block;
+	}
+}
