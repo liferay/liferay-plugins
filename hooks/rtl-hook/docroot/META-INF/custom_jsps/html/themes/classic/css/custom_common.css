@@ -721,7 +721,8 @@
 					@include user-select(none);
 
 					.accordion-toggle {
-						background: #F2F2F2 url(../images/arrows/13_left.png) no-repeat 100% -20px;
+						background: #F2F2F2 url(../images/arrows/13_right.png) no-repeat;
+						background-position: 100% -20px;
 					}
 				}
 

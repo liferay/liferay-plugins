@@ -2390,6 +2390,16 @@ body:first-of-type .portlet-content:hover .lfr-icon-actions .taglib-text {
       box-shadow: 0 1px 1px -1px black; }
   .aui .breadcrumb {
     padding: 3px 15px 2px; }
+    .aui .breadcrumb li a {
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      -ms-text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      line-height: normal;
+      max-width: 300px;
+      vertical-align: text-bottom; }
     .aui .breadcrumb li span.divider {
       color: #999;
       font-weight: bold; }
@@ -2408,12 +2418,7 @@ body:first-of-type .portlet-content:hover .lfr-icon-actions .taglib-text {
           .aui .breadcrumb li.only, .aui .breadcrumb li.first, .aui .breadcrumb li.last, .aui .breadcrumb li.current-parent {
             display: inline-block; }
           .aui .breadcrumb li.breadcrumb-truncate.only, .aui .breadcrumb li.breadcrumb-truncate.first a, .aui .breadcrumb li.breadcrumb-truncate.last a, .aui .breadcrumb li.breadcrumb-truncate.active, .aui .breadcrumb li.breadcrumb-truncate.current-parent a {
-            display: inline-block;
-            max-width: 65px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            vertical-align: bottom;
-            white-space: nowrap; }
+            max-width: 65px; }
           .aui .breadcrumb li.breadcrumb-truncate.current-parent:before {
             color: #999;
             content: " ... / ";
@@ -2549,7 +2554,8 @@ body:first-of-type .portlet-content:hover .lfr-icon-actions .taglib-text {
         -moz-user-select: none;
         user-select: none; }
         .aui .add-content-menu .accordion .accordion-group .toggler-header .accordion-toggle, .aui .lfr-edit-layout-panel .accordion .accordion-group .toggler-header .accordion-toggle, .aui .panel-page-menu .portlet-borderless-container .accordion .accordion-group .toggler-header .accordion-toggle {
-          background: #f2f2f2 url(@base_url@/html/themes/control_panel/css/../../classic/css/../images/arrows/13_left.png) no-repeat 100% -20px; }
+          background: #f2f2f2 url(@base_url@/html/themes/control_panel/css/../../classic/css/../images/arrows/13_right.png) no-repeat;
+          background-position: 100% -20px; }
       .aui .add-content-menu .accordion .accordion-group .toggler-header-collapsed, .aui .lfr-edit-layout-panel .accordion .accordion-group .toggler-header-collapsed, .aui .panel-page-menu .portlet-borderless-container .accordion .accordion-group .toggler-header-collapsed {
         border-bottom-width: 0; }
         .aui .add-content-menu .accordion .accordion-group .toggler-header-collapsed .accordion-toggle, .aui .lfr-edit-layout-panel .accordion .accordion-group .toggler-header-collapsed .accordion-toggle, .aui .panel-page-menu .portlet-borderless-container .accordion .accordion-group .toggler-header-collapsed .accordion-toggle {
