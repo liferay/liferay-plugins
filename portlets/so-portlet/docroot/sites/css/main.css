@@ -517,6 +517,7 @@ $defaultTextColor: #202020;
 
 	.go-to {
 		display: block;
+		height: 43px;
 		width: auto;
 
 		.so-portlet-sites {
@@ -525,14 +526,8 @@ $defaultTextColor: #202020;
 	}
 }
 
-.dockbar-split {
-	.go-to {
-		height: 44px;
-
-		.so-portlet-sites {
-			top: 0;
-		}
-	}
+.dockbar-split .go-to .so-portlet-sites {
+	top: 0;	
 }
 
 /* ---------- Extras ---------- */
