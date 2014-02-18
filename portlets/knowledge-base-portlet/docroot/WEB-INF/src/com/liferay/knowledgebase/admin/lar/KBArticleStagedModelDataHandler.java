@@ -131,7 +131,7 @@ public class KBArticleStagedModelDataHandler
 				KBArticle.class);
 
 		long parentResourcePrimKey = MapUtil.getLong(
-			kbArticleResourcePrimKeys, kbArticle.getParentResourcePrimKey());
+			kbArticleResourcePrimKeys, kbArticle.getParentResourcePrimKey(), 0);
 
 		long resourcePrimaryKey = MapUtil.getLong(
 			kbArticleResourcePrimKeys, kbArticle.getResourcePrimKey(), 0);
