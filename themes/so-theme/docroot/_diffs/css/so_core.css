@@ -457,21 +457,20 @@ html.aui {
 	@include normal-gradient;
 }
 
-.invite-members, .social-relations a {
-	@include button-default;
-}
+.aui {
+	.invite-members, .social-relations a {
+		@include border-radius(4px);
+		@include button-default;
 
-.invite-members, .social-relations a {
-	@include border-radius(4px);
+		&:hover, &:focus {
+			@include button-hover;
 
-	&:hover, &:focus {
-		@include button-hover;
+			text-decoration: none;
+		}
 
-		text-decoration: none;
-	}
-
-	&:active {
-		@include button-active;
+		&:active {
+			@include button-active;
+		}
 	}
 }
 
@@ -897,8 +896,6 @@ html.aui {
 	}
 
 	.contacts-action-content {
-		padding: 3px;
-
 		span, .taglib-text {
 			padding: 0;
 		}
