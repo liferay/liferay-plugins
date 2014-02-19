@@ -42,8 +42,8 @@ public class ModelListenerTest extends BaseTestCase {
 		SyncFileService.update(syncFile);
 
 		Assert.assertEquals(
-			"/home/liferay/test", _updatedFields.get("filePathName"));
-		Assert.assertEquals(2, _updatedFields.size());
+			"/home/liferay/test", _originalFieldValues.get("filePathName"));
+		Assert.assertEquals(2, _originalFieldValues.size());
 	}
 
 	@Test
@@ -57,18 +57,19 @@ public class ModelListenerTest extends BaseTestCase {
 
 		SyncFileService.update(syncFile);
 
-		Assert.assertTrue(_updatedFields.isEmpty());
+		Assert.assertTrue(_originalFieldValues.isEmpty());
 	}
 
-	private Map<String, Object> _updatedFields = new HashMap<String, Object>();
+	private Map<String, Object> _originalFieldValues =
+		new HashMap<String, Object>();
 
 	private class SyncFileModelListener implements ModelListener<SyncFile> {
 
 		@Override
 		public void onUpdate(
-			SyncFile syncFile, Map<String, Object> updatedFields) {
+			SyncFile syncFile, Map<String, Object> originalFieldValues) {
 
-			_updatedFields = updatedFields;
+			_originalFieldValues = originalFieldValues;
 		}
 
 	}

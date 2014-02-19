@@ -79,7 +79,7 @@ public class BasePersistenceImpl<TT, TID>
 	}
 
 	protected void notifyListeners(TT targetModel) throws SQLException {
-		Map<String, Object> updatedFields = new HashMap<String, Object>();
+		Map<String, Object> originalFieldValues = new HashMap<String, Object>();
 
 		TT sourceModel = queryForId(extractId(targetModel));
 
@@ -99,16 +99,17 @@ public class BasePersistenceImpl<TT, TID>
 			if (!dataPersister.dataIsEqual(
 					sourceFieldValue, targetFieldValue)) {
 
-				updatedFields.put(fieldType.getColumnName(), sourceFieldValue);
+				originalFieldValues.put(
+					fieldType.getColumnName(), sourceFieldValue);
 			}
 		}
 
-		if (updatedFields.isEmpty()) {
+		if (originalFieldValues.isEmpty()) {
 			return;
 		}
 
 		for (ModelListener<TT> listener : _listeners) {
-			listener.onUpdate(targetModel, updatedFields);
+			listener.onUpdate(targetModel, originalFieldValues);
 		}
 	}
 
