@@ -169,6 +169,7 @@ Error-Prone was automatically installed. Please rerun your task.
 			<java
 				classname="com.liferay.portal.tools.SassToCssBuilder"
 				classpathref="portal.classpath"
+				failonerror="true"
 				fork="true"
 				newenvironment="true"
 			>
