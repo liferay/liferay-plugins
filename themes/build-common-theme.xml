@@ -8,6 +8,7 @@
 		<java
 			classname="com.liferay.portal.tools.SassToCssBuilder"
 			classpathref="portal.classpath"
+			failonerror="true"
 			fork="true"
 			newenvironment="true"
 		>
