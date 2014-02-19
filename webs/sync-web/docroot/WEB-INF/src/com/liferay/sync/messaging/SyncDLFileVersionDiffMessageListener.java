@@ -12,23 +12,23 @@
  * details.
  */
 
-package com.liferay.sync.util;
+package com.liferay.sync.messaging;
+
+import com.liferay.portal.kernel.messaging.BaseMessageListener;
+import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.sync.service.SyncDLFileVersionDiffLocalServiceUtil;
 
 /**
  * @author Dennis Ju
  */
-public class PortletPropsKeys {
+public class SyncDLFileVersionDiffMessageListener extends BaseMessageListener {
 
-	public static final String FILE_DIFF_CACHE_DELETE_INTERVAL =
-		"file.diff.cache.delete.interval";
+	public static final String DESTINATION_NAME =
+		"liferay/sync_dl_file_version_diff_processor";
 
-	public static final String FILE_DIFF_CACHE_ENABLED =
-		"file.diff.cache.enabled";
-
-	public static final String FILE_DIFF_CACHE_EXPIRATION_TIME =
-		"file.diff.cache.expiration.time";
-
-	public static final String SYNC_AUTH_VERIFIER_PIPELINE =
-		"sync.auth.verifier.pipeline";
+	@Override
+	protected void doReceive(Message message) throws Exception {
+		SyncDLFileVersionDiffLocalServiceUtil.deleteExpired();
+	}
 
 }

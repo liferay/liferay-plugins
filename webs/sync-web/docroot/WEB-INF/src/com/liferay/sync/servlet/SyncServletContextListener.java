@@ -21,12 +21,21 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.SerialDestination;
+import com.liferay.portal.kernel.scheduler.CronText;
+import com.liferay.portal.kernel.scheduler.CronTrigger;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
+import com.liferay.portal.kernel.scheduler.StorageType;
+import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.util.BasePortalLifecycle;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portlet.documentlibrary.model.DLSyncEvent;
 import com.liferay.portlet.documentlibrary.service.DLSyncEventLocalServiceUtil;
-import com.liferay.sync.messaging.SyncMessageListener;
+import com.liferay.sync.messaging.SyncDLFileVersionDiffMessageListener;
+import com.liferay.sync.messaging.SyncDLObjectMessageListener;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
+import com.liferay.sync.util.PortletPropsValues;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,32 +60,7 @@ public class SyncServletContextListener
 		registerPortalLifecycle();
 	}
 
-	@Override
-	protected void doPortalDestroy() throws Exception {
-		DLSyncEventLocalServiceUtil.deleteDLSyncEvents();
-
-		MessageBusUtil.unregisterMessageListener(
-			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
-			_messageListener);
-	}
-
-	@Override
-	protected void doPortalInit() {
-		_messageListener = new SyncMessageListener();
-
-		SerialDestination serialDestination = new SerialDestination();
-
-		serialDestination.setName(
-			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR);
-
-		serialDestination.afterPropertiesSet();
-
-		MessageBusUtil.addDestination(serialDestination);
-
-		MessageBusUtil.registerMessageListener(
-			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
-			_messageListener);
-
+	protected void consumeDLSyncEvents() {
 		try {
 			long latestModifiedTime =
 				SyncDLObjectLocalServiceUtil.getLatestModifiedTime();
@@ -116,9 +100,84 @@ public class SyncServletContextListener
 		}
 	}
 
+	@Override
+	protected void doPortalDestroy() throws Exception {
+		DLSyncEventLocalServiceUtil.deleteDLSyncEvents();
+
+		MessageBusUtil.unregisterMessageListener(
+			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
+			_syncDLObjectMessageListener);
+
+		if (PortletPropsValues.FILE_DIFF_CACHE_ENABLED) {
+			MessageBusUtil.unregisterMessageListener(
+				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME,
+				_syncDLFileVersionDiffMessageListener);
+		}
+	}
+
+	@Override
+	protected void doPortalInit() {
+		_syncDLObjectMessageListener = new SyncDLObjectMessageListener();
+
+		registerMessageListener(
+			_syncDLObjectMessageListener,
+			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR);
+
+		if (PortletPropsValues.FILE_DIFF_CACHE_ENABLED) {
+			_syncDLFileVersionDiffMessageListener =
+				new SyncDLFileVersionDiffMessageListener();
+
+			registerMessageListener(
+				_syncDLFileVersionDiffMessageListener,
+				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME);
+
+			scheduleDeleteExpiredDiffsEvent();
+		}
+
+		consumeDLSyncEvents();
+	}
+
+	protected void registerMessageListener(
+		MessageListener messageListener, String destinationName) {
+
+		SerialDestination serialDestination = new SerialDestination();
+
+		serialDestination.setName(destinationName);
+
+		serialDestination.afterPropertiesSet();
+
+		MessageBusUtil.addDestination(serialDestination);
+
+		MessageBusUtil.registerMessageListener(
+			destinationName, messageListener);
+	}
+
+	protected void scheduleDeleteExpiredDiffsEvent() {
+		try {
+			Calendar startDate = CalendarFactoryUtil.getCalendar();
+
+			CronText cronText = new CronText(
+				startDate, CronText.HOURLY_FREQUENCY,
+				PortletPropsValues.FILE_DIFF_CACHE_DELETE_INTERVAL);
+
+			Trigger trigger = new CronTrigger(
+				SyncDLFileVersionDiffMessageListener.class.getName(),
+				SyncDLFileVersionDiffMessageListener.class.getName(),
+				cronText.toString());
+
+			SchedulerEngineHelperUtil.schedule(
+				trigger, StorageType.MEMORY_CLUSTERED, null,
+				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME, null, 0);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		SyncServletContextListener.class);
 
-	private MessageListener _messageListener;
+	private MessageListener _syncDLFileVersionDiffMessageListener;
+	private MessageListener _syncDLObjectMessageListener;
 
 }

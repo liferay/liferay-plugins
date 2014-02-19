@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
@@ -28,8 +29,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Lock;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
-import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
@@ -73,15 +72,13 @@ public class SyncUtil {
 	}
 
 	public static String getChecksum(InputStream inputStream) {
-		return DigesterUtil.digestBase64(inputStream);
+		return DigesterUtil.digestBase64(Digester.SHA_1, inputStream);
 	}
 
-	public static InputStream getFileDeltaAsStream(
-			long userId, long fileEntryId, String sourceVersion,
-			String destinationVersion)
+	public static File getFileDelta(File sourceFile, File destinationFile)
 		throws PortalException {
 
-		InputStream deltaInputStream = null;
+		File deltaFile = null;
 
 		FileInputStream sourceFileInputStream = null;
 		FileChannel sourceFileChannel = null;
@@ -90,9 +87,6 @@ public class SyncUtil {
 		WritableByteChannel checksumsWritableByteChannel = null;
 
 		try {
-			File sourceFile = DLFileEntryLocalServiceUtil.getFile(
-				userId, fileEntryId, sourceVersion, false);
-
 			sourceFileInputStream = new FileInputStream(sourceFile);
 
 			sourceFileChannel = sourceFileInputStream.getChannel();
@@ -119,7 +113,7 @@ public class SyncUtil {
 			StreamUtil.cleanUp(checksumsWritableByteChannel);
 		}
 
-		InputStream destinationInputStream = null;
+		FileInputStream destinationFileInputStream = null;
 		ReadableByteChannel destinationReadableByteChannel = null;
 		InputStream checksumsInputStream = null;
 		ReadableByteChannel checksumsReadableByteChannel = null;
@@ -127,14 +121,10 @@ public class SyncUtil {
 		WritableByteChannel deltaOutputStreamWritableByteChannel = null;
 
 		try {
-			FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(
-				fileEntryId);
+			destinationFileInputStream = new FileInputStream(destinationFile);
 
-			destinationInputStream = fileEntry.getContentStream(
-				destinationVersion);
-
-			destinationReadableByteChannel = Channels.newChannel(
-				destinationInputStream);
+			destinationReadableByteChannel =
+				destinationFileInputStream.getChannel();
 
 			checksumsInputStream = new FileInputStream(checksumsFile);
 
@@ -144,7 +134,7 @@ public class SyncUtil {
 			ByteChannelReader checksumsByteChannelReader =
 				new ByteChannelReader(checksumsReadableByteChannel);
 
-			File deltaFile = FileUtil.createTempFile();
+			deltaFile = FileUtil.createTempFile();
 
 			deltaOutputStream = new FileOutputStream(deltaFile);
 
@@ -159,14 +149,12 @@ public class SyncUtil {
 				deltaByteChannelWriter);
 
 			deltaByteChannelWriter.finish();
-
-			deltaInputStream = new FileInputStream(deltaFile);
 		}
 		catch (Exception e) {
 			throw new PortalException(e);
 		}
 		finally {
-			StreamUtil.cleanUp(destinationInputStream);
+			StreamUtil.cleanUp(destinationFileInputStream);
 			StreamUtil.cleanUp(destinationReadableByteChannel);
 			StreamUtil.cleanUp(checksumsInputStream);
 			StreamUtil.cleanUp(checksumsReadableByteChannel);
@@ -176,7 +164,7 @@ public class SyncUtil {
 			FileUtil.delete(checksumsFile);
 		}
 
-		return deltaInputStream;
+		return deltaFile;
 	}
 
 	public static boolean isSupportedFolder(Folder folder) {
