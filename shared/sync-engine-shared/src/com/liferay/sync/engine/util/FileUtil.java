@@ -14,8 +14,6 @@
 
 package com.liferay.sync.engine.util;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.nio.file.Files;
@@ -42,7 +40,7 @@ public class FileUtil {
 		InputStream fileInputStream = null;
 
 		try {
-			fileInputStream = new FileInputStream(filePath.toFile());
+			fileInputStream = Files.newInputStream(filePath);
 
 			byte[] bytes = DigestUtils.sha1(fileInputStream);
 
@@ -54,14 +52,7 @@ public class FileUtil {
 			return null;
 		}
 		finally {
-			if (fileInputStream != null) {
-				try {
-					fileInputStream.close();
-				}
-				catch (IOException ioe) {
-					_logger.error(ioe.getMessage(), ioe);
-				}
-			}
+			StreamUtil.cleanUp(fileInputStream);
 		}
 	}
 

@@ -20,6 +20,7 @@ import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.HttpUtil;
+import com.liferay.sync.engine.util.StreamUtil;
 
 import java.io.OutputStream;
 
@@ -77,9 +78,7 @@ public class DownloadFileEvent extends BaseEvent {
 			SyncFileService.update(syncFile);
 		}
 		finally {
-			if (outputStream != null) {
-				outputStream.close();
-			}
+			StreamUtil.cleanUp(outputStream);
 		}
 	}
 

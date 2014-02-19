@@ -22,7 +22,9 @@ import com.liferay.sync.engine.util.HttpUtil;
 import com.liferay.sync.engine.util.LoggerUtil;
 import com.liferay.sync.engine.util.PropsKeys;
 import com.liferay.sync.engine.util.PropsUtil;
+import com.liferay.sync.engine.util.StreamUtil;
 
+import java.io.IOException;
 import java.io.InputStream;
 
 import java.nio.file.Path;
@@ -39,6 +41,9 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Shinn Lok
@@ -76,14 +81,24 @@ public abstract class BaseTestCase {
 		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
 	}
 
-	protected String readResponse(String fileName) throws Exception {
-		Class<?> clazz = getClass();
+	protected String readResponse(String fileName) {
+		InputStream inputStream = null;
 
-		InputStream inputStream = clazz.getResourceAsStream(fileName);
+		String response = null;
 
-		String response = IOUtils.toString(inputStream);
+		try {
+			Class<?> clazz = getClass();
 
-		inputStream.close();
+			inputStream = clazz.getResourceAsStream(fileName);
+
+			response = IOUtils.toString(inputStream);
+		}
+		catch (IOException ioe) {
+			_logger.error(ioe.getMessage(), ioe);
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
+		}
 
 		return response;
 	}
@@ -111,5 +126,7 @@ public abstract class BaseTestCase {
 
 	protected String filePathName;
 	protected SyncAccount syncAccount;
+
+	private static Logger _logger = LoggerFactory.getLogger(BaseTestCase.class);
 
 }
