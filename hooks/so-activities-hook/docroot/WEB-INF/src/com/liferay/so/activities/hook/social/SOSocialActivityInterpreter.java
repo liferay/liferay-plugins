@@ -122,12 +122,11 @@ public abstract class SOSocialActivityInterpreter
 		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
 			SocialActivity.class);
 
+		dynamicQuery.add(
+			RestrictionsFactoryUtil.eq("activitySetId", activitySetId));
 		dynamicQuery.setProjection(
 			ProjectionFactoryUtil.distinct(
 				ProjectionFactoryUtil.property("userId")));
-
-		dynamicQuery.add(
-			RestrictionsFactoryUtil.eq("activitySetId", activitySetId));
 
 		return SocialActivityLocalServiceUtil.dynamicQuery(dynamicQuery);
 	}
