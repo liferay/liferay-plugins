@@ -24,7 +24,12 @@ import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 import com.liferay.sync.engine.service.persistence.SyncPropPersistence;
 import com.liferay.sync.engine.service.persistence.SyncSitePersistence;
 import com.liferay.sync.engine.service.persistence.SyncWatchEventPersistence;
+import com.liferay.sync.engine.util.PropsValues;
 import com.liferay.sync.engine.util.ReleaseInfo;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author Shinn Lok
@@ -36,6 +41,11 @@ public class UpgradeUtil {
 
 		if (buildNumber == 0) {
 			createTables();
+
+			Path filePath = Paths.get(
+				PropsValues.SYNC_CONFIGURATION_DIRECTORY + "/files");
+
+			Files.createDirectory(filePath);
 		}
 		else if (buildNumber == ReleaseInfo.getBuildNumber()) {
 			return;

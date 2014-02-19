@@ -1,0 +1,100 @@
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.sync.engine.model;
+
+import com.liferay.io.delta.ByteChannelWriter;
+import com.liferay.io.delta.DeltaUtil;
+import com.liferay.sync.engine.util.PropsValues;
+import com.liferay.sync.engine.util.StreamUtil;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import java.nio.channels.Channels;
+import java.nio.channels.FileChannel;
+import java.nio.channels.WritableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * @author Shinn Lok
+ */
+public class SyncFileListener implements ModelListener<SyncFile> {
+
+	@Override
+	public void onUpdate(
+		SyncFile syncFile, Map<String, Object> originalFieldValues) {
+
+		if (!originalFieldValues.containsKey("checksum")) {
+			return;
+		}
+
+		Path filePath = Paths.get(syncFile.getFilePathName());
+
+		if (Files.notExists(filePath)) {
+			return;
+		}
+
+		FileInputStream fileInputStream = null;
+		OutputStream outputStream = null;
+		FileChannel fileChannel = null;
+		WritableByteChannel writableByteChannel = null;
+
+		try {
+			fileInputStream = new FileInputStream(syncFile.getFilePathName());
+
+			fileChannel = fileInputStream.getChannel();
+
+			filePath = Paths.get(
+				PropsValues.SYNC_CONFIGURATION_DIRECTORY + "/files/" +
+					syncFile.getSyncFileId());
+
+			if (Files.notExists(filePath)) {
+				Files.createFile(filePath);
+			}
+
+			outputStream = Files.newOutputStream(filePath);
+
+			writableByteChannel = Channels.newChannel(outputStream);
+
+			ByteChannelWriter byteChannelWriter = new ByteChannelWriter(
+				writableByteChannel);
+
+			DeltaUtil.checksums(fileChannel, byteChannelWriter);
+
+			byteChannelWriter.finish();
+		}
+		catch (IOException ioe) {
+			_logger.error(ioe.getMessage(), ioe);
+		}
+		finally {
+			StreamUtil.cleanUp(fileInputStream);
+			StreamUtil.cleanUp(outputStream);
+			StreamUtil.cleanUp(fileChannel);
+			StreamUtil.cleanUp(writableByteChannel);
+		}
+	}
+
+	private static Logger _logger = LoggerFactory.getLogger(
+		SyncFileListener.class);
+
+}
