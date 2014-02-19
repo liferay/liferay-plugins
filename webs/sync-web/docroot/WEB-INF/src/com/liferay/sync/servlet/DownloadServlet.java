@@ -14,6 +14,8 @@
 
 package com.liferay.sync.servlet;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
@@ -25,14 +27,23 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
+import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
+import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
+import com.liferay.sync.model.SyncDLFileVersionDiff;
+import com.liferay.sync.service.SyncDLFileVersionDiffLocalServiceUtil;
+import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -90,6 +101,20 @@ public class DownloadServlet extends HttpServlet {
 		}
 	}
 
+	protected File getDeltaFile(
+			long userId, long fileEntryId, String sourceVersion,
+			String destinationVersion)
+		throws PortalException, SystemException {
+
+		File sourceFile = DLFileEntryLocalServiceUtil.getFile(
+			userId, fileEntryId, sourceVersion, false);
+
+		File destinationFile = DLFileEntryLocalServiceUtil.getFile(
+			userId, fileEntryId, destinationVersion, false);
+
+		return SyncUtil.getFileDelta(sourceFile, destinationFile);
+	}
+
 	protected void sendFile(
 			HttpServletRequest request, HttpServletResponse response, User user,
 			long groupId, String uuid)
@@ -136,11 +161,53 @@ public class DownloadServlet extends HttpServlet {
 			throw new IllegalArgumentException("Missing destination version");
 		}
 
-		InputStream inputStream = SyncUtil.getFileDeltaAsStream(
-			user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
-			destinationVersion);
+		DLFileVersion sourceFileVersion =
+			DLFileVersionLocalServiceUtil.getFileVersion(
+				fileEntry.getFileEntryId(), sourceVersion);
 
-		ServletResponseUtil.write(response, inputStream);
+		DLFileVersion destinationFileVersion =
+			DLFileVersionLocalServiceUtil.getFileVersion(
+				fileEntry.getFileEntryId(), destinationVersion);
+
+		if (!PortletPropsValues.FILE_DIFF_CACHE_ENABLED) {
+			File deltaFile = getDeltaFile(
+				user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
+				destinationVersion);
+
+			ServletResponseUtil.write(
+				response, new FileInputStream(deltaFile), deltaFile.length());
+
+			return;
+		}
+
+		SyncDLFileVersionDiff syncDLFileVersionDiff =
+			SyncDLFileVersionDiffLocalServiceUtil.fetchSyncDLFileVersionDiff(
+				fileEntry.getFileEntryId(),
+				sourceFileVersion.getFileVersionId(),
+				destinationFileVersion.getFileVersionId());
+
+		if (syncDLFileVersionDiff != null) {
+			SyncDLFileVersionDiffLocalServiceUtil.refreshExpirationDate(
+				syncDLFileVersionDiff.getFileVersionDiffId());
+		}
+		else {
+			File deltaFile = getDeltaFile(
+				user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
+				destinationVersion);
+
+			syncDLFileVersionDiff =
+				SyncDLFileVersionDiffLocalServiceUtil.addSyncDLFileVersionDiff(
+					fileEntry.getFileEntryId(),
+					sourceFileVersion.getFileVersionId(),
+					destinationFileVersion.getFileVersionId(), deltaFile);
+		}
+
+		FileEntry dataFileEntry = PortletFileRepositoryUtil.getPortletFileEntry(
+			syncDLFileVersionDiff.getDataFileEntryId());
+
+		ServletResponseUtil.write(
+			response, dataFileEntry.getContentStream(),
+			dataFileEntry.getSize());
 	}
 
 }

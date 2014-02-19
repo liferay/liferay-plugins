@@ -34,7 +34,7 @@ import java.util.Date;
 /**
  * @author Dennis Ju
  */
-public class SyncMessageListener extends BaseMessageListener {
+public class SyncDLObjectMessageListener extends BaseMessageListener {
 
 	protected void addSyncDLObject(
 			long modifiedTime, String event, String type, long typePK)
