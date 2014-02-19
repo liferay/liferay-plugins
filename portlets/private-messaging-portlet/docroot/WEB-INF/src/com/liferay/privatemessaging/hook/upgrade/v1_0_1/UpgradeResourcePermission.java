@@ -17,14 +17,24 @@
 
 package com.liferay.privatemessaging.hook.upgrade.v1_0_1;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Repository;
 import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
+import com.liferay.portal.util.PortletKeys;
+import com.liferay.portlet.documentlibrary.model.DLFolder;
 
 import java.util.List;
 
@@ -41,20 +51,55 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 			Group group = GroupLocalServiceUtil.getCompanyGroup(
 				company.getCompanyId());
 
-			int count =
-				ResourcePermissionLocalServiceUtil.getResourcePermissionsCount(
-					company.getCompanyId(), _DL_RESOURCE_NAME,
-					ResourceConstants.SCOPE_INDIVIDUAL,
-					String.valueOf(group.getGroupId()));
-
-			if (count > 0) {
-				return;
-			}
-
-			ResourceLocalServiceUtil.addResources(
-				company.getCompanyId(), group.getGroupId(), 0,
-				_DL_RESOURCE_NAME, group.getGroupId(), false, true, true);
+			upgradeDLResourcePermission(company, group);
+			upgradeFolderResourcePermission(company, group);
 		}
+	}
+
+	private void upgradeDLResourcePermission(Company company, Group group)
+		throws PortalException, SystemException {
+
+		int count =
+			ResourcePermissionLocalServiceUtil.getResourcePermissionsCount(
+				company.getCompanyId(), _DL_RESOURCE_NAME,
+				ResourceConstants.SCOPE_INDIVIDUAL,
+				String.valueOf(group.getGroupId()));
+
+		if (count > 0) {
+			return;
+		}
+
+		ResourceLocalServiceUtil.addResources(
+			company.getCompanyId(), group.getGroupId(), 0, _DL_RESOURCE_NAME,
+			group.getGroupId(), false, true, true);
+	}
+
+	private void upgradeFolderResourcePermission(Company company, Group group)
+		throws PortalException, SystemException {
+
+		Repository repository = RepositoryLocalServiceUtil.fetchRepository(
+			group.getGroupId(), PortletKeys.MESSAGE_BOARDS);
+
+		if (repository == null) {
+			return;
+		}
+
+		long folderId = repository.getDlFolderId();
+
+		Role guestRole = RoleLocalServiceUtil.getRole(
+			company.getCompanyId(), RoleConstants.GUEST);
+
+		if (ResourcePermissionLocalServiceUtil.hasResourcePermission(
+				company.getCompanyId(), DLFolder.class.getName(),
+				ResourceConstants.SCOPE_INDIVIDUAL, String.valueOf(folderId),
+				guestRole.getRoleId(), ActionKeys.VIEW)) {
+
+			return;
+		}
+
+		ResourceLocalServiceUtil.addResources(
+			company.getCompanyId(), group.getGroupId(), 0,
+			DLFolder.class.getName(), folderId, false, true, true);
 	}
 
 	private static final String _DL_RESOURCE_NAME =
