@@ -51,8 +51,8 @@ public class BasePersistenceImpl<TT, TID>
 		return TableUtils.createTable(connectionSource, dataClass);
 	}
 
-	public void registerListener(ModelListener<TT> listener) {
-		_listeners.add(listener);
+	public void registerListener(ModelListener<TT> modelListener) {
+		_modelListeners.add(modelListener);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class BasePersistenceImpl<TT, TID>
 	}
 
 	protected String[] getSyncNotificationFields(String className) {
-		String[] syncNotificationFields = _syncNotificationFieldsCache.get(
+		String[] syncNotificationFields = _syncNotificationFields.get(
 			className);
 
 		if (syncNotificationFields != null) {
@@ -73,13 +73,13 @@ public class BasePersistenceImpl<TT, TID>
 		syncNotificationFields = PropsUtil.getArray(
 			PropsKeys.SYNC_NOTIFICATION_FIELDS_PREFIX + "." + className);
 
-		_syncNotificationFieldsCache.put(className, syncNotificationFields);
+		_syncNotificationFields.put(className, syncNotificationFields);
 
 		return syncNotificationFields;
 	}
 
 	protected void notifyListeners(TT targetModel) throws SQLException {
-		Map<String, Object> originalFieldValues = new HashMap<String, Object>();
+		Map<String, Object> originalValues = new HashMap<String, Object>();
 
 		TT sourceModel = queryForId(extractId(targetModel));
 
@@ -99,17 +99,16 @@ public class BasePersistenceImpl<TT, TID>
 			if (!dataPersister.dataIsEqual(
 					sourceFieldValue, targetFieldValue)) {
 
-				originalFieldValues.put(
-					fieldType.getColumnName(), sourceFieldValue);
+				originalValues.put(fieldType.getColumnName(), sourceFieldValue);
 			}
 		}
 
-		if (originalFieldValues.isEmpty()) {
+		if (originalValues.isEmpty()) {
 			return;
 		}
 
-		for (ModelListener<TT> listener : _listeners) {
-			listener.onUpdate(targetModel, originalFieldValues);
+		for (ModelListener<TT> modelListener : _modelListeners) {
+			modelListener.onUpdate(targetModel, originalValues);
 		}
 	}
 
@@ -137,9 +136,9 @@ public class BasePersistenceImpl<TT, TID>
 
 	private static ConnectionSource _connectionSource;
 
-	private List<ModelListener<TT>> _listeners =
+	private List<ModelListener<TT>> _modelListeners =
 		new ArrayList<ModelListener<TT>>();
-	private Map<String, String[]> _syncNotificationFieldsCache =
+	private Map<String, String[]> _syncNotificationFields =
 		new HashMap<String, String[]>();
 
 }

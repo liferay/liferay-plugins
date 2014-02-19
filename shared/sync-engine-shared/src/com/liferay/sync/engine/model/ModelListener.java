@@ -21,6 +21,6 @@ import java.util.Map;
  */
 public interface ModelListener<T> {
 
-	public void onUpdate(T model, Map<String, Object> originalFieldValues);
+	public void onUpdate(T model, Map<String, Object> originalValues);
 
 }

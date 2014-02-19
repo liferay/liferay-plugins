@@ -67,9 +67,9 @@ public class ModelListenerTest extends BaseTestCase {
 
 		@Override
 		public void onUpdate(
-			SyncFile syncFile, Map<String, Object> originalFieldValues) {
+			SyncFile syncFile, Map<String, Object> originalValues) {
 
-			_originalFieldValues = originalFieldValues;
+			_originalFieldValues = originalValues;
 		}
 
 	}

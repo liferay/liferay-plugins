@@ -375,8 +375,8 @@ public class SyncFileService {
 		return syncFile;
 	}
 
-	public static void registerListener(ModelListener<SyncFile> listener) {
-		_syncFilePersistence.registerListener(listener);
+	public static void registerListener(ModelListener<SyncFile> modelListener) {
+		_syncFilePersistence.registerListener(modelListener);
 	}
 
 	public static SyncFile update(SyncFile syncFile) {
