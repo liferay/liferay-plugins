@@ -62,20 +62,20 @@ public class BasePersistenceImpl<TT, TID>
 		return super.update(model);
 	}
 
-	protected String[] getSyncNotificationFields(String className) {
-		String[] syncNotificationFields = _syncNotificationFields.get(
+	protected String[] getSyncNotificationFieldNames(String className) {
+		String[] syncNotificationFieldNames = _syncNotificationFieldNames.get(
 			className);
 
-		if (syncNotificationFields != null) {
-			return syncNotificationFields;
+		if (syncNotificationFieldNames != null) {
+			return syncNotificationFieldNames;
 		}
 
-		syncNotificationFields = PropsUtil.getArray(
-			PropsKeys.SYNC_NOTIFICATION_FIELDS_PREFIX + "." + className);
+		syncNotificationFieldNames = PropsUtil.getArray(
+			PropsKeys.SYNC_NOTIFICATION_FIELD_NAMES_PREFIX + "." + className);
 
-		_syncNotificationFields.put(className, syncNotificationFields);
+		_syncNotificationFieldNames.put(className, syncNotificationFieldNames);
 
-		return syncNotificationFields;
+		return syncNotificationFieldNames;
 	}
 
 	protected void notifyModelListeners(TT targetModel) throws SQLException {
@@ -83,11 +83,11 @@ public class BasePersistenceImpl<TT, TID>
 
 		TT sourceModel = queryForId(extractId(targetModel));
 
-		for (String syncNotificationField :
-				getSyncNotificationFields(dataClass.getSimpleName())) {
+		for (String syncNotificationFieldName :
+				getSyncNotificationFieldNames(dataClass.getSimpleName())) {
 
 			FieldType fieldType = tableInfo.getFieldTypeByColumnName(
-				syncNotificationField);
+				syncNotificationFieldName);
 
 			Object sourceFieldValue = fieldType.extractJavaFieldValue(
 				sourceModel);
@@ -138,7 +138,7 @@ public class BasePersistenceImpl<TT, TID>
 
 	private List<ModelListener<TT>> _modelListeners =
 		new ArrayList<ModelListener<TT>>();
-	private Map<String, String[]> _syncNotificationFields =
+	private Map<String, String[]> _syncNotificationFieldNames =
 		new HashMap<String, String[]>();
 
 }
