@@ -34,7 +34,7 @@ public class ModelListenerTest extends BaseTestCase {
 		SyncFile syncFile = SyncFileTestUtil.addFileSyncFile(
 			"/home/liferay/test", 0, syncAccount.getSyncAccountId());
 
-		SyncFileService.registerListener(new SyncFileModelListener());
+		SyncFileService.registerModelListener(new SyncFileModelListener());
 
 		syncFile.setFilePathName("/home/liferay/test2");
 		syncFile.setSize(256);
@@ -51,7 +51,7 @@ public class ModelListenerTest extends BaseTestCase {
 		SyncFile syncFile = SyncFileTestUtil.addFileSyncFile(
 			"/home/liferay/test", 0, syncAccount.getSyncAccountId());
 
-		SyncFileService.registerListener(new SyncFileModelListener());
+		SyncFileService.registerModelListener(new SyncFileModelListener());
 
 		syncFile.setSyncFileId(12345);
 

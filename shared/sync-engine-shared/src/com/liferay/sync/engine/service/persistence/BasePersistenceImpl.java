@@ -51,13 +51,13 @@ public class BasePersistenceImpl<TT, TID>
 		return TableUtils.createTable(connectionSource, dataClass);
 	}
 
-	public void registerListener(ModelListener<TT> modelListener) {
+	public void registerModelListener(ModelListener<TT> modelListener) {
 		_modelListeners.add(modelListener);
 	}
 
 	@Override
 	public int update(TT model) throws SQLException {
-		notifyListeners(model);
+		notifyModelListeners(model);
 
 		return super.update(model);
 	}
@@ -78,7 +78,7 @@ public class BasePersistenceImpl<TT, TID>
 		return syncNotificationFields;
 	}
 
-	protected void notifyListeners(TT targetModel) throws SQLException {
+	protected void notifyModelListeners(TT targetModel) throws SQLException {
 		Map<String, Object> originalValues = new HashMap<String, Object>();
 
 		TT sourceModel = queryForId(extractId(targetModel));

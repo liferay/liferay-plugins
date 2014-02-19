@@ -122,10 +122,10 @@ public class SyncAccountService {
 		return _syncAccountPersistence;
 	}
 
-	public static void registerListener(
+	public static void registerModelListener(
 		ModelListener<SyncAccount> modelListener) {
 
-		_syncAccountPersistence.registerListener(modelListener);
+		_syncAccountPersistence.registerModelListener(modelListener);
 	}
 
 	public static SyncAccount update(SyncAccount syncAccount) {

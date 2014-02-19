@@ -133,8 +133,10 @@ public class SyncSiteService {
 		return _syncSitePersistence;
 	}
 
-	public static void registerListener(ModelListener<SyncSite> modelListener) {
-		_syncSitePersistence.registerListener(modelListener);
+	public static void registerModelListener(
+		ModelListener<SyncSite> modelListener) {
+
+		_syncSitePersistence.registerModelListener(modelListener);
 	}
 
 	public static SyncSite update(SyncSite syncSite) {
