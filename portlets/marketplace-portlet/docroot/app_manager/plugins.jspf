@@ -41,7 +41,7 @@
 
 				<tr>
 					<td>
-						<%= LanguageUtil.get(pageContext, layoutTemplate.getName()) %>
+						<%= layoutTemplate.getName(locale) %>
 					</td>
 					<td>
 						<liferay-ui:message key="layout-template" />
