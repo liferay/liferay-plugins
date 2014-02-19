@@ -229,8 +229,11 @@ $section-header-bg: #CCE6F7;
 	.contacts-profile {
 		.lfr-detail-info {
 			border-bottom-width: 0;
-			padding: 10px 10px 5px;
 			width: 100%;
+		}
+
+		.lfr-contact-thumb, .lfr-contact-info {
+			padding: 10px 10px 5px;
 		}
 
 		.lfr-contact-name {
@@ -317,6 +320,10 @@ $section-header-bg: #CCE6F7;
 			}
 		}
 
+		.contacts-action-content .action {
+			padding: 5px 4px;
+		}
+
 		.contacts-profile .lfr-contact-info {
 			padding: 8px;
 		}
@@ -327,6 +334,7 @@ $section-header-bg: #CCE6F7;
 
 		a {
 			display: inline-block;
+			margin: 4px 0;
 			padding: 3px 4px;
 
 			&:hover {
@@ -340,7 +348,6 @@ $section-header-bg: #CCE6F7;
 
 		.action {
 			display: inline-block;
-			padding: 3px 4px 0px;
 		}
 	}
 
@@ -522,21 +529,27 @@ $section-header-bg: #CCE6F7;
 		margin-top: 1em;
 	}
 
-	.my-profile .field-group {
-		position: relative;
+	.contacts-profile {
+		overflow: hidden;
+	}
 
-		.icon-edit {
-			position: absolute;
-			right: 5px;
-			top: 5px;
-		}
-
-		&:hover {
-			background: #E9E8E8;
-			cursor: pointer;
+	.my-profile {
+		.field-group {
+			position: relative;
 
 			.icon-edit {
-				display: block;
+				position: absolute;
+				right: 5px;
+				top: 5px;
+			}
+
+			&:hover {
+				background: #E9E8E8;
+				cursor: pointer;
+
+				.icon-edit {
+					display: block;
+				}
 			}
 		}
 	}
