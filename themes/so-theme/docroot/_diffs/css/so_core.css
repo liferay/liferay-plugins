@@ -848,6 +848,18 @@ html.aui {
 	}
 }
 
+/* ---------- Portlet: Calendar ---------- */
+
+.calendar-portlet {
+	.nav-tabs {
+		margin: 10px;
+	}
+
+	.calendar-portlet-column-parent {
+		padding-bottom: 10px;
+	}
+}
+
 /* ---------- Portlet: contacts ---------- */
 
 .contacts-portlet {
