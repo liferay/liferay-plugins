@@ -87,7 +87,7 @@ List<AnnouncementsEntry> results = AnnouncementsEntryLocalServiceUtil.getEntries
 				boolean expanded = ParamUtil.getBoolean(request, "expanded");
 				%>
 
-				<div class="content aui-toggler-content aui-toggler-content-<%= expanded ? "expanded" : "collapsed" %>">
+				<div class="content toggler-content toggler-content-<%= expanded ? "expanded" : "collapsed" %>">
 					<%@ include file="/entry_iterator.jspf" %>
 				</div>
 
