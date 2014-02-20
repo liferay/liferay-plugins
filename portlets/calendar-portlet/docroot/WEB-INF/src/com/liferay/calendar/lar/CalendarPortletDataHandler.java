@@ -60,10 +60,10 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 				NAMESPACE, "calendar-resources", true, false, null,
 				CalendarResource.class.getName()),
 			new PortletDataHandlerBoolean(
-				NAMESPACE, "bookings", true, false, null,
+				NAMESPACE, "calendar-bookings", true, false, null,
 				CalendarBooking.class.getName()),
 			new PortletDataHandlerBoolean(
-				NAMESPACE, "notification-templates", true, false,
+				NAMESPACE, "calendar-notification-templates", true, false,
 				new PortletDataHandlerBoolean[] {
 					new PortletDataHandlerBoolean(
 						NAMESPACE, "referenced-content")
@@ -114,7 +114,9 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 			calendarResourceActionableDynamicQuery.performActions();
 		}
 
-		if (portletDataContext.getBooleanParameter(NAMESPACE, "bookings")) {
+		if (portletDataContext.getBooleanParameter(
+				NAMESPACE, "calendar-bookings")) {
+
 			ActionableDynamicQuery calendarBookingActionableDynamicQuery =
 				new CalendarBookingExportActionableDynamicQuery(
 					portletDataContext);
@@ -123,7 +125,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 		}
 
 		if (portletDataContext.getBooleanParameter(
-				NAMESPACE, "notification-templates")) {
+				NAMESPACE, "calendar-notification-templates")) {
 
 			ActionableDynamicQuery
 				calendarNotificationTemplateActionableDynamicQuery =
@@ -168,7 +170,9 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 			}
 		}
 
-		if (portletDataContext.getBooleanParameter(NAMESPACE, "bookings")) {
+		if (portletDataContext.getBooleanParameter(
+				NAMESPACE, "calendar-bookings")) {
+
 			Element calendarBookingsElement =
 				portletDataContext.getImportDataGroupElement(
 					CalendarBooking.class);
@@ -183,7 +187,7 @@ public class CalendarPortletDataHandler extends BasePortletDataHandler {
 		}
 
 		if (portletDataContext.getBooleanParameter(
-				NAMESPACE, "notification-templates")) {
+				NAMESPACE, "calendar-notification-templates")) {
 
 			Element calendarNotificationTemplatesElement =
 				portletDataContext.getImportDataGroupElement(
