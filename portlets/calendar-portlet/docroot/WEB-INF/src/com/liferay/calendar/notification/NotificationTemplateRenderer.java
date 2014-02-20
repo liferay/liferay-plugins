@@ -72,7 +72,7 @@ public class NotificationTemplateRenderer {
 				GetterUtil.getString(
 					notificationTemplateContext.getFromAddress()),
 				GetterUtil.getString(notificationTemplateContext.getFromName()),
-				GetterUtil.getString(attributes.get("portalUrl")),
+				GetterUtil.getString(attributes.get("portalURL")),
 				GetterUtil.getString(attributes.get("portletName")),
 				GetterUtil.getString(
 					notificationTemplateContext.getToAddress()),
