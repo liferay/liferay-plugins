@@ -14,6 +14,9 @@
 
 package com.liferay.sync.util;
 
+import com.liferay.io.delta.ByteChannelReader;
+import com.liferay.io.delta.ByteChannelWriter;
+import com.liferay.io.delta.DeltaUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -28,9 +31,6 @@ import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
-import com.liferay.sync.io.delta.ByteChannelReader;
-import com.liferay.sync.io.delta.ByteChannelWriter;
-import com.liferay.sync.io.delta.DeltaUtil;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
 
