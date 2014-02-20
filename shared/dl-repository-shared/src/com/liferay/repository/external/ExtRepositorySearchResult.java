@@ -15,7 +15,7 @@
 package com.liferay.repository.external;
 
 /**
- * Provides search results to be returned by the {@link
+ * Holds search results to be returned by the {@link
  * ExtRepository#search(SearchContext, Query, ExtRepositoryQueryMapper)} method.
  *
  * @author Iván Zaera
@@ -29,8 +29,8 @@ public class ExtRepositorySearchResult<T extends ExtRepositoryObject> {
 	 *
 	 * @param object the repository object found by the search (file, folder, or
 	 *        both)
-	 * @param score the score assigned to the repository object by the search
-	 *        engine, which must be between <code>0</code> and <code>1</code>
+	 * @param score the score (between <code>0</code> and <code>1</code>)
+	 *        assigned to the repository object by the search engine.
 	 * @param snippet the snippet used for highlighting when displaying the
 	 *        search results in the UI
 	 */
@@ -50,8 +50,8 @@ public class ExtRepositorySearchResult<T extends ExtRepositoryObject> {
 	}
 
 	/**
-	 * Returns the score associated with the search result, which must be
-	 * between <code>0</code> and <code>1</code>.
+	 * Returns the score (between <code>0</code> and <code>1</code>) associated
+	 * with the search result.
 	 *
 	 * @return the score associated with the search result
 	 */
@@ -60,11 +60,11 @@ public class ExtRepositorySearchResult<T extends ExtRepositoryObject> {
 	}
 
 	/**
-	 * Returns the snippet used for highlighting when displaying the search
-	 * results in the UI.
+	 * Returns the text snippet to highlight when displaying the search results
+	 * in the UI.
 	 *
-	 * @return the snippet used for highlighting when displaying the search
-	 *         results in the UI
+	 * @return the text snippet to highlight when displaying the search results
+	 *         in the UI
 	 */
 	public String getSnippet() {
 		return _snippet;

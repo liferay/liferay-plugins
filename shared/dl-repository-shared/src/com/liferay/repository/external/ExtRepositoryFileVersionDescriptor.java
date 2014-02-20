@@ -15,9 +15,10 @@
 package com.liferay.repository.external;
 
 /**
- * Provides methods to locate an external repository file version. This class
- * retrieves an {@link ExtRepositoryFileEntry} key and the version name
- * belonging to that file entry.
+ * Provides methods to locate an external repository file version. An external
+ * repository file's version descriptor consists of an {@link
+ * ExtRepositoryFileEntry} key and the version name belonging to that file
+ * entry.
  *
  * @author Iván Zaera
  * @author Sergio González
