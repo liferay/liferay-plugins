@@ -829,7 +829,7 @@ AUI.add(
 									modal: true,
 									width: 600
 								},
-								title: 'Preview',
+								title: 'Preview'
 							}
 						);
 
@@ -1317,14 +1317,14 @@ AUI.add(
 										newFileEntryButton,
 										newFolderButton,
 										saveButton,
-										deleteButton,
+										deleteButton
 									],
 									[
 										previewButton
 									],
 									[
 										increaseFontSizeButton,
-										decreaseFontSizeButton,
+										decreaseFontSizeButton
 									],
 									[
 										searchEditorButton
@@ -1375,7 +1375,7 @@ AUI.add(
 									},
 									url: instance._getResourceURL(GET_FOLDER_CHILDREN)
 								},
-								publishGadgetPermission: instance.get('publishGadgetPermission'),
+								publishGadgetPermission: instance.get('publishGadgetPermission')
 							}
 						).render();
 
@@ -1762,7 +1762,7 @@ AUI.add(
 
 											tab.searchEditorText(searchText, false);
 										}
-									},
+									}
 								}
 							),
 							new A.Button(
@@ -1826,7 +1826,7 @@ AUI.add(
 								}
 							}
 						);
-					},
+					}
 				}
 			}
 		);
