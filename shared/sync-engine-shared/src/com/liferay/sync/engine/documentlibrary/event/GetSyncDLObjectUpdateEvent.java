@@ -14,12 +14,17 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.model.SyncSite;
+import com.liferay.sync.engine.service.SyncSiteService;
+import com.liferay.sync.engine.util.HttpUtil;
+
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Shinn Lok
  */
-public class GetSyncDLObjectUpdateEvent extends BaseEvent {
+public class GetSyncDLObjectUpdateEvent extends BaseSyncDLObjectUpdateEvent {
 
 	public GetSyncDLObjectUpdateEvent(
 		long syncAccountId, Map<String, Object> parameters) {
@@ -28,8 +33,21 @@ public class GetSyncDLObjectUpdateEvent extends BaseEvent {
 	}
 
 	@Override
-	protected void processResponse(String response) throws Exception {
-		System.out.println(response);
+	protected String processRequest() throws Exception {
+		SyncSite syncSite = (SyncSite)getParameterValue("syncSite");
+
+		// Refetch for updated last remote sync time
+
+		syncSite = SyncSiteService.fetchSyncSite(
+			syncSite.getGroupId(), syncSite.getSyncAccountId());
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		parameters.put("companyId", syncSite.getCompanyId());
+		parameters.put("lastAccessTime", syncSite.getLastRemoteSyncTime());
+		parameters.put("repositoryId", syncSite.getGroupId());
+
+		return HttpUtil.executePost(getSyncAccountId(), _URL_PATH, parameters);
 	}
 
 	private static final String _URL_PATH =
