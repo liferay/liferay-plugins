@@ -63,14 +63,6 @@ public class NotificationTemplateContextFactory {
 		NotificationTemplateContext notificationTemplateContext =
 			new NotificationTemplateContext();
 
-		notificationTemplateContext.setCompanyId(
-			calendarBooking.getCompanyId());
-		notificationTemplateContext.setGroupId(calendarBooking.getGroupId());
-		notificationTemplateContext.setCalendarId(calendar.getCalendarId());
-		notificationTemplateContext.setNotificationType(notificationType);
-		notificationTemplateContext.setNotificationTemplateType(
-			notificationTemplateType);
-
 		CalendarNotificationTemplate calendarNotificationTemplate =
 			CalendarNotificationTemplateLocalServiceUtil.
 				fetchCalendarNotificationTemplate(
@@ -79,6 +71,14 @@ public class NotificationTemplateContextFactory {
 
 		notificationTemplateContext.setCalendarNotificationTemplate(
 			calendarNotificationTemplate);
+
+		notificationTemplateContext.setCompanyId(
+			calendarBooking.getCompanyId());
+		notificationTemplateContext.setGroupId(calendarBooking.getGroupId());
+		notificationTemplateContext.setCalendarId(calendar.getCalendarId());
+		notificationTemplateContext.setNotificationTemplateType(
+			notificationTemplateType);
+		notificationTemplateContext.setNotificationType(notificationType);
 
 		// Attributes
 
