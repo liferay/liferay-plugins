@@ -51,8 +51,8 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 			Group group = GroupLocalServiceUtil.getCompanyGroup(
 				company.getCompanyId());
 
+			upgradeDLFolderResourcePermission(company, group);
 			upgradeDLResourcePermission(company, group);
-			upgradeFolderResourcePermission(company, group);
 		}
 	}
 
@@ -74,7 +74,7 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 			group.getGroupId(), false, true, true);
 	}
 
-	private void upgradeFolderResourcePermission(Company company, Group group)
+	private void upgradeDLFolderResourcePermission(Company company, Group group)
 		throws PortalException, SystemException {
 
 		Repository repository = RepositoryLocalServiceUtil.fetchRepository(
@@ -86,13 +86,13 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 
 		long folderId = repository.getDlFolderId();
 
-		Role guestRole = RoleLocalServiceUtil.getRole(
+		Role role = RoleLocalServiceUtil.getRole(
 			company.getCompanyId(), RoleConstants.GUEST);
 
 		if (ResourcePermissionLocalServiceUtil.hasResourcePermission(
 				company.getCompanyId(), DLFolder.class.getName(),
 				ResourceConstants.SCOPE_INDIVIDUAL, String.valueOf(folderId),
-				guestRole.getRoleId(), ActionKeys.VIEW)) {
+				role.getRoleId(), ActionKeys.VIEW)) {
 
 			return;
 		}
