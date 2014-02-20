@@ -42,9 +42,9 @@ public class SyncFileListener implements ModelListener<SyncFile> {
 
 	@Override
 	public void onUpdate(
-		SyncFile syncFile, Map<String, Object> originalFieldValues) {
+		SyncFile syncFile, Map<String, Object> originalValues) {
 
-		if (!originalFieldValues.containsKey("checksum")) {
+		if (!originalValues.containsKey("checksum")) {
 			return;
 		}
 
@@ -55,8 +55,8 @@ public class SyncFileListener implements ModelListener<SyncFile> {
 		}
 
 		FileInputStream fileInputStream = null;
-		OutputStream outputStream = null;
 		FileChannel fileChannel = null;
+		OutputStream outputStream = null;
 		WritableByteChannel writableByteChannel = null;
 
 		try {
@@ -64,15 +64,15 @@ public class SyncFileListener implements ModelListener<SyncFile> {
 
 			fileChannel = fileInputStream.getChannel();
 
-			filePath = Paths.get(
+			Path checksumFilePath = Paths.get(
 				PropsValues.SYNC_CONFIGURATION_DIRECTORY + "/files/" +
 					syncFile.getSyncFileId());
 
-			if (Files.notExists(filePath)) {
-				Files.createFile(filePath);
+			if (Files.notExists(checksumFilePath)) {
+				Files.createFile(checksumFilePath);
 			}
 
-			outputStream = Files.newOutputStream(filePath);
+			outputStream = Files.newOutputStream(checksumFilePath);
 
 			writableByteChannel = Channels.newChannel(outputStream);
 
