@@ -18,17 +18,20 @@ import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
-import com.liferay.calendar.util.NotificationUtil;
 import com.liferay.calendar.util.PortletKeys;
+import com.liferay.compat.portal.util.PortalUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Company;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portlet.PortletURLFactoryUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -38,9 +41,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-import javax.portlet.ActionRequest;
 import javax.portlet.PortletConfig;
-import javax.portlet.PortletURL;
+import javax.portlet.WindowState;
 
 /**
  * @author Eduardo Lundgren
@@ -50,8 +52,7 @@ public class NotificationTemplateContextFactory {
 	public static NotificationTemplateContext getInstance(
 			NotificationType notificationType,
 			NotificationTemplateType notificationTemplateType,
-			CalendarBooking calendarBooking, User user,
-			ServiceContext serviceContext)
+			CalendarBooking calendarBooking, User user)
 		throws Exception {
 
 		CalendarBooking parentCalendarBooking =
@@ -67,6 +68,17 @@ public class NotificationTemplateContextFactory {
 		notificationTemplateContext.setGroupId(calendarBooking.getGroupId());
 		notificationTemplateContext.setCalendarId(calendar.getCalendarId());
 		notificationTemplateContext.setNotificationType(notificationType);
+		notificationTemplateContext.setNotificationTemplateType(
+			notificationTemplateType);
+
+		CalendarNotificationTemplate calendarNotificationTemplate =
+			CalendarNotificationTemplateLocalServiceUtil.
+				fetchCalendarNotificationTemplate(
+					calendar.getCalendarId(), notificationType,
+					notificationTemplateType);
+
+		notificationTemplateContext.setCalendarNotificationTemplate(
+			calendarNotificationTemplate);
 
 		// Attributes
 
@@ -89,11 +101,12 @@ public class NotificationTemplateContextFactory {
 
 		attributes.put("location", calendarBooking.getLocation());
 
-		Company company = CompanyLocalServiceUtil.getCompany(
-			calendarBooking.getCompanyId());
+		Group userGroup = user.getGroup();
 
-		attributes.put(
-			"portalUrl", company.getPortalURL(calendarBooking.getGroupId()));
+		String portalURL = _getPortalURL(
+			userGroup.getCompanyId(), userGroup.getGroupId());
+
+		attributes.put("portalUrl", portalURL);
 		attributes.put(
 			"portletName",
 			LanguageUtil.get(
@@ -109,7 +122,7 @@ public class NotificationTemplateContextFactory {
 		attributes.put("title", calendarBooking.getTitle(user.getLocale()));
 
 		String calendarBookingURL = _getCalendarBookingURL(
-			calendarBooking.getCalendarBookingId(), serviceContext);
+			user, calendarBooking.getCalendarBookingId());
 
 		attributes.put("url", calendarBookingURL);
 
@@ -127,27 +140,46 @@ public class NotificationTemplateContextFactory {
 	}
 
 	private static String _getCalendarBookingURL(
-		long calendarBookingId, ServiceContext serviceContext) {
+			User user, long calendarBookingId)
+		throws PortalException, SystemException {
 
-		if (serviceContext == null) {
-			return StringPool.BLANK;
-		}
+		Group userGroup = user.getGroup();
 
-		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+		Layout layout = LayoutLocalServiceUtil.getLayout(
+			userGroup.getDefaultPrivatePlid());
 
-		if (themeDisplay == null) {
-			return StringPool.BLANK;
-		}
+		String portalURL = _getPortalURL(
+			userGroup.getCompanyId(), userGroup.getGroupId());
 
-		PortletURL portletURL = PortletURLFactoryUtil.create(
-			serviceContext.getRequest(), PortletKeys.CALENDAR,
-			themeDisplay.getPlid(), ActionRequest.RENDER_PHASE);
+		String layoutActualURL = PortalUtil.getLayoutActualURL(layout);
 
-		portletURL.setParameter("mvcPath", "/view_calendar_booking.jsp");
-		portletURL.setParameter(
-			"calendarBookingId", String.valueOf(calendarBookingId));
+		String url = portalURL + layoutActualURL;
 
-		return portletURL.toString();
+		String namespace = PortalUtil.getPortletNamespace(PortletKeys.CALENDAR);
+
+		url = HttpUtil.addParameter(
+			url, namespace + "mvcPath", "/view_calendar_booking.jsp");
+		url = HttpUtil.addParameter(url, "p_p_id", PortletKeys.CALENDAR);
+		url = HttpUtil.addParameter(url, "p_p_lifecycle", "0");
+		url = HttpUtil.addParameter(
+			url, "p_p_state", WindowState.MAXIMIZED.toString());
+		url = HttpUtil.addParameter(
+			url, namespace + "calendarBookingId", calendarBookingId);
+
+		return url;
+	}
+
+	private static String _getPortalURL(long companyId, long groupId)
+		throws PortalException, SystemException {
+
+		Company company = CompanyLocalServiceUtil.getCompany(companyId);
+
+		String portalURL = company.getPortalURL(groupId);
+
+		portalURL = HttpUtil.protocolize(
+			portalURL, PortalUtil.getPortalServerPort(false), false);
+
+		return portalURL;
 	}
 
 	private static PortletConfig _portletConfig;
