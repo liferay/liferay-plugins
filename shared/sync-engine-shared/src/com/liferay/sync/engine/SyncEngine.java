@@ -33,6 +33,7 @@ import com.liferay.sync.engine.util.SyncEngineUtil;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -77,20 +78,37 @@ public class SyncEngine {
 			syncWatchEventProcessor, 0, 3, TimeUnit.SECONDS);
 
 		for (SyncAccount syncAccount : SyncAccountService.findAll()) {
+			final List<Runnable> getAllSyncDLObjectsEvents =
+				new ArrayList<Runnable>();
+
 			List<SyncSite> syncSites = SyncSiteService.findSyncSites(
 				syncAccount.getSyncAccountId());
 
 			for (SyncSite syncSite : syncSites) {
-				Map<String, Object> map = new HashMap<String, Object>();
+				Map<String, Object> parameters = new HashMap<String, Object>();
 
-				map.put("folderId", 0);
-				map.put("repositoryId", syncSite.getGroupId());
+				parameters.put("folderId", 0);
+				parameters.put("repositoryId", syncSite.getGroupId());
 
-				_eventScheduledExecutorService.scheduleAtFixedRate(
+				getAllSyncDLObjectsEvents.add(
 					new GetAllSyncDLObjectsEvent(
-						syncAccount.getSyncAccountId(), map),
-					0, syncAccount.getInterval(), TimeUnit.SECONDS);
+						syncAccount.getSyncAccountId(), parameters));
 			}
+
+			_eventScheduledExecutorService.scheduleAtFixedRate(
+				new Runnable() {
+
+					@Override
+					public void run() {
+						for (Runnable getAllSyncDLObjectsEvent :
+								getAllSyncDLObjectsEvents) {
+
+							getAllSyncDLObjectsEvent.run();
+						}
+					}
+
+				},
+				0, syncAccount.getInterval(), TimeUnit.SECONDS);
 
 			Path filePath = Paths.get(syncAccount.getFilePathName());
 
