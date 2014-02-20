@@ -48,9 +48,9 @@ public class SyncFileListener implements ModelListener<SyncFile> {
 			return;
 		}
 
-		Path filePath = Paths.get(syncFile.getFilePathName());
+		Path syncFilePath = Paths.get(syncFile.getFilePathName());
 
-		if (Files.notExists(filePath)) {
+		if (Files.notExists(syncFilePath)) {
 			return;
 		}
 
