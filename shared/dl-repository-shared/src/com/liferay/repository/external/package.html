@@ -35,7 +35,7 @@ details.
 			<code>ExtRepositoryFolder</code>, and
 			<code>ExtRepositoryFileVersion</code>. <code>ExtRepository</code>
 			is in charge of the communication between Liferay Portal and the
-			back-end repositories. The preceding three interfaces describe the
+			back-end repositories. The latter three interfaces describe the
 			objects stored in the back-end repository: folders, files, and
 			versions.
 		</p>
@@ -68,7 +68,7 @@ details.
 			<code>ExtRepositoryFileVersion</code>. It should be noted that the
 			abstract implementation of <code>ExtRepositoryObject</code> should
 			extend the abstract implementation of
-			<code>ExtRepositoryObject</code> to be coherent.
+			<code>ExtRepositoryObject</code>, to be coherent.
 		</p>
 
 		<p>
@@ -81,7 +81,7 @@ details.
 			That is, if you are implementing a SharePoint external repository,
 			you return <code>SharepointFileEntry</code> objects when called by
 			Liferay, and Liferay will give you <code>SharepointFileEntry</code>
-			as arguments to the methods.
+			instances as arguments to the methods.
 		</p>
 
 		<p>
