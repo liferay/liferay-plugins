@@ -27,6 +27,7 @@ public class WebRTCConnectionStateMail extends WebRTCMail {
 		super(webRTCMail);
 	}
 
+	@Override
 	public String getMessageType() {
 		return "conn";
 	}
