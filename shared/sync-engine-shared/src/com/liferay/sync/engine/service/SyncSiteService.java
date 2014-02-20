@@ -37,13 +37,15 @@ import org.slf4j.LoggerFactory;
 public class SyncSiteService {
 
 	public static SyncSite addSyncSite(
-			String filePathName, long groupId, long syncAccountId)
+			long companyId, String filePathName, long groupId,
+			long syncAccountId)
 		throws Exception {
 
 		// Sync site
 
 		SyncSite syncSite = new SyncSite();
 
+		syncSite.setCompanyId(companyId);
 		syncSite.setFilePathName(filePathName);
 		syncSite.setGroupId(groupId);
 		syncSite.setSyncAccountId(syncAccountId);

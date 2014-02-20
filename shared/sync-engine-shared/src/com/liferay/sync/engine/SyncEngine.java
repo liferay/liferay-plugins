@@ -15,6 +15,7 @@
 package com.liferay.sync.engine;
 
 import com.liferay.sync.engine.documentlibrary.event.GetAllSyncDLObjectsEvent;
+import com.liferay.sync.engine.documentlibrary.event.GetSyncDLObjectUpdateEvent;
 import com.liferay.sync.engine.filesystem.SyncSiteWatchEventListener;
 import com.liferay.sync.engine.filesystem.SyncWatchEventProcessor;
 import com.liferay.sync.engine.filesystem.WatchEventListener;
@@ -78,7 +79,7 @@ public class SyncEngine {
 			syncWatchEventProcessor, 0, 3, TimeUnit.SECONDS);
 
 		for (SyncAccount syncAccount : SyncAccountService.findAll()) {
-			final List<Runnable> getAllSyncDLObjectsEvents =
+			final List<Runnable> getSyncDLObjectUpdateEvents =
 				new ArrayList<Runnable>();
 
 			List<SyncSite> syncSites = SyncSiteService.findSyncSites(
@@ -90,8 +91,20 @@ public class SyncEngine {
 				parameters.put("folderId", 0);
 				parameters.put("repositoryId", syncSite.getGroupId());
 
-				getAllSyncDLObjectsEvents.add(
+				GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
 					new GetAllSyncDLObjectsEvent(
+						syncAccount.getSyncAccountId(), parameters);
+
+				getAllSyncDLObjectsEvent.run();
+
+				parameters = new HashMap<String, Object>();
+
+				parameters.put("companyId", syncSite.getCompanyId());
+				parameters.put("repositoryId", syncSite.getGroupId());
+				parameters.put("syncSite", syncSite);
+
+				getSyncDLObjectUpdateEvents.add(
+					new GetSyncDLObjectUpdateEvent(
 						syncAccount.getSyncAccountId(), parameters));
 			}
 
@@ -100,10 +113,10 @@ public class SyncEngine {
 
 					@Override
 					public void run() {
-						for (Runnable getAllSyncDLObjectsEvent :
-								getAllSyncDLObjectsEvents) {
+						for (Runnable getSyncDLObjectUpdateEvent :
+								getSyncDLObjectUpdateEvents) {
 
-							getAllSyncDLObjectsEvent.run();
+							getSyncDLObjectUpdateEvent.run();
 						}
 					}
 

@@ -58,7 +58,8 @@ public class WatcherTest extends BaseTestCase {
 		super.setUp();
 
 		_syncSite = SyncSiteService.addSyncSite(
-			filePathName + "/test-site", 10184, syncAccount.getSyncAccountId());
+			10158, filePathName + "/test-site", 10184,
+			syncAccount.getSyncAccountId());
 
 		ScheduledExecutorService scheduledExecutorService =
 			Executors.newSingleThreadScheduledExecutor();

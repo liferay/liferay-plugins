@@ -86,6 +86,10 @@ public class BasePersistenceImpl<TT, TID>
 		for (String syncNotificationFieldName :
 				getSyncNotificationFieldNames(dataClass.getSimpleName())) {
 
+			if (syncNotificationFieldName.equals("")) {
+				continue;
+			}
+
 			FieldType fieldType = tableInfo.getFieldTypeByColumnName(
 				syncNotificationFieldName);
 
