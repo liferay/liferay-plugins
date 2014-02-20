@@ -178,7 +178,6 @@ public class ExtRepositoryFileEntryAdapter
 		return getFileVersion();
 	}
 
-	@Override
 	@SuppressWarnings("unused")
 	public FileVersion getLatestFileVersion(boolean trusted)
 		throws PortalException, SystemException {
