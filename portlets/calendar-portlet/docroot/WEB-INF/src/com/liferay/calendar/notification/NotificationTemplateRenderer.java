@@ -35,10 +35,8 @@ public class NotificationTemplateRenderer {
 
 		CalendarNotificationTemplate calendarNotificationTemplate =
 			notificationTemplateContext.getCalendarNotificationTemplate();
-
 		NotificationType notificationType =
 			notificationTemplateContext.getNotificationType();
-
 		NotificationTemplateType notificationTemplateType =
 			notificationTemplateContext.getNotificationTemplateType();
 
