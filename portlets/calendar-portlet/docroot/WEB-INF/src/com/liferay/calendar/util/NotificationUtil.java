@@ -60,14 +60,14 @@ public class NotificationUtil {
 
 		User user = UserLocalServiceUtil.getUser(calendarResource.getUserId());
 
-		if (calendarResource.isUser()) {
-			user = UserLocalServiceUtil.getUser(calendarResource.getClassPK());
-		}
-		else if (calendarResource.isGroup()) {
+		if (calendarResource.isGroup()) {
 			Group group = GroupLocalServiceUtil.getGroup(
 				calendarResource.getClassPK());
 
 			user = UserLocalServiceUtil.getUser(group.getCreatorUserId());
+		}
+		else if (calendarResource.isUser()) {
+			user = UserLocalServiceUtil.getUser(calendarResource.getClassPK());
 		}
 
 		return user;
