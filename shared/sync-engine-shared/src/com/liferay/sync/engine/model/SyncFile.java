@@ -124,7 +124,7 @@ public class SyncFile {
 		return typeUuid;
 	}
 
-	public double getVersion() {
+	public String getVersion() {
 		return version;
 	}
 
@@ -220,7 +220,7 @@ public class SyncFile {
 		this.typeUuid = typeUuid;
 	}
 
-	public void setVersion(double version) {
+	public void setVersion(String version) {
 		this.version = version;
 	}
 
@@ -294,6 +294,6 @@ public class SyncFile {
 	protected String typeUuid;
 
 	@DatabaseField(useGetSet = true)
-	protected double version;
+	protected String version;
 
 }
