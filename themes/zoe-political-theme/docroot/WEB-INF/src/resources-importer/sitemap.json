@@ -35,7 +35,7 @@
 			"friendlyURL": "/home",
 			"layoutTemplateId": "1_2_columns_ii",
 			"name": "Home",
-			"title": "Home",
+			"title": "Home"
 		},
 		{
 			"friendlyURL": "/bio",

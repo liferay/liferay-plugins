@@ -688,7 +688,7 @@ AUI.add(
 
 						var contextMenu = new A.Toolbar(
 							{
-								children: children,
+								children: children
 							}
 						);
 
@@ -722,7 +722,7 @@ AUI.add(
 
 						var contextMenu = new A.Toolbar(
 							{
-								children: children,
+								children: children
 							}
 						);
 
