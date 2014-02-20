@@ -27,6 +27,7 @@ public class WebRTCErrorMail extends WebRTCMail {
 		super(webRTCMail);
 	}
 
+	@Override
 	public String getMessageType() {
 		return "err";
 	}
