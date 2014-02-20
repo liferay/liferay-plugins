@@ -25,14 +25,12 @@ import javax.mail.internet.InternetAddress;
  */
 public class NotificationRecipient {
 
-	public NotificationRecipient(String emailAddress) {
-		_emailAddress = emailAddress;
-	}
-
 	public NotificationRecipient(User user) {
 		_user = user;
 
 		_emailAddress = user.getEmailAddress();
+
+		_name = user.getFullName();
 	}
 
 	public String getEmailAddress() {
@@ -52,10 +50,6 @@ public class NotificationRecipient {
 	}
 
 	public User getUser() {
-		return _user;
-	}
-
-	public User getUserRecipient() {
 		return _user;
 	}
 
