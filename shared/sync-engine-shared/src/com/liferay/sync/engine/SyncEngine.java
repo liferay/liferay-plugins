@@ -97,7 +97,7 @@ public class SyncEngine {
 
 				getAllSyncDLObjectsEvent.run();
 
-				parameters = new HashMap<String, Object>();
+				parameters.clear();
 
 				parameters.put("companyId", syncSite.getCompanyId());
 				parameters.put("repositoryId", syncSite.getGroupId());
