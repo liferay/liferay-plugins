@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.io.delta;
+package com.liferay.io.delta;
 
 import java.io.IOException;
 
