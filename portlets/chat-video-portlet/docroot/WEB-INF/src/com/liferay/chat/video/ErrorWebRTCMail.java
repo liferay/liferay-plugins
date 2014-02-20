@@ -19,12 +19,12 @@ package com.liferay.chat.video;
  */
 public class ErrorWebRTCMail extends WebRTCMail {
 
-	public ErrorWebRTCMail(long sourceUserId, String messageJSON) {
-		super(sourceUserId, messageJSON);
+	public ErrorWebRTCMail(ErrorWebRTCMail errorWebRTCMail) {
+		super(errorWebRTCMail);
 	}
 
-	public ErrorWebRTCMail(ErrorWebRTCMail webRTCMail) {
-		super(webRTCMail);
+	public ErrorWebRTCMail(long sourceUserId, String messageJSON) {
+		super(sourceUserId, messageJSON);
 	}
 
 	@Override
