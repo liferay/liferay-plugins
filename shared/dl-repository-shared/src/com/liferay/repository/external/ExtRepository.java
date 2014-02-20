@@ -61,7 +61,7 @@ public interface ExtRepository {
 	 * @param  changeLog the repository file entry's version change log
 	 * @param  inputStream the repository file entry's data (optionally
 	 *         <code>null</code>)
-	 * @return a repository file entry and associated metadata
+	 * @return the repository file entry
 	 * @throws PortalException if the repository parent folder could not be
 	 *         found or if the repository file entry's information was invalid
 	 * @throws SystemException if a system exception occurred
@@ -78,7 +78,7 @@ public interface ExtRepository {
 	 *         folder's parent folder
 	 * @param  name the repository folder's name
 	 * @param  description the repository folder's description
-	 * @return a repository folder
+	 * @return the repository folder
 	 * @throws PortalException if the repository parent folder could not be
 	 *         found or if the repository folder's information was invalid
 	 * @throws SystemException if a system exception occurred
@@ -95,8 +95,8 @@ public interface ExtRepository {
 	 *
 	 * @param  extRepositoryFileEntryKey the primary key of the repository file
 	 *         entry
-	 * @return the discarded repository file version (optionally
-	 *         <code>null</code>)
+	 * @return the discarded repository file version, or <code>null</code> if no
+	 *         version was available
 	 * @throws PortalException if the repository file entry's information was
 	 *         invalid
 	 * @throws SystemException if a system exception occurred
@@ -206,11 +206,11 @@ public interface ExtRepository {
 
 	/**
 	 * Returns the external repository file version of the file entry,
-	 * identified by its version name (e.g. <code>1.0</code>).
+	 * identified by the version name.
 	 *
 	 * @param  extRepositoryFileEntry the primary key of the repository file
 	 *         entry
-	 * @param  version the repository version name
+	 * @param  version the repository version name (e.g. <code>1.0</code>)
 	 * @return the repository file version of the file entry
 	 * @throws PortalException if the repository file entry or version
 	 *         information was invalid
@@ -221,12 +221,13 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Translates the external repository file version key into an {@link
-	 * ExtRepositoryFileVersionDescriptor}, describing the external repository
-	 * file entry key and version name.
+	 * Returns the {@link ExtRepositoryFileVersionDescriptor} translated from
+	 * the repository file version key. The descriptor describes the external
+	 * repository file entry key and version name.
 	 *
 	 * @param  extRepositoryFileVersionKey the repository file version's key
-	 * @return the translated {@link ExtRepositoryFileVersionDescriptor}
+	 * @return the {@link ExtRepositoryFileVersionDescriptor} translated from
+	 *         the repository file version key
 	 */
 	public ExtRepositoryFileVersionDescriptor
 		getExtRepositoryFileVersionDescriptor(
@@ -234,8 +235,7 @@ public interface ExtRepository {
 
 	/**
 	 * Returns the external repository file versions of the external repository
-	 * file entry. The list is ordered by version age, starting with the newest
-	 * version at index <code>0</code>.
+	 * file entry. The versions are ordered newest to oldest.
 	 *
 	 * @param  extRepositoryFileEntry the primary key of the repository file
 	 *         entry
@@ -248,12 +248,15 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the external repository object matching the key.
+	 * Returns the external repository object matching the type and key.
 	 *
-	 * @param  extRepositoryObjectType the repository object's type (file,
-	 *         folder, or both)
+	 * @param  extRepositoryObjectType the repository object's type. Use {@link
+	 *         ExtRepositoryObjectType#FILE},  {@link
+	 *         ExtRepositoryObjectType#FOLDER}, or  {@link
+	 *         ExtRepositoryObjectType#OBJECT} to specify file, folder, or both,
+	 *         respectively.
 	 * @param  extRepositoryObjectKey the primary key of the repository object
-	 * @return the repository object matching the key
+	 * @return the repository object matching the type and key
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -263,15 +266,19 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the external repository object matching the name and parent
-	 * folder.
+	 * Returns the external repository object matching the type and title, in
+	 * the parent folder.
 	 *
-	 * @param  extRepositoryObjectType the repository object's type (file,
-	 *         folder, or both)
+	 * @param  extRepositoryObjectType the repository object's type. Use {@link
+	 *         ExtRepositoryObjectType#FILE},  {@link
+	 *         ExtRepositoryObjectType#FOLDER}, or  {@link
+	 *         ExtRepositoryObjectType#OBJECT} to specify file, folder, or both,
+	 *         respectively.
 	 * @param  extRepositoryFolderKey the primary key of the repository object's
 	 *         parent folder
 	 * @param  title the repository object's name
-	 * @return the repository object matching the name and parent folder
+	 * @return the repository object matching the type and title, in the parent
+	 *         folder
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -281,16 +288,19 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the external repository objects in the folder. Depending on the
-	 * type of repository object requested, this method may return only
-	 * repository files, only repository folders, or both repository files and
-	 * folders.
+	 * Returns the external repository objects matching the type, in the parent
+	 * folder. Depending on the repository object type requested, this method
+	 * may return only repository files, only repository folders, or both
+	 * repository files and folders.
 	 *
-	 * @param  extRepositoryObjectType the type of repository objects to return
-	 *         (file, folder, or both)
+	 * @param  extRepositoryObjectType the type of repository objects to return.
+	 *         Use {@link ExtRepositoryObjectType#FILE},  {@link
+	 *         ExtRepositoryObjectType#FOLDER}, or  {@link
+	 *         ExtRepositoryObjectType#OBJECT} to specify file, folder, or both,
+	 *         respectively.
 	 * @param  extRepositoryFolderKey the primary key of the repository folder
 	 *         to search
-	 * @return the repository objects contained in the folder
+	 * @return the repository objects matching the type, in the parent folder
 	 * @throws PortalException if a portal exception occurred
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -303,10 +313,14 @@ public interface ExtRepository {
 	 * Returns the number of elements in the external repository folder matching
 	 * the object type. Depending on the repository object type requested, this
 	 * method may only return the number of repository files, the number of
-	 * repository folders, or the number of both repository files and folders.
+	 * repository folders, or the combined number of repository files and
+	 * folders.
 	 *
-	 * @param  extRepositoryObjectType the repository object type to count
-	 *         (file, folder, or both)
+	 * @param  extRepositoryObjectType the repository object type to count. Use
+	 *         {@link ExtRepositoryObjectType#FILE},  {@link
+	 *         ExtRepositoryObjectType#FOLDER}, or  {@link
+	 *         ExtRepositoryObjectType#OBJECT} to specify file, folder, or both,
+	 *         respectively.
 	 * @param  extRepositoryFolderKey the primary key of the repository folder
 	 *         to search
 	 * @return the number of elements in the repository folder matching the
@@ -337,7 +351,7 @@ public interface ExtRepository {
 	/**
 	 * Returns the Liferay login value, which is mapped from the user's external
 	 * repository login value. A Liferay login value can be a user ID, screen
-	 * name, e-mail, etc, depending on the value returned by the {@link
+	 * name, email, etc, depending on the value returned by the {@link
 	 * #getAuthType()} method. The format of the repository login is specific
 	 * for each repository implementation.
 	 *
@@ -363,7 +377,7 @@ public interface ExtRepository {
 	 *
 	 * @param  extRepositoryFolderKey the primary key of the repository folder
 	 * @param  recurse whether to recurse through each repository subfolder
-	 * @return the keys of the repository subfolders stored inside the Ext
+	 * @return the keys of the repository subfolders stored inside the
 	 *         repository folder
 	 * @throws PortalException if the repository folder's information was
 	 *         invalid
@@ -374,8 +388,8 @@ public interface ExtRepository {
 		throws PortalException, SystemException;
 
 	/**
-	 * Returns the supported configurations for the external repository, which
-	 * may each have different supported parameters.
+	 * Returns the supported configurations for the external repository. Each
+	 * configuration may have a different list of supported parameters.
 	 *
 	 * @return the supported configurations for the repository
 	 * @see    #getSupportedParameters()
@@ -385,8 +399,9 @@ public interface ExtRepository {
 	/**
 	 * Returns the supported external repository configuration parameters
 	 * indexed by configuration type. These parameters are stored in the
-	 * database when the repository is configured and made available using the
-	 * {@link #initRepository(UnicodeProperties, CredentialsProvider)} method.
+	 * database when the repository is configured and made available through a
+	 * {@link UnicodeProperties} object passed to the {@link
+	 * #initRepository(UnicodeProperties, CredentialsProvider)} method.
 	 *
 	 * @return the supported repository configuration parameters indexed by
 	 *         configuration type
@@ -403,9 +418,9 @@ public interface ExtRepository {
 	 * CredentialsProvider} object to authenticate to the repository. In
 	 * addition, the method acquires the repository-specific configuration
 	 * parameters from the type settings properties parameter. The parameters
-	 * contained in this variable are indexed by the key names returned by the
-	 * {@link #getSupportedParameters()} method. This method is called only
-	 * once, the first time the repository is used.
+	 * contained in the type settings properties parameter object are indexed by
+	 * the key names returned by the {@link #getSupportedParameters()} method.
+	 * This method is called only once, the first time the repository is used.
 	 * </p>
 	 *
 	 * @param  typeSettingsProperties the type settings properties
@@ -425,8 +440,8 @@ public interface ExtRepository {
 	 * @param  extRepositoryObjectType the repository object's type (file or
 	 *         folder)
 	 * @param  extRepositoryObjectKey the primary key of the repository object
-	 * @param  newExtRepositoryFolderKey the primary key of the repository
-	 *         destination folder
+	 * @param  newExtRepositoryFolderKey the primary key of the destination
+	 *         repository folder
 	 * @param  newTitle the new name of the repository object (may not change)
 	 * @return the repository object
 	 * @throws PortalException if the repository object could not be moved or if

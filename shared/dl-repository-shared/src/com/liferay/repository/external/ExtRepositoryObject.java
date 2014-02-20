@@ -17,9 +17,9 @@ package com.liferay.repository.external;
 import java.util.Date;
 
 /**
- * Represents the external repository object, which describes a file or folder
- * in the external repository. All data returned by this class' implementation
- * is in native repository format.
+ * Represents the external repository object, being either an external
+ * repository file object or folder object. All data returned by this class'
+ * implementation is in native repository format.
  *
  * @author Iván Zaera
  * @author Sergio González
@@ -48,10 +48,10 @@ public interface ExtRepositoryObject extends ExtRepositoryModel {
 
 	/**
 	 * Returns the external repository object's file or folder extension,
-	 * excluding the leading period.
+	 * excluding any leading period.
 	 *
 	 * @return the external repository object's file or folder extension,
-	 *         excluding the leading period
+	 *         excluding any leading period
 	 */
 	public String getExtension();
 
@@ -63,7 +63,7 @@ public interface ExtRepositoryObject extends ExtRepositoryModel {
 	public Date getModifiedDate();
 
 	/**
-	 * Returns the permissions that external repositories must support. In this
+	 * Holds the permissions that external repositories must support. In this
 	 * context, the external repository implementation may be asked about a
 	 * permission, and it must answer correctly, but is not required to fully
 	 * implement it.

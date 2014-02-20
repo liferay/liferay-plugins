@@ -15,10 +15,10 @@
 package com.liferay.repository.external;
 
 /**
- * Represents the external repository folder object. Implementors of external
+ * Represents the external repository folder object. Implementers of external
  * repositories must provide an implementation of this class to make the bridge
  * between Liferay Portal and external repository domains. All data returned by
- * these implementations are in native repository format.
+ * these implementations is in native repository format.
  *
  * @author Iván Zaera
  * @author Sergio González
