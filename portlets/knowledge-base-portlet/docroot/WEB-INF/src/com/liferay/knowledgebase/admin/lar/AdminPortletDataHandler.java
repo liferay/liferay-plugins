@@ -55,13 +55,13 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 			new StagedModelType(KBTemplate.class));
 		setExportControls(
 			new PortletDataHandlerBoolean(
-				NAMESPACE, "articles", true, true, null,
+				NAMESPACE, "kb-articles", true, true, null,
 				KBArticle.class.getName()),
 			new PortletDataHandlerBoolean(
-				NAMESPACE, "templates", true, true, null,
+				NAMESPACE, "kb-templates", true, true, null,
 				KBTemplate.class.getName()),
 			new PortletDataHandlerBoolean(
-				NAMESPACE, "comments", true, true, null,
+				NAMESPACE, "kb-comments", true, true, null,
 				KBComment.class.getName()));
 	}
 
