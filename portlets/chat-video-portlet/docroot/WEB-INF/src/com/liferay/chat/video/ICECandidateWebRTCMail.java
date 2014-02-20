@@ -19,12 +19,14 @@ package com.liferay.chat.video;
  */
 public class ICECandidateWebRTCMail extends WebRTCMail {
 
-	public ICECandidateWebRTCMail(long sourceUserId, String messageJSON) {
-		super(sourceUserId, messageJSON);
+	public ICECandidateWebRTCMail(
+		ICECandidateWebRTCMail iceCandidateWebRTCMail) {
+
+		super(iceCandidateWebRTCMail);
 	}
 
-	public ICECandidateWebRTCMail(ICECandidateWebRTCMail webRTCMail) {
-		super(webRTCMail);
+	public ICECandidateWebRTCMail(long sourceUserId, String messageJSON) {
+		super(sourceUserId, messageJSON);
 	}
 
 	@Override

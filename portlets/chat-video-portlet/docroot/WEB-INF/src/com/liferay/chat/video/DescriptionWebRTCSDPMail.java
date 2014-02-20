@@ -19,19 +19,21 @@ package com.liferay.chat.video;
  */
 public class DescriptionWebRTCSDPMail extends WebRTCMail {
 
-	public DescriptionWebRTCSDPMail(long sourceUserId, String messageJSON) {
-		super(sourceUserId, messageJSON);
+	public DescriptionWebRTCSDPMail(
+		DescriptionWebRTCSDPMail descriptionWebRTCSDPMail) {
+
+		super(descriptionWebRTCSDPMail);
 	}
 
-	public DescriptionWebRTCSDPMail(DescriptionWebRTCSDPMail webRTCMail) {
-		super(webRTCMail);
+	public DescriptionWebRTCSDPMail(long sourceUserId, String messageJSON) {
+		super(sourceUserId, messageJSON);
 	}
 
 	@Override
 	public String getMessageType() {
 		return _MESSAGE_TYPE;
 	}
-	
+
 	private static final String _MESSAGE_TYPE = "sdp";
 
 }

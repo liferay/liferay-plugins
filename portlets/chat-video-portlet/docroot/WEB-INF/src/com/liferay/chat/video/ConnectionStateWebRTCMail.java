@@ -19,12 +19,14 @@ package com.liferay.chat.video;
  */
 public class ConnectionStateWebRTCMail extends WebRTCMail {
 
-	public ConnectionStateWebRTCMail(long sourceUserId, String messageJSON) {
-		super(sourceUserId, messageJSON);
+	public ConnectionStateWebRTCMail(
+		ConnectionStateWebRTCMail connectionStateWebRTCMail) {
+
+		super(connectionStateWebRTCMail);
 	}
 
-	public ConnectionStateWebRTCMail(ConnectionStateWebRTCMail webRTCMail) {
-		super(webRTCMail);
+	public ConnectionStateWebRTCMail(long sourceUserId, String messageJSON) {
+		super(sourceUserId, messageJSON);
 	}
 
 	@Override
