@@ -29,7 +29,9 @@ public class WebRTCSDPDescriptionMail extends WebRTCMail {
 
 	@Override
 	public String getMessageType() {
-		return "sdp";
+		return _MESSAGE_TYPE;
 	}
+	
+	private static final String _MESSAGE_TYPE = "sdp";
 
 }

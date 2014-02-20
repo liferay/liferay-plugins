@@ -29,7 +29,9 @@ public class WebRTCICECandidateMail extends WebRTCMail {
 
 	@Override
 	public String getMessageType() {
-		return "ice";
+		return _MESSAGE_TYPE;
 	}
+
+	private static final String _MESSAGE_TYPE = "ice";
 
 }
