@@ -93,7 +93,7 @@ public abstract class BaseTestCase {
 		}
 		catch (IOException ioe) {
 			_logger.error(ioe.getMessage(), ioe);
-			
+
 			return null;
 		}
 		finally {

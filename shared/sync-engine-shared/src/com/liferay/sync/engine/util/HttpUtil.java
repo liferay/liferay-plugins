@@ -21,7 +21,6 @@ import com.liferay.sync.engine.service.SyncAccountService;
 import java.net.URL;
 
 import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 import java.util.Arrays;
@@ -41,8 +40,8 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.ByteArrayBody;
 import org.apache.http.entity.mime.content.ContentBody;
+import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
@@ -99,9 +98,8 @@ public class HttpUtil {
 		if (filePath != null) {
 			multipartEntityBuilder.addPart(
 				"file",
-				_getByteArrayBody(
-					Files.readAllBytes(filePath),
-					(String)parameters.get("mimeType"),
+				_getFileBody(
+					filePath, (String)parameters.get("mimeType"),
 					(String)parameters.get("title")));
 		}
 
@@ -131,11 +129,12 @@ public class HttpUtil {
 		return basicHttpContext;
 	}
 
-	private static ContentBody _getByteArrayBody(
-			byte[] bytes, String mimeType, String fileName)
+	private static ContentBody _getFileBody(
+			Path filePath, String mimeType, String fileName)
 		throws Exception {
 
-		return new ByteArrayBody(bytes, ContentType.create(mimeType), fileName);
+		return new FileBody(
+			filePath.toFile(), ContentType.create(mimeType), fileName);
 	}
 
 	private static HttpClient _getHttpClient(SyncAccount syncAccount, URL url)
