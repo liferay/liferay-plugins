@@ -29,6 +29,10 @@
 		<dispatcher>FORWARD</dispatcher>
 	</servlet-filter-mapping>
 	<struts-action>
+		<struts-action-path>/directory/find_user</struts-action-path>
+		<struts-action-impl>com.liferay.so.hook.action.FindUserAction</struts-action-impl>
+	</struts-action>
+	<struts-action>
 		<struts-action-path>/sites_admin/edit_layouts</struts-action-path>
 		<struts-action-impl>com.liferay.so.hook.action.EditLayoutsAction</struts-action-impl>
 	</struts-action>
