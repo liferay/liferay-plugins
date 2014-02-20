@@ -59,6 +59,10 @@
 				{
 
 					ATTRS: {
+						alignNode: {
+							value: null
+						},
+
 						hiddenItems: {
 							validator: isArray,
 							value: []
@@ -71,10 +75,6 @@
 						items: {
 							validator: isArray,
 							value: []
-						},
-
-						alignNode: {
-							value: null
 						}
 					},
 
@@ -108,7 +108,10 @@
 
 							A.getDoc().on('click', instance._closeMenu, instance);
 
-							A.getWin().on('resize', A.debounce(instance._positionMenu, 200, instance));
+							A.getWin().on(
+								'resize',
+								A.debounce(instance._positionMenu, 200, instance)
+							);
 
 							instance.after('visibleChange', instance._positionMenu, instance);
 						},
@@ -140,31 +143,30 @@
 
 							var Util = Liferay.Util;
 
-							if (Util.isPhone() || Util.isTablet()) {
-								instance.setAttrs(
-									{
-										align: null,
-										centered: true,
-										modal: true,
-										width: '90%'
-									}
-								);
-							}
-							else {
-								var align = {
-									points: DEFAULT_ALIGN_POINTS,
-									node: instance.get('alignNode')
-								}
+							var align = {
+								points: DEFAULT_ALIGN_POINTS,
+								node: instance.get('alignNode')
+							};
 
-								instance.setAttrs(
-									{
-										align: align,
-										centered: false,
-										modal: false,
-										width: 222
-									}
-								);
+							var centered = false;
+							var modal = false;
+							var width = 222;
+
+							if (Util.isPhone() || Util.isTablet()) {
+								align = null;
+								centered = true;
+								modal = true;
+								width = '90%';
 							}
+
+							instance.setAttrs(
+								{
+									align: align,
+									centered: centered,
+									modal: modal,
+									width: width
+								}
+							);
 						},
 
 						_renderItems: function(items) {
@@ -1103,7 +1105,7 @@
 							{
 								on: {
 
-									click: function(event, buttonItem)  {
+									click: function(event, buttonItem) {
 										confirmationPanel.onlyThisInstanceFn.apply(confirmationPanel, arguments);
 									}
 								},
@@ -1111,7 +1113,7 @@
 							},
 							{
 								on: {
-									click: function(event, buttonItem)  {
+									click: function(event, buttonItem) {
 										confirmationPanel.allFollowingFn.apply(confirmationPanel, arguments);
 									}
 								},
@@ -1119,7 +1121,7 @@
 							},
 							{
 								on: {
-									click: function(event, buttonItem)  {
+									click: function(event, buttonItem) {
 										confirmationPanel.allEventsInFn.apply(confirmationPanel, arguments);
 									}
 								},
@@ -1127,7 +1129,7 @@
 							},
 							{
 								on: {
-									click: function(event, buttonItem)  {
+									click: function(event, buttonItem) {
 										confirmationPanel.cancelFn.apply(confirmationPanel, arguments);
 									}
 								},
