@@ -16,15 +16,18 @@ package com.liferay.sync.engine.documentlibrary.event;
 
 import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.model.SyncFile;
-import com.liferay.sync.engine.service.SyncAccountService;
+import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.util.FileUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -45,11 +48,16 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
+		_syncSite = SyncSiteService.addSyncSite(
+			10158, filePathName + "/test-site", 10184,
+			syncAccount.getSyncAccountId());
+
 		SyncFileService.addSyncFile(
 			null, null, null,
 			FileUtil.getFileKey(syncAccount.getFilePathName()),
-			syncAccount.getFilePathName(), null, "test", 0, 0,
-			syncAccount.getSyncAccountId(), SyncFile.TYPE_FOLDER);
+			syncAccount.getFilePathName(), null, "test", 0,
+			_syncSite.getGroupId(), syncAccount.getSyncAccountId(),
+			SyncFile.TYPE_FOLDER);
 	}
 
 	@After
@@ -57,7 +65,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 	public void tearDown() throws Exception {
 		super.tearDown();
 
-		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
+		SyncSiteService.deleteSyncSite(_syncSite.getSyncSiteId());
 
 		for (SyncFile syncFile : _syncFiles) {
 			SyncFileService.deleteSyncFile(syncFile.getSyncFileId());
@@ -69,15 +77,21 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 		setGetResponse("dependencies/get_all_sync_dl_objects.json");
 		setPostResponse("dependencies/get_all_sync_dl_objects.json");
 
+		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		parameters.put("folderId", 0);
+		parameters.put("repositoryId", _syncSite.getGroupId());
+
 		GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
-			new GetAllSyncDLObjectsEvent(syncAccount.getSyncAccountId(), null);
+			new GetAllSyncDLObjectsEvent(
+				syncAccount.getSyncAccountId(), parameters);
 
 		getAllSyncDLObjectsEvent.run();
 
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
 
-		Assert.assertEquals(3, _syncFiles.size());
+		Assert.assertEquals(4, _syncFiles.size());
 
 		Path filePath = Paths.get(filePathName + "/Document_1.txt");
 
@@ -85,5 +99,6 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 	}
 
 	private List<SyncFile> _syncFiles;
+	private SyncSite _syncSite;
 
 }
