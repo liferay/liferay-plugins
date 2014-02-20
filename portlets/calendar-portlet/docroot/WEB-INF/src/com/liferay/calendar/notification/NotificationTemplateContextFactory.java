@@ -101,10 +101,10 @@ public class NotificationTemplateContextFactory {
 
 		attributes.put("location", calendarBooking.getLocation());
 
-		Group userGroup = user.getGroup();
+		Group group = user.getGroup();
 
 		String portalURL = _getPortalURL(
-			userGroup.getCompanyId(), userGroup.getGroupId());
+			group.getCompanyId(), group.getGroupId());
 
 		attributes.put("portalURL", portalURL);
 		attributes.put(
@@ -143,13 +143,13 @@ public class NotificationTemplateContextFactory {
 			User user, long calendarBookingId)
 		throws PortalException, SystemException {
 
-		Group userGroup = user.getGroup();
+		Group group = user.getGroup();
 
 		Layout layout = LayoutLocalServiceUtil.getLayout(
-			userGroup.getDefaultPrivatePlid());
+			group.getDefaultPrivatePlid());
 
 		String portalURL = _getPortalURL(
-			userGroup.getCompanyId(), userGroup.getGroupId());
+			group.getCompanyId(), group.getGroupId());
 
 		String layoutActualURL = PortalUtil.getLayoutActualURL(layout);
 
