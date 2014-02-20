@@ -56,24 +56,6 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 		}
 	}
 
-	private void upgradeDLResourcePermission(Company company, Group group)
-		throws PortalException, SystemException {
-
-		int count =
-			ResourcePermissionLocalServiceUtil.getResourcePermissionsCount(
-				company.getCompanyId(), _DL_RESOURCE_NAME,
-				ResourceConstants.SCOPE_INDIVIDUAL,
-				String.valueOf(group.getGroupId()));
-
-		if (count > 0) {
-			return;
-		}
-
-		ResourceLocalServiceUtil.addResources(
-			company.getCompanyId(), group.getGroupId(), 0, _DL_RESOURCE_NAME,
-			group.getGroupId(), false, true, true);
-	}
-
 	private void upgradeDLFolderResourcePermission(Company company, Group group)
 		throws PortalException, SystemException {
 
@@ -100,6 +82,24 @@ public class UpgradeResourcePermission extends UpgradeProcess {
 		ResourceLocalServiceUtil.addResources(
 			company.getCompanyId(), group.getGroupId(), 0,
 			DLFolder.class.getName(), folderId, false, true, true);
+	}
+
+	private void upgradeDLResourcePermission(Company company, Group group)
+		throws PortalException, SystemException {
+
+		int count =
+			ResourcePermissionLocalServiceUtil.getResourcePermissionsCount(
+				company.getCompanyId(), _DL_RESOURCE_NAME,
+				ResourceConstants.SCOPE_INDIVIDUAL,
+				String.valueOf(group.getGroupId()));
+
+		if (count > 0) {
+			return;
+		}
+
+		ResourceLocalServiceUtil.addResources(
+			company.getCompanyId(), group.getGroupId(), 0, _DL_RESOURCE_NAME,
+			group.getGroupId(), false, true, true);
 	}
 
 	private static final String _DL_RESOURCE_NAME =
