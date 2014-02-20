@@ -17,13 +17,13 @@ package com.liferay.chat.video;
 /**
  * @author Philippe Proulx
  */
-public class WebRTCConnectionStateMail extends WebRTCMail {
+public class ConnectionStateWebRTCMail extends WebRTCMail {
 
-	public WebRTCConnectionStateMail(long sourceUserId, String messageJSON) {
+	public ConnectionStateWebRTCMail(long sourceUserId, String messageJSON) {
 		super(sourceUserId, messageJSON);
 	}
 
-	public WebRTCConnectionStateMail(WebRTCConnectionStateMail webRTCMail) {
+	public ConnectionStateWebRTCMail(ConnectionStateWebRTCMail webRTCMail) {
 		super(webRTCMail);
 	}
 

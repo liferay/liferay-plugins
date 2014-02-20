@@ -17,13 +17,13 @@ package com.liferay.chat.video;
 /**
  * @author Philippe Proulx
  */
-public class WebRTCSDPDescriptionMail extends WebRTCMail {
+public class DescriptionWebRTCSDPMail extends WebRTCMail {
 
-	public WebRTCSDPDescriptionMail(long sourceUserId, String messageJSON) {
+	public DescriptionWebRTCSDPMail(long sourceUserId, String messageJSON) {
 		super(sourceUserId, messageJSON);
 	}
 
-	public WebRTCSDPDescriptionMail(WebRTCSDPDescriptionMail webRTCMail) {
+	public DescriptionWebRTCSDPMail(DescriptionWebRTCSDPMail webRTCMail) {
 		super(webRTCMail);
 	}
 
