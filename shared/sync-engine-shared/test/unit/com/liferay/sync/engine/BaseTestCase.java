@@ -84,23 +84,21 @@ public abstract class BaseTestCase {
 	protected String readResponse(String fileName) {
 		InputStream inputStream = null;
 
-		String response = null;
-
 		try {
 			Class<?> clazz = getClass();
 
 			inputStream = clazz.getResourceAsStream(fileName);
 
-			response = IOUtils.toString(inputStream);
+			return IOUtils.toString(inputStream);
 		}
 		catch (IOException ioe) {
 			_logger.error(ioe.getMessage(), ioe);
+			
+			return null;
 		}
 		finally {
 			StreamUtil.cleanUp(inputStream);
 		}
-
-		return response;
 	}
 
 	protected void setGetResponse(String fileName) throws Exception {
