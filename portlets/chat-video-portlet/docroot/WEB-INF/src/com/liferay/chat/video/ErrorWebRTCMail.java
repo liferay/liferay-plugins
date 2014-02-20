@@ -17,13 +17,13 @@ package com.liferay.chat.video;
 /**
  * @author Philippe Proulx
  */
-public class WebRTCICECandidateMail extends WebRTCMail {
+public class ErrorWebRTCMail extends WebRTCMail {
 
-	public WebRTCICECandidateMail(long sourceUserId, String messageJSON) {
+	public ErrorWebRTCMail(long sourceUserId, String messageJSON) {
 		super(sourceUserId, messageJSON);
 	}
 
-	public WebRTCICECandidateMail(WebRTCICECandidateMail webRTCMail) {
+	public ErrorWebRTCMail(ErrorWebRTCMail webRTCMail) {
 		super(webRTCMail);
 	}
 
@@ -32,6 +32,6 @@ public class WebRTCICECandidateMail extends WebRTCMail {
 		return _MESSAGE_TYPE;
 	}
 
-	private static final String _MESSAGE_TYPE = "ice";
+	private static final String _MESSAGE_TYPE = "err";
 
 }
