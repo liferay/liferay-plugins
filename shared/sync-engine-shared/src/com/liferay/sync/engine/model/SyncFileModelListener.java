@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Shinn Lok
  */
-public class SyncFileListener implements ModelListener<SyncFile> {
+public class SyncFileModelListener implements ModelListener<SyncFile> {
 
 	@Override
 	public void onUpdate(
@@ -95,6 +95,6 @@ public class SyncFileListener implements ModelListener<SyncFile> {
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
-		SyncFileListener.class);
+		SyncFileModelListener.class);
 
 }
