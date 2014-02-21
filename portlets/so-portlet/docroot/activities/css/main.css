@@ -118,13 +118,17 @@ $default-border-color: #E7E7E7;
 			position: relative;
 
 			.document-thumbnail {
+				left: 0;
 				overflow: hidden;
 				padding-right: 0;
 				position: absolute;
 				width: 75px;
 
 				img {
+					display: block;
 					height: 75px;
+					margin: auto;
+					max-width: none;
 				}
 			}
 
@@ -248,6 +252,8 @@ $default-border-color: #E7E7E7;
 	.comments-container, .microblogs-portlet-activity .activity-body {
 		.user-portrait {
 			height: 32px;
+			left: 2px;
+			position: absolute;
 			width: 32px;
 
 			.avatar {
@@ -273,7 +279,9 @@ $default-border-color: #E7E7E7;
 		background: #EAEAEA;
 		border-top: 1px solid #FFF;
 		margin-bottom: 0;
+		overflow: hidden;
 		padding: 2px;
+		position: relative;
 	}
 
 	.comment-entry {
