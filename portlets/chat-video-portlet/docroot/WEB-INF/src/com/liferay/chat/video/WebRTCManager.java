@@ -24,6 +24,10 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class WebRTCManager {
 
+	public WebRTCManager() {
+		WebRTCManager._webRTCManagers.add(this);
+	}
+
 	public List<Long> getAvailableWebRTCClientIds() {
 		List<Long> availableUserIds = new ArrayList<Long>();
 
@@ -51,6 +55,22 @@ public class WebRTCManager {
 	}
 
 	public void removeWebRTCClient(long userId) {
+		WebRTCClient webRTCClient = getWebRTCClient(userId);
+
+		if (webRTCClient != null) {
+			webRTCClient.removeBilateralWebRTCConnections();
+			_webRTCClients.remove(userId);
+		}
+	}
+
+	public void updateWebRTCClientPresence(long userId) {
+		WebRTCClient webRTCClient = getWebRTCClient(userId);
+
+		if (webRTCClient == null) {
+			return;
+		}
+
+		webRTCClient.updatePresenceTime();
 	}
 
 	protected void addWebRTCClient(long userId) {
@@ -58,6 +78,9 @@ public class WebRTCManager {
 			_webRTCClients.put(userId, new WebRTCClient(userId));
 		}
 	}
+
+	private static List<WebRTCManager> _webRTCManagers =
+		new ArrayList<WebRTCManager>();
 
 	private Map<Long, WebRTCClient> _webRTCClients =
 		new ConcurrentHashMap<Long, WebRTCClient>();
