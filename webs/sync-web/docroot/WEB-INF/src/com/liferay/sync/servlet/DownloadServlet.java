@@ -108,7 +108,6 @@ public class DownloadServlet extends HttpServlet {
 
 		File sourceFile = DLFileEntryLocalServiceUtil.getFile(
 			userId, fileEntryId, sourceVersion, false);
-
 		File destinationFile = DLFileEntryLocalServiceUtil.getFile(
 			userId, fileEntryId, destinationVersion, false);
 
@@ -164,7 +163,6 @@ public class DownloadServlet extends HttpServlet {
 		DLFileVersion sourceFileVersion =
 			DLFileVersionLocalServiceUtil.getFileVersion(
 				fileEntry.getFileEntryId(), sourceVersion);
-
 		DLFileVersion destinationFileVersion =
 			DLFileVersionLocalServiceUtil.getFileVersion(
 				fileEntry.getFileEntryId(), destinationVersion);
