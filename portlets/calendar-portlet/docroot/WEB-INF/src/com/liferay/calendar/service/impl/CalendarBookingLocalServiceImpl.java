@@ -893,7 +893,8 @@ public class CalendarBookingLocalServiceImpl
 
 					NotificationUtil.notifyCalendarBookingRecipients(
 						childCalendarBooking, notificationType,
-						NotificationTemplateType.MOVED_TO_TRASH);
+						NotificationTemplateType.MOVED_TO_TRASH,
+						serviceContext);
 				}
 				catch (Exception e) {
 					if (_log.isWarnEnabled()) {
@@ -926,7 +927,7 @@ public class CalendarBookingLocalServiceImpl
 
 					NotificationUtil.notifyCalendarBookingRecipients(
 						childCalendarBooking, notificationType,
-						NotificationTemplateType.INVITE);
+						NotificationTemplateType.INVITE, serviceContext);
 				}
 				catch (Exception e) {
 					if (_log.isWarnEnabled()) {
@@ -1057,7 +1058,7 @@ public class CalendarBookingLocalServiceImpl
 
 				NotificationUtil.notifyCalendarBookingRecipients(
 					childCalendarBooking, notificationType,
-					notificationTemplateType);
+					notificationTemplateType, serviceContext);
 			}
 			catch (Exception e) {
 				if (_log.isWarnEnabled()) {
