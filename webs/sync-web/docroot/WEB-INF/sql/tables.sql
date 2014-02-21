@@ -1,5 +1,5 @@
 create table SyncDLFileVersionDiff (
-	fileVersionDiffId LONG not null primary key,
+	syncDLFileVersionDiffId LONG not null primary key,
 	fileEntryId LONG,
 	sourceFileVersionId LONG,
 	destinationFileVersionId LONG,
