@@ -57,11 +57,13 @@ public class WebRTCManager {
 	public void removeWebRTCClient(long userId) {
 		WebRTCClient webRTCClient = getWebRTCClient(userId);
 
-		if (webRTCClient != null) {
-			webRTCClient.removeBilateralWebRTCConnections();
-
-			_webRTCClients.remove(userId);
+		if (webRTCClient == null) {
+			return;
 		}
+
+		webRTCClient.removeBilateralWebRTCConnections();
+
+		_webRTCClients.remove(userId);
 	}
 
 	public void updateWebRTCClientPresence(long userId) {
