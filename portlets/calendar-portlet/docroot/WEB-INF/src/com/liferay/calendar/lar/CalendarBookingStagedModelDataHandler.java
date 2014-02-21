@@ -230,7 +230,7 @@ public class CalendarBookingStagedModelDataHandler
 		}
 	}
 
-	private static final int[] _EXPORTABLE_STATUSES = new int[] {
+	private static final int[] _EXPORTABLE_STATUSES = {
 		CalendarBookingWorkflowConstants.STATUS_APPROVED,
 		CalendarBookingWorkflowConstants.STATUS_DENIED,
 		CalendarBookingWorkflowConstants.STATUS_MAYBE,
