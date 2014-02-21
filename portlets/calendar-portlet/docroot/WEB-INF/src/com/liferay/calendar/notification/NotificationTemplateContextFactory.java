@@ -132,6 +132,29 @@ public class NotificationTemplateContextFactory {
 
 		notificationTemplateContext.setAttributes(attributes);
 
+		// Content
+
+		notificationTemplateContext.setCalendarNotificationTemplate(
+			calendarNotificationTemplate);
+
+		String templateSubject = NotificationUtil.getTemplate(
+			calendarNotificationTemplate, notificationType,
+			notificationTemplateType, NotificationField.SUBJECT);
+
+		String subject = NotificationUtil.processNotificationTemplate(
+			templateSubject, attributes);
+
+		notificationTemplateContext.setSubject(subject);
+
+		String templateBody = NotificationUtil.getTemplate(
+			calendarNotificationTemplate, notificationType,
+			notificationTemplateType, NotificationField.BODY);
+
+		String body = NotificationUtil.processNotificationTemplate(
+			templateBody, attributes);
+
+		notificationTemplateContext.setBody(body);
+
 		return notificationTemplateContext;
 	}
 
