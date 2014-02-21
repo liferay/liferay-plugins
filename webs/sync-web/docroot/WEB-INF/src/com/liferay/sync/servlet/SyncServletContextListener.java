@@ -154,10 +154,10 @@ public class SyncServletContextListener
 
 	protected void scheduleDeleteExpiredDiffsEvent() {
 		try {
-			Calendar startDate = CalendarFactoryUtil.getCalendar();
+			Calendar calendar = CalendarFactoryUtil.getCalendar();
 
 			CronText cronText = new CronText(
-				startDate, CronText.HOURLY_FREQUENCY,
+				calendar, CronText.HOURLY_FREQUENCY,
 				PortletPropsValues.SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL);
 
 			Trigger trigger = new CronTrigger(
