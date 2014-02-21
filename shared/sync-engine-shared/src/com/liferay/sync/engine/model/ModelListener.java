@@ -21,6 +21,10 @@ import java.util.Map;
  */
 public interface ModelListener<T> {
 
+	public void onCreate(T model);
+
+	public void onRemove(T model);
+
 	public void onUpdate(T model, Map<String, Object> originalValues);
 
 }

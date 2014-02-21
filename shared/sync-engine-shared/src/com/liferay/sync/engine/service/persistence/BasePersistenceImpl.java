@@ -47,8 +47,41 @@ public class BasePersistenceImpl<TT, TID>
 	}
 
 	@Override
+	public int create(TT model) throws SQLException {
+		notifyModelListenersOnCreate(model);
+
+		return super.create(model);
+	}
+
+	@Override
+	public CreateOrUpdateStatus createOrUpdate(TT model) throws SQLException {
+		if (!idExists(extractId(model))) {
+			notifyModelListenersOnCreate(model);
+		}
+		else {
+			notifyModelListenersOnUpdate(model);
+		}
+
+		return super.createOrUpdate(model);
+	}
+
+	@Override
 	public int createTable() throws SQLException {
 		return TableUtils.createTable(connectionSource, dataClass);
+	}
+
+	@Override
+	public int delete(TT model) throws SQLException {
+		notifyModelListenersOnRemove(model);
+
+		return super.delete(model);
+	}
+
+	@Override
+	public int deleteById(TID tid) throws SQLException {
+		notifyModelListenersOnRemove(queryForId(tid));
+
+		return super.deleteById(tid);
 	}
 
 	public void registerModelListener(ModelListener<TT> modelListener) {
@@ -57,7 +90,7 @@ public class BasePersistenceImpl<TT, TID>
 
 	@Override
 	public int update(TT model) throws SQLException {
-		notifyModelListeners(model);
+		notifyModelListenersOnUpdate(model);
 
 		return super.update(model);
 	}
@@ -78,7 +111,21 @@ public class BasePersistenceImpl<TT, TID>
 		return syncNotificationFieldNames;
 	}
 
-	protected void notifyModelListeners(TT targetModel) throws SQLException {
+	protected void notifyModelListenersOnCreate(TT model) {
+		for (ModelListener<TT> modelListener : _modelListeners) {
+			modelListener.onCreate(model);
+		}
+	}
+
+	protected void notifyModelListenersOnRemove(TT model) {
+		for (ModelListener<TT> modelListener : _modelListeners) {
+			modelListener.onRemove(model);
+		}
+	}
+
+	protected void notifyModelListenersOnUpdate(TT targetModel)
+		throws SQLException {
+
 		Map<String, Object> originalValues = new HashMap<String, Object>();
 
 		TT sourceModel = queryForId(extractId(targetModel));

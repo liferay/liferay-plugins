@@ -41,6 +41,23 @@ import org.slf4j.LoggerFactory;
 public class SyncFileModelListener implements ModelListener<SyncFile> {
 
 	@Override
+	public void onCreate(SyncFile syncFile) {
+		updateChecksumsFile(syncFile);
+	}
+
+	@Override
+	public void onRemove(SyncFile syncFile) {
+		Path filePath = Paths.get(syncFile.getFilePathName());
+
+		try {
+			Files.deleteIfExists(filePath);
+		}
+		catch (IOException ioe) {
+			_logger.error(ioe.getMessage(), ioe);
+		}
+	}
+
+	@Override
 	public void onUpdate(
 		SyncFile syncFile, Map<String, Object> originalValues) {
 
@@ -48,6 +65,10 @@ public class SyncFileModelListener implements ModelListener<SyncFile> {
 			return;
 		}
 
+		updateChecksumsFile(syncFile);
+	}
+
+	protected void updateChecksumsFile(SyncFile syncFile) {
 		Path syncFilePath = Paths.get(syncFile.getFilePathName());
 
 		if (Files.notExists(syncFilePath)) {
@@ -64,15 +85,15 @@ public class SyncFileModelListener implements ModelListener<SyncFile> {
 
 			fileChannel = fileInputStream.getChannel();
 
-			Path checksumFilePath = Paths.get(
+			Path checksumsFilePath = Paths.get(
 				PropsValues.SYNC_CONFIGURATION_DIRECTORY + "/files/" +
 					syncFile.getSyncFileId());
 
-			if (Files.notExists(checksumFilePath)) {
-				Files.createFile(checksumFilePath);
+			if (Files.notExists(checksumsFilePath)) {
+				Files.createFile(checksumsFilePath);
 			}
 
-			outputStream = Files.newOutputStream(checksumFilePath);
+			outputStream = Files.newOutputStream(checksumsFilePath);
 
 			writableByteChannel = Channels.newChannel(outputStream);
 

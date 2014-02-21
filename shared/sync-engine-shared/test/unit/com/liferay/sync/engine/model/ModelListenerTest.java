@@ -31,10 +31,12 @@ public class ModelListenerTest extends BaseTestCase {
 
 	@Test
 	public void testUpdateFilePathNameSyncFile() throws Exception {
+		SyncFileService.registerModelListener(new SyncFileModelListener());
+
 		SyncFile syncFile = SyncFileTestUtil.addFileSyncFile(
 			"/home/liferay/test", 0, syncAccount.getSyncAccountId());
 
-		SyncFileService.registerModelListener(new SyncFileModelListener());
+		Assert.assertTrue(_onCreateCalled);
 
 		syncFile.setFilePathName("/home/liferay/test2");
 		syncFile.setSize(256);
@@ -44,26 +46,43 @@ public class ModelListenerTest extends BaseTestCase {
 		Assert.assertEquals(
 			"/home/liferay/test", _originalFieldValues.get("filePathName"));
 		Assert.assertEquals(2, _originalFieldValues.size());
+
+		SyncFileService.deleteSyncFile(syncFile.getSyncFileId());
+
+		Assert.assertTrue(_onRemoveCalled);
 	}
 
 	@Test
 	public void testUpdateSyncFileIdSyncFile() throws Exception {
+		SyncFileService.registerModelListener(new SyncFileModelListener());
+
 		SyncFile syncFile = SyncFileTestUtil.addFileSyncFile(
 			"/home/liferay/test", 0, syncAccount.getSyncAccountId());
-
-		SyncFileService.registerModelListener(new SyncFileModelListener());
 
 		syncFile.setSyncFileId(12345);
 
 		SyncFileService.update(syncFile);
 
 		Assert.assertTrue(_originalFieldValues.isEmpty());
+		Assert.assertFalse(_onRemoveCalled);
 	}
 
+	private boolean _onCreateCalled;
+	private boolean _onRemoveCalled;
 	private Map<String, Object> _originalFieldValues =
 		new HashMap<String, Object>();
 
 	private class SyncFileModelListener implements ModelListener<SyncFile> {
+
+		@Override
+		public void onCreate(SyncFile model) {
+			_onCreateCalled = true;
+		}
+
+		@Override
+		public void onRemove(SyncFile model) {
+			_onRemoveCalled = true;
+		}
 
 		@Override
 		public void onUpdate(
