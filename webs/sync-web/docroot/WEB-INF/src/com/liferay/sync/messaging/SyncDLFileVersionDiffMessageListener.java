@@ -28,7 +28,8 @@ public class SyncDLFileVersionDiffMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
-		SyncDLFileVersionDiffLocalServiceUtil.deleteExpired();
+		SyncDLFileVersionDiffLocalServiceUtil.
+			deleteExpiredSyncDLFileVersionDiffs();
 	}
 
 }
