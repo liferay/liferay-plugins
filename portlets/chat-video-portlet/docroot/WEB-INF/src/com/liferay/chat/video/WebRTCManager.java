@@ -25,7 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class WebRTCManager {
 
 	public WebRTCManager() {
-		WebRTCManager._webRTCManagers.add(this);
+		_webRTCManagers.add(this);
 	}
 
 	public List<Long> getAvailableWebRTCClientIds() {
@@ -59,6 +59,7 @@ public class WebRTCManager {
 
 		if (webRTCClient != null) {
 			webRTCClient.removeBilateralWebRTCConnections();
+
 			_webRTCClients.remove(userId);
 		}
 	}
