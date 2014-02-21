@@ -2,7 +2,7 @@
 
 <model-hints>
 	<model name="com.liferay.sync.model.SyncDLFileVersionDiff">
-		<field name="fileVersionDiffId" type="long" />
+		<field name="syncDLFileVersionDiffId" type="long" />
 		<field name="fileEntryId" type="long" />
 		<field name="sourceFileVersionId" type="long" />
 		<field name="destinationFileVersionId" type="long" />
