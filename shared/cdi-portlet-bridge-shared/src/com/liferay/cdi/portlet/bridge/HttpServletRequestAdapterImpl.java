@@ -120,7 +120,7 @@ public class HttpServletRequestAdapterImpl
 
 	@Override
 	public String getContextPath() {
-		return PortalUtil.getPathContext(_portletRequest);
+		return _portletRequest.getContextPath();
 	}
 
 	@Override
