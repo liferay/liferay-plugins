@@ -24,11 +24,13 @@ package com.liferay.sync.model.impl;
  * @author Brian Wing Shun Chan
  */
 public class SyncDLFileVersionDiffImpl extends SyncDLFileVersionDiffBaseImpl {
-	/*
+
+	/**
 	 * NOTE FOR DEVELOPERS:
 	 *
 	 * Never reference this class directly. All methods that expect a sync d l file version diff model instance should use the {@link com.liferay.sync.model.SyncDLFileVersionDiff} interface instead.
 	 */
 	public SyncDLFileVersionDiffImpl() {
 	}
+
 }
