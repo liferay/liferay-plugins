@@ -131,7 +131,7 @@ public class SyncServletContextListener
 				_syncDLFileVersionDiffMessageListener,
 				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME);
 
-			scheduleDeleteExpiredDiffsEvent();
+			scheduleDLFileVersionDiffMessageListener();
 		}
 
 		consumeDLSyncEvents();
@@ -152,7 +152,7 @@ public class SyncServletContextListener
 			destinationName, messageListener);
 	}
 
-	protected void scheduleDeleteExpiredDiffsEvent() {
+	protected void scheduleDLFileVersionDiffMessageListener() {
 		try {
 			Calendar calendar = CalendarFactoryUtil.getCalendar();
 
