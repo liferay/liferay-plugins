@@ -268,8 +268,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			return null;
 		}
 
-		long plid = PortalUtil.getPlidFromPortletId(
-			groupId, false, PortletKeys.WIKI);
+		long plid = PortalUtil.getPlidFromPortletId(groupId, PortletKeys.WIKI);
 
 		if (plid <= 0) {
 			return null;
@@ -379,8 +378,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			return null;
 		}
 
-		long plid = PortalUtil.getPlidFromPortletId(
-			groupId, false, PortletKeys.WIKI);
+		long plid = PortalUtil.getPlidFromPortletId(groupId, PortletKeys.WIKI);
 
 		if (plid <= 0) {
 			return HtmlUtil.escape(node.getName());
