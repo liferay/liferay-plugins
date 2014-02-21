@@ -87,6 +87,21 @@ public class NotificationTemplateContextFactory {
 
 		attributes.put("endTime", endTime);
 
+		CalendarNotificationTemplate calendarNotificationTemplate =
+			CalendarNotificationTemplateLocalServiceUtil.
+				fetchCalendarNotificationTemplate(
+					calendar.getCalendarId(), notificationType,
+					notificationTemplateType);
+
+		attributes.put(
+			"fromAddress",
+			NotificationUtil.getTemplatePropertyValue(
+				calendarNotificationTemplate, "from-address"));
+		attributes.put(
+			"fromName",
+			NotificationUtil.getTemplatePropertyValue(
+				calendarNotificationTemplate, "from-name"));
+
 		attributes.put("location", calendarBooking.getLocation());
 
 		Company company = CompanyLocalServiceUtil.getCompany(
@@ -107,6 +122,8 @@ public class NotificationTemplateContextFactory {
 		attributes.put("startTime", startTime);
 
 		attributes.put("title", calendarBooking.getTitle(user.getLocale()));
+		attributes.put("toAddress", user.getEmailAddress());
+		attributes.put("toName", user.getFullName());
 
 		String calendarBookingURL = _getCalendarBookingURL(
 			calendarBooking.getCalendarBookingId(), serviceContext);
