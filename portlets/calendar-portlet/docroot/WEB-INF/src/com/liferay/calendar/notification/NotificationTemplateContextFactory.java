@@ -106,7 +106,7 @@ public class NotificationTemplateContextFactory {
 		String portalURL = _getPortalURL(
 			userGroup.getCompanyId(), userGroup.getGroupId());
 
-		attributes.put("portalURL", portalURL);
+		attributes.put("portalUrl", portalURL);
 		attributes.put(
 			"portletName",
 			LanguageUtil.get(
