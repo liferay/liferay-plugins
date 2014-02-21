@@ -77,11 +77,53 @@ public class WebRTCManager {
 		webRTCClient.updatePresenceTime();
 	}
 
+	protected static void notifyWebRTCClientLostConnection(WebRTCClient destWebRTCClient, WebRTCClient sourceWebRTCClient, String reason) {
+		String formatString = "{\"type\": \"status\", \"status\": \"lost\", \"reason\": \"%s\"}";
+		ConnectionStateWebRTCMail connectionStateWebRTCMail =
+			new ConnectionStateWebRTCMail(sourceWebRTCClient.getUserId(),
+				String.format(formatString, reason));
+		WebRTCMailbox destWebRTCMailbox = destWebRTCClient.getOutgoingWebRTCMailbox();
+
+		destWebRTCMailbox.pushWebRTCMail(connectionStateWebRTCMail);
+	}
+
 	protected void addWebRTCClient(long userId) {
 		if (!_webRTCClients.containsKey(userId)) {
 			_webRTCClients.put(userId, new WebRTCClient(userId));
 		}
 	}
+
+	protected void checkWebRTCConnectionsStates() {
+		for (WebRTCClient webRTCClient : _webRTCClients.values()) {
+			for (WebRTCClient otherWebRTCClient : webRTCClient.getWebRTCClients()) {
+				WebRTCConnection webRTCConnection =
+					webRTCClient.getWebRTCConnection(otherWebRTCClient);
+
+				// If the (WebRTC client -> other WebRTC client) connection is initiated
+
+				if (webRTCConnection.getState() == WebRTCConnection.State.INITIATED) {
+					long durationTime = webRTCConnection.getInitiatedDurationTime();
+
+					// Timeout?
+
+					if (durationTime > _CONNECTION_TIMEOUT_TIME) {
+
+						// Disconnect both clients
+
+						webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
+						notifyWebRTCClientLostConnection(webRTCClient,
+							otherWebRTCClient, _TIMEOUT_REASON);
+						notifyWebRTCClientLostConnection(otherWebRTCClient,
+							webRTCClient, _TIMEOUT_REASON);
+					}
+				}
+			}
+		}
+	}
+
+	private static long _CONNECTION_TIMEOUT_TIME = 60000;
+
+	private static String _TIMEOUT_REASON = "timeout";
 
 	private static List<WebRTCManager> _webRTCManagers =
 		new CopyOnWriteArrayList<WebRTCManager>();
