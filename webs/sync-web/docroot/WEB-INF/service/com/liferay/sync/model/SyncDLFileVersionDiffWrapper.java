@@ -397,7 +397,6 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
-	@Deprecated
 	public SyncDLFileVersionDiff getWrappedSyncDLFileVersionDiff() {
 		return _syncDLFileVersionDiff;
 	}
@@ -405,16 +404,6 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	@Override
 	public SyncDLFileVersionDiff getWrappedModel() {
 		return _syncDLFileVersionDiff;
-	}
-
-	@Override
-	public boolean isEntityCacheEnabled() {
-		return _syncDLFileVersionDiff.isEntityCacheEnabled();
-	}
-
-	@Override
-	public boolean isFinderCacheEnabled() {
-		return _syncDLFileVersionDiff.isFinderCacheEnabled();
 	}
 
 	@Override

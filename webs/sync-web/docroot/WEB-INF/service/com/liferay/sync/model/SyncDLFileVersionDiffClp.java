@@ -16,7 +16,6 @@ package com.liferay.sync.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -83,9 +82,6 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 		attributes.put("size", getSize());
 		attributes.put("expirationDate", getExpirationDate());
 
-		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
-		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
-
 		return attributes;
 	}
 
@@ -134,9 +130,6 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 		if (expirationDate != null) {
 			setExpirationDate(expirationDate);
 		}
-
-		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
-		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -431,16 +424,6 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 	}
 
 	@Override
-	public boolean isEntityCacheEnabled() {
-		return _entityCacheEnabled;
-	}
-
-	@Override
-	public boolean isFinderCacheEnabled() {
-		return _finderCacheEnabled;
-	}
-
-	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(15);
 
@@ -513,6 +496,4 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 	private long _size;
 	private Date _expirationDate;
 	private BaseModel<?> _syncDLFileVersionDiffRemoteModel;
-	private boolean _entityCacheEnabled;
-	private boolean _finderCacheEnabled;
 }

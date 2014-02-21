@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -45,8 +46,6 @@ import com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl;
 import com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl;
 
 import java.io.Serializable;
-
-import java.sql.Timestamp;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -223,7 +222,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindExpirationDate) {
-					qPos.add(new Timestamp(expirationDate.getTime()));
+					qPos.add(CalendarUtil.getTimestamp(expirationDate));
 				}
 
 				if (!pagination) {
@@ -510,7 +509,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 		QueryPos qPos = QueryPos.getInstance(q);
 
 		if (bindExpirationDate) {
-			qPos.add(new Timestamp(expirationDate.getTime()));
+			qPos.add(CalendarUtil.getTimestamp(expirationDate));
 		}
 
 		if (orderByComparator != null) {
@@ -591,7 +590,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 				QueryPos qPos = QueryPos.getInstance(q);
 
 				if (bindExpirationDate) {
-					qPos.add(new Timestamp(expirationDate.getTime()));
+					qPos.add(CalendarUtil.getTimestamp(expirationDate));
 				}
 
 				count = (Long)q.uniqueResult();
@@ -943,7 +942,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 			CacheRegistryUtil.clear(SyncDLFileVersionDiffImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(SyncDLFileVersionDiffImpl.class);
+		EntityCacheUtil.clearCache(SyncDLFileVersionDiffImpl.class.getName());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -1183,12 +1182,10 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 
 		EntityCacheUtil.putResult(SyncDLFileVersionDiffModelImpl.ENTITY_CACHE_ENABLED,
 			SyncDLFileVersionDiffImpl.class,
-			syncDLFileVersionDiff.getPrimaryKey(), syncDLFileVersionDiff, false);
+			syncDLFileVersionDiff.getPrimaryKey(), syncDLFileVersionDiff);
 
 		clearUniqueFindersCache(syncDLFileVersionDiff);
 		cacheUniqueFindersCache(syncDLFileVersionDiff);
-
-		syncDLFileVersionDiff.resetOriginalValues();
 
 		return syncDLFileVersionDiff;
 	}

@@ -7,6 +7,24 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.sync.model.impl.SyncDLFileVersionDiffModelImpl">
+		<attributes>
+			<id name="syncDLFileVersionDiffId" />
+			<basic name="fileEntryId" />
+			<basic name="sourceFileVersionId" />
+			<basic name="destinationFileVersionId" />
+			<basic name="dataFileEntryId" />
+			<basic name="size">
+				<column name="SIZE_" />
+			</basic>
+			<basic name="expirationDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="com.liferay.sync.model.impl.SyncDLObjectModelImpl">
 		<attributes>
 			<id name="objectId" />
@@ -43,6 +61,10 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<entity class="com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl" name="SyncDLFileVersionDiff">
+		<table name="SyncDLFileVersionDiff" />
+		<attributes />
+	</entity>
 	<entity class="com.liferay.sync.model.impl.SyncDLObjectImpl" name="SyncDLObject">
 		<table name="SyncDLObject" />
 		<attributes />
