@@ -2,7 +2,20 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.sync.model.SyncDLFileVersionDiff" />
 	<import class="com.liferay.sync.model.SyncDLObject" />
+	<class name="com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl" table="SyncDLFileVersionDiff">
+		<cache usage="read-write" />
+		<id name="fileVersionDiffId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="fileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="sourceFileVersionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="destinationFileVersionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="dataFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="size" type="com.liferay.portal.dao.orm.hibernate.LongType" column="size_" />
+		<property name="expirationDate" type="org.hibernate.type.TimestampType" />
+	</class>
 	<class name="com.liferay.sync.model.impl.SyncDLObjectImpl" table="SyncDLObject">
 		<cache usage="read-write" />
 		<id name="objectId" type="long">

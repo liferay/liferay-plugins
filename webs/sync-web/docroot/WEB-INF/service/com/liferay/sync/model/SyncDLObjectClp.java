@@ -754,13 +754,13 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setModifiedDate(java.util.Date modifiedDate) {
 		try {
-			String methodName = "setCreateDate";
+			String methodName = "setModifiedDate";
 
 			Class<?>[] parameterTypes = new Class<?>[] { java.util.Date.class };
 
-			Object[] parameterValues = new Object[] { createDate };
+			Object[] parameterValues = new Object[] { modifiedDate };
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
 		}
@@ -770,13 +770,13 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		try {
-			String methodName = "setModifiedDate";
+			String methodName = "setCreateDate";
 
 			Class<?>[] parameterTypes = new Class<?>[] { java.util.Date.class };
 
-			Object[] parameterValues = new Object[] { modifiedDate };
+			Object[] parameterValues = new Object[] { createDate };
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
 		}
