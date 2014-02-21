@@ -34,13 +34,11 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -64,16 +62,11 @@ public class NotificationUtil {
 
 		CalendarResource calendarResource = calendar.getCalendarResource();
 
-		User user = UserLocalServiceUtil.getUser(calendarResource.getUserId());
+		User user = UserLocalServiceUtil.getDefaultUser(
+			calendarResource.getCompanyId());
 
 		if (calendarResource.isUser()) {
 			user = UserLocalServiceUtil.getUser(calendarResource.getClassPK());
-		}
-		else if (calendarResource.isGroup()) {
-			Group group = GroupLocalServiceUtil.getGroup(
-				calendarResource.getClassPK());
-
-			user = UserLocalServiceUtil.getUser(group.getCreatorUserId());
 		}
 
 		return user;
