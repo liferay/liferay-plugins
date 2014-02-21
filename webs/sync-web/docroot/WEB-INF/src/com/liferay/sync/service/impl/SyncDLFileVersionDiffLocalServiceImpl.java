@@ -61,7 +61,7 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 		FileEntry dataFileEntry = PortletFileRepositoryUtil.addPortletFileEntry(
 			fileEntry.getGroupId(), fileEntry.getUserId(),
 			SyncDLFileVersionDiff.class.getName(),
-			syncDLFileVersionDiff.getFileVersionDiffId(),
+			syncDLFileVersionDiff.getSyncDLFileVersionDiffId(),
 			PortletKeys.DOCUMENT_LIBRARY,
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, file, dataFileName,
 			fileEntry.getMimeType(), false);
@@ -96,7 +96,7 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 				syncDLFileVersionDiff.getDataFileEntryId());
 
 			syncDLFileVersionDiffPersistence.remove(
-				syncDLFileVersionDiff.getFileVersionDiffId());
+				syncDLFileVersionDiff.getSyncDLFileVersionDiffId());
 		}
 	}
 
@@ -106,7 +106,7 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 			long destinationFileVersionId)
 		throws SystemException {
 
-		return syncDLFileVersionDiffPersistence.fetchByF_S_D(
+		return syncDLFileVersionDiffPersistence.fetchByS_S_D(
 			fileEntryId, sourceFileVersionId, destinationFileVersionId);
 	}
 
