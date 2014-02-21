@@ -1155,7 +1155,7 @@
 									bodyContent: message,
 									toolbars: {
 										footer: buttons
-									},
+									}
 								},
 								title: Liferay.Language.get('are-you-sure')
 							}
