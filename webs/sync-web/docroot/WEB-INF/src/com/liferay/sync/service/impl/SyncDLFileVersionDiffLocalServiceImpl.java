@@ -86,7 +86,9 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 	}
 
 	@Override
-	public void deleteExpired() throws PortalException, SystemException {
+	public void deleteExpiredSyncDLFileVersionDiffs()
+		throws PortalException, SystemException {
+
 		List<SyncDLFileVersionDiff> syncDLFileVersionDiffs =
 			syncDLFileVersionDiffPersistence.findByExpirationDate(new Date());
 

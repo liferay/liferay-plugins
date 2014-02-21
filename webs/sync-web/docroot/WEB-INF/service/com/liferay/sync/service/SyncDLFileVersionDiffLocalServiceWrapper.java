@@ -301,10 +301,10 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 	}
 
 	@Override
-	public void deleteExpired()
+	public void deleteExpiredSyncDLFileVersionDiffs()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		_syncDLFileVersionDiffLocalService.deleteExpired();
+		_syncDLFileVersionDiffLocalService.deleteExpiredSyncDLFileVersionDiffs();
 	}
 
 	@Override

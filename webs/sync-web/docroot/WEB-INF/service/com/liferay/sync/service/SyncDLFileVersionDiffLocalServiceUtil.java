@@ -288,7 +288,7 @@ public class SyncDLFileVersionDiffLocalServiceUtil {
 	public static void deleteExpired()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		getService().deleteExpired();
+		getService().deleteExpiredSyncDLFileVersionDiffs();
 	}
 
 	public static com.liferay.sync.model.SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
