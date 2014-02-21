@@ -209,6 +209,34 @@ public class NotificationUtil {
 		}
 	}
 
+	public static String processNotificationTemplate(
+			String notificationTemplate,
+			Map<String, Serializable> notificationContext)
+		throws Exception {
+
+		return StringUtil.replace(
+			notificationTemplate,
+			new String[] {
+				"[$EVENT_END_DATE$]", "[$EVENT_LOCATION$]",
+				"[$EVENT_START_DATE$]", "[$EVENT_TITLE$]", "[$EVENT_URL$]",
+				"[$FROM_ADDRESS$]", "[$FROM_NAME$]", "[$PORTAL_URL$]",
+				"[$PORTLET_NAME$]", "[$TO_ADDRESS$]", "[$TO_NAME$]"
+			},
+			new String[] {
+				GetterUtil.getString(notificationContext.get("endTime")),
+				GetterUtil.getString(notificationContext.get("location")),
+				GetterUtil.getString(notificationContext.get("startTime")),
+				GetterUtil.getString(notificationContext.get("title")),
+				GetterUtil.getString(notificationContext.get("url")),
+				GetterUtil.getString(notificationContext.get("fromAddress")),
+				GetterUtil.getString(notificationContext.get("fromName")),
+				GetterUtil.getString(notificationContext.get("portalUrl")),
+				GetterUtil.getString(notificationContext.get("portletName")),
+				GetterUtil.getString(notificationContext.get("toAddress")),
+				GetterUtil.getString(notificationContext.get("toName"))
+			});
+	}
+
 	private static List<NotificationRecipient> _getNotificationRecipients(
 			CalendarBooking calendarBooking)
 		throws Exception {
