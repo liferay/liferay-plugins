@@ -75,7 +75,8 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 
 		expirationDate.setTime(
 			expirationDate.getTime() +
-				PortletPropsValues.FILE_DIFF_CACHE_EXPIRATION_TIME * 3600000);
+				PortletPropsValues.SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME *
+					3600000);
 
 		syncDLFileVersionDiff.setExpirationDate(expirationDate);
 
@@ -122,7 +123,8 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 
 		expirationDate.setTime(
 			expirationDate.getTime() +
-				PortletPropsValues.FILE_DIFF_CACHE_EXPIRATION_TIME * 3600000);
+				PortletPropsValues.SYNC_FILE_DIFF_CACHE_EXPIRATION_TIME *
+					3600000);
 
 		syncDLFileVersionDiff.setExpirationDate(expirationDate);
 

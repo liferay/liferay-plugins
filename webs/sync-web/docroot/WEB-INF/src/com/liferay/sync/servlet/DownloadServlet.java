@@ -169,7 +169,7 @@ public class DownloadServlet extends HttpServlet {
 			DLFileVersionLocalServiceUtil.getFileVersion(
 				fileEntry.getFileEntryId(), destinationVersion);
 
-		if (!PortletPropsValues.FILE_DIFF_CACHE_ENABLED) {
+		if (!PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
 			File deltaFile = getDeltaFile(
 				user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
 				destinationVersion);

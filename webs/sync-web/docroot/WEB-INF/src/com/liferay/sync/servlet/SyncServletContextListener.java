@@ -108,7 +108,7 @@ public class SyncServletContextListener
 			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR,
 			_syncDLObjectMessageListener);
 
-		if (PortletPropsValues.FILE_DIFF_CACHE_ENABLED) {
+		if (PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
 			MessageBusUtil.unregisterMessageListener(
 				SyncDLFileVersionDiffMessageListener.DESTINATION_NAME,
 				_syncDLFileVersionDiffMessageListener);
@@ -123,7 +123,7 @@ public class SyncServletContextListener
 			_syncDLObjectMessageListener,
 			DestinationNames.DOCUMENT_LIBRARY_SYNC_EVENT_PROCESSOR);
 
-		if (PortletPropsValues.FILE_DIFF_CACHE_ENABLED) {
+		if (PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
 			_syncDLFileVersionDiffMessageListener =
 				new SyncDLFileVersionDiffMessageListener();
 
@@ -158,7 +158,7 @@ public class SyncServletContextListener
 
 			CronText cronText = new CronText(
 				startDate, CronText.HOURLY_FREQUENCY,
-				PortletPropsValues.FILE_DIFF_CACHE_DELETE_INTERVAL);
+				PortletPropsValues.SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL);
 
 			Trigger trigger = new CronTrigger(
 				SyncDLFileVersionDiffMessageListener.class.getName(),
