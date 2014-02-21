@@ -30,6 +30,7 @@ import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.SyncDLObjectService;
+import com.liferay.sync.service.persistence.SyncDLFileVersionDiffPersistence;
 import com.liferay.sync.service.persistence.SyncDLObjectFinder;
 import com.liferay.sync.service.persistence.SyncDLObjectPersistence;
 
@@ -54,6 +55,44 @@ public abstract class SyncDLObjectServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * Never modify or reference this class directly. Always use {@link com.liferay.sync.service.SyncDLObjectServiceUtil} to access the sync d l object remote service.
 	 */
+
+	/**
+	 * Returns the sync d l file version diff local service.
+	 *
+	 * @return the sync d l file version diff local service
+	 */
+	public com.liferay.sync.service.SyncDLFileVersionDiffLocalService getSyncDLFileVersionDiffLocalService() {
+		return syncDLFileVersionDiffLocalService;
+	}
+
+	/**
+	 * Sets the sync d l file version diff local service.
+	 *
+	 * @param syncDLFileVersionDiffLocalService the sync d l file version diff local service
+	 */
+	public void setSyncDLFileVersionDiffLocalService(
+		com.liferay.sync.service.SyncDLFileVersionDiffLocalService syncDLFileVersionDiffLocalService) {
+		this.syncDLFileVersionDiffLocalService = syncDLFileVersionDiffLocalService;
+	}
+
+	/**
+	 * Returns the sync d l file version diff persistence.
+	 *
+	 * @return the sync d l file version diff persistence
+	 */
+	public SyncDLFileVersionDiffPersistence getSyncDLFileVersionDiffPersistence() {
+		return syncDLFileVersionDiffPersistence;
+	}
+
+	/**
+	 * Sets the sync d l file version diff persistence.
+	 *
+	 * @param syncDLFileVersionDiffPersistence the sync d l file version diff persistence
+	 */
+	public void setSyncDLFileVersionDiffPersistence(
+		SyncDLFileVersionDiffPersistence syncDLFileVersionDiffPersistence) {
+		this.syncDLFileVersionDiffPersistence = syncDLFileVersionDiffPersistence;
+	}
 
 	/**
 	 * Returns the sync d l object local service.
@@ -514,6 +553,10 @@ public abstract class SyncDLObjectServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
+	@BeanReference(type = com.liferay.sync.service.SyncDLFileVersionDiffLocalService.class)
+	protected com.liferay.sync.service.SyncDLFileVersionDiffLocalService syncDLFileVersionDiffLocalService;
+	@BeanReference(type = SyncDLFileVersionDiffPersistence.class)
+	protected SyncDLFileVersionDiffPersistence syncDLFileVersionDiffPersistence;
 	@BeanReference(type = com.liferay.sync.service.SyncDLObjectLocalService.class)
 	protected com.liferay.sync.service.SyncDLObjectLocalService syncDLObjectLocalService;
 	@BeanReference(type = com.liferay.sync.service.SyncDLObjectService.class)

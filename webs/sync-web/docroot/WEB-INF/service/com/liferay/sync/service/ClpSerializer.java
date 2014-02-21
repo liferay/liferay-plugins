@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 
+import com.liferay.sync.model.SyncDLFileVersionDiffClp;
 import com.liferay.sync.model.SyncDLObjectClp;
 
 import java.io.ObjectInputStream;
@@ -100,6 +101,10 @@ public class ClpSerializer {
 
 		String oldModelClassName = oldModelClass.getName();
 
+		if (oldModelClassName.equals(SyncDLFileVersionDiffClp.class.getName())) {
+			return translateInputSyncDLFileVersionDiff(oldModel);
+		}
+
 		if (oldModelClassName.equals(SyncDLObjectClp.class.getName())) {
 			return translateInputSyncDLObject(oldModel);
 		}
@@ -117,6 +122,17 @@ public class ClpSerializer {
 		}
 
 		return newList;
+	}
+
+	public static Object translateInputSyncDLFileVersionDiff(
+		BaseModel<?> oldModel) {
+		SyncDLFileVersionDiffClp oldClpModel = (SyncDLFileVersionDiffClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getSyncDLFileVersionDiffRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
 	}
 
 	public static Object translateInputSyncDLObject(BaseModel<?> oldModel) {
@@ -145,6 +161,11 @@ public class ClpSerializer {
 		Class<?> oldModelClass = oldModel.getClass();
 
 		String oldModelClassName = oldModelClass.getName();
+
+		if (oldModelClassName.equals(
+					"com.liferay.sync.model.impl.SyncDLFileVersionDiffImpl")) {
+			return translateOutputSyncDLFileVersionDiff(oldModel);
+		}
 
 		if (oldModelClassName.equals(
 					"com.liferay.sync.model.impl.SyncDLObjectImpl")) {
@@ -235,12 +256,29 @@ public class ClpSerializer {
 				throwable.getCause());
 		}
 
+		if (className.equals(
+					"com.liferay.sync.NoSuchDLFileVersionDiffException")) {
+			return new com.liferay.sync.NoSuchDLFileVersionDiffException(throwable.getMessage(),
+				throwable.getCause());
+		}
+
 		if (className.equals("com.liferay.sync.NoSuchDLObjectException")) {
 			return new com.liferay.sync.NoSuchDLObjectException(throwable.getMessage(),
 				throwable.getCause());
 		}
 
 		return throwable;
+	}
+
+	public static Object translateOutputSyncDLFileVersionDiff(
+		BaseModel<?> oldModel) {
+		SyncDLFileVersionDiffClp newModel = new SyncDLFileVersionDiffClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setSyncDLFileVersionDiffRemoteModel(oldModel);
+
+		return newModel;
 	}
 
 	public static Object translateOutputSyncDLObject(BaseModel<?> oldModel) {
