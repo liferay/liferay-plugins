@@ -3,6 +3,36 @@
 
 <service-builder package-path="com.liferay.sync" auto-namespace-tables="false">
 	<namespace>Sync</namespace>
+	<entity name="SyncDLFileVersionDiff" local-service="true" remote-service="false">
+
+		<!-- PK fields -->
+
+		<column name="syncDLFileVersionDiffId" type="long" primary="true" />
+
+		<!-- Other fields -->
+
+		<column name="fileEntryId" type="long" />
+		<column name="sourceFileVersionId" type="long" />
+		<column name="destinationFileVersionId" type="long" />
+		<column name="dataFileEntryId" type="long" />
+		<column name="size" type="long" />
+		<column name="expirationDate" type="Date" />
+
+		<!-- Finder methods -->
+
+		<finder name="ExpirationDate" return-type="Collection">
+			<finder-column name="expirationDate" comparator="&lt;" />
+		</finder>
+		<finder name="S_S_D" return-type="SyncDLFileVersionDiff" unique="true">
+			<finder-column name="syncDLFileVersionDiffId" />
+			<finder-column name="sourceFileVersionId" />
+			<finder-column name="destinationFileVersionId" />
+		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLApp" />
+	</entity>
 	<entity name="SyncDLObject" local-service="true" remote-service="true">
 
 		<!-- PK fields -->
@@ -64,36 +94,6 @@
 		<!-- Transactions -->
 
 		<tx-required>getFileDeltaAsStream</tx-required>
-	</entity>
-	<entity name="SyncDLFileVersionDiff" local-service="true" remote-service="false">
-
-		<!-- PK fields -->
-
-		<column name="syncDLFileVersionDiffId" type="long" primary="true" />
-
-		<!-- Other fields -->
-
-		<column name="fileEntryId" type="long" />
-		<column name="sourceFileVersionId" type="long" />
-		<column name="destinationFileVersionId" type="long" />
-		<column name="dataFileEntryId" type="long" />
-		<column name="size" type="long" />
-		<column name="expirationDate" type="Date" />
-
-		<!-- Finder methods -->
-
-		<finder name="ExpirationDate" return-type="Collection">
-			<finder-column name="expirationDate" comparator="&lt;" />
-		</finder>
-		<finder name="S_S_D" return-type="SyncDLFileVersionDiff" unique="true">
-			<finder-column name="syncDLFileVersionDiffId" />
-			<finder-column name="sourceFileVersionId" />
-			<finder-column name="destinationFileVersionId" />
-		</finder>
-
-		<!-- References -->
-
-		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLApp" />
 	</entity>
 	<exceptions>
 		<exception>SyncDLObjectChecksum</exception>
