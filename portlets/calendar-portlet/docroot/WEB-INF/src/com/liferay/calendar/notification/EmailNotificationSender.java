@@ -64,6 +64,7 @@ public class EmailNotificationSender implements NotificationSender {
 
 			String subject = NotificationTemplateRenderer.render(
 				notificationTemplateContext, NotificationField.SUBJECT);
+
 			String body = NotificationTemplateRenderer.render(
 				notificationTemplateContext, NotificationField.BODY);
 
