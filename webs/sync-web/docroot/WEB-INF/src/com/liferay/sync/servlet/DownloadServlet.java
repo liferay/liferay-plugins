@@ -188,7 +188,7 @@ public class DownloadServlet extends HttpServlet {
 
 		if (syncDLFileVersionDiff != null) {
 			SyncDLFileVersionDiffLocalServiceUtil.refreshExpirationDate(
-				syncDLFileVersionDiff.getFileVersionDiffId());
+				syncDLFileVersionDiff.getSyncDLFileVersionDiffId());
 		}
 		else {
 			File deltaFile = getDeltaFile(
