@@ -43,10 +43,10 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 			long destinationFileVersionId, File file)
 		throws PortalException, SystemException {
 
-		long syncId = counterLocalService.increment();
+		long syncDLFileVersionDiffId = counterLocalService.increment();
 
 		SyncDLFileVersionDiff syncDLFileVersionDiff =
-			syncDLFileVersionDiffPersistence.create(syncId);
+			syncDLFileVersionDiffPersistence.create(syncDLFileVersionDiffId);
 
 		syncDLFileVersionDiff.setFileEntryId(fileEntryId);
 		syncDLFileVersionDiff.setSourceFileVersionId(sourceFileVersionId);
