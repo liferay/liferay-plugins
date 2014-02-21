@@ -740,7 +740,7 @@ public class SyncDLFileVersionDiffLocalServiceClp
 	}
 
 	@Override
-	public void deleteExpired()
+	public void deleteExpiredSyncDLFileVersionDiffs()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
