@@ -120,7 +120,7 @@ public class SyncDLFileVersionDiffLocalServiceClpInvoker {
 				"long", "long", "long", "java.io.File"
 			};
 
-		_methodName57 = "deleteExpired";
+		_methodName57 = "deleteExpiredSyncDLFileVersionDiffs";
 
 		_methodParameterTypes57 = new String[] {  };
 
@@ -243,7 +243,7 @@ public class SyncDLFileVersionDiffLocalServiceClpInvoker {
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			SyncDLFileVersionDiffLocalServiceUtil.deleteExpired();
+			SyncDLFileVersionDiffLocalServiceUtil.deleteExpiredSyncDLFileVersionDiffs();
 
 			return null;
 		}

@@ -122,7 +122,7 @@ public class SyncDLFileVersionDiffLocalServiceClp
 				"long", "long", "long", "java.io.File"
 			};
 
-		_methodName20 = "deleteExpired";
+		_methodName20 = "deleteExpiredSyncDLFileVersionDiffs";
 
 		_methodParameterTypes20 = new String[] {  };
 
