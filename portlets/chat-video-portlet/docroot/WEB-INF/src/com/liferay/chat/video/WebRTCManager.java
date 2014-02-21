@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Philippe Proulx
@@ -83,7 +84,7 @@ public class WebRTCManager {
 	}
 
 	private static List<WebRTCManager> _webRTCManagers =
-		new ArrayList<WebRTCManager>();
+		new CopyOnWriteArrayList<WebRTCManager>();
 
 	private Map<Long, WebRTCClient> _webRTCClients =
 		new ConcurrentHashMap<Long, WebRTCClient>();
