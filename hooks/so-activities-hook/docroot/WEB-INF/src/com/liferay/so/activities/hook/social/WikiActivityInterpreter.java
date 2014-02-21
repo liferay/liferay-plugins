@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -270,7 +271,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 		long plid = PortalUtil.getPlidFromPortletId(groupId, PortletKeys.WIKI);
 
-		if (plid <= 0) {
+		if (plid == LayoutConstants.DEFAULT_PLID) {
 			return null;
 		}
 
@@ -380,7 +381,7 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 
 		long plid = PortalUtil.getPlidFromPortletId(groupId, PortletKeys.WIKI);
 
-		if (plid <= 0) {
+		if (plid == LayoutConstants.DEFAULT_PLID) {
 			return HtmlUtil.escape(node.getName());
 		}
 
