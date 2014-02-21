@@ -45,6 +45,10 @@ public class NotificationTemplateContext implements Cloneable, Serializable {
 		return _attributes;
 	}
 
+	public String getBody() {
+		return _body;
+	}
+
 	public long getCalendarId() {
 		return _calendarId;
 	}
@@ -57,20 +61,8 @@ public class NotificationTemplateContext implements Cloneable, Serializable {
 		return _companyId;
 	}
 
-	public String getFromAddress() {
-		return _fromAddress;
-	}
-
-	public String getFromName() {
-		return _fromName;
-	}
-
 	public long getGroupId() {
 		return _groupId;
-	}
-
-	public NotificationTemplateType getNotificationTemplateType() {
-		return _notificationTemplateType;
 	}
 
 	public NotificationType getNotificationType() {
@@ -83,12 +75,8 @@ public class NotificationTemplateContext implements Cloneable, Serializable {
 		return GetterUtil.getString(value);
 	}
 
-	public String getToAddress() {
-		return _toAddress;
-	}
-
-	public String getToName() {
-		return _toName;
+	public String getSubject() {
+		return _subject;
 	}
 
 	public void setAttribute(String name, Serializable value) {
@@ -97,6 +85,10 @@ public class NotificationTemplateContext implements Cloneable, Serializable {
 
 	public void setAttributes(Map<String, Serializable> attributes) {
 		_attributes = attributes;
+	}
+
+	public void setBody(String body) {
+		_body = body;
 	}
 
 	public void setCalendarId(long calendarId) {
@@ -113,47 +105,26 @@ public class NotificationTemplateContext implements Cloneable, Serializable {
 		_companyId = companyId;
 	}
 
-	public void setFromAddress(String fromAddress) {
-		_fromAddress = fromAddress;
-	}
-
-	public void setFromName(String fromName) {
-		_fromName = fromName;
-	}
-
 	public void setGroupId(long groupId) {
 		_groupId = groupId;
-	}
-
-	public void setNotificationTemplateType(
-		NotificationTemplateType notificationTemplateType) {
-
-		_notificationTemplateType = notificationTemplateType;
 	}
 
 	public void setNotificationType(NotificationType notificationType) {
 		_notificationType = notificationType;
 	}
 
-	public void setToAddress(String toAddress) {
-		_toAddress = toAddress;
-	}
-
-	public void setToName(String toName) {
-		_toName = toName;
+	public void setSubject(String subject) {
+		_subject = subject;
 	}
 
 	private Map<String, Serializable> _attributes =
 		new LinkedHashMap<String, Serializable>();
+	private String _body;
 	private long _calendarId;
 	private CalendarNotificationTemplate _calendarNotificationTemplate;
 	private long _companyId;
-	private String _fromAddress;
-	private String _fromName;
 	private long _groupId;
-	private NotificationTemplateType _notificationTemplateType;
 	private NotificationType _notificationType;
-	private String _toAddress;
-	private String _toName;
+	private String _subject;
 
 }

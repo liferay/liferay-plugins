@@ -55,23 +55,10 @@ public class EmailNotificationSender implements NotificationSender {
 				CalendarNotificationTemplateConstants.PROPERTY_FROM_NAME,
 				defaultSenderUser.getFullName());
 
-			notificationTemplateContext.setFromAddress(fromAddress);
-			notificationTemplateContext.setFromName(fromName);
-			notificationTemplateContext.setToAddress(
-				notificationRecipient.getEmailAddress());
-			notificationTemplateContext.setToName(
-				notificationRecipient.getName());
-
-			String subject = NotificationTemplateRenderer.render(
-				notificationTemplateContext, NotificationField.SUBJECT);
-
-			String body = NotificationTemplateRenderer.render(
-				notificationTemplateContext, NotificationField.BODY);
-
 			sendNotification(
-				notificationTemplateContext.getFromAddress(),
-				notificationTemplateContext.getFromName(),
-				notificationRecipient, subject, body);
+				fromAddress, fromName, notificationRecipient,
+				notificationTemplateContext.getSubject(),
+				notificationTemplateContext.getBody());
 		}
 		catch (Exception e) {
 			throw new NotificationSenderException(e);
