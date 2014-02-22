@@ -237,6 +237,10 @@ public class SyncWatchEventProcessor implements Runnable {
 			FilePathNameUtil.getFilePathName(filePath),
 			syncWatchEvent.getSyncAccountId());
 
+		if (syncFile == null) {
+			return;
+		}
+
 		SyncFileService.deleteFolderSyncFile(
 			syncWatchEvent.getSyncAccountId(), syncFile);
 	}
@@ -246,6 +250,10 @@ public class SyncWatchEventProcessor implements Runnable {
 
 		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
 			FileUtil.getFileKey(filePath), syncWatchEvent.getSyncAccountId());
+
+		if (syncFile == null) {
+			return;
+		}
 
 		String checksum = syncFile.getChecksum();
 

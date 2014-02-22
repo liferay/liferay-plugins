@@ -83,9 +83,13 @@ public class FileUtil {
 		return getFileKey(filePath);
 	}
 
-	public static boolean isIgnoredFilePath(Path filePath) {
-		if (_syncIgnoreFileNames.contains(
-				String.valueOf(filePath.getFileName()))) {
+	public static boolean isIgnoredFilePath(Path filePath) throws Exception {
+		String fileName = String.valueOf(filePath.getFileName());
+
+		if (_syncIgnoreFileNames.contains(fileName) ||
+			(PropsValues.SYNC_IGNORE_HIDDEN_FILES &&
+			 Files.isHidden(filePath)) ||
+			Files.isSymbolicLink(filePath) || fileName.endsWith(".lnk")) {
 
 			return true;
 		}

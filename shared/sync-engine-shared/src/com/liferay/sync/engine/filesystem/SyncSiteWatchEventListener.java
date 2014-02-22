@@ -43,11 +43,13 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 	}
 
 	protected void addSyncWatchEvent(String eventType, Path filePath) {
-		if (FileUtil.isIgnoredFilePath(filePath)) {
-			return;
-		}
-
 		try {
+			if (eventType.equals(SyncWatchEvent.EVENT_TYPE_CREATE) &&
+				FileUtil.isIgnoredFilePath(filePath)) {
+
+				return;
+			}
+
 			SyncWatchEventService.addSyncWatchEvent(
 				eventType, FilePathNameUtil.getFilePathName(filePath),
 				getFileType(eventType, filePath), getSyncAccountId());
