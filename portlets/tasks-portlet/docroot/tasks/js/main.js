@@ -35,9 +35,7 @@ AUI().use(
 					groupFilter.set('value', 0);
 				}
 
-				var showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
-
-				instance.updateTaskList(null, showAll);
+				instance.updateTaskList();
 			},
 
 			closePopup: function() {
@@ -183,9 +181,7 @@ AUI().use(
 
 						assetTag.toggleClass('selected');
 
-						var showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
-
-						instance.updateTaskList(null, showAll);
+						instance.updateTaskList();
 					},
 					'.asset-tag'
 				);
@@ -193,9 +189,7 @@ AUI().use(
 				A.all('.tasks-portlet .group-filter select').on(
 					'change',
 					function(event) {
-						var showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
-
-						instance.updateTaskList(null, showAll);
+						instance.updateTaskList();
 					}
 				);
 			},
