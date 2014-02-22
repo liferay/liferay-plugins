@@ -177,7 +177,7 @@ public class NotificationTemplateContextFactory {
 		String portalURL = company.getPortalURL(groupId);
 
 		portalURL = HttpUtil.protocolize(
-			portalURL, PortalUtil.getPortalServerPort(false), false);
+			portalURL, PortalUtil.getPortalPort(false), false);
 
 		return portalURL;
 	}
