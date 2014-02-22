@@ -134,6 +134,10 @@ AUI().use(
 
 					var data = {};
 
+					if (!showAll) {
+						var showAll = A.one('.tasks-portlet input[name="all-tasks"]').get('checked');
+					}
+
 					data[instance._namespace + 'assetTagIds'] = instance._getAssetTagIds();
 					data[instance._namespace + 'groupId'] = instance._getGroupId();
 					data[instance._namespace + 'tabs1'] = instance._currentTab;
