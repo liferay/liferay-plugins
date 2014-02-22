@@ -56,9 +56,7 @@ public class SyncAccountService {
 
 		// Sync file
 
-		if (Files.notExists(Paths.get(filePathName))) {
-			Files.createDirectory(Paths.get(filePathName));
-		}
+		Files.createDirectories(Paths.get(filePathName));
 
 		SyncFileService.addSyncFile(
 			null, null, filePathName, FileUtil.getFileKey(filePathName),

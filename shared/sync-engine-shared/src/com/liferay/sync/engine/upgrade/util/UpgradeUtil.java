@@ -45,7 +45,7 @@ public class UpgradeUtil {
 			Path filePath = Paths.get(
 				PropsValues.SYNC_CONFIGURATION_DIRECTORY + "/files");
 
-			Files.createDirectory(filePath);
+			Files.createDirectories(filePath);
 		}
 		else if (buildNumber == ReleaseInfo.getBuildNumber()) {
 			return;

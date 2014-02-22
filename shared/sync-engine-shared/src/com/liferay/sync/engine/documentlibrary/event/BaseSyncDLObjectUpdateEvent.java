@@ -72,9 +72,7 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			if (type.equals(SyncFile.TYPE_FOLDER)) {
 				Path filePath = Paths.get(filePathName);
 
-				if (Files.notExists(filePath)) {
-					Files.createDirectory(filePath);
-				}
+				Files.createDirectories(filePath);
 
 				continue;
 			}
