@@ -424,15 +424,6 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		int status = tasksEntry.getStatus();
-
-		if ((status != TasksEntryConstants.STATUS_OPEN) &&
-			(status != TasksEntryConstants.STATUS_RESOLVED) &&
-			(status != TasksEntryConstants.STATUS_REOPENED)) {
-
-			return;
-		}
-
 		HashSet<Long> receiverUserIds = new HashSet<Long>(3);
 
 		receiverUserIds.add(oldAssigneeUserId);
@@ -471,7 +462,17 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 					title = "x-assigned-you-a-task";
 				}
 			}
-			else if (status != oldStatus) {
+			else if (tasksEntry.getStatus() != oldStatus) {
+				if ((tasksEntry.getStatus() !=
+						TasksEntryConstants.STATUS_OPEN) &&
+					(tasksEntry.getStatus() !=
+						TasksEntryConstants.STATUS_RESOLVED) &&
+					(tasksEntry.getStatus() !=
+						TasksEntryConstants.STATUS_REOPENED)) {
+
+					return;
+				}
+
 				String statusLabel = TasksEntryConstants.getStatusLabel(
 					tasksEntry.getStatus());
 
