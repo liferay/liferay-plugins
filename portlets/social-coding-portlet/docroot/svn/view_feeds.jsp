@@ -81,7 +81,7 @@
 			sb.append(comments);
 			sb.append("<br />");
 
-			sb.append(jiraIssue.getSummary());
+			sb.append(HtmlUtil.escape(jiraIssue.getSummary()));
 			sb.append("<br />");
 
 			sb.append("<a href=\"");
