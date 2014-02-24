@@ -32,6 +32,7 @@ import java.util.Properties;
 /**
  * @author Zsolt Balogh
  * @author Brian Wing Shun Chan
+ * @author Igor Beslic
  */
 public class PatcherImpl implements Patcher {
 
@@ -114,6 +115,22 @@ public class PatcherImpl implements Patcher {
 	}
 
 	@Override
+	public int getPatchingToolVersion() {
+		if (_patchingToolVersion != 0) {
+			return _patchingToolVersion;
+		}
+
+		Properties properties = getProperties();
+
+		if (properties.containsKey(PROPERTY_PATCHING_TOOL_VERSION)) {
+			_patchingToolVersion = Integer.parseInt(
+				properties.getProperty(PROPERTY_PATCHING_TOOL_VERSION));
+		}
+
+		return _patchingToolVersion;
+	}
+
+	@Override
 	public String[] getPatchLevels() {
 		if (_patchLevels != null) {
 			return _patchLevels;
@@ -175,6 +192,7 @@ public class PatcherImpl implements Patcher {
 	private String[] _fixedIssueKeys;
 	private String[] _installedPatchNames;
 	private File _patchDirectory;
+	private int _patchingToolVersion;
 	private String[] _patchLevels;
 	private Properties _properties;
 
