@@ -121,12 +121,12 @@ public class WatcherTest extends BaseTestCase {
 		setPostResponse("dependencies/watcher_test_add_file.json");
 
 		if (OSDetector.isWindows()) {
-			Path hiddenFileFilePath = Paths.get(
+			Path hiddenFilePath = Paths.get(
 				_syncSite.getFilePathName() + "/hidden_file.txt");
 
-			Files.createFile(hiddenFileFilePath);
+			Files.createFile(hiddenFilePath);
 
-			Files.setAttribute(hiddenFileFilePath, "dos:hidden", true);
+			Files.setAttribute(hiddenFilePath, "dos:hidden", true);
 
 			Path shortcutFilePath = Paths.get(
 				_syncSite.getFilePathName() + "/test.txt - Shortcut.lnk");
@@ -134,15 +134,15 @@ public class WatcherTest extends BaseTestCase {
 			Files.createFile(shortcutFilePath);
 		}
 		else {
-			Path hiddenFileFilePath = Paths.get(
+			Path ignoredFilePath = Paths.get(
 				_syncSite.getFilePathName() + "/.DS_Store");
 
-			Files.createFile(hiddenFileFilePath);
+			Files.createFile(ignoredFilePath);
 
 			Path symbolicLinkFilePath = Paths.get(
 				_syncSite.getFilePathName() + "/symbolic_link");
 
-			Files.createSymbolicLink(symbolicLinkFilePath, hiddenFileFilePath);
+			Files.createSymbolicLink(symbolicLinkFilePath, ignoredFilePath);
 		}
 
 		sleep();
