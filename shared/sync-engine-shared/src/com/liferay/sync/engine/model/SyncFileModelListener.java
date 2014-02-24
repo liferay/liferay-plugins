@@ -71,7 +71,7 @@ public class SyncFileModelListener implements ModelListener<SyncFile> {
 	protected void updateChecksumsFile(SyncFile syncFile) {
 		Path syncFilePath = Paths.get(syncFile.getFilePathName());
 
-		if (Files.notExists(syncFilePath)) {
+		if (Files.isDirectory(syncFilePath) || Files.notExists(syncFilePath)) {
 			return;
 		}
 
