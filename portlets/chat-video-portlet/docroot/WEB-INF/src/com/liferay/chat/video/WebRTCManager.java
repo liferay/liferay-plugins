@@ -95,28 +95,31 @@ public class WebRTCManager {
 
 	protected void checkWebRTCConnectionsStates() {
 		for (WebRTCClient webRTCClient : _webRTCClients.values()) {
-			for (WebRTCClient otherWebRTCClient : webRTCClient.getWebRTCClients()) {
+			for (WebRTCClient otherWebRTCClient :
+					webRTCClient.getWebRTCClients()) {
+
 				WebRTCConnection webRTCConnection =
 					webRTCClient.getWebRTCConnection(otherWebRTCClient);
 
-				// If the (WebRTC client -> other WebRTC client) connection is initiated
-
-				if (webRTCConnection.getState() == WebRTCConnection.State.INITIATED) {
-					long durationTime = webRTCConnection.getInitiatedDurationTime();
-
-					// Timeout?
-
-					if (durationTime > _CONNECTION_TIMEOUT_TIME) {
-
-						// Disconnect both clients
-
-						webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
-						notifyWebRTCClientLostConnection(webRTCClient,
-							otherWebRTCClient, _TIMEOUT_REASON);
-						notifyWebRTCClientLostConnection(otherWebRTCClient,
-							webRTCClient, _TIMEOUT_REASON);
-					}
+				if (webRTCConnection.getState() !=
+						WebRTCConnection.State.INITIATED) {
+						
+					continue;
 				}
+
+				long durationTime = webRTCConnection.getInitiatedDurationTime();
+
+				if (durationTime <= _CONNECTION_TIMEOUT_TIME) {
+					continue;
+				}
+
+				webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
+
+				notifyWebRTCClientLostConnection(
+					webRTCClient, otherWebRTCClient, _TIMEOUT_REASON);
+
+				notifyWebRTCClientLostConnection(
+					otherWebRTCClient, webRTCClient, _TIMEOUT_REASON);
 			}
 		}
 	}
