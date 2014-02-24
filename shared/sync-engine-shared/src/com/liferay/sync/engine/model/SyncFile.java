@@ -28,6 +28,20 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class SyncFile {
 
+	public static final String EVENT_ADD = "add";
+
+	public static final String EVENT_DELETE = "delete";
+
+	public static final String EVENT_GET = "get";
+
+	public static final String EVENT_MOVE = "move";
+
+	public static final String EVENT_MOVE_TO_TRASH = "trash";
+
+	public static final String EVENT_RESTORE_FROM_TRASH = "restore";
+
+	public static final String EVENT_UPDATE = "update";
+
 	public static final String TYPE_FILE = "file";
 
 	public static final String TYPE_FOLDER = "folder";
@@ -50,6 +64,10 @@ public class SyncFile {
 
 	public String getDescription() {
 		return description;
+	}
+
+	public String getEvent() {
+		return event;
 	}
 
 	public String getExtension() {
@@ -238,6 +256,9 @@ public class SyncFile {
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String description;
+
+	@DatabaseField(persisted = false)
+	protected String event;
 
 	@DatabaseField(useGetSet = true)
 	protected String extension;
