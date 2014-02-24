@@ -109,12 +109,13 @@ public class WebRTCManager {
 
 				webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
 
-				JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
-		
+				JSONObject messageJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
 				messageJSONObject.put("reason", "timeout");
 				messageJSONObject.put("status", "lost");
 				messageJSONObject.put("type", "status");
-				
+
 				String messageJSON = messageJSONObject.toString();
 
 				pushConnectionStateWebRTCMail(
