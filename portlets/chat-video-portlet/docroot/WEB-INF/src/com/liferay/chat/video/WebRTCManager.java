@@ -85,7 +85,8 @@ public class WebRTCManager {
 			"{\"type\": \"status\", \"status\": \"lost\", \"reason\": \"%s\"}";
 
 		ConnectionStateWebRTCMail connectionStateWebRTCMail =
-			new ConnectionStateWebRTCMail(sourceWebRTCClient.getUserId(),
+			new ConnectionStateWebRTCMail(
+				sourceWebRTCClient.getUserId(),
 				String.format(formatString, reason));
 
 		WebRTCMailbox destWebRTCMailbox =
