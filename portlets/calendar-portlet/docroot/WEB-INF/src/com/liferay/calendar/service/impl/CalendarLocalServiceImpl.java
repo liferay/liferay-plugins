@@ -17,6 +17,7 @@ package com.liferay.calendar.service.impl;
 import com.liferay.calendar.CalendarNameException;
 import com.liferay.calendar.RequiredCalendarException;
 import com.liferay.calendar.model.Calendar;
+import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.base.CalendarLocalServiceBaseImpl;
 import com.liferay.calendar.util.CalendarDataFormat;
 import com.liferay.calendar.util.CalendarDataHandler;
@@ -27,16 +28,19 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * @author Eduardo Lundgren
@@ -179,6 +183,24 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		return calendarPersistence.findByG_C_D(
 			groupId, calendarResourceId, defaultCalendar);
+	}
+
+	@Override
+	public TimeZone getTimeZone(Calendar calendar)
+		throws PortalException, SystemException {
+
+		CalendarResource calendarResource = calendar.getCalendarResource();
+
+		if (calendarResource.getClassNameId() ==
+				classNameLocalService.getClassNameId(User.class)) {
+
+			User user = UserLocalServiceUtil.getUser(
+				calendarResource.getClassPK());
+
+			return user.getTimeZone();
+		}
+
+		return TimeZoneUtil.getDefault();
 	}
 
 	@Override
