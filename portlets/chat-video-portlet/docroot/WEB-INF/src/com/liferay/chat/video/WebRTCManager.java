@@ -77,12 +77,19 @@ public class WebRTCManager {
 		webRTCClient.updatePresenceTime();
 	}
 
-	protected void notifyWebRTCClientLostConnection(WebRTCClient destWebRTCClient, WebRTCClient sourceWebRTCClient, String reason) {
-		String formatString = "{\"type\": \"status\", \"status\": \"lost\", \"reason\": \"%s\"}";
+	protected void notifyWebRTCClientLostConnection(
+		WebRTCClient destWebRTCClient, WebRTCClient sourceWebRTCClient,
+		String reason) {
+
+		String formatString =
+			"{\"type\": \"status\", \"status\": \"lost\", \"reason\": \"%s\"}";
+
 		ConnectionStateWebRTCMail connectionStateWebRTCMail =
 			new ConnectionStateWebRTCMail(sourceWebRTCClient.getUserId(),
 				String.format(formatString, reason));
-		WebRTCMailbox destWebRTCMailbox = destWebRTCClient.getOutgoingWebRTCMailbox();
+
+		WebRTCMailbox destWebRTCMailbox =
+			destWebRTCClient.getOutgoingWebRTCMailbox();
 
 		destWebRTCMailbox.pushWebRTCMail(connectionStateWebRTCMail);
 	}
