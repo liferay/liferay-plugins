@@ -81,7 +81,7 @@ public class WebRTCManager {
 	}
 
 	protected void notifyWebRTCClientLostConnection(
-		WebRTCClient sourceWebRTCClient, WebRTCClient destWebRTCClient,
+		WebRTCClient sourceWebRTCClient, WebRTCClient destinationWebRTCClient,
 		String reason) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -94,10 +94,10 @@ public class WebRTCManager {
 			new ConnectionStateWebRTCMail(
 				sourceWebRTCClient.getUserId(), jsonObject.toString());
 
-		WebRTCMailbox destWebRTCMailbox =
-			destWebRTCClient.getOutgoingWebRTCMailbox();
+		WebRTCMailbox destinationWebRTCMailbox =
+			destinationWebRTCClient.getOutgoingWebRTCMailbox();
 
-		destWebRTCMailbox.pushWebRTCMail(connectionStateWebRTCMail);
+		destinationWebRTCMailbox.pushWebRTCMail(connectionStateWebRTCMail);
 	}
 
 	protected void addWebRTCClient(long userId) {
