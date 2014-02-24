@@ -110,11 +110,11 @@ public class WebRTCManager {
 				webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
 
 				pushConnectionStateWebRTCMail(
-					otherWebRTCClient, webRTCClient, "timeout", "lost",
-					"status");
-
-				pushConnectionStateWebRTCMail(
 					webRTCClient, otherWebRTCClient, "timeout", "lost",
+					
+					"status");
+				pushConnectionStateWebRTCMail(
+					otherWebRTCClient, webRTCClient, "timeout", "lost",
 					"status");
 			}
 		}
