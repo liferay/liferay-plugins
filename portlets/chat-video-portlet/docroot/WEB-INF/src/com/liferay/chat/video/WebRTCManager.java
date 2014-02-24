@@ -80,7 +80,7 @@ public class WebRTCManager {
 		webRTCClient.updatePresenceTime();
 	}
 
-	protected void notifyWebRTCClientLostConnection(
+	protected void pushConnectionStateWebRTCMail(
 		WebRTCClient sourceWebRTCClient, WebRTCClient destinationWebRTCClient,
 		String reason) {
 
@@ -129,10 +129,10 @@ public class WebRTCManager {
 
 				webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
 
-				notifyWebRTCClientLostConnection(
+				pushConnectionStateWebRTCMail(
 					otherWebRTCClient, webRTCClient, _TIMEOUT_REASON);
 
-				notifyWebRTCClientLostConnection(
+				pushConnectionStateWebRTCMail(
 					webRTCClient, otherWebRTCClient, _TIMEOUT_REASON);
 			}
 		}
