@@ -119,6 +119,7 @@ public class WebRTCManager {
 
 				pushConnectionStateWebRTCMail(
 					webRTCClient, otherWebRTCClient, messageJSON);
+
 				pushConnectionStateWebRTCMail(
 					otherWebRTCClient, webRTCClient, messageJSON);
 			}
