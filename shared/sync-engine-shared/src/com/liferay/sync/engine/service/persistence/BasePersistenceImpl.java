@@ -54,18 +54,6 @@ public class BasePersistenceImpl<TT, TID>
 	}
 
 	@Override
-	public CreateOrUpdateStatus createOrUpdate(TT model) throws SQLException {
-		if (!idExists(extractId(model))) {
-			notifyModelListenersOnCreate(model);
-		}
-		else {
-			notifyModelListenersOnUpdate(model);
-		}
-
-		return super.createOrUpdate(model);
-	}
-
-	@Override
 	public int createTable() throws SQLException {
 		return TableUtils.createTable(connectionSource, dataClass);
 	}
