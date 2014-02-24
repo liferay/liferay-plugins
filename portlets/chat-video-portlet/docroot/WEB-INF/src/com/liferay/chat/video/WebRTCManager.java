@@ -107,9 +107,10 @@ public class WebRTCManager {
 					continue;
 				}
 
-				long durationTime = webRTCConnection.getInitiatedDurationTime();
+				long initiatedDurationTime =
+					webRTCConnection.getInitiatedDurationTime();
 
-				if (durationTime <= _CONNECTION_TIMEOUT_TIME) {
+				if (initiatedDurationTime <= _CONNECTION_TIMEOUT_TIME) {
 					continue;
 				}
 
