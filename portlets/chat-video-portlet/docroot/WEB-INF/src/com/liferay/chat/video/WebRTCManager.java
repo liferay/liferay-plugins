@@ -109,30 +109,29 @@ public class WebRTCManager {
 
 				webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
 
+				JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
+		
+				messageJSONObject.put("reason", "timeout");
+				messageJSONObject.put("status", "lost");
+				messageJSONObject.put("type", "status");
+				
+				String messageJSON = messageJSONObject.toString();
+
 				pushConnectionStateWebRTCMail(
-					webRTCClient, otherWebRTCClient, "timeout", "lost",
-					
-					"status");
+					webRTCClient, otherWebRTCClient, messageJSON);
 				pushConnectionStateWebRTCMail(
-					otherWebRTCClient, webRTCClient, "timeout", "lost",
-					"status");
+					otherWebRTCClient, webRTCClient, messageJSON);
 			}
 		}
 	}
 
 	protected void pushConnectionStateWebRTCMail(
 		WebRTCClient sourceWebRTCClient, WebRTCClient destinationWebRTCClient,
-		String reason, String status, String type) {
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("reason", reason);
-		jsonObject.put("status", status);
-		jsonObject.put("type", type);
+		String messageJSON) {
 
 		ConnectionStateWebRTCMail connectionStateWebRTCMail =
 			new ConnectionStateWebRTCMail(
-				sourceWebRTCClient.getUserId(), jsonObject.toString());
+				sourceWebRTCClient.getUserId(), messageJSON);
 
 		WebRTCMailbox destinationWebRTCMailbox =
 			destinationWebRTCClient.getOutgoingWebRTCMailbox();
