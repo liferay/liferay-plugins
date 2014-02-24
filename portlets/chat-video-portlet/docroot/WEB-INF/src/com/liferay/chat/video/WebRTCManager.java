@@ -14,14 +14,14 @@
 
 package com.liferay.chat.video;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
-import com.liferay.portal.kernel.json.JSONObject;
 
 /**
  * @author Philippe Proulx
@@ -80,26 +80,6 @@ public class WebRTCManager {
 		webRTCClient.updatePresenceTime();
 	}
 
-	protected void pushConnectionStateWebRTCMail(
-		WebRTCClient sourceWebRTCClient, WebRTCClient destinationWebRTCClient,
-		String reason) {
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-		
-		jsonObject.put("reason", reason);
-		jsonObject.put("status", "lost");
-		jsonObject.put("type", "status");
-
-		ConnectionStateWebRTCMail connectionStateWebRTCMail =
-			new ConnectionStateWebRTCMail(
-				sourceWebRTCClient.getUserId(), jsonObject.toString());
-
-		WebRTCMailbox destinationWebRTCMailbox =
-			destinationWebRTCClient.getOutgoingWebRTCMailbox();
-
-		destinationWebRTCMailbox.pushWebRTCMail(connectionStateWebRTCMail);
-	}
-
 	protected void addWebRTCClient(long userId) {
 		if (!_webRTCClients.containsKey(userId)) {
 			_webRTCClients.put(userId, new WebRTCClient(userId));
@@ -116,7 +96,7 @@ public class WebRTCManager {
 
 				if (webRTCConnection.getState() !=
 						WebRTCConnection.State.INITIATED) {
-						
+
 					continue;
 				}
 
@@ -136,6 +116,26 @@ public class WebRTCManager {
 					webRTCClient, otherWebRTCClient, _TIMEOUT_REASON);
 			}
 		}
+	}
+
+	protected void pushConnectionStateWebRTCMail(
+		WebRTCClient sourceWebRTCClient, WebRTCClient destinationWebRTCClient,
+		String reason) {
+
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+		jsonObject.put("reason", reason);
+		jsonObject.put("status", "lost");
+		jsonObject.put("type", "status");
+
+		ConnectionStateWebRTCMail connectionStateWebRTCMail =
+			new ConnectionStateWebRTCMail(
+				sourceWebRTCClient.getUserId(), jsonObject.toString());
+
+		WebRTCMailbox destinationWebRTCMailbox =
+			destinationWebRTCClient.getOutgoingWebRTCMailbox();
+
+		destinationWebRTCMailbox.pushWebRTCMail(connectionStateWebRTCMail);
 	}
 
 	private static long _CONNECTION_TIMEOUT_TIME = 60000;
