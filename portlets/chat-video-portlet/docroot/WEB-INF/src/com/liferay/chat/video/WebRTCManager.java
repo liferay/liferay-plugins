@@ -20,6 +20,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+
 /**
  * @author Philippe Proulx
  */
@@ -81,13 +84,15 @@ public class WebRTCManager {
 		WebRTCClient destWebRTCClient, WebRTCClient sourceWebRTCClient,
 		String reason) {
 
-		String formatString =
-			"{\"reason\": \"%s\", \"status\": \"lost\", \"type\": \"status\"}";
+		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+		
+		jsonObject.put("reason", reason);
+		jsonObject.put("status", "lost");
+		jsonObject.put("type", "status");
 
 		ConnectionStateWebRTCMail connectionStateWebRTCMail =
 			new ConnectionStateWebRTCMail(
-				sourceWebRTCClient.getUserId(),
-				String.format(formatString, reason));
+				sourceWebRTCClient.getUserId(), jsonObject.toString());
 
 		WebRTCMailbox destWebRTCMailbox =
 			destWebRTCClient.getOutgoingWebRTCMailbox();
