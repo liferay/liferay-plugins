@@ -20,7 +20,7 @@
 String filter = ParamUtil.getString(request, "filter");
 boolean fullView = ParamUtil.getBoolean(request, "fullView", true);
 int start = ParamUtil.getInteger(request, "start", 0);
-int end = ParamUtil.getInteger(request, "end", (delta - 1));
+int end = ParamUtil.getInteger(request, "end", delta);
 
 List<UserNotificationEvent> userNotificationEvents = null;
 int userNotificationEventsCount = 0;
@@ -51,8 +51,8 @@ else {
 	<c:when test="<%= (userNotificationEventsCount > delta) && fullView %>">
 		<li class="clearfix message top">
 			<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-			<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), (end + 1), userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
-			<span class="right-nav <%= (userNotificationEventsCount - 1) <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+			<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+			<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
 		</li>
 	</c:when>
 </c:choose>
@@ -131,8 +131,8 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 <c:if test="<%= !userNotificationEvents.isEmpty() && fullView %>">
 	<li class="clearfix message">
 		<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
-		<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), (end + 1), userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
-		<span class="right-nav <%= (userNotificationEventsCount - 1) <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
+		<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
+		<span class="right-nav <%= userNotificationEventsCount <= end ? "disabled" : "next" %>"><a href="javascript:;"><liferay-ui:message key="next" /></a></span>
 	</li>
 </c:if>
 
