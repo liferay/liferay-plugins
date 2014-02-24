@@ -82,7 +82,7 @@ public class WebRTCManager {
 		String reason) {
 
 		String formatString =
-			"{\"type\": \"status\", \"status\": \"lost\", \"reason\": \"%s\"}";
+			"{\"reason\": \"%s\", \"status\": \"lost\", \"type\": \"status\"}";
 
 		ConnectionStateWebRTCMail connectionStateWebRTCMail =
 			new ConnectionStateWebRTCMail(
