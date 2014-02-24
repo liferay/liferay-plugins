@@ -26,11 +26,24 @@ public class SyncFileTestUtil {
 			String filePathName, long parentFolderId, long syncAccountId)
 		throws Exception {
 
-		SyncFile syncFile = SyncFileService.addSyncFile(
-			null, null, null, null, filePathName, null, null, parentFolderId, 0,
-			syncAccountId, SyncFile.TYPE_FILE);
+		return addFileSyncFile(
+			filePathName, parentFolderId, 0, syncAccountId, 0);
+	}
 
-		syncFile.setTypePK(syncFile.getSyncFileId());
+	public static SyncFile addFileSyncFile(
+			String filePathName, long parentFolderId, long repositoryId,
+			long syncAccountId, long typePK)
+		throws Exception {
+
+		SyncFile syncFile = SyncFileService.addSyncFile(
+			null, null, null, null, filePathName, null, null, parentFolderId,
+			repositoryId, syncAccountId, SyncFile.TYPE_FILE);
+
+		if (typePK == 0) {
+			typePK = syncFile.getSyncFileId();
+		}
+
+		syncFile.setTypePK(typePK);
 
 		SyncFileService.update(syncFile);
 
@@ -48,11 +61,24 @@ public class SyncFileTestUtil {
 			String filePathName, long parentFolderId, long syncAccountId)
 		throws Exception {
 
-		SyncFile syncFile = SyncFileService.addSyncFile(
-			null, null, null, null, filePathName, null, null, parentFolderId, 0,
-			syncAccountId, SyncFile.TYPE_FOLDER);
+		return addFolderSyncFile(
+			filePathName, parentFolderId, 0, syncAccountId, 0);
+	}
 
-		syncFile.setTypePK(syncFile.getSyncFileId());
+	public static SyncFile addFolderSyncFile(
+			String filePathName, long parentFolderId, long repositoryId,
+			long syncAccountId, long typePK)
+		throws Exception {
+
+		SyncFile syncFile = SyncFileService.addSyncFile(
+			null, null, null, null, filePathName, null, null, parentFolderId,
+			repositoryId, syncAccountId, SyncFile.TYPE_FOLDER);
+
+		if (typePK == 0) {
+			typePK = syncFile.getSyncFileId();
+		}
+
+		syncFile.setTypePK(typePK);
 
 		SyncFileService.update(syncFile);
 

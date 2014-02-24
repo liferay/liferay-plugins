@@ -19,7 +19,6 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
-import com.liferay.sync.engine.util.FileUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -49,15 +48,8 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 		super.setUp();
 
 		_syncSite = SyncSiteService.addSyncSite(
-			10158, filePathName + "/test-site", 10184,
+			10158, filePathName + "/test-site", 10185,
 			syncAccount.getSyncAccountId());
-
-		SyncFileService.addSyncFile(
-			null, null, null,
-			FileUtil.getFileKey(syncAccount.getFilePathName()),
-			syncAccount.getFilePathName(), null, "test", 0,
-			_syncSite.getGroupId(), syncAccount.getSyncAccountId(),
-			SyncFile.TYPE_FOLDER);
 	}
 
 	@After
@@ -91,9 +83,9 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 		_syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());
 
-		Assert.assertEquals(4, _syncFiles.size());
+		Assert.assertEquals(3, _syncFiles.size());
 
-		Path filePath = Paths.get(filePathName + "/Document_1.txt");
+		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
 		Assert.assertTrue(Files.exists(filePath));
 	}

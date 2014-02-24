@@ -1,29 +1,29 @@
 {
-	"lastAccessTime": 1390243017230,
+	"lastAccessTime": 1393266923180,
 	"syncDLObjects": [
 		{
 			"changeLog": "",
 			"checksum": "2jmj7l5rSw0yVb/vlWAYkK/YBwk=",
 			"companyId": 10158,
-			"createTime": 1390242926021,
+			"createTime": 1393266923180,
 			"description": "",
-			"event": "get",
+			"event": "restore",
 			"extension": "",
 			"extraSettings": "",
 			"lockExpirationDate": null,
 			"lockUserId": 0,
 			"lockUserName": "",
-			"mimeType": "application/octet-stream",
-			"modifiedTime": 1390242926021,
+			"mimeType": "text/plain",
+			"modifiedTime": 1393266923180,
 			"name": "test.txt",
-			"objectId": 0,
+			"objectId": 27391,
 			"parentFolderId": 0,
 			"repositoryId": 10185,
 			"size": 0,
 			"type": "file",
-			"typePK": 10465,
-			"typeUuid": "107e5cc4-1f44-4f5f-84fd-06b8465b949d",
-			"version": "1.0"
+			"typePK": 27382,
+			"typeUuid": "6ed500ae-ce67-456f-861f-90e7684af238",
+			"version": "1.1"
 		}
 	]
 }
