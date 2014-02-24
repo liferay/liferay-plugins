@@ -81,7 +81,7 @@ public class WebRTCManager {
 	}
 
 	protected void notifyWebRTCClientLostConnection(
-		WebRTCClient destWebRTCClient, WebRTCClient sourceWebRTCClient,
+		WebRTCClient sourceWebRTCClient, WebRTCClient destWebRTCClient,
 		String reason) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
@@ -130,10 +130,10 @@ public class WebRTCManager {
 				webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
 
 				notifyWebRTCClientLostConnection(
-					webRTCClient, otherWebRTCClient, _TIMEOUT_REASON);
+					otherWebRTCClient, webRTCClient, _TIMEOUT_REASON);
 
 				notifyWebRTCClientLostConnection(
-					otherWebRTCClient, webRTCClient, _TIMEOUT_REASON);
+					webRTCClient, otherWebRTCClient, _TIMEOUT_REASON);
 			}
 		}
 	}
