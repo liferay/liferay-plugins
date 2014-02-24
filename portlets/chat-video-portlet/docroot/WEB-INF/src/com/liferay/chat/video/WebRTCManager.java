@@ -110,23 +110,25 @@ public class WebRTCManager {
 				webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
 
 				pushConnectionStateWebRTCMail(
-					otherWebRTCClient, webRTCClient, _TIMEOUT_REASON);
+					otherWebRTCClient, webRTCClient, "timeout", "lost",
+					"status");
 
 				pushConnectionStateWebRTCMail(
-					webRTCClient, otherWebRTCClient, _TIMEOUT_REASON);
+					webRTCClient, otherWebRTCClient, "timeout", "lost",
+					"status");
 			}
 		}
 	}
 
 	protected void pushConnectionStateWebRTCMail(
 		WebRTCClient sourceWebRTCClient, WebRTCClient destinationWebRTCClient,
-		String reason) {
+		String reason, String status, String type) {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("reason", reason);
-		jsonObject.put("status", "lost");
-		jsonObject.put("type", "status");
+		jsonObject.put("status", status);
+		jsonObject.put("type", type);
 
 		ConnectionStateWebRTCMail connectionStateWebRTCMail =
 			new ConnectionStateWebRTCMail(
@@ -139,8 +141,6 @@ public class WebRTCManager {
 	}
 
 	private static long _CONNECTION_TIMEOUT_TIME = 60000;
-
-	private static String _TIMEOUT_REASON = "timeout";
 
 	private static List<WebRTCManager> _webRTCManagers =
 		new CopyOnWriteArrayList<WebRTCManager>();
