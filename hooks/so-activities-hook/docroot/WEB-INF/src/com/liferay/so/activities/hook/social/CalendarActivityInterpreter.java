@@ -136,7 +136,9 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 
 		sb.append(
 			StringUtil.shorten(
-				assetRenderer.getSummary(serviceContext.getLocale()), 200));
+				HtmlUtil.escape(
+					assetRenderer.getSummary(
+						serviceContext.getLocale()), 200)));
 
 		sb.append("</div></div>");
 
