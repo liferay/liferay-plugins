@@ -141,7 +141,7 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 
 			if (event.equals(SyncFile.EVENT_ADD) ||
 				event.equals(SyncFile.EVENT_GET) ||
-				event.equals(SyncFile.EVENT_RESTORE_FROM_TRASH)) {
+				event.equals(SyncFile.EVENT_RESTORE)) {
 
 				addFile(syncFile, filePathName);
 			}
@@ -150,7 +150,7 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			else if (event.equals(SyncFile.EVENT_MOVE)) {
 				moveFile(syncFile, filePathName);
 			}
-			else if (event.equals(SyncFile.EVENT_MOVE_TO_TRASH)) {
+			else if (event.equals(SyncFile.EVENT_TRASH)) {
 				deleteFile(syncFile);
 			}
 			else if (event.equals(SyncFile.EVENT_UPDATE)) {

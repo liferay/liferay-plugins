@@ -36,9 +36,9 @@ public class SyncFile {
 
 	public static final String EVENT_MOVE = "move";
 
-	public static final String EVENT_MOVE_TO_TRASH = "trash";
+	public static final String EVENT_RESTORE = "restore";
 
-	public static final String EVENT_RESTORE_FROM_TRASH = "restore";
+	public static final String EVENT_TRASH = "trash";
 
 	public static final String EVENT_UPDATE = "update";
 
