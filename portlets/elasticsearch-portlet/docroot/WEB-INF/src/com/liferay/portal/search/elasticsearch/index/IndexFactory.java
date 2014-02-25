@@ -21,7 +21,6 @@ import org.elasticsearch.client.AdminClient;
  */
 public interface IndexFactory {
 
-	public void createIndices(AdminClient adminClient)
-		throws Exception;
+	public void createIndices(AdminClient adminClient) throws Exception;
 
 }
