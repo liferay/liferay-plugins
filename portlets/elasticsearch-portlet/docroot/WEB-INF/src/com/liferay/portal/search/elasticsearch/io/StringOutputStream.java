@@ -16,7 +16,6 @@ package com.liferay.portal.search.elasticsearch.io;
 
 import com.liferay.portal.kernel.util.StringBundler;
 
-import java.io.IOException;
 import java.io.OutputStream;
 
 /**
@@ -26,14 +25,14 @@ public class StringOutputStream extends OutputStream {
 
 	@Override
 	public String toString() {
-		return stringBundler.toString();
+		return _sb.toString();
 	}
 
 	@Override
-	public void write(int b) throws IOException {
-		stringBundler.append(b);
+	public void write(int b) {
+		_sb.append(b);
 	}
 
-	private StringBundler stringBundler = new StringBundler();
+	private StringBundler _sb = new StringBundler();
 
 }
