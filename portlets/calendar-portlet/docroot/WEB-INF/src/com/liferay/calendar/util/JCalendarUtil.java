@@ -51,6 +51,28 @@ public class JCalendarUtil {
 		return (endTime - startTime) / DAY;
 	}
 
+	public static int getDstShift(
+		Calendar calendar1, Calendar calendar2, TimeZone timeZone) {
+
+		calendar1 = JCalendarUtil.getJCalendar(
+			calendar1.getTimeInMillis(), timeZone);
+
+		calendar2 = JCalendarUtil.getJCalendar(
+			calendar2.getTimeInMillis(), timeZone);
+
+		Calendar sameDayCalendar = JCalendarUtil.getJCalendar(
+			calendar1.get(Calendar.YEAR), calendar1.get(Calendar.MONTH),
+			calendar1.get(Calendar.DAY_OF_MONTH),
+			calendar2.get(Calendar.HOUR_OF_DAY), calendar2.get(Calendar.MINUTE),
+			calendar2.get(Calendar.SECOND), calendar2.get(Calendar.MILLISECOND),
+			timeZone);
+
+		long shift =
+			calendar1.getTimeInMillis() - sameDayCalendar.getTimeInMillis();
+
+		return (int)shift;
+	}
+
 	public static Calendar getJCalendar(
 		int year, int month, int day, int hour, int minutes, int seconds,
 		int milliseconds, TimeZone timeZone) {
