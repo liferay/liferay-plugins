@@ -14,6 +14,8 @@
 
 package com.liferay.chat.video;
 
+import com.liferay.portal.kernel.json.JSONObject;
+
 /**
  * @author Philippe Proulx
  */
@@ -25,8 +27,8 @@ public class DescriptionWebRTCSDPMail extends WebRTCMail {
 		super(descriptionWebRTCSDPMail);
 	}
 
-	public DescriptionWebRTCSDPMail(long sourceUserId, String messageJSON) {
-		super(sourceUserId, messageJSON);
+	public DescriptionWebRTCSDPMail(long sourceUserId, JSONObject messageJSONObject) {
+		super(sourceUserId, messageJSONObject);
 	}
 
 	@Override

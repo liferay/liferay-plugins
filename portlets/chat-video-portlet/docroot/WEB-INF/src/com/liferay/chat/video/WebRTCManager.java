@@ -116,24 +116,22 @@ public class WebRTCManager {
 				messageJSONObject.put("status", "lost");
 				messageJSONObject.put("type", "status");
 
-				String messageJSON = messageJSONObject.toString();
+				pushConnectionStateWebRTCMail(
+					webRTCClient, otherWebRTCClient, messageJSONObject);
 
 				pushConnectionStateWebRTCMail(
-					webRTCClient, otherWebRTCClient, messageJSON);
-
-				pushConnectionStateWebRTCMail(
-					otherWebRTCClient, webRTCClient, messageJSON);
+					otherWebRTCClient, webRTCClient, messageJSONObject);
 			}
 		}
 	}
 
 	protected void pushConnectionStateWebRTCMail(
 		WebRTCClient sourceWebRTCClient, WebRTCClient destinationWebRTCClient,
-		String messageJSON) {
+		JSONObject messageJSONObject) {
 
 		ConnectionStateWebRTCMail connectionStateWebRTCMail =
 			new ConnectionStateWebRTCMail(
-				sourceWebRTCClient.getUserId(), messageJSON);
+				sourceWebRTCClient.getUserId(), messageJSONObject);
 
 		WebRTCMailbox destinationWebRTCMailbox =
 			destinationWebRTCClient.getOutgoingWebRTCMailbox();
