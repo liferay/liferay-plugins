@@ -91,13 +91,13 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 		setPostResponse(
 			"dependencies/get_sync_dl_object_update_event_move.json");
 
-		Path fileFilePath = Paths.get(
+		Path sourceFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/Document_1.txt");
 
-		Files.createFile(fileFilePath);
+		Files.createFile(sourceFilePath);
 
 		SyncFileTestUtil.addFileSyncFile(
-			FilePathNameUtil.getFilePathName(fileFilePath), 0,
+			FilePathNameUtil.getFilePathName(sourceFilePath), 0,
 			_syncSite.getGroupId(), syncAccount.getSyncAccountId(), 27382);
 
 		Path folderFilePath = Paths.get(
@@ -116,9 +116,9 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 
 		Assert.assertEquals(4, _syncFiles.size());
 
-		Path filePath = Paths.get(folderFilePath + "/test.txt");
+		Path targetFilePath = Paths.get(folderFilePath + "/test.txt");
 
-		Assert.assertTrue(Files.exists(filePath));
+		Assert.assertTrue(Files.exists(targetFilePath));
 	}
 
 	@Test
@@ -126,13 +126,12 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 		setPostResponse(
 			"dependencies/get_sync_dl_object_update_event_trash.json");
 
-		Path fileFilePath = Paths.get(
-			_syncSite.getFilePathName() + "/test.txt");
+		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
-		Files.createFile(fileFilePath);
+		Files.createFile(filePath);
 
 		SyncFileTestUtil.addFileSyncFile(
-			FilePathNameUtil.getFilePathName(fileFilePath), 0,
+			FilePathNameUtil.getFilePathName(filePath), 0,
 			_syncSite.getGroupId(), syncAccount.getSyncAccountId(), 27382);
 
 		run();
@@ -141,8 +140,6 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(2, _syncFiles.size());
-
-		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
 		Assert.assertFalse(Files.exists(filePath));
 	}
@@ -173,13 +170,13 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 		setPostResponse(
 			"dependencies/get_sync_dl_object_update_event_update.json");
 
-		Path fileFilePath = Paths.get(
+		Path sourceFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test.txt");
 
-		Files.createFile(fileFilePath);
+		Files.createFile(sourceFilePath);
 
 		SyncFileTestUtil.addFileSyncFile(
-			FilePathNameUtil.getFilePathName(fileFilePath), 0,
+			FilePathNameUtil.getFilePathName(sourceFilePath), 0,
 			_syncSite.getGroupId(), syncAccount.getSyncAccountId(), 27382);
 
 		run();
@@ -189,12 +186,13 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 
 		Assert.assertEquals(3, _syncFiles.size());
 
-		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test2.txt");
+		Path targetFilePath = Paths.get(
+			_syncSite.getFilePathName() + "/test2.txt");
 
-		Assert.assertTrue(Files.exists(filePath));
+		Assert.assertTrue(Files.exists(targetFilePath));
 
 		SyncFile syncFile = SyncFileService.fetchSyncFile(
-			FilePathNameUtil.getFilePathName(filePath),
+			FilePathNameUtil.getFilePathName(targetFilePath),
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals("Updated Description", syncFile.getDescription());
