@@ -148,31 +148,31 @@ public class WebRTCManager {
 		}
 	}
 
-	protected boolean isWebRTCConnectionStateValid(
-		WebRTCClient webRTCClientA, WebRTCClient webRTCClientB,
-		WebRTCConnection.State expectedState) {
+	protected boolean isValidWebRTCConnectionState(
+		WebRTCClient webRTCClient1, WebRTCClient webRTCClient2,
+		WebRTCConnection.State state) {
 
-		boolean webRTCConnectionAToBExists = webRTCClientA.hasWebRTCConnection(
-			webRTCClientB);
+		WebRTCConnection webRTCClient1TowebRTCClient2WebRTCConnection =
+			webRTCClient1.getWebRTCConnection(webRTCClient2);
 
-		boolean webRTCConnectionBToAExists = webRTCClientB.hasWebRTCConnection(
-			webRTCClientA);
-
-		if (!webRTCConnectionAToBExists || !webRTCConnectionBToAExists) {
+		if (webRTCClient1TowebRTCClient2WebRTCConnection == null) {
 			return false;
 		}
 
-		WebRTCConnection webRTCConnectionAToB =
-			webRTCClientA.getWebRTCConnection(webRTCClientB);
+		WebRTCConnection webRTCClient2TowebRTCClient1WebRTCConnection =
+			webRTCClient2.getWebRTCConnection(webRTCClient1);
 
-		WebRTCConnection webRTCConnectionBToA =
-			webRTCClientB.getWebRTCConnection(webRTCClientA);
-
-		if (webRTCConnectionAToB != webRTCConnectionBToA) {
+		if (webRTCClient2TowebRTCClient1WebRTCConnection == null) {
 			return false;
 		}
 
-		if (webRTCConnectionAToB.getState() != expectedState) {
+		if (webRTCClient1TowebRTCClient2WebRTCConnection !=
+				webRTCClient2TowebRTCClient1WebRTCConnection) {
+
+			return false;
+		}
+
+		if (webRTCClient1TowebRTCClient2WebRTCConnection.getState() != state) {
 			return false;
 		}
 
