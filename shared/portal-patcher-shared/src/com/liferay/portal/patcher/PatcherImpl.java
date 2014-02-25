@@ -17,6 +17,7 @@ package com.liferay.portal.patcher;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -123,7 +124,7 @@ public class PatcherImpl implements Patcher {
 		Properties properties = getProperties();
 
 		if (properties.containsKey(PROPERTY_PATCHING_TOOL_VERSION)) {
-			_patchingToolVersion = Integer.parseInt(
+			_patchingToolVersion = GetterUtil.getInteger(
 				properties.getProperty(PROPERTY_PATCHING_TOOL_VERSION));
 		}
 
