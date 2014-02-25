@@ -106,21 +106,21 @@ public class SyncWatchEventProcessor implements Runnable {
 	}
 
 	protected void addFile(SyncWatchEvent syncWatchEvent) throws Exception {
-		Path destinationFilePath = Paths.get(syncWatchEvent.getFilePathName());
+		Path targetFilePath = Paths.get(syncWatchEvent.getFilePathName());
 
-		Path parentDestinationFilePath = destinationFilePath.getParent();
+		Path parentTargetFilePath = targetFilePath.getParent();
 
 		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-			FilePathNameUtil.getFilePathName(parentDestinationFilePath),
+			FilePathNameUtil.getFilePathName(parentTargetFilePath),
 			syncWatchEvent.getSyncAccountId());
 
 		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
-			FileUtil.getFileKey(destinationFilePath),
+			FileUtil.getFileKey(targetFilePath),
 			syncWatchEvent.getSyncAccountId());
 
 		if (syncFile == null) {
 			SyncFileService.addFileSyncFile(
-				destinationFilePath, parentSyncFile.getTypePK(),
+				targetFilePath, parentSyncFile.getTypePK(),
 				parentSyncFile.getRepositoryId(),
 				syncWatchEvent.getSyncAccountId());
 
@@ -139,14 +139,13 @@ public class SyncWatchEventProcessor implements Runnable {
 		Path sourceFilePath = Paths.get(
 			relatedSyncWatchEvent.getFilePathName());
 
-		if (parentDestinationFilePath.equals(sourceFilePath.getParent())) {
+		if (parentTargetFilePath.equals(sourceFilePath.getParent())) {
 			SyncFileService.updateFileSyncFile(
-				destinationFilePath, syncWatchEvent.getSyncAccountId(),
-				syncFile);
+				targetFilePath, syncWatchEvent.getSyncAccountId(), syncFile);
 		}
 		else {
 			SyncFileService.moveFileSyncFile(
-				destinationFilePath, parentSyncFile.getTypePK(),
+				targetFilePath, parentSyncFile.getTypePK(),
 				syncWatchEvent.getSyncAccountId(), syncFile);
 		}
 
@@ -155,35 +154,35 @@ public class SyncWatchEventProcessor implements Runnable {
 	}
 
 	protected void addFolder(SyncWatchEvent syncWatchEvent) throws Exception {
-		Path destinationFilePath = Paths.get(syncWatchEvent.getFilePathName());
+		Path targetFilePath = Paths.get(syncWatchEvent.getFilePathName());
 
-		String destinationFilePathName = FilePathNameUtil.getFilePathName(
-			destinationFilePath);
+		String targetFilePathName = FilePathNameUtil.getFilePathName(
+			targetFilePath);
 
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			syncWatchEvent.getSyncAccountId());
 
-		if (destinationFilePathName.equals(syncAccount.getFilePathName()) ||
+		if (targetFilePathName.equals(syncAccount.getFilePathName()) ||
 			(SyncSiteService.fetchSyncSite(
-				destinationFilePathName, syncWatchEvent.getSyncAccountId()) !=
+				targetFilePathName, syncWatchEvent.getSyncAccountId()) !=
 					null)) {
 
 			return;
 		}
 
-		Path parentDestinationFilePath = destinationFilePath.getParent();
+		Path parentTargetFilePath = targetFilePath.getParent();
 
 		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-			FilePathNameUtil.getFilePathName(parentDestinationFilePath),
+			FilePathNameUtil.getFilePathName(parentTargetFilePath),
 			syncWatchEvent.getSyncAccountId());
 
 		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
-			FileUtil.getFileKey(destinationFilePath),
+			FileUtil.getFileKey(targetFilePath),
 			syncWatchEvent.getSyncAccountId());
 
 		if (syncFile == null) {
 			SyncFileService.addFolderSyncFile(
-				destinationFilePath, parentSyncFile.getTypePK(),
+				targetFilePath, parentSyncFile.getTypePK(),
 				parentSyncFile.getRepositoryId(),
 				syncWatchEvent.getSyncAccountId());
 
@@ -202,14 +201,13 @@ public class SyncWatchEventProcessor implements Runnable {
 		Path sourceFilePath = Paths.get(
 			relatedSyncWatchEvent.getFilePathName());
 
-		if (parentDestinationFilePath.equals(sourceFilePath.getParent())) {
+		if (parentTargetFilePath.equals(sourceFilePath.getParent())) {
 			SyncFileService.updateFolderSyncFile(
-				destinationFilePath, syncWatchEvent.getSyncAccountId(),
-				syncFile);
+				targetFilePath, syncWatchEvent.getSyncAccountId(), syncFile);
 		}
 		else {
 			SyncFileService.moveFolderSyncFile(
-				destinationFilePath, parentSyncFile.getTypePK(),
+				targetFilePath, parentSyncFile.getTypePK(),
 				syncWatchEvent.getSyncAccountId(), syncFile);
 		}
 
