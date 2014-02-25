@@ -138,54 +138,56 @@ pageContext.setAttribute("portletURL", portletURL);
 
 	var sitesTabsContainer = A.one('.so-portlet-sites .sites-tabs');
 
-	var sitesTabsSelect = sitesTabsContainer.one('select[name=<portlet:namespace />tabs1]');
+	if (sitesTabsContainer && siteList) {
+		var sitesTabsSelect = sitesTabsContainer.one('select[name=<portlet:namespace />tabs1]');
 
-	sitesTabsSelect.on(
-		'change',
-		function(event) {
-			searchInput.set('value', '');
+		sitesTabsSelect.on(
+			'change',
+			function(event) {
+				searchInput.set('value', '');
 
-			Liferay.SO.Sites.updateSites();
-		}
-	);
+				Liferay.SO.Sites.updateSites();
+			}
+		);
 
-	siteList.delegate(
-		'click',
-		function(event) {
-			var keywords = searchInput.get('value');
+		siteList.delegate(
+			'click',
+			function(event) {
+				var keywords = searchInput.get('value');
 
-			var data = {
-				<portlet:namespace />keywords: keywords,
-				<portlet:namespace />tabs1: sitesTabsSelect.get('value')
-			};
+				var data = {
+					<portlet:namespace />keywords: keywords,
+					<portlet:namespace />tabs1: sitesTabsSelect.get('value')
+				};
 
-			<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-				<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
-			</liferay-portlet:renderURL>
+				<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+					<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
+				</liferay-portlet:renderURL>
 
-			Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" unicode="<%= true %>" />', data);
-		},
-		'.more a'
-	);
+				Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites" unicode="<%= true %>" />', data);
+			},
+			'.more a'
+		);
 
-	siteList.delegate(
-		'click',
-		function(event) {
-			event.preventDefault();
+		siteList.delegate(
+			'click',
+			function(event) {
+				event.preventDefault();
 
-			A.io.request(
-				event.currentTarget.get('href'),
-				{
-					after: {
-						success: function(event, id, obj) {
-							Liferay.SO.Sites.updateSites();
+				A.io.request(
+					event.currentTarget.get('href'),
+					{
+						after: {
+							success: function(event, id, obj) {
+								Liferay.SO.Sites.updateSites();
+							}
 						}
 					}
-				}
-			);
-		},
-		'.action a'
-	);
+				);
+			},
+			'.action a'
+		);
+	}
 
 	var dockBar = A.one('.portlet-dockbar');
 
