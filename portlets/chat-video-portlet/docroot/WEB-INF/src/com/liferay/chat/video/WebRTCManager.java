@@ -71,6 +71,15 @@ public class WebRTCManager {
 		_webRTCClients.remove(userId);
 	}
 
+	public void setWebRTCClientAvailability(long userId, boolean isAvailable) {
+		addWebRTCClient(userId);
+
+		WebRTCClient webRTCClient = getWebRTCClient(userId);
+
+		webRTCClient.removeBilateralWebRTCConnections();
+		webRTCClient.setAvailable(isAvailable);
+	}
+
 	public void updateWebRTCClientPresence(long userId) {
 		WebRTCClient webRTCClient = getWebRTCClient(userId);
 
