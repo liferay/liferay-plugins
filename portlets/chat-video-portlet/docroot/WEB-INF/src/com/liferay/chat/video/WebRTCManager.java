@@ -85,37 +85,6 @@ public class WebRTCManager {
 		webRTCClient.updatePresenceTime();
 	}
 
-	protected boolean isWebRTCConnectionStateValid(
-		WebRTCClient webRTCClientA, WebRTCClient webRTCClientB,
-		WebRTCConnection.State expectedState) {
-
-		boolean webRTCConnectionAToBExists = webRTCClientA.hasWebRTCConnection(
-			webRTCClientB);
-
-		boolean webRTCConnectionBToAExists = webRTCClientB.hasWebRTCConnection(
-			webRTCClientA);
-
-		if (!webRTCConnectionAToBExists || !webRTCConnectionBToAExists) {
-			return false;
-		}
-
-		WebRTCConnection webRTCConnectionAToB =
-			webRTCClientA.getWebRTCConnection(webRTCClientB);
-
-		WebRTCConnection webRTCConnectionBToA =
-			webRTCClientB.getWebRTCConnection(webRTCClientA);
-
-		if (webRTCConnectionAToB != webRTCConnectionBToA) {
-			return false;
-		}
-
-		if (webRTCConnectionAToB.getState() != expectedState) {
-			return false;
-		}
-
-		return true;
-	}
-
 	protected void addWebRTCClient(long userId) {
 		if (!_webRTCClients.containsKey(userId)) {
 			_webRTCClients.put(userId, new WebRTCClient(userId));
@@ -177,6 +146,37 @@ public class WebRTCManager {
 					otherWebRTCClient, webRTCClient, messageJSONObject);
 			}
 		}
+	}
+
+	protected boolean isWebRTCConnectionStateValid(
+		WebRTCClient webRTCClientA, WebRTCClient webRTCClientB,
+		WebRTCConnection.State expectedState) {
+
+		boolean webRTCConnectionAToBExists = webRTCClientA.hasWebRTCConnection(
+			webRTCClientB);
+
+		boolean webRTCConnectionBToAExists = webRTCClientB.hasWebRTCConnection(
+			webRTCClientA);
+
+		if (!webRTCConnectionAToBExists || !webRTCConnectionBToAExists) {
+			return false;
+		}
+
+		WebRTCConnection webRTCConnectionAToB =
+			webRTCClientA.getWebRTCConnection(webRTCClientB);
+
+		WebRTCConnection webRTCConnectionBToA =
+			webRTCClientB.getWebRTCConnection(webRTCClientA);
+
+		if (webRTCConnectionAToB != webRTCConnectionBToA) {
+			return false;
+		}
+
+		if (webRTCConnectionAToB.getState() != expectedState) {
+			return false;
+		}
+
+		return true;
 	}
 
 	protected void pushConnectionStateWebRTCMail(
