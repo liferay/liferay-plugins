@@ -225,7 +225,7 @@ if (comment) {
 
 	var MAP_USERS = {};
 
-	var REGEX_USER_NAME = /@[^\s]+$/;
+	var REGEX_USER_NAME = /@[^\s]+/;
 
 	var TPL_SEARCH_RESULTS = '<div class="microblogs-autocomplete">' +
 		'<div class="thumbnail">' +
