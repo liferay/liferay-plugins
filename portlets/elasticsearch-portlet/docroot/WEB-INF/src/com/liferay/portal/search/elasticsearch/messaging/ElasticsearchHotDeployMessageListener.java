@@ -25,8 +25,8 @@ import com.liferay.portal.search.elasticsearch.io.StringOutputStream;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
-import org.elasticsearch.action.ListenableActionFuture;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequestBuilder;
@@ -53,21 +53,20 @@ public class ElasticsearchHotDeployMessageListener
 
 		AdminClient adminClient = elasticsearchConnection.getClient().admin();
 
-		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
-
 		IndicesAdminClient indicesAdminClient = adminClient.indices();
+
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
 			IndicesExistsRequestBuilder indicesExistsRequestBuilder =
 				indicesAdminClient.prepareExists(
 					String.valueOf(company.getCompanyId()));
 
-			ListenableActionFuture<IndicesExistsResponse>
-				indicesExistsRequestFuture =
-					indicesExistsRequestBuilder.execute();
+			Future<IndicesExistsResponse> indicesExistsFuture =
+				indicesExistsRequestBuilder.execute();
 
 			IndicesExistsResponse indicesExistsResponse =
-				indicesExistsRequestFuture.get();
+				indicesExistsFuture.get();
 
 			if (indicesExistsResponse.isExists()) {
 				continue;
@@ -77,7 +76,7 @@ public class ElasticsearchHotDeployMessageListener
 				indicesAdminClient.prepareCreate(
 					String.valueOf(company.getCompanyId()));
 
-			ListenableActionFuture<CreateIndexResponse> createIndexFuture =
+			Future<CreateIndexResponse> createIndexFuture =
 				createIndexRequestBuilder.execute();
 
 			CreateIndexResponse createIndexResponse = createIndexFuture.get();
