@@ -17,6 +17,7 @@
 
 package com.liferay.so.invitemembers.portlet;
 
+import com.liferay.notifications.util.PortletKeys;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -48,7 +49,6 @@ import com.liferay.so.MemberRequestAlreadyUsedException;
 import com.liferay.so.MemberRequestInvalidUserException;
 import com.liferay.so.invitemembers.util.InviteMembersUtil;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
-import com.liferay.so.util.PortletKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.List;
@@ -220,7 +220,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 		}
 
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			actionRequest, PortletKeys.SO_NOTIFICATION, plid,
+			actionRequest, PortletKeys.NOTIFICATIONS, plid,
 			PortletRequest.RENDER_PHASE);
 
 		portletURL.setParameter("mvcPath", "/notifications/view.jsp");
