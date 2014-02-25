@@ -55,27 +55,27 @@ public class SyncDLObjectLocalServiceUtil {
 	/**
 	* Creates a new sync d l object with the primary key. Does not add the sync d l object to the database.
 	*
-	* @param objectId the primary key for the new sync d l object
+	* @param syncDLObjectId the primary key for the new sync d l object
 	* @return the new sync d l object
 	*/
 	public static com.liferay.sync.model.SyncDLObject createSyncDLObject(
-		long objectId) {
-		return getService().createSyncDLObject(objectId);
+		long syncDLObjectId) {
+		return getService().createSyncDLObject(syncDLObjectId);
 	}
 
 	/**
 	* Deletes the sync d l object with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param objectId the primary key of the sync d l object
+	* @param syncDLObjectId the primary key of the sync d l object
 	* @return the sync d l object that was removed
 	* @throws PortalException if a sync d l object with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject deleteSyncDLObject(
-		long objectId)
+		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().deleteSyncDLObject(objectId);
+		return getService().deleteSyncDLObject(syncDLObjectId);
 	}
 
 	/**
@@ -182,24 +182,24 @@ public class SyncDLObjectLocalServiceUtil {
 	}
 
 	public static com.liferay.sync.model.SyncDLObject fetchSyncDLObject(
-		long objectId)
+		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchSyncDLObject(objectId);
+		return getService().fetchSyncDLObject(syncDLObjectId);
 	}
 
 	/**
 	* Returns the sync d l object with the primary key.
 	*
-	* @param objectId the primary key of the sync d l object
+	* @param syncDLObjectId the primary key of the sync d l object
 	* @return the sync d l object
 	* @throws PortalException if a sync d l object with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject getSyncDLObject(
-		long objectId)
+		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getSyncDLObject(objectId);
+		return getService().getSyncDLObject(syncDLObjectId);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(

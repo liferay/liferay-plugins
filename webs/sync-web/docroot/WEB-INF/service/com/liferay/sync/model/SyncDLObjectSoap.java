@@ -31,7 +31,7 @@ public class SyncDLObjectSoap implements Serializable {
 	public static SyncDLObjectSoap toSoapModel(SyncDLObject model) {
 		SyncDLObjectSoap soapModel = new SyncDLObjectSoap();
 
-		soapModel.setObjectId(model.getObjectId());
+		soapModel.setSyncDLObjectId(model.getSyncDLObjectId());
 		soapModel.setCompanyId(model.getCompanyId());
 		soapModel.setCreateTime(model.getCreateTime());
 		soapModel.setModifiedTime(model.getModifiedTime());
@@ -98,19 +98,19 @@ public class SyncDLObjectSoap implements Serializable {
 	}
 
 	public long getPrimaryKey() {
-		return _objectId;
+		return _syncDLObjectId;
 	}
 
 	public void setPrimaryKey(long pk) {
-		setObjectId(pk);
+		setSyncDLObjectId(pk);
 	}
 
-	public long getObjectId() {
-		return _objectId;
+	public long getSyncDLObjectId() {
+		return _syncDLObjectId;
 	}
 
-	public void setObjectId(long objectId) {
-		_objectId = objectId;
+	public void setSyncDLObjectId(long syncDLObjectId) {
+		_syncDLObjectId = syncDLObjectId;
 	}
 
 	public long getCompanyId() {
@@ -281,7 +281,7 @@ public class SyncDLObjectSoap implements Serializable {
 		_typeUuid = typeUuid;
 	}
 
-	private long _objectId;
+	private long _syncDLObjectId;
 	private long _companyId;
 	private long _createTime;
 	private long _modifiedTime;

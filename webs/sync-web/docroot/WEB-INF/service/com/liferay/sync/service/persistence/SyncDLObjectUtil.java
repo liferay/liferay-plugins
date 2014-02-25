@@ -324,7 +324,7 @@ public class SyncDLObjectUtil {
 	/**
 	* Returns the sync d l objects before and after the current sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63;.
 	*
-	* @param objectId the primary key of the current sync d l object
+	* @param syncDLObjectId the primary key of the current sync d l object
 	* @param companyId the company ID
 	* @param modifiedTime the modified time
 	* @param repositoryId the repository ID
@@ -334,13 +334,14 @@ public class SyncDLObjectUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject[] findByC_M_R_PrevAndNext(
-		long objectId, long companyId, long modifiedTime, long repositoryId,
+		long syncDLObjectId, long companyId, long modifiedTime,
+		long repositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence()
-				   .findByC_M_R_PrevAndNext(objectId, companyId, modifiedTime,
-			repositoryId, orderByComparator);
+				   .findByC_M_R_PrevAndNext(syncDLObjectId, companyId,
+			modifiedTime, repositoryId, orderByComparator);
 	}
 
 	/**
@@ -396,25 +397,27 @@ public class SyncDLObjectUtil {
 	/**
 	* Creates a new sync d l object with the primary key. Does not add the sync d l object to the database.
 	*
-	* @param objectId the primary key for the new sync d l object
+	* @param syncDLObjectId the primary key for the new sync d l object
 	* @return the new sync d l object
 	*/
-	public static com.liferay.sync.model.SyncDLObject create(long objectId) {
-		return getPersistence().create(objectId);
+	public static com.liferay.sync.model.SyncDLObject create(
+		long syncDLObjectId) {
+		return getPersistence().create(syncDLObjectId);
 	}
 
 	/**
 	* Removes the sync d l object with the primary key from the database. Also notifies the appropriate model listeners.
 	*
-	* @param objectId the primary key of the sync d l object
+	* @param syncDLObjectId the primary key of the sync d l object
 	* @return the sync d l object that was removed
 	* @throws com.liferay.sync.NoSuchDLObjectException if a sync d l object with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.sync.model.SyncDLObject remove(long objectId)
+	public static com.liferay.sync.model.SyncDLObject remove(
+		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sync.NoSuchDLObjectException {
-		return getPersistence().remove(objectId);
+		return getPersistence().remove(syncDLObjectId);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject updateImpl(
@@ -426,29 +429,29 @@ public class SyncDLObjectUtil {
 	/**
 	* Returns the sync d l object with the primary key or throws a {@link com.liferay.sync.NoSuchDLObjectException} if it could not be found.
 	*
-	* @param objectId the primary key of the sync d l object
+	* @param syncDLObjectId the primary key of the sync d l object
 	* @return the sync d l object
 	* @throws com.liferay.sync.NoSuchDLObjectException if a sync d l object with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject findByPrimaryKey(
-		long objectId)
+		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sync.NoSuchDLObjectException {
-		return getPersistence().findByPrimaryKey(objectId);
+		return getPersistence().findByPrimaryKey(syncDLObjectId);
 	}
 
 	/**
 	* Returns the sync d l object with the primary key or returns <code>null</code> if it could not be found.
 	*
-	* @param objectId the primary key of the sync d l object
+	* @param syncDLObjectId the primary key of the sync d l object
 	* @return the sync d l object, or <code>null</code> if a sync d l object with the primary key could not be found
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject fetchByPrimaryKey(
-		long objectId)
+		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByPrimaryKey(objectId);
+		return getPersistence().fetchByPrimaryKey(syncDLObjectId);
 	}
 
 	/**

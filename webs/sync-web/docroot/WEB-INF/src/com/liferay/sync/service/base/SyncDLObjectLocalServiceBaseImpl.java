@@ -89,27 +89,27 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 	/**
 	 * Creates a new sync d l object with the primary key. Does not add the sync d l object to the database.
 	 *
-	 * @param objectId the primary key for the new sync d l object
+	 * @param syncDLObjectId the primary key for the new sync d l object
 	 * @return the new sync d l object
 	 */
 	@Override
-	public SyncDLObject createSyncDLObject(long objectId) {
-		return syncDLObjectPersistence.create(objectId);
+	public SyncDLObject createSyncDLObject(long syncDLObjectId) {
+		return syncDLObjectPersistence.create(syncDLObjectId);
 	}
 
 	/**
 	 * Deletes the sync d l object with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param objectId the primary key of the sync d l object
+	 * @param syncDLObjectId the primary key of the sync d l object
 	 * @return the sync d l object that was removed
 	 * @throws PortalException if a sync d l object with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public SyncDLObject deleteSyncDLObject(long objectId)
+	public SyncDLObject deleteSyncDLObject(long syncDLObjectId)
 		throws PortalException, SystemException {
-		return syncDLObjectPersistence.remove(objectId);
+		return syncDLObjectPersistence.remove(syncDLObjectId);
 	}
 
 	/**
@@ -220,23 +220,23 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 	}
 
 	@Override
-	public SyncDLObject fetchSyncDLObject(long objectId)
+	public SyncDLObject fetchSyncDLObject(long syncDLObjectId)
 		throws SystemException {
-		return syncDLObjectPersistence.fetchByPrimaryKey(objectId);
+		return syncDLObjectPersistence.fetchByPrimaryKey(syncDLObjectId);
 	}
 
 	/**
 	 * Returns the sync d l object with the primary key.
 	 *
-	 * @param objectId the primary key of the sync d l object
+	 * @param syncDLObjectId the primary key of the sync d l object
 	 * @return the sync d l object
 	 * @throws PortalException if a sync d l object with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SyncDLObject getSyncDLObject(long objectId)
+	public SyncDLObject getSyncDLObject(long syncDLObjectId)
 		throws PortalException, SystemException {
-		return syncDLObjectPersistence.findByPrimaryKey(objectId);
+		return syncDLObjectPersistence.findByPrimaryKey(syncDLObjectId);
 	}
 
 	@Override

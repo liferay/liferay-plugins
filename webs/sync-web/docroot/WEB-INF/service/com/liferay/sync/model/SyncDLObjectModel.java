@@ -61,18 +61,18 @@ public interface SyncDLObjectModel extends BaseModel<SyncDLObject> {
 	public void setPrimaryKey(long primaryKey);
 
 	/**
-	 * Returns the object ID of this sync d l object.
+	 * Returns the sync d l object ID of this sync d l object.
 	 *
-	 * @return the object ID of this sync d l object
+	 * @return the sync d l object ID of this sync d l object
 	 */
-	public long getObjectId();
+	public long getSyncDLObjectId();
 
 	/**
-	 * Sets the object ID of this sync d l object.
+	 * Sets the sync d l object ID of this sync d l object.
 	 *
-	 * @param objectId the object ID of this sync d l object
+	 * @param syncDLObjectId the sync d l object ID of this sync d l object
 	 */
-	public void setObjectId(long objectId);
+	public void setSyncDLObjectId(long syncDLObjectId);
 
 	/**
 	 * Returns the company ID of this sync d l object.

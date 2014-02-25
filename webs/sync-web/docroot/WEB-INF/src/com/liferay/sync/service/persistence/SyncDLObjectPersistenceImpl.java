@@ -606,7 +606,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	/**
 	 * Returns the sync d l objects before and after the current sync d l object in the ordered set where companyId = &#63; and modifiedTime &gt; &#63; and repositoryId = &#63;.
 	 *
-	 * @param objectId the primary key of the current sync d l object
+	 * @param syncDLObjectId the primary key of the current sync d l object
 	 * @param companyId the company ID
 	 * @param modifiedTime the modified time
 	 * @param repositoryId the repository ID
@@ -616,11 +616,11 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SyncDLObject[] findByC_M_R_PrevAndNext(long objectId,
+	public SyncDLObject[] findByC_M_R_PrevAndNext(long syncDLObjectId,
 		long companyId, long modifiedTime, long repositoryId,
 		OrderByComparator orderByComparator)
 		throws NoSuchDLObjectException, SystemException {
-		SyncDLObject syncDLObject = findByPrimaryKey(objectId);
+		SyncDLObject syncDLObject = findByPrimaryKey(syncDLObjectId);
 
 		Session session = null;
 
@@ -979,15 +979,15 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	/**
 	 * Creates a new sync d l object with the primary key. Does not add the sync d l object to the database.
 	 *
-	 * @param objectId the primary key for the new sync d l object
+	 * @param syncDLObjectId the primary key for the new sync d l object
 	 * @return the new sync d l object
 	 */
 	@Override
-	public SyncDLObject create(long objectId) {
+	public SyncDLObject create(long syncDLObjectId) {
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();
 
 		syncDLObject.setNew(true);
-		syncDLObject.setPrimaryKey(objectId);
+		syncDLObject.setPrimaryKey(syncDLObjectId);
 
 		return syncDLObject;
 	}
@@ -995,15 +995,15 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	/**
 	 * Removes the sync d l object with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
-	 * @param objectId the primary key of the sync d l object
+	 * @param syncDLObjectId the primary key of the sync d l object
 	 * @return the sync d l object that was removed
 	 * @throws com.liferay.sync.NoSuchDLObjectException if a sync d l object with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SyncDLObject remove(long objectId)
+	public SyncDLObject remove(long syncDLObjectId)
 		throws NoSuchDLObjectException, SystemException {
-		return remove((Serializable)objectId);
+		return remove((Serializable)syncDLObjectId);
 	}
 
 	/**
@@ -1137,7 +1137,7 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		syncDLObjectImpl.setNew(syncDLObject.isNew());
 		syncDLObjectImpl.setPrimaryKey(syncDLObject.getPrimaryKey());
 
-		syncDLObjectImpl.setObjectId(syncDLObject.getObjectId());
+		syncDLObjectImpl.setSyncDLObjectId(syncDLObject.getSyncDLObjectId());
 		syncDLObjectImpl.setCompanyId(syncDLObject.getCompanyId());
 		syncDLObjectImpl.setCreateTime(syncDLObject.getCreateTime());
 		syncDLObjectImpl.setModifiedTime(syncDLObject.getModifiedTime());
@@ -1191,15 +1191,15 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	/**
 	 * Returns the sync d l object with the primary key or throws a {@link com.liferay.sync.NoSuchDLObjectException} if it could not be found.
 	 *
-	 * @param objectId the primary key of the sync d l object
+	 * @param syncDLObjectId the primary key of the sync d l object
 	 * @return the sync d l object
 	 * @throws com.liferay.sync.NoSuchDLObjectException if a sync d l object with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SyncDLObject findByPrimaryKey(long objectId)
+	public SyncDLObject findByPrimaryKey(long syncDLObjectId)
 		throws NoSuchDLObjectException, SystemException {
-		return findByPrimaryKey((Serializable)objectId);
+		return findByPrimaryKey((Serializable)syncDLObjectId);
 	}
 
 	/**
@@ -1253,14 +1253,14 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	/**
 	 * Returns the sync d l object with the primary key or returns <code>null</code> if it could not be found.
 	 *
-	 * @param objectId the primary key of the sync d l object
+	 * @param syncDLObjectId the primary key of the sync d l object
 	 * @return the sync d l object, or <code>null</code> if a sync d l object with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SyncDLObject fetchByPrimaryKey(long objectId)
+	public SyncDLObject fetchByPrimaryKey(long syncDLObjectId)
 		throws SystemException {
-		return fetchByPrimaryKey((Serializable)objectId);
+		return fetchByPrimaryKey((Serializable)syncDLObjectId);
 	}
 
 	/**

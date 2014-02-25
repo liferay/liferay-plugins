@@ -54,17 +54,17 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public long getPrimaryKey() {
-		return _objectId;
+		return _syncDLObjectId;
 	}
 
 	@Override
 	public void setPrimaryKey(long primaryKey) {
-		setObjectId(primaryKey);
+		setSyncDLObjectId(primaryKey);
 	}
 
 	@Override
 	public Serializable getPrimaryKeyObj() {
-		return _objectId;
+		return _syncDLObjectId;
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("objectId", getObjectId());
+		attributes.put("syncDLObjectId", getSyncDLObjectId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("createTime", getCreateTime());
 		attributes.put("modifiedTime", getModifiedTime());
@@ -107,10 +107,10 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long objectId = (Long)attributes.get("objectId");
+		Long syncDLObjectId = (Long)attributes.get("syncDLObjectId");
 
-		if (objectId != null) {
-			setObjectId(objectId);
+		if (syncDLObjectId != null) {
+			setSyncDLObjectId(syncDLObjectId);
 		}
 
 		Long companyId = (Long)attributes.get("companyId");
@@ -244,21 +244,21 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
-	public long getObjectId() {
-		return _objectId;
+	public long getSyncDLObjectId() {
+		return _syncDLObjectId;
 	}
 
 	@Override
-	public void setObjectId(long objectId) {
-		_objectId = objectId;
+	public void setSyncDLObjectId(long syncDLObjectId) {
+		_syncDLObjectId = syncDLObjectId;
 
 		if (_syncDLObjectRemoteModel != null) {
 			try {
 				Class<?> clazz = _syncDLObjectRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setObjectId", long.class);
+				Method method = clazz.getMethod("setSyncDLObjectId", long.class);
 
-				method.invoke(_syncDLObjectRemoteModel, objectId);
+				method.invoke(_syncDLObjectRemoteModel, syncDLObjectId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -761,13 +761,13 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
-	public void setCreateDate(java.util.Date createDate) {
+	public void setModifiedDate(java.util.Date modifiedDate) {
 		try {
-			String methodName = "setCreateDate";
+			String methodName = "setModifiedDate";
 
 			Class<?>[] parameterTypes = new Class<?>[] { java.util.Date.class };
 
-			Object[] parameterValues = new Object[] { createDate };
+			Object[] parameterValues = new Object[] { modifiedDate };
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
 		}
@@ -777,13 +777,13 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
-	public void setModifiedDate(java.util.Date modifiedDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		try {
-			String methodName = "setModifiedDate";
+			String methodName = "setCreateDate";
 
 			Class<?>[] parameterTypes = new Class<?>[] { java.util.Date.class };
 
-			Object[] parameterValues = new Object[] { modifiedDate };
+			Object[] parameterValues = new Object[] { createDate };
 
 			invokeOnRemoteModel(methodName, parameterTypes, parameterValues);
 		}
@@ -861,7 +861,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	public Object clone() {
 		SyncDLObjectClp clone = new SyncDLObjectClp();
 
-		clone.setObjectId(getObjectId());
+		clone.setSyncDLObjectId(getSyncDLObjectId());
 		clone.setCompanyId(getCompanyId());
 		clone.setCreateTime(getCreateTime());
 		clone.setModifiedTime(getModifiedTime());
@@ -977,8 +977,8 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 	public String toString() {
 		StringBundler sb = new StringBundler(45);
 
-		sb.append("{objectId=");
-		sb.append(getObjectId());
+		sb.append("{syncDLObjectId=");
+		sb.append(getSyncDLObjectId());
 		sb.append(", companyId=");
 		sb.append(getCompanyId());
 		sb.append(", createTime=");
@@ -1035,8 +1035,8 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		sb.append("</model-name>");
 
 		sb.append(
-			"<column><column-name>objectId</column-name><column-value><![CDATA[");
-		sb.append(getObjectId());
+			"<column><column-name>syncDLObjectId</column-name><column-value><![CDATA[");
+		sb.append(getSyncDLObjectId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>companyId</column-name><column-value><![CDATA[");
@@ -1128,7 +1128,7 @@ public class SyncDLObjectClp extends BaseModelImpl<SyncDLObject>
 		return sb.toString();
 	}
 
-	private long _objectId;
+	private long _syncDLObjectId;
 	private long _companyId;
 	private long _createTime;
 	private long _modifiedTime;

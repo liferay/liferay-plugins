@@ -53,9 +53,9 @@ public class SyncDLObjectLocalServiceImpl
 			typePK);
 
 		if (syncDLObject == null) {
-			long syncId = counterLocalService.increment();
+			long syncDLObjectId = counterLocalService.increment();
 
-			syncDLObject = syncDLObjectPersistence.create(syncId);
+			syncDLObject = syncDLObjectPersistence.create(syncDLObjectId);
 
 			syncDLObject.setCompanyId(companyId);
 			syncDLObject.setCreateTime(modifiedTime);

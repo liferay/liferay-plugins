@@ -32,6 +32,6 @@ public abstract class SyncDLObjectActionableDynamicQuery
 
 		setClassLoader(com.liferay.sync.service.ClpSerializer.class.getClassLoader());
 
-		setPrimaryKeyPropertyName("objectId");
+		setPrimaryKeyPropertyName("syncDLObjectId");
 	}
 }
