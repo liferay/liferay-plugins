@@ -31,12 +31,12 @@ public abstract class WebRTCMail {
 		_messageJSONObject = webRTCMail._messageJSONObject;
 	}
 
-	public JSONObject getMessageJSONObject() {
-		return _messageJSONObject;
-	}
-
 	public String getMessageJSON() {
 		return _messageJSONObject.toString();
+	}
+
+	public JSONObject getMessageJSONObject() {
+		return _messageJSONObject;
 	}
 
 	public abstract String getMessageType();
