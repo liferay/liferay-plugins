@@ -37,7 +37,7 @@
 
 		<!-- PK fields -->
 
-		<column name="objectId" type="long" primary="true" />
+		<column name="syncDLObjectId" type="long" primary="true" />
 
 		<!-- Audit fields -->
 
