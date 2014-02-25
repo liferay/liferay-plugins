@@ -85,7 +85,7 @@ public class WebRTCManager {
 		webRTCClient.updatePresenceTime();
 	}
 
-	protected static boolean isWebRTCConnectionStateValid(
+	protected boolean isWebRTCConnectionStateValid(
 		WebRTCClient webRTCClientA, WebRTCClient webRTCClientB,
 		WebRTCConnection.State expectedState) {
 
