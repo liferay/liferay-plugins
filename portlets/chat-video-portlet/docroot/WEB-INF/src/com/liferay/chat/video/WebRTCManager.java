@@ -59,10 +59,6 @@ public class WebRTCManager {
 		return webRTCClient.isAvailable();
 	}
 
-	public void processMessageReset(long userId) {
-		resetWebRTCClient(userId);
-	}
-
 	public void removeWebRTCClient(long userId) {
 		WebRTCClient webRTCClient = getWebRTCClient(userId);
 
