@@ -1144,6 +1144,7 @@ Please find a solution that does not require portal-impl.jar.
 							<jvmarg value="-Ddeployer.portlet.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet.tld" />
 							<jvmarg value="-Ddeployer.portlet-ext.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-portlet-ext.tld" />
 							<jvmarg value="-Ddeployer.security.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-security.tld" />
+							<jvmarg value="-Ddeployer.staging.taglib.dtd=util-taglib/classes/META-INF/liferay-staging.tld" />
 							<jvmarg value="-Ddeployer.theme.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-theme.tld" />
 							<jvmarg value="-Ddeployer.ui.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-ui.tld" />
 							<jvmarg value="-Ddeployer.util.taglib.dtd=${app.server.portal.dir}/WEB-INF/tld/liferay-util.tld" />
