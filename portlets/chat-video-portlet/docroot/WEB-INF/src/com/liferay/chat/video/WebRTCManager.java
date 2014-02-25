@@ -87,17 +87,17 @@ public class WebRTCManager {
 		}
 	}
 
-	protected void checkWebRTCClientsPresences() {
-		long currentTime = System.currentTimeMillis();
+	protected void checkWebRTCClients() {
+		long time = System.currentTimeMillis();
 
 		for (long userId : _webRTCClients.keySet()) {
-			long webRTCClientPresenceTime = getWebRTCClient(
-				userId).getPresenceTime();
+			WebRTCClient webRTCClient = getWebRTCClient(userId);
 
-			long presenceDuration = currentTime - webRTCClientPresenceTime;
+			long presenceDurationTime = time - webRTCClient.getPresenceTime();
 
-			if (presenceDuration > _PRESENCE_TIMEOUT_TIME) {
+			if (presenceDurationTime > _PRESENCE_TIMEOUT_DURATION_TIME) {
 				resetWebRTCClient(userId);
+
 				removeWebRTCClient(userId);
 			}
 		}
@@ -120,7 +120,9 @@ public class WebRTCManager {
 				long initiatedDurationTime =
 					webRTCConnection.getInitiatedDurationTime();
 
-				if (initiatedDurationTime <= _CONNECTION_TIMEOUT_TIME) {
+				if (initiatedDurationTime <=
+						_CONNECTION_TIMEOUT_DURATION_TIME) {
+
 					continue;
 				}
 
@@ -166,10 +168,12 @@ public class WebRTCManager {
 		Set<WebRTCClient> webRTCClients = webRTCClient.getWebRTCClients();
 
 		for (WebRTCClient otherWebRTCClient : webRTCClients) {
-			WebRTCConnection.State webRTCConnectionState =
-				webRTCClient.getWebRTCConnection(webRTCClient).getState();
+			WebRTCConnection webRTCConnection =
+				webRTCClient.getWebRTCConnection(webRTCClient);
 
-			if (webRTCConnectionState != WebRTCConnection.State.DISCONNECTED) {
+			WebRTCConnection.State state = webRTCConnection.getState();
+
+			if (state != WebRTCConnection.State.DISCONNECTED) {
 				JSONObject messageJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
@@ -183,12 +187,13 @@ public class WebRTCManager {
 		}
 
 		webRTCClient.reset();
+
 		webRTCClient.updatePresenceTime();
 	}
 
-	private static long _CONNECTION_TIMEOUT_TIME = 60000;
+	private static long _CONNECTION_TIMEOUT_DURATION_TIME = 60000;
 
-	private static long _PRESENCE_TIMEOUT_TIME = 30000;
+	private static long _PRESENCE_TIMEOUT_DURATION_TIME = 30000;
 
 	private static List<WebRTCManager> _webRTCManagers =
 		new CopyOnWriteArrayList<WebRTCManager>();
