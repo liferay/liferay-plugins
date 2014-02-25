@@ -55,6 +55,10 @@ public class WebRTCClient {
 		return _webRTCConnections.get(webRTCClient);
 	}
 
+	public boolean hasWebRTCConnection(WebRTCClient webRTCClient) {
+		return _webRTCConnections.containsKey(webRTCClient);
+	}
+
 	public boolean isAvailable() {
 		return _available;
 	}
