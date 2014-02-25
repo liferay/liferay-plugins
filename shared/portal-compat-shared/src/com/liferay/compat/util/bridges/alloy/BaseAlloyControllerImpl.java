@@ -809,7 +809,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		alloySearchResult.setHits(hits);
 
-		alloySearchResult.setPortletURL(portletURL);
+		alloySearchResult.setPortletURL(portletURL, attributes);
 
 		alloySearchResult.afterPropertiesSet();
 

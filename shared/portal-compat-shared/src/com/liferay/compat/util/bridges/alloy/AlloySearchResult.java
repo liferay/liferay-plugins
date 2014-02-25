@@ -20,8 +20,12 @@ import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.BaseModel;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.portlet.PortletURL;
 
@@ -87,7 +91,22 @@ public class AlloySearchResult {
 	}
 
 	protected void setPortletURL(PortletURL portletURL) {
+		setPortletURL(portletURL, new HashMap<String, Serializable>());
+	}
+
+	protected void setPortletURL(
+		PortletURL portletURL, Map<String, Serializable> attributes) {
+
 		this.portletURL = portletURL;
+
+		if (attributes == null) {
+			return;
+		}
+
+		for (Map.Entry<String, Serializable> entry : attributes.entrySet()) {
+			this.portletURL.setParameter(
+				entry.getKey(), String.valueOf(entry.getValue()));
+		}
 	}
 
 	protected AlloyServiceInvoker alloyServiceInvoker;
