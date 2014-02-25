@@ -99,7 +99,7 @@ public class AlloySearchResult {
 
 		this.portletURL = portletURL;
 
-		if (attributes == null) {
+		if ((attributes == null) || attributes.isEmpty()) {
 			return;
 		}
 
