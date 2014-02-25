@@ -27,7 +27,9 @@ public class DescriptionWebRTCSDPMail extends WebRTCMail {
 		super(descriptionWebRTCSDPMail);
 	}
 
-	public DescriptionWebRTCSDPMail(long sourceUserId, JSONObject messageJSONObject) {
+	public DescriptionWebRTCSDPMail(
+		long sourceUserId, JSONObject messageJSONObject) {
+
 		super(sourceUserId, messageJSONObject);
 	}
 

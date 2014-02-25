@@ -27,7 +27,9 @@ public class ICECandidateWebRTCMail extends WebRTCMail {
 		super(iceCandidateWebRTCMail);
 	}
 
-	public ICECandidateWebRTCMail(long sourceUserId, JSONObject messageJSONObject) {
+	public ICECandidateWebRTCMail(
+		long sourceUserId, JSONObject messageJSONObject) {
+
 		super(sourceUserId, messageJSONObject);
 	}
 

@@ -27,7 +27,9 @@ public class ConnectionStateWebRTCMail extends WebRTCMail {
 		super(connectionStateWebRTCMail);
 	}
 
-	public ConnectionStateWebRTCMail(long sourceUserId, JSONObject messageJSONObject) {
+	public ConnectionStateWebRTCMail(
+		long sourceUserId, JSONObject messageJSONObject) {
+
 		super(sourceUserId, messageJSONObject);
 	}
 
