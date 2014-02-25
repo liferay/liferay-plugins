@@ -9,8 +9,10 @@ AUI.add(
 				initializer: function(config) {
 					this._listNode = A.one(config.listNode);
 
-					this._bindUIACBase();
-					this._syncUIACBase();
+					if (this._listNode) {
+						this._bindUIACBase();
+						this._syncUIACBase();
+					}
 				}
 			}
 		);
@@ -381,7 +383,9 @@ AUI().use(
 					}
 				}
 
-				instance._listNode.html(buffer.join(''));
+				if (instance._listNode) {
+					instance._listNode.html(buffer.join(''));
+				}
 			}
 		};
 
