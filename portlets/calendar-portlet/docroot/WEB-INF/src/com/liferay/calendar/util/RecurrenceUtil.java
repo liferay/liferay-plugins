@@ -21,9 +21,11 @@ import com.google.ical.values.DateValue;
 import com.google.ical.values.DateValueImpl;
 
 import com.liferay.calendar.model.CalendarBooking;
+import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.TimeZoneUtil;
 
 import java.text.ParseException;
 
@@ -150,21 +152,46 @@ public class RecurrenceUtil {
 		CalendarBooking newCalendarBooking =
 			(CalendarBooking)calendarBooking.clone();
 
-		Calendar jCalendar = JCalendarUtil.getJCalendar(
-			calendarBooking.getStartTime());
-
-		jCalendar = JCalendarUtil.getJCalendar(
-			startDateValue.year(), startDateValue.month() - 1,
-			startDateValue.day(), jCalendar.get(Calendar.HOUR_OF_DAY),
-			jCalendar.get(Calendar.MINUTE), jCalendar.get(Calendar.SECOND),
-			jCalendar.get(Calendar.MILLISECOND),
-			TimeZone.getTimeZone(StringPool.UTC));
+		Calendar jCalendar = _getStartTimeJCalendar(
+				calendarBooking, startDateValue);
 
 		newCalendarBooking.setEndTime(
 			jCalendar.getTimeInMillis() + calendarBooking.getDuration());
 		newCalendarBooking.setStartTime(jCalendar.getTimeInMillis());
 
 		return newCalendarBooking;
+	}
+
+	private static Calendar _getStartTimeJCalendar(
+		CalendarBooking calendarBooking, DateValue startDateValue) {
+
+		TimeZone timeZone = TimeZoneUtil.getDefault();
+
+		try {
+			timeZone = CalendarBookingLocalServiceUtil.getTimeZone(
+				calendarBooking);
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e);
+			}
+		}
+
+		Calendar jCalendar = JCalendarUtil.getJCalendar(
+			calendarBooking.getStartTime());
+		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			startDateValue.year(), startDateValue.month() - 1,
+			startDateValue.day(), jCalendar.get(Calendar.HOUR_OF_DAY),
+			jCalendar.get(Calendar.MINUTE), jCalendar.get(Calendar.SECOND),
+			jCalendar.get(Calendar.MILLISECOND),
+			TimeZone.getTimeZone(StringPool.UTC));
+
+		int shift = JCalendarUtil.getDstShift(
+			jCalendar, startTimeJCalendar, timeZone);
+
+		startTimeJCalendar.add(Calendar.MILLISECOND, shift);
+
+		return startTimeJCalendar;
 	}
 
 	private static DateValue _toDateValue(long time) {
