@@ -16,24 +16,16 @@ package com.liferay.portal.search.elasticsearch.index;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.StreamUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.search.elasticsearch.io.StringOutputStream;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Future;
 
-import org.elasticsearch.action.ListenableActionFuture;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequestBuilder;
@@ -82,7 +74,7 @@ public class PerCompanyIndexFactory implements IndexFactory {
 					entry.getKey(), typeMapping);
 			}
 
-			ListenableActionFuture<CreateIndexResponse> createIndexFuture =
+			Future<CreateIndexResponse> createIndexFuture =
 				createIndexRequestBuilder.execute();
 
 			CreateIndexResponse createIndexResponse = createIndexFuture.get();
