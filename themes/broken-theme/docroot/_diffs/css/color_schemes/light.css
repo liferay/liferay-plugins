@@ -1,0 +1,35 @@
+@import "compass";
+
+.aui .light {
+	background: #FAFAFA;
+
+	#navigation {
+		.navbar-inner {
+			background: #F6F6F6;
+
+			.nav > li a {
+				color: #777;
+			}
+		}
+	}
+
+	/* ---------- Portlet ---------- */
+
+	.portlet {
+		background: transparent;
+	}
+
+	.portlet-title {
+		color: #29B23E;
+	}
+
+	/* ---------- Portlet hover styles ---------- */
+
+	.columns-max {
+		.portlet {
+			.portlet-topper-toolbar a {
+				color: #555;
+			}
+		}
+	}
+}

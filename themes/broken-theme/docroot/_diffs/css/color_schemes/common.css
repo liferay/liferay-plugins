@@ -1,0 +1,224 @@
+@import "compass";
+
+.aui {
+	.dark, .light {
+		#navigation {
+			.navbar-inner {
+				border-width: 0;
+
+				.nav {
+					> li {
+						margin-right: 5px;
+					}
+
+					li {
+						padding: 8px 0;
+
+						&.active, &.open {
+							> a {
+								background: #00CAFF;
+								color: #FFF;
+							}
+						}
+
+						&.open {
+							> .dropdown-toggle {
+								background: #00CAFF;
+								color: #FFF;
+							}
+						}
+					}
+
+					.dropdown-menu {
+						background-color: #FFF;
+						border: 1px solid #CCC;
+						border-color: rgba(0, 0, 0, 0.2);
+
+						&:after {
+							border-left: 6px solid transparent;
+							border-right: 6px solid transparent;
+							border-bottom: 6px solid #FFF;
+						}
+
+						&:before {
+							border-left: 7px solid transparent;
+							border-right: 7px solid transparent;
+							border-bottom: 7px solid #CCC;
+						}
+
+						a {
+							color: #555;
+
+							&:focus, &:hover {
+								background: #00CAFF;
+								color: #FFF;
+								text-decoration: none;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.modify-pages .delete-tab {
+			top: 10px;
+		}
+
+		/* ---------- Breadcrumbs ---------- */
+
+		.breadcrumb {
+			background: transparent;
+		}
+
+		/* ---------- Portlet ---------- */
+
+		.portlet-content {
+			border-width: 0;
+		}
+
+		.portlet-topper {
+			background: transparent;
+
+			.portlet-title {
+				font-size: 22px;
+				font-weight: lighter;
+			}
+		}
+
+		.lfr-configurator-visibility .portlet-topper {
+			background: transparent;
+		}
+
+		/* ---------- Portlet hover styles ---------- */
+
+		.portlet-borderless-container {
+			background: transparent;
+		}
+
+		section.portlet {
+			border: 2px solid transparent;
+
+			menu.portlet-topper-toolbar {
+				color: #00CAFF;
+				display: none;
+			}
+		}
+
+		&.signed-in {
+			section.portlet:hover {
+				border-color: #00CAFF;
+
+				menu.portlet-topper-toolbar {
+					display: block;
+				}
+			}
+		}
+
+		section.portlet#portlet_new-password {
+			menu.portlet-topper-toolbar {
+				background: transparent;
+
+				&:after {
+					content: "";
+				}
+			}
+
+			&:hover {
+				border: 2px solid transparent;
+
+				menu.portlet-topper-toolbar {
+					background: transparent;
+				}
+			}
+		}
+
+		&.controls-hidden {
+			section.portlet:hover {
+				border-color: transparent;
+
+				menu.portlet-topper-toolbar {
+					display: none;
+				}
+			}
+		}
+
+		.columns-max {
+			section.portlet {
+				.portlet-topper-toolbar {
+					background: transparent;
+					height: auto;
+					width: auto;
+
+					&:after {
+						content: "";
+					}
+
+					.portlet-icon-back {
+						padding-right: 0;
+					}
+				}
+
+				&:focus, &:hover {
+					border: 2px solid transparent;
+
+					.portlet-topper-toolbar {
+						background: transparent;
+					}
+				}
+			}
+		}
+
+		/* ---------- Extras ---------- */
+
+		a {
+			@include text-shadow(none);
+		}
+
+		#navigation {
+			.navbar-inner {
+				@include box-shadow(none);
+
+				.nav {
+					li {
+						&.active, &.open {
+							> a {
+								@include border-radius(3px);
+								@include box-shadow(none);
+								@include text-shadow(none);
+							}
+						}
+
+						&.open > .dropdown-toggle {
+							@include border-radius(3px);
+							@include text-shadow(none);
+						}
+					}
+
+					.dropdown-menu {
+						@include border-radius(6px);
+					}
+				}
+			}
+		}
+
+		section.portlet {
+			.admin.portlet-topper-toolbar:before {
+				@include border-radius(2px);
+			}
+		}
+
+		section.portlet.active {
+			@include border-radius(4px);
+		}
+
+		&.signed-in {
+			section.portlet {
+				@include border-radius(3px);
+
+				&:hover {
+					@include single-transition(border-color, 0.2s, ease-in);
+				}
+			}
+		}
+	}
+}
