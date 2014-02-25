@@ -402,11 +402,11 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 
 		int activity = TasksActivityKeys.UPDATE_ENTRY;
 
-		if (status == TasksEntryConstants.STATUS_RESOLVED) {
-			activity = TasksActivityKeys.RESOLVE_ENTRY;
-		}
-		else if (status == TasksEntryConstants.STATUS_REOPENED) {
+		if (status == TasksEntryConstants.STATUS_REOPENED) {
 			activity = TasksActivityKeys.REOPEN_ENTRY;
+		}
+		else if (status == TasksEntryConstants.STATUS_RESOLVED) {
+			activity = TasksActivityKeys.RESOLVE_ENTRY;
 		}
 
 		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
@@ -466,9 +466,9 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 				if ((tasksEntry.getStatus() !=
 						TasksEntryConstants.STATUS_OPEN) &&
 					(tasksEntry.getStatus() !=
-						TasksEntryConstants.STATUS_RESOLVED) &&
+						TasksEntryConstants.STATUS_REOPENED) &&
 					(tasksEntry.getStatus() !=
-						TasksEntryConstants.STATUS_REOPENED)) {
+						TasksEntryConstants.STATUS_RESOLVED)) {
 
 					return;
 				}
