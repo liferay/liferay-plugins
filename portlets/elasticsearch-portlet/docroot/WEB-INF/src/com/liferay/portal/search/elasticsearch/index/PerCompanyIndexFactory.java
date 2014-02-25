@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.search.elasticsearch.io.StringOutputStream;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -30,6 +31,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Future;
 
 import org.elasticsearch.action.ListenableActionFuture;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
@@ -45,19 +47,19 @@ import org.elasticsearch.common.io.stream.OutputStreamStreamOutput;
  */
 public class PerCompanyIndexFactory implements IndexFactory {
 
+	@Override
 	public void createIndices(AdminClient adminClient) throws Exception {
-		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
-
 		IndicesAdminClient indicesAdminClient = adminClient.indices();
+
+		List<Company> companies = CompanyLocalServiceUtil.getCompanies();
 
 		for (Company company : companies) {
 			IndicesExistsRequestBuilder indicesExistsRequestBuilder =
 				indicesAdminClient.prepareExists(
 					String.valueOf(company.getCompanyId()));
 
-			ListenableActionFuture<IndicesExistsResponse>
-				indicesExistsRequestFuture =
-					indicesExistsRequestBuilder.execute();
+			Future<IndicesExistsResponse> indicesExistsRequestFuture =
+				indicesExistsRequestBuilder.execute();
 
 			IndicesExistsResponse indicesExistsResponse =
 				indicesExistsRequestFuture.get();
@@ -70,14 +72,14 @@ public class PerCompanyIndexFactory implements IndexFactory {
 				indicesAdminClient.prepareCreate(
 					String.valueOf(company.getCompanyId()));
 
-			for (Map.Entry<String, String> typeMappingEntry :
-					_typeMappings.entrySet()) {
+			for (Map.Entry<String, String> entry : _typeMappings.entrySet()) {
+				Class<?> clazz = getClass();
 
-				String typeMapping = retrieveTypeMapping(
-					typeMappingEntry.getValue());
+				String typeMapping = StringUtil.read(
+					clazz.getClassLoader(), entry.getValue());
 
 				createIndexRequestBuilder.addMapping(
-					typeMappingEntry.getKey(), typeMapping);
+					entry.getKey(), typeMapping);
 			}
 
 			ListenableActionFuture<CreateIndexResponse> createIndexFuture =
@@ -99,36 +101,6 @@ public class PerCompanyIndexFactory implements IndexFactory {
 
 	public void setTypeMappings(Map<String, String> typeMappings) {
 		_typeMappings = typeMappings;
-	}
-
-	protected String retrieveTypeMapping(String typeMappingPath)
-		throws IOException {
-
-		ClassLoader contextClassLoader =
-			Thread.currentThread().getContextClassLoader();
-
-		StringBundler stringBundler = new StringBundler();
-
-		InputStream inputStream = null;
-
-		try {
-			inputStream = contextClassLoader.getResourceAsStream(
-				typeMappingPath);
-
-			BufferedReader bufferedReader = new BufferedReader(
-				new InputStreamReader(inputStream));
-
-			String line = null;
-
-			while ((line = bufferedReader.readLine()) != null) {
-				stringBundler.append(line);
-			}
-		}
-		finally {
-			StreamUtil.cleanUp(inputStream);
-		}
-
-		return stringBundler.toString();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
