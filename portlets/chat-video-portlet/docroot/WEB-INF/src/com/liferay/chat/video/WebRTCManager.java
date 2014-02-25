@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -86,6 +87,22 @@ public class WebRTCManager {
 		}
 	}
 
+	protected void checkWebRTCClientsPresences() {
+		long currentTime = System.currentTimeMillis();
+
+		for (long userId : _webRTCClients.keySet()) {
+			long webRTCClientPresenceTime = getWebRTCClient(
+				userId).getPresenceTime();
+
+			long presenceDuration = currentTime - webRTCClientPresenceTime;
+
+			if (presenceDuration > _PRESENCE_TIMEOUT_TIME) {
+				resetWebRTCClient(userId);
+				removeWebRTCClient(userId);
+			}
+		}
+	}
+
 	protected void checkWebRTCConnectionsStates() {
 		for (WebRTCClient webRTCClient : _webRTCClients.values()) {
 			for (WebRTCClient otherWebRTCClient :
@@ -139,7 +156,39 @@ public class WebRTCManager {
 		destinationWebRTCMailbox.pushWebRTCMail(connectionStateWebRTCMail);
 	}
 
+	protected void resetWebRTCClient(long userId) {
+		WebRTCClient webRTCClient = getWebRTCClient(userId);
+
+		if (webRTCClient == null) {
+			return;
+		}
+
+		Set<WebRTCClient> webRTCClients = webRTCClient.getWebRTCClients();
+
+		for (WebRTCClient otherWebRTCClient : webRTCClients) {
+			WebRTCConnection.State webRTCConnectionState =
+				webRTCClient.getWebRTCConnection(webRTCClient).getState();
+
+			if (webRTCConnectionState != WebRTCConnection.State.DISCONNECTED) {
+				JSONObject messageJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				messageJSONObject.put("reason", "reset");
+				messageJSONObject.put("status", "lost");
+				messageJSONObject.put("type", "status");
+
+				pushConnectionStateWebRTCMail(
+					webRTCClient, otherWebRTCClient, messageJSONObject);
+			}
+		}
+
+		webRTCClient.reset();
+		webRTCClient.updatePresenceTime();
+	}
+
 	private static long _CONNECTION_TIMEOUT_TIME = 60000;
+
+	private static long _PRESENCE_TIMEOUT_TIME = 30000;
 
 	private static List<WebRTCManager> _webRTCManagers =
 		new CopyOnWriteArrayList<WebRTCManager>();
