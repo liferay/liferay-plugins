@@ -88,7 +88,7 @@
 					url = '<liferay-portlet:renderURL doAsGroupId="<%= themeDisplay.getScopeGroupId() %>" portletName="<%= portletId.equals(PortletKeys.STORE) ? PortletKeys.MY_MARKETPLACE : PortletKeys.STORE %>" windowState="<%= WindowState.MAXIMIZED.toString() %>" />';
 
 					if (response.appId) {
-						url = Liferay.Util.addParams('appId=' + response.appId, url);
+						url = Liferay.Util.addParams('_<%= PortletKeys.STORE %>_appId=' + response.appId, url);
 					}
 				}
 
