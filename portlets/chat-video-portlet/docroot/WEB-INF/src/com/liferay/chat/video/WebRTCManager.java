@@ -59,7 +59,7 @@ public class WebRTCManager {
 		return webRTCClient.isAvailable();
 	}
 
-	public void pushDescriptionWebRTCSDPMail(
+	protected void pushDescriptionWebRTCSDPMail(
 		long sourceUserId, long destinationUserId, String descriptionSDP) {
 
 		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
@@ -72,7 +72,7 @@ public class WebRTCManager {
 		pushWebRTCMail(sourceUserId, destinationUserId, webRTCMail);
 	}
 
-	public void pushICECandidateWebRTCMail(
+	protected void pushICECandidateWebRTCMail(
 		long sourceUserId, long destinationUserId, String candidateICE) {
 
 		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
