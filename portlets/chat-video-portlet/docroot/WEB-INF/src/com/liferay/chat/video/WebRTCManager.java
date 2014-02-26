@@ -60,11 +60,11 @@ public class WebRTCManager {
 	}
 
 	protected void pushDescriptionWebRTCSDPMail(
-		long sourceUserId, long destinationUserId, String descriptionSDP) {
+		long sourceUserId, long destinationUserId, String description) {
 
 		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
 
-		messageJSONObject.put("desc", descriptionSDP);
+		messageJSONObject.put("description", description);
 
 		WebRTCMail webRTCMail = new DescriptionWebRTCSDPMail(
 			sourceUserId, messageJSONObject);
@@ -73,11 +73,11 @@ public class WebRTCManager {
 	}
 
 	protected void pushICECandidateWebRTCMail(
-		long sourceUserId, long destinationUserId, String candidateICE) {
+		long sourceUserId, long destinationUserId, String ice) {
 
 		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
 
-		messageJSONObject.put("ice", candidateICE);
+		messageJSONObject.put("ice", ice);
 
 		WebRTCMail webRTCMail = new ICECandidateWebRTCMail(
 			sourceUserId, messageJSONObject);
