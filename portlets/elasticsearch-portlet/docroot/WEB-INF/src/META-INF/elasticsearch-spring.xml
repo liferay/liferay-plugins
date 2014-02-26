@@ -10,11 +10,7 @@
 >
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 
-	<!-- Elastic Search engine adapter -->
-
-	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher" />
-
-	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" />
+	<!-- Elasticsearch engine adapter -->
 
 	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchEngineImpl" class="com.liferay.portal.kernel.search.BaseSearchEngine">
 		<property name="clusteredWrite" value="false" />
@@ -23,16 +19,10 @@
 		<property name="luceneBased" value="true" />
 		<property name="vendor" value="Elasticsearch" />
 	</bean>
+	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher" />
+	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" />
 
-	<!-- Elastic Search Connection -->
-
-	<bean id="com.liferay.portal.search.elasticsearch.index.IndexFactory" class="com.liferay.portal.search.elasticsearch.index.CompanyIndexFactory">
-		<property name="typeMappings">
-			<util:map>
-				<entry key="LiferayDocumentType" value="META-INF/mappings.json" />
-			</util:map>
-		</property>
-	</bean>
+	<!-- Elasticsearch connection -->
 
 	<bean id="com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnection" class="com.liferay.portal.search.elasticsearch.connection.EmbeddedElasticsearchConnection">
 		<property name="clusterName">
@@ -43,6 +33,13 @@
 
 	<bean id="com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnectionManager" class="com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnectionManager">
 		<property name="elasticsearchConnection" ref="com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnection" />
+	</bean>
+	<bean id="com.liferay.portal.search.elasticsearch.index.IndexFactory" class="com.liferay.portal.search.elasticsearch.index.CompanyIndexFactory">
+		<property name="typeMappings">
+			<util:map>
+				<entry key="LiferayDocumentType" value="META-INF/mappings.json" />
+			</util:map>
+		</property>
 	</bean>
 
 	<!-- Configurator -->
