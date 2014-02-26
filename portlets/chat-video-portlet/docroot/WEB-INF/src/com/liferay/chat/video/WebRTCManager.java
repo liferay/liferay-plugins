@@ -212,6 +212,26 @@ public class WebRTCManager {
 		pushWebRTCMail(sourceUserId, destinationUserId, webRTCMail);
 	}
 
+	protected void pushErrorWebRTCMail(
+		long sourceUserId, long destinationUserId, String errorId) {
+
+		WebRTCClient sourceWebRTCClient = getWebRTCClient(sourceUserId);
+		WebRTCClient destinationWebRTCClient = getWebRTCClient(
+			destinationUserId);
+
+		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
+
+		messageJSONObject.put("id", errorId);
+
+		WebRTCMail errorWebRTCMail = new ErrorWebRTCMail(
+			sourceUserId, messageJSONObject);
+
+		WebRTCMailbox destinationOutgoingWebRTCMailbox =
+			destinationWebRTCClient.getOutgoingWebRTCMailbox();
+
+		destinationOutgoingWebRTCMailbox.pushWebRTCMail(errorWebRTCMail);
+	}
+
 	protected void pushICECandidateWebRTCMail(
 		long sourceUserId, long destinationUserId, String ice) {
 
@@ -240,17 +260,8 @@ public class WebRTCManager {
 				sourceWebRTCClient, destinationWebRTCClient,
 				WebRTCConnection.State.CONNECTED)) {
 
-			JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
-
-			messageJSONObject.put("id", "invalid_state");
-
-			WebRTCMail errorWebRTCMail = new ErrorWebRTCMail(
-				destinationUserId, messageJSONObject);
-
-			WebRTCMailbox sourceOutgoingWebRTCMailbox =
-				sourceWebRTCClient.getOutgoingWebRTCMailbox();
-
-			sourceOutgoingWebRTCMailbox.pushWebRTCMail(errorWebRTCMail);
+			pushErrorWebRTCMail(
+				destinationUserId, sourceUserId, "invalid_state");
 
 			return;
 		}
