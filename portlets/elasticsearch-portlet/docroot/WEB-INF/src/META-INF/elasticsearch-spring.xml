@@ -37,7 +37,7 @@
 	<bean id="com.liferay.portal.search.elasticsearch.index.IndexFactory" class="com.liferay.portal.search.elasticsearch.index.CompanyIndexFactory">
 		<property name="typeMappings">
 			<util:map>
-				<entry key="LiferayDocumentType" value="META-INF/mappings.json" />
+				<entry key="LiferayDocumentType" value="META-INF/type_mappings.json" />
 			</util:map>
 		</property>
 	</bean>
