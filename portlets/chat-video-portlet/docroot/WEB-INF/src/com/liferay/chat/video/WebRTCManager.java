@@ -59,32 +59,6 @@ public class WebRTCManager {
 		return webRTCClient.isAvailable();
 	}
 
-	protected void pushDescriptionWebRTCSDPMail(
-		long sourceUserId, long destinationUserId, String description) {
-
-		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
-
-		messageJSONObject.put("description", description);
-
-		WebRTCMail webRTCMail = new DescriptionWebRTCSDPMail(
-			sourceUserId, messageJSONObject);
-
-		pushWebRTCMail(sourceUserId, destinationUserId, webRTCMail);
-	}
-
-	protected void pushICECandidateWebRTCMail(
-		long sourceUserId, long destinationUserId, String ice) {
-
-		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
-
-		messageJSONObject.put("ice", ice);
-
-		WebRTCMail webRTCMail = new ICECandidateWebRTCMail(
-			sourceUserId, messageJSONObject);
-
-		pushWebRTCMail(sourceUserId, destinationUserId, webRTCMail);
-	}
-
 	public void removeWebRTCClient(long userId) {
 		WebRTCClient webRTCClient = getWebRTCClient(userId);
 
@@ -223,6 +197,32 @@ public class WebRTCManager {
 			destinationWebRTCClient.getOutgoingWebRTCMailbox();
 
 		destinationWebRTCMailbox.pushWebRTCMail(connectionStateWebRTCMail);
+	}
+
+	protected void pushDescriptionWebRTCSDPMail(
+		long sourceUserId, long destinationUserId, String description) {
+
+		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
+
+		messageJSONObject.put("description", description);
+
+		WebRTCMail webRTCMail = new DescriptionWebRTCSDPMail(
+			sourceUserId, messageJSONObject);
+
+		pushWebRTCMail(sourceUserId, destinationUserId, webRTCMail);
+	}
+
+	protected void pushICECandidateWebRTCMail(
+		long sourceUserId, long destinationUserId, String ice) {
+
+		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
+
+		messageJSONObject.put("ice", ice);
+
+		WebRTCMail webRTCMail = new ICECandidateWebRTCMail(
+			sourceUserId, messageJSONObject);
+
+		pushWebRTCMail(sourceUserId, destinationUserId, webRTCMail);
 	}
 
 	protected void pushWebRTCMail(
