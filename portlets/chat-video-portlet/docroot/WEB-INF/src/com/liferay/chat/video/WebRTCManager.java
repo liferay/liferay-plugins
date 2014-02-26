@@ -74,7 +74,7 @@ public class WebRTCManager {
 
 		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
 
-		messageJSONObject.put("type", "call");
+		messageJSONObject.put("type", "connect");
 
 		pushConnectionStateWebRTCMail(
 			sourceWebRTCClient, destinationWebRTCClient, messageJSONObject);
