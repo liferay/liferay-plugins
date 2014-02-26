@@ -26,7 +26,7 @@
 
 	<!-- Elastic Search Connection -->
 
-	<bean id="com.liferay.portal.search.elasticsearch.index.IndexFactory" class="com.liferay.portal.search.elasticsearch.index.PerCompanyIndexFactory">
+	<bean id="com.liferay.portal.search.elasticsearch.index.IndexFactory" class="com.liferay.portal.search.elasticsearch.index.CompanyIndexFactory">
 		<property name="typeMappings">
 			<util:map>
 				<entry key="LiferayDocumentType" value="META-INF/mappings.json" />
