@@ -6,8 +6,8 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
->
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 
 	<!-- Elasticsearch engine adapter -->
@@ -20,7 +20,9 @@
 		<property name="vendor" value="Elasticsearch" />
 	</bean>
 	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher" />
-	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" />
+	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" >
+		<property name="elasticsearchDocumentFactory" ref="com.liferay.portal.search.elasticsearch.document.ElasticsearchDocumentFactory" />
+	</bean>
 
 	<!-- Elasticsearch connection -->
 
@@ -38,6 +40,24 @@
 		<property name="typeMappings">
 			<util:map>
 				<entry key="LiferayDocumentType" value="META-INF/type_mappings.json" />
+			</util:map>
+		</property>
+	</bean>
+
+	<!-- Elasticsearch Document -->
+
+	<bean id="com.liferay.portal.search.elasticsearch.document.ElasticsearchDocumentFactory" class="com.liferay.portal.search.elasticsearch.document.DefaultElasticsearchDocumentFactory" />
+
+	<!-- Elasticsearch Facet Configs -->
+
+	<bean id="com.liferay.portal.search.elasticsearch.facet.DefaultFacetProcessor" class="com.liferay.portal.search.elasticsearch.facet.DefaultFacetProcessor" />
+	<bean id="com.liferay.portal.search.elasticsearch.facet.RangeFacetProcessor" class="com.liferay.portal.search.elasticsearch.facet.RangeFacetProcessor" />
+	<bean id="com.liferay.portal.search.elasticsearch.facet.FacetProcessorUtil" class="com.liferay.portal.search.elasticsearch.facet.FacetProcessorUtil">
+		<property name="defaultFacetProcessor" ref="com.liferay.portal.search.elasticsearch.facet.DefaultFacetProcessor" />
+		<property name="facetProcessors">
+			<util:map>
+				<entry key="com.liferay.portal.kernel.search.facet.RangeFacet"
+				       value-ref="com.liferay.portal.search.elasticsearch.facet.RangeFacetProcessor" />
 			</util:map>
 		</property>
 	</bean>

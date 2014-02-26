@@ -58,9 +58,9 @@
 			},
 			"keywordSearch": {
 				"index": "not_analyzed",
-				"store": "yes",
+				"index_options": "docs",
 				"omit_norms": "yes",
-				"omit_term_freq_and_positions": "yes",
+				"store": "yes",
 				"type": "string"
 			},
 			"languageId": {
