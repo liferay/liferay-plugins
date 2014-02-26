@@ -199,6 +199,43 @@ public class WebRTCManager {
 		destinationWebRTCMailbox.pushWebRTCMail(connectionStateWebRTCMail);
 	}
 
+	protected void pushWebRTCMailValidateConnected(
+		long sourceUserId, long destinationUserId, WebRTCMail webRTCMail) {
+
+		WebRTCClient sourceWebRTCClient = getWebRTCClient(sourceUserId);
+		WebRTCClient destinationWebRTCClient = getWebRTCClient(
+			destinationUserId);
+
+		if (sourceWebRTCClient == null || destinationWebRTCClient == null) {
+			return;
+		}
+
+		boolean isValid = isValidWebRTCConnectionState(
+			sourceWebRTCClient, destinationWebRTCClient,
+			WebRTCConnection.State.CONNECTED);
+
+		if (!isValid) {
+			JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
+
+			messageJSONObject.put("id", "invalid_state");
+
+			WebRTCMail errorWebRTCMail = new ErrorWebRTCMail(
+				destinationUserId, messageJSONObject);
+
+			WebRTCMailbox sourceOutgoingWebRTCMailbox =
+				sourceWebRTCClient.getOutgoingWebRTCMailbox();
+
+			sourceOutgoingWebRTCMailbox.pushWebRTCMail(errorWebRTCMail);
+
+			return;
+		}
+
+		WebRTCMailbox destinationOutgoingWebRTCMailbox =
+				destinationWebRTCClient.getOutgoingWebRTCMailbox();
+
+		destinationOutgoingWebRTCMailbox.pushWebRTCMail(webRTCMail);
+	}
+
 	protected void resetWebRTCClient(long userId) {
 		WebRTCClient webRTCClient = getWebRTCClient(userId);
 
