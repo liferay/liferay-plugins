@@ -240,7 +240,8 @@ public class GoogleLoginAction extends BaseStrutsAction {
 	}
 
 	protected String getRedirectURI(HttpServletRequest request) {
-		return PortalUtil.getPortalURL(request) + _REDIRECT_URI;
+		return PortalUtil.getPortalURL(request) + PortalUtil.getPathMain() +
+				_REDIRECT_URI;
 	}
 
 	protected Userinfo getUserinfo(
@@ -454,7 +455,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 	private static final String _GOOGLE_DRIVE_CONTEXT = "google-drive-hook";
 
 	private static final String _REDIRECT_URI =
-		"/c/portal/google_login?cmd=token";
+		"/portal/google_login?cmd=token";
 
 	private static final List<String> _SCOPES_DRIVE = Arrays.asList(
 		"https://www.googleapis.com/auth/drive",
