@@ -17,7 +17,7 @@
  */
 --%>
 
-<aui:select changesContext="<%= submitOnChange %>" cssClass="distribution-scope" name="distributionScope" onChange='<%= submitOnChange ? renderResponse.getNamespace() + "selectDistributionScope(this.value);" : "" %>' showEmptyOption="<%= true %>">
+<aui:select changesContext="<%= submitOnChange %>" cssClass="distribution-scope" name="distributionScope" onChange='<%= submitOnChange ? renderResponse.getNamespace() + "selectDistributionScope(this.value);" : "" %>' required="<%= true %>" showEmptyOption="<%= true %>">
 	<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_GENERAL_ANNOUNCEMENTS) %>">
 		<aui:option label="general" selected="<%= (classNameId == 0) && (classPK == 0) %>" value="0,0" />
 	</c:if>
