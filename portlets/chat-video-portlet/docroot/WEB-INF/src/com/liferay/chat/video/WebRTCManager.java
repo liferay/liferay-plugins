@@ -36,7 +36,6 @@ public class WebRTCManager {
 	public void connect(long sourceUserId, long destinationUserId) {
 		addWebRTCClient(sourceUserId);
 
-		WebRTCClient sourceWebRTCClient = getWebRTCClient(sourceUserId);
 
 		if (!hasAvailableWebRTCClient(sourceUserId)) {
 			return;
@@ -49,6 +48,7 @@ public class WebRTCManager {
 			return;
 		}
 
+		WebRTCClient sourceWebRTCClient = getWebRTCClient(sourceUserId);
 		WebRTCClient destinationWebRTCClient = getWebRTCClient(
 			destinationUserId);
 
