@@ -10,7 +10,6 @@
 	body {
 		color: #555;
 		font-weight: 200;
-		line-height: 3em;
 	}
 
 	a {
@@ -147,17 +146,15 @@
 	}
 
 	@include respond-to(phone) {
-		.form-search .input-append {
-			.btn {
-				font-size: 0;
-				padding: 4px 19px 0;
+		.form-search .input-append .btn {
+			font-size: 0;
+			padding: 4px 19px 0;
 
-				&:after {
-					content: $search;
-					font-size: 18px;
+			&:after {
+				content: $search;
+				font-size: 18px;
 
-					@include icon-FontAwesome();
-				}
+				@include icon-FontAwesome();
 			}
 		}
 	}
@@ -328,7 +325,7 @@
 							&.active > a {
 								color: #FFF;
 
-								&, &:hover, &:focus {
+								&, &:focus, &:hover {
 									background: #0066B3;
 								}
 							}
@@ -441,7 +438,7 @@
 			background: transparent;
 			border-color: #DDD;
 
-			&:hover, &:focus, &:active, &.active, &.disabled, &[disabled] {
+			&:active, &.active, &.disabled, &:focus, &:hover, &[disabled] {
 				background-color: #DDD;
 			}
 
@@ -618,7 +615,7 @@
 		}
 
 		.toggler-content-expanded {
-			border-width: 1px 0 0 0;
+			border-width: 1px 0 0;
 		}
 	}
 
@@ -803,17 +800,15 @@
 	}
 
 	.lfr-add-panel {
-		.add-content-menu {
-			.lfr-content-item {
-				color: #009AE5;
+		.add-content-menu .lfr-content-item {
+			color: #009AE5;
 
-				&:hover {
-					background-color: #E5F5FC;
-				}
+			&:hover {
+				background-color: #E5F5FC;
+			}
 
-				&.lfr-portlet-used {
-					color: #BBB;
-				}
+			&.lfr-portlet-used {
+				color: #BBB;
 			}
 		}
 
@@ -917,19 +912,13 @@
 
 	.dockbar {
 		.nav {
-			> li {
-				> a {
-					@include text-shadow(none);
-				}
+			> li > a {
+				@include text-shadow(none);
 			}
 
-			li.dropdown {
-				.dropdown-menu {
+			li.dropdown .dropdown-menu {
+				&, > li > a {
 					@include border-radius(0);
-
-					> li > a {
-						@include border-radius(0);
-					}
 				}
 			}
 		}

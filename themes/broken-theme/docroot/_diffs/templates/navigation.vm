@@ -27,7 +27,6 @@
 						<a aria-labelledby="layout_$nav_item.getLayoutId()" $nav_item_attr_has_popup class="$nav_item_link_css_class" href="$nav_item.getURL()" $nav_item.getTarget() role="menuitem">
 							<span>$nav_item.icon() $nav_item.getName() $nav_item_caret</span>
 						</a>
-					</li>
 
 						#if ($nav_item.hasChildren())
 							<ul class="dropdown-menu child-menu" role="menu">

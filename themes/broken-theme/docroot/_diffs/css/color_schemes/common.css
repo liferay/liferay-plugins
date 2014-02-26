@@ -114,7 +114,7 @@
 			}
 		}
 
-		section.portlet#portlet_new-password {
+		section.portlet #portlet_new-password {
 			menu.portlet-topper-toolbar {
 				background: transparent;
 

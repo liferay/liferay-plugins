@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 #parse ($init)
 
 <html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
@@ -36,7 +38,7 @@ $theme.include($body_top_include)
 		</div>
 
 		#if ($has_navigation || $is_signed_in)
-			#include ("$full_templates_path/navigation.vm")
+			#parse ("$full_templates_path/navigation.vm")
 		#end
 	</header>
 
@@ -64,6 +66,8 @@ $theme.include($body_top_include)
 		<p class="powered-by">
 			#language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
 		</p>
+		<div id="modal-sign-in"></div>
+		<div id="modal-external"></div>
 	</footer>
 </div>
 

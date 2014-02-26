@@ -1,3 +1,4 @@
+@import "compass";
 @import "mixins";
 
 @import url(custom_common.css);
@@ -82,34 +83,28 @@ $dockbarOpenGradientStart: #0EA6F9;
 	/* ---------- Dockbar ---------- */
 
 	.dockbar {
-		&.navbar {
-			.nav {
-				li {
-					&.dropdown {
-						&.active {
-							.dropdown-toggle {
-								background-color: transparent;
+		&.navbar .nav {
+			li.dropdown {
+				&.active {
+					.dropdown-toggle {
+						background-color: transparent;
 
-								&:hover {
-									color: #FFF;
-								}
-							}
-						}
-
-						&.staging-toggle .dropdown-menu {
-							background-color: #55B8EC;
+						&:hover {
+							color: #FFF;
 						}
 					}
 				}
 
-				> li {
-					> a {
-						margin: 0 5px 0 0;
+				&.staging-toggle .dropdown-menu {
+					background-color: #55B8EC;
+				}
+			}
 
-						&:hover {
-							background-color: #2FA4F5;
-						}
-					}
+			> li > a {
+				margin: 0 5px 0 0;
+
+				&:hover {
+					background-color: #2FA4F5;
 				}
 			}
 		}
@@ -148,7 +143,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 		.page-customization-bar .btn {
 			border-color: transparent;
 
-			&:hover, &:focus {
+			&:focus, &:hover  {
 				background: transparent;
 				text-decoration: underline;
 			}
@@ -314,10 +309,6 @@ $dockbarOpenGradientStart: #0EA6F9;
 				&.active > a {
 					background-color: $dockbarGradientStart;
 				}
-			}
-
-			* {
-				display: none;
 			}
 
 			> li > a {
@@ -488,14 +479,12 @@ $dockbarOpenGradientStart: #0EA6F9;
 		border-top-width: 0;
 		position: static;
 
-		li {
-			.page-variations {
-				display: inline-block;
-				margin-left: 8px;
+		li .page-variations {
+			display: inline-block;
+			margin-left: 8px;
 
-				a {
-					text-decoration: none;
-				}
+			a {
+				text-decoration: none;
 			}
 		}
 
@@ -505,22 +494,16 @@ $dockbarOpenGradientStart: #0EA6F9;
 	}
 
 	.portlet-staging-bar {
-		.row-fluid .layout-revision-info {
-			.layout-revision-version {
-				label {
-					color: #B6DDF5;
-				}
-			}
+		.row-fluid .layout-revision-info .layout-revision-version label {
+			color: #B6DDF5;
 		}
 
 		.label-submit {
 			background-color: #469DE3;
 		}
 
-		.layout-branch-selector, .layout-set-branch-selector {
-			.icon-caret-down {
-				background-color: #469DE3;
-			}
+		.layout-branch-selector, .layout-set-branch-selector .icon-caret-down {
+			background-color: #469DE3;
 		}
 
 		.page-variations-options, .site-pages-variation-options {
