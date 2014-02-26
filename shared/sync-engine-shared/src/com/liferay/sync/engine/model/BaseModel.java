@@ -15,36 +15,23 @@
 package com.liferay.sync.engine.model;
 
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
-
-import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
 
 /**
  * @author Shinn Lok
  */
-@DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncProp")
-public class SyncProp extends BaseModel {
+public abstract class BaseModel {
 
-	public String getKey() {
-		return key;
+	public static final int UI_EVENT_DEFAULT = 0;
+
+	public int getUiEvent() {
+		return uiEvent;
 	}
 
-	public String getValue() {
-		return value;
+	public void setUiEvent(int uiEvent) {
+		this.uiEvent = uiEvent;
 	}
 
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-	@DatabaseField(useGetSet = true)
-	protected String key;
-
-	@DatabaseField(useGetSet = true)
-	protected String value;
+	@DatabaseField(useGetSet = true, persisted = false)
+	protected int uiEvent;
 
 }

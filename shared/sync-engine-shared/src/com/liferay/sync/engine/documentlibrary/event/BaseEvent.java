@@ -14,9 +14,14 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.util.HttpUtil;
 
 import java.util.Map;
+
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.conn.HttpHostConnectException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +47,24 @@ public abstract class BaseEvent implements Runnable {
 			processResponse(response);
 		}
 		catch (Exception e) {
-			_logger.error(e.getMessage(), e);
+			if (e instanceof HttpHostConnectException) {
+				SyncAccountService.updateUIEvent(
+					_syncAccountId, SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
+			}
+			else if (e instanceof HttpResponseException) {
+				int statusCode = ((HttpResponseException)e).getStatusCode();
+
+				if (statusCode == 401) {
+					SyncAccountService.updateUIEvent(
+						_syncAccountId,
+						SyncAccount.UI_EVENT_AUTHENTICATION_EXCEPTION);
+				}
+				else {
+					SyncAccountService.updateUIEvent(
+						_syncAccountId,
+						SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
+				}
+			}
 		}
 	}
 

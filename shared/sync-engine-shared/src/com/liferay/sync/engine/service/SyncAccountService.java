@@ -141,6 +141,26 @@ public class SyncAccountService {
 		}
 	}
 
+	public static SyncAccount updateUIEvent(long syncAccountId, int uiEvent) {
+		try {
+			SyncAccount syncAccount = _syncAccountPersistence.queryForId(
+				syncAccountId);
+
+			syncAccount.setUiEvent(uiEvent);
+
+			_syncAccountPersistence.update(syncAccount);
+
+			return syncAccount;
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
+
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncAccountService.class);
 

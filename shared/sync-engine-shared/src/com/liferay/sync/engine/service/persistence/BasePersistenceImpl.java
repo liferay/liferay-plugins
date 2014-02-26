@@ -21,6 +21,7 @@ import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import com.liferay.sync.engine.model.BaseModel;
 import com.liferay.sync.engine.model.ModelListener;
 import com.liferay.sync.engine.util.PropsKeys;
 import com.liferay.sync.engine.util.PropsUtil;
@@ -39,7 +40,7 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class BasePersistenceImpl<TT, TID>
+public class BasePersistenceImpl<TT extends BaseModel, TID>
 	extends BaseDaoImpl<TT, TID> implements BasePersistence<TT, TID> {
 
 	public BasePersistenceImpl(Class<TT> clazz) throws SQLException {
@@ -125,20 +126,28 @@ public class BasePersistenceImpl<TT, TID>
 				continue;
 			}
 
-			FieldType fieldType = tableInfo.getFieldTypeByColumnName(
-				syncNotificationFieldName);
+			if (syncNotificationFieldName.equals("uiEvent")) {
+				if (targetModel.getUiEvent() != BaseModel.UI_EVENT_DEFAULT) {
+					originalValues.put("uiEvent", null);
+				}
+			}
+			else {
+				FieldType fieldType = tableInfo.getFieldTypeByColumnName(
+					syncNotificationFieldName);
 
-			Object sourceFieldValue = fieldType.extractJavaFieldValue(
-				sourceModel);
-			Object targetFieldValue = fieldType.extractJavaFieldValue(
-				targetModel);
+				Object sourceFieldValue = fieldType.extractJavaFieldValue(
+					sourceModel);
+				Object targetFieldValue = fieldType.extractJavaFieldValue(
+					targetModel);
 
-			DataPersister dataPersister = fieldType.getDataPersister();
+				DataPersister dataPersister = fieldType.getDataPersister();
 
-			if (!dataPersister.dataIsEqual(
-					sourceFieldValue, targetFieldValue)) {
+				if (!dataPersister.dataIsEqual(
+						sourceFieldValue, targetFieldValue)) {
 
-				originalValues.put(fieldType.getColumnName(), sourceFieldValue);
+					originalValues.put(
+						fieldType.getColumnName(), sourceFieldValue);
+				}
 			}
 		}
 

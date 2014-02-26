@@ -26,7 +26,11 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
  */
 @DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncSite")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SyncSite {
+public class SyncSite extends BaseModel {
+
+	public static final int STATE_CONNECTED = 1;
+
+	public static final int STATE_DISCONNECTED = 0;
 
 	public long getCompanyId() {
 		return companyId;
@@ -62,6 +66,10 @@ public class SyncSite {
 
 	public boolean getSite() {
 		return site;
+	}
+
+	public int getState() {
+		return state;
 	}
 
 	public long getSyncAccountId() {
@@ -116,6 +124,10 @@ public class SyncSite {
 		this.site = site;
 	}
 
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	public void setSyncAccountId(long syncAccountId) {
 		this.syncAccountId = syncAccountId;
 	}
@@ -158,6 +170,9 @@ public class SyncSite {
 
 	@DatabaseField(useGetSet = true)
 	protected boolean site;
+
+	@DatabaseField(useGetSet = true)
+	protected int state;
 
 	@DatabaseField(useGetSet = true)
 	protected long syncAccountId;

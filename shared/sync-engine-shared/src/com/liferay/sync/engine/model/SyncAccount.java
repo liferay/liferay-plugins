@@ -23,7 +23,15 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
  * @author Shinn Lok
  */
 @DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncAccount")
-public class SyncAccount {
+public class SyncAccount extends BaseModel {
+
+	public static final int STATE_CONNECTED = 1;
+
+	public static final int STATE_DISCONNECTED = 0;
+
+	public static final int UI_EVENT_AUTHENTICATION_EXCEPTION = 1;
+
+	public static final int UI_EVENT_CONNECTION_EXCEPTION = 2;
 
 	public String getFilePathName() {
 		return filePathName;
@@ -39,6 +47,10 @@ public class SyncAccount {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public int getState() {
+		return state;
 	}
 
 	public long getSyncAccountId() {
@@ -65,6 +77,10 @@ public class SyncAccount {
 		this.password = password;
 	}
 
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	public void setSyncAccountId(long syncAccountId) {
 		this.syncAccountId = syncAccountId;
 	}
@@ -84,6 +100,9 @@ public class SyncAccount {
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String password;
+
+	@DatabaseField(useGetSet = true)
+	protected int state;
 
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected long syncAccountId;

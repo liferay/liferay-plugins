@@ -26,7 +26,7 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
  */
 @DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncFile")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SyncFile {
+public class SyncFile extends BaseModel {
 
 	public static final String EVENT_ADD = "add";
 
@@ -41,6 +41,12 @@ public class SyncFile {
 	public static final String EVENT_TRASH = "trash";
 
 	public static final String EVENT_UPDATE = "update";
+
+	public static final int STATE_ERROR = 3;
+
+	public static final int STATE_IN_PROGRESS = 2;
+
+	public static final int STATE_SYNCED = 1;
 
 	public static final String TYPE_FILE = "file";
 
@@ -120,6 +126,10 @@ public class SyncFile {
 
 	public long getSize() {
 		return size;
+	}
+
+	public int getState() {
+		return state;
 	}
 
 	public long getSyncAccountId() {
@@ -218,6 +228,10 @@ public class SyncFile {
 		this.size = size;
 	}
 
+	public void setState(int state) {
+		this.state = state;
+	}
+
 	public void setSyncAccountId(long syncAccountId) {
 		this.syncAccountId = syncAccountId;
 	}
@@ -298,6 +312,9 @@ public class SyncFile {
 
 	@DatabaseField(useGetSet = true)
 	protected long size;
+
+	@DatabaseField(useGetSet = true)
+	protected int state;
 
 	@DatabaseField(useGetSet = true)
 	protected long syncAccountId;
