@@ -215,7 +215,6 @@ public class WebRTCManager {
 	protected void pushErrorWebRTCMail(
 		long sourceUserId, long destinationUserId, String errorId) {
 
-		WebRTCClient sourceWebRTCClient = getWebRTCClient(sourceUserId);
 		WebRTCClient destinationWebRTCClient = getWebRTCClient(
 			destinationUserId);
 
