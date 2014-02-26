@@ -33,7 +33,7 @@ public class WebRTCManager {
 		_webRTCManagers.add(this);
 	}
 
-	public void call(long sourceUserId, long destinationUserId) {
+	public void connect(long sourceUserId, long destinationUserId) {
 		addWebRTCClient(sourceUserId);
 
 		WebRTCClient sourceWebRTCClient = getWebRTCClient(sourceUserId);
@@ -51,8 +51,6 @@ public class WebRTCManager {
 
 		WebRTCClient destinationWebRTCClient = getWebRTCClient(
 			destinationUserId);
-
-		// check if a connection already exists
 
 		if (sourceWebRTCClient.hasWebRTCConnection(destinationWebRTCClient) ||
 			destinationWebRTCClient.hasWebRTCConnection(sourceWebRTCClient)) {
