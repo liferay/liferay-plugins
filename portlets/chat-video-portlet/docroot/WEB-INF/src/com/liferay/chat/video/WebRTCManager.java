@@ -218,15 +218,15 @@ public class WebRTCManager {
 		WebRTCClient destinationWebRTCClient = getWebRTCClient(
 			destinationUserId);
 
+		WebRTCMailbox destinationOutgoingWebRTCMailbox =
+			destinationWebRTCClient.getOutgoingWebRTCMailbox();
+
 		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
 
 		messageJSONObject.put("id", errorId);
 
 		WebRTCMail errorWebRTCMail = new ErrorWebRTCMail(
 			sourceUserId, messageJSONObject);
-
-		WebRTCMailbox destinationOutgoingWebRTCMailbox =
-			destinationWebRTCClient.getOutgoingWebRTCMailbox();
 
 		destinationOutgoingWebRTCMailbox.pushWebRTCMail(errorWebRTCMail);
 	}
