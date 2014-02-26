@@ -45,21 +45,21 @@ public class SOAnnouncementsUtil {
 	public static List<Group> getGroups(ThemeDisplay themeDisplay)
 		throws Exception {
 
+		List<Group> filteredGroups = new ArrayList<Group>();
+
 		List<Group> groups = GroupLocalServiceUtil.getUserGroups(
 			themeDisplay.getUserId(), true);
 
-		List<Group> filteredGroups = new ArrayList<Group>();
-
 		if (!groups.isEmpty()) {
-			for (Group curGroup : groups) {
-				if (((curGroup.isOrganization() && curGroup.isSite()) ||
-					 curGroup.isRegularSite()) &&
+			for (Group group : groups) {
+				if (((group.isOrganization() && group.isSite()) ||
+					 group.isRegularSite()) &&
 					GroupPermissionUtil.contains(
 						themeDisplay.getPermissionChecker(),
-						curGroup.getGroupId(),
+						group.getGroupId(),
 						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
-					filteredGroups.add(curGroup);
+					filteredGroups.add(group);
 				}
 			}
 		}
@@ -70,12 +70,12 @@ public class SOAnnouncementsUtil {
 	public static List<Organization> getOrganizations(ThemeDisplay themeDisplay)
 		throws Exception {
 
+		List<Organization> filteredOrganizations =
+			new ArrayList<Organization>();
+
 		List<Organization> organizations =
 			OrganizationLocalServiceUtil.getUserOrganizations(
 				themeDisplay.getUserId());
-
-		List<Organization> filteredOrganizations =
-			new ArrayList<Organization>();
 
 		for (Organization organization : organizations) {
 			if (OrganizationPermissionUtil.contains(
@@ -93,10 +93,10 @@ public class SOAnnouncementsUtil {
 	public static List<Role> getRoles(ThemeDisplay themeDisplay)
 		throws Exception {
 
+		List<Role> filteredRoles = new ArrayList<Role>();
+
 		List<Role> roles = RoleLocalServiceUtil.getRoles(
 			themeDisplay.getCompanyId());
-
-		List<Role> filteredRoles = new ArrayList<Role>();
 
 		for (Role role : roles) {
 			if (role.isTeam()) {
@@ -123,10 +123,10 @@ public class SOAnnouncementsUtil {
 	public static List<UserGroup> getUserGroups(ThemeDisplay themeDisplay)
 		throws Exception {
 
+		List<UserGroup> filteredUserGroups = new ArrayList<UserGroup>();
+
 		List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(
 			themeDisplay.getCompanyId());
-
-		List<UserGroup> filteredUserGroups = new ArrayList<UserGroup>();
 
 		for (UserGroup userGroup : userGroups) {
 			if (UserGroupPermissionUtil.contains(
@@ -148,12 +148,12 @@ public class SOAnnouncementsUtil {
 			themeDisplay.getUserId(), true);
 
 		if (!groups.isEmpty()) {
-			for (Group curGroup : groups) {
-				if (((curGroup.isOrganization() && curGroup.isSite()) ||
-					 curGroup.isRegularSite()) &&
+			for (Group group : groups) {
+				if (((group.isOrganization() && group.isSite()) ||
+					 group.isRegularSite()) &&
 					GroupPermissionUtil.contains(
 						themeDisplay.getPermissionChecker(),
-						curGroup.getGroupId(),
+						group.getGroupId(),
 						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
 					return true;
@@ -168,8 +168,8 @@ public class SOAnnouncementsUtil {
 		throws Exception {
 
 		List<Organization> organizations =
-				OrganizationLocalServiceUtil.getUserOrganizations(
-					themeDisplay.getUserId());
+			OrganizationLocalServiceUtil.getUserOrganizations(
+				themeDisplay.getUserId());
 
 		for (Organization organization : organizations) {
 			if (OrganizationPermissionUtil.contains(
@@ -185,9 +185,8 @@ public class SOAnnouncementsUtil {
 	}
 
 	public static boolean hasRoles(ThemeDisplay themeDisplay) throws Exception {
-
 		List<Role> roles = RoleLocalServiceUtil.getRoles(
-				themeDisplay.getCompanyId());
+			themeDisplay.getCompanyId());
 
 		for (Role role : roles) {
 			if (role.isTeam()) {
@@ -215,7 +214,7 @@ public class SOAnnouncementsUtil {
 		throws Exception {
 
 		List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(
-				themeDisplay.getCompanyId());
+			themeDisplay.getCompanyId());
 
 		for (UserGroup userGroup : userGroups) {
 			if (UserGroupPermissionUtil.contains(
