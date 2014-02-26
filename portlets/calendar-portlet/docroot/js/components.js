@@ -1142,6 +1142,7 @@
 								dialog:	{
 									bodyContent: content.join(''),
 									height: 250,
+									hideOn: [],
 									resizable: false,
 									toolbars: {
 										footer: buttons
@@ -1206,6 +1207,7 @@
 								dialog : {
 									bodyContent: message,
 									height: 250,
+									hideOn: [],
 									resizable: false,
 									toolbars: {
 										footer: buttons
