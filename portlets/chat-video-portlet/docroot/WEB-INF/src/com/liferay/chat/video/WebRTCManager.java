@@ -59,6 +59,32 @@ public class WebRTCManager {
 		return webRTCClient.isAvailable();
 	}
 
+	public void pushDescriptionWebRTCMailFromString(
+		long sourceUserId, long destinationUserId, String descriptionSDP) {
+
+		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
+
+		messageJSONObject.put("desc", descriptionSDP);
+
+		WebRTCMail webRTCMail = new DescriptionWebRTCSDPMail(
+			sourceUserId, messageJSONObject);
+
+		pushWebRTCMail(sourceUserId, destinationUserId, webRTCMail);
+	}
+
+	public void pushIceCandidateWebRTCMailFromString(
+		long sourceUserId, long destinationUserId, String candidateICE) {
+
+		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
+
+		messageJSONObject.put("ice", candidateICE);
+
+		WebRTCMail webRTCMail = new ICECandidateWebRTCMail(
+			sourceUserId, messageJSONObject);
+
+		pushWebRTCMail(sourceUserId, destinationUserId, webRTCMail);
+	}
+
 	public void removeWebRTCClient(long userId) {
 		WebRTCClient webRTCClient = getWebRTCClient(userId);
 
