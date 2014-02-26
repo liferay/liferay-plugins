@@ -899,7 +899,7 @@ AUI().use(
 				user = A.one(user);
 
 				if (user) {
-					userId = user.getAttribute('userId');
+					userId = user.getAttribute('data-userId');
 				}
 
 				if (!isNaN(Number(userId))) {
@@ -1303,7 +1303,7 @@ AUI().use(
 					var userImagePath = Liferay.Chat.Util.getUserImagePath(buddy.portraitId);
 
 					buffer.push(
-						'<li class="user active" userId="' + buddy.userId + '">' +
+						'<li class="user active" data-userId="' + buddy.userId + '" data-groupId="' + buddy.groupId + '">' +
 							'<img alt="" src="' + userImagePath + '" />' +
 							'<div class="name">' + Liferay.Util.escapeHTML(buddy.fullName) + '</div>' +
 							'<div class="buddy-services">');
