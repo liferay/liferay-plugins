@@ -31,6 +31,20 @@ if (distributionScopeArray.length == 2) {
 	classNameId = GetterUtil.getLong(distributionScopeArray[0]);
 	classPK = GetterUtil.getLong(distributionScopeArray[1]);
 }
+else {
+	if (!group.isUser()) {
+		classNameId = PortalUtil.getClassNameId(Group.class);
+		classPK = themeDisplay.getScopeGroupId();
+	}
+	else if (PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_GENERAL_ANNOUNCEMENTS)) {
+		classNameId = 0;
+		classPK = 0;
+	}
+
+	if ((classNameId >= 0) && (classPK >= 0)) {
+		distributionScope = classNameId + StringPool.COMMA + classPK;
+	}
+}
 
 if ((classNameId == 0) && (classPK == 0) && !PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_GENERAL_ANNOUNCEMENTS)) {
 	throw new PrincipalException();
