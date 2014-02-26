@@ -87,6 +87,9 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			long portraitId = (Long)buddy[5];
 			boolean awake = (Boolean)buddy[6];
 
+			User user = UserLocalServiceUtil.getUser(userId);
+			long groupId = user.getGroupId();
+
 			String fullName = ContactConstants.getFullName(
 				firstName, middleName, lastName);
 
@@ -98,6 +101,7 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 			JSONObject curUserJSONObject = JSONFactoryUtil.createJSONObject();
 
 			curUserJSONObject.put("userId", userId);
+			curUserJSONObject.put("groupId", groupId);
 			curUserJSONObject.put("screenName", screenName);
 			curUserJSONObject.put("fullName", fullName);
 			curUserJSONObject.put("portraitId", portraitId);
