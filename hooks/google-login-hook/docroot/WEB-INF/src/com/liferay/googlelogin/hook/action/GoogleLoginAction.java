@@ -241,7 +241,7 @@ public class GoogleLoginAction extends BaseStrutsAction {
 
 	protected String getRedirectURI(HttpServletRequest request) {
 		return PortalUtil.getPortalURL(request) + PortalUtil.getPathMain() +
-				_REDIRECT_URI;
+			_REDIRECT_URI;
 	}
 
 	protected Userinfo getUserinfo(
