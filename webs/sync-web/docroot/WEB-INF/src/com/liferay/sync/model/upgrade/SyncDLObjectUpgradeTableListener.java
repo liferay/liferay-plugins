@@ -43,15 +43,15 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 			UpgradeTable upgradeTable)
 		throws Exception {
 
-		if (_typePKObjectIdMap == null) {
+		if (_syncDLObjectIds == null) {
 			return;
 		}
 
-		Map<Long, Long> typePKObjectIdMap = _typePKObjectIdMap;
+		Map<Long, Long> syncDLObjectIds = _syncDLObjectIds;
 
-		_typePKObjectIdMap = null;
+		_syncDLObjectIds = null;
 
-		updateTypePKObjectIdMap(typePKObjectIdMap);
+		updateSyncDLObjectIds(syncDLObjectIds);
 
 		runSQL("alter table SyncDLObject add primary key (syncDLObjectId)");
 	}
@@ -66,18 +66,18 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 			return;
 		}
 
-		String sqlString = upgradeTable.getCreateSQL();
+		String createSQL = upgradeTable.getCreateSQL();
 
-		sqlString = StringUtil.replace(
-			sqlString, " primary key", StringPool.BLANK);
+		createSQL = StringUtil.replace(
+			createSQL, " primary key", StringPool.BLANK);
 
-		upgradeTable.setCreateSQL(sqlString);
+		upgradeTable.setCreateSQL(createSQL);
 
-		_typePKObjectIdMap = getTypePKObjectIdMap();
+		_syncDLObjectIds = getSyncDLObjectIds();
 	}
 
-	protected Map<Long, Long> getTypePKObjectIdMap() throws SystemException {
-		Map<Long, Long> keyValueMap = new HashMap<Long, Long>();
+	protected Map<Long, Long> getSyncDLObjectIds() throws SystemException {
+		Map<Long, Long> syncDLObjectIds = new HashMap<Long, Long>();
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -105,7 +105,7 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 							valueColumnName + "=" + value + "}");
 				}
 
-				keyValueMap.put(key, value);
+				syncDLObjectIds.put(key, value);
 			}
 		}
 		catch (Exception e) {
@@ -115,10 +115,10 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 			DataAccess.cleanUp(con, ps, rs);
 		}
 
-		return keyValueMap;
+		return syncDLObjectIds;
 	}
 
-	protected void updateTypePKObjectIdMap(Map<Long, Long> keyValueMap)
+	protected void updateSyncDLObjectIds(Map<Long, Long> keyValueMap)
 		throws Exception {
 
 		for (Map.Entry<Long, Long> entry : keyValueMap.entrySet()) {
@@ -136,6 +136,6 @@ public class SyncDLObjectUpgradeTableListener extends BaseUpgradeTableListener {
 	private static Log _log = LogFactoryUtil.getLog(
 		SyncDLObjectUpgradeTableListener.class);
 
-	private Map<Long, Long> _typePKObjectIdMap;
+	private Map<Long, Long> _syncDLObjectIds;
 
 }
