@@ -20,15 +20,11 @@
 <%@ include file="/init.jsp" %>
 
 <%
-boolean regularSite = group.isRegularSite();
+boolean showManageEntries = GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS);
 
-boolean addManageEntries = false;
+if (group.isUser() && !showManageEntries) {
+	showManageEntries = SOAnnouncementsUtil.hasGroups(themeDisplay) || SOAnnouncementsUtil.hasOrganizations(themeDisplay) || SOAnnouncementsUtil.hasRoles(themeDisplay) || SOAnnouncementsUtil.hasUserGroups(themeDisplay);
 
-if (regularSite) {
-	addManageEntries = GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_ANNOUNCEMENTS);
-}
-else {
-	addManageEntries = SOAnnouncementsUtil.hasGroups(themeDisplay) || SOAnnouncementsUtil.hasOrganizations(themeDisplay) || SOAnnouncementsUtil.hasRoles(themeDisplay) || SOAnnouncementsUtil.hasUserGroups(themeDisplay);
 }
 %>
 
@@ -38,7 +34,7 @@ else {
 
 <div id="<portlet:namespace />errorMessage"></div>
 
-<c:if test="<%= addManageEntries %>">
+<c:if test="<%= showManageEntries %>">
 	<div class="admin-actions">
 		<aui:button onClick='<%= renderResponse.getNamespace() + "addEntry()" %>' value="add-entry" />
 
