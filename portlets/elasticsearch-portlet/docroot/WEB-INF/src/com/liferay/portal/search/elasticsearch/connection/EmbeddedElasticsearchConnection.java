@@ -41,13 +41,13 @@ public class EmbeddedElasticsearchConnection
 	}
 
 	@Override
-	protected Client createClient(ImmutableSettings.Builder settingsBuilder) {
+	protected Client createClient(ImmutableSettings.Builder builder) {
 		NodeBuilder nodeBuilder = NodeBuilder.nodeBuilder();
 
-		settingsBuilder.loadFromClasspath(
+		builder.loadFromClasspath(
 			PortletPropsValues.ELASTICSEARCH_EMBEDDED_CONFIG_LOCATION);
 
-		nodeBuilder.settings(settingsBuilder);
+		nodeBuilder.settings(builder);
 
 		nodeBuilder.clusterName(getClusterName());
 		nodeBuilder.client(false);
@@ -59,10 +59,11 @@ public class EmbeddedElasticsearchConnection
 
 		if (_log.isDebugEnabled()) {
 			stopWatch = new StopWatch();
+
 			stopWatch.start();
 
 			_log.debug(
-				"Starting embedded elasticsearch cluster: " + getClusterName());
+				"Starting embedded Elasticsearch cluster " + getClusterName());
 		}
 
 		_node.start();
@@ -73,8 +74,8 @@ public class EmbeddedElasticsearchConnection
 			stopWatch.stop();
 
 			_log.debug(
-				"Completed startup: " + getClusterName() + " in " +
-					stopWatch.getTime());
+				"Finished starting " + getClusterName() + " in " +
+					stopWatch.getTime() + " ms");
 		}
 
 		return client;

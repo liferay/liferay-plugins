@@ -43,7 +43,7 @@ public abstract class BaseElasticsearchConnection
 
 	public String getClusterName() {
 		if (Validator.isNull(_clusterName)) {
-			_clusterName = DEFAULT_CLUSTER_NAME;
+			_clusterName = CLUSTER_NAME;
 		}
 
 		return _clusterName;
@@ -51,10 +51,9 @@ public abstract class BaseElasticsearchConnection
 
 	@Override
 	public void initialize() {
-		ImmutableSettings.Builder settingsBuilder =
-			ImmutableSettings.settingsBuilder();
+		ImmutableSettings.Builder builder = ImmutableSettings.settingsBuilder();
 
-		_client = createClient(settingsBuilder);
+		_client = createClient(builder);
 
 		initializeIndices();
 	}
@@ -67,8 +66,7 @@ public abstract class BaseElasticsearchConnection
 		_indexFactory = indexFactory;
 	}
 
-	protected abstract Client createClient(
-		ImmutableSettings.Builder settingsBuilder);
+	protected abstract Client createClient(ImmutableSettings.Builder builder);
 
 	protected IndexFactory getIndexFactory() {
 		return _indexFactory;
