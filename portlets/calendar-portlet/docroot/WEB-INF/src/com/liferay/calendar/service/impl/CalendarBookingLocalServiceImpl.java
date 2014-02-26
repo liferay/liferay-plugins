@@ -343,10 +343,16 @@ public class CalendarBookingLocalServiceImpl
 			recurrenceObj.addExceptionDate(startTimeJCalendar);
 		}
 
-		calendarBooking.setRecurrence(
-			RecurrenceSerializer.serialize(recurrenceObj));
+		String recurrence = RecurrenceSerializer.serialize(recurrenceObj);
 
-		calendarBookingPersistence.update(calendarBooking);
+		List<CalendarBooking> childCalendarBookings = getChildCalendarBookings(
+			calendarBooking.getCalendarBookingId());
+
+		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
+			childCalendarBooking.setRecurrence(recurrence);
+
+			calendarBookingPersistence.update(childCalendarBooking);
+		}
 	}
 
 	@Override
