@@ -37,7 +37,7 @@ import org.elasticsearch.common.io.stream.OutputStreamStreamOutput;
 /**
  * @author Michael C. Han
  */
-public class PerCompanyIndexFactory implements IndexFactory {
+public class CompanyIndexFactory implements IndexFactory {
 
 	@Override
 	public void createIndices(AdminClient adminClient) throws Exception {
@@ -96,7 +96,7 @@ public class PerCompanyIndexFactory implements IndexFactory {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		PerCompanyIndexFactory.class);
+		CompanyIndexFactory.class);
 
 	private Map<String, String> _typeMappings = new HashMap<String, String>();
 
