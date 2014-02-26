@@ -1,0 +1,15 @@
+# Elasticsearch Configuration
+#
+# For information on supported formats and syntax for the config file, see
+# <http://elasticsearch.org/guide/en/elasticsearch/reference/current/setup-configuration.html>
+
+#
+# Client Settings
+#
+client.transport.sniff: true
+
+#
+# Paths
+#
+path.logs: ${liferay.home}/logs
+path.work: ${java.io.tmpdir}
