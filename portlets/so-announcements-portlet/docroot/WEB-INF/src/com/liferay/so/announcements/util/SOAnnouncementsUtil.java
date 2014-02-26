@@ -23,7 +23,6 @@ import com.liferay.portal.model.Role;
 import com.liferay.portal.model.Team;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.RoleLocalServiceUtil;
@@ -46,116 +45,104 @@ public class SOAnnouncementsUtil {
 	public static List<Group> getGroups(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
-		List<Group> permittedGroups = new ArrayList<Group>();
-
 		List<Group> groups = GroupLocalServiceUtil.getUserGroups(
 			themeDisplay.getUserId(), true);
+
+		List<Group> filteredGroups = new ArrayList<Group>();
 
 		if (!groups.isEmpty()) {
 			for (Group curGroup : groups) {
 				if (((curGroup.isOrganization() && curGroup.isSite()) ||
 					 curGroup.isRegularSite()) &&
 					GroupPermissionUtil.contains(
-						permissionChecker, curGroup.getGroupId(),
+						themeDisplay.getPermissionChecker(),
+						curGroup.getGroupId(),
 						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
-					permittedGroups.add(curGroup);
+					filteredGroups.add(curGroup);
 				}
 			}
 		}
 
-		return permittedGroups;
+		return filteredGroups;
 	}
 
 	public static List<Organization> getOrganizations(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
-		List<Organization> permittedOrganizations =
-			new ArrayList<Organization>();
-
 		List<Organization> organizations =
-				OrganizationLocalServiceUtil.getUserOrganizations(
-					themeDisplay.getUserId());
+			OrganizationLocalServiceUtil.getUserOrganizations(
+				themeDisplay.getUserId());
+
+		List<Organization> filteredOrganizations =
+			new ArrayList<Organization>();
 
 		for (Organization organization : organizations) {
 			if (OrganizationPermissionUtil.contains(
-					permissionChecker, organization.getOrganizationId(),
+					themeDisplay.getPermissionChecker(),
+					organization.getOrganizationId(),
 					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
-				permittedOrganizations.add(organization);
+				filteredOrganizations.add(organization);
 			}
 		}
 
-		return permittedOrganizations;
+		return filteredOrganizations;
 	}
 
 	public static List<Role> getRoles(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
-		List<Role> permittedRoles = new ArrayList<Role>();
-
 		List<Role> roles = RoleLocalServiceUtil.getRoles(
-				themeDisplay.getCompanyId());
+			themeDisplay.getCompanyId());
+
+		List<Role> filteredRoles = new ArrayList<Role>();
 
 		for (Role role : roles) {
 			if (role.isTeam()) {
 				Team team = TeamLocalServiceUtil.getTeam(role.getClassPK());
 
 				if (GroupPermissionUtil.contains(
-						permissionChecker, team.getGroupId(),
-					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+						themeDisplay.getPermissionChecker(), team.getGroupId(),
+						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
-					permittedRoles.add(role);
+					filteredRoles.add(role);
 				}
 			}
 			else if (RolePermissionUtil.contains(
-						permissionChecker, role.getRoleId(),
-					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+						themeDisplay.getPermissionChecker(), role.getRoleId(),
+						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
-				permittedRoles.add(role);
+				filteredRoles.add(role);
 			}
 		}
 
-		return permittedRoles;
+		return filteredRoles;
 	}
 
 	public static List<UserGroup> getUserGroups(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
-		List<UserGroup> permittedUserGroups = new ArrayList<UserGroup>();
-
 		List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(
-				themeDisplay.getCompanyId());
+			themeDisplay.getCompanyId());
+
+		List<UserGroup> filteredUserGroups = new ArrayList<UserGroup>();
 
 		for (UserGroup userGroup : userGroups) {
 			if (UserGroupPermissionUtil.contains(
-					permissionChecker, userGroup.getUserGroupId(),
-				ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+					themeDisplay.getPermissionChecker(),
+					userGroup.getUserGroupId(),
+					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
-				permittedUserGroups.add(userGroup);
+				filteredUserGroups.add(userGroup);
 			}
 		}
 
-		return permittedUserGroups;
+		return filteredUserGroups;
 	}
 
 	public static boolean hasGroups(ThemeDisplay themeDisplay)
 		throws Exception {
-
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
 
 		List<Group> groups = GroupLocalServiceUtil.getUserGroups(
 			themeDisplay.getUserId(), true);
@@ -165,7 +152,8 @@ public class SOAnnouncementsUtil {
 				if (((curGroup.isOrganization() && curGroup.isSite()) ||
 					 curGroup.isRegularSite()) &&
 					GroupPermissionUtil.contains(
-						permissionChecker, curGroup.getGroupId(),
+						themeDisplay.getPermissionChecker(),
+						curGroup.getGroupId(),
 						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
 					return true;
@@ -179,16 +167,14 @@ public class SOAnnouncementsUtil {
 	public static boolean hasOrganizations(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		List<Organization> organizations =
 				OrganizationLocalServiceUtil.getUserOrganizations(
 					themeDisplay.getUserId());
 
 		for (Organization organization : organizations) {
 			if (OrganizationPermissionUtil.contains(
-					permissionChecker, organization.getOrganizationId(),
+					themeDisplay.getPermissionChecker(),
+					organization.getOrganizationId(),
 					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
 				return true;
@@ -199,8 +185,6 @@ public class SOAnnouncementsUtil {
 	}
 
 	public static boolean hasRoles(ThemeDisplay themeDisplay) throws Exception {
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
 
 		List<Role> roles = RoleLocalServiceUtil.getRoles(
 				themeDisplay.getCompanyId());
@@ -210,15 +194,15 @@ public class SOAnnouncementsUtil {
 				Team team = TeamLocalServiceUtil.getTeam(role.getClassPK());
 
 				if (GroupPermissionUtil.contains(
-						permissionChecker, team.getGroupId(),
-					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+						themeDisplay.getPermissionChecker(), team.getGroupId(),
+						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
 					return true;
 				}
 			}
 			else if (RolePermissionUtil.contains(
-						permissionChecker, role.getRoleId(),
-					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+						themeDisplay.getPermissionChecker(), role.getRoleId(),
+						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
 				return true;
 			}
@@ -230,16 +214,14 @@ public class SOAnnouncementsUtil {
 	public static boolean hasUserGroups(ThemeDisplay themeDisplay)
 		throws Exception {
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		List<UserGroup> userGroups = UserGroupLocalServiceUtil.getUserGroups(
 				themeDisplay.getCompanyId());
 
 		for (UserGroup userGroup : userGroups) {
 			if (UserGroupPermissionUtil.contains(
-					permissionChecker, userGroup.getUserGroupId(),
-				ActionKeys.MANAGE_ANNOUNCEMENTS)) {
+					themeDisplay.getPermissionChecker(),
+					userGroup.getUserGroupId(),
+					ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
 				return true;
 			}
