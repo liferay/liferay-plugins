@@ -166,6 +166,28 @@
 		},
 		"dynamic_templates": [
 			{
+				"template_": {
+					"match": "*",
+					"match_mapping_type": "string",
+					"mapping": {
+						"index": "not_analyzed",
+						"store": "yes",
+						"type": "string"
+					}
+				}
+			},
+			{
+				"template__sortable": {
+					"match": "*_sortable",
+					"match_mapping_type": "string",
+					"mapping": {
+						"index": "not_analyzed",
+						"store": "yes",
+						"type": "string"
+					}
+				}
+			},
+			{
 				"template_CategoryNames": {
 					"match": "*CategoryNames",
 					"match_mapping_type": "string",
@@ -179,17 +201,6 @@
 			{
 				"template_CategoryIds": {
 					"match": "*CategoryIds",
-					"match_mapping_type": "string",
-					"mapping": {
-						"index": "not_analyzed",
-						"store": "yes",
-						"type": "string"
-					}
-				}
-			},
-			{
-				"template__sortable": {
-					"match": "*_sortable",
 					"match_mapping_type": "string",
 					"mapping": {
 						"index": "not_analyzed",
@@ -215,17 +226,6 @@
 					"match_mapping_type": "string",
 					"mapping": {
 						"index": "analyzed",
-						"store": "yes",
-						"type": "string"
-					}
-				}
-			},
-			{
-				"template_": {
-					"match": "*",
-					"match_mapping_type": "string",
-					"mapping": {
-						"index": "not_analyzed",
 						"store": "yes",
 						"type": "string"
 					}
