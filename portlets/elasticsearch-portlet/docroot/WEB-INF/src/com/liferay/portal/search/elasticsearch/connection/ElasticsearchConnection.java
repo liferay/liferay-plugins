@@ -21,7 +21,7 @@ import org.elasticsearch.client.Client;
  */
 public interface ElasticsearchConnection {
 
-	public static final String DEFAULT_CLUSTER_NAME = "LiferayElasticSearch";
+	public static final String CLUSTER_NAME = "LiferayElasticSearch";
 
 	public static final String LIFERAY_DOCUMENT_TYPE = "LiferayDocumentType";
 

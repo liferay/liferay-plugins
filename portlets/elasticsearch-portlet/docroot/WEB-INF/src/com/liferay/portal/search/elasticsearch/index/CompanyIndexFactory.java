@@ -95,8 +95,7 @@ public class CompanyIndexFactory implements IndexFactory {
 		_typeMappings = typeMappings;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
-		CompanyIndexFactory.class);
+	private static Log _log = LogFactoryUtil.getLog(CompanyIndexFactory.class);
 
 	private Map<String, String> _typeMappings = new HashMap<String, String>();
 

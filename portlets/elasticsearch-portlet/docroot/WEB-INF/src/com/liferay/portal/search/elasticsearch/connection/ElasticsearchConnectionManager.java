@@ -28,7 +28,7 @@ public class ElasticsearchConnectionManager {
 	public Client getClient() {
 		if (_elasticsearchConnection == null) {
 			throw new IllegalStateException(
-				"Elastic Search Connection not initialized");
+				"Elasticsearch connection not initialized");
 		}
 
 		return _elasticsearchConnection.getClient();

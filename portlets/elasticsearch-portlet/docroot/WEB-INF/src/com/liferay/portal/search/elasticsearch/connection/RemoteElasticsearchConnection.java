@@ -16,6 +16,7 @@ package com.liferay.portal.search.elasticsearch.connection;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.search.elasticsearch.util.PortletPropsValues;
@@ -40,36 +41,38 @@ public class RemoteElasticsearchConnection extends BaseElasticsearchConnection {
 	}
 
 	@Override
-	protected Client createClient(ImmutableSettings.Builder settingsBuilder) {
+	protected Client createClient(ImmutableSettings.Builder builder) {
 		if (_transportAddresses.isEmpty()) {
 			throw new IllegalStateException(
-				"Must configure at least one transport address");
+				"There must be at least one transport address");
 		}
 
-		settingsBuilder.loadFromClasspath(
+		builder.loadFromClasspath(
 			PortletPropsValues.ELASTICSEARCH_REMOTE_CONFIG_LOCATION);
 
-		TransportClient transportClient = new TransportClient(settingsBuilder);
+		TransportClient transportClient = new TransportClient(builder);
 
-		settingsBuilder.put("client.transport.sniff", true);
-		settingsBuilder.put("cluster.name", getClusterName());
+		builder.put("client.transport.sniff", true);
+		builder.put("cluster.name", getClusterName());
 
 		for (String transportAddress : _transportAddresses) {
-			String[] transportAddressComponents = StringUtil.split(
+			String[] transportAddressParts = StringUtil.split(
 				transportAddress, StringPool.COLON);
 
 			try {
 				InetAddress inetAddress = InetAddress.getByName(
-					transportAddressComponents[0]);
+					transportAddressParts[0]);
 
-				int port = Integer.parseInt(transportAddressComponents[1]);
+				int port = GetterUtil.getInteger(transportAddressParts[1]);
 
 				transportClient.addTransportAddress(
 					new InetSocketTransportAddress(inetAddress, port));
 			}
 			catch (Exception e) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to add address: " + transportAddress, e);
+					_log.warn(
+						"Unable to add transport address " + transportAddress,
+						e);
 				}
 			}
 		}
