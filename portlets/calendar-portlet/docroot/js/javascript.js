@@ -102,30 +102,17 @@ AUI.add(
 			availableCalendars: {},
 			visibleCalendars: {},
 
-			addEvent: function(schedulerEvent) {
+			addEvent: function(schedulerEvent, success) {
 				var instance = this;
-
-				var allDay = schedulerEvent.get('allDay');
-				var startDate = schedulerEvent.get('startDate');
-				var endDate = schedulerEvent.get('endDate');
-
-				if (allDay) {
-					startDate = instance.toUTCWithoutUserTimeZone(startDate);
-					endDate = instance.toUTCWithoutUserTimeZone(endDate);
-				}
-				else {
-					startDate = instance.toUTC(startDate);
-					endDate = instance.toUTC(endDate);
-				}
 
 				instance.invokeService(
 					{
 						'/calendar-portlet.calendarbooking/add-calendar-booking': {
-							allDay: allDay,
+							allDay: schedulerEvent.get('allDay'),
 							calendarId: schedulerEvent.get('calendarId'),
 							childCalendarIds: STR_BLANK,
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
-							endTime: endDate.getTime(),
+							endTime: CalendarUtil.toUTC(schedulerEvent.get('endDate')).getTime(),
 							firstReminder: schedulerEvent.get('firstReminder'),
 							firstReminderType: schedulerEvent.get('firstReminderType'),
 							location: schedulerEvent.get('location'),
@@ -133,7 +120,7 @@ AUI.add(
 							recurrence: schedulerEvent.get('recurrence'),
 							secondReminder: schedulerEvent.get('secondReminder'),
 							secondReminderType: schedulerEvent.get('secondReminderType'),
-							startTime: startDate.getTime(),
+							startTime: CalendarUtil.toUTC(schedulerEvent.get('startDate')).getTime(),
 							titleMap: instance.getLocalizationMap(Liferay.Util.unescapeHTML(schedulerEvent.get('content')))
 						}
 					},
@@ -167,6 +154,10 @@ AUI.add(
 								}
 								else {
 									instance.setEventAttrs(schedulerEvent, data);
+
+									if (success) {
+										success.call(instance, data);
+									}
 								}
 							}
 						}
@@ -233,20 +224,17 @@ AUI.add(
 						}
 					},
 					{
-						success: function() {
-							scheduler.load();
+						success: function(data) {
+							if (success) {
+								success.call(instance, data);
+							}
 						}
 					}
 				);
 			},
 
-			deleteEventInstance: function(schedulerEvent, allFollowing) {
+			deleteEventInstance: function(schedulerEvent, allFollowing, success) {
 				var instance = this;
-
-				var scheduler = schedulerEvent.get('scheduler');
-				var eventRecorder = scheduler.get('eventRecorder');
-
-				eventRecorder.hidePopover();
 
 				instance.invokeService(
 					{
@@ -257,8 +245,10 @@ AUI.add(
 						}
 					},
 					{
-						success: function() {
-							scheduler.load();
+						success: function(data) {
+							if (success) {
+								success.call(instance, data);
+							}
 						}
 					}
 				);
@@ -687,34 +677,21 @@ AUI.add(
 			updateEvent: function(schedulerEvent, success) {
 				var instance = this;
 
-				var allDay = schedulerEvent.get('allDay');
-				var startDate = schedulerEvent.get('startDate');
-				var endDate = schedulerEvent.get('endDate');
-
-				if (allDay) {
-					startDate = instance.toUTCWithoutUserTimeZone(startDate);
-					endDate = instance.toUTCWithoutUserTimeZone(endDate);
-				}
-				else {
-					startDate = instance.toUTC(startDate);
-					endDate = instance.toUTC(endDate);
-				}
-
 				instance.invokeService(
 					{
 						'/calendar-portlet.calendarbooking/update-calendar-booking': {
-							allDay: allDay,
+							allDay: schedulerEvent.get('allDay'),
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							calendarId: schedulerEvent.get('calendarId'),
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
-							endTime: endDate.getTime(),
+							endTime: CalendarUtil.toUTC(schedulerEvent.get('endDate')).getTime(),
 							firstReminder: schedulerEvent.get('firstReminder'),
 							firstReminderType: schedulerEvent.get('firstReminderType'),
 							location: schedulerEvent.get('location'),
 							recurrence: schedulerEvent.get('recurrence'),
 							secondReminder: schedulerEvent.get('secondReminder'),
 							secondReminderType: schedulerEvent.get('secondReminderType'),
-							startTime: startDate.getTime(),
+							startTime: CalendarUtil.toUTC(schedulerEvent.get('startDate')).getTime(),
 							status: schedulerEvent.get('status'),
 							titleMap: instance.getLocalizationMap(Liferay.Util.unescapeHTML(schedulerEvent.get('content'))),
 							userId: USER_ID
@@ -740,17 +717,8 @@ AUI.add(
 								}
 							);
 
-							if (data) {
-								if (data.exception) {
-									return;
-								}
-								else {
-									instance.setEventAttrs(schedulerEvent, data);
-								}
-							}
-
 							if (success) {
-								success.call(this, data);
+								success.call(instance, data);
 							}
 						}
 					}
@@ -768,14 +736,14 @@ AUI.add(
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							calendarId: schedulerEvent.get('calendarId'),
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
-							endTime: instance.toUTC(schedulerEvent.get('endDate')).getTime(),
+							endTime: CalendarUtil.toUTC(schedulerEvent.get('endDate')).getTime(),
 							firstReminder: schedulerEvent.get('firstReminder'),
 							firstReminderType: schedulerEvent.get('firstReminderType'),
 							location: schedulerEvent.get('location'),
 							recurrence: schedulerEvent.get('recurrence'),
 							secondReminder: schedulerEvent.get('secondReminder'),
 							secondReminderType: schedulerEvent.get('secondReminderType'),
-							startTime: instance.toUTC(schedulerEvent.get('startDate')).getTime(),
+							startTime: CalendarUtil.toUTC(schedulerEvent.get('startDate')).getTime(),
 							status: schedulerEvent.get('status'),
 							titleMap: instance.getLocalizationMap(Liferay.Util.unescapeHTML(schedulerEvent.get('content'))),
 							userId: USER_ID
@@ -793,8 +761,6 @@ AUI.add(
 						},
 
 						success: function(data) {
-							var scheduler = schedulerEvent.get('scheduler');
-
 							schedulerEvent.set(
 								'loading',
 								false,
@@ -803,20 +769,9 @@ AUI.add(
 								}
 							);
 
-							if (data) {
-								if (data.exception) {
-									return;
-								}
-								else {
-									instance.setEventAttrs(schedulerEvent, data);
-								}
-							}
-
 							if (success) {
-								success.call(this, data);
+								success.call(instance, data);
 							}
-
-							scheduler.load();
 						}
 					}
 				);
