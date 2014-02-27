@@ -20,6 +20,8 @@ import com.liferay.sync.engine.util.HttpUtil;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
 
@@ -52,9 +54,11 @@ public abstract class BaseEvent implements Runnable {
 					_syncAccountId, SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
 			}
 			else if (e instanceof HttpResponseException) {
-				int statusCode = ((HttpResponseException)e).getStatusCode();
+				HttpResponseException hre = (HttpResponseException)e;
 
-				if (statusCode == 401) {
+				int statusCode = hre.getStatusCode();
+
+				if (statusCode == HttpServletResponse.SC_UNAUTHORIZED) {
 					SyncAccountService.updateUIEvent(
 						_syncAccountId,
 						SyncAccount.UI_EVENT_AUTHENTICATION_EXCEPTION);
