@@ -1077,40 +1077,20 @@
 						changeDeleteText = Liferay.Language.get('would-you-like-to-change-only-this-event-all-events-in-the-series-or-this-and-all-future-events-in-the-series');
 					}
 
-					var buttons = [
-						{
+					var getButtonConfig = function(label, callback) {
+						return {
 							on: {
 								click: function(event, buttonItem)  {
-									confirmationPanel.onlyThisInstanceFn.apply(confirmationPanel, arguments);
+									if (callback) {
+										callback.apply(confirmationPanel, arguments);
+									}
+
+									confirmationPanel.hide();
 								}
 							},
-							label: Liferay.Language.get('only-this-instance')
-						},
-						{
-							on: {
-								click: function(event, buttonItem)  {
-									confirmationPanel.allFollowingFn.apply(confirmationPanel, arguments);
-								}
-							},
-							label: Liferay.Language.get('all-following')
-						},
-						{
-							on: {
-								click: function(event, buttonItem)  {
-									confirmationPanel.allEventsInFn.apply(confirmationPanel, arguments);
-								}
-							},
-							label: Liferay.Language.get('all-events-in-the-series')
-						},
-						{
-							on: {
-								click: function(event, buttonItem)  {
-									confirmationPanel.cancelFn.apply(confirmationPanel, arguments);
-								}
-							},
-							label: Liferay.Language.get('cancel-this-change')
-						}
-					];
+							label: Liferay.Language.get(label)
+						};
+					};
 
 					var confirmationPanel = Liferay.Util.Window.getWindow(
 						{
@@ -1121,7 +1101,12 @@
 								hideOn: [],
 								resizable: false,
 								toolbars: {
-									footer: buttons
+									footer: [
+										getButtonConfig('only-this-instance', onlyThisInstanceFn),
+										getButtonConfig('all-following', allFollowingFn),
+										getButtonConfig('all-events-in-the-series', allEventsInFn),
+										getButtonConfig('cancel-this-change', cancelFn)
+									]
 								},
 								width: 700
 							},
@@ -1129,12 +1114,7 @@
 						}
 					);
 
-					confirmationPanel.onlyThisInstanceFn = onlyThisInstanceFn;
-					confirmationPanel.allFollowingFn = allFollowingFn;
-					confirmationPanel.allEventsInFn = allEventsInFn;
-					confirmationPanel.cancelFn = cancelFn || confirmationPanel.hide;
-
-					confirmationPanel.render().show();
+					return confirmationPanel.render().show();
 				}
 			};
 		},
@@ -1152,24 +1132,20 @@
 				confirm: function(message, yesButtonLabel, noButtonLabel, yesFn, noFn) {
 					var instance = this;
 
-					var buttons = [
-						{
+					var getButtonConfig = function(label, callback) {
+						return {
 							on: {
-								click: function(event, buttonItem) {
-									confirmationPanel.yesFn.apply(confirmationPanel, arguments);
+								click: function(event, buttonItem)  {
+									if (callback) {
+										callback.apply(confirmationPanel, arguments);
+									}
+
+									confirmationPanel.hide();
 								}
 							},
-							label: yesButtonLabel
-						},
-						{
-							on: {
-								click: function(event, buttonItem) {
-									confirmationPanel.noFn.apply(confirmationPanel, arguments);
-								}
-							},
-							label: noButtonLabel
-						}
-					];
+							label: Liferay.Language.get(label)
+						};
+					};
 
 					var confirmationPanel = Liferay.Util.Window.getWindow(
 						{
@@ -1179,16 +1155,16 @@
 								hideOn: [],
 								resizable: false,
 								toolbars: {
-									footer: buttons
+									footer: [
+										getButtonConfig(yesButtonLabel, yesFn),
+										getButtonConfig(noButtonLabel, noFn)
+									]
 								},
 								width: 700
 							},
 							title: Liferay.Language.get('are-you-sure')
 						}
 					);
-
-					confirmationPanel.yesFn = yesFn;
-					confirmationPanel.noFn = noFn || confirmationPanel.close;
 
 					return confirmationPanel.render().show();
 				}
