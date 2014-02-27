@@ -1010,16 +1010,6 @@
 					Liferay.Language.get('december')
 				],
 
-				closeConfirmationPanel: function() {
-					var instance = this;
-
-					var confirmationPanel = instance.confirmationPanel;
-
-					if (confirmationPanel) {
-						confirmationPanel.hide();
-					}
-				},
-
 				getSummary: function(recurrence) {
 					var instance = this;
 
