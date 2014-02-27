@@ -95,6 +95,32 @@ public class WebRTCManager {
 		return _webRTCClients.get(userId);
 	}
 
+	public void hangUp(long sourceUserId, long destinationUserId) {
+		WebRTCClient sourceWebRTCClient = getWebRTCClient(sourceUserId);
+
+		if (sourceWebRTCClient == null) {
+			return;
+		}
+
+		WebRTCClient destinationWebRTCClient = getWebRTCClient(
+			destinationUserId);
+
+		if (destinationWebRTCClient == null) {
+			return;
+		}
+
+		if (sourceWebRTCClient.hasWebRTCConnection(destinationWebRTCClient)) {
+			sourceWebRTCClient.removeBilateralWebRTCConnection(
+				destinationWebRTCClient);
+
+			pushLostConnectionStateWebRTCMail(
+					sourceWebRTCClient, destinationWebRTCClient, "hangUp");
+
+			pushLostConnectionStateWebRTCMail(
+					destinationWebRTCClient, sourceWebRTCClient, "hangUp");
+		}
+	}
+
 	public boolean hasAvailableWebRTCClient(long userId) {
 		WebRTCClient webRTCClient = _webRTCClients.get(userId);
 
