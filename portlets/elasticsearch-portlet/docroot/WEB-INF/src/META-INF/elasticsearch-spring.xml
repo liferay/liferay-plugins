@@ -28,7 +28,7 @@
 
 	<bean id="com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnection" class="com.liferay.portal.search.elasticsearch.connection.EmbeddedElasticsearchConnection">
 		<property name="clusterName">
-			<util:constant static-field="com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnection.DEFAULT_CLUSTER_NAME" />
+			<util:constant static-field="com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnection.CLUSTER_NAME" />
 		</property>
 		<property name="indexFactory" ref="com.liferay.portal.search.elasticsearch.index.IndexFactory" />
 	</bean>
