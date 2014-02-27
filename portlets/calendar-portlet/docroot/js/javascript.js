@@ -274,23 +274,6 @@ AUI.add(
 				scheduler.syncEventsUI();
 			},
 
-			filterJSONArray: function(jsonArray, property, value) {
-				var instance = this;
-
-				var events = [];
-
-				AArray.each(
-					jsonArray,
-					function(item, index, collection) {
-						if (value === item[property]) {
-							events.push(instance.toSchedulerEvent(item));
-						}
-					}
-				);
-
-				return events;
-			},
-
 			getCalendarBookingInvitees: function(calendarBookingId, callback) {
 				var instance = this;
 
