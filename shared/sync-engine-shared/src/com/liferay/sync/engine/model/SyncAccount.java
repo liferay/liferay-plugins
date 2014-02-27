@@ -23,7 +23,7 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
  * @author Shinn Lok
  */
 @DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncAccount")
-public class SyncAccount extends BaseModel {
+public class SyncAccount extends StateAwareModel {
 
 	public static final int STATE_CONNECTED = 1;
 
@@ -47,10 +47,6 @@ public class SyncAccount extends BaseModel {
 
 	public String getPassword() {
 		return password;
-	}
-
-	public int getState() {
-		return state;
 	}
 
 	public long getSyncAccountId() {
@@ -77,10 +73,6 @@ public class SyncAccount extends BaseModel {
 		this.password = password;
 	}
 
-	public void setState(int state) {
-		this.state = state;
-	}
-
 	public void setSyncAccountId(long syncAccountId) {
 		this.syncAccountId = syncAccountId;
 	}
@@ -100,9 +92,6 @@ public class SyncAccount extends BaseModel {
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String password;
-
-	@DatabaseField(useGetSet = true)
-	protected int state;
 
 	@DatabaseField(generatedId = true, useGetSet = true)
 	protected long syncAccountId;

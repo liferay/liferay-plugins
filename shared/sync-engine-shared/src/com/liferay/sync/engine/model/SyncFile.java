@@ -26,7 +26,7 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
  */
 @DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncFile")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SyncFile extends BaseModel {
+public class SyncFile extends StateAwareModel {
 
 	public static final String EVENT_ADD = "add";
 
@@ -128,10 +128,6 @@ public class SyncFile extends BaseModel {
 		return size;
 	}
 
-	public int getState() {
-		return state;
-	}
-
 	public long getSyncAccountId() {
 		return syncAccountId;
 	}
@@ -228,10 +224,6 @@ public class SyncFile extends BaseModel {
 		this.size = size;
 	}
 
-	public void setState(int state) {
-		this.state = state;
-	}
-
 	public void setSyncAccountId(long syncAccountId) {
 		this.syncAccountId = syncAccountId;
 	}
@@ -312,9 +304,6 @@ public class SyncFile extends BaseModel {
 
 	@DatabaseField(useGetSet = true)
 	protected long size;
-
-	@DatabaseField(useGetSet = true)
-	protected int state;
 
 	@DatabaseField(useGetSet = true)
 	protected long syncAccountId;
