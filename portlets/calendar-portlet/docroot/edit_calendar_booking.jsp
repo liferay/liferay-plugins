@@ -314,7 +314,6 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					<c:when test="<%= recurring %>">
 						Liferay.RecurrenceUtil.openConfirmationPanel(
 							'update',
-							'<%= calendarBooking.isMasterBooking() %>',
 							function() {
 								A.one('#<portlet:namespace />updateCalendarBookingInstance').val('true');
 
