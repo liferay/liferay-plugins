@@ -1,4 +1,6 @@
 /**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
  * Software Foundation; either version 2.1 of the License, or (at your option)
@@ -11,11 +13,6 @@
  */
 
 package com.liferay.mentionnotifications.hook.services;
-
-import java.util.HashSet;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -33,6 +30,11 @@ import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.service.MBMessageLocalService;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceWrapper;
 import com.liferay.util.ContentUtil;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Sergio González
@@ -57,8 +59,8 @@ public class MentionUsersMessageServiceImpl
 			userId, userName, groupId, className, classPK, threadId,
 			parentMessageId, subject, body, serviceContext);
 
-		_notifyMentionedUsers(message, serviceContext);
-		
+		notifyUsers(message, serviceContext);
+
 		return message;
 	}
 
@@ -71,23 +73,22 @@ public class MentionUsersMessageServiceImpl
 			userId, messageId, className, classPK, subject, body,
 			serviceContext);
 
-		_notifyMentionedUsers(message, serviceContext);
-		
+		notifyUsers(message, serviceContext);
+
 		return message;
 	}
 
-	private void _notifyMentionedUsers(
-			MBMessage message, ServiceContext serviceContext)
+	protected void notifyUsers(MBMessage message, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if (!message.isDiscussion()) {
 			return;
 		}
 
-		String[] mentionedUsersScreenNamesArray = 
-			_getMentionedUsersScreenNames(message); 
-				
-		if (ArrayUtil.isEmpty(mentionedUsersScreenNamesArray)) {
+		String[] mentionedUsersScreenNames = _getMentionedUsersScreenNames(
+			message);
+
+		if (ArrayUtil.isEmpty(mentionedUsersScreenNames)) {
 			return;
 		}
 
@@ -101,14 +102,14 @@ public class MentionUsersMessageServiceImpl
 			message.getUserId(), StringPool.BLANK);
 
 		String fromName = PrefsPropsUtil.getString(
-			message.getCompanyId(), PropsKeys.ADMIN_EMAIL_FROM_NAME);
+			companyId, PropsKeys.ADMIN_EMAIL_FROM_NAME);
 		String fromAddress = PrefsPropsUtil.getString(
-			message.getCompanyId(), PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
+			companyId, PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
-		String mailSubject = ContentUtil.get(PropsUtil.get(
-			"discussion.mentioned.email.subject"));
-		String mailBody = ContentUtil.get(PropsUtil.get(
-			"discussion.mentioned.email.body"));
+		String mailSubject = ContentUtil.get(
+			PropsUtil.get("discussion.mentioned.email.subject"));
+		String mailBody = ContentUtil.get(
+			PropsUtil.get("discussion.mentioned.email.body"));
 
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
@@ -129,26 +130,21 @@ public class MentionUsersMessageServiceImpl
 		subscriptionSender.setSubject(mailSubject);
 		subscriptionSender.setUserId(message.getUserId());
 
-		for (int i = 0; i < mentionedUsersScreenNamesArray.length; i++) {
-			String mentionedUserScreenName = mentionedUsersScreenNamesArray[i];
+		for (int i = 0; i < mentionedUsersScreenNames.length; i++) {
+			String mentionedUserScreenName = mentionedUsersScreenNames[i];
 
-			try {
-				User mentionedUser = UserLocalServiceUtil.getUserByScreenName(
-					companyId, mentionedUserScreenName);
+			User user = UserLocalServiceUtil.fetchUserByScreenName(
+				companyId, mentionedUserScreenName);
 
+			if (user != null) {
 				subscriptionSender.addRuntimeSubscribers(
-					mentionedUser.getEmailAddress(),
-					mentionedUser.getFullName());
-			}
-			catch (Exception e) {
+					user.getEmailAddress(), user.getFullName());
 			}
 		}
 	}
 
 	private String[] _getMentionedUsersScreenNames(MBMessage message) {
-		String messageBody = message.getBody();
-		
-		Matcher matcher = _pattern.matcher(messageBody);
+		Matcher matcher = _pattern.matcher(message.getBody());
 
 		Set<String> mentionedUsersScreenNames = new HashSet<String>();
 
@@ -158,7 +154,7 @@ public class MentionUsersMessageServiceImpl
 			mentionedUsersScreenNames.add(mentionedUserScreenName);
 		}
 
-		return (String[])mentionedUsersScreenNames.toArray(
+		return mentionedUsersScreenNames.toArray(
 			new String[mentionedUsersScreenNames.size()]);
 	}
 

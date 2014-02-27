@@ -4,11 +4,7 @@
 <hook>
 	<portal-properties>portal.properties</portal-properties>
 	<service>
-		<service-type>
-			com.liferay.portlet.messageboards.service.MBMessageLocalService
-		</service-type>
-		<service-impl>
-			com.liferay.mentionnotifications.hook.services.MentionUsersMessageServiceImpl
-		</service-impl>
+		<service-type>com.liferay.portlet.messageboards.service.MBMessageLocalService</service-type>
+		<service-impl>com.liferay.mentionnotifications.hook.services.MentionUsersMessageServiceImpl</service-impl>
 	</service>
 </hook>
