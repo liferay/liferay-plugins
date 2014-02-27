@@ -1062,7 +1062,7 @@
 					return A.Lang.String.capitalize(summary);
 				},
 
-				openConfirmationPanel: function(actionName, masterBooking, onlyThisInstanceFn, allFollowingFn, allEventsInFn, cancelFn) {
+				openConfirmationPanel: function(actionName, onlyThisInstanceFn, allFollowingFn, allEventsInFn, cancelFn) {
 					var instance = this;
 
 					var titleText;
