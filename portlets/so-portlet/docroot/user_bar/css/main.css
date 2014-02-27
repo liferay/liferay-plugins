@@ -55,9 +55,9 @@ $defaultTextColor: #202020;
 		}
 
 		li {
-			display: block; 
+			display: block;
 			float: left;
-			list-style: none; 
+			list-style: none;
 
 			a {
 				display: block;
@@ -388,12 +388,10 @@ $defaultTextColor: #202020;
 							}
 						}
 
-						.user-notification-link {
-							.user-notifications-count {
-								background-color: #333;
-								color: #FFF;
-								display: inline;
-							}
+						.user-notification-link .user-notifications-count {
+							background-color: #333;
+							color: #FFF;
+							display: inline;
 						}
 
 						.user-notification {
