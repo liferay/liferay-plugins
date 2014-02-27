@@ -19,6 +19,7 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.base.CalendarBookingServiceBaseImpl;
 import com.liferay.calendar.service.permission.CalendarPermission;
 import com.liferay.calendar.util.ActionKeys;
+import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.util.RSSUtil;
 import com.liferay.calendar.workflow.CalendarBookingApprovalWorkflow;
 import com.liferay.portal.kernel.bean.BeanReference;
@@ -233,6 +234,27 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 		}
 
 		return calendarBookings;
+	}
+
+	@Override
+	public CalendarBooking getNewStartTimeAndDurationCalendarBooking(
+			long calendarBookingId, long offset, long duration)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarBooking.getCalendarId(),
+			ActionKeys.MANAGE_BOOKINGS);
+
+		calendarBooking = CalendarUtil.getNewStartTimeCalendarBooking(
+			calendarBooking, offset);
+
+		calendarBooking = CalendarUtil.getNewDurationCalendarBooking(
+			calendarBooking, duration);
+
+		return calendarBooking;
 	}
 
 	@Override
