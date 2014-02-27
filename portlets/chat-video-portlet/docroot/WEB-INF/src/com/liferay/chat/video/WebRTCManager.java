@@ -36,7 +36,6 @@ public class WebRTCManager {
 	public void call(long sourceUserId, long destinationUserId) {
 		addWebRTCClient(sourceUserId);
 
-
 		if (!hasAvailableWebRTCClient(sourceUserId)) {
 			return;
 		}
@@ -185,18 +184,11 @@ public class WebRTCManager {
 
 				webRTCClient.removeBilateralWebRTCConnection(otherWebRTCClient);
 
-				JSONObject messageJSONObject =
-					JSONFactoryUtil.createJSONObject();
+				pushLostConnectionStateWebRTCMail(
+					webRTCClient, otherWebRTCClient, "timeout");
 
-				messageJSONObject.put("reason", "timeout");
-				messageJSONObject.put("status", "lost");
-				messageJSONObject.put("type", "status");
-
-				pushConnectionStateWebRTCMail(
-					webRTCClient, otherWebRTCClient, messageJSONObject);
-
-				pushConnectionStateWebRTCMail(
-					otherWebRTCClient, webRTCClient, messageJSONObject);
+				pushLostConnectionStateWebRTCMail(
+					otherWebRTCClient, webRTCClient, "timeout");
 			}
 		}
 	}
@@ -291,6 +283,20 @@ public class WebRTCManager {
 		pushWebRTCMail(sourceUserId, destinationUserId, webRTCMail);
 	}
 
+	protected void pushLostConnectionStateWebRTCMail(
+		WebRTCClient sourceWebRTCClient, WebRTCClient destinationWebRTCClient,
+		String reason) {
+
+		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
+
+		messageJSONObject.put("reason", reason);
+		messageJSONObject.put("status", "lost");
+		messageJSONObject.put("type", "status");
+
+		pushConnectionStateWebRTCMail(
+			sourceWebRTCClient, destinationWebRTCClient, messageJSONObject);
+	}
+
 	protected void pushWebRTCMail(
 		long sourceUserId, long destinationUserId, WebRTCMail webRTCMail) {
 
@@ -334,15 +340,8 @@ public class WebRTCManager {
 			WebRTCConnection.State state = webRTCConnection.getState();
 
 			if (state != WebRTCConnection.State.DISCONNECTED) {
-				JSONObject messageJSONObject =
-					JSONFactoryUtil.createJSONObject();
-
-				messageJSONObject.put("reason", "reset");
-				messageJSONObject.put("status", "lost");
-				messageJSONObject.put("type", "status");
-
-				pushConnectionStateWebRTCMail(
-					webRTCClient, otherWebRTCClient, messageJSONObject);
+				pushLostConnectionStateWebRTCMail(
+					webRTCClient, otherWebRTCClient, "reset");
 			}
 		}
 
