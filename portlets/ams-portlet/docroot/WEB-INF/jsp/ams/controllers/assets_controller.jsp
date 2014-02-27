@@ -20,6 +20,10 @@
 <%!
 public class AlloyControllerImpl extends BaseAlloyControllerImpl {
 
+	public AlloyControllerImpl() {
+		setPermissioned(true);
+	}
+
 	public void delete() throws Exception {
 		long assetId = ParamUtil.getLong(request, "id");
 
