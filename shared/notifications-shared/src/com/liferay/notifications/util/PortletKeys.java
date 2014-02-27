@@ -36,7 +36,4 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 	public static final String SO_INVITE_MEMBERS =
 		com.liferay.so.util.PortletKeys.SO_INVITE_MEMBERS;
 
-	public static final String SO_NOTIFICATION =
-		com.liferay.so.util.PortletKeys.SO_NOTIFICATION;
-
 }

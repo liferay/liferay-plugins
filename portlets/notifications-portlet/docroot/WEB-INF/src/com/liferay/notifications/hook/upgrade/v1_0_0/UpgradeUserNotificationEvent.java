@@ -72,7 +72,7 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 				"select userNotificationEventId, payload from " +
 					"UserNotificationEvent where type_ = ?");
 
-			ps.setString(1, PortletKeys.SO_NOTIFICATION);
+			ps.setString(1, PortletKeys.NOTIFICATIONS);
 
 			rs = ps.executeQuery();
 
