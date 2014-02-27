@@ -6,8 +6,8 @@
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
+>
 	<bean class="com.liferay.portal.spring.context.PortletBeanFactoryPostProcessor" />
 
 	<!-- Elasticsearch engine adapter -->
@@ -44,11 +44,11 @@
 		</property>
 	</bean>
 
-	<!-- Elasticsearch Document -->
+	<!-- Elasticsearch document -->
 
 	<bean id="com.liferay.portal.search.elasticsearch.document.ElasticsearchDocumentFactory" class="com.liferay.portal.search.elasticsearch.document.DefaultElasticsearchDocumentFactory" />
 
-	<!-- Elasticsearch Facet Configs -->
+	<!-- Elasticsearch facet -->
 
 	<bean id="com.liferay.portal.search.elasticsearch.facet.DefaultFacetProcessor" class="com.liferay.portal.search.elasticsearch.facet.DefaultFacetProcessor" />
 	<bean id="com.liferay.portal.search.elasticsearch.facet.RangeFacetProcessor" class="com.liferay.portal.search.elasticsearch.facet.RangeFacetProcessor" />
@@ -57,7 +57,7 @@
 		<property name="facetProcessors">
 			<util:map>
 				<entry key="com.liferay.portal.kernel.search.facet.RangeFacet"
-				       value-ref="com.liferay.portal.search.elasticsearch.facet.RangeFacetProcessor" />
+					   value-ref="com.liferay.portal.search.elasticsearch.facet.RangeFacetProcessor" />
 			</util:map>
 		</property>
 	</bean>

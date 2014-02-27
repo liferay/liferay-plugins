@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 
-import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
 
@@ -44,9 +43,9 @@ public class DefaultElasticsearchDocumentFactory
 
 		xContentBuilder.startObject();
 
-		Collection<Field> fields = document.getFields().values();
+		Map<String, Field> fields = document.getFields();
 
-		for (Field field : fields) {
+		for (Field field : fields.values()) {
 			String name = field.getName();
 
 			if (!field.isLocalized()) {

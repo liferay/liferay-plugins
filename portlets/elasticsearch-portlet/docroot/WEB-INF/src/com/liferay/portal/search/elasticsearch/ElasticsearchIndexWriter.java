@@ -77,15 +77,14 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 				String.valueOf(searchContext.getCompanyId()),
 				ElasticsearchConnection.LIFERAY_DOCUMENT_TYPE, uid);
 
-			Future<DeleteResponse> deleteFuture =
-				deleteRequestBuilder.execute();
+			Future<DeleteResponse> future = deleteRequestBuilder.execute();
 
-			DeleteResponse deleteResponse = deleteFuture.get();
+			DeleteResponse deleteResponse = future.get();
 
 			logActionResponse(deleteResponse);
 		}
 		catch (Exception e) {
-			throw new SearchException("Failed to delete document: " + uid, e);
+			throw new SearchException("Unable to delete document " + uid, e);
 		}
 	}
 
@@ -108,15 +107,14 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 				bulkRequestBuilder.add(deleteRequestBuilder);
 			}
 
-			Future<BulkResponse> bulkRequestFuture =
-				bulkRequestBuilder.execute();
+			Future<BulkResponse> future = bulkRequestBuilder.execute();
 
-			BulkResponse bulkResponse = bulkRequestFuture.get();
+			BulkResponse bulkResponse = future.get();
 
 			logActionResponse(bulkResponse);
 		}
 		catch (Exception e) {
-			throw new SearchException("Failed to delete documents: " + uids, e);
+			throw new SearchException("Unable to delete documents " + uids, e);
 		}
 	}
 
@@ -139,19 +137,16 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 
 			deleteByQueryRequestBuilder.setQuery(boolQueryBuilder);
 
-			Future<DeleteByQueryResponse> deleteByQueryFuture =
-					deleteByQueryRequestBuilder.execute();
+			Future<DeleteByQueryResponse> future =
+				deleteByQueryRequestBuilder.execute();
 
-			DeleteByQueryResponse deleteByQueryResponse =
-				deleteByQueryFuture.get();
+			DeleteByQueryResponse deleteByQueryResponse = future.get();
 
 			logActionResponse(deleteByQueryResponse);
 		}
 		catch (Exception e) {
 			throw new SearchException(
-				"Failed to delete portlet data from index for portlet " +
-					portletId,
-				e);
+				"Unable to delete data for portlet " + portletId, e);
 		}
 	}
 
@@ -169,18 +164,17 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 			Client client = getClient();
 
 			UpdateRequestBuilder updateRequestBuilder =
-				createUpdateRequestBuilder(searchContext, client, document);
+				buildUpdateRequestBuilder(searchContext, client, document);
 
-			Future<UpdateResponse> updateFuture =
-				updateRequestBuilder.execute();
+			Future<UpdateResponse> future = updateRequestBuilder.execute();
 
-			UpdateResponse updateResponse = updateFuture.get();
+			UpdateResponse updateResponse = future.get();
 
 			logActionResponse(updateResponse);
 		}
 		catch (Exception e) {
 			throw new SearchException(
-				"Failed to update document: " + document, e);
+				"Unable to update document " + document, e);
 		}
 	}
 
@@ -196,25 +190,24 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 
 			for (Document document : documents) {
 				UpdateRequestBuilder updateRequestBuilder =
-					createUpdateRequestBuilder(searchContext, client, document);
+					buildUpdateRequestBuilder(searchContext, client, document);
 
 				bulkRequestBuilder.add(updateRequestBuilder);
 			}
 
-			Future<BulkResponse> bulkRequestFuture =
-				bulkRequestBuilder.execute();
+			Future<BulkResponse> future = bulkRequestBuilder.execute();
 
-			BulkResponse bulkResponse = bulkRequestFuture.get();
+			BulkResponse bulkResponse = future.get();
 
 			logActionResponse(bulkResponse);
 		}
 		catch (Exception e) {
 			throw new SearchException(
-				"Failed to update documents: " + documents, e);
+				"Unable to update documents " + documents, e);
 		}
 	}
 
-	protected UpdateRequestBuilder createUpdateRequestBuilder(
+	protected UpdateRequestBuilder buildUpdateRequestBuilder(
 			SearchContext searchContext, Client client, Document document)
 		throws IOException {
 
@@ -224,6 +217,7 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 
 		String elasticSearchDocument =
 			_elasticsearchDocumentFactory.getElasticsearchDocument(document);
+
 		updateRequestBuilder.setDoc(elasticSearchDocument);
 		updateRequestBuilder.setDocAsUpsert(true);
 
@@ -231,20 +225,25 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 	}
 
 	protected Client getClient() {
-		return ElasticsearchConnectionManager.getInstance().getClient();
+		ElasticsearchConnectionManager elasticsearchConnectionManager =
+			ElasticsearchConnectionManager.getInstance();
+
+		return elasticsearchConnectionManager.getClient();
 	}
 
 	protected void logActionResponse(ActionResponse actionResponse)
 		throws IOException {
 
-		if (_log.isInfoEnabled()) {
-			StringOutputStream stringOutputStream = new StringOutputStream();
-
-			actionResponse.writeTo(
-				new OutputStreamStreamOutput(stringOutputStream));
-
-			_log.info(stringOutputStream);
+		if (!_log.isInfoEnabled()) {
+			return;
 		}
+
+		StringOutputStream stringOutputStream = new StringOutputStream();
+
+		actionResponse.writeTo(
+			new OutputStreamStreamOutput(stringOutputStream));
+
+		_log.info(stringOutputStream);
 	}
 
 	protected void logActionResponse(BulkResponse bulkResponse)
