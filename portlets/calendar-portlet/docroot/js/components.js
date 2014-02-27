@@ -1115,7 +1115,7 @@
 					var confirmationPanel = Liferay.Util.Window.getWindow(
 						{
 							dialog:	{
-								bodyContent: content.join(''),
+								bodyContent: changeDeleteText,
 								destroyOnHide: true,
 								height: 250,
 								hideOn: [],
