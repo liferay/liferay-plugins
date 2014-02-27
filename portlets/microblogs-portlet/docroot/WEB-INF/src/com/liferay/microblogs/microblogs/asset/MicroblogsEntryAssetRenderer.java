@@ -75,12 +75,12 @@ public class MicroblogsEntryAssetRenderer extends BaseAssetRenderer {
 
 	@Override
 	public String getSummary(Locale locale) {
-		return _entry.getContent();
+		return HtmlUtil.stripHtml(_entry.getContent());
 	}
 
 	@Override
 	public String getTitle(Locale locale) {
-		return _entry.getContent();
+		return HtmlUtil.stripHtml(_entry.getContent());
 	}
 
 	@Override

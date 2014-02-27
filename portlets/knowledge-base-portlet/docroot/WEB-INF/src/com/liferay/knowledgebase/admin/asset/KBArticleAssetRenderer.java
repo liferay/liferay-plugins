@@ -60,7 +60,7 @@ public class KBArticleAssetRenderer extends BaseAssetRenderer {
 
 	@Override
 	public String getSummary(Locale locale) {
-		return _kbArticle.getContent();
+		return HtmlUtil.stripHtml(_kbArticle.getContent());
 	}
 
 	@Override
