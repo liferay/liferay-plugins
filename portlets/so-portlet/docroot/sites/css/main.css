@@ -346,13 +346,11 @@ $defaultTextColor: #202020;
 		}
 
 		.portlet-body {
-			left: 0;
 			margin: -1.125em 0 0;
 
 			@include menu-mix;
 
 			padding: 3.4em 0 0;
-			position: absolute;
 			right: 0;
 			visibility: hidden;
 			z-index: 1;
@@ -378,7 +376,7 @@ $defaultTextColor: #202020;
 			position: absolute;
 			right: 0;
 			text-align: right;
-			top: 0.65em;
+			top: 0.5em;
 			visibility: visible;
 			width: auto;
 
@@ -490,10 +488,13 @@ $defaultTextColor: #202020;
 		width: 350px;
 
 		.portlet-body {
+			position: absolute;
 			visibility: visible;
+			width: 100%;
 			z-index: 3;
 
 			.search {
+				top: .7em;
 				width: auto;
 
 				.search-input {
@@ -519,15 +520,7 @@ $defaultTextColor: #202020;
 		display: block;
 		height: 43px;
 		width: auto;
-
-		.so-portlet-sites {
-			top: -5px;
-		}
 	}
-}
-
-.dockbar-split .go-to .so-portlet-sites {
-	top: 0;
 }
 
 /* ---------- Extras ---------- */
