@@ -129,6 +129,12 @@ public interface CalendarBookingService extends BaseService, InvokableService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.calendar.model.CalendarBooking getNewStartTimeAndDurationCalendarBooking(
+		long calendarBookingId, long offset, long duration)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings(
 		long parentCalendarBookingId)
 		throws com.liferay.portal.kernel.exception.PortalException,
