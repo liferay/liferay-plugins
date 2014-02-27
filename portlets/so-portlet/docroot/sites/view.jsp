@@ -98,39 +98,41 @@ pageContext.setAttribute("portletURL", portletURL);
 
 	var controlContainer = A.one('.so-portlet-sites .control-container');
 
-	var addSiteButton = new A.Toolbar(
-		{
-			children: [
-				<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
+	if (controlContainer) {
+		var addSiteButton = new A.Toolbar(
+			{
+				children: [
+					<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
+						{
+							icon: 'plusthick',
+							label: '<liferay-ui:message key="add-site" unicode="<%= true %>" />',
+							on: {
+								click: function(event) {
+									<liferay-portlet:renderURL var="addSiteURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+										<portlet:param name="mvcPath" value="/sites/edit_site.jsp" />
+									</liferay-portlet:renderURL>
+
+									Liferay.SO.Sites.displayPopup('<%= addSiteURL %>', '<liferay-ui:message key="add-site" unicode="<%= true %>" />');
+								}
+							}
+						},
+					</c:if>
 					{
-						icon: 'plusthick',
-						label: '<liferay-ui:message key="add-site" unicode="<%= true %>" />',
+						label: '<liferay-ui:message key="sites-directory" unicode="<%= true %>" />',
 						on: {
 							click: function(event) {
-								<liferay-portlet:renderURL var="addSiteURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-									<portlet:param name="mvcPath" value="/sites/edit_site.jsp" />
+								<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+									<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
 								</liferay-portlet:renderURL>
 
-								Liferay.SO.Sites.displayPopup('<%= addSiteURL %>', '<liferay-ui:message key="add-site" unicode="<%= true %>" />');
+								Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites-directory" unicode="<%= true %>" />');
 							}
 						}
-					},
-				</c:if>
-				{
-					label: '<liferay-ui:message key="sites-directory" unicode="<%= true %>" />',
-					on: {
-						click: function(event) {
-							<liferay-portlet:renderURL var="viewSitesURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-								<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />
-							</liferay-portlet:renderURL>
-
-							Liferay.SO.Sites.displayPopup('<%= viewSitesURL %>', '<liferay-ui:message key="sites-directory" unicode="<%= true %>" />');
-						}
 					}
-				}
-			]
-		}
-	).render(controlContainer);
+				]
+			}
+		).render(controlContainer);
+	}
 
 	var searchInput = A.one('#<portlet:namespace />name');
 
