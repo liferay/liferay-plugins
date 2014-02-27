@@ -38,18 +38,19 @@ public class SettingsFactoryUtil {
 	}
 
 	public static Settings getServiceCompanySettings(
-			long companyId, String serviceId)
+			long companyId, String servicePackageName)
 		throws SystemException {
 
 		return getSettingsFactory().getServiceCompanySettings(
-			companyId, serviceId);
+			companyId, servicePackageName);
 	}
 
 	public static Settings getServiceGroupSettings(
-			long groupId, String serviceId)
+			long groupId, String servicePackageName)
 		throws PortalException, SystemException {
 
-		return getSettingsFactory().getServiceGroupSettings(groupId, serviceId);
+		return getSettingsFactory().getServiceGroupSettings(
+			groupId, servicePackageName);
 	}
 
 	public static SettingsFactory getSettingsFactory() {

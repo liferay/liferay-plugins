@@ -29,10 +29,12 @@ public interface SettingsFactory {
 	public Settings getPortletInstanceSettings(Layout layout, String portletId)
 		throws SystemException;
 
-	public Settings getServiceCompanySettings(long companyId, String serviceId)
+	public Settings getServiceCompanySettings(
+			long companyId, String servicePackageName)
 		throws SystemException;
 
-	public Settings getServiceGroupSettings(long groupId, String serviceId)
+	public Settings getServiceGroupSettings(
+			long groupId, String servicePackageName)
 		throws PortalException, SystemException;
 
 }

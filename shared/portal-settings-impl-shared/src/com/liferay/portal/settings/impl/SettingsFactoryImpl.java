@@ -90,25 +90,27 @@ public class SettingsFactoryImpl implements SettingsFactory {
 	}
 
 	@Override
-	public Settings getServiceCompanySettings(long companyId, String serviceId)
+	public Settings getServiceCompanySettings(
+			long companyId, String servicePackageName)
 		throws SystemException {
 
 		PortletPreferences companyPortletPreferences =
 			PortletPreferencesLocalServiceUtil.getPreferences(
 				companyId, companyId, PortletKeys.PREFS_OWNER_TYPE_COMPANY, 0,
-				serviceId);
+				servicePackageName);
 
 		ServiceCompanySettings serviceCompanySettings =
 			new ServiceCompanySettings(companyPortletPreferences);
 
 		serviceCompanySettings.setPortalProperties(
-			getPortalProperties(serviceId));
+			getPortalProperties(servicePackageName));
 
 		return serviceCompanySettings;
 	}
 
 	@Override
-	public Settings getServiceGroupSettings(long groupId, String serviceId)
+	public Settings getServiceGroupSettings(
+			long groupId, String servicePackageName)
 		throws PortalException, SystemException {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
@@ -116,7 +118,7 @@ public class SettingsFactoryImpl implements SettingsFactory {
 		PortletPreferences groupPortletPreferences =
 			PortletPreferencesLocalServiceUtil.getPreferences(
 				group.getCompanyId(), groupId,
-				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, serviceId);
+				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, servicePackageName);
 
 		ServiceGroupSettings serviceGroupSettings = new ServiceGroupSettings(
 			groupPortletPreferences);
@@ -125,13 +127,13 @@ public class SettingsFactoryImpl implements SettingsFactory {
 			PortletPreferencesLocalServiceUtil.getPreferences(
 				group.getCompanyId(), group.getCompanyId(),
 				PortletKeys.PREFS_OWNER_TYPE_GROUP_DEFAULTS_COMPANY, 0,
-				serviceId);
+				servicePackageName);
 
 		serviceGroupSettings.setCompanyPortletPreferences(
 			companyPortletPreferences);
 
 		serviceGroupSettings.setPortalProperties(
-			getPortalProperties(serviceId));
+			getPortalProperties(servicePackageName));
 
 		return serviceGroupSettings;
 	}
