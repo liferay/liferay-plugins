@@ -358,13 +358,18 @@ public class CalendarPortlet extends MVCPortlet {
 						calendarBooking.getStartTime());
 
 				calendarBooking =
+					CalendarBookingServiceUtil.
+						getNewStartTimeAndDurationCalendarBooking(
+							calendarBookingId, offset, duration);
+
+				calendarBooking =
 					CalendarBookingServiceUtil.updateCalendarBooking(
 						calendarBookingId, calendarId, childCalendarIds,
 						titleMap, descriptionMap, location,
-						(calendarBooking.getStartTime() + offset),
-						(calendarBooking.getStartTime() + offset + duration),
-						allDay, recurrence, reminders[0], remindersType[0],
-						reminders[1], remindersType[1], status, serviceContext);
+						calendarBooking.getStartTime(),
+						calendarBooking.getEndTime(), allDay, recurrence,
+						reminders[0], remindersType[0], reminders[1],
+						remindersType[1], status, serviceContext);
 			}
 		}
 
