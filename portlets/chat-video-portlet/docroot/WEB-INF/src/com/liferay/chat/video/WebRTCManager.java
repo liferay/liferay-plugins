@@ -33,7 +33,7 @@ public class WebRTCManager {
 		_webRTCManagers.add(this);
 	}
 
-	public void connect(long sourceUserId, long destinationUserId) {
+	public void call(long sourceUserId, long destinationUserId) {
 		addWebRTCClient(sourceUserId);
 
 
@@ -74,7 +74,7 @@ public class WebRTCManager {
 
 		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
 
-		messageJSONObject.put("type", "connect");
+		messageJSONObject.put("type", "call");
 
 		pushConnectionStateWebRTCMail(
 			sourceWebRTCClient, destinationWebRTCClient, messageJSONObject);
