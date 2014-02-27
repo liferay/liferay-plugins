@@ -466,6 +466,38 @@ AUI.add(
 				return A.JSON.stringify(map);
 			},
 
+			getNewStartTimeAndDurationCalendarBooking: function(calendarBookingId, offset, duration, success) {
+				var instance = this;
+
+				var schedulerEvent = null;
+
+				instance.invokeService(
+					{
+						'/calendar-portlet.calendarbooking/get-new-start-time-and-duration-calendar-booking': {
+							calendarBookingId: calendarBookingId,
+							offset: offset,
+							duration: duration
+						}
+					},
+					{
+						success: function(data) {
+							if (data) {
+								if (data.exception) {
+									return;
+								}
+								else {
+									schedulerEvent = instance.toSchedulerEvent(data);
+								}
+							}
+
+							if (success) {
+								success.call(this, schedulerEvent);
+							}
+						}
+					}
+				);
+			},
+
 			invokeService: function(payload, callback) {
 				var instance = this;
 
