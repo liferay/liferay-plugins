@@ -225,7 +225,7 @@ if (comment) {
 
 	var MAP_USERS = {};
 
-	var REGEX_USER_NAME = /@[^\s]+/;
+	var REGEX_USER_NAME = /@(.*[^\s]+)$/;
 
 	var TPL_SEARCH_RESULTS = '<div class="microblogs-autocomplete">' +
 		'<div class="thumbnail">' +
@@ -455,6 +455,9 @@ if (comment) {
 							highlighterContent.removeClass('textbox');
 
 							createTextarea('#<portlet:namespace />autocompleteContent');
+						}
+						else {
+							contentInput.focus();
 						}
 					}
 				);
