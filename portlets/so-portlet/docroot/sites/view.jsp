@@ -104,7 +104,7 @@ pageContext.setAttribute("portletURL", portletURL);
 				children: [
 					<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
 						{
-							icon: 'plusthick',
+							icon: 'icon-plus',
 							label: '<liferay-ui:message key="add-site" unicode="<%= true %>" />',
 							on: {
 								click: function(event) {
@@ -118,6 +118,7 @@ pageContext.setAttribute("portletURL", portletURL);
 						},
 					</c:if>
 					{
+						icon: 'icon-reorder',
 						label: '<liferay-ui:message key="sites-directory" unicode="<%= true %>" />',
 						on: {
 							click: function(event) {
