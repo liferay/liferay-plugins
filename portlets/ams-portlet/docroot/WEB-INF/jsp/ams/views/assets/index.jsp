@@ -78,10 +78,12 @@
 			<portlet:param name="format" value="html" />
 		</portlet:actionURL>
 
-		<liferay-ui:search-container-column-text
-			href="javascript:submitForm(document.hrefFm, '${deleteAssetURL}&p_p_state=normal');"
-			value="X"
-		/>
+		<c:if test='${alloyPermission:contains(themeDisplay, "assets", "delete")}'>
+			<liferay-ui:search-container-column-text
+				href="javascript:submitForm(document.hrefFm, '${deleteAssetURL}&p_p_state=normal');"
+				value="X"
+			/>
+		</c:if>
 	</liferay-ui:search-container-row>
 
 	<liferay-ui:search-iterator />
