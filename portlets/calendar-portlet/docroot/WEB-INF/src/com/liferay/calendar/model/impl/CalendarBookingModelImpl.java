@@ -37,10 +37,8 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ContainerModel;
 import com.liferay.portal.model.TrashedModel;
-import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -535,18 +533,12 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public String getUserUuid() throws SystemException {
-		try {
-			User user = UserLocalServiceUtil.getUserById(getUserId());
-
-			return user.getUuid();
-		}
-		catch (PortalException pe) {
-			return StringPool.BLANK;
-		}
+		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
 	}
 
 	@Override
 	public void setUserUuid(String userUuid) {
+		_userUuid = userUuid;
 	}
 
 	@JSON
@@ -1045,18 +1037,13 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 
 	@Override
 	public String getStatusByUserUuid() throws SystemException {
-		try {
-			User user = UserLocalServiceUtil.getUserById(getStatusByUserId());
-
-			return user.getUuid();
-		}
-		catch (PortalException pe) {
-			return StringPool.BLANK;
-		}
+		return PortalUtil.getUserValue(getStatusByUserId(), "uuid",
+			_statusByUserUuid);
 	}
 
 	@Override
 	public void setStatusByUserUuid(String statusByUserUuid) {
+		_statusByUserUuid = statusByUserUuid;
 	}
 
 	@JSON
@@ -1827,6 +1814,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private long _originalCompanyId;
 	private boolean _setOriginalCompanyId;
 	private long _userId;
+	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
@@ -1859,6 +1847,7 @@ public class CalendarBookingModelImpl extends BaseModelImpl<CalendarBooking>
 	private int _originalStatus;
 	private boolean _setOriginalStatus;
 	private long _statusByUserId;
+	private String _statusByUserUuid;
 	private String _statusByUserName;
 	private Date _statusDate;
 	private long _columnBitmask;

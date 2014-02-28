@@ -220,22 +220,6 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static com.liferay.calendar.model.CalendarBookingSoap getNewStartTimeAndDurationCalendarBooking(
-		long calendarBookingId, long offset, long duration)
-		throws RemoteException {
-		try {
-			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.getNewStartTimeAndDurationCalendarBooking(calendarBookingId,
-					offset, duration);
-
-			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModel(returnValue);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			throw new RemoteException(e.getMessage());
-		}
-	}
-
 	public static com.liferay.calendar.model.CalendarBookingSoap[] getChildCalendarBookings(
 		long parentCalendarBookingId) throws RemoteException {
 		try {
@@ -259,6 +243,36 @@ public class CalendarBookingServiceSoap {
 					status);
 
 			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.calendar.model.CalendarBookingSoap getNewStartTimeAndDurationCalendarBooking(
+		long calendarBookingId, long offset, long duration)
+		throws RemoteException {
+		try {
+			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.getNewStartTimeAndDurationCalendarBooking(calendarBookingId,
+					offset, duration);
+
+			return com.liferay.calendar.model.CalendarBookingSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static boolean hasChildCalendarBookings(long parentCalendarBookingId)
+		throws RemoteException {
+		try {
+			boolean returnValue = CalendarBookingServiceUtil.hasChildCalendarBookings(parentCalendarBookingId);
+
+			return returnValue;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
