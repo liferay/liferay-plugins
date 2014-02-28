@@ -50,7 +50,7 @@ public class WebRTCManager {
 		}
 
 		WebRTCClient sourceWebRTCClient = getWebRTCClient(sourceUserId);
-		WebRTCClient destinationWebRTCClient =getWebRTCClient(
+		WebRTCClient destinationWebRTCClient = getWebRTCClient(
 			destinationUserId);
 
 		if (!isValidWebRTCConnectionState(
@@ -78,7 +78,8 @@ public class WebRTCManager {
 
 		if (answer) {
 			webRTCConnection.setState(WebRTCConnection.State.CONNECTED);
-		} else {
+		}
+		else {
 			sourceWebRTCClient.removeBilateralWebRTCConnection(
 				destinationWebRTCClient);
 		}
