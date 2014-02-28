@@ -30,11 +30,10 @@ public interface SettingsFactory {
 		throws SystemException;
 
 	public Settings getServiceCompanySettings(
-			long companyId, String servicePackageName)
+			long companyId, String serviceName)
 		throws SystemException;
 
-	public Settings getServiceGroupSettings(
-			long groupId, String servicePackageName)
+	public Settings getServiceGroupSettings(long groupId, String serviceName)
 		throws PortalException, SystemException;
 
 }

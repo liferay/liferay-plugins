@@ -91,26 +91,25 @@ public class SettingsFactoryImpl implements SettingsFactory {
 
 	@Override
 	public Settings getServiceCompanySettings(
-			long companyId, String servicePackageName)
+			long companyId, String serviceName)
 		throws SystemException {
 
 		PortletPreferences companyPortletPreferences =
 			PortletPreferencesLocalServiceUtil.getPreferences(
 				companyId, companyId, PortletKeys.PREFS_OWNER_TYPE_COMPANY, 0,
-				servicePackageName);
+				serviceName);
 
 		ServiceCompanySettings serviceCompanySettings =
 			new ServiceCompanySettings(companyPortletPreferences);
 
 		serviceCompanySettings.setPortalProperties(
-			getPortalProperties(servicePackageName));
+			getPortalProperties(serviceName));
 
 		return serviceCompanySettings;
 	}
 
 	@Override
-	public Settings getServiceGroupSettings(
-			long groupId, String servicePackageName)
+	public Settings getServiceGroupSettings(long groupId, String serviceName)
 		throws PortalException, SystemException {
 
 		Group group = GroupLocalServiceUtil.getGroup(groupId);
@@ -118,7 +117,7 @@ public class SettingsFactoryImpl implements SettingsFactory {
 		PortletPreferences groupPortletPreferences =
 			PortletPreferencesLocalServiceUtil.getPreferences(
 				group.getCompanyId(), groupId,
-				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, servicePackageName);
+				PortletKeys.PREFS_OWNER_TYPE_GROUP, 0, serviceName);
 
 		ServiceGroupSettings serviceGroupSettings = new ServiceGroupSettings(
 			groupPortletPreferences);
@@ -127,27 +126,27 @@ public class SettingsFactoryImpl implements SettingsFactory {
 			PortletPreferencesLocalServiceUtil.getPreferences(
 				group.getCompanyId(), group.getCompanyId(),
 				PortletKeys.PREFS_OWNER_TYPE_GROUP_DEFAULTS_COMPANY, 0,
-				servicePackageName);
+				serviceName);
 
 		serviceGroupSettings.setCompanyPortletPreferences(
 			companyPortletPreferences);
 
 		serviceGroupSettings.setPortalProperties(
-			getPortalProperties(servicePackageName));
+			getPortalProperties(serviceName));
 
 		return serviceGroupSettings;
 	}
 
-	protected Properties getPortalProperties(String portletId) {
-		Properties portalProperties = _propertiesMap.get(portletId);
+	protected Properties getPortalProperties(String key) {
+		Properties portalProperties = _propertiesMap.get(key);
 
 		if (portalProperties != null) {
 			return portalProperties;
 		}
 
-		portalProperties = PropsUtil.getProperties(portletId, false);
+		portalProperties = PropsUtil.getProperties(key, false);
 
-		_propertiesMap.put(portletId, portalProperties);
+		_propertiesMap.put(key, portalProperties);
 
 		return portalProperties;
 	}
