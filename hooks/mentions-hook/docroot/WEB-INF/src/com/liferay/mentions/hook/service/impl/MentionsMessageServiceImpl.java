@@ -119,8 +119,9 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			message.getCompanyId(), PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
 		String subject = ContentUtil.get(
-			PortletPropsValues.DISCUSSION_EMAIL_SUBJECT);
-		String body = ContentUtil.get(PortletPropsValues.DISCUSSION_EMAIL_BODY);
+			PortletPropsValues.MB_DISCUSSION_EMAIL_SUBJECT);
+		String body = ContentUtil.get(
+			PortletPropsValues.MB_DISCUSSION_EMAIL_BODY);
 
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 

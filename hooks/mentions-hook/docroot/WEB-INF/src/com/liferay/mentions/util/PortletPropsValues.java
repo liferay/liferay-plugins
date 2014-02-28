@@ -21,10 +21,10 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
-	public static final String DISCUSSION_EMAIL_BODY = PortletProps.get(
-		PortletPropsKeys.DISCUSSION_EMAIL_BODY);
+	public static final String MB_DISCUSSION_EMAIL_BODY = PortletProps.get(
+		PortletPropsKeys.MB_DISCUSSION_EMAIL_BODY);
 
-	public static final String DISCUSSION_EMAIL_SUBJECT = PortletProps.get(
-		PortletPropsKeys.DISCUSSION_EMAIL_SUBJECT);
+	public static final String MB_DISCUSSION_EMAIL_SUBJECT = PortletProps.get(
+		PortletPropsKeys.MB_DISCUSSION_EMAIL_SUBJECT);
 
 }
