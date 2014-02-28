@@ -4,6 +4,6 @@
 <hook>
 	<service>
 		<service-type>com.liferay.portlet.messageboards.service.MBMessageLocalService</service-type>
-		<service-impl>com.liferay.mentions.hook.service.impl.MentionUsersMessageServiceImpl</service-impl>
+		<service-impl>com.liferay.mentions.hook.service.impl.MentionsMessageServiceImpl</service-impl>
 	</service>
 </hook>
