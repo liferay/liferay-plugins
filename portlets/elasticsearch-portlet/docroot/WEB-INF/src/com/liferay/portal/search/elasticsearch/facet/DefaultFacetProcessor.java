@@ -34,11 +34,11 @@ public class DefaultFacetProcessor implements FacetProcessor<Facet> {
 
 		String fieldName = facetConfiguration.getFieldName();
 
-		TermsFacetBuilder facetBuilder = new TermsFacetBuilder(fieldName);
+		TermsFacetBuilder termsFacetBuilder = new TermsFacetBuilder(fieldName);
 
-		facetBuilder.field(fieldName);
+		termsFacetBuilder.field(fieldName);
 
-		searchRequestBuilder.addFacet(facetBuilder);
+		searchRequestBuilder.addFacet(termsFacetBuilder);
 	}
 
 }

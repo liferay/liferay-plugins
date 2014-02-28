@@ -31,11 +31,13 @@ public class RangeFacetProcessor implements FacetProcessor<RangeFacet> {
 
 	@Override
 	public void processFacet(
-		SearchRequestBuilder searchRequestBuilder, RangeFacet facet) {
+		SearchRequestBuilder searchRequestBuilder, RangeFacet rangeFacet) {
 
-		FacetConfiguration facetConfiguration = facet.getFacetConfiguration();
+		FacetConfiguration facetConfiguration =
+			rangeFacet.getFacetConfiguration();
 
 		JSONObject jsonObject = facetConfiguration.getData();
+
 		JSONArray jsonArray = jsonObject.getJSONArray("ranges");
 
 		if (jsonArray == null) {
@@ -53,12 +55,11 @@ public class RangeFacetProcessor implements FacetProcessor<RangeFacet> {
 			String range = rangeJSONObject.getString("range");
 
 			range = range.replace(StringPool.OPEN_BRACKET, StringPool.BLANK);
-
 			range = range.replace(StringPool.CLOSE_BRACKET, StringPool.BLANK);
 
-			String[] rangeArray = range.split(StringPool.SPACE);
+			String[] rangeParts = range.split(StringPool.SPACE);
 
-			rangeFacetBuilder.addRange(rangeArray[0], rangeArray[2]);
+			rangeFacetBuilder.addRange(rangeParts[0], rangeParts[2]);
 		}
 
 		searchRequestBuilder.addFacet(rangeFacetBuilder);

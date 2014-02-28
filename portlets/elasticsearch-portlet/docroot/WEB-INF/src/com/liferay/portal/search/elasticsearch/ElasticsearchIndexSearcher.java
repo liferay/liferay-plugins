@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.search.HitsImpl;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
@@ -69,40 +68,30 @@ import org.elasticsearch.search.sort.SortOrder;
 public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 	@Override
-	public Hits search(SearchContext searchContext, Query query)
-		throws SearchException {
+	public Hits search(SearchContext searchContext, Query query) {
+		StopWatch stopWatch = new StopWatch();
+
+		stopWatch.start();
 
 		ElasticsearchConnectionManager elasticsearchConnectionManager =
 			ElasticsearchConnectionManager.getInstance();
 
 		Client client = elasticsearchConnectionManager.getClient();
 
-		QueryConfig queryConfig = query.getQueryConfig();
-
-		StopWatch stopWatch = null;
-
-		if (_log.isInfoEnabled()) {
-			stopWatch = new StopWatch();
-
-			stopWatch.start();
-		}
-
 		SearchRequestBuilder searchRequestBuilder = client.prepareSearch(
 			String.valueOf(searchContext.getCompanyId()));
 
 		addFacets(searchRequestBuilder, searchContext);
-		addHighlights(searchRequestBuilder, queryConfig);
+		addHighlights(searchRequestBuilder, query.getQueryConfig());
 		addPagination(
 			searchRequestBuilder, searchContext.getStart(),
 			searchContext.getEnd());
-		addSelectedFields(searchRequestBuilder, queryConfig);
+		addSelectedFields(searchRequestBuilder, query.getQueryConfig());
 		addSort(searchRequestBuilder, searchContext.getSorts());
 
 		QueryBuilder queryBuilder = QueryBuilders.queryString(query.toString());
 
 		searchRequestBuilder.setQuery(queryBuilder);
-
-		long startTime = System.currentTimeMillis();
 
 		SearchRequest searchRequest = searchRequestBuilder.request();
 
@@ -112,22 +101,24 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 		updateFacetCollectors(searchContext, searchResponse);
 
-		Hits hits = processSearchHits(searchResponse.getHits(), queryConfig);
+		Hits hits = processSearchHits(
+			searchResponse.getHits(), query.getQueryConfig());
 
 		hits.setQuery(query);
 
 		TimeValue timeValue = searchResponse.getTook();
+
 		hits.setSearchTime((float)timeValue.getSecondsFrac());
 
-		hits.setStart(startTime);
+		hits.setStart(stopWatch.getStartTime());
 
 		if (_log.isInfoEnabled()) {
 			stopWatch.stop();
 
 			_log.info(
-				"Search: " + queryBuilder.toString() + " consumed: " +
-					stopWatch.getTime() + "ms. Search engine took: " +
-					hits.getSearchTime() + "s");
+				"Searching " + queryBuilder.toString() + " took " +
+					stopWatch.getTime() + " ms with the search engine using " +
+						hits.getSearchTime() + " s");
 		}
 
 		return hits;
@@ -137,9 +128,9 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		SearchRequestBuilder searchRequestBuilder,
 		SearchContext searchContext) {
 
-		Map<String, Facet> facets = searchContext.getFacets();
+		Map<String, Facet> facetsMap = searchContext.getFacets();
 
-		for (Facet facet : facets.values()) {
+		for (Facet facet : facetsMap.values()) {
 			if (facet.isStatic()) {
 				continue;
 			}
@@ -158,12 +149,12 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		String localizedContentName = DocumentImpl.getLocalizedName(
 			queryConfig.getLocale(), Field.CONTENT);
 
-		String localizedTitleName = DocumentImpl.getLocalizedName(
-			queryConfig.getLocale(), Field.TITLE);
-
 		searchRequestBuilder.addHighlightedField(
 			localizedContentName, queryConfig.getHighlightFragmentSize(),
 			queryConfig.getHighlightSnippetSize());
+
+		String localizedTitleName = DocumentImpl.getLocalizedName(
+			queryConfig.getLocale(), Field.TITLE);
 
 		searchRequestBuilder.addHighlightedField(
 			localizedTitleName, queryConfig.getHighlightFragmentSize(),
@@ -177,8 +168,8 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 			searchRequestBuilder.setSize(0);
 		}
 		else {
-			searchRequestBuilder.setSize(end - start);
 			searchRequestBuilder.setFrom(start);
+			searchRequestBuilder.setSize(end - start);
 		}
 	}
 
@@ -233,12 +224,6 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 	}
 
 	protected String getSnippet(SearchHit hit, QueryConfig queryConfig) {
-		String localizedContentName = DocumentImpl.getLocalizedName(
-			queryConfig.getLocale(), Field.CONTENT);
-
-		String localizedTitleName = DocumentImpl.getLocalizedName(
-			queryConfig.getLocale(), Field.TITLE);
-
 		String snippet = null;
 
 		Map<String, HighlightField> highlightFields = hit.getHighlightFields();
@@ -246,6 +231,9 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		if ((highlightFields == null) || highlightFields.isEmpty()) {
 			return StringPool.BLANK;
 		}
+
+		String localizedContentName = DocumentImpl.getLocalizedName(
+			queryConfig.getLocale(), Field.CONTENT);
 
 		if (localizedContentName != null) {
 			HighlightField highlightField = highlightFields.get(
@@ -259,6 +247,9 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 				}
 			}
 		}
+
+		String localizedTitleName = DocumentImpl.getLocalizedName(
+			queryConfig.getLocale(), Field.TITLE);
 
 		if ((snippet == null) && (localizedTitleName != null)) {
 			HighlightField highlightField = highlightFields.get(
@@ -283,10 +274,14 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 	protected Document processSearchHit(SearchHit hit) {
 		Document document = new DocumentImpl();
 
-		Map<String, SearchHitField> hitFields = hit.getFields();
+		Map<String, SearchHitField> searchHitFields = hit.getFields();
 
-		for (Map.Entry<String, SearchHitField> entry : hitFields.entrySet()) {
-			Collection<Object> fieldValues = entry.getValue().getValues();
+		for (Map.Entry<String, SearchHitField> entry :
+				searchHitFields.entrySet()) {
+
+			SearchHitField searchHitField = entry.getValue();
+
+			Collection<Object> fieldValues = searchHitField.getValues();
 
 			Field field = new Field(
 				entry.getKey(),
@@ -303,24 +298,27 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		SearchHits searchHits, QueryConfig queryConfig) {
 
 		Hits hits = new HitsImpl();
+
 		List<Document> documents = new ArrayList<Document>();
 		Set<String> queryTerms = new HashSet<String>();
 		List<Float> scores = new ArrayList<Float>();
 		List<String> snippets = new ArrayList<String>();
 
 		if (searchHits.totalHits() > 0) {
-			SearchHit[] returnedHits = searchHits.getHits();
+			SearchHit[] searchHitsArray = searchHits.getHits();
 
-			for (SearchHit hit : returnedHits) {
-				Document document = processSearchHit(hit);
+			for (SearchHit searchHit : searchHitsArray) {
+				Document document = processSearchHit(searchHit);
+
 				documents.add(document);
 
-				String snippet = getSnippet(hit, queryConfig);
+				String snippet = getSnippet(searchHit, queryConfig);
 
 				queryTerms.add(snippet);
-				snippets.add(snippet);
 
-				scores.add(hit.getScore());
+				scores.add(searchHit.getScore());
+
+				snippets.add(snippet);
 			}
 		}
 
@@ -336,20 +334,22 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 	protected void updateFacetCollectors(
 		SearchContext searchContext, SearchResponse searchResponse) {
 
-		for (Facet searchRequestFacet : searchContext.getFacets().values()) {
-			if (searchRequestFacet.isStatic()) {
+		Map<String, Facet> facetsMap = searchContext.getFacets();
+
+		for (Facet facet : facetsMap.values()) {
+			if (facet.isStatic()) {
 				continue;
 			}
 
-			Facets searchResponseFacets = searchResponse.getFacets();
+			Facets facets = searchResponse.getFacets();
 
-			org.elasticsearch.search.facet.Facet searchResponseFacet =
-				searchResponseFacets.facet(searchRequestFacet.getFieldName());
+			org.elasticsearch.search.facet.Facet elasticsearchFacet =
+				facets.facet(facet.getFieldName());
 
 			FacetCollector facetCollector =
-				new ElasticsearchFacetFieldCollector(searchResponseFacet);
+				new ElasticsearchFacetFieldCollector(elasticsearchFacet);
 
-			searchRequestFacet.setFacetCollector(facetCollector);
+			facet.setFacetCollector(facetCollector);
 		}
 	}
 
