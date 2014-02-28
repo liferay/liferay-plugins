@@ -40,10 +40,9 @@ import java.util.regex.Pattern;
  * @author Sergio González
  * @author Iván Zaera
  */
-public class MentionUsersMessageServiceImpl
-	extends MBMessageLocalServiceWrapper {
+public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 
-	public MentionUsersMessageServiceImpl(
+	public MentionsMessageServiceImpl(
 		MBMessageLocalService mbMessageLocalService) {
 
 		super(mbMessageLocalService);
