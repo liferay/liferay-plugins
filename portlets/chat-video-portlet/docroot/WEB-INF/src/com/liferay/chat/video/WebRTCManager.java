@@ -29,6 +29,18 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class WebRTCManager {
 
+	public static void checkWebRTCClientsTask() {
+		for (WebRTCManager webRTCManager : _webRTCManagers) {
+			webRTCManager.checkWebRTCClients();
+		}
+	}
+
+	public static void checkWebRTCConnectionsStatesTask() {
+		for (WebRTCManager webRTCManager : _webRTCManagers) {
+			webRTCManager.checkWebRTCConnectionsStates();
+		}
+	}
+
 	public WebRTCManager() {
 		_webRTCManagers.add(this);
 	}
