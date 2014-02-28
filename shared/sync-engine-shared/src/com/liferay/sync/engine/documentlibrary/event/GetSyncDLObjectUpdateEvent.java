@@ -41,6 +41,20 @@ public class GetSyncDLObjectUpdateEvent extends BaseSyncDLObjectUpdateEvent {
 		syncSite = SyncSiteService.fetchSyncSite(
 			syncSite.getGroupId(), syncSite.getSyncAccountId());
 
+		if (syncSite.getLastRemoteSyncTime() == 0) {
+			Map<String, Object> parameters = new HashMap<String, Object>();
+
+			parameters.put("folderId", 0);
+			parameters.put("repositoryId", syncSite.getGroupId());
+
+			GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
+				new GetAllSyncDLObjectsEvent(getSyncAccountId(), parameters);
+
+			getAllSyncDLObjectsEvent.run();
+
+			return null;
+		}
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("companyId", syncSite.getCompanyId());

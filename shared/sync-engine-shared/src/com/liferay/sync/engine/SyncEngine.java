@@ -14,7 +14,6 @@
 
 package com.liferay.sync.engine;
 
-import com.liferay.sync.engine.documentlibrary.event.GetAllSyncDLObjectsEvent;
 import com.liferay.sync.engine.documentlibrary.event.GetSyncDLObjectUpdateEvent;
 import com.liferay.sync.engine.filesystem.SyncSiteWatchEventListener;
 import com.liferay.sync.engine.filesystem.SyncWatchEventProcessor;
@@ -92,17 +91,6 @@ public class SyncEngine {
 
 			for (SyncSite syncSite : syncSites) {
 				Map<String, Object> parameters = new HashMap<String, Object>();
-
-				parameters.put("folderId", 0);
-				parameters.put("repositoryId", syncSite.getGroupId());
-
-				GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
-					new GetAllSyncDLObjectsEvent(
-						syncAccount.getSyncAccountId(), parameters);
-
-				getAllSyncDLObjectsEvent.run();
-
-				parameters.clear();
 
 				parameters.put("companyId", syncSite.getCompanyId());
 				parameters.put("repositoryId", syncSite.getGroupId());

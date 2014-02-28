@@ -46,6 +46,10 @@ public abstract class BaseEvent implements Runnable {
 		try {
 			String response = processRequest();
 
+			if (response == null) {
+				return;
+			}
+
 			processResponse(response);
 		}
 		catch (Exception e) {
