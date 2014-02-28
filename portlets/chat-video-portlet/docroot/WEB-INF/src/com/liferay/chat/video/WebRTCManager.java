@@ -114,10 +114,10 @@ public class WebRTCManager {
 				destinationWebRTCClient);
 
 			pushLostConnectionStateWebRTCMail(
-					sourceWebRTCClient, destinationWebRTCClient, "hangUp");
+					sourceWebRTCClient, destinationWebRTCClient, "hang_up");
 
 			pushLostConnectionStateWebRTCMail(
-					destinationWebRTCClient, sourceWebRTCClient, "hangUp");
+					destinationWebRTCClient, sourceWebRTCClient, "hang_up");
 		}
 	}
 
