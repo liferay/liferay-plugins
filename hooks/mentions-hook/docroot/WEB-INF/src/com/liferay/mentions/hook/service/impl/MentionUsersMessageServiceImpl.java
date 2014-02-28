@@ -80,6 +80,21 @@ public class MentionUsersMessageServiceImpl
 		return message;
 	}
 
+	protected String[] getMentionedUsersScreenNames(MBMessage message) {
+		Matcher matcher = _pattern.matcher(message.getBody());
+
+		Set<String> mentionedUsersScreenNames = new HashSet<String>();
+
+		while (matcher.find()) {
+			String mentionedUserScreenName = matcher.group(1);
+
+			mentionedUsersScreenNames.add(mentionedUserScreenName);
+		}
+
+		return mentionedUsersScreenNames.toArray(
+			new String[mentionedUsersScreenNames.size()]);
+	}
+
 	protected void notifyUsers(MBMessage message, ServiceContext serviceContext)
 		throws SystemException {
 
@@ -87,7 +102,7 @@ public class MentionUsersMessageServiceImpl
 			return;
 		}
 
-		String[] mentionedUsersScreenNames = _getMentionedUsersScreenNames(
+		String[] mentionedUsersScreenNames = getMentionedUsersScreenNames(
 			message);
 
 		if (ArrayUtil.isEmpty(mentionedUsersScreenNames)) {
@@ -140,21 +155,6 @@ public class MentionUsersMessageServiceImpl
 			subscriptionSender.addRuntimeSubscribers(
 				user.getEmailAddress(), user.getFullName());
 		}
-	}
-
-	private String[] _getMentionedUsersScreenNames(MBMessage message) {
-		Matcher matcher = _pattern.matcher(message.getBody());
-
-		Set<String> mentionedUsersScreenNames = new HashSet<String>();
-
-		while (matcher.find()) {
-			String mentionedUserScreenName = matcher.group(1);
-
-			mentionedUsersScreenNames.add(mentionedUserScreenName);
-		}
-
-		return mentionedUsersScreenNames.toArray(
-			new String[mentionedUsersScreenNames.size()]);
 	}
 
 	private static Pattern _pattern = Pattern.compile(
