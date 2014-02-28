@@ -69,7 +69,7 @@ AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.
 	<c:if test="<%= displayPopupHREF != null %>">
 		<liferay-ui:icon
 			message="view-in-popup"
-			src="../portlet/pop_up.png"
+			src='<%= themeDisplay.getPathThemeImages() + "/portlet/pop_up.png" %>'
 			url="<%= displayPopupHREF %>"
 		/>
 	</c:if>
