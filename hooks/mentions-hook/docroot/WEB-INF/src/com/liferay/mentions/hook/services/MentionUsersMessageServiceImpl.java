@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mentionnotifications.hook.services;
+package com.liferay.mentions.hook.services;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
