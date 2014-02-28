@@ -14,12 +14,12 @@
 
 package com.liferay.mentions.hook.service.impl;
 
+import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -105,8 +105,8 @@ public class MentionUsersMessageServiceImpl
 			message.getCompanyId(), PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
 		String subject = ContentUtil.get(
-			PropsUtil.get("discussion.email.subject"));
-		String body = ContentUtil.get(PropsUtil.get("discussion.email.body"));
+			PortletPropsValues.DISCUSSION_EMAIL_SUBJECT);
+		String body = ContentUtil.get(PortletPropsValues.DISCUSSION_EMAIL_BODY);
 
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
