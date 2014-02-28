@@ -107,9 +107,9 @@ public class MentionUsersMessageServiceImpl
 			companyId, PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
 		String mailSubject = ContentUtil.get(
-			PropsUtil.get("discussion.mentioned.email.subject"));
+			PropsUtil.get("discussion.email.subject"));
 		String mailBody = ContentUtil.get(
-			PropsUtil.get("discussion.mentioned.email.body"));
+			PropsUtil.get("discussion.email.body"));
 
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
