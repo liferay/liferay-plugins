@@ -33,6 +33,10 @@ public class SyncAccount extends StateAwareModel {
 
 	public static final int UI_EVENT_CONNECTION_EXCEPTION = 2;
 
+	public boolean getActive() {
+		return active;
+	}
+
 	public String getFilePathName() {
 		return filePathName;
 	}
@@ -55,6 +59,10 @@ public class SyncAccount extends StateAwareModel {
 
 	public String getUrl() {
 		return url;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 	public void setFilePathName(String filePathName) {
@@ -80,6 +88,9 @@ public class SyncAccount extends StateAwareModel {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
+	@DatabaseField(useGetSet = true)
+	protected boolean active;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String filePathName;

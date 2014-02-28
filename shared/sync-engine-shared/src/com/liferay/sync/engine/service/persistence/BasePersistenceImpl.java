@@ -49,9 +49,11 @@ public class BasePersistenceImpl<TT extends BaseModel, TID>
 
 	@Override
 	public int create(TT model) throws SQLException {
+		super.create(model);
+
 		notifyModelListenersOnCreate(model);
 
-		return super.create(model);
+		return 1;
 	}
 
 	@Override
@@ -75,6 +77,10 @@ public class BasePersistenceImpl<TT extends BaseModel, TID>
 
 	public void registerModelListener(ModelListener<TT> modelListener) {
 		_modelListeners.add(modelListener);
+	}
+
+	public void unregisterModelListener(ModelListener<TT> modelListener) {
+		_modelListeners.remove(modelListener);
 	}
 
 	@Override

@@ -14,6 +14,11 @@
 
 package com.liferay.sync.engine.service.persistence;
 
+import com.j256.ormlite.dao.GenericRawResults;
+import com.j256.ormlite.dao.RawRowMapper;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
+
 import com.liferay.sync.engine.model.SyncSite;
 
 import java.sql.SQLException;
@@ -69,6 +74,35 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 		throws SQLException {
 
 		return queryForEq("syncAccountId", syncAccountId);
+	}
+
+	public List<Long> findByA_S(boolean active, long syncAccountId)
+		throws SQLException {
+
+		QueryBuilder<SyncSite, Long> queryBuilder = queryBuilder();
+
+		Where<SyncSite, Long> where = queryBuilder.where();
+
+		where.eq("active", active);
+
+		where.and();
+
+		where.eq("syncAccountId", syncAccountId);
+
+		GenericRawResults<Long> rawResults = queryRaw(
+			queryBuilder.prepareStatementString(),
+			new RawRowMapper<Long>() {
+
+				@Override
+				public Long mapRow(
+					String[] columnNames, String[] resultColumns) {
+
+					return Long.valueOf(resultColumns[0]);
+				}
+
+			});
+
+		return rawResults.getResults();
 	}
 
 }

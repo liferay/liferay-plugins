@@ -26,6 +26,7 @@ import java.nio.file.Paths;
 
 import java.sql.SQLException;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -103,6 +104,27 @@ public class SyncAccountService {
 		}
 	}
 
+	public static List<Long> getActiveSyncAccountIds() {
+		try {
+			if ((_activeSyncAccountIds != null) &&
+				!_activeSyncAccountIds.isEmpty()) {
+
+				return _activeSyncAccountIds;
+			}
+
+			_activeSyncAccountIds = _syncAccountPersistence.findByActive(true);
+
+			return _activeSyncAccountIds;
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return Collections.emptyList();
+		}
+	}
+
 	public static SyncAccountPersistence getSyncAccountPersistence() {
 		if (_syncAccountPersistence != null) {
 			return _syncAccountPersistence;
@@ -124,6 +146,18 @@ public class SyncAccountService {
 		ModelListener<SyncAccount> modelListener) {
 
 		_syncAccountPersistence.registerModelListener(modelListener);
+	}
+
+	public static void setActiveSyncAccountIds(
+		List<Long> activeSyncAccountIds) {
+
+		_activeSyncAccountIds = activeSyncAccountIds;
+	}
+
+	public static void unregisterModelListener(
+		ModelListener<SyncAccount> modelListener) {
+
+		_syncAccountPersistence.unregisterModelListener(modelListener);
 	}
 
 	public static SyncAccount update(SyncAccount syncAccount) {
@@ -164,6 +198,7 @@ public class SyncAccountService {
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncAccountService.class);
 
+	private static List<Long> _activeSyncAccountIds = new ArrayList<Long>();
 	private static SyncAccountPersistence _syncAccountPersistence =
 		getSyncAccountPersistence();
 

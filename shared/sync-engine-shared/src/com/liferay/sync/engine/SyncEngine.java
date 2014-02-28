@@ -21,8 +21,10 @@ import com.liferay.sync.engine.filesystem.SyncWatchEventProcessor;
 import com.liferay.sync.engine.filesystem.WatchEventListener;
 import com.liferay.sync.engine.filesystem.Watcher;
 import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.model.SyncAccountModelListener;
 import com.liferay.sync.engine.model.SyncFileModelListener;
 import com.liferay.sync.engine.model.SyncSite;
+import com.liferay.sync.engine.model.SyncSiteModelListener;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
@@ -70,7 +72,10 @@ public class SyncEngine {
 
 		UpgradeUtil.upgrade();
 
+		SyncAccountService.registerModelListener(
+			new SyncAccountModelListener());
 		SyncFileService.registerModelListener(new SyncFileModelListener());
+		SyncSiteService.registerModelListener(new SyncSiteModelListener());
 
 		SyncWatchEventProcessor syncWatchEventProcessor =
 			new SyncWatchEventProcessor();

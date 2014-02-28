@@ -381,6 +381,12 @@ public class SyncFileService {
 		_syncFilePersistence.registerModelListener(modelListener);
 	}
 
+	public static void unregisterModelListener(
+		ModelListener<SyncFile> modelListener) {
+
+		_syncFilePersistence.unregisterModelListener(modelListener);
+	}
+
 	public static SyncFile update(SyncFile syncFile) {
 		try {
 			_syncFilePersistence.createOrUpdate(syncFile);
