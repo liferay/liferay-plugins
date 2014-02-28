@@ -22,28 +22,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Philippe Proulx
  */
 public class WebRTCManager {
-
-	public static void checkWebRTCClientsTask() {
-		for (WebRTCManager webRTCManager : _webRTCManagers) {
-			webRTCManager.checkWebRTCClients();
-		}
-	}
-
-	public static void checkWebRTCConnectionsStatesTask() {
-		for (WebRTCManager webRTCManager : _webRTCManagers) {
-			webRTCManager.checkWebRTCConnectionsStates();
-		}
-	}
-
-	public WebRTCManager() {
-		_webRTCManagers.add(this);
-	}
 
 	public void answer(
 		long sourceUserId, long destinationUserId, boolean answer) {
@@ -451,9 +434,6 @@ public class WebRTCManager {
 	private static long _CONNECTION_TIMEOUT_DURATION_TIME = 60000;
 
 	private static long _PRESENCE_TIMEOUT_DURATION_TIME = 30000;
-
-	private static List<WebRTCManager> _webRTCManagers =
-		new CopyOnWriteArrayList<WebRTCManager>();
 
 	private Map<Long, WebRTCClient> _webRTCClients =
 		new ConcurrentHashMap<Long, WebRTCClient>();
