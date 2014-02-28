@@ -16,6 +16,7 @@ package com.liferay.portal.settings;
 
 import java.util.Properties;
 
+import com.liferay.portal.settings.impl.ServiceCompanySettings;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

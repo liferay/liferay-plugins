@@ -14,6 +14,7 @@
 
 package com.liferay.portal.settings;
 
+import com.liferay.portal.settings.impl.ServiceGroupSettings;
 import com.liferay.portlet.PortletPreferencesImpl;
 
 import javax.portlet.PortletPreferences;
