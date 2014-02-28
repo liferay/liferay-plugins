@@ -77,6 +77,19 @@ public class SyncSiteService {
 		}
 	}
 
+	public static SyncSite fetchSyncSite(long syncSiteId) {
+		try {
+			return _syncSitePersistence.queryForId(syncSiteId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
+
 	public static SyncSite fetchSyncSite(long groupId, long syncAccountId) {
 		try {
 			return _syncSitePersistence.fetchByG_S(groupId, syncAccountId);

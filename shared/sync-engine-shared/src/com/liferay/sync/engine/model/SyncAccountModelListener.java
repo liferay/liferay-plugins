@@ -14,10 +14,14 @@
 
 package com.liferay.sync.engine.model;
 
+import com.liferay.sync.engine.SyncEngine;
 import com.liferay.sync.engine.service.SyncAccountService;
 
 import java.util.List;
 import java.util.Map;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Shinn Lok
@@ -36,6 +40,13 @@ public class SyncAccountModelListener implements ModelListener<SyncAccount> {
 		activeSyncAccountIds.remove(syncAccount.getSyncAccountId());
 
 		SyncAccountService.setActiveSyncAccountIds(activeSyncAccountIds);
+
+		try {
+			SyncEngine.cancelSyncAccountTasks(syncAccount.getSyncAccountId());
+		}
+		catch (Exception e) {
+			_logger.error(e.getMessage(), e);
+		}
 	}
 
 	@Override
@@ -51,12 +62,30 @@ public class SyncAccountModelListener implements ModelListener<SyncAccount> {
 
 		if ((Boolean)originalValues.get("active")) {
 			activeSyncAccountIds.remove(syncAccount.getSyncAccountId());
+
+			try {
+				SyncEngine.cancelSyncAccountTasks(
+					syncAccount.getSyncAccountId());
+			}
+			catch (Exception e) {
+				_logger.error(e.getMessage(), e);
+			}
 		}
 		else {
 			activeSyncAccountIds.add(syncAccount.getSyncAccountId());
+
+			try {
+				SyncEngine.scheduleSyncAccountTasks(
+					syncAccount.getSyncAccountId());
+			}
+			catch (Exception e) {
+				_logger.error(e.getMessage(), e);
+			}
 		}
 
 		SyncAccountService.setActiveSyncAccountIds(activeSyncAccountIds);
 	}
+
+	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);
 
 }
