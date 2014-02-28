@@ -94,54 +94,51 @@ public class MentionUsersMessageServiceImpl
 			return;
 		}
 
-		long companyId = message.getCompanyId();
-
-		String contentURL = (String)serviceContext.getAttribute("contentURL");
-
-		String mailUserAddress = PortalUtil.getUserEmailAddress(
+		String messageUserEmailAddress = PortalUtil.getUserEmailAddress(
 			message.getUserId());
-		String mailUserName = PortalUtil.getUserName(
+		String messageUserName = PortalUtil.getUserName(
 			message.getUserId(), StringPool.BLANK);
 
 		String fromName = PrefsPropsUtil.getString(
-			companyId, PropsKeys.ADMIN_EMAIL_FROM_NAME);
+			message.getCompanyId(), PropsKeys.ADMIN_EMAIL_FROM_NAME);
 		String fromAddress = PrefsPropsUtil.getString(
-			companyId, PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
+			message.getCompanyId(), PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
 
-		String mailSubject = ContentUtil.get(
+		String subject = ContentUtil.get(
 			PropsUtil.get("discussion.email.subject"));
-		String mailBody = ContentUtil.get(
-			PropsUtil.get("discussion.email.body"));
+		String body = ContentUtil.get(PropsUtil.get("discussion.email.body"));
 
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
-		subscriptionSender.setBody(mailBody);
-		subscriptionSender.setCompanyId(companyId);
+		subscriptionSender.setBody(body);
+		subscriptionSender.setCompanyId(message.getCompanyId());
 		subscriptionSender.setContextAttribute(
 			"[$COMMENTS_BODY$]", message.getBody(true), false);
 		subscriptionSender.setContextAttributes(
-			"[$COMMENTS_USER_ADDRESS$]", mailUserAddress,
-			"[$COMMENTS_USER_NAME$]", mailUserName, "[$CONTENT_URL$]",
-			contentURL);
+			"[$COMMENTS_USER_ADDRESS$]", messageUserEmailAddress,
+			"[$COMMENTS_USER_NAME$]", messageUserName, "[$CONTENT_URL$]",
+			serviceContext.getAttribute("contentURL"));
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId(
 			"mb_discussion", message.getCategoryId(), message.getMessageId());
 		subscriptionSender.setScopeGroupId(message.getGroupId());
 		subscriptionSender.setServiceContext(serviceContext);
-		subscriptionSender.setSubject(mailSubject);
+		subscriptionSender.setSubject(subject);
 		subscriptionSender.setUserId(message.getUserId());
 
 		for (int i = 0; i < mentionedUsersScreenNames.length; i++) {
 			String mentionedUserScreenName = mentionedUsersScreenNames[i];
 
 			User user = UserLocalServiceUtil.fetchUserByScreenName(
-				companyId, mentionedUserScreenName);
+				message.getCompanyId(), mentionedUserScreenName);
 
-			if (user != null) {
-				subscriptionSender.addRuntimeSubscribers(
-					user.getEmailAddress(), user.getFullName());
+			if (user == null) {
+				continue;
 			}
+
+			subscriptionSender.addRuntimeSubscribers(
+				user.getEmailAddress(), user.getFullName());
 		}
 	}
 
