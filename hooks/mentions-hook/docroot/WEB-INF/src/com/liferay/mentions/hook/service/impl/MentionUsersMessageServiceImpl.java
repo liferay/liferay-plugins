@@ -49,6 +49,7 @@ public class MentionUsersMessageServiceImpl
 		super(mbMessageLocalService);
 	}
 
+	@Override
 	public MBMessage addDiscussionMessage(
 			long userId, String userName, long groupId, String className,
 			long classPK, long threadId, long parentMessageId, String subject,
@@ -64,6 +65,7 @@ public class MentionUsersMessageServiceImpl
 		return message;
 	}
 
+	@Override
 	public MBMessage updateDiscussionMessage(
 			long userId, long messageId, String className, long classPK,
 			String subject, String body, ServiceContext serviceContext)
@@ -79,7 +81,7 @@ public class MentionUsersMessageServiceImpl
 	}
 
 	protected void notifyUsers(MBMessage message, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws SystemException {
 
 		if (!message.isDiscussion()) {
 			return;
