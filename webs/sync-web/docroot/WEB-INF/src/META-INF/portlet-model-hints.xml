@@ -11,7 +11,7 @@
 		<field name="expirationDate" type="Date" />
 	</model>
 	<model name="com.liferay.sync.model.SyncDLObject">
-		<field name="objectId" type="long" />
+		<field name="syncDLObjectId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="createTime" type="long" />
 		<field name="modifiedTime" type="long" />

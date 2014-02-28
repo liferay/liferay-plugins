@@ -162,12 +162,13 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObject createSyncDLObject(long objectId) {
+	public com.liferay.sync.model.SyncDLObject createSyncDLObject(
+		long syncDLObjectId) {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName1,
-					_methodParameterTypes1, new Object[] { objectId });
+					_methodParameterTypes1, new Object[] { syncDLObjectId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -185,14 +186,15 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObject deleteSyncDLObject(long objectId)
+	public com.liferay.sync.model.SyncDLObject deleteSyncDLObject(
+		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName2,
-					_methodParameterTypes2, new Object[] { objectId });
+					_methodParameterTypes2, new Object[] { syncDLObjectId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -445,13 +447,14 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObject fetchSyncDLObject(long objectId)
+	public com.liferay.sync.model.SyncDLObject fetchSyncDLObject(
+		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName10,
-					_methodParameterTypes10, new Object[] { objectId });
+					_methodParameterTypes10, new Object[] { syncDLObjectId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -473,14 +476,15 @@ public class SyncDLObjectLocalServiceClp implements SyncDLObjectLocalService {
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObject getSyncDLObject(long objectId)
+	public com.liferay.sync.model.SyncDLObject getSyncDLObject(
+		long syncDLObjectId)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName11,
-					_methodParameterTypes11, new Object[] { objectId });
+					_methodParameterTypes11, new Object[] { syncDLObjectId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);

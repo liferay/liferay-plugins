@@ -50,7 +50,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	public Map<String, Object> getModelAttributes() {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
-		attributes.put("objectId", getObjectId());
+		attributes.put("syncDLObjectId", getSyncDLObjectId());
 		attributes.put("companyId", getCompanyId());
 		attributes.put("createTime", getCreateTime());
 		attributes.put("modifiedTime", getModifiedTime());
@@ -78,10 +78,10 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 
 	@Override
 	public void setModelAttributes(Map<String, Object> attributes) {
-		Long objectId = (Long)attributes.get("objectId");
+		Long syncDLObjectId = (Long)attributes.get("syncDLObjectId");
 
-		if (objectId != null) {
-			setObjectId(objectId);
+		if (syncDLObjectId != null) {
+			setSyncDLObjectId(syncDLObjectId);
 		}
 
 		Long companyId = (Long)attributes.get("companyId");
@@ -232,23 +232,23 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	/**
-	* Returns the object ID of this sync d l object.
+	* Returns the sync d l object ID of this sync d l object.
 	*
-	* @return the object ID of this sync d l object
+	* @return the sync d l object ID of this sync d l object
 	*/
 	@Override
-	public long getObjectId() {
-		return _syncDLObject.getObjectId();
+	public long getSyncDLObjectId() {
+		return _syncDLObject.getSyncDLObjectId();
 	}
 
 	/**
-	* Sets the object ID of this sync d l object.
+	* Sets the sync d l object ID of this sync d l object.
 	*
-	* @param objectId the object ID of this sync d l object
+	* @param syncDLObjectId the sync d l object ID of this sync d l object
 	*/
 	@Override
-	public void setObjectId(long objectId) {
-		_syncDLObject.setObjectId(objectId);
+	public void setSyncDLObjectId(long syncDLObjectId) {
+		_syncDLObject.setSyncDLObjectId(syncDLObjectId);
 	}
 
 	/**

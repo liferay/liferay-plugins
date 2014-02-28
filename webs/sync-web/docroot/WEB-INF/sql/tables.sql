@@ -9,7 +9,7 @@ create table SyncDLFileVersionDiff (
 );
 
 create table SyncDLObject (
-	objectId LONG not null primary key,
+	syncDLObjectId LONG not null primary key,
 	companyId LONG,
 	createTime LONG,
 	modifiedTime LONG,

@@ -27,7 +27,7 @@
 	</mapped-superclass>
 	<mapped-superclass class="com.liferay.sync.model.impl.SyncDLObjectModelImpl">
 		<attributes>
-			<id name="objectId" />
+			<id name="syncDLObjectId" />
 			<basic name="companyId" />
 			<basic name="createTime" />
 			<basic name="modifiedTime" />

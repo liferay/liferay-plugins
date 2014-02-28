@@ -18,7 +18,7 @@
 	</class>
 	<class name="com.liferay.sync.model.impl.SyncDLObjectImpl" table="SyncDLObject">
 		<cache usage="read-write" />
-		<id name="objectId" type="long">
+		<id name="syncDLObjectId" type="long">
 			<generator class="assigned" />
 		</id>
 		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
