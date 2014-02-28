@@ -4,7 +4,6 @@
 	<tlib-version>1.0</tlib-version>
 	<short-name>alloyPermission</short-name>
 	<uri>http://liferay.com/tld/alloy-permission</uri>
-
 	<function>
 		<name>contains</name>
 		<function-class>com.liferay.compat.util.bridges.alloy.AlloyPermission</function-class>
