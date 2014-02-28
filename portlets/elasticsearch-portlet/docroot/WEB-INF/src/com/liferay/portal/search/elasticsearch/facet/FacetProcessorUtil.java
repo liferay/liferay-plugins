@@ -29,7 +29,7 @@ public class FacetProcessorUtil {
 	public static void processFacet(
 		SearchRequestBuilder searchRequestBuilder, Facet facet) {
 
-		FacetProcessor facetProcessor = _facetProcessors.get(
+		FacetProcessor<Facet> facetProcessor = _facetProcessors.get(
 			facet.getClass().getName());
 
 		if (facetProcessor == null) {
@@ -39,18 +39,20 @@ public class FacetProcessorUtil {
 		facetProcessor.processFacet(searchRequestBuilder, facet);
 	}
 
-	public void setDefaultFacetProcessor(FacetProcessor defaultFacetProcessor) {
+	public void setDefaultFacetProcessor(
+		FacetProcessor<Facet> defaultFacetProcessor) {
+
 		_defaultFacetProcessor = defaultFacetProcessor;
 	}
 
 	public void setFacetProcessors(
-		Map<String, FacetProcessor> facetProcessors) {
+		Map<String, FacetProcessor<Facet>> facetProcessors) {
 
 		_facetProcessors = facetProcessors;
 	}
 
-	private static FacetProcessor _defaultFacetProcessor;
-	private static Map<String, FacetProcessor> _facetProcessors =
-		new HashMap<String, FacetProcessor>();
+	private static FacetProcessor<Facet> _defaultFacetProcessor;
+	private static Map<String, FacetProcessor<Facet>> _facetProcessors =
+		new HashMap<String, FacetProcessor<Facet>>();
 
 }

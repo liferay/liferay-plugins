@@ -60,6 +60,7 @@ public class ElasticsearchFacetFieldCollector implements FacetCollector {
 		return new DefaultTermCollector(term, count);
 	}
 
+	@Override
 	public List<TermCollector> getTermCollectors() {
 		if (_termCollectors != null) {
 			return _termCollectors;
