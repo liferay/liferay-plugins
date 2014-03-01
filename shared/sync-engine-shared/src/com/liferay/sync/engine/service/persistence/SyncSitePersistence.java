@@ -89,7 +89,7 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 
 		where.eq("syncAccountId", syncAccountId);
 
-		GenericRawResults<Long> rawResults = queryRaw(
+		GenericRawResults<Long> genericRawResults = queryRaw(
 			queryBuilder.prepareStatementString(),
 			new RawRowMapper<Long>() {
 
@@ -102,7 +102,7 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 
 			});
 
-		return rawResults.getResults();
+		return genericRawResults.getResults();
 	}
 
 }
