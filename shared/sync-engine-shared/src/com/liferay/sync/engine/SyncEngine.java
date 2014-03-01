@@ -55,7 +55,7 @@ public class SyncEngine {
 	public static void cancelSyncAccountTasks(long syncAccountId)
 		throws Exception {
 
-		Object[] syncAccountTasks = _syncAccountTasksMap.get(syncAccountId);
+		Object[] syncAccountTasks = _syncAccountTasks.get(syncAccountId);
 
 		ScheduledFuture<?> scheduledFuture =
 			(ScheduledFuture<?>)syncAccountTasks[0];
@@ -73,41 +73,39 @@ public class SyncEngine {
 		final SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			syncAccountId);
 
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				List<Long> syncSiteIds =
+					SyncSiteService.getActiveSyncSiteIds(
+						syncAccount.getSyncAccountId());
+
+				for (long syncSiteId : syncSiteIds) {
+					SyncSite syncSite = SyncSiteService.fetchSyncSite(
+						syncSiteId);
+
+					Map<String, Object> parameters =
+						new HashMap<String, Object>();
+
+					parameters.put("companyId", syncSite.getCompanyId());
+					parameters.put("repositoryId", syncSite.getGroupId());
+					parameters.put("syncSite", syncSite);
+
+					GetSyncDLObjectUpdateEvent
+						getSyncDLObjectUpdateEvent =
+							new GetSyncDLObjectUpdateEvent(
+								syncAccount.getSyncAccountId(), parameters);
+
+					getSyncDLObjectUpdateEvent.run();
+				}
+			}
+
+		};
+
 		ScheduledFuture<?> scheduledFuture =
 			_eventScheduledExecutorService.scheduleAtFixedRate(
-				new Runnable() {
-
-					@Override
-					public void run() {
-						List<Long> syncSiteIds =
-							SyncSiteService.getActiveSyncSiteIds(
-								syncAccount.getSyncAccountId());
-
-						for (long syncSiteId : syncSiteIds) {
-							SyncSite syncSite = SyncSiteService.fetchSyncSite(
-								syncSiteId);
-
-							Map<String, Object> parameters =
-								new HashMap<String, Object>();
-
-							parameters.put(
-								"companyId", syncSite.getCompanyId());
-							parameters.put(
-								"repositoryId", syncSite.getGroupId());
-							parameters.put("syncSite", syncSite);
-
-							GetSyncDLObjectUpdateEvent
-								getSyncDLObjectUpdateEvent =
-									new GetSyncDLObjectUpdateEvent(
-										syncAccount.getSyncAccountId(),
-										parameters);
-
-							getSyncDLObjectUpdateEvent.run();
-						}
-					}
-
-				},
-				0, syncAccount.getInterval(), TimeUnit.SECONDS);
+				runnable, 0, syncAccount.getInterval(), TimeUnit.SECONDS);
 
 		Path filePath = Paths.get(syncAccount.getFilePathName());
 
@@ -118,7 +116,7 @@ public class SyncEngine {
 
 		_watcherExecutorService.execute(watcher);
 
-		_syncAccountTasksMap.put(
+		_syncAccountTasks.put(
 			syncAccountId, new Object[] {scheduledFuture, watcher});
 	}
 
@@ -166,7 +164,7 @@ public class SyncEngine {
 
 	private static ScheduledExecutorService _eventScheduledExecutorService =
 		Executors.newScheduledThreadPool(5);
-	private static Map<Long, Object[]> _syncAccountTasksMap =
+	private static Map<Long, Object[]> _syncAccountTasks =
 		new HashMap<Long, Object[]>();
 	private static ScheduledExecutorService
 		_syncWatchEventProcessorExecutorService =

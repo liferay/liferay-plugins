@@ -133,7 +133,7 @@ public class SyncSiteService {
 
 	public static List<Long> getActiveSyncSiteIds(long syncAccountId) {
 		try {
-			List<Long> activeSyncSiteIds = _activeSyncSiteIdsMap.get(
+			List<Long> activeSyncSiteIds = _activeSyncSiteIds.get(
 				syncAccountId);
 
 			if ((activeSyncSiteIds != null) && !activeSyncSiteIds.isEmpty()) {
@@ -143,7 +143,7 @@ public class SyncSiteService {
 			activeSyncSiteIds = _syncSitePersistence.findByA_S(
 				true, syncAccountId);
 
-			_activeSyncSiteIdsMap.put(syncAccountId, activeSyncSiteIds);
+			_activeSyncSiteIds.put(syncAccountId, activeSyncSiteIds);
 
 			return activeSyncSiteIds;
 		}
@@ -182,7 +182,7 @@ public class SyncSiteService {
 	public static void setActiveSyncSiteIds(
 		long syncAccountId, List<Long> activeSyncSiteIds) {
 
-		_activeSyncSiteIdsMap.put(syncAccountId, activeSyncSiteIds);
+		_activeSyncSiteIds.put(syncAccountId, activeSyncSiteIds);
 	}
 
 	public static void unregisterModelListener(
@@ -209,7 +209,7 @@ public class SyncSiteService {
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncSiteService.class);
 
-	private static Map<Long, List<Long>> _activeSyncSiteIdsMap =
+	private static Map<Long, List<Long>> _activeSyncSiteIds =
 		new HashMap<Long, List<Long>>();
 	private static SyncSitePersistence _syncSitePersistence =
 		getSyncSitePersistence();
