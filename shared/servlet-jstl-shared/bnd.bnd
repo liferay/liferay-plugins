@@ -1,6 +1,6 @@
 Bundle-ClassPath: ., lib/${original.lib.name}.jar
 Class-Path: . lib/${original.lib.name}.jar
-Export-Package: \
+Export-Package:\
 	org.apache.taglibs.standard;vendor=glassfish;version="1.2.0",\
 	org.apache.taglibs.standard.extra.spath;vendor=glassfish;version="1.2.0",\
 	org.apache.taglibs.standard.functions;vendor=glassfish;version="1.2.0",\
@@ -27,7 +27,7 @@ Export-Package: \
 Implementation-Title: ${original.lib.name}
 Implementation-URL: ${original.lib.url}/${original.lib.name}/${original.lib.version}/${original.lib.name}-${original.lib.version}.jar
 Implementation-Version: ${original.lib.version}
-Import-Package: \
+Import-Package:\
 	javax.el;version="2.1.0",\
 	javax.servlet;version="2.5.0",\
 	javax.servlet.http;version="2.5.0",\
@@ -45,7 +45,7 @@ Import-Package: \
 	org.xml.sax.helpers,\
 	!org.apache.taglibs.*,\
 	*
-Include-Resource: \
+Include-Resource:\
 	classes,\
 	lib/${original.lib.name}.jar=lib/${original.lib.name}.jar,\
 	META-INF/patches/LPS-35466.patch=patches/LPS-35466.patch
