@@ -48,13 +48,13 @@ Import-Package:\
 	*;resolution:="optional"
 Private-Package: com.liferay.modulesadmin.util
 Web-ContextPath: /modules-admin-portlet
--wab: \
+-wab:\
 	docroot,\
 	{WEB-INF/liferay-display.xml=docroot/WEB-INF/liferay-display.xml},\
 	{WEB-INF/liferay-plugin-package.properties=docroot/WEB-INF/liferay-plugin-package.properties},\
 	{WEB-INF/liferay-portlet.xml=docroot/WEB-INF/liferay-portlet.xml},\
 	{WEB-INF/portlet.xml=docroot/WEB-INF/portlet.xml},\
--wablib: \
+-wablib:\
 	${app.server.lib.portal.dir}/util-java.jar,\
 	${app.server.lib.portal.dir}/util-taglib.jar
 
