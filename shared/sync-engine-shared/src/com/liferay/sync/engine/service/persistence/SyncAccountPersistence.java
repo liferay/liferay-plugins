@@ -44,7 +44,7 @@ public class SyncAccountPersistence
 
 		where.eq("active", active);
 
-		GenericRawResults<Long> rawResults = queryRaw(
+		GenericRawResults<Long> genericRawResults = queryRaw(
 			queryBuilder.prepareStatementString(),
 			new RawRowMapper<Long>() {
 
@@ -57,7 +57,7 @@ public class SyncAccountPersistence
 
 			});
 
-		return rawResults.getResults();
+		return genericRawResults.getResults();
 	}
 
 }
