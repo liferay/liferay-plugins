@@ -61,6 +61,10 @@ public class SyncAccount extends StateAwareModel {
 		return url;
 	}
 
+	public boolean isActive() {
+		return getActive();
+	}
+
 	public void setActive(boolean active) {
 		this.active = active;
 	}

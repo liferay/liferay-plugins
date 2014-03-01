@@ -80,6 +80,14 @@ public class SyncSite extends StateAwareModel {
 		return type;
 	}
 
+	public boolean isActive() {
+		return getActive();
+	}
+
+	public boolean isSite() {
+		return getSite();
+	}
+
 	public String getTypeSettings() {
 		return typeSettings;
 	}

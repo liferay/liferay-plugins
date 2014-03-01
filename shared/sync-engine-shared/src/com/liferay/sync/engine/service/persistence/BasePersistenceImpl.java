@@ -49,11 +49,11 @@ public class BasePersistenceImpl<TT extends BaseModel, TID>
 
 	@Override
 	public int create(TT model) throws SQLException {
-		int rowCount = super.create(model);
+		int count = super.create(model);
 
 		notifyModelListenersOnCreate(model);
 
-		return rowCount;
+		return count;
 	}
 
 	@Override
