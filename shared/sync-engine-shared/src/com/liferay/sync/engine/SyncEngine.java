@@ -77,9 +77,8 @@ public class SyncEngine {
 
 			@Override
 			public void run() {
-				List<Long> syncSiteIds =
-					SyncSiteService.getActiveSyncSiteIds(
-						syncAccount.getSyncAccountId());
+				List<Long> syncSiteIds = SyncSiteService.getActiveSyncSiteIds(
+					syncAccount.getSyncAccountId());
 
 				for (long syncSiteId : syncSiteIds) {
 					SyncSite syncSite = SyncSiteService.fetchSyncSite(
@@ -92,10 +91,9 @@ public class SyncEngine {
 					parameters.put("repositoryId", syncSite.getGroupId());
 					parameters.put("syncSite", syncSite);
 
-					GetSyncDLObjectUpdateEvent
-						getSyncDLObjectUpdateEvent =
-							new GetSyncDLObjectUpdateEvent(
-								syncAccount.getSyncAccountId(), parameters);
+					GetSyncDLObjectUpdateEvent getSyncDLObjectUpdateEvent =
+						new GetSyncDLObjectUpdateEvent(
+							syncAccount.getSyncAccountId(), parameters);
 
 					getSyncDLObjectUpdateEvent.run();
 				}
