@@ -65,11 +65,11 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 			SyncSite syncSite = SyncSiteService.fetchSyncSite(
 				parentSyncFile.getRepositoryId(), getSyncAccountId());
 
-			Set<Long> syncSiteIds = SyncSiteService.getActiveSyncSiteIds(
+			Set<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
 				getSyncAccountId());
 
 			if ((parentSyncFile == null) ||
-				!syncSiteIds.contains(syncSite.getSyncSiteId())) {
+				!activeSyncSiteIds.contains(syncSite.getSyncSiteId())) {
 
 				return;
 			}
