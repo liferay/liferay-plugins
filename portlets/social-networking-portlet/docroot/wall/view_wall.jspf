@@ -111,7 +111,7 @@
 			<tr>
 				<td align="center" valign="top">
 					<liferay-ui:user-display
-						displayStyle="<%= 2 %>"
+						displayStyle="2"
 						userId="<%= wallEntry.getUserId() %>"
 						userName="<%= wallEntry.getUserName() %>"
 					/>

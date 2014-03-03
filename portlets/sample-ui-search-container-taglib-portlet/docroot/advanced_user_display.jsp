@@ -25,6 +25,6 @@ long userId = ParamUtil.getLong(request, "userId");
 %>
 
 <liferay-ui:user-display
-	displayStyle="<%= 2 %>"
+	displayStyle="2"
 	userId="<%= userId %>"
 />

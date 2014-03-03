@@ -63,7 +63,7 @@
 			%>
 
 			<liferay-ui:user-display
-				displayStyle="<%= 2 %>"
+				displayStyle="2"
 				userId="<%= userId %>"
 			/>
 

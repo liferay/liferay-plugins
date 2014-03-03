@@ -25,7 +25,7 @@ String rowURL = (String)row.getParameter("rowURL");
 %>
 
 <liferay-ui:user-display
-	displayStyle="<%= 2 %>"
+	displayStyle="2"
 	url="<%= rowURL %>"
 	userId="<%= curUser.getUserId() %>"
 />

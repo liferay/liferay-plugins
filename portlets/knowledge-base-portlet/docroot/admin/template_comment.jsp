@@ -27,7 +27,7 @@ KBComment kbComment = (KBComment)request.getAttribute("template_comment.jsp-kb_c
 	<tr>
 		<td align="center" valign="top">
 			<liferay-ui:user-display
-				displayStyle="<%= 2 %>"
+				displayStyle="2"
 				userId="<%= kbComment.getUserId() %>"
 				userName="<%= kbComment.getUserName() %>"
 			/>
