@@ -207,14 +207,7 @@
 
 			&:hover {
 				color: #FFF;
-			}
-
-			&.unread {
-				background-color: #FAFAFA;
-
-				&:hover {
-					background: #2FA4F5;
-				}
+				background: #2FA4F5
 			}
 
 			a {
