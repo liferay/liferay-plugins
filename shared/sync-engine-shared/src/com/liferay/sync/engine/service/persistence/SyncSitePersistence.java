@@ -81,6 +81,8 @@ public class SyncSitePersistence extends BasePersistenceImpl<SyncSite, Long> {
 
 		QueryBuilder<SyncSite, Long> queryBuilder = queryBuilder();
 
+		queryBuilder = queryBuilder.selectColumns("syncSiteId");
+
 		Where<SyncSite, Long> where = queryBuilder.where();
 
 		where.eq("active", active);

@@ -16,8 +16,8 @@ package com.liferay.sync.engine.model;
 
 import com.liferay.sync.engine.service.SyncSiteService;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Shinn Lok
@@ -30,7 +30,7 @@ public class SyncSiteModelListener implements ModelListener<SyncSite> {
 
 	@Override
 	public void onRemove(SyncSite syncSite) {
-		List<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
+		Set<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
 			syncSite.getSyncAccountId());
 
 		activeSyncSiteIds.remove(syncSite.getSyncSiteId());
@@ -47,7 +47,7 @@ public class SyncSiteModelListener implements ModelListener<SyncSite> {
 			return;
 		}
 
-		List<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
+		Set<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
 			syncSite.getSyncAccountId());
 
 		if ((Boolean)originalValues.get("active")) {

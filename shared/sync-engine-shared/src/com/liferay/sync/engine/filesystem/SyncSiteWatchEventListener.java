@@ -29,7 +29,7 @@ import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
 
-import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,7 +65,7 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 			SyncSite syncSite = SyncSiteService.fetchSyncSite(
 				parentSyncFile.getRepositoryId(), getSyncAccountId());
 
-			List<Long> syncSiteIds = SyncSiteService.getActiveSyncSiteIds(
+			Set<Long> syncSiteIds = SyncSiteService.getActiveSyncSiteIds(
 				getSyncAccountId());
 
 			if ((parentSyncFile == null) ||

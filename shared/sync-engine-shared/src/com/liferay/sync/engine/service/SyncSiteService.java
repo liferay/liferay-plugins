@@ -27,8 +27,10 @@ import java.sql.SQLException;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -131,17 +133,16 @@ public class SyncSiteService {
 		}
 	}
 
-	public static List<Long> getActiveSyncSiteIds(long syncAccountId) {
+	public static Set<Long> getActiveSyncSiteIds(long syncAccountId) {
 		try {
-			List<Long> activeSyncSiteIds = _activeSyncSiteIds.get(
-				syncAccountId);
+			Set<Long> activeSyncSiteIds = _activeSyncSiteIds.get(syncAccountId);
 
 			if ((activeSyncSiteIds != null) && !activeSyncSiteIds.isEmpty()) {
 				return activeSyncSiteIds;
 			}
 
-			activeSyncSiteIds = _syncSitePersistence.findByA_S(
-				true, syncAccountId);
+			activeSyncSiteIds = new HashSet<Long>(
+				_syncSitePersistence.findByA_S(true, syncAccountId));
 
 			_activeSyncSiteIds.put(syncAccountId, activeSyncSiteIds);
 
@@ -152,7 +153,7 @@ public class SyncSiteService {
 				_logger.debug(sqle.getMessage(), sqle);
 			}
 
-			return Collections.emptyList();
+			return Collections.emptySet();
 		}
 	}
 
@@ -180,7 +181,7 @@ public class SyncSiteService {
 	}
 
 	public static void setActiveSyncSiteIds(
-		long syncAccountId, List<Long> activeSyncSiteIds) {
+		long syncAccountId, Set<Long> activeSyncSiteIds) {
 
 		_activeSyncSiteIds.put(syncAccountId, activeSyncSiteIds);
 	}
@@ -209,8 +210,8 @@ public class SyncSiteService {
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncSiteService.class);
 
-	private static Map<Long, List<Long>> _activeSyncSiteIds =
-		new HashMap<Long, List<Long>>();
+	private static Map<Long, Set<Long>> _activeSyncSiteIds =
+		new HashMap<Long, Set<Long>>();
 	private static SyncSitePersistence _syncSitePersistence =
 		getSyncSitePersistence();
 

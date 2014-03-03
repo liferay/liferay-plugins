@@ -17,7 +17,7 @@ package com.liferay.sync.engine.model;
 import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.service.SyncAccountService;
 
-import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -55,7 +55,7 @@ public class SyncAccountModelListenerTest extends BaseTestCase {
 
 	@Test
 	public void testOnRemove() throws Exception {
-		List<Long> activeSyncAccountIds =
+		Set<Long> activeSyncAccountIds =
 			SyncAccountService.getActiveSyncAccountIds();
 
 		Assert.assertEquals(1, activeSyncAccountIds.size());
@@ -69,7 +69,7 @@ public class SyncAccountModelListenerTest extends BaseTestCase {
 
 	@Test
 	public void testOnUpdate() throws Exception {
-		List<Long> activeSyncAccountIds =
+		Set<Long> activeSyncAccountIds =
 			SyncAccountService.getActiveSyncAccountIds();
 
 		Assert.assertEquals(1, activeSyncAccountIds.size());

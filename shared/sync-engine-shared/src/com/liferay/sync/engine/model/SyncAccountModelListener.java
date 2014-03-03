@@ -17,8 +17,8 @@ package com.liferay.sync.engine.model;
 import com.liferay.sync.engine.SyncEngine;
 import com.liferay.sync.engine.service.SyncAccountService;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +34,7 @@ public class SyncAccountModelListener implements ModelListener<SyncAccount> {
 
 	@Override
 	public void onRemove(SyncAccount syncAccount) {
-		List<Long> activeSyncAccountIds =
+		Set<Long> activeSyncAccountIds =
 			SyncAccountService.getActiveSyncAccountIds();
 
 		activeSyncAccountIds.remove(syncAccount.getSyncAccountId());
@@ -57,7 +57,7 @@ public class SyncAccountModelListener implements ModelListener<SyncAccount> {
 			return;
 		}
 
-		List<Long> activeSyncAccountIds =
+		Set<Long> activeSyncAccountIds =
 			SyncAccountService.getActiveSyncAccountIds();
 
 		if ((Boolean)originalValues.get("active")) {

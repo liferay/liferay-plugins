@@ -17,7 +17,7 @@ package com.liferay.sync.engine.model;
 import com.liferay.sync.engine.BaseTestCase;
 import com.liferay.sync.engine.service.SyncSiteService;
 
-import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -62,7 +62,7 @@ public class SyncSiteModelListenerTest extends BaseTestCase {
 
 	@Test
 	public void testOnRemove() throws Exception {
-		List<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
+		Set<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(1, activeSyncSiteIds.size());
@@ -77,7 +77,7 @@ public class SyncSiteModelListenerTest extends BaseTestCase {
 
 	@Test
 	public void testOnUpdate() throws Exception {
-		List<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
+		Set<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
 			syncAccount.getSyncAccountId());
 
 		Assert.assertEquals(1, activeSyncSiteIds.size());
