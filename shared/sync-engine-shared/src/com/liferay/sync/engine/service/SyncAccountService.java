@@ -107,9 +107,7 @@ public class SyncAccountService {
 
 	public static Set<Long> getActiveSyncAccountIds() {
 		try {
-			if ((_activeSyncAccountIds != null) &&
-				!_activeSyncAccountIds.isEmpty()) {
-
+			if (_activeSyncAccountIds != null) {
 				return _activeSyncAccountIds;
 			}
 
@@ -198,7 +196,7 @@ public class SyncAccountService {
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncAccountService.class);
 
-	private static Set<Long> _activeSyncAccountIds = new HashSet<Long>();
+	private static Set<Long> _activeSyncAccountIds;
 	private static SyncAccountPersistence _syncAccountPersistence =
 		getSyncAccountPersistence();
 

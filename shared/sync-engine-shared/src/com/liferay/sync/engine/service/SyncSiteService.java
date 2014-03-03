@@ -137,7 +137,7 @@ public class SyncSiteService {
 		try {
 			Set<Long> activeSyncSiteIds = _activeSyncSiteIds.get(syncAccountId);
 
-			if ((activeSyncSiteIds != null) && !activeSyncSiteIds.isEmpty()) {
+			if (activeSyncSiteIds != null) {
 				return activeSyncSiteIds;
 			}
 
