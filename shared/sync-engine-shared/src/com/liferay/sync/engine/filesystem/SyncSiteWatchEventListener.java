@@ -14,9 +14,13 @@
 
 package com.liferay.sync.engine.filesystem;
 
+import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.model.SyncWatchEvent;
+import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.service.SyncWatchEventService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
@@ -24,6 +28,8 @@ import com.liferay.sync.engine.util.FileUtil;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Path;
+
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,9 +56,38 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 				return;
 			}
 
+			String parentFilePathName = FilePathNameUtil.getFilePathName(
+				filePath.getParent());
+
+			SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
+				parentFilePathName, getSyncAccountId());
+
+			SyncSite syncSite = SyncSiteService.fetchSyncSite(
+				parentSyncFile.getRepositoryId(), getSyncAccountId());
+
+			List<Long> syncSiteIds = SyncSiteService.getActiveSyncSiteIds(
+				getSyncAccountId());
+
+			if ((parentSyncFile == null) ||
+				!syncSiteIds.contains(syncSite.getSyncSiteId())) {
+
+				return;
+			}
+
+			String filePathName = FilePathNameUtil.getFilePathName(filePath);
+
+			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+				getSyncAccountId());
+
+			if (filePathName.equals(syncAccount.getFilePathName()) ||
+				parentFilePathName.equals(syncAccount.getFilePathName())) {
+
+				return;
+			}
+
 			SyncWatchEventService.addSyncWatchEvent(
-				eventType, FilePathNameUtil.getFilePathName(filePath),
-				getFileType(eventType, filePath), getSyncAccountId());
+				eventType, filePathName, getFileType(eventType, filePath),
+				getSyncAccountId());
 		}
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
