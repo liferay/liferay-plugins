@@ -14,6 +14,10 @@
 
 package com.liferay.portal.settings;
 
+import java.io.IOException;
+
+import javax.portlet.ValidatorException;
+
 /**
  * @author Raymond Augé
  * @author Jorge Ferrer
@@ -27,5 +31,7 @@ public interface Settings {
 	public Settings setValue(String key, String value);
 
 	public Settings setValues(String key, String[] values);
+
+	public void store() throws IOException, ValidatorException;
 
 }
