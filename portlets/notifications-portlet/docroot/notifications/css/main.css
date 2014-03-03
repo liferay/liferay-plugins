@@ -1,4 +1,5 @@
 @import "compass";
+@import "mixins";
 
 @mixin keyframes($name) {
 	@-o-keyframes #{$name} {
@@ -63,8 +64,10 @@
 
 	.user-notifications-list {
 		list-style: none;
+		padding: 5px;
 
 		.message {
+			padding: 5px;
 			text-align: center;
 
 			.left-nav {
@@ -159,12 +162,6 @@
 }
 
 .notifications-portlet {
-	.user-notifications-sidebar {
-		float: left;
-		padding: 0 10px 0 0;
-		width: 18%;
-	}
-
 	.nav {
 		margin-bottom: 10px;
 
@@ -191,10 +188,12 @@
 		}
 	}
 
+	.notifications-container, .user-notifications-list-container {
+		@include box-sizing(border-box);
+	}
+
 	.user-notifications-list-container {
 		border: 1px solid #D5D5D5;
-		float: left;
-		width: 80%;
 
 		.loading-mask {
 			min-height: 30px;
@@ -202,6 +201,8 @@
 	}
 
 	.user-notifications-list {
+		margin: 0;
+
 		.user-notification {
 			color: #000;
 
@@ -221,7 +222,11 @@
 	}
 
 	.manage-notifications {
-		padding: 5px;
+		overflow: auto;
+
+		.table {
+			max-width: none;
+		}
 
 		.title {
 			margin-bottom: 10px;
@@ -240,6 +245,15 @@
 				margin-bottom: 10px 0;
 				text-align: left;
 			}
+		}
+	}
+}
+
+.span6, .span5, .span4, .span3, .span2, .span1 {
+	.notifications-portlet {
+		.user-notifications-sidebar, .user-notifications-list-container {
+			margin-left: 0;
+			width: 100%;
 		}
 	}
 }
