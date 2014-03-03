@@ -87,7 +87,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="my-calendars" /></span>
 
 						<c:if test="<%= userCalendarResource != null %>">
-							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= userCalendarResource.getCalendarResourceId() %>" tabindex="0"><i class="icon-caret-down"></i></span>
+							<span class="calendar-list-item-arrow"><i class="icon-caret-down" data-calendarResourceId="<%= userCalendarResource.getCalendarResourceId() %>" tabindex="0"></i></span>
 						</c:if>
 					</div>
 
@@ -101,7 +101,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="current-site-calendars" /></span>
 
 						<c:if test="<%= CalendarResourcePermission.contains(permissionChecker, groupCalendarResource, ActionKeys.ADD_CALENDAR) %>">
-							<span class="calendar-list-item-arrow" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"><i class="icon-caret-down"></i></span>
+							<span class="calendar-list-item-arrow"><i class="icon-caret-down" data-calendarResourceId="<%= groupCalendarResource.getCalendarResourceId() %>" tabindex="0"></i></span>
 						</c:if>
 					</div>
 
