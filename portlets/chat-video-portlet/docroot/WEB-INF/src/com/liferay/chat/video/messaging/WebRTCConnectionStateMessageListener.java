@@ -14,8 +14,12 @@
 
 package com.liferay.chat.video.messaging;
 
+import com.liferay.chat.video.WebRTCManager;
+import com.liferay.chat.video.WebRTCManagerFactory;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
+
+import java.util.List;
 
 /**
  * @author Philippe Proulx
@@ -24,6 +28,12 @@ public class WebRTCConnectionStateMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
+		List<WebRTCManager> webRTCManagers =
+			WebRTCManagerFactory.getWebRTCManagers();
+
+		for (WebRTCManager webRTCManager : webRTCManagers) {
+			webRTCManager.checkWebRTCConnectionsStates();
+		}
 	}
 
 }
