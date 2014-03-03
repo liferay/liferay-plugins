@@ -16,8 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
-<div class="clearfix">
-	<div class="nav-bar user-notifications-sidebar">
+<div class="clearfix notifications-container">
+	<div class="nav-bar user-notifications-sidebar span3">
 		<div class="nav">
 			<a class="clearfix selected unread" href="javascript:;">
 				<span class="title"><liferay-ui:message key="unread" /></span>
@@ -43,8 +43,8 @@
 		</div>
 	</div>
 
-	<div class="user-notifications-list-container">
-		<ul class="user-notifications-list">
+	<div class="user-notifications-list-container span9">
+		<ul class="unstyled user-notifications-list">
 			<div class="loading-mask"></div>
 		</ul>
 	</div>
