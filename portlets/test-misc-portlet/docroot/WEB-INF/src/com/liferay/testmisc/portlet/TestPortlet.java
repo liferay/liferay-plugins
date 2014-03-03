@@ -14,6 +14,7 @@
 
 package com.liferay.testmisc.portlet;
 
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortlet;
@@ -23,14 +24,16 @@ import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.testmisc.util.PortletKeys;
-import com.liferay.util.portlet.PortletRequestUtil;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -44,6 +47,10 @@ import javax.portlet.ResourceResponse;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.portlet.PortletFileUpload;
 
 /**
  * @author Brian Wing Shun Chan
@@ -156,14 +163,14 @@ public class TestPortlet extends LiferayPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		PortletRequestUtil.testMultipartWithCommonsFileUpload(actionRequest);
+		testMultipartWithCommonsFileUpload(actionRequest);
 	}
 
 	public void uploadForm3(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		PortletRequestUtil.testMultipartWithPortletInputStream(actionRequest);
+		testMultipartWithPortletInputStream(actionRequest);
 	}
 
 	protected void include(
@@ -180,6 +187,72 @@ public class TestPortlet extends LiferayPortlet {
 		else {
 			portletRequestDispatcher.include(renderRequest, renderResponse);
 		}
+	}
+
+	protected void testMultipartWithCommonsFileUpload(
+			ActionRequest actionRequest)
+		throws Exception {
+
+		// Check if the given request is a multipart request
+
+		boolean multiPartContent = PortletFileUpload.isMultipartContent(
+			actionRequest);
+
+		if (_log.isInfoEnabled()) {
+			if (multiPartContent) {
+				_log.info("The given request is a multipart request");
+			}
+			else {
+				_log.info("The given request is NOT a multipart request");
+			}
+		}
+
+		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
+
+		PortletFileUpload portletFileUpload = new PortletFileUpload(
+			diskFileItemFactory);
+
+		List<FileItem> fileItemsList = portletFileUpload.parseRequest(
+			actionRequest);
+
+		if (_log.isInfoEnabled()) {
+			_log.info(
+				"Apache commons upload was able to parse " +
+					fileItemsList.size() + " items");
+		}
+
+		for (int i = 0; i < fileItemsList.size(); i++) {
+			FileItem fileItem = fileItemsList.get(i);
+
+			if (_log.isInfoEnabled()) {
+				_log.info("Item " + i + " " + fileItem);
+			}
+		}
+	}
+
+	protected int testMultipartWithPortletInputStream(
+			ActionRequest actionRequest)
+		throws Exception {
+
+		InputStream inputStream = actionRequest.getPortletInputStream();
+
+		if (inputStream != null) {
+			UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
+				new UnsyncByteArrayOutputStream();
+
+			StreamUtil.transfer(inputStream, unsyncByteArrayOutputStream);
+
+			int size = unsyncByteArrayOutputStream.size();
+
+			if (_log.isInfoEnabled()) {
+				_log.info(
+					"Byte array size from the raw input stream is " + size);
+			}
+
+			return size;
+		}
+
+		return -1;
 	}
 
 	protected void testResponseBufferSize(RenderResponse renderResponse) {
