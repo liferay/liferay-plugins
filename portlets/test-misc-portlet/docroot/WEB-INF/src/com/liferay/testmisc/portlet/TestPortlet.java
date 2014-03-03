@@ -193,17 +193,15 @@ public class TestPortlet extends LiferayPortlet {
 			ActionRequest actionRequest)
 		throws Exception {
 
-		// Check if the given request is a multipart request
-
 		boolean multiPartContent = PortletFileUpload.isMultipartContent(
 			actionRequest);
 
 		if (_log.isInfoEnabled()) {
 			if (multiPartContent) {
-				_log.info("The given request is a multipart request");
+				_log.info("The request is a multipart request");
 			}
 			else {
-				_log.info("The given request is NOT a multipart request");
+				_log.info("The request is not a multipart request");
 			}
 		}
 
