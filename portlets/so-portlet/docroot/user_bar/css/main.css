@@ -30,12 +30,13 @@ $defaultTextColor: #202020;
 	}
 
 	.so-logo {
+		@include hover-transition;
+
 		left: 0;
 		padding: .42em .5em .42em .6em;
 		position: absolute;
 		top: 0;
 
-		@include hover-transition;
 
 		&:hover {
 			@include primary-hover-state;
@@ -61,11 +62,13 @@ $defaultTextColor: #202020;
 
 			a {
 				display: block;
+
+				@include hover-transition;
+
 				height: 2em;
 				line-height: 2em;
 				padding: .58em .8em;
 
-				@include hover-transition;
 
 				&:hover, &.selected {
 					@include primary-hover-state;
@@ -92,21 +95,21 @@ $defaultTextColor: #202020;
 		.navbar-inner .container {
 			.collapse .nav-account-controls {
 				border-top-width: 0;
-				position: static;
 				margin: 0;
+				position: static;
 				right: 0px;
 
 				> li {
 					background: $defaultBackgroundColor url(../images/user_bar_default_bg.png) 0 0 repeat-x;
 
 					@include background-image(linear-gradient(bottom, $defaultBackgroundColor 0, #32363A 100%));
-					
+
 					> a {
+						@include hover-transition;
+
 						line-height: 1.7em;
 						margin: 0;
 						padding: .7em 1.1em;
-
-						@include hover-transition;
 
 						> i {
 							background-color: transparent;
@@ -218,7 +221,7 @@ $defaultTextColor: #202020;
 		.so-portlet-user-bar {
 			z-index: auto;
 		}
-		
+
 		.dockbar #_145_navAccountControlsNavbarCollapse {
 			position: relative;
 			right: auto;
@@ -235,7 +238,7 @@ $defaultTextColor: #202020;
 		z-index: auto;
 
 		.so-logo {
-				z-index: 302;
+			z-index: 302;
 		}
 
 		nav {
@@ -269,8 +272,8 @@ $defaultTextColor: #202020;
 						color: #FFF;
 						float: right;
 						font-size: 1.65em;
-						padding: .28em .35em;
 						margin: .17em;
+						padding: .28em .35em;
 
 						&:hover {
 							background-color: #E6E6E6;
@@ -330,9 +333,9 @@ $defaultTextColor: #202020;
 								background: transparent;
 								display: inline;
 								left: 0;
+								margin: 0;
 								padding: 0;
 								position: static;
-								margin: 0;
 							}
 
 							a:hover, li.dropdown.open > .dropdown-toggle {
@@ -398,11 +401,10 @@ $defaultTextColor: #202020;
 							background-color: #DDD;
 
 							@include border-radius(0);
+							@include hover-transition;
 
 							margin-bottom: 0;
 							padding-left: 30px;
-
-							@include hover-transition;
 
 							&:hover {
 								background-color: rgba(0,0,0,0.2);
