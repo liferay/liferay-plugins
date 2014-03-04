@@ -38,7 +38,7 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
 
-		JSONObject webRTCJSONObject = JSONFactoryUtil.createJSONObject();
+		JSONObject webRTCResponseJSONObject = JSONFactoryUtil.createJSONObject();
 
 		JSONArray webRTCClientsJSONArray = JSONFactoryUtil.createJSONArray();
 
@@ -48,7 +48,7 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 			}
 		}
 
-		webRTCJSONObject.put("clients", webRTCClientsJSONArray);
+		webRTCResponseJSONObject.put("clients", webRTCClientsJSONArray);
 
 		WebRTCClient webRTCClient = _webRTCManager.getWebRTCClient(
 			pollerRequest.getUserId());
@@ -72,10 +72,10 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 				webRTCMailsJSONArray.put(mailJSONObject);
 			}
 
-			webRTCJSONObject.put("mails", webRTCMailsJSONArray);
+			webRTCResponseJSONObject.put("mails", webRTCMailsJSONArray);
 		}
 
-		pollerResponse.setParameter("webRTC", webRTCJSONObject);
+		pollerResponse.setParameter("webRTCResponse", webRTCResponseJSONObject);
 	}
 
 	@Override
