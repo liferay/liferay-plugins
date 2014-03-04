@@ -14,10 +14,6 @@
 
 package com.liferay.sync.engine.session;
 
-import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
-import com.liferay.sync.engine.model.SyncAccount;
-import com.liferay.sync.engine.service.SyncAccountService;
-
 import java.net.URL;
 
 import java.nio.charset.Charset;
@@ -30,13 +26,12 @@ import java.util.Set;
 
 import javax.ws.rs.core.MediaType;
 
-import com.liferay.sync.engine.util.Encryptor;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
@@ -76,41 +71,22 @@ public class Session {
 		_httpClient = httpClientBuilder.build();
 	}
 
-	public String executeGet(long syncAccountId, String urlPath)
+	public <T> T executeGet(
+			String urlPath, ResponseHandler<? extends T> responseHandler)
 		throws Exception {
 
-		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-			syncAccountId);
+		HttpGet httpGet = new HttpGet(_url.toString() + urlPath);
 
-		URL url = new URL(syncAccount.getUrl());
-
-		HttpHost httpHost = new HttpHost(
-			url.getHost(), url.getPort(), url.getProtocol());
-
-		HttpGet httpGet = new HttpGet(urlPath);
-
-		HttpClient httpClient = _getHttpClient(syncAccount, url);
-
-		return httpClient.execute(
-			httpHost, httpGet, new BaseHandler(),
-			_getBasicHttpContext(httpHost));
+		return _httpClient.execute(
+			_httpHost, httpGet, responseHandler, _getBasicHttpContext());
 	}
 
-	public String executePost(
-			long syncAccountId, String urlPath, Map<String, Object> parameters)
+	public <T> T executePost(
+		String urlPath, Map<String, Object> parameters,
+		ResponseHandler<? extends T> responseHandler)
 		throws Exception {
 
-		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-			syncAccountId);
-
-		URL url = new URL(syncAccount.getUrl());
-
-		HttpClient httpClient = _getHttpClient(syncAccount, url);
-
-		HttpHost httpHost = new HttpHost(
-			url.getHost(), url.getPort(), url.getProtocol());
-
-		HttpPost httpPost = new HttpPost(syncAccount.getUrl() + urlPath);
+		HttpPost httpPost = new HttpPost(_url.toString() + urlPath);
 
 		Path filePath = (Path)parameters.remove("filePath");
 
@@ -127,26 +103,25 @@ public class Session {
 
 		httpPost.setEntity(multipartEntityBuilder.build());
 
-		return httpClient.execute(
-			httpHost, httpPost, new BaseHandler(),
-			_getBasicHttpContext(httpHost));
+		return _httpClient.execute(
+			_httpHost, httpPost, responseHandler, _getBasicHttpContext());
 	}
 
-	private BasicAuthCache _getBasicAuthCache(HttpHost httpHost) {
+	private BasicAuthCache _getBasicAuthCache() {
 		BasicAuthCache basicAuthCache = new BasicAuthCache();
 
 		BasicScheme basicScheme = new BasicScheme();
 
-		basicAuthCache.put(httpHost, basicScheme);
+		basicAuthCache.put(_httpHost, basicScheme);
 
 		return basicAuthCache;
 	}
 
-	private BasicHttpContext _getBasicHttpContext(HttpHost httpHost) {
+	private BasicHttpContext _getBasicHttpContext() {
 		BasicHttpContext basicHttpContext = new BasicHttpContext();
 
 		basicHttpContext.setAttribute(
-			HttpClientContext.AUTH_CACHE, _getBasicAuthCache(httpHost));
+			HttpClientContext.AUTH_CACHE, _getBasicAuthCache());
 
 		return basicHttpContext;
 	}
