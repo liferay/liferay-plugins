@@ -71,11 +71,10 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 
 		if (type.equals(SyncFile.TYPE_FOLDER)) {
 			Files.createDirectories(filePath);
-
-			return;
 		}
-
-		downloadFile(syncFile);
+		else {
+			downloadFile(syncFile);
+		}
 	}
 
 	protected void deleteFile(SyncFile targetSyncFile) throws Exception {
@@ -224,13 +223,10 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 				if (checksum.equals(targetSyncFile.getChecksum())) {
 					return;
 				}
-			}
-			else {
-				return;
+
+				downloadFile(sourceSyncFile);
 			}
 		}
-
-		downloadFile(sourceSyncFile);
 	}
 
 }
