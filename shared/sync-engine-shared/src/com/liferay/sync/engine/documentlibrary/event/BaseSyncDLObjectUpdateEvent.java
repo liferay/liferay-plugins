@@ -46,19 +46,31 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 	protected void addFile(SyncFile syncFile, String filePathName)
 		throws Exception {
 
+		String type = syncFile.getType();
+
+		Path filePath = Paths.get(filePathName);
+
+		if (Files.exists(filePath)) {
+			if (type.equals(SyncFile.TYPE_FILE)) {
+				String checksum = FileUtil.getChecksum(filePath);
+
+				if (checksum.equals(syncFile.getChecksum())) {
+					return;
+				}
+			}
+			else {
+				return;
+			}
+		}
+
 		syncFile.setFilePathName(filePathName);
 		syncFile.setSyncAccountId(getSyncAccountId());
+		syncFile.setUiEvent(SyncFile.UI_EVENT_ADDED_REMOTE);
 
 		SyncFileService.update(syncFile);
 
-		String type = syncFile.getType();
-
 		if (type.equals(SyncFile.TYPE_FOLDER)) {
-			Path filePath = Paths.get(filePathName);
-
-			if (Files.notExists(filePath)) {
-				Files.createDirectory(filePath);
-			}
+			Files.createDirectories(filePath);
 
 			return;
 		}
@@ -71,22 +83,14 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			targetSyncFile.getRepositoryId(), getSyncAccountId(),
 			targetSyncFile.getTypePK());
 
+		sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_TRASHED_REMOTE);
+
 		Files.deleteIfExists(Paths.get(sourceSyncFile.getFilePathName()));
 
-		SyncFileService.deleteSyncFile(sourceSyncFile.getSyncFileId());
+		SyncFileService.deleteSyncFile(sourceSyncFile);
 	}
 
 	protected void downloadFile(SyncFile syncFile) {
-		Path filePath = Paths.get(syncFile.getFilePathName());
-
-		if (Files.exists(filePath)) {
-			String checksum = FileUtil.getChecksum(filePath);
-
-			if (checksum.equals(syncFile.getChecksum())) {
-				return;
-			}
-		}
-
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("patch", false);
@@ -114,6 +118,7 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 		sourceSyncFile.setFilePathName(targetFilePathName);
 		sourceSyncFile.setModifiedTime(targetSyncFile.getModifiedTime());
 		sourceSyncFile.setParentFolderId(targetSyncFile.getParentFolderId());
+		sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_MOVED_REMOTE);
 
 		SyncFileService.update(sourceSyncFile);
 	}
@@ -146,6 +151,14 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 				addFile(syncFile, filePathName);
 			}
 			else if (event.equals(SyncFile.EVENT_DELETE)) {
+				syncFile = SyncFileService.fetchSyncFile(
+					syncFile.getRepositoryId(), getSyncAccountId(),
+					syncFile.getTypePK());
+
+				syncFile.setState(SyncFile.STATE_DELETED);
+				syncFile.setUiEvent(SyncFile.UI_EVENT_DELETED_REMOTE);
+
+				SyncFileService.update(syncFile);
 			}
 			else if (event.equals(SyncFile.EVENT_MOVE)) {
 				moveFile(syncFile, filePathName);
@@ -192,14 +205,30 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 		sourceSyncFile.setExtension(targetSyncFile.getExtension());
 		sourceSyncFile.setExtraSettings(targetSyncFile.getExtraSettings());
 		sourceSyncFile.setLockExpirationDate(
-				targetSyncFile.getLockExpirationDate());
+			targetSyncFile.getLockExpirationDate());
 		sourceSyncFile.setLockUserId(targetSyncFile.getLockUserId());
 		sourceSyncFile.setLockUserName(targetSyncFile.getLockUserName());
 		sourceSyncFile.setModifiedTime(targetSyncFile.getModifiedTime());
 		sourceSyncFile.setSize(targetSyncFile.getSize());
+		sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_UPDATED_REMOTE);
 		sourceSyncFile.setVersion(targetSyncFile.getVersion());
 
 		SyncFileService.update(sourceSyncFile);
+
+		if (Files.exists(sourceFilePath)) {
+			String type = targetSyncFile.getType();
+
+			if (type.equals(SyncFile.TYPE_FILE)) {
+				String checksum = FileUtil.getChecksum(sourceFilePath);
+
+				if (checksum.equals(targetSyncFile.getChecksum())) {
+					return;
+				}
+			}
+			else {
+				return;
+			}
+		}
 
 		downloadFile(sourceSyncFile);
 	}

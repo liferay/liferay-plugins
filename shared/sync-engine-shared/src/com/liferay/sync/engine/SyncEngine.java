@@ -57,6 +57,10 @@ public class SyncEngine {
 
 		Object[] syncAccountTasks = _syncAccountTasks.get(syncAccountId);
 
+		if (syncAccountTasks == null) {
+			return;
+		}
+
 		ScheduledFuture<?> scheduledFuture =
 			(ScheduledFuture<?>)syncAccountTasks[0];
 

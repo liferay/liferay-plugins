@@ -47,6 +47,11 @@ public class DownloadFileEvent extends BaseEvent {
 	protected String processRequest() throws Exception {
 		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
+		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
+		syncFile.setUiEvent(SyncFile.UI_EVENT_DOWNLOADING);
+
+		SyncFileService.update(syncFile);
+
 		StringBuilder sb = new StringBuilder(7);
 
 		sb.append(replaceUrlPath(getSyncAccountId()));
@@ -74,6 +79,8 @@ public class DownloadFileEvent extends BaseEvent {
 			outputStream.write(response.getBytes());
 
 			syncFile.setFileKey(FileUtil.getFileKey(filePath));
+			syncFile.setState(SyncFile.STATE_SYNCED);
+			syncFile.setUiEvent(SyncFile.UI_EVENT_DOWNLOADED);
 
 			SyncFileService.update(syncFile);
 		}

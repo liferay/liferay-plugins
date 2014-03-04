@@ -55,9 +55,14 @@ public abstract class BaseEvent implements Runnable {
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
 
+			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+				_syncAccountId);
+
+			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
+
 			if (e instanceof HttpHostConnectException) {
-				SyncAccountService.updateUIEvent(
-					_syncAccountId, SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
+				syncAccount.setUiEvent(
+					SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
 			}
 			else if (e instanceof HttpResponseException) {
 				HttpResponseException hre = (HttpResponseException)e;
@@ -65,16 +70,16 @@ public abstract class BaseEvent implements Runnable {
 				int statusCode = hre.getStatusCode();
 
 				if (statusCode == HttpServletResponse.SC_UNAUTHORIZED) {
-					SyncAccountService.updateUIEvent(
-						_syncAccountId,
+					syncAccount.setUiEvent(
 						SyncAccount.UI_EVENT_AUTHENTICATION_EXCEPTION);
 				}
 				else {
-					SyncAccountService.updateUIEvent(
-						_syncAccountId,
+					syncAccount.setUiEvent(
 						SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
 				}
 			}
+
+			SyncAccountService.update(syncAccount);
 		}
 	}
 

@@ -138,6 +138,7 @@ public class SyncFileService {
 		syncFile.setRepositoryId(repositoryId);
 		syncFile.setSyncAccountId(syncAccountId);
 		syncFile.setType(type);
+		syncFile.setUiEvent(SyncFile.UI_EVENT_ADDED_LOCAL);
 
 		_syncFilePersistence.create(syncFile);
 
@@ -150,7 +151,9 @@ public class SyncFileService {
 
 		// Local sync file
 
-		deleteSyncFile(syncFile.getSyncFileId());
+		syncFile.setUiEvent(SyncFile.UI_EVENT_DELETED_LOCAL);
+
+		deleteSyncFile(syncFile);
 
 		// Remote sync file
 
@@ -172,7 +175,9 @@ public class SyncFileService {
 
 		// Local sync file
 
-		deleteSyncFile(syncFile.getSyncFileId());
+		syncFile.setUiEvent(SyncFile.UI_EVENT_DELETED_LOCAL);
+
+		deleteSyncFile(syncFile);
 
 		// Remote sync file
 
@@ -188,14 +193,12 @@ public class SyncFileService {
 		return syncFile;
 	}
 
-	public static void deleteSyncFile(long syncFileId) {
+	public static void deleteSyncFile(SyncFile syncFile) {
 		try {
 
 			// Sync file
 
-			SyncFile syncFile = _syncFilePersistence.queryForId(syncFileId);
-
-			_syncFilePersistence.deleteById(syncFileId);
+			_syncFilePersistence.delete(syncFile);
 
 			String type = syncFile.getType();
 
@@ -206,7 +209,7 @@ public class SyncFileService {
 			// Sync files
 
 			List<SyncFile> childSyncFiles = _syncFilePersistence.queryForEq(
-				"parentFolderId", syncFileId);
+				"parentFolderId", syncFile.getSyncFileId());
 
 			for (SyncFile childSyncFile : childSyncFiles) {
 				type = childSyncFile.getType();
@@ -216,7 +219,7 @@ public class SyncFileService {
 						childSyncFile.getSyncFileId());
 				}
 				else {
-					deleteSyncFile(childSyncFile.getSyncFileId());
+					deleteSyncFile(childSyncFile);
 				}
 			}
 		}
@@ -327,6 +330,7 @@ public class SyncFileService {
 
 		syncFile.setFilePathName(FilePathNameUtil.getFilePathName(filePath));
 		syncFile.setParentFolderId(folderId);
+		syncFile.setUiEvent(SyncFile.UI_EVENT_MOVED_LOCAL);
 
 		update(syncFile);
 
@@ -354,6 +358,8 @@ public class SyncFileService {
 		throws Exception {
 
 		// Local sync file
+
+		syncFile.setUiEvent(SyncFile.UI_EVENT_MOVED_LOCAL);
 
 		updateSyncFile(filePath, parentFolderId, syncFile);
 
@@ -417,6 +423,7 @@ public class SyncFileService {
 		syncFile.setChecksum(checksum);
 		syncFile.setFilePathName(FilePathNameUtil.getFilePathName(filePath));
 		syncFile.setName(name);
+		syncFile.setUiEvent(SyncFile.UI_EVENT_UPDATED_LOCAL);
 
 		update(syncFile);
 

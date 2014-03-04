@@ -59,21 +59,6 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 			String parentFilePathName = FilePathNameUtil.getFilePathName(
 				filePath.getParent());
 
-			SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-				parentFilePathName, getSyncAccountId());
-
-			SyncSite syncSite = SyncSiteService.fetchSyncSite(
-				parentSyncFile.getRepositoryId(), getSyncAccountId());
-
-			Set<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
-				getSyncAccountId());
-
-			if ((parentSyncFile == null) ||
-				!activeSyncSiteIds.contains(syncSite.getSyncSiteId())) {
-
-				return;
-			}
-
 			String filePathName = FilePathNameUtil.getFilePathName(filePath);
 
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
@@ -82,6 +67,23 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 			if (filePathName.equals(syncAccount.getFilePathName()) ||
 				parentFilePathName.equals(syncAccount.getFilePathName())) {
 
+				return;
+			}
+
+			SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
+				parentFilePathName, getSyncAccountId());
+
+			if (parentSyncFile == null) {
+				return;
+			}
+
+			SyncSite syncSite = SyncSiteService.fetchSyncSite(
+				parentSyncFile.getRepositoryId(), getSyncAccountId());
+
+			Set<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
+				getSyncAccountId());
+
+			if (!activeSyncSiteIds.contains(syncSite.getSyncSiteId())) {
 				return;
 			}
 

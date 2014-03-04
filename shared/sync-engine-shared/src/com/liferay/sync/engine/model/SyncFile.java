@@ -42,15 +42,45 @@ public class SyncFile extends StateAwareModel {
 
 	public static final String EVENT_UPDATE = "update";
 
-	public static final int STATE_ERROR = 3;
+	public static final int STATE_DELETED = 3;
 
-	public static final int STATE_IN_PROGRESS = 2;
+	public static final int STATE_ERROR = 2;
 
-	public static final int STATE_SYNCED = 1;
+	public static final int STATE_IN_PROGRESS = 1;
+
+	public static final int STATE_SYNCED = 0;
 
 	public static final String TYPE_FILE = "file";
 
 	public static final String TYPE_FOLDER = "folder";
+
+	public static final int UI_EVENT_ADDED_LOCAL = 1;
+
+	public static final int UI_EVENT_ADDED_REMOTE = 2;
+
+	public static final int UI_EVENT_DELETED_LOCAL = 3;
+
+	public static final int UI_EVENT_DELETED_REMOTE = 4;
+
+	public static final int UI_EVENT_DOWNLOADED = 5;
+
+	public static final int UI_EVENT_DOWNLOADING = 6;
+
+	public static final int UI_EVENT_MOVED_LOCAL = 7;
+
+	public static final int UI_EVENT_MOVED_REMOTE = 8;
+
+	public static final int UI_EVENT_TRASHED_LOCAL = 9;
+
+	public static final int UI_EVENT_TRASHED_REMOTE = 10;
+
+	public static final int UI_EVENT_UPDATED_LOCAL = 11;
+
+	public static final int UI_EVENT_UPDATED_REMOTE = 12;
+
+	public static final int UI_EVENT_UPLOADED = 13;
+
+	public static final int UI_EVENT_UPLOADING = 14;
 
 	public String getChangeLog() {
 		return changeLog;

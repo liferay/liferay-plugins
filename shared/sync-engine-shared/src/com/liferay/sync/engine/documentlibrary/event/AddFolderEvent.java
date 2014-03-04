@@ -32,6 +32,18 @@ public class AddFolderEvent extends BaseEvent {
 	}
 
 	@Override
+	protected String processRequest() throws Exception {
+		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
+		syncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADING);
+
+		SyncFileService.update(syncFile);
+
+		return super.processRequest();
+	}
+
+	@Override
 	protected void processResponse(String response) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 
@@ -51,9 +63,11 @@ public class AddFolderEvent extends BaseEvent {
 		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
 		localSyncFile.setParentFolderId(remoteSyncFile.getParentFolderId());
 		localSyncFile.setSize(remoteSyncFile.getSize());
+		localSyncFile.setState(SyncFile.STATE_SYNCED);
 		localSyncFile.setSyncAccountId(getSyncAccountId());
 		localSyncFile.setTypePK(remoteSyncFile.getTypePK());
 		localSyncFile.setTypeUuid(remoteSyncFile.getTypeUuid());
+		localSyncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADED);
 		localSyncFile.setVersion(remoteSyncFile.getVersion());
 
 		SyncFileService.update(localSyncFile);

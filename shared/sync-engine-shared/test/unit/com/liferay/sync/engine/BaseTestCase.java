@@ -69,6 +69,10 @@ public abstract class BaseTestCase {
 			filePathName, 10, "test@liferay.com", "test",
 			"http://localhost:8080/api/jsonws");
 
+		syncAccount.setActive(true);
+
+		SyncAccountService.update(syncAccount);
+
 		PowerMockito.mockStatic(HttpUtil.class);
 	}
 
