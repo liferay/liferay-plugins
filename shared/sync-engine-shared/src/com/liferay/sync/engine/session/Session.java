@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.sync.engine.util;
+package com.liferay.sync.engine.session;
 
 import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
 import com.liferay.sync.engine.model.SyncAccount;
@@ -30,6 +30,7 @@ import java.util.Set;
 
 import javax.ws.rs.core.MediaType;
 
+import com.liferay.sync.engine.util.Encryptor;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -52,7 +53,7 @@ import org.apache.http.protocol.BasicHttpContext;
 /**
  * @author Shinn Lok
  */
-public class HttpUtil {
+public class Session {
 
 	public static String executeGet(long syncAccountId, String urlPath)
 		throws Exception {

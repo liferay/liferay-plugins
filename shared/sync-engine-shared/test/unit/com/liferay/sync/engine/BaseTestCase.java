@@ -16,9 +16,9 @@ package com.liferay.sync.engine;
 
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.service.SyncAccountService;
+import com.liferay.sync.engine.session.Session;
 import com.liferay.sync.engine.upgrade.util.UpgradeUtil;
 import com.liferay.sync.engine.util.FilePathNameUtil;
-import com.liferay.sync.engine.util.HttpUtil;
 import com.liferay.sync.engine.util.LoggerUtil;
 import com.liferay.sync.engine.util.PropsKeys;
 import com.liferay.sync.engine.util.PropsUtil;
@@ -49,7 +49,7 @@ import org.slf4j.LoggerFactory;
  * @author Shinn Lok
  */
 @PowerMockIgnore("javax.crypto.*")
-@PrepareForTest(HttpUtil.class)
+@PrepareForTest(Session.class)
 public abstract class BaseTestCase {
 
 	@Before
@@ -73,7 +73,7 @@ public abstract class BaseTestCase {
 
 		SyncAccountService.update(syncAccount);
 
-		PowerMockito.mockStatic(HttpUtil.class);
+		PowerMockito.mockStatic(Session.class);
 	}
 
 	@After
@@ -109,7 +109,7 @@ public abstract class BaseTestCase {
 		String response = readResponse(fileName);
 
 		Mockito.when(
-			HttpUtil.executeGet(Mockito.anyLong(), Mockito.anyString())
+			Session.executeGet(Mockito.anyLong(), Mockito.anyString())
 		).thenReturn(
 			response
 		);
@@ -119,7 +119,7 @@ public abstract class BaseTestCase {
 		String response = readResponse(fileName);
 
 		Mockito.when(
-			HttpUtil.executePost(
+			Session.executePost(
 				Mockito.anyLong(), Mockito.anyString(), Mockito.anyMap())
 		).thenReturn(
 			response
