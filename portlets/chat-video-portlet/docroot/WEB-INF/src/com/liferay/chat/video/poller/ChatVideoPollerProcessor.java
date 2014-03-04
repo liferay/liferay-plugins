@@ -82,41 +82,46 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 
 	@Override
 	protected void doSend(PollerRequest pollerRequest) throws Exception {
-		long sourceUserId = pollerRequest.getUserId();
+		long destinationUserId = getLong(pollerRequest, "destinationUserId");
+
 		String messageType = getString(pollerRequest, "type");
-		long destinationUserId = -1;
 
-		if (pollerRequest.getParameterMap().containsKey("destinationUserId")) {
-			destinationUserId = getLong(pollerRequest, "destinationUserId");
-		}
-
-		if (messageType.equals("setAvailability")) {
-			boolean available = getBoolean(pollerRequest, "available");
-
-			_webRTCManager.updateWebRTCClientAvailability(
-				sourceUserId, available);
-		} else if (messageType.equals("call")) {
-			_webRTCManager.call(sourceUserId, destinationUserId);
-		} else if (messageType.equals("answer")) {
+		if (messageType.equals("answer")) {
 			boolean answer = getBoolean(pollerRequest, "answer");
 
-			_webRTCManager.answer(sourceUserId, destinationUserId, answer);
-		} else if (messageType.equals("sdp")) {
+			_webRTCManager.answer(
+				pollerRequest.getUserId(), destinationUserId, answer);
+		}
+		else if (messageType.equals("call")) {
+			_webRTCManager.call(pollerRequest.getUserId(), destinationUserId);
+		}
+		else if (messageType.equals("hangUp")) {
+			_webRTCManager.hangUp(pollerRequest.getUserId(), destinationUserId);
+		}
+		else if (messageType.equals("ice")) {
+			String candidate = getString(pollerRequest, "candidate");
+
+			_webRTCManager.pushICECandidateWebRTCMail(
+				pollerRequest.getUserId(), destinationUserId, candidate);
+		}
+		else if (messageType.equals("reset")) {
+			_webRTCManager.resetWebRTCClient(pollerRequest.getUserId());
+		}
+		else if (messageType.equals("sdp")) {
 			String description = getString(pollerRequest, "description");
 
 			_webRTCManager.pushDescriptionWebRTCSDPMail(
-				sourceUserId, destinationUserId, description);
-		} else if (messageType.equals("ice")) {
-			String ice = getString(pollerRequest, "candidate");
+				pollerRequest.getUserId(), destinationUserId, description);
+		}
+		else if (messageType.equals("setAvailability")) {
+			boolean available = getBoolean(pollerRequest, "available");
 
-			_webRTCManager.pushICECandidateWebRTCMail(
-				sourceUserId, destinationUserId, ice);
-		} else if (messageType.equals("hangUp")) {
-			_webRTCManager.hangUp(sourceUserId, destinationUserId);
-		} else if (messageType.equals("reset")) {
-			_webRTCManager.resetWebRTCClient(sourceUserId);
-		} else if (messageType.equals("updatePresence")) {
-			_webRTCManager.updateWebRTCClientPresence(sourceUserId);
+			_webRTCManager.updateWebRTCClientAvailability(
+				pollerRequest.getUserId(), available);
+		}
+		else if (messageType.equals("updatePresence")) {
+			_webRTCManager.updateWebRTCClientPresence(
+				pollerRequest.getUserId());
 		}
 	}
 
