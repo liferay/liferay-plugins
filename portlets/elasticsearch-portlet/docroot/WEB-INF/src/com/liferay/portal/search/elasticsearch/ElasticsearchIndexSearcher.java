@@ -38,10 +38,9 @@ import com.liferay.portal.search.elasticsearch.facet.FacetProcessorUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.commons.lang.time.StopWatch;
 
@@ -146,11 +145,19 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 			return;
 		}
 
+		searchRequestBuilder.addHighlightedField(
+			Field.CONTENT, queryConfig.getHighlightFragmentSize(),
+			queryConfig.getHighlightSnippetSize());
+
 		String localizedContentName = DocumentImpl.getLocalizedName(
 			queryConfig.getLocale(), Field.CONTENT);
 
 		searchRequestBuilder.addHighlightedField(
 			localizedContentName, queryConfig.getHighlightFragmentSize(),
+			queryConfig.getHighlightSnippetSize());
+
+		searchRequestBuilder.addHighlightedField(
+			Field.TITLE, queryConfig.getHighlightFragmentSize(),
 			queryConfig.getHighlightSnippetSize());
 
 		String localizedTitleName = DocumentImpl.getLocalizedName(
@@ -223,52 +230,61 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
-	protected String getSnippet(SearchHit hit, QueryConfig queryConfig) {
-		String snippet = null;
+	protected void addSnippets(
+		SearchHit hit, Document document, QueryConfig queryConfig) {
+
+		if (!queryConfig.isHighlightEnabled()) {
+			return;
+		}
 
 		Map<String, HighlightField> highlightFields = hit.getHighlightFields();
 
 		if ((highlightFields == null) || highlightFields.isEmpty()) {
-			return StringPool.BLANK;
+			return;
 		}
+
+		addSnippets(
+			document, highlightFields, Field.CONTENT, queryConfig.getLocale());
+
+		addSnippets(
+			document, highlightFields, Field.DESCRIPTION,
+			queryConfig.getLocale());
+
+		addSnippets(
+			document, highlightFields, Field.TITLE, queryConfig.getLocale());
+	}
+
+	protected void addSnippets(
+		Document document, Map<String, HighlightField> highlightFields,
+		String fieldName, Locale locale) {
+
+		String snippet = StringPool.BLANK;
 
 		String localizedContentName = DocumentImpl.getLocalizedName(
-			queryConfig.getLocale(), Field.CONTENT);
+			locale, fieldName);
 
-		if (localizedContentName != null) {
-			HighlightField highlightField = highlightFields.get(
-				localizedContentName);
+		HighlightField highlightField = highlightFields.get(
+			localizedContentName);
 
-			if (highlightField != null) {
-				Text[] texts = highlightField.fragments();
+		String snippetField = localizedContentName;
 
-				if ((texts != null) && (texts.length > 0)) {
-					snippet = texts[0].string();
-				}
+		if (highlightField == null) {
+			highlightField = highlightFields.get(fieldName);
+
+			snippetField = fieldName;
+		}
+
+		if (highlightField != null) {
+			Text[] texts = highlightField.fragments();
+
+			if (ArrayUtil.isNotEmpty(texts)) {
+				snippet = texts[0].string();
 			}
 		}
 
-		String localizedTitleName = DocumentImpl.getLocalizedName(
-			queryConfig.getLocale(), Field.TITLE);
-
-		if ((snippet == null) && (localizedTitleName != null)) {
-			HighlightField highlightField = highlightFields.get(
-				localizedContentName);
-
-			if (highlightField != null) {
-				Text[] texts = highlightField.fragments();
-
-				if ((texts != null) && (texts.length > 0)) {
-					snippet = texts[0].string();
-				}
-			}
-		}
-
-		if (snippet == null) {
-			snippet = StringPool.BLANK;
-		}
-
-		return snippet;
+		document.addText(
+			Field.SNIPPET.concat(StringPool.UNDERLINE).concat(snippetField),
+			snippet);
 	}
 
 	protected Document processSearchHit(SearchHit hit) {
@@ -300,9 +316,7 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		Hits hits = new HitsImpl();
 
 		List<Document> documents = new ArrayList<Document>();
-		Set<String> queryTerms = new HashSet<String>();
 		List<Float> scores = new ArrayList<Float>();
-		List<String> snippets = new ArrayList<String>();
 
 		if (searchHits.totalHits() > 0) {
 			SearchHit[] searchHitsArray = searchHits.getHits();
@@ -312,21 +326,16 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 				documents.add(document);
 
-				String snippet = getSnippet(searchHit, queryConfig);
-
-				queryTerms.add(snippet);
+				addSnippets(searchHit, document, queryConfig);
 
 				scores.add(searchHit.getScore());
-
-				snippets.add(snippet);
 			}
 		}
 
 		hits.setDocs(documents.toArray(new Document[documents.size()]));
 		hits.setLength((int)searchHits.getTotalHits());
-		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
+		//hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
 		hits.setScores(scores.toArray(new Float[scores.size()]));
-		hits.setSnippets(snippets.toArray(new String[snippets.size()]));
 
 		return hits;
 	}
