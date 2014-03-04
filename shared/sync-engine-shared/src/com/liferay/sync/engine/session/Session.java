@@ -46,6 +46,7 @@ import org.apache.http.protocol.BasicHttpContext;
 
 /**
  * @author Shinn Lok
+ * @author Dennis Ju
  */
 public class Session {
 

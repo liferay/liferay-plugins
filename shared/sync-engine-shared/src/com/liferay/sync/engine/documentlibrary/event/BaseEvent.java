@@ -18,12 +18,12 @@ import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.session.Session;
+import com.liferay.sync.engine.session.SessionManager;
 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.liferay.sync.engine.session.SessionManager;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
 
