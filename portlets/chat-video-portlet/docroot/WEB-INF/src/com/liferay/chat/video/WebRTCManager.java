@@ -274,6 +274,32 @@ public class WebRTCManager {
 		_webRTCClients.remove(userId);
 	}
 
+	public void resetWebRTCClient(long userId) {
+		WebRTCClient webRTCClient = getWebRTCClient(userId);
+
+		if (webRTCClient == null) {
+			return;
+		}
+
+		Set<WebRTCClient> webRTCClients = webRTCClient.getWebRTCClients();
+
+		for (WebRTCClient otherWebRTCClient : webRTCClients) {
+			WebRTCConnection webRTCConnection =
+				webRTCClient.getWebRTCConnection(webRTCClient);
+
+			WebRTCConnection.State state = webRTCConnection.getState();
+
+			if (state != WebRTCConnection.State.DISCONNECTED) {
+				pushLostConnectionStateWebRTCMail(
+					webRTCClient, otherWebRTCClient, "reset");
+			}
+		}
+
+		webRTCClient.reset();
+
+		webRTCClient.updatePresenceTime();
+	}
+
 	public void updateWebRTCClientAvailability(long userId, boolean available) {
 		addWebRTCClient(userId);
 
@@ -403,32 +429,6 @@ public class WebRTCManager {
 			destinationWebRTCClient.getOutgoingWebRTCMailbox();
 
 		destinationOutgoingWebRTCMailbox.pushWebRTCMail(webRTCMail);
-	}
-
-	protected void resetWebRTCClient(long userId) {
-		WebRTCClient webRTCClient = getWebRTCClient(userId);
-
-		if (webRTCClient == null) {
-			return;
-		}
-
-		Set<WebRTCClient> webRTCClients = webRTCClient.getWebRTCClients();
-
-		for (WebRTCClient otherWebRTCClient : webRTCClients) {
-			WebRTCConnection webRTCConnection =
-				webRTCClient.getWebRTCConnection(webRTCClient);
-
-			WebRTCConnection.State state = webRTCConnection.getState();
-
-			if (state != WebRTCConnection.State.DISCONNECTED) {
-				pushLostConnectionStateWebRTCMail(
-					webRTCClient, otherWebRTCClient, "reset");
-			}
-		}
-
-		webRTCClient.reset();
-
-		webRTCClient.updatePresenceTime();
 	}
 
 	private static long _CONNECTION_TIMEOUT_DURATION_TIME = 60000;
