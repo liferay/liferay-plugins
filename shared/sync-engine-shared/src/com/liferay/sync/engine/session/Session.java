@@ -71,6 +71,12 @@ public class Session {
 		_httpClient = httpClientBuilder.build();
 	}
 
+	public HttpResponse executeGet(String urlPath) throws Exception {
+		HttpGet httpGet = new HttpGet(_url.toString() + urlPath);
+
+		return _httpClient.execute(_httpHost, httpGet, _getBasicHttpContext());
+	}
+
 	public <T> T executeGet(
 			String urlPath, ResponseHandler<? extends T> responseHandler)
 		throws Exception {
@@ -81,12 +87,33 @@ public class Session {
 			_httpHost, httpGet, responseHandler, _getBasicHttpContext());
 	}
 
+	public HttpResponse executePost(
+		String urlPath, Map<String, Object> parameters)
+		throws Exception {
+
+		HttpPost httpPost = new HttpPost(_url.toString() + urlPath);
+
+		_buildHttpPostBody(httpPost, parameters);
+
+		return _httpClient.execute(_httpHost, httpPost, _getBasicHttpContext());
+	}
+
 	public <T> T executePost(
 		String urlPath, Map<String, Object> parameters,
 		ResponseHandler<? extends T> responseHandler)
 		throws Exception {
 
 		HttpPost httpPost = new HttpPost(_url.toString() + urlPath);
+
+		_buildHttpPostBody(httpPost, parameters);
+
+		return _httpClient.execute(
+			_httpHost, httpPost, responseHandler, _getBasicHttpContext());
+	}
+
+	private void _buildHttpPostBody(
+		HttpPost httpPost, Map<String, Object> parameters)
+		throws Exception {
 
 		Path filePath = (Path)parameters.remove("filePath");
 
@@ -102,9 +129,6 @@ public class Session {
 		}
 
 		httpPost.setEntity(multipartEntityBuilder.build());
-
-		return _httpClient.execute(
-			_httpHost, httpPost, responseHandler, _getBasicHttpContext());
 	}
 
 	private BasicAuthCache _getBasicAuthCache() {
