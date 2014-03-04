@@ -16,6 +16,7 @@ package com.liferay.chat.video.poller;
 
 import com.liferay.chat.video.WebRTCClient;
 import com.liferay.chat.video.WebRTCMail;
+import com.liferay.chat.video.WebRTCMailbox;
 import com.liferay.chat.video.WebRTCManager;
 import com.liferay.chat.video.WebRTCManagerFactory;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -66,8 +67,10 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 		if (webRTCClient != null) {
 			JSONArray webRTCMailsJSONArray = JSONFactoryUtil.createJSONArray();
 
-			List<WebRTCMail> webRTCMails =
-				webRTCClient.getOutgoingWebRTCMailbox().popWebRTCMails();
+			WebRTCMailbox webRTCMailbox =
+				webRTCClient.getOutgoingWebRTCMailbox();
+
+			List<WebRTCMail> webRTCMails = webRTCMailbox.popWebRTCMails();
 
 			for (WebRTCMail webRTCMail : webRTCMails) {
 				String messageType = webRTCMail.getMessageType();
