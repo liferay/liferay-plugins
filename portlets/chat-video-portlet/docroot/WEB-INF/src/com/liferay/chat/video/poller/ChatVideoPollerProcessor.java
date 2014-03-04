@@ -73,14 +73,12 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 			List<WebRTCMail> webRTCMails = webRTCMailbox.popWebRTCMails();
 
 			for (WebRTCMail webRTCMail : webRTCMails) {
-				String messageType = webRTCMail.getMessageType();
-				String messageJSON = webRTCMail.getMessageJSON();
-				long sourceUserId = webRTCMail.getSourceUserId();
 				JSONObject mailJSONObject = JSONFactoryUtil.createJSONObject();
 
-				mailJSONObject.put("type", messageType);
-				mailJSONObject.put("msg", messageJSON);
-				mailJSONObject.put("source_user_id", sourceUserId);
+				mailJSONObject.put("msg", webRTCMail.getMessageJSON());
+				mailJSONObject.put(
+					"source_user_id", webRTCMail.getSourceUserId());
+				mailJSONObject.put("type", webRTCMail.getMessageType());
 
 				webRTCMailsJSONArray.put(mailJSONObject);
 			}
