@@ -199,6 +199,12 @@
 		margin: 0;
 	}
 
+	.add-entry-distribution-scope {
+		.control-group .form-validator-stack {
+			position: relative;
+		}
+	}
+
 	.control-group {
 		display: inline-block;
 		margin-right: 1em;
