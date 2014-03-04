@@ -77,7 +77,7 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 
 				mailJSONObject.put("message", webRTCMail.getMessageJSON());
 				mailJSONObject.put(
-					"source_user_id", webRTCMail.getSourceUserId());
+					"sourceUserId", webRTCMail.getSourceUserId());
 				mailJSONObject.put("type", webRTCMail.getMessageType());
 
 				webRTCMailsJSONArray.put(mailJSONObject);
@@ -86,7 +86,7 @@ public class ChatVideoPollerProcessor extends BasePollerProcessor {
 			webRTCJSONObject.put("mails", webRTCMailsJSONArray);
 		}
 
-		pollerResponse.setParameter("webrtc", webRTCJSONObject);
+		pollerResponse.setParameter("webRTC", webRTCJSONObject);
 	}
 
 	private WebRTCManager _webRTCManager =
