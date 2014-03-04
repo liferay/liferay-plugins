@@ -80,8 +80,11 @@ if (entry == null) {
 				boolean submitOnChange = false;
 				%>
 
-				<%@ include file="/entry_select_scope.jspf" %>
+				<div class="add-entry-distribution-scope">
 
+					<%@ include file="/entry_select_scope.jspf" %>
+
+				</div>
 			</c:otherwise>
 		</c:choose>
 
