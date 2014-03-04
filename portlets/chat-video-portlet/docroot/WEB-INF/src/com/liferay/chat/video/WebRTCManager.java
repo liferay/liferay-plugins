@@ -39,7 +39,7 @@ public class WebRTCManager {
 
 		if (!hasAvailableWebRTCClient(destinationUserId)) {
 			pushErrorWebRTCMail(
-				destinationUserId, sourceUserId, "unavailable_user");
+				destinationUserId, sourceUserId, "unavailableUser");
 
 			return;
 		}
@@ -53,7 +53,7 @@ public class WebRTCManager {
 				WebRTCConnection.State.INITIATED)) {
 
 			pushErrorWebRTCMail(
-				destinationUserId, sourceUserId, "invalid_state");
+				destinationUserId, sourceUserId, "invalidState");
 
 			return;
 		}
@@ -66,7 +66,7 @@ public class WebRTCManager {
 
 		if (webRTCConnectionSourceWebRTCClient == sourceWebRTCClient) {
 			pushErrorWebRTCMail(
-				destinationUserId, sourceUserId, "cannot_answer");
+				destinationUserId, sourceUserId, "cannotAnswer");
 
 			return;
 		}
@@ -81,8 +81,8 @@ public class WebRTCManager {
 
 		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
 
-		messageJSONObject.put("type", "answer");
 		messageJSONObject.put("answer", answer);
+		messageJSONObject.put("type", "answer");
 
 		pushConnectionStateWebRTCMail(
 			sourceWebRTCClient, destinationWebRTCClient, messageJSONObject);
@@ -97,7 +97,7 @@ public class WebRTCManager {
 
 		if (!hasAvailableWebRTCClient(destinationUserId)) {
 			pushErrorWebRTCMail(
-				destinationUserId, sourceUserId, "unavailable_user");
+				destinationUserId, sourceUserId, "unavailableUser");
 
 			return;
 		}
@@ -110,7 +110,7 @@ public class WebRTCManager {
 			destinationWebRTCClient.hasWebRTCConnection(sourceWebRTCClient)) {
 
 			pushErrorWebRTCMail(
-				destinationUserId, sourceUserId, "existing_connection");
+				destinationUserId, sourceUserId, "existingConnection");
 
 			return;
 		}
@@ -219,10 +219,10 @@ public class WebRTCManager {
 				destinationWebRTCClient);
 
 			pushLostConnectionStateWebRTCMail(
-				sourceWebRTCClient, destinationWebRTCClient, "hang_up");
+				sourceWebRTCClient, destinationWebRTCClient, "hangUp");
 
 			pushLostConnectionStateWebRTCMail(
-				destinationWebRTCClient, sourceWebRTCClient, "hang_up");
+				destinationWebRTCClient, sourceWebRTCClient, "hangUp");
 		}
 	}
 
@@ -394,7 +394,7 @@ public class WebRTCManager {
 				WebRTCConnection.State.CONNECTED)) {
 
 			pushErrorWebRTCMail(
-				destinationUserId, sourceUserId, "invalid_state");
+				destinationUserId, sourceUserId, "invalidState");
 
 			return;
 		}
