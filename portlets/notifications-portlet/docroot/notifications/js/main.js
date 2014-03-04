@@ -35,7 +35,7 @@ AUI().use(
 													read.setHTML(Liferay.Language.get('read'));
 												}
 
-												instance._navigate(uri);
+												instance._redirect(uri);
 											}
 										}
 									}
@@ -48,7 +48,7 @@ AUI().use(
 						var userNotification = currentTarget.ancestor('.user-notification');
 
 						if (userNotification) {
-							instance._navigate(uri);
+							instance._redirect(uri);
 						}
 					}
 				}
@@ -62,7 +62,7 @@ AUI().use(
 				return false;
 			},
 
-			_navigate: function(uri) {
+			_redirect: function(uri) {
 				var instance = this;
 
 				if (instance._openWindow(uri)) {
