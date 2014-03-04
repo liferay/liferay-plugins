@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
@@ -62,7 +63,7 @@ public class DownloadFileEvent extends BaseEvent {
 		sb.append("/");
 		sb.append(getParameterValue("patch"));
 
-		return Session.executeGet(getSyncAccountId(), sb.toString());
+		return getSession().executeGet(sb.toString(), new BaseHandler());
 	}
 
 	@Override

@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.session.Session;
@@ -22,6 +23,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.liferay.sync.engine.session.SessionManager;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
 
@@ -39,6 +41,7 @@ public abstract class BaseEvent implements Runnable {
 		_syncAccountId = syncAccountId;
 		_urlPath = urlPath;
 		_parameters = parameters;
+		_session = SessionManager.getSession(syncAccountId);
 	}
 
 	@Override
@@ -91,12 +94,16 @@ public abstract class BaseEvent implements Runnable {
 		return _parameters.get(key);
 	}
 
+	protected Session getSession() {
+		return _session;
+	}
+
 	protected long getSyncAccountId() {
 		return _syncAccountId;
 	}
 
 	protected String processRequest() throws Exception {
-		return Session.executePost(_syncAccountId, _urlPath, _parameters);
+		return _session.executePost(_urlPath, _parameters, new BaseHandler());
 	}
 
 	protected abstract void processResponse(String response)
@@ -105,6 +112,7 @@ public abstract class BaseEvent implements Runnable {
 	private static Logger _logger = LoggerFactory.getLogger(BaseEvent.class);
 
 	private Map<String, Object> _parameters;
+	private Session _session;
 	private long _syncAccountId;
 	private String _urlPath;
 
