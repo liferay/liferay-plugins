@@ -64,7 +64,7 @@ public class SyncFileServiceTest extends BaseTestCase {
 
 		Assert.assertEquals(8, syncFiles.size());
 
-		SyncFileService.deleteSyncFile(folderSyncFileA.getSyncFileId());
+		SyncFileService.deleteSyncFile(folderSyncFileA);
 
 		syncFiles = SyncFileService.findSyncFiles(
 			syncAccount.getSyncAccountId());

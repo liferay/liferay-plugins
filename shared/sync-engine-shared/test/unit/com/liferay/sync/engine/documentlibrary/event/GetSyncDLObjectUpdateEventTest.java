@@ -64,7 +64,7 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 		SyncSiteService.deleteSyncSite(_syncSite.getSyncSiteId());
 
 		for (SyncFile syncFile : _syncFiles) {
-			SyncFileService.deleteSyncFile(syncFile.getSyncFileId());
+			SyncFileService.deleteSyncFile(syncFile);
 		}
 	}
 

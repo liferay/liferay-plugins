@@ -45,9 +45,9 @@ public class ModelListenerTest extends BaseTestCase {
 
 		Assert.assertEquals(
 			"/home/liferay/test", _originalFieldValues.get("filePathName"));
-		Assert.assertEquals(2, _originalFieldValues.size());
+		Assert.assertEquals(3, _originalFieldValues.size());
 
-		SyncFileService.deleteSyncFile(syncFile.getSyncFileId());
+		SyncFileService.deleteSyncFile(syncFile);
 
 		Assert.assertTrue(_onRemoveCalled);
 	}
@@ -63,7 +63,7 @@ public class ModelListenerTest extends BaseTestCase {
 
 		SyncFileService.update(syncFile);
 
-		Assert.assertTrue(_originalFieldValues.isEmpty());
+		Assert.assertEquals(1, _originalFieldValues.size());
 		Assert.assertFalse(_onRemoveCalled);
 	}
 
