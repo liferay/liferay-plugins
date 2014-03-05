@@ -55,8 +55,7 @@ public class SOAnnouncementsUtil {
 				if (((group.isOrganization() && group.isSite()) ||
 					 group.isRegularSite()) &&
 					GroupPermissionUtil.contains(
-						themeDisplay.getPermissionChecker(),
-						group.getGroupId(),
+						themeDisplay.getPermissionChecker(), group.getGroupId(),
 						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
 					filteredGroups.add(group);
@@ -152,8 +151,7 @@ public class SOAnnouncementsUtil {
 				if (((group.isOrganization() && group.isSite()) ||
 					 group.isRegularSite()) &&
 					GroupPermissionUtil.contains(
-						themeDisplay.getPermissionChecker(),
-						group.getGroupId(),
+						themeDisplay.getPermissionChecker(), group.getGroupId(),
 						ActionKeys.MANAGE_ANNOUNCEMENTS)) {
 
 					return true;
