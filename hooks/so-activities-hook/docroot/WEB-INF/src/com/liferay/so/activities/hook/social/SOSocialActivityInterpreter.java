@@ -383,7 +383,10 @@ public abstract class SOSocialActivityInterpreter
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		return new Object[] {activitySet.getActivityCount()};
+		List<SocialActivity> viewableActivities = getViewableActivities(
+			activitySet, serviceContext);
+
+		return new Object[] {viewableActivities.size()};
 	}
 
 	protected String getTitlePattern(
