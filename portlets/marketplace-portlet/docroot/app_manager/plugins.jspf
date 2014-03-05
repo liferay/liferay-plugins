@@ -125,10 +125,10 @@
 					<td class="plugin-actions">
 
 						<%
-						List<String> indexerClasses = portlet.getIndexerClasses();
+						List<Indexer> indexerInstances = portlet.getIndexerInstances();
 						%>
 
-						<c:if test="<%= !indexerClasses.isEmpty() %>">
+						<c:if test="<%= !indexerInstances.isEmpty() %>">
 
 							<%
 							LiferayPortletURL reindexURL = PortletURLFactoryUtil.create(request, PortletKeys.ADMIN, themeDisplay.getPlid(), PortletRequest.ACTION_PHASE);
