@@ -382,7 +382,7 @@ request.setAttribute("view_user.jsp-user", user2);
 							destroyOnClose: true,
 							modal: true,
 							resizable: false,
-							width: 500
+							width: 800
 						},
 						id: '<portlet:namespace />Dialog',
 						title: node.getAttribute('data-title'),
