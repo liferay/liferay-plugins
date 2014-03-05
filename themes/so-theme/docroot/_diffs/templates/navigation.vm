@@ -70,6 +70,26 @@
 						randomNamespace: '${themeNamespace}'
 					}
 				).render();
+
+				window['${my_account_portletNamespace}changeLogo'] = function(logoURL) {
+					var avatarDialog = A.all('.avatar img');
+
+					if (avatarDialog) {
+						avatarDialog.attr('src', logoURL);
+					}
+
+					var avatarDockbar = A.one('.nav-account-controls .user-avatar-image');
+
+					if (avatarDockbar) {
+						avatarDockbar.attr('src', logoURL);
+					}
+
+					var avatarSidebar = A.one('.avatar');
+
+					if (avatarSidebar) {
+						avatarSidebar.attr('src', logoURL);
+					}
+				}
 			}
 		);
 	</script>
