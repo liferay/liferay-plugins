@@ -116,13 +116,11 @@ public abstract class BaseTestCase {
 			_session
 		);
 
-		String response = readResponse(fileName);
-
 		Mockito.when(
 			_session.executeGet(
 				Mockito.anyString(), Mockito.any(ResponseHandler.class))
 		).thenReturn(
-			response
+			readResponse(fileName)
 		);
 	}
 
@@ -133,14 +131,12 @@ public abstract class BaseTestCase {
 			_session
 		);
 
-		String response = readResponse(fileName);
-
 		Mockito.when(
 			_session.executePost(
 				Mockito.anyString(), Mockito.anyMap(),
 				Mockito.any(ResponseHandler.class))
 		).thenReturn(
-			response
+			readResponse(fileName)
 		);
 	}
 

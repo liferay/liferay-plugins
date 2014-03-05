@@ -31,6 +31,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -43,7 +44,6 @@ import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.protocol.BasicHttpContext;
 
@@ -55,9 +55,6 @@ public class Session {
 
 	public Session(URL url, String login, String password) {
 		_url = url;
-
-		_httpHost = new HttpHost(
-			url.getHost(), url.getPort(), url.getProtocol());
 
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
 
@@ -73,6 +70,9 @@ public class Session {
 		httpClientBuilder.setMaxConnPerRoute(2);
 
 		_httpClient = httpClientBuilder.build();
+
+		_httpHost = new HttpHost(
+			url.getHost(), url.getPort(), url.getProtocol());
 	}
 
 	public HttpResponse executeGet(String urlPath) throws Exception {
@@ -186,7 +186,7 @@ public class Session {
 			ContentType.create(MediaType.TEXT_PLAIN, Charset.defaultCharset()));
 	}
 
-	private final CloseableHttpClient _httpClient;
+	private HttpClient _httpClient;
 	private HttpHost _httpHost;
 	private Set<String> _ignoredParameterKeys = new HashSet<String>(
 		Arrays.asList("filePath", "syncFile"));

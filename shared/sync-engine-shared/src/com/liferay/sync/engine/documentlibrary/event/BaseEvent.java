@@ -25,6 +25,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.client.HttpResponseException;
+import org.apache.http.client.ResponseHandler;
 import org.apache.http.conn.HttpHostConnectException;
 
 import org.slf4j.Logger;
@@ -41,6 +42,25 @@ public abstract class BaseEvent implements Runnable {
 		_syncAccountId = syncAccountId;
 		_urlPath = urlPath;
 		_parameters = parameters;
+	}
+
+	public <T> T executeGet(
+			String urlPath, ResponseHandler<? extends T> responseHandler)
+		throws Exception {
+
+		Session session = SessionManager.getSession(_syncAccountId);
+
+		return session.executeGet(urlPath, responseHandler);
+	}
+
+	public <T> T executePost(
+			String urlPath, Map<String, Object> parameters,
+			ResponseHandler<? extends T> responseHandler)
+		throws Exception {
+
+		Session session = SessionManager.getSession(_syncAccountId);
+
+		return session.executePost(urlPath, _parameters, responseHandler);
 	}
 
 	@Override
@@ -98,9 +118,7 @@ public abstract class BaseEvent implements Runnable {
 	}
 
 	protected String processRequest() throws Exception {
-		Session session = SessionManager.getSession(_syncAccountId);
-
-		return session.executePost(_urlPath, _parameters, new BaseHandler());
+		return executePost(_urlPath, _parameters, new BaseHandler());
 	}
 
 	protected abstract void processResponse(String response)

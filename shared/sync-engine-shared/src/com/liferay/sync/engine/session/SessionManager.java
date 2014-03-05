@@ -51,8 +51,8 @@ public class SessionManager {
 
 			return session;
 		}
-		catch (MalformedURLException e) {
-			_logger.error(e.getMessage(), e);
+		catch (MalformedURLException murle) {
+			_logger.error(murle.getMessage(), murle);
 
 			return null;
 		}
