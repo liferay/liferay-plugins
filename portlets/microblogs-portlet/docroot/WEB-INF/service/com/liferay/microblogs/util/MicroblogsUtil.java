@@ -95,7 +95,7 @@ public class MicroblogsUtil {
 
 		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
-		Matcher matcher = _tagPattern1.matcher(microblogsEntry.getContent());
+		Matcher matcher = _pattern1.matcher(microblogsEntry.getContent());
 
 		while (matcher.find()) {
 			String result = matcher.group();
@@ -156,7 +156,7 @@ public class MicroblogsUtil {
 			content = StringUtil.replace(content, result, tagLink);
 		}
 
-		matcher = _tagPattern2.matcher(content);
+		matcher = _pattern2.matcher(content);
 
 		while (matcher.find()) {
 			String result = matcher.group();
@@ -197,7 +197,7 @@ public class MicroblogsUtil {
 		return content;
 	}
 
-	private static Pattern _tagPattern1 = Pattern.compile("\\#\\S*");
-	private static Pattern _tagPattern2 = Pattern.compile("\\[\\@\\S*\\]");
+	private static Pattern _pattern1 = Pattern.compile("\\#\\S*");
+	private static Pattern _pattern2 = Pattern.compile("\\[\\@\\S*\\]");
 
 }
