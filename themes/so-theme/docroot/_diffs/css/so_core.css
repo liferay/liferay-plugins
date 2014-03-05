@@ -1054,8 +1054,9 @@ html.aui {
 		border-width: 0;
 		margin-bottom: 10px;
 
-		.accordion-toggle {
+		.accordion-toggle:before {
 			-webkit-font-smoothing: antialiased;
+			content: "\f0da";
 			font-family: 'fontawesome-alloy';
 			font-style: normal;
 			font-variant: normal;
@@ -1063,10 +1064,6 @@ html.aui {
 			line-height: 1;
 			speak: none;
 			text-transform: none;
-
-			&:before {
-				content: "\f0da";
-			}
 		}
 
 		.toggler-header-expanded .accordion-toggle:before {
