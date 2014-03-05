@@ -14,6 +14,8 @@
 
 package com.liferay.sync.engine.util;
 
+import com.liferay.portal.kernel.util.StringUtil;
+
 import java.io.File;
 
 /**
@@ -26,7 +28,7 @@ public class OSDetector {
 			return _aix.booleanValue();
 		}
 
-		String osName = System.getProperty("os.name").toLowerCase();
+		String osName = StringUtil.toLowerCase(System.getProperty("os.name"));
 
 		if (osName.equals("aix")) {
 			_aix = Boolean.TRUE;
@@ -43,7 +45,7 @@ public class OSDetector {
 			return _apple.booleanValue();
 		}
 
-		String osName = System.getProperty("os.name").toLowerCase();
+		String osName = StringUtil.toLowerCase(System.getProperty("os.name"));
 
 		if (osName.contains("mac")) {
 			_apple = Boolean.TRUE;
