@@ -67,7 +67,7 @@ public interface ExtRepositoryObject extends ExtRepositoryModel {
 	 * context, the external repository implementation may be asked about a
 	 * permission, and it must answer correctly, but is not required to fully
 	 * implement it.
-	 * 
+	 *
 	 * <p>
 	 * For instance, an external repository must not fail when asked about the
 	 * <code>ADD_SHORTCUT</code> permission, even if the back-end external
