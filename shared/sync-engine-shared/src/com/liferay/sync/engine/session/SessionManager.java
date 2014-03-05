@@ -34,34 +34,32 @@ public class SessionManager {
 	public static Session getSession(long syncAccountId) {
 		Session session = _sessions.get(syncAccountId);
 
-		if (session == null) {
-			try {
-				session = updateSession(syncAccountId);
-			}
-			catch (MalformedURLException e) {
-				_logger.error(e.getMessage(), e);
-
-				return null;
-			}
+		if (session != null) {
+			return session;
 		}
 
-		return session;
+		try {
+			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+				syncAccountId);
+
+			URL url = new URL(syncAccount.getUrl());
+
+			session = new Session(
+				url, syncAccount.getLogin(), syncAccount.getPassword());
+
+			_sessions.put(syncAccountId, session);
+
+			return session;
+		}
+		catch (MalformedURLException e) {
+			_logger.error(e.getMessage(), e);
+
+			return null;
+		}
 	}
 
-	public static Session updateSession(long syncAccountId)
-		throws MalformedURLException {
-
-		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-			syncAccountId);
-
-		URL url = new URL(syncAccount.getUrl());
-
-		Session session = new Session(
-			url, syncAccount.getLogin(), syncAccount.getPassword());
-
-		_sessions.put(syncAccountId, session);
-
-		return session;
+	public static void removeSession(long syncAccountId) {
+		_sessions.remove(syncAccountId);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(

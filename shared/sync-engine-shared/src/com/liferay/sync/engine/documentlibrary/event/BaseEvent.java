@@ -41,7 +41,6 @@ public abstract class BaseEvent implements Runnable {
 		_syncAccountId = syncAccountId;
 		_urlPath = urlPath;
 		_parameters = parameters;
-		_session = SessionManager.getSession(syncAccountId);
 	}
 
 	@Override
@@ -94,16 +93,14 @@ public abstract class BaseEvent implements Runnable {
 		return _parameters.get(key);
 	}
 
-	protected Session getSession() {
-		return _session;
-	}
-
 	protected long getSyncAccountId() {
 		return _syncAccountId;
 	}
 
 	protected String processRequest() throws Exception {
-		return _session.executePost(_urlPath, _parameters, new BaseHandler());
+		Session session = SessionManager.getSession(_syncAccountId);
+
+		return session.executePost(_urlPath, _parameters, new BaseHandler());
 	}
 
 	protected abstract void processResponse(String response)
@@ -112,7 +109,6 @@ public abstract class BaseEvent implements Runnable {
 	private static Logger _logger = LoggerFactory.getLogger(BaseEvent.class);
 
 	private Map<String, Object> _parameters;
-	private Session _session;
 	private long _syncAccountId;
 	private String _urlPath;
 

@@ -77,7 +77,7 @@ public abstract class BaseTestCase {
 
 		PowerMockito.mockStatic(SessionManager.class);
 
-		session = Mockito.mock(Session.class);
+		_session = Mockito.mock(Session.class);
 	}
 
 	@After
@@ -113,13 +113,13 @@ public abstract class BaseTestCase {
 		Mockito.when(
 			SessionManager.getSession(Mockito.anyLong())
 		).thenReturn(
-			session
+			_session
 		);
 
 		String response = readResponse(fileName);
 
 		Mockito.when(
-			session.executeGet(
+			_session.executeGet(
 				Mockito.anyString(), Mockito.any(ResponseHandler.class))
 		).thenReturn(
 			response
@@ -130,13 +130,13 @@ public abstract class BaseTestCase {
 		Mockito.when(
 			SessionManager.getSession(Mockito.anyLong())
 		).thenReturn(
-			session
+			_session
 		);
 
 		String response = readResponse(fileName);
 
 		Mockito.when(
-			session.executePost(
+			_session.executePost(
 				Mockito.anyString(), Mockito.anyMap(),
 				Mockito.any(ResponseHandler.class))
 		).thenReturn(
@@ -145,9 +145,10 @@ public abstract class BaseTestCase {
 	}
 
 	protected String filePathName;
-	protected Session session;
 	protected SyncAccount syncAccount;
 
 	private static Logger _logger = LoggerFactory.getLogger(BaseTestCase.class);
+
+	private Session _session;
 
 }

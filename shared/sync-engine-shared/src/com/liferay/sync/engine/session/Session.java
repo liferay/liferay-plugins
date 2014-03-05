@@ -41,7 +41,10 @@ import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.auth.BasicScheme;
-import org.apache.http.impl.client.*;
+import org.apache.http.impl.client.BasicAuthCache;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.protocol.BasicHttpContext;
 
 /**
@@ -54,7 +57,7 @@ public class Session {
 		_url = url;
 
 		_httpHost = new HttpHost(
-			_url.getHost(), _url.getPort(), _url.getProtocol());
+			url.getHost(), url.getPort(), url.getProtocol());
 
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
 
@@ -89,7 +92,7 @@ public class Session {
 	}
 
 	public HttpResponse executePost(
-		String urlPath, Map<String, Object> parameters)
+			String urlPath, Map<String, Object> parameters)
 		throws Exception {
 
 		HttpPost httpPost = new HttpPost(_url.toString() + urlPath);
@@ -100,8 +103,8 @@ public class Session {
 	}
 
 	public <T> T executePost(
-		String urlPath, Map<String, Object> parameters,
-		ResponseHandler<? extends T> responseHandler)
+			String urlPath, Map<String, Object> parameters,
+			ResponseHandler<? extends T> responseHandler)
 		throws Exception {
 
 		HttpPost httpPost = new HttpPost(_url.toString() + urlPath);
@@ -113,7 +116,7 @@ public class Session {
 	}
 
 	private void _buildHttpPostBody(
-		HttpPost httpPost, Map<String, Object> parameters)
+			HttpPost httpPost, Map<String, Object> parameters)
 		throws Exception {
 
 		Path filePath = (Path)parameters.remove("filePath");

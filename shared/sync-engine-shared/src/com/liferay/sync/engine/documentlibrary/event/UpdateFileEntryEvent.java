@@ -39,9 +39,7 @@ public class UpdateFileEntryEvent extends BaseEvent {
 
 		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
 
-		String filePath = (String)getParameterValue("filePath");
-
-		if (filePath != null) {
+		if (getParameterValue("filePath") != null) {
 			syncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADING);
 
 			SyncFileService.update(syncFile);
@@ -64,9 +62,7 @@ public class UpdateFileEntryEvent extends BaseEvent {
 		localSyncFile.setSize(remoteSyncFile.getSize());
 		localSyncFile.setState(SyncFile.STATE_SYNCED);
 
-		String filePath = (String)getParameterValue("filePath");
-
-		if (filePath != null) {
+		if (getParameterValue("filePath") != null) {
 			localSyncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADED);
 		}
 

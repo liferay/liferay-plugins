@@ -17,6 +17,8 @@ package com.liferay.sync.engine.documentlibrary.event;
 import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncSiteService;
+import com.liferay.sync.engine.session.Session;
+import com.liferay.sync.engine.session.SessionManager;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,8 +63,9 @@ public class GetSyncDLObjectUpdateEvent extends BaseSyncDLObjectUpdateEvent {
 		parameters.put("lastAccessTime", syncSite.getLastRemoteSyncTime());
 		parameters.put("repositoryId", syncSite.getGroupId());
 
-		return getSession().executePost(
-			_URL_PATH, parameters, new BaseHandler());
+		Session session = SessionManager.getSession(getSyncAccountId());
+
+		return session.executePost(_URL_PATH, parameters, new BaseHandler());
 	}
 
 	private static final String _URL_PATH =
