@@ -454,6 +454,13 @@ public class CalendarBookingLocalServiceUtil {
 				   .getChildCalendarBookings(parentCalendarBookingId, status);
 	}
 
+	public static long[] getChildCalendarIds(long calendarBookingId,
+		long calendarId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getChildCalendarIds(calendarBookingId, calendarId);
+	}
+
 	public static com.liferay.calendar.model.CalendarBooking moveCalendarBookingToTrash(
 		long userId, com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.PortalException,
