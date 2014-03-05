@@ -8,9 +8,9 @@
 					<div class="portrait-icons">
 						<div class="btn-group">
 							<button class="btn edit-logo">
-								<span class="aui-buttonitem-label">$languageUtil.get($locale, "edit-profile-picture")</span>
-							</button>
-							<button class="btn delete-logo" disabled="false" icon="icon-remove" value="delete">
+								<i class="icon-picture"></i>
+
+								$languageUtil.get($locale, "change")
 							</button>
 						</div>
 
