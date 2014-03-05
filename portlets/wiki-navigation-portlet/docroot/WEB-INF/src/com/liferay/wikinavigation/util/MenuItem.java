@@ -145,10 +145,7 @@ public class MenuItem implements Serializable {
 
 		List<MenuItem> menuItems = new LinkedList<MenuItem>();
 
-		Pattern pattern = Pattern.compile(
-			"((==\\s((.)*)\\s==)*(\\Q[[\\E((.)*)\\Q]]\\E)*)*");
-
-		Matcher matcher = pattern.matcher(wikiPage.getContent());
+		Matcher matcher = _menuItemPattern.matcher(wikiPage.getContent());
 
 		MenuItem menuItem = null;
 
@@ -222,6 +219,9 @@ public class MenuItem implements Serializable {
 
 		return menuItems;
 	}
+
+	private static Pattern _menuItemPattern = Pattern.compile(
+		"((==\\s((.)*)\\s==)*(\\Q[[\\E((.)*)\\Q]]\\E)*)*");
 
 	private List<MenuItem> _children;
 	private boolean _externalURL;

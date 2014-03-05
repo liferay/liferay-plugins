@@ -238,9 +238,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			snippet = StringPool.BLANK;
 		}
 
-		Pattern pattern = Pattern.compile("<em>(.*?)</em>");
-
-		Matcher matcher = pattern.matcher(snippet);
+		Matcher matcher = _emphasizedTagpattern.matcher(snippet);
 
 		while (matcher.find()) {
 			queryTerms.add(matcher.group(1));
@@ -449,6 +447,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 	private static Log _log = LogFactoryUtil.getLog(SolrIndexSearcher.class);
 
+	private Pattern _emphasizedTagpattern = Pattern.compile("<em>(.*?)</em>");
 	private SolrServer _solrServer;
 	private boolean _swallowException;
 
