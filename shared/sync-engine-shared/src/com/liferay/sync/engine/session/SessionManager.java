@@ -16,8 +16,8 @@ package com.liferay.sync.engine.session;
 
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.service.SyncAccountService;
+import com.liferay.sync.engine.util.Encryptor;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.util.HashMap;
@@ -45,14 +45,15 @@ public class SessionManager {
 			URL url = new URL(syncAccount.getUrl());
 
 			session = new Session(
-				url, syncAccount.getLogin(), syncAccount.getPassword());
+				url, syncAccount.getLogin(),
+				Encryptor.decrypt(syncAccount.getPassword()));
 
 			_sessions.put(syncAccountId, session);
 
 			return session;
 		}
-		catch (MalformedURLException murle) {
-			_logger.error(murle.getMessage(), murle);
+		catch (Exception e) {
+			_logger.error(e.getMessage(), e);
 
 			return null;
 		}
