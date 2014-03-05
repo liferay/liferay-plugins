@@ -106,10 +106,27 @@ div#navigation {
 		}
 
 		.portrait-icons {
-			bottom: -5px;
-			left: 5px;
+			bottom: 0;
+			left: 0;
+			margin: 4px 0;
 			position: absolute;
 			visibility: hidden;
+			width: 100%;
+
+			.btn-group {
+				margin: 0 3%;
+				width: 94%;
+			}
+
+			.btn {
+				@include border-radius(4px);
+
+				display: block;
+				float: right;
+				padding: 4px;
+				margin-top: 4px;
+				width: 100%;
+			}
 		}
 
 		&:hover .portrait-icons {
