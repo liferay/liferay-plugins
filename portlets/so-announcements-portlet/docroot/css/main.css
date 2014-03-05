@@ -199,12 +199,6 @@
 		margin: 0;
 	}
 
-	.add-entry-distribution-scope {
-		.control-group .form-validator-stack {
-			position: relative;
-		}
-	}
-
 	.control-group {
 		display: inline-block;
 		margin-right: 1em;
@@ -230,14 +224,13 @@
 		}
 	}
 
+	.distribution-scope-container .control-group .form-validator-stack {
+		position: relative;
+	}
+
 	.date-container .control-group {
 		float: left;
 		margin-bottom: 0;
-	}
-
-	.distribution-scope-container {
-		display: inline;
-		min-width: inherit;
 	}
 
 	#_1_WAR_soannouncementsportlet_ocerSearchContainerSearchContainer td.last {
