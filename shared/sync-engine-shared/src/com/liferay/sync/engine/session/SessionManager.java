@@ -36,7 +36,7 @@ public class SessionManager {
 
 		if (session == null) {
 			try {
-				updateSession(syncAccountId);
+				session = updateSession(syncAccountId);
 			}
 			catch (MalformedURLException e) {
 				_logger.error(e.getMessage(), e);
