@@ -427,12 +427,6 @@ html.aui {
 		margin: 0;
 	}
 
-	fieldset {
-		@include default-border;
-
-		padding: 8px;
-	}
-
 	input[type="text"], input[type="password"], input[type="file"], input[type="submit"], input[type="button"], input[type="reset"], select, textarea, .textarea, button {
 		@include input-field-default;
 	}
@@ -998,6 +992,17 @@ html.aui {
 
 	.social-relations {
 		border-bottom: 1px solid $defaultBorderColor;
+	}
+}
+
+.portal-popup.profile-page {
+	.fieldset.w50 {
+		display: inline;
+		width: 49%;
+	}
+
+	.form-section h3 {
+		display: none;
 	}
 }
 
