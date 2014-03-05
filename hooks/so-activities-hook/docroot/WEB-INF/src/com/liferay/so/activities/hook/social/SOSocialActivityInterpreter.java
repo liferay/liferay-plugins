@@ -85,7 +85,7 @@ public abstract class SOSocialActivityInterpreter
 		List<SocialActivity> viewableActivities = getViewableActivities(
 			activitySet, serviceContext);
 
-		if (viewableActivities.size() == 0) {
+		if (viewableActivities.isEmpty()) {
 			return null;
 		}
 
