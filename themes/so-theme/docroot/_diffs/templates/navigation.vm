@@ -1,4 +1,4 @@
-<div class="$nav_css_class" id="navigation">
+<div class="so-navigation" id="navigation">
 	#if ($is_profile_page)
 		<div class="taglib-logo-selector" id="${themeNamespace}taglibLogoSelector">
 			<div class="taglib-logo-selector-content" id="${themeNamespace}taglibLogoSelectorContent">
