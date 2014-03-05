@@ -426,6 +426,10 @@ public abstract class SOSocialActivityInterpreter
 				continue;
 			}
 
+			if (!isAfterDisplayDate(activity)) {
+				continue;
+			}
+
 			viewableActivities.add(activity);
 		}
 
@@ -477,6 +481,12 @@ public abstract class SOSocialActivityInterpreter
 		}
 
 		return false;
+	}
+
+	protected boolean isAfterDisplayDate(SocialActivity activity)
+		throws Exception {
+
+		return true;
 	}
 
 	protected boolean isExpired(
