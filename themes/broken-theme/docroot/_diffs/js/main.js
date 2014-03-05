@@ -13,12 +13,12 @@ AUI().ready(
 			siteBreadcrumbs.plug(A.Hudcrumbs);
 		}
 
-		A.getBody().delegate('click', eventHandler, 'a.logo');
-
 		var eventHandler = function(event) {
 			event.preventDefault();
 			alert(event.currentTarget.attr('title'));
 		}
+
+		A.getBody().delegate('click', eventHandler, 'a.logo');
 
 		var signIn = A.one('li.sign-in a');
 
@@ -26,12 +26,15 @@ AUI().ready(
 			signIn.plug(Liferay.SignInModal);
 		}
 
-		var footer = A.one('p.powered-by a');
+		// Footer Popup
+
+		var footer = A.one('p.powered-by a'),
+			href = footer.attr('href');
 
 		if (footer) {
-			var frame = '<iframe src="http://www.liferay.com" style="height: 98%; width: 99%; z-index: 500;"></iframe>';
+			var frame = '<iframe src=' + href + ' style="height: 98%; width: 99%; z-index: 500;"></iframe>';
 
-			footer.on('click', 
+			footer.on('click',
 				function(event) {
 					event.preventDefault();
 
@@ -53,16 +56,24 @@ AUI().ready(
 			);
 		}
 
+		//Breadcrumbs Modal Sign-in
+		
 		if (themeDisplay.isSignedIn() !== true) {
-			var crumb = A.one('.breadcrumb li a');
-			
-			if (crumb) {
-				crumb.on('click', 
-					function(event) {
-						event.preventDefault();
+			var crumbs = A.one('ul.breadcrumb'),
+				
+				signInDialogue = function(event) {
+					event.preventDefault();
 
-						var signIn = A.io.request(
-							'http://localhost:8080/c/portal/login',
+					if (crumbs) {
+						var url = new Liferay.PortletURL.createRenderURL();
+
+						url.setPortletId(58);
+						url.setWindowState('exclusive');
+						
+						url = url.toString();
+
+						var signInDialogue = A.io.request(
+							url,
 							{
 								on: {
 									success: function() {
@@ -73,18 +84,22 @@ AUI().ready(
 									        bodyContent: data,
 									        centered: true,
 									        headerContent: 'Sign In',
-									        height: 800,
+									        height: 420,
 									        render: '#modal-sign-in',
-									        width: 500
+									        width: 280
 									      }
 									    ).render();
+
+									    Liferay.Util.focusFormField('div.modal-body input:text');
+
 									}
 								}
 							}
 						);
 					}
-				);
-			}
-		} 
+				};
+
+			crumbs.delegate('click', signInDialogue, 'a');
+		}
 	}
 );
