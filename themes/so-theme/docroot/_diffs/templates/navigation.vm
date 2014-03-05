@@ -63,7 +63,7 @@
 					{
 						boundingBox: '#${themeNamespace}taglibLogoSelector',
 						contentBox: '#${themeNamespace}taglibLogoSelectorContent',
-						defaultLogoURL: '$current_user_profile_portrait_url',
+						defaultLogoURL: '$default_user_profile_portrait_url',
 						editLogoURL: '$current_user_edit_profile_portrait_url',
 						logoDisplaySelector: '#${themeNamespace}avatar',
 						portletNamespace: '${my_account_portletNamespace}',

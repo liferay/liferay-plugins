@@ -1,5 +1,6 @@
 #set ($logo = "logo")
 
+#set ($default_user_profile_portrait_url = $theme_display.getDefaultUser().getPortraitURL($themeDisplay))
 #set ($is_profile_page = false)
 #set ($so_logo = $images_folder + "/custom/so_logo.png")
 #set ($user_dashboard_portlet_url = $site_default_url)
@@ -49,7 +50,7 @@
 	#set ($show_edit_profile_button = false)
 
 	#if ($current_user.getPortraitId() == 0)
-		#set ($current_user_profile_portrait_url = $images_folder + "/custom/so_user_profile_male_default.png")
+		#set ($current_user_profile_portrait_url = $default_user_profile_portrait_url)
 	#end
 
 	#if (($current_user.getUserId() == $user.getUserId()) && $layout.isPublicLayout())
