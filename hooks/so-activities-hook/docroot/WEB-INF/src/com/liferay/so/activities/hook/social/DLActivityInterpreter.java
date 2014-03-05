@@ -214,8 +214,6 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 			String title, ServiceContext serviceContext)
 		throws Exception {
 
-		int activityCount = activitySet.getActivityCount();
-
 		if (activitySet.getType() ==
 				SocialActivityKeyConstants.DL_UPDATE_FILE_ENTRY) {
 
@@ -223,11 +221,13 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 				activitySet.getClassPK(), serviceContext);
 
 			if (Validator.isNotNull(folderLink)) {
-				return new Object[] {activityCount, folderLink};
+				return new Object[] {
+					activitySet.getActivityCount(), folderLink};
 			}
 		}
 
-		return new Object[] {activityCount};
+		return super.getTitleArguments(
+			groupName, activitySet, link, title, serviceContext);
 	}
 
 	@Override
