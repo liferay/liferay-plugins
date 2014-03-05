@@ -81,9 +81,7 @@ if (entry == null) {
 				%>
 
 				<div class="distribution-scope-container">
-
 					<%@ include file="/entry_select_scope.jspf" %>
-
 				</div>
 			</c:otherwise>
 		</c:choose>
