@@ -451,38 +451,6 @@ AUI.add(
 				return A.JSON.stringify(map);
 			},
 
-			getNewStartTimeAndDurationCalendarBooking: function(calendarBookingId, offset, duration, success) {
-				var instance = this;
-
-				var schedulerEvent = null;
-
-				instance.invokeService(
-					{
-						'/calendar-portlet.calendarbooking/get-new-start-time-and-duration-calendar-booking': {
-							calendarBookingId: calendarBookingId,
-							offset: offset,
-							duration: duration
-						}
-					},
-					{
-						success: function(data) {
-							if (data) {
-								if (data.exception) {
-									return;
-								}
-								else {
-									schedulerEvent = instance.createSchedulerEvent(data);
-								}
-							}
-
-							if (success) {
-								success.call(this, schedulerEvent);
-							}
-						}
-					}
-				);
-			},
-
 			hasChildCalendarBookings: function(schedulerEvent, callback) {
 				var instance = this;
 
@@ -684,27 +652,26 @@ AUI.add(
 				return DateMath.subtract(date, DateMath.MINUTES, date.getTimezoneOffset());
 			},
 
-			updateEvent: function(schedulerEvent, success) {
+			updateEvent: function(schedulerEvent, offset, duration, success) {
 				var instance = this;
 
 				instance.invokeService(
 					{
-						'/calendar-portlet.calendarbooking/update-calendar-booking': {
+						'/calendar-portlet.calendarbooking/update-calendar-booking-by-offset-and-duration': {
 							allDay: schedulerEvent.get('allDay'),
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							calendarId: schedulerEvent.get('calendarId'),
 							descriptionMap: instance.getLocalizationMap(schedulerEvent.get('description')),
-							endTime: CalendarUtil.toUTC(schedulerEvent.get('endDate')).getTime(),
+							duration: duration,
 							firstReminder: schedulerEvent.get('firstReminder'),
 							firstReminderType: schedulerEvent.get('firstReminderType'),
 							location: schedulerEvent.get('location'),
+							offset: offset,
 							recurrence: schedulerEvent.get('recurrence'),
 							secondReminder: schedulerEvent.get('secondReminder'),
 							secondReminderType: schedulerEvent.get('secondReminderType'),
-							startTime: CalendarUtil.toUTC(schedulerEvent.get('startDate')).getTime(),
 							status: schedulerEvent.get('status'),
-							titleMap: instance.getLocalizationMap(Liferay.Util.unescapeHTML(schedulerEvent.get('content'))),
-							userId: USER_ID
+							titleMap: instance.getLocalizationMap(Liferay.Util.unescapeHTML(schedulerEvent.get('content')))
 						}
 					},
 					{
@@ -1394,25 +1361,24 @@ AUI.add(
 						}
 					},
 
-					_getNewStartTimeAndDurationCalendarBookingPromise: function(schedulerEvent, changedAttributes) {
+					_getCalendarBookingDuration: function(schedulerEvent) {
 						var instance = this;
 
-						return A.Promise(
-							function(resolve) {
-								var calendarbookingId = schedulerEvent.get('calendarBookingId');
+						var duration = schedulerEvent.getSecondsDuration()*Time.SECOND;
 
-								var offset = 0;
-								var duration = schedulerEvent.getSecondsDuration()*Time.SECOND;
+						return duration;
+					},
 
-								if (changedAttributes.startDate) {
-									offset = changedAttributes.startDate.newVal.getTime() - changedAttributes.startDate.prevVal.getTime();
-								}
+					_getCalendarBookingOffset: function(schedulerEvent, changedAttributes) {
+						var instance = this;
 
-								CalendarUtil.getNewStartTimeAndDurationCalendarBooking(calendarbookingId, offset, duration, function(rootSchedulerEvent) {
-									resolve(rootSchedulerEvent);
-								});
-							}
-						);
+						var offset = 0;
+
+						if (changedAttributes.startDate) {
+							offset = changedAttributes.startDate.newVal.getTime() - changedAttributes.startDate.prevVal.getTime();
+						}
+
+						return offset;
 					},
 
 					_hasChildCalendarBookingsPromise: function(schedulerEvent) {
@@ -1519,7 +1485,8 @@ AUI.add(
 
 						A.batch(
 							schedulerEvent,
-							instance._getNewStartTimeAndDurationCalendarBookingPromise(schedulerEvent, changedAttributes),
+							instance._getCalendarBookingOffset(schedulerEvent, changedAttributes),
+							instance._getCalendarBookingDuration(schedulerEvent),
 							instance._hasChildCalendarBookingsPromise(schedulerEvent),
 							answers
 						)
@@ -1533,7 +1500,7 @@ AUI.add(
 					_promptSchedulerEventUpdate: function(data) {
 						var instance = this;
 
-						var hasChild = data[2];
+						var hasChild = data[3];
 						var schedulerEvent = data[0];
 
 						instance.queue = new A.AsyncQueue();
@@ -1600,8 +1567,9 @@ AUI.add(
 					_queueableQuestionResolver: function(data) {
 						var instance = this;
 
-						var answers = data[3];
-						var rootSchedulerEvent = data[1];
+						var answers = data[4];
+						var duration = data[2];
+						var offset = data[1];
 						var schedulerEvent = data[0];
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
@@ -1613,21 +1581,14 @@ AUI.add(
 							CalendarUtil.updateEventInstance(schedulerEvent, !!answers.allFollowing, showNextQuestion);
 						}
 						else {
-							schedulerEvent.copyDates(
-								rootSchedulerEvent,
-								{
-									silent: true
-								}
-							);
-
-							CalendarUtil.updateEvent(schedulerEvent, showNextQuestion);
+							CalendarUtil.updateEvent(schedulerEvent, offset, duration, showNextQuestion);
 						}
 					},
 
 					_queueableQuestionUpdateAllInvited: function(data) {
 						var instance = this;
 
-						var answers = data[3];
+						var answers = data[4];
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
 
@@ -1654,7 +1615,7 @@ AUI.add(
 					_queueableQuestionUpdateRecurring: function(data) {
 						var instance = this;
 
-						var answers = data[3];
+						var answers = data[4];
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
 
@@ -1690,7 +1651,7 @@ AUI.add(
 					_queueableQuestionUserCalendarOnly: function(data) {
 						var instance = this;
 
-						var answers = data[3];
+						var answers = data[4];
 						var schedulerEvent = data[0];
 
 						var showNextQuestion = A.bind(instance.queue.run, instance.queue);
