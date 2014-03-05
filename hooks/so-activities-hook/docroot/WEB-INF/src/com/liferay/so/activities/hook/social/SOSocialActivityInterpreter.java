@@ -50,6 +50,7 @@ import com.liferay.so.activities.util.PortletPropsValues;
 
 import java.text.Format;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -73,12 +74,6 @@ public abstract class SOSocialActivityInterpreter
 			SocialActivity activity, ServiceContext serviceContext)
 		throws Exception {
 
-		if (TrashUtil.isInTrash(
-				activity.getClassName(), activity.getClassPK())) {
-
-			return null;
-		}
-
 		return super.doInterpret(activity, serviceContext);
 	}
 
@@ -87,16 +82,17 @@ public abstract class SOSocialActivityInterpreter
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
-		if (activitySet.getActivityCount() == 1) {
-			List<SocialActivity> activities =
-				SocialActivityLocalServiceUtil.getActivitySetActivities(
-					activitySet.getActivitySetId(), 0, 1);
+		List<SocialActivity> viewableActivities = getViewableActivities(
+			activitySet, serviceContext);
 
-			if (!activities.isEmpty()) {
-				SocialActivity activity = activities.get(0);
+		if (viewableActivities.size() == 0) {
+			return null;
+		}
 
-				return doInterpret(activity, serviceContext);
-			}
+		if (viewableActivities.size() == 1) {
+			SocialActivity activity = viewableActivities.get(0);
+
+			return doInterpret(activity, serviceContext);
 		}
 
 		String link = getLink(activitySet, serviceContext);
@@ -108,10 +104,6 @@ public abstract class SOSocialActivityInterpreter
 		}
 
 		String body = getBody(activitySet, serviceContext);
-
-		if (Validator.isNull(body)) {
-			return null;
-		}
 
 		return new SocialActivityFeedEntry(link, title, body);
 	}
@@ -150,18 +142,10 @@ public abstract class SOSocialActivityInterpreter
 		sb.append("<div class=\"grouped-activity-body-container\">");
 		sb.append("<div class=\"grouped-activity-body\">");
 
-		int viewableActivities = 0;
-
-		List<SocialActivity> activities =
-			SocialActivityLocalServiceUtil.getActivitySetActivities(
-				activitySet.getActivitySetId(), QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS);
+		List<SocialActivity> activities = getViewableActivities(
+			activitySet, serviceContext);
 
 		for (SocialActivity activity : activities) {
-			if (!hasPermissions(activity, serviceContext)) {
-				continue;
-			}
-
 			SocialActivityFeedEntry subfeedEntry = getSubfeedEntry(
 				activity, serviceContext);
 
@@ -175,12 +159,6 @@ public abstract class SOSocialActivityInterpreter
 			sb.append("</span><span class=\"activity-subentry-body\">");
 			sb.append(subfeedEntry.getBody());
 			sb.append("</span></div>");
-
-			viewableActivities++;
-		}
-
-		if (viewableActivities == 0) {
-			return null;
 		}
 
 		sb.append("</div></div>");
@@ -242,10 +220,6 @@ public abstract class SOSocialActivityInterpreter
 		throws Exception {
 
 		String className = activity.getClassName();
-
-		if (TrashUtil.isInTrash(className, activity.getClassPK())) {
-			return null;
-		}
 
 		String title = getPageTitle(
 			className, activity.getClassPK(), serviceContext);
@@ -419,17 +393,47 @@ public abstract class SOSocialActivityInterpreter
 		return StringPool.BLANK;
 	}
 
+	protected List<SocialActivity> getViewableActivities(
+			SocialActivitySet activitySet, ServiceContext serviceContext)
+		throws Exception {
+
+		List<SocialActivity> viewableActivities =
+			new ArrayList<SocialActivity>();
+
+		List<SocialActivity> activities =
+			SocialActivityLocalServiceUtil.getActivitySetActivities(
+				activitySet.getActivitySetId(), QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
+
+		for (SocialActivity activity : activities) {
+			if (!hasPermissions(activity, serviceContext)) {
+				continue;
+			}
+
+			Group group = GroupLocalServiceUtil.fetchGroup(
+				activity.getGroupId());
+
+			if ((group != null) && group.isUser()) {
+				continue;
+			}
+
+			if (TrashUtil.isInTrash(
+					activity.getClassName(), activity.getClassPK())) {
+
+				continue;
+			}
+
+			viewableActivities.add(activity);
+		}
+
+		return viewableActivities;
+	}
+
 	@Override
 	protected boolean hasPermissions(
 			PermissionChecker permissionChecker, SocialActivity activity,
 			String actionId, ServiceContext serviceContext)
 		throws Exception {
-
-		Group group = GroupLocalServiceUtil.fetchGroup(activity.getGroupId());
-
-		if ((group != null) && group.isUser()) {
-			return false;
-		}
 
 		return permissionChecker.hasPermission(
 			activity.getGroupId(), activity.getClassName(),

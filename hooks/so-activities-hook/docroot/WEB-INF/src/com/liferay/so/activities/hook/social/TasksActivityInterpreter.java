@@ -14,7 +14,6 @@
 
 package com.liferay.so.activities.hook.social;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -26,7 +25,6 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portlet.social.model.SocialActivity;
-import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
@@ -92,10 +90,6 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		if (activitySet.getType() ==
 				SocialActivityKeyConstants.TASKS_UPDATE_ENTRY) {
 
-			if (!hasPermissions(activitySet, serviceContext)) {
-				return null;
-			}
-
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
@@ -106,37 +100,16 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("<div class=\"grouped-activity-body-container\">");
 		sb.append("<div class=\"grouped-activity-body\">");
 
-		boolean hasViewableActivities = false;
-
-		List<SocialActivity> activities =
-			SocialActivityLocalServiceUtil.getActivitySetActivities(
-				activitySet.getActivitySetId(), QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS);
+		List<SocialActivity> activities = getViewableActivities(
+			activitySet, serviceContext);
 
 		for (SocialActivity activity : activities) {
-			if (!hasPermissions(activity, serviceContext)) {
-				continue;
-			}
-
-			SocialActivityFeedEntry subfeedEntry = getSubfeedEntry(
-				activity, serviceContext);
-
-			if (subfeedEntry == null) {
-				continue;
-			}
-
 			sb.append("<div class=\"activity-subentry tasks\">");
 			sb.append(
 				getBody(
 					activity.getClassName(), activity.getClassPK(),
 					serviceContext));
 			sb.append("</div>");
-
-			hasViewableActivities = true;
-		}
-
-		if (!hasViewableActivities) {
-			return null;
 		}
 
 		sb.append("</div></div>");

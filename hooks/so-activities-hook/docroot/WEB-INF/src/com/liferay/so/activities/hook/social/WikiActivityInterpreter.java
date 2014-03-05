@@ -224,10 +224,6 @@ public class WikiActivityInterpreter extends SOSocialActivityInterpreter {
 			(activitySet.getType() ==
 				SocialActivityConstants.TYPE_ADD_COMMENT)) {
 
-			if (!hasPermissions(activitySet, serviceContext)) {
-				return null;
-			}
-
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);

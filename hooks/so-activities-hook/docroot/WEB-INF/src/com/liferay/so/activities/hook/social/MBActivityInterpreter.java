@@ -130,10 +130,6 @@ public class MBActivityInterpreter extends SOSocialActivityInterpreter {
 		if (activitySet.getType() ==
 				SocialActivityKeyConstants.MB_REPLY_MESSAGE) {
 
-			if (!hasPermissions(activitySet, serviceContext)) {
-				return null;
-			}
-
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
