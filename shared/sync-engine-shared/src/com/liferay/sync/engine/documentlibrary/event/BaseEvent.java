@@ -60,7 +60,7 @@ public abstract class BaseEvent implements Runnable {
 
 		Session session = SessionManager.getSession(_syncAccountId);
 
-		return session.executePost(urlPath, _parameters, responseHandler);
+		return session.executePost(urlPath, parameters, responseHandler);
 	}
 
 	@Override
