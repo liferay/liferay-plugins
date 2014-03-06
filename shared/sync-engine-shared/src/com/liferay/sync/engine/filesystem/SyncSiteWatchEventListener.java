@@ -74,6 +74,10 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 				parentFilePathName, getSyncAccountId());
 
 			if (parentSyncFile == null) {
+				Thread.sleep(1000);
+
+				addSyncWatchEvent(eventType, filePath);
+
 				return;
 			}
 
