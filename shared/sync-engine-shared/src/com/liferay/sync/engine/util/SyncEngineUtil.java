@@ -26,13 +26,15 @@ import java.util.concurrent.Executors;
  */
 public class SyncEngineUtil {
 
+	public static final int SYNC_ENGINE_NOT_CONFIGURED = 0;
+
 	public static final int SYNC_ENGINE_STATE_STARTED = 1;
 
-	public static final int SYNC_ENGINE_STATE_STARTING = 0;
+	public static final int SYNC_ENGINE_STATE_STARTING = 2;
 
 	public static final int SYNC_ENGINE_STATE_STOPPED = 3;
 
-	public static final int SYNC_ENGINE_STATE_STOPPING = 2;
+	public static final int SYNC_ENGINE_STATE_STOPPING = 4;
 
 	public static void addSyncEngineListener(SyncEngineListener listener) {
 		_syncEngineListeners.add(listener);

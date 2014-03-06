@@ -36,6 +36,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -152,10 +153,17 @@ public class SyncEngine {
 		_syncWatchEventProcessorExecutorService.scheduleAtFixedRate(
 			syncWatchEventProcessor, 0, 3, TimeUnit.SECONDS);
 
-		for (long syncAccountId :
+		List<SyncAccount> syncAccounts = SyncAccountService.findAll();
+
+		if (syncAccounts.isEmpty()) {
+			SyncEngineUtil.fireSyncEngineStateChanged(
+				SyncEngineUtil.SYNC_ENGINE_NOT_CONFIGURED);
+		}
+
+		for (long activeSyncAccountId :
 				SyncAccountService.getActiveSyncAccountIds()) {
 
-			scheduleSyncAccountTasks(syncAccountId);
+			scheduleSyncAccountTasks(activeSyncAccountId);
 		}
 
 		SyncEngineUtil.fireSyncEngineStateChanged(
