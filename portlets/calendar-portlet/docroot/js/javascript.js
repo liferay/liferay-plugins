@@ -33,6 +33,8 @@ AUI.add(
 
 		var STR_SPACE = ' ';
 
+		var TPL_CALENDAR_BOOKINGS_URL = '{calendarBookingsURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}statuses={statuses}';
+
 		var TPL_INVITEES_URL = '{inviteesURL}&{portletNamespace}parentCalendarBookingId={calendarBookingId}';
 
 		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}ruleName={ruleName}';
@@ -92,6 +94,7 @@ AUI.add(
 		Liferay.Time = Time;
 
 		var CalendarUtil = {
+			CALENDAR_BOOKINGS_URL: null,
 			INVITEES_URL: null,
 			INVOKER_URL: themeDisplay.getPathContext() + '/api/jsonws/invoke',
 			NOTIFICATION_DEFAULT_TYPE: 'email',
@@ -236,14 +239,17 @@ AUI.add(
 			createSchedulerEvent: function(calendarBooking) {
 				var instance = this;
 
+				var startDate = new Date(calendarBooking.startTimeYear, calendarBooking.startTimeMonth, calendarBooking.startTimeDay, calendarBooking.startTimeHour, calendarBooking.startTimeMinute);
+				var endDate = new Date(calendarBooking.endTimeYear, calendarBooking.endTimeMonth, calendarBooking.endTimeDay, calendarBooking.endTimeHour, calendarBooking.endTimeMinute);
+
 				var schedulerEvent = new Liferay.SchedulerEvent(
 					{
 						allDay: calendarBooking.allDay,
 						calendarBookingId: calendarBooking.calendarBookingId,
 						calendarId: calendarBooking.calendarId,
-						content: calendarBooking.titleCurrentValue,
-						description: calendarBooking.descriptionCurrentValue,
-						endDate: calendarBooking.endTime,
+						content: calendarBooking.title,
+						description: calendarBooking.description,
+						endDate: endDate.getTime(),
 						firstReminder: calendarBooking.firstReminder,
 						firstReminderType: calendarBooking.firstReminderType,
 						location: calendarBooking.location,
@@ -251,12 +257,10 @@ AUI.add(
 						recurrence: calendarBooking.recurrence,
 						secondReminder: calendarBooking.secondReminder,
 						secondReminderType: calendarBooking.secondReminderType,
-						startDate: calendarBooking.startTime,
+						startDate: startDate.getTime(),
 						status: calendarBooking.status
 					}
 				);
-
-				CalendarUtil.adjustSchedulerEventDisplayTime(schedulerEvent);
 
 				return schedulerEvent;
 			},
@@ -417,27 +421,30 @@ AUI.add(
 
 				var calendarIds = AObject.keys(instance.availableCalendars);
 
-				instance.invokeService(
+				var calendarBookingsURL = Lang.sub(
+					TPL_CALENDAR_BOOKINGS_URL,
 					{
-						'/calendar-portlet.calendarbooking/search': {
-							calendarIds: calendarIds.join(','),
-							calendarResourceIds: STR_BLANK,
-							companyId: COMPANY_ID,
-							end: -1,
-							endTime: endDate.getTime(),
-							groupIds: [],
-							keywords: null,
-							orderByComparator: null,
-							parentCalendarBookingId: -1,
-							recurring: true,
-							start: -1,
-							startTime: startDate.getTime(),
-							statuses: status.join(',')
+						calendarBookingsURL: instance.CALENDAR_BOOKINGS_URL,
+						calendarIds: calendarIds.join(','),
+						endTime: endDate.getTime(),
+						portletNamespace: instance.PORTLET_NAMESPACE,
+						startTime: startDate.getTime(),
+						statuses: status.join(',')
+					}
+				);
+
+				A.io.request(
+					calendarBookingsURL,
+					{
+						dataType: 'json',
+						on: {
+							failure: function() {
+								failure(this.get('responseData'));
+							},
+							success: function() {
+								success(this.get('responseData'));
+							}
 						}
-					},
-					{
-						failure: failure,
-						success: success
 					}
 				);
 			},
