@@ -497,6 +497,34 @@ public class CalendarBookingLocalServiceImpl
 			parentCalendarBookingId, status);
 	}
 
+	public long[] getChildCalendarIds(long calendarBookingId, long calendarId)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		List<CalendarBooking> childCalendarBookings =
+			calendarBookingPersistence.findByParentCalendarBookingId(
+				calendarBookingId);
+
+		long[] childCalendarIds = new long[childCalendarBookings.size()];
+
+		for (int i = 0; i < childCalendarIds.length; i++) {
+			CalendarBooking childCalendarBooking = childCalendarBookings.get(i);
+
+			if (childCalendarBooking.getCalendarId() ==
+					calendarBooking.getCalendarId()) {
+
+				childCalendarIds[i] = calendarId;
+			}
+			else {
+				childCalendarIds[i] = childCalendarBooking.getCalendarId();
+			}
+		}
+
+		return childCalendarIds;
+	}
+
 	@Override
 	public CalendarBooking moveCalendarBookingToTrash(
 			long userId, CalendarBooking calendarBooking)
@@ -1079,35 +1107,6 @@ public class CalendarBookingLocalServiceImpl
 				}
 			}
 		}
-	}
-
-	protected long[] getChildCalendarIds(
-			long calendarBookingId, long calendarId)
-		throws PortalException, SystemException {
-
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
-
-		List<CalendarBooking> childCalendarBookings =
-			calendarBookingPersistence.findByParentCalendarBookingId(
-				calendarBookingId);
-
-		long[] childCalendarIds = new long[childCalendarBookings.size()];
-
-		for (int i = 0; i < childCalendarIds.length; i++) {
-			CalendarBooking childCalendarBooking = childCalendarBookings.get(i);
-
-			if (childCalendarBooking.getCalendarId() ==
-					calendarBooking.getCalendarId()) {
-
-				childCalendarIds[i] = calendarId;
-			}
-			else {
-				childCalendarIds[i] = childCalendarBooking.getCalendarId();
-			}
-		}
-
-		return childCalendarIds;
 	}
 
 	protected String getExtraDataJSON(CalendarBooking calendarBooking) {

@@ -434,60 +434,6 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	@Override
-	public CalendarBooking updateCalendarBookingByOffsetAndDuration(
-			long calendarBookingId, long calendarId, long[] childCalendarIds,
-			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
-			String location, long offset, long duration, boolean allDay,
-			String recurrence, long firstReminder, String firstReminderType,
-			long secondReminder, String secondReminderType, int status,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.fetchByPrimaryKey(calendarBookingId);
-
-		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
-			calendarBooking.getStartTime() + offset);
-
-		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
-			startTimeJCalendar.getTimeInMillis() + duration);
-
-		return calendarBookingService.updateCalendarBooking(
-			calendarBookingId, calendarId, childCalendarIds, titleMap,
-			descriptionMap, location, startTimeJCalendar.getTimeInMillis(),
-			endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
-			firstReminder, firstReminderType, secondReminder,
-			secondReminderType, status, serviceContext);
-	}
-
-	@Override
-	public CalendarBooking updateCalendarBookingByOffsetAndDuration(
-			long calendarBookingId, long calendarId,
-			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
-			String location, long offset, long duration, boolean allDay,
-			String recurrence, long firstReminder, String firstReminderType,
-			long secondReminder, String secondReminderType, int status,
-			ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		CalendarBooking calendarBooking =
-			calendarBookingPersistence.fetchByPrimaryKey(calendarBookingId);
-
-		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
-			calendarBooking.getStartTime() + offset);
-
-		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
-			startTimeJCalendar.getTimeInMillis() + duration);
-
-		return calendarBookingService.updateCalendarBooking(
-			calendarBookingId, calendarId, titleMap, descriptionMap, location,
-			startTimeJCalendar.getTimeInMillis(),
-			endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
-			firstReminder, firstReminderType, secondReminder,
-			secondReminderType, status, serviceContext);
-	}
-
-	@Override
 	public CalendarBooking updateCalendarBookingInstance(
 			long calendarBookingId, long calendarId, long[] childCalendarIds,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
@@ -526,6 +472,54 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			getUserId(), calendarBookingId, calendarId, titleMap,
 			descriptionMap, location, startTime, endTime, allDay, recurrence,
 			allFollowing, firstReminder, firstReminderType, secondReminder,
+			secondReminderType, status, serviceContext);
+	}
+
+	@Override
+	public CalendarBooking updateCalendarBookingOffsetAndDuration(
+			long calendarBookingId, long calendarId, long[] childCalendarIds,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, long offset, long duration, boolean allDay,
+			String recurrence, long firstReminder, String firstReminderType,
+			long secondReminder, String secondReminderType, int status,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.fetchByPrimaryKey(calendarBookingId);
+
+		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			calendarBooking.getStartTime() + offset);
+
+		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
+			startTimeJCalendar.getTimeInMillis() + duration);
+
+		return calendarBookingService.updateCalendarBooking(
+			calendarBookingId, calendarId, childCalendarIds, titleMap,
+			descriptionMap, location, startTimeJCalendar.getTimeInMillis(),
+			endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
+			firstReminder, firstReminderType, secondReminder,
+			secondReminderType, status, serviceContext);
+	}
+
+	@Override
+	public CalendarBooking updateCalendarBookingOffsetAndDuration(
+			long calendarBookingId, long calendarId,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, long offset, long duration, boolean allDay,
+			String recurrence, long firstReminder, String firstReminderType,
+			long secondReminder, String secondReminderType, int status,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		long[] childCalendarIds =
+			calendarBookingLocalService.getChildCalendarIds(
+				calendarBookingId, calendarId);
+
+		return updateCalendarBookingOffsetAndDuration(
+			calendarBookingId, calendarId, childCalendarIds, titleMap,
+			descriptionMap, location, offset, duration, allDay, recurrence,
+			firstReminder, firstReminderType, secondReminder,
 			secondReminderType, status, serviceContext);
 	}
 
