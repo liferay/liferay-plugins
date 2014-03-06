@@ -13,6 +13,15 @@ $defaultTextColor: #202020;
 	background-color: rgba(0,0,0, 0.48);
 }
 
+.aui {
+	.so-portlet-user-bar, .portlet-dockbar {
+		&, a {
+			font: 14px/1em 'Helvetica Neue', Helvetica, Arial, sans-serif;
+			font-weight: 400;
+		}
+	}
+}
+
 /* ---------- User bar ---------- */
 
 .so-portlet-user-bar {
@@ -20,8 +29,6 @@ $defaultTextColor: #202020;
 
 	@include background-image(linear-gradient(bottom, $defaultBackgroundColor 0, #32363A 100%));
 
-	font: 14px/1em 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	font-weight: 400;
 	position: relative;
 	width: 100%;
 
@@ -109,10 +116,12 @@ $defaultTextColor: #202020;
 
 						line-height: 1.7em;
 						margin: 0;
-						padding: .7em 1.1em;
+						padding: .7em;
 
 						> i {
 							background-color: transparent;
+							margin: 3px 0 0;
+							padding: 0;
 						}
 					}
 
@@ -134,8 +143,10 @@ $defaultTextColor: #202020;
 
 			border-width: 0;
 			color: $defaultTextColor;
+			font-size: .86em;
+			font-weight: bold;
 			margin: 0;
-			padding: .22em .52em;
+			padding: .33em .66em;
 
 			&.alert {
 				background-color: #A20F0F;
