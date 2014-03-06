@@ -85,12 +85,12 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 	<li class="user-notification<%= read ? "" : " unread" %>">
 		<c:choose>
 			<c:when test="<%= read %>">
-				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>">
+				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-openDialog="<%= String.valueOf(userNotificationFeedEntry.getOpenDialog()) %>">
 			</c:when>
 			<c:otherwise>
 				<liferay-portlet:actionURL name="markAsRead" var="markAsReadURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
 
-				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-markAsReadURL="<%= markAsReadURL %>">
+				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-markAsReadURL="<%= markAsReadURL %>" data-openDialog="<%= String.valueOf(userNotificationFeedEntry.getOpenDialog()) %>">
 			</c:otherwise>
 		</c:choose>
 
