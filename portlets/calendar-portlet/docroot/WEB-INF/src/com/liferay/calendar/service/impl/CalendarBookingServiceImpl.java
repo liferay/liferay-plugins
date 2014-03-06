@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.security.ac.AccessControlled;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -51,6 +52,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TimeZone;
 
 /**
  * @author Eduardo Lundgren
@@ -59,6 +61,37 @@ import java.util.Map;
  * @author Pier Paolo Ramon
  */
 public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
+
+	@Override
+	public CalendarBooking addCalendarBooking(
+			long calendarId, long[] childCalendarIds,
+			long parentCalendarBookingId, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, String location,
+			int startTimeYear, int startTimeMonth, int startTimeDay,
+			int startTimeHour, int startTimeMinute, int endTimeYear,
+			int endTimeMonth, int endTimeDay, int endTimeHour,
+			int endTimeMinute, String timeZoneId, boolean allDay,
+			String recurrence, long firstReminder, String firstReminderType,
+			long secondReminder, String secondReminderType,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
+
+		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			startTimeYear, startTimeMonth, startTimeDay, startTimeHour,
+			startTimeMinute, 0, 0, timeZone);
+		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
+			endTimeYear, endTimeMonth, endTimeDay, endTimeHour, endTimeMinute,
+			0, 0, timeZone);
+
+		return calendarBookingService.addCalendarBooking(
+			calendarId, childCalendarIds, parentCalendarBookingId, titleMap,
+			descriptionMap, location, startTimeJCalendar.getTimeInMillis(),
+			endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
+			firstReminder, firstReminderType, secondReminder,
+			secondReminderType, serviceContext);
+	}
 
 	@Override
 	public CalendarBooking addCalendarBooking(
@@ -452,6 +485,37 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			titleMap, descriptionMap, location, startTime, endTime, allDay,
 			recurrence, allFollowing, firstReminder, firstReminderType,
 			secondReminder, secondReminderType, status, serviceContext);
+	}
+
+	@Override
+	public CalendarBooking updateCalendarBookingInstance(
+			long calendarBookingId, long calendarId,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, int startTimeYear, int startTimeMonth,
+			int startTimeDay, int startTimeHour, int startTimeMinute,
+			int endTimeYear, int endTimeMonth, int endTimeDay, int endTimeHour,
+			int endTimeMinute, String timeZoneId, boolean allDay,
+			String recurrence, boolean allFollowing, long firstReminder,
+			String firstReminderType, long secondReminder,
+			String secondReminderType, int status,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
+
+		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			startTimeYear, startTimeMonth, startTimeDay, startTimeHour,
+			startTimeMinute, 0, 0, timeZone);
+		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
+			endTimeYear, endTimeMonth, endTimeDay, endTimeHour, endTimeMinute,
+			0, 0, timeZone);
+
+		return calendarBookingService.updateCalendarBookingInstance(
+			calendarBookingId, calendarId, titleMap, descriptionMap, location,
+			startTimeJCalendar.getTimeInMillis(),
+			endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
+			allFollowing, firstReminder, firstReminderType, secondReminder,
+			secondReminderType, status, serviceContext);
 	}
 
 	@Override
