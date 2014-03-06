@@ -41,6 +41,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
 import java.util.Locale;
 
+import javax.portlet.PortletResponse;
+import javax.portlet.PortletRequest;
 import javax.portlet.PortletURL;
 
 /**
@@ -148,7 +150,8 @@ public class MessageIndexer extends BaseIndexer {
 
 	@Override
 	protected Summary doGetSummary(
-		Document doc, Locale locale, String snippet, PortletURL portletURL) {
+		Document doc, Locale locale, String snippet, PortletURL portletURL,
+		PortletRequest portletRequest, PortletResponse portletResponse) {
 
 		return null;
 	}
