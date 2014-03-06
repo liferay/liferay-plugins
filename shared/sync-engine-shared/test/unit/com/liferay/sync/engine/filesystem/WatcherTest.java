@@ -192,6 +192,80 @@ public class WatcherTest extends BaseTestCase {
 	}
 
 	@Test
+	public void testRunCheckInFile() throws Exception {
+		setPostResponse("dependencies/watcher_test_check_in_file.json");
+
+		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+
+		Files.createFile(filePath);
+
+		sleep();
+
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(filePath),
+			syncAccount.getSyncAccountId());
+
+		syncFile.setLockExpirationDate(System.currentTimeMillis());
+		syncFile.setLockUserId(10205);
+		syncFile.setLockUserName("Test Test");
+
+		SyncFileService.update(syncFile);
+
+		SyncFileService.checkOutSyncFile(
+			syncAccount.getSyncAccountId(), syncFile);
+
+		syncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(filePath),
+			syncAccount.getSyncAccountId());
+
+		Assert.assertEquals(0, syncFile.getLockExpirationDate());
+		Assert.assertEquals(0, syncFile.getLockUserId());
+		Assert.assertEquals("", syncFile.getLockUserName());
+
+		_syncFiles = SyncFileService.findSyncFiles(
+			syncAccount.getSyncAccountId());
+
+		Assert.assertEquals(3, _syncFiles.size());
+	}
+
+	@Test
+	public void testRunCheckOutFile() throws Exception {
+		setPostResponse("dependencies/watcher_test_check_out_file.json");
+
+		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
+
+		Files.createFile(filePath);
+
+		sleep();
+
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(filePath),
+			syncAccount.getSyncAccountId());
+
+		syncFile.setLockExpirationDate(0);
+		syncFile.setLockUserId(0);
+		syncFile.setLockUserName(null);
+
+		SyncFileService.update(syncFile);
+
+		SyncFileService.checkOutSyncFile(
+			syncAccount.getSyncAccountId(), syncFile);
+
+		syncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(filePath),
+			syncAccount.getSyncAccountId());
+
+		Assert.assertNotEquals(0, syncFile.getLockExpirationDate());
+		Assert.assertNotEquals(0, syncFile.getLockUserId());
+		Assert.assertNotEquals("", syncFile.getLockUserName());
+
+		_syncFiles = SyncFileService.findSyncFiles(
+			syncAccount.getSyncAccountId());
+
+		Assert.assertEquals(3, _syncFiles.size());
+	}
+
+	@Test
 	public void testRunDeleteFile() throws Exception {
 		setPostResponse("dependencies/watcher_test_delete_file.json");
 
