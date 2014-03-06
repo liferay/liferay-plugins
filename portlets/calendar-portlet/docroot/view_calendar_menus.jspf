@@ -389,16 +389,16 @@ String backURL = PortalUtil.getCurrentURL(request);
 	A.one('#<portlet:namespace />calendarListContainer').delegate(
 		'click',
 		function(event) {
-			var target = event.target;
+			var currentTarget = event.currentTarget;
 
 			window.<portlet:namespace />calendarListsMenu.setAttrs(
 				{
-					alignNode: target,
+					alignNode: currentTarget,
 					visible: !window.<portlet:namespace />calendarListsMenu.get('visible')
 				}
 			);
 
-			window.<portlet:namespace />calendarListsMenu.calendarResourceId = target.getAttribute('data-calendarResourceId');
+			window.<portlet:namespace />calendarListsMenu.calendarResourceId = currentTarget.getAttribute('data-calendarResourceId');
 
 			event.stopImmediatePropagation();
 		},
