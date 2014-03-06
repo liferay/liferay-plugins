@@ -657,7 +657,7 @@ AUI.add(
 
 				instance.invokeService(
 					{
-						'/calendar-portlet.calendarbooking/update-calendar-booking-by-offset-and-duration': {
+						'/calendar-portlet.calendarbooking/update-calendar-booking-offset-and-duration': {
 							allDay: schedulerEvent.get('allDay'),
 							calendarBookingId: schedulerEvent.get('calendarBookingId'),
 							calendarId: schedulerEvent.get('calendarId'),
