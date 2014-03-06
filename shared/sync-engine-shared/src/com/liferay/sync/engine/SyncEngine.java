@@ -132,6 +132,15 @@ public class SyncEngine {
 		}
 	}
 
+	public static void stop() {
+		try {
+			doStop();
+		}
+		catch (Exception e) {
+			_logger.error(e.getMessage(), e);
+		}
+	}
+
 	protected static void doStart() throws Exception {
 		SyncEngineUtil.fireSyncEngineStateChanged(
 			SyncEngineUtil.SYNC_ENGINE_STATE_STARTING);
@@ -168,6 +177,25 @@ public class SyncEngine {
 
 		SyncEngineUtil.fireSyncEngineStateChanged(
 			SyncEngineUtil.SYNC_ENGINE_STATE_STARTED);
+	}
+
+	protected static void doStop() throws Exception {
+		SyncEngineUtil.fireSyncEngineStateChanged(
+			SyncEngineUtil.SYNC_ENGINE_STATE_STOPPING);
+
+		for (long syncAccountId : _syncAccountTasks.keySet()) {
+			cancelSyncAccountTasks(syncAccountId);
+		}
+
+		_syncWatchEventProcessorExecutorService.shutdown();
+
+		SyncAccountService.unregisterModelListener(
+			new SyncAccountModelListener());
+		SyncFileService.unregisterModelListener(new SyncFileModelListener());
+		SyncSiteService.unregisterModelListener(new SyncSiteModelListener());
+
+		SyncEngineUtil.fireSyncEngineStateChanged(
+			SyncEngineUtil.SYNC_ENGINE_STATE_STOPPED);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);
