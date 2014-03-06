@@ -25,12 +25,12 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class UpdateFileEntryEvent extends BaseEvent {
+public class BaseCheckInCheckOutEvent extends BaseEvent {
 
-	public UpdateFileEntryEvent(
-		long syncAccountId, Map<String, Object> parameters) {
+	public BaseCheckInCheckOutEvent(
+		long syncAccountId, String urlPath, Map<String, Object> parameters) {
 
-		super(syncAccountId, _URL_PATH, parameters);
+		super(syncAccountId, urlPath, parameters);
 	}
 
 	@Override
@@ -38,10 +38,6 @@ public class UpdateFileEntryEvent extends BaseEvent {
 		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
 		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
-
-		if (getParameterValue("filePath") != null) {
-			syncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADING);
-		}
 
 		SyncFileService.update(syncFile);
 
@@ -57,21 +53,13 @@ public class UpdateFileEntryEvent extends BaseEvent {
 
 		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
 
-		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
-		localSyncFile.setParentFolderId(remoteSyncFile.getParentFolderId());
-		localSyncFile.setSize(remoteSyncFile.getSize());
+		localSyncFile.setLockExpirationDate(
+			remoteSyncFile.getLockExpirationDate());
+		localSyncFile.setLockUserId(remoteSyncFile.getLockUserId());
+		localSyncFile.setLockUserName(remoteSyncFile.getLockUserName());
 		localSyncFile.setState(SyncFile.STATE_SYNCED);
-
-		if (getParameterValue("filePath") != null) {
-			localSyncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADED);
-		}
-
-		localSyncFile.setVersion(remoteSyncFile.getVersion());
 
 		SyncFileService.update(localSyncFile);
 	}
-
-	private static final String _URL_PATH =
-		"/sync-web.syncdlobject/update-file-entry";
 
 }

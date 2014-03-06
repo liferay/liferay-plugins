@@ -126,7 +126,7 @@ public class SyncFile extends StateAwareModel {
 		return lockExpirationDate;
 	}
 
-	public String getLockUserId() {
+	public long getLockUserId() {
 		return lockUserId;
 	}
 
@@ -222,7 +222,7 @@ public class SyncFile extends StateAwareModel {
 		this.lockExpirationDate = lockExpirationDate;
 	}
 
-	public void setLockUserId(String lockUserId) {
+	public void setLockUserId(long lockUserId) {
 		this.lockUserId = lockUserId;
 	}
 
@@ -312,7 +312,7 @@ public class SyncFile extends StateAwareModel {
 	protected long lockExpirationDate;
 
 	@DatabaseField(useGetSet = true)
-	protected String lockUserId;
+	protected long lockUserId;
 
 	@DatabaseField(useGetSet = true)
 	protected String lockUserName;

@@ -19,17 +19,12 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class CancelCheckOutEvent extends BaseEvent {
+public class CancelCheckOutEvent extends BaseCheckInCheckOutEvent {
 
 	public CancelCheckOutEvent(
 		long syncAccountId, Map<String, Object> parameters) {
 
 		super(syncAccountId, _URL_PATH, parameters);
-	}
-
-	@Override
-	protected void processResponse(String response) throws Exception {
-		System.out.println(response);
 	}
 
 	private static final String _URL_PATH =
