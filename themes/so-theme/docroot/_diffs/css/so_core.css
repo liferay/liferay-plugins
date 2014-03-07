@@ -379,16 +379,16 @@ html.aui {
 			position: absolute;
 			right: 332px;
 			top: 56px;
-		}
 
-		.info-button .diamond {
-			border-bottom-color: transparent;
-			border-left-color: rgba(0, 0, 0, 0.5);
-			right: -12px;
-			top: 0;
+			.info-button .diamond {
+				border-bottom-color: transparent;
+				border-left-color: rgba(0, 0, 0, 0.5);
+				right: -12px;
+				top: 0;
 
-			&:after {
-				border-top-color: transparent;
+				&:after {
+					border-top-color: transparent;
+				}
 			}
 		}
 
