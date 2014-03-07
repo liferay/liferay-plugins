@@ -32,7 +32,9 @@ import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.blogs.model.BlogsEntry;
+import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
+import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.messageboards.model.MBCategory;
@@ -127,6 +129,10 @@ public class MySubscriptionsUtil {
 			title = "Blog at ";
 		}
 		else if (className.equals(BookmarksFolder.class.getName())) {
+			if (group != null) {
+				return LanguageUtil.get(locale, "home");
+			}
+
 			BookmarksFolder bookmarksFolder =
 				BookmarksFolderLocalServiceUtil.getBookmarksFolder(classPK);
 
