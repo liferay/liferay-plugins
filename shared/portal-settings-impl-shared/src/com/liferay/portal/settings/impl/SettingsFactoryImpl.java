@@ -161,7 +161,7 @@ public class SettingsFactoryImpl implements SettingsFactory {
 			return portalProperties;
 		}
 
-		portalProperties = PropsUtil.getProperties(key, false);
+		portalProperties = PropsUtil.getProperties();
 
 		_propertiesMap.put(key, portalProperties);
 
