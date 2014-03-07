@@ -76,6 +76,18 @@ $red: #8F0920;
 	border: 1px solid $defaultBorderColor;
 }
 
+@mixin font-awesome($icon) {
+	-webkit-font-smoothing: antialiased;
+	content: $icon;
+	font-family: 'fontawesome-alloy';
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 1;
+	speak: none;
+	text-transform: none;
+}
+
 @mixin header {
 	background: $controlBgColor;
 
