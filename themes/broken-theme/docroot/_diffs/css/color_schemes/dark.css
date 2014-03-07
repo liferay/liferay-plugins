@@ -1,0 +1,81 @@
+@import "compass";
+
+.aui .dark {
+	background: #363636;
+	color: #E3E3E3;
+
+	&.portal-popup {
+		background-color: transparent;
+		color: #555;
+
+		legend {
+			color: #555;
+		}
+	}
+
+	&.yui3-skin-sam .yui3-widget-mask {
+		background-color: #111;
+	}
+
+	a {
+		color: #009CEB;
+	}
+
+	legend, .portlet-wiki .portlet-body h3, .taglib-header {
+		color: #E3E3E3;
+	}
+
+	.modal-content {
+		&, legend {
+			color: #555;
+		}
+	}
+
+	/* ---------- Dockbar ---------- */
+
+	.dockbar .nav li.dropdown .dropdown-menu {
+		background: #007BB3;
+	}
+
+	/* ---------- Nav#Navigation ---------- */
+
+	#breadcrumbs {
+		padding-left: 10px;
+	}
+
+	#navigation {
+		.navbar-inner {
+			background: #2F2F2F;
+
+			.nav > li > a {
+				color: #E3E3E3;
+			}
+		}
+	}
+
+	/* ---------- Breadcrumbs ---------- */
+
+	.breadcrumb li a {
+		color: #E3E3E3;
+	}
+
+	.lfr-header-row-content {
+		padding: 3px 0 0;
+	}
+
+	/* ---------- Portlet ---------- */
+
+	.portlet {
+		background: #363636;
+	}
+
+	.portlet-title {
+		color: #00CAFF;
+	}
+
+	/* ---------- Tables ---------- */
+
+	.table {
+		color: #555;
+	}
+}

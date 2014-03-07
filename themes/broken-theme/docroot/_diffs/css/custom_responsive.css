@@ -1,0 +1,182 @@
+@import "compass";
+@import "mixins";
+
+/* ---------- Dockbar ---------- */
+
+@include respond-to(phone, tablet) {
+	.aui {
+		* {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		}
+
+		#heading {
+			bottom: 100%;
+			margin-top: -2em;
+			position: relative;
+
+			.site-title {
+				font-size: 26px;
+
+				img {
+					width: 35px;
+				}
+			}
+		}
+
+		#navigation.open .navbar-inner {
+			background: #009AE5;
+		}
+
+		.dockbar .navbar-inner .container .nav-collapse .nav-add-controls ul.dropdown-menu {
+			background: transparent;
+			padding: 0;
+
+			> li > a {
+				background: transparent;
+				padding: 9px 15px;
+
+				&.toggle-controls-link {
+					background: transparent;
+				}
+			}
+		}
+
+		.dockbar-split .dockbar, .dockbar {
+			.info-items {
+				height: auto;
+				position: static;
+				width: 300px;
+			}
+
+			.navbar-inner {
+				width: auto;
+
+				.container {
+					.btn-navbar {
+						background: transparent;
+						border-width: 0;
+						font-size: 24px;
+
+						&:hover, &.nav-account-controls-btn.open, &.nav-add-controls-btn.open, &.nav-navigation-btn:focus {
+							background-color: #5BBAE8;
+						}
+
+						&.nav-navigation-btn.active {
+							background-color: #F5AF45;
+						}
+					}
+
+					.nav-collapse {
+						> .nav {
+							background: transparent;
+							border-width: 0;
+
+							.nav-item-icon {
+								font-size: 26px;
+							}
+
+							&.nav-add-controls ul.dropdown-menu {
+								background: transparent;
+								border-top-width: 0;
+								padding: 0;
+
+								> li > a {
+									background: transparent;
+									color: #FFF;
+									text-align: left;
+
+									&:focus, &:hover {
+										background-color: #5BBAE8;
+									}
+
+									&.toggle-controls-link {
+										background: transparent;
+
+										.nav-item-icon {
+											color: #FFF;
+										}
+									}
+
+									.nav-item-label {
+										background: transparent;
+									}
+								}
+							}
+
+							> li {
+								&.dropdown {
+									&.active > .dropdown-toggle {
+										color: #FFF;
+									}
+
+									&.open > .dropdown-toggle {
+										background: #2FA4F5;
+										color: #FFF;
+									}
+
+									.dropdown-menu {
+										li a {
+											font-size: 16px;
+											line-height: 27px;
+											margin: 0;
+
+											.nav-item-icon {
+												font-size: 22px;
+												margin-top: 0;
+												vertical-align: middle;
+											}
+
+											.nav-item-label {
+												vertical-align: middle;
+											}
+										}
+									}
+								}
+
+								&.info-items {
+									background-color: transparent;
+								}
+
+								&.staging-toggle {
+									> a {
+										background-color: #2496E5;
+										padding-bottom: 0;
+										padding-top: 0;
+
+										&:hover {
+											background-color: #2FA4F5;
+										}
+									}
+
+									span.nav-item-label {
+										padding: 5px 10px;
+									}
+								}
+
+								> a {
+									color: #FFF;
+									font-size: 16px;
+									line-height: 20px;
+									padding: 12px;
+
+									&:focus, &:hover {
+										background-color: #5BBAE8;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.portlet-dockbar {
+			display: inline-block;
+			width: 100%;
+		}
+
+		.signed-out #_145_navAddControlsNavbarBtn {
+			display: none;
+		}
+	}
+}
