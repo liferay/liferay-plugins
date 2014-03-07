@@ -490,6 +490,14 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	@Override
+	public long[] getChildCalendarIds(long calendarBookingId, long calendarId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBookingLocalService.getChildCalendarIds(calendarBookingId,
+			calendarId);
+	}
+
+	@Override
 	public com.liferay.calendar.model.CalendarBooking moveCalendarBookingToTrash(
 		long userId, com.liferay.calendar.model.CalendarBooking calendarBooking)
 		throws com.liferay.portal.kernel.exception.PortalException,
