@@ -111,7 +111,7 @@ public class CalendarResourceStagedModelDataHandler
 				calendarResource.getClassPK());
 
 			portletDataContext.addReferenceElement(
-				calendarResource, calendarResourceElement, user, User.class,
+				calendarResource, calendarResourceElement, user,
 				PortletDataContext.REFERENCE_TYPE_DEPENDENCY_DISPOSABLE, true);
 		}
 
