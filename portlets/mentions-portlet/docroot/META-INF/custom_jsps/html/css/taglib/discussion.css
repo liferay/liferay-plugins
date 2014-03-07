@@ -1,0 +1,30 @@
+@import url(discussion.portal.css);
+
+.taglib-discussion {
+
+	.taglib-user-display {
+
+		&.display-style-3 {
+			padding: 4px 0 0 0;
+			height: 32px;
+
+			.user-profile-image {
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			.user-name {
+				font-weight: bold;
+				margin-left: 8px;
+				display: inline;
+			}
+
+			.user-details {
+				margin-left: 8px;
+				display: inline;
+			}
+		}
+
+	}
+
+}
