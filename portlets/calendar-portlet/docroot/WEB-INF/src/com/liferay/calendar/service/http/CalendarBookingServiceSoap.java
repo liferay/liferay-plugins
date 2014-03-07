@@ -545,7 +545,7 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static com.liferay.calendar.model.CalendarBookingSoap updateCalendarBookingOffsetAndDuration(
+	public static com.liferay.calendar.model.CalendarBookingSoap updateOffsetAndDuration(
 		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.lang.String[] titleMapLanguageIds,
 		java.lang.String[] titleMapValues,
@@ -563,7 +563,7 @@ public class CalendarBookingServiceSoap {
 			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
 					descriptionMapValues);
 
-			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.updateCalendarBookingOffsetAndDuration(calendarBookingId,
+			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.updateOffsetAndDuration(calendarBookingId,
 					calendarId, childCalendarIds, titleMap, descriptionMap,
 					location, offset, duration, allDay, recurrence,
 					firstReminder, firstReminderType, secondReminder,
@@ -578,7 +578,7 @@ public class CalendarBookingServiceSoap {
 		}
 	}
 
-	public static com.liferay.calendar.model.CalendarBookingSoap updateCalendarBookingOffsetAndDuration(
+	public static com.liferay.calendar.model.CalendarBookingSoap updateOffsetAndDuration(
 		long calendarBookingId, long calendarId,
 		java.lang.String[] titleMapLanguageIds,
 		java.lang.String[] titleMapValues,
@@ -596,7 +596,7 @@ public class CalendarBookingServiceSoap {
 			Map<Locale, String> descriptionMap = LocalizationUtil.getLocalizationMap(descriptionMapLanguageIds,
 					descriptionMapValues);
 
-			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.updateCalendarBookingOffsetAndDuration(calendarBookingId,
+			com.liferay.calendar.model.CalendarBooking returnValue = CalendarBookingServiceUtil.updateOffsetAndDuration(calendarBookingId,
 					calendarId, titleMap, descriptionMap, location, offset,
 					duration, allDay, recurrence, firstReminder,
 					firstReminderType, secondReminder, secondReminderType,

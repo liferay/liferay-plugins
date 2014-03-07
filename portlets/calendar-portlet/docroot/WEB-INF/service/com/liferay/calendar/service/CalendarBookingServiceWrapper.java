@@ -345,7 +345,7 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 	}
 
 	@Override
-	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingOffsetAndDuration(
+	public com.liferay.calendar.model.CalendarBooking updateOffsetAndDuration(
 		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -356,7 +356,7 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarBookingService.updateCalendarBookingOffsetAndDuration(calendarBookingId,
+		return _calendarBookingService.updateOffsetAndDuration(calendarBookingId,
 			calendarId, childCalendarIds, titleMap, descriptionMap, location,
 			offset, duration, allDay, recurrence, firstReminder,
 			firstReminderType, secondReminder, secondReminderType, status,
@@ -364,7 +364,7 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 	}
 
 	@Override
-	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingOffsetAndDuration(
+	public com.liferay.calendar.model.CalendarBooking updateOffsetAndDuration(
 		long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -375,7 +375,7 @@ public class CalendarBookingServiceWrapper implements CalendarBookingService,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return _calendarBookingService.updateCalendarBookingOffsetAndDuration(calendarBookingId,
+		return _calendarBookingService.updateOffsetAndDuration(calendarBookingId,
 			calendarId, titleMap, descriptionMap, location, offset, duration,
 			allDay, recurrence, firstReminder, firstReminderType,
 			secondReminder, secondReminderType, status, serviceContext);

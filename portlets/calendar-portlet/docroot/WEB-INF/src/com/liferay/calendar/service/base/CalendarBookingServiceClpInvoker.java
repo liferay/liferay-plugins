@@ -182,7 +182,7 @@ public class CalendarBookingServiceClpInvoker {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName129 = "updateCalendarBookingOffsetAndDuration";
+		_methodName129 = "updateOffsetAndDuration";
 
 		_methodParameterTypes129 = new String[] {
 				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
@@ -192,7 +192,7 @@ public class CalendarBookingServiceClpInvoker {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName130 = "updateCalendarBookingOffsetAndDuration";
+		_methodName130 = "updateOffsetAndDuration";
 
 		_methodParameterTypes130 = new String[] {
 				"long", "long", "java.util.Map", "java.util.Map",
@@ -474,7 +474,7 @@ public class CalendarBookingServiceClpInvoker {
 
 		if (_methodName129.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes129, parameterTypes)) {
-			return CalendarBookingServiceUtil.updateCalendarBookingOffsetAndDuration(((Long)arguments[0]).longValue(),
+			return CalendarBookingServiceUtil.updateOffsetAndDuration(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(), (long[])arguments[2],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[4],
@@ -493,7 +493,7 @@ public class CalendarBookingServiceClpInvoker {
 
 		if (_methodName130.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes130, parameterTypes)) {
-			return CalendarBookingServiceUtil.updateCalendarBookingOffsetAndDuration(((Long)arguments[0]).longValue(),
+			return CalendarBookingServiceUtil.updateOffsetAndDuration(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[2],
 				(java.util.Map<java.util.Locale, java.lang.String>)arguments[3],

@@ -333,7 +333,7 @@ public class CalendarBookingServiceUtil {
 			secondReminder, secondReminderType, status, serviceContext);
 	}
 
-	public static com.liferay.calendar.model.CalendarBooking updateCalendarBookingOffsetAndDuration(
+	public static com.liferay.calendar.model.CalendarBooking updateOffsetAndDuration(
 		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -345,14 +345,13 @@ public class CalendarBookingServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateCalendarBookingOffsetAndDuration(calendarBookingId,
-			calendarId, childCalendarIds, titleMap, descriptionMap, location,
-			offset, duration, allDay, recurrence, firstReminder,
-			firstReminderType, secondReminder, secondReminderType, status,
-			serviceContext);
+				   .updateOffsetAndDuration(calendarBookingId, calendarId,
+			childCalendarIds, titleMap, descriptionMap, location, offset,
+			duration, allDay, recurrence, firstReminder, firstReminderType,
+			secondReminder, secondReminderType, status, serviceContext);
 	}
 
-	public static com.liferay.calendar.model.CalendarBooking updateCalendarBookingOffsetAndDuration(
+	public static com.liferay.calendar.model.CalendarBooking updateOffsetAndDuration(
 		long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -364,10 +363,10 @@ public class CalendarBookingServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateCalendarBookingOffsetAndDuration(calendarBookingId,
-			calendarId, titleMap, descriptionMap, location, offset, duration,
-			allDay, recurrence, firstReminder, firstReminderType,
-			secondReminder, secondReminderType, status, serviceContext);
+				   .updateOffsetAndDuration(calendarBookingId, calendarId,
+			titleMap, descriptionMap, location, offset, duration, allDay,
+			recurrence, firstReminder, firstReminderType, secondReminder,
+			secondReminderType, status, serviceContext);
 	}
 
 	public static void clearService() {

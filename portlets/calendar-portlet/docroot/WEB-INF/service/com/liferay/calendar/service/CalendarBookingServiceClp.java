@@ -182,7 +182,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName28 = "updateCalendarBookingOffsetAndDuration";
+		_methodName28 = "updateOffsetAndDuration";
 
 		_methodParameterTypes28 = new String[] {
 				"long", "long", "long[][]", "java.util.Map", "java.util.Map",
@@ -192,7 +192,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName29 = "updateCalendarBookingOffsetAndDuration";
+		_methodName29 = "updateOffsetAndDuration";
 
 		_methodParameterTypes29 = new String[] {
 				"long", "long", "java.util.Map", "java.util.Map",
@@ -1449,7 +1449,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 	}
 
 	@Override
-	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingOffsetAndDuration(
+	public com.liferay.calendar.model.CalendarBooking updateOffsetAndDuration(
 		long calendarBookingId, long calendarId, long[] childCalendarIds,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
@@ -1523,7 +1523,7 @@ public class CalendarBookingServiceClp implements CalendarBookingService {
 	}
 
 	@Override
-	public com.liferay.calendar.model.CalendarBooking updateCalendarBookingOffsetAndDuration(
+	public com.liferay.calendar.model.CalendarBooking updateOffsetAndDuration(
 		long calendarBookingId, long calendarId,
 		java.util.Map<java.util.Locale, java.lang.String> titleMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
