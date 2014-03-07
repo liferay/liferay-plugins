@@ -366,7 +366,7 @@ AUI().use(
 									siteTemplate,
 									{
 										classNames: classNames.join(' '),
-										favoriteHtml: (result.favoriteURL ? '<span class="action favorite"><a href="' + result.favoriteURL + '">' + Liferay.Language.get('favorite') + '</a></span>' : '<span class="action unfavorite"><a href="' + result.unfavoriteURL + '">' + Liferay.Language.get('unfavorite') + '</a></span>'),
+										favoriteHtml: (result.favoriteURL ? '<span class="action favorite" title="' + Liferay.Language.get("add-this-site-into-my-favorites") + '"><a href="' + result.favoriteURL + '">' + Liferay.Language.get('favorite') + '</a></span>' : '<span class="action unfavorite" title="' + Liferay.Language.get("remove-this-site-from-my-favorites") + '"><a href="' + result.unfavoriteURL + '">' + Liferay.Language.get('unfavorite') + '</a></span>'),
 										siteName: name
 									}
 								);
