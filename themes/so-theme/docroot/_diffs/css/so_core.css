@@ -892,6 +892,56 @@ html.aui {
 		.lfr-contact-name a {
 			color: $red;
 		}
+
+		.user-information-column-2 .field-group {
+			width: auto;
+		}
+
+		.user-sites {
+			list-style: none;
+			margin-left: 0;
+
+			li:before {
+				-webkit-font-smoothing: antialiased;
+				color: #DDD;
+				content: "\f0ac";
+				font-family: 'fontawesome-alloy';
+				font-style: normal;
+				font-variant: normal;
+				font-weight: normal;
+				line-height: 1;
+				speak: none;
+				text-transform: none;
+			}
+
+			a {
+				margin-left: 8px;
+			}
+		}
+
+		.user-tags {
+			list-style: none;
+			margin: 5px 0;
+
+			li {
+				display: inline-block;
+				margin: 0 5px 5px 0;
+			}
+
+			a {
+				background-color: #EEE;
+
+				@include border-radius(4px);
+
+				display: inline-block;
+				padding: 4px 6px;
+
+				&:hover {
+					background-color: #DDD;
+					text-decoration: none;
+				}
+			}
+		}
 	}
 
 	.toolbar, .contacts-search, .lfr-button-column {
