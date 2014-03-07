@@ -476,7 +476,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	@Override
-	public CalendarBooking updateCalendarBookingOffsetAndDuration(
+	public CalendarBooking updateOffsetAndDuration(
 			long calendarBookingId, long calendarId, long[] childCalendarIds,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			String location, long offset, long duration, boolean allDay,
@@ -490,7 +490,6 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getStartTime() + offset);
-
 		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTimeJCalendar.getTimeInMillis() + duration);
 
@@ -503,7 +502,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 	}
 
 	@Override
-	public CalendarBooking updateCalendarBookingOffsetAndDuration(
+	public CalendarBooking updateOffsetAndDuration(
 			long calendarBookingId, long calendarId,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			String location, long offset, long duration, boolean allDay,
@@ -516,7 +515,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			calendarBookingLocalService.getChildCalendarIds(
 				calendarBookingId, calendarId);
 
-		return updateCalendarBookingOffsetAndDuration(
+		return updateOffsetAndDuration(
 			calendarBookingId, calendarId, childCalendarIds, titleMap,
 			descriptionMap, location, offset, duration, allDay, recurrence,
 			firstReminder, firstReminderType, secondReminder,
