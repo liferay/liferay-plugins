@@ -214,6 +214,22 @@ $defaultTextColor: #202020;
 	clear: both;
 }
 
+.ie7.aui {
+	.portlet-dockbar {
+		clear: both;
+
+		.navbar-inner .container .collapse .nav-account-controls {
+			bottom: 100%;
+			position: relative;
+		}
+	}
+
+	.default .portlet-dockbar {
+		height: 0;
+		position: relative;
+	}
+}
+
 /* ---------- Control panel ---------- */
 
 .aui {
