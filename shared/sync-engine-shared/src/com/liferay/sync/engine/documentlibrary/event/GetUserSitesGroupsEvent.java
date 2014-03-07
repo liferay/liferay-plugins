@@ -20,8 +20,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncSiteService;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Shinn Lok
@@ -36,15 +38,46 @@ public class GetUserSitesGroupsEvent extends BaseEvent {
 
 	@Override
 	protected void processResponse(String response) throws Exception {
+		Set<Long> remoteSyncSiteIds = new HashSet<Long>();
+
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		List<SyncSite> syncSites = objectMapper.readValue(
+		List<SyncSite> remoteSyncSites = objectMapper.readValue(
 			response, new TypeReference<List<SyncSite>>() {});
 
-		for (SyncSite syncSite : syncSites) {
-			syncSite.setSyncAccountId(getSyncAccountId());
+		for (SyncSite remoteSyncSite : remoteSyncSites) {
+			SyncSite localSyncSite = SyncSiteService.fetchSyncSite(
+				remoteSyncSite.getGroupId(), getSyncAccountId());
 
-			SyncSiteService.update(syncSite);
+			if (localSyncSite == null) {
+				remoteSyncSite.setSyncAccountId(getSyncAccountId());
+
+				SyncSiteService.update(remoteSyncSite);
+
+				remoteSyncSiteIds.add(remoteSyncSite.getSyncSiteId());
+			}
+			else {
+				localSyncSite.setDescription(remoteSyncSite.getDescription());
+				localSyncSite.setFriendlyURL(remoteSyncSite.getFriendlyURL());
+				localSyncSite.setName(remoteSyncSite.getName());
+				localSyncSite.setType(remoteSyncSite.getType());
+				localSyncSite.setTypeSettings(remoteSyncSite.getTypeSettings());
+				localSyncSite.setSite(remoteSyncSite.getSite());
+
+				SyncSiteService.update(localSyncSite);
+
+				remoteSyncSiteIds.add(localSyncSite.getSyncSiteId());
+			}
+		}
+
+		for (SyncSite localSyncSite :
+				SyncSiteService.findSyncSites(getSyncAccountId())) {
+
+			if (remoteSyncSiteIds.contains(localSyncSite.getSyncSiteId())) {
+				continue;
+			}
+
+			SyncSiteService.deleteSyncSite(localSyncSite.getSyncSiteId());
 		}
 	}
 

@@ -75,6 +75,8 @@ public class SyncEngine {
 	public static void scheduleSyncAccountTasks(long syncAccountId)
 		throws Exception {
 
+		SyncSiteService.synchronizeSyncSites(syncAccountId);
+
 		final SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			syncAccountId);
 
