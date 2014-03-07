@@ -5,15 +5,4 @@
 	<import file="../build-common-web.xml" />
 
 	<property name="import.shared" value="io-delta-shared" />
-
-	<target name="compile">
-		<copy
-			file="${sdk.dir}/portlets/so-portlet/docroot/WEB-INF/lib/so-portlet-service.jar"
-			tofile="docroot/WEB-INF/lib/so-portlet-service.jar"
-		/>
-
-		<compile
-			module.dir="."
-		/>
-	</target>
 </project>
