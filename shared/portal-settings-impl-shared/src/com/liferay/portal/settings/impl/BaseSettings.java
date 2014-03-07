@@ -55,6 +55,10 @@ public abstract class BaseSettings implements Settings {
 			value = companyPortletPreferences.getValue(key, null);
 		}
 
+		if (_isNull(value) && (portalPreferences != null)) {
+			value = portalPreferences.getValue(key, null);
+		}
+
 		if (_isNull(value) && (portalProperties != null)) {
 			value = portalProperties.getProperty(key, null);
 		}
@@ -84,6 +88,10 @@ public abstract class BaseSettings implements Settings {
 
 		if (ArrayUtil.isEmpty(values) && (companyPortletPreferences != null)) {
 			values = companyPortletPreferences.getValues(key, null);
+		}
+
+		if (ArrayUtil.isEmpty(values) && (portalPreferences != null)) {
+			values = portalPreferences.getValues(key, null);
 		}
 
 		if (ArrayUtil.isEmpty(values) && (portalProperties != null)) {
@@ -173,6 +181,7 @@ public abstract class BaseSettings implements Settings {
 
 	protected PortletPreferences companyPortletPreferences;
 	protected PortletPreferences groupPortletPreferences;
+	protected PortletPreferences portalPreferences;
 	protected Properties portalProperties;
 	protected PortletPreferences portletInstancePortletPreferences;
 

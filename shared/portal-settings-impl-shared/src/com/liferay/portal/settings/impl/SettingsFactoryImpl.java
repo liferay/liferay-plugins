@@ -22,6 +22,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.PortalPreferencesLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.settings.Settings;
 import com.liferay.portal.settings.SettingsFactory;
@@ -83,6 +84,9 @@ public class SettingsFactoryImpl implements SettingsFactory {
 		portletInstanceSettings.setGroupPortletPreferences(
 			groupPortletPreferences);
 
+		portletInstanceSettings.setPortalPreferences(
+			getPortalPreferences(layout.getCompanyId()));
+
 		portletInstanceSettings.setPortalProperties(
 			getPortalProperties(portletId));
 
@@ -101,6 +105,9 @@ public class SettingsFactoryImpl implements SettingsFactory {
 
 		ServiceCompanySettings serviceCompanySettings =
 			new ServiceCompanySettings(companyPortletPreferences);
+
+		serviceCompanySettings.setPortalPreferences(
+			getPortalPreferences(companyId));
 
 		serviceCompanySettings.setPortalProperties(
 			getPortalProperties(serviceName));
@@ -131,10 +138,20 @@ public class SettingsFactoryImpl implements SettingsFactory {
 		serviceGroupSettings.setCompanyPortletPreferences(
 			companyPortletPreferences);
 
+		serviceGroupSettings.setPortalPreferences(
+			getPortalPreferences(group.getCompanyId()));
+
 		serviceGroupSettings.setPortalProperties(
 			getPortalProperties(serviceName));
 
 		return serviceGroupSettings;
+	}
+
+	protected PortletPreferences getPortalPreferences(long companyId)
+		throws SystemException {
+
+		return PortalPreferencesLocalServiceUtil.getPreferences(
+			companyId, PortletKeys.PREFS_OWNER_TYPE_COMPANY);
 	}
 
 	protected Properties getPortalProperties(String key) {

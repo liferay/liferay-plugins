@@ -31,6 +31,10 @@ public class ServiceCompanySettings extends BaseSettings {
 		this.companyPortletPreferences = companyPortletPreferences;
 	}
 
+	public void setPortalPreferences(PortletPreferences portalPreferences) {
+		this.portalPreferences = portalPreferences;
+	}
+
 	public Settings setPortalProperties(Properties portalProperties) {
 		this.portalProperties = portalProperties;
 
