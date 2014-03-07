@@ -366,21 +366,28 @@ public class SitesPortlet extends MVCPortlet {
 			if (GroupPermissionUtil.contains(
 					permissionChecker, group.getGroupId(), ActionKeys.DELETE)) {
 
-				PortletURL deletePortletURL =
-					liferayPortletResponse.createActionURL(
-						PortletKeys.SITES_ADMIN);
+				if (group.getGroupId() == themeDisplay.getSiteGroupId()) {
+					groupJSONObject.put("deleteURL", StringPool.FALSE);
+				}
+				else {
+					PortletURL deletePortletURL =
+						liferayPortletResponse.createActionURL(
+							PortletKeys.SITES_ADMIN);
 
-				deletePortletURL.setWindowState(WindowState.NORMAL);
+					deletePortletURL.setWindowState(WindowState.NORMAL);
 
-				deletePortletURL.setParameter(
-					"struts_action", "/sites_admin/edit_site");
-				deletePortletURL.setParameter(Constants.CMD, Constants.DELETE);
-				deletePortletURL.setParameter(
-					"redirect", themeDisplay.getURLCurrent());
-				deletePortletURL.setParameter(
-					"groupId", String.valueOf(group.getGroupId()));
+					deletePortletURL.setParameter(
+						"struts_action", "/sites_admin/edit_site");
+					deletePortletURL.setParameter(
+							Constants.CMD, Constants.DELETE);
+					deletePortletURL.setParameter(
+						"redirect", themeDisplay.getURLCurrent());
+					deletePortletURL.setParameter(
+						"groupId", String.valueOf(group.getGroupId()));
 
-				groupJSONObject.put("deleteURL", deletePortletURL.toString());
+					groupJSONObject.put(
+						"deleteURL", deletePortletURL.toString());
+				}
 			}
 
 			PortletURL favoritePortletURL = resourceResponse.createActionURL();

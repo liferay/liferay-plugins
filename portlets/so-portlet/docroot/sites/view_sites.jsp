@@ -178,6 +178,17 @@ else {
 							classNames.push('alt');
 						}
 
+						var deleteHtml = '<span class="action-not-allowed"></span>';
+
+						if (result.deleteURL) {
+							if (result.deleteURL == 'false') {
+								deleteHtml = '<span class="delete-not-allowed"></span>';
+							}
+							else {
+								deleteHtml = '<span class="action delete"><a class="delete-site" href="' + result.deleteURL + '"><liferay-ui:message key="delete" /></a></span>';
+							}
+						}
+
 						var name = result.name;
 
 						if (result.publicLayoutsURL) {
@@ -195,7 +206,7 @@ else {
 							siteTemplate,
 							{
 								classNames: classNames.join(' '),
-								deleteHtml: (result.deleteURL ? '<span class="action delete"><a class="delete-site" href="' + result.deleteURL + '"><liferay-ui:message key="delete" /></a></span>' : '<span class="action-not-allowed"></span>'),
+								deleteHtml: deleteHtml,
 								joinHtml: (result.joinUrl ? '<span class="action join"><a class="join-site" href="' + result.joinUrl + '"><liferay-ui:message key="join" /></a></span>' : ''),
 								leaveHtml: (result.leaveUrl ? '<span class="action leave"><a class="leave-site" href="' + result.leaveUrl + '"><liferay-ui:message key="leave" /></a></span>' : ''),
 								requestHtml: (result.requestUrl ? '<span class="action request"><a class="request-site" href="' + result.requestUrl + '"><liferay-ui:message key="request-membership" /></a></span>' : ''),
