@@ -59,6 +59,16 @@ body.so-classic {
 		color: $linkColor;
 	}
 
+	.dockbar .nav-account-controls {
+		.info-items .page-customization-bar .page-customization-bar-text {
+			height: 74px;
+		}
+
+		.info-link-container {
+			top: 57px;
+		}
+	}
+
 	#banner {
 		background-color: transparent;
 		border-color: $defaultBorderColor;

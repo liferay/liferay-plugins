@@ -361,9 +361,10 @@ html.aui {
 			position: absolute;
 			right: 332px;
 			top: 44px;
+			width: 360px;
 
 			.page-customization-bar .page-customization-bar-text {
-				height: 74px;
+				height: 56px;
 			}
 
 			.btn-link {
@@ -378,16 +379,22 @@ html.aui {
 			left: auto;
 			position: absolute;
 			right: 332px;
-			top: 56px;
+			top: 48px;
 
-			.info-button .diamond {
-				border-bottom-color: transparent;
-				border-left-color: rgba(0, 0, 0, 0.5);
-				right: -12px;
-				top: 0;
+			.info-button {
+				.info-link {
+					padding: 5px 10px;
+				}
 
-				&:after {
-					border-top-color: transparent;
+				.diamond {
+					border-bottom-color: transparent;
+					border-left-color: rgba(0, 0, 0, 0.5);
+					right: -12px;
+					top: 0;
+
+					&:after {
+						border-top-color: transparent;
+					}
 				}
 			}
 		}
