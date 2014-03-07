@@ -349,9 +349,10 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 				documents.add(document);
 
+				scores.add(searchHit.getScore());
+
 				addSnippets(searchHit, document, queryConfig, queryTerms);
 
-				scores.add(searchHit.getScore());
 			}
 		}
 
