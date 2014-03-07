@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -211,14 +212,6 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		HighlightField highlightField = highlightFields.get(
 			localizedContentName);
 
-		String snippetField = localizedContentName;
-
-		if (highlightField == null) {
-			highlightField = highlightFields.get(fieldName);
-
-			snippetField = fieldName;
-		}
-
 		if (highlightField != null) {
 			Text[] texts = highlightField.fragments();
 
@@ -232,22 +225,25 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 			snippet = sb.toString();
 		}
 
-		Pattern pattern = Pattern.compile(_HIGHLIGHTED_TEXT_PATTERN);
-
-		Matcher matcher = pattern.matcher(snippet);
+		Matcher matcher = _pattern.matcher(snippet);
 
 		while (matcher.find()) {
 			queryTerms.add(matcher.group(1));
 		}
 
-		snippet = StringUtil.replace(
-			snippet, _OPEN_HIGHLIGHT_TAG, StringPool.BLANK);
+		snippet = StringUtil.replace(snippet, "<em>", StringPool.BLANK);
+		snippet = StringUtil.replace(snippet, "</em>", StringPool.BLANK);
 
-		snippet = StringUtil.replace(
-			snippet, _CLOSE_HIGHLIGHT_TAG, StringPool.BLANK);
+		String snippetFieldName = localizedContentName;
+
+		if (highlightField == null) {
+			highlightField = highlightFields.get(fieldName);
+
+			snippetFieldName = fieldName;
+		}
 
 		document.addText(
-			Field.SNIPPET.concat(StringPool.UNDERLINE).concat(snippetField),
+			Field.SNIPPET.concat(StringPool.UNDERLINE).concat(snippetFieldName),
 			snippet);
 	}
 
@@ -261,18 +257,16 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 		Map<String, HighlightField> highlightFields = hit.getHighlightFields();
 
-		if ((highlightFields == null) || highlightFields.isEmpty()) {
+		if (MapUtil.isEmpty(highlightFields)) {
 			return;
 		}
 
 		addSnippets(
 			document, queryTerms, highlightFields, Field.CONTENT,
 			queryConfig.getLocale());
-
 		addSnippets(
 			document, queryTerms, highlightFields, Field.DESCRIPTION,
 			queryConfig.getLocale());
-
 		addSnippets(
 			document, queryTerms, highlightFields, Field.TITLE,
 			queryConfig.getLocale());
@@ -297,21 +291,21 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 					sortFieldName);
 			}
 
-			SortOrder order = SortOrder.ASC;
+			SortOrder sortOrder = SortOrder.ASC;
 
 			if (Validator.isNull(sortFieldName) ||
-				!sortFieldName.endsWith(_SORTABLE_SUFFIX)) {
+				!sortFieldName.endsWith("sortable")) {
 
-				order = SortOrder.DESC;
+				sortOrder = SortOrder.DESC;
 
-				sortFieldName = _SCORE_SUFFIX;
+				sortFieldName = "_score";
 			}
 
 			if (sort.isReverse()) {
-				order = SortOrder.DESC;
+				sortOrder = SortOrder.DESC;
 			}
 
-			searchRequestBuilder.addSort(sortFieldName, order);
+			searchRequestBuilder.addSort(sortFieldName, sortOrder);
 		}
 	}
 
@@ -391,17 +385,9 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
-	private static final String _CLOSE_HIGHLIGHT_TAG = "</em>";
-
-	private static final String _HIGHLIGHTED_TEXT_PATTERN = "<em>(.*?)</em>";
-
-	private static final String _OPEN_HIGHLIGHT_TAG = "<em>";
-
-	private static final String _SCORE_SUFFIX = "_score";
-
-	private static final String _SORTABLE_SUFFIX = "sortable";
-
 	private static Log _log = LogFactoryUtil.getLog(
 		ElasticsearchIndexSearcher.class);
+
+	private Pattern _pattern = Pattern.compile("<em>(.*?)</em>");
 
 }
