@@ -401,20 +401,26 @@ public class SitesPortlet extends MVCPortlet {
 			favoritePortletURL.setParameter(
 				"groupId", String.valueOf(group.getGroupId()));
 
-			if (!FavoriteSiteLocalServiceUtil.isFavoriteSite(
-					themeDisplay.getUserId(), group.getGroupId())) {
-
-				favoritePortletURL.setParameter(Constants.CMD, Constants.ADD);
-
-				groupJSONObject.put(
-					"favoriteURL", favoritePortletURL.toString());
+			if (!member && !group.hasPublicLayouts()) {
+				groupJSONObject.put("favoriteURL", StringPool.BLANK);
 			}
 			else {
-				favoritePortletURL.setParameter(
-					Constants.CMD, Constants.DELETE);
+				if (!FavoriteSiteLocalServiceUtil.isFavoriteSite(
+						themeDisplay.getUserId(), group.getGroupId())) {
 
-				groupJSONObject.put(
-					"unfavoriteURL", favoritePortletURL.toString());
+					favoritePortletURL.setParameter(
+						Constants.CMD, Constants.ADD);
+
+					groupJSONObject.put(
+						"favoriteURL", favoritePortletURL.toString());
+				}
+				else {
+					favoritePortletURL.setParameter(
+						Constants.CMD, Constants.DELETE);
+
+					groupJSONObject.put(
+						"unfavoriteURL", favoritePortletURL.toString());
+				}
 			}
 
 			jsonArray.put(groupJSONObject);
