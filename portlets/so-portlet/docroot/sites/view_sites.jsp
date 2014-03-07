@@ -181,11 +181,11 @@ else {
 						var deleteHtml = '<span class="action-not-allowed"></span>';
 
 						if (result.deleteURL) {
-							if (result.deleteURL == 'false') {
-								deleteHtml = '<span class="delete-not-allowed"></span>';
+							if (result.deleteURL == '<%= StringPool.FALSE %>') {
+								deleteHtml = '<span class="delete-not-allowed" title="<liferay-ui:message key='can-not-delete-the-site-you-are-currently-on' />"></span>';
 							}
 							else {
-								deleteHtml = '<span class="action delete"><a class="delete-site" href="' + result.deleteURL + '"><liferay-ui:message key="delete" /></a></span>';
+								deleteHtml = '<span class="action delete" title="<liferay-ui:message key='delete-this-site' />"><a class="delete-site" href="' + result.deleteURL + '"><liferay-ui:message key="delete" /></a></span>';
 							}
 						}
 
@@ -207,13 +207,13 @@ else {
 							{
 								classNames: classNames.join(' '),
 								deleteHtml: deleteHtml,
-								joinHtml: (result.joinUrl ? '<span class="action join"><a class="join-site" href="' + result.joinUrl + '"><liferay-ui:message key="join" /></a></span>' : ''),
-								leaveHtml: (result.leaveUrl ? '<span class="action leave"><a class="leave-site" href="' + result.leaveUrl + '"><liferay-ui:message key="leave" /></a></span>' : ''),
-								requestHtml: (result.requestUrl ? '<span class="action request"><a class="request-site" href="' + result.requestUrl + '"><liferay-ui:message key="request-membership" /></a></span>' : ''),
-								requestedHtml: (result.membershipRequested ? '<span class="action requested"><a><liferay-ui:message key="membership-requested" /></a></span>' : ''),
+								joinHtml: (result.joinUrl ? '<span class="action join" title="<liferay-ui:message key='join-this-site' />"><a class="join-site" href="' + result.joinUrl + '"><liferay-ui:message key="join" /></a></span>' : ''),
+								leaveHtml: (result.leaveUrl ? '<span class="action leave" title="<liferay-ui:message key='leave-this-site' />"><a class="leave-site" href="' + result.leaveUrl + '"><liferay-ui:message key="leave" /></a></span>' : ''),
+								requestHtml: (result.requestUrl ? '<span class="action request" title="<liferay-ui:message key='request-this-site-membership' />"><a class="request-site" href="' + result.requestUrl + '"><liferay-ui:message key="request-membership" /></a></span>' : ''),
+								requestedHtml: (result.membershipRequested ? '<span class="action requested" title="<liferay-ui:message key='this-site-membership-has-been-requested' />"><a><liferay-ui:message key="membership-requested" /></a></span>' : ''),
 								siteDescription: result.description,
 								siteName: name,
-								favoriteHtml: (result.favoriteURL ? '<span class="action favorite"><a class="favorite-site" href="' + result.favoriteURL + '"><liferay-ui:message key="favorite" /></a></span>' : '<span class="action unfavorite"><a class="unfavorite-site" href="' + result.unfavoriteURL + '"><liferay-ui:message key="unfavorite" /></a></span>')
+								favoriteHtml: (result.favoriteURL ? '<span class="action favorite" title="<liferay-ui:message key='add-this-site-into-my-favorites' />"><a class="favorite-site" href="' + result.favoriteURL + '"><liferay-ui:message key="favorite" /></a></span>' : '<span class="action unfavorite" title="<liferay-ui:message key='remove-this-site-from-my-favorites' />"><a class="unfavorite-site" href="' + result.unfavoriteURL + '"><liferay-ui:message key="unfavorite" /></a></span>')
 							}
 
 						);
