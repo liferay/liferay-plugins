@@ -41,8 +41,8 @@ import com.liferay.portlet.expando.util.ExpandoBridgeIndexerUtil;
 
 import java.util.Locale;
 
-import javax.portlet.PortletResponse;
 import javax.portlet.PortletRequest;
+import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
 
 /**
