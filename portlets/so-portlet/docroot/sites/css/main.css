@@ -172,6 +172,16 @@ $defaultTextColor: #202020;
 				background: url(@theme_image_path@/common/delete.png) no-repeat 0 50%;
 			}
 
+			.delete-not-allowed {
+				background: url(@theme_image_path@/common/delete.png) no-repeat 0 50%;
+				cursor: default;
+				float: right;
+				height: 16px;
+				margin: 0 5px;
+				opacity: 0.2;
+				width: 16px;
+			}
+
 			.description {
 				color: #777;
 				display: block;
