@@ -182,11 +182,20 @@ else {
 
 						if (result.deleteURL) {
 							if (result.deleteURL == '<%= StringPool.FALSE %>') {
-								deleteHtml = '<span class="delete-not-allowed" title="<liferay-ui:message key='can-not-delete-the-site-you-are-currently-on' />"></span>';
+								deleteHtml = '<span class="delete" title="<liferay-ui:message key='can-not-delete-the-site-you-are-currently-on' />"><a href="" class="disabled"></a></span>';
 							}
 							else {
 								deleteHtml = '<span class="action delete" title="<liferay-ui:message key='delete-this-site' />"><a class="delete-site" href="' + result.deleteURL + '"><liferay-ui:message key="delete" /></a></span>';
 							}
+						}
+
+						var favoriteHtml;
+
+						if (result.favoriteURL == '<%= StringPool.BLANK %>') {
+							favoriteHtml = '<span class="favorite" title="' + Liferay.Language.get("favorite-is-not-allowed-unless-you-have-a-membership") + '"><a href="" class="disabled"></a></span>';
+						}
+						else {
+							favoriteHtml = result.favoriteURL ? '<span class="action favorite" title="<liferay-ui:message key='add-this-site-into-my-favorites' />"><a class="favorite-site" href="' + result.favoriteURL + '"><liferay-ui:message key="favorite" /></a></span>' : '<span class="action unfavorite" title="<liferay-ui:message key='remove-this-site-from-my-favorites' />"><a class="unfavorite-site" href="' + result.unfavoriteURL + '"><liferay-ui:message key="unfavorite" /></a></span>';
 						}
 
 						var name = result.name;
@@ -213,7 +222,7 @@ else {
 								requestedHtml: (result.membershipRequested ? '<span class="action requested" title="<liferay-ui:message key='this-site-membership-has-been-requested' />"><a><liferay-ui:message key="membership-requested" /></a></span>' : ''),
 								siteDescription: result.description,
 								siteName: name,
-								favoriteHtml: (result.favoriteURL ? '<span class="action favorite" title="<liferay-ui:message key='add-this-site-into-my-favorites' />"><a class="favorite-site" href="' + result.favoriteURL + '"><liferay-ui:message key="favorite" /></a></span>' : '<span class="action unfavorite" title="<liferay-ui:message key='remove-this-site-from-my-favorites' />"><a class="unfavorite-site" href="' + result.unfavoriteURL + '"><liferay-ui:message key="unfavorite" /></a></span>')
+								favoriteHtml: favoriteHtml
 							}
 
 						);

@@ -45,6 +45,14 @@ $defaultTextColor: #202020;
 			.favorite a {
 				background: url(../images/star_empty.png) no-repeat 0 50%;
 				float: right;
+
+				&.disabled {
+					filter: alpha(opacity=20);
+					height: 16px;
+					margin: 13px 5px;
+					opacity: 0.2;
+					width: 16px;
+				}
 			}
 
 			.unfavorite a {
@@ -149,6 +157,14 @@ $defaultTextColor: #202020;
 			.favorite a {
 				background: url(../images/star_empty.png) no-repeat 0 50%;
 				float: right;
+
+				&.disabled {
+					filter: alpha(opacity=20);
+					height: 16px;
+					margin: 0 5px;
+					opacity: 0.2;
+					width: 16px;
+				}
 			}
 
 			.unfavorite a {
@@ -170,16 +186,15 @@ $defaultTextColor: #202020;
 
 			.delete a {
 				background: url(@theme_image_path@/common/delete.png) no-repeat 0 50%;
-			}
 
-			.delete-not-allowed {
-				background: url(@theme_image_path@/common/delete.png) no-repeat 0 50%;
-				cursor: default;
-				float: right;
-				height: 16px;
-				margin: 0 5px;
-				opacity: 0.2;
-				width: 16px;
+				&.disabled {
+					filter: alpha(opacity=20);
+					float: right;
+					height: 16px;
+					margin: 0 5px;
+					opacity: 0.2;
+					width: 16px;
+				}
 			}
 
 			.description {
