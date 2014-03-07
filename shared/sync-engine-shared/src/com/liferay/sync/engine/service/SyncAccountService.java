@@ -149,10 +149,6 @@ public class SyncAccountService {
 		_syncAccountPersistence.registerModelListener(modelListener);
 	}
 
-	public static void setActiveSyncAccountIds(Set<Long> activeSyncAccountIds) {
-		_activeSyncAccountIds = activeSyncAccountIds;
-	}
-
 	public static void unregisterModelListener(
 		ModelListener<SyncAccount> modelListener) {
 

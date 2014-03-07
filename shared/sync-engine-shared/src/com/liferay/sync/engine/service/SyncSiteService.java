@@ -181,12 +181,6 @@ public class SyncSiteService {
 		_syncSitePersistence.registerModelListener(modelListener);
 	}
 
-	public static void setActiveSyncSiteIds(
-		long syncAccountId, Set<Long> activeSyncSiteIds) {
-
-		_activeSyncSiteIds.put(syncAccountId, activeSyncSiteIds);
-	}
-
 	public static void synchronizeSyncSites(long syncAccountId) {
 		GetUserSitesGroupsEvent getUserSitesGroupsEvent =
 			new GetUserSitesGroupsEvent(

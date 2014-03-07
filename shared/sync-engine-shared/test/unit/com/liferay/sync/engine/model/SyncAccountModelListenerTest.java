@@ -46,8 +46,6 @@ public class SyncAccountModelListenerTest extends BaseTestCase {
 	@After
 	@Override
 	public void tearDown() throws Exception {
-		SyncAccountService.setActiveSyncAccountIds(null);
-
 		SyncAccountService.unregisterModelListener(_syncAccountModelListener);
 
 		super.tearDown();

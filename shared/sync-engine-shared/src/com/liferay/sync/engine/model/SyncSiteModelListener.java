@@ -34,9 +34,6 @@ public class SyncSiteModelListener implements ModelListener<SyncSite> {
 			syncSite.getSyncAccountId());
 
 		activeSyncSiteIds.remove(syncSite.getSyncSiteId());
-
-		SyncSiteService.setActiveSyncSiteIds(
-			syncSite.getSyncAccountId(), activeSyncSiteIds);
 	}
 
 	@Override
@@ -56,9 +53,6 @@ public class SyncSiteModelListener implements ModelListener<SyncSite> {
 		else {
 			activeSyncSiteIds.add(syncSite.getSyncSiteId());
 		}
-
-		SyncSiteService.setActiveSyncSiteIds(
-			syncSite.getSyncAccountId(), activeSyncSiteIds);
 	}
 
 }

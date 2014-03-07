@@ -50,9 +50,6 @@ public class SyncSiteModelListenerTest extends BaseTestCase {
 	@After
 	@Override
 	public void tearDown() throws Exception {
-		SyncSiteService.setActiveSyncSiteIds(
-			syncAccount.getSyncAccountId(), null);
-
 		SyncSiteService.unregisterModelListener(_syncSiteModelListener);
 
 		SyncSiteService.deleteSyncSite(_syncSite.getSyncSiteId());

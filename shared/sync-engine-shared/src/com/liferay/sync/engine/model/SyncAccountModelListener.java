@@ -66,8 +66,6 @@ public class SyncAccountModelListener implements ModelListener<SyncAccount> {
 
 		activeSyncAccountIds.remove(syncAccount.getSyncAccountId());
 
-		SyncAccountService.setActiveSyncAccountIds(activeSyncAccountIds);
-
 		try {
 			SyncEngine.cancelSyncAccountTasks(syncAccount.getSyncAccountId());
 		}
@@ -81,8 +79,6 @@ public class SyncAccountModelListener implements ModelListener<SyncAccount> {
 			SyncAccountService.getActiveSyncAccountIds();
 
 		activeSyncAccountIds.remove(syncAccount.getSyncAccountId());
-
-		SyncAccountService.setActiveSyncAccountIds(activeSyncAccountIds);
 
 		try {
 			SyncEngine.cancelSyncAccountTasks(syncAccount.getSyncAccountId());
