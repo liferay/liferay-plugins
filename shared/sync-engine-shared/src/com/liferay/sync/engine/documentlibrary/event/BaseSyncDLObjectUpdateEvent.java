@@ -46,20 +46,18 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 	protected void addFile(SyncFile syncFile, String filePathName)
 		throws Exception {
 
-		String type = syncFile.getType();
-
 		Path filePath = Paths.get(filePathName);
 
 		if (Files.exists(filePath)) {
-			if (type.equals(SyncFile.TYPE_FILE)) {
+			if (syncFile.isFolder()) {
+				return;
+			}
+			else {
 				String checksum = FileUtil.getChecksum(filePath);
 
 				if (checksum.equals(syncFile.getChecksum())) {
 					return;
 				}
-			}
-			else {
-				return;
 			}
 		}
 
@@ -69,7 +67,7 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 
 		SyncFileService.update(syncFile);
 
-		if (type.equals(SyncFile.TYPE_FOLDER)) {
+		if (syncFile.isFolder()) {
 			Files.createDirectories(filePath);
 		}
 		else {
@@ -214,18 +212,14 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 
 		SyncFileService.update(sourceSyncFile);
 
-		if (Files.exists(sourceFilePath)) {
-			String type = targetSyncFile.getType();
+		if (Files.exists(sourceFilePath) && !targetSyncFile.isFolder()) {
+			String checksum = FileUtil.getChecksum(sourceFilePath);
 
-			if (type.equals(SyncFile.TYPE_FILE)) {
-				String checksum = FileUtil.getChecksum(sourceFilePath);
-
-				if (checksum.equals(targetSyncFile.getChecksum())) {
-					return;
-				}
-
-				downloadFile(sourceSyncFile);
+			if (checksum.equals(targetSyncFile.getChecksum())) {
+				return;
 			}
+
+			downloadFile(sourceSyncFile);
 		}
 	}
 

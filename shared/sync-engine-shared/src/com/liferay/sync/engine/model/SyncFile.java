@@ -182,6 +182,10 @@ public class SyncFile extends StateAwareModel {
 		return version;
 	}
 
+	public boolean isFolder() {
+		return type.equals(TYPE_FOLDER);
+	}
+
 	public void setChangeLog(String changeLog) {
 		this.changeLog = changeLog;
 	}
