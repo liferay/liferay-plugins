@@ -222,6 +222,10 @@ $defaultTextColor: #202020;
 			bottom: 100%;
 			position: relative;
 		}
+
+		.search-focus .so-portlet-sites .portlet {
+			width: 350px;
+		}
 	}
 
 	.default .portlet-dockbar {
