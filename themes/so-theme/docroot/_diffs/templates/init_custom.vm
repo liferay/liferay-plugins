@@ -24,21 +24,20 @@
 
 #if ($is_signed_in)
 	#set ($has_layout_add_permission = false)
-	#set ($permission_checker = $permissionChecker)
 
 	#if ($layout.getParentLayoutId() == 0)
-		#set ($has_layout_add_permission = $groupPermission.contains($permission_checker, $page_group.getGroupId(), "ADD_LAYOUT"))
+		#set ($has_layout_add_permission = $groupPermission.contains($permissionChecker, $page_group.getGroupId(), "ADD_LAYOUT"))
 	#else
-		#set ($has_layout_add_permission = $layoutPermission.contains($permission_checker, $layout, "ADD_LAYOUT"))
+		#set ($has_layout_add_permission = $layoutPermission.contains($permissionChecker, $layout, "ADD_LAYOUT"))
 	#end
 
-	#set ($has_layout_customize_permission = $layoutPermission.contains($permission_checker, $layout, "CUSTOMIZE"))
-	#set ($has_layout_update_permission = $layoutPermission.contains($permission_checker, $layout, "UPDATE"))
+	#set ($has_layout_customize_permission = $layoutPermission.contains($permissionChecker, $layout, "CUSTOMIZE"))
+	#set ($has_layout_update_permission = $layoutPermission.contains($permissionChecker, $layout, "UPDATE"))
 
 	#set ($show_add_controls = $has_layout_add_permission || $has_layout_update_permission || ($layoutTypePortlet.isCustomizable() && $layoutTypePortlet.isCustomizedView() && $has_layout_customize_permission))
 	#set ($show_edit_controls = $theme_display.isShowLayoutTemplatesIcon() || $theme_display.isShowPageSettingsIcon())
-	#set ($show_preview_controls = $has_layout_update_permission || $groupPermission.contains($permission_checker, $page_group.getGroupId(), "PREVIEW_IN_DEVICE"))
-	#set ($show_toggle_controls = ((!$page_group.hasStagingGroup()) || $page_group.isStagingGroup()) && ($has_layout_update_permission || ($layoutTypePortlet.isCustomizable() && $layoutTypePortlet.isCustomizedView()) || $portletPermission.hasConfigurationPermission($permission_checker, $theme_display.getSiteGroupId(), $layout, "CONFIGURATION")))
+	#set ($show_preview_controls = $has_layout_update_permission || $groupPermission.contains($permissionChecker, $page_group.getGroupId(), "PREVIEW_IN_DEVICE"))
+	#set ($show_toggle_controls = ((!$page_group.hasStagingGroup()) || $page_group.isStagingGroup()) && ($has_layout_update_permission || ($layoutTypePortlet.isCustomizable() && $layoutTypePortlet.isCustomizedView()) || $portletPermission.hasConfigurationPermission($permissionChecker, $theme_display.getSiteGroupId(), $layout, "CONFIGURATION")))
 
 	#set ($liferay_toggle_controls = $sessionClicks.get($request, "liferay_toggle_controls", ""))
 	#set ($themeNamespace = "_" + $themeDisplay.getThemeId() + "_")
