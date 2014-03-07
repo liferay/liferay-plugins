@@ -39,6 +39,7 @@
 	<classpathentry kind="lib" path="lib/ormlite-core.jar" />
 	<classpathentry kind="lib" path="lib/ormlite-jdbc.jar" />
 	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
+	<classpathentry kind="lib" path="lib/proxy-vole.jar" />
 	<classpathentry kind="lib" path="lib/slf4j-api.jar" />
 	<classpathentry kind="lib" path="lib/slf4j-log4j12.jar" />
 	<classpathentry kind="output" path="bin" />
