@@ -86,7 +86,6 @@ public class SettingsFactoryImpl implements SettingsFactory {
 
 		portletInstanceSettings.setPortalPreferences(
 			getPortalPreferences(layout.getCompanyId()));
-
 		portletInstanceSettings.setPortalProperties(
 			getPortalProperties(portletId));
 
@@ -108,7 +107,6 @@ public class SettingsFactoryImpl implements SettingsFactory {
 
 		serviceCompanySettings.setPortalPreferences(
 			getPortalPreferences(companyId));
-
 		serviceCompanySettings.setPortalProperties(
 			getPortalProperties(serviceName));
 
@@ -140,7 +138,6 @@ public class SettingsFactoryImpl implements SettingsFactory {
 
 		serviceGroupSettings.setPortalPreferences(
 			getPortalPreferences(group.getCompanyId()));
-
 		serviceGroupSettings.setPortalProperties(
 			getPortalProperties(serviceName));
 
