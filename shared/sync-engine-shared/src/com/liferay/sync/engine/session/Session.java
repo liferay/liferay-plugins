@@ -73,8 +73,7 @@ public class Session {
 		httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
 
 		httpClientBuilder.setMaxConnPerRoute(2);
-
-		httpClientBuilder.setRoutePlanner(_getRoutePlanner());
+		httpClientBuilder.setRoutePlanner(_getHttpRoutePlanner());
 
 		_httpClient = httpClientBuilder.build();
 
@@ -122,24 +121,6 @@ public class Session {
 			_httpHost, httpPost, responseHandler, _getBasicHttpContext());
 	}
 
-	private static HttpRoutePlanner _getRoutePlanner() {
-		if (_httpRoutePlanner != null) {
-			return _httpRoutePlanner;
-		}
-
-		ProxySearch proxySearch = ProxySearch.getDefaultProxySearch();
-
-		ProxySelector proxySelector = proxySearch.getProxySelector();
-
-		if (proxySelector == null) {
-			proxySelector = ProxySelector.getDefault();
-		}
-
-		_httpRoutePlanner = new SystemDefaultRoutePlanner(proxySelector);
-
-		return _httpRoutePlanner;
-	}
-
 	private void _buildHttpPostBody(
 			HttpPost httpPost, Map<String, Object> parameters)
 		throws Exception {
@@ -185,6 +166,24 @@ public class Session {
 
 		return new FileBody(
 			filePath.toFile(), ContentType.create(mimeType), fileName);
+	}
+
+	private HttpRoutePlanner _getHttpRoutePlanner() {
+		if (_httpRoutePlanner != null) {
+			return _httpRoutePlanner;
+		}
+
+		ProxySearch proxySearch = ProxySearch.getDefaultProxySearch();
+
+		ProxySelector proxySelector = proxySearch.getProxySelector();
+
+		if (proxySelector == null) {
+			proxySelector = ProxySelector.getDefault();
+		}
+
+		_httpRoutePlanner = new SystemDefaultRoutePlanner(proxySelector);
+
+		return _httpRoutePlanner;
 	}
 
 	private MultipartEntityBuilder _getMultipartEntityBuilder(

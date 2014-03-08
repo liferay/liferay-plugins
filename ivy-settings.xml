@@ -2,7 +2,6 @@
 	<settings defaultResolver="default" />
 
 	<resolvers>
-		<ibiblio m2compatible="true" name="alfresco" root="https://artifacts.alfresco.com/nexus/content/repositories/public" />
 		<ibiblio m2compatible="true" name="asu-gibson" root="https://gibson.asu.edu/maven" />
 		<ibiblio m2compatible="true" name="jboss-nexus" root="https://repository.jboss.org/nexus/content/repositories/releases" />
 		<ibiblio m2compatible="true" name="jboss-thirdparty" root="https://repository.jboss.org/nexus/content/repositories/thirdparty-releases" />
@@ -10,9 +9,9 @@
 		<ibiblio m2compatible="true" name="ow2-public" root="http://repository.ow2.org/nexus/content/repositories/public" />
 		<ibiblio m2compatible="true" name="primefaces" root="http://repository.primefaces.org" />
 		<ibiblio m2compatible="true" name="liferay-public" root="https://repository.liferay.com/nexus/content/groups/public" />
+		<ibiblio m2compatible="true" name="soapui" root="http://www.soapui.org/repository/maven2" />
 
 		<chain dual="true" name="default">
-			<resolver ref="alfresco" />
 			<resolver ref="asu-gibson" />
 			<resolver ref="jboss-nexus" />
 			<resolver ref="jboss-thirdparty" />
@@ -20,6 +19,7 @@
 			<resolver ref="ow2-public" />
 			<resolver ref="primefaces" />
 			<resolver ref="liferay-public" />
+			<resolver ref="soapui" />
 		</chain>
 	</resolvers>
 </ivysettings>

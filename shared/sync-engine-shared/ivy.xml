@@ -25,7 +25,7 @@
 		<dependency name="log4j" org="log4j" rev="1.2.17" />
 		<dependency name="ormlite-core" org="com.j256.ormlite" rev="4.47" />
 		<dependency name="ormlite-jdbc" org="com.j256.ormlite" rev="4.47" />
-		<dependency name="proxy-vole" org="com.btr" rev="20121203" />
+		<dependency name="proxy-vole" org="com.btr" rev="20131209" />
 		<dependency name="slf4j-api" org="org.slf4j" rev="1.7.5" />
 		<dependency name="slf4j-log4j12" org="org.slf4j" rev="1.7.5" />
 	</dependencies>
