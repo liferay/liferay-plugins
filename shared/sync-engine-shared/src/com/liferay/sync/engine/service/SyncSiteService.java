@@ -189,7 +189,7 @@ public class SyncSiteService {
 
 	public static void synchronizeSyncSites(long syncAccountId) {
 		GetUserSitesGroupsEvent getUserSitesGroupsEvent =
-			new GetUserSitesGroupsEvent(syncAccountId, Collections.EMPTY_MAP);
+			new GetUserSitesGroupsEvent(syncAccountId, Collections.emptyMap());
 
 		getUserSitesGroupsEvent.run();
 	}
