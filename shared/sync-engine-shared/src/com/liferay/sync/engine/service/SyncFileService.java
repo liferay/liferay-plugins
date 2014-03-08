@@ -237,6 +237,10 @@ public class SyncFileService {
 
 		// Remote sync file
 
+		if (syncFile.getState() == SyncFile.STATE_DELETED) {
+			return syncFile;
+		}
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("fileEntryId", syncFile.getTypePK());
@@ -260,6 +264,10 @@ public class SyncFileService {
 		deleteSyncFile(syncFile);
 
 		// Remote sync file
+
+		if (syncFile.getState() == SyncFile.STATE_DELETED) {
+			return syncFile;
+		}
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
