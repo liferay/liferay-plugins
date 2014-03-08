@@ -69,7 +69,7 @@ public abstract class BaseTestCase {
 
 		syncAccount = SyncAccountService.addSyncAccount(
 			filePathName, 10, "test@liferay.com", "test",
-			"http://localhost:8080/api/jsonws");
+			"http://localhost:8080/api/jsonws", false);
 
 		syncAccount.setActive(true);
 

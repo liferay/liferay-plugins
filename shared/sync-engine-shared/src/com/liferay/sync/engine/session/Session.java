@@ -39,7 +39,13 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
+<<<<<<< HEAD
 import org.apache.http.conn.routing.HttpRoutePlanner;
+=======
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContextBuilder;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+>>>>>>> sync-engine-shared Add session parameter to trust self-signed certificates
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.ContentBody;
@@ -52,13 +58,18 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 import org.apache.http.protocol.BasicHttpContext;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Shinn Lok
  * @author Dennis Ju
  */
 public class Session {
 
-	public Session(URL url, String login, String password) {
+	public Session(
+		URL url, String login, String password, boolean trustSelfSigned) {
+
 		_url = url;
 
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
@@ -74,6 +85,26 @@ public class Session {
 
 		httpClientBuilder.setMaxConnPerRoute(2);
 		httpClientBuilder.setRoutePlanner(_getHttpRoutePlanner());
+
+		if (trustSelfSigned) {
+			try {
+				SSLContextBuilder sslContextBuilder = new SSLContextBuilder();
+
+				sslContextBuilder.loadTrustMaterial(
+					null, new TrustSelfSignedStrategy());
+
+				SSLConnectionSocketFactory sslConnectionSocketFactory =
+					new SSLConnectionSocketFactory(
+						sslContextBuilder.build(),
+						SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+
+				httpClientBuilder.setSSLSocketFactory(
+					sslConnectionSocketFactory);
+			}
+			catch (Exception e) {
+				_logger.error(e.getMessage(), e);
+			}
+		}
 
 		_httpClient = httpClientBuilder.build();
 
@@ -211,6 +242,7 @@ public class Session {
 	}
 
 	private static HttpRoutePlanner _httpRoutePlanner;
+	private static Logger _logger = LoggerFactory.getLogger(Session.class);
 
 	private HttpClient _httpClient;
 	private HttpHost _httpHost;
