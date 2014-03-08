@@ -70,9 +70,10 @@ public class GetUserSitesGroupsEvent extends BaseEvent {
 			}
 		}
 
-		for (SyncSite localSyncSite :
-				SyncSiteService.findSyncSites(getSyncAccountId())) {
+		List<SyncSite> localSyncSites = SyncSiteService.findSyncSites(
+			getSyncAccountId());
 
+		for (SyncSite localSyncSite : localSyncSites) {
 			if (remoteSyncSiteIds.contains(localSyncSite.getSyncSiteId())) {
 				continue;
 			}

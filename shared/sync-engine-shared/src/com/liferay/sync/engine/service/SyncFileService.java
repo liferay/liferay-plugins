@@ -61,7 +61,7 @@ public class SyncFileService {
 		String mimeType = Files.probeContentType(filePath);
 
 		SyncFile syncFile = addSyncFile(
-			VERSION_DEFAULT, checksum, name, FileUtil.getFileKey(filePath),
+			_VERSION_DEFAULT, checksum, name, FileUtil.getFileKey(filePath),
 			FilePathNameUtil.getFilePathName(filePath), mimeType, name,
 			folderId, repositoryId, syncAccountId, SyncFile.TYPE_FILE);
 
@@ -69,7 +69,7 @@ public class SyncFileService {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
-		parameters.put("changeLog", VERSION_DEFAULT);
+		parameters.put("changeLog", _VERSION_DEFAULT);
 		parameters.put("checksum", checksum);
 		parameters.put("description", name);
 		parameters.put("filePath", filePath);
@@ -612,7 +612,7 @@ public class SyncFileService {
 		}
 	}
 
-	private static final String VERSION_DEFAULT = "1.0";
+	private static final String _VERSION_DEFAULT = "1.0";
 
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncFileService.class);
