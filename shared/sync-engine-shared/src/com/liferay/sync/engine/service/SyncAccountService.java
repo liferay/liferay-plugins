@@ -41,7 +41,7 @@ public class SyncAccountService {
 
 	public static SyncAccount addSyncAccount(
 			String filePathName, int interval, String login, String password,
-			String url, boolean trustSelfSigned)
+			boolean trustSelfSigned, String url)
 		throws Exception {
 
 		// Sync account
@@ -52,8 +52,8 @@ public class SyncAccountService {
 		syncAccount.setInterval(interval);
 		syncAccount.setLogin(login);
 		syncAccount.setPassword(Encryptor.encrypt(password));
-		syncAccount.setUrl(url);
 		syncAccount.setTrustSelfSigned(trustSelfSigned);
+		syncAccount.setUrl(url);
 
 		_syncAccountPersistence.create(syncAccount);
 
