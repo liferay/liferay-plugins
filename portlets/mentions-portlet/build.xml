@@ -2,5 +2,5 @@
 <!DOCTYPE project>
 
 <project name="mentions-portlet" basedir="." default="deploy">
-	<import file="../build-common-hook.xml" />
+	<import file="../build-common-portlet.xml" />
 </project>
