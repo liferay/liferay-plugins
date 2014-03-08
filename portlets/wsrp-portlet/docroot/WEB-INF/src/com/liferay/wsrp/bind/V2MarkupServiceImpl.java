@@ -558,9 +558,8 @@ public class V2MarkupServiceImpl
 					layout.getGroupId(), layout.isPrivateLayout(),
 					layout.getLayoutId(), layout.getTypeSettings());
 
-				// add portlet preferences
 				PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-						layout, portletId);
+					layout, portletId);
 			}
 
 			return layout;
