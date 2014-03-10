@@ -14,6 +14,14 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.model.SyncSite;
+import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.util.FileUtil;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import java.util.Map;
 
 /**
@@ -25,6 +33,27 @@ public class GetAllSyncDLObjectsEvent extends BaseSyncDLObjectUpdateEvent {
 		long syncAccountId, Map<String, Object> parameters) {
 
 		super(syncAccountId, _URL_PATH, parameters);
+	}
+
+	@Override
+	protected String processRequest() throws Exception {
+		SyncSite syncSite = (SyncSite)getParameterValue("syncSite");
+
+		String filePathName = syncSite.getFilePathName();
+
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			filePathName, getSyncAccountId());
+
+		if (syncFile == null) {
+			Files.createDirectories(Paths.get(filePathName));
+
+			SyncFileService.addSyncFile(
+				null, null, filePathName, FileUtil.getFileKey(filePathName),
+				filePathName, null, filePathName, 0, syncSite.getGroupId(),
+				syncSite.getSyncAccountId(), SyncFile.TYPE_FOLDER);
+		}
+
+		return super.processRequest();
 	}
 
 	private static final String _URL_PATH =

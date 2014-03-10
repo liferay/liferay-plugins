@@ -46,6 +46,7 @@ public class GetSyncDLObjectUpdateEvent extends BaseSyncDLObjectUpdateEvent {
 
 			parameters.put("folderId", 0);
 			parameters.put("repositoryId", syncSite.getGroupId());
+			parameters.put("syncSite", syncSite);
 
 			GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
 				new GetAllSyncDLObjectsEvent(getSyncAccountId(), parameters);

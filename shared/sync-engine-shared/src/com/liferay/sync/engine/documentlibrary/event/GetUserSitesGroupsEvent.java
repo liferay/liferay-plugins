@@ -17,7 +17,9 @@ package com.liferay.sync.engine.documentlibrary.event;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncSite;
+import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncSiteService;
 
 import java.util.HashSet;
@@ -50,6 +52,13 @@ public class GetUserSitesGroupsEvent extends BaseEvent {
 				remoteSyncSite.getGroupId(), getSyncAccountId());
 
 			if (localSyncSite == null) {
+				SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+					getSyncAccountId());
+
+				remoteSyncSite.setFilePathName(
+					syncAccount.getFilePathName() + "/" +
+						remoteSyncSite.getName());
+
 				remoteSyncSite.setSyncAccountId(getSyncAccountId());
 
 				SyncSiteService.update(remoteSyncSite);

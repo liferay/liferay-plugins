@@ -19,6 +19,7 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
+import com.liferay.sync.engine.util.SyncSiteTestUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -47,7 +48,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_syncSite = SyncSiteService.addSyncSite(
+		_syncSite = SyncSiteTestUtil.addSyncSite(
 			10158, filePathName + "/test-site", 10185,
 			syncAccount.getSyncAccountId());
 	}
@@ -73,6 +74,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 		parameters.put("folderId", 0);
 		parameters.put("repositoryId", _syncSite.getGroupId());
+		parameters.put("syncSite", _syncSite);
 
 		GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
 			new GetAllSyncDLObjectsEvent(

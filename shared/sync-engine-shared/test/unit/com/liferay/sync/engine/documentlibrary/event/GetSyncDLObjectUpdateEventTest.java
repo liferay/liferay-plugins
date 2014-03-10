@@ -21,6 +21,7 @@ import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.SyncFileTestUtil;
+import com.liferay.sync.engine.util.SyncSiteTestUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -49,7 +50,7 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_syncSite = SyncSiteService.addSyncSite(
+		_syncSite = SyncSiteTestUtil.addSyncSite(
 			10158, filePathName + "/test-site", 10185,
 			syncAccount.getSyncAccountId());
 

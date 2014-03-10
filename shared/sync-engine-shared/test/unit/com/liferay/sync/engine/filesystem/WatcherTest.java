@@ -25,6 +25,7 @@ import com.liferay.sync.engine.service.SyncWatchEventService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.OSDetector;
+import com.liferay.sync.engine.util.SyncSiteTestUtil;
 
 import java.io.BufferedWriter;
 
@@ -57,7 +58,7 @@ public class WatcherTest extends BaseTestCase {
 	public void setUp() throws Exception {
 		super.setUp();
 
-		_syncSite = SyncSiteService.addSyncSite(
+		_syncSite = SyncSiteTestUtil.addSyncSite(
 			10158, filePathName + "/test-site", 10184,
 			syncAccount.getSyncAccountId());
 
