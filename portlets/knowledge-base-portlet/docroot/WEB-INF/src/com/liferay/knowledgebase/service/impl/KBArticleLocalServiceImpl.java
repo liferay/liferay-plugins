@@ -1254,9 +1254,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return;
 		}
 
+		Date now = new Date();
+
 		String[] directoryNames = DLStoreUtil.getFileNames(
 			companyId, CompanyConstants.SYSTEM, _TEMP_DIR_NAME_PREFIX);
-		Date now = new Date();
 
 		for (String directoryName : directoryNames) {
 			String[] fileNames = DLStoreUtil.getFileNames(
@@ -1271,7 +1272,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				}
 				catch (Exception e) {
 					if (_log.isWarnEnabled()) {
-						_log.error("Unable to get temp file " + e.getMessage());
+						_log.warn("Unable to get temp file: " + e.getMessage());
 					}
 				}
 
