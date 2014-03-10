@@ -302,7 +302,7 @@ $defaultTextColor: #202020;
 						border-width: 0;
 						color: #FFF;
 						float: right;
-						font-size: 1.65em;
+						font-size: 1.6em;
 						margin: .17em;
 						padding: .28em .35em;
 
@@ -312,6 +312,10 @@ $defaultTextColor: #202020;
 
 						i {
 							margin-top: 0;
+
+							&:before {
+								padding: 1px;
+							}
 						}
 					}
 

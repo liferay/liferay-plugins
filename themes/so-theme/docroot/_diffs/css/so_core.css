@@ -8,6 +8,7 @@
 
 	@include header;
 
+	overflow: hidden;
 	padding: 0.86em 1.5em;
 
 	h1, h2 {
@@ -20,6 +21,7 @@
 
 	.site-title {
 		display: inline-block;
+		float: left;
 
 		&, a {
 			color: $red;
