@@ -9,7 +9,14 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="elasticsearch" org="org.elasticsearch" rev="1.0.0" />
+		<dependency name="elasticsearch-analysis-icu" org="org.elasticsearch" rev="2.0.0" />
+		<dependency name="elasticsearch-analysis-kuromoji" org="org.elasticsearch" rev="2.0.0" />
+		<dependency name="elasticsearch-analysis-smartcn" org="org.elasticsearch" rev="2.0.0" />
+		<dependency org="com.ibm.icu" name="icu4j" rev="52.1" />
 		<dependency name="lucene-analyzers-common" org="org.apache.lucene" rev="4.6.1" />
+		<dependency name="lucene-analyzers-icu" org="org.apache.lucene" rev="4.6.1" />
+		<dependency name="lucene-analyzers-kuromoji" org="org.apache.lucene" rev="4.6.1" />
+		<dependency name="lucene-analyzers-smartcn" org="org.apache.lucene" rev="4.6.1" />
 		<dependency name="lucene-codecs" org="org.apache.lucene" rev="4.6.1" />
 		<dependency name="lucene-core" org="org.apache.lucene" rev="4.6.1" />
 		<dependency name="lucene-grouping" org="org.apache.lucene" rev="4.6.1" />
