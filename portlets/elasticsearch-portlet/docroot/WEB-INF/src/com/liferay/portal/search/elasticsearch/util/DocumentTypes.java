@@ -12,21 +12,19 @@
  * details.
  */
 
-package com.liferay.portal.search.elasticsearch.connection;
-
-import org.elasticsearch.client.Client;
+package com.liferay.portal.search.elasticsearch.util;
 
 /**
  * @author Michael C. Han
  */
-public interface ElasticsearchConnection {
+public class DocumentTypes {
 
-	public static final String CLUSTER_NAME = "LiferayElasticSearch";
+	public static final String KEYWORD_QUERY_DOCUMENT_TYPE =
+		"KeywordQueryDocumentType";
 
-	public void close();
+	public static final String LIFERAY_DOCUMENT_TYPE = "LiferayDocumentType";
 
-	public Client getClient();
-
-	public void initialize();
+	public static final String SPELL_CHECK_DOCUMENT_TYPE =
+		"SpellCheckDocumentType";
 
 }

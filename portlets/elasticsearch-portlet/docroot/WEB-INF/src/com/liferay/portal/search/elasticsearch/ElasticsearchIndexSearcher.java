@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnectionManager;
 import com.liferay.portal.search.elasticsearch.facet.ElasticsearchFacetFieldCollector;
 import com.liferay.portal.search.elasticsearch.facet.FacetProcessorUtil;
+import com.liferay.portal.search.elasticsearch.util.DocumentTypes;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -86,6 +87,8 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 		SearchRequestBuilder searchRequestBuilder = client.prepareSearch(
 			String.valueOf(searchContext.getCompanyId()));
+
+		searchRequestBuilder.setTypes(DocumentTypes.LIFERAY_DOCUMENT_TYPE);
 
 		addFacets(searchRequestBuilder, searchContext);
 		addHighlights(searchRequestBuilder, query.getQueryConfig());
