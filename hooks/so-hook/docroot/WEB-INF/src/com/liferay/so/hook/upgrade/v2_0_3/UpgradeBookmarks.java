@@ -45,9 +45,9 @@ public class UpgradeBookmarks extends UpgradeProcess {
 
 			@Override
 			protected void addCriteria(DynamicQuery dynamicQuery) {
-				Property columnIdProperty = PropertyFactoryUtil.forName("name");
+				Property property = PropertyFactoryUtil.forName("name");
 
-				dynamicQuery.add(columnIdProperty.eq("Bookmarks"));
+				dynamicQuery.add(property.eq("Bookmarks"));
 			}
 
 			@Override
