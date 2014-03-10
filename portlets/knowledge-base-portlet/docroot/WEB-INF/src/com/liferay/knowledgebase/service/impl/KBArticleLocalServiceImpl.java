@@ -1248,10 +1248,11 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	protected void checkAttachments(long companyId)
 		throws PortalException, SystemException {
 
-		String dirName = _TEMP_DIR_NAME_PREFIX.concat(StringPool.SLASH).concat(
-			String.valueOf(counterLocalService.increment()));
+		if (!DLStoreUtil.hasDirectory(
+				companyId, CompanyConstants.SYSTEM, _TEMP_DIR_NAME_PREFIX)) {
 
-		DLStoreUtil.addDirectory(companyId, CompanyConstants.SYSTEM, dirName);
+			return;
+		}
 
 		String[] fileNames = DLStoreUtil.getFileNames(
 			companyId, CompanyConstants.SYSTEM, _TEMP_DIR_NAME_PREFIX);
@@ -1262,9 +1263,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			DLStoreUtil.deleteDirectory(
 				companyId, CompanyConstants.SYSTEM, fileNames[i]);
 		}
-
-		DLStoreUtil.deleteDirectory(
-			companyId, CompanyConstants.SYSTEM, dirName);
 	}
 
 	protected void deleteAssets(KBArticle kbArticle)
