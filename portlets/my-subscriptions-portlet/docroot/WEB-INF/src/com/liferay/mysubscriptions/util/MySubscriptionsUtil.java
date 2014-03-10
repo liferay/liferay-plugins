@@ -32,11 +32,12 @@ import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.blogs.model.BlogsEntry;
-import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
-import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeLocalServiceUtil;
+import com.liferay.portlet.journal.model.JournalFolder;
 import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
@@ -137,6 +138,21 @@ public class MySubscriptionsUtil {
 				BookmarksFolderLocalServiceUtil.getBookmarksFolder(classPK);
 
 			return bookmarksFolder.getName();
+		}
+		else if (className.equals(DLFileEntryType.class.getName())) {
+			if (group != null) {
+				return LanguageUtil.get(locale, "basic-document");
+			}
+
+			DLFileEntryType dlFileEntryType =
+				DLFileEntryTypeLocalServiceUtil.getDLFileEntryType(classPK);
+
+			return dlFileEntryType.getName(locale);
+		}
+		else if (className.equals(JournalFolder.class.getName())) {
+			if (group != null) {
+				return LanguageUtil.get(locale, "home");
+			}
 		}
 		else if (className.equals(_KNOWLEDGE_BASE_MODEL_CLASSNAME)) {
 			title = "Knowledge Base Article at ";
