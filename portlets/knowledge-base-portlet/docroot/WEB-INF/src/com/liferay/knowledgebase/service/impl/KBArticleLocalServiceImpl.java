@@ -1256,12 +1256,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		Date now = new Date();
 
-		String[] directoryNames = DLStoreUtil.getFileNames(
+		String[] dirNames = DLStoreUtil.getFileNames(
 			companyId, CompanyConstants.SYSTEM, _TEMP_DIR_NAME_PREFIX);
 
-		for (String directoryName : directoryNames) {
+		for (String dirName : dirNames) {
 			String[] fileNames = DLStoreUtil.getFileNames(
-				companyId, CompanyConstants.SYSTEM, directoryName);
+				companyId, CompanyConstants.SYSTEM, dirName);
 
 			File file = null;
 
@@ -1285,7 +1285,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				(now.getTime() - file.lastModified()) > Time.DAY) {
 
 				DLStoreUtil.deleteDirectory(
-					companyId, CompanyConstants.SYSTEM, directoryName);
+					companyId, CompanyConstants.SYSTEM, dirName);
 			}
 		}
 	}
