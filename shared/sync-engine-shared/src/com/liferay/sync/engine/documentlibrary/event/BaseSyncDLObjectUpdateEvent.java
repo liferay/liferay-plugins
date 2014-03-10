@@ -52,12 +52,11 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			if (syncFile.isFolder()) {
 				return;
 			}
-			else {
-				String checksum = FileUtil.getChecksum(filePath);
 
-				if (checksum.equals(syncFile.getChecksum())) {
-					return;
-				}
+			String checksum = FileUtil.getChecksum(filePath);
+
+			if (checksum.equals(syncFile.getChecksum())) {
+				return;
 			}
 		}
 
