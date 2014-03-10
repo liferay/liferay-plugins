@@ -17,7 +17,12 @@
 
 package com.liferay.so.hook.upgrade.v2_0_3;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutSet;
@@ -26,8 +31,7 @@ import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
 import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
-
-import java.util.List;
+import com.liferay.portlet.bookmarks.service.persistence.BookmarksFolderActionableDynamicQuery;
 
 /**
  * @author Evan Thibodeau
@@ -36,35 +40,47 @@ public class UpgradeBookmarks extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		List<Group> groups = GroupLocalServiceUtil.getGroups(
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+		ActionableDynamicQuery actionableDynamicQuery =
+			new BookmarksFolderActionableDynamicQuery() {
 
-		for (Group group : groups) {
-			LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-				group.getGroupId(), group.hasPrivateLayouts());
+			@Override
+			protected void addCriteria(DynamicQuery dynamicQuery) {
+				Property columnIdProperty = PropertyFactoryUtil.forName("name");
 
-			String themeId = layoutSet.getThemeId();
-
-			if (!themeId.equals("so_WAR_sotheme")) {
-				continue;
+				dynamicQuery.add(columnIdProperty.eq("Bookmarks"));
 			}
 
-			List<BookmarksFolder> folders =
-				BookmarksFolderLocalServiceUtil.getFolders(group.getGroupId());
+			@Override
+			protected void performAction(Object object)
+				throws PortalException, SystemException {
 
-			for (BookmarksFolder folder : folders) {
-				String name = folder.getName();
+				BookmarksFolder bookmarksFolder = (BookmarksFolder)object;
 
-				if (!name.equals("Bookmarks")) {
-					continue;
+				Group group = GroupLocalServiceUtil.fetchGroup(
+					bookmarksFolder.getGroupId());
+
+				if (group == null) {
+					return;
+				}
+
+				LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
+					group.getGroupId(), group.hasPrivateLayouts());
+
+				String themeId = layoutSet.getThemeId();
+
+				if (!themeId.equals("so_WAR_sotheme")) {
+					return;
 				}
 
 				BookmarksFolderLocalServiceUtil.updateFolder(
-					folder.getUserId(), folder.getFolderId(),
-					folder.getParentFolderId(), name, folder.getDescription(),
+					bookmarksFolder.getUserId(), bookmarksFolder.getFolderId(),
+					bookmarksFolder.getParentFolderId(),
+					bookmarksFolder.getName(), bookmarksFolder.getDescription(),
 					true, new ServiceContext());
 			}
-		}
+		};
+
+		actionableDynamicQuery.performActions();
 	}
 
 }
