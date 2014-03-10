@@ -39,13 +39,10 @@ import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
-<<<<<<< HEAD
 import org.apache.http.conn.routing.HttpRoutePlanner;
-=======
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
->>>>>>> sync-engine-shared Add session parameter to trust self-signed certificates
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.ContentBody;
@@ -241,8 +238,9 @@ public class Session {
 			ContentType.create(MediaType.TEXT_PLAIN, Charset.defaultCharset()));
 	}
 
-	private static HttpRoutePlanner _httpRoutePlanner;
 	private static Logger _logger = LoggerFactory.getLogger(Session.class);
+
+	private static HttpRoutePlanner _httpRoutePlanner;
 
 	private HttpClient _httpClient;
 	private HttpHost _httpHost;
