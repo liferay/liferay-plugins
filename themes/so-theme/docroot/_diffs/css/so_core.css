@@ -901,10 +901,21 @@ html.aui {
 			list-style: none;
 			margin-left: 0;
 
-			li:before {
+			li {
+				line-height: 24px;
+			}
+
+			.social-office-disabled:before {
 				color: #DDD;
 
 				@include font-awesome("\f0ac");
+
+				font-size: 18px;
+			}
+
+			.social-office-enabled {
+				background: url(@portal_ctx@/html/icons/social_office.png) no-repeat 0 50%;
+				padding-left: 15px;
 			}
 
 			a {
