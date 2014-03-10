@@ -81,10 +81,10 @@ import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
+import java.io.File;
 import java.io.InputStream;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -1254,14 +1254,38 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			return;
 		}
 
-		String[] fileNames = DLStoreUtil.getFileNames(
+		String[] directoryNames = DLStoreUtil.getFileNames(
 			companyId, CompanyConstants.SYSTEM, _TEMP_DIR_NAME_PREFIX);
+		Date now = new Date();
 
-		Arrays.sort(fileNames);
+		for (String directoryName : directoryNames) {
+			String[] fileNames = DLStoreUtil.getFileNames(
+				companyId, CompanyConstants.SYSTEM, directoryName);
 
-		for (int i = 0; i < fileNames.length - 50; i++) {
-			DLStoreUtil.deleteDirectory(
-				companyId, CompanyConstants.SYSTEM, fileNames[i]);
+			File file = null;
+
+			for (String fileName : fileNames) {
+				try {
+					file = DLStoreUtil.getFile(
+						companyId, CompanyConstants.SYSTEM, fileName);
+				}
+				catch (Exception e) {
+					if (_log.isWarnEnabled()) {
+						_log.error("Unable to get temp file " + e.getMessage());
+					}
+				}
+
+				if (file != null) {
+					break;
+				}
+			}
+
+			if ((file != null) &&
+				(now.getTime() - file.lastModified()) > Time.DAY) {
+
+				DLStoreUtil.deleteDirectory(
+					companyId, CompanyConstants.SYSTEM, directoryName);
+			}
 		}
 	}
 
