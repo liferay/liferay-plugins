@@ -18,10 +18,28 @@ $defaultTextColor: #202020;
 		margin: 1em 0;
 
 		li {
-			background: url(@portal_ctx@/html/icons/sites_admin.png) no-repeat 10px 50%;
+			background: no-repeat 10px 50%;
 			border: 1px solid #E8EFF4;
 			margin: 4px;
 			padding: 3px 10px 3px 30px;
+			position: relative;
+
+			&:before {
+				-webkit-font-smoothing: antialiased;
+				color: #DDD;
+				content: "\f0ac";
+				font-family: 'fontawesome-alloy';
+				font-size: 18px;
+				font-style: normal;
+				font-variant: normal;
+				font-weight: normal;
+				left: 10px;
+				line-height: 1;
+				position: absolute;
+				speak: none;
+				text-transform: none;
+				top: 7px;
+			}
 
 			span {
 				display: block;
@@ -83,6 +101,10 @@ $defaultTextColor: #202020;
 					background-color: transparent;
 					border: 1px solid #E8EFF4;
 				}
+
+				&:before {
+					display: none;
+				}
 			}
 
 			&.more {
@@ -94,10 +116,18 @@ $defaultTextColor: #202020;
 					display: block;
 					padding: 0.5em 33px;
 				}
+
+				&:before {
+					display: none;
+				}
 			}
 
 			&.social-office-enabled {
 				background-image: url(@portal_ctx@/html/icons/social_office.png);
+
+				&:before {
+					display: none;
+				}
 			}
 		}
 
