@@ -82,7 +82,7 @@ public class AutoCompleteUserAction extends BaseStrutsAction {
 		Hits hits = UserLocalServiceUtil.search(
 			themeDisplay.getCompanyId(), query, query, query, query,
 			StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, null, false,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (Sort)null);
+			0, 100, (Sort)null);
 
 		List<User> users = UsersAdminUtil.getUsers(hits);
 
