@@ -107,6 +107,24 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 		);
 	</c:if>
 
+	var views = [];
+
+	<c:if test="<%= !hideDayView %>">
+		views.push(window.<portlet:namespace />dayView);
+	</c:if>
+
+	<c:if test="<%= !hideWeekView %>">
+		views.push(window.<portlet:namespace />weekView);
+	</c:if>
+
+	<c:if test="<%= !hideMonthView %>">
+		views.push(window.<portlet:namespace />monthView);
+	</c:if>
+
+	<c:if test="<%= !hideAgendaView %>">
+		views.push(window.<portlet:namespace />agendaView);
+	</c:if>
+
 	window.<portlet:namespace />scheduler = new Liferay.Scheduler(
 		{
 			activeView: window['<portlet:namespace /><%= HtmlUtil.escapeJS(activeView) %>View'],
@@ -154,23 +172,7 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 			%>
 
 			todayDate: new Date(<%= todayYear %>, <%= todayMonth %>, <%= todayDay %>),
-			views: [
-				<c:if test="<%= !hideDayView %>">
-					window.<portlet:namespace />dayView,
-				</c:if>
-
-				<c:if test="<%= !hideWeekView %>">
-					window.<portlet:namespace />weekView,
-				</c:if>
-
-				<c:if test="<%= !hideMonthView %>">
-					window.<portlet:namespace />monthView,
-				</c:if>
-
-				<c:if test="<%= !hideAgendaView %>">
-					window.<portlet:namespace />agendaView
-				</c:if>
-			]
+			views: views
 		}
 	);
 </aui:script>
