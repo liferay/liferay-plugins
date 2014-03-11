@@ -71,27 +71,25 @@ public class AutoCompleteUserAction extends BaseStrutsAction {
 
 	protected JSONArray getJSONArray(HttpServletRequest request)
 		throws PortalException, SystemException {
+		
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		String query = ParamUtil.getString(request, "query") + StringPool.STAR;
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		long userId = PrincipalThreadLocal.getUserId();
-
-		long companyId = CompanyThreadLocal.getCompanyId();
-
 		Hits hits = UserLocalServiceUtil.search(
-			companyId, query, query, query, query, StringPool.BLANK,
-			WorkflowConstants.STATUS_APPROVED, null, false, QueryUtil.ALL_POS,
-			QueryUtil.ALL_POS, (Sort)null);
+			themeDisplay.getCompanyId(), query, query, query, query,
+			StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, null, false,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, (Sort)null);
 
 		List<User> users = UsersAdminUtil.getUsers(hits);
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		for (User user : users) {
-			if (user.isDefaultUser() || (userId == user.getUserId())) {
+			if (user.isDefaultUser() ||
+				(themeDisplay.getUserId() == user.getUserId())) {
+
 				continue;
 			}
 
