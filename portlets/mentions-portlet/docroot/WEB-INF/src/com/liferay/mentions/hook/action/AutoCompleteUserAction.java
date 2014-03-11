@@ -14,7 +14,6 @@
 
 package com.liferay.mentions.hook.action;
 
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -30,8 +29,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.security.auth.CompanyThreadLocal;
-import com.liferay.portal.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -71,7 +68,7 @@ public class AutoCompleteUserAction extends BaseStrutsAction {
 
 	protected JSONArray getJSONArray(HttpServletRequest request)
 		throws PortalException, SystemException {
-		
+
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
@@ -81,8 +78,8 @@ public class AutoCompleteUserAction extends BaseStrutsAction {
 
 		Hits hits = UserLocalServiceUtil.search(
 			themeDisplay.getCompanyId(), query, query, query, query,
-			StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, null, false,
-			0, 100, (Sort)null);
+			StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, null, false, 0,
+			100, (Sort)null);
 
 		List<User> users = UsersAdminUtil.getUsers(hits);
 
