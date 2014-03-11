@@ -72,12 +72,12 @@ public class AutoCompleteUserAction extends BaseStrutsAction {
 	protected JSONArray getJSONArray(HttpServletRequest request)
 		throws PortalException, SystemException {
 		
+		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		String query = ParamUtil.getString(request, "query") + StringPool.STAR;
-
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		Hits hits = UserLocalServiceUtil.search(
 			themeDisplay.getCompanyId(), query, query, query, query,
