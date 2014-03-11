@@ -46,15 +46,24 @@ public class SOHotDeployMessageListener extends HotDeployMessageListener {
 	}
 
 	protected void registerContactsExtension() throws Exception {
+		if (_registerMethodKey == null) {
+			try {
+				_registerMethodKey = new MethodKey(
+					ClassResolverUtil.resolveByPortletClassLoader(
+						"com.liferay.contacts.util.ContactsExtensionsUtil",
+						"contacts-portlet"),
+					"register", String.class, String.class);
+			}
+			catch (RuntimeException re) {
+				return;
+			}
+		}
+
 		PortletClassInvoker.invoke(
 			"1_WAR_contactsportlet", _registerMethodKey,
 			ClpSerializer.getServletContextName(), "/contacts/projects.jsp");
 	}
 
-	private MethodKey _registerMethodKey = new MethodKey(
-		ClassResolverUtil.resolveByPortletClassLoader(
-			"com.liferay.contacts.util.ContactsExtensionsUtil",
-			"contacts-portlet"),
-		"register", String.class, String.class);
+	private MethodKey _registerMethodKey;
 
 }
