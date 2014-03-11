@@ -7,6 +7,7 @@
 		<icon>/icon.png</icon>
 		<user-notification-definitions>com/liferay/mentions/portlet/mentions-user-notification-definitions.xml</user-notification-definitions>
 		<user-notification-handler-class>com.liferay.mentions.portlet.notifications.MentionsUserNotificationHandler</user-notification-handler-class>
+		<add-default-resource>true</add-default-resource>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
