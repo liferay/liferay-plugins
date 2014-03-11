@@ -17,13 +17,17 @@ package com.liferay.portal.search.solr;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseGenericSpellCheckIndexWriter;
+import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.SuggestionConstants;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.util.PortletKeys;
+
+import java.util.Collection;
 
 import org.apache.solr.client.solrj.SolrServer;
 
@@ -86,8 +90,29 @@ public class SolrSpellCheckIndexWriter
 		_commit = commit;
 	}
 
+	public void setIndexWriter(IndexWriter indexWriter) {
+		_indexWriter = indexWriter;
+	}
+
 	public void setSolrServer(SolrServer solrServer) {
 		_solrServer = solrServer;
+	}
+
+	@Override
+	protected void addDocument(
+			String documentType, SearchContext searchContext, Document document)
+		throws SearchException {
+
+		_indexWriter.addDocument(searchContext, document);
+	}
+
+	@Override
+	protected void addDocuments(
+			String documentType, SearchContext searchContext,
+			Collection<Document> documents)
+		throws SearchException {
+
+		_indexWriter.addDocuments(searchContext, documents);
 	}
 
 	protected void addQuerySeparator(StringBundler sb) {
@@ -128,6 +153,7 @@ public class SolrSpellCheckIndexWriter
 		SolrSpellCheckIndexWriter.class);
 
 	private boolean _commit;
+	private IndexWriter _indexWriter;
 	private SolrServer _solrServer;
 
 }
