@@ -352,10 +352,10 @@ AUI().use(
 								var favoriteHtml;
 
 								if (result.favoriteURL == '') {
-									favoriteHtml = '<span class="action favorite" title="' + Liferay.Language.get("favorite-is-not-allowed-unless-you-have-a-membership") + '"><a href="" class="disabled"></a></span>';
+									favoriteHtml = '<span class="action favorite" title="' + Liferay.Language.get("you-must-be-a-member-of-the-site-to-add-to-favorites") + '"><a href="" class="disabled"></a></span>';
 								}
 								else {
-									favoriteHtml = result.favoriteURL ? '<span class="action favorite" title="' + Liferay.Language.get("add-this-site-into-my-favorites") + '"><a href="' + result.favoriteURL + '">' + Liferay.Language.get('favorite') + '</a></span>' : '<span class="action unfavorite" title="' + Liferay.Language.get("remove-this-site-from-my-favorites") + '"><a href="' + result.unfavoriteURL + '">' + Liferay.Language.get('unfavorite') + '</a></span>';
+									favoriteHtml = result.favoriteURL ? '<span class="action favorite" title="' + Liferay.Language.get("add-to-favorites") + '"><a href="' + result.favoriteURL + '">' + Liferay.Language.get('add-to-favorites') + '</a></span>' : '<span class="action unfavorite" title="' + Liferay.Language.get("remove-from-favorites") + '"><a href="' + result.unfavoriteURL + '">' + Liferay.Language.get('remove-from-favorites') + '</a></span>';
 								}
 
 								var name = result.name;
