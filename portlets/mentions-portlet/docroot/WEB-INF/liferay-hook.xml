@@ -11,6 +11,6 @@
 	</service>
 	<struts-action>
 	    <struts-action-path>/portal/auto_complete_user</struts-action-path>
-	    <struts-action-impl>com.liferay.mentions.hook.action.AutoCompleteUserAction</struts-action-impl>
+	    <struts-action-impl>com.liferay.mentions.portlet.AutoCompleteUserAction</struts-action-impl>
 	</struts-action>
 </hook>

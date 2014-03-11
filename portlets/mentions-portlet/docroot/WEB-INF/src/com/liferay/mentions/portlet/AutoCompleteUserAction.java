@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mentions.hook.action;
+package com.liferay.mentions.portlet;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
