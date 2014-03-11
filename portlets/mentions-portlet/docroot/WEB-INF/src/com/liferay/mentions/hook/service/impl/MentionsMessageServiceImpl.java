@@ -14,9 +14,11 @@
 
 package com.liferay.mentions.hook.service.impl;
 
+import com.liferay.mentions.util.PortletKeys;
 import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -108,6 +110,8 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			return;
 		}
 
+		String contentURL = (String)serviceContext.getAttribute("contentURL");
+
 		String messageUserEmailAddress = PortalUtil.getUserEmailAddress(
 			message.getUserId());
 		String messageUserName = PortalUtil.getUserName(
@@ -126,17 +130,33 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
 		subscriptionSender.setBody(body);
+		subscriptionSender.setClassName(message.getModelClassName());
+		subscriptionSender.setClassPK(message.getMessageId());
 		subscriptionSender.setCompanyId(message.getCompanyId());
 		subscriptionSender.setContextAttribute(
 			"[$COMMENTS_BODY$]", message.getBody(true), false);
 		subscriptionSender.setContextAttributes(
 			"[$COMMENTS_USER_ADDRESS$]", messageUserEmailAddress,
 			"[$COMMENTS_USER_NAME$]", messageUserName, "[$CONTENT_URL$]",
-			serviceContext.getAttribute("contentURL"));
+			contentURL);
+		subscriptionSender.setEntryTitle(message.getBody());
+		subscriptionSender.setEntryURL(contentURL);
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId(
 			"mb_discussion", message.getCategoryId(), message.getMessageId());
+
+		int notificationType =
+			UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY;
+
+		if (serviceContext.isCommandUpdate()) {
+			notificationType =
+				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
+		}
+
+		subscriptionSender.setNotificationType(notificationType);
+
+		subscriptionSender.setPortletId(PortletKeys.MENTIONS);
 		subscriptionSender.setScopeGroupId(message.getGroupId());
 		subscriptionSender.setServiceContext(serviceContext);
 		subscriptionSender.setSubject(subject);
@@ -155,6 +175,8 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			subscriptionSender.addRuntimeSubscribers(
 				user.getEmailAddress(), user.getFullName());
 		}
+
+		subscriptionSender.flushNotificationsAsync();
 	}
 
 	private static Pattern _pattern = Pattern.compile(
