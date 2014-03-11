@@ -110,7 +110,7 @@ public class Session {
 	}
 
 	public HttpResponse executeGet(String urlPath) throws Exception {
-		HttpGet httpGet = new HttpGet(_url.toString() + urlPath);
+		HttpGet httpGet = new HttpGet(urlPath);
 
 		return _httpClient.execute(_httpHost, httpGet, _getBasicHttpContext());
 	}
@@ -119,7 +119,7 @@ public class Session {
 			String urlPath, ResponseHandler<? extends T> responseHandler)
 		throws Exception {
 
-		HttpGet httpGet = new HttpGet(_url.toString() + urlPath);
+		HttpGet httpGet = new HttpGet(urlPath);
 
 		return _httpClient.execute(
 			_httpHost, httpGet, responseHandler, _getBasicHttpContext());
