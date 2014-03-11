@@ -49,9 +49,11 @@ $defaultTextColor: #202020;
 				&.disabled {
 					filter: alpha(opacity=20);
 					height: 16px;
-					margin: 13px 5px;
+					margin: 10px 5px;
 					opacity: 0.2;
+					position: relative;
 					width: 16px;
+					z-index: 1;
 				}
 			}
 

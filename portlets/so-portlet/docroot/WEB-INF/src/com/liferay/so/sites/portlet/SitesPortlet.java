@@ -379,7 +379,7 @@ public class SitesPortlet extends MVCPortlet {
 					deletePortletURL.setParameter(
 						"struts_action", "/sites_admin/edit_site");
 					deletePortletURL.setParameter(
-							Constants.CMD, Constants.DELETE);
+						Constants.CMD, Constants.DELETE);
 					deletePortletURL.setParameter(
 						"redirect", themeDisplay.getURLCurrent());
 					deletePortletURL.setParameter(
