@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mentions.portlet.action;
+package com.liferay.mentions.hook.action;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
