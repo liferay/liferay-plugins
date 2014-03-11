@@ -20,10 +20,13 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -61,6 +64,12 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			userId, userName, groupId, className, classPK, threadId,
 			parentMessageId, subject, body, serviceContext);
 
+		long siteGroupId = PortalUtil.getSiteGroupId(message.getGroupId());
+
+		if (!_isMentionsEnabled(siteGroupId)) {
+			return message;
+		}
+
 		notifyUsers(message, serviceContext);
 
 		return message;
@@ -75,6 +84,12 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		MBMessage message = super.updateDiscussionMessage(
 			userId, messageId, className, classPK, subject, body,
 			serviceContext);
+
+		long siteGroupId = PortalUtil.getSiteGroupId(message.getGroupId());
+
+		if (!_isMentionsEnabled(siteGroupId)) {
+			return message;
+		}
 
 		notifyUsers(message, serviceContext);
 
@@ -177,6 +192,15 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		}
 
 		subscriptionSender.flushNotificationsAsync();
+	}
+
+	private boolean _isMentionsEnabled(long siteGroupId)
+		throws PortalException, SystemException {
+
+		Group group = GroupLocalServiceUtil.getGroup(siteGroupId);
+
+		return GetterUtil.getBoolean(
+			group.getLiveParentTypeSettingsProperty("mentionsEnabled"), true);
 	}
 
 	private static Pattern _pattern = Pattern.compile(
