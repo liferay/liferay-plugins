@@ -352,7 +352,7 @@ AUI().use(
 								var favoriteHtml;
 
 								if (result.favoriteURL == '') {
-									favoriteHtml = '<span class="action favorite" title="' + Liferay.Language.get("you-must-be-a-member-of-the-site-to-add-to-favorites") + '"><a href="" class="disabled"></a></span>';
+									favoriteHtml = '<span class="favorite" title="' + Liferay.Language.get("you-must-be-a-member-of-the-site-to-add-to-favorites") + '"><a href="" class="disabled"></a></span>';
 								}
 								else {
 									favoriteHtml = result.favoriteURL ? '<span class="action favorite" title="' + Liferay.Language.get("add-to-favorites") + '"><a href="' + result.favoriteURL + '">' + Liferay.Language.get('add-to-favorites') + '</a></span>' : '<span class="action unfavorite" title="' + Liferay.Language.get("remove-from-favorites") + '"><a href="' + result.unfavoriteURL + '">' + Liferay.Language.get('remove-from-favorites') + '</a></span>';
