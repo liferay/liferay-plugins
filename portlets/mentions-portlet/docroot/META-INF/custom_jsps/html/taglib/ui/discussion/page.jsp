@@ -17,6 +17,8 @@
 <%@ include file="/html/taglib/ui/discussion/page.portal.jsp" %>
 
 <c:if test="<%= _isMentionsEnabled(themeDisplay.getSiteGroupId()) %>">
+	<liferay-portlet:resourceURL portletName="1_WAR_mentionsportlet" var="autoCompleteUserURL" />
+
 	<aui:script use="liferay-autocomplete-input">
 		new Liferay.AutoCompleteInput(
 			{
@@ -24,8 +26,11 @@
 				'acConfig.resultFilters': function(query, results) {
 					return results;
 				},
+				'acConfig.requestTemplate': function(query) {
+					return 'query=' + query;
+				},
 				inputNode: '#<portlet:namespace /><%= randomNamespace + "postReplyBody" + "0" %>',
-				source: '<%= themeDisplay.getPathMain() %>/portal/auto_complete_user?query={query}',
+				source: '<%= autoCompleteUserURL.toString() + "&" + PortalUtil.getPortletNamespace("1_WAR_mentionsportlet") %>',
 				tplResults: '<div class="taglib-user-display display-style-3"><span><span class="user-profile-image" style="background-image: url(\'{portrait}\'); background-size: 32px 32px; height: 32px; width: 32px;"></span><span class="user-name">{fullName}</span><span class="user-details">@{screenName}</span></span></div>'
 			}
 		);
