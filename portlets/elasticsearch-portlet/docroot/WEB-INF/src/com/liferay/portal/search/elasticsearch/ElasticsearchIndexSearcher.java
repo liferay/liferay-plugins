@@ -215,6 +215,14 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		HighlightField highlightField = highlightFields.get(
 			localizedContentName);
 
+		String snippetFieldName = localizedContentName;
+
+		if (highlightField == null) {
+			highlightField = highlightFields.get(fieldName);
+
+			snippetFieldName = fieldName;
+		}
+
 		if (highlightField != null) {
 			Text[] texts = highlightField.fragments();
 
@@ -236,14 +244,6 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 		snippet = StringUtil.replace(snippet, "<em>", StringPool.BLANK);
 		snippet = StringUtil.replace(snippet, "</em>", StringPool.BLANK);
-
-		String snippetFieldName = localizedContentName;
-
-		if (highlightField == null) {
-			highlightField = highlightFields.get(fieldName);
-
-			snippetFieldName = fieldName;
-		}
 
 		document.addText(
 			Field.SNIPPET.concat(StringPool.UNDERLINE).concat(snippetFieldName),
@@ -355,7 +355,6 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 				scores.add(searchHit.getScore());
 
 				addSnippets(searchHit, document, queryConfig, queryTerms);
-
 			}
 		}
 
