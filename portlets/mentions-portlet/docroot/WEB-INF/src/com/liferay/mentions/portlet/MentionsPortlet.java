@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -44,6 +45,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.portlet.PortletException;
+import javax.portlet.PortletPreferences;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
@@ -127,6 +129,16 @@ public class MentionsPortlet extends MVCPortlet {
 		throws PortalException, SystemException {
 
 		Group group = GroupLocalServiceUtil.getGroup(siteGroupId);
+
+		PortletPreferences preferences = PrefsPropsUtil.getPreferences(
+			group.getCompanyId(), true);
+
+		boolean companyMentionsEnabled = GetterUtil.getBoolean(
+			preferences.getValue("mentionsEnabled", null), true);
+
+		if (!companyMentionsEnabled) {
+			return false;
+		}
 
 		return GetterUtil.getBoolean(
 			group.getLiveParentTypeSettingsProperty("mentionsEnabled"), true);

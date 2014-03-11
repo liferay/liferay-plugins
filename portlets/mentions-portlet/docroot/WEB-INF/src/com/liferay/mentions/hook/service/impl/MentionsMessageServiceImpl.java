@@ -41,6 +41,8 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.portlet.PortletPreferences;
+
 /**
  * @author Sergio González
  * @author Iván Zaera
@@ -198,6 +200,16 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		throws PortalException, SystemException {
 
 		Group group = GroupLocalServiceUtil.getGroup(siteGroupId);
+
+		PortletPreferences preferences = PrefsPropsUtil.getPreferences(
+			group.getCompanyId(), true);
+
+		boolean companyMentionsEnabled = GetterUtil.getBoolean(
+			preferences.getValue("mentionsEnabled", null), true);
+
+		if (!companyMentionsEnabled) {
+			return false;
+		}
 
 		return GetterUtil.getBoolean(
 			group.getLiveParentTypeSettingsProperty("mentionsEnabled"), true);
