@@ -41,6 +41,14 @@
 private boolean _isMentionsEnabled(long siteGroupId) throws PortalException, SystemException {
 	Group group = GroupLocalServiceUtil.getGroup(siteGroupId);
 
+	PortletPreferences preferences = PrefsPropsUtil.getPreferences(group.getCompanyId(), true);
+
+	boolean companyMentionsEnabled = GetterUtil.getBoolean(preferences.getValue("mentionsEnabled", null), true);
+
+	if (!companyMentionsEnabled) {
+		return false;
+	}
+
 	return GetterUtil.getBoolean(group.getLiveParentTypeSettingsProperty("mentionsEnabled"), true);
 }
 %>

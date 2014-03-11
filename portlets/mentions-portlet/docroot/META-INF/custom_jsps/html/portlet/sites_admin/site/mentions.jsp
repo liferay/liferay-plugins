@@ -33,6 +33,16 @@ else {
 }
 
 boolean mentionsEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("mentionsEnabled"), true);
+
+PortletPreferences preferences = PrefsPropsUtil.getPreferences(company.getCompanyId(), true);
+
+boolean companyMentionsEnabled = GetterUtil.getBoolean(PrefsParamUtil.getBoolean(preferences, request, "mentionsEnabled"), true);
 %>
 
-<aui:input checked="<%= mentionsEnabled %>" label="enable-mentions" name="TypeSettingsProperties--mentionsEnabled--" type="checkbox" value="<%= mentionsEnabled %>" />
+<c:if test="<%= !companyMentionsEnabled %>">
+	<div class="alert alert-warning">
+		<liferay-ui:message key="mentions-are-disabled-in-the-portal" />
+	</div>
+</c:if>
+
+<aui:input checked="<%= mentionsEnabled %>" disabled="<%= !companyMentionsEnabled %>" label="enable-mentions" name="TypeSettingsProperties--mentionsEnabled--" type="checkbox" value="<%= mentionsEnabled %>" />
