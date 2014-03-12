@@ -59,10 +59,11 @@ public class MentionsPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
 		try {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)resourceRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
 			if (!MentionsUtil.isMentionsEnabled(
 					themeDisplay.getSiteGroupId())) {
 
@@ -71,10 +72,11 @@ public class MentionsPortlet extends MVCPortlet {
 
 			HttpServletRequest request = PortalUtil.getHttpServletRequest(
 				resourceRequest);
-			HttpServletResponse response = PortalUtil.getHttpServletResponse(
-				resourceResponse);
 
 			JSONArray jsonArray = getJSONArray(request);
+
+			HttpServletResponse response = PortalUtil.getHttpServletResponse(
+				resourceResponse);
 
 			response.setContentType(ContentTypes.APPLICATION_JSON);
 
