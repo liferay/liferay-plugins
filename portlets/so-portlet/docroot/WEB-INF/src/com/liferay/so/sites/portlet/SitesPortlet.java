@@ -41,7 +41,9 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.MembershipRequestConstants;
+import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -50,9 +52,11 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeServiceUtil;
 import com.liferay.portal.service.MembershipRequestLocalServiceUtil;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.GroupPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -350,19 +354,55 @@ public class SitesPortlet extends MVCPortlet {
 					groupJSONObject.put("membershipRequested", true);
 				}
 			}
-			else if (GroupLocalServiceUtil.hasUserGroup(
-						themeDisplay.getUserId(), group.getGroupId())) {
+			else if (member) {
+				boolean memberOfOrganization = false;
+				boolean memberOfUserGroup = false;
 
-				siteAssignmentsPortletURL.setParameter(
-					"removeUserIds", String.valueOf(themeDisplay.getUserId()));
+				List<Organization> siteOrganizations =
+					OrganizationLocalServiceUtil.getGroupOrganizations(
+						group.getGroupId());
 
-				if ((group.getType() != GroupConstants.TYPE_SITE_PRIVATE) ||
-					GroupPermissionUtil.contains(
-						permissionChecker, group.getGroupId(),
-						ActionKeys.ASSIGN_MEMBERS)) {
+				for (Organization siteOrganization : siteOrganizations) {
+					memberOfOrganization =
+						OrganizationLocalServiceUtil.hasUserOrganization(
+							themeDisplay.getUserId(),
+							siteOrganization.getOrganizationId());
 
-					groupJSONObject.put(
-						"leaveURL", siteAssignmentsPortletURL.toString());
+					if (memberOfOrganization) {
+						break;
+					}
+				}
+
+				if (!memberOfOrganization) {
+					List<UserGroup> siteUserGroups =
+						UserGroupLocalServiceUtil.getGroupUserGroups(
+							group.getGroupId());
+
+					for (UserGroup siteUserGroup : siteUserGroups) {
+						memberOfUserGroup =
+							UserGroupLocalServiceUtil.hasUserUserGroup(
+								themeDisplay.getUserId(),
+								siteUserGroup.getUserGroupId());
+
+						if (memberOfUserGroup) {
+							break;
+						}
+					}
+				}
+
+				if (!memberOfOrganization && !memberOfUserGroup) {
+					siteAssignmentsPortletURL.setParameter(
+						"removeUserIds",
+						String.valueOf(themeDisplay.getUserId()));
+
+					if ((group.getType() != GroupConstants.TYPE_SITE_PRIVATE) ||
+						GroupPermissionUtil.contains(
+							permissionChecker, group.getGroupId(),
+							ActionKeys.ASSIGN_MEMBERS)) {
+
+						groupJSONObject.put(
+							"leaveURL", siteAssignmentsPortletURL.toString());
+					}
 				}
 			}
 
