@@ -60,12 +60,12 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 
 		SuggestBuilder.SuggestionBuilder<TermSuggestionBuilder>
 			suggestionBuilder = SuggestBuilder.termSuggestion(
-				_SPELL_CHECK_REQUEST_ID);
+				_REQUEST_TYPE_SPELL_CHECK);
 
 		Suggest.Suggestion<?> suggestion = getSuggestion(
 			searchContext, suggestionBuilder,
 			DocumentTypes.SPELL_CHECK, Field.SPELL_CHECK_WORD,
-			_SPELL_CHECK_REQUEST_ID, max);
+			_REQUEST_TYPE_SPELL_CHECK, max);
 
 		Map<String, List<String>> suggestionsMap =
 			new HashMap<String, List<String>>();
@@ -73,10 +73,10 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 		for (Object entry : suggestion.getEntries()) {
 			Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>
 				suggestionEntry =
-					(Suggest.Suggestion.Entry<
-						? extends Suggest.Suggestion.Entry.Option>)entry;
+					(Suggest.Suggestion.Entry
+						<? extends Suggest.Suggestion.Entry.Option>)entry;
 
-			String text = suggestionEntry.getText().string();
+			String text = String.valueOf(suggestionEntry.getText());
 
 			List<String> suggestionsList = suggestionsMap.get(text);
 
@@ -89,7 +89,8 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 			for (Suggest.Suggestion.Entry.Option option :
 					suggestionEntry.getOptions()) {
 
-				String optionText = option.getText().string();
+				String optionText = String.valueOf(option.getText());
+
 				suggestionsList.add(optionText);
 			}
 		}
@@ -97,7 +98,8 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 		if (_log.isInfoEnabled()) {
 			stopWatch.stop();
 
-			_log.info("Spellcheck consumed: " + stopWatch.getTime() + "ms");
+			_log.info(
+				"Spell checked keywords in " + stopWatch.getTime() + "ms");
 		}
 
 		return suggestionsMap;
@@ -117,22 +119,26 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 
 		SuggestBuilder.SuggestionBuilder<PhraseSuggestionBuilder>
 			suggestionBuilder = SuggestBuilder.phraseSuggestion(
-				_KEYWORD_QUERY_REQUEST_ID);
+				_REQUEST_TYPE_KEYWORD_QUERY);
 
 		Suggest.Suggestion<?> suggestion = getSuggestion(
-			searchContext, suggestionBuilder,
-			DocumentTypes.KEYWORD_QUERY, Field.KEYWORD_SEARCH,
-			_KEYWORD_QUERY_REQUEST_ID, max);
+			searchContext, suggestionBuilder, DocumentTypes.KEYWORD_QUERY,
+			Field.KEYWORD_SEARCH, _REQUEST_TYPE_KEYWORD_QUERY, max);
+
+		List<?> entries = suggestion.getEntries();
 
 		Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>
-			suggestionEntry = suggestion.getEntries().get(0);
+			suggestionEntry =
+				(Suggest.Suggestion.Entry
+					<? extends Suggest.Suggestion.Entry.Option>)entries.get(0);
 
 		List<String> keywordQueries = new ArrayList<String>();
 
 		for (Suggest.Suggestion.Entry.Option option :
 				suggestionEntry.getOptions()) {
 
-			String optionText = option.getText().string();
+			String optionText = String.valueOf(option.getText());
+
 			keywordQueries.add(optionText);
 		}
 
@@ -140,7 +146,7 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 			stopWatch.stop();
 
 			_log.info(
-				"Query suggestions consumed: " + stopWatch.getTime() + "ms");
+				"Suggested keyword queries in " + stopWatch.getTime() + "ms");
 		}
 
 		return keywordQueries.toArray(new String[keywordQueries.size()]);
@@ -156,15 +162,12 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 	protected Suggest.Suggestion<?> getSuggestion(
 		SearchContext searchContext,
 		SuggestBuilder.SuggestionBuilder<?> suggestionBuilder,
-		String documentType, String fieldName, String requestId, int max) {
+		String documentType, String fieldName, String requestType, int max) {
 
 		Client client = getClient();
 
 		SearchRequestBuilder searchRequestBuilder = client.prepareSearch(
 			String.valueOf(searchContext.getCompanyId()));
-
-		searchRequestBuilder.setQuery(QueryBuilders.matchAllQuery());
-		searchRequestBuilder.setTypes(documentType);
 
 		String localizedFieldName = DocumentImpl.getLocalizedName(
 			searchContext.getLocale(), fieldName);
@@ -175,6 +178,9 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 
 		searchRequestBuilder.addSuggestion(suggestionBuilder);
 
+		searchRequestBuilder.setQuery(QueryBuilders.matchAllQuery());
+		searchRequestBuilder.setTypes(documentType);
+
 		SearchRequest searchRequest = searchRequestBuilder.request();
 
 		ActionFuture<SearchResponse> future = client.search(searchRequest);
@@ -183,13 +189,13 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 
 		Suggest suggest = searchResponse.getSuggest();
 
-		return suggest.getSuggestion(requestId);
+		return suggest.getSuggestion(requestType);
 	}
 
-	private static final String _KEYWORD_QUERY_REQUEST_ID =
+	private static final String _REQUEST_TYPE_KEYWORD_QUERY =
 		"keywordQueryRequest";
 
-	private static final String _SPELL_CHECK_REQUEST_ID = "spellCheckRequest";
+	private static final String _REQUEST_TYPE_SPELL_CHECK = "spellCheckRequest";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		ElasticsearchQuerySuggester.class);
