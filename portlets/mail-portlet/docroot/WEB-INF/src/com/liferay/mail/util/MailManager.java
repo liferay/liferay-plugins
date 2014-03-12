@@ -797,12 +797,12 @@ public class MailManager {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("status", status);
-
 		ResourceBundle resourceBundle = _portletConfig.getResourceBundle(
 			_user.getLocale());
 
 		jsonObject.put("message", LanguageUtil.get(resourceBundle, message));
+
+		jsonObject.put("status", status);
 
 		if (Validator.isNotNull(value)) {
 			jsonObject.put("value", value);
