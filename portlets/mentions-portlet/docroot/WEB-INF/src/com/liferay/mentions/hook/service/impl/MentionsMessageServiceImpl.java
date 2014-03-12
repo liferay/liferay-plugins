@@ -158,7 +158,8 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId(
 			"mb_discussion", message.getCategoryId(), message.getMessageId());
-		subscriptionSender.setNotificationType(MentionsConstants.MENTION);
+		subscriptionSender.setNotificationType(
+			MentionsConstants.NOTIFICATION_TYPE_MENTION);
 		subscriptionSender.setPortletId(PortletKeys.MENTIONS);
 		subscriptionSender.setScopeGroupId(message.getGroupId());
 		subscriptionSender.setServiceContext(serviceContext);

@@ -19,6 +19,6 @@ package com.liferay.mentions.util;
  */
 public class MentionsConstants {
 
-	public static final int MENTION = 0;
+	public static final int NOTIFICATION_TYPE_MENTION = 0;
 
 }
