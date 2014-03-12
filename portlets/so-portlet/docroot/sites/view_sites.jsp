@@ -147,6 +147,24 @@ else {
 			);
 		}
 		else {
+			var getSiteActionHtml = function(actionClassNames, actionLinkClassName, actionTitle, actionUrl) {
+				var siteActionTemplate =
+					'<span class="{actionClassNames}" title="{actionTitle}">' +
+						'<a class="{actionLinkClassName}" href="{actionUrl}">' +
+						'</a>' +
+					'</span>';
+
+				return A.Lang.sub(
+					siteActionTemplate,
+					{
+						actionClassNames: actionClassNames,
+						actionLinkClassName: actionLinkClassName,
+						actionTitle: actionTitle,
+						actionUrl: actionUrl,
+					}
+				);
+			};
+
 			var siteTemplate =
 				'<li class="{classNames}">' +
 					'{favoriteHtml}' +
@@ -182,20 +200,25 @@ else {
 
 						if (result.deleteURL) {
 							if (result.deleteURL == '<%= StringPool.FALSE %>') {
-								deleteHtml = '<span class="delete" title="<liferay-ui:message key='you-cannot-delete-the-current-site' />"><a href="" class="disabled"></a></span>';
+								deleteHtml = getSiteActionHtml('delete', 'disabled', Liferay.Language.get("you-cannot-delete-the-current-site"), '#')
 							}
 							else {
-								deleteHtml = '<span class="action delete" title="<liferay-ui:message key='delete-site' />"><a class="delete-site" href="' + result.deleteURL + '"><liferay-ui:message key="delete-site" /></a></span>';
+								deleteHtml = getSiteActionHtml('action delete', 'delete-site', Liferay.Language.get("delete-site"), result.deleteURL);
 							}
 						}
 
 						var favoriteHtml;
 
 						if (result.favoriteURL == '<%= StringPool.BLANK %>') {
-							favoriteHtml = '<span class="favorite" title="' + Liferay.Language.get("you-must-be-a-member-of-the-site-to-add-to-favorites") + '"><a href="" class="disabled"></a></span>';
+							favoriteHtml = getSiteActionHtml('favorite', 'disabled', Liferay.Language.get("you-must-be-a-member-of-the-site-to-add-to-favorites"), '#');
 						}
 						else {
-							favoriteHtml = result.favoriteURL ? '<span class="action favorite" title="<liferay-ui:message key='add-to-favorites' />"><a class="favorite-site" href="' + result.favoriteURL + '"><liferay-ui:message key="add-to-favorites" /></a></span>' : '<span class="action unfavorite" title="<liferay-ui:message key='remove-from-favorites' />"><a class="unfavorite-site" href="' + result.unfavoriteURL + '"><liferay-ui:message key="remove-from-favorites" /></a></span>';
+							if (result.favoriteURL) {
+								favoriteHtml = getSiteActionHtml('action favorite', '', Liferay.Language.get("add-to-favorites"), result.favoriteURL);
+							}
+							else {
+								favoriteHtml = getSiteActionHtml('action unfavorite', '', Liferay.Language.get("remove-from-favorites"), result.unfavoriteURL);
+							}
 						}
 
 						var name = result.name;
@@ -216,15 +239,14 @@ else {
 							{
 								classNames: classNames.join(' '),
 								deleteHtml: deleteHtml,
-								joinHtml: (result.joinUrl ? '<span class="action join" title="<liferay-ui:message key='join-site' />"><a class="join-site" href="' + result.joinUrl + '"><liferay-ui:message key="join-site" /></a></span>' : ''),
-								leaveHtml: (result.leaveUrl ? '<span class="action leave" title="<liferay-ui:message key='leave-site' />"><a class="leave-site" href="' + result.leaveUrl + '"><liferay-ui:message key="leave-site" /></a></span>' : ''),
-								requestHtml: (result.requestUrl ? '<span class="action request" title="<liferay-ui:message key='request-membership' />"><a class="request-site" href="' + result.requestUrl + '"><liferay-ui:message key="request-membership" /></a></span>' : ''),
-								requestedHtml: (result.membershipRequested ? '<span class="action requested" title="<liferay-ui:message key='membership-requested' />"><a><liferay-ui:message key="membership-requested" /></a></span>' : ''),
+								favoriteHtml: favoriteHtml,
+								joinHtml: (result.joinUrl ? getSiteActionHtml('action join', 'join-site', Liferay.Language.get("join-site"), result.joinUrl) : ''),
+								leaveHtml: (result.leaveUrl ? getSiteActionHtml('action leave', 'leave-site', Liferay.Language.get("leave-site"), result.leaveUrl) : ''),
+								requestHtml: (result.requestUrl ? getSiteActionHtml('action request', 'request-site', Liferay.Language.get("request-membership"), result.requestUrl) : ''),
+								requestedHtml: (result.membershipRequested ? getSiteActionHtml('action requested', '', Liferay.Language.get("membership-requested"), '#') : ''),
 								siteDescription: result.description,
-								siteName: name,
-								favoriteHtml: favoriteHtml
+								siteName: name
 							}
-
 						);
 					}
 				).join('')
