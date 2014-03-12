@@ -14,12 +14,12 @@
 
 package com.liferay.mentions.hook.service.impl;
 
+import com.liferay.mentions.util.MentionsConstants;
 import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.mentions.util.PortletKeys;
 import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -158,17 +158,7 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId(
 			"mb_discussion", message.getCategoryId(), message.getMessageId());
-
-		int notificationType =
-			UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY;
-
-		if (serviceContext.isCommandUpdate()) {
-			notificationType =
-				UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY;
-		}
-
-		subscriptionSender.setNotificationType(notificationType);
-
+		subscriptionSender.setNotificationType(MentionsConstants.MENTION);
 		subscriptionSender.setPortletId(PortletKeys.MENTIONS);
 		subscriptionSender.setScopeGroupId(message.getGroupId());
 		subscriptionSender.setServiceContext(serviceContext);
