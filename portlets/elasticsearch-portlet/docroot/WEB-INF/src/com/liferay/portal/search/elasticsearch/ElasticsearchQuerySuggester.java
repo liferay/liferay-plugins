@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.search.BaseQuerySuggester;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnectionManager;
 import com.liferay.portal.search.elasticsearch.util.DocumentTypes;
 
@@ -49,8 +48,7 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 
 	@Override
 	public Map<String, List<String>> spellCheckKeywords(
-			SearchContext searchContext, int max)
-		throws SearchException {
+		SearchContext searchContext, int max) {
 
 		StopWatch stopWatch = null;
 
@@ -64,7 +62,7 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 			suggestionBuilder = SuggestBuilder.termSuggestion(
 				_SPELL_CHECK_REQUEST_ID);
 
-		Suggest.Suggestion suggestion = getSuggestion(
+		Suggest.Suggestion<?> suggestion = getSuggestion(
 			searchContext, suggestionBuilder,
 			DocumentTypes.SPELL_CHECK, Field.SPELL_CHECK_WORD,
 			_SPELL_CHECK_REQUEST_ID, max);
@@ -106,8 +104,8 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 	}
 
 	@Override
-	public String[] suggestKeywordQueries(SearchContext searchContext, int max)
-		throws SearchException {
+	public String[] suggestKeywordQueries(
+		SearchContext searchContext, int max) {
 
 		StopWatch stopWatch = null;
 
@@ -121,16 +119,13 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 			suggestionBuilder = SuggestBuilder.phraseSuggestion(
 				_KEYWORD_QUERY_REQUEST_ID);
 
-		Suggest.Suggestion suggestion = getSuggestion(
+		Suggest.Suggestion<?> suggestion = getSuggestion(
 			searchContext, suggestionBuilder,
 			DocumentTypes.KEYWORD_QUERY, Field.KEYWORD_SEARCH,
 			_KEYWORD_QUERY_REQUEST_ID, max);
 
 		Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>
-			suggestionEntry =
-				(Suggest.Suggestion.Entry<
-					? extends Suggest.Suggestion.Entry.Option>)
-					suggestion.getEntries().get(0);
+			suggestionEntry = suggestion.getEntries().get(0);
 
 		List<String> keywordQueries = new ArrayList<String>();
 
@@ -158,7 +153,7 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 		return elasticsearchConnectionManager.getClient();
 	}
 
-	protected Suggest.Suggestion getSuggestion(
+	protected Suggest.Suggestion<?> getSuggestion(
 		SearchContext searchContext,
 		SuggestBuilder.SuggestionBuilder<?> suggestionBuilder,
 		String documentType, String fieldName, String requestId, int max) {
