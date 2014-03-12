@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -244,9 +245,11 @@ public class SitesPortlet extends MVCPortlet {
 		for (Group group : groups) {
 			JSONObject groupJSONObject = JSONFactoryUtil.createJSONObject();
 
-			groupJSONObject.put("description", group.getDescription());
 			groupJSONObject.put(
-				"name", group.getDescriptiveName(themeDisplay.getLocale()));
+				"description", HtmlUtil.escape(group.getDescription()));
+			groupJSONObject.put(
+				"name", HtmlUtil.escape(
+					group.getDescriptiveName(themeDisplay.getLocale())));
 
 			boolean member = GroupLocalServiceUtil.hasUserGroup(
 				themeDisplay.getUserId(), group.getGroupId());
