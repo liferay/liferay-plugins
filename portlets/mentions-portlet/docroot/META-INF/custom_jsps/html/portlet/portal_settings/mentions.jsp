@@ -19,9 +19,9 @@
 <h3><liferay-ui:message key="mentions" /><h3>
 
 <%
-PortletPreferences preferences = PrefsPropsUtil.getPreferences(company.getCompanyId(), true);
+PortletPreferences companyPortletPreferences = PrefsPropsUtil.getPreferences(company.getCompanyId(), true);
 
-boolean mentionsEnabled = PrefsParamUtil.getBoolean(preferences, request, "mentionsEnabled");
+boolean mentionsEnabled = PrefsParamUtil.getBoolean(companyPortletPreferences, request, "mentionsEnabled");
 %>
 
 <aui:input checked="<%= mentionsEnabled %>" label="enable-mentions" name="settings--mentionsEnabled--" type="checkbox" value="<%= mentionsEnabled %>" />
