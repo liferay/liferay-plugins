@@ -39,6 +39,7 @@ import java.text.Format;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 import javax.portlet.PortletConfig;
@@ -107,10 +108,16 @@ public class NotificationTemplateContextFactory {
 			group.getCompanyId(), group.getGroupId());
 
 		attributes.put("portalURL", portalURL);
+
+		PortletConfig portletConfig = getPortletConfig();
+
+		ResourceBundle resourceBundle = portletConfig.getResourceBundle(
+			user.getLocale());
+
 		attributes.put(
 			"portletName",
 			LanguageUtil.get(
-				getPortletConfig(), user.getLocale(),
+				resourceBundle,
 				"javax.portlet.title.".concat(PortletKeys.CALENDAR)));
 
 		String startTime =
