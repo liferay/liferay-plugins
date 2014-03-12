@@ -19,8 +19,19 @@
 		<property name="luceneBased" value="true" />
 		<property name="vendor" value="Elasticsearch" />
 	</bean>
-	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher" />
+	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexSearcher">
+		<property name="querySuggester">
+			<bean class="com.liferay.portal.search.elasticsearch.ElasticsearchQuerySuggester" />
+		</property>
+	</bean>
 	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" class="com.liferay.portal.search.elasticsearch.ElasticsearchIndexWriter" >
+		<property name="elasticsearchUpdateDocumentCommand" ref="com.liferay.portal.search.elasticsearch.ElasticsearchUpdateDocumentCommand" />
+		<property name="spellCheckIndexWriter" ref="com.liferay.portal.search.elasticsearch.ElasticsearchSpellCheckIndexWriter" />
+	</bean>
+	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchSpellCheckIndexWriter" class="com.liferay.portal.search.elasticsearch.ElasticsearchSpellCheckIndexWriter">
+		<property name="elasticsearchUpdateDocumentCommand" ref="com.liferay.portal.search.elasticsearch.ElasticsearchUpdateDocumentCommand" />
+	</bean>
+	<bean id="com.liferay.portal.search.elasticsearch.ElasticsearchUpdateDocumentCommand" class="com.liferay.portal.search.elasticsearch.ElasticsearchUpdateDocumentCommandImpl">
 		<property name="elasticsearchDocumentFactory" ref="com.liferay.portal.search.elasticsearch.document.ElasticsearchDocumentFactory" />
 	</bean>
 
