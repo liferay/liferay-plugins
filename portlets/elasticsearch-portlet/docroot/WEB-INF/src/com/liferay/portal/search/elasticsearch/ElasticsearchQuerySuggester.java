@@ -66,7 +66,7 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 
 		Suggest.Suggestion suggestion = getSuggestion(
 			searchContext, suggestionBuilder,
-			DocumentTypes.SPELL_CHECK_DOCUMENT_TYPE, Field.SPELL_CHECK_WORD,
+			DocumentTypes.SPELL_CHECK, Field.SPELL_CHECK_WORD,
 			_SPELL_CHECK_REQUEST_ID, max);
 
 		Map<String, List<String>> suggestionsMap =
@@ -123,7 +123,7 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 
 		Suggest.Suggestion suggestion = getSuggestion(
 			searchContext, suggestionBuilder,
-			DocumentTypes.KEYWORD_QUERY_DOCUMENT_TYPE, Field.KEYWORD_SEARCH,
+			DocumentTypes.KEYWORD_QUERY, Field.KEYWORD_SEARCH,
 			_KEYWORD_QUERY_REQUEST_ID, max);
 
 		Suggest.Suggestion.Entry<? extends Suggest.Suggestion.Entry.Option>

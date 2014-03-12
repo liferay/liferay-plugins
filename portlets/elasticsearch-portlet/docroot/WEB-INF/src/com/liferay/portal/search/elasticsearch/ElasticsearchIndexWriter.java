@@ -49,7 +49,7 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 		throws SearchException {
 
 		_elasticsearchUpdateDocumentCommand.updateDocument(
-			DocumentTypes.LIFERAY_DOCUMENT_TYPE, searchContext, document);
+			DocumentTypes.LIFERAY, searchContext, document);
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 		throws SearchException {
 
 		_elasticsearchUpdateDocumentCommand.updateDocuments(
-			DocumentTypes.LIFERAY_DOCUMENT_TYPE, searchContext, documents);
+			DocumentTypes.LIFERAY, searchContext, documents);
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 
 			DeleteRequestBuilder deleteRequestBuilder = client.prepareDelete(
 				String.valueOf(searchContext.getCompanyId()),
-				DocumentTypes.LIFERAY_DOCUMENT_TYPE, uid);
+				DocumentTypes.LIFERAY, uid);
 
 			Future<DeleteResponse> future = deleteRequestBuilder.execute();
 
@@ -97,7 +97,7 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 				DeleteRequestBuilder deleteRequestBuilder =
 					client.prepareDelete(
 						String.valueOf(searchContext.getCompanyId()),
-						DocumentTypes.LIFERAY_DOCUMENT_TYPE, uid);
+						DocumentTypes.LIFERAY, uid);
 
 				bulkRequestBuilder.add(deleteRequestBuilder);
 			}
@@ -157,7 +157,7 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 		throws SearchException {
 
 		_elasticsearchUpdateDocumentCommand.updateDocument(
-			DocumentTypes.LIFERAY_DOCUMENT_TYPE, searchContext, document);
+			DocumentTypes.LIFERAY, searchContext, document);
 	}
 
 	@Override
@@ -166,7 +166,7 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 		throws SearchException {
 
 		_elasticsearchUpdateDocumentCommand.updateDocuments(
-			DocumentTypes.LIFERAY_DOCUMENT_TYPE, searchContext, documents);
+			DocumentTypes.LIFERAY, searchContext, documents);
 	}
 
 	protected Client getClient() {
