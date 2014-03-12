@@ -42,9 +42,9 @@ $theme.include($body_top_include)
 				</h1>
 
 				#if ($is_signed_in && !$is_user_page)
-					#set ($user_local_service = $serviceLocator.findService("com.liferay.portal.service.UserLocalService"))
+					#set ($group_local_service = $serviceLocator.findService("com.liferay.portal.service.GroupLocalService"))
 
-					#set ($member = $user_local_service.hasGroupUser($page_group.getGroupId(), $user_id))
+					#set ($member = $group_local_service.hasUserGroup($user_id, $page_group.getGroupId()))
 
 					#set ($membership_request_local_service = $serviceLocator.findService("com.liferay.portal.service.MembershipRequestLocalService"))
 
