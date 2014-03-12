@@ -1,3 +1,7 @@
+<%@ page import="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" %>
+
+<%@ page import="java.lang.reflect.Method" %>
+
 <%--
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
@@ -38,17 +42,13 @@
 </c:if>
 
 <%!
-private boolean _isMentionsEnabled(long siteGroupId) throws PortalException, SystemException {
-	Group group = GroupLocalServiceUtil.getGroup(siteGroupId);
+private boolean _isMentionsEnabled(long siteGroupId) throws Exception {
+	ClassLoader classLoader = PortletClassLoaderUtil.getClassLoader("1_WAR_mentionsportlet");
 
-	PortletPreferences companyPortletPreferences = PrefsPropsUtil.getPreferences(group.getCompanyId(), true);
+	Class<?> clazz = classLoader.loadClass("com.liferay.mentions.util.MentionsUtil");
 
-	boolean companyMentionsEnabled = GetterUtil.getBoolean(companyPortletPreferences.getValue("mentionsEnabled", null), true);
+	Method method = clazz.getMethod("isMentionsEnabled", long.class);
 
-	if (!companyMentionsEnabled) {
-		return false;
-	}
-
-	return GetterUtil.getBoolean(group.getLiveParentTypeSettingsProperty("mentionsEnabled"), true);
+	return (Boolean)method.invoke(null, siteGroupId);
 }
 %>

@@ -14,19 +14,17 @@
 
 package com.liferay.mentions.hook.service.impl;
 
+import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.mentions.util.PortletKeys;
 import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -40,8 +38,6 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import javax.portlet.PortletPreferences;
 
 /**
  * @author Sergio González
@@ -68,7 +64,7 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 
 		long siteGroupId = PortalUtil.getSiteGroupId(message.getGroupId());
 
-		if (!_isMentionsEnabled(siteGroupId)) {
+		if (!MentionsUtil.isMentionsEnabled(siteGroupId)) {
 			return message;
 		}
 
@@ -89,7 +85,7 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 
 		long siteGroupId = PortalUtil.getSiteGroupId(message.getGroupId());
 
-		if (!_isMentionsEnabled(siteGroupId)) {
+		if (!MentionsUtil.isMentionsEnabled(siteGroupId)) {
 			return message;
 		}
 
@@ -194,25 +190,6 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		}
 
 		subscriptionSender.flushNotificationsAsync();
-	}
-
-	private boolean _isMentionsEnabled(long siteGroupId)
-		throws PortalException, SystemException {
-
-		Group group = GroupLocalServiceUtil.getGroup(siteGroupId);
-
-		PortletPreferences companyPortletPreferences =
-			PrefsPropsUtil.getPreferences(group.getCompanyId(), true);
-
-		boolean companyMentionsEnabled = GetterUtil.getBoolean(
-			companyPortletPreferences.getValue("mentionsEnabled", null), true);
-
-		if (!companyMentionsEnabled) {
-			return false;
-		}
-
-		return GetterUtil.getBoolean(
-			group.getLiveParentTypeSettingsProperty("mentionsEnabled"), true);
 	}
 
 	private static Pattern _pattern = Pattern.compile(
