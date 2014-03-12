@@ -63,9 +63,8 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 				_REQUEST_TYPE_SPELL_CHECK);
 
 		Suggest.Suggestion<?> suggestion = getSuggestion(
-			searchContext, suggestionBuilder,
-			DocumentTypes.SPELL_CHECK, Field.SPELL_CHECK_WORD,
-			_REQUEST_TYPE_SPELL_CHECK, max);
+			searchContext, suggestionBuilder, DocumentTypes.SPELL_CHECK,
+			Field.SPELL_CHECK_WORD, _REQUEST_TYPE_SPELL_CHECK, max);
 
 		Map<String, List<String>> suggestionsMap =
 			new HashMap<String, List<String>>();

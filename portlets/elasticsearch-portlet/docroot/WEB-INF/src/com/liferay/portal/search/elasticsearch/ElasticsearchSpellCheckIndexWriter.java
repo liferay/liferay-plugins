@@ -47,8 +47,7 @@ public class ElasticsearchSpellCheckIndexWriter
 		throws SearchException {
 
 		try {
-			deleteIndices(
-				searchContext, DocumentTypes.KEYWORD_QUERY);
+			deleteIndices(searchContext, DocumentTypes.KEYWORD_QUERY);
 		}
 		catch (Exception e) {
 			throw new SearchException("Unable to clear query suggestions", e);
@@ -60,8 +59,7 @@ public class ElasticsearchSpellCheckIndexWriter
 		throws SearchException {
 
 		try {
-			deleteIndices(
-				searchContext, DocumentTypes.SPELL_CHECK);
+			deleteIndices(searchContext, DocumentTypes.SPELL_CHECK);
 		}
 		catch (Exception e) {
 			throw new SearchException("Unable to to clear spell checks", e);
@@ -122,7 +120,7 @@ public class ElasticsearchSpellCheckIndexWriter
 
 		ElasticsearchConnectionManager elasticsearchConnectionManager =
 			ElasticsearchConnectionManager.getInstance();
- 
+
 		Client client = elasticsearchConnectionManager.getClient();
 
 		DeleteByQueryRequestBuilder deleteByQueryRequestBuilder =
