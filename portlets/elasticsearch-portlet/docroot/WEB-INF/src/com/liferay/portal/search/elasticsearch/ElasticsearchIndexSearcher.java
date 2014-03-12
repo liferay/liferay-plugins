@@ -212,10 +212,10 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		String localizedContentName = DocumentImpl.getLocalizedName(
 			locale, fieldName);
 
+		String snippetFieldName = localizedContentName;
+
 		HighlightField highlightField = highlightFields.get(
 			localizedContentName);
-
-		String snippetFieldName = localizedContentName;
 
 		if (highlightField == null) {
 			highlightField = highlightFields.get(fieldName);
