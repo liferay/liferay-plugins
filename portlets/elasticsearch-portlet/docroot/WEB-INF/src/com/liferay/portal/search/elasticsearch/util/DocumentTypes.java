@@ -19,12 +19,10 @@ package com.liferay.portal.search.elasticsearch.util;
  */
 public class DocumentTypes {
 
-	public static final String KEYWORD_QUERY_DOCUMENT_TYPE =
-		"KeywordQueryDocumentType";
+	public static final String KEYWORD_QUERY = "KeywordQueryDocumentType";
 
-	public static final String LIFERAY_DOCUMENT_TYPE = "LiferayDocumentType";
+	public static final String LIFERAY = "LiferayDocumentType";
 
-	public static final String SPELL_CHECK_DOCUMENT_TYPE =
-		"SpellCheckDocumentType";
+	public static final String SPELL_CHECK = "SpellCheckDocumentType";
 
 }

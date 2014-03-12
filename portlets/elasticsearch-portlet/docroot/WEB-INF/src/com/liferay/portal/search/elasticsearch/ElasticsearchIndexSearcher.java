@@ -88,7 +88,7 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		SearchRequestBuilder searchRequestBuilder = client.prepareSearch(
 			String.valueOf(searchContext.getCompanyId()));
 
-		searchRequestBuilder.setTypes(DocumentTypes.LIFERAY_DOCUMENT_TYPE);
+		searchRequestBuilder.setTypes(DocumentTypes.LIFERAY);
 
 		addFacets(searchRequestBuilder, searchContext);
 		addHighlights(searchRequestBuilder, query.getQueryConfig());

@@ -48,7 +48,7 @@ public class ElasticsearchSpellCheckIndexWriter
 
 		try {
 			deleteIndices(
-				searchContext, DocumentTypes.KEYWORD_QUERY_DOCUMENT_TYPE);
+				searchContext, DocumentTypes.KEYWORD_QUERY);
 		}
 		catch (Exception e) {
 			throw new SearchException("Failed to clear query suggestions", e);
@@ -61,7 +61,7 @@ public class ElasticsearchSpellCheckIndexWriter
 
 		try {
 			deleteIndices(
-				searchContext, DocumentTypes.SPELL_CHECK_DOCUMENT_TYPE);
+				searchContext, DocumentTypes.SPELL_CHECK);
 		}
 		catch (Exception e) {
 			throw new SearchException("Failed to to clear spell checks", e);
