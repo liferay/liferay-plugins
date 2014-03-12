@@ -3,7 +3,7 @@
 
 <user-notification-definitions>
 	<definition>
-		<notification-type>${com.liferay.mentions.util.MentionsConstants.MENTION}</notification-type>
+		<notification-type>${com.liferay.mentions.util.MentionsConstants.NOTIFICATION_TYPE_MENTION}</notification-type>
 		<description>receive-a-notification-when-someone-mentions-you-in-a-comment</description>
 		<delivery-type>
 			<name>email</name>
