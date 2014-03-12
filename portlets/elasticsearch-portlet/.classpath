@@ -18,9 +18,16 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-slf4j/util-slf4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/elasticsearch-analysis-icu.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/elasticsearch-analysis-kuromoji.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/elasticsearch-analysis-smartcn.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/elasticsearch.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/icu4j.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/log4j-over-slf4j.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-analyzers-common.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-analyzers-icu.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-analyzers-kuromoji.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-analyzers-smartcn.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-codecs.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-core.jar" />
 	<classpathentry kind="lib" path="docroot/WEB-INF/lib/lucene-grouping.jar" />
