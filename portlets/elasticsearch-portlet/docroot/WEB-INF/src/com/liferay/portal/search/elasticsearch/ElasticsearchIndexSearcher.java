@@ -88,8 +88,6 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		SearchRequestBuilder searchRequestBuilder = client.prepareSearch(
 			String.valueOf(searchContext.getCompanyId()));
 
-		searchRequestBuilder.setTypes(DocumentTypes.LIFERAY);
-
 		addFacets(searchRequestBuilder, searchContext);
 		addHighlights(searchRequestBuilder, query.getQueryConfig());
 		addPagination(
@@ -101,6 +99,8 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		QueryBuilder queryBuilder = QueryBuilders.queryString(query.toString());
 
 		searchRequestBuilder.setQuery(queryBuilder);
+
+		searchRequestBuilder.setTypes(DocumentTypes.LIFERAY);
 
 		SearchRequest searchRequest = searchRequestBuilder.request();
 

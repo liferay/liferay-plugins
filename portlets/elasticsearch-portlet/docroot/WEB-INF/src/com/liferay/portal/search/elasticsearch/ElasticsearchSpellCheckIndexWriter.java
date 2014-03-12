@@ -28,8 +28,8 @@ import com.liferay.portal.search.elasticsearch.util.LogUtil;
 import com.liferay.portal.util.PortletKeys;
 
 import java.util.Collection;
+import java.util.concurrent.Future;
 
-import org.elasticsearch.action.ListenableActionFuture;
 import org.elasticsearch.action.deletebyquery.DeleteByQueryRequestBuilder;
 import org.elasticsearch.action.deletebyquery.DeleteByQueryResponse;
 import org.elasticsearch.client.Client;
@@ -51,7 +51,7 @@ public class ElasticsearchSpellCheckIndexWriter
 				searchContext, DocumentTypes.KEYWORD_QUERY);
 		}
 		catch (Exception e) {
-			throw new SearchException("Failed to clear query suggestions", e);
+			throw new SearchException("Unable to clear query suggestions", e);
 		}
 	}
 
@@ -64,7 +64,7 @@ public class ElasticsearchSpellCheckIndexWriter
 				searchContext, DocumentTypes.SPELL_CHECK);
 		}
 		catch (Exception e) {
-			throw new SearchException("Failed to to clear spell checks", e);
+			throw new SearchException("Unable to to clear spell checks", e);
 		}
 	}
 
@@ -96,10 +96,9 @@ public class ElasticsearchSpellCheckIndexWriter
 
 	@Override
 	protected Document createDocument(
-			long companyId, long groupId, String languageId, String keywords,
-			float weight, String keywordFieldName, String typeFieldValue,
-			int maxNGramLength)
-		throws SearchException {
+		long companyId, long groupId, String languageId, String keywords,
+		float weight, String keywordFieldName, String typeFieldValue,
+		int maxNGramLength) {
 
 		Document document = createDocument();
 
@@ -121,8 +120,10 @@ public class ElasticsearchSpellCheckIndexWriter
 	protected void deleteIndices(SearchContext searchContext, String indexType)
 		throws Exception {
 
-		Client client =
-			ElasticsearchConnectionManager.getInstance().getClient();
+		ElasticsearchConnectionManager elasticsearchConnectionManager =
+			ElasticsearchConnectionManager.getInstance();
+ 
+		Client client = elasticsearchConnectionManager.getClient();
 
 		DeleteByQueryRequestBuilder deleteByQueryRequestBuilder =
 			client.prepareDeleteByQuery(
@@ -131,8 +132,8 @@ public class ElasticsearchSpellCheckIndexWriter
 		deleteByQueryRequestBuilder.setQuery(QueryBuilders.matchAllQuery());
 		deleteByQueryRequestBuilder.setTypes(indexType);
 
-		ListenableActionFuture<DeleteByQueryResponse>
-			deleteByQueryRequestFuture = deleteByQueryRequestBuilder.execute();
+		Future<DeleteByQueryResponse> deleteByQueryRequestFuture =
+			deleteByQueryRequestBuilder.execute();
 
 		DeleteByQueryResponse deleteByQueryResponse =
 			deleteByQueryRequestFuture.get();
