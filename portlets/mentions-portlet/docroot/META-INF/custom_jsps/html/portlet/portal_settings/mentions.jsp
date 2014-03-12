@@ -21,7 +21,7 @@
 <%
 PortletPreferences companyPortletPreferences = PrefsPropsUtil.getPreferences(company.getCompanyId(), true);
 
-boolean mentionsEnabled = PrefsParamUtil.getBoolean(companyPortletPreferences, request, "mentionsEnabled");
+boolean mentionsEnabled = PrefsParamUtil.getBoolean(companyPortletPreferences, request, "mentionsEnabled", true);
 %>
 
 <aui:input checked="<%= mentionsEnabled %>" label="enable-mentions" name="settings--mentionsEnabled--" type="checkbox" value="<%= mentionsEnabled %>" />
