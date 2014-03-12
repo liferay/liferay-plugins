@@ -1,7 +1,3 @@
-<%@ page import="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" %>
-
-<%@ page import="java.lang.reflect.Method" %>
-
 <%--
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
@@ -19,6 +15,10 @@
 --%>
 
 <%@ include file="/html/taglib/ui/discussion/page.portal.jsp" %>
+
+<%@ page import="com.liferay.portal.kernel.portlet.PortletClassLoaderUtil" %>
+
+<%@ page import="java.lang.reflect.Method" %>
 
 <c:if test="<%= _isMentionsEnabled(themeDisplay.getSiteGroupId()) %>">
 	<liferay-portlet:resourceURL portletName="1_WAR_mentionsportlet" var="autoCompleteUserURL" />
