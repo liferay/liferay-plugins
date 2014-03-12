@@ -34,9 +34,9 @@ else {
 
 boolean mentionsEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("mentionsEnabled"), true);
 
-PortletPreferences preferences = PrefsPropsUtil.getPreferences(company.getCompanyId(), true);
+PortletPreferences companyPortletPreferences = PrefsPropsUtil.getPreferences(company.getCompanyId(), true);
 
-boolean companyMentionsEnabled = GetterUtil.getBoolean(PrefsParamUtil.getBoolean(preferences, request, "mentionsEnabled"), true);
+boolean companyMentionsEnabled = GetterUtil.getBoolean(PrefsParamUtil.getBoolean(companyPortletPreferences, request, "mentionsEnabled"), true);
 %>
 
 <c:if test="<%= !companyMentionsEnabled %>">
