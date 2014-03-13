@@ -50,6 +50,8 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.asset.AssetCategoryException;
+import com.liferay.portlet.asset.AssetTagException;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.FileSizeException;
@@ -564,7 +566,9 @@ public class AdminPortlet extends MVCPortlet {
 
 	@Override
 	protected boolean isSessionErrorException(Throwable cause) {
-		if (cause instanceof DuplicateFileException ||
+		if (cause instanceof AssetCategoryException ||
+			cause instanceof AssetTagException ||
+			cause instanceof DuplicateFileException ||
 			cause instanceof FileNameException ||
 			cause instanceof FileSizeException ||
 			cause instanceof KBArticleContentException ||
