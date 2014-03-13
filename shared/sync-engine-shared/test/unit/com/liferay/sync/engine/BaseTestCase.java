@@ -72,6 +72,7 @@ public abstract class BaseTestCase {
 			"http://localhost:8080/api/jsonws");
 
 		syncAccount.setActive(true);
+		syncAccount.setState(SyncAccount.STATE_CONNECTED);
 
 		SyncAccountService.update(syncAccount);
 

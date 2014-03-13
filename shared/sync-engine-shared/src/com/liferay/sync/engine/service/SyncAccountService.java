@@ -152,6 +152,10 @@ public class SyncAccountService {
 		_syncAccountPersistence.registerModelListener(modelListener);
 	}
 
+	public static void resetActiveSyncAccountIds() {
+		_activeSyncAccountIds = null;
+	}
+
 	public static SyncAccount synchronizeSyncAccount(long syncAccountId) {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 

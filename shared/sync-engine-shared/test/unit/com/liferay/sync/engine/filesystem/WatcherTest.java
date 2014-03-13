@@ -383,12 +383,7 @@ public class WatcherTest extends BaseTestCase {
 	}
 
 	protected void sleep() throws InterruptedException {
-		if (OSDetector.isApple()) {
-			Thread.sleep(3000);
-		}
-		else {
-			Thread.sleep(1000);
-		}
+		Thread.sleep(3000);
 	}
 
 	private List<SyncFile> _syncFiles;

@@ -32,16 +32,18 @@ public class SyncAccountModelListenerTest extends BaseTestCase {
 	@Before
 	@Override
 	public void setUp() throws Exception {
+		super.setUp();
+
 		_syncAccountModelListener = new SyncAccountModelListener();
 
 		SyncAccountService.registerModelListener(_syncAccountModelListener);
-
-		super.setUp();
 	}
 
 	@After
 	@Override
 	public void tearDown() throws Exception {
+		SyncAccountService.resetActiveSyncAccountIds();
+
 		SyncAccountService.unregisterModelListener(_syncAccountModelListener);
 
 		super.tearDown();
