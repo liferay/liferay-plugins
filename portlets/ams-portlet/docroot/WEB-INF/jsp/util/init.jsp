@@ -33,8 +33,6 @@ page import="com.liferay.util.bridges.alloy.BaseAlloyIndexer" %>
 
 <%@ page import="java.util.Locale" %>
 
-<%@ page import="javax.portlet.PortletRequest" %><%@
-page import="javax.portlet.PortletResponse" %><%@
-page import="javax.portlet.PortletURL" %>
+<%@ page import="javax.portlet.PortletURL" %>
 
 <%@ include file="/WEB-INF/jsp/util/portlet_keys.jspf" %>
