@@ -25,7 +25,7 @@ import com.liferay.sync.engine.service.persistence.BasePersistenceImpl;
  * @author Shinn Lok
  */
 @DatabaseTable(daoClass = BasePersistenceImpl.class, tableName = "SyncSite")
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true, value = "active")
 public class SyncSite extends StateAwareModel {
 
 	public static final int STATE_CONNECTED = 1;

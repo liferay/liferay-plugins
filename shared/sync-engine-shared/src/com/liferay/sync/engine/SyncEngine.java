@@ -77,13 +77,23 @@ public class SyncEngine {
 
 		SyncSiteService.synchronizeSyncSites(syncAccountId);
 
-		final SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-			syncAccountId);
+		final SyncAccount syncAccount =
+			SyncAccountService.synchronizeSyncAccount(syncAccountId);
 
 		Runnable runnable = new Runnable() {
 
 			@Override
 			public void run() {
+				SyncAccount updatedSyncAccount =
+					SyncAccountService.fetchSyncAccount(
+						syncAccount.getSyncAccountId());
+
+				if (updatedSyncAccount.getState() ==
+						SyncAccount.STATE_DISCONNECTED) {
+
+					return;
+				}
+
 				Set<Long> syncSiteIds = SyncSiteService.getActiveSyncSiteIds(
 					syncAccount.getSyncAccountId());
 

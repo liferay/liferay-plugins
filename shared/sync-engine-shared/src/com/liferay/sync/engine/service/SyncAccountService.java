@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine.service;
 
+import com.liferay.sync.engine.documentlibrary.event.GetSyncContextEvent;
 import com.liferay.sync.engine.model.ModelListener;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
@@ -27,8 +28,10 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -147,6 +150,19 @@ public class SyncAccountService {
 		ModelListener<SyncAccount> modelListener) {
 
 		_syncAccountPersistence.registerModelListener(modelListener);
+	}
+
+	public static SyncAccount synchronizeSyncAccount(long syncAccountId) {
+		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		parameters.put("uuid", null);
+
+		GetSyncContextEvent getSyncContextEvent = new GetSyncContextEvent(
+			syncAccountId, parameters);
+
+		getSyncContextEvent.run();
+
+		return SyncAccountService.fetchSyncAccount(syncAccountId);
 	}
 
 	public static void unregisterModelListener(

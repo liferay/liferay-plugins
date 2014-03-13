@@ -14,6 +14,9 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.service.SyncAccountService;
@@ -30,6 +33,12 @@ import org.apache.http.conn.HttpHostConnectException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import org.springframework.retry.RetryCallback;
+import org.springframework.retry.RetryContext;
+import org.springframework.retry.backoff.ExponentialBackOffPolicy;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
 
 /**
  * @author Shinn Lok
@@ -68,7 +77,7 @@ public abstract class BaseEvent implements Runnable {
 		try {
 			String response = processRequest();
 
-			if (response == null) {
+			if ((response == null) || handleRemoteException(response)) {
 				return;
 			}
 
@@ -102,6 +111,8 @@ public abstract class BaseEvent implements Runnable {
 			}
 
 			SyncAccountService.update(syncAccount);
+
+			retryServerConnection();
 		}
 	}
 
@@ -117,12 +128,94 @@ public abstract class BaseEvent implements Runnable {
 		return _syncAccountId;
 	}
 
+	protected boolean handleRemoteException(String response) throws Exception {
+		if (response.equals("")) {
+			return false;
+		}
+
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		JsonNode jsonNode = objectMapper.readTree(response);
+
+		JsonNode exceptionJsonNode = jsonNode.get("exception");
+
+		if (exceptionJsonNode == null) {
+			return false;
+		}
+
+		String exception = exceptionJsonNode.asText();
+
+		if (exception.equals("java.lang.SecurityException")) {
+			JsonNode messageJsonNode = jsonNode.get("message");
+
+			String message = messageJsonNode.asText();
+
+			if (message.equals("Authenticated access required")) {
+				throw new HttpResponseException(
+					HttpServletResponse.SC_UNAUTHORIZED, message);
+			}
+		}
+
+		return true;
+	}
+
 	protected String processRequest() throws Exception {
 		return executePost(_urlPath, _parameters, new BaseHandler());
 	}
 
 	protected abstract void processResponse(String response)
 		throws Exception;
+
+	protected void retryServerConnection() {
+		RetryTemplate retryTemplate = new RetryTemplate();
+
+		ExponentialBackOffPolicy exponentialBackOffPolicy =
+			new ExponentialBackOffPolicy();
+
+		exponentialBackOffPolicy.setInitialInterval(1000);
+		exponentialBackOffPolicy.setMaxInterval(300000);
+
+		retryTemplate.setBackOffPolicy(exponentialBackOffPolicy);
+
+		SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy();
+
+		simpleRetryPolicy.setMaxAttempts(25);
+
+		retryTemplate.setRetryPolicy(simpleRetryPolicy);
+
+		RetryCallback<Object> retryCallback = new RetryCallback<Object>() {
+
+			@Override
+			public Object doWithRetry(RetryContext retryContext)
+				throws Exception {
+
+				SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+					_syncAccountId);
+
+				if (_logger.isDebugEnabled()) {
+					_logger.debug(
+						"Attempting to reconnect to {}. Retry #{}",
+						syncAccount.getUrl(), retryContext.getRetryCount() + 1);
+				}
+
+				syncAccount = SyncAccountService.synchronizeSyncAccount(
+					_syncAccountId);
+
+				if (syncAccount.getState() == SyncAccount.STATE_DISCONNECTED) {
+					throw new Exception();
+				}
+
+				return null;
+			}
+
+		};
+
+		try {
+			retryTemplate.execute(retryCallback);
+		}
+		catch (Exception e) {
+		}
+	}
 
 	private static Logger _logger = LoggerFactory.getLogger(BaseEvent.class);
 

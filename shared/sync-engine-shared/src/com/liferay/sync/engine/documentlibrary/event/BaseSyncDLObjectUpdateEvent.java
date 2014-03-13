@@ -79,6 +79,10 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			targetSyncFile.getRepositoryId(), getSyncAccountId(),
 			targetSyncFile.getTypePK());
 
+		if (sourceSyncFile == null) {
+			return;
+		}
+
 		sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_TRASHED_REMOTE);
 
 		Files.deleteIfExists(Paths.get(sourceSyncFile.getFilePathName()));
