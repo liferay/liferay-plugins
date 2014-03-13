@@ -1,0 +1,9 @@
+libs: ${filterout;${lsr;lib;*.jar};.*portal-compat-shared.jar}
+
+Import-Package: \
+	com.liferay.*,\
+	javax.servlet.*,\
+	*;resolution:="optional"
+Include-Resource: \
+	${replace;${libs};^;@lib/},\
+	classes
