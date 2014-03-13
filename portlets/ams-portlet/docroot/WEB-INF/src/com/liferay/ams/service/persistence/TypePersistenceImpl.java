@@ -129,7 +129,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 			CacheRegistryUtil.clear(TypeImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(TypeImpl.class);
+		EntityCacheUtil.clearCache(TypeImpl.class.getName());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -298,7 +298,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		}
 
 		EntityCacheUtil.putResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
-			TypeImpl.class, type.getPrimaryKey(), type, false);
+			TypeImpl.class, type.getPrimaryKey(), type);
 
 		type.resetOriginalValues();
 

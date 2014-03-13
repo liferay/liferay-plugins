@@ -131,7 +131,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 			CacheRegistryUtil.clear(AssetImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(AssetImpl.class);
+		EntityCacheUtil.clearCache(AssetImpl.class.getName());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -302,7 +302,7 @@ public class AssetPersistenceImpl extends BasePersistenceImpl<Asset>
 		}
 
 		EntityCacheUtil.putResult(AssetModelImpl.ENTITY_CACHE_ENABLED,
-			AssetImpl.class, asset.getPrimaryKey(), asset, false);
+			AssetImpl.class, asset.getPrimaryKey(), asset);
 
 		asset.resetOriginalValues();
 
