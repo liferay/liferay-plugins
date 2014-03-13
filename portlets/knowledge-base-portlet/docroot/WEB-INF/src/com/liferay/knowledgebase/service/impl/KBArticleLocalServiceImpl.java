@@ -1129,14 +1129,18 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			InputStream inputStream = null;
 
 			try {
-				inputStream = DLStoreUtil.getFileAsStream(
+				File file = DLStoreUtil.getFile(
 					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 					fileName);
 
 				String shortFileName = FileUtil.getShortFileName(fileName);
 
 				String mimeType = MimeTypesUtil.getContentType(
-					inputStream, fileName);
+					file, shortFileName);
+
+				inputStream = DLStoreUtil.getFileAsStream(
+					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+					fileName);
 
 				PortletFileRepositoryUtil.addPortletFileEntry(
 					serviceContext.getScopeGroupId(), userId,
