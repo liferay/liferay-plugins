@@ -14,16 +14,15 @@
  */
 --%>
 
-<%@ include file="/WEB-INF/jsp/util/init.jsp" %>
+<%@ include file="/WEB-INF/jsp/ams/views/init.jsp" %>
 
-<%@ page import="com.liferay.compat.util.bridges.alloy.BaseAlloyControllerImpl" %>
-
-<%
-AlloyController alloyController = new AlloyControllerImpl();
-
-alloyController.setPageContext(pageContext);
-
-alloyController.afterPropertiesSet();
-
-alloyController.execute();
-%>
+<div class="portlet-msg-error">
+	<c:choose>
+		<c:when test="${fn:length(pattern) > 0}">
+			<liferay-ui:message arguments="${arguments}" key="${pattern}" />
+		</c:when>
+		<c:otherwise>
+			<liferay-ui:message key="an-unexpected-error-occurred" />
+		</c:otherwise>
+	</c:choose>
+</div>
