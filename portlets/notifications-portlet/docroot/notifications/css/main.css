@@ -1,5 +1,4 @@
 @import "compass";
-@import "mixins";
 
 @mixin keyframes($name) {
 	@-o-keyframes #{$name} {
@@ -249,7 +248,7 @@
 	}
 }
 
-.span6, .span5, .span4, .span3, .span2, .span1 {
+.span1, .span2, .span3, .span4, .span5, .span6 {
 	.notifications-portlet {
 		.user-notifications-sidebar, .user-notifications-list-container {
 			margin-left: 0;
