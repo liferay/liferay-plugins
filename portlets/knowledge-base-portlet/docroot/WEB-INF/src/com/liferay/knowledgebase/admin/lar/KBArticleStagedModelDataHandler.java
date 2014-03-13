@@ -263,8 +263,7 @@ public class KBArticleStagedModelDataHandler
 				String fileName = dlFileEntryElement.attributeValue(
 					"file-name");
 
-				String mimeType = MimeTypesUtil.getContentType(
-					inputStream, fileName);
+				String mimeType = MimeTypesUtil.getContentType(fileName);
 
 				PortletFileRepositoryUtil.addPortletFileEntry(
 					portletDataContext.getScopeGroupId(),
