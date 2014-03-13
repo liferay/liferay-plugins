@@ -309,7 +309,7 @@ public class SitesPortlet extends MVCPortlet {
 					"addUserIds", String.valueOf(themeDisplay.getUserId()));
 
 				groupJSONObject.put(
-					"joinUrl", siteAssignmentsPortletURL.toString());
+					"joinURL", siteAssignmentsPortletURL.toString());
 			}
 			else if (!member &&
 					 (group.getType() == GroupConstants.TYPE_SITE_RESTRICTED)) {
@@ -362,7 +362,7 @@ public class SitesPortlet extends MVCPortlet {
 						ActionKeys.ASSIGN_MEMBERS)) {
 
 					groupJSONObject.put(
-						"leaveUrl", siteAssignmentsPortletURL.toString());
+						"leaveURL", siteAssignmentsPortletURL.toString());
 				}
 			}
 
