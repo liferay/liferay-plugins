@@ -135,9 +135,9 @@ public abstract class BaseEvent implements Runnable {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		JsonNode jsonNode = objectMapper.readTree(response);
+		JsonNode responseJsonNode = objectMapper.readTree(response);
 
-		JsonNode exceptionJsonNode = jsonNode.get("exception");
+		JsonNode exceptionJsonNode = responseJsonNode.get("exception");
 
 		if (exceptionJsonNode == null) {
 			return false;
@@ -146,7 +146,7 @@ public abstract class BaseEvent implements Runnable {
 		String exception = exceptionJsonNode.asText();
 
 		if (exception.equals("java.lang.SecurityException")) {
-			JsonNode messageJsonNode = jsonNode.get("message");
+			JsonNode messageJsonNode = responseJsonNode.get("message");
 
 			String message = messageJsonNode.asText();
 
