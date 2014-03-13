@@ -42,5 +42,7 @@
 	<classpathentry kind="lib" path="lib/proxy-vole.jar" />
 	<classpathentry kind="lib" path="lib/slf4j-api.jar" />
 	<classpathentry kind="lib" path="lib/slf4j-log4j12.jar" />
+	<classpathentry kind="lib" path="lib/spring-retry.jar" />
+	<classpathentry kind="lib" path="lib/spring.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
