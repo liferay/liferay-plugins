@@ -21,8 +21,12 @@
 		</layout>
 	</appender>
 
-	<category name="com.liferay.sync.engine.filesystem">
+	<category name="com.liferay.sync.engine">
 		<priority value="DEBUG" />
+	</category>
+
+	<category name="com.liferay.sync.engine.documentlibrary.event.GetSyncContextEvent">
+		<priority value="ERROR" />
 	</category>
 
 	<root>
