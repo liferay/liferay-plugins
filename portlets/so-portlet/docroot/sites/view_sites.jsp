@@ -147,10 +147,10 @@ else {
 			);
 		}
 		else {
-			var getSiteActionHtml = function(actionClassNames, actionLinkClassName, actionTitle, actionUrl) {
+			var getSiteActionHtml = function(actionClassNames, actionLinkClassName, actionTitle, actionURL) {
 				var siteActionTemplate =
 					'<span class="{actionClassNames}" title="{actionTitle}">' +
-						'<a class="{actionLinkClassName}" href="{actionUrl}">' +
+						'<a class="{actionLinkClassName}" href="{actionURL}">' +
 						'</a>' +
 					'</span>';
 
@@ -160,19 +160,19 @@ else {
 						actionClassNames: actionClassNames,
 						actionLinkClassName: actionLinkClassName,
 						actionTitle: actionTitle,
-						actionUrl: actionUrl,
+						actionURL: actionURL,
 					}
 				);
 			};
 
 			var siteTemplate =
 				'<li class="{classNames}">' +
-					'{favoriteHtml}' +
-					'{joinHtml}' +
-					'{leaveHtml}' +
-					'{requestHtml}' +
-					'{requestedHtml}' +
-					'{deleteHtml}' +
+					'{favoriteHTML}' +
+					'{joinHTML}' +
+					'{leaveHTML}' +
+					'{requestHTML}' +
+					'{requestedHTML}' +
+					'{deleteHTML}' +
 					'<span class="name">{siteName}</span>' +
 					'<span class="description">{siteDescription}</span>'
 				'</li>';
@@ -182,13 +182,13 @@ else {
 					results,
 					function(result, index) {
 						var classNames = [];
-						var joinHtml = '';
+						var joinHTML = '';
 
 						if (result.socialOfficeGroup) {
 							classNames.push('social-office-enabled');
 						}
 
-						if (!result.joinUrl) {
+						if (!result.joinURL) {
 							classNames.push('member');
 						}
 
@@ -196,28 +196,28 @@ else {
 							classNames.push('alt');
 						}
 
-						var deleteHtml = '<span class="action-not-allowed"></span>';
+						var deleteHTML = '<span class="action-not-allowed"></span>';
 
 						if (result.deleteURL) {
 							if (result.deleteURL == '<%= StringPool.FALSE %>') {
-								deleteHtml = getSiteActionHtml('delete', 'disabled', Liferay.Language.get("you-cannot-delete-the-current-site"), '#')
+								deleteHTML = getSiteActionHtml('delete', 'disabled', Liferay.Language.get("you-cannot-delete-the-current-site"), '#')
 							}
 							else {
-								deleteHtml = getSiteActionHtml('action delete', 'delete-site', Liferay.Language.get("delete-site"), result.deleteURL);
+								deleteHTML = getSiteActionHtml('action delete', 'delete-site', Liferay.Language.get("delete-site"), result.deleteURL);
 							}
 						}
 
-						var favoriteHtml;
+						var favoriteHTML;
 
 						if (result.favoriteURL == '<%= StringPool.BLANK %>') {
-							favoriteHtml = getSiteActionHtml('favorite', 'disabled', Liferay.Language.get("you-must-be-a-member-of-the-site-to-add-to-favorites"), '#');
+							favoriteHTML = getSiteActionHtml('favorite', 'disabled', Liferay.Language.get("you-must-be-a-member-of-the-site-to-add-to-favorites"), '#');
 						}
 						else {
 							if (result.favoriteURL) {
-								favoriteHtml = getSiteActionHtml('action favorite', '', Liferay.Language.get("add-to-favorites"), result.favoriteURL);
+								favoriteHTML = getSiteActionHtml('action favorite', '', Liferay.Language.get("add-to-favorites"), result.favoriteURL);
 							}
 							else {
-								favoriteHtml = getSiteActionHtml('action unfavorite', '', Liferay.Language.get("remove-from-favorites"), result.unfavoriteURL);
+								favoriteHTML = getSiteActionHtml('action unfavorite', '', Liferay.Language.get("remove-from-favorites"), result.unfavoriteURL);
 							}
 						}
 
@@ -238,12 +238,12 @@ else {
 							siteTemplate,
 							{
 								classNames: classNames.join(' '),
-								deleteHtml: deleteHtml,
-								favoriteHtml: favoriteHtml,
-								joinHtml: (result.joinUrl ? getSiteActionHtml('action join', 'join-site', Liferay.Language.get("join-site"), result.joinUrl) : ''),
-								leaveHtml: (result.leaveUrl ? getSiteActionHtml('action leave', 'leave-site', Liferay.Language.get("leave-site"), result.leaveUrl) : ''),
-								requestHtml: (result.requestUrl ? getSiteActionHtml('action request', 'request-site', Liferay.Language.get("request-membership"), result.requestUrl) : ''),
-								requestedHtml: (result.membershipRequested ? getSiteActionHtml('action requested', '', Liferay.Language.get("membership-requested"), '#') : ''),
+								deleteHTML: deleteHTML,
+								favoriteHTML: favoriteHTML,
+								joinHTML: (result.joinURL ? getSiteActionHtml('action join', 'join-site', Liferay.Language.get("join-site"), result.joinURL) : ''),
+								leaveHTML: (result.leaveURL ? getSiteActionHtml('action leave', 'leave-site', Liferay.Language.get("leave-site"), result.leaveURL) : ''),
+								requestHTML: (result.requestUrl ? getSiteActionHtml('action request', 'request-site', Liferay.Language.get("request-membership"), result.requestUrl) : ''),
+								requestedHTML: (result.membershipRequested ? getSiteActionHtml('action requested', '', Liferay.Language.get("membership-requested"), '#') : ''),
 								siteDescription: result.description,
 								siteName: name
 							}
