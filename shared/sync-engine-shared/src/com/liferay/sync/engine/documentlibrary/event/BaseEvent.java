@@ -169,17 +169,11 @@ public abstract class BaseEvent implements Runnable {
 	protected void retryServerConnection() {
 		RetryTemplate retryTemplate = new RetryTemplate();
 
-		ExponentialBackOffPolicy exponentialBackOffPolicy =
-			new ExponentialBackOffPolicy();
-
-		exponentialBackOffPolicy.setInitialInterval(1000);
-		exponentialBackOffPolicy.setMaxInterval(300000);
-
-		retryTemplate.setBackOffPolicy(exponentialBackOffPolicy);
+		retryTemplate.setBackOffPolicy(new ExponentialBackOffPolicy());
 
 		SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy();
 
-		simpleRetryPolicy.setMaxAttempts(25);
+		simpleRetryPolicy.setMaxAttempts(Integer.MAX_VALUE);
 
 		retryTemplate.setRetryPolicy(simpleRetryPolicy);
 
