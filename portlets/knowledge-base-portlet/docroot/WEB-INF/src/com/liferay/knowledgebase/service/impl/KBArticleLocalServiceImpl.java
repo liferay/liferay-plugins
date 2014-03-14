@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -54,7 +55,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -1129,18 +1129,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			InputStream inputStream = null;
 
 			try {
-				File file = DLStoreUtil.getFile(
+				byte[] bytes = DLStoreUtil.getFileAsBytes(
 					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
 					fileName);
 
+				inputStream = new UnsyncByteArrayInputStream(bytes);
+
+				String mimeType = KnowledgeBaseUtil.getMimeType(
+					bytes, fileName);
 				String shortFileName = FileUtil.getShortFileName(fileName);
-
-				String mimeType = MimeTypesUtil.getContentType(
-					file, shortFileName);
-
-				inputStream = DLStoreUtil.getFileAsStream(
-					serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
-					fileName);
 
 				PortletFileRepositoryUtil.addPortletFileEntry(
 					serviceContext.getScopeGroupId(), userId,

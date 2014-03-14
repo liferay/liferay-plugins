@@ -19,16 +19,17 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.persistence.KBArticleUtil;
+import com.liferay.knowledgebase.util.KnowledgeBaseUtil;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
 import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -257,13 +258,16 @@ public class KBArticleStagedModelDataHandler
 
 		for (Element dlFileEntryElement : dlFileEntryElements) {
 			try {
-				inputStream = portletDataContext.getZipEntryAsInputStream(
+				byte[] bytes = portletDataContext.getZipEntryAsByteArray(
 					dlFileEntryElement.attributeValue("path"));
+
+				inputStream = new UnsyncByteArrayInputStream(bytes);
 
 				String fileName = dlFileEntryElement.attributeValue(
 					"file-name");
 
-				String mimeType = MimeTypesUtil.getContentType(fileName);
+				String mimeType = KnowledgeBaseUtil.getMimeType(
+					bytes, fileName);
 
 				PortletFileRepositoryUtil.addPortletFileEntry(
 					portletDataContext.getScopeGroupId(),
