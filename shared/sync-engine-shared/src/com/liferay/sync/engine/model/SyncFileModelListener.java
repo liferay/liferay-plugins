@@ -47,7 +47,9 @@ public class SyncFileModelListener implements ModelListener<SyncFile> {
 
 	@Override
 	public void onRemove(SyncFile syncFile) {
-		Path filePath = Paths.get(syncFile.getFilePathName());
+		Path filePath = Paths.get(
+			PropsValues.SYNC_CONFIGURATION_DIRECTORY + "/files/" +
+				syncFile.getSyncFileId());
 
 		try {
 			Files.deleteIfExists(filePath);
