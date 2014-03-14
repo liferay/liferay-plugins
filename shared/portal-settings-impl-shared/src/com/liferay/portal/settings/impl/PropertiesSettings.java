@@ -18,11 +18,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.settings.Settings;
 
-import java.io.IOException;
-
 import java.util.Properties;
-
-import javax.portlet.ValidatorException;
 
 /**
  * @author Jorge Ferrer
@@ -61,7 +57,7 @@ public class PropertiesSettings implements Settings {
 	}
 
 	@Override
-	public void store() throws IOException, ValidatorException {
+	public void store() {
 		throw new UnsupportedOperationException();
 	}
 

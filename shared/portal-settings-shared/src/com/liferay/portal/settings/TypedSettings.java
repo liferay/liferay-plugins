@@ -36,7 +36,7 @@ public class TypedSettings implements Settings {
 		return GetterUtil.getBoolean(value);
 	}
 
-	public String getFileContentValue(String key, String defaultLocation) {
+	public String getContentValue(String key, String defaultLocation) {
 		String value = getValue(key, defaultLocation);
 
 		return ContentUtil.get(value);
@@ -54,10 +54,12 @@ public class TypedSettings implements Settings {
 		return GetterUtil.getLong(value);
 	}
 
+	@Override
 	public String getValue(String key, String defaultValue) {
 		return _settings.getValue(key, defaultValue);
 	}
 
+	@Override
 	public String[] getValues(String key, String[] defaultValue) {
 		return _settings.getValues(key, defaultValue);
 	}

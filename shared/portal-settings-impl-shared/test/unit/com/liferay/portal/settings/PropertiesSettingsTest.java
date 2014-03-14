@@ -19,6 +19,7 @@ import com.liferay.portal.settings.impl.PropertiesSettings;
 import java.util.Properties;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -26,9 +27,14 @@ import org.junit.Test;
  */
 public class PropertiesSettingsTest {
 
-	public PropertiesSettingsTest() {
-		_TEST_PROPERTIES.put(_KEY, _VALUE);
-		_TEST_PROPERTIES.put(_ARRAY_KEY, _ARRAY_VALUE);
+	@Before
+	public void setUp() {
+		_properties = new Properties();
+
+		_properties.put(_SINGLE_KEY, _SINGLE_VALUE);
+		_properties.put(_MULTIPLE_KEY, _MULTIPLE_VALUES);
+
+		_propertiesSettings = new PropertiesSettings(_properties);
 	}
 
 	@Test
@@ -37,65 +43,65 @@ public class PropertiesSettingsTest {
 
 		Assert.assertArrayEquals(
 			defaultValue,
-			_propertiesSettings.getValues("missing_key", defaultValue));
+			_propertiesSettings.getValues("missingKey", defaultValue));
 	}
 
 	@Test
 	public void testGetValuesWithExistingKey() {
 		Assert.assertArrayEquals(
 			new String[] {"value0", "value1", "value2"},
-			_propertiesSettings.getValues(_ARRAY_KEY, null));
+			_propertiesSettings.getValues(_MULTIPLE_KEY, null));
 	}
 
 	@Test
 	public void testGetValuesWithMissingKey() {
 		Assert.assertArrayEquals(
-			null, _propertiesSettings.getValues("missing_key", null));
+			null, _propertiesSettings.getValues("missingKey", null));
 	}
 
 	@Test
 	public void testGetValueWithDefaultValue() {
 		Assert.assertEquals(
-			"default", _propertiesSettings.getValue("missing_key", "default"));
+			"default", _propertiesSettings.getValue("missingKey", "default"));
 	}
 
 	@Test
 	public void testGetValueWithExistingKey() {
-		Assert.assertEquals(_VALUE, _propertiesSettings.getValue(_KEY, null));
+		Assert.assertEquals(
+			_SINGLE_VALUE, _propertiesSettings.getValue(_SINGLE_KEY, null));
 	}
 
 	@Test
 	public void testGetValueWithMissingKey() {
 		Assert.assertEquals(
-			null, _propertiesSettings.getValue("missing_key", null));
+			null, _propertiesSettings.getValue("missingKey", null));
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testSetValueIsNotSupported() {
-		_propertiesSettings.setValue(_KEY, _VALUE);
+	public void testSetValueIsUnsupported() {
+		_propertiesSettings.setValue(_SINGLE_KEY, _SINGLE_VALUE);
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testSetValuesIsNotSupported() {
-		_propertiesSettings.setValues(_KEY, new String[] {_VALUE});
+	public void testSetValuesIsUnsupported() {
+		_propertiesSettings.setValues(
+			_SINGLE_KEY, new String[] {_SINGLE_VALUE});
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
-	public void testStoreIsNotSupported() throws Exception {
+	public void testStoreIsUnsupported() throws Exception {
 		_propertiesSettings.store();
 	}
 
-	private static final String _ARRAY_KEY = "multi_key";
+	private static final String _MULTIPLE_KEY = "multipleKey";
 
-	private static final String _ARRAY_VALUE = "value0,value1,value2";
+	private static final String _MULTIPLE_VALUES = "value0,value1,value2";
 
-	private static final String _KEY = "key";
+	private static final String _SINGLE_KEY = "key";
 
-	private static final String _VALUE = "value";
+	private static final String _SINGLE_VALUE = "value";
 
-	private Properties _TEST_PROPERTIES = new Properties();
-
-	private PropertiesSettings _propertiesSettings = new PropertiesSettings(
-		_TEST_PROPERTIES);
+	private Properties _properties;
+	private PropertiesSettings _propertiesSettings;
 
 }

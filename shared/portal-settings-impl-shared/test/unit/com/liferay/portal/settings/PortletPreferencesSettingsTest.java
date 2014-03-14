@@ -19,6 +19,7 @@ import com.liferay.portal.settings.impl.PortletPreferencesSettings;
 import javax.portlet.PortletPreferences;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import org.mockito.Matchers;
@@ -31,84 +32,96 @@ import org.powermock.api.mockito.PowerMockito;
  */
 public class PortletPreferencesSettingsTest {
 
-	public PortletPreferencesSettingsTest() {
+	@Before
+	public void setUp() {
+		_portletPreferences = PowerMockito.mock(
+			PortletPreferences.class);
+
 		Mockito.when(
 			_portletPreferences.getValue(
-				Matchers.eq(_PORTLET_PREFERENCES_KEY), Matchers.anyString())
+				Matchers.eq(_PORTLET_PREFERENCES_SINGLE_KEY),
+				Matchers.anyString())
 		).thenReturn(
-			_PORTLET_PREFERENCES_VALUE
+			_PORTLET_PREFERENCES_SINGLE_VALUE
 		);
 
 		Mockito.when(
 			_portletPreferences.getValues(
-				Matchers.eq(_PORTLET_PREFERENCES_ARRAY_KEY),
+				Matchers.eq(_PORTLET_PREFERENCES_MULTIPLE_KEY),
 				(String[])Matchers.any())
 		).thenReturn(
-			_PORTLET_PREFERENCES_ARRAY_VALUE
+			_PORTLET_PREFERENCES_MULTIPLE_VALUES
+		);
+
+		Settings defaultSettings = PowerMockito.mock(Settings.class);
+
+		Mockito.when(
+			defaultSettings.getValue(
+				Matchers.eq(_DEFAULT_SETTINGS_SINGLE_KEY),
+				Matchers.anyString())
+		).thenReturn(
+			_DEFAULT_SETTINGS_SINGLE_VALUE
 		);
 
 		Mockito.when(
-			_defaultSettings.getValue(
-				Matchers.eq(_DEFAULT_SETTINGS_KEY), Matchers.anyString())
-		).thenReturn(
-			_DEFAULT_SETTINGS_VALUE
-		);
-
-		Mockito.when(
-			_defaultSettings.getValues(
-				Matchers.eq(_DEFAULT_SETTINGS_ARRAY_KEY),
+			defaultSettings.getValues(
+				Matchers.eq(_DEFAULT_SETTINGS_MULTIPLE_KEY),
 				(String[])Matchers.any())
 		).thenReturn(
-			_DEFAULT_SETTINGS_ARRAY_VALUE
+			_DEFAULT_SETTINGS_MULTIPLE_VALUES
 		);
+
+		_portletPreferencesSettings = new PortletPreferencesSettings(
+			_portletPreferences, defaultSettings);
 	}
 
 	@Test
 	public void testGetValuesWithExistingDefaultSettingsKey() {
 		Assert.assertArrayEquals(
-			_DEFAULT_SETTINGS_ARRAY_VALUE,
+			_DEFAULT_SETTINGS_MULTIPLE_VALUES,
 			_portletPreferencesSettings.getValues(
-				_DEFAULT_SETTINGS_ARRAY_KEY, null));
+				_DEFAULT_SETTINGS_MULTIPLE_KEY, null));
 	}
 
 	@Test
 	public void testGetValuesWithExistingPortletPreferencesKey() {
 		Assert.assertArrayEquals(
-			_PORTLET_PREFERENCES_ARRAY_VALUE,
+			_PORTLET_PREFERENCES_MULTIPLE_VALUES,
 			_portletPreferencesSettings.getValues(
-				_PORTLET_PREFERENCES_ARRAY_KEY, null));
+				_PORTLET_PREFERENCES_MULTIPLE_KEY, null));
 	}
 
 	@Test
 	public void testGetValuesWithMissingKey() {
-		String[] defaultValue = {"default0", "default1"};
+		String[] defaultValue = {"a", "b"};
 
 		Assert.assertArrayEquals(
 			defaultValue,
 			_portletPreferencesSettings.getValues(
-				"missing_keys", defaultValue));
+				"missingKeys", defaultValue));
 	}
 
 	@Test
 	public void testGetValueWithExistingDefaultSettingsKey() {
 		Assert.assertEquals(
-			_DEFAULT_SETTINGS_VALUE,
-			_portletPreferencesSettings.getValue(_DEFAULT_SETTINGS_KEY, null));
+			_DEFAULT_SETTINGS_SINGLE_VALUE,
+			_portletPreferencesSettings.getValue(
+				_DEFAULT_SETTINGS_SINGLE_KEY, null));
 	}
 
 	@Test
 	public void testGetValueWithExistingPortletPreferencesKey() {
 		Assert.assertEquals(
-			_PORTLET_PREFERENCES_VALUE,
+			_PORTLET_PREFERENCES_SINGLE_VALUE,
 			_portletPreferencesSettings.getValue(
-				_PORTLET_PREFERENCES_KEY, null));
+				_PORTLET_PREFERENCES_SINGLE_KEY, null));
 	}
 
 	@Test
 	public void testGetValueWithMissingKey() {
 		Assert.assertEquals(
 			"default",
-			_portletPreferencesSettings.getValue("missing_key", "default"));
+			_portletPreferencesSettings.getValue("missingKey", "default"));
 	}
 
 	@Test
@@ -117,7 +130,9 @@ public class PortletPreferencesSettingsTest {
 
 		_portletPreferencesSettings.setValue("key", "value");
 
-		Mockito.verify(_portletPreferences).setValue("key", "value");
+		Mockito.verify(_portletPreferences);
+
+		_portletPreferences.setValue("key", "value");
 	}
 
 	@Test
@@ -128,38 +143,42 @@ public class PortletPreferencesSettingsTest {
 
 		_portletPreferencesSettings.setValues("key", values);
 
-		Mockito.verify(_portletPreferences).setValues("key", values);
+		Mockito.verify(_portletPreferences);
+		
+		_portletPreferences.setValues("key", values);
 	}
 
 	@Test
 	public void testStoreIsPerformedOnPortletPreferences() throws Exception {
 		_portletPreferencesSettings.store();
 
-		Mockito.verify(_portletPreferences).store();
+		Mockito.verify(_portletPreferences);
+
+		_portletPreferences.store();
 	}
 
-	private static final String _DEFAULT_SETTINGS_ARRAY_KEY = "default_keys";
+	private static final String _DEFAULT_SETTINGS_MULTIPLE_KEY = "defaultKeys";
 
-	private static final String[] _DEFAULT_SETTINGS_ARRAY_VALUE = {
-		"default_value0", "default_value1"};
+	private static final String[] _DEFAULT_SETTINGS_MULTIPLE_VALUES =
+		{"defaultValue0", "defaultValue1"};
 
-	private static final String _DEFAULT_SETTINGS_KEY = "default_key";
+	private static final String _DEFAULT_SETTINGS_SINGLE_KEY = "defaultKey";
 
-	private static final String _DEFAULT_SETTINGS_VALUE = "default_value";
+	private static final String _DEFAULT_SETTINGS_SINGLE_VALUE = "defaultValue";
 
-	private static final String _PORTLET_PREFERENCES_ARRAY_KEY = "portlet_keys";
+	private static final String _PORTLET_PREFERENCES_MULTIPLE_KEY =
+		"portletKeys";
 
-	private static final String[] _PORTLET_PREFERENCES_ARRAY_VALUE = {
-		"portlet_value0", "portlet_value1"};
+	private static final String[] _PORTLET_PREFERENCES_MULTIPLE_VALUES =
+		{"portletValue0", "portletValue1"};
 
-	private static final String _PORTLET_PREFERENCES_KEY = "portlet_key";
+	private static final String _PORTLET_PREFERENCES_SINGLE_KEY =
+		"portletKey";
 
-	private static final String _PORTLET_PREFERENCES_VALUE = "portlet_value";
+	private static final String _PORTLET_PREFERENCES_SINGLE_VALUE =
+		"portletValue";
 
-	private Settings _defaultSettings = PowerMockito.mock(Settings.class);
-	private PortletPreferences _portletPreferences = PowerMockito.mock(
-		PortletPreferences.class);
-	private PortletPreferencesSettings _portletPreferencesSettings =
-		new PortletPreferencesSettings(_portletPreferences, _defaultSettings);
+	private PortletPreferences _portletPreferences;
+	private PortletPreferencesSettings _portletPreferencesSettings;
 
 }

@@ -35,7 +35,7 @@ public class FallbackKeySettings implements Settings {
 	@Override
 	public String getValue(String key, String defaultValue) {
 		if (key == null) {
-			throw new IllegalArgumentException("Invalid null key");
+			throw new IllegalArgumentException("Key is null");
 		}
 
 		while (key != null) {
@@ -54,7 +54,7 @@ public class FallbackKeySettings implements Settings {
 	@Override
 	public String[] getValues(String key, String[] defaultValue) {
 		if (key == null) {
-			throw new IllegalArgumentException("Invalid null key");
+			throw new IllegalArgumentException("Key is null");
 		}
 
 		while (key != null) {
