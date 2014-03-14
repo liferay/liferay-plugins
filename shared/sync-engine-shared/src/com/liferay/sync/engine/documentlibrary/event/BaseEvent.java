@@ -194,7 +194,7 @@ public abstract class BaseEvent implements Runnable {
 
 				if (_logger.isDebugEnabled()) {
 					_logger.debug(
-						"Attempting to reconnect to {}. Retry #{}",
+						"Attempting to reconnect to {}. Retry #{}.",
 						syncAccount.getUrl(), retryContext.getRetryCount() + 1);
 				}
 
