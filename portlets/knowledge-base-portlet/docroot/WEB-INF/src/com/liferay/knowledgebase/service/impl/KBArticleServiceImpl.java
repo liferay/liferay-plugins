@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
@@ -59,6 +58,7 @@ import com.sun.syndication.io.FeedException;
 import java.io.InputStream;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -268,7 +268,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			kbArticles = ListUtil.sort(kbArticles, orderByComparator);
 		}
 
-		return new UnmodifiableList<KBArticle>(kbArticles);
+		return Collections.unmodifiableList(kbArticles);
 	}
 
 	public String getKBArticleRSS(
@@ -330,7 +330,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			kbArticles = KnowledgeBaseUtil.sort(resourcePrimKeys, kbArticles);
 		}
 
-		return new UnmodifiableList<KBArticle>(kbArticles);
+		return Collections.unmodifiableList(kbArticles);
 	}
 
 	public List<KBArticle> getKBArticles(

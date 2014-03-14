@@ -61,7 +61,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
-import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
@@ -85,6 +84,7 @@ import java.io.File;
 import java.io.InputStream;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -504,7 +504,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticles = ListUtil.sort(kbArticles, orderByComparator);
 		}
 
-		return new UnmodifiableList<KBArticle>(kbArticles);
+		return Collections.unmodifiableList(kbArticles);
 	}
 
 	public List<KBArticle> getKBArticles(
@@ -542,7 +542,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticles = KnowledgeBaseUtil.sort(resourcePrimKeys, kbArticles);
 		}
 
-		return new UnmodifiableList<KBArticle>(kbArticles);
+		return Collections.unmodifiableList(kbArticles);
 	}
 
 	public List<KBArticle> getKBArticleVersions(
