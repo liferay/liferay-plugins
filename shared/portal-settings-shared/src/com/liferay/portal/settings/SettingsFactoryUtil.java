@@ -31,7 +31,7 @@ public class SettingsFactoryUtil {
 
 	public static Settings getPortletInstanceSettings(
 			Layout layout, String portletId)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		return getSettingsFactory().getPortletInstanceSettings(
 			layout, portletId);
@@ -39,7 +39,7 @@ public class SettingsFactoryUtil {
 
 	public static Settings getServiceCompanySettings(
 			long companyId, String serviceName)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		return getSettingsFactory().getServiceCompanySettings(
 			companyId, serviceName);

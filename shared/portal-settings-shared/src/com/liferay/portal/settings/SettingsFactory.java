@@ -27,11 +27,11 @@ public interface SettingsFactory {
 	public void clearCache();
 
 	public Settings getPortletInstanceSettings(Layout layout, String portletId)
-		throws SystemException;
+		throws PortalException, SystemException;
 
 	public Settings getServiceCompanySettings(
 			long companyId, String serviceName)
-		throws SystemException;
+		throws PortalException, SystemException;
 
 	public Settings getServiceGroupSettings(long groupId, String serviceName)
 		throws PortalException, SystemException;
