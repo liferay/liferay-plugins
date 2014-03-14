@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -130,7 +129,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 			CacheRegistryUtil.clear(CheckoutImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(CheckoutImpl.class.getName());
+		EntityCacheUtil.clearCache(CheckoutImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -302,7 +301,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 		}
 
 		EntityCacheUtil.putResult(CheckoutModelImpl.ENTITY_CACHE_ENABLED,
-			CheckoutImpl.class, checkout.getPrimaryKey(), checkout);
+			CheckoutImpl.class, checkout.getPrimaryKey(), checkout, false);
 
 		checkout.resetOriginalValues();
 
@@ -530,7 +529,7 @@ public class CheckoutPersistenceImpl extends BasePersistenceImpl<Checkout>
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<Checkout>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<Checkout>)QueryUtil.list(q, getDialect(),

@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -130,7 +129,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 			CacheRegistryUtil.clear(DefinitionImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(DefinitionImpl.class.getName());
+		EntityCacheUtil.clearCache(DefinitionImpl.class);
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -303,7 +302,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 		}
 
 		EntityCacheUtil.putResult(DefinitionModelImpl.ENTITY_CACHE_ENABLED,
-			DefinitionImpl.class, definition.getPrimaryKey(), definition);
+			DefinitionImpl.class, definition.getPrimaryKey(), definition, false);
 
 		definition.resetOriginalValues();
 
@@ -536,7 +535,7 @@ public class DefinitionPersistenceImpl extends BasePersistenceImpl<Definition>
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<Definition>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<Definition>)QueryUtil.list(q, getDialect(),
