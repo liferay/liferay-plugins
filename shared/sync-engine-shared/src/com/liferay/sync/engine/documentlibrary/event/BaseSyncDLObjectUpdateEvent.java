@@ -78,7 +78,9 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 		}
 	}
 
-	protected void deleteFile(SyncFile targetSyncFile) throws Exception {
+	protected void deleteFile(SyncFile targetSyncFile, boolean trashed)
+		throws Exception {
+
 		SyncFile sourceSyncFile = SyncFileService.fetchSyncFile(
 			targetSyncFile.getRepositoryId(), getSyncAccountId(),
 			targetSyncFile.getTypePK());
@@ -87,7 +89,12 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			return;
 		}
 
-		sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_TRASHED_REMOTE);
+		if (trashed) {
+			sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_TRASHED_REMOTE);
+		}
+		else {
+			sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_DELETED_REMOTE);
+		}
 
 		Files.deleteIfExists(Paths.get(sourceSyncFile.getFilePathName()));
 
@@ -155,20 +162,13 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 				addFile(syncFile, filePathName);
 			}
 			else if (event.equals(SyncFile.EVENT_DELETE)) {
-				syncFile = SyncFileService.fetchSyncFile(
-					syncFile.getRepositoryId(), getSyncAccountId(),
-					syncFile.getTypePK());
-
-				syncFile.setState(SyncFile.STATE_DELETED);
-				syncFile.setUiEvent(SyncFile.UI_EVENT_DELETED_REMOTE);
-
-				SyncFileService.update(syncFile);
+				deleteFile(syncFile, false);
 			}
 			else if (event.equals(SyncFile.EVENT_MOVE)) {
 				moveFile(syncFile, filePathName);
 			}
 			else if (event.equals(SyncFile.EVENT_TRASH)) {
-				deleteFile(syncFile);
+				deleteFile(syncFile, true);
 			}
 			else if (event.equals(SyncFile.EVENT_UPDATE)) {
 				updateFile(syncFile);
