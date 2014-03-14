@@ -42,7 +42,7 @@
 				userNotificationsCount.toggleClass('alert', (newUserNotificationsCount > 0));
 
 				userNotificationsCount.setHTML(unreadUserNotificationsCount);
-			}
+			};
 
 			A.on(
 				'domready',
