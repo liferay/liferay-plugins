@@ -33,6 +33,9 @@ import com.liferay.portlet.expando.model.ExpandoTableConstants;
 import com.liferay.portlet.expando.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Brian Wing Shun Chan
  * @author Jonathan Lee
@@ -75,14 +78,29 @@ public class StartupAction extends SimpleAction {
 			ExpandoTableConstants.DEFAULT_TABLE_NAME,
 			DLUtil.MANUAL_CHECK_IN_REQUIRED);
 
+		Map<Long, String[]> roleIdsToActionIds = new HashMap<Long, String[]>();
+
 		Role role = RoleLocalServiceUtil.getRole(
 			companyId, RoleConstants.GUEST);
+
+		roleIdsToActionIds.put(
+			role.getRoleId(), new String[] {ActionKeys.VIEW});
+
+		role = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.POWER_USER);
+
+		roleIdsToActionIds.put(
+			role.getRoleId(), new String[] {ActionKeys.UPDATE});
+
+		role = RoleLocalServiceUtil.getRole(companyId, RoleConstants.USER);
+
+		roleIdsToActionIds.put(
+			role.getRoleId(), new String[] {ActionKeys.UPDATE});
 
 		ResourcePermissionLocalServiceUtil.setResourcePermissions(
 			companyId, ExpandoColumn.class.getName(),
 			ResourceConstants.SCOPE_INDIVIDUAL,
-			String.valueOf(expandoColumn.getColumnId()), role.getRoleId(),
-			new String[] {ActionKeys.VIEW});
+			String.valueOf(expandoColumn.getColumnId()), roleIdsToActionIds);
 	}
 
 }
