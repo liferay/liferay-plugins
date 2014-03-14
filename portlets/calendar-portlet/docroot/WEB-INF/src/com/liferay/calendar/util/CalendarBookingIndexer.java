@@ -100,7 +100,8 @@ public class CalendarBookingIndexer extends BaseIndexer {
 
 			document.addText(
 				Field.DESCRIPTION.concat(StringPool.UNDERLINE).concat(
-					descriptionLanguageId), description);
+					descriptionLanguageId),
+				description);
 		}
 
 		String titleDefaultLanguageId = LocalizationUtil.getDefaultLanguageId(
@@ -118,7 +119,8 @@ public class CalendarBookingIndexer extends BaseIndexer {
 
 			document.addText(
 				Field.TITLE.concat(StringPool.UNDERLINE).concat(
-					titleLanguageId), title);
+					titleLanguageId),
+				title);
 		}
 
 		String calendarBookingId = String.valueOf(
