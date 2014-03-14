@@ -223,23 +223,11 @@ public class CalendarUtil {
 		jsonObject.put(
 			"description",
 			calendarBooking.getDescription(themeDisplay.getLocale()));
-		jsonObject.put("endTime", calendarBooking.getEndTime());
 
 		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getEndTime(), timeZone);
 
-		jsonObject.put(
-			"endTimeDay",
-			endTimeJCalendar.get(java.util.Calendar.DAY_OF_MONTH));
-		jsonObject.put(
-			"endTimeHour",
-			endTimeJCalendar.get(java.util.Calendar.HOUR_OF_DAY));
-		jsonObject.put(
-			"endTimeMinute", endTimeJCalendar.get(java.util.Calendar.MINUTE));
-		jsonObject.put(
-			"endTimeMonth", endTimeJCalendar.get(java.util.Calendar.MONTH));
-		jsonObject.put(
-			"endTimeYear", endTimeJCalendar.get(java.util.Calendar.YEAR));
+		_addTimeProperties(jsonObject, "endTime", endTimeJCalendar);
 
 		jsonObject.put("firstReminder", calendarBooking.getFirstReminder());
 		jsonObject.put(
@@ -252,24 +240,11 @@ public class CalendarUtil {
 		jsonObject.put("secondReminder", calendarBooking.getSecondReminder());
 		jsonObject.put(
 			"secondReminderType", calendarBooking.getSecondReminder());
-		jsonObject.put("startTime", calendarBooking.getStartTime());
 
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getStartTime(), timeZone);
 
-		jsonObject.put(
-			"startTimeDay",
-			startTimeJCalendar.get(java.util.Calendar.DAY_OF_MONTH));
-		jsonObject.put(
-			"startTimeHour",
-			startTimeJCalendar.get(java.util.Calendar.HOUR_OF_DAY));
-		jsonObject.put(
-			"startTimeMinute",
-			startTimeJCalendar.get(java.util.Calendar.MINUTE));
-		jsonObject.put(
-			"startTimeMonth", startTimeJCalendar.get(java.util.Calendar.MONTH));
-		jsonObject.put(
-			"startTimeYear", startTimeJCalendar.get(java.util.Calendar.YEAR));
+		_addTimeProperties(jsonObject, "startTime", startTimeJCalendar);
 
 		jsonObject.put("status", calendarBooking.getStatus());
 		jsonObject.put(
@@ -384,6 +359,21 @@ public class CalendarUtil {
 		}
 
 		return jsonArray;
+	}
+
+	private static void _addTimeProperties(
+		JSONObject jsonObject, String prefix, java.util.Calendar jCalendar) {
+
+		jsonObject.put(prefix, jCalendar.getTimeInMillis());
+		jsonObject.put(
+			prefix + "Day", jCalendar.get(java.util.Calendar.DAY_OF_MONTH));
+		jsonObject.put(
+			prefix + "Hour", jCalendar.get(java.util.Calendar.HOUR_OF_DAY));
+		jsonObject.put(
+			prefix + "Minute", jCalendar.get(java.util.Calendar.MINUTE));
+		jsonObject.put(
+			prefix + "Month", jCalendar.get(java.util.Calendar.MONTH));
+		jsonObject.put(prefix + "Year", jCalendar.get(java.util.Calendar.YEAR));
 	}
 
 	private static JSONObject _getPermissionsJSONObject(
