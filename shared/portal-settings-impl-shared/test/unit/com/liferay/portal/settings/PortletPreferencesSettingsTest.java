@@ -34,8 +34,7 @@ public class PortletPreferencesSettingsTest {
 
 	@Before
 	public void setUp() {
-		_portletPreferences = PowerMockito.mock(
-			PortletPreferences.class);
+		_portletPreferences = PowerMockito.mock(PortletPreferences.class);
 
 		Mockito.when(
 			_portletPreferences.getValue(
@@ -57,8 +56,7 @@ public class PortletPreferencesSettingsTest {
 
 		Mockito.when(
 			defaultSettings.getValue(
-				Matchers.eq(_DEFAULT_SETTINGS_SINGLE_KEY),
-				Matchers.anyString())
+				Matchers.eq(_DEFAULT_SETTINGS_SINGLE_KEY), Matchers.anyString())
 		).thenReturn(
 			_DEFAULT_SETTINGS_SINGLE_VALUE
 		);
@@ -97,8 +95,7 @@ public class PortletPreferencesSettingsTest {
 
 		Assert.assertArrayEquals(
 			defaultValue,
-			_portletPreferencesSettings.getValues(
-				"missingKeys", defaultValue));
+			_portletPreferencesSettings.getValues("missingKeys", defaultValue));
 	}
 
 	@Test
@@ -144,7 +141,7 @@ public class PortletPreferencesSettingsTest {
 		_portletPreferencesSettings.setValues("key", values);
 
 		Mockito.verify(_portletPreferences);
-		
+
 		_portletPreferences.setValues("key", values);
 	}
 
@@ -172,8 +169,7 @@ public class PortletPreferencesSettingsTest {
 	private static final String[] _PORTLET_PREFERENCES_MULTIPLE_VALUES =
 		{"portletValue0", "portletValue1"};
 
-	private static final String _PORTLET_PREFERENCES_SINGLE_KEY =
-		"portletKey";
+	private static final String _PORTLET_PREFERENCES_SINGLE_KEY = "portletKey";
 
 	private static final String _PORTLET_PREFERENCES_SINGLE_VALUE =
 		"portletValue";
