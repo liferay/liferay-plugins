@@ -33,7 +33,6 @@ import com.liferay.portlet.asset.model.AssetRenderer;
 import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
-import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeLocalServiceUtil;
@@ -133,11 +132,6 @@ public class MySubscriptionsUtil {
 			if (group != null) {
 				return LanguageUtil.get(locale, "home");
 			}
-
-			BookmarksFolder bookmarksFolder =
-				BookmarksFolderLocalServiceUtil.getBookmarksFolder(classPK);
-
-			return bookmarksFolder.getName();
 		}
 		else if (className.equals(DLFileEntryType.class.getName())) {
 			if (group != null) {
