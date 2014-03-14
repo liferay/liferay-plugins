@@ -64,12 +64,16 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 		syncFile.setSyncAccountId(getSyncAccountId());
 		syncFile.setUiEvent(SyncFile.UI_EVENT_ADDED_REMOTE);
 
-		SyncFileService.update(syncFile);
-
 		if (syncFile.isFolder()) {
 			Files.createDirectories(filePath);
+
+			syncFile.setFileKey(FileUtil.getFileKey(filePath));
+
+			SyncFileService.update(syncFile);
 		}
 		else {
+			SyncFileService.update(syncFile);
+
 			downloadFile(syncFile);
 		}
 	}
