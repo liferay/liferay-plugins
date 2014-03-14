@@ -31,7 +31,7 @@ create table CalendarBooking (
 	calendarResourceId LONG,
 	parentCalendarBookingId LONG,
 	title STRING null,
-	description STRING null,
+	description TEXT null,
 	location STRING null,
 	startTime LONG,
 	endTime LONG,
