@@ -175,7 +175,7 @@ if (comment) {
 
 	<span class="microblogs-countdown-holder">
 		<c:if test="<%= !repost %>">
-			<span class="microblogs-countdown"><%= 150 - (((microblogsEntry != null) && (edit)) ? microblogsEntry.getContent() : StringPool.BLANK).length() %></span>
+			<span class="microblogs-countdown"><%= 150 - (((microblogsEntry != null) && edit) ? microblogsEntry.getContent() : StringPool.BLANK).length() %></span>
 		</c:if>
 	</span>
 
