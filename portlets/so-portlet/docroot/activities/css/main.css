@@ -252,8 +252,6 @@ $default-border-color: #E7E7E7;
 	.comments-container, .microblogs-portlet-activity .activity-body {
 		.user-portrait {
 			height: 32px;
-			left: 2px;
-			position: absolute;
 			width: 32px;
 
 			.avatar {
@@ -266,12 +264,19 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
-	.comments-container .control-group {
-		margin: 0 2px 0 34px;
-		padding: 0;
+	.comments-container {
+		.user-portrait {
+			left: 2px;
+			position: absolute;
+		}
 
-		.comment-form {
-			padding: 5px 0;
+		.control-group {
+			margin: 0 2px 0 34px;
+			padding: 0;
+
+			.comment-form {
+				padding: 5px 0;
+			}
 		}
 	}
 
