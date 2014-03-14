@@ -832,7 +832,7 @@ public class CalendarBookingLocalServiceImpl
 		int index = RecurrenceUtil.getIndexOfInstance(
 			recurrence, calendarBooking.getStartTime(), startTime);
 
-		if (index == 0) {
+		if ((index == 0) && allFollowing) {
 			return updateCalendarBooking(
 				userId, calendarBookingId, calendarId, childCalendarIds,
 				titleMap, descriptionMap, location, startTime, endTime, allDay,
