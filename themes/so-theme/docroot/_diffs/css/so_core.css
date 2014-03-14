@@ -747,6 +747,10 @@ html.aui {
 		}
 	}
 
+	.entry-body .lfr-editable {
+		word-wrap: break-word;
+	}
+
 	div.taglib-header {
 		position: relative;
 	}
