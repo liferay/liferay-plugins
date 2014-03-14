@@ -35,7 +35,6 @@
 	<classpathentry kind="lib" path="lib/jackson-core.jar" />
 	<classpathentry kind="lib" path="lib/jackson-databind.jar" />
 	<classpathentry kind="lib" path="lib/jpathwatch.jar" />
-	<classpathentry kind="lib" path="lib/jsr311-api.jar" />
 	<classpathentry kind="lib" path="lib/ormlite-core.jar" />
 	<classpathentry kind="lib" path="lib/ormlite-jdbc.jar" />
 	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
@@ -43,6 +42,7 @@
 	<classpathentry kind="lib" path="lib/slf4j-api.jar" />
 	<classpathentry kind="lib" path="lib/slf4j-log4j12.jar" />
 	<classpathentry kind="lib" path="lib/spring-retry.jar" />
+	<classpathentry kind="lib" path="lib/spring-web.jar" />
 	<classpathentry kind="lib" path="lib/spring.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
