@@ -500,11 +500,12 @@ public class SyncFileService {
 
 		String changeLog = String.valueOf(
 			Double.valueOf(syncFile.getVersion()) + .1);
-		String checksum = FileUtil.getChecksum(filePath);
 		String name = String.valueOf(filePath.getFileName());
+		String sourceChecksum = syncFile.getChecksum();
+		String targetChecksum = FileUtil.getChecksum(filePath);
 
 		syncFile.setChangeLog(changeLog);
-		syncFile.setChecksum(checksum);
+		syncFile.setChecksum(targetChecksum);
 		syncFile.setFilePathName(FilePathNameUtil.getFilePathName(filePath));
 		syncFile.setName(name);
 		syncFile.setUiEvent(SyncFile.UI_EVENT_UPDATED_LOCAL);
@@ -516,10 +517,14 @@ public class SyncFileService {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("changeLog", changeLog);
-		parameters.put("checksum", checksum);
+		parameters.put("checksum", targetChecksum);
 		parameters.put("description", syncFile.getDescription());
 		parameters.put("fileEntryId", syncFile.getTypePK());
-		parameters.put("filePath", filePath);
+
+		if (!sourceChecksum.equals(targetChecksum)) {
+			parameters.put("filePath", filePath);
+		}
+
 		parameters.put("majorVersion", false);
 		parameters.put("mimeType", syncFile.getMimeType());
 		parameters.put("sourceFileName", name);
@@ -569,10 +574,11 @@ public class SyncFileService {
 				return update(syncFile);
 			}
 
-			String oldFilePathName = syncFile.getFilePathName();
-			String newFilePathName = FilePathNameUtil.getFilePathName(filePath);
+			String sourceFilePathName = syncFile.getFilePathName();
+			String targetFilePathName = FilePathNameUtil.getFilePathName(
+				filePath);
 
-			syncFile.setFilePathName(newFilePathName);
+			syncFile.setFilePathName(targetFilePathName);
 			syncFile.setName(String.valueOf(filePath.getFileName()));
 			syncFile.setParentFolderId(parentFolderId);
 
@@ -587,7 +593,7 @@ public class SyncFileService {
 				String childFilePathName = childSyncFile.getFilePathName();
 
 				childFilePathName = childFilePathName.replace(
-					oldFilePathName, newFilePathName);
+					sourceFilePathName, targetFilePathName);
 
 				if (childSyncFile.isFolder()) {
 					updateSyncFile(
