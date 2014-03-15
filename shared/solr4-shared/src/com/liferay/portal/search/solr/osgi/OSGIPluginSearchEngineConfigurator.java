@@ -47,7 +47,9 @@ public class OSGIPluginSearchEngineConfigurator
 
 	@Override
 	protected ClassLoader getOperatingClassloader() {
-		return getClass().getClassLoader();
+		Class<?> clazz = getClass();
+
+		return clazz.getClassLoader();
 	}
 
 	public void setDefaultSearchEngineId(String defaultSearchEngineId) {
