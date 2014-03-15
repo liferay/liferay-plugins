@@ -18,17 +18,18 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-slf4j/util-slf4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/commons-io-2.1.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/httpclient-4.2.3.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/httpcore-4.2.2.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/httpmime-4.2.3.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/noggit-0.5.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/portal-compat-shared.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/slf4j-api-1.6.6.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/slf4j-log4j12-1.6.6.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/solr-core-4.3.1.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/solr-solrj-4.3.1.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/wstx-asl-3.2.7.jar" />
-	<classpathentry kind="lib" path="tmp/WEB-INF/lib/zookeeper-3.4.5.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/commons-io-2.1.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpclient-4.2.3.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpcore-4.2.2.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/httpmime-4.2.3.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/noggit-0.5.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/portal-compat-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/slf4j-api-1.6.6.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/slf4j-log4j12-1.6.6.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/solr-core-4.3.1.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/solr-solrj-4.3.1.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/solr4-shared.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/wstx-asl-3.2.7.jar" />
+	<classpathentry kind="lib" path="docroot/WEB-INF/lib/zookeeper-3.4.5.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
