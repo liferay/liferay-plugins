@@ -17,8 +17,7 @@
 			<mapper type="flatten" />
 		</unzip>
 
-		<call-macrodef-or-target
-			macrodef.name="build-common.compile-import-shared"
+		<compile-import-shared
 			module.dir="."
 		/>
 	</target>
