@@ -41,7 +41,7 @@ public class AnnouncementsEntryServiceUtil
 			int expirationDateMinute, int priority, boolean alert)
 		throws PortalException, SystemException {
 
-		Object[] params = new Object[] {
+		Object[] arguments = new Object[] {
 			plid, classNameId, classPK, title, content, url, type,
 			displayDateMonth, displayDateDay, displayDateYear, displayDateHour,
 			displayDateMinute, autoDisplayDate, expirationDateMonth,
@@ -50,7 +50,7 @@ public class AnnouncementsEntryServiceUtil
 		};
 
 		if (!_supportsAutoDisplayDate) {
-			params = new Object[] {
+			arguments = new Object[] {
 				plid, classNameId, classPK, title, content, url, type,
 				displayDateMonth, displayDateDay, displayDateYear,
 				displayDateHour, displayDateMinute, expirationDateMonth,
@@ -63,7 +63,7 @@ public class AnnouncementsEntryServiceUtil
 
 		try {
 			announcementsEntry = (AnnouncementsEntry)_addEntryMethod.invoke(
-				null, params);
+				null, arguments);
 		}
 		catch (InvocationTargetException ite) {
 			_log.error(ite.getCause());
