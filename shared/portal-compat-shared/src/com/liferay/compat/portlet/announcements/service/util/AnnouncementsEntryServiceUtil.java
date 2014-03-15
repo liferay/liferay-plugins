@@ -75,26 +75,6 @@ public class AnnouncementsEntryServiceUtil
 		return announcementsEntry;
 	}
 
-	private static final Class<?> _ANNOUNCEMENTS_ENTRY_SERVICE_UTIL_CLASS =
-		com.liferay.portlet.announcements.service.
-			AnnouncementsEntryServiceUtil.class;
-
-	private static final Class<?>[]
-		_TYPES_L_L_L_S_S_S_S_I_I_I_I_I_B_I_I_I_I_I_I_B = {
-			long.class, long.class, long.class, String.class, String.class,
-			String.class, String.class, int.class, int.class, int.class,
-			int.class, int.class, boolean.class, int.class, int.class,
-			int.class, int.class, int.class, int.class, boolean.class
-	};
-
-	private static final Class<?>[]
-		_TYPES_L_L_L_S_S_S_S_I_I_I_I_I_I_I_I_I_I_I_B = {
-			long.class, long.class, long.class, String.class, String.class,
-			String.class, String.class, int.class, int.class, int.class,
-			int.class, int.class, int.class, int.class, int.class, int.class,
-			int.class, int.class, boolean.class
-	};
-
 	private static Log _log = LogFactoryUtil.getLog(
 		AnnouncementsEntryServiceUtil.class);
 
@@ -104,19 +84,35 @@ public class AnnouncementsEntryServiceUtil
 	static {
 		try {
 			_addEntryMethod = ReflectionUtil.getDeclaredMethod(
-				_ANNOUNCEMENTS_ENTRY_SERVICE_UTIL_CLASS, "addEntry",
-				_TYPES_L_L_L_S_S_S_S_I_I_I_I_I_B_I_I_I_I_I_I_B);
+				com.liferay.portlet.announcements.service.
+					AnnouncementsEntryServiceUtil.class,
+				"addEntry",
+				new Class<?>[] {
+					long.class, long.class, long.class, String.class,
+					String.class, String.class, String.class, int.class,
+					int.class, int.class, int.class, int.class, boolean.class,
+					int.class, int.class, int.class, int.class, int.class,
+					int.class, boolean.class
+				});
 
 			_supportsAutoDisplayDate = true;
 		}
 		catch (NoSuchMethodException nsme) {
 			try {
 				_addEntryMethod = ReflectionUtil.getDeclaredMethod(
-					_ANNOUNCEMENTS_ENTRY_SERVICE_UTIL_CLASS, "addEntry",
-					_TYPES_L_L_L_S_S_S_S_I_I_I_I_I_I_I_I_I_I_I_B);
+					com.liferay.portlet.announcements.service.
+						AnnouncementsEntryServiceUtil.class,
+					"addEntry",
+					new Class<?>[] {
+						long.class, long.class, long.class, String.class,
+						String.class, String.class, String.class, int.class,
+						int.class, int.class, int.class, int.class, int.class,
+						int.class, int.class, int.class, int.class, int.class,
+						boolean.class
+					});
 
 				if (_log.isDebugEnabled()) {
-					_log.debug("Falling back to: " + _addEntryMethod);
+					_log.debug("Falling back to " + _addEntryMethod);
 				}
 			}
 			catch (Exception e) {
