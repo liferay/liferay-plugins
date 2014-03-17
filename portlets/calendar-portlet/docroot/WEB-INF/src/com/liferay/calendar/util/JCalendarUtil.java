@@ -51,7 +51,7 @@ public class JCalendarUtil {
 		return (endTime - startTime) / DAY;
 	}
 
-	public static int getDstShift(
+	public static int getDSTShift(
 		Calendar calendar1, Calendar calendar2, TimeZone timeZone) {
 
 		calendar1 = JCalendarUtil.getJCalendar(
@@ -67,10 +67,10 @@ public class JCalendarUtil {
 			calendar2.get(Calendar.SECOND), calendar2.get(Calendar.MILLISECOND),
 			timeZone);
 
-		long shift =
+		Long shift =
 			calendar1.getTimeInMillis() - sameDayCalendar.getTimeInMillis();
 
-		return (int)shift;
+		return shift.intValue();
 	}
 
 	public static Calendar getJCalendar(

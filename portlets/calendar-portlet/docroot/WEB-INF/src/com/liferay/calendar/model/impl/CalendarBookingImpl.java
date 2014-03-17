@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * @author Eduardo Lundgren
@@ -88,6 +89,15 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 	@Override
 	public NotificationType getSecondReminderNotificationType() {
 		return NotificationType.parse(getSecondReminderType());
+	}
+
+	@Override
+	public TimeZone getTimeZone() throws PortalException, SystemException {
+		CalendarBooking parentCalendarBooking = getParentCalendarBooking();
+
+		Calendar calendar = parentCalendarBooking.getCalendar();
+
+		return calendar.getTimeZone();
 	}
 
 	@Override
