@@ -17,37 +17,39 @@
 <%@ include file="/init.jsp" %>
 
 <div class="clearfix notifications-container">
-	<aui:col cssClass="nav-bar user-notifications-sidebar" width="<%= 25 %>">
-		<div class="nav">
-			<a class="clearfix selected unread" href="javascript:;">
-				<span class="title"><liferay-ui:message key="unread" /></span>
+	<aui:row>
+		<aui:col cssClass="nav-bar user-notifications-sidebar" width="<%= 25 %>">
+			<div class="nav">
+				<a class="clearfix selected unread" href="javascript:;">
+					<span class="title"><liferay-ui:message key="unread" /></span>
 
-				<%
-				int unreadUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
-				%>
+					<%
+					int unreadUserNotificationsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
+					%>
 
-				<span class="count"><%= unreadUserNotificationsCount %></span>
-			</a>
-		</div>
+					<span class="count"><%= unreadUserNotificationsCount %></span>
+				</a>
+			</div>
 
-		<div class="nav">
-			<a class="all-notifications clearfix" href="javascript:;">
-				<span class="title"><liferay-ui:message key="all-notifications" /></span>
-			</a>
-		</div>
+			<div class="nav">
+				<a class="all-notifications clearfix" href="javascript:;">
+					<span class="title"><liferay-ui:message key="all-notifications" /></span>
+				</a>
+			</div>
 
-		<div class="nav">
-			<a class="manage clearfix" href="javascript:;">
-				<span class="title"><liferay-ui:message key="notification-delivery" /></span>
-			</a>
-		</div>
-	</aui:col>
+			<div class="nav">
+				<a class="manage clearfix" href="javascript:;">
+					<span class="title"><liferay-ui:message key="notification-delivery" /></span>
+				</a>
+			</div>
+		</aui:col>
 
-	<aui:col cssClass="user-notifications-list-container" width="<%= 75 %>">
-		<ul class="unstyled user-notifications-list">
-			<div class="loading-mask"></div>
-		</ul>
-	</aui:col>
+		<aui:col cssClass="user-notifications-list-container" width="<%= 75 %>">
+			<ul class="unstyled user-notifications-list">
+				<div class="loading-mask"></div>
+			</ul>
+		</aui:col>
+	</aui:row>
 </div>
 
 <aui:script use="aui-base,aui-io-plugin-deprecated">
