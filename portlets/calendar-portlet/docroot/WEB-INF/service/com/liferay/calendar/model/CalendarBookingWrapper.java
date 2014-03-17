@@ -1429,6 +1429,13 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	@Override
+	public java.util.TimeZone getTimeZone()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendarBooking.getTimeZone();
+	}
+
+	@Override
 	public boolean isMasterBooking() {
 		return _calendarBooking.isMasterBooking();
 	}
