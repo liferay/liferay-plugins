@@ -356,7 +356,7 @@ public class SitesPortlet extends MVCPortlet {
 			}
 			else if (member &&
 					 !isOrganizationOrUserGroupMember(
-						 themeDisplay.getUserId(), group.getGroupId())) {
+						themeDisplay.getUserId(), group)) {
 
 				siteAssignmentsPortletURL.setParameter(
 					"removeUserIds", String.valueOf(themeDisplay.getUserId()));
@@ -622,11 +622,16 @@ public class SitesPortlet extends MVCPortlet {
 		return StringUtil.split(GetterUtil.getString(value), 0L);
 	}
 
-	protected boolean isOrganizationOrUserGroupMember(long userId, long groupId)
+	protected boolean isOrganizationOrUserGroupMember(long userId, Group group)
 		throws Exception {
 
+		if (group.isOrganization()) {
+			return true;
+		}
+
 		List<Organization> organizations =
-			OrganizationLocalServiceUtil.getGroupOrganizations(groupId);
+			OrganizationLocalServiceUtil.getGroupOrganizations(
+				group.getGroupId());
 
 		for (Organization organization : organizations) {
 			if (OrganizationLocalServiceUtil.hasUserOrganization(
@@ -637,7 +642,7 @@ public class SitesPortlet extends MVCPortlet {
 		}
 
 		List<UserGroup> userGroups =
-			UserGroupLocalServiceUtil.getGroupUserGroups(groupId);
+			UserGroupLocalServiceUtil.getGroupUserGroups(group.getGroupId());
 
 		for (UserGroup userGroup : userGroups) {
 			if (UserGroupLocalServiceUtil.hasUserUserGroup(
