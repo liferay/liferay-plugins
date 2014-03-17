@@ -69,7 +69,7 @@
 			userNotificationsList.io.set('uri', uri);
 			userNotificationsList.io.start();
 		}
-	}
+	};
 
 	<portlet:renderURL var="unreadURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 		<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
