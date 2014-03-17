@@ -56,7 +56,7 @@
 	<path id="portal.classpath">
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
-		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
+		<fileset dir="${app.server.lib.portal.dir}" excludes="bnd.jar" includes="*.jar" />
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,jargs.jar,javax.servlet-api.jar,jsp-api.jar,qdox.jar" />
 	</path>
 
