@@ -366,9 +366,8 @@ public class SitesPortlet extends MVCPortlet {
 						permissionChecker, group.getGroupId(),
 						ActionKeys.ASSIGN_MEMBERS)) {
 
-						groupJSONObject.put(
-							"leaveURL", siteAssignmentsPortletURL.toString());
-					}
+					groupJSONObject.put(
+						"leaveURL", siteAssignmentsPortletURL.toString());
 				}
 			}
 
