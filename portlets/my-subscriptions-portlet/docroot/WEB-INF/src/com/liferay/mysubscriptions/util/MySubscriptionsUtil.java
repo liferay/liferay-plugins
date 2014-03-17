@@ -34,7 +34,7 @@ import com.liferay.portlet.asset.model.AssetRendererFactory;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
-import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeLocalServiceUtil;
 import com.liferay.portlet.journal.model.JournalFolder;
 import com.liferay.portlet.messageboards.model.MBCategory;
@@ -70,6 +70,11 @@ public class MySubscriptionsUtil {
 
 		if (className.equals(BlogsEntry.class.getName())) {
 			return PortalUtil.getLayoutFullURL(classPK, PortletKeys.BLOGS);
+		}
+
+		if (className.equals(Folder.class.getName())) {
+			return PortalUtil.getLayoutFullURL(
+				classPK, PortletKeys.DOCUMENT_LIBRARY);
 		}
 
 		if (className.equals(_KNOWLEDGE_BASE_MODEL_CLASSNAME)) {
@@ -168,10 +173,6 @@ public class MySubscriptionsUtil {
 			if (group != null) {
 				return LanguageUtil.get(locale, "home");
 			}
-
-			Folder folder = DLAppLocalServiceUtil.getFolder(classPK);
-
-			return folder.getName();
 		}
 
 		if (group != null) {
@@ -189,7 +190,10 @@ public class MySubscriptionsUtil {
 			String className, long classPK)
 		throws Exception {
 
-		if (className.equals(MBThread.class.getName())) {
+		if (className.equals(Folder.class.getName())) {
+			className = DLFolder.class.getName();
+		}
+		else if (className.equals(MBThread.class.getName())) {
 			className = MBMessage.class.getName();
 
 			MBThread mbThread = MBThreadLocalServiceUtil.getThread(classPK);
