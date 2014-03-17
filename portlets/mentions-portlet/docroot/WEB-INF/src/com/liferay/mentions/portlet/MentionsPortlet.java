@@ -14,6 +14,7 @@
 
 package com.liferay.mentions.portlet;
 
+import com.liferay.mentions.util.MentionsUserFinderUtil;
 import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -22,19 +23,14 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.search.Hits;
-import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
-import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -99,12 +95,7 @@ public class MentionsPortlet extends MVCPortlet {
 
 		String query = ParamUtil.getString(request, "query") + StringPool.STAR;
 
-		Hits hits = UserLocalServiceUtil.search(
-			themeDisplay.getCompanyId(), query, query, query, query,
-			StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, null, false, 0,
-			100, (Sort)null);
-
-		List<User> users = UsersAdminUtil.getUsers(hits);
+		List<User> users = MentionsUserFinderUtil.getUsers(query, themeDisplay);
 
 		for (User user : users) {
 			if (user.isDefaultUser() ||
