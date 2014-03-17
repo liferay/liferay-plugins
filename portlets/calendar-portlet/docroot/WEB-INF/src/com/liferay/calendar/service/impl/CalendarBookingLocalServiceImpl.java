@@ -75,7 +75,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.TimeZone;
 
 /**
  * @author Eduardo Lundgren
@@ -524,17 +523,6 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		return childCalendarIds;
-	}
-
-	@Override
-	public TimeZone getTimeZone(CalendarBooking calendarBooking)
-		throws PortalException, SystemException {
-
-		CalendarBooking parentCalendarBooking =
-			calendarBooking.getParentCalendarBooking();
-
-		return calendarLocalService.getTimeZone(
-			parentCalendarBooking.getCalendar());
 	}
 
 	@Override

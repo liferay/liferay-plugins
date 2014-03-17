@@ -36,55 +36,55 @@ public class JCalendarUtilTest {
 	}
 
 	@Test
-	public void testGetDstShiftLosAngelesDst() {
+	public void testGetDSTShiftAtLosAngelesDuringDST() {
 		Calendar calendar1 = JCalendarUtil.getJCalendar(
 			2012, Calendar.MAY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
 		Calendar calendar2 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JULY, 2, 12, 0, 0, 0, TimeZoneUtil.GMT);
 
-		int shift = JCalendarUtil.getDstShift(
+		int shift = JCalendarUtil.getDSTShift(
 			calendar1, calendar2, _losAngelesTimeZone);
 
 		Assert.assertEquals(0, shift);
 	}
 
 	@Test
-	public void testGetDstShiftLosAngelesDstToNoDst() {
+	public void testGetDSTShiftAtLosAngelesDuringNoDST() {
+		Calendar calendar1 = JCalendarUtil.getJCalendar(
+			2013, Calendar.DECEMBER, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
+		Calendar calendar2 = JCalendarUtil.getJCalendar(
+			2013, Calendar.JANUARY, 2, 12, 0, 0, 0, TimeZoneUtil.GMT);
+
+		int shift = JCalendarUtil.getDSTShift(
+			calendar1, calendar2, _losAngelesTimeZone);
+
+		Assert.assertEquals(0, shift);
+	}
+
+	@Test
+	public void testGetDSTShiftAtLosAngelesFromDSTToNoDST() {
 		Calendar calendar1 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JULY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
 		Calendar calendar2 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JANUARY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
 
-		int shift = JCalendarUtil.getDstShift(
+		int shift = JCalendarUtil.getDSTShift(
 			calendar1, calendar2, _losAngelesTimeZone);
 
 		Assert.assertEquals(JCalendarUtil.HOUR, shift);
 	}
 
 	@Test
-	public void testGetDstShiftLosAngelesNoDst() {
-		Calendar calendar1 = JCalendarUtil.getJCalendar(
-			2013, Calendar.DECEMBER, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
-		Calendar calendar2 = JCalendarUtil.getJCalendar(
-			2013, Calendar.JANUARY, 2, 12, 0, 0, 0, TimeZoneUtil.GMT);
-
-		int shift = JCalendarUtil.getDstShift(
-			calendar1, calendar2, _losAngelesTimeZone);
-
-		Assert.assertEquals(0, shift);
-	}
-
-	@Test
-	public void testGetDstShiftLosAngelesNoDstToDst() {
+	public void testGetDSTShiftAtLosAngelesFromNoDSTToDST() {
 		Calendar calendar1 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JANUARY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
 		Calendar calendar2 = JCalendarUtil.getJCalendar(
 			2013, Calendar.JULY, 1, 12, 0, 0, 0, TimeZoneUtil.GMT);
 
-		int shift = JCalendarUtil.getDstShift(
+		int shift = JCalendarUtil.getDSTShift(
 			calendar1, calendar2, _losAngelesTimeZone);
 
-		Assert.assertEquals(-1*JCalendarUtil.HOUR, shift);
+		Assert.assertEquals(-1 * JCalendarUtil.HOUR, shift);
 	}
 
 	private static final TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
