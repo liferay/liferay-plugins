@@ -166,6 +166,7 @@ public class RecurrenceUtil {
 
 		Calendar jCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getStartTime());
+
 		Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startDateValue.year(), startDateValue.month() - 1,
 			startDateValue.day(), jCalendar.get(Calendar.HOUR_OF_DAY),

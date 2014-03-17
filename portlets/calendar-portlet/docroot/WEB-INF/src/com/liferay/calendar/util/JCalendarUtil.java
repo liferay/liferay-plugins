@@ -56,7 +56,6 @@ public class JCalendarUtil {
 
 		calendar1 = JCalendarUtil.getJCalendar(
 			calendar1.getTimeInMillis(), timeZone);
-
 		calendar2 = JCalendarUtil.getJCalendar(
 			calendar2.getTimeInMillis(), timeZone);
 

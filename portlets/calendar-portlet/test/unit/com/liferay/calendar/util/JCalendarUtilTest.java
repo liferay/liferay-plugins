@@ -32,7 +32,9 @@ public class JCalendarUtilTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		new CalendarFactoryUtil().setCalendarFactory(new CalendarFactoryImpl());
+		CalendarFactoryUtil calendarFactoryUtil = new CalendarFactoryUtil();
+
+		calendarFactoryUtil.setCalendarFactory(new CalendarFactoryImpl());
 	}
 
 	@Test
@@ -87,7 +89,7 @@ public class JCalendarUtilTest {
 		Assert.assertEquals(-1 * JCalendarUtil.HOUR, shift);
 	}
 
-	private static final TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
+	private static TimeZone _losAngelesTimeZone = TimeZone.getTimeZone(
 		"America/Los_Angeles");
 
 }
