@@ -19,6 +19,8 @@ import com.liferay.calendar.model.CalendarClp;
 import com.liferay.calendar.model.CalendarNotificationTemplateClp;
 import com.liferay.calendar.model.CalendarResourceClp;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
@@ -267,13 +269,6 @@ public class ClpSerializer {
 
 				return throwable;
 			}
-			catch (ClassNotFoundException cnfe) {
-				if (_log.isInfoEnabled()) {
-					_log.info("Do not use reflection to translate throwable");
-				}
-
-				_useReflectionToTranslateThrowable = false;
-			}
 			catch (SecurityException se) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Do not use reflection to translate throwable");
@@ -292,77 +287,72 @@ public class ClpSerializer {
 
 		String className = clazz.getName();
 
+		if (className.equals(PortalException.class.getName())) {
+			return new PortalException();
+		}
+
+		if (className.equals(SystemException.class.getName())) {
+			return new SystemException();
+		}
+
 		if (className.equals(
 					"com.liferay.calendar.CalendarBookingDurationException")) {
-			return new com.liferay.calendar.CalendarBookingDurationException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.CalendarBookingDurationException();
 		}
 
 		if (className.equals(
 					"com.liferay.calendar.CalendarBookingEndTimeException")) {
-			return new com.liferay.calendar.CalendarBookingEndTimeException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.CalendarBookingEndTimeException();
 		}
 
 		if (className.equals(
 					"com.liferay.calendar.CalendarBookingStartTimeException")) {
-			return new com.liferay.calendar.CalendarBookingStartTimeException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.CalendarBookingStartTimeException();
 		}
 
 		if (className.equals(
 					"com.liferay.calendar.CalendarBookingTitleException")) {
-			return new com.liferay.calendar.CalendarBookingTitleException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.CalendarBookingTitleException();
 		}
 
 		if (className.equals("com.liferay.calendar.CalendarNameException")) {
-			return new com.liferay.calendar.CalendarNameException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.CalendarNameException();
 		}
 
 		if (className.equals(
 					"com.liferay.calendar.CalendarResourceCodeException")) {
-			return new com.liferay.calendar.CalendarResourceCodeException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.CalendarResourceCodeException();
 		}
 
 		if (className.equals(
 					"com.liferay.calendar.CalendarResourceNameException")) {
-			return new com.liferay.calendar.CalendarResourceNameException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.CalendarResourceNameException();
 		}
 
 		if (className.equals(
 					"com.liferay.calendar.DuplicateCalendarResourceException")) {
-			return new com.liferay.calendar.DuplicateCalendarResourceException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.DuplicateCalendarResourceException();
 		}
 
 		if (className.equals("com.liferay.calendar.RequiredCalendarException")) {
-			return new com.liferay.calendar.RequiredCalendarException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.RequiredCalendarException();
 		}
 
 		if (className.equals("com.liferay.calendar.NoSuchCalendarException")) {
-			return new com.liferay.calendar.NoSuchCalendarException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.NoSuchCalendarException();
 		}
 
 		if (className.equals("com.liferay.calendar.NoSuchBookingException")) {
-			return new com.liferay.calendar.NoSuchBookingException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.NoSuchBookingException();
 		}
 
 		if (className.equals(
 					"com.liferay.calendar.NoSuchNotificationTemplateException")) {
-			return new com.liferay.calendar.NoSuchNotificationTemplateException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.NoSuchNotificationTemplateException();
 		}
 
 		if (className.equals("com.liferay.calendar.NoSuchResourceException")) {
-			return new com.liferay.calendar.NoSuchResourceException(throwable.getMessage(),
-				throwable.getCause());
+			return new com.liferay.calendar.NoSuchResourceException();
 		}
 
 		return throwable;

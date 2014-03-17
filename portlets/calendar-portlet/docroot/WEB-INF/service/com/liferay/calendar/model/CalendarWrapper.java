@@ -938,6 +938,13 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 	}
 
 	@Override
+	public java.util.TimeZone getTimeZone()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _calendar.getTimeZone();
+	}
+
+	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;

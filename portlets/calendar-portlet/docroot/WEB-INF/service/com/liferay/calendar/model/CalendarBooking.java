@@ -54,6 +54,10 @@ public interface CalendarBooking extends CalendarBookingModel, PermissionedModel
 
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType();
 
+	public java.util.TimeZone getTimeZone()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public boolean isMasterBooking();
 
 	public boolean isRecurring();

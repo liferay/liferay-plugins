@@ -24,17 +24,17 @@ import java.util.Arrays;
  */
 public class CalendarNotificationTemplateServiceClpInvoker {
 	public CalendarNotificationTemplateServiceClpInvoker() {
-		_methodName50 = "getBeanIdentifier";
+		_methodName44 = "getBeanIdentifier";
 
-		_methodParameterTypes50 = new String[] {  };
+		_methodParameterTypes44 = new String[] {  };
 
-		_methodName51 = "setBeanIdentifier";
+		_methodName45 = "setBeanIdentifier";
 
-		_methodParameterTypes51 = new String[] { "java.lang.String" };
+		_methodParameterTypes45 = new String[] { "java.lang.String" };
 
-		_methodName56 = "addCalendarNotificationTemplate";
+		_methodName50 = "addCalendarNotificationTemplate";
 
-		_methodParameterTypes56 = new String[] {
+		_methodParameterTypes50 = new String[] {
 				"long", "com.liferay.calendar.notification.NotificationType",
 				"java.lang.String",
 				"com.liferay.calendar.notification.NotificationTemplateType",
@@ -42,9 +42,9 @@ public class CalendarNotificationTemplateServiceClpInvoker {
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName57 = "updateCalendarNotificationTemplate";
+		_methodName51 = "updateCalendarNotificationTemplate";
 
-		_methodParameterTypes57 = new String[] {
+		_methodParameterTypes51 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "com.liferay.portal.service.ServiceContext"
 			};
@@ -52,20 +52,20 @@ public class CalendarNotificationTemplateServiceClpInvoker {
 
 	public Object invokeMethod(String name, String[] parameterTypes,
 		Object[] arguments) throws Throwable {
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName44.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes44, parameterTypes)) {
 			return CalendarNotificationTemplateServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName45.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes45, parameterTypes)) {
 			CalendarNotificationTemplateServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
 			return CalendarNotificationTemplateServiceUtil.addCalendarNotificationTemplate(((Long)arguments[0]).longValue(),
 				(com.liferay.calendar.notification.NotificationType)arguments[1],
 				(java.lang.String)arguments[2],
@@ -74,8 +74,8 @@ public class CalendarNotificationTemplateServiceClpInvoker {
 				(com.liferay.portal.service.ServiceContext)arguments[6]);
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return CalendarNotificationTemplateServiceUtil.updateCalendarNotificationTemplate(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3],
@@ -85,12 +85,12 @@ public class CalendarNotificationTemplateServiceClpInvoker {
 		throw new UnsupportedOperationException();
 	}
 
+	private String _methodName44;
+	private String[] _methodParameterTypes44;
+	private String _methodName45;
+	private String[] _methodParameterTypes45;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
 	private String _methodName51;
 	private String[] _methodParameterTypes51;
-	private String _methodName56;
-	private String[] _methodParameterTypes56;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
 }
