@@ -50,7 +50,7 @@
 		<path refid="plugin-lib.classpath" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="annotations.jar,commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar" />
-		<fileset dir="${sdk.dir}/lib" includes="activation.jar,javax.servlet-api.jar,jsp-api.jar,mail.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="activation.jar,bnd.jar,javax.servlet-api.jar,jsp-api.jar,mail.jar,portal-ant-shared.jar" />
 	</path>
 
 	<path id="portal.classpath">
@@ -60,7 +60,7 @@
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,jargs.jar,javax.servlet-api.jar,jsp-api.jar,qdox.jar" />
 	</path>
 
-	<taskdef classpathref="portal.classpath" resource="aQute/bnd/ant/taskdef.properties" />
+	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
 
 	<path id="test.classpath">
 		<path refid="plugin.classpath" />
@@ -136,7 +136,7 @@ Error-Prone was automatically installed. Please rerun your task.
 
 		<sequential>
 			<taskdef
-				classname="com.liferay.util.ant.bnd.BaselineJarTask"
+				classname="com.liferay.portal.ant.bnd.BaselineJarTask"
 				classpathref="plugin.classpath"
 				name="baseline-jar"
 			/>
@@ -1404,7 +1404,7 @@ Please find a solution that does not require portal-impl.jar.
 
 		<sequential>
 			<taskdef
-				classname="com.liferay.util.ant.ManifestHelperTask"
+				classname="com.liferay.portal.ant.ManifestHelperTask"
 				classpathref="plugin.classpath"
 				name="liferay-manifest-helper"
 			/>
