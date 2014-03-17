@@ -234,6 +234,19 @@ else {
 							name = '<a href="' + result.privateLayoutsURL + '">' + name + '</a>';
 						}
 
+						var leaveHTML = '';
+
+						var leaveURLOnly = !result.joinURL && !result.membershipRequested && !result.requestUrl;
+
+						if (leaveURLOnly) {
+							if (result.leaveURL) {
+								leaveHTML = getSiteActionHtml('action leave', 'leave-site', Liferay.Language.get("leave-site"), result.leaveURL)
+							}
+							else {
+								leaveHTML = getSiteActionHtml('action leave', 'disabled', Liferay.Language.get("you-cannot-leave-the-site-as-a-user-group-member-or-organization-member"), '#');
+							}
+						}
+
 						return A.Lang.sub(
 							siteTemplate,
 							{
@@ -241,7 +254,7 @@ else {
 								deleteHTML: deleteHTML,
 								favoriteHTML: favoriteHTML,
 								joinHTML: (result.joinURL ? getSiteActionHtml('action join', 'join-site', Liferay.Language.get("join-site"), result.joinURL) : ''),
-								leaveHTML: (result.leaveURL ? getSiteActionHtml('action leave', 'leave-site', Liferay.Language.get("leave-site"), result.leaveURL) : ''),
+								leaveHTML: leaveHTML,
 								requestHTML: (result.requestUrl ? getSiteActionHtml('action request', 'request-site', Liferay.Language.get("request-membership"), result.requestUrl) : ''),
 								requestedHTML: (result.membershipRequested ? getSiteActionHtml('action requested', '', Liferay.Language.get("membership-requested"), '#') : ''),
 								siteDescription: result.description,
