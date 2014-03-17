@@ -184,6 +184,14 @@ $defaultTextColor: #202020;
 
 			.leave a {
 				background: url(@theme_image_path@/common/leave.png) no-repeat 0 50%;
+
+				&.disabled {
+					filter: alpha(opacity=20);
+					height: 16px;
+					margin: 0 5px;
+					opacity: 0.2;
+					width: 16px;
+				}
 			}
 
 			.delete a {
