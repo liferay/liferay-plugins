@@ -24,6 +24,12 @@ public interface PropsKeys {
 
 	public static final String SYNC_DATABASE_NAME = "sync.database.name";
 
+	public static final String SYNC_FILE_PATCHING_IGNORE_FILE_EXTENSIONS =
+		"sync.file.patching.ignore.file.extensions";
+
+	public static final String SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD =
+		"sync.file.patching.size.ratio.threshold";
+
 	public static final String SYNC_IGNORE_FILE_NAMES =
 		"sync.ignore.file.names";
 

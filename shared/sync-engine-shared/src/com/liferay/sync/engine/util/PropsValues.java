@@ -25,6 +25,13 @@ public class PropsValues {
 	public static String SYNC_DATABASE_NAME = PropsUtil.get(
 		PropsKeys.SYNC_DATABASE_NAME);
 
+	public static String[] SYNC_FILE_PATCHING_IGNORE_FILE_EXTENSIONS =
+		PropsUtil.getArray(PropsKeys.SYNC_FILE_PATCHING_IGNORE_FILE_EXTENSIONS);
+
+	public static long SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD =
+		Long.valueOf(
+			PropsUtil.get(PropsKeys.SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD));
+
 	public static String[] SYNC_IGNORE_FILE_NAMES = PropsUtil.getArray(
 		PropsKeys.SYNC_IGNORE_FILE_NAMES);
 

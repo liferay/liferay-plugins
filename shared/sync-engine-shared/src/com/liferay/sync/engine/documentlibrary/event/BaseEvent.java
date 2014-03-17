@@ -135,7 +135,14 @@ public abstract class BaseEvent implements Runnable {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		JsonNode responseJsonNode = objectMapper.readTree(response);
+		JsonNode responseJsonNode = null;
+
+		try {
+			responseJsonNode = objectMapper.readTree(response);
+		}
+		catch (Exception e) {
+			return false;
+		}
 
 		JsonNode exceptionJsonNode = responseJsonNode.get("exception");
 

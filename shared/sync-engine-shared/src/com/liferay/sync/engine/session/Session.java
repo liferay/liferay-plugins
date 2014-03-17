@@ -153,12 +153,20 @@ public class Session {
 			HttpPost httpPost, Map<String, Object> parameters)
 		throws Exception {
 
+		Path deltaFilePath = (Path)parameters.get("deltaFilePath");
 		Path filePath = (Path)parameters.get("filePath");
 
 		MultipartEntityBuilder multipartEntityBuilder =
 			_getMultipartEntityBuilder(parameters);
 
-		if (filePath != null) {
+		if (deltaFilePath != null) {
+			multipartEntityBuilder.addPart(
+				"deltaFile",
+				_getFileBody(
+					deltaFilePath, (String)parameters.get("mimeType"),
+					(String)parameters.get("title")));
+		}
+		else if (filePath != null) {
 			multipartEntityBuilder.addPart(
 				"file",
 				_getFileBody(

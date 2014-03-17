@@ -23,6 +23,7 @@ import com.liferay.sync.engine.documentlibrary.event.MoveFileEntryEvent;
 import com.liferay.sync.engine.documentlibrary.event.MoveFileEntryToTrashEvent;
 import com.liferay.sync.engine.documentlibrary.event.MoveFolderEvent;
 import com.liferay.sync.engine.documentlibrary.event.MoveFolderToTrashEvent;
+import com.liferay.sync.engine.documentlibrary.event.PatchFileEntryEvent;
 import com.liferay.sync.engine.documentlibrary.event.UpdateFileEntryEvent;
 import com.liferay.sync.engine.documentlibrary.event.UpdateFolderEvent;
 import com.liferay.sync.engine.model.ModelListener;
@@ -30,6 +31,8 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
+import com.liferay.sync.engine.util.IODeltaUtil;
+import com.liferay.sync.engine.util.PropsValues;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -490,11 +493,26 @@ public class SyncFileService {
 
 		// Local sync file
 
+		Path deltaFilePath = null;
+
 		String changeLog = String.valueOf(
 			Double.valueOf(syncFile.getVersion()) + .1);
 		String name = String.valueOf(filePath.getFileName());
 		String sourceChecksum = syncFile.getChecksum();
+		String sourceFileName = syncFile.getName();
+		String sourceVersion = syncFile.getVersion();
 		String targetChecksum = FileUtil.getChecksum(filePath);
+
+		if (!sourceChecksum.equals(targetChecksum) &&
+			!IODeltaUtil.isIgnoredFilePatchingExtension(syncFile)) {
+
+			deltaFilePath = Files.createTempFile(
+				String.valueOf(filePath.getFileName()), "tmp");
+
+			deltaFilePath = IODeltaUtil.delta(
+				filePath, IODeltaUtil.getChecksumsFilePath(syncFile),
+					deltaFilePath);
+		}
 
 		syncFile.setChangeLog(changeLog);
 		syncFile.setChecksum(targetChecksum);
@@ -512,16 +530,31 @@ public class SyncFileService {
 		parameters.put("checksum", targetChecksum);
 		parameters.put("description", syncFile.getDescription());
 		parameters.put("fileEntryId", syncFile.getTypePK());
-
-		if (!sourceChecksum.equals(targetChecksum)) {
-			parameters.put("filePath", filePath);
-		}
-
 		parameters.put("majorVersion", false);
 		parameters.put("mimeType", syncFile.getMimeType());
 		parameters.put("sourceFileName", name);
 		parameters.put("syncFile", syncFile);
 		parameters.put("title", name);
+
+		if (!sourceChecksum.equals(targetChecksum)) {
+			if ((deltaFilePath != null) &&
+				(Files.size(filePath) / Files.size(deltaFilePath)) >=
+					PropsValues.SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD) {
+
+				parameters.put("deltaFilePath", deltaFilePath);
+				parameters.put("sourceFileName", sourceFileName);
+				parameters.put("sourceVersion", sourceVersion);
+
+				PatchFileEntryEvent patchFileEntryEvent =
+					new PatchFileEntryEvent(syncAccountId, parameters);
+
+				patchFileEntryEvent.run();
+
+				return syncFile;
+			}
+
+			parameters.put("filePath", filePath);
+		}
 
 		UpdateFileEntryEvent updateFileEntryEvent = new UpdateFileEntryEvent(
 			syncAccountId, parameters);

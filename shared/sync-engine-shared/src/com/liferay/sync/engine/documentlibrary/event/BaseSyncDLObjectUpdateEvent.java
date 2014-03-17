@@ -24,6 +24,7 @@ import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
+import com.liferay.sync.engine.util.IODeltaUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -74,7 +75,7 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 		else {
 			SyncFileService.update(syncFile);
 
-			downloadFile(syncFile);
+			downloadFile(syncFile, null, false);
 		}
 	}
 
@@ -101,11 +102,23 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 		SyncFileService.deleteSyncFile(sourceSyncFile);
 	}
 
-	protected void downloadFile(SyncFile syncFile) {
+	protected void downloadFile(
+		SyncFile syncFile, String sourceSyncFileVersion, boolean patch) {
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("patch", false);
 		parameters.put("syncFile", syncFile);
+
+		if (patch) {
+			String targetSyncFileVersion = syncFile.getVersion();
+
+			if (!sourceSyncFileVersion.equals(targetSyncFileVersion)) {
+				parameters.put("destinationVersion", targetSyncFileVersion);
+				parameters.put("patch", true);
+				parameters.put("sourceVersion", sourceSyncFileVersion);
+			}
+		}
 
 		DownloadFileEvent downloadFileEvent = new DownloadFileEvent(
 			getSyncAccountId(), parameters);
@@ -188,6 +201,8 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			targetSyncFile.getRepositoryId(), getSyncAccountId(),
 			targetSyncFile.getTypePK());
 
+		String sourceSyncFileVersion = sourceSyncFile.getVersion();
+
 		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
 
 		String sourceFileName = String.valueOf(sourceFilePath.getFileName());
@@ -226,7 +241,9 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 				return;
 			}
 
-			downloadFile(sourceSyncFile);
+			downloadFile(
+				sourceSyncFile, sourceSyncFileVersion,
+				!IODeltaUtil.isIgnoredFilePatchingExtension(targetSyncFile));
 		}
 	}
 

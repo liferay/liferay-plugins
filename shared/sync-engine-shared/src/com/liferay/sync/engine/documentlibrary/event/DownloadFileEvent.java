@@ -20,8 +20,11 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.util.FileUtil;
+import com.liferay.sync.engine.util.IODeltaUtil;
 import com.liferay.sync.engine.util.StreamUtil;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 import java.net.URL;
@@ -52,15 +55,20 @@ public class DownloadFileEvent extends BaseEvent {
 
 		SyncFileService.update(syncFile);
 
-		StringBuilder sb = new StringBuilder(7);
+		StringBuilder sb = new StringBuilder(9);
 
 		sb.append(replaceURLPath(getSyncAccountId()));
 		sb.append("/");
 		sb.append(syncFile.getRepositoryId());
 		sb.append("/");
 		sb.append(syncFile.getTypeUuid());
-		sb.append("/");
-		sb.append(getParameterValue("patch"));
+
+		if ((Boolean)getParameterValue("patch")) {
+			sb.append("?destinationVersion=");
+			sb.append(getParameterValue("destinationVersion"));
+			sb.append("&patch=true&sourceVersion=");
+			sb.append(getParameterValue("sourceVersion"));
+		}
 
 		return executeGet(sb.toString(), new BaseHandler());
 	}
@@ -74,9 +82,17 @@ public class DownloadFileEvent extends BaseEvent {
 
 			Path filePath = Paths.get(syncFile.getFilePathName());
 
-			outputStream = Files.newOutputStream(filePath);
+			if ((Boolean)getParameterValue("patch")) {
+				InputStream inputStream = new ByteArrayInputStream(
+					response.getBytes());
 
-			outputStream.write(response.getBytes());
+				IODeltaUtil.patch(filePath, inputStream);
+			}
+			else {
+				outputStream = Files.newOutputStream(filePath);
+
+				outputStream.write(response.getBytes());
+			}
 
 			syncFile.setFileKey(FileUtil.getFileKey(filePath));
 			syncFile.setState(SyncFile.STATE_SYNCED);

@@ -14,6 +14,12 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.service.SyncFileService;
+
 import java.util.Map;
 
 /**
@@ -28,8 +34,34 @@ public class PatchFileEntryEvent extends BaseEvent {
 	}
 
 	@Override
+	protected String processRequest() throws Exception {
+		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
+		syncFile.setUiEvent(SyncFile.UI_EVENT_DOWNLOADING);
+
+		SyncFileService.update(syncFile);
+
+		return super.processRequest();
+	}
+
+	@Override
 	protected void processResponse(String response) throws Exception {
-		System.out.println(response);
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		SyncFile remoteSyncFile = objectMapper.readValue(
+			response, new TypeReference<SyncFile>() {});
+
+		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
+
+		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
+		localSyncFile.setParentFolderId(remoteSyncFile.getParentFolderId());
+		localSyncFile.setSize(remoteSyncFile.getSize());
+		localSyncFile.setState(SyncFile.STATE_SYNCED);
+		localSyncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADED);
+		localSyncFile.setVersion(remoteSyncFile.getVersion());
+
+		SyncFileService.update(localSyncFile);
 	}
 
 	private static final String _URL_PATH =

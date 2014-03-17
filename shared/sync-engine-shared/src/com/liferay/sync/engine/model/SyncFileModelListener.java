@@ -14,21 +14,12 @@
 
 package com.liferay.sync.engine.model;
 
-import com.liferay.io.delta.ByteChannelWriter;
-import com.liferay.io.delta.DeltaUtil;
-import com.liferay.sync.engine.util.PropsValues;
-import com.liferay.sync.engine.util.StreamUtil;
+import com.liferay.sync.engine.util.IODeltaUtil;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 
-import java.nio.channels.Channels;
-import java.nio.channels.FileChannel;
-import java.nio.channels.WritableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import java.util.Map;
 
@@ -42,14 +33,12 @@ public class SyncFileModelListener implements ModelListener<SyncFile> {
 
 	@Override
 	public void onCreate(SyncFile syncFile) {
-		updateChecksumsFile(syncFile);
+		IODeltaUtil.checksums(syncFile);
 	}
 
 	@Override
 	public void onRemove(SyncFile syncFile) {
-		Path filePath = Paths.get(
-			PropsValues.SYNC_CONFIGURATION_DIRECTORY + "/files/" +
-				syncFile.getSyncFileId());
+		Path filePath = IODeltaUtil.getChecksumsFilePath(syncFile);
 
 		try {
 			Files.deleteIfExists(filePath);
@@ -67,54 +56,7 @@ public class SyncFileModelListener implements ModelListener<SyncFile> {
 			return;
 		}
 
-		updateChecksumsFile(syncFile);
-	}
-
-	protected void updateChecksumsFile(SyncFile syncFile) {
-		Path syncFilePath = Paths.get(syncFile.getFilePathName());
-
-		if (Files.isDirectory(syncFilePath) || Files.notExists(syncFilePath)) {
-			return;
-		}
-
-		FileInputStream fileInputStream = null;
-		FileChannel fileChannel = null;
-		OutputStream outputStream = null;
-		WritableByteChannel writableByteChannel = null;
-
-		try {
-			fileInputStream = new FileInputStream(syncFile.getFilePathName());
-
-			fileChannel = fileInputStream.getChannel();
-
-			Path checksumsFilePath = Paths.get(
-				PropsValues.SYNC_CONFIGURATION_DIRECTORY + "/files/" +
-					syncFile.getSyncFileId());
-
-			if (Files.notExists(checksumsFilePath)) {
-				Files.createFile(checksumsFilePath);
-			}
-
-			outputStream = Files.newOutputStream(checksumsFilePath);
-
-			writableByteChannel = Channels.newChannel(outputStream);
-
-			ByteChannelWriter byteChannelWriter = new ByteChannelWriter(
-				writableByteChannel);
-
-			DeltaUtil.checksums(fileChannel, byteChannelWriter);
-
-			byteChannelWriter.finish();
-		}
-		catch (IOException ioe) {
-			_logger.error(ioe.getMessage(), ioe);
-		}
-		finally {
-			StreamUtil.cleanUp(fileInputStream);
-			StreamUtil.cleanUp(outputStream);
-			StreamUtil.cleanUp(fileChannel);
-			StreamUtil.cleanUp(writableByteChannel);
-		}
+		IODeltaUtil.checksums(syncFile);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
