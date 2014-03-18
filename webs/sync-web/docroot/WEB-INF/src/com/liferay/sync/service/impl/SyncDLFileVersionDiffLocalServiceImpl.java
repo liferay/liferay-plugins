@@ -109,7 +109,7 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 			long destinationFileVersionId)
 		throws SystemException {
 
-		return syncDLFileVersionDiffPersistence.fetchByS_S_D(
+		return syncDLFileVersionDiffPersistence.fetchByF_S_D(
 			fileEntryId, sourceFileVersionId, destinationFileVersionId);
 	}
 

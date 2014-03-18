@@ -23,8 +23,8 @@
 		<finder name="ExpirationDate" return-type="Collection">
 			<finder-column name="expirationDate" comparator="&lt;" />
 		</finder>
-		<finder name="S_S_D" return-type="SyncDLFileVersionDiff" unique="true">
-			<finder-column name="syncDLFileVersionDiffId" />
+		<finder name="F_S_D" return-type="SyncDLFileVersionDiff" unique="true">
+			<finder-column name="fileEntryId" />
 			<finder-column name="sourceFileVersionId" />
 			<finder-column name="destinationFileVersionId" />
 		</finder>
