@@ -107,7 +107,6 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
-		parameters.put("patch", false);
 		parameters.put("syncFile", syncFile);
 
 		if (patch) {
@@ -118,6 +117,9 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 				parameters.put("patch", true);
 				parameters.put("sourceVersion", sourceSyncFileVersion);
 			}
+		}
+		else {
+			parameters.put("patch", false);
 		}
 
 		DownloadFileEvent downloadFileEvent = new DownloadFileEvent(
