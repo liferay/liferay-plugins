@@ -70,7 +70,7 @@ public class TypedSettings implements Settings {
 	}
 
 	public String[] getValues(String key) {
-		return getValues(key, _EMTPY_STRING_ARRAY);
+		return getValues(key, StringPool.EMPTY_ARRAY);
 	}
 
 	@Override
@@ -104,8 +104,6 @@ public class TypedSettings implements Settings {
 	public void store() throws IOException, ValidatorException {
 		_settings.store();
 	}
-
-	private static final String[] _EMTPY_STRING_ARRAY = {};
 
 	private Settings _settings;
 
