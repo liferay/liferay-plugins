@@ -390,7 +390,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				DLFileVersion sourceDLFileVersion =
 					dlFileVersionLocalService.getFileVersion(
 						fileEntryId, sourceVersion);
-
 				DLFileVersion targetDLFileVersion =
 					dlFileVersionLocalService.getFileVersion(
 						fileEntryId, syncDLObject.getVersion());
