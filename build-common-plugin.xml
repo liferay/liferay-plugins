@@ -128,9 +128,14 @@
 	</target>
 
 	<target name="build-lang-cmd">
+		<path id="lang.classpath">
+			<path refid="lib.classpath" />
+			<path refid="portal.classpath" />
+		</path>
+
 		<java
 			classname="com.liferay.portal.tools.LangBuilder"
-			classpathref="portal.classpath"
+			classpathref="lang.classpath"
 			fork="true"
 			newenvironment="true"
 		>
