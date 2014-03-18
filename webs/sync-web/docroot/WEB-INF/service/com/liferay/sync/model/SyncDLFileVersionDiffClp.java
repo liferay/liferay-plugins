@@ -78,7 +78,7 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 		attributes.put("syncDLFileVersionDiffId", getSyncDLFileVersionDiffId());
 		attributes.put("fileEntryId", getFileEntryId());
 		attributes.put("sourceFileVersionId", getSourceFileVersionId());
-		attributes.put("destinationFileVersionId", getDestinationFileVersionId());
+		attributes.put("targetFileVersionId", getTargetFileVersionId());
 		attributes.put("dataFileEntryId", getDataFileEntryId());
 		attributes.put("size", getSize());
 		attributes.put("expirationDate", getExpirationDate());
@@ -110,11 +110,10 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 			setSourceFileVersionId(sourceFileVersionId);
 		}
 
-		Long destinationFileVersionId = (Long)attributes.get(
-				"destinationFileVersionId");
+		Long targetFileVersionId = (Long)attributes.get("targetFileVersionId");
 
-		if (destinationFileVersionId != null) {
-			setDestinationFileVersionId(destinationFileVersionId);
+		if (targetFileVersionId != null) {
+			setTargetFileVersionId(targetFileVersionId);
 		}
 
 		Long dataFileEntryId = (Long)attributes.get("dataFileEntryId");
@@ -213,23 +212,23 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 	}
 
 	@Override
-	public long getDestinationFileVersionId() {
-		return _destinationFileVersionId;
+	public long getTargetFileVersionId() {
+		return _targetFileVersionId;
 	}
 
 	@Override
-	public void setDestinationFileVersionId(long destinationFileVersionId) {
-		_destinationFileVersionId = destinationFileVersionId;
+	public void setTargetFileVersionId(long targetFileVersionId) {
+		_targetFileVersionId = targetFileVersionId;
 
 		if (_syncDLFileVersionDiffRemoteModel != null) {
 			try {
 				Class<?> clazz = _syncDLFileVersionDiffRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setDestinationFileVersionId",
+				Method method = clazz.getMethod("setTargetFileVersionId",
 						long.class);
 
 				method.invoke(_syncDLFileVersionDiffRemoteModel,
-					destinationFileVersionId);
+					targetFileVersionId);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -380,7 +379,7 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 		clone.setSyncDLFileVersionDiffId(getSyncDLFileVersionDiffId());
 		clone.setFileEntryId(getFileEntryId());
 		clone.setSourceFileVersionId(getSourceFileVersionId());
-		clone.setDestinationFileVersionId(getDestinationFileVersionId());
+		clone.setTargetFileVersionId(getTargetFileVersionId());
 		clone.setDataFileEntryId(getDataFileEntryId());
 		clone.setSize(getSize());
 		clone.setExpirationDate(getExpirationDate());
@@ -450,8 +449,8 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 		sb.append(getFileEntryId());
 		sb.append(", sourceFileVersionId=");
 		sb.append(getSourceFileVersionId());
-		sb.append(", destinationFileVersionId=");
-		sb.append(getDestinationFileVersionId());
+		sb.append(", targetFileVersionId=");
+		sb.append(getTargetFileVersionId());
 		sb.append(", dataFileEntryId=");
 		sb.append(getDataFileEntryId());
 		sb.append(", size=");
@@ -484,8 +483,8 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 		sb.append(getSourceFileVersionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>destinationFileVersionId</column-name><column-value><![CDATA[");
-		sb.append(getDestinationFileVersionId());
+			"<column><column-name>targetFileVersionId</column-name><column-value><![CDATA[");
+		sb.append(getTargetFileVersionId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>dataFileEntryId</column-name><column-value><![CDATA[");
@@ -508,7 +507,7 @@ public class SyncDLFileVersionDiffClp extends BaseModelImpl<SyncDLFileVersionDif
 	private long _syncDLFileVersionDiffId;
 	private long _fileEntryId;
 	private long _sourceFileVersionId;
-	private long _destinationFileVersionId;
+	private long _targetFileVersionId;
 	private long _dataFileEntryId;
 	private long _size;
 	private Date _expirationDate;

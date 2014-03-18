@@ -11,7 +11,7 @@
 		</id>
 		<property name="fileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="sourceFileVersionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
-		<property name="destinationFileVersionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="targetFileVersionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="dataFileEntryId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="size" type="com.liferay.portal.dao.orm.hibernate.LongType" column="size_" />
 		<property name="expirationDate" type="org.hibernate.type.TimestampType" />

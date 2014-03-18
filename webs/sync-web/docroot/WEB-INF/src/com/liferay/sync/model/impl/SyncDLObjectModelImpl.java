@@ -15,6 +15,7 @@
 package com.liferay.sync.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -22,9 +23,10 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -654,12 +656,18 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public String getLockUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getLockUserId(), "uuid", _lockUserUuid);
+		try {
+			User user = UserLocalServiceUtil.getUserById(getLockUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setLockUserUuid(String lockUserUuid) {
-		_lockUserUuid = lockUserUuid;
 	}
 
 	@JSON
@@ -1214,7 +1222,6 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	private String _event;
 	private Date _lockExpirationDate;
 	private long _lockUserId;
-	private String _lockUserUuid;
 	private String _lockUserName;
 	private String _type;
 	private long _typePK;
