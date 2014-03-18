@@ -103,20 +103,18 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 	}
 
 	protected void downloadFile(
-		SyncFile syncFile, String sourceSyncFileVersion, boolean patch) {
+		SyncFile syncFile, String sourceVersion, boolean patch) {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("syncFile", syncFile);
 
-		if (patch) {
-			String targetSyncFileVersion = syncFile.getVersion();
+		String targetVersion = syncFile.getVersion();
 
-			if (!sourceSyncFileVersion.equals(targetSyncFileVersion)) {
-				parameters.put("destinationVersion", targetSyncFileVersion);
-				parameters.put("patch", true);
-				parameters.put("sourceVersion", sourceSyncFileVersion);
-			}
+		if (patch && !sourceVersion.equals(targetVersion)) {
+			parameters.put("patch", true);
+			parameters.put("sourceVersion", sourceVersion);
+			parameters.put("targetVersion", targetVersion);
 		}
 		else {
 			parameters.put("patch", false);
@@ -203,6 +201,8 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			targetSyncFile.getRepositoryId(), getSyncAccountId(),
 			targetSyncFile.getTypePK());
 
+		String sourceVersion = sourceSyncFile.getVersion();
+
 		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
 
 		String sourceFileName = String.valueOf(sourceFilePath.getFileName());
@@ -242,7 +242,7 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			}
 
 			downloadFile(
-				sourceSyncFile, sourceSyncFile.getVersion(),
+				sourceSyncFile, sourceVersion,
 				!IODeltaUtil.isIgnoredFilePatchingExtension(targetSyncFile));
 		}
 	}
