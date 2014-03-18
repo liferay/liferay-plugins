@@ -203,8 +203,6 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			targetSyncFile.getRepositoryId(), getSyncAccountId(),
 			targetSyncFile.getTypePK());
 
-		String sourceSyncFileVersion = sourceSyncFile.getVersion();
-
 		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
 
 		String sourceFileName = String.valueOf(sourceFilePath.getFileName());
@@ -244,7 +242,7 @@ public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
 			}
 
 			downloadFile(
-				sourceSyncFile, sourceSyncFileVersion,
+				sourceSyncFile, sourceSyncFile.getVersion(),
 				!IODeltaUtil.isIgnoredFilePatchingExtension(targetSyncFile));
 		}
 	}
