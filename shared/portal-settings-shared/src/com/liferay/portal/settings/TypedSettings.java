@@ -15,7 +15,6 @@
 package com.liferay.portal.settings;
 
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.util.ContentUtil;
 
 import java.io.IOException;
 
@@ -36,10 +35,6 @@ public class TypedSettings implements Settings {
 		return GetterUtil.getBoolean(value);
 	}
 
-	public String getContentValue(String key, String defaultLocation) {
-		String value = getValue(key, defaultLocation);
-
-		return ContentUtil.get(value);
 	}
 
 	public int getIntegerValue(String key, int defaultValue) {
