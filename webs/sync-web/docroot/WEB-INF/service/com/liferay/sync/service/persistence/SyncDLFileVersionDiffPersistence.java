@@ -176,76 +176,73 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the sync d l file version diff where syncDLFileVersionDiffId = &#63; and sourceFileVersionId = &#63; and destinationFileVersionId = &#63; or throws a {@link com.liferay.sync.NoSuchDLFileVersionDiffException} if it could not be found.
+	* Returns the sync d l file version diff where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63; or throws a {@link com.liferay.sync.NoSuchDLFileVersionDiffException} if it could not be found.
 	*
-	* @param syncDLFileVersionDiffId the sync d l file version diff ID
+	* @param fileEntryId the file entry ID
 	* @param sourceFileVersionId the source file version ID
-	* @param destinationFileVersionId the destination file version ID
+	* @param targetFileVersionId the target file version ID
 	* @return the matching sync d l file version diff
 	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff findByS_S_D(
-		long syncDLFileVersionDiffId, long sourceFileVersionId,
-		long destinationFileVersionId)
+	public com.liferay.sync.model.SyncDLFileVersionDiff findByF_S_T(
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
-	* Returns the sync d l file version diff where syncDLFileVersionDiffId = &#63; and sourceFileVersionId = &#63; and destinationFileVersionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the sync d l file version diff where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param syncDLFileVersionDiffId the sync d l file version diff ID
+	* @param fileEntryId the file entry ID
 	* @param sourceFileVersionId the source file version ID
-	* @param destinationFileVersionId the destination file version ID
+	* @param targetFileVersionId the target file version ID
 	* @return the matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByS_S_D(
-		long syncDLFileVersionDiffId, long sourceFileVersionId,
-		long destinationFileVersionId)
+	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByF_S_T(
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Returns the sync d l file version diff where syncDLFileVersionDiffId = &#63; and sourceFileVersionId = &#63; and destinationFileVersionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the sync d l file version diff where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param syncDLFileVersionDiffId the sync d l file version diff ID
+	* @param fileEntryId the file entry ID
 	* @param sourceFileVersionId the source file version ID
-	* @param destinationFileVersionId the destination file version ID
+	* @param targetFileVersionId the target file version ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByS_S_D(
-		long syncDLFileVersionDiffId, long sourceFileVersionId,
-		long destinationFileVersionId, boolean retrieveFromCache)
+	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByF_S_T(
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId,
+		boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* Removes the sync d l file version diff where syncDLFileVersionDiffId = &#63; and sourceFileVersionId = &#63; and destinationFileVersionId = &#63; from the database.
+	* Removes the sync d l file version diff where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63; from the database.
 	*
-	* @param syncDLFileVersionDiffId the sync d l file version diff ID
+	* @param fileEntryId the file entry ID
 	* @param sourceFileVersionId the source file version ID
-	* @param destinationFileVersionId the destination file version ID
+	* @param targetFileVersionId the target file version ID
 	* @return the sync d l file version diff that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.sync.model.SyncDLFileVersionDiff removeByS_S_D(
-		long syncDLFileVersionDiffId, long sourceFileVersionId,
-		long destinationFileVersionId)
+	public com.liferay.sync.model.SyncDLFileVersionDiff removeByF_S_T(
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sync.NoSuchDLFileVersionDiffException;
 
 	/**
-	* Returns the number of sync d l file version diffs where syncDLFileVersionDiffId = &#63; and sourceFileVersionId = &#63; and destinationFileVersionId = &#63;.
+	* Returns the number of sync d l file version diffs where fileEntryId = &#63; and sourceFileVersionId = &#63; and targetFileVersionId = &#63;.
 	*
-	* @param syncDLFileVersionDiffId the sync d l file version diff ID
+	* @param fileEntryId the file entry ID
 	* @param sourceFileVersionId the source file version ID
-	* @param destinationFileVersionId the destination file version ID
+	* @param targetFileVersionId the target file version ID
 	* @return the number of matching sync d l file version diffs
 	* @throws SystemException if a system exception occurred
 	*/
-	public int countByS_S_D(long syncDLFileVersionDiffId,
-		long sourceFileVersionId, long destinationFileVersionId)
+	public int countByF_S_T(long fileEntryId, long sourceFileVersionId,
+		long targetFileVersionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -697,8 +697,8 @@ public class SyncDLFileVersionDiffLocalServiceClp
 
 	@Override
 	public com.liferay.sync.model.SyncDLFileVersionDiff addSyncDLFileVersionDiff(
-		long fileEntryId, long sourceFileVersionId,
-		long destinationFileVersionId, java.io.File file)
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId,
+		java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
@@ -711,7 +711,7 @@ public class SyncDLFileVersionDiffLocalServiceClp
 						
 					sourceFileVersionId,
 						
-					destinationFileVersionId,
+					targetFileVersionId,
 						
 					ClpSerializer.translateInput(file)
 					});
@@ -770,8 +770,7 @@ public class SyncDLFileVersionDiffLocalServiceClp
 
 	@Override
 	public com.liferay.sync.model.SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
-		long fileEntryId, long sourceFileVersionId,
-		long destinationFileVersionId)
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
@@ -783,7 +782,7 @@ public class SyncDLFileVersionDiffLocalServiceClp
 						
 					sourceFileVersionId,
 						
-					destinationFileVersionId
+					targetFileVersionId
 					});
 		}
 		catch (Throwable t) {

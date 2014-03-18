@@ -12,7 +12,7 @@
 			<id name="syncDLFileVersionDiffId" />
 			<basic name="fileEntryId" />
 			<basic name="sourceFileVersionId" />
-			<basic name="destinationFileVersionId" />
+			<basic name="targetFileVersionId" />
 			<basic name="dataFileEntryId" />
 			<basic name="size">
 				<column name="SIZE_" />

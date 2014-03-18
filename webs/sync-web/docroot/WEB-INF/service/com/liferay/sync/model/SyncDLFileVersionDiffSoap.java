@@ -34,7 +34,7 @@ public class SyncDLFileVersionDiffSoap implements Serializable {
 		soapModel.setSyncDLFileVersionDiffId(model.getSyncDLFileVersionDiffId());
 		soapModel.setFileEntryId(model.getFileEntryId());
 		soapModel.setSourceFileVersionId(model.getSourceFileVersionId());
-		soapModel.setDestinationFileVersionId(model.getDestinationFileVersionId());
+		soapModel.setTargetFileVersionId(model.getTargetFileVersionId());
 		soapModel.setDataFileEntryId(model.getDataFileEntryId());
 		soapModel.setSize(model.getSize());
 		soapModel.setExpirationDate(model.getExpirationDate());
@@ -117,12 +117,12 @@ public class SyncDLFileVersionDiffSoap implements Serializable {
 		_sourceFileVersionId = sourceFileVersionId;
 	}
 
-	public long getDestinationFileVersionId() {
-		return _destinationFileVersionId;
+	public long getTargetFileVersionId() {
+		return _targetFileVersionId;
 	}
 
-	public void setDestinationFileVersionId(long destinationFileVersionId) {
-		_destinationFileVersionId = destinationFileVersionId;
+	public void setTargetFileVersionId(long targetFileVersionId) {
+		_targetFileVersionId = targetFileVersionId;
 	}
 
 	public long getDataFileEntryId() {
@@ -152,7 +152,7 @@ public class SyncDLFileVersionDiffSoap implements Serializable {
 	private long _syncDLFileVersionDiffId;
 	private long _fileEntryId;
 	private long _sourceFileVersionId;
-	private long _destinationFileVersionId;
+	private long _targetFileVersionId;
 	private long _dataFileEntryId;
 	private long _size;
 	private Date _expirationDate;

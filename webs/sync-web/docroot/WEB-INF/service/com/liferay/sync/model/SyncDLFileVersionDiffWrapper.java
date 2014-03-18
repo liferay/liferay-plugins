@@ -54,7 +54,7 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 		attributes.put("syncDLFileVersionDiffId", getSyncDLFileVersionDiffId());
 		attributes.put("fileEntryId", getFileEntryId());
 		attributes.put("sourceFileVersionId", getSourceFileVersionId());
-		attributes.put("destinationFileVersionId", getDestinationFileVersionId());
+		attributes.put("targetFileVersionId", getTargetFileVersionId());
 		attributes.put("dataFileEntryId", getDataFileEntryId());
 		attributes.put("size", getSize());
 		attributes.put("expirationDate", getExpirationDate());
@@ -83,11 +83,10 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 			setSourceFileVersionId(sourceFileVersionId);
 		}
 
-		Long destinationFileVersionId = (Long)attributes.get(
-				"destinationFileVersionId");
+		Long targetFileVersionId = (Long)attributes.get("targetFileVersionId");
 
-		if (destinationFileVersionId != null) {
-			setDestinationFileVersionId(destinationFileVersionId);
+		if (targetFileVersionId != null) {
+			setTargetFileVersionId(targetFileVersionId);
 		}
 
 		Long dataFileEntryId = (Long)attributes.get("dataFileEntryId");
@@ -190,23 +189,23 @@ public class SyncDLFileVersionDiffWrapper implements SyncDLFileVersionDiff,
 	}
 
 	/**
-	* Returns the destination file version ID of this sync d l file version diff.
+	* Returns the target file version ID of this sync d l file version diff.
 	*
-	* @return the destination file version ID of this sync d l file version diff
+	* @return the target file version ID of this sync d l file version diff
 	*/
 	@Override
-	public long getDestinationFileVersionId() {
-		return _syncDLFileVersionDiff.getDestinationFileVersionId();
+	public long getTargetFileVersionId() {
+		return _syncDLFileVersionDiff.getTargetFileVersionId();
 	}
 
 	/**
-	* Sets the destination file version ID of this sync d l file version diff.
+	* Sets the target file version ID of this sync d l file version diff.
 	*
-	* @param destinationFileVersionId the destination file version ID of this sync d l file version diff
+	* @param targetFileVersionId the target file version ID of this sync d l file version diff
 	*/
 	@Override
-	public void setDestinationFileVersionId(long destinationFileVersionId) {
-		_syncDLFileVersionDiff.setDestinationFileVersionId(destinationFileVersionId);
+	public void setTargetFileVersionId(long targetFileVersionId) {
+		_syncDLFileVersionDiff.setTargetFileVersionId(targetFileVersionId);
 	}
 
 	/**

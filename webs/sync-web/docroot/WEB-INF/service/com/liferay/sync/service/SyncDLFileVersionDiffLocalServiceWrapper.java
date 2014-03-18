@@ -292,12 +292,12 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 
 	@Override
 	public com.liferay.sync.model.SyncDLFileVersionDiff addSyncDLFileVersionDiff(
-		long fileEntryId, long sourceFileVersionId,
-		long destinationFileVersionId, java.io.File file)
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId,
+		java.io.File file)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _syncDLFileVersionDiffLocalService.addSyncDLFileVersionDiff(fileEntryId,
-			sourceFileVersionId, destinationFileVersionId, file);
+			sourceFileVersionId, targetFileVersionId, file);
 	}
 
 	@Override
@@ -309,11 +309,10 @@ public class SyncDLFileVersionDiffLocalServiceWrapper
 
 	@Override
 	public com.liferay.sync.model.SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
-		long fileEntryId, long sourceFileVersionId,
-		long destinationFileVersionId)
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _syncDLFileVersionDiffLocalService.fetchSyncDLFileVersionDiff(fileEntryId,
-			sourceFileVersionId, destinationFileVersionId);
+			sourceFileVersionId, targetFileVersionId);
 	}
 
 	@Override

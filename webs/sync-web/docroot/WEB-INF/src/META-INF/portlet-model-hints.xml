@@ -5,7 +5,7 @@
 		<field name="syncDLFileVersionDiffId" type="long" />
 		<field name="fileEntryId" type="long" />
 		<field name="sourceFileVersionId" type="long" />
-		<field name="destinationFileVersionId" type="long" />
+		<field name="targetFileVersionId" type="long" />
 		<field name="dataFileEntryId" type="long" />
 		<field name="size" type="long" />
 		<field name="expirationDate" type="Date" />
