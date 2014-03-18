@@ -13,7 +13,7 @@
 
 		<column name="fileEntryId" type="long" />
 		<column name="sourceFileVersionId" type="long" />
-		<column name="destinationFileVersionId" type="long" />
+		<column name="targetFileVersionId" type="long" />
 		<column name="dataFileEntryId" type="long" />
 		<column name="size" type="long" />
 		<column name="expirationDate" type="Date" />
@@ -23,10 +23,10 @@
 		<finder name="ExpirationDate" return-type="Collection">
 			<finder-column name="expirationDate" comparator="&lt;" />
 		</finder>
-		<finder name="F_S_D" return-type="SyncDLFileVersionDiff" unique="true">
+		<finder name="F_S_T" return-type="SyncDLFileVersionDiff" unique="true">
 			<finder-column name="fileEntryId" />
 			<finder-column name="sourceFileVersionId" />
-			<finder-column name="destinationFileVersionId" />
+			<finder-column name="targetFileVersionId" />
 		</finder>
 
 		<!-- References -->

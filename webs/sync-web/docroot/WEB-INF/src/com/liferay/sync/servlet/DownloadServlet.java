@@ -103,15 +103,15 @@ public class DownloadServlet extends HttpServlet {
 
 	protected File getDeltaFile(
 			long userId, long fileEntryId, String sourceVersion,
-			String destinationVersion)
+			String targetVersion)
 		throws PortalException, SystemException {
 
 		File sourceFile = DLFileEntryLocalServiceUtil.getFile(
 			userId, fileEntryId, sourceVersion, false);
-		File destinationFile = DLFileEntryLocalServiceUtil.getFile(
-			userId, fileEntryId, destinationVersion, false);
+		File targetFile = DLFileEntryLocalServiceUtil.getFile(
+			userId, fileEntryId, targetVersion, false);
 
-		return SyncUtil.getFileDelta(sourceFile, destinationFile);
+		return SyncUtil.getFileDelta(sourceFile, targetFile);
 	}
 
 	protected void sendFile(
@@ -153,24 +153,23 @@ public class DownloadServlet extends HttpServlet {
 			throw new IllegalArgumentException("Missing source version");
 		}
 
-		String destinationVersion = ParamUtil.getString(
-			request, "destinationVersion");
+		String targetVersion = ParamUtil.getString(request, "targetVersion");
 
-		if (Validator.isNull(destinationVersion)) {
-			throw new IllegalArgumentException("Missing destination version");
+		if (Validator.isNull(targetVersion)) {
+			throw new IllegalArgumentException("Missing target version");
 		}
 
 		DLFileVersion sourceFileVersion =
 			DLFileVersionLocalServiceUtil.getFileVersion(
 				fileEntry.getFileEntryId(), sourceVersion);
-		DLFileVersion destinationFileVersion =
+		DLFileVersion targetFileVersion =
 			DLFileVersionLocalServiceUtil.getFileVersion(
-				fileEntry.getFileEntryId(), destinationVersion);
+				fileEntry.getFileEntryId(), targetVersion);
 
 		if (!PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
 			File deltaFile = getDeltaFile(
 				user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
-				destinationVersion);
+				targetVersion);
 
 			ServletResponseUtil.write(
 				response, new FileInputStream(deltaFile), deltaFile.length());
@@ -182,7 +181,7 @@ public class DownloadServlet extends HttpServlet {
 			SyncDLFileVersionDiffLocalServiceUtil.fetchSyncDLFileVersionDiff(
 				fileEntry.getFileEntryId(),
 				sourceFileVersion.getFileVersionId(),
-				destinationFileVersion.getFileVersionId());
+				targetFileVersion.getFileVersionId());
 
 		if (syncDLFileVersionDiff != null) {
 			SyncDLFileVersionDiffLocalServiceUtil.refreshExpirationDate(
@@ -191,13 +190,13 @@ public class DownloadServlet extends HttpServlet {
 		else {
 			File deltaFile = getDeltaFile(
 				user.getUserId(), fileEntry.getFileEntryId(), sourceVersion,
-				destinationVersion);
+				targetVersion);
 
 			syncDLFileVersionDiff =
 				SyncDLFileVersionDiffLocalServiceUtil.addSyncDLFileVersionDiff(
 					fileEntry.getFileEntryId(),
 					sourceFileVersion.getFileVersionId(),
-					destinationFileVersion.getFileVersionId(), deltaFile);
+					targetFileVersion.getFileVersionId(), deltaFile);
 		}
 
 		FileEntry dataFileEntry = PortletFileRepositoryUtil.getPortletFileEntry(

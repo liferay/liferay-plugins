@@ -75,7 +75,7 @@ public class SyncUtil {
 		return DigesterUtil.digestBase64(Digester.SHA_1, inputStream);
 	}
 
-	public static File getFileDelta(File sourceFile, File destinationFile)
+	public static File getFileDelta(File sourceFile, File targetFile)
 		throws PortalException {
 
 		File deltaFile = null;
@@ -113,18 +113,17 @@ public class SyncUtil {
 			StreamUtil.cleanUp(checksumsWritableByteChannel);
 		}
 
-		FileInputStream destinationFileInputStream = null;
-		ReadableByteChannel destinationReadableByteChannel = null;
+		FileInputStream targetFileInputStream = null;
+		ReadableByteChannel targetReadableByteChannel = null;
 		InputStream checksumsInputStream = null;
 		ReadableByteChannel checksumsReadableByteChannel = null;
 		OutputStream deltaOutputStream = null;
 		WritableByteChannel deltaOutputStreamWritableByteChannel = null;
 
 		try {
-			destinationFileInputStream = new FileInputStream(destinationFile);
+			targetFileInputStream = new FileInputStream(targetFile);
 
-			destinationReadableByteChannel =
-				destinationFileInputStream.getChannel();
+			targetReadableByteChannel = targetFileInputStream.getChannel();
 
 			checksumsInputStream = new FileInputStream(checksumsFile);
 
@@ -145,7 +144,7 @@ public class SyncUtil {
 				deltaOutputStreamWritableByteChannel);
 
 			DeltaUtil.delta(
-				destinationReadableByteChannel, checksumsByteChannelReader,
+				targetReadableByteChannel, checksumsByteChannelReader,
 				deltaByteChannelWriter);
 
 			deltaByteChannelWriter.finish();
@@ -154,8 +153,8 @@ public class SyncUtil {
 			throw new PortalException(e);
 		}
 		finally {
-			StreamUtil.cleanUp(destinationFileInputStream);
-			StreamUtil.cleanUp(destinationReadableByteChannel);
+			StreamUtil.cleanUp(targetFileInputStream);
+			StreamUtil.cleanUp(targetReadableByteChannel);
 			StreamUtil.cleanUp(checksumsInputStream);
 			StreamUtil.cleanUp(checksumsReadableByteChannel);
 			StreamUtil.cleanUp(deltaOutputStream);
