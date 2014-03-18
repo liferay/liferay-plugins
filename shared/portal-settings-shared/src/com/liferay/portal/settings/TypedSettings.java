@@ -15,6 +15,7 @@
 package com.liferay.portal.settings;
 
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
 
 import java.io.IOException;
 
@@ -29,12 +30,18 @@ public class TypedSettings implements Settings {
 		_settings = settings;
 	}
 
+	public boolean getBooleanValue(String key) {
+		return getBooleanValue(key, false);
+	}
+
 	public boolean getBooleanValue(String key, boolean defaultValue) {
 		String value = getValue(key, String.valueOf(defaultValue));
 
 		return GetterUtil.getBoolean(value);
 	}
 
+	public int getIntegerValue(String key) {
+		return getIntegerValue(key, 0);
 	}
 
 	public int getIntegerValue(String key, int defaultValue) {
@@ -43,15 +50,27 @@ public class TypedSettings implements Settings {
 		return GetterUtil.getInteger(value);
 	}
 
+	public long getLongValue(String key) {
+		return getLongValue(key, 0);
+	}
+
 	public long getLongValue(String key, long defaultValue) {
 		String value = getValue(key, String.valueOf(defaultValue));
 
 		return GetterUtil.getLong(value);
 	}
 
+	public String getValue(String key) {
+		return getValue(key, StringPool.BLANK);
+	}
+
 	@Override
 	public String getValue(String key, String defaultValue) {
 		return _settings.getValue(key, defaultValue);
+	}
+
+	public String[] getValues(String key) {
+		return getValues(key, _EMTPY_STRING_ARRAY);
 	}
 
 	@Override
@@ -85,6 +104,8 @@ public class TypedSettings implements Settings {
 	public void store() throws IOException, ValidatorException {
 		_settings.store();
 	}
+
+	private static final String[] _EMTPY_STRING_ARRAY = {};
 
 	private Settings _settings;
 
