@@ -130,10 +130,6 @@ public class IODeltaUtil {
 
 			deltaFilePath = Paths.get(checksumsFilePath.toString() + ".tmp");
 
-			Files.createFile(deltaFilePath);
-
-			deltaOutputStream = Files.newOutputStream(deltaFilePath);
-
 			deltaWritableByteChannel = Channels.newChannel(deltaOutputStream);
 
 			ByteChannelWriter deltaByteChannelWriter = new ByteChannelWriter(
