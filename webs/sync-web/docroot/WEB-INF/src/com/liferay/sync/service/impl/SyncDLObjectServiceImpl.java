@@ -391,13 +391,13 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					dlFileVersionLocalService.getFileVersion(
 						fileEntryId, sourceVersion);
 
-				DLFileVersion destinationDLFileVersion =
+				DLFileVersion targetDLFileVersion =
 					dlFileVersionLocalService.getFileVersion(
 						fileEntryId, syncDLObject.getVersion());
 
 				syncDLFileVersionDiffLocalService.addSyncDLFileVersionDiff(
 					fileEntryId, sourceDLFileVersion.getFileVersionId(),
-					destinationDLFileVersion.getFileVersionId(), deltaFile);
+					targetDLFileVersion.getFileVersionId(), deltaFile);
 			}
 
 			return syncDLObject;
