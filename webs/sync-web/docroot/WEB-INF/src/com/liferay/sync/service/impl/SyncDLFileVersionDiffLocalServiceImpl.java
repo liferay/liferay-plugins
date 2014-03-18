@@ -40,7 +40,7 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 	@Override
 	public SyncDLFileVersionDiff addSyncDLFileVersionDiff(
 			long fileEntryId, long sourceFileVersionId,
-			long destinationFileVersionId, File file)
+			long targetFileVersionId, File file)
 		throws PortalException, SystemException {
 
 		long syncDLFileVersionDiffId = counterLocalService.increment();
@@ -50,13 +50,12 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 
 		syncDLFileVersionDiff.setFileEntryId(fileEntryId);
 		syncDLFileVersionDiff.setSourceFileVersionId(sourceFileVersionId);
-		syncDLFileVersionDiff.setDestinationFileVersionId(
-			destinationFileVersionId);
+		syncDLFileVersionDiff.setTargetFileVersionId(targetFileVersionId);
 
 		FileEntry fileEntry = dlAppService.getFileEntry(fileEntryId);
 
 		String dataFileName = getDataFileName(
-			fileEntryId, sourceFileVersionId, destinationFileVersionId);
+			fileEntryId, sourceFileVersionId, targetFileVersionId);
 
 		FileEntry dataFileEntry = PortletFileRepositoryUtil.addPortletFileEntry(
 			fileEntry.getGroupId(), fileEntry.getUserId(),
@@ -106,11 +105,11 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 	@Override
 	public SyncDLFileVersionDiff fetchSyncDLFileVersionDiff(
 			long fileEntryId, long sourceFileVersionId,
-			long destinationFileVersionId)
+			long targetFileVersionId)
 		throws SystemException {
 
-		return syncDLFileVersionDiffPersistence.fetchByF_S_D(
-			fileEntryId, sourceFileVersionId, destinationFileVersionId);
+		return syncDLFileVersionDiffPersistence.fetchByF_S_T(
+			fileEntryId, sourceFileVersionId, targetFileVersionId);
 	}
 
 	@Override
@@ -134,8 +133,7 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 	}
 
 	protected String getDataFileName(
-		long fileEntryId, long sourceFileVersionId,
-		long destinationFileVersionId) {
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId) {
 
 		StringBundler sb = new StringBundler(5);
 
@@ -143,7 +141,7 @@ public class SyncDLFileVersionDiffLocalServiceImpl
 		sb.append(StringPool.UNDERLINE);
 		sb.append(sourceFileVersionId);
 		sb.append(StringPool.UNDERLINE);
-		sb.append(destinationFileVersionId);
+		sb.append(targetFileVersionId);
 
 		return sb.toString();
 	}
