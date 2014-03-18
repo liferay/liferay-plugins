@@ -80,6 +80,7 @@
 	<%
 	}
 	%>
+
 </div>
 
 <aui:script use="aui-base,aui-io-request">
