@@ -16,6 +16,7 @@ package com.liferay.portal.settings.impl;
 
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.settings.Settings;
 
 import java.util.Properties;
@@ -32,7 +33,13 @@ public class PropertiesSettings implements Settings {
 
 	@Override
 	public String getValue(String key, String defaultValue) {
-		return _properties.getProperty(key, defaultValue);
+		String value = _properties.getProperty(key);
+
+		if (Validator.isNotNull(value)) {
+			return value;
+		}
+
+		return defaultValue;
 	}
 
 	@Override
