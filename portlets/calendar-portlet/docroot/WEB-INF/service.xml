@@ -267,6 +267,7 @@
 		</finder>
 
 		<!-- References -->
+
 		<reference package-path="com.liferay.portal" entity="ClassName" />
 		<reference package-path="com.liferay.portlet.asset" entity="AssetEntry" />
 	</entity>
