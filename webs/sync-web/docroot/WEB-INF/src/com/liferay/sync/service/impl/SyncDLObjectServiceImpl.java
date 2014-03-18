@@ -30,13 +30,14 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
+import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
-import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.sync.SyncDLObjectChecksumException;
 import com.liferay.sync.model.SyncContext;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectUpdate;
 import com.liferay.sync.service.base.SyncDLObjectServiceBaseImpl;
+import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
 
 import java.io.File;
@@ -374,16 +375,32 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		File patchedFile = null;
 
 		try {
-			File sourceFile = DLFileEntryLocalServiceUtil.getFile(
+			File sourceFile = dlFileEntryLocalService.getFile(
 				getUserId(), fileEntryId, sourceVersion, false);
 
 			patchedFile = FileUtil.createTempFile();
 
 			SyncUtil.patchFile(sourceFile, deltaFile, patchedFile);
 
-			return updateFileEntry(
+			SyncDLObject syncDLObject = updateFileEntry(
 				fileEntryId, sourceFileName, mimeType, title, description,
 				changeLog, majorVersion, patchedFile, checksum, serviceContext);
+
+			if (PortletPropsValues.SYNC_FILE_DIFF_CACHE_ENABLED) {
+				DLFileVersion sourceDLFileVersion =
+					dlFileVersionLocalService.getFileVersion(
+						fileEntryId, sourceVersion);
+
+				DLFileVersion destinationDLFileVersion =
+					dlFileVersionLocalService.getFileVersion(
+						fileEntryId, syncDLObject.getVersion());
+
+				syncDLFileVersionDiffLocalService.addSyncDLFileVersionDiff(
+					fileEntryId, sourceDLFileVersion.getFileVersionId(),
+					destinationDLFileVersion.getFileVersionId(), deltaFile);
+			}
+
+			return syncDLObject;
 		}
 		finally {
 			FileUtil.delete(patchedFile);
