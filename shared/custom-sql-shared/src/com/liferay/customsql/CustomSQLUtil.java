@@ -135,7 +135,7 @@ public class CustomSQLUtil {
 		return _instance._customSQL.replaceOrderBy(sql, obc);
 	}
 
-	private CustomSQLUtil() {
+	protected CustomSQLUtil() {
 		try {
 			Class<?> clazz = getClass();
 
