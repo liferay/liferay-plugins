@@ -450,9 +450,7 @@ AUI.add(
 					{
 						dataType: 'json',
 						on: {
-							failure: function() {
-								failure(this.get('responseData'));
-							},
+							failure: failure,
 							success: function() {
 								success(this.get('responseData'));
 							}
