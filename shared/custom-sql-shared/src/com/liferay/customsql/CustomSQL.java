@@ -79,8 +79,13 @@ public class CustomSQL {
 	public static final String SYBASE_FUNCTION_IS_NULL =
 		"CONVERT(VARCHAR,?) IS NULL";
 
-	public CustomSQL() throws SQLException {
-		reloadCustomSQL();
+	public CustomSQL() {
+		try {
+			reloadCustomSQL();
+		}
+		catch (SQLException sqle) {
+			throw new RuntimeException(sqle);
+		}
 	}
 
 	public String appendCriteria(String sql, String criteria) {
