@@ -12,36 +12,22 @@
  * details.
  */
 
-package com.liferay.sync.engine.documentlibrary.event;
+package com.liferay.sync.engine.documentlibrary.handler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.sync.engine.documentlibrary.event.Event;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncFileService;
-
-import java.util.Map;
 
 /**
  * @author Shinn Lok
  */
-public class BaseCheckInCheckOutEvent extends BaseEvent {
+public class UpdateFolderHandler extends BaseJSONHandler {
 
-	public BaseCheckInCheckOutEvent(
-		long syncAccountId, String urlPath, Map<String, Object> parameters) {
-
-		super(syncAccountId, urlPath, parameters);
-	}
-
-	@Override
-	protected String processRequest() throws Exception {
-		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
-
-		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
-
-		SyncFileService.update(syncFile);
-
-		return super.processRequest();
+	public UpdateFolderHandler(Event event) {
+		super(event);
 	}
 
 	@Override
@@ -53,10 +39,7 @@ public class BaseCheckInCheckOutEvent extends BaseEvent {
 
 		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
 
-		localSyncFile.setLockExpirationDate(
-			remoteSyncFile.getLockExpirationDate());
-		localSyncFile.setLockUserId(remoteSyncFile.getLockUserId());
-		localSyncFile.setLockUserName(remoteSyncFile.getLockUserName());
+		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
 		localSyncFile.setState(SyncFile.STATE_SYNCED);
 
 		SyncFileService.update(localSyncFile);

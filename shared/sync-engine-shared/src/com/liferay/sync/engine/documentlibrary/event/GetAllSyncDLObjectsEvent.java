@@ -14,6 +14,8 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.documentlibrary.handler.Handler;
+import com.liferay.sync.engine.documentlibrary.handler.SyncDLObjectUpdateHandler;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncFileService;
@@ -27,7 +29,7 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class GetAllSyncDLObjectsEvent extends BaseSyncDLObjectUpdateEvent {
+public class GetAllSyncDLObjectsEvent extends BaseEvent {
 
 	public GetAllSyncDLObjectsEvent(
 		long syncAccountId, Map<String, Object> parameters) {
@@ -36,7 +38,12 @@ public class GetAllSyncDLObjectsEvent extends BaseSyncDLObjectUpdateEvent {
 	}
 
 	@Override
-	protected String processRequest() throws Exception {
+	protected Handler<?> getHandler() {
+		return new SyncDLObjectUpdateHandler(this);
+	}
+
+	@Override
+	protected void processRequest() throws Exception {
 		SyncSite syncSite = (SyncSite)getParameterValue("syncSite");
 
 		String filePathName = syncSite.getFilePathName();
@@ -53,7 +60,7 @@ public class GetAllSyncDLObjectsEvent extends BaseSyncDLObjectUpdateEvent {
 				syncSite.getSyncAccountId(), SyncFile.TYPE_FOLDER);
 		}
 
-		return super.processRequest();
+		super.processRequest();
 	}
 
 	private static final String _URL_PATH =

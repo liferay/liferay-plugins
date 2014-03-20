@@ -16,6 +16,8 @@ package com.liferay.sync.engine.session;
 
 import com.btr.proxy.search.ProxySearch;
 
+import com.liferay.sync.engine.documentlibrary.handler.Handler;
+
 import java.net.ProxySelector;
 import java.net.URL;
 
@@ -33,7 +35,6 @@ import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
@@ -115,14 +116,13 @@ public class Session {
 		return _httpClient.execute(_httpHost, httpGet, _getBasicHttpContext());
 	}
 
-	public <T> T executeGet(
-			String urlPath, ResponseHandler<? extends T> responseHandler)
+	public <T> T executeGet(String urlPath, Handler<? extends T> handler)
 		throws Exception {
 
 		HttpGet httpGet = new HttpGet(urlPath);
 
 		return _httpClient.execute(
-			_httpHost, httpGet, responseHandler, _getBasicHttpContext());
+			_httpHost, httpGet, handler, _getBasicHttpContext());
 	}
 
 	public HttpResponse executePost(
@@ -138,7 +138,7 @@ public class Session {
 
 	public <T> T executePost(
 			String urlPath, Map<String, Object> parameters,
-			ResponseHandler<? extends T> responseHandler)
+			Handler<? extends T> handler)
 		throws Exception {
 
 		HttpPost httpPost = new HttpPost(_url.toString() + urlPath);
@@ -146,7 +146,7 @@ public class Session {
 		_buildHttpPostBody(httpPost, parameters);
 
 		return _httpClient.execute(
-			_httpHost, httpPost, responseHandler, _getBasicHttpContext());
+			_httpHost, httpPost, handler, _getBasicHttpContext());
 	}
 
 	private void _buildHttpPostBody(

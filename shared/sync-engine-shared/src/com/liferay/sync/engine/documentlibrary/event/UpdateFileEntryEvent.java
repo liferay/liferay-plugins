@@ -14,9 +14,8 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.liferay.sync.engine.documentlibrary.handler.Handler;
+import com.liferay.sync.engine.documentlibrary.handler.UpdateFileEntryHandler;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncFileService;
 
@@ -34,7 +33,12 @@ public class UpdateFileEntryEvent extends BaseEvent {
 	}
 
 	@Override
-	protected String processRequest() throws Exception {
+	protected Handler<?> getHandler() {
+		return new UpdateFileEntryHandler(this);
+	}
+
+	@Override
+	protected void processRequest() throws Exception {
 		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
 		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
@@ -45,30 +49,7 @@ public class UpdateFileEntryEvent extends BaseEvent {
 
 		SyncFileService.update(syncFile);
 
-		return super.processRequest();
-	}
-
-	@Override
-	protected void processResponse(String response) throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		SyncFile remoteSyncFile = objectMapper.readValue(
-			response, new TypeReference<SyncFile>() {});
-
-		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
-
-		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
-		localSyncFile.setParentFolderId(remoteSyncFile.getParentFolderId());
-		localSyncFile.setSize(remoteSyncFile.getSize());
-		localSyncFile.setState(SyncFile.STATE_SYNCED);
-
-		if (getParameterValue("filePath") != null) {
-			localSyncFile.setUiEvent(SyncFile.UI_EVENT_UPLOADED);
-		}
-
-		localSyncFile.setVersion(remoteSyncFile.getVersion());
-
-		SyncFileService.update(localSyncFile);
+		super.processRequest();
 	}
 
 	private static final String _URL_PATH =

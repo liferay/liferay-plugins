@@ -27,10 +27,6 @@ public class MoveFileEntryToTrashEvent extends BaseEvent {
 		super(syncAccountId, _URL_PATH, parameters);
 	}
 
-	@Override
-	protected void processResponse(String response) throws Exception {
-	}
-
 	private static final String _URL_PATH =
 		"/sync-web.syncdlobject/move-file-entry-to-trash";
 

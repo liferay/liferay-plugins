@@ -14,11 +14,8 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.liferay.sync.engine.model.SyncFile;
-import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.documentlibrary.handler.Handler;
+import com.liferay.sync.engine.documentlibrary.handler.MoveFileEntryHandler;
 
 import java.util.Map;
 
@@ -34,17 +31,8 @@ public class MoveFileEntryEvent extends BaseEvent {
 	}
 
 	@Override
-	protected void processResponse(String response) throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		SyncFile remoteSyncFile = objectMapper.readValue(
-			response, new TypeReference<SyncFile>() {});
-
-		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
-
-		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
-
-		SyncFileService.update(localSyncFile);
+	protected Handler<?> getHandler() {
+		return new MoveFileEntryHandler(this);
 	}
 
 	private static final String _URL_PATH =

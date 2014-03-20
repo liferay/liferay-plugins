@@ -14,24 +14,14 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
-import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
+import com.liferay.sync.engine.documentlibrary.handler.DownloadFileHandler;
+import com.liferay.sync.engine.documentlibrary.handler.Handler;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
-import com.liferay.sync.engine.util.FileUtil;
-import com.liferay.sync.engine.util.IODeltaUtil;
-import com.liferay.sync.engine.util.StreamUtil;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 
 import java.net.URL;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 import java.util.Map;
 
@@ -47,7 +37,12 @@ public class DownloadFileEvent extends BaseEvent {
 	}
 
 	@Override
-	protected String processRequest() throws Exception {
+	protected Handler<?> getHandler() {
+		return new DownloadFileHandler(this);
+	}
+
+	@Override
+	protected void processRequest() throws Exception {
 		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
 		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
@@ -70,39 +65,7 @@ public class DownloadFileEvent extends BaseEvent {
 			sb.append(getParameterValue("targetVersion"));
 		}
 
-		return executeGet(sb.toString(), new BaseHandler());
-	}
-
-	@Override
-	protected void processResponse(String response) throws Exception {
-		OutputStream outputStream = null;
-
-		try {
-			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
-
-			Path filePath = Paths.get(syncFile.getFilePathName());
-
-			if ((Boolean)getParameterValue("patch")) {
-				InputStream inputStream = new ByteArrayInputStream(
-					response.getBytes());
-
-				IODeltaUtil.patch(filePath, inputStream);
-			}
-			else {
-				outputStream = Files.newOutputStream(filePath);
-
-				outputStream.write(response.getBytes());
-			}
-
-			syncFile.setFileKey(FileUtil.getFileKey(filePath));
-			syncFile.setState(SyncFile.STATE_SYNCED);
-			syncFile.setUiEvent(SyncFile.UI_EVENT_DOWNLOADED);
-
-			SyncFileService.update(syncFile);
-		}
-		finally {
-			StreamUtil.cleanUp(outputStream);
-		}
+		executeGet(sb.toString(), getHandler());
 	}
 
 	protected String replaceURLPath(long syncAccountId) throws Exception {

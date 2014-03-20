@@ -14,41 +14,150 @@
 
 package com.liferay.sync.engine.documentlibrary.handler;
 
+import com.liferay.sync.engine.documentlibrary.event.Event;
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.SyncAccountService;
+
 import java.io.IOException;
 
-import org.apache.http.HttpEntity;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpResponseException;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.util.EntityUtils;
+import org.apache.http.conn.HttpHostConnectException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import org.springframework.retry.RetryCallback;
+import org.springframework.retry.RetryContext;
+import org.springframework.retry.backoff.ExponentialBackOffPolicy;
+import org.springframework.retry.policy.SimpleRetryPolicy;
+import org.springframework.retry.support.RetryTemplate;
+
 /**
- * @author Gail Hernandez
+ * @author Shinn Lok
  */
-public class BaseHandler implements ResponseHandler<String> {
+public class BaseHandler implements Handler<Void> {
 
-	@Override
-	public String handleResponse(HttpResponse httpResponse)
-		throws HttpResponseException, IOException {
+	public BaseHandler(Event event) {
+		_event = event;
+	}
 
-		StatusLine statusLine = httpResponse.getStatusLine();
+	public void handleException(Exception e) {
+		_logger.error(e.getMessage(), e);
 
-		if (statusLine.getStatusCode() != 200) {
-			_logger.error("Status code {}", statusLine.getStatusCode());
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			getSyncAccountId());
 
-			throw new HttpResponseException(
-				statusLine.getStatusCode(), statusLine.getReasonPhrase());
+		syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
+
+		if (e instanceof HttpHostConnectException) {
+			syncAccount.setUiEvent(SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
+		}
+		else if (e instanceof HttpResponseException) {
+			HttpResponseException hre = (HttpResponseException)e;
+
+			int statusCode = hre.getStatusCode();
+
+			if (statusCode == HttpServletResponse.SC_UNAUTHORIZED) {
+				syncAccount.setUiEvent(
+					SyncAccount.UI_EVENT_AUTHENTICATION_EXCEPTION);
+			}
+			else {
+				syncAccount.setUiEvent(
+					SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
+			}
 		}
 
-		HttpEntity httpEntity = httpResponse.getEntity();
+		SyncAccountService.update(syncAccount);
 
-		return EntityUtils.toString(httpEntity);
+		retryServerConnection();
+	}
+
+	@Override
+	public Void handleResponse(HttpResponse httpResponse) throws IOException {
+		try {
+			StatusLine statusLine = httpResponse.getStatusLine();
+
+			if (statusLine.getStatusCode() != 200) {
+				_logger.error("Status code {}", statusLine.getStatusCode());
+
+				throw new HttpResponseException(
+					statusLine.getStatusCode(), statusLine.getReasonPhrase());
+			}
+
+			doHandleResponse(httpResponse);
+		}
+		catch (Exception e) {
+			handleException(e);
+		}
+
+		return null;
+	}
+
+	protected void doHandleResponse(HttpResponse httpResponse)
+		throws Exception {
+	}
+
+	protected Object getParameterValue(String key) {
+		return _event.getParameterValue(key);
+	}
+
+	protected long getSyncAccountId() {
+		return _event.getSyncAccountId();
+	}
+
+	protected void retryServerConnection() {
+		RetryTemplate retryTemplate = new RetryTemplate();
+
+		retryTemplate.setBackOffPolicy(new ExponentialBackOffPolicy());
+
+		SimpleRetryPolicy simpleRetryPolicy = new SimpleRetryPolicy();
+
+		simpleRetryPolicy.setMaxAttempts(Integer.MAX_VALUE);
+
+		retryTemplate.setRetryPolicy(simpleRetryPolicy);
+
+		RetryCallback<Object> retryCallback = new RetryCallback<Object>() {
+
+			@Override
+			public Object doWithRetry(RetryContext retryContext)
+				throws Exception {
+
+				SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+					getSyncAccountId());
+
+				if (_logger.isDebugEnabled()) {
+					_logger.debug(
+						"Attempting to reconnect to {}. Retry #{}.",
+						syncAccount.getUrl(), retryContext.getRetryCount() + 1);
+				}
+
+				SyncAccountService.synchronizeSyncAccount(getSyncAccountId());
+
+				syncAccount = SyncAccountService.synchronizeSyncAccount(
+						getSyncAccountId());
+
+				if (syncAccount.getState() == SyncAccount.STATE_DISCONNECTED) {
+					throw new Exception();
+				}
+
+				return null;
+			}
+
+		};
+
+		try {
+			retryTemplate.execute(retryCallback);
+		}
+		catch (Exception e) {
+		}
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(BaseHandler.class);
+
+	private Event _event;
 
 }

@@ -14,17 +14,38 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.documentlibrary.handler.CheckInCheckOutHandler;
+import com.liferay.sync.engine.documentlibrary.handler.Handler;
+import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.service.SyncFileService;
+
 import java.util.Map;
 
 /**
  * @author Shinn Lok
  */
-public class CheckInFileEntryEvent extends BaseCheckInCheckOutEvent {
+public class CheckInFileEntryEvent extends BaseEvent {
 
 	public CheckInFileEntryEvent(
 		long syncAccountId, Map<String, Object> parameters) {
 
 		super(syncAccountId, _URL_PATH, parameters);
+	}
+
+	@Override
+	protected Handler<?> getHandler() {
+		return new CheckInCheckOutHandler(this);
+	}
+
+	@Override
+	protected void processRequest() throws Exception {
+		SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+		syncFile.setState(SyncFile.STATE_IN_PROGRESS);
+
+		SyncFileService.update(syncFile);
+
+		super.processRequest();
 	}
 
 	private static final String _URL_PATH =

@@ -14,12 +14,8 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.liferay.sync.engine.model.SyncFile;
-import com.liferay.sync.engine.service.SyncFileService;
-import com.liferay.sync.engine.util.FilePathNameUtil;
+import com.liferay.sync.engine.documentlibrary.handler.Handler;
+import com.liferay.sync.engine.documentlibrary.handler.MoveFolderHandler;
 
 import java.util.Map;
 
@@ -33,30 +29,8 @@ public class MoveFolderEvent extends BaseEvent {
 	}
 
 	@Override
-	protected void processResponse(String response) throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		SyncFile remoteSyncFile = objectMapper.readValue(
-			response, new TypeReference<SyncFile>() {});
-
-		SyncFile parentLocalSyncFile = SyncFileService.fetchSyncFile(
-			remoteSyncFile.getParentFolderId(),
-			remoteSyncFile.getRepositoryId(), getSyncAccountId());
-
-		String filePathName = null;
-
-		if (parentLocalSyncFile != null) {
-			filePathName = FilePathNameUtil.getFilePathName(
-				parentLocalSyncFile.getFilePathName(),
-				remoteSyncFile.getName());
-		}
-
-		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
-
-		localSyncFile.setFilePathName(filePathName);
-		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
-
-		SyncFileService.update(localSyncFile);
+	protected Handler<?> getHandler() {
+		return new MoveFolderHandler(this);
 	}
 
 	private static final String _URL_PATH =

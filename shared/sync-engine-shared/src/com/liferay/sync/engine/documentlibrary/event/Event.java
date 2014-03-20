@@ -14,28 +14,17 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
-import com.liferay.sync.engine.documentlibrary.handler.GetUserSitesGroupsHandler;
-import com.liferay.sync.engine.documentlibrary.handler.Handler;
-
 import java.util.Map;
 
 /**
  * @author Shinn Lok
  */
-public class GetUserSitesGroupsEvent extends BaseEvent {
+public interface Event extends Runnable {
 
-	public GetUserSitesGroupsEvent(
-		long syncAccountId, Map<String, Object> parameters) {
+	public Map<String, Object> getParameters();
 
-		super(syncAccountId, _URL_PATH, parameters);
-	}
+	public Object getParameterValue(String key);
 
-	@Override
-	protected Handler<?> getHandler() {
-		return new GetUserSitesGroupsHandler(this);
-	}
-
-	private static final String _URL_PATH =
-		"/sync-web.syncdlobject/get-user-sites-groups";
+	public long getSyncAccountId();
 
 }

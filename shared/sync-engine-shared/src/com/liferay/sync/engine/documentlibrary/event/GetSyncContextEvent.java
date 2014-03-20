@@ -14,13 +14,10 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
-import com.liferay.sync.engine.model.SyncAccount;
-import com.liferay.sync.engine.service.SyncAccountService;
+import com.liferay.sync.engine.documentlibrary.handler.GetSyncContextHandler;
+import com.liferay.sync.engine.documentlibrary.handler.Handler;
 
 import java.util.Map;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Shinn Lok
@@ -34,37 +31,11 @@ public class GetSyncContextEvent extends BaseEvent {
 	}
 
 	@Override
-	public void run() {
-		try {
-			String response = processRequest();
-
-			if (handleRemoteException(response)) {
-				return;
-			}
-
-			processResponse(response);
-		}
-		catch (Exception e) {
-			if (_logger.isDebugEnabled()) {
-				_logger.debug(e.getMessage(), e);
-			}
-		}
-	}
-
-	@Override
-	protected void processResponse(String response) throws Exception {
-		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-			getSyncAccountId());
-
-		syncAccount.setState(SyncAccount.STATE_CONNECTED);
-
-		SyncAccountService.update(syncAccount);
+	protected Handler<?> getHandler() {
+		return new GetSyncContextHandler(this);
 	}
 
 	private static final String _URL_PATH =
 		"/sync-web.syncdlobject/get-sync-context";
-
-	private static Logger _logger = LoggerFactory.getLogger(
-		GetSyncContextEvent.class);
 
 }

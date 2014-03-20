@@ -12,11 +12,13 @@
  * details.
  */
 
-package com.liferay.sync.engine.documentlibrary.event;
+package com.liferay.sync.engine.documentlibrary.handler;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.sync.engine.documentlibrary.event.DownloadFileEvent;
+import com.liferay.sync.engine.documentlibrary.event.Event;
 import com.liferay.sync.engine.documentlibrary.model.SyncDLObjectUpdate;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
@@ -36,12 +38,10 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class BaseSyncDLObjectUpdateEvent extends BaseEvent {
+public class SyncDLObjectUpdateHandler extends BaseJSONHandler {
 
-	public BaseSyncDLObjectUpdateEvent(
-		long syncAccountId, String urlPath, Map<String, Object> parameters) {
-
-		super(syncAccountId, urlPath, parameters);
+	public SyncDLObjectUpdateHandler(Event event) {
+		super(event);
 	}
 
 	protected void addFile(SyncFile syncFile, String filePathName)
