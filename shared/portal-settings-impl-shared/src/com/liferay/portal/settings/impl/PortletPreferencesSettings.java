@@ -80,7 +80,9 @@ public class PortletPreferencesSettings implements Settings {
 			_portletPreferences.setValue(key, value);
 		}
 		catch (ReadOnlyException roe) {
-			_log.error(roe, roe);
+			_log.error(
+				"When preferences are used as the backend for settings they " +
+				"should never be read only", roe);
 		}
 
 		return this;
@@ -92,7 +94,9 @@ public class PortletPreferencesSettings implements Settings {
 			_portletPreferences.setValues(key, values);
 		}
 		catch (ReadOnlyException roe) {
-			_log.error(roe, roe);
+			_log.error(
+				"When preferences are used as the backend for settings they " +
+				"should never be read only", roe);
 		}
 
 		return this;
