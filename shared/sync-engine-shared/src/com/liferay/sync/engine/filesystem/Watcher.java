@@ -163,9 +163,8 @@ public class Watcher implements Runnable {
 
 					@Override
 					public FileVisitResult visitFile(
-							Path filePath,
-							BasicFileAttributes basicFileAttributes)
-						throws IOException {
+						Path filePath,
+						BasicFileAttributes basicFileAttributes) {
 
 						fireWatchEventListener(
 							SyncWatchEvent.EVENT_TYPE_CREATE, filePath);

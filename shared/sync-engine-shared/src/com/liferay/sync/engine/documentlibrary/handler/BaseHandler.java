@@ -18,8 +18,6 @@ import com.liferay.sync.engine.documentlibrary.event.Event;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.service.SyncAccountService;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.http.HttpResponse;
@@ -45,6 +43,7 @@ public class BaseHandler implements Handler<Void> {
 		_event = event;
 	}
 
+	@Override
 	public void handleException(Exception e) {
 		_logger.error(e.getMessage(), e);
 
@@ -77,7 +76,7 @@ public class BaseHandler implements Handler<Void> {
 	}
 
 	@Override
-	public Void handleResponse(HttpResponse httpResponse) throws IOException {
+	public Void handleResponse(HttpResponse httpResponse) {
 		try {
 			StatusLine statusLine = httpResponse.getStatusLine();
 
