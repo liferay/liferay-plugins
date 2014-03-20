@@ -71,9 +71,7 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 
 	@Test
 	public void testRunAddFile() throws Exception {
-		setGetResponse("dependencies/get_sync_dl_object_update_event_add.json");
-		setPostResponse(
-			"dependencies/get_sync_dl_object_update_event_add.json");
+		setResponse("dependencies/get_sync_dl_object_update_event_add.json");
 
 		run();
 
@@ -89,8 +87,7 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 
 	@Test
 	public void testRunMoveFile() throws Exception {
-		setPostResponse(
-			"dependencies/get_sync_dl_object_update_event_move.json");
+		setResponse("dependencies/get_sync_dl_object_update_event_move.json");
 
 		Path sourceFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/Document_1.txt");
@@ -124,8 +121,7 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 
 	@Test
 	public void testRunMoveFileToTrash() throws Exception {
-		setPostResponse(
-			"dependencies/get_sync_dl_object_update_event_trash.json");
+		setResponse("dependencies/get_sync_dl_object_update_event_trash.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -147,9 +143,7 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 
 	@Test
 	public void testRunRestoreFileFromTrash() throws Exception {
-		setGetResponse(
-			"dependencies/get_sync_dl_object_update_event_restore.json");
-		setPostResponse(
+		setResponse(
 			"dependencies/get_sync_dl_object_update_event_restore.json");
 
 		run();
@@ -166,10 +160,7 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 
 	@Test
 	public void testRunUpdateFile() throws Exception {
-		setGetResponse(
-			"dependencies/get_sync_dl_object_update_event_update.json");
-		setPostResponse(
-			"dependencies/get_sync_dl_object_update_event_update.json");
+		setResponse("dependencies/get_sync_dl_object_update_event_update.json");
 
 		Path sourceFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test.txt");

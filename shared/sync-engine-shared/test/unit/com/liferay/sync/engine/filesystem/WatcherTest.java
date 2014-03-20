@@ -107,7 +107,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunAddFile() throws Exception {
-		setPostResponse("dependencies/watcher_test_add_file.json");
+		setResponse("dependencies/watcher_test_add_file.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -123,7 +123,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunAddFileToInactiveSite() throws Exception {
-		setPostResponse("dependencies/watcher_test_add_file.json");
+		setResponse("dependencies/watcher_test_add_file.json");
 
 		_syncSite.setActive(false);
 
@@ -143,7 +143,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunAddIgnoredFile() throws Exception {
-		setPostResponse("dependencies/watcher_test_add_file.json");
+		setResponse("dependencies/watcher_test_add_file.json");
 
 		if (OSDetector.isWindows()) {
 			Path hiddenFilePath = Paths.get(
@@ -180,7 +180,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunAddRootFile() throws Exception {
-		setPostResponse("dependencies/watcher_test_add_file.json");
+		setResponse("dependencies/watcher_test_add_file.json");
 
 		Path filePath = Paths.get(syncAccount.getFilePathName() + "/test.txt");
 
@@ -194,7 +194,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunCheckInFile() throws Exception {
-		setPostResponse("dependencies/watcher_test_check_in_file.json");
+		setResponse("dependencies/watcher_test_check_in_file.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -231,7 +231,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunCheckOutFile() throws Exception {
-		setPostResponse("dependencies/watcher_test_check_out_file.json");
+		setResponse("dependencies/watcher_test_check_out_file.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -268,7 +268,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunDeleteFile() throws Exception {
-		setPostResponse("dependencies/watcher_test_delete_file.json");
+		setResponse("dependencies/watcher_test_delete_file.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -292,7 +292,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunModifyFile() throws Exception {
-		setPostResponse("dependencies/watcher_test_modify_file.json");
+		setResponse("dependencies/watcher_test_modify_file.json");
 
 		Path filePath = Paths.get(_syncSite.getFilePathName() + "/test.txt");
 
@@ -325,7 +325,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunMoveFile() throws Exception {
-		setPostResponse("dependencies/watcher_test_move_file.json");
+		setResponse("dependencies/watcher_test_move_file.json");
 
 		Path sourceFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test.txt");
@@ -356,7 +356,7 @@ public class WatcherTest extends BaseTestCase {
 
 	@Test
 	public void testRunRenameFile() throws Exception {
-		setPostResponse("dependencies/watcher_test_rename_file.json");
+		setResponse("dependencies/watcher_test_rename_file.json");
 
 		Path sourceFilePath = Paths.get(
 			_syncSite.getFilePathName() + "/test.txt");

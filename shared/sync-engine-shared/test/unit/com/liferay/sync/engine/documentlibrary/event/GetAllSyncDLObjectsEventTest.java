@@ -67,8 +67,7 @@ public class GetAllSyncDLObjectsEventTest extends BaseTestCase {
 
 	@Test
 	public void testRun() throws Exception {
-		setGetResponse("dependencies/get_all_sync_dl_objects.json");
-		setPostResponse("dependencies/get_all_sync_dl_objects.json");
+		setResponse("dependencies/get_all_sync_dl_objects.json");
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 

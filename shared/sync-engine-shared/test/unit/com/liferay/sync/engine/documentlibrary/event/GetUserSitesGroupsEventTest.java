@@ -19,6 +19,7 @@ import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncSiteService;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.After;
@@ -48,10 +49,11 @@ public class GetUserSitesGroupsEventTest extends BaseTestCase {
 
 	@Test
 	public void testRun() throws Exception {
-		setPostResponse("dependencies/get_user_sites_groups.json");
+		setResponse("dependencies/get_user_sites_groups.json");
 
 		GetUserSitesGroupsEvent getUserSitesGroupsEvent =
-			new GetUserSitesGroupsEvent(syncAccount.getSyncAccountId(), null);
+			new GetUserSitesGroupsEvent(syncAccount.getSyncAccountId(),
+			Collections.<String, Object>emptyMap());
 
 		getUserSitesGroupsEvent.run();
 
