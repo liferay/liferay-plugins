@@ -29,7 +29,7 @@ import org.apache.http.util.EntityUtils;
 /**
  * @author Shinn Lok
  */
-public abstract class BaseJSONHandler extends BaseHandler {
+public class BaseJSONHandler extends BaseHandler {
 
 	public BaseJSONHandler(Event event) {
 		super(event);
@@ -80,6 +80,7 @@ public abstract class BaseJSONHandler extends BaseHandler {
 		}
 	}
 
-	protected abstract void processResponse(String response) throws Exception;
+	protected void processResponse(String response) throws Exception {
+	}
 
 }

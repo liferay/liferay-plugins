@@ -14,7 +14,6 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
-import com.liferay.sync.engine.documentlibrary.handler.BaseHandler;
 import com.liferay.sync.engine.documentlibrary.handler.Handler;
 import com.liferay.sync.engine.session.Session;
 import com.liferay.sync.engine.session.SessionManager;
@@ -24,7 +23,7 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class BaseEvent implements Event {
+public abstract class BaseEvent implements Event {
 
 	public BaseEvent(
 		long syncAccountId, String urlPath, Map<String, Object> parameters) {
@@ -76,9 +75,7 @@ public class BaseEvent implements Event {
 		}
 	}
 
-	protected Handler<?> getHandler() {
-		return new BaseHandler(this);
-	}
+	protected abstract Handler<?> getHandler();
 
 	protected void processRequest() throws Exception {
 		executePost(_urlPath, _parameters);

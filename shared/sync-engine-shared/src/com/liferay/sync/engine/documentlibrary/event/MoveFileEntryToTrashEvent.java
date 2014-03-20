@@ -14,6 +14,9 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.documentlibrary.handler.BaseJSONHandler;
+import com.liferay.sync.engine.documentlibrary.handler.Handler;
+
 import java.util.Map;
 
 /**
@@ -25,6 +28,11 @@ public class MoveFileEntryToTrashEvent extends BaseEvent {
 		long syncAccountId, Map<String, Object> parameters) {
 
 		super(syncAccountId, _URL_PATH, parameters);
+	}
+
+	@Override
+	protected Handler<?> getHandler() {
+		return new BaseJSONHandler(this);
 	}
 
 	private static final String _URL_PATH =
