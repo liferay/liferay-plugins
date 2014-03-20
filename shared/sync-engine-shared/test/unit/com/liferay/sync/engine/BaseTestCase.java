@@ -100,6 +100,102 @@ public abstract class BaseTestCase {
 		return clazz.getResourceAsStream(fileName);
 	}
 
+	protected CloseableHttpClient mockCloseableHttpClient(String fileName)
+		throws Exception {
+
+		CloseableHttpClient closeableHttpClient = Mockito.mock(
+			CloseableHttpClient.class);
+
+		Mockito.when(
+			closeableHttpClient.execute(
+				Mockito.any(HttpHost.class), Mockito.any(HttpRequest.class),
+				Mockito.any(ResponseHandler.class),
+				Mockito.any(HttpContext.class))
+		).thenCallRealMethod();
+
+		Mockito.when(
+			closeableHttpClient.execute(
+				Mockito.any(HttpHost.class), Mockito.any(HttpRequest.class),
+				Mockito.any(HttpContext.class))
+		).thenReturn(
+			mockCloseableHttpResponse(mockHttpEntity(fileName))
+		);
+
+		return closeableHttpClient;
+	}
+
+	protected CloseableHttpResponse mockCloseableHttpResponse(
+		HttpEntity httpEntity) {
+
+		CloseableHttpResponse closeableHttpResponse = Mockito.mock(
+			CloseableHttpResponse.class);
+
+		Mockito.when(
+			closeableHttpResponse.getEntity()
+		).thenReturn(
+			httpEntity
+		);
+
+		Mockito.when(
+			closeableHttpResponse.getStatusLine()
+		).thenReturn(
+			mockStatusLine()
+		);
+
+		return closeableHttpResponse;
+	}
+
+	protected void mockEntityUtils(String fileName) throws Exception {
+		PowerMockito.mockStatic(EntityUtils.class);
+
+		Mockito.when(
+			EntityUtils.toString(Mockito.any(HttpEntity.class))
+		).thenReturn(
+			readResponse(fileName)
+		);
+	}
+
+	protected void mockHttpClientBuilder(String fileName) throws Exception {
+		HttpClientBuilder httpClientbuilder = Mockito.mock(
+			HttpClientBuilder.class);
+
+		Mockito.when(
+			httpClientbuilder.build()
+		).thenReturn(
+			mockCloseableHttpClient(fileName)
+		);
+
+		Mockito.when(
+			HttpClientBuilder.create()
+		).thenReturn(
+			httpClientbuilder
+		);
+	}
+
+	protected HttpEntity mockHttpEntity(String fileName) throws Exception {
+		HttpEntity httpEntity = Mockito.mock(HttpEntity.class);
+
+		Mockito.when(
+			httpEntity.getContent()
+		).thenReturn(
+			getInputStream(fileName)
+		);
+
+		return httpEntity;
+	}
+
+	protected StatusLine mockStatusLine() {
+		StatusLine statusLine = Mockito.mock(StatusLine.class);
+
+		Mockito.when(
+			statusLine.getStatusCode()
+		).thenReturn(
+			HttpStatus.SC_OK
+		);
+
+		return statusLine;
+	}
+
 	protected String readResponse(String fileName) {
 		InputStream inputStream = null;
 
@@ -119,79 +215,8 @@ public abstract class BaseTestCase {
 	}
 
 	protected void setResponse(String fileName) throws Exception {
-		PowerMockito.mockStatic(HttpClientBuilder.class);
-
-		HttpClientBuilder httpClientbuilder = Mockito.mock(
-			HttpClientBuilder.class);
-
-		Mockito.when(
-			HttpClientBuilder.create()
-		).thenReturn(
-			httpClientbuilder
-		);
-
-		CloseableHttpClient closeableHttpClient = Mockito.mock(
-			CloseableHttpClient.class);
-
-		Mockito.when(
-			httpClientbuilder.build()
-		).thenReturn(
-			closeableHttpClient
-		);
-
-		PowerMockito.mockStatic(EntityUtils.class);
-
-		Mockito.when(
-			EntityUtils.toString(Mockito.any(HttpEntity.class))
-		).thenReturn(
-			readResponse(fileName)
-		);
-
-		HttpEntity httpEntity = Mockito.mock(HttpEntity.class);
-
-		Mockito.when(
-			httpEntity.getContent()
-		).thenReturn(
-			getInputStream(fileName)
-		);
-
-		CloseableHttpResponse closeableHttpResponse = Mockito.mock(
-			CloseableHttpResponse.class);
-
-		StatusLine statusLine = Mockito.mock(StatusLine.class);
-
-		Mockito.when(
-			closeableHttpResponse.getStatusLine()
-		).thenReturn(
-			statusLine
-		);
-
-		Mockito.when(
-			statusLine.getStatusCode()
-		).thenReturn(
-			HttpStatus.SC_OK
-		);
-
-		Mockito.when(
-			closeableHttpResponse.getEntity()
-		).thenReturn(
-			httpEntity
-		);
-
-		Mockito.when(
-			closeableHttpClient.execute(
-				Mockito.any(HttpHost.class), Mockito.any(HttpRequest.class),
-				Mockito.any(ResponseHandler.class),
-				Mockito.any(HttpContext.class))
-		).thenCallRealMethod();
-
-		Mockito.when(
-			closeableHttpClient.execute(
-				Mockito.any(HttpHost.class), Mockito.any(HttpRequest.class),
-				Mockito.any(HttpContext.class))
-		).thenReturn(
-			closeableHttpResponse
-		);
+		mockEntityUtils(fileName);
+		mockHttpClientBuilder(fileName);
 	}
 
 	protected String filePathName;
