@@ -55,10 +55,41 @@ public class SettingsFactoryImpl implements SettingsFactory {
 	}
 
 	@Override
+	public Settings getGroupServiceCompanyDefaultSettings(
+			long companyId, String serviceName)
+		throws PortalException, SystemException {
+
+		return new PortletPreferencesSettings(
+			getCompanyPortletPreferences(companyId, serviceName));
+	}
+
+	@Override
 	public Settings getGroupServiceSettings(long groupId, String serviceName)
 		throws PortalException, SystemException {
 
 		return getGroupSettings(groupId, serviceName);
+	}
+
+	@Override
+	public Settings getPortletInstanceCompanyDefaultSettings(
+			long companyId, String portletId)
+		throws PortalException, SystemException {
+
+		return new PortletPreferencesSettings(
+			getCompanyPortletPreferences(companyId, portletId));
+	}
+
+	@Override
+	public Settings getPortletInstanceGroupDefaultSettings(
+			long groupId, String portletId)
+		throws PortalException, SystemException {
+
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+		long companyId = group.getCompanyId();
+
+		return new PortletPreferencesSettings(
+			getGroupPortletPreferences(companyId, groupId, portletId));
 	}
 
 	@Override
