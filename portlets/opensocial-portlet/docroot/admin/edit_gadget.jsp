@@ -81,15 +81,15 @@ if (Validator.isNotNull(editorGadgetURL)) {
 			<c:when test="<%= editorGadget %>">
 				<aui:input name="url" type="hidden" value="<%= editorGadgetURL %>" />
 
-				<aui:field-wrapper label="url" name="editorGadgetUrl">
-					<liferay-ui:input-resource id="editorGadgetUrl" url="<%= editorGadgetURL %>" />
+				<aui:field-wrapper label="url">
+					<liferay-ui:input-resource url="<%= editorGadgetURL %>" />
 				</aui:field-wrapper>
 			</c:when>
 			<c:when test="<%= gadget != null %>">
 				<aui:input name="url" type="hidden" />
 
-				<aui:field-wrapper label="url" name="gadgetUrl">
-					<liferay-ui:input-resource id="gadgetUrl" url="<%= gadget.getUrl() %>" />
+				<aui:field-wrapper label="url">
+					<liferay-ui:input-resource url="<%= gadget.getUrl() %>" />
 				</aui:field-wrapper>
 			</c:when>
 			<c:otherwise>

@@ -35,8 +35,8 @@
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= Validator.isNotNull(mapAddress) && (Validator.isNotNull(directionsAddress) || directionsInputEnabled) %>">
-								<aui:field-wrapper inlineField="<%= true %>" label="from" name="fromAddress">
-									<liferay-ui:input-resource id="fromAddress" url="<%= mapAddress %>" />
+								<aui:field-wrapper inlineField="<%= true %>" label="from">
+									<liferay-ui:input-resource url="<%= mapAddress %>" />
 								</aui:field-wrapper>
 							</c:if>
 
@@ -52,8 +52,8 @@
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= Validator.isNotNull(directionsAddress) %>">
-								<aui:field-wrapper inlineField="<%= true %>" label="to" name="toAddress">
-									<liferay-ui:input-resource id="toAddress" url="<%= directionsAddress %>" />
+								<aui:field-wrapper inlineField="<%= true %>" label="to">
+									<liferay-ui:input-resource url="<%= directionsAddress %>" />
 								</aui:field-wrapper>
 							</c:if>
 
