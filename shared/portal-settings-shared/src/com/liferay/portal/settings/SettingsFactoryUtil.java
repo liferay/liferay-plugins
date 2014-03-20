@@ -41,7 +41,7 @@ public class SettingsFactoryUtil {
 			long companyId, String serviceName)
 		throws PortalException, SystemException {
 
-		return getSettingsFactory().getServiceCompanySettings(
+		return getSettingsFactory().getCompanyServiceSettings(
 			companyId, serviceName);
 	}
 
@@ -49,7 +49,7 @@ public class SettingsFactoryUtil {
 			long groupId, String serviceName)
 		throws PortalException, SystemException {
 
-		return getSettingsFactory().getServiceGroupSettings(
+		return getSettingsFactory().getGroupServiceSettings(
 			groupId, serviceName);
 	}
 

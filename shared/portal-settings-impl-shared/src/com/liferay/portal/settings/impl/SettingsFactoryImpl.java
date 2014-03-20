@@ -47,16 +47,7 @@ public class SettingsFactoryImpl implements SettingsFactory {
 	}
 
 	@Override
-	public Settings getPortletInstanceSettings(Layout layout, String portletId)
-		throws PortalException, SystemException {
-
-		return new PortletPreferencesSettings(
-			getPortletInstancePortletPreferences(layout, portletId),
-			getGroupSettings(layout.getCompanyId(), portletId));
-	}
-
-	@Override
-	public Settings getServiceCompanySettings(
+	public Settings getCompanyServiceSettings(
 			long companyId, String serviceName)
 		throws SystemException {
 
@@ -64,10 +55,19 @@ public class SettingsFactoryImpl implements SettingsFactory {
 	}
 
 	@Override
-	public Settings getServiceGroupSettings(long groupId, String serviceName)
+	public Settings getGroupServiceSettings(long groupId, String serviceName)
 		throws PortalException, SystemException {
 
 		return getGroupSettings(groupId, serviceName);
+	}
+
+	@Override
+	public Settings getPortletInstanceSettings(Layout layout, String portletId)
+		throws PortalException, SystemException {
+
+		return new PortletPreferencesSettings(
+			getPortletInstancePortletPreferences(layout, portletId),
+			getGroupSettings(layout.getCompanyId(), portletId));
 	}
 
 	protected PortletPreferences getCompanyPortletPreferences(
