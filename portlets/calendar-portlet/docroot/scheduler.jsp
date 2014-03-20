@@ -37,9 +37,9 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 <%@ include file="/event_recorder.jspf" %>
 
 <aui:script use="aui-toggler,liferay-calendar-list,liferay-scheduler,liferay-store,json">
+	Liferay.CalendarUtil.CALENDAR_BOOKINGS_URL = '<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="calendarBookings" />';
 	Liferay.CalendarUtil.PORTLET_NAMESPACE = '<portlet:namespace />';
 	Liferay.CalendarUtil.USER_TIME_ZONE = '<%= HtmlUtil.escapeJS(userTimeZone.getID()) %>';
-	Liferay.CalendarUtil.CALENDAR_BOOKINGS_URL = '<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="calendarBookings" />';
 
 	<c:if test="<%= !hideDayView %>">
 		window.<portlet:namespace />dayView = new A.SchedulerDayView(
