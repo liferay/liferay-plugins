@@ -125,8 +125,6 @@
 						_onClickItems: function(event) {
 							var instance = this;
 
-							event.stopPropagation();
-
 							var items = instance.get('items');
 
 							var id = event.currentTarget.attr('data-id');
