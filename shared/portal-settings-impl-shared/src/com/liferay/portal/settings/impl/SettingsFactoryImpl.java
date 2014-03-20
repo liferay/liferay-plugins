@@ -65,7 +65,7 @@ public class SettingsFactoryImpl implements SettingsFactory {
 
 		Settings defaultGroupSettings = getGroupSettings(
 			layout.getCompanyId(), portletId,
-			PortletKeys.PREFS_OWNER_TYPE_LAYOUT_DEFAULTS_GROUP);
+			PortletKeys.PREFS_OWNER_TYPE_GROUP);
 
 		return new PortletPreferencesSettings(
 			portletInstancePortletPreferences, defaultGroupSettings);
@@ -113,8 +113,7 @@ public class SettingsFactoryImpl implements SettingsFactory {
 				group.getCompanyId(), groupId, ownerType, 0, key);
 
 		Settings defaultCompanySettings = getCompanySettings(
-			group.getCompanyId(), key,
-			PortletKeys.PREFS_OWNER_TYPE_GROUP_DEFAULTS_COMPANY);
+			group.getCompanyId(), key, PortletKeys.PREFS_OWNER_TYPE_COMPANY);
 
 		return new PortletPreferencesSettings(
 			groupPortletPreferences, defaultCompanySettings);
