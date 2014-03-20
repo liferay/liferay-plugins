@@ -509,7 +509,7 @@ public class SyncFileService {
 			deltaFilePath = Files.createTempFile(
 				String.valueOf(filePath.getFileName()), "tmp");
 
-			IODeltaUtil.delta(
+			deltaFilePath = IODeltaUtil.delta(
 				filePath, IODeltaUtil.getChecksumsFilePath(syncFile),
 				deltaFilePath);
 		}
