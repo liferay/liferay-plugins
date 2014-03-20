@@ -65,7 +65,7 @@ public class DownloadFileEvent extends BaseEvent {
 			sb.append(getParameterValue("targetVersion"));
 		}
 
-		executeGet(sb.toString(), getHandler());
+		executeGet(sb.toString());
 	}
 
 	protected String replaceURLPath(long syncAccountId) throws Exception {
