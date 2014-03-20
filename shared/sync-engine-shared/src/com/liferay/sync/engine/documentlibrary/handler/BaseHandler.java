@@ -81,7 +81,7 @@ public class BaseHandler implements Handler<Void> {
 		try {
 			StatusLine statusLine = httpResponse.getStatusLine();
 
-			if (statusLine.getStatusCode() != 200) {
+			if (statusLine.getStatusCode() != HttpServletResponse.SC_OK) {
 				_logger.error("Status code {}", statusLine.getStatusCode());
 
 				throw new HttpResponseException(
