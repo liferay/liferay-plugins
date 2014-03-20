@@ -119,17 +119,10 @@ public abstract class BaseTestCase {
 	}
 
 	protected void setResponse(String fileName) throws Exception {
-		PowerMockito.mockStatic(EntityUtils.class);
 		PowerMockito.mockStatic(HttpClientBuilder.class);
 
 		HttpClientBuilder httpClientbuilder = Mockito.mock(
 			HttpClientBuilder.class);
-		CloseableHttpClient closeableHttpClient = Mockito.mock(
-			CloseableHttpClient.class);
-		CloseableHttpResponse closeableHttpResponse = Mockito.mock(
-			CloseableHttpResponse.class);
-		StatusLine statusLine = Mockito.mock(StatusLine.class);
-		HttpEntity httpEntity = Mockito.mock(HttpEntity.class);
 
 		Mockito.when(
 			HttpClientBuilder.create()
@@ -137,11 +130,16 @@ public abstract class BaseTestCase {
 			httpClientbuilder
 		);
 
+		CloseableHttpClient closeableHttpClient = Mockito.mock(
+			CloseableHttpClient.class);
+
 		Mockito.when(
 			httpClientbuilder.build()
 		).thenReturn(
 			closeableHttpClient
 		);
+
+		PowerMockito.mockStatic(EntityUtils.class);
 
 		Mockito.when(
 			EntityUtils.toString(Mockito.any(HttpEntity.class))
@@ -149,11 +147,18 @@ public abstract class BaseTestCase {
 			readResponse(fileName)
 		);
 
+		HttpEntity httpEntity = Mockito.mock(HttpEntity.class);
+
 		Mockito.when(
 			httpEntity.getContent()
 		).thenReturn(
 			getInputStream(fileName)
 		);
+
+		CloseableHttpResponse closeableHttpResponse = Mockito.mock(
+			CloseableHttpResponse.class);
+
+		StatusLine statusLine = Mockito.mock(StatusLine.class);
 
 		Mockito.when(
 			closeableHttpResponse.getStatusLine()
