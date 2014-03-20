@@ -156,6 +156,8 @@ public abstract class BaseTestCase {
 	}
 
 	protected void mockHttpClientBuilder(String fileName) throws Exception {
+		PowerMockito.mockStatic(HttpClientBuilder.class);
+
 		HttpClientBuilder httpClientbuilder = Mockito.mock(
 			HttpClientBuilder.class);
 
