@@ -113,12 +113,15 @@ public abstract class BaseTestCase {
 				Mockito.any(HttpContext.class))
 		).thenCallRealMethod();
 
+		CloseableHttpResponse closeableHttpResponse = mockCloseableHttpResponse(
+			mockHttpEntity(fileName));
+
 		Mockito.when(
 			closeableHttpClient.execute(
 				Mockito.any(HttpHost.class), Mockito.any(HttpRequest.class),
 				Mockito.any(HttpContext.class))
 		).thenReturn(
-			mockCloseableHttpResponse(mockHttpEntity(fileName))
+			closeableHttpResponse
 		);
 
 		return closeableHttpClient;
@@ -136,10 +139,12 @@ public abstract class BaseTestCase {
 			httpEntity
 		);
 
+		StatusLine statusLine = mockStatusLine();
+
 		Mockito.when(
 			closeableHttpResponse.getStatusLine()
 		).thenReturn(
-			mockStatusLine()
+			statusLine
 		);
 
 		return closeableHttpResponse;
@@ -161,10 +166,13 @@ public abstract class BaseTestCase {
 		HttpClientBuilder httpClientbuilder = Mockito.mock(
 			HttpClientBuilder.class);
 
+		CloseableHttpClient closeableHttpClient = mockCloseableHttpClient(
+			fileName);
+
 		Mockito.when(
 			httpClientbuilder.build()
 		).thenReturn(
-			mockCloseableHttpClient(fileName)
+			closeableHttpClient
 		);
 
 		Mockito.when(
