@@ -60,7 +60,7 @@ public class UserFinder extends BasePersistenceImpl<User> {
 
 			String sql = CustomSQLUtil.get(FIND_BY_NO_CONTACTS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery q = session.createSQLQuery(sql);
 
 			q.addEntity("User_", _userImplClass);
 
