@@ -1,0 +1,27 @@
+<div id="myCarousel">
+	<div class="carousel-item" style="background: url([$FILE=seattle.jpg$]); background-position: center;"></div>
+	<div class="carousel-item" style="background: url([$FILE=seattle-storm.jpg$]); background-position: center;"></div>
+	<div class="carousel-item" style="background: url([$FILE=seattle-foggy.jpg$]); background-position: center;"></div>
+</div>
+
+<style>
+	.carousel-item {
+		height: 100%;
+		width: 100%;
+	}
+</style>
+
+<script>
+AUI().ready(
+'aui-carousel',
+	function(A) {
+		new A.Carousel(
+			{
+			contentBox: '#myCarousel',
+			height: 500,
+			intervalTime: 5,
+			}
+		).render();
+	}
+);
+</script>
