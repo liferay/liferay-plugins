@@ -71,6 +71,8 @@ import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
@@ -81,20 +83,10 @@ public class SearchPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		UploadException uploadException =
-			(UploadException)actionRequest.getAttribute(
-				WebKeys.UPLOAD_EXCEPTION);
-
-		if (uploadException != null) {
-			if (uploadException.isExceededSizeLimit()) {
-				throw new FileSizeException(uploadException.getCause());
-			}
-
-			throw new PortalException(uploadException.getCause());
-		}
-
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		checkExceededSizeLimit(uploadPortletRequest);
 
 		String portletId = PortalUtil.getPortletId(actionRequest);
 
@@ -452,6 +444,21 @@ public class SearchPortlet extends MVCPortlet {
 		}
 
 		super.addSuccessMessage(actionRequest, actionResponse);
+	}
+
+	protected void checkExceededSizeLimit(HttpServletRequest request)
+		throws PortalException {
+
+		UploadException uploadException = (UploadException)request.getAttribute(
+			WebKeys.UPLOAD_EXCEPTION);
+
+		if (uploadException != null) {
+			if (uploadException.isExceededSizeLimit()) {
+				throw new FileSizeException(uploadException.getCause());
+			}
+
+			throw new PortalException(uploadException.getCause());
+		}
 	}
 
 	@Override
