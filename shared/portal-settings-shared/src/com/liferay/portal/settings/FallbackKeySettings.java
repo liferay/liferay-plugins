@@ -16,7 +16,7 @@ package com.liferay.portal.settings;
 
 import java.io.IOException;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.portlet.ValidatorException;
 
@@ -25,9 +25,7 @@ import javax.portlet.ValidatorException;
  */
 public class FallbackKeySettings implements Settings {
 
-	public FallbackKeySettings(
-		Settings settings, Map<String, String> fallbackKeys) {
-
+	public FallbackKeySettings(Settings settings, FallbackKeys fallbackKeys) {
 		_settings = settings;
 		_fallbackKeys = fallbackKeys;
 	}
@@ -38,14 +36,20 @@ public class FallbackKeySettings implements Settings {
 			throw new IllegalArgumentException("Key is null");
 		}
 
-		while (key != null) {
-			String value = _settings.getValue(key, null);
+		String value = _settings.getValue(key, null);
+
+		if (value != null) {
+			return value;
+		}
+
+		List<String> path = _fallbackKeys.getPath(key);
+
+		for (int i = 0; i < path.size(); i++) {
+			value = _settings.getValue(path.get(i), null);
 
 			if (value != null) {
 				return value;
 			}
-
-			key = getFallbackKey(key);
 		}
 
 		return defaultValue;
@@ -57,14 +61,20 @@ public class FallbackKeySettings implements Settings {
 			throw new IllegalArgumentException("Key is null");
 		}
 
-		while (key != null) {
-			String[] values = _settings.getValues(key, null);
+		String[] values = _settings.getValues(key, null);
+
+		if (values != null) {
+			return values;
+		}
+
+		List<String> path = _fallbackKeys.getPath(key);
+
+		for (int i = 0; i < path.size(); i++) {
+			values = _settings.getValues(path.get(i), null);
 
 			if (values != null) {
 				return values;
 			}
-
-			key = getFallbackKey(key);
 		}
 
 		return defaultValue;
@@ -85,11 +95,7 @@ public class FallbackKeySettings implements Settings {
 		_settings.store();
 	}
 
-	protected String getFallbackKey(String key) {
-		return _fallbackKeys.get(key);
-	}
-
-	private Map<String, String> _fallbackKeys;
+	private FallbackKeys _fallbackKeys;
 	private Settings _settings;
 
 }
