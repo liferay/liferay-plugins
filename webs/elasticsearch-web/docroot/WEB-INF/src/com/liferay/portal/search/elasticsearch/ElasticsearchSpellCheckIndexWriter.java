@@ -17,6 +17,7 @@ package com.liferay.portal.search.elasticsearch;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.BaseGenericSpellCheckIndexWriter;
+import com.liferay.portal.kernel.search.BaseIndexWriter;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnectionManager;
 import com.liferay.portal.search.elasticsearch.util.DocumentTypes;
 import com.liferay.portal.search.elasticsearch.util.LogUtil;
-import com.liferay.portal.util.PortletKeys;
 
 import java.util.Collection;
 import java.util.concurrent.Future;
@@ -40,6 +40,10 @@ import org.elasticsearch.index.query.QueryBuilders;
  */
 public class ElasticsearchSpellCheckIndexWriter
 	extends BaseGenericSpellCheckIndexWriter {
+
+	public void afterPropertiesSet() {
+		setIndexWriter(new _IndexWriterAdapter());
+	}
 
 	@Override
 	public void clearQuerySuggestionDictionaryIndexes(
@@ -73,7 +77,6 @@ public class ElasticsearchSpellCheckIndexWriter
 			elasticsearchUpdateDocumentCommand;
 	}
 
-	@Override
 	protected void addDocument(
 			String documentType, SearchContext searchContext, Document document)
 		throws SearchException {
@@ -82,7 +85,6 @@ public class ElasticsearchSpellCheckIndexWriter
 			documentType, searchContext, document);
 	}
 
-	@Override
 	protected void addDocuments(
 			String documentType, SearchContext searchContext,
 			Collection<Document> documents)
@@ -94,23 +96,22 @@ public class ElasticsearchSpellCheckIndexWriter
 
 	@Override
 	protected Document createDocument(
-		long companyId, long groupId, String languageId, String keywords,
-		float weight, String keywordFieldName, String typeFieldValue,
-		int maxNGramLength) {
+			long companyId, long groupId, String languageId, String keywords,
+			float weight, String keywordFieldName, String typeFieldValue,
+			int maxNGramLength)
+		throws SearchException {
 
-		Document document = createDocument();
+		Document document = super.createDocument(
+			companyId, groupId, languageId, keywords, weight, keywordFieldName,
+			typeFieldValue, maxNGramLength);
 
-		document.addKeyword(Field.COMPANY_ID, companyId);
-		document.addKeyword(Field.GROUP_ID, groupId);
+		document.remove(Field.LANGUAGE_ID);
+		document.remove(keywordFieldName);
 
 		String localizedName = DocumentImpl.getLocalizedName(
 			languageId, keywordFieldName);
 
 		document.addKeyword(localizedName, keywords);
-
-		document.addKeyword(Field.PORTLET_ID, PortletKeys.SEARCH);
-		document.addKeyword(Field.PRIORITY, String.valueOf(weight));
-		document.addKeyword(Field.UID, getUID(companyId, languageId, keywords));
 
 		return document;
 	}
@@ -144,5 +145,96 @@ public class ElasticsearchSpellCheckIndexWriter
 
 	private ElasticsearchUpdateDocumentCommand
 		_elasticsearchUpdateDocumentCommand;
+
+	private class _IndexWriterAdapter extends BaseIndexWriter {
+
+		@Override
+		public void addDocument(SearchContext searchContext, Document document)
+			throws SearchException {
+
+			doUpdateDocument(searchContext, document);
+		}
+
+		@Override
+		public void addDocuments(
+				SearchContext searchContext, Collection<Document> documents)
+			throws SearchException {
+
+			doUpdateDocuments(searchContext, documents);
+		}
+
+		@Override
+		public void deleteDocument(SearchContext searchContext, String uid)
+			throws SearchException {
+		}
+
+		@Override
+		public void deleteDocuments(
+			SearchContext searchContext, Collection<String> uids) {
+		}
+
+		@Override
+		public void deletePortletDocuments(
+			SearchContext searchContext, String portletId) {
+		}
+
+		@Override
+		public void updateDocument(
+				SearchContext searchContext, Document document)
+			throws SearchException {
+
+			doUpdateDocument(searchContext, document);
+		}
+
+		@Override
+		public void updateDocuments(
+				SearchContext searchContext, Collection<Document> documents)
+			throws SearchException {
+
+			doUpdateDocuments(searchContext, documents);
+		}
+
+		protected void doUpdateDocument(
+				SearchContext searchContext, Document document)
+			throws SearchException {
+
+			if (searchContext == null) {
+				searchContext = new SearchContext();
+
+				long companyId = Long.parseLong(document.get(Field.COMPANY_ID));
+
+				searchContext.setCompanyId(companyId);
+			}
+
+			String documentType = document.get(Field.TYPE);
+
+			_elasticsearchUpdateDocumentCommand.updateDocument(
+				documentType, searchContext, document);
+		}
+
+		protected void doUpdateDocuments(
+				SearchContext searchContext, Collection<Document> documents)
+			throws SearchException {
+
+			if (documents.isEmpty()) {
+				return;
+			}
+
+			Document document = documents.iterator().next();
+
+			if (searchContext == null) {
+				searchContext = new SearchContext();
+
+				long companyId = Long.parseLong(document.get(Field.COMPANY_ID));
+
+				searchContext.setCompanyId(companyId);
+			}
+
+			String documentType = document.get(Field.TYPE);
+
+			_elasticsearchUpdateDocumentCommand.updateDocuments(
+				documentType, searchContext, documents);
+		}
+	}
 
 }

@@ -27,10 +27,12 @@ import com.liferay.portal.kernel.search.HitsImpl;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -39,6 +41,8 @@ import com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnectio
 import com.liferay.portal.search.elasticsearch.facet.ElasticsearchFacetFieldCollector;
 import com.liferay.portal.search.elasticsearch.facet.FacetProcessorUtil;
 import com.liferay.portal.search.elasticsearch.util.DocumentTypes;
+
+import java.lang.reflect.Method;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -76,6 +80,10 @@ import org.elasticsearch.search.sort.SortOrder;
  * @author Milen Dyankov
  */
 public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
+
+	public void afterPropertiesSet() {
+		validateFieldSelectionSupport();
+	}
 
 	@Override
 	public Hits search(SearchContext searchContext, Query query) {
@@ -134,6 +142,23 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		}
 
 		return hits;
+	}
+
+	@Override
+	public Hits search(
+			String searchEngineId, long companyId, Query query, Sort[] sorts,
+			int start, int end)
+		throws SearchException {
+
+		SearchContext searchContext = new SearchContext();
+
+		searchContext.setCompanyId(companyId);
+		searchContext.setEnd(end);
+		searchContext.setSearchEngineId(searchEngineId);
+		searchContext.setSorts(sorts);
+		searchContext.setStart(start);
+
+		return search(searchContext, query);
 	}
 
 	protected void addFacets(
@@ -195,14 +220,27 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 	protected void addSelectedFields(
 		SearchRequestBuilder searchRequestBuilder, QueryConfig queryConfig) {
 
-		String[] selectedFieldNames = queryConfig.getSelectedFieldNames();
+		try {
+			if (_getSelectedFieldNamesMethod != null) {
+				String[] selectedFieldNames =
+					(String[])_getSelectedFieldNamesMethod.invoke(queryConfig);
 
-		if ((selectedFieldNames == null) || (selectedFieldNames.length == 0)) {
-			searchRequestBuilder.addFields(StringPool.STAR);
+				if ((selectedFieldNames != null) &&
+					(selectedFieldNames.length > 0)) {
+
+					searchRequestBuilder.addFields(selectedFieldNames);
+
+					return;
+				}
+			}
 		}
-		else {
-			searchRequestBuilder.addFields(selectedFieldNames);
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Unable to retrieve selected field names", e);
+			}
 		}
+
+		searchRequestBuilder.addFields(StringPool.STAR);
 	}
 
 	protected void addSnippets(
@@ -263,7 +301,7 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 		Map<String, HighlightField> highlightFields = hit.getHighlightFields();
 
-		if (MapUtil.isEmpty(highlightFields)) {
+		if ((highlightFields == null) || highlightFields.isEmpty()) {
 			return;
 		}
 
@@ -407,9 +445,23 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		}
 	}
 
+	protected void validateFieldSelectionSupport() {
+		try {
+			_getSelectedFieldNamesMethod = ReflectionUtil.getDeclaredMethod(
+				QueryConfig.class, "getSelectedFieldNames");
+		}
+		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					"QueryConfig does not support field name selection", e);
+			}
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		ElasticsearchIndexSearcher.class);
 
+	private Method _getSelectedFieldNamesMethod;
 	private Pattern _pattern = Pattern.compile("<em>(.*?)</em>");
 
 }
