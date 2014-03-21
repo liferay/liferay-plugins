@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.social.model.SocialActivity;
+import com.liferay.socialcoding.jira.util.PortletPropsValues;
 import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.model.JIRAIssue;
 import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
@@ -86,7 +87,8 @@ public class JIRAActivityInterpreter extends BaseSocialActivityInterpreter {
 
 		StringBundler sb = new StringBundler(4);
 
-		sb.append("http://support.liferay.com/browse/");
+		sb.append(PortletPropsValues.JIRA_URL);
+		sb.append("/browse/");
 
 		JIRAIssue jiraIssue = JIRAIssueLocalServiceUtil.getJIRAIssue(
 			activity.getClassPK());
