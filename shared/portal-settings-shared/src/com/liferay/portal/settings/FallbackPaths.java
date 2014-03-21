@@ -23,23 +23,23 @@ import java.util.Map;
 /**
  * @author Iván Zaera
  */
-public class FallbackKeys {
+public class FallbackPaths {
 
 	public void addPath(String firstKey, String... pathKeys) {
-		if (_paths.containsKey(firstKey)) {
+		if (_pathMap.containsKey(firstKey)) {
 			throw new IllegalArgumentException(
 				"A path with first key '" + firstKey + "' already exists");
 		}
 
-		List<String> path = new ArrayList<String>();
+		List<String> fallbackKeysList = new ArrayList<String>();
 
-		Collections.addAll(path, pathKeys);
+		Collections.addAll(fallbackKeysList, pathKeys);
 
-		_paths.put(firstKey, path);
+		_pathMap.put(firstKey, fallbackKeysList);
 	}
 
-	public List<String> getPath(String firstKey) {
-		List<String> path = _paths.get(firstKey);
+	public List<String> getPathKeys(String firstKey) {
+		List<String> path = _pathMap.get(firstKey);
 
 		if (path == null) {
 			return Collections.emptyList();
@@ -48,7 +48,7 @@ public class FallbackKeys {
 		return path;
 	}
 
-	private Map<String, List<String>> _paths =
+	private Map<String, List<String>> _pathMap =
 		new HashMap<String, List<String>>();
 
 }

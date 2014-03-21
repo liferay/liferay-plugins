@@ -30,13 +30,13 @@ public class FallbackKeySettingsTest extends PowerMockito {
 	public FallbackKeySettingsTest() {
 		_settings = mock(Settings.class);
 
-		_fallbackKeys = new FallbackKeys();
-		_fallbackKeys.addPath("key1", "key2", "key3");
-		_fallbackKeys.addPath("key2", "key7");
-		_fallbackKeys.addPath("key3", "key5");
+		_fallbackPaths = new FallbackPaths();
+		_fallbackPaths.addPath("key1", "key2", "key3");
+		_fallbackPaths.addPath("key2", "key7");
+		_fallbackPaths.addPath("key3", "key5");
 
 		_fallbackKeySettings = new FallbackKeySettings(
-			_settings, _fallbackKeys);
+			_settings, _fallbackPaths);
 	}
 
 	@Test
@@ -112,8 +112,8 @@ public class FallbackKeySettingsTest extends PowerMockito {
 		inOrder.verifyNoMoreInteractions();
 	}
 
-	private FallbackKeys _fallbackKeys;
 	private FallbackKeySettings _fallbackKeySettings;
+	private FallbackPaths _fallbackPaths;
 	private Settings _settings;
 
 }

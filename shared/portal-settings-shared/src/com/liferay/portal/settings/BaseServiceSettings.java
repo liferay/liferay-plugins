@@ -23,11 +23,11 @@ import javax.portlet.ValidatorException;
  */
 public class BaseServiceSettings implements Settings {
 
-	public BaseServiceSettings(Settings settings, FallbackKeys fallbackKeys) {
-		FallbackKeySettings fallbackKeySettings = new FallbackKeySettings(
-			settings, fallbackKeys);
+	public BaseServiceSettings(Settings settings, FallbackPaths fallbackPaths) {
+		FallbackPathSettings fallbackPathSettings = new FallbackPathSettings(
+			settings, fallbackPaths);
 
-		typedSettings = new TypedSettings(fallbackKeySettings);
+		typedSettings = new TypedSettings(fallbackPathSettings);
 	}
 
 	@Override

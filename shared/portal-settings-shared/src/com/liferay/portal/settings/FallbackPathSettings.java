@@ -23,11 +23,13 @@ import javax.portlet.ValidatorException;
 /**
  * @author Iván Zaera
  */
-public class FallbackKeySettings implements Settings {
+public class FallbackPathSettings implements Settings {
 
-	public FallbackKeySettings(Settings settings, FallbackKeys fallbackKeys) {
+	public FallbackPathSettings(
+		Settings settings, FallbackPaths fallbackPaths) {
+
 		_settings = settings;
-		_fallbackKeys = fallbackKeys;
+		_fallbackPaths = fallbackPaths;
 	}
 
 	@Override
@@ -42,10 +44,10 @@ public class FallbackKeySettings implements Settings {
 			return value;
 		}
 
-		List<String> path = _fallbackKeys.getPath(key);
+		List<String> pathKeys = _fallbackPaths.getPathKeys(key);
 
-		for (int i = 0; i < path.size(); i++) {
-			value = _settings.getValue(path.get(i), null);
+		for (String pathKey : pathKeys) {
+			value = _settings.getValue(pathKey, null);
 
 			if (value != null) {
 				return value;
@@ -67,10 +69,10 @@ public class FallbackKeySettings implements Settings {
 			return values;
 		}
 
-		List<String> path = _fallbackKeys.getPath(key);
+		List<String> pathKeys = _fallbackPaths.getPathKeys(key);
 
-		for (int i = 0; i < path.size(); i++) {
-			values = _settings.getValues(path.get(i), null);
+		for (String pathKey : pathKeys) {
+			values = _settings.getValues(pathKey, null);
 
 			if (values != null) {
 				return values;
@@ -95,7 +97,7 @@ public class FallbackKeySettings implements Settings {
 		_settings.store();
 	}
 
-	private FallbackKeys _fallbackKeys;
+	private FallbackPaths _fallbackPaths;
 	private Settings _settings;
 
 }
