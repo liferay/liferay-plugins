@@ -317,9 +317,12 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 				sortBuilder = new ScoreSortBuilder();
 			}
 			else {
-				sortBuilder = new FieldSortBuilder(sortFieldName);
+				FieldSortBuilder fieldSortBuilder = new FieldSortBuilder(
+					sortFieldName);
 
-				((FieldSortBuilder)sortBuilder).ignoreUnmapped(true);
+				fieldSortBuilder.ignoreUnmapped(true);
+
+				sortBuilder = fieldSortBuilder;
 			}
 
 			sortBuilder.order(sortOrder);
