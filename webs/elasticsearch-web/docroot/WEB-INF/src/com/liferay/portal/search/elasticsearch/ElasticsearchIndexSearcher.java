@@ -236,7 +236,7 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to retrieve selected field names", e);
+				_log.warn("Unable to get selected field names", e);
 			}
 		}
 

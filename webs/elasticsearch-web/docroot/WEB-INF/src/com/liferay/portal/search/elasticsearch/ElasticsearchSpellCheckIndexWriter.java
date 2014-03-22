@@ -42,7 +42,7 @@ public class ElasticsearchSpellCheckIndexWriter
 	extends BaseGenericSpellCheckIndexWriter {
 
 	public void afterPropertiesSet() {
-		setIndexWriter(new _IndexWriterAdapter());
+		setIndexWriter(new IndexWriterAdapter());
 	}
 
 	@Override
@@ -146,7 +146,7 @@ public class ElasticsearchSpellCheckIndexWriter
 	private ElasticsearchUpdateDocumentCommand
 		_elasticsearchUpdateDocumentCommand;
 
-	private class _IndexWriterAdapter extends BaseIndexWriter {
+	private class IndexWriterAdapter extends BaseIndexWriter {
 
 		@Override
 		public void addDocument(SearchContext searchContext, Document document)
@@ -201,7 +201,8 @@ public class ElasticsearchSpellCheckIndexWriter
 			if (searchContext == null) {
 				searchContext = new SearchContext();
 
-				long companyId = Long.parseLong(document.get(Field.COMPANY_ID));
+				long companyId = GetterUtil.getLong(
+					document.get(Field.COMPANY_ID));
 
 				searchContext.setCompanyId(companyId);
 			}
@@ -220,12 +221,15 @@ public class ElasticsearchSpellCheckIndexWriter
 				return;
 			}
 
-			Document document = documents.iterator().next();
+			Iterator<Document> iterator = documents.iterator();
+
+			Document document = iterator.next();
 
 			if (searchContext == null) {
 				searchContext = new SearchContext();
 
-				long companyId = Long.parseLong(document.get(Field.COMPANY_ID));
+				long companyId = GetterUtil.getLong(
+					document.get(Field.COMPANY_ID));
 
 				searchContext.setCompanyId(companyId);
 			}
