@@ -35,7 +35,7 @@ public class FallbackKeySettingsTest extends PowerMockito {
 		_fallbackPaths.addPath("key2", "key7");
 		_fallbackPaths.addPath("key3", "key5");
 
-		_fallbackKeySettings = new FallbackKeySettings(
+		_fallbackKeySettings = new FallbackPathSettings(
 			_settings, _fallbackPaths);
 	}
 
@@ -112,7 +112,7 @@ public class FallbackKeySettingsTest extends PowerMockito {
 		inOrder.verifyNoMoreInteractions();
 	}
 
-	private FallbackKeySettings _fallbackKeySettings;
+	private FallbackPathSettings _fallbackKeySettings;
 	private FallbackPaths _fallbackPaths;
 	private Settings _settings;
 
