@@ -25,9 +25,9 @@ import org.powermock.api.mockito.PowerMockito;
 /**
  * @author Iván Zaera
  */
-public class FallbackKeySettingsTest extends PowerMockito {
+public class FallbackPathSettingsTest extends PowerMockito {
 
-	public FallbackKeySettingsTest() {
+	public FallbackPathSettingsTest() {
 		_settings = mock(Settings.class);
 
 		_fallbackPaths = new FallbackPaths();
