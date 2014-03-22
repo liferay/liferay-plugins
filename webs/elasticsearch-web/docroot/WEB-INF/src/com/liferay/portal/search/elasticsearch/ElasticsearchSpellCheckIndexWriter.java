@@ -23,11 +23,13 @@ import com.liferay.portal.kernel.search.DocumentImpl;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnectionManager;
 import com.liferay.portal.search.elasticsearch.util.DocumentTypes;
 import com.liferay.portal.search.elasticsearch.util.LogUtil;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.concurrent.Future;
 
 import org.elasticsearch.action.deletebyquery.DeleteByQueryRequestBuilder;

@@ -82,7 +82,16 @@ import org.elasticsearch.search.sort.SortOrder;
 public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 	public void afterPropertiesSet() {
-		validateFieldSelectionSupport();
+		try {
+			_getSelectedFieldNamesMethod = ReflectionUtil.getDeclaredMethod(
+				QueryConfig.class, "getSelectedFieldNames");
+		}
+		catch (Exception e) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					"QueryConfig does not support field name selection", e);
+			}
+		}
 	}
 
 	@Override
@@ -442,19 +451,6 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 				new ElasticsearchFacetFieldCollector(elasticsearchFacet);
 
 			facet.setFacetCollector(facetCollector);
-		}
-	}
-
-	protected void validateFieldSelectionSupport() {
-		try {
-			_getSelectedFieldNamesMethod = ReflectionUtil.getDeclaredMethod(
-				QueryConfig.class, "getSelectedFieldNames");
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"QueryConfig does not support field name selection", e);
-			}
 		}
 	}
 
