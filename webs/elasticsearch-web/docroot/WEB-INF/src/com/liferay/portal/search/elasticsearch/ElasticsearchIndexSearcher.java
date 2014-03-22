@@ -301,7 +301,7 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 
 		Map<String, HighlightField> highlightFields = hit.getHighlightFields();
 
-		if ((highlightFields == null) || highlightFields.isEmpty()) {
+		if (MapUtil.isEmpty(highlightFields)) {
 			return;
 		}
 
