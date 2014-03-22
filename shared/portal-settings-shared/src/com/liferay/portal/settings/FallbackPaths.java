@@ -14,7 +14,7 @@
 
 package com.liferay.portal.settings;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -25,30 +25,25 @@ import java.util.Map;
  */
 public class FallbackPaths {
 
-	public void addPath(String firstKey, String... pathKeys) {
-		if (_pathMap.containsKey(firstKey)) {
-			throw new IllegalArgumentException(
-				"A path with first key '" + firstKey + "' already exists");
+	public void addPath(String key, String... pathKeys) {
+		if (_pathKeysMap.containsKey(key)) {
+			throw new IllegalArgumentException("Duplicate key " + key);
 		}
 
-		List<String> fallbackKeysList = new ArrayList<String>();
-
-		Collections.addAll(fallbackKeysList, pathKeys);
-
-		_pathMap.put(firstKey, fallbackKeysList);
+		_pathKeysMap.put(key, Arrays.asList(pathKeys));
 	}
 
-	public List<String> getPathKeys(String firstKey) {
-		List<String> path = _pathMap.get(firstKey);
+	public List<String> getPathKeys(String key) {
+		List<String> pathKeys = _pathKeysMap.get(key);
 
-		if (path == null) {
+		if (pathKeys == null) {
 			return Collections.emptyList();
 		}
 
-		return path;
+		return pathKeys;
 	}
 
-	private Map<String, List<String>> _pathMap =
+	private Map<String, List<String>> _pathKeysMap =
 		new HashMap<String, List<String>>();
 
 }
