@@ -14,36 +14,35 @@
 
 package com.liferay.portal.settings;
 
-import java.util.Arrays;
-import java.util.Collections;
+import com.liferay.portal.kernel.util.StringPool;
+
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
  * @author Iván Zaera
  */
-public class FallbackPaths {
+public class FallbackKeys {
 
-	public void addPath(String key, String... pathKeys) {
-		if (_pathKeysMap.containsKey(key)) {
+	public void add(String key, String... fallbackKeysArray) {
+		if (_fallbackKeysMap.containsKey(key)) {
 			throw new IllegalArgumentException("Duplicate key " + key);
 		}
 
-		_pathKeysMap.put(key, Arrays.asList(pathKeys));
+		_fallbackKeysMap.put(key, fallbackKeysArray);
 	}
 
-	public List<String> getPathKeys(String key) {
-		List<String> pathKeys = _pathKeysMap.get(key);
+	public String[] get(String key) {
+		String[] fallbackKeysArray = _fallbackKeysMap.get(key);
 
-		if (pathKeys == null) {
-			return Collections.emptyList();
+		if (fallbackKeysArray == null) {
+			return StringPool.EMPTY_ARRAY;
 		}
 
-		return pathKeys;
+		return fallbackKeysArray;
 	}
 
-	private Map<String, List<String>> _pathKeysMap =
-		new HashMap<String, List<String>>();
+	private Map<String, String[]> _fallbackKeysMap =
+		new HashMap<String, String[]>();
 
 }

@@ -16,20 +16,16 @@ package com.liferay.portal.settings;
 
 import java.io.IOException;
 
-import java.util.List;
-
 import javax.portlet.ValidatorException;
 
 /**
  * @author Iván Zaera
  */
-public class FallbackPathSettings implements Settings {
+public class FallbackSettings implements Settings {
 
-	public FallbackPathSettings(
-		Settings settings, FallbackPaths fallbackPaths) {
-
+	public FallbackSettings(Settings settings, FallbackKeys fallbackKeys) {
 		_settings = settings;
-		_fallbackPaths = fallbackPaths;
+		_fallbackKeys = fallbackKeys;
 	}
 
 	@Override
@@ -44,10 +40,10 @@ public class FallbackPathSettings implements Settings {
 			return value;
 		}
 
-		List<String> pathKeys = _fallbackPaths.getPathKeys(key);
+		String[] fallbackKeysArray = _fallbackKeys.get(key);
 
-		for (String pathKey : pathKeys) {
-			value = _settings.getValue(pathKey, null);
+		for (String fallbackKey : fallbackKeysArray) {
+			value = _settings.getValue(fallbackKey, null);
 
 			if (value != null) {
 				return value;
@@ -69,10 +65,10 @@ public class FallbackPathSettings implements Settings {
 			return values;
 		}
 
-		List<String> pathKeys = _fallbackPaths.getPathKeys(key);
+		String[] fallbackKeysArray = _fallbackKeys.get(key);
 
-		for (String pathKey : pathKeys) {
-			values = _settings.getValues(pathKey, null);
+		for (String fallbackKey : fallbackKeysArray) {
+			values = _settings.getValues(fallbackKey, null);
 
 			if (values != null) {
 				return values;
@@ -97,7 +93,7 @@ public class FallbackPathSettings implements Settings {
 		_settings.store();
 	}
 
-	private FallbackPaths _fallbackPaths;
+	private FallbackKeys _fallbackKeys;
 	private Settings _settings;
 
 }

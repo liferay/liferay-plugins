@@ -25,18 +25,18 @@ import org.powermock.api.mockito.PowerMockito;
 /**
  * @author Iván Zaera
  */
-public class FallbackPathSettingsTest extends PowerMockito {
+public class FallbackSettingsTest extends PowerMockito {
 
-	public FallbackPathSettingsTest() {
+	public FallbackSettingsTest() {
 		_settings = mock(Settings.class);
 
-		_fallbackPaths = new FallbackPaths();
-		_fallbackPaths.addPath("key1", "key2", "key3");
-		_fallbackPaths.addPath("key2", "key7");
-		_fallbackPaths.addPath("key3", "key5");
+		_fallbackKeys = new FallbackKeys();
 
-		_fallbackKeySettings = new FallbackPathSettings(
-			_settings, _fallbackPaths);
+		_fallbackKeys.add("key1", "key2", "key3");
+		_fallbackKeys.add("key2", "key7");
+		_fallbackKeys.add("key3", "key5");
+
+		_fallbackSettings = new FallbackSettings(_settings, _fallbackKeys);
 	}
 
 	@Test
@@ -50,7 +50,7 @@ public class FallbackPathSettingsTest extends PowerMockito {
 			mockValues
 		);
 
-		String[] values = _fallbackKeySettings.getValues("key1", defaultValues);
+		String[] values = _fallbackSettings.getValues("key1", defaultValues);
 
 		Assert.assertArrayEquals(mockValues, values);
 
@@ -61,7 +61,7 @@ public class FallbackPathSettingsTest extends PowerMockito {
 	public void testGetValuesWhenUnconfigured() {
 		String[] defaultValues = {"default"};
 
-		String[] values = _fallbackKeySettings.getValues("key1", defaultValues);
+		String[] values = _fallbackSettings.getValues("key1", defaultValues);
 
 		Assert.assertArrayEquals(defaultValues, values);
 
@@ -76,7 +76,7 @@ public class FallbackPathSettingsTest extends PowerMockito {
 			"value"
 		);
 
-		String value = _fallbackKeySettings.getValue("key1", "default");
+		String value = _fallbackSettings.getValue("key1", "default");
 
 		Assert.assertEquals("value", value);
 
@@ -85,7 +85,7 @@ public class FallbackPathSettingsTest extends PowerMockito {
 
 	@Test
 	public void testGetValueWhenUnconfigured() {
-		String value = _fallbackKeySettings.getValue("key1", "default");
+		String value = _fallbackSettings.getValue("key1", "default");
 
 		Assert.assertEquals("default", value);
 
@@ -96,7 +96,9 @@ public class FallbackPathSettingsTest extends PowerMockito {
 		InOrder inOrder = Mockito.inOrder(_settings);
 
 		for (String key :  keys) {
-			inOrder.verify(_settings).getValue(key, null);
+			inOrder.verify(_settings);
+
+			_settings.getValue(key, null);
 		}
 
 		inOrder.verifyNoMoreInteractions();
@@ -106,14 +108,16 @@ public class FallbackPathSettingsTest extends PowerMockito {
 		InOrder inOrder = Mockito.inOrder(_settings);
 
 		for (String key :  keys) {
-			inOrder.verify(_settings).getValues(key, null);
+			inOrder.verify(_settings);
+
+			_settings.getValues(key, null);
 		}
 
 		inOrder.verifyNoMoreInteractions();
 	}
 
-	private FallbackPathSettings _fallbackKeySettings;
-	private FallbackPaths _fallbackPaths;
+	private FallbackKeys _fallbackKeys;
+	private FallbackSettings _fallbackSettings;
 	private Settings _settings;
 
 }
