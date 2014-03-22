@@ -336,7 +336,7 @@ AUI().use(
 							actionClassNames: actionClassNames,
 							actionLinkClassName: actionLinkClassName,
 							actionTitle: actionTitle,
-							actionURL: actionURL,
+							actionURL: actionURL
 						}
 					);
 				};
