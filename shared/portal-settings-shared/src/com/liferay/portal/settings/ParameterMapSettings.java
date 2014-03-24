@@ -34,8 +34,8 @@ public class ParameterMapSettings implements Settings {
 	public ParameterMapSettings(
 		Settings settings, Map<String, String[]> parameterMap) {
 
-		_parameterMap = parameterMap;
 		_settings = settings;
+		_parameterMap = parameterMap;
 	}
 
 	@Override
