@@ -501,7 +501,7 @@ public class SyncFileService {
 
 		Path deltaFilePath = null;
 
-		String changeLog = getChangeLog(syncFile.getVersion());
+		String changeLog = incrementChangeLog(syncFile.getVersion());
 		String name = String.valueOf(filePath.getFileName());
 		String sourceChecksum = syncFile.getChecksum();
 		String sourceFileName = syncFile.getName();
@@ -651,14 +651,16 @@ public class SyncFileService {
 		}
 	}
 
-	protected static String getChangeLog(String version) {
-		BigDecimal xBigDecimal = new BigDecimal(version);
-		BigDecimal yBigDecimal = new BigDecimal(".1");
+	protected static String incrementChangeLog(String versionString) {
+		BigDecimal versionBigDecimal = new BigDecimal(versionString);
 
-		BigDecimal resultBigDecimal = xBigDecimal.add(yBigDecimal);
+		versionBigDecimal = versionBigDecimal.add(_CHANGE_LOG_INCREMENT);
 
-		return resultBigDecimal.toString();
+		return versionBigDecimal.toString();
 	}
+
+	private static final BigDecimal _CHANGE_LOG_INCREMENT = new BigDecimal(
+		".1");
 
 	private static final String _VERSION_DEFAULT = "1.0";
 
