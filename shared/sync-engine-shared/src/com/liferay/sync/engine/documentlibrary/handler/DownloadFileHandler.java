@@ -55,12 +55,28 @@ public class DownloadFileHandler extends BaseHandler {
 
 			inputStream = httpEntity.getContent();
 
+			Path tempFilePath = Files.createTempFile(
+				String.valueOf(filePath.getFileName()), ".tmp");
+
+			if (Files.exists(filePath)) {
+				Files.copy(filePath, tempFilePath);
+			}
+
 			if ((Boolean)getParameterValue("patch")) {
-				IODeltaUtil.patch(filePath, inputStream);
+				IODeltaUtil.patch(tempFilePath, inputStream);
+
+				Files.move(
+					tempFilePath, filePath, StandardCopyOption.ATOMIC_MOVE,
+					StandardCopyOption.REPLACE_EXISTING);
 			}
 			else {
 				Files.copy(
-					inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+					inputStream, tempFilePath,
+					StandardCopyOption.REPLACE_EXISTING);
+
+				Files.move(
+					tempFilePath, filePath, StandardCopyOption.ATOMIC_MOVE,
+					StandardCopyOption.REPLACE_EXISTING);
 			}
 
 			syncFile.setFileKey(FileUtil.getFileKey(filePath));

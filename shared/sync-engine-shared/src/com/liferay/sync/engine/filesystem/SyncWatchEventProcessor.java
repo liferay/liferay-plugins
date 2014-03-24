@@ -23,6 +23,7 @@ import com.liferay.sync.engine.service.SyncWatchEventService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
 
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -118,6 +119,10 @@ public class SyncWatchEventProcessor implements Runnable {
 
 	protected void addFile(SyncWatchEvent syncWatchEvent) throws Exception {
 		Path targetFilePath = Paths.get(syncWatchEvent.getFilePathName());
+
+		if (Files.notExists(targetFilePath)) {
+			return;
+		}
 
 		Path parentTargetFilePath = targetFilePath.getParent();
 
@@ -223,6 +228,10 @@ public class SyncWatchEventProcessor implements Runnable {
 		SyncFile syncFile = SyncFileService.fetchSyncFile(
 			FilePathNameUtil.getFilePathName(filePath),
 			syncWatchEvent.getSyncAccountId());
+
+		if (syncFile == null) {
+			return;
+		}
 
 		SyncFileService.deleteFileSyncFile(
 			syncWatchEvent.getSyncAccountId(), syncFile);

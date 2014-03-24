@@ -63,6 +63,10 @@ public class SyncFileService {
 		String name = String.valueOf(filePath.getFileName());
 		String mimeType = Files.probeContentType(filePath);
 
+		if (Files.notExists(filePath)) {
+			return null;
+		}
+
 		SyncFile syncFile = addSyncFile(
 			_VERSION_DEFAULT, checksum, name, FileUtil.getFileKey(filePath),
 			FilePathNameUtil.getFilePathName(filePath), mimeType, name,
@@ -507,7 +511,7 @@ public class SyncFileService {
 			!IODeltaUtil.isIgnoredFilePatchingExtension(syncFile)) {
 
 			deltaFilePath = Files.createTempFile(
-				String.valueOf(filePath.getFileName()), "tmp");
+				String.valueOf(filePath.getFileName()), ".tmp");
 
 			deltaFilePath = IODeltaUtil.delta(
 				filePath, IODeltaUtil.getChecksumsFilePath(syncFile),
