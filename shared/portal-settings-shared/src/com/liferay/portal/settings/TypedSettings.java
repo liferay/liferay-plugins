@@ -40,6 +40,26 @@ public class TypedSettings implements Settings {
 		return GetterUtil.getBoolean(value);
 	}
 
+	public double getDoubleValue(String key) {
+		return getDoubleValue(key, 0.0);
+	}
+
+	public double getDoubleValue(String key, double defaultValue) {
+		String value = getValue(key, String.valueOf(defaultValue));
+
+		return GetterUtil.getDouble(value);
+	}
+
+	public float getFloatValue(String key) {
+		return getFloatValue(key, 0.0F);
+	}
+
+	public float getFloatValue(String key, float defaultValue) {
+		String value = getValue(key, String.valueOf(defaultValue));
+
+		return GetterUtil.getFloat(value);
+	}
+
 	public int getIntegerValue(String key) {
 		return getIntegerValue(key, 0);
 	}
