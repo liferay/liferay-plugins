@@ -128,7 +128,7 @@ public class IODeltaUtil {
 			ByteChannelReader checksumsByteChannelReader =
 				new ByteChannelReader(checksumsReadableByteChannel);
 
-			deltaFilePath = Paths.get(checksumsFilePath.toString() + ".tmp");
+			deltaOutputStream = Files.newOutputStream(deltaFilePath);
 
 			deltaWritableByteChannel = Channels.newChannel(deltaOutputStream);
 
