@@ -541,7 +541,10 @@ public class SyncFileService {
 		parameters.put("syncFile", syncFile);
 		parameters.put("title", name);
 
-		if (!sourceChecksum.equals(targetChecksum)) {
+		if (sourceChecksum.equals(targetChecksum)) {
+			parameters.put("-file", null);
+		}
+		else {
 			if ((deltaFilePath != null) &&
 				(Files.size(filePath) / Files.size(deltaFilePath)) >=
 					PropsValues.SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD) {
