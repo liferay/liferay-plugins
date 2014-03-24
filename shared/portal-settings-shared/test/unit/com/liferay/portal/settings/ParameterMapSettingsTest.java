@@ -38,46 +38,46 @@ public class ParameterMapSettingsTest extends PowerMockito {
 
 	@Test
 	public void testGetValuesWhenFoundInParameterMap() {
-		String[] values = {"request value 1", "request value 2"};
+		String[] values = {"requestValue1", "requestValue2"};
 
 		_parameterMap.put("preferences--key--", values);
 
 		Assert.assertArrayEquals(
 			values,
 			_parameterMapSettings.getValues(
-				"key", new String[] {"default value"}));
+				"key", new String[] {"defaultValue"}));
 	}
 
 	@Test
 	public void testGetValuesWhenFoundInSettings() {
-		String[] values = {"settings value 1", "settings value 2"};
+		String[] values = {"settingsValue1", "settingsValue2"};
 
 		mockSettingsGetValues("key", values);
 
 		Assert.assertArrayEquals(
 			values,
 			_parameterMapSettings.getValues(
-				"key", new String[] {"default value"}));
+				"key", new String[] {"defaultValue"}));
 	}
 
 	@Test
 	public void testGetValueWhenFoundInParameterMap() {
-		_parameterMap.put("preferences--key--", new String[] {"request value"});
+		_parameterMap.put("preferences--key--", new String[] {"requestValue"});
 
-		mockSettingsGetValue("key", "settings value");
+		mockSettingsGetValue("key", "settingsValue");
 
 		Assert.assertEquals(
-			"request value",
-			_parameterMapSettings.getValue("key", "default value"));
+			"requestValue",
+			_parameterMapSettings.getValue("key", "defaultValue"));
 	}
 
 	@Test
 	public void testGetValueWhenFoundInSettings() {
-		mockSettingsGetValue("key", "settings value");
+		mockSettingsGetValue("key", "settingsValue");
 
 		Assert.assertEquals(
-			"settings value",
-			_parameterMapSettings.getValue("key", "default value"));
+			"settingsValue",
+			_parameterMapSettings.getValue("key", "defaultValue"));
 	}
 
 	protected void mockSettingsGetValue(String key, String value) {
