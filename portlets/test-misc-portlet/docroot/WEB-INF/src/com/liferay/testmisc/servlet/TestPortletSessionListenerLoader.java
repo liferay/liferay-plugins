@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.servlet.PortletSessionListenerLoader;
  * </p>
  *
  * <p>
- * See http://support.liferay.com/browse/LEP-2299.
+ * See https://issues.liferay.com/browse/LEP-2299.
  * </p>
  *
  * @author Brian Wing Shun Chan
