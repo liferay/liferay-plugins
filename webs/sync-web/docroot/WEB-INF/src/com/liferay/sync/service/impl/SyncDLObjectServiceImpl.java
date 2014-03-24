@@ -437,7 +437,9 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		validateChecksum(file, checksum);
+		if (file != null) {
+			validateChecksum(file, checksum);
+		}
 
 		FileEntry fileEntry = dlAppService.updateFileEntry(
 			fileEntryId, sourceFileName, mimeType, title, description,
