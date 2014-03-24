@@ -34,6 +34,8 @@ import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.IODeltaUtil;
 import com.liferay.sync.engine.util.PropsValues;
 
+import java.math.BigDecimal;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -499,8 +501,7 @@ public class SyncFileService {
 
 		Path deltaFilePath = null;
 
-		String changeLog = String.valueOf(
-			Double.valueOf(syncFile.getVersion()) + .1);
+		String changeLog = getChangeLog(syncFile.getVersion());
 		String name = String.valueOf(filePath.getFileName());
 		String sourceChecksum = syncFile.getChecksum();
 		String sourceFileName = syncFile.getName();
@@ -645,6 +646,15 @@ public class SyncFileService {
 
 			return null;
 		}
+	}
+
+	protected static String getChangeLog(String version) {
+		BigDecimal xBigDecimal = new BigDecimal(version);
+		BigDecimal yBigDecimal = new BigDecimal(".1");
+
+		BigDecimal resultBigDecimal = xBigDecimal.add(yBigDecimal);
+
+		return resultBigDecimal.toString();
 	}
 
 	private static final String _VERSION_DEFAULT = "1.0";
