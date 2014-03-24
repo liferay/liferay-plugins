@@ -33,6 +33,7 @@ import com.liferay.portlet.asset.model.BaseAssetRenderer;
 import java.util.Locale;
 
 import javax.portlet.PortletRequest;
+import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -78,7 +79,11 @@ public class CalendarBookingAssetRenderer
 	}
 
 	@Override
-	public String getSummary(Locale locale) {
+	public String getSummary(
+		PortletRequest portletRequest, PortletResponse portletResponse) {
+
+		Locale locale = getLocale(portletRequest);
+
 		return _calendarBooking.getDescription(locale);
 	}
 
