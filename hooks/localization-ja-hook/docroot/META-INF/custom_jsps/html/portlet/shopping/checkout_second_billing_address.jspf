@@ -17,18 +17,18 @@
 <table class="lfr-table">
 <tr>
 	<th class="text-left">
-		<liferay-ui:message key="first-name" />:
-	</th>
-	<td>
-		<%= HtmlUtil.escape(order.getBillingFirstName()) %>
-	</td>
-</tr>
-<tr>
-	<th class="text-left">
 		<liferay-ui:message key="last-name" />:
 	</th>
 	<td>
 		<%= HtmlUtil.escape(order.getBillingLastName()) %>
+	</td>
+</tr>
+<tr>
+	<th class="text-left">
+		<liferay-ui:message key="first-name" />:
+	</th>
+	<td>
+		<%= HtmlUtil.escape(order.getBillingFirstName()) %>
 	</td>
 </tr>
 <tr>
@@ -41,42 +41,18 @@
 </tr>
 <tr>
 	<th class="text-left">
+		<liferay-ui:message key="phone" />:
+	</th>
+	<td>
+		<%= HtmlUtil.escape(order.getBillingPhone()) %>
+	</td>
+</tr>
+<tr>
+	<th class="text-left">
 		<liferay-ui:message key="company" />:
 	</th>
 	<td>
 		<%= HtmlUtil.escape(order.getBillingCompany()) %>
-	</td>
-</tr>
-<tr>
-	<th class="text-left">
-		<liferay-ui:message key="street" />:
-	</th>
-	<td>
-		<%= HtmlUtil.escape(order.getBillingStreet()) %>
-	</td>
-</tr>
-<tr>
-	<th class="text-left">
-		<liferay-ui:message key="city" />:
-	</th>
-	<td>
-		<%= HtmlUtil.escape(order.getBillingCity()) %>
-	</td>
-</tr>
-<tr>
-	<th class="text-left">
-		<liferay-ui:message key="state" />:
-	</th>
-	<td>
-		<%= HtmlUtil.escape(order.getBillingState()) %>
-	</td>
-</tr>
-<tr>
-	<th class="text-left">
-		<liferay-ui:message key="postal-code" />:
-	</th>
-	<td>
-		<%= HtmlUtil.escape(order.getBillingZip()) %>
 	</td>
 </tr>
 <tr>
@@ -89,10 +65,34 @@
 </tr>
 <tr>
 	<th class="text-left">
-		<liferay-ui:message key="phone" />:
+		<liferay-ui:message key="state" />:
 	</th>
 	<td>
-		<%= HtmlUtil.escape(order.getBillingPhone()) %>
+		<%= HtmlUtil.escape(order.getBillingState()) %>
+	</td>
+</tr>
+<tr>
+	<th class="text-left">
+		<liferay-ui:message key="city" />:
+	</th>
+	<td>
+		<%= HtmlUtil.escape(order.getBillingCity()) %>
+	</td>
+</tr>
+<tr>
+	<th class="text-left">
+		<liferay-ui:message key="street" />:
+	</th>
+	<td>
+		<%= HtmlUtil.escape(order.getBillingStreet()) %>
+	</td>
+</tr>
+<tr>
+	<th class="text-left">
+		<liferay-ui:message key="postal-code" />:
+	</th>
+	<td>
+		<%= HtmlUtil.escape(order.getBillingZip()) %>
 	</td>
 </tr>
 </table>
