@@ -35,9 +35,9 @@ public class TypedSettings implements Settings {
 	}
 
 	public boolean getBooleanValue(String key, boolean defaultValue) {
-		String value = getValue(key, String.valueOf(defaultValue));
+		String value = getValue(key, null);
 
-		return GetterUtil.getBoolean(value);
+		return GetterUtil.getBoolean(value, defaultValue);
 	}
 
 	public double getDoubleValue(String key) {
@@ -45,9 +45,9 @@ public class TypedSettings implements Settings {
 	}
 
 	public double getDoubleValue(String key, double defaultValue) {
-		String value = getValue(key, String.valueOf(defaultValue));
+		String value = getValue(key, null);
 
-		return GetterUtil.getDouble(value);
+		return GetterUtil.getDouble(value, defaultValue);
 	}
 
 	public float getFloatValue(String key) {
@@ -55,9 +55,9 @@ public class TypedSettings implements Settings {
 	}
 
 	public float getFloatValue(String key, float defaultValue) {
-		String value = getValue(key, String.valueOf(defaultValue));
+		String value = getValue(key, null);
 
-		return GetterUtil.getFloat(value);
+		return GetterUtil.getFloat(value, defaultValue);
 	}
 
 	public int getIntegerValue(String key) {
@@ -65,9 +65,9 @@ public class TypedSettings implements Settings {
 	}
 
 	public int getIntegerValue(String key, int defaultValue) {
-		String value = getValue(key, String.valueOf(defaultValue));
+		String value = getValue(key, null);
 
-		return GetterUtil.getInteger(value);
+		return GetterUtil.getInteger(value, defaultValue);
 	}
 
 	public long getLongValue(String key) {
@@ -75,9 +75,9 @@ public class TypedSettings implements Settings {
 	}
 
 	public long getLongValue(String key, long defaultValue) {
-		String value = getValue(key, String.valueOf(defaultValue));
+		String value = getValue(key, null);
 
-		return GetterUtil.getLong(value);
+		return GetterUtil.getLong(value, defaultValue);
 	}
 
 	public String getValue(String key) {
