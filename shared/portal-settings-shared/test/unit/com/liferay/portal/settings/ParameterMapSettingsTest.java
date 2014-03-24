@@ -33,7 +33,7 @@ public class ParameterMapSettingsTest extends PowerMockito {
 		_settings = mock(Settings.class);
 
 		_parameterMapSettings = new ParameterMapSettings(
-			_parameterMap, _settings);
+			_settings, _parameterMap);
 	}
 
 	@Test
