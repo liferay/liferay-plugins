@@ -41,7 +41,7 @@ public class TypedSettings implements Settings {
 	}
 
 	public double getDoubleValue(String key) {
-		return getDoubleValue(key, 0.0);
+		return getDoubleValue(key, 0);
 	}
 
 	public double getDoubleValue(String key, double defaultValue) {
@@ -51,7 +51,7 @@ public class TypedSettings implements Settings {
 	}
 
 	public float getFloatValue(String key) {
-		return getFloatValue(key, 0.0F);
+		return getFloatValue(key, 0);
 	}
 
 	public float getFloatValue(String key, float defaultValue) {
