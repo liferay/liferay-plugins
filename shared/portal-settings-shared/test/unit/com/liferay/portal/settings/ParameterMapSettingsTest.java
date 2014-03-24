@@ -45,7 +45,7 @@ public class ParameterMapSettingsTest extends PowerMockito {
 		Assert.assertArrayEquals(
 			values,
 			_parameterMapSettings.getValues(
-				"key", new String[]{"default value"}));
+				"key", new String[] {"default value"}));
 	}
 
 	@Test
@@ -57,12 +57,12 @@ public class ParameterMapSettingsTest extends PowerMockito {
 		Assert.assertArrayEquals(
 			values,
 			_parameterMapSettings.getValues(
-				"key", new String[]{"default value"}));
+				"key", new String[] {"default value"}));
 	}
 
 	@Test
 	public void testGetValueWhenFoundInParameterMap() {
-		_parameterMap.put("preferences--key--", new String[]{"request value"});
+		_parameterMap.put("preferences--key--", new String[] {"request value"});
 
 		mockSettingsGetValue("key", "settings value");
 
