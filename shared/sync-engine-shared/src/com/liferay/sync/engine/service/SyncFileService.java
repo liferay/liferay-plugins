@@ -57,15 +57,15 @@ public class SyncFileService {
 			Path filePath, long folderId, long repositoryId, long syncAccountId)
 		throws Exception {
 
+		if (Files.notExists(filePath)) {
+			return null;
+		}
+
 		// Local sync file
 
 		String checksum = FileUtil.getChecksum(filePath);
 		String name = String.valueOf(filePath.getFileName());
 		String mimeType = Files.probeContentType(filePath);
-
-		if (Files.notExists(filePath)) {
-			return null;
-		}
 
 		SyncFile syncFile = addSyncFile(
 			_VERSION_DEFAULT, checksum, name, FileUtil.getFileKey(filePath),
