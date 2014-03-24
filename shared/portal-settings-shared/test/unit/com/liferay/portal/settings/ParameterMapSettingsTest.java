@@ -37,7 +37,7 @@ public class ParameterMapSettingsTest extends PowerMockito {
 	}
 
 	@Test
-	public void testGetValuesWhenFoundInRequest() {
+	public void testGetValuesWhenFoundInParameterMap() {
 		String[] values = {"request value 1", "request value 2"};
 
 		_parameterMap.put("preferences--key--", values);
@@ -61,7 +61,7 @@ public class ParameterMapSettingsTest extends PowerMockito {
 	}
 
 	@Test
-	public void testGetValueWhenFoundInRequest() {
+	public void testGetValueWhenFoundInParameterMap() {
 		_parameterMap.put("preferences--key--", new String[]{"request value"});
 
 		mockSettingsGetValue("key", "settings value");
