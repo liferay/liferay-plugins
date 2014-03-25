@@ -147,15 +147,14 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		kbArticleLocalService.deleteKBArticles(resourcePrimKeys);
 	}
 
-	public File getAttachmentFile(
+	public File getAttachment(
 			String portletId, long resourcePrimKey, String fileName,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		checkAttachmentPermissions(portletId, resourcePrimKey, serviceContext);
 
-		return kbArticleLocalService.getAttachmentFile(
-			fileName, serviceContext);
+		return kbArticleLocalService.getAttachment(fileName, serviceContext);
 	}
 
 	public List<KBArticle> getGroupKBArticles(
