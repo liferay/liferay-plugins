@@ -5,4 +5,37 @@
 	<import file="../build-common-hook.xml" />
 
 	<property name="import.shared" value="localization-shared" />
+
+	<target name="update-from-portal">
+		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portal/setup_wizard.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/portal_settings/edit_ldap_server.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/portal_settings/test_ldap_users.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/portal_settings/authentication/open_sso.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/shopping/checkout_first.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/shopping/checkout_second.jsp"
+			/>
+			<fileset
+				dir="${app.server.portal.dir}"
+				includes="html/portlet/shopping/edit_order.jsp"
+			/>
+		</copy>
+	</target>
 </project>
