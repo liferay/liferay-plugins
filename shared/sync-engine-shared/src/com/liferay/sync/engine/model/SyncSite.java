@@ -32,6 +32,14 @@ public class SyncSite extends StateAwareModel {
 
 	public static final int STATE_DISCONNECTED = 0;
 
+	public static final int TYPE_OPEN = 1;
+
+	public static final int TYPE_PRIVATE = 3;
+
+	public static final int TYPE_RESTRICTED = 2;
+
+	public static final int TYPE_SYSTEM = 4;
+
 	public boolean getActive() {
 		return active;
 	}

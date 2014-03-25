@@ -28,6 +28,7 @@ import com.liferay.sync.engine.documentlibrary.event.UpdateFileEntryEvent;
 import com.liferay.sync.engine.documentlibrary.event.UpdateFolderEvent;
 import com.liferay.sync.engine.model.ModelListener;
 import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.persistence.SyncFilePersistence;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
@@ -85,6 +86,18 @@ public class SyncFileService {
 		parameters.put("folderId", folderId);
 		parameters.put("mimeType", mimeType);
 		parameters.put("repositoryId", repositoryId);
+
+		SyncSite syncSite = SyncSiteService.fetchSyncSite(
+			repositoryId, syncAccountId);
+
+		if (syncSite.getType() != SyncSite.TYPE_SYSTEM) {
+			parameters.put("serviceContext.addGroupPermissions", true);
+		}
+
+		if (syncSite.getType() == SyncSite.TYPE_OPEN) {
+			parameters.put("serviceContext.addGuestPermissions", true);
+		}
+
 		parameters.put("sourceFileName", name);
 		parameters.put("syncFile", syncFile);
 		parameters.put("title", name);
@@ -120,6 +133,18 @@ public class SyncFileService {
 		parameters.put("name", name);
 		parameters.put("parentFolderId", parentFolderId);
 		parameters.put("repositoryId", repositoryId);
+
+		SyncSite syncSite = SyncSiteService.fetchSyncSite(
+			repositoryId, syncAccountId);
+
+		if (syncSite.getType() != SyncSite.TYPE_SYSTEM) {
+			parameters.put("serviceContext.addGroupPermissions", true);
+		}
+
+		if (syncSite.getType() == SyncSite.TYPE_OPEN) {
+			parameters.put("serviceContext.addGuestPermissions", true);
+		}
+
 		parameters.put("syncFile", syncFile);
 
 		AddFolderEvent addFolderEvent = new AddFolderEvent(
