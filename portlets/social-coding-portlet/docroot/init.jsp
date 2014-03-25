@@ -49,7 +49,6 @@ page import="com.liferay.portlet.expando.service.ExpandoValueLocalServiceUtil" %
 page import="com.liferay.socialcoding.NoSuchSVNRepositoryException" %><%@
 page import="com.liferay.socialcoding.jira.util.JIRAConstants" %><%@
 page import="com.liferay.socialcoding.jira.util.JIRAUtil" %><%@
-page import="com.liferay.socialcoding.jira.util.PortletPropsValues" %><%@
 page import="com.liferay.socialcoding.model.JIRAIssue" %><%@
 page import="com.liferay.socialcoding.model.SVNRepository" %><%@
 page import="com.liferay.socialcoding.model.SVNRevision" %><%@
@@ -57,6 +56,7 @@ page import="com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil" %><%@
 page import="com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil" %><%@
 page import="com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil" %><%@
 page import="com.liferay.socialcoding.svn.util.SVNConstants" %><%@
+page import="com.liferay.socialcoding.util.PortletPropsValues" %><%@
 page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="com.sun.syndication.feed.synd.SyndContent" %><%@

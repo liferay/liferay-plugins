@@ -351,7 +351,7 @@ This is a <code>javax.servlet.ServletContextListener</code> that loads a <code>j
 </p>
 
 <p>
-See http://support.liferay.com/browse/LEP-2299.
+See https://issues.liferay.com/browse/LEP-2299.
 </p>]]></comment>
 		<author><![CDATA[Brian Wing Shun Chan]]></author>
 		<see><![CDATA[com.liferay.testmisc.servlet.TestPortletSessionListener]]></see>

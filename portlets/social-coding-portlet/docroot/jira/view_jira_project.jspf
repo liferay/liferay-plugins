@@ -72,7 +72,7 @@ Object[][] jiraProjectRowsArray = new Object[][] {
 %>
 
 <div class="project-title">
-	<strong><a href='<%= PortletPropsValues.JIRA_URL %>/browse/<%= projectKey %>' target="_blank"><%= projectName %></a></strong>
+	<strong><a href="<%= PortletPropsValues.JIRA_URL %>/browse/<%= projectKey %>" target="_blank"><%= projectName %></a></strong>
 </div>
 
 <table class="jira-summary lfr-table">

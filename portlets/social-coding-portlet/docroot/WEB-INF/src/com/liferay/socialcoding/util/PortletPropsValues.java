@@ -12,13 +12,16 @@
  * details.
  */
 
-package com.liferay.socialcoding.jira.util;
+package com.liferay.socialcoding.util;
+
+import com.liferay.util.portlet.PortletProps;
 
 /**
  * @author Rachael Koestartyo
  */
-public interface PortletPropsKeys {
+public class PortletPropsValues {
 
-	public static final String JIRA_URL = "jira.url";
+	public static final String JIRA_URL = PortletProps.get(
+		PortletPropsKeys.JIRA_URL);
 
 }
