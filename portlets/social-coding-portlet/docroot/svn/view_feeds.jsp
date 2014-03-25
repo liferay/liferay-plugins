@@ -90,7 +90,9 @@
 			sb.append(PortalUtil.getPathContext(request));
 			sb.append("/icons/svn.png\" />SVN</a><br />");
 
-			sb.append("<a href=\"http://issues.liferay.com/browse/");
+			sb.append("<a href=\"");
+			sb.append(PortletPropsValues.JIRA_URL);
+			sb.append("/browse/");
 			sb.append(jiraIssue.getKey());
 			sb.append("\"><img border=\"0\" src=\"");
 			sb.append(PortalUtil.getPathContext(request));

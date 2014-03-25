@@ -78,7 +78,7 @@ String jiraUserId = ExpandoValueLocalServiceUtil.getData(company.getCompanyId(),
 			<input name="<portlet:namespace />redirect" type="hidden" value="<%= currentURL %>" />
 
 			<div class="alert alert-info">
-				<%= LanguageUtil.format(pageContext, "set-your-login-for-x-to-track-your-jira-activity", "http://support.liferay.com", false) %>
+				<%= LanguageUtil.format(pageContext, "set-your-login-for-x-to-track-your-jira-activity", PortletPropsValues.JIRA_URL, false) %>
 			</div>
 
 			<table class="lfr-table">
