@@ -106,6 +106,16 @@ public class KBArticleServiceWrapper implements KBArticleService,
 	}
 
 	@Override
+	public java.io.File getAttachment(long companyId, long groupId,
+		java.lang.String portletId, long resourcePrimKey,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticleService.getAttachment(companyId, groupId, portletId,
+			resourcePrimKey, fileName);
+	}
+
+	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getGroupKBArticles(
 		long groupId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
