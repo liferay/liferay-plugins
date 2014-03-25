@@ -283,7 +283,7 @@ public class SyncUtil {
 		syncDLObject.setChangeLog(StringPool.BLANK);
 		syncDLObject.setExtraSettings(StringPool.BLANK);
 		syncDLObject.setVersion(StringPool.BLANK);
-		syncDLObject.setSize(-1);
+		syncDLObject.setSize(0);
 		syncDLObject.setChecksum(StringPool.BLANK);
 		syncDLObject.setEvent(event);
 		syncDLObject.setLockExpirationDate(null);

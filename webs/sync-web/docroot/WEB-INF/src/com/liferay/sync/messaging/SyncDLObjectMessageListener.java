@@ -109,8 +109,9 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 				folder.getCompanyId(), modifiedTime, folder.getRepositoryId(),
 				folder.getParentFolderId(), folder.getName(), StringPool.BLANK,
 				StringPool.BLANK, folder.getDescription(), StringPool.BLANK,
-				StringPool.BLANK, "-1", 0, StringPool.BLANK, event, null, 0,
-				StringPool.BLANK, type, folder.getFolderId(), folder.getUuid());
+				StringPool.BLANK, StringPool.BLANK, 0, StringPool.BLANK, event,
+				null, 0, StringPool.BLANK, type, folder.getFolderId(),
+				folder.getUuid());
 		}
 	}
 
