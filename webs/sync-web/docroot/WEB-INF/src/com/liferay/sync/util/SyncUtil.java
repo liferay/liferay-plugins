@@ -45,6 +45,8 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 
+import java.util.Date;
+
 /**
  * @author Dennis Ju
  */
@@ -221,31 +223,36 @@ public class SyncUtil {
 	public static SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
 		throws PortalException, SystemException {
 
-		SyncDLObject syncDLObject = new SyncDLObjectImpl();
+		Lock lock = fileEntry.getLock();
 
 		DLFileVersion dlFileVersion = null;
 
-		Lock lock = fileEntry.getLock();
+		Date lockExpirationDate;
+		long lockUserId;
+		String lockUserName;
+		String type;
 
 		if (lock != null) {
 			dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
 				fileEntry.getFileEntryId(),
 				DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION);
 
-			syncDLObject.setLockExpirationDate(lock.getExpirationDate());
-			syncDLObject.setLockUserId(lock.getUserId());
-			syncDLObject.setLockUserName(lock.getUserName());
-			syncDLObject.setType(SyncConstants.TYPE_PWC);
+			lockExpirationDate = lock.getExpirationDate();
+			lockUserId = lock.getUserId();
+			lockUserName = lock.getUserName();
+			type = SyncConstants.TYPE_PRIVATE_WORKNG_COPY;
 		}
 		else {
 			dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
 				fileEntry.getFileEntryId(), fileEntry.getVersion());
 
-			syncDLObject.setLockExpirationDate(null);
-			syncDLObject.setLockUserId(0);
-			syncDLObject.setLockUserName(StringPool.BLANK);
-			syncDLObject.setType(SyncConstants.TYPE_FILE);
+			lockExpirationDate = null;
+			lockUserId = 0;
+			lockUserName = StringPool.BLANK;
+			type = SyncConstants.TYPE_FILE;
 		}
+
+		SyncDLObject syncDLObject = new SyncDLObjectImpl();
 
 		syncDLObject.setCompanyId(dlFileVersion.getCompanyId());
 		syncDLObject.setCreateDate(dlFileVersion.getCreateDate());
@@ -262,6 +269,10 @@ public class SyncUtil {
 		syncDLObject.setSize(dlFileVersion.getSize());
 		syncDLObject.setChecksum(getChecksum(dlFileVersion));
 		syncDLObject.setEvent(event);
+		syncDLObject.setLockExpirationDate(lockExpirationDate);
+		syncDLObject.setLockUserId(lockUserId);
+		syncDLObject.setLockUserName(lockUserName);
+		syncDLObject.setType(type);
 		syncDLObject.setTypePK(fileEntry.getFileEntryId());
 		syncDLObject.setTypeUuid(fileEntry.getUuid());
 
