@@ -292,7 +292,8 @@ public class AdminPortlet extends MVCPortlet {
 			String resourceID = resourceRequest.getResourceID();
 
 			if (resourceID.equals("attachment")) {
-				long fileEntryId = ParamUtil.getLong(resourceRequest, "fileEntryId");
+				long fileEntryId = ParamUtil.getLong(
+					resourceRequest, "fileEntryId");
 
 				if (fileEntryId == 0) {
 					serveTempAttachment(resourceRequest, resourceResponse);
