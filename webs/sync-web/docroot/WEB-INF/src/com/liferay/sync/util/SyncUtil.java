@@ -223,14 +223,14 @@ public class SyncUtil {
 	public static SyncDLObject toSyncDLObject(FileEntry fileEntry, String event)
 		throws PortalException, SystemException {
 
-		Lock lock = fileEntry.getLock();
-
 		DLFileVersion dlFileVersion = null;
 
 		Date lockExpirationDate = null;
 		long lockUserId = 0;
 		String lockUserName = null;
 		String type = null;
+
+		Lock lock = fileEntry.getLock();
 
 		if (lock != null) {
 			dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
