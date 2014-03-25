@@ -14,10 +14,8 @@
  */
 --%>
 
-<aui:input cssClass="lfr-input-text-container" label="first-name" name="userMappingFirstName" type="text" value="<%= userMappingFirstName %>" />
-
-<aui:input cssClass="lfr-input-text-container" label="middle-name" name="userMappingMiddleName" type="text" value="<%= userMappingMiddleName %>" />
-
 <aui:input cssClass="lfr-input-text-container" label="last-name" name="userMappingLastName" type="text" value="<%= userMappingLastName %>" />
+
+<aui:input cssClass="lfr-input-text-container" label="first-name" name="userMappingFirstName" type="text" value="<%= userMappingFirstName %>" />
 
 <aui:input cssClass="lfr-input-text-container" helpMessage="ldap-full-name-attribute-help" label="full-name" name="userMappingFullName" type="text" value="<%= userMappingFullName %>" />

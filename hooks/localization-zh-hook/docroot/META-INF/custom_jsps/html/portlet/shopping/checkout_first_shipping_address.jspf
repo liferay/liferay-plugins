@@ -15,42 +15,27 @@
 --%>
 
 <aui:column>
-	<aui:input label="first-name" name="shippingFirstName" />
-
 	<aui:input label="last-name" name="shippingLastName" />
+
+	<aui:input label="first-name" name="shippingFirstName" />
 
 	<aui:input label="email-address" name="shippingEmailAddress" />
 
+	<aui:input label="phone" name="shippingPhone" />
+
 	<aui:input label="company" name="shippingCompany" />
-
-	<aui:input label="street" name="shippingStreet" />
-
-	<aui:input label="city" name="shippingCity" />
 
 	<aui:input label="same-as-billing" name="shipToBilling" />
 </aui:column>
 
 <aui:column>
-	<aui:select label="state" name="shippingStateSel">
-		<aui:option label="outside-us" />
-
-		<%
-		for (int i = 0; i < StateUtil.STATES.length; i++) {
-		%>
-
-			<aui:option label="<%= StateUtil.STATES[i].getName() %>" selected="<%= shippingStateSel.equals(StateUtil.STATES[i].getId()) %>" value="<%= StateUtil.STATES[i].getId() %>" />
-
-		<%
-		}
-		%>
-
-	</aui:select>
-
-	<aui:input bean="<%= null %>" label="other-state" name="shippingState" value="<%= shippingState %>" />
-
-	<aui:input label="postal-code" name="shippingZip" />
-
 	<aui:input label="country" name="shippingCountry" />
 
-	<aui:input label="phone" name="shippingPhone" />
+	<aui:input bean="<%= null %>" label="state" name="shippingState" value="<%= shippingState %>" />
+
+	<aui:input label="city" name="shippingCity" />
+
+	<aui:input label="street" name="shippingStreet" />
+
+	<aui:input label="postal-code" name="shippingZip" />
 </aui:column>

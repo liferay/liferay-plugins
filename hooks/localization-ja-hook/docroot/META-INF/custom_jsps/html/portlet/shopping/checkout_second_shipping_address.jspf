@@ -17,18 +17,18 @@
 <table class="lfr-table">
 <tr>
 	<td>
-		<liferay-ui:message key="first-name" />:
-	</td>
-	<td>
-		<%= HtmlUtil.escape(order.getShippingFirstName()) %>
-	</td>
-</tr>
-<tr>
-	<td>
 		<liferay-ui:message key="last-name" />:
 	</td>
 	<td>
 		<%= HtmlUtil.escape(order.getShippingLastName()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="first-name" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingFirstName()) %>
 	</td>
 </tr>
 <tr>
@@ -41,42 +41,18 @@
 </tr>
 <tr>
 	<td>
+		<liferay-ui:message key="phone" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingPhone()) %>
+	</td>
+</tr>
+<tr>
+	<td>
 		<liferay-ui:message key="company" />:
 	</td>
 	<td>
 		<%= HtmlUtil.escape(order.getShippingCompany()) %>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="street" />:
-	</td>
-	<td>
-		<%= HtmlUtil.escape(order.getShippingStreet()) %>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="city" />
-	</td>
-	<td>
-		<%= HtmlUtil.escape(order.getShippingCity()) %>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="state" />:
-	</td>
-	<td>
-		<%= HtmlUtil.escape(order.getShippingState()) %>
-	</td>
-</tr>
-<tr>
-	<td>
-		<liferay-ui:message key="postal-code" />:
-	</td>
-	<td>
-		<%= HtmlUtil.escape(order.getShippingZip()) %>
 	</td>
 </tr>
 <tr>
@@ -89,10 +65,34 @@
 </tr>
 <tr>
 	<td>
-		<liferay-ui:message key="phone" />:
+		<liferay-ui:message key="state" />:
 	</td>
 	<td>
-		<%= HtmlUtil.escape(order.getShippingPhone()) %>
+		<%= HtmlUtil.escape(order.getShippingState()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="city" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingCity()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="street" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingStreet()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="postal-code" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingZip()) %>
 	</td>
 </tr>
 </table>

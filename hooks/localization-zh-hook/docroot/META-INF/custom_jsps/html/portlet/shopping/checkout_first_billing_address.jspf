@@ -15,40 +15,25 @@
 --%>
 
 <aui:column>
-	<aui:input label="first-name" name="billingFirstName" />
-
 	<aui:input label="last-name" name="billingLastName" />
+
+	<aui:input label="first-name" name="billingFirstName" />
 
 	<aui:input label="email-address" name="billingEmailAddress" />
 
+	<aui:input label="phone" name="billingPhone" />
+
 	<aui:input label="company" name="billingCompany" />
-
-	<aui:input label="street" name="billingStreet" />
-
-	<aui:input label="city" name="billingCity" />
 </aui:column>
 
 <aui:column>
-	<aui:select label="state" name="billingStateSel">
-		<aui:option label="outside-us" />
-
-		<%
-		for (int i = 0; i < StateUtil.STATES.length; i++) {
-		%>
-
-			<aui:option label="<%= StateUtil.STATES[i].getName() %>" selected="<%= billingStateSel.equals(StateUtil.STATES[i].getId()) %>" value="<%= StateUtil.STATES[i].getId() %>" />
-
-		<%
-		}
-		%>
-
-	</aui:select>
-
-	<aui:input bean="<%= null %>" label="other-state" name="billingState" value="<%= billingState %>" />
-
-	<aui:input label="postal-code" name="billingZip" />
-
 	<aui:input label="country" name="billingCountry" />
 
-	<aui:input label="phone" name="billingPhone" />
+	<aui:input bean="<%= null %>" label="state" name="billingState" value="<%= billingState %>" />
+
+	<aui:input label="city" name="billingCity" />
+
+	<aui:input label="street" name="billingStreet" />
+
+	<aui:input label="postal-code" name="billingZip" />
 </aui:column>
