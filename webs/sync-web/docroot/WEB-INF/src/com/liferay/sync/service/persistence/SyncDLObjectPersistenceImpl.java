@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -83,35 +84,40 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	public static final FinderPath FINDER_PATH_COUNT_ALL = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
 			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, Long.class,
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countAll", new String[0]);
-	public static final FinderPath FINDER_PATH_FETCH_BY_TYPEPK = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_T_T = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
 			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, SyncDLObjectImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByTypePK",
-			new String[] { Long.class.getName() },
+			FINDER_CLASS_NAME_ENTITY, "fetchByT_T",
+			new String[] { String.class.getName(), Long.class.getName() },
+			SyncDLObjectModelImpl.TYPE_COLUMN_BITMASK |
 			SyncDLObjectModelImpl.TYPEPK_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_TYPEPK = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_COUNT_BY_T_T = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
 			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByTypePK",
-			new String[] { Long.class.getName() });
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByT_T",
+			new String[] { String.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns the sync d l object where typePK = &#63; or throws a {@link com.liferay.sync.NoSuchDLObjectException} if it could not be found.
+	 * Returns the sync d l object where type = &#63; and typePK = &#63; or throws a {@link com.liferay.sync.NoSuchDLObjectException} if it could not be found.
 	 *
+	 * @param type the type
 	 * @param typePK the type p k
 	 * @return the matching sync d l object
 	 * @throws com.liferay.sync.NoSuchDLObjectException if a matching sync d l object could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SyncDLObject findByTypePK(long typePK)
+	public SyncDLObject findByT_T(String type, long typePK)
 		throws NoSuchDLObjectException, SystemException {
-		SyncDLObject syncDLObject = fetchByTypePK(typePK);
+		SyncDLObject syncDLObject = fetchByT_T(type, typePK);
 
 		if (syncDLObject == null) {
-			StringBundler msg = new StringBundler(4);
+			StringBundler msg = new StringBundler(6);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("typePK=");
+			msg.append("type=");
+			msg.append(type);
+
+			msg.append(", typePK=");
 			msg.append(typePK);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
@@ -127,51 +133,69 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	}
 
 	/**
-	 * Returns the sync d l object where typePK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the sync d l object where type = &#63; and typePK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
+	 * @param type the type
 	 * @param typePK the type p k
 	 * @return the matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SyncDLObject fetchByTypePK(long typePK) throws SystemException {
-		return fetchByTypePK(typePK, true);
+	public SyncDLObject fetchByT_T(String type, long typePK)
+		throws SystemException {
+		return fetchByT_T(type, typePK, true);
 	}
 
 	/**
-	 * Returns the sync d l object where typePK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the sync d l object where type = &#63; and typePK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
+	 * @param type the type
 	 * @param typePK the type p k
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SyncDLObject fetchByTypePK(long typePK, boolean retrieveFromCache)
-		throws SystemException {
-		Object[] finderArgs = new Object[] { typePK };
+	public SyncDLObject fetchByT_T(String type, long typePK,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { type, typePK };
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_TYPEPK,
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_T_T,
 					finderArgs, this);
 		}
 
 		if (result instanceof SyncDLObject) {
 			SyncDLObject syncDLObject = (SyncDLObject)result;
 
-			if ((typePK != syncDLObject.getTypePK())) {
+			if (!Validator.equals(type, syncDLObject.getType()) ||
+					(typePK != syncDLObject.getTypePK())) {
 				result = null;
 			}
 		}
 
 		if (result == null) {
-			StringBundler query = new StringBundler(3);
+			StringBundler query = new StringBundler(4);
 
 			query.append(_SQL_SELECT_SYNCDLOBJECT_WHERE);
 
-			query.append(_FINDER_COLUMN_TYPEPK_TYPEPK_2);
+			boolean bindType = false;
+
+			if (type == null) {
+				query.append(_FINDER_COLUMN_T_T_TYPE_1);
+			}
+			else if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_T_T_TYPE_3);
+			}
+			else {
+				bindType = true;
+
+				query.append(_FINDER_COLUMN_T_T_TYPE_2);
+			}
+
+			query.append(_FINDER_COLUMN_T_T_TYPEPK_2);
 
 			String sql = query.toString();
 
@@ -184,12 +208,16 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
+				if (bindType) {
+					qPos.add(type);
+				}
+
 				qPos.add(typePK);
 
 				List<SyncDLObject> list = q.list();
 
 				if (list.isEmpty()) {
-					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TYPEPK,
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_T_T,
 						finderArgs, list);
 				}
 				else {
@@ -199,14 +227,16 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 
 					cacheResult(syncDLObject);
 
-					if ((syncDLObject.getTypePK() != typePK)) {
-						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TYPEPK,
+					if ((syncDLObject.getType() == null) ||
+							!syncDLObject.getType().equals(type) ||
+							(syncDLObject.getTypePK() != typePK)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_T_T,
 							finderArgs, syncDLObject);
 					}
 				}
 			}
 			catch (Exception e) {
-				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TYPEPK,
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_T_T,
 					finderArgs);
 
 				throw processException(e);
@@ -225,42 +255,58 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	}
 
 	/**
-	 * Removes the sync d l object where typePK = &#63; from the database.
+	 * Removes the sync d l object where type = &#63; and typePK = &#63; from the database.
 	 *
+	 * @param type the type
 	 * @param typePK the type p k
 	 * @return the sync d l object that was removed
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public SyncDLObject removeByTypePK(long typePK)
+	public SyncDLObject removeByT_T(String type, long typePK)
 		throws NoSuchDLObjectException, SystemException {
-		SyncDLObject syncDLObject = findByTypePK(typePK);
+		SyncDLObject syncDLObject = findByT_T(type, typePK);
 
 		return remove(syncDLObject);
 	}
 
 	/**
-	 * Returns the number of sync d l objects where typePK = &#63;.
+	 * Returns the number of sync d l objects where type = &#63; and typePK = &#63;.
 	 *
+	 * @param type the type
 	 * @param typePK the type p k
 	 * @return the number of matching sync d l objects
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByTypePK(long typePK) throws SystemException {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_TYPEPK;
+	public int countByT_T(String type, long typePK) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_T_T;
 
-		Object[] finderArgs = new Object[] { typePK };
+		Object[] finderArgs = new Object[] { type, typePK };
 
 		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
 				this);
 
 		if (count == null) {
-			StringBundler query = new StringBundler(2);
+			StringBundler query = new StringBundler(3);
 
 			query.append(_SQL_COUNT_SYNCDLOBJECT_WHERE);
 
-			query.append(_FINDER_COLUMN_TYPEPK_TYPEPK_2);
+			boolean bindType = false;
+
+			if (type == null) {
+				query.append(_FINDER_COLUMN_T_T_TYPE_1);
+			}
+			else if (type.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_T_T_TYPE_3);
+			}
+			else {
+				bindType = true;
+
+				query.append(_FINDER_COLUMN_T_T_TYPE_2);
+			}
+
+			query.append(_FINDER_COLUMN_T_T_TYPEPK_2);
 
 			String sql = query.toString();
 
@@ -272,6 +318,10 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 				Query q = session.createQuery(sql);
 
 				QueryPos qPos = QueryPos.getInstance(q);
+
+				if (bindType) {
+					qPos.add(type);
+				}
 
 				qPos.add(typePK);
 
@@ -292,7 +342,10 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_TYPEPK_TYPEPK_2 = "syncDLObject.typePK = ?";
+	private static final String _FINDER_COLUMN_T_T_TYPE_1 = "syncDLObject.type IS NULL AND ";
+	private static final String _FINDER_COLUMN_T_T_TYPE_2 = "syncDLObject.type = ? AND ";
+	private static final String _FINDER_COLUMN_T_T_TYPE_3 = "(syncDLObject.type IS NULL OR syncDLObject.type = '') AND ";
+	private static final String _FINDER_COLUMN_T_T_TYPEPK_2 = "syncDLObject.typePK = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_M_R = new FinderPath(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
 			SyncDLObjectModelImpl.FINDER_CACHE_ENABLED, SyncDLObjectImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_M_R",
@@ -858,8 +911,9 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 		EntityCacheUtil.putResult(SyncDLObjectModelImpl.ENTITY_CACHE_ENABLED,
 			SyncDLObjectImpl.class, syncDLObject.getPrimaryKey(), syncDLObject);
 
-		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TYPEPK,
-			new Object[] { syncDLObject.getTypePK() }, syncDLObject);
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_T_T,
+			new Object[] { syncDLObject.getType(), syncDLObject.getTypePK() },
+			syncDLObject);
 
 		syncDLObject.resetOriginalValues();
 	}
@@ -936,23 +990,27 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 
 	protected void cacheUniqueFindersCache(SyncDLObject syncDLObject) {
 		if (syncDLObject.isNew()) {
-			Object[] args = new Object[] { syncDLObject.getTypePK() };
+			Object[] args = new Object[] {
+					syncDLObject.getType(), syncDLObject.getTypePK()
+				};
 
-			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TYPEPK, args,
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_T_T, args,
 				Long.valueOf(1));
-			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TYPEPK, args,
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_T_T, args,
 				syncDLObject);
 		}
 		else {
 			SyncDLObjectModelImpl syncDLObjectModelImpl = (SyncDLObjectModelImpl)syncDLObject;
 
 			if ((syncDLObjectModelImpl.getColumnBitmask() &
-					FINDER_PATH_FETCH_BY_TYPEPK.getColumnBitmask()) != 0) {
-				Object[] args = new Object[] { syncDLObject.getTypePK() };
+					FINDER_PATH_FETCH_BY_T_T.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						syncDLObject.getType(), syncDLObject.getTypePK()
+					};
 
-				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_TYPEPK, args,
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_T_T, args,
 					Long.valueOf(1));
-				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_TYPEPK, args,
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_T_T, args,
 					syncDLObject);
 			}
 		}
@@ -961,17 +1019,22 @@ public class SyncDLObjectPersistenceImpl extends BasePersistenceImpl<SyncDLObjec
 	protected void clearUniqueFindersCache(SyncDLObject syncDLObject) {
 		SyncDLObjectModelImpl syncDLObjectModelImpl = (SyncDLObjectModelImpl)syncDLObject;
 
-		Object[] args = new Object[] { syncDLObject.getTypePK() };
+		Object[] args = new Object[] {
+				syncDLObject.getType(), syncDLObject.getTypePK()
+			};
 
-		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TYPEPK, args);
-		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TYPEPK, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_T, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_T_T, args);
 
 		if ((syncDLObjectModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_TYPEPK.getColumnBitmask()) != 0) {
-			args = new Object[] { syncDLObjectModelImpl.getOriginalTypePK() };
+				FINDER_PATH_FETCH_BY_T_T.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					syncDLObjectModelImpl.getOriginalType(),
+					syncDLObjectModelImpl.getOriginalTypePK()
+				};
 
-			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_TYPEPK, args);
-			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_TYPEPK, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_T, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_T_T, args);
 		}
 	}
 

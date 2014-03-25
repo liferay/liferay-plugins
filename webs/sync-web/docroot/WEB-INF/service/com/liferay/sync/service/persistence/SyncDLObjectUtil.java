@@ -111,69 +111,76 @@ public class SyncDLObjectUtil {
 	}
 
 	/**
-	* Returns the sync d l object where typePK = &#63; or throws a {@link com.liferay.sync.NoSuchDLObjectException} if it could not be found.
+	* Returns the sync d l object where type = &#63; and typePK = &#63; or throws a {@link com.liferay.sync.NoSuchDLObjectException} if it could not be found.
 	*
+	* @param type the type
 	* @param typePK the type p k
 	* @return the matching sync d l object
 	* @throws com.liferay.sync.NoSuchDLObjectException if a matching sync d l object could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.sync.model.SyncDLObject findByTypePK(long typePK)
+	public static com.liferay.sync.model.SyncDLObject findByT_T(
+		java.lang.String type, long typePK)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sync.NoSuchDLObjectException {
-		return getPersistence().findByTypePK(typePK);
+		return getPersistence().findByT_T(type, typePK);
 	}
 
 	/**
-	* Returns the sync d l object where typePK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the sync d l object where type = &#63; and typePK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
+	* @param type the type
 	* @param typePK the type p k
 	* @return the matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.sync.model.SyncDLObject fetchByTypePK(long typePK)
+	public static com.liferay.sync.model.SyncDLObject fetchByT_T(
+		java.lang.String type, long typePK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByTypePK(typePK);
+		return getPersistence().fetchByT_T(type, typePK);
 	}
 
 	/**
-	* Returns the sync d l object where typePK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the sync d l object where type = &#63; and typePK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
+	* @param type the type
 	* @param typePK the type p k
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.sync.model.SyncDLObject fetchByTypePK(
-		long typePK, boolean retrieveFromCache)
+	public static com.liferay.sync.model.SyncDLObject fetchByT_T(
+		java.lang.String type, long typePK, boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().fetchByTypePK(typePK, retrieveFromCache);
+		return getPersistence().fetchByT_T(type, typePK, retrieveFromCache);
 	}
 
 	/**
-	* Removes the sync d l object where typePK = &#63; from the database.
+	* Removes the sync d l object where type = &#63; and typePK = &#63; from the database.
 	*
+	* @param type the type
 	* @param typePK the type p k
 	* @return the sync d l object that was removed
 	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.sync.model.SyncDLObject removeByTypePK(
-		long typePK)
+	public static com.liferay.sync.model.SyncDLObject removeByT_T(
+		java.lang.String type, long typePK)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.sync.NoSuchDLObjectException {
-		return getPersistence().removeByTypePK(typePK);
+		return getPersistence().removeByT_T(type, typePK);
 	}
 
 	/**
-	* Returns the number of sync d l objects where typePK = &#63;.
+	* Returns the number of sync d l objects where type = &#63; and typePK = &#63;.
 	*
+	* @param type the type
 	* @param typePK the type p k
 	* @return the number of matching sync d l objects
 	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByTypePK(long typePK)
+	public static int countByT_T(java.lang.String type, long typePK)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getPersistence().countByTypePK(typePK);
+		return getPersistence().countByT_T(type, typePK);
 	}
 
 	/**

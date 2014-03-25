@@ -110,7 +110,8 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	public static long COMPANYID_COLUMN_BITMASK = 1L;
 	public static long MODIFIEDTIME_COLUMN_BITMASK = 2L;
 	public static long REPOSITORYID_COLUMN_BITMASK = 4L;
-	public static long TYPEPK_COLUMN_BITMASK = 8L;
+	public static long TYPE_COLUMN_BITMASK = 8L;
+	public static long TYPEPK_COLUMN_BITMASK = 16L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -699,7 +700,17 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 
 	@Override
 	public void setType(String type) {
+		_columnBitmask |= TYPE_COLUMN_BITMASK;
+
+		if (_originalType == null) {
+			_originalType = _type;
+		}
+
 		_type = type;
+	}
+
+	public String getOriginalType() {
+		return GetterUtil.getString(_originalType);
 	}
 
 	@JSON
@@ -901,6 +912,8 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 		syncDLObjectModelImpl._originalRepositoryId = syncDLObjectModelImpl._repositoryId;
 
 		syncDLObjectModelImpl._setOriginalRepositoryId = false;
+
+		syncDLObjectModelImpl._originalType = syncDLObjectModelImpl._type;
 
 		syncDLObjectModelImpl._originalTypePK = syncDLObjectModelImpl._typePK;
 
@@ -1224,6 +1237,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	private long _lockUserId;
 	private String _lockUserName;
 	private String _type;
+	private String _originalType;
 	private long _typePK;
 	private long _originalTypePK;
 	private boolean _setOriginalTypePK;
