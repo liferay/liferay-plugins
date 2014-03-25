@@ -1,0 +1,56 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<aui:col width="<%= 50 %>">
+	<aui:input label="first-name" name="shippingFirstName" />
+
+	<aui:input label="last-name" name="shippingLastName" />
+
+	<aui:input label="email-address" name="shippingEmailAddress" />
+
+	<aui:input label="company" name="shippingCompany" />
+
+	<aui:input label="street" name="shippingStreet" />
+
+	<aui:input label="city" name="shippingCity" />
+
+	<aui:input label="same-as-billing" name="shipToBilling" />
+</aui:col>
+
+<aui:col width="<%= 50 %>">
+	<aui:select label="state" name="shippingStateSel">
+		<aui:option label="outside-us" />
+
+		<%
+		for (int i = 0; i < StateUtil.STATES.length; i++) {
+		%>
+
+			<aui:option label="<%= StateUtil.STATES[i].getName() %>" selected="<%= shippingStateSel.equals(StateUtil.STATES[i].getId()) %>" value="<%= StateUtil.STATES[i].getId() %>" />
+
+		<%
+		}
+		%>
+
+	</aui:select>
+
+	<aui:input bean="<%= null %>" label="other-state" name="shippingState" value="<%= shippingState %>" />
+
+	<aui:input label="postal-code" name="shippingZip" />
+
+	<aui:input label="country" name="shippingCountry" />
+
+	<aui:input label="phone" name="shippingPhone" />
+</aui:col>
