@@ -23,8 +23,10 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.PortletPreferences;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
@@ -163,6 +165,22 @@ public class MySubscriptionsUtil {
 		}
 		else if (className.equals(MBCategory.class.getName())) {
 			title = "Message Board at ";
+		}
+		else if (className.equals(PortletPreferences.class.getName())) {
+			PortletPreferences portletPreferences =
+				PortletPreferencesLocalServiceUtil.fetchPortletPreferences(
+					classPK);
+
+			if (portletPreferences == null) {
+				return String.valueOf(classPK);
+			}
+
+			Layout layout = LayoutLocalServiceUtil.getLayout(
+				portletPreferences.getPlid());
+
+			group = layout.getGroup();
+
+			title = "Asset Publisher at ";
 		}
 		else if (className.equals(WikiNode.class.getName())) {
 			WikiNode wikiNode = WikiNodeLocalServiceUtil.getWikiNode(classPK);
