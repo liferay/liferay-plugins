@@ -283,33 +283,6 @@ public class AdminPortlet extends MVCPortlet {
 			fileEntry.getContentStream(), fileEntry.getMimeType());
 	}
 
-	public void serveTempAttachment(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		String portletId = PortalUtil.getPortletId(resourceRequest);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			resourceRequest, "resourcePrimKey");
-
-		String fileName = ParamUtil.getString(resourceRequest, "fileName");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBArticle.class.getName(), resourceRequest);
-
-		File file = KBArticleServiceUtil.getAttachmentFile(
-			portletId, resourcePrimKey, fileName, serviceContext);
-
-		String attachmentName = fileName.substring(
-			fileName.lastIndexOf(CharPool.SLASH) + 1);
-
-		String contentType = MimeTypesUtil.getContentType(file, attachmentName);
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, attachmentName,
-			FileUtil.getBytes(file), contentType);
-	}
-
 	@Override
 	public void serveResource(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
@@ -338,6 +311,33 @@ public class AdminPortlet extends MVCPortlet {
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
+	}
+
+	public void serveTempAttachment(
+			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+		throws Exception {
+
+		String portletId = PortalUtil.getPortletId(resourceRequest);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "resourcePrimKey");
+
+		String fileName = ParamUtil.getString(resourceRequest, "fileName");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			KBArticle.class.getName(), resourceRequest);
+
+		File file = KBArticleServiceUtil.getAttachmentFile(
+			portletId, resourcePrimKey, fileName, serviceContext);
+
+		String attachmentName = fileName.substring(
+			fileName.lastIndexOf(CharPool.SLASH) + 1);
+
+		String contentType = MimeTypesUtil.getContentType(file, attachmentName);
+
+		PortletResponseUtil.sendFile(
+			resourceRequest, resourceResponse, attachmentName,
+			FileUtil.getBytes(file), contentType);
 	}
 
 	public void subscribeGroupKBArticles(
