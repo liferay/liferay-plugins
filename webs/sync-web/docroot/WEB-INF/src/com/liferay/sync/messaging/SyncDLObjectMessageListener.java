@@ -22,10 +22,11 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Lock;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
+import com.liferay.portlet.documentlibrary.model.DLFileEntryConstants;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
-import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
+import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 import com.liferay.sync.util.SyncUtil;
 
@@ -40,14 +41,14 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 			long modifiedTime, String event, String type, long typePK)
 		throws Exception {
 
-		if (event.equals(DLSyncConstants.EVENT_DELETE)) {
+		if (event.equals(SyncConstants.EVENT_DELETE)) {
 			SyncDLObjectLocalServiceUtil.addSyncDLObject(
 				0, modifiedTime, 0, 0, StringPool.BLANK, StringPool.BLANK,
 				StringPool.BLANK, StringPool.BLANK, StringPool.BLANK,
 				StringPool.BLANK, StringPool.BLANK, 0, StringPool.BLANK, event,
 				null, 0, StringPool.BLANK, type, typePK, StringPool.BLANK);
 		}
-		else if (type.equals(DLSyncConstants.TYPE_FILE)) {
+		else if (type.equals(SyncConstants.TYPE_FILE)) {
 			FileEntry fileEntry = null;
 
 			try {
@@ -57,6 +58,8 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 				return;
 			}
 
+			DLFileVersion dlFileVersion;
+
 			Date lockExpirationDate = null;
 			long lockUserId = 0;
 			String lockUserName = StringPool.BLANK;
@@ -64,25 +67,29 @@ public class SyncDLObjectMessageListener extends BaseMessageListener {
 			Lock lock = fileEntry.getLock();
 
 			if (lock != null) {
+				dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
+					fileEntry.getFileEntryId(),
+					DLFileEntryConstants.PRIVATE_WORKING_COPY_VERSION);
+
 				lockExpirationDate = lock.getExpirationDate();
 				lockUserId = lock.getUserId();
 				lockUserName = lock.getUserName();
+				type = SyncConstants.TYPE_PWC;
 			}
-
-			DLFileVersion dlFileVersion =
-				DLFileVersionLocalServiceUtil.getLatestFileVersion(
-					fileEntry.getFileEntryId(), false);
+			else {
+				dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
+					fileEntry.getFileEntryId(), fileEntry.getVersion());
+			}
 
 			SyncDLObjectLocalServiceUtil.addSyncDLObject(
 				dlFileVersion.getCompanyId(), modifiedTime,
-				dlFileVersion.getRepositoryId(), fileEntry.getFolderId(),
+				dlFileVersion.getRepositoryId(), dlFileVersion.getFolderId(),
 				dlFileVersion.getTitle(), dlFileVersion.getExtension(),
 				dlFileVersion.getMimeType(), dlFileVersion.getDescription(),
 				dlFileVersion.getChangeLog(), dlFileVersion.getExtraSettings(),
 				dlFileVersion.getVersion(), dlFileVersion.getSize(),
 				SyncUtil.getChecksum(dlFileVersion), event, lockExpirationDate,
-				lockUserId, lockUserName, type, fileEntry.getFileEntryId(),
-				fileEntry.getUuid());
+				lockUserId, lockUserName, type, typePK, fileEntry.getUuid());
 		}
 		else {
 			Folder folder = null;

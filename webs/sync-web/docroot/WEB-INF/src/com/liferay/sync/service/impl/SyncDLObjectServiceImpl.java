@@ -31,8 +31,8 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
-import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
 import com.liferay.sync.SyncDLObjectChecksumException;
+import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncContext;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectUpdate;
@@ -65,8 +65,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				repositoryId, folderId, sourceFileName, mimeType, title,
 				description, changeLog, file, serviceContext);
 
-			return SyncUtil.toSyncDLObject(
-				fileEntry, DLSyncConstants.EVENT_ADD);
+			return SyncUtil.toSyncDLObject(fileEntry, SyncConstants.EVENT_ADD);
 		}
 		catch (DuplicateFileException dfe) {
 			if (GetterUtil.getBoolean(
@@ -80,7 +79,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					description, changeLog, true, file, serviceContext);
 
 				return SyncUtil.toSyncDLObject(
-					fileEntry, DLSyncConstants.EVENT_UPDATE);
+					fileEntry, SyncConstants.EVENT_UPDATE);
 			}
 			else {
 				throw dfe;
@@ -99,7 +98,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				repositoryId, parentFolderId, name, description,
 				serviceContext);
 
-			return SyncUtil.toSyncDLObject(folder, DLSyncConstants.EVENT_ADD);
+			return SyncUtil.toSyncDLObject(folder, SyncConstants.EVENT_ADD);
 		}
 		catch (DuplicateFolderNameException dfne) {
 			if (GetterUtil.getBoolean(
@@ -112,7 +111,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 					folder.getFolderId(), name, description, serviceContext);
 
 				return SyncUtil.toSyncDLObject(
-					folder, DLSyncConstants.EVENT_UPDATE);
+					folder, SyncConstants.EVENT_UPDATE);
 			}
 			else {
 				throw dfne;
@@ -129,7 +128,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
 		return SyncUtil.toSyncDLObject(
-			fileEntry, DLSyncConstants.EVENT_CANCEL_CHECK_OUT);
+			fileEntry, SyncConstants.EVENT_CANCEL_CHECK_OUT);
 	}
 
 	@Override
@@ -143,8 +142,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
-		return SyncUtil.toSyncDLObject(
-			fileEntry, DLSyncConstants.EVENT_CHECK_IN);
+		return SyncUtil.toSyncDLObject(fileEntry, SyncConstants.EVENT_CHECK_IN);
 	}
 
 	@Override
@@ -157,7 +155,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
 		return SyncUtil.toSyncDLObject(
-			fileEntry, DLSyncConstants.EVENT_CHECK_OUT);
+			fileEntry, SyncConstants.EVENT_CHECK_OUT);
 	}
 
 	@Override
@@ -170,7 +168,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			fileEntryId, owner, expirationTime, serviceContext);
 
 		return SyncUtil.toSyncDLObject(
-			fileEntry, DLSyncConstants.EVENT_CHECK_OUT);
+			fileEntry, SyncConstants.EVENT_CHECK_OUT);
 	}
 
 	@Override
@@ -195,7 +193,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		FileEntry fileEntry = dlAppService.getFileEntry(
 			groupId, folderId, title);
 
-		return SyncUtil.toSyncDLObject(fileEntry, DLSyncConstants.EVENT_GET);
+		return SyncUtil.toSyncDLObject(fileEntry, SyncConstants.EVENT_GET);
 	}
 
 	@Override
@@ -211,7 +209,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 		for (FileEntry fileEntry : fileEntries) {
 			SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(
-				fileEntry, DLSyncConstants.EVENT_GET);
+				fileEntry, SyncConstants.EVENT_GET);
 
 			syncDLObjects.add(syncDLObject);
 		}
@@ -229,7 +227,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			return null;
 		}
 
-		return SyncUtil.toSyncDLObject(folder, DLSyncConstants.EVENT_GET);
+		return SyncUtil.toSyncDLObject(folder, SyncConstants.EVENT_GET);
 	}
 
 	@Override
@@ -249,7 +247,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			}
 
 			SyncDLObject syncDLObject = SyncUtil.toSyncDLObject(
-				folder, DLSyncConstants.EVENT_GET);
+				folder, SyncConstants.EVENT_GET);
 
 			syncDLObjects.add(syncDLObject);
 		}
@@ -332,7 +330,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		FileEntry fileEntry = dlAppService.moveFileEntry(
 			fileEntryId, newFolderId, serviceContext);
 
-		return SyncUtil.toSyncDLObject(fileEntry, DLSyncConstants.EVENT_MOVE);
+		return SyncUtil.toSyncDLObject(fileEntry, SyncConstants.EVENT_MOVE);
 	}
 
 	@Override
@@ -342,7 +340,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		FileEntry fileEntry = dlAppService.moveFileEntryToTrash(fileEntryId);
 
 		return SyncUtil.toSyncDLObject(
-			fileEntry, DLSyncConstants.EVENT_MOVE_TO_TRASH);
+			fileEntry, SyncConstants.EVENT_MOVE_TO_TRASH);
 	}
 
 	@Override
@@ -353,7 +351,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		Folder folder = dlAppService.moveFolder(
 			folderId, parentFolderId, serviceContext);
 
-		return SyncUtil.toSyncDLObject(folder, DLSyncConstants.EVENT_MOVE);
+		return SyncUtil.toSyncDLObject(folder, SyncConstants.EVENT_MOVE);
 	}
 
 	@Override
@@ -363,7 +361,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		Folder folder = dlAppService.moveFolderToTrash(folderId);
 
 		return SyncUtil.toSyncDLObject(
-			folder, DLSyncConstants.EVENT_MOVE_TO_TRASH);
+			folder, SyncConstants.EVENT_MOVE_TO_TRASH);
 	}
 
 	@Override
@@ -417,7 +415,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
 		return SyncUtil.toSyncDLObject(
-			fileEntry, DLSyncConstants.EVENT_RESTORE_FROM_TRASH);
+			fileEntry, SyncConstants.EVENT_RESTORE_FROM_TRASH);
 	}
 
 	@Override
@@ -429,7 +427,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		Folder folder = dlAppLocalService.getFolder(folderId);
 
 		return SyncUtil.toSyncDLObject(
-			folder, DLSyncConstants.EVENT_RESTORE_FROM_TRASH);
+			folder, SyncConstants.EVENT_RESTORE_FROM_TRASH);
 	}
 
 	@Override
@@ -448,7 +446,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			fileEntryId, sourceFileName, mimeType, title, description,
 			changeLog, majorVersion, file, serviceContext);
 
-		return SyncUtil.toSyncDLObject(fileEntry, DLSyncConstants.EVENT_UPDATE);
+		return SyncUtil.toSyncDLObject(fileEntry, SyncConstants.EVENT_UPDATE);
 	}
 
 	@Override
@@ -460,7 +458,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		Folder folder = dlAppService.updateFolder(
 			folderId, name, description, serviceContext);
 
-		return SyncUtil.toSyncDLObject(folder, DLSyncConstants.EVENT_UPDATE);
+		return SyncUtil.toSyncDLObject(folder, SyncConstants.EVENT_UPDATE);
 	}
 
 	protected void getAllSyncDLObjects(
@@ -481,7 +479,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 				syncDLObjects.add(
 					SyncUtil.toSyncDLObject(
-						fileEntry, DLSyncConstants.EVENT_GET));
+						fileEntry, SyncConstants.EVENT_GET));
 			}
 			else if (folderAndFileEntryAndFileShortcut instanceof Folder) {
 				Folder folder = (Folder)folderAndFileEntryAndFileShortcut;
@@ -491,7 +489,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				}
 
 				syncDLObjects.add(
-					SyncUtil.toSyncDLObject(folder, DLSyncConstants.EVENT_GET));
+					SyncUtil.toSyncDLObject(folder, SyncConstants.EVENT_GET));
 
 				getAllSyncDLObjects(
 					repositoryId, folder.getFolderId(), syncDLObjects);
