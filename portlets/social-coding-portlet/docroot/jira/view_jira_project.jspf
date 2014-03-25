@@ -15,7 +15,7 @@
 --%>
 
 <%
-String jiraURL = "http://support.liferay.com/secure/IssueNavigator.jspa?reset=true&pid=" + projectId;
+String jiraURL = PortletPropsValues.JIRA_URL + "/secure/IssueNavigator.jspa?reset=true&pid=" + projectId;
 
 Date lastWeek = JIRAUtil.getJIRADate(-1);
 
@@ -72,7 +72,7 @@ Object[][] jiraProjectRowsArray = new Object[][] {
 %>
 
 <div class="project-title">
-	<strong><a href="http://issues.liferay.com/browse/<%= projectKey %>" target="_blank"><%= projectName %></a></strong>
+	<strong><a href="<%= PortletPropsValues.JIRA_URL %>/browse/<%= projectKey %>" target="_blank"><%= projectName %></a></strong>
 </div>
 
 <table class="jira-summary lfr-table">

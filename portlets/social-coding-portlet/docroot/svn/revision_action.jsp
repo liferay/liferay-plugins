@@ -44,7 +44,7 @@ JIRAIssue jiraIssue = (JIRAIssue)objArray[2];
 		<c:if test="<%= jiraIssue != null %>">
 
 			<%
-			String taglibJIRAURL = "javascript:location.href = 'http://support.liferay.com/browse/" + jiraIssue.getKey() + "';";
+			String taglibJIRAURL = "javascript:location.href = '" + PortletPropsValues.JIRA_URL + "/browse/" + jiraIssue.getKey() + "';";
 			%>
 
 			<liferay-ui:icon

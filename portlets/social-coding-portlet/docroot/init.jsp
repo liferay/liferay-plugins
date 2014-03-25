@@ -56,6 +56,7 @@ page import="com.liferay.socialcoding.service.JIRAIssueLocalServiceUtil" %><%@
 page import="com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil" %><%@
 page import="com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil" %><%@
 page import="com.liferay.socialcoding.svn.util.SVNConstants" %><%@
+page import="com.liferay.socialcoding.util.PortletPropsValues" %><%@
 page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="com.sun.syndication.feed.synd.SyndContent" %><%@
