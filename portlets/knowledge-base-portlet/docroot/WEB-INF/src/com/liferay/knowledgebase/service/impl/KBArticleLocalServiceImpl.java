@@ -396,7 +396,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 	}
 
 	@Override
-	public File getAttachmentFile(
+	public File getAttachment(
 			String fileName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
