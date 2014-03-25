@@ -397,7 +397,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	@Override
 	public File getAttachmentFile(String fileName, ServiceContext serviceContext)
-		throws SystemException, PortalException {
+		throws PortalException, SystemException {
 
 		return DLStoreUtil.getFile(
 				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
