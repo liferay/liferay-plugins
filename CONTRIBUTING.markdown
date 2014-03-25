@@ -9,7 +9,7 @@ in our forums, writing documentation, and translating existing documentation.
 Liferay is known for its innovative top quality features. To maintain this
 reputation, all code changes are reviewed by a core set of Liferay project
 maintainers. We encourage you to introduce yourself to the [core
-maintainer(s)](http://issues.liferay.com/browse/LPS#selectedTab=com.atlassian.jira.plugin.system.project%3Acomponents-panel)
+maintainer(s)](https://issues.liferay.com/browse/LPS#selectedTab=com.atlassian.jira.plugin.system.project%3Acomponents-panel)
 and engage them as you contribute to the areas they maintain.
 
 As you have ideas for features you want to implement, follow the contribution
