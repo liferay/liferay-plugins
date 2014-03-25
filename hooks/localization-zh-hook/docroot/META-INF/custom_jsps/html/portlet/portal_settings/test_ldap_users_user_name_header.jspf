@@ -15,8 +15,8 @@
 --%>
 
 <th>
-	<liferay-ui:message key="first-name" />
+	<liferay-ui:message key="last-name" />
 </th>
 <th>
-	<liferay-ui:message key="last-name" />
+	<liferay-ui:message key="first-name" />
 </th>

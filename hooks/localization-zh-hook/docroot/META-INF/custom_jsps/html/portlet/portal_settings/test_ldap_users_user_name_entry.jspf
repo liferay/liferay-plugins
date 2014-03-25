@@ -15,8 +15,8 @@
 --%>
 
 <td>
-	<%= firstName %>
+	<%= lastName %>
 </td>
 <td>
-	<%= lastName %>
+	<%= firstName %>
 </td>
