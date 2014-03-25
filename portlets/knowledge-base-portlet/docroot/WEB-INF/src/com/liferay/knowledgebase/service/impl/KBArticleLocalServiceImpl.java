@@ -395,6 +395,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, status, new KBArticleVersionComparator());
 	}
 
+	@Override
+	public File getAttachmentFile(String fileName, ServiceContext serviceContext)
+		throws SystemException, PortalException {
+
+		return DLStoreUtil.getFile(
+				serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+				fileName);
+	}
+
 	public List<KBArticle> getCompanyKBArticles(
 			long companyId, int status, int start, int end,
 			OrderByComparator orderByComparator)

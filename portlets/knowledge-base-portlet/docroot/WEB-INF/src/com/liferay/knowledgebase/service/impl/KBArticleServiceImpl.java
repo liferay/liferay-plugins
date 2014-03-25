@@ -55,6 +55,7 @@ import com.sun.syndication.feed.synd.SyndLink;
 import com.sun.syndication.feed.synd.SyndLinkImpl;
 import com.sun.syndication.io.FeedException;
 
+import java.io.File;
 import java.io.InputStream;
 
 import java.util.ArrayList;
@@ -75,24 +76,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		if ((resourcePrimKey <= 0) &&
-			portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
-
-			AdminPermission.check(
-				getPermissionChecker(), serviceContext.getScopeGroupId(),
-				ActionKeys.ADD_KB_ARTICLE);
-		}
-		else if ((resourcePrimKey <= 0) &&
-				 portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
-
-			DisplayPermission.check(
-				getPermissionChecker(), serviceContext.getScopeGroupId(),
-				ActionKeys.ADD_KB_ARTICLE);
-		}
-		else {
-			KBArticlePermission.check(
-				getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
-		}
+		checkAttachmentPermissions(portletId, resourcePrimKey, serviceContext);
 
 		kbArticleLocalService.addAttachment(
 			dirName, shortFileName, inputStream, serviceContext);
@@ -161,6 +145,17 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			getPermissionChecker(), groupId, ActionKeys.DELETE_KB_ARTICLES);
 
 		kbArticleLocalService.deleteKBArticles(resourcePrimKeys);
+	}
+
+	public File getAttachmentFile(
+			String portletId, long resourcePrimKey, String fileName,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		checkAttachmentPermissions(portletId, resourcePrimKey, serviceContext);
+
+		return kbArticleLocalService.getAttachmentFile(
+			fileName, serviceContext);
 	}
 
 	public List<KBArticle> getGroupKBArticles(
@@ -779,6 +774,31 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		}
 		catch (FeedException fe) {
 			throw new SystemException(fe);
+		}
+	}
+
+	private void checkAttachmentPermissions(
+			String portletId, long resourcePrimKey,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		if ((resourcePrimKey <= 0) &&
+				portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
+
+			AdminPermission.check(
+				getPermissionChecker(), serviceContext.getScopeGroupId(),
+				ActionKeys.ADD_KB_ARTICLE);
+		}
+		else if ((resourcePrimKey <= 0) &&
+				portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
+
+			DisplayPermission.check(
+				getPermissionChecker(), serviceContext.getScopeGroupId(),
+				ActionKeys.ADD_KB_ARTICLE);
+		}
+		else {
+			KBArticlePermission.check(
+				getPermissionChecker(), resourcePrimKey, ActionKeys.UPDATE);
 		}
 	}
 
