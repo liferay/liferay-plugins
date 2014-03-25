@@ -76,7 +76,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		checkAttachmentPermissions(portletId, resourcePrimKey, serviceContext);
+		checkAttachmentPermissions(
+			serviceContext.getScopeGroupId(), portletId, resourcePrimKey);
 
 		kbArticleLocalService.addAttachment(
 			dirName, shortFileName, inputStream, serviceContext);
@@ -148,13 +149,13 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	}
 
 	public File getAttachment(
-			String portletId, long resourcePrimKey, String fileName,
-			ServiceContext serviceContext)
+			long companyId, long groupId, String portletId,
+			long resourcePrimKey, String fileName)
 		throws PortalException, SystemException {
 
-		checkAttachmentPermissions(portletId, resourcePrimKey, serviceContext);
+		checkAttachmentPermissions(groupId, portletId, resourcePrimKey);
 
-		return kbArticleLocalService.getAttachment(fileName, serviceContext);
+		return kbArticleLocalService.getAttachment(companyId, fileName);
 	}
 
 	public List<KBArticle> getGroupKBArticles(
@@ -777,23 +778,20 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 	}
 
 	private void checkAttachmentPermissions(
-			String portletId, long resourcePrimKey,
-			ServiceContext serviceContext)
+			long groupId, String portletId, long resourcePrimKey)
 		throws PortalException, SystemException {
 
 		if ((resourcePrimKey <= 0) &&
 			portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 
 			AdminPermission.check(
-				getPermissionChecker(), serviceContext.getScopeGroupId(),
-				ActionKeys.ADD_KB_ARTICLE);
+				getPermissionChecker(), groupId, ActionKeys.ADD_KB_ARTICLE);
 		}
 		else if ((resourcePrimKey <= 0) &&
 				 portletId.equals(PortletKeys.KNOWLEDGE_BASE_DISPLAY)) {
 
 			DisplayPermission.check(
-				getPermissionChecker(), serviceContext.getScopeGroupId(),
-				ActionKeys.ADD_KB_ARTICLE);
+				getPermissionChecker(), groupId, ActionKeys.ADD_KB_ARTICLE);
 		}
 		else {
 			KBArticlePermission.check(
