@@ -273,14 +273,40 @@ public class AdminPortlet extends MVCPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		String portletId = PortalUtil.getPortletId(resourceRequest);
+
+		long resourcePrimKey = ParamUtil.getLong(
+			resourceRequest, "resourcePrimKey");
+
 		long fileEntryId = ParamUtil.getLong(resourceRequest, "fileEntryId");
+		String fileName = ParamUtil.getString(resourceRequest, "fileName");
 
-		FileEntry fileEntry = PortletFileRepositoryUtil.getPortletFileEntry(
-			fileEntryId);
+		if (fileEntryId <= 0) {
+			File attachmentFile = KBArticleServiceUtil.getAttachment(
+				themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+				portletId, resourcePrimKey, fileName);
 
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, fileEntry.getTitle(),
-			fileEntry.getContentStream(), fileEntry.getMimeType());
+			String attachmentFileName = fileName.substring(
+				fileName.lastIndexOf(CharPool.SLASH) + 1);
+
+			String contentType = MimeTypesUtil.getContentType(
+				attachmentFile, attachmentFileName);
+
+			PortletResponseUtil.sendFile(
+				resourceRequest, resourceResponse, attachmentFileName,
+				FileUtil.getBytes(attachmentFile), contentType);
+		}
+		else {
+			FileEntry fileEntry = PortletFileRepositoryUtil.getPortletFileEntry(
+				fileEntryId);
+
+			PortletResponseUtil.sendFile(
+				resourceRequest, resourceResponse, fileEntry.getTitle(),
+				fileEntry.getContentStream(), fileEntry.getMimeType());
+		}
 	}
 
 	@Override
@@ -292,15 +318,7 @@ public class AdminPortlet extends MVCPortlet {
 			String resourceID = resourceRequest.getResourceID();
 
 			if (resourceID.equals("attachment")) {
-				long fileEntryId = ParamUtil.getLong(
-					resourceRequest, "fileEntryId");
-
-				if (fileEntryId == 0) {
-					serveTempAttachment(resourceRequest, resourceResponse);
-				}
-				else {
-					serveAttachment(resourceRequest, resourceResponse);
-				}
+				serveAttachment(resourceRequest, resourceResponse);
 			}
 		}
 		catch (IOException ioe) {
@@ -312,33 +330,6 @@ public class AdminPortlet extends MVCPortlet {
 		catch (Exception e) {
 			throw new PortletException(e);
 		}
-	}
-
-	public void serveTempAttachment(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws Exception {
-
-		String portletId = PortalUtil.getPortletId(resourceRequest);
-
-		long resourcePrimKey = ParamUtil.getLong(
-			resourceRequest, "resourcePrimKey");
-
-		String fileName = ParamUtil.getString(resourceRequest, "fileName");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			KBArticle.class.getName(), resourceRequest);
-
-		File file = KBArticleServiceUtil.getAttachmentFile(
-			portletId, resourcePrimKey, fileName, serviceContext);
-
-		String attachmentName = fileName.substring(
-			fileName.lastIndexOf(CharPool.SLASH) + 1);
-
-		String contentType = MimeTypesUtil.getContentType(file, attachmentName);
-
-		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, attachmentName,
-			FileUtil.getBytes(file), contentType);
 	}
 
 	public void subscribeGroupKBArticles(
