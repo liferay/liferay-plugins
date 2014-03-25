@@ -106,27 +106,27 @@ public class SyncDLObjectUpdateHandler extends BaseJSONHandler {
 			Paths.get(sourceSyncFile.getFilePathName()),
 			new SimpleFileVisitor<Path>() {
 
-			@Override
-			public FileVisitResult postVisitDirectory(
-					Path filePath, IOException ioe)
-				throws IOException {
+				@Override
+				public FileVisitResult postVisitDirectory(
+						Path filePath, IOException ioe)
+					throws IOException {
 
-				Files.delete(filePath);
+					Files.delete(filePath);
 
-				return FileVisitResult.CONTINUE;
-			}
+					return FileVisitResult.CONTINUE;
+				}
 
-			@Override
-			public FileVisitResult visitFile(
-					Path filePath, BasicFileAttributes basicFileAttributes)
-				throws IOException {
+				@Override
+				public FileVisitResult visitFile(
+						Path filePath, BasicFileAttributes basicFileAttributes)
+					throws IOException {
 
-				Files.delete(filePath);
+					Files.delete(filePath);
 
-				return FileVisitResult.CONTINUE;
-			}
+					return FileVisitResult.CONTINUE;
+				}
 
-		});
+			});
 
 		SyncFileService.deleteSyncFile(sourceSyncFile);
 	}
