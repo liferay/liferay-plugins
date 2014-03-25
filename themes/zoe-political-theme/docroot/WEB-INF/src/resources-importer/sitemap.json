@@ -4,16 +4,16 @@
 		{
 			"columns": [
 				[
-					"Main Banner.html"
+					"Main Banner.xml"
 				],
 				[
-					"Content.html"
+					"Content.xml"
 				],
 				[
 					{
 						"portletId": "56",
 						"portletPreferences": {
-							"articleId": "Stay Informed.html",
+							"articleId": "Stay Informed.xml",
 							"groupId": "${groupId}",
 							"portletSetupShowBorders": "true",
 							"portletSetupUseCustomTitle": "true",
