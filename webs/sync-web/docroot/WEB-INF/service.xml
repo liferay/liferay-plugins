@@ -76,13 +76,14 @@
 
 		<!-- Finder methods -->
 
-		<finder name="TypePK" return-type="SyncDLObject" unique="true">
-			<finder-column name="typePK" />
-		</finder>
 		<finder name="C_M_R" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="modifiedTime" comparator="&gt;" />
 			<finder-column name="repositoryId" />
+		</finder>
+		<finder name="T_T" return-type="SyncDLObject" unique="true">
+			<finder-column name="type" />
+			<finder-column name="typePK" />
 		</finder>
 
 		<!-- References -->
