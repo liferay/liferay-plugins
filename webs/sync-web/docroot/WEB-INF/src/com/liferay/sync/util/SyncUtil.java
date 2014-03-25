@@ -227,10 +227,10 @@ public class SyncUtil {
 
 		DLFileVersion dlFileVersion = null;
 
-		Date lockExpirationDate;
-		long lockUserId;
-		String lockUserName;
-		String type;
+		Date lockExpirationDate = null;
+		long lockUserId = 0;
+		String lockUserName = null;
+		String type = null;
 
 		if (lock != null) {
 			dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
