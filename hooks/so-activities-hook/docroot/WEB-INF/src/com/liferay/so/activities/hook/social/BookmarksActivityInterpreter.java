@@ -162,7 +162,7 @@ public class BookmarksActivityInterpreter extends SOSocialActivityInterpreter {
 
 		String body = StringUtil.shorten(
 			HtmlUtil.escape(
-				assetRenderer.getSummary(serviceContext.getLocale())),
+				assetRenderer.getSummary(null, null)),
 			200);
 
 		return new SocialActivityFeedEntry(title, body);

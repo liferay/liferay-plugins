@@ -134,7 +134,7 @@ public class DLActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(
 			StringUtil.shorten(
 				HtmlUtil.escape(
-					assetRenderer.getSummary(serviceContext.getLocale()),
+					assetRenderer.getSummary(null, null),
 				200)));
 
 		sb.append("</div></div></div>");
