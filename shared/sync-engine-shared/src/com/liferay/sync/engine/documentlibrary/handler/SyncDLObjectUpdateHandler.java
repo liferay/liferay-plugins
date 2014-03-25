@@ -28,9 +28,14 @@ import com.liferay.sync.engine.util.FilePathNameUtil;
 import com.liferay.sync.engine.util.FileUtil;
 import com.liferay.sync.engine.util.IODeltaUtil;
 
+import java.io.IOException;
+
+import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
+import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -97,7 +102,31 @@ public class SyncDLObjectUpdateHandler extends BaseJSONHandler {
 			sourceSyncFile.setUiEvent(SyncFile.UI_EVENT_DELETED_REMOTE);
 		}
 
-		Files.deleteIfExists(Paths.get(sourceSyncFile.getFilePathName()));
+		Files.walkFileTree(
+			Paths.get(sourceSyncFile.getFilePathName()),
+			new SimpleFileVisitor<Path>() {
+
+			@Override
+			public FileVisitResult postVisitDirectory(
+					Path filePath, IOException ioe)
+				throws IOException {
+
+				Files.delete(filePath);
+
+				return FileVisitResult.CONTINUE;
+			}
+
+			@Override
+			public FileVisitResult visitFile(
+					Path filePath, BasicFileAttributes basicFileAttributes)
+				throws IOException {
+
+				Files.delete(filePath);
+
+				return FileVisitResult.CONTINUE;
+			}
+
+		});
 
 		SyncFileService.deleteSyncFile(sourceSyncFile);
 	}

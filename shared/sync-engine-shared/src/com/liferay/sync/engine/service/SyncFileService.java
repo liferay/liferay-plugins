@@ -296,15 +296,14 @@ public class SyncFileService {
 			// Sync files
 
 			List<SyncFile> childSyncFiles = _syncFilePersistence.queryForEq(
-				"parentFolderId", syncFile.getSyncFileId());
+				"parentFolderId", syncFile.getTypePK());
 
 			for (SyncFile childSyncFile : childSyncFiles) {
 				if (childSyncFile.isFolder()) {
 					deleteSyncFile(childSyncFile);
 				}
 				else {
-					_syncFilePersistence.deleteById(
-						childSyncFile.getSyncFileId());
+					_syncFilePersistence.delete(childSyncFile);
 				}
 			}
 		}

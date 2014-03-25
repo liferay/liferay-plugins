@@ -38,6 +38,10 @@ public class SyncFileModelListener implements ModelListener<SyncFile> {
 
 	@Override
 	public void onRemove(SyncFile syncFile) {
+		if (syncFile.isFolder()) {
+			return;
+		}
+
 		Path filePath = IODeltaUtil.getChecksumsFilePath(syncFile);
 
 		try {
