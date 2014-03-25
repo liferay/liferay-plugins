@@ -427,6 +427,13 @@ public class KBArticleLocalServiceUtil {
 		return getService().fetchLatestKBArticle(resourcePrimKey, status);
 	}
 
+	public static java.io.File getAttachment(long companyId,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAttachment(companyId, fileName);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getCompanyKBArticles(
 		long companyId, int status, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
