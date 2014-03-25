@@ -1,0 +1,98 @@
+<%--
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<table class="lfr-table">
+<tr>
+	<td>
+		<liferay-ui:message key="first-name" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingFirstName()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="last-name" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingLastName()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="email-address" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingEmailAddress()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="company" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingCompany()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="street" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingStreet()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="city" />
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingCity()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="state" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingState()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="postal-code" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingZip()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="country" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingCountry()) %>
+	</td>
+</tr>
+<tr>
+	<td>
+		<liferay-ui:message key="phone" />:
+	</td>
+	<td>
+		<%= HtmlUtil.escape(order.getShippingPhone()) %>
+	</td>
+</tr>
+</table>
