@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.settings.Settings;
+import com.liferay.util.ContentUtil;
 
 import java.util.Properties;
 
@@ -33,7 +34,7 @@ public class PropertiesSettings implements Settings {
 
 	@Override
 	public String getValue(String key, String defaultValue) {
-		String value = _properties.getProperty(key);
+		String value = getProperty(key);
 
 		if (Validator.isNotNull(value)) {
 			return value;
@@ -44,7 +45,7 @@ public class PropertiesSettings implements Settings {
 
 	@Override
 	public String[] getValues(String key, String[] defaultValue) {
-		String[] values = StringUtil.split(_properties.getProperty(key));
+		String[] values = StringUtil.split(getProperty(key));
 
 		if (ArrayUtil.isNotEmpty(values)) {
 			return values;
@@ -71,6 +72,32 @@ public class PropertiesSettings implements Settings {
 	@Override
 	public void store() {
 		throw new UnsupportedOperationException();
+	}
+
+	protected String getProperty(String key) {
+		String value = _properties.getProperty(key);
+
+		if (value != null) {
+			if (isURLValue("resource", value)) {
+				return ContentUtil.get(getURLValue("resource", value));
+			}
+		}
+
+		return value;
+	}
+
+	private String getURLValue(String protocol, String value) {
+		return value.substring(protocol.length() + 3, value.length() - 1);
+	}
+
+	private boolean isURLValue(String protocol, String value) {
+		String prefix = "${" + protocol + ":";
+
+		if (value.startsWith(prefix) && value.endsWith("}")) {
+			return true;
+		}
+
+		return false;
 	}
 
 	private Properties _properties;
