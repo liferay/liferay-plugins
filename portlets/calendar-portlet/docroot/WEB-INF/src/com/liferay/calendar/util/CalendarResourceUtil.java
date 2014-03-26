@@ -130,7 +130,7 @@ public class CalendarResourceUtil {
 		return orderByComparator;
 	}
 
-	public static CalendarResource getScopedGroupCalendarResource(
+	public static CalendarResource getScopeGroupCalendarResource(
 			long groupId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -144,14 +144,14 @@ public class CalendarResourceUtil {
 		}
 	}
 
-	public static CalendarResource getScopedGroupCalendarResource(
+	public static CalendarResource getScopeGroupCalendarResource(
 			PortletRequest portletRequest, long groupId)
 		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			portletRequest);
 
-		return getScopedGroupCalendarResource(groupId, serviceContext);
+		return getScopeGroupCalendarResource(groupId, serviceContext);
 	}
 
 	public static CalendarResource getUserCalendarResource(

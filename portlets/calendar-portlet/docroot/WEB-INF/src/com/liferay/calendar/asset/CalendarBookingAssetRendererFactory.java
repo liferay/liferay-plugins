@@ -80,7 +80,7 @@ public class CalendarBookingAssetRendererFactory
 				WebKeys.THEME_DISPLAY);
 
 		CalendarResource calendarResource =
-			CalendarResourceUtil.getScopedGroupCalendarResource(
+			CalendarResourceUtil.getScopeGroupCalendarResource(
 				liferayPortletRequest, themeDisplay.getScopeGroupId());
 
 		if (calendarResource == null) {
@@ -110,7 +110,7 @@ public class CalendarBookingAssetRendererFactory
 		serviceContext.setCompanyId(permissionChecker.getCompanyId());
 
 		CalendarResource calendarResource =
-			CalendarResourceUtil.getScopedGroupCalendarResource(
+			CalendarResourceUtil.getScopeGroupCalendarResource(
 				groupId, serviceContext);
 
 		if (calendarResource == null) {
