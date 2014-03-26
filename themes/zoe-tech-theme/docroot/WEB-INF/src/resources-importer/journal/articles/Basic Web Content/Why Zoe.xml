@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<div class="list-block">
+					<h3 class="title">
+						Why Zoe?
+					</h3>
+
+					<h5>
+						You deserve us
+					</h5>
+
+					<ul class="arrow">
+						<li>Lorem ipsum dolor sit amet, consect</li>
+						<li>Lorem ipsum dolor sit amet, consect</li>
+						<li>Lorem ipsum dolor sit amet, consect</li>
+						<li>Lorem ipsum dolor sit amet, consect</li>
+						<li>Lorem ipsum dolor sit amet, consect</li>
+						<li>Lorem ipsum dolor sit amet, consect</li>
+					</ul>
+				</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>
