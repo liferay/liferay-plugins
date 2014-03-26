@@ -246,9 +246,6 @@ public class SyncUtil {
 			dlFileVersion = DLFileVersionLocalServiceUtil.getFileVersion(
 				fileEntry.getFileEntryId(), fileEntry.getVersion());
 
-			lockExpirationDate = null;
-			lockUserId = 0;
-			lockUserName = StringPool.BLANK;
 			type = SyncConstants.TYPE_FILE;
 		}
 
