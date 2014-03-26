@@ -78,6 +78,10 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
 
+		if (allDay) {
+			timeZone = TimeZone.getTimeZone(StringPool.UTC);
+		}
+
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTimeYear, startTimeMonth, startTimeDay, startTimeHour,
 			startTimeMinute, 0, 0, timeZone);
@@ -502,6 +506,10 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
+
+		if (allDay) {
+			timeZone = TimeZone.getTimeZone(StringPool.UTC);
+		}
 
 		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
 			startTimeYear, startTimeMonth, startTimeDay, startTimeHour,

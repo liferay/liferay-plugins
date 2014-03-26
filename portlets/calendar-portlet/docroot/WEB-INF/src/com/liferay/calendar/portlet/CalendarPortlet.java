@@ -74,6 +74,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
+import com.liferay.portal.kernel.util.TimeZoneUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
@@ -784,6 +785,10 @@ public class CalendarPortlet extends MVCPortlet {
 	protected TimeZone getTimeZone(PortletRequest portletRequest) {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		if (ParamUtil.getBoolean(portletRequest, "allDay")) {
+			return TimeZoneUtil.getTimeZone(StringPool.UTC);
+		}
 
 		PortletPreferences preferences = portletRequest.getPreferences();
 
