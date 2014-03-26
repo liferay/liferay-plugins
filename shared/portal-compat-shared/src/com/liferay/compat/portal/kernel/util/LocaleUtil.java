@@ -142,7 +142,7 @@ public class LocaleUtil {
 			}
 		}
 
-		if (LanguageUtil.getLocale(languageId) == null) {
+		if (!LanguageUtil.isAvailableLocale(languageId)) {
 			throw new IllegalArgumentException("Invalid locale " + locale);
 		}
 
