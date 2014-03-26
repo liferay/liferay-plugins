@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<div class="home-content">
+					<div class="main-banner"></div>
+
+					<div class="layout-content">
+						<div class="column column-first span4">
+							<div class="column-content column-content-first">
+								<div class="vote"></div>
+							</div>
+						</div>
+
+						<div class="column span4">
+							<div class="column-content">
+								<div class="pick-your-state"></div>
+							</div>
+						</div>
+
+						<div class="column column-last span4">
+							<div class="column-content column-content-last">
+								<div class="join"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>
