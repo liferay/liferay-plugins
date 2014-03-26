@@ -60,6 +60,17 @@ public class PropertiesSettingsTest {
 	}
 
 	@Test
+	public void testGetValuesWithResourceValue() {
+		_properties.put(_MULTIPLE_KEY, _RESOURCE_MULTIPLE_VALUES);
+
+		String[] expectedValues = {
+			"resource value 0", "resource value 1", "resource value 2"};
+
+		Assert.assertArrayEquals(
+			expectedValues, _propertiesSettings.getValues(_MULTIPLE_KEY, null));
+	}
+
+	@Test
 	public void testGetValueWithDefaultValue() {
 		Assert.assertEquals(
 			"default", _propertiesSettings.getValue("missingKey", "default"));
@@ -75,6 +86,14 @@ public class PropertiesSettingsTest {
 	public void testGetValueWithMissingKey() {
 		Assert.assertEquals(
 			null, _propertiesSettings.getValue("missingKey", null));
+	}
+
+	@Test
+	public void testGetValueWithResourceValue() {
+		_properties.put(_SINGLE_KEY, _RESOURCE_SINGLE_VALUE);
+
+		Assert.assertEquals(
+			"resource value", _propertiesSettings.getValue(_SINGLE_KEY, null));
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
@@ -96,6 +115,14 @@ public class PropertiesSettingsTest {
 	private static final String _MULTIPLE_KEY = "multipleKey";
 
 	private static final String _MULTIPLE_VALUES = "value0,value1,value2";
+
+	private static final String _RESOURCE_MULTIPLE_VALUES =
+		"${resource:com/liferay/portal/settings/" +
+			"PropertiesSettingsTestMultiple.tmpl}";
+
+	private static final String _RESOURCE_SINGLE_VALUE =
+		"${resource:com/liferay/portal/settings/" +
+			"PropertiesSettingsTestSingle.tmpl}";
 
 	private static final String _SINGLE_KEY = "key";
 
