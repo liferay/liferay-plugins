@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -213,6 +214,10 @@ public class CalendarUtil {
 			ThemeDisplay themeDisplay, CalendarBooking calendarBooking,
 			TimeZone timeZone)
 		throws SystemException {
+
+		if (calendarBooking.isAllDay()) {
+			timeZone = TimeZone.getTimeZone(StringPool.UTC);
+		}
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
