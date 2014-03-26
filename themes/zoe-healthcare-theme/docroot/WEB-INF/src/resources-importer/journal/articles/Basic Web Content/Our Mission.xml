@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<h3 class="full underlined">
+					Our Mission
+				</h3>
+
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi massa, lobortis in congue id, pellentue et ante. Vivamus sodales tincidunt ante. Etiam vitae sem metus. Vtibulum eu nisl nec tellus blandit rutrum sed vitae lorem.
+				</p>
+
+				<p>
+					Maecenas vel tincidunt nibh. Integer tempus commodo entum. In hac habitasse platea dictumst. Maecenas vitae sem sit amet tellus rutrum.
+				</p>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

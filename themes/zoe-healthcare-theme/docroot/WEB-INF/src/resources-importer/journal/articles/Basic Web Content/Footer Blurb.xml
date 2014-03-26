@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<div id="footerBlurb">
+					<h3>
+						We Care About Your Health
+					</h3>
+
+					<p>
+						"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc commodo, lectus id sollicitudin rhoncus, odio dui ullamcorper lacus, pellentesque mattis nisl erat eu tortor. Sed fermentum, massa at vestibulum sollicitudin, tortor neque cursus leo, eget faucibus mauris magna ac magna." -
+						<span>Steve Cogs</span>
+					</p>
+				</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

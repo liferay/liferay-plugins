@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<h1 class="underlined">
+					Recent News
+				</h1>
+
+				<div>
+					<h5>
+						April 21st, 2012
+					</h5>
+
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi massa, lobortis in congue id, nomer pellentesque et ante pablo sinco. Read More
+					</p>
+				</div>
+
+				<div>
+					<h5>
+						May 27th, 2012
+					</h5>
+
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi massa, lobortis in congue id, nomer pellentesque et ante pablo sinco. Read More
+					</p>
+				</div>
+
+				<div>
+					<h5>
+						August 2nd, 2012
+					</h5>
+
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi massa, lobortis in congue id, nomer pellentesque et ante pablo sinco. Read More
+					</p>
+				</div>
+
+				<div>
+					<h5>
+						October 8th, 2012
+					</h5>
+
+					<p>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mi massa, lobortis in congue id, nomer pellentesque et ante pablo sinco. Read More
+					</p>
+				</div>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

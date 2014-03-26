@@ -4,22 +4,22 @@
 		{
 			"columns": [
 				[
-					"Home Banner.html"
+					"Home Banner.xml"
 				],
 				[
-					"Welcome to Our Clinics.html"
+					"Welcome to Our Clinics.xml"
 				],
 				[
-					"Our Mission.html"
+					"Our Mission.xml"
 				],
 				[
-					"Our Team.html"
+					"Our Team.xml"
 				],
 				[
-					"Our Promise.html"
+					"Our Promise.xml"
 				],
 				[
-					"Recent News.html"
+					"Recent News.xml"
 				]
 			],
 			"friendlyURL": "/home",
@@ -30,7 +30,7 @@
 		{
 			"columns": [
 				[
-					"The Zoe Promise.html"
+					"The Zoe Promise.xml"
 				],
 				[
 					{
@@ -41,10 +41,10 @@
 					}
 				],
 				[
-					"Make an Appointment.html"
+					"Make an Appointment.xml"
 				],
 				[
-					"Make an Appointment Left Image.html"
+					"Make an Appointment Left Image.xml"
 				],
 				[
 					{
@@ -69,16 +69,16 @@
 					}
 				],
 				[
-					"Section 1.html"
+					"Section 1.xml"
 				],
 				[
-					"Section 2.html"
+					"Section 2.xml"
 				],
 				[
-					"Section 3.html"
+					"Section 3.xml"
 				],
 				[
-					"Section 4.html"
+					"Section 4.xml"
 				]
 			],
 			"friendlyURL": "/about",
