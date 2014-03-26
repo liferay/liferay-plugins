@@ -64,7 +64,7 @@ public class PropertiesSettingsTest {
 		_properties.put(_MULTIPLE_KEY, _RESOURCE_MULTIPLE_VALUES);
 
 		String[] expectedValues = {
-			"resource value 0", "resource value 1", "resource value 2"};
+			"resourceValue0", "resourceValue1", "resourceValue2"};
 
 		Assert.assertArrayEquals(
 			expectedValues, _propertiesSettings.getValues(_MULTIPLE_KEY, null));
@@ -93,7 +93,7 @@ public class PropertiesSettingsTest {
 		_properties.put(_SINGLE_KEY, _RESOURCE_SINGLE_VALUE);
 
 		Assert.assertEquals(
-			"resource value", _propertiesSettings.getValue(_SINGLE_KEY, null));
+			"resourceValue", _propertiesSettings.getValue(_SINGLE_KEY, null));
 	}
 
 	@Test(expected = UnsupportedOperationException.class)
