@@ -106,6 +106,7 @@ public class CalendarBookingAssetRendererFactory
 		throws Exception {
 
 		ServiceContext serviceContext = new ServiceContext();
+
 		serviceContext.setCompanyId(permissionChecker.getCompanyId());
 
 		CalendarResource calendarResource =

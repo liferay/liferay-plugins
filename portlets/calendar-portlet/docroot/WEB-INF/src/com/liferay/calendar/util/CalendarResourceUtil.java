@@ -131,27 +131,27 @@ public class CalendarResourceUtil {
 	}
 
 	public static CalendarResource getScopedGroupCalendarResource(
-			long scopedGroupId, ServiceContext serviceContext)
+			long groupId, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		Group group = GroupLocalServiceUtil.getGroup(scopedGroupId);
+		Group group = GroupLocalServiceUtil.getGroup(groupId);
 
 		if (group.isUser()) {
 			return getUserCalendarResource(group.getClassPK(), serviceContext);
 		}
 		else {
-			return getGroupCalendarResource(scopedGroupId, serviceContext);
+			return getGroupCalendarResource(groupId, serviceContext);
 		}
 	}
 
 	public static CalendarResource getScopedGroupCalendarResource(
-			PortletRequest portletRequest, long scopedGroupId)
+			PortletRequest portletRequest, long groupId)
 		throws PortalException, SystemException {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			portletRequest);
 
-		return getScopedGroupCalendarResource(scopedGroupId, serviceContext);
+		return getScopedGroupCalendarResource(groupId, serviceContext);
 	}
 
 	public static CalendarResource getUserCalendarResource(
