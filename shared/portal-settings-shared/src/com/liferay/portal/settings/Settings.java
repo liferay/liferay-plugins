@@ -21,12 +21,15 @@ import javax.portlet.ValidatorException;
 /**
  * @author Raymond Augé
  * @author Jorge Ferrer
+ * @author Iván Zaera
  */
 public interface Settings {
 
 	public String getValue(String key, String defaultValue);
 
 	public String[] getValues(String key, String[] defaultValue);
+
+	public void reset(String key);
 
 	public Settings setValue(String key, String value);
 

@@ -54,6 +54,11 @@ public class PropertiesSettings implements Settings {
 	}
 
 	@Override
+	public void reset(String key) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public Settings setValue(String key, String value) {
 		throw new UnsupportedOperationException();
 	}

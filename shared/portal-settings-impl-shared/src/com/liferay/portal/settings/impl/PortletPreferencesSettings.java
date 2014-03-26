@@ -75,6 +75,19 @@ public class PortletPreferencesSettings implements Settings {
 	}
 
 	@Override
+	public void reset(String key) {
+		try {
+			_portletPreferences.reset(key);
+		}
+		catch (ReadOnlyException roe) {
+			_log.error(
+				"Portlet preferences used to persist settings should never " +
+					"be read only",
+				roe);
+		}
+	}
+
+	@Override
 	public Settings setValue(String key, String value) {
 		try {
 			_portletPreferences.setValue(key, value);

@@ -61,6 +61,11 @@ public class ParameterMapSettings implements Settings {
 	}
 
 	@Override
+	public void reset(String key) {
+		_settings.reset(key);
+	}
+
+	@Override
 	public Settings setValue(String key, String value) {
 		return _settings.setValue(key, value);
 	}

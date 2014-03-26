@@ -98,6 +98,11 @@ public class TypedSettings implements Settings {
 		return _settings.getValues(key, defaultValue);
 	}
 
+	@Override
+	public void reset(String key) {
+		_settings.reset(key);
+	}
+
 	public Settings setBooleanValue(String key, boolean value) {
 		return setValue(key, String.valueOf(value));
 	}
