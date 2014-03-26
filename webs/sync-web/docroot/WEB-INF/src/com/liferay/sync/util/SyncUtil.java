@@ -227,7 +227,7 @@ public class SyncUtil {
 
 		Date lockExpirationDate = null;
 		long lockUserId = 0;
-		String lockUserName = null;
+		String lockUserName = StringPool.BLANK;
 		String type = null;
 
 		Lock lock = fileEntry.getLock();
