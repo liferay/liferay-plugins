@@ -389,7 +389,7 @@ public class ActivitiesPortlet extends MVCPortlet {
 		jsonObject.put("body", HtmlUtil.escape(body));
 
 		if ((userId <= 0) || (userId != themeDisplay.getUserId())) {
-			jsonObject.put("commentControlsClass", "aui-helper-hidden");
+			jsonObject.put("commentControlsClass", "hide");
 		}
 
 		jsonObject.put(
