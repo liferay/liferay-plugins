@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<img class="center" src="[$FILE=suites_starting.png$]" width="292" />
+
+	            <p>
+		            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut nec turpis non tortor malesuada ultricies id nec ante. In id magna quis mi aliquet ullamcorper vitae eget nunc. Quisque porta cursus volutpat. Sed pellentesque fermentum eros, sit amet egestas magna rutrum et. Pellentesque libero turpis, suscipit et posuere ut, bibendum non lorem.
+			        <br />
+				    <br />
+					Praesent nec mauris lorem, nec porta nisl. In vitae rutrum odio. Sed congue, turpis in imperdiet ullamcorper, risus libero accumsan quam, vitae semper dolor libero non odio. Vestibulum non malesuada urna. Suspendisse semper nibh eu nunc porta eget feugiat orci elementum. Aenean auctor, velit sed fermentum interdum, arcu odio dapibus arcu, non posuere risus lacus a purus.
+				</p>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element name="content" type="text_area" index-type="keyword" index="0">
+		<dynamic-content language-id="en_US">
+			<![CDATA[
+				<ul>
+					<li>Choice of 2 King or Queen Beds</li>
+					<li>Private Water-view Balconies</li>
+					<li>Complimentary High Speed Internet</li>
+					<li>Full Size Refrigerator</li>
+					<li>In-room safe, Alarm Clock, Radio</li>
+					<li>Cable/Satellite TV</li>
+					<li>2 Private Bathrooms</li>
+					<li>Daily Maid Service</li>
+		        </ul>
+			]]>
+		</dynamic-content>
+	</dynamic-element>
+</root>
