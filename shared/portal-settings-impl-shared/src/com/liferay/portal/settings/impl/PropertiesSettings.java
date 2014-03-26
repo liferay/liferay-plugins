@@ -15,6 +15,7 @@
 package com.liferay.portal.settings.impl;
 
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.settings.Settings;
@@ -77,23 +78,29 @@ public class PropertiesSettings implements Settings {
 	protected String getProperty(String key) {
 		String value = _properties.getProperty(key);
 
-		if (value != null) {
-			if (isURLValue("resource", value)) {
-				return ContentUtil.get(getURLValue("resource", value));
-			}
+		if (isLocationVariable("resource", value)) {
+			return ContentUtil.get(getLocation("resource", value));
 		}
 
 		return value;
 	}
 
-	private String getURLValue(String protocol, String value) {
+	private String getLocation(String protocol, String value) {
 		return value.substring(protocol.length() + 3, value.length() - 1);
 	}
 
-	private boolean isURLValue(String protocol, String value) {
-		String prefix = "${" + protocol + ":";
+	private boolean isLocationVariable(String protocol, String value) {
+		if (value == null) {
+			return false;
+		}
 
-		if (value.startsWith(prefix) && value.endsWith("}")) {
+		String prefix =
+			StringPool.DOLLAR + StringPool.OPEN_CURLY_BRACE + protocol +
+			StringPool.COLON;
+
+		if (value.startsWith(prefix) &&
+			value.endsWith(StringPool.CLOSE_CURLY_BRACE)) {
+
 			return true;
 		}
 
