@@ -170,12 +170,8 @@ public class MySubscriptionsUtil {
 		}
 		else if (className.equals(PortletPreferences.class.getName())) {
 			PortletPreferences portletPreferences =
-				PortletPreferencesLocalServiceUtil.fetchPortletPreferences(
+				PortletPreferencesLocalServiceUtil.getPortletPreferences(
 					classPK);
-
-			if (portletPreferences == null) {
-				return String.valueOf(classPK);
-			}
 
 			Layout layout = LayoutLocalServiceUtil.getLayout(
 				portletPreferences.getPlid());
