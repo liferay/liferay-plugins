@@ -177,8 +177,8 @@ public class MySubscriptionsUtil {
 				portletPreferences.getPlid());
 
 			javax.portlet.PortletPreferences preferences =
-				PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-					layout, portletPreferences.getPortletId());
+				PortletPreferencesFactoryUtil.getPortletSetup(
+					layout, portletPreferences.getPortletId(), null);
 
 			String portletName = preferences.getValue(
 				"portletSetupTitle_" + locale.toString(), StringPool.BLANK);
