@@ -177,19 +177,19 @@ public class MySubscriptionsUtil {
 			Layout layout = LayoutLocalServiceUtil.getLayout(
 				portletPreferences.getPlid());
 
-			javax.portlet.PortletPreferences preferences =
+			javax.portlet.PortletPreferences jxPortletPreferences =
 				PortletPreferencesFactoryUtil.getPortletSetup(
 					layout, portletPreferences.getPortletId(), null);
 
-			String portletName = preferences.getValue(
+			String portletTitle = jxPortletPreferences.getValue(
 				"portletSetupTitle_" + LocaleUtil.toLanguageId(locale),
 				StringPool.BLANK);
 
-			if (Validator.isNull(portletName)) {
-				portletName = "Asset Publisher";
+			if (Validator.isNull(portletTitle)) {
+				portletTitle = "Asset Publisher";
 			}
 
-			return portletName;
+			return portletTitle;
 		}
 		else if (className.equals(WikiNode.class.getName())) {
 			WikiNode wikiNode = WikiNodeLocalServiceUtil.getWikiNode(classPK);
