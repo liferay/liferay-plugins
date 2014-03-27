@@ -26,8 +26,11 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -35,8 +38,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseAMIBuilder {
 
-	public BaseAMIBuilder(String buildFilePath) throws Exception {
-		properties = getProperties(buildFilePath);
+	public BaseAMIBuilder(String buildFileName) throws Exception {
+		properties = getProperties(buildFileName);
 
 		amazonEC2Client = getAmazonEC2Client(
 			properties.getProperty("access.key"),
@@ -93,23 +96,25 @@ public class BaseAMIBuilder {
 		}
 	}
 
-	protected Properties getProperties(String buildFilePath) throws Exception {
-		Properties buildProperties = new Properties();
-
-		InputStream inputStream = new FileInputStream(buildFilePath);
-
-		buildProperties.load(inputStream);
-
+	protected Properties getProperties(String buildFileName) throws Exception {
 		Properties properties = new Properties();
 
-		for (Object key : buildProperties.keySet()) {
-			String keyString = (String)key;
+		InputStream inputStream = new FileInputStream(buildFileName);
 
-			if (keyString.startsWith("#")) {
-				continue;
+		properties.load(inputStream);
+		
+		Set<Map.Entry<Object, Object>> set = properties.entrySet();
+		
+		Iterator<Map.Entry<Object, Object>> iterator = set.iterator();
+		
+		while (iterator.hasNext()) {
+			Map.Entry<Object, Object> entry = iterator.next();
+
+			String key = (String)entry.getKey();
+
+			if (key.startsWith("#")) {
+				iterator.remove();
 			}
-
-			properties.put(keyString, buildProperties.get(key));
 		}
 
 		return properties;
