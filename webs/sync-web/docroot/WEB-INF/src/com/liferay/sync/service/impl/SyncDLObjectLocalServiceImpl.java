@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.sync.model.SyncConstants;
 import com.liferay.sync.model.SyncDLObject;
@@ -65,7 +66,7 @@ public class SyncDLObjectLocalServiceImpl
 			syncDLObject.setTypePK(typePK);
 			syncDLObject.setTypeUuid(typeUuid);
 		}
-		else if (syncDLObject.getModifiedTime() > modifiedTime) {
+		else if (syncDLObject.getModifiedTime() >= modifiedTime) {
 			return null;
 		}
 		else if (type.equals(SyncConstants.TYPE_FILE)) {
@@ -73,7 +74,12 @@ public class SyncDLObjectLocalServiceImpl
 				SyncConstants.TYPE_PRIVATE_WORKNG_COPY, typePK);
 
 			if (pwcSyncDLObject != null) {
-				syncDLObjectPersistence.remove(pwcSyncDLObject);
+				DLFileEntry dlFileEntry =
+					dlFileEntryLocalService.fetchDLFileEntry(typePK);
+
+				if ((dlFileEntry != null) && !dlFileEntry.isCheckedOut()) {
+					syncDLObjectPersistence.remove(pwcSyncDLObject);
+				}
 			}
 		}
 
