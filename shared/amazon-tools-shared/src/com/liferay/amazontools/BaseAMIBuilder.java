@@ -35,9 +35,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseAMIBuilder {
 
-	public BaseAMIBuilder(String buildFilePath)
-			throws Exception {
-
+	public BaseAMIBuilder(String buildFilePath) throws Exception {
 		properties = getProperties(buildFilePath);
 
 		amazonEC2Client = getAmazonEC2Client(
@@ -121,7 +119,8 @@ public class BaseAMIBuilder {
 		try {
 			TimeUnit.SECONDS.sleep(timeout);
 		}
-		catch (InterruptedException ie) {}
+		catch (InterruptedException ie) {
+		}
 	}
 
 	protected AmazonEC2Client amazonEC2Client;
