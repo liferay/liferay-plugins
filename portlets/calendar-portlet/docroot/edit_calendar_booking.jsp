@@ -26,7 +26,7 @@ boolean allDay = BeanParamUtil.getBoolean(calendarBooking, request, "allDay");
 TimeZone calendarBookingTimeZone = userTimeZone;
 
 if (allDay) {
-	calendarBookingTimeZone = TimeZoneUtil.getTimeZone(StringPool.UTC);
+	calendarBookingTimeZone = utcTimeZone;
 }
 
 java.util.Calendar nowJCalendar = CalendarFactoryUtil.getCalendar(calendarBookingTimeZone);
