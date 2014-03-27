@@ -87,26 +87,26 @@ public class TypedSettings implements Settings {
 		return GetterUtil.getInteger(value, defaultValue);
 	}
 
-	public LocalizedValue getLocalizedValue(String key) {
-		LocalizedValue localizedValue = new LocalizedValue(
+	public LocalizedValuesMap getLocalizedValuesMap(String key) {
+		LocalizedValuesMap localizedValuesMap = new LocalizedValuesMap(
 			key, _defaultLocale, _availableLocales);
 
 		for (Locale locale : _availableLocales) {
 			String localizedPreference = LocalizationUtil.getLocalizedName(
 				key, LocaleUtil.toLanguageId(locale));
 
-			localizedValue.put(locale, getValue(localizedPreference, null));
+			localizedValuesMap.put(locale, getValue(localizedPreference, null));
 		}
 
-		String defaultValue = localizedValue.get(_defaultLocale);
+		String defaultValue = localizedValuesMap.get(_defaultLocale);
 
 		if (Validator.isNotNull(defaultValue)) {
-			return localizedValue;
+			return localizedValuesMap;
 		}
 
-		localizedValue.put(_defaultLocale, getValue(key, null));
+		localizedValuesMap.put(_defaultLocale, getValue(key, null));
 
-		return localizedValue;
+		return localizedValuesMap;
 	}
 
 	public long getLongValue(String key) {

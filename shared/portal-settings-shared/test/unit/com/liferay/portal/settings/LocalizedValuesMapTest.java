@@ -22,18 +22,18 @@ import org.junit.Test;
 /**
  * @author Iván Zaera
  */
-public class LocalizedValueTest {
+public class LocalizedValuesMapTest {
 
 	@Test
 	public void testGetLocalizationXml() {
-		LocalizedValue localizedValue = new LocalizedValue(
+		LocalizedValuesMap localizedValuesMap = new LocalizedValuesMap(
 			_KEY, _DEFAULT_LOCALE, _AVAILABLE_LOCALES);
 
 		for (Locale locale : _AVAILABLE_LOCALES) {
-			localizedValue.put(locale, "value " +locale.toString() );
+			localizedValuesMap.put(locale, "value " +locale.toString() );
 		}
 
-		String xml = localizedValue.getLocalizationXml();
+		String xml = localizedValuesMap.getLocalizationXml();
 
 		Assert.assertEquals(
 			"<?xml version='1.0' encoding='UTF-8'?>" +

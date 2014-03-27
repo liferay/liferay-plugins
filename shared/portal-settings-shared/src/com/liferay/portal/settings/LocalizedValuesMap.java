@@ -30,9 +30,9 @@ import javax.xml.stream.XMLStreamWriter;
 /**
  * @author Iván Zaera
  */
-public class LocalizedValue implements Map<Locale, String> {
+public class LocalizedValuesMap implements Map<Locale, String> {
 
-	public LocalizedValue(
+	public LocalizedValuesMap(
 		String key, Locale defaultLocale, Locale... availableLocales) {
 
 		_key = key;
