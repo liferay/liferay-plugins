@@ -87,13 +87,12 @@ public class BaseAMIBuilder {
 
 		if (images.isEmpty()) {
 			throw new RuntimeException(
-				"Image "  + imageName + " doesn't exists");
+				"Image "  + imageName + " does not exist");
 		}
-		else {
-			Image image = images.get(0);
 
-			return image.getImageId();
-		}
+		Image image = images.get(0);
+
+		return image.getImageId();
 	}
 
 	protected Properties getProperties(String buildFileName) throws Exception {
