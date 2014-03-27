@@ -14,12 +14,12 @@
 
 package com.liferay.portal.settings;
 
+import com.liferay.portal.kernel.util.LocaleUtil;
+
 import java.util.Locale;
 
 import org.junit.Assert;
 import org.junit.Test;
-
-import com.liferay.portal.kernel.util.LocaleUtil;
 
 /**
  * @author Iván Zaera
@@ -39,17 +39,17 @@ public class LocalizedValuesMapTest {
 
 		Assert.assertEquals(
 			"<?xml version='1.0' encoding='UTF-8'?>" +
-				"<root available-locales=\"en_GB,en_US,es_ES\" " +
+				"<root available-locales=\"es_ES,en_GB,en_US\" " +
 						"default-locale=\"es_ES\">" +
+					"<key language-id=\"es_ES\">value es_ES</key>" +
 					"<key language-id=\"en_GB\">value en_GB</key>" +
 					"<key language-id=\"en_US\">value en_US</key>" +
-					"<key language-id=\"es_ES\">value es_ES</key>" +
 				"</root>",
 			xml);
 	}
 
 	private static final Locale[] _AVAILABLE_LOCALES = {
-		LocaleUtil.UK, LocaleUtil.US, LocaleUtil.SPAIN
+		LocaleUtil.SPAIN, LocaleUtil.UK, LocaleUtil.US
 	};
 
 	private static final Locale _DEFAULT_LOCALE = LocaleUtil.SPAIN;

@@ -71,17 +71,17 @@ public class TypedSettingsTest extends PowerMockito {
 			_typedSettings.getLocalizedValuesMap(_KEY);
 
 		Assert.assertEquals(
-			"value_en_GB", localizedValuesMap.get(new Locale("en", "GB")));
+			"value_en_GB", localizedValuesMap.get(LocaleUtil.UK));
 		Assert.assertEquals(
-			"value_en_US", localizedValuesMap.get(new Locale("en", "US")));
+			"value_en_US", localizedValuesMap.get(LocaleUtil.US));
 		Assert.assertEquals(
 			"value_es_ES", localizedValuesMap.getDefaultValue());
 		Assert.assertEquals(
-			"value_es_ES", localizedValuesMap.get(new Locale("es", "ES")));
+			"value_es_ES", localizedValuesMap.get(LocaleUtil.SPAIN));
 	}
 
 	private static final Locale[] _AVAILABLE_LOCALES = {
-		LocaleUtil.UK, LocaleUtil.US, LocaleUtil.SPAIN
+		LocaleUtil.SPAIN, LocaleUtil.UK, LocaleUtil.US
 	};
 
 	private static final Locale _DEFAULT_LOCALE = LocaleUtil.SPAIN;
