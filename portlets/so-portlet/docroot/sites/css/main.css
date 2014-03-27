@@ -431,6 +431,10 @@ $defaultTextColor: #202020;
 				text-align: left;
 				text-indent: 0.5em;
 				width: 75%;
+
+				&:hover {
+					border-color: #2571AD;
+				}
 			}
 
 			input[type=image] {
