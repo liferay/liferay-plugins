@@ -175,18 +175,20 @@ public class SyncUtil {
 		if (dlFolder.isHidden() || dlFolder.isMountPoint()) {
 			return false;
 		}
-
-		return true;
+		else {
+			return true;
+		}
 	}
 
 	public static boolean isSupportedFolder(Folder folder) {
 		if (!(folder.getModel() instanceof DLFolder)) {
 			return false;
 		}
+		else {
+			DLFolder dlFolder = (DLFolder)folder.getModel();
 
-		DLFolder dlFolder = (DLFolder)folder.getModel();
-
-		return isSupportedFolder(dlFolder);
+			return isSupportedFolder(dlFolder);
+		}
 	}
 
 	public static void patchFile(
