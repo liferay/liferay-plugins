@@ -169,6 +169,7 @@ public class SyncFileService {
 		syncFile.setDescription(description);
 		syncFile.setFileKey(fileKey);
 		syncFile.setFilePathName(filePathName);
+		syncFile.setLocalSyncTime(System.currentTimeMillis());
 		syncFile.setMimeType(mimeType);
 		syncFile.setName(name);
 		syncFile.setParentFolderId(parentFolderId);
@@ -389,6 +390,21 @@ public class SyncFileService {
 	public static List<SyncFile> findSyncFiles(long syncAccountId) {
 		try {
 			return _syncFilePersistence.findBySyncAccountId(syncAccountId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return Collections.emptyList();
+		}
+	}
+
+	public static List<SyncFile> findSyncFiles(
+		long localSyncTime, long syncAccountId) {
+
+		try {
+			return _syncFilePersistence.findByL_S(localSyncTime, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -636,6 +652,7 @@ public class SyncFileService {
 				filePath);
 
 			syncFile.setFilePathName(targetFilePathName);
+			syncFile.setLocalSyncTime(System.currentTimeMillis());
 			syncFile.setName(String.valueOf(filePath.getFileName()));
 			syncFile.setParentFolderId(parentFolderId);
 

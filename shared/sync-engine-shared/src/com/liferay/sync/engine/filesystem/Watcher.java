@@ -14,7 +14,9 @@
 
 package com.liferay.sync.engine.filesystem;
 
+import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncWatchEvent;
+import com.liferay.sync.engine.service.SyncFileService;
 
 import java.io.IOException;
 
@@ -145,6 +147,8 @@ public class Watcher implements Runnable {
 	protected void register(Path filePath, boolean recursive)
 		throws IOException {
 
+		long startTime = System.currentTimeMillis();
+
 		if (recursive) {
 			Files.walkFileTree(
 				filePath,
@@ -193,6 +197,15 @@ public class Watcher implements Runnable {
 			if (_logger.isTraceEnabled()) {
 				_logger.trace("Registered file path {}", filePath);
 			}
+		}
+
+		List<SyncFile> syncFiles = SyncFileService.findSyncFiles(
+			startTime, _watchEventListener.getSyncAccountId());
+
+		for (SyncFile syncFile : syncFiles) {
+			fireWatchEventListener(
+				SyncWatchEvent.EVENT_TYPE_DELETE,
+				java.nio.file.Paths.get(syncFile.getFilePathName()));
 		}
 	}
 

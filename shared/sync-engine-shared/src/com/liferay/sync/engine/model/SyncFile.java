@@ -120,6 +120,10 @@ public class SyncFile extends StateAwareModel {
 		return filePathName;
 	}
 
+	public long getLocalSyncTime() {
+		return localSyncTime;
+	}
+
 	public long getLockExpirationDate() {
 		return lockExpirationDate;
 	}
@@ -220,6 +224,10 @@ public class SyncFile extends StateAwareModel {
 		this.filePathName = filePathName;
 	}
 
+	public void setLocalSyncTime(long localSyncTime) {
+		this.localSyncTime = localSyncTime;
+	}
+
 	public void setLockExpirationDate(long lockExpirationDate) {
 		this.lockExpirationDate = lockExpirationDate;
 	}
@@ -309,6 +317,9 @@ public class SyncFile extends StateAwareModel {
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String filePathName;
+
+	@DatabaseField(useGetSet = true)
+	protected long localSyncTime;
 
 	@DatabaseField(useGetSet = true)
 	protected long lockExpirationDate;

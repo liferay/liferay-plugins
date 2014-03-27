@@ -14,6 +14,9 @@
 
 package com.liferay.sync.engine.service.persistence;
 
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
+
 import com.liferay.sync.engine.model.SyncFile;
 
 import java.sql.SQLException;
@@ -93,6 +96,22 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		fieldValues.put("syncAccountId", syncAccountId);
 
 		return queryForFieldValues(fieldValues);
+	}
+
+	public List<SyncFile> findByL_S(long localSyncTime, long syncAccountId)
+		throws SQLException {
+
+		QueryBuilder<SyncFile, Long> queryBuilder = queryBuilder();
+
+		Where<SyncFile, Long> where = queryBuilder.where();
+
+		where.lt("localSyncTime", localSyncTime);
+
+		where.and();
+
+		where.eq("syncAccountId", syncAccountId);
+
+		return query(queryBuilder.prepare());
 	}
 
 	public List<SyncFile> findBySyncAccountId(long syncAccountId)
