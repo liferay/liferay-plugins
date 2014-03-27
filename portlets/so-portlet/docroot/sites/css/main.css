@@ -386,8 +386,10 @@ $defaultTextColor: #202020;
 			@include menu-mix;
 
 			padding: 3.4em 0 0;
+			position: absolute;
 			right: 0;
 			visibility: hidden;
+			width: 100px;
 			z-index: 1;
 
 			a, a:hover, li.has-menu:hover a {
@@ -411,7 +413,7 @@ $defaultTextColor: #202020;
 			position: absolute;
 			right: 0;
 			text-align: right;
-			top: 0.5em;
+			top: 0.6em;
 			visibility: visible;
 			width: auto;
 
