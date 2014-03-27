@@ -119,14 +119,6 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
-	public com.liferay.sync.model.SyncDLObjectUpdate getAllSyncDLObjects(
-		long repositoryId, long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _syncDLObjectService.getAllSyncDLObjects(repositoryId, folderId);
-	}
-
-	@Override
 	public com.liferay.sync.model.SyncDLObject getFileEntrySyncDLObject(
 		long groupId, long folderId, java.lang.String title)
 		throws com.liferay.portal.kernel.exception.PortalException,

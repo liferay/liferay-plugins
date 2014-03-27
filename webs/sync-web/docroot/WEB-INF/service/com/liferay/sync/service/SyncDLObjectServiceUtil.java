@@ -123,13 +123,6 @@ public class SyncDLObjectServiceUtil {
 			serviceContext);
 	}
 
-	public static com.liferay.sync.model.SyncDLObjectUpdate getAllSyncDLObjects(
-		long repositoryId, long folderId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAllSyncDLObjects(repositoryId, folderId);
-	}
-
 	public static com.liferay.sync.model.SyncDLObject getFileEntrySyncDLObject(
 		long groupId, long folderId, java.lang.String title)
 		throws com.liferay.portal.kernel.exception.PortalException,
