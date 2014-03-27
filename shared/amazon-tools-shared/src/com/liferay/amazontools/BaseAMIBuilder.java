@@ -103,11 +103,11 @@ public class BaseAMIBuilder {
 		InputStream inputStream = new FileInputStream(propertiesFileName);
 
 		properties.load(inputStream);
-		
+
 		Set<Map.Entry<Object, Object>> set = properties.entrySet();
-		
+
 		Iterator<Map.Entry<Object, Object>> iterator = set.iterator();
-		
+
 		while (iterator.hasNext()) {
 			Map.Entry<Object, Object> entry = iterator.next();
 
