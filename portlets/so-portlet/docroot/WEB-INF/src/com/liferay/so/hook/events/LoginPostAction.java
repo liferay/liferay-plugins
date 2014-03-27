@@ -38,7 +38,12 @@ public class LoginPostAction extends Action {
 		throws ActionException {
 
 		try {
-			String memberRequestKey = ParamUtil.getString(request, "key");
+			String ppid = ParamUtil.getString(request, "p_p_id");
+
+			String portletNamespace = PortalUtil.getPortletNamespace(ppid);
+
+			String memberRequestKey = ParamUtil.getString(
+				request, portletNamespace + "key");
 
 			if (Validator.isNull(memberRequestKey)) {
 				return;
