@@ -39,9 +39,9 @@ public class BaseAMIBuilder {
 		properties = getProperties(buildFilePath);
 
 		amazonEC2Client = getAmazonEC2Client(
-			properties.getProperty(_PROPERTY_KEY_ACCESS_KEY),
-			properties.getProperty(_PROPERTY_KEY_SECRET_KEY),
-			properties.getProperty(_PROPERTY_KEY_ENDPOINT));
+			properties.getProperty("access.key"),
+			properties.getProperty("secret.key"),
+			properties.getProperty("endpoint"));
 	}
 
 	protected AmazonEC2Client getAmazonEC2Client(
@@ -125,11 +125,5 @@ public class BaseAMIBuilder {
 
 	protected AmazonEC2Client amazonEC2Client;
 	protected Properties properties;
-
-	private static final String _PROPERTY_KEY_ACCESS_KEY = "access.key";
-
-	private static final String _PROPERTY_KEY_ENDPOINT = "endpoint";
-
-	private static final String _PROPERTY_KEY_SECRET_KEY = "secret.key";
 
 }
