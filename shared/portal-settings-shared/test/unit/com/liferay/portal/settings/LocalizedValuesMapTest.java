@@ -19,6 +19,8 @@ import java.util.Locale;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.liferay.portal.kernel.util.LocaleUtil;
+
 /**
  * @author Iván Zaera
  */
@@ -47,10 +49,10 @@ public class LocalizedValuesMapTest {
 	}
 
 	private static final Locale[] _AVAILABLE_LOCALES = {
-		new Locale("en", "GB"), new Locale("en", "US"), new Locale("es", "ES")
+		LocaleUtil.UK, LocaleUtil.US, LocaleUtil.SPAIN
 	};
 
-	private static final Locale _DEFAULT_LOCALE = new Locale("es", "ES");
+	private static final Locale _DEFAULT_LOCALE = LocaleUtil.SPAIN;
 
 	private static final String _KEY = "key";
 

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.settings;
 
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.util.LocalizationImpl;
 
@@ -80,10 +81,10 @@ public class TypedSettingsTest extends PowerMockito {
 	}
 
 	private static final Locale[] _AVAILABLE_LOCALES = {
-		new Locale("en", "GB"), new Locale("en", "US"), new Locale("es", "ES")
+		LocaleUtil.UK, LocaleUtil.US, LocaleUtil.SPAIN
 	};
 
-	private static final Locale _DEFAULT_LOCALE = new Locale("es", "ES");
+	private static final Locale _DEFAULT_LOCALE = LocaleUtil.SPAIN;
 
 	private static final String _KEY = "key";
 
