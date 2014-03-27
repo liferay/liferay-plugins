@@ -38,8 +38,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseAMIBuilder {
 
-	public BaseAMIBuilder(String buildFileName) throws Exception {
-		properties = getProperties(buildFileName);
+	public BaseAMIBuilder(String propertiesFileName) throws Exception {
+		properties = getProperties(propertiesFileName);
 
 		amazonEC2Client = getAmazonEC2Client(
 			properties.getProperty("access.key"),
@@ -95,10 +95,12 @@ public class BaseAMIBuilder {
 		return image.getImageId();
 	}
 
-	protected Properties getProperties(String buildFileName) throws Exception {
+	protected Properties getProperties(String propertiesFileName)
+		throws Exception {
+
 		Properties properties = new Properties();
 
-		InputStream inputStream = new FileInputStream(buildFileName);
+		InputStream inputStream = new FileInputStream(propertiesFileName);
 
 		properties.load(inputStream);
 		
