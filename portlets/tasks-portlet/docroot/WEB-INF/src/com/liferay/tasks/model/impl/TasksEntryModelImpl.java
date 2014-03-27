@@ -15,6 +15,7 @@
 package com.liferay.tasks.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.DateUtil;
@@ -23,9 +24,10 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.expando.util.ExpandoBridgeFactoryUtil;
@@ -371,12 +373,18 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public String getUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+		try {
+			User user = UserLocalServiceUtil.getUserById(getUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setUserUuid(String userUuid) {
-		_userUuid = userUuid;
 	}
 
 	public long getOriginalUserId() {
@@ -473,13 +481,18 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public String getAssigneeUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getAssigneeUserId(), "uuid",
-			_assigneeUserUuid);
+		try {
+			User user = UserLocalServiceUtil.getUserById(getAssigneeUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setAssigneeUserUuid(String assigneeUserUuid) {
-		_assigneeUserUuid = assigneeUserUuid;
 	}
 
 	public long getOriginalAssigneeUserId() {
@@ -507,13 +520,18 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 
 	@Override
 	public String getResolverUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getResolverUserId(), "uuid",
-			_resolverUserUuid);
+		try {
+			User user = UserLocalServiceUtil.getUserById(getResolverUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setResolverUserUuid(String resolverUserUuid) {
-		_resolverUserUuid = resolverUserUuid;
 	}
 
 	public long getOriginalResolverUserId() {
@@ -891,7 +909,6 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	private boolean _setOriginalGroupId;
 	private long _companyId;
 	private long _userId;
-	private String _userUuid;
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
 	private String _userName;
@@ -900,11 +917,9 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	private String _title;
 	private int _priority;
 	private long _assigneeUserId;
-	private String _assigneeUserUuid;
 	private long _originalAssigneeUserId;
 	private boolean _setOriginalAssigneeUserId;
 	private long _resolverUserId;
-	private String _resolverUserUuid;
 	private long _originalResolverUserId;
 	private boolean _setOriginalResolverUserId;
 	private Date _dueDate;

@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
@@ -230,7 +229,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<KaleoInstance>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<KaleoInstance>)QueryUtil.list(q, getDialect(),
@@ -728,7 +727,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<KaleoInstance>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<KaleoInstance>)QueryUtil.list(q, getDialect(),
@@ -1239,7 +1238,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<KaleoInstance>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<KaleoInstance>)QueryUtil.list(q, getDialect(),
@@ -1835,7 +1834,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<KaleoInstance>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<KaleoInstance>)QueryUtil.list(q, getDialect(),
@@ -2887,7 +2886,7 @@ public class KaleoInstancePersistenceImpl extends BasePersistenceImpl<KaleoInsta
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<KaleoInstance>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<KaleoInstance>)QueryUtil.list(q, getDialect(),

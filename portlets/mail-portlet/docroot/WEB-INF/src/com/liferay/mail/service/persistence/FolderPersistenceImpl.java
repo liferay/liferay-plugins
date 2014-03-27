@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
@@ -226,7 +225,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<Folder>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<Folder>)QueryUtil.list(q, getDialect(), start,
@@ -1369,7 +1368,7 @@ public class FolderPersistenceImpl extends BasePersistenceImpl<Folder>
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<Folder>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<Folder>)QueryUtil.list(q, getDialect(), start,

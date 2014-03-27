@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -232,7 +231,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<KaleoTimerInstanceToken>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
@@ -993,7 +992,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<KaleoTimerInstanceToken>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
@@ -1553,7 +1552,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<KaleoTimerInstanceToken>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
@@ -2573,7 +2572,7 @@ public class KaleoTimerInstanceTokenPersistenceImpl extends BasePersistenceImpl<
 
 					Collections.sort(list);
 
-					list = new UnmodifiableList<KaleoTimerInstanceToken>(list);
+					list = Collections.unmodifiableList(list);
 				}
 				else {
 					list = (List<KaleoTimerInstanceToken>)QueryUtil.list(q,
