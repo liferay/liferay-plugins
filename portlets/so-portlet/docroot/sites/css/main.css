@@ -447,6 +447,10 @@ $defaultTextColor: #202020;
 			float: none;
 			padding: 1em;
 
+			.control-group, select {
+				margin-bottom: 0;
+			}
+
 			select {
 				display: block;
 				width: 100%;
