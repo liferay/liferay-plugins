@@ -99,12 +99,12 @@ public class LocalizedValuesMap implements Map<Locale, String> {
 
 			xmlStreamWriter.writeStartDocument();
 
-			xmlStreamWriter.writeStartElement(_ROOT);
+			xmlStreamWriter.writeStartElement("root");
 
 			xmlStreamWriter.writeAttribute(
-				_AVAILABLE_LOCALES, StringUtil.merge(_availableLocales));
+				"available-locales", StringUtil.merge(_availableLocales));
 			xmlStreamWriter.writeAttribute(
-				_DEFAULT_LOCALE, _defaultLocale.toString());
+				"default-locale", _defaultLocale.toString());
 
 			for (Locale locale : _availableLocales) {
 				String value = get(locale);
@@ -113,7 +113,7 @@ public class LocalizedValuesMap implements Map<Locale, String> {
 					xmlStreamWriter.writeStartElement(_key);
 
 					xmlStreamWriter.writeAttribute(
-						_LANGUAGE_ID, locale.toString());
+						"language-id", locale.toString());
 
 					xmlStreamWriter.writeCharacters(value);
 
@@ -184,14 +184,6 @@ public class LocalizedValuesMap implements Map<Locale, String> {
 			}
 		}
 	}
-
-	private static final String _AVAILABLE_LOCALES = "available-locales";
-
-	private static final String _DEFAULT_LOCALE = "default-locale";
-
-	private static final String _LANGUAGE_ID = "language-id";
-
-	private static final String _ROOT = "root";
 
 	private Locale[] _availableLocales;
 	private Locale _defaultLocale;
