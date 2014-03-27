@@ -56,7 +56,7 @@ public class LocalizedValuesMap implements Map<Locale, String> {
 	}
 
 	@Override
-	public Set<java.util.Map.Entry<Locale, String>> entrySet() {
+	public Set<Map.Entry<Locale, String>> entrySet() {
 		return _map.entrySet();
 	}
 
@@ -98,6 +98,7 @@ public class LocalizedValuesMap implements Map<Locale, String> {
 				unsyncStringWriter);
 
 			xmlStreamWriter.writeStartDocument();
+
 			xmlStreamWriter.writeStartElement(_ROOT);
 
 			xmlStreamWriter.writeAttribute(
@@ -121,6 +122,7 @@ public class LocalizedValuesMap implements Map<Locale, String> {
 			}
 
 			xmlStreamWriter.writeEndElement();
+
 			xmlStreamWriter.writeEndDocument();
 
 			return unsyncStringWriter.toString();

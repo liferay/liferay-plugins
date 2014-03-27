@@ -37,17 +37,17 @@ public class LocalizedValuesMapTest {
 
 		Assert.assertEquals(
 			"<?xml version='1.0' encoding='UTF-8'?>" +
-				"<root available-locales=\"es_ES,en_US,en_GB\" " +
+				"<root available-locales=\"en_GB,en_US,es_ES\" " +
 						"default-locale=\"es_ES\">" +
-					"<key language-id=\"es_ES\">value es_ES</key>" +
-					"<key language-id=\"en_US\">value en_US</key>" +
 					"<key language-id=\"en_GB\">value en_GB</key>" +
+					"<key language-id=\"en_US\">value en_US</key>" +
+					"<key language-id=\"es_ES\">value es_ES</key>" +
 				"</root>",
 			xml);
 	}
 
 	private static final Locale[] _AVAILABLE_LOCALES = {
-		new Locale("es", "ES"), new Locale("en", "US"), new Locale("en", "GB")
+		new Locale("en", "GB"), new Locale("en", "US"), new Locale("es", "ES")
 	};
 
 	private static final Locale _DEFAULT_LOCALE = new Locale("es", "ES");

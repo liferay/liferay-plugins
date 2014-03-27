@@ -36,16 +36,29 @@ public class TypedSettingsTest extends PowerMockito {
 
 		_settings = mock(Settings.class);
 
-		when(_settings.getValue(_KEY, null)).thenReturn("valueDefault");
+		when(
+			_settings.getValue(_KEY, null)
+		).thenReturn(
+			"valueDefault"
+		);
 
-		when(_settings.getValue(_KEY + "_es_ES", null)).thenReturn(
-			"value_es_ES");
+		when(
+			_settings.getValue(_KEY + "_en_GB", null)
+		).thenReturn(
+			"value_en_GB"
+		);
 
-		when(_settings.getValue(_KEY + "_en_US", null)).thenReturn(
-			"value_en_US");
+		when(
+			_settings.getValue(_KEY + "_en_US", null)
+		).thenReturn(
+			"value_en_US"
+		);
 
-		when(_settings.getValue(_KEY + "_en_GB", null)).thenReturn(
-			"value_en_GB");
+		when(
+			_settings.getValue(_KEY + "_es_ES", null)
+		).thenReturn(
+			"value_es_ES"
+		);
 
 		_typedSettings = new TypedSettings(
 			_settings, _DEFAULT_LOCALE, _AVAILABLE_LOCALES);
@@ -57,17 +70,17 @@ public class TypedSettingsTest extends PowerMockito {
 			_typedSettings.getLocalizedValuesMap(_KEY);
 
 		Assert.assertEquals(
-			"value_es_ES", localizedValuesMap.getDefaultValue());
-		Assert.assertEquals(
-			"value_es_ES", localizedValuesMap.get(new Locale("es", "ES")));
+			"value_en_GB", localizedValuesMap.get(new Locale("en", "GB")));
 		Assert.assertEquals(
 			"value_en_US", localizedValuesMap.get(new Locale("en", "US")));
 		Assert.assertEquals(
-			"value_en_GB", localizedValuesMap.get(new Locale("en", "GB")));
+			"value_es_ES", localizedValuesMap.getDefaultValue());
+		Assert.assertEquals(
+			"value_es_ES", localizedValuesMap.get(new Locale("es", "ES")));
 	}
 
 	private static final Locale[] _AVAILABLE_LOCALES = {
-		new Locale("es", "ES"), new Locale("en", "US"), new Locale("en", "GB")
+		new Locale("en", "GB"), new Locale("en", "US"), new Locale("es", "ES")
 	};
 
 	private static final Locale _DEFAULT_LOCALE = new Locale("es", "ES");
