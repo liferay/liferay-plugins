@@ -63,8 +63,8 @@ public class PropertiesSettingsTest {
 	public void testGetValuesWithResourceValue() {
 		_properties.put(_MULTIPLE_KEY, _RESOURCE_MULTIPLE_VALUES);
 
-		String[] expectedValues = {
-			"resourceValue0", "resourceValue1", "resourceValue2"};
+		String[] expectedValues =
+			{"resourceValue0", "resourceValue1", "resourceValue2"};
 
 		Assert.assertArrayEquals(
 			expectedValues, _propertiesSettings.getValues(_MULTIPLE_KEY, null));
@@ -117,12 +117,12 @@ public class PropertiesSettingsTest {
 	private static final String _MULTIPLE_VALUES = "value0,value1,value2";
 
 	private static final String _RESOURCE_MULTIPLE_VALUES =
-		"${resource:com/liferay/portal/settings/" +
-			"PropertiesSettingsTestMultiple.tmpl}";
+		"${resource:com/liferay/portal/settings" +
+			"/PropertiesSettingsTestMultiple.tmpl}";
 
 	private static final String _RESOURCE_SINGLE_VALUE =
-		"${resource:com/liferay/portal/settings/" +
-			"PropertiesSettingsTestSingle.tmpl}";
+		"${resource:com/liferay/portal/settings" +
+			"/PropertiesSettingsTestSingle.tmpl}";
 
 	private static final String _SINGLE_KEY = "key";
 

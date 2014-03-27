@@ -96,7 +96,7 @@ public class PropertiesSettings implements Settings {
 
 		String prefix =
 			StringPool.DOLLAR + StringPool.OPEN_CURLY_BRACE + protocol +
-			StringPool.COLON;
+				StringPool.COLON;
 
 		if (value.startsWith(prefix) &&
 			value.endsWith(StringPool.CLOSE_CURLY_BRACE)) {
