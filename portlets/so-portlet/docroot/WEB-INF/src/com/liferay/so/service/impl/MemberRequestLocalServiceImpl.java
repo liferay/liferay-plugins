@@ -304,7 +304,9 @@ public class MemberRequestLocalServiceImpl
 		return createAccountURL;
 	}
 
-	protected String getLoginURL(ServiceContext serviceContext) {
+	protected String getLoginURL(
+		MemberRequest memberRequest, ServiceContext serviceContext) {
+
 		String loginURL = (String)serviceContext.getAttribute("loginURL");
 
 		if (Validator.isNull(loginURL)) {
@@ -312,6 +314,9 @@ public class MemberRequestLocalServiceImpl
 		}
 
 		String redirectURL = getRedirectURL(serviceContext);
+
+		redirectURL = addParameterWithPortletNamespace(
+			redirectURL, "key", memberRequest.getKey());
 
 		return HttpUtil.addParameter(loginURL, "redirect", redirectURL);
 	}
@@ -397,7 +402,7 @@ public class MemberRequestLocalServiceImpl
 				fromAddress, fromName,
 				getCreateAccountURL(memberRequest, serviceContext),
 				group.getDescriptiveName(serviceContext.getLocale()),
-				getLoginURL(serviceContext), user.getFullName()
+				getLoginURL(memberRequest, serviceContext), user.getFullName()
 			});
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);
