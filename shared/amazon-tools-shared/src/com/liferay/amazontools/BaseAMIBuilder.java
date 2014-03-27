@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.amazon.tools;
+package com.liferay.amazontools;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -33,9 +33,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Ivica Cardic
  */
-public class BaseAMITools {
+public class BaseAMIBuilder {
 
-	public BaseAMITools(String buildFilePath)
+	public BaseAMIBuilder(String buildFilePath)
 			throws Exception {
 
 		properties = getProperties(buildFilePath);
