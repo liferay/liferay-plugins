@@ -786,7 +786,9 @@ public class CalendarPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		if (ParamUtil.getBoolean(portletRequest, "allDay")) {
+		boolean allDay = ParamUtil.getBoolean(portletRequest, "allDay");
+
+		if (allDay) {
 			return TimeZoneUtil.getTimeZone(StringPool.UTC);
 		}
 
@@ -853,7 +855,7 @@ public class CalendarPortlet extends MVCPortlet {
 		throws IOException, PortalException, SystemException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
+			WebKeys.THEME_DISPLAY);
 
 		long[] calendarIds = ParamUtil.getLongValues(
 			resourceRequest, "calendarIds");

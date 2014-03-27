@@ -215,10 +215,6 @@ public class CalendarUtil {
 			TimeZone timeZone)
 		throws SystemException {
 
-		if (calendarBooking.isAllDay()) {
-			timeZone = TimeZone.getTimeZone(StringPool.UTC);
-		}
-
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		jsonObject.put("allDay", calendarBooking.isAllDay());
@@ -228,6 +224,10 @@ public class CalendarUtil {
 		jsonObject.put(
 			"description",
 			calendarBooking.getDescription(themeDisplay.getLocale()));
+
+		if (calendarBooking.isAllDay()) {
+			timeZone = TimeZone.getTimeZone(StringPool.UTC);
+		}
 
 		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
 			calendarBooking.getEndTime(), timeZone);
