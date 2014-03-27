@@ -14,20 +14,37 @@
 
 package com.liferay.portal.settings;
 
+import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
+
+import java.util.Locale;
 
 import javax.portlet.ValidatorException;
 
 /**
  * @author Iván Zaera
+ * @author Jorge Ferrer
  */
 public class TypedSettings implements Settings {
 
 	public TypedSettings(Settings settings) {
+		this(
+			settings, LocaleUtil.getSiteDefault(),
+			LanguageUtil.getAvailableLocales());
+	}
+
+	public TypedSettings(
+		Settings settings, Locale defaultLocale, Locale... availableLocales) {
+
 		_settings = settings;
+		_defaultLocale = defaultLocale;
+		_availableLocales = availableLocales;
 	}
 
 	public boolean getBooleanValue(String key) {
@@ -68,6 +85,28 @@ public class TypedSettings implements Settings {
 		String value = getValue(key, null);
 
 		return GetterUtil.getInteger(value, defaultValue);
+	}
+
+	public LocalizedValue getLocalizedValue(String key) {
+		LocalizedValue localizedValue = new LocalizedValue(
+			key, _defaultLocale, _availableLocales);
+
+		for (Locale locale : _availableLocales) {
+			String localizedPreference = LocalizationUtil.getLocalizedName(
+				key, LocaleUtil.toLanguageId(locale));
+
+			localizedValue.put(locale, getValue(localizedPreference, null));
+		}
+
+		String defaultValue = localizedValue.get(_defaultLocale);
+
+		if (Validator.isNotNull(defaultValue)) {
+			return localizedValue;
+		}
+
+		localizedValue.put(_defaultLocale, getValue(key, null));
+
+		return localizedValue;
 	}
 
 	public long getLongValue(String key) {
@@ -130,6 +169,8 @@ public class TypedSettings implements Settings {
 		_settings.store();
 	}
 
+	private Locale[] _availableLocales;
+	private Locale _defaultLocale;
 	private Settings _settings;
 
 }
