@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupLocalServiceUtil;
@@ -50,7 +51,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 		updateSyncDLObjects();
 	}
 
-	protected void getAllSyncDLObjects(
+	protected void populateAllSyncDLObjects(
 			long groupId, long folderId, List<SyncDLObject> syncDLObjects)
 		throws PortalException, SystemException {
 
@@ -59,21 +60,24 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 				groupId, folderId, null, false,
 				new QueryDefinition(WorkflowConstants.STATUS_APPROVED));
 
-		for (Object object : foldersAndFileEntriesAndFileShortcuts) {
-			if (object instanceof DLFileEntry) {
-				DLFileEntry dlFileEntry = (DLFileEntry)object;
+		for (Object foldersAndFileEntriesAndFileShortcut :
+				foldersAndFileEntriesAndFileShortcuts) {
 
-				String dlFileEntryEvent;
+			if (foldersAndFileEntriesAndFileShortcut instanceof DLFileEntry) {
+				DLFileEntry dlFileEntry =
+					(DLFileEntry)foldersAndFileEntriesAndFileShortcut;
+
+				String event = StringPool.BLANK;
 
 				if (dlFileEntry.isInTrash()) {
-					dlFileEntryEvent = SyncConstants.EVENT_TRASH;
+					event = SyncConstants.EVENT_TRASH;
 				}
 				else {
-					dlFileEntryEvent = SyncConstants.EVENT_ADD;
+					event = SyncConstants.EVENT_ADD;
 				}
 
 				SyncDLObject fileEntrySyncDLObject = SyncUtil.toSyncDLObject(
-					dlFileEntry, dlFileEntryEvent);
+					dlFileEntry, event);
 
 				syncDLObjects.add(fileEntrySyncDLObject);
 
@@ -81,31 +85,31 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 						SyncConstants.TYPE_PRIVATE_WORKNG_COPY)) {
 
 					SyncDLObject approvedSyncDLObject = SyncUtil.toSyncDLObject(
-						dlFileEntry, dlFileEntryEvent, true);
+						dlFileEntry, event, true);
 
 					syncDLObjects.add(approvedSyncDLObject);
 				}
 			}
-			else if (object instanceof DLFolder) {
-				DLFolder dlFolder = (DLFolder)object;
+			else if (foldersAndFileEntriesAndFileShortcut instanceof DLFolder) {
+				DLFolder dlFolder =
+					(DLFolder)foldersAndFileEntriesAndFileShortcut;
 
 				if (!SyncUtil.isSupportedFolder(dlFolder)) {
 					continue;
 				}
 
-				String dlFolderEvent;
+				String event = StringPool.BLANK;
 
 				if (dlFolder.isInTrash()) {
-					dlFolderEvent = SyncConstants.EVENT_TRASH;
+					event = SyncConstants.EVENT_TRASH;
 				}
 				else {
-					dlFolderEvent = SyncConstants.EVENT_ADD;
+					event = SyncConstants.EVENT_ADD;
 				}
 
-				syncDLObjects.add(
-					SyncUtil.toSyncDLObject(dlFolder, dlFolderEvent));
+				syncDLObjects.add(SyncUtil.toSyncDLObject(dlFolder, event));
 
-				getAllSyncDLObjects(
+				populateAllSyncDLObjects(
 					groupId, dlFolder.getFolderId(), syncDLObjects);
 			}
 		}
@@ -123,7 +127,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 			List<SyncDLObject> syncDLObjects = new ArrayList<SyncDLObject>();
 
-			getAllSyncDLObjects(
+			populateAllSyncDLObjects(
 				group.getGroupId(), DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 				syncDLObjects);
 
