@@ -81,6 +81,12 @@
 				padding: 0 10px;
 			}
 
+			a {
+				display: inline;
+				margin: 2px 2px;
+				padding: 5px 5px;
+			}
+
 			a:hover {
 				text-decoration: none;
 			}
