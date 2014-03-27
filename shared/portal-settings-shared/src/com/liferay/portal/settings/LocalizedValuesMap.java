@@ -61,8 +61,8 @@ public class LocalizedValuesMap implements Map<Locale, String> {
 	}
 
 	@Override
-	public boolean equals(Object o) {
-		return _map.equals(o);
+	public boolean equals(Object object) {
+		return _map.equals(object);
 	}
 
 	@Override
