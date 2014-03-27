@@ -227,7 +227,7 @@ public abstract class SOSocialActivityInterpreter
 		AssetRenderer assetRenderer = getAssetRenderer(
 			className, activity.getClassPK());
 
-		String body = assetRenderer.getSummary(null, null);
+		String body = assetRenderer.getSummary();
 
 		if (className.equals(MBMessage.class.getName())) {
 			MBMessage mbMessage = MBMessageLocalServiceUtil.getMBMessage(
