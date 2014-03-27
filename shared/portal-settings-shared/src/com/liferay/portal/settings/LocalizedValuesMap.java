@@ -156,8 +156,8 @@ public class LocalizedValuesMap implements Map<Locale, String> {
 	}
 
 	@Override
-	public void putAll(Map<? extends Locale, ? extends String> m) {
-		_map.putAll(m);
+	public void putAll(Map<? extends Locale, ? extends String> map) {
+		_map.putAll(map);
 	}
 
 	@Override
