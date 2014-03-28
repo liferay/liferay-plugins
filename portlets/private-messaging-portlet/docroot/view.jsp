@@ -20,34 +20,49 @@
 <%@ include file="/init.jsp" %>
 
 <%
-long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
+Group group = themeDisplay.getScopeGroup();
+LayoutSet layoutSet = themeDisplay.getLayoutSet();
 %>
 
-<div class="private-messaging-container" id="<portlet:namespace />privateMessagingContainer">
-	<c:choose>
-		<c:when test="<%= !themeDisplay.isSignedIn() %>">
-			<liferay-ui:message key="please-sign-in-to-use-the-private-messaging-portlet" />
-		</c:when>
-		<c:when test="<%= (mbThreadId != 0) && PrivateMessagingUtil.isUserPartOfThread(user.getUserId(), mbThreadId) %>">
-			<aui:layout cssClass="thread">
-				<%@ include file="/view_thread.jspf" %>
-			</aui:layout>
-		</c:when>
-		<c:otherwise>
-			<aui:layout cssClass="messages">
-				<%@ include file="/view_messages.jspf" %>
-			</aui:layout>
-		</c:otherwise>
-	</c:choose>
-</div>
+<c:choose>
+	<c:when test="<%= group.isUser() && layoutSet.isPrivateLayout() %>">
 
-<aui:script use="liferay-plugin-privatemessaging">
-	new Liferay.PrivateMessaging(
-		{
-			baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
-			baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
-			namespace: '<portlet:namespace />',
-			portletId: '<%= portletDisplay.getId() %>'
-		}
-	);
-</aui:script>
+		<%
+		long mbThreadId = ParamUtil.getLong(request, "mbThreadId");
+		%>
+
+		<div class="private-messaging-container" id="<portlet:namespace />privateMessagingContainer">
+			<c:choose>
+				<c:when test="<%= !themeDisplay.isSignedIn() %>">
+					<liferay-ui:message key="please-sign-in-to-use-the-private-messaging-portlet" />
+				</c:when>
+				<c:when test="<%= (mbThreadId != 0) && PrivateMessagingUtil.isUserPartOfThread(user.getUserId(), mbThreadId) %>">
+					<aui:layout cssClass="thread">
+						<%@ include file="/view_thread.jspf" %>
+					</aui:layout>
+				</c:when>
+				<c:otherwise>
+					<aui:layout cssClass="messages">
+						<%@ include file="/view_messages.jspf" %>
+					</aui:layout>
+				</c:otherwise>
+			</c:choose>
+		</div>
+
+		<aui:script use="liferay-plugin-privatemessaging">
+			new Liferay.PrivateMessaging(
+				{
+					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
+					namespace: '<portlet:namespace />',
+					portletId: '<%= portletDisplay.getId() %>'
+				}
+			);
+		</aui:script>
+	</c:when>
+	<c:otherwise>
+		<div class="alert alert-error">
+			<liferay-ui:message key="this-application-will-only-function-when-placed-on-a-user-private-page" />
+		</div>
+	</c:otherwise>
+</c:choose>
