@@ -992,7 +992,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 		if (inputStream == null) {
 			extRepositoryFileEntry = _extRepository.getExtRepositoryObject(
-					ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey);
+				ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey);
 		}
 		else {
 			try {

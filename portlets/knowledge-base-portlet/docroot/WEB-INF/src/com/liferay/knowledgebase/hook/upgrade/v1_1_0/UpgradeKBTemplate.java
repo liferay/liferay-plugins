@@ -32,8 +32,7 @@ public class UpgradeKBTemplate extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		renameAndUpdateTable(
-			StringUtil.replaceFirst(
-				KBTemplateTable.TABLE_NAME, "KB", "KB_"),
+			StringUtil.replaceFirst(KBTemplateTable.TABLE_NAME, "KB", "KB_"),
 			KBTemplateTable.TABLE_NAME, KBTemplateTable.TABLE_COLUMNS,
 			KBTemplateTable.TABLE_SQL_CREATE, KBTemplateTable.TABLE_SQL_DROP);
 	}

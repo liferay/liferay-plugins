@@ -27,7 +27,7 @@ public class PortletPropsValues {
 		PortletPropsKeys.DEFAULT_ACCOUNTS);
 
 	public static final int[] INCOMING_PORTS = StringUtil.split(
-			PortletProps.get(PortletPropsKeys.INCOMING_PORTS), 0);
+		PortletProps.get(PortletPropsKeys.INCOMING_PORTS), 0);
 
 	public static final boolean JAVAMAIL_DEBUG = GetterUtil.getBoolean(
 		PortletProps.get(PortletPropsKeys.JAVAMAIL_DEBUG));

@@ -99,7 +99,7 @@ public class ExecutionContextUtil {
 
 		ServiceContext serviceContext =
 			(ServiceContext)JSONFactoryUtil.deserialize(
-					jsonObject.getString("serviceContext"));
+				jsonObject.getString("serviceContext"));
 
 		return new ExecutionContext(
 			kaleoInstanceToken, kaleoTaskInstanceToken, workflowContext,

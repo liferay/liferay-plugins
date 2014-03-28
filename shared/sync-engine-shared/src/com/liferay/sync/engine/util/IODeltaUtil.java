@@ -166,7 +166,7 @@ public class IODeltaUtil {
 
 	public static boolean isIgnoredFilePatchingExtension(SyncFile syncFile) {
 		return _syncFilePatchingIgnoreFileExtensions.contains(
-				syncFile.getExtension());
+			syncFile.getExtension());
 	}
 
 	public static Path patch(

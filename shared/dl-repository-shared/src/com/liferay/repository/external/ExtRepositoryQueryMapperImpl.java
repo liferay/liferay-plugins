@@ -114,7 +114,7 @@ public class ExtRepositoryQueryMapperImpl implements ExtRepositoryQueryMapper {
 	}
 
 	private static final String _INDEX_DATE_FORMAT_PATTERN = PropsUtil.get(
-			PropsKeys.INDEX_DATE_FORMAT_PATTERN);
+		PropsKeys.INDEX_DATE_FORMAT_PATTERN);
 
 	private ExtRepositoryAdapter _extRepositoryAdapter;
 
