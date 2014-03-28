@@ -14,10 +14,16 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.documentlibrary.handler.GetSyncDLObjectUpdateHandler;
 import com.liferay.sync.engine.documentlibrary.handler.Handler;
-import com.liferay.sync.engine.documentlibrary.handler.SyncDLObjectUpdateHandler;
+import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.model.SyncSite;
+import com.liferay.sync.engine.service.SyncFileService;
 import com.liferay.sync.engine.service.SyncSiteService;
+import com.liferay.sync.engine.util.FileUtil;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +41,7 @@ public class GetSyncDLObjectUpdateEvent extends BaseEvent {
 
 	@Override
 	protected Handler<?> getHandler() {
-		return new SyncDLObjectUpdateHandler(this);
+		return new GetSyncDLObjectUpdateHandler(this);
 	}
 
 	@Override
@@ -48,18 +54,19 @@ public class GetSyncDLObjectUpdateEvent extends BaseEvent {
 			syncSite.getGroupId(), syncSite.getSyncAccountId());
 
 		if (syncSite.getLastRemoteSyncTime() == 0) {
-			Map<String, Object> parameters = new HashMap<String, Object>();
+			String filePathName = syncSite.getFilePathName();
 
-			parameters.put("folderId", 0);
-			parameters.put("repositoryId", syncSite.getGroupId());
-			parameters.put("syncSite", syncSite);
+			SyncFile syncFile = SyncFileService.fetchSyncFile(
+				filePathName, getSyncAccountId());
 
-			GetAllSyncDLObjectsEvent getAllSyncDLObjectsEvent =
-				new GetAllSyncDLObjectsEvent(getSyncAccountId(), parameters);
+			if (syncFile == null) {
+				Files.createDirectories(Paths.get(filePathName));
 
-			getAllSyncDLObjectsEvent.run();
-
-			return;
+				SyncFileService.addSyncFile(
+					null, null, filePathName, FileUtil.getFileKey(filePathName),
+					filePathName, null, filePathName, 0, syncSite.getGroupId(),
+					syncSite.getSyncAccountId(), SyncFile.TYPE_FOLDER);
+			}
 		}
 
 		Map<String, Object> parameters = new HashMap<String, Object>();

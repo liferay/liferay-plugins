@@ -43,9 +43,9 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class SyncDLObjectUpdateHandler extends BaseJSONHandler {
+public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
 
-	public SyncDLObjectUpdateHandler(Event event) {
+	public GetSyncDLObjectUpdateHandler(Event event) {
 		super(event);
 	}
 
