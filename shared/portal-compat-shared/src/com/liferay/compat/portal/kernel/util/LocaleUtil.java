@@ -266,7 +266,7 @@ public class LocaleUtil {
 				}
 			}
 
-			if (validate && !LanguageUtil.isAvailableLocale(languageId)) {
+			if (validate && !LanguageUtil.isAvailableLocale(locale)) {
 				throw new IllegalArgumentException("Invalid locale " + locale);
 			}
 
