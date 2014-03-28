@@ -175,20 +175,18 @@ public class SyncUtil {
 		if (dlFolder.isHidden() || dlFolder.isMountPoint()) {
 			return false;
 		}
-		else {
-			return true;
-		}
+
+		return true;
 	}
 
 	public static boolean isSupportedFolder(Folder folder) {
 		if (!(folder.getModel() instanceof DLFolder)) {
 			return false;
 		}
-		else {
-			DLFolder dlFolder = (DLFolder)folder.getModel();
 
-			return isSupportedFolder(dlFolder);
-		}
+		DLFolder dlFolder = (DLFolder)folder.getModel();
+
+		return isSupportedFolder(dlFolder);
 	}
 
 	public static void patchFile(
@@ -334,10 +332,9 @@ public class SyncUtil {
 
 			return toSyncDLObject(dlFileEntry, event);
 		}
-		else {
-			throw new PortalException(
-				"FileEntry must be an instance of DLFileEntry");
-		}
+
+		throw new PortalException(
+			"FileEntry must be an instance of DLFileEntry");
 	}
 
 	public static SyncDLObject toSyncDLObject(Folder folder, String event)
@@ -348,9 +345,8 @@ public class SyncUtil {
 
 			return toSyncDLObject(dlFolder, event);
 		}
-		else {
-			throw new PortalException("Folder must be an instance of DLFolder");
-		}
+
+		throw new PortalException("Folder must be an instance of DLFolder");
 	}
 
 }
