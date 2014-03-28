@@ -54,7 +54,7 @@ public class GetSyncDLObjectUpdateEventTest extends BaseTestCase {
 			10158, filePathName + "/test-site", 10185,
 			syncAccount.getSyncAccountId());
 
-		_syncSite.setLastRemoteSyncTime(System.currentTimeMillis());
+		_syncSite.setRemoteSyncTime(System.currentTimeMillis());
 	}
 
 	@After

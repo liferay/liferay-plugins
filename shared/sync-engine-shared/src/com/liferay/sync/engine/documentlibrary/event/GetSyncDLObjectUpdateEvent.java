@@ -53,7 +53,7 @@ public class GetSyncDLObjectUpdateEvent extends BaseEvent {
 		syncSite = SyncSiteService.fetchSyncSite(
 			syncSite.getGroupId(), syncSite.getSyncAccountId());
 
-		if (syncSite.getLastRemoteSyncTime() == 0) {
+		if (syncSite.getRemoteSyncTime() == 0) {
 			String filePathName = syncSite.getFilePathName();
 
 			SyncFile syncFile = SyncFileService.fetchSyncFile(
@@ -72,7 +72,7 @@ public class GetSyncDLObjectUpdateEvent extends BaseEvent {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("companyId", syncSite.getCompanyId());
-		parameters.put("lastAccessTime", syncSite.getLastRemoteSyncTime());
+		parameters.put("lastAccessTime", syncSite.getRemoteSyncTime());
 		parameters.put("repositoryId", syncSite.getGroupId());
 
 		executePost(_URL_PATH, parameters);

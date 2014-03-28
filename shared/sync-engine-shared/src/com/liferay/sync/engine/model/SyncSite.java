@@ -64,12 +64,12 @@ public class SyncSite extends StateAwareModel {
 		return groupId;
 	}
 
-	public long getLastRemoteSyncTime() {
-		return lastRemoteSyncTime;
-	}
-
 	public String getName() {
 		return name;
+	}
+
+	public long getRemoteSyncTime() {
+		return remoteSyncTime;
 	}
 
 	public boolean getSite() {
@@ -124,12 +124,12 @@ public class SyncSite extends StateAwareModel {
 		this.groupId = groupId;
 	}
 
-	public void setLastRemoteSyncTime(long lastRemoteSyncTime) {
-		this.lastRemoteSyncTime = lastRemoteSyncTime;
-	}
-
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setRemoteSyncTime(long remoteSyncTime) {
+		this.remoteSyncTime = remoteSyncTime;
 	}
 
 	public void setSite(boolean site) {
@@ -171,10 +171,10 @@ public class SyncSite extends StateAwareModel {
 	protected long groupId;
 
 	@DatabaseField(useGetSet = true)
-	protected long lastRemoteSyncTime;
+	protected String name;
 
 	@DatabaseField(useGetSet = true)
-	protected String name;
+	protected long remoteSyncTime;
 
 	@DatabaseField(useGetSet = true)
 	protected boolean site;

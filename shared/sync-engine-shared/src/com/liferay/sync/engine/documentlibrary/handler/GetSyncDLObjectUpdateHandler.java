@@ -220,7 +220,7 @@ public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
 		SyncSite syncSite = SyncSiteService.fetchSyncSite(
 			(Long)getParameterValue("repositoryId"), getSyncAccountId());
 
-		syncSite.setLastRemoteSyncTime(syncDLObjectUpdate.getLastAccessTime());
+		syncSite.setRemoteSyncTime(syncDLObjectUpdate.getLastAccessTime());
 
 		SyncSiteService.update(syncSite);
 	}
