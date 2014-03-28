@@ -266,7 +266,7 @@ public class SyncUtil {
 			lockExpirationDate = lock.getExpirationDate();
 			lockUserId = lock.getUserId();
 			lockUserName = lock.getUserName();
-			type = SyncConstants.TYPE_PRIVATE_WORKNG_COPY;
+			type = SyncConstants.TYPE_PRIVATE_WORKING_COPY;
 		}
 
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();

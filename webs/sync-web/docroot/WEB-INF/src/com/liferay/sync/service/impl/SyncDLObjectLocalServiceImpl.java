@@ -71,7 +71,7 @@ public class SyncDLObjectLocalServiceImpl
 		}
 		else if (type.equals(SyncConstants.TYPE_FILE)) {
 			SyncDLObject pwcSyncDLObject = syncDLObjectPersistence.fetchByT_T(
-				SyncConstants.TYPE_PRIVATE_WORKNG_COPY, typePK);
+				SyncConstants.TYPE_PRIVATE_WORKING_COPY, typePK);
 
 			if (pwcSyncDLObject != null) {
 				DLFileEntry dlFileEntry =
