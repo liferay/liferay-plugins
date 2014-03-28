@@ -39,8 +39,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		renameAndUpdateTable(
-			StringUtil.replaceFirst(
-				KBArticleTable.TABLE_NAME, "KB", "KB_"),
+			StringUtil.replaceFirst(KBArticleTable.TABLE_NAME, "KB", "KB_"),
 			KBArticleTable.TABLE_NAME, KBArticleTable.TABLE_COLUMNS,
 			KBArticleTable.TABLE_SQL_CREATE, KBArticleTable.TABLE_SQL_DROP);
 	}

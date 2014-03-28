@@ -589,7 +589,7 @@ public class SitesPortlet extends MVCPortlet {
 			!privateLayout, privateLayout);
 
 		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
-				group.getGroupId(), privateLayout);
+			group.getGroupId(), privateLayout);
 
 		PortalClassInvoker.invoke(
 			_mergeLayoutSetPrototypeLayoutsMethodKey, group, layoutSet);

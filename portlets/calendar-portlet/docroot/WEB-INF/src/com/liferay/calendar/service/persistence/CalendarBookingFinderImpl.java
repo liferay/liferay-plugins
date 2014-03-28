@@ -583,7 +583,7 @@ public class CalendarBookingFinderImpl
 		}
 
 		StringBundler sb = new StringBundler(
-				calendarResourceIds.length * 2 + 1);
+			calendarResourceIds.length * 2 + 1);
 
 		sb.append(" (");
 

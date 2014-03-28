@@ -32,8 +32,7 @@ public class UpgradeKBComment extends UpgradeProcess {
 	@Override
 	protected void doUpgrade() throws Exception {
 		renameAndUpdateTable(
-			StringUtil.replaceFirst(
-				KBCommentTable.TABLE_NAME, "KB", "KB_"),
+			StringUtil.replaceFirst(KBCommentTable.TABLE_NAME, "KB", "KB_"),
 			KBCommentTable.TABLE_NAME, KBCommentTable.TABLE_COLUMNS,
 			KBCommentTable.TABLE_SQL_CREATE, KBCommentTable.TABLE_SQL_DROP);
 	}
