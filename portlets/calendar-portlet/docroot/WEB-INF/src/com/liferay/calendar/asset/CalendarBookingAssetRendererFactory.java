@@ -44,6 +44,10 @@ public class CalendarBookingAssetRendererFactory
 
 	public static final String TYPE = "calendar";
 
+	public CalendarBookingAssetRendererFactory() {
+		setLinkable(true);
+	}
+
 	@Override
 	public AssetRenderer getAssetRenderer(long classPK, int type)
 		throws PortalException, SystemException {
@@ -143,15 +147,8 @@ public class CalendarBookingAssetRendererFactory
 	}
 
 	@Override
-	public boolean isLinkable() {
-		return _LINKABLE;
-	}
-
-	@Override
 	protected String getIconPath(ThemeDisplay themeDisplay) {
 		return themeDisplay.getPathThemeImages() + "/common/date.png";
 	}
-
-	private static final boolean _LINKABLE = true;
 
 }
