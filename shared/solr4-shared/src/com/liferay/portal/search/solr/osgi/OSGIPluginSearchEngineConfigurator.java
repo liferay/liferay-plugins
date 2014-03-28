@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2014 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -24,6 +24,22 @@ import com.liferay.portal.kernel.search.IndexWriter;
  */
 public class OSGIPluginSearchEngineConfigurator
 	extends AbstractSearchEngineConfigurator {
+
+	public void setDefaultSearchEngineId(String defaultSearchEngineId) {
+		_defaultSearchEngineId = defaultSearchEngineId;
+	}
+
+	public void setIndexSearcher(IndexSearcher indexSearcher) {
+		_indexSearcher = indexSearcher;
+	}
+
+	public void setIndexWriter(IndexWriter indexWriter) {
+		_indexWriter = indexWriter;
+	}
+
+	public void setMessageBus(MessageBus messageBus) {
+		_messageBus = messageBus;
+	}
 
 	@Override
 	protected String getDefaultSearchEngineId() {
@@ -50,22 +66,6 @@ public class OSGIPluginSearchEngineConfigurator
 		Class<?> clazz = getClass();
 
 		return clazz.getClassLoader();
-	}
-
-	public void setDefaultSearchEngineId(String defaultSearchEngineId) {
-		_defaultSearchEngineId = defaultSearchEngineId;
-	}
-
-	public void setIndexSearcher(IndexSearcher indexSearcher) {
-		_indexSearcher = indexSearcher;
-	}
-
-	public void setIndexWriter(IndexWriter indexWriter) {
-		_indexWriter = indexWriter;
-	}
-
-	public void setMessageBus(MessageBus messageBus) {
-		_messageBus = messageBus;
 	}
 
 	private String _defaultSearchEngineId;
