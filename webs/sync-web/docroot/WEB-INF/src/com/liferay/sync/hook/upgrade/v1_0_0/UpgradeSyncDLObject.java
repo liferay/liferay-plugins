@@ -81,9 +81,9 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 
 				syncDLObjects.add(fileEntrySyncDLObject);
 
-				if (fileEntrySyncDLObject.getType().equals(
-						SyncConstants.TYPE_PRIVATE_WORKNG_COPY)) {
+				String type = fileEntrySyncDLObject.getType();
 
+				if (type.equals(SyncConstants.TYPE_PRIVATE_WORKNG_COPY)) {
 					SyncDLObject approvedSyncDLObject = SyncUtil.toSyncDLObject(
 						dlFileEntry, event, true);
 
