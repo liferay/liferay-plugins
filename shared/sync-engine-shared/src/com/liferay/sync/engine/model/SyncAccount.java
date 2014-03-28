@@ -49,6 +49,10 @@ public class SyncAccount extends StateAwareModel {
 		return login;
 	}
 
+	public String getName() {
+		return name;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -89,6 +93,10 @@ public class SyncAccount extends StateAwareModel {
 		this.login = login;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -116,6 +124,9 @@ public class SyncAccount extends StateAwareModel {
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String login;
+
+	@DatabaseField(useGetSet = true)
+	protected String name;
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String password;

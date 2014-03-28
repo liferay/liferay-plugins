@@ -43,8 +43,8 @@ import org.slf4j.LoggerFactory;
 public class SyncAccountService {
 
 	public static SyncAccount addSyncAccount(
-			String filePathName, int interval, String login, String password,
-			boolean trustSelfSigned, String url)
+			String filePathName, int interval, String login, String name,
+			String password, boolean trustSelfSigned, String url)
 		throws Exception {
 
 		// Sync account
