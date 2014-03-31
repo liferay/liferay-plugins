@@ -84,15 +84,15 @@ public class AMIBuilder extends BaseAMIBuilder {
 			(String)cmdLineParser.getOptionValue(imageNameOption));
 
 		try {
-			amiBuilder._start();
-			amiBuilder._runProvisioners();
-			amiBuilder._createImage();
-			amiBuilder._destroy();
+			amiBuilder.start();
+			amiBuilder.runProvisioners();
+			amiBuilder.createImage();
+			amiBuilder.destroy();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 
-			amiBuilder._destroy();
+			amiBuilder.destroy();
 		}
 	}
 
@@ -107,10 +107,10 @@ public class AMIBuilder extends BaseAMIBuilder {
 
 		Security.addProvider(new BouncyCastleProvider());
 
-		_provisioners = _getProvisioners(properties);
+		_provisioners = getProvisioners(properties);
 	}
 
-	private void _createImage() {
+	protected void createImage() {
 		CreateImageRequest createImageRequest = new CreateImageRequest();
 
 		createImageRequest.setInstanceId(_instanceId);
@@ -128,7 +128,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		for (int i = 0; i < 6; i ++) {
 			sleep(30);
 
-			isImageCreated = _isImageCreated(createImageResult.getImageId());
+			isImageCreated = isImageCreated(createImageResult.getImageId());
 
 			if (isImageCreated) {
 				System.out.println(
@@ -144,11 +144,11 @@ public class AMIBuilder extends BaseAMIBuilder {
 				"Image ImageId: " + createImageResult.getImageId() +
 					" has not been created.");
 
-			_deregisterImage(createImageResult.getImageId());
+			deregisterImage(createImageResult.getImageId());
 		}
 	}
 
-	private void _deregisterImage(String imageId) {
+	protected void deregisterImage(String imageId) {
 		DeregisterImageRequest deregisterImageRequest =
 			new DeregisterImageRequest();
 
@@ -157,13 +157,13 @@ public class AMIBuilder extends BaseAMIBuilder {
 		amazonEC2Client.deregisterImage(deregisterImageRequest);
 	}
 
-	private void _destroy() {
-		_terminateInstance(_instanceId);
+	protected void destroy() {
+		terminateInstance(_instanceId);
 
 		amazonEC2Client.shutdown();
 	}
 
-	private void _executeSessionCommand(String command, SSHClient sshClient)
+	protected void executeSessionCommand(String command, SSHClient sshClient)
 		throws Exception {
 
 		final Session session = sshClient.startSession();
@@ -188,7 +188,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		}
 	}
 
-	private String _getKeyFilePath() {
+	protected String getKeyFilePath() {
 		StringBuilder sb = new StringBuilder(6);
 
 		sb.append(System.getProperty("user.home"));
@@ -201,7 +201,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		return sb.toString();
 	}
 
-	private Map<String, String> _getProvisioners(Properties properties) {
+	protected Map<String, String> getProvisioners(Properties properties) {
 		Map<String, String> provisioners = new TreeMap<String, String>();
 
 		Set<String> propertyNames = this.properties.stringPropertyNames();
@@ -217,7 +217,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		return provisioners;
 	}
 
-	private Instance _getRunningInstance(String instanceId) {
+	protected Instance getRunningInstance(String instanceId) {
 		DescribeInstancesRequest describeInstancesRequest =
 			new DescribeInstancesRequest();
 
@@ -261,7 +261,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		}
 	}
 
-	private boolean _isImageCreated(String imageId) {
+	protected boolean isImageCreated(String imageId) {
 		DescribeImagesRequest describeImagesRequest =
 			new DescribeImagesRequest();
 
@@ -295,7 +295,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		return !images.isEmpty();
 	}
 
-	private boolean _isZoneAvailable(String zoneName) {
+	protected boolean isZoneAvailable(String zoneName) {
 		DescribeAvailabilityZonesResult availabilityZonesResult =
 			amazonEC2Client.describeAvailabilityZones();
 
@@ -313,7 +313,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		return false;
 	}
 
-	private void _runFileUploadProvisioner(
+	protected void runFileUploadProvisioner(
 			String destinationDir, String filePath, SSHClient sshClient)
 		throws Exception {
 
@@ -329,7 +329,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		}
 	}
 
-	private void _runProvisioners() throws Exception {
+	protected void runProvisioners() throws Exception {
 		sleep(45);
 
 		final SSHClient sshClient = new SSHClient();
@@ -347,7 +347,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 
 		PKCS8KeyFile keyFile = new PKCS8KeyFile();
 
-		keyFile.init(new File(_getKeyFilePath()));
+		keyFile.init(new File(getKeyFilePath()));
 
 		sshClient.authPublickey(
 				properties.getProperty("ssh.username"), keyFile);
@@ -359,7 +359,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 				String provisioner = _provisioners.get(key);
 
 				if (key.contains("shell.inline")) {
-					_runShellInlineProvisioner(provisioner, sshClient);
+					runShellInlineProvisioner(provisioner, sshClient);
 				}
 				else if (key.contains("shell.script")) {
 					String shellScriptFilePath = null;
@@ -372,7 +372,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 							_baseDirName + File.separator + provisioner;
 					}
 
-					_runShellScriptProvisioner(shellScriptFilePath, sshClient);
+					runShellScriptProvisioner(shellScriptFilePath, sshClient);
 				}
 				else {
 					JSONObject jsonObject = new JSONObject(provisioner);
@@ -390,7 +390,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 								jsonObject.getString("src");
 					}
 
-					_runFileUploadProvisioner(
+					runFileUploadProvisioner(
 						jsonObject.getString("dest"), filePath, sshClient);
 				}
 			}
@@ -400,21 +400,22 @@ public class AMIBuilder extends BaseAMIBuilder {
 		}
 	}
 
-	private void _runShellInlineProvisioner(String command, SSHClient sshClient)
+	protected void runShellInlineProvisioner(
+			String command, SSHClient sshClient)
 		throws Exception {
 
 		System.out.println("Executing shell inline: " + command);
 
-		_executeSessionCommand(command, sshClient);
+		executeSessionCommand(command, sshClient);
 	}
 
-	private void _runShellScriptProvisioner(
+	protected void runShellScriptProvisioner(
 			String shellScriptFilePath, SSHClient sshClient)
 		throws Exception {
 
 		String tmpDir = "/tmp";
 
-		_runFileUploadProvisioner(tmpDir, shellScriptFilePath, sshClient);
+		runFileUploadProvisioner(tmpDir, shellScriptFilePath, sshClient);
 
 		System.out.println("Executing shell script: " + shellScriptFilePath);
 
@@ -425,21 +426,21 @@ public class AMIBuilder extends BaseAMIBuilder {
 		String command = "chmod +x {FILE_PATH}; {FILE_PATH}".replace(
 			"{FILE_PATH}", uploadFilePath);
 
-		_executeSessionCommand(command, sshClient);
+		executeSessionCommand(command, sshClient);
 
 		command = "rm " + uploadFilePath;
 
 		System.out.println("Deleting shell script: " + shellScriptFilePath);
 
-		_executeSessionCommand(command, sshClient);
+		executeSessionCommand(command, sshClient);
 	}
 
-	private void _start() {
+	protected void start() {
 		RunInstancesRequest runInstancesRequest = new RunInstancesRequest();
 
 		String availabilityZone = properties.getProperty("availability.zone");
 
-		if (!_isZoneAvailable(availabilityZone)) {
+		if (!isZoneAvailable(availabilityZone)) {
 			throw new RuntimeException(
 				"Zone " + availabilityZone + " is not available.");
 		}
@@ -512,7 +513,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		for (int i = 0; i < 6; i++) {
 			sleep(30);
 
-			Instance instance = _getRunningInstance(_instanceId);
+			Instance instance = getRunningInstance(_instanceId);
 
 			if (instance != null) {
 				_publicIpAddress = instance.getPublicIpAddress();
@@ -546,7 +547,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		}
 	}
 
-	private void _terminateInstance(String instanceId) {
+	protected void terminateInstance(String instanceId) {
 		TerminateInstancesRequest terminateInstancesRequest =
 			new TerminateInstancesRequest();
 
