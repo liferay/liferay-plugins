@@ -301,22 +301,6 @@ public class AMIBuilder extends BaseAMIBuilder {
 		return false;
 	}
 
-	protected void uploadFile(
-			SSHClient sshClient, String fileName, String destinationDir)
-		throws Exception {
-
-		System.out.println("Uploading file " + fileName);
-
-		SFTPClient sftpClient = sshClient.newSFTPClient();
-
-		try {
-			sftpClient.put(new FileSystemFile(fileName), destinationDir);
-		}
-		finally {
-			sftpClient.close();
-		}
-	}
-
 	protected void runProvisioners() throws Exception {
 		sleep(45);
 
@@ -557,6 +541,22 @@ public class AMIBuilder extends BaseAMIBuilder {
 			System.out.println(
 				"Instance InstanceId: " + instanceId +
 					" has not been terminated.");
+		}
+	}
+
+	protected void uploadFile(
+			SSHClient sshClient, String fileName, String destinationDir)
+		throws Exception {
+
+		System.out.println("Uploading file " + fileName);
+
+		SFTPClient sftpClient = sshClient.newSFTPClient();
+
+		try {
+			sftpClient.put(new FileSystemFile(fileName), destinationDir);
+		}
+		finally {
+			sftpClient.close();
 		}
 	}
 
