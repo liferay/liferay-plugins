@@ -467,7 +467,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		sb.append(instanceState.getName());
 
 		sb.append("}");
-		
+
 		System.out.println("Starting instance " + sb.toString());
 
 		boolean running = false;
