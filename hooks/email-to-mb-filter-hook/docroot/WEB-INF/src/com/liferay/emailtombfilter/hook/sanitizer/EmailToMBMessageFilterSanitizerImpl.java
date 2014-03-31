@@ -67,7 +67,7 @@ public class EmailToMBMessageFilterSanitizerImpl implements Sanitizer {
 		long classPK, String contentType, String[] modes, String s,
 		Map<String, Object> options) {
 
-		if(Validator.isNull(className)) {
+		if (Validator.isNull(className)) {
 			return s;
 		}
 
