@@ -624,11 +624,11 @@ public class SitesPortlet extends MVCPortlet {
 		}
 
 		List<UserGroup> userGroups =
-			UserGroupLocalServiceUtil.getGroupUserGroups(group.getGroupId());
+			UserGroupLocalServiceUtil.getUserUserGroups(userId);
 
 		for (UserGroup userGroup : userGroups) {
-			if (UserGroupLocalServiceUtil.hasUserUserGroup(
-					userId, userGroup.getUserGroupId())) {
+			if (UserGroupLocalServiceUtil.hasGroupUserGroup(
+				group.getGroupId(), userGroup.getUserGroupId())) {
 
 				return true;
 			}
