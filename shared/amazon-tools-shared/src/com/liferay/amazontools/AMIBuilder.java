@@ -162,10 +162,10 @@ public class AMIBuilder extends BaseAMIBuilder {
 	protected void executeSessionCommand(String command, SSHClient sshClient)
 		throws Exception {
 
-		final Session session = sshClient.startSession();
+		Session session = sshClient.startSession();
 
 		try {
-			final Session.Command sessionCommand = session.exec(command);
+			Session.Command sessionCommand = session.exec(command);
 
 			ByteArrayOutputStream byteArrayOutputStream = IOUtils.readFully(
 				sessionCommand.getInputStream());
@@ -301,16 +301,16 @@ public class AMIBuilder extends BaseAMIBuilder {
 		return false;
 	}
 
-	protected void runFileUploadProvisioner(
-			String destinationDir, String filePath, SSHClient sshClient)
+	protected void uploadFile(
+			SSHClient sshClient, String fileName, String destinationDir)
 		throws Exception {
 
-		System.out.println("Uploading file: " + filePath);
+		System.out.println("Uploading file " + fileName);
 
-		final SFTPClient sftpClient = sshClient.newSFTPClient();
+		SFTPClient sftpClient = sshClient.newSFTPClient();
 
 		try {
-			sftpClient.put(new FileSystemFile(filePath), destinationDir);
+			sftpClient.put(new FileSystemFile(fileName), destinationDir);
 		}
 		finally {
 			sftpClient.close();
@@ -378,8 +378,8 @@ public class AMIBuilder extends BaseAMIBuilder {
 								jsonObject.getString("src");
 					}
 
-					runFileUploadProvisioner(
-						jsonObject.getString("dest"), filePath, sshClient);
+					uploadFile(
+						sshClient, filePath, jsonObject.getString("dest"));
 				}
 			}
 		}
@@ -403,7 +403,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 
 		String tmpDir = "/tmp";
 
-		runFileUploadProvisioner(tmpDir, shellScriptFilePath, sshClient);
+		uploadFile(sshClient, shellScriptFilePath, tmpDir);
 
 		System.out.println("Executing shell script: " + shellScriptFilePath);
 
