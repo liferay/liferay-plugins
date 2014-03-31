@@ -119,30 +119,26 @@ public class AMIBuilder extends BaseAMIBuilder {
 		CreateImageResult createImageResult = amazonEC2Client.createImage(
 			createImageRequest);
 
-		System.out.println(
-			"Image creation for instance InstanceId: " + _instanceId +
-				" has been started.");
+		System.out.println("Creating image for instance " + _instanceId);
 
-		boolean isImageCreated = false;
+		boolean created = false;
 
 		for (int i = 0; i < 6; i ++) {
 			sleep(30);
 
-			isImageCreated = isImageCreated(createImageResult.getImageId());
+			created = isImageCreated(createImageResult.getImageId());
 
-			if (isImageCreated) {
+			if (created) {
 				System.out.println(
-					"Image ImageId: " + createImageResult.getImageId() +
-						" has been created.");
+					"Created image " + createImageResult.getImageId());
 
 				break;
 			}
 		}
 
-		if (!isImageCreated) {
+		if (!created) {
 			System.out.println(
-				"Image ImageId: " + createImageResult.getImageId() +
-					" has not been created.");
+				"Unable to create image " + createImageResult.getImageId());
 
 			deregisterImage(createImageResult.getImageId());
 		}
@@ -171,15 +167,10 @@ public class AMIBuilder extends BaseAMIBuilder {
 		try {
 			final Session.Command sessionCommand = session.exec(command);
 
-			ByteArrayOutputStream resultstream = IOUtils.readFully(
+			ByteArrayOutputStream byteArrayOutputStream = IOUtils.readFully(
 				sessionCommand.getInputStream());
 
-			String result = resultstream.toString();
-
-			if ((result != null) && (result.length() > 0)) {
-				System.out.println("Command result: ");
-				System.out.println(result);
-			}
+			System.out.println("Result: " + byteArrayOutputStream.toString());
 
 			sessionCommand.join(5, TimeUnit.SECONDS);
 		}
@@ -188,7 +179,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		}
 	}
 
-	protected String getKeyFilePath() {
+	protected String getKeyFileName() {
 		StringBuilder sb = new StringBuilder(6);
 
 		sb.append(System.getProperty("user.home"));
@@ -204,13 +195,13 @@ public class AMIBuilder extends BaseAMIBuilder {
 	protected Map<String, String> getProvisioners(Properties properties) {
 		Map<String, String> provisioners = new TreeMap<String, String>();
 
-		Set<String> propertyNames = this.properties.stringPropertyNames();
+		Set<String> names = properties.stringPropertyNames();
 
-		for (String propertyName : propertyNames) {
-			if (propertyName.contains("provisioners")) {
-				String property = properties.getProperty(propertyName);
+		for (String name : names) {
+			if (name.contains("provisioners")) {
+				String value = properties.getProperty(name);
 
-				provisioners.put(propertyName, property);
+				provisioners.put(name, value);
 			}
 		}
 
@@ -252,13 +243,12 @@ public class AMIBuilder extends BaseAMIBuilder {
 		if (reservations.isEmpty()) {
 			return null;
 		}
-		else {
-			Reservation reservation = reservations.get(0);
 
-			List<Instance> instances = reservation.getInstances();
+		Reservation reservation = reservations.get(0);
 
-			return instances.get(0);
-		}
+		List<Instance> instances = reservation.getInstances();
+
+		return instances.get(0);
 	}
 
 	protected boolean isImageCreated(String imageId) {
@@ -296,16 +286,14 @@ public class AMIBuilder extends BaseAMIBuilder {
 	}
 
 	protected boolean isZoneAvailable(String zoneName) {
-		DescribeAvailabilityZonesResult availabilityZonesResult =
+		DescribeAvailabilityZonesResult describeAvailabilityZonesResult =
 			amazonEC2Client.describeAvailabilityZones();
 
 		List<AvailabilityZone> availabilityZones =
-			availabilityZonesResult.getAvailabilityZones();
+			describeAvailabilityZonesResult.getAvailabilityZones();
 
 		for (AvailabilityZone availabilityZone : availabilityZones) {
-			String availabilityZoneName = availabilityZone.getZoneName();
-
-			if (availabilityZoneName.equals(zoneName)) {
+			if (zoneName.equals(availabilityZone.getZoneName())) {
 				return true;
 			}
 		}
@@ -347,7 +335,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 
 		PKCS8KeyFile keyFile = new PKCS8KeyFile();
 
-		keyFile.init(new File(getKeyFilePath()));
+		keyFile.init(new File(getKeyFileName()));
 
 		sshClient.authPublickey(
 				properties.getProperty("ssh.username"), keyFile);
