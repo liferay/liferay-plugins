@@ -169,12 +169,12 @@ public class AMIBuilder extends BaseAMIBuilder {
 
 		scriptFileName = "/tmp/" + scriptFile.getName();
 
-		System.out.println("Executing remote script " + scriptFileName);
+		System.out.println("Executing script " + scriptFileName);
 
 		executeSessionCommand(
 			sshClient, "chmod +x " + scriptFileName + "; " + scriptFileName);
 
-		System.out.println("Deleting remote script " + scriptFileName);
+		System.out.println("Deleting script " + scriptFileName);
 
 		executeSessionCommand(sshClient, "rm " + scriptFileName);
 	}
