@@ -35,19 +35,14 @@ import com.amazonaws.services.ec2.model.RunInstancesResult;
 import com.amazonaws.services.ec2.model.TerminateInstancesRequest;
 import com.amazonaws.services.ec2.model.TerminateInstancesResult;
 import com.amazonaws.util.json.JSONObject;
+
 import jargs.gnu.CmdLineParser;
-import net.schmizz.sshj.SSHClient;
-import net.schmizz.sshj.common.IOUtils;
-import net.schmizz.sshj.connection.channel.direct.Session;
-import net.schmizz.sshj.sftp.SFTPClient;
-import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
-import net.schmizz.sshj.userauth.keyprovider.PKCS8KeyFile;
-import net.schmizz.sshj.xfer.FileSystemFile;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+
 import java.security.Security;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -56,27 +51,37 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
+import net.schmizz.sshj.SSHClient;
+import net.schmizz.sshj.common.IOUtils;
+import net.schmizz.sshj.connection.channel.direct.Session;
+import net.schmizz.sshj.sftp.SFTPClient;
+import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
+import net.schmizz.sshj.userauth.keyprovider.PKCS8KeyFile;
+import net.schmizz.sshj.xfer.FileSystemFile;
+
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
 /**
  * @author Ivica Cardic
  */
 public class AMIBuilder extends BaseAMIBuilder {
 
 	public static void main(String[] args) throws Exception {
-		CmdLineParser parser = new CmdLineParser();
+		CmdLineParser cmdLineParser = new CmdLineParser();
 
-		CmdLineParser.Option buildDirOption = parser.addStringOption(
+		CmdLineParser.Option baseDirOption = cmdLineParser.addStringOption(
 			"base.dir");
-		CmdLineParser.Option buildFilePathOption = parser.addStringOption(
-			"build.file.path");
-		CmdLineParser.Option imageNameOption = parser.addStringOption(
+		CmdLineParser.Option propertiesFileNameOption =
+			cmdLineParser.addStringOption("properties.file.name");
+		CmdLineParser.Option imageNameOption = cmdLineParser.addStringOption(
 			"image.name");
 
-		parser.parse(args);
+		cmdLineParser.parse(args);
 
 		AMIBuilder amiBuilder = new AMIBuilder(
-			(String)parser.getOptionValue(buildDirOption),
-			(String)parser.getOptionValue(buildFilePathOption),
-			(String)parser.getOptionValue(imageNameOption));
+			(String)cmdLineParser.getOptionValue(baseDirOption),
+			(String)cmdLineParser.getOptionValue(propertiesFileNameOption),
+			(String)cmdLineParser.getOptionValue(imageNameOption));
 
 		try {
 			amiBuilder._start();
@@ -91,12 +96,13 @@ public class AMIBuilder extends BaseAMIBuilder {
 		}
 	}
 
-	public AMIBuilder(String baseDir, String buildFilePath, String imageName)
+	public AMIBuilder(
+			String baseDirName, String propertiesFileName, String imageName)
 		throws Exception {
 
-		super(buildFilePath);
+		super(propertiesFileName);
 
-		_baseDir = baseDir;
+		_baseDirName = baseDirName;
 		_imageName = imageName;
 
 		Security.addProvider(new BouncyCastleProvider());
@@ -363,7 +369,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 					}
 					else {
 						shellScriptFilePath =
-							_baseDir + File.separator + provisioner;
+							_baseDirName + File.separator + provisioner;
 					}
 
 					_runShellScriptProvisioner(shellScriptFilePath, sshClient);
@@ -380,7 +386,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 					}
 					else {
 						filePath =
-							_baseDir + File.separator +
+							_baseDirName + File.separator +
 								jsonObject.getString("src");
 					}
 
@@ -511,7 +517,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 			if (instance != null) {
 				_publicIpAddress = instance.getPublicIpAddress();
 
-				isInstanceRunning =true;
+				isInstanceRunning = true;
 
 				StringBuilder sb = new StringBuilder(8);
 
@@ -565,7 +571,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		}
 	}
 
-	private String _baseDir;
+	private String _baseDirName;
 	private String _imageName;
 	private String _instanceId;
 	private Map<String, String> _provisioners;
