@@ -86,8 +86,11 @@ public class AMIBuilder extends BaseAMIBuilder {
 
 		try {
 			amiBuilder.start();
-			amiBuilder.runProvisioners();
+
+			amiBuilder.provision();
+
 			amiBuilder.createImage();
+
 			amiBuilder.destroy();
 		}
 		catch (Exception e) {
@@ -224,11 +227,13 @@ public class AMIBuilder extends BaseAMIBuilder {
 		Set<String> names = properties.stringPropertyNames();
 
 		for (String name : names) {
-			if (name.contains("provisioners")) {
-				String value = properties.getProperty(name);
-
-				provisioners.put(name, value);
+			if (!name.contains("provisioners")) {
+				continue;
 			}
+
+			String value = properties.getProperty(name);
+
+			provisioners.put(name, value);
 		}
 
 		return provisioners;
@@ -327,7 +332,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		return false;
 	}
 
-	protected void runProvisioners() throws Exception {
+	protected void provision() throws Exception {
 		sleep(45);
 
 		SSHClient sshClient = new SSHClient();
@@ -402,13 +407,13 @@ public class AMIBuilder extends BaseAMIBuilder {
 		String availabilityZone = properties.getProperty("availability.zone");
 
 		if (!isZoneAvailable(availabilityZone)) {
-			throw new RuntimeException(
-				"Zone " + availabilityZone + " is not available.");
+			throw new RuntimeException("Unavailable zone " + availabilityZone);
 		}
 
 		String imageId = getImageId(properties.getProperty("image.name"));
 
 		runInstancesRequest.setImageId(imageId);
+
 		runInstancesRequest.setInstanceType(
 			properties.getProperty("instance.type"));
 		runInstancesRequest.setKeyName(properties.getProperty("key.name"));
@@ -434,77 +439,72 @@ public class AMIBuilder extends BaseAMIBuilder {
 
 		List<Instance> instances = reservation.getInstances();
 
-		if (!instances.isEmpty()) {
-			Instance instance = instances.get(0);
-
-			_instanceId = instance.getInstanceId();
-			_publicIpAddress = instance.getPublicIpAddress();
-
-			StringBuilder sb = new StringBuilder(12);
-
-			sb.append("Instance ");
-			sb.append(" ImageId: ");
-			sb.append(instance.getImageId());
-			sb.append(" InstanceId: ");
-			sb.append(_instanceId);
-			sb.append(" InstanceType: ");
-			sb.append(instance.getInstanceType());
-			sb.append(" KeyName: ");
-			sb.append(instance.getKeyName());
-			sb.append(" State: ");
-
-			InstanceState instanceState = instance.getState();
-
-			sb.append(instanceState.getName());
-			sb.append(" is starting.");
-
-			System.out.println(sb.toString());
-		}
-		else {
-			throw new RuntimeException("Instance creation has failed.");
+		if (instances.isEmpty()) {
+			throw new RuntimeException("Unable to create instances");
 		}
 
-		String reservationId = reservation.getReservationId();
+		Instance instance = instances.get(0);
 
-		System.out.println(
-			"Reservation Id of the executed transaction: " + reservationId);
+		_instanceId = instance.getInstanceId();
+		_publicIpAddress = instance.getPublicIpAddress();
 
-		boolean isInstanceRunning = false;
+		StringBuilder sb = new StringBuilder(13);
+
+		sb.append("{imageId=");
+		sb.append(instance.getImageId());
+		sb.append(", instanceId=");
+		sb.append(_instanceId);
+		sb.append(", instanceType=");
+		sb.append(instance.getInstanceType());
+		sb.append(", keyName=");
+		sb.append(instance.getKeyName());
+		sb.append(", reservationId=");
+		sb.append(reservation.getReservationId());
+		sb.append(", state=");
+
+		InstanceState instanceState = instance.getState();
+
+		sb.append(instanceState.getName());
+
+		sb.append("}");
+		
+		System.out.println("Starting instance " + sb.toString());
+
+		boolean running = false;
 
 		for (int i = 0; i < 6; i++) {
 			sleep(30);
 
-			Instance instance = getRunningInstance(_instanceId);
+			instance = getRunningInstance(_instanceId);
 
 			if (instance != null) {
 				_publicIpAddress = instance.getPublicIpAddress();
 
-				isInstanceRunning = true;
+				running = true;
 
-				StringBuilder sb = new StringBuilder(8);
+				sb = new StringBuilder(7);
 
-				sb.append("Instance InstanceId: ");
+				sb.append("{instanceId=");
 				sb.append(_instanceId);
-				sb.append(" Public IP ");
-				sb.append("address: ");
+				sb.append(", publicIpAddress=");
 				sb.append(_publicIpAddress);
-				sb.append(" State: ");
+				sb.append(", stat=");
 
-				InstanceState instanceState = instance.getState();
+				instanceState = instance.getState();
 
 				sb.append(instanceState.getName());
-				sb.append(" has been started.");
 
-				System.out.println(sb.toString());
+				sb.append("}");
+
+				System.out.println("Started instance " + sb.toString());
 
 				break;
 			}
 		}
 
-		if (!isInstanceRunning) {
+		if (!running) {
 			throw new RuntimeException(
-				"Instance InstanceId: " + _instanceId +
-					" has failed to start.");
+				"Unable to start instance " + _instanceId);
 		}
 	}
 
