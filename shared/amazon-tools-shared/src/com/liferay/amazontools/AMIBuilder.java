@@ -160,8 +160,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		amazonEC2Client.shutdown();
 	}
 
-	protected void executeRemoteScript(
-			SSHClient sshClient, String scriptFileName)
+	protected void executeScript(SSHClient sshClient, String scriptFileName)
 		throws Exception {
 
 		uploadFile(sshClient, scriptFileName, "/tmp");
@@ -369,7 +368,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 							_baseDirName + File.separator + provisioner;
 					}
 
-					executeRemoteScript(sshClient, shellScriptFileName);
+					executeScript(sshClient, shellScriptFileName);
 				}
 				else {
 					JSONObject jsonObject = new JSONObject(provisioner);
