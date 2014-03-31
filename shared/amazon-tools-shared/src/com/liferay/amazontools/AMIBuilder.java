@@ -56,6 +56,7 @@ import net.schmizz.sshj.common.IOUtils;
 import net.schmizz.sshj.connection.channel.direct.Session;
 import net.schmizz.sshj.sftp.SFTPClient;
 import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
+import net.schmizz.sshj.userauth.keyprovider.FileKeyProvider;
 import net.schmizz.sshj.userauth.keyprovider.PKCS8KeyFile;
 import net.schmizz.sshj.xfer.FileSystemFile;
 
@@ -161,6 +162,8 @@ public class AMIBuilder extends BaseAMIBuilder {
 
 	protected void executeSessionCommand(SSHClient sshClient, String command)
 		throws Exception {
+		
+		System.out.println("Executing session command: " + command);
 
 		Session session = sshClient.startSession();
 
@@ -170,7 +173,11 @@ public class AMIBuilder extends BaseAMIBuilder {
 			ByteArrayOutputStream byteArrayOutputStream = IOUtils.readFully(
 				sessionCommand.getInputStream());
 
-			System.out.println("Result: " + byteArrayOutputStream.toString());
+			String result = byteArrayOutputStream.toString();
+			
+			if ((result != null) && (result.length() > 0)) {
+				System.out.println("Result: " + result);
+			}
 
 			sessionCommand.join(5, TimeUnit.SECONDS);
 		}
@@ -307,22 +314,20 @@ public class AMIBuilder extends BaseAMIBuilder {
 		SSHClient sshClient = new SSHClient();
 
 		sshClient.addHostKeyVerifier(new PromiscuousVerifier());
-
 		sshClient.setTimeout(
 			Integer.parseInt(properties.getProperty("ssh.timeout")) * 1000);
-
 		sshClient.useCompression();
 
 		System.out.println("Connecting via SSH to " + _publicIpAddress);
 
 		sshClient.connect(_publicIpAddress);
 
-		PKCS8KeyFile keyFile = new PKCS8KeyFile();
+		FileKeyProvider fileKeyProvider = new PKCS8KeyFile();
 
-		keyFile.init(new File(getKeyFileName()));
+		fileKeyProvider.init(new File(getKeyFileName()));
 
 		sshClient.authPublickey(
-				properties.getProperty("ssh.username"), keyFile);
+			properties.getProperty("ssh.username"), fileKeyProvider);
 
 		try {
 			Set<String> keys = _provisioners.keySet();
@@ -331,39 +336,39 @@ public class AMIBuilder extends BaseAMIBuilder {
 				String provisioner = _provisioners.get(key);
 
 				if (key.contains("shell.inline")) {
-					runShellInlineProvisioner(sshClient, provisioner);
+					executeSessionCommand(sshClient, provisioner);
 				}
 				else if (key.contains("shell.script")) {
-					String shellScriptFilePath = null;
+					String shellScriptFileName = null;
 
 					if (provisioner.startsWith(File.separator)) {
-						shellScriptFilePath = provisioner;
+						shellScriptFileName = provisioner;
 					}
 					else {
-						shellScriptFilePath =
+						shellScriptFileName =
 							_baseDirName + File.separator + provisioner;
 					}
 
-					runShellScriptProvisioner(sshClient, shellScriptFilePath);
+					executeRemoteScript(sshClient, shellScriptFileName);
 				}
 				else {
 					JSONObject jsonObject = new JSONObject(provisioner);
 
-					String filePath = null;
+					String fileName = null;
 
 					String src = jsonObject.getString("src");
 
 					if (src.startsWith(File.separator)) {
-						filePath = src;
+						fileName = src;
 					}
 					else {
-						filePath =
+						fileName =
 							_baseDirName + File.separator +
 								jsonObject.getString("src");
 					}
 
 					uploadFile(
-						sshClient, filePath, jsonObject.getString("dest"));
+						sshClient, fileName, jsonObject.getString("dest"));
 				}
 			}
 		}
@@ -372,36 +377,24 @@ public class AMIBuilder extends BaseAMIBuilder {
 		}
 	}
 
-	protected void runShellInlineProvisioner(
-			SSHClient sshClient, String command)
+	protected void executeRemoteScript(
+			SSHClient sshClient, String scriptFileName)
 		throws Exception {
 
-		System.out.println("Executing shell inline: " + command);
+		uploadFile(sshClient, scriptFileName, "/tmp");
 
-		executeSessionCommand(sshClient, command);
-	}
+		File scriptFile = new File(scriptFileName);
+		
+		scriptFileName = "/tmp/" + scriptFile.getName();
 
-	protected void runShellScriptProvisioner(
-			SSHClient sshClient, String shellScriptFilePath)
-		throws Exception {
+		System.out.println("Executing remote script " + scriptFileName);
 
-		uploadFile(sshClient, shellScriptFilePath, "/tmp");
+		executeSessionCommand(
+			sshClient, "chmod +x " + scriptFileName + "; " + scriptFileName);
 
-		System.out.println("Executing shell script: " + shellScriptFilePath);
+		System.out.println("Deleting remote script " + scriptFileName);
 
-		File shellScriptFile = new File(shellScriptFilePath);
-
-		String uploadFilePath = "/tmp/" + shellScriptFile.getName();
-
-		String command = "chmod +x " + uploadFilePath + "; " + uploadFilePath;
-
-		executeSessionCommand(sshClient, command);
-
-		command = "rm " + uploadFilePath;
-
-		System.out.println("Deleting shell script: " + shellScriptFilePath);
-
-		executeSessionCommand(sshClient, command);
+		executeSessionCommand(sshClient, "rm " + scriptFileName);
 	}
 
 	protected void start() {
