@@ -14,7 +14,11 @@
 
 package com.liferay.sync.engine.documentlibrary.handler;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.liferay.sync.engine.documentlibrary.event.Event;
+import com.liferay.sync.engine.documentlibrary.model.SyncContext;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.service.SyncAccountService;
 
@@ -33,10 +37,18 @@ public class GetSyncContextHandler extends BaseJSONHandler {
 
 	@Override
 	protected void processResponse(String response) throws Exception {
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		SyncContext syncContext = objectMapper.readValue(
+			response, new TypeReference<SyncContext>() {});
+
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			getSyncAccountId());
 
+		syncAccount.setSocialOfficeInstalled(
+			syncContext.isSocialOfficeInstalled());
 		syncAccount.setState(SyncAccount.STATE_CONNECTED);
+		syncAccount.setUserId(syncContext.getUserId());
 
 		SyncAccountService.update(syncAccount);
 	}
