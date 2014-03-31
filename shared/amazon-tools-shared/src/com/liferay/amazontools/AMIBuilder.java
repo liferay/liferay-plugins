@@ -159,7 +159,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 		amazonEC2Client.shutdown();
 	}
 
-	protected void executeSessionCommand(String command, SSHClient sshClient)
+	protected void executeSessionCommand(SSHClient sshClient, String command)
 		throws Exception {
 
 		Session session = sshClient.startSession();
@@ -304,7 +304,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 	protected void runProvisioners() throws Exception {
 		sleep(45);
 
-		final SSHClient sshClient = new SSHClient();
+		SSHClient sshClient = new SSHClient();
 
 		sshClient.addHostKeyVerifier(new PromiscuousVerifier());
 
@@ -331,7 +331,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 				String provisioner = _provisioners.get(key);
 
 				if (key.contains("shell.inline")) {
-					runShellInlineProvisioner(provisioner, sshClient);
+					runShellInlineProvisioner(sshClient, provisioner);
 				}
 				else if (key.contains("shell.script")) {
 					String shellScriptFilePath = null;
@@ -344,7 +344,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 							_baseDirName + File.separator + provisioner;
 					}
 
-					runShellScriptProvisioner(shellScriptFilePath, sshClient);
+					runShellScriptProvisioner(sshClient, shellScriptFilePath);
 				}
 				else {
 					JSONObject jsonObject = new JSONObject(provisioner);
@@ -373,16 +373,16 @@ public class AMIBuilder extends BaseAMIBuilder {
 	}
 
 	protected void runShellInlineProvisioner(
-			String command, SSHClient sshClient)
+			SSHClient sshClient, String command)
 		throws Exception {
 
 		System.out.println("Executing shell inline: " + command);
 
-		executeSessionCommand(command, sshClient);
+		executeSessionCommand(sshClient, command);
 	}
 
 	protected void runShellScriptProvisioner(
-			String shellScriptFilePath, SSHClient sshClient)
+			SSHClient sshClient, String shellScriptFilePath)
 		throws Exception {
 
 		String tmpDir = "/tmp";
@@ -398,13 +398,13 @@ public class AMIBuilder extends BaseAMIBuilder {
 		String command = "chmod +x {FILE_PATH}; {FILE_PATH}".replace(
 			"{FILE_PATH}", uploadFilePath);
 
-		executeSessionCommand(command, sshClient);
+		executeSessionCommand(sshClient, command);
 
 		command = "rm " + uploadFilePath;
 
 		System.out.println("Deleting shell script: " + shellScriptFilePath);
 
-		executeSessionCommand(command, sshClient);
+		executeSessionCommand(sshClient, command);
 	}
 
 	protected void start() {
@@ -534,13 +534,10 @@ public class AMIBuilder extends BaseAMIBuilder {
 			terminateInstancesResult.getTerminatingInstances();
 
 		if (!instanceStateChanges.isEmpty()) {
-			System.out.println(
-				"Instance InstanceId: " + instanceId + " has been terminated.");
+			System.out.println("Terminated instance " + instanceId);
 		}
 		else {
-			System.out.println(
-				"Instance InstanceId: " + instanceId +
-					" has not been terminated.");
+			System.out.println("Unable to terminate instance " + instanceId);
 		}
 	}
 
