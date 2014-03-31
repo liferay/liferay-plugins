@@ -385,18 +385,15 @@ public class AMIBuilder extends BaseAMIBuilder {
 			SSHClient sshClient, String shellScriptFilePath)
 		throws Exception {
 
-		String tmpDir = "/tmp";
-
-		uploadFile(sshClient, shellScriptFilePath, tmpDir);
+		uploadFile(sshClient, shellScriptFilePath, "/tmp");
 
 		System.out.println("Executing shell script: " + shellScriptFilePath);
 
 		File shellScriptFile = new File(shellScriptFilePath);
 
-		String uploadFilePath = tmpDir + "/" + shellScriptFile.getName();
+		String uploadFilePath = "/tmp/" + shellScriptFile.getName();
 
-		String command = "chmod +x {FILE_PATH}; {FILE_PATH}".replace(
-			"{FILE_PATH}", uploadFilePath);
+		String command = "chmod +x " + uploadFilePath + "; " + uploadFilePath;
 
 		executeSessionCommand(sshClient, command);
 
