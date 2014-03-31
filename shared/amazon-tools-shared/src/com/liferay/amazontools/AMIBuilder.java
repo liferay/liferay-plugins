@@ -160,9 +160,29 @@ public class AMIBuilder extends BaseAMIBuilder {
 		amazonEC2Client.shutdown();
 	}
 
+	protected void executeRemoteScript(
+			SSHClient sshClient, String scriptFileName)
+		throws Exception {
+
+		uploadFile(sshClient, scriptFileName, "/tmp");
+
+		File scriptFile = new File(scriptFileName);
+
+		scriptFileName = "/tmp/" + scriptFile.getName();
+
+		System.out.println("Executing remote script " + scriptFileName);
+
+		executeSessionCommand(
+			sshClient, "chmod +x " + scriptFileName + "; " + scriptFileName);
+
+		System.out.println("Deleting remote script " + scriptFileName);
+
+		executeSessionCommand(sshClient, "rm " + scriptFileName);
+	}
+
 	protected void executeSessionCommand(SSHClient sshClient, String command)
 		throws Exception {
-		
+
 		System.out.println("Executing session command: " + command);
 
 		Session session = sshClient.startSession();
@@ -174,7 +194,7 @@ public class AMIBuilder extends BaseAMIBuilder {
 				sessionCommand.getInputStream());
 
 			String result = byteArrayOutputStream.toString();
-			
+
 			if ((result != null) && (result.length() > 0)) {
 				System.out.println("Result: " + result);
 			}
@@ -375,26 +395,6 @@ public class AMIBuilder extends BaseAMIBuilder {
 		finally {
 			sshClient.disconnect();
 		}
-	}
-
-	protected void executeRemoteScript(
-			SSHClient sshClient, String scriptFileName)
-		throws Exception {
-
-		uploadFile(sshClient, scriptFileName, "/tmp");
-
-		File scriptFile = new File(scriptFileName);
-		
-		scriptFileName = "/tmp/" + scriptFile.getName();
-
-		System.out.println("Executing remote script " + scriptFileName);
-
-		executeSessionCommand(
-			sshClient, "chmod +x " + scriptFileName + "; " + scriptFileName);
-
-		System.out.println("Deleting remote script " + scriptFileName);
-
-		executeSessionCommand(sshClient, "rm " + scriptFileName);
 	}
 
 	protected void start() {
