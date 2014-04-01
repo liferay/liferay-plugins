@@ -1,0 +1,30 @@
+<div id="myGallery">
+	<a href="[$FILE=clink.jpg$]" title="Century Link Field">
+		<img class="picture" src="[$FILE=clink(Custom).jpg$]" />
+	</a>
+	
+	<a href="[$FILE=narrows.jpg$]" title="Narrows Bridge">
+		<img class="picture" src="[$FILE=narrows(Custom).jpg$]" />
+	</a>
+
+	<a href="[$FILE=fremont_troll.jpg$]" title="Fremont Troll">
+		<img class="picture" src="[$FILE=fremont_troll(Custom).jpg$]" />
+	</a>
+
+	<a href="[$FILE=spaceneedle.jpg$]" title="Space Needle Dare Devil">
+		<img class="picture" src="[$FILE=spaceneedle(Custom).jpg$]" />
+	</a>
+</div>
+
+<script>
+	AUI().use(
+		'aui-image-viewer-base',
+		function(A) {
+			new A.ImageViewer(
+				{
+				links: '#myGallery a'
+				}
+			).render();
+		}
+	);
+</script>
