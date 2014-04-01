@@ -628,7 +628,7 @@ public class SitesPortlet extends MVCPortlet {
 
 		for (UserGroup userGroup : userGroups) {
 			if (UserGroupLocalServiceUtil.hasGroupUserGroup(
-				group.getGroupId(), userGroup.getUserGroupId())) {
+					group.getGroupId(), userGroup.getUserGroupId())) {
 
 				return true;
 			}
