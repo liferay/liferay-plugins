@@ -23,9 +23,9 @@
 	%>
 
 	<c:if test="<%= Validator.isNotNull(calendarBooking.getDescription(locale)) %>">
-		<p>
+		<div>
 			<%= calendarBooking.getDescription(locale) %>
-		</p>
+		</div>
 	</c:if>
 
 	<p>
