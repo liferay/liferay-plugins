@@ -151,10 +151,10 @@ public class CalendarStagedModelDataHandler
 
 		String calendarName = calendar.getName(LocaleUtil.getDefault());
 
-		Group sourceGroup = GroupLocalServiceUtil.getGroup(
+		Group sourceGroup = GroupLocalServiceUtil.fetchGroup(
 			portletDataContext.getSourceGroupId());
 
-		if (!calendarName.equals(sourceGroup.getName())) {
+		if (sourceGroup == null || !calendarName.equals(sourceGroup.getName())) {
 			return calendar.getNameMap();
 		}
 
