@@ -15,6 +15,7 @@
 package com.liferay.opensocial.messaging;
 
 import com.liferay.opensocial.model.Gadget;
+import com.liferay.opensocial.service.ClpSerializer;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 import com.liferay.opensocial.shindig.servlet.GuiceServletContextListener;
 import com.liferay.opensocial.shindig.util.ShindigUtil;
@@ -94,7 +95,8 @@ public class OpenSocialHotDeployMessageListener
 
 		try {
 			currentThread.setContextClassLoader(
-				PortletClassLoaderUtil.getClassLoader("opensocial-portlet"));
+				PortletClassLoaderUtil.getClassLoader(
+					ClpSerializer.getServletContextName()));
 
 			_guiceServletContextListener.contextInitialized(
 				GuiceServletContextListener.
