@@ -292,6 +292,22 @@ Error-Prone was automatically installed. Please rerun your task.
 							</then>
 						</elseif>
 						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="test-integration" />
+							<then>
+								<test-integration
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="test-unit" />
+							<then>
+								<test-unit
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
 							<equals arg1="@{macrodef.name}" arg2="war" />
 							<then>
 								<war-macro
