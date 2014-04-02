@@ -237,6 +237,17 @@
 		<ant dir="webs" target="setup-eclipse" inheritAll="false" />
 	</target>
 
+	<target name="test">
+		<for list="hooks,portlets,shared,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="test"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
 	<target name="war">
 		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
 			<sequential>

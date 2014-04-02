@@ -105,6 +105,13 @@
 		<ant dir="${module.name}" target="setup-eclipse" inheritAll="false" />
 	</target>
 
+	<target name="test">
+		<loop-modules
+			loop.modules.cmd="test"
+			loop.modules.dir="."
+		/>
+	</target>
+
 	<target name="war">
 		<loop-modules
 			loop.modules.cmd="war"

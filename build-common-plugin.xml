@@ -426,46 +426,28 @@
 	</target>
 
 	<target name="compile-test">
-		<call-macrodef-or-target
-			macrodef.name="compile"
+		<compile-test
 			module.dir="."
 		/>
-
-		<antcall target="compile-test-integration" inheritall="false" />
-		<antcall target="compile-test-unit" inheritall="false" />
 	</target>
 
 	<target name="compile-test-cmd">
-		<if>
-			<available file="test/${test.type}" type="dir" />
-			<then>
-				<mkdir dir="test-classes/${test.type}" />
-				<mkdir dir="test-results/${test.type}" />
-
-				<copy todir="test-classes/${test.type}">
-					<fileset dir="test" includes="*.properties" />
-					<fileset dir="test/${test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
-				</copy>
-
-				<compile-java
-					javac.classpathref="test.classpath"
-					javac.destdir="test-classes/${test.type}"
-					javac.srcdir="test/${test.type}"
-				/>
-			</then>
-		</if>
+		<compile-test-cmd
+			module.dir="."
+			test.type="${test.type}"
+		/>
 	</target>
 
 	<target name="compile-test-integration">
-		<ant target="compile-test-cmd">
-			<property name="test.type" value="integration" />
-		</ant>
+		<compile-test-cmd
+			module.dir="."
+		/>
 	</target>
 
 	<target name="compile-test-unit">
-		<ant target="compile-test-cmd">
-			<property name="test.type" value="unit" />
-		</ant>
+		<compile-test-cmd
+			module.dir="."
+		/>
 	</target>
 
 	<target name="deploy">
@@ -645,119 +627,52 @@
 	</target>
 
 	<target name="test">
-		<delete dir="test-classes" />
-		<delete dir="test-results" />
-
-		<call-macrodef-or-target
-			macrodef.name="compile"
+		<test
 			module.dir="."
 		/>
-
-		<antcall target="compile-test" />
-
-		<antcall target="test-integration" inheritrefs="true" />
-		<antcall target="test-unit" inheritrefs="true" />
 	</target>
 
-	<target name="test-class" depends="compile,compile-test">
-		<if>
-			<available file="test/integration" type="dir" />
-			<then>
-				<resourcecount property="test.integration.count">
-					<fileset dir="test-classes/integration" includes="**/${test.class}.class" />
-				</resourcecount>
-			</then>
-		</if>
-
-		<if>
-			<available file="test/unit" type="dir" />
-			<then>
-				<resourcecount property="test.unit.count">
-					<fileset dir="test-classes/unit" includes="**/${test.class}.class" />
-				</resourcecount>
-			</then>
-		</if>
-
-		<if>
-			<equals arg1="${test.integration.count}" arg2="1" />
-			<then>
-				<var name="test.type" value="integration" />
-			</then>
-			<elseif>
-				<equals arg1="${test.unit.count}" arg2="1" />
-				<then>
-					<var name="test.type" value="unit" />
-				</then>
-			</elseif>
-			<else>
-				<if>
-					<not>
-						<isset property="test.class" />
-					</not>
-					<then>
-						<fail>Use "ant test-class -Dtest.class=StringUtilTest".</fail>
-					</then>
-					<elseif>
-						<not>
-							<isset property="test.type" />
-						</not>
-						<then>
-							<fail>Test class ${test.class} cannot be found.</fail>
-						</then>
-					</elseif>
-				</if>
-			</else>
-		</if>
-
-		<ant target="test-cmd">
-			<property name="junit.forkmode" value="once" />
-			<property name="test.type" value="${test.type}" />
-		</ant>
+	<target name="test-class">
+		<test-class
+			module.dir="."
+			test.class="${test.class}"
+		/>
 	</target>
 
 	<target name="test-cmd">
-		<if>
-			<available file="test/${test.type}" type="dir" />
-			<then>
-				<junit dir="${sdk.dir}" fork="on" forkmode="${junit.forkmode}" outputtoformatters="false" printsummary="on" showoutput="true">
-					<sysproperty key="net.sourceforge.cobertura.datafile" file="test-coverage/cobertura.ser" />
-					<jvmarg line="${junit.debug.jpda}" />
-					<jvmarg value="-Xmx${junit.java.mx}" />
-					<jvmarg value="-XX:MaxPermSize=${junit.java.maxpermsize}" />
-					<jvmarg value="-Dexternal-properties=${test.properties}" />
-					<jvmarg value="-Dfile.encoding=UTF-8" />
-					<jvmarg value="-Djava.net.preferIPv4Stack=true" />
-					<jvmarg value="-Duser.timezone=GMT" />
-					<classpath location="test-coverage" />
-					<classpath refid="test.classpath" />
-					<formatter type="brief" usefile="false" />
-					<formatter type="xml" />
-					<batchtest todir="test-results/${test.type}">
-						<fileset dir="test-classes/${test.type}" includes="**/${test.class}.class">
-							<filename regex="${junit.test.excludes}" negate="true" />
-						</fileset>
-					</batchtest>
-				</junit>
-			</then>
-		</if>
+		<test-cmd
+			junit.debug.jpda="${junit.debug.jpda}"
+			junit.forkmode="${junit.forkmode}"
+			junit.java.maxpermsize="${junit.java.maxpermsize}"
+			junit.java.mx="${junit.java.mx}"
+			junit.test.excludes="${junit.test.excludes}"
+			module.dir="."
+			test.class="${test.class}"
+			test.properties="${test.properties}"
+			test.type="${test.type}"
+		/>
 	</target>
 
-	<target name="test-integration" depends="compile,compile-test-integration">
-		<property name="test.class" value="*Test" />
-
-		<ant target="test-cmd" inheritrefs="true">
-			<property name="junit.forkmode" value="once" />
-			<property name="test.type" value="integration" />
-		</ant>
+	<target name="test-integration">
+		<test-integration
+			junit.debug.jpda="${junit.debug.jpda}"
+			junit.java.maxpermsize="${junit.java.maxpermsize}"
+			junit.java.mx="${junit.java.mx}"
+			junit.test.excludes="${junit.test.excludes}"
+			module.dir="."
+			test.properties="${test.properties}"
+		/>
 	</target>
 
-	<target name="test-unit" depends="compile,compile-test-unit">
-		<property name="test.class" value="*Test" />
-
-		<ant target="test-cmd" inheritrefs="true">
-			<property name="junit.forkmode" value="perTest" />
-			<property name="test.type" value="unit" />
-		</ant>
+	<target name="test-unit">
+		<test-unit
+			junit.debug.jpda="${junit.debug.jpda}"
+			junit.java.maxpermsize="${junit.java.maxpermsize}"
+			junit.java.mx="${junit.java.mx}"
+			junit.test.excludes="${junit.test.excludes}"
+			module.dir="."
+			test.properties="${test.properties}"
+		/>
 	</target>
 
 	<target name="war">

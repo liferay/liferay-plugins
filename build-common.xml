@@ -62,14 +62,6 @@
 
 	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
 
-	<path id="test.classpath">
-		<path refid="plugin.classpath" />
-		<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="*.jar" />
-		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
-		<pathelement location="test-classes/integration" />
-		<pathelement location="test-classes/unit" />
-	</path>
-
 	<condition property="correct.ant.version">
 		<antversion atleast="1.8.0" />
 	</condition>
@@ -287,6 +279,14 @@ Error-Prone was automatically installed. Please rerun your task.
 							<equals arg1="@{macrodef.name}" arg2="merge-unzip" />
 							<then>
 								<merge-unzip
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
+							<equals arg1="@{macrodef.name}" arg2="test" />
+							<then>
+								<test-macro
 									module.dir="@{module.dir}"
 								/>
 							</then>
@@ -791,6 +791,78 @@ Please find a solution that does not require portal-impl.jar.
 			<call-macrodef-or-target
 				macrodef.name="merge"
 				module.dir="@{module.dir}"
+			/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="compile-test">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<compile
+				module.dir="@{module.dir}"
+			/>
+
+			<compile-test-integration
+				module.dir="@{module.dir}"
+			/>
+			<compile-test-unit
+				module.dir="@{module.dir}"
+			/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="compile-test-cmd">
+		<attribute name="module.dir" />
+		<attribute name="test.type" />
+
+		<sequential>
+			<if>
+				<available file="@{module.dir}/test/@{test.type}" type="dir" />
+				<then>
+					<mkdir dir="@{module.dir}/test-classes/@{test.type}" />
+					<mkdir dir="@{module.dir}/test-results/@{test.type}" />
+
+					<copy todir="@{module.dir}/test-classes/${test.type}">
+						<fileset dir="@{module.dir}/test" includes="*.properties" />
+						<fileset dir="@{module.dir}/test/@{test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
+					</copy>
+
+					<path id="plugin.test.classpath">
+						<path refid="plugin.classpath" />
+						<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="*.jar" />
+						<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
+						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+					</path>
+
+					<compile-java
+						javac.classpathref="plugin.test.classpath"
+						javac.destdir="@{module.dir}/test-classes/@{test.type}"
+						javac.srcdir="@{module.dir}/test/@{test.type}"
+					/>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="compile-test-integration">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<compile-test-cmd
+				module.dir="@{module.dir}"
+				test.type="integration"
+			/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="compile-test-unit">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<compile-test-cmd
+				module.dir="@{module.dir}"
+				test.type="unit"
 			/>
 		</sequential>
 	</macrodef>
@@ -1734,6 +1806,174 @@ Please find a solution that does not require portal-impl.jar.
 
 			<var name="set-module-properties.build.xml.content" unset="true" />
 			<var name="set-module-properties.plugin.version" unset="true" />
+		</sequential>
+	</macrodef>
+
+	<macrodef name="test">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<delete dir="@{module.dir}/test-classes" />
+			<delete dir="@{module.dir}/test-results" />
+
+			<compile
+				module.dir="@{module.dir}"
+			/>
+
+			<compile-test
+				module.dir="@{module.dir}"
+			/>
+
+			<test-integration
+				module.dir="@{module.dir}"
+			/>
+			<test-unit
+				module.dir="@{module.dir}"
+			/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="test-class">
+		<attribute name="module.dir" />
+		<attribute name="test.class" />
+
+		<sequential>
+			<if>
+				<available file="@{module.dir}/test/integration" type="dir" />
+				<then>
+					<resourcecount property="test.integration.count">
+						<fileset dir="@{module.dir}/test-classes/integration" includes="**/@{test.class}.class" />
+					</resourcecount>
+				</then>
+			</if>
+
+			<if>
+				<available file="@{module.dir}/test/unit" type="dir" />
+				<then>
+					<resourcecount property="test.unit.count">
+						<fileset dir="@{module.dir}/test-classes/unit" includes="**/@{test.class}.class" />
+					</resourcecount>
+				</then>
+			</if>
+
+			<if>
+				<equals arg1="${test.integration.count}" arg2="1" />
+				<then>
+					<var name="test.type" value="integration" />
+				</then>
+				<elseif>
+					<equals arg1="${test.unit.count}" arg2="1" />
+					<then>
+						<var name="test.type" value="unit" />
+					</then>
+				</elseif>
+				<else>
+					<if>
+						<not>
+							<isset property="test.class" />
+						</not>
+						<then>
+							<fail>Use "ant test-class -Dtest.class=StringUtilTest".</fail>
+						</then>
+						<elseif>
+							<not>
+								<isset property="test.type" />
+							</not>
+							<then>
+								<fail>Test class ${test.class} cannot be found.</fail>
+							</then>
+						</elseif>
+					</if>
+				</else>
+			</if>
+
+			<ant target="test-cmd">
+				<property name="junit.forkmode" value="once" />
+				<property name="test.type" value="@{test.type}" />
+			</ant>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="test-cmd">
+		<attribute name="junit.forkmode" />
+		<attribute name="module.dir" />
+		<attribute name="test.class" />
+		<attribute name="test.type" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<path id="plugin.test.classpath">
+				<path refid="plugin.classpath" />
+				<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="*.jar" />
+				<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
+				<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+			</path>
+
+			<if>
+				<available file="@{module.dir}/test/@{test.type}" type="dir" />
+				<then>
+					<junit dir="${sdk.dir}" fork="on" forkmode="@{junit.forkmode}" outputtoformatters="false" printsummary="on" showoutput="true">
+						<sysproperty key="net.sourceforge.cobertura.datafile" file="@{module.dir}/test-coverage/cobertura.ser" />
+						<jvmarg line="${junit.debug.jpda}" />
+						<jvmarg value="-Xmx${junit.java.mx}" />
+						<jvmarg value="-XX:MaxPermSize=${junit.java.maxpermsize}" />
+						<jvmarg value="-Dexternal-properties=${test.properties}" />
+						<jvmarg value="-Dfile.encoding=UTF-8" />
+						<jvmarg value="-Djava.net.preferIPv4Stack=true" />
+						<jvmarg value="-Duser.timezone=GMT" />
+						<classpath location="@{module.dir}/test-coverage" />
+						<classpath refid="plugin.test.classpath" />
+						<formatter type="brief" usefile="false" />
+						<formatter type="xml" />
+						<batchtest todir="@{module.dir}/test-results/@{test.type}">
+							<fileset dir="@{module.dir}/test-classes/@{test.type}" includes="**/@{test.class}.class">
+								<filename regex="${junit.test.excludes}" negate="true" />
+							</fileset>
+						</batchtest>
+					</junit>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="test-integration">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<test-cmd
+				junit.forkmode="once"
+				module.dir="@{module.dir}"
+				test.class="*Test"
+				test.type="integration"
+			/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="test-macro">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<set-module-properties
+				module.dir="@{module.dir}"
+			/>
+
+			<test module.dir="@{module.dir}"/>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="test-unit">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<test-cmd
+				junit.forkmode="perTest"
+				module.dir="@{module.dir}"
+				test.class="*Test"
+				test.type="unit"
+			/>
 		</sequential>
 	</macrodef>
 
