@@ -12,13 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.settings.impl;
+package com.liferay.portal.settings;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.settings.Settings;
-import com.liferay.util.xml.XMLFormatter;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 
@@ -41,6 +41,10 @@ public class PortletPreferencesSettings implements Settings {
 
 		_portletPreferences = portletPreferences;
 		_defaultSettings = defaultSettings;
+	}
+
+	public PortletPreferences getPortletPreferences() {
+		return _portletPreferences;
 	}
 
 	@Override
@@ -135,7 +139,7 @@ public class PortletPreferencesSettings implements Settings {
 			return null;
 		}
 
-		return XMLFormatter.fromCompactSafe(value);
+		return StringUtil.replace(value, "[$NEW_LINE$]", StringPool.NEW_LINE);
 	}
 
 	protected String[] normalizeValues(String[] values) {

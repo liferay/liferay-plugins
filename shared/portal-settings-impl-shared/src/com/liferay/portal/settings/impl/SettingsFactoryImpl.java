@@ -24,6 +24,7 @@ import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.PortalPreferencesLocalServiceUtil;
 import com.liferay.portal.service.PortletPreferencesLocalServiceUtil;
+import com.liferay.portal.settings.PortletPreferencesSettings;
 import com.liferay.portal.settings.Settings;
 import com.liferay.portal.settings.SettingsFactory;
 import com.liferay.portal.util.PortletKeys;

@@ -14,8 +14,6 @@
 
 package com.liferay.portal.settings;
 
-import com.liferay.portal.settings.impl.PortletPreferencesSettings;
-
 import javax.portlet.PortletPreferences;
 
 import org.junit.Assert;
