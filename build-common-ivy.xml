@@ -46,7 +46,7 @@
 							<ivy:resolve
 								file="@{ivy.xml.dir}/ivy.xml"
 								log="download-only"
-								transitive="false"
+								transitive="${ivy.resolve.transitive.dependencies}"
 							/>
 
 							<if>
@@ -98,7 +98,7 @@
 
 		<ivy:resolve
 			log="download-only"
-			transitive="false"
+			transitive="${ivy.resolve.transitive.dependencies}"
 		/>
 
 		<property name="ivy.pom.description" value="${plugin.name}" />
