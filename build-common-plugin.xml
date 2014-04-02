@@ -741,6 +741,8 @@ Please find a solution that does not require portal-impl.jar.
 								</tokenfilter>
 							</filterchain>
 						</copy>
+
+						<var name="language.properties.elements" unset="true" />
 					</then>
 				</if>
 			</then>
