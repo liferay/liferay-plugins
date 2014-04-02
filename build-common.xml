@@ -759,6 +759,8 @@ Please find a solution that does not require portal-impl.jar.
 					<if>
 						<contains string="${liferay-hook.xml.content}" substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;" />
 						<then>
+							<var name="language.properties.elements" unset="true" />
+
 							<pathconvert pathsep="${line.separator}&#x9;" property="language.properties.elements">
 								<fileset dir="@{module.dir}/docroot/WEB-INF/src/content">
 									<include name="Language*.properties" />
