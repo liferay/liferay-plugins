@@ -248,6 +248,28 @@
 		</for>
 	</target>
 
+	<target name="test-integration">
+		<for list="hooks,portlets,shared,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="test-integration"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="test-unit">
+		<for list="hooks,portlets,shared,webs" param="loop.modules.dir">
+			<sequential>
+				<loop-modules
+					loop.modules.cmd="test-unit"
+					loop.modules.dir="@{loop.modules.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
 	<target name="war">
 		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
 			<sequential>
