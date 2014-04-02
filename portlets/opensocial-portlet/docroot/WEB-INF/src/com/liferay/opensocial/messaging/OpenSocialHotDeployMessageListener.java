@@ -94,7 +94,7 @@ public class OpenSocialHotDeployMessageListener
 
 		try {
 			currentThread.setContextClassLoader(
-				PortletClassLoaderUtil.getClassLoader());
+				PortletClassLoaderUtil.getClassLoader("opensocial-portlet"));
 
 			_guiceServletContextListener.contextInitialized(
 				GuiceServletContextListener.
