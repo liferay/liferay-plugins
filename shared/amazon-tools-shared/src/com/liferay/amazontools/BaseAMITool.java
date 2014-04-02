@@ -36,9 +36,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author Ivica Cardic
  */
-public class BaseAMIBuilder {
+public class BaseAMITool {
 
-	public BaseAMIBuilder(String propertiesFileName) throws Exception {
+	public BaseAMITool(String propertiesFileName) throws Exception {
 		properties = getProperties(propertiesFileName);
 
 		amazonEC2Client = getAmazonEC2Client(
