@@ -65,7 +65,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 /**
  * @author Ivica Cardic
  */
-public class AMIBuilder extends BaseAMIBuilder {
+public class AMIBuilder extends BaseAMITool {
 
 	public static void main(String[] args) throws Exception {
 		CmdLineParser cmdLineParser = new CmdLineParser();
