@@ -62,7 +62,7 @@ public static class AssetIndexer extends BaseAlloyIndexer {
 	}
 
 	@Override
-	protected Summary doGetSummary(Document document, Locale locale, String snippet, PortletURL portletURL) {
+	protected Summary doGetSummary(Document document, Locale locale, String snippet, PortletURL portletURL, PortletRequest portletRequest, PortletResponse portletResponse) {
 		String title = document.get(Field.ENTRY_CLASS_PK);
 
 		String content = null;
