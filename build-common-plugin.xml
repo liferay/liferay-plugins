@@ -641,37 +641,22 @@
 
 	<target name="test-cmd">
 		<test-cmd
-			junit.debug.jpda="${junit.debug.jpda}"
 			junit.forkmode="${junit.forkmode}"
-			junit.java.maxpermsize="${junit.java.maxpermsize}"
-			junit.java.mx="${junit.java.mx}"
-			junit.test.excludes="${junit.test.excludes}"
 			module.dir="."
 			test.class="${test.class}"
-			test.properties="${test.properties}"
 			test.type="${test.type}"
 		/>
 	</target>
 
 	<target name="test-integration">
 		<test-integration
-			junit.debug.jpda="${junit.debug.jpda}"
-			junit.java.maxpermsize="${junit.java.maxpermsize}"
-			junit.java.mx="${junit.java.mx}"
-			junit.test.excludes="${junit.test.excludes}"
 			module.dir="."
-			test.properties="${test.properties}"
 		/>
 	</target>
 
 	<target name="test-unit">
 		<test-unit
-			junit.debug.jpda="${junit.debug.jpda}"
-			junit.java.maxpermsize="${junit.java.maxpermsize}"
-			junit.java.mx="${junit.java.mx}"
-			junit.test.excludes="${junit.test.excludes}"
 			module.dir="."
-			test.properties="${test.properties}"
 		/>
 	</target>
 
