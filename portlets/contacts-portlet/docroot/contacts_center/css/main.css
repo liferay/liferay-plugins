@@ -822,5 +822,17 @@ $section-header-bg: #CCE6F7;
 				}
 			}
 		}
+
+		.contacts-container .btn {
+			float: left;
+			font-size: 14px;
+			margin: 0 5px 4px 0;
+			padding: 10px;
+			width: auto;
+
+			i {
+				display: block;
+			}
+		}
 	}
 }
