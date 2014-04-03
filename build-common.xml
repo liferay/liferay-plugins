@@ -1833,17 +1833,6 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<delete dir="@{module.dir}/test-classes" />
-			<delete dir="@{module.dir}/test-results" />
-
-			<compile
-				module.dir="@{module.dir}"
-			/>
-
-			<compile-test
-				module.dir="@{module.dir}"
-			/>
-
 			<test-integration
 				module.dir="@{module.dir}"
 			/>
@@ -1923,6 +1912,18 @@ Please find a solution that does not require portal-impl.jar.
 		<sequential>
 			<set-module-properties
 				module.dir="@{module.dir}"
+			/>
+
+			<delete dir="@{module.dir}/test-classes/@{test.type}" />
+			<delete dir="@{module.dir}/test-results/@{test.type}" />
+
+			<compile
+				module.dir="@{module.dir}"
+			/>
+
+			<compile-test-cmd
+				module.dir="@{module.dir}"
+				test.type="@{test.type}"
 			/>
 
 			<path id="plugin-test-lib.classpath">
