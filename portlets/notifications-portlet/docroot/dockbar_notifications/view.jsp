@@ -30,6 +30,12 @@
 
 		<ul class="dropdown-menu pull-right user-notifications-list"></ul>
 
+		<portlet:renderURL var="unreadURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+			<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
+			<portlet:param name="filter" value="unread" />
+			<portlet:param name="fullView" value="false" />
+		</portlet:renderURL>
+
 		<aui:script use="aui-base,aui-io-plugin-deprecated,liferay-menu-toggle,liferay-poller">
 			var userNotifications = A.one('#<portlet:namespace />userNotifications');
 
@@ -62,19 +68,12 @@
 				);
 			}
 
-			var toggleMenu = new Liferay.MenuToggle(
+			new Liferay.MenuToggle(
 				{
 					after: {
 						openChange: function(event) {
 							if (event.newVal) {
-								<portlet:renderURL var="unreadURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-									<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
-									<portlet:param name="filter" value="unread" />
-									<portlet:param name="fullView" value="false" />
-								</portlet:renderURL>
-
 								userNotificationsList.io.set('uri', '<%= unreadURL %>');
-
 								userNotificationsList.io.start();
 
 								A.io.request('<liferay-portlet:actionURL name="setDelivered" />');
