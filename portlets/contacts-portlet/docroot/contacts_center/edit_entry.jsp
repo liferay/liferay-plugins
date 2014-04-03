@@ -43,7 +43,7 @@ if (entryId > 0) {
 
 	<aui:input label="name" name="fullName" />
 
-	<aui:input name="emailAddress" />
+	<aui:input name="emailAddress" type="email" />
 
 	<aui:input name="comments" />
 
