@@ -136,6 +136,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 		<aui:layout cssClass="contacts-result-container lfr-app-column-view">
 			<aui:column columnWidth="30" cssClass="contacts-list" first="<%= true %>">
+				<div class="toggle-user">
+					<i class="icon-chevron-left"></i>
+				</div>
+
 				<div class="lfr-search-column contacts-search search-bar">
 					<aui:input cssClass="search-input" id="name" label="" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
 
@@ -408,11 +412,26 @@ portletURL.setWindowState(WindowState.NORMAL);
 				);
 			</c:if>
 
+			var contactsCenterNode = A.one('#p_p_id<portlet:namespace />');
+
+			var toggleUser = A.one('.contacts-portlet .toggle-user');
+
+			if (toggleUser) {
+				toggleUser.on(
+				'click',
+					function(event) {
+						contactsCenterNode.toggleClass('show-user', false);
+					}
+				);
+			}
+
 			var contactsResult = A.one('.contacts-portlet .contacts-result');
 
 			contactsResult.delegate(
 				'click',
 				function(event) {
+					contactsCenterNode.toggleClass('show-user', true);
+
 					var contactsContainer = A.one('.contacts-portlet .contacts-container');
 
 					contactsContainer.plug(A.LoadingMask);
@@ -431,9 +450,11 @@ portletURL.setWindowState(WindowState.NORMAL);
 									contactsCenter.showMessage(false);
 								},
 								success: function(event, id, obj) {
-									contactsContainer.loadingmask.hide();
-
 									contactsCenter.renderContent(this.get('responseData'), true);
+
+									window.scrollTo(0,0);
+
+									contactsContainer.loadingmask.hide();
 								}
 							}
 						}
