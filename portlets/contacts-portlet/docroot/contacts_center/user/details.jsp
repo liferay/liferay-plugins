@@ -28,9 +28,9 @@ User selUser = (User)request.getAttribute("user.selUser");
 <h3><liferay-ui:message key="details" /></h3>
 
 <aui:fieldset column="<%= true %>" cssClass="w50">
-	<aui:input name="screenName" />
+	<aui:input autocapitalize="off" autocorrect="off" name="screenName" type="text" />
 
-	<aui:input bean="<%= user %>" model="<%= User.class %>" name="emailAddress">
+	<aui:input bean="<%= user %>" model="<%= User.class %>" name="emailAddress" type="email">
 		<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED) %>">
 			<aui:validator name="required" />
 		</c:if>
