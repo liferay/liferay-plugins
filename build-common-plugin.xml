@@ -640,6 +640,29 @@
 	</target>
 
 	<target name="test-cmd">
+		<if>
+			<not>
+				<isset property="test.class" />
+			</not>
+			<then>
+				<var name="test.class" value="*Test" />
+			</then>
+		</if>
+
+		<if>
+			<or>
+				<not>
+					<isset property="junit.forkmode" />
+				</not>
+				<not>
+					<isset property="test.type" />
+				</not>
+			</or>
+			<then>
+				<fail>Use "ant test-cmd [-Dtest.class=StringUtilTest] -Dtest.type=[unit|integration] -Djunit.forkmode=[once|perTest]".</fail>
+			</then>
+		</if>
+
 		<test-cmd
 			junit.forkmode="${junit.forkmode}"
 			module.dir="."
