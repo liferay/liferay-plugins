@@ -53,6 +53,13 @@
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,bnd.jar,javax.servlet-api.jar,jsp-api.jar,mail.jar,portal-ant-shared.jar" />
 	</path>
 
+	<path id="plugin.test.classpath">
+		<path refid="plugin.classpath" />
+		<path refid="plugin-test-lib.classpath" />
+		<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="portal-impl.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
+	</path>
+
 	<path id="portal.classpath">
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
@@ -839,15 +846,12 @@ Please find a solution that does not require portal-impl.jar.
 					<mkdir dir="@{module.dir}/test-classes/@{test.type}" />
 					<mkdir dir="@{module.dir}/test-results/@{test.type}" />
 
-					<copy todir="@{module.dir}/test-classes/${test.type}">
+					<copy todir="@{module.dir}/test-classes/@{test.type}">
 						<fileset dir="@{module.dir}/test" includes="*.properties" />
 						<fileset dir="@{module.dir}/test/@{test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
 					</copy>
 
-					<path id="plugin.test.classpath">
-						<path refid="plugin.classpath" />
-						<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="*.jar" />
-						<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
+					<path id="plugin-test-lib.classpath">
 						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
 					</path>
 
@@ -1921,10 +1925,7 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<path id="plugin.test.classpath">
-				<path refid="plugin.classpath" />
-				<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="*.jar" />
-				<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
+			<path id="plugin-test-lib.classpath">
 				<pathelement location="@{module.dir}/test-classes/@{test.type}" />
 			</path>
 
