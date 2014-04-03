@@ -325,6 +325,10 @@ $section-header-bg: #CCE6F7;
 					overflow: visible;
 				}
 			}
+
+			.view-more-button {
+				display: none;
+			}
 		}
 
 		.contacts-action-content .action {
@@ -819,6 +823,27 @@ $section-header-bg: #CCE6F7;
 					display: block;
 					font-size: 2em;
 					padding: 16px 11px;
+				}
+			}
+
+			.contacts-container {
+				.lfr-button-column {
+					padding-bottom: 0;
+					padding-left: 3.2em;
+				}
+
+				.view-more-button {
+					display: block;
+					margin-right: 0;
+				}
+			}
+
+			.edit-toolbar {
+				float: left;
+				width: auto;
+
+				&.hide-more-buttons .more {
+					display: none;
 				}
 			}
 		}
