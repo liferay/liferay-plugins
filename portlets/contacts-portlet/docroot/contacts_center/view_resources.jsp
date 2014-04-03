@@ -68,7 +68,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 										Liferay.component('contactsCenter').showPopup('<%= UnicodeLanguageUtil.get(pageContext, "update-contact") %>', '<%= viewEntryURL %>');
 									}
 								},
-								icon: 'edit',
+								icon: 'icon-edit',
 								id: '<portlet:namespace />edit',
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "edit") %>'
 							}
@@ -100,7 +100,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 										}
 									}
 								},
-								icon: 'delete',
+								icon: 'icon-remove',
 								id: '<portlet:namespace />delete',
 								label: '<%= UnicodeLanguageUtil.get(pageContext, "delete") %>'
 							}
@@ -156,7 +156,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 
 							contactsToolbarChildren.push(
 								{
-									icon: 'back',
+									icon: 'icon-chevron-sign-left',
 									id: '<portlet:namespace />backSelection',
 									label: '<%= UnicodeLanguageUtil.get(pageContext, "back-to-selection") %>',
 									on: {

@@ -723,7 +723,7 @@ AUI.add(
 												instance._editEntry(contact);
 											}
 										},
-										icon: 'edit',
+										icon: 'icon-edit',
 										label: Liferay.Language.get('edit')
 									},
 									{
@@ -732,7 +732,7 @@ AUI.add(
 												instance._deleteEntry(contact);
 											}
 										},
-										icon: 'delete',
+										icon: 'icon-remove',
 										label: Liferay.Language.get('delete')
 									}
 								]
