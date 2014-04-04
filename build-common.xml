@@ -53,7 +53,7 @@
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,bnd.jar,javax.servlet-api.jar,jsp-api.jar,mail.jar,portal-ant-shared.jar" />
 	</path>
 
-	<path id="plugin.test.classpath">
+	<path id="test.classpath">
 		<path refid="plugin.classpath" />
 		<path refid="plugin-test-lib.classpath" />
 		<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="portal-impl.jar" />
@@ -856,7 +856,7 @@ Please find a solution that does not require portal-impl.jar.
 					</path>
 
 					<compile-java
-						javac.classpathref="plugin.test.classpath"
+						javac.classpathref="test.classpath"
 						javac.destdir="@{module.dir}/test-classes/@{test.type}"
 						javac.srcdir="@{module.dir}/test/@{test.type}"
 					/>
@@ -1943,7 +1943,7 @@ Please find a solution that does not require portal-impl.jar.
 						<jvmarg value="-Djava.net.preferIPv4Stack=true" />
 						<jvmarg value="-Duser.timezone=GMT" />
 						<classpath location="@{module.dir}/test-coverage" />
-						<classpath refid="plugin.test.classpath" />
+						<classpath refid="test.classpath" />
 						<formatter type="brief" usefile="false" />
 						<formatter type="xml" />
 						<batchtest todir="@{module.dir}/test-results/@{test.type}">
