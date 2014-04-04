@@ -53,18 +53,18 @@
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,bnd.jar,javax.servlet-api.jar,jsp-api.jar,mail.jar,portal-ant-shared.jar" />
 	</path>
 
-	<path id="test.classpath">
-		<path refid="plugin.classpath" />
-		<path refid="plugin-test-lib.classpath" />
-		<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="portal-impl.jar" />
-		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
-	</path>
-
 	<path id="portal.classpath">
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" excludes="bnd.jar" includes="*.jar" />
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,jargs.jar,javax.servlet-api.jar,jsp-api.jar,qdox.jar" />
+	</path>
+
+	<path id="test.classpath">
+		<path refid="plugin.classpath" />
+		<path refid="plugin-test-lib.classpath" />
+		<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="portal-impl.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
 	</path>
 
 	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
