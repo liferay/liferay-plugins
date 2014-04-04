@@ -1898,10 +1898,12 @@ Please find a solution that does not require portal-impl.jar.
 				</else>
 			</if>
 
-			<ant target="test-cmd">
-				<property name="junit.forkmode" value="once" />
-				<property name="test.type" value="@{test.type}" />
-			</ant>
+			<test-cmd
+				junit.forkmode="once"
+				module.dir="@{module.dir}"
+				test.class="${test.class}"
+				test.type="@{test.type}"
+			/>
 		</sequential>
 	</macrodef>
 
