@@ -284,7 +284,7 @@ AUI.add(
 						{
 							'/calendar-portlet/calendar/delete-calendar': {
 								calendarId: calendarId
-							},
+							}
 						},
 						{
 							success: function() {
