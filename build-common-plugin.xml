@@ -439,13 +439,13 @@
 	</target>
 
 	<target name="compile-test-integration">
-		<compile-test-cmd
+		<compile-test-integration
 			module.dir="."
 		/>
 	</target>
 
 	<target name="compile-test-unit">
-		<compile-test-cmd
+		<compile-test-unit
 			module.dir="."
 		/>
 	</target>
