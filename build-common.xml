@@ -62,7 +62,7 @@
 
 	<path id="test.classpath">
 		<path refid="plugin.classpath" />
-		<path refid="plugin-test-lib.classpath" />
+		<path refid="plugin-test-type.classpath" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="portal-impl.jar" />
 		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
 	</path>
@@ -852,7 +852,7 @@ Please find a solution that does not require portal-impl.jar.
 						<fileset dir="@{module.dir}/test/@{test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
 					</copy>
 
-					<path id="plugin-test-lib.classpath">
+					<path id="plugin-test-type.classpath">
 						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
 					</path>
 
@@ -1930,7 +1930,7 @@ Please find a solution that does not require portal-impl.jar.
 				test.type="@{test.type}"
 			/>
 
-			<path id="plugin-test-lib.classpath">
+			<path id="plugin-test-type.classpath">
 				<pathelement location="@{module.dir}/test-classes/@{test.type}" />
 			</path>
 
