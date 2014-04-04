@@ -277,7 +277,6 @@ AUI.add(
 				return schedulerEvent;
 			},
 
-
 			deleteCalendar: function(calendarId, callback) {
 				var instance = this;
 
