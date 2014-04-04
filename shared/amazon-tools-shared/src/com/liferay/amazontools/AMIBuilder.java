@@ -410,7 +410,11 @@ public class AMIBuilder extends BaseAMITool {
 			throw new RuntimeException("Unavailable zone " + availabilityZone);
 		}
 
-		String imageId = getImageId(properties.getProperty("image.name"));
+		String imageId = properties.getProperty("image.id");
+
+		if(imageId == null) {
+			imageId = getImageId(properties.getProperty("image.name"));
+		}
 
 		runInstancesRequest.setImageId(imageId);
 
