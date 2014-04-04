@@ -293,7 +293,7 @@ Error-Prone was automatically installed. Please rerun your task.
 						<elseif>
 							<equals arg1="@{macrodef.name}" arg2="test" />
 							<then>
-								<test-macro
+								<test
 									module.dir="@{module.dir}"
 								/>
 							</then>
@@ -1970,20 +1970,6 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 				test.class="*Test"
 				test.type="integration"
-			/>
-		</sequential>
-	</macrodef>
-
-	<macrodef name="test-macro">
-		<attribute name="module.dir" />
-
-		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
-
-			<test
-				module.dir="@{module.dir}"
 			/>
 		</sequential>
 	</macrodef>
