@@ -829,6 +829,7 @@ Please find a solution that does not require portal-impl.jar.
 			<compile-test-integration
 				module.dir="@{module.dir}"
 			/>
+
 			<compile-test-unit
 				module.dir="@{module.dir}"
 			/>
@@ -1835,6 +1836,7 @@ Please find a solution that does not require portal-impl.jar.
 			<test-integration
 				module.dir="@{module.dir}"
 			/>
+
 			<test-unit
 				module.dir="@{module.dir}"
 			/>
@@ -1977,7 +1979,9 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<test module.dir="@{module.dir}"/>
+			<test
+				module.dir="@{module.dir}"
+			/>
 		</sequential>
 	</macrodef>
 
