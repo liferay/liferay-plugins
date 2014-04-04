@@ -412,7 +412,7 @@ public class AMIBuilder extends BaseAMITool {
 
 		String imageId = properties.getProperty("image.id");
 
-		if(imageId == null) {
+		if (imageId == null) {
 			imageId = getImageId(properties.getProperty("image.name"));
 		}
 
