@@ -1270,18 +1270,21 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		for (String dirName : dirNames) {
 			String[] attachmentDirNames = DLStoreUtil.getFileNames(
-				companyId, CompanyConstants.SYSTEM, dirName);
+				companyId, CompanyConstants.SYSTEM,
+				KnowledgeBaseUtil.trimLeadingSlash(dirName));
 
 			for (String attachmentDirName : attachmentDirNames) {
 				String[] fileNames = DLStoreUtil.getFileNames(
-					companyId, CompanyConstants.SYSTEM, attachmentDirName);
+					companyId, CompanyConstants.SYSTEM,
+					KnowledgeBaseUtil.trimLeadingSlash(attachmentDirName));
 
 				File file = null;
 
 				for (String fileName : fileNames) {
 					try {
 						file = DLStoreUtil.getFile(
-							companyId, CompanyConstants.SYSTEM, fileName);
+							companyId, CompanyConstants.SYSTEM,
+							KnowledgeBaseUtil.trimLeadingSlash(fileName));
 					}
 					catch (Exception e) {
 						if (_log.isWarnEnabled()) {
