@@ -1918,44 +1918,49 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<delete dir="@{module.dir}/test-classes/@{test.type}" />
-			<delete dir="@{module.dir}/test-results/@{test.type}" />
-
-			<compile
-				module.dir="@{module.dir}"
-			/>
-
-			<compile-test-cmd
-				module.dir="@{module.dir}"
-				test.type="@{test.type}"
-			/>
-
-			<path id="plugin-test-type.classpath">
-				<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-			</path>
-
 			<if>
-				<available file="@{module.dir}/test/@{test.type}" type="dir" />
+				<available file="@{module.dir}/test/@{test.type}" />
 				<then>
-					<junit dir="${sdk.dir}" fork="on" forkmode="@{junit.forkmode}" outputtoformatters="false" printsummary="on" showoutput="true">
-						<sysproperty key="net.sourceforge.cobertura.datafile" file="@{module.dir}/test-coverage/cobertura.ser" />
-						<jvmarg line="${junit.debug.jpda}" />
-						<jvmarg value="-Xmx${junit.java.mx}" />
-						<jvmarg value="-XX:MaxPermSize=${junit.java.maxpermsize}" />
-						<jvmarg value="-Dexternal-properties=${test.properties}" />
-						<jvmarg value="-Dfile.encoding=UTF-8" />
-						<jvmarg value="-Djava.net.preferIPv4Stack=true" />
-						<jvmarg value="-Duser.timezone=GMT" />
-						<classpath location="@{module.dir}/test-coverage" />
-						<classpath refid="test.classpath" />
-						<formatter type="brief" usefile="false" />
-						<formatter type="xml" />
-						<batchtest todir="@{module.dir}/test-results/@{test.type}">
-							<fileset dir="@{module.dir}/test-classes/@{test.type}" includes="**/@{test.class}.class">
-								<filename regex="${junit.test.excludes}" negate="true" />
-							</fileset>
-						</batchtest>
-					</junit>
+					<delete dir="@{module.dir}/test-classes/@{test.type}" />
+					<delete dir="@{module.dir}/test-results/@{test.type}" />
+
+					<compile
+						module.dir="@{module.dir}"
+					/>
+
+					<compile-test-cmd
+						module.dir="@{module.dir}"
+						test.type="@{test.type}"
+					/>
+
+					<path id="plugin-test-type.classpath">
+						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+					</path>
+
+					<if>
+						<available file="@{module.dir}/test/@{test.type}" type="dir" />
+						<then>
+							<junit dir="${sdk.dir}" fork="on" forkmode="@{junit.forkmode}" outputtoformatters="false" printsummary="on" showoutput="true">
+								<sysproperty key="net.sourceforge.cobertura.datafile" file="@{module.dir}/test-coverage/cobertura.ser" />
+								<jvmarg line="${junit.debug.jpda}" />
+								<jvmarg value="-Xmx${junit.java.mx}" />
+								<jvmarg value="-XX:MaxPermSize=${junit.java.maxpermsize}" />
+								<jvmarg value="-Dexternal-properties=${test.properties}" />
+								<jvmarg value="-Dfile.encoding=UTF-8" />
+								<jvmarg value="-Djava.net.preferIPv4Stack=true" />
+								<jvmarg value="-Duser.timezone=GMT" />
+								<classpath location="@{module.dir}/test-coverage" />
+								<classpath refid="test.classpath" />
+								<formatter type="brief" usefile="false" />
+								<formatter type="xml" />
+								<batchtest todir="@{module.dir}/test-results/@{test.type}">
+									<fileset dir="@{module.dir}/test-classes/@{test.type}" includes="**/@{test.class}.class">
+										<filename regex="${junit.test.excludes}" negate="true" />
+									</fileset>
+								</batchtest>
+							</junit>
+						</then>
+					</if>
 				</then>
 			</if>
 		</sequential>
