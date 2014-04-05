@@ -431,13 +431,6 @@
 		/>
 	</target>
 
-	<target name="compile-test-cmd">
-		<compile-test-cmd
-			module.dir="."
-			test.type="${test.type}"
-		/>
-	</target>
-
 	<target name="compile-test-integration">
 		<compile-test-integration
 			module.dir="."
