@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -291,6 +292,24 @@ public class KnowledgeBaseUtil {
 		}
 
 		return kbArticles;
+	}
+
+	public static String trimLeadingSlash(String s) {
+		if (Validator.isNull(s)) {
+			return s;
+		}
+
+		int x = 0;
+
+		for (char c : s.toCharArray()) {
+			if ((c != CharPool.BACK_SLASH) && (c != CharPool.FORWARD_SLASH)) {
+				break;
+			}
+
+			x = x + 1;
+		}
+
+		return s.substring(x, s.length());
 	}
 
 	private static final int _SQL_DATA_MAX_PARAMETERS = GetterUtil.getInteger(
