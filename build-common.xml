@@ -1902,7 +1902,7 @@ Please find a solution that does not require portal-impl.jar.
 				junit.forkmode="once"
 				module.dir="@{module.dir}"
 				test.class="${test.class}"
-				test.type="@{test.type}"
+				test.type="${test.type}"
 			/>
 		</sequential>
 	</macrodef>
