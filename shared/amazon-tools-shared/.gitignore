@@ -1,1 +1,6 @@
+/lib/json-web-service-client-shared.jar
+/lib/commons-codec.jar
+/lib/httpclient.jar
+/lib/httpcore.jar
 /lib/portal-compat-shared.jar
+/lib/slf4j-api.jar
