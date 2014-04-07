@@ -178,3 +178,30 @@
 		border-top: 1px solid #FFF;
 	}
 }
+
+/* ---------- Responsive ---------- */
+
+html.aui {
+	@media (max-width: 767px) {
+		.so-portlet-invite-members .modal-body {
+			.user-search-wrapper {
+				float: none;
+				margin-top: 10px;
+			}
+
+			.search {
+				height: auto;
+				max-height: 300px;
+				width: auto;
+			}
+
+			.invited-users-wrapper {
+				margin-left: 0;
+			}
+
+			.user-invited h2 span {
+				display: none;
+			}
+		}
+	}
+}
