@@ -90,44 +90,45 @@ MailManager mailManager = MailManager.getInstance(request);
 	</c:choose>
 
 	<div class="message-header">
-		<table>
-		<tr>
-			<td class="message-header-label">
+		<dl class="dl-horizontal">
+			<dt>
 				<liferay-ui:message key="from" />
-			</td>
-			<td>
+			</dt>
+			<dd>
 				<%= message.getSender() %>
-			</td>
-		</tr>
-		<tr>
-			<td class="message-header-label">
+			</dd>
+			<dt>
 				<liferay-ui:message key="to" />
-			</td>
-			<td>
+			</dt>
+			<dd>
 				<%= message.getTo() %>
-			</td>
-		</tr>
+			</dd>
 
-		<c:if test="<%= Validator.isNotNull(message.getCc()) %>">
-			<tr>
-				<td class="message-header-label">
-					<liferay-ui:message key="cc" />
-				</td>
-				<td>
-					<%= message.getCc() %>
-				</td>
-			</tr>
-		</c:if>
+			<c:if test="<%= Validator.isNotNull(message.getCc()) %>">
+				<tr>
+					<dt>
+						<liferay-ui:message key="cc" />
+					</dt>
+					<dd>
+						<%= message.getCc() %>
+					</dd>
+				</tr>
+			</c:if>
 
-		<tr>
-			<td class="message-header-label">
+			<dt>
 				<liferay-ui:message key="date" />
-			</td>
-			<td>
-				<%= dateFormatDateTime.format(message.getSentDate()) %>
-			</td>
-		</tr>
-		</table>
+			</dt>
+			<dd>
+				<c:choose>
+					<c:when test="<%= Validator.isNotNull(message.getSentDate()) %>">
+						<%= dateFormatDateTime.format(message.getSentDate()) %>
+					</c:when>
+					<c:otherwise>
+						<%= StringPool.DASH %>
+					</c:otherwise>
+				</c:choose>
+			</dd>
+		</dl>
 	</div>
 
 	<div id="messageContentContainer">

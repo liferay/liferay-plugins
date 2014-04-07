@@ -100,17 +100,38 @@
 	}
 
 	.message-header {
+		background-color: #D1D6DC;
 		border: 1px solid #C8C9CA;
 		margin: 1em 0;
 
-		td {
-			padding: 2px 1em;
-		}
+		.dl-horizontal {
+			margin: 0;
 
-		.message-header-label {
-			background-color: #D1D6DC;
-			padding-left: 3em;
-			text-align: right;
+			&:after, &:before {
+				content: "";
+				display: table;
+				line-height: 0;
+			}
+
+			&:after {
+				clear: both;
+			}
+
+			dt {
+				clear: left;
+
+				@include ellipsis;
+
+				float: left;
+				font-weight: bold;
+				text-align: right;
+			}
+
+			dd {
+				background-color: #FFF;
+				padding-left: 10px;
+				word-wrap: break-word;
+			}
 		}
 	}
 
