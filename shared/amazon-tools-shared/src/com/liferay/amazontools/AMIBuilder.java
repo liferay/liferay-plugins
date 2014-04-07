@@ -81,8 +81,8 @@ public class AMIBuilder extends BaseAMITool {
 
 		AMIBuilder amiBuilder = new AMIBuilder(
 			(String)cmdLineParser.getOptionValue(baseDirOption),
-			(String)cmdLineParser.getOptionValue(propertiesFileNameOption),
-			(String)cmdLineParser.getOptionValue(imageNameOption));
+			(String)cmdLineParser.getOptionValue(imageNameOption),
+			(String)cmdLineParser.getOptionValue(propertiesFileNameOption));
 
 		try {
 			amiBuilder.start();
@@ -101,7 +101,7 @@ public class AMIBuilder extends BaseAMITool {
 	}
 
 	public AMIBuilder(
-			String baseDirName, String propertiesFileName, String imageName)
+			String baseDirName, String imageName, String propertiesFileName)
 		throws Exception {
 
 		super(propertiesFileName);
