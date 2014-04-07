@@ -613,13 +613,9 @@ public class IMAPAccessor {
 			long folderId, Folder jxFolder, Message[] jxMessages)
 		throws PortalException, SystemException {
 
-		StopWatch stopWatch = null;
+		StopWatch stopWatch = new StopWatch();
 
-		if (_log.isDebugEnabled()) {
-			stopWatch = new StopWatch();
-
-			stopWatch.start();
-		}
+		stopWatch.start();
 
 		try {
 			FetchProfile fetchProfile = new FetchProfile();

@@ -55,13 +55,11 @@ public class EmbeddedElasticsearchConnection
 
 		_node = nodeBuilder.node();
 
-		StopWatch stopWatch = null;
+		StopWatch stopWatch = new StopWatch();
+
+		stopWatch.start();
 
 		if (_log.isDebugEnabled()) {
-			stopWatch = new StopWatch();
-
-			stopWatch.start();
-
 			_log.debug(
 				"Starting embedded Elasticsearch cluster " + getClusterName());
 		}

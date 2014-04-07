@@ -204,13 +204,9 @@ public class IMAPConnection {
 	}
 
 	protected void testIncomingConnection() throws MailException {
-		StopWatch stopWatch = null;
+		StopWatch stopWatch = new StopWatch();
 
-		if (_log.isDebugEnabled()) {
-			stopWatch = new StopWatch();
-
-			stopWatch.start();
-		}
+		stopWatch.start();
 
 		try {
 			Store store = getStore(false);
@@ -233,13 +229,9 @@ public class IMAPConnection {
 	}
 
 	protected void testOutgoingConnection() throws MailException {
-		StopWatch stopWatch = null;
+		StopWatch stopWatch = new StopWatch();
 
-		if (_log.isDebugEnabled()) {
-			stopWatch = new StopWatch();
-
-			stopWatch.start();
-		}
+		stopWatch.start();
 
 		try {
 			Transport transport = getTransport();

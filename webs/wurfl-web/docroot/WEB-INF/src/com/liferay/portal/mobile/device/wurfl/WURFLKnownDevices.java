@@ -116,13 +116,11 @@ public class WURFLKnownDevices implements KnownDevices {
 			return;
 		}
 
-		StopWatch stopWatch = null;
+		StopWatch stopWatch = new StopWatch();
+
+		stopWatch.start();
 
 		if (_log.isDebugEnabled()) {
-			stopWatch = new StopWatch();
-
-			stopWatch.start();
-
 			_log.debug("Loading database");
 		}
 
