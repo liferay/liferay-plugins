@@ -126,27 +126,35 @@ $theme.include($body_top_include)
 		</div>
 	</header>
 
-	<div id="content">
+	<section id="content">
 		#if ($has_navigation || $is_signed_in)
-			#parse ("$full_templates_path/navigation.vm")
+			<section>
+				#parse ("$full_templates_path/navigation.vm")
+			</section>
 		#end
 
 		#if ($selectable)
-			$theme.include($content_include)
+			<section>
+				$theme.include($content_include)
+			</section>
 		#else
-			$portletDisplay.recycle()
+			<section>
+				$portletDisplay.recycle()
 
-			$portletDisplay.setTitle($the_title)
+				$portletDisplay.setTitle($the_title)
 
-			$theme.wrapPortlet("portlet.vm", $content_include)
+				$theme.wrapPortlet("portlet.vm", $content_include)
+			</section>
 		#end
-	</div>
+	</section>
 
-	<footer id="footer" role="contentinfo">
-		<p class="powered-by">
-			#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
-		</p>
-	</footer>
+	<section>
+		<footer id="footer" role="contentinfo">
+			<p class="powered-by">
+				#language("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+			</p>
+		</footer>
+	</section>
 </div>
 
 $theme.include($body_bottom_include)
