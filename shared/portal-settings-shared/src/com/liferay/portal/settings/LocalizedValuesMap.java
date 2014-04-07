@@ -17,6 +17,7 @@ package com.liferay.portal.settings;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.util.StringUtil;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Locale;
@@ -30,7 +31,7 @@ import javax.xml.stream.XMLStreamWriter;
 /**
  * @author Iván Zaera
  */
-public class LocalizedValuesMap implements Map<Locale, String> {
+public class LocalizedValuesMap implements Map<Locale, String>, Serializable {
 
 	public LocalizedValuesMap(
 		String key, Locale defaultLocale, Locale... availableLocales) {
