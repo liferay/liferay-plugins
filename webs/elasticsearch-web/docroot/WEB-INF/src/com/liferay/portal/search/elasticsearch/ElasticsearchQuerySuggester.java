@@ -50,13 +50,9 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 	public Map<String, List<String>> spellCheckKeywords(
 		SearchContext searchContext, int max) {
 
-		StopWatch stopWatch = null;
+		StopWatch stopWatch = new StopWatch();
 
-		if (_log.isInfoEnabled()) {
-			stopWatch = new StopWatch();
-
-			stopWatch.start();
-		}
+		stopWatch.start();
 
 		SuggestBuilder.SuggestionBuilder<TermSuggestionBuilder>
 			suggestionBuilder = SuggestBuilder.termSuggestion(
@@ -108,13 +104,9 @@ public class ElasticsearchQuerySuggester extends BaseQuerySuggester {
 	public String[] suggestKeywordQueries(
 		SearchContext searchContext, int max) {
 
-		StopWatch stopWatch = null;
+		StopWatch stopWatch = new StopWatch();
 
-		if (_log.isInfoEnabled()) {
-			stopWatch = new StopWatch();
-
-			stopWatch.start();
-		}
+		stopWatch.start();
 
 		SuggestBuilder.SuggestionBuilder<PhraseSuggestionBuilder>
 			suggestionBuilder = SuggestBuilder.phraseSuggestion(

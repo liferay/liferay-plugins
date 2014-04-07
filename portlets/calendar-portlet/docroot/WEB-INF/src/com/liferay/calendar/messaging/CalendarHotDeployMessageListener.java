@@ -39,13 +39,9 @@ public class CalendarHotDeployMessageListener extends HotDeployMessageListener {
 			return;
 		}
 
-		StopWatch stopWatch = null;
+		StopWatch stopWatch = new StopWatch();
 
-		if (_log.isInfoEnabled()) {
-			stopWatch = new StopWatch();
-
-			stopWatch.start();
-		}
+		stopWatch.start();
 
 		CalendarImporterLocalServiceUtil.importCalEvents();
 
