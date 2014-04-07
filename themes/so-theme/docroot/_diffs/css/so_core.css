@@ -1870,5 +1870,148 @@ html.aui {
 		#page-search {
 			display: none;
 		}
+
+/* -------------------- Mobile Popups -------------------- */
+
+		&.dialog-iframe-root-node {
+			padding: 10px !important;
+		}
+
+		.modal {
+			bottom: 0;
+
+			@include border-radius(0);
+
+			border-width: 0;
+			height: 100% !important;
+			left: 0 !important;
+			position: fixed;
+			top: 0 !important;
+			width: 100% !important;
+
+			.modal-header .close {
+				font-size: 50px;
+				line-height: 60px;
+				margin-top: -20px;
+				width: 50px;
+			}
+
+			.modal-body {
+				padding: 0 10px;
+				width: auto;
+
+				&.dialog-iframe-bd {
+					padding: 0;
+				}
+			}
+		}
+
+		.modal-body, .portal-popup {
+			.portlet-body {
+				padding: 0;
+			}
+
+			#main-content {
+				margin: 0;
+			}
+
+			.form {
+				margin: 10px 0 0;
+			}
+
+			.nav-tabs {
+				margin: 10px 0;
+			}
+
+			.tab-content {
+				overflow: initial;
+			}
+
+			.control-group, & {
+				margin-right: 0;
+				width: 100%;
+
+				input[type="email"], input[type="file"], input[type="text"], textarea {
+					height: 30px;
+					margin-left: -1px;
+					min-width: 0;
+					padding: 0;
+					text-indent: 4px;
+					width: 100%;
+				}
+
+				.lfr-input-text {
+					max-width: none !important;
+					min-width: 0;
+					width: 100%;
+				}
+
+				textarea {
+					height: auto;
+				}
+
+				select {
+					min-width: 0;
+					width: 100%;
+				}
+			}
+
+			.btn, .btn:hover {
+				display: inline-block;
+				margin: 0 0 0 5px;
+				padding: 10px;
+				width: auto;
+
+				i {
+					display: block;
+				}
+			}
+
+			.button-holder {
+				background-color: #FFF;
+				border-top: 1px solid $defaultBorderColor;
+				bottom: 0;
+				margin: 10px -10px 0;
+				padding: 10px;
+				width: 100%;
+
+				.btn {
+					float: right;
+
+					&:last-child {
+						margin-left: 0;
+					}
+				}
+			}
+		}
+
+		.portal-popup {
+			padding: 0;
+		}
+
+		.so-portlet-invite-members .modal-body {
+			.invite-actions {
+				background-color: #FFF;
+				border-top: 1px solid $defaultBorderColor;
+				border-width: 1px 0 0;
+				bottom: 0;
+				margin: 10px -10px 0;
+				overflow: hidden;
+				padding: 10px;
+				width: 100%;
+
+				.form {
+					margin: 0;
+				}
+
+				.btn {
+					float: right;
+
+					&:last-child {
+						margin-left: 0;
+					}
+				}
+			}
+		}
 	}
 }
