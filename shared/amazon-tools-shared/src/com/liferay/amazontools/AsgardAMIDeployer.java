@@ -36,26 +36,26 @@ import org.json.JSONObject;
 public class AsgardAMIDeployer extends BaseAMITool {
 
 	public static void main(String[] args) throws Exception {
-		CmdLineParser parser = new CmdLineParser();
+		CmdLineParser cmdLineParser = new CmdLineParser();
 
-		CmdLineParser.Option propertiesFileNameOption = parser.addStringOption(
-			"properties.file.name");
-		CmdLineParser.Option imageNameOption = parser.addStringOption(
+		CmdLineParser.Option imageNameOption = cmdLineParser.addStringOption(
 			"image.name");
+		CmdLineParser.Option propertiesFileNameOption =
+			cmdLineParser.addStringOption("properties.file.name");
 
-		parser.parse(args);
+		cmdLineParser.parse(args);
 
 		try {
 			new AsgardAMIDeployer(
-				(String)parser.getOptionValue(propertiesFileNameOption),
-				(String)parser.getOptionValue(imageNameOption));
+				(String)cmdLineParser.getOptionValue(imageNameOption),
+				(String)cmdLineParser.getOptionValue(propertiesFileNameOption));
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public AsgardAMIDeployer(String propertiesFileName, String imageName)
+	public AsgardAMIDeployer(String imageName, String propertiesFileName)
 		throws Exception {
 
 		super(propertiesFileName);
