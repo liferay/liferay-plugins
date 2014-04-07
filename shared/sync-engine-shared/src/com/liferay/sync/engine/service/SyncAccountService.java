@@ -54,6 +54,7 @@ public class SyncAccountService {
 		syncAccount.setFilePathName(filePathName);
 		syncAccount.setInterval(interval);
 		syncAccount.setLogin(login);
+		syncAccount.setName(name);
 		syncAccount.setPassword(Encryptor.encrypt(password));
 		syncAccount.setTrustSelfSigned(trustSelfSigned);
 		syncAccount.setUrl(url);
