@@ -51,6 +51,7 @@
 		background-color: #FAFAFA;
 		color: #999;
 		margin: 1em 0;
+		overflow: auto;
 	}
 
 	.message-pager {
