@@ -404,3 +404,34 @@ $default-border-color: #E7E7E7;
 		height: 126px;
 	}
 }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 767px) {
+	.so-portlet-activities {
+		.user-portrait {
+			left: 0;
+			position: relative;
+			top: 0;
+		}
+
+		.activity-user-name {
+			float: none;
+		}
+
+		.activity-time {
+			float: none;
+			margin: .4em 0 0;
+		}
+
+		.activity-block, .activity-action {
+			float: left;
+			margin-left: 0;
+			width: 100%;
+		}
+
+		.activity-action {
+			margin-bottom: .4em;
+		}
+	}
+}

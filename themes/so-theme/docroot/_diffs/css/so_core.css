@@ -1871,6 +1871,10 @@ html.aui {
 			display: none;
 		}
 
+		.so-portlet-activities .activity-item {
+			padding: 1em 0;
+		}
+
 		/* ---------- Mobile pop ups ---------- */
 
 		&.dialog-iframe-root-node {
