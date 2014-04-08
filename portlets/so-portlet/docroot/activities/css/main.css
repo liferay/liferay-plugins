@@ -44,12 +44,6 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
-	.activity-data {
-		margin-left: 55px;
-		overflow: hidden;
-		word-wrap: break-word;
-	}
-
 	.activity-header {
 		margin-bottom: 0.4em;
 
