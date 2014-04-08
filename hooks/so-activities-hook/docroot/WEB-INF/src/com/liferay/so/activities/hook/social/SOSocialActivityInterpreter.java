@@ -45,6 +45,7 @@ import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.model.SocialActivitySet;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialActivitySetLocalServiceUtil;
 import com.liferay.portlet.trash.util.TrashUtil;
 import com.liferay.so.activities.util.PortletPropsValues;
 
@@ -164,6 +165,26 @@ public abstract class SOSocialActivityInterpreter
 		sb.append("</div></div>");
 
 		return sb.toString();
+	}
+
+	protected long getDisplayDate(SocialActivity activity) throws Exception {
+		long activitySetId = activity.getActivitySetId();
+
+		if (activitySetId > 0) {
+			SocialActivitySet socialActivitySet =
+				SocialActivitySetLocalServiceUtil.fetchSocialActivitySet(
+					activitySetId);
+
+			if ((socialActivitySet != null) &&
+				(socialActivitySet.getActivityCount() == 1) &&
+				(socialActivitySet.getModifiedDate() >
+					socialActivitySet.getCreateDate())) {
+
+				return socialActivitySet.getModifiedDate();
+			}
+		}
+
+		return activity.getCreateDate();
 	}
 
 	protected Format getFormatDateTime(Locale locale, TimeZone timezone) {
@@ -321,7 +342,7 @@ public abstract class SOSocialActivityInterpreter
 		sb.append(
 			getTitle(
 				0, activity.getGroupId(), activity.getUserId(),
-				activity.getCreateDate(), serviceContext));
+				getDisplayDate(activity), serviceContext));
 		sb.append("<div class=\"activity-action\">");
 
 		String titlePattern = getTitlePattern(null, activity);
