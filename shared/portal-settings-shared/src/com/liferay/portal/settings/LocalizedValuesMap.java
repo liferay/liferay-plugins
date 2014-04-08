@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.Serializable;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Locale;
