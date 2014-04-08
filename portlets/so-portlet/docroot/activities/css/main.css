@@ -29,13 +29,14 @@ $default-border-color: #E7E7E7;
 
 	.user-portrait {
 		float: left;
-		height: 45px;
+		margin-bottom: .4em;
+		max-height: 45px;
 		position: relative;
 		width: 45px;
 
 		.avatar {
 			display: block;
-			height: 45px;
+			max-height: 45px;
 			overflow: hidden;
 
 			img {
