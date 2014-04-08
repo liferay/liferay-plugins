@@ -273,24 +273,7 @@ public abstract class SOSocialActivityInterpreter
 		StringBundler sb = new StringBundler(8);
 
 		sb.append("<div class=\"activity-header\">");
-		sb.append("<div class=\"activity-time\" title=\"");
-
-		Format dateFormatDate = getFormatDateTime(
-			serviceContext.getLocale(), serviceContext.getTimeZone());
-
-		Date activityDate = new Date(displayDate);
-
-		sb.append(dateFormatDate.format(activityDate));
-
-		sb.append("\">");
-
-		String relativeTimeDescription = Time.getRelativeTimeDescription(
-			displayDate, serviceContext.getLocale(),
-			serviceContext.getTimeZone());
-
-		sb.append(relativeTimeDescription);
-
-		sb.append("</div><div class=\"activity-user-name\">");
+		sb.append("<div class=\"activity-user-name\">");
 
 		String userName = getUserName(userId, serviceContext);
 
@@ -326,6 +309,23 @@ public abstract class SOSocialActivityInterpreter
 		else {
 			sb.append(userName);
 		}
+
+		sb.append("</div><div class=\"activity-time\" title=\"");
+
+		Format dateFormatDate = getFormatDateTime(
+			serviceContext.getLocale(), serviceContext.getTimeZone());
+
+		Date activityDate = new Date(displayDate);
+
+		sb.append(dateFormatDate.format(activityDate));
+
+		sb.append("\">");
+
+		String relativeTimeDescription = Time.getRelativeTimeDescription(
+			displayDate, serviceContext.getLocale(),
+			serviceContext.getTimeZone());
+
+		sb.append(relativeTimeDescription);
 
 		sb.append("</div></div>");
 

@@ -76,11 +76,11 @@ for (SocialActivity activity : results) {
 			</span>
 		</div>
 
-		<div class="activity-data">
-			<div class="activity-title">
-				<%= activityFeedEntry.getTitle() %>
-			</div>
+		<div class="activity-title">
+			<%= activityFeedEntry.getTitle() %>
+		</div>
 
+		<div class="activity-block">
 			<div class="activity-body">
 				<span class="time">
 					<%= timeFormatDate.format(activity.getCreateDate()) %>
