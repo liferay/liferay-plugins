@@ -17,6 +17,7 @@
 	.entry {
 		margin-bottom: 1.2em;
 		padding-bottom: 0.5em;
+		position: relative;
 
 		&.last {
 			padding-bottom: 0;
@@ -26,6 +27,9 @@
 	.user-portrait {
 		float: left;
 		height: 45px;
+		left: 0;
+		position: absolute;
+		top: 0;
 		width: 45px;
 
 		.avatar {
@@ -39,15 +43,25 @@
 		}
 	}
 
+	.entry-block, .entry-header {
+		margin-left: 55px;
+	}
+
 	.entry-header {
 		margin-bottom: .4em;
+		overflow: hidden;
 
 		a {
 			font-weight: bold;
 		}
 	}
 
+	.entry-action {
+		float: left;
+	}
+
 	.entry-time {
+		color: #999;
 		float: right;
 		font-size: .9em;
 		margin-left: 1em;
@@ -59,7 +73,8 @@
 	}
 
 	.entry-block {
-		float: left;
+		clear: both;
+		overflow: hidden;
 	}
 
 	.entry-body {
