@@ -52,6 +52,16 @@
 		color: #999;
 		margin: 1em 0;
 		overflow: auto;
+
+		.dl-horizontal {
+			dd {
+				margin-left: 60px;
+			}
+
+			dt {
+				width: 50px;
+			}
+		}
 	}
 
 	.message-pager {
