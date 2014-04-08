@@ -58,6 +58,10 @@
 		display: block;
 	}
 
+	.entry-block {
+		float: left;
+	}
+
 	.entry-body {
 		border: 1px solid #C8C9CA;
 		border-bottom-width: 0;

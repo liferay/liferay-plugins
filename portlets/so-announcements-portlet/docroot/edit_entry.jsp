@@ -136,7 +136,7 @@ if (entry == null) {
 </aui:form>
 
 <div class="entries preview unread-entries">
-	<div class="entry hide" id="<portlet:namespace />preview">
+	<div class="clearfix entry hide" id="<portlet:namespace />preview">
 		<div class="user-portrait">
 			<span class="avatar">
 
