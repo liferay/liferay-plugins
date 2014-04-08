@@ -150,17 +150,17 @@ if (entry == null) {
 			</span>
 		</div>
 
-		<div class="entry-data">
-			<div class="entry-header">
-				<div class="entry-time">
-					<%= LanguageUtil.get(pageContext, "about-a-minute-ago") %>
-				</div>
-
-				<div class="entry-action">
-					<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + currentUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(currentUser.getFullName()) + "</a>", "<span class=\"scope\" id=\"" + renderResponse.getNamespace() + "scope\"></span>"}, false) %>
-				</div>
+		<div class="entry-header">
+			<div class="entry-action">
+				<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + currentUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(currentUser.getFullName()) + "</a>", "<span class=\"scope\" id=\"" + renderResponse.getNamespace() + "scope\"></span>"}, false) %>
 			</div>
 
+			<div class="entry-time">
+				<%= LanguageUtil.get(pageContext, "about-a-minute-ago") %>
+			</div>
+		</div>
+
+		<div class="entry-block">
 			<div class="entry-body">
 				<div class="title" id="<portlet:namespace />title"></div>
 

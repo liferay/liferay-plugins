@@ -59,17 +59,17 @@ if (entry.getPriority() > 0) {
 		</span>
 	</div>
 
-	<div class="entry-data">
-		<div class="entry-header">
-			<div class="entry-time">
-				<%= Time.getRelativeTimeDescription(entry.getDisplayDate(), locale, timeZone) %>
-			</div>
-
-			<div class="entry-action">
-				<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(entryUser.getFullName()) + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}, false) %>
-			</div>
+	<div class="entry-header">
+		<div class="entry-action">
+			<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(entryUser.getFullName()) + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}, false) %>
 		</div>
 
+		<div class="entry-time">
+			<%= Time.getRelativeTimeDescription(entry.getDisplayDate(), locale, timeZone) %>
+		</div>
+	</div>
+
+	<div class="entry-block">
 		<div class="entry-body">
 			<div class="title">
 				<c:choose>
