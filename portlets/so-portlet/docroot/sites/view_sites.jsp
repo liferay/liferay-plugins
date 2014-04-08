@@ -193,14 +193,14 @@ else {
 
 						var leaveHTML = '';
 
-						var leaveURLOnly = !result.joinURL && !result.membershipRequested && !result.requestUrl;
+						var leaveURLOnly = !result.joinUrl && !result.membershipRequested && !result.requestUrl;
 
 						if (leaveURLOnly) {
 							if (result.leaveURL) {
-								leaveHTML = getSiteActionHtml('action leave', 'leave-site', Liferay.Language.get("leave-site"), result.leaveURL)
+								leaveHTML = '<span class="action leave"><a class="leave-site" href="' + result.leaveURL + '"><liferay-ui:message key="leave" /></a></span>';
 							}
 							else {
-								leaveHTML = getSiteActionHtml('action leave', 'disabled', Liferay.Language.get("you-cannot-leave-the-site-as-a-user-group-member-or-organization-member"), '#');
+								leaveHTML = '<span class="action leave" title="<liferay-ui:message key='you-cannot-leave-the-site-as-a-user-group-member-or-organization-member' />"><a class="disabled"></a></span>';
 							}
 						}
 
