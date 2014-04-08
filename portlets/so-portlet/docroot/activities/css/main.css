@@ -10,6 +10,7 @@ $default-border-color: #E7E7E7;
 		border-bottom: 1px solid $default-border-color;
 		min-height: 45px;
 		padding: 1em;
+		position: relative;
 
 		.control-group {
 			margin-bottom: 0;
@@ -29,9 +30,11 @@ $default-border-color: #E7E7E7;
 
 	.user-portrait {
 		float: left;
+		left: 1em;
 		margin-bottom: .4em;
 		max-height: 45px;
-		position: relative;
+		position: absolute;
+		top: 1em;
 		width: 45px;
 
 		.avatar {
@@ -45,12 +48,21 @@ $default-border-color: #E7E7E7;
 		}
 	}
 
+	.activity-action, .activity-block, .activity-header {
+		margin-left: 55px;
+		word-wrap: break-word;
+	}
+
 	.activity-header {
 		margin-bottom: 0.4em;
 
 		a {
 			font-weight: bold;
 		}
+	}
+
+	.activity-user-name {
+		float: left;
 	}
 
 	.activity-time {
@@ -62,16 +74,19 @@ $default-border-color: #E7E7E7;
 	}
 
 	.activity-action {
+		clear: both;
 		color: #333333;
 		margin-bottom: 0.8em;
+	}
+
+	.activity-block {
+		overflow: hidden;
 	}
 
 	.activity-body, .grouped-activity-body-container {
 		border: 1px solid $default-border-color;
 
 		@include hyphenation;
-
-		margin: 0.8em 0 0;
 
 		span {
 			line-height: 1em;
@@ -247,6 +262,9 @@ $default-border-color: #E7E7E7;
 	.comments-container, .microblogs-portlet-activity .activity-body {
 		.user-portrait {
 			height: 32px;
+			left: 0;
+			position: relative;
+			top: 0;
 			width: 32px;
 
 			.avatar {
@@ -263,6 +281,7 @@ $default-border-color: #E7E7E7;
 		.user-portrait {
 			left: 2px;
 			position: absolute;
+			top: 2px;
 		}
 
 		.control-group {
