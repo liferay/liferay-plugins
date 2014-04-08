@@ -281,3 +281,23 @@
 .so-announcements-portlet .announcement-collapsed .entry-footer-toolbar {
 	@include box-shadow(0 -1px 15px -5px rgba(0, 0, 0, .8));
 }
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 767px) {
+	.so-announcements-portlet {
+		.user-portrait {
+			position: relative;
+		}
+
+		.entry-time {
+			margin: .2em 0 0;
+			width: 100%;
+		}
+
+		.entry-block {
+			float: left;
+			margin-left: 0;
+		}
+	}
+}
