@@ -56,6 +56,13 @@ public class CalendarBookingIndexer extends BaseIndexer {
 
 	public static final String PORTLET_ID = PortletKeys.CALENDAR;
 
+	public CalendarBookingIndexer() {
+		setDefaultSelectedFieldNames(
+			new String[] {
+				Field.COMPANY_ID, Field.DESCRIPTION, Field.ENTRY_CLASS_NAME,
+				Field.ENTRY_CLASS_PK, Field.TITLE, Field.UID});
+	}
+
 	@Override
 	public String[] getClassNames() {
 		return CLASS_NAMES;
