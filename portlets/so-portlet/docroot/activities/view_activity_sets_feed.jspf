@@ -28,7 +28,7 @@ for (SocialActivitySet activitySet : results) {
 	Portlet portlet = PortletLocalServiceUtil.getPortletById(activityFeedEntry.getPortletId());
 %>
 
-	<div class="activity-item <%= portlet.getCssClassWrapper() %>-activity" id="<portlet:namespace /><%= activitySet.getActivitySetId() %>">
+	<div class="activity-item clearfix <%= portlet.getCssClassWrapper() %>-activity" id="<portlet:namespace /><%= activitySet.getActivitySetId() %>">
 
 		<%
 		User activitySetUser = UserLocalServiceUtil.fetchUser(activitySet.getUserId());

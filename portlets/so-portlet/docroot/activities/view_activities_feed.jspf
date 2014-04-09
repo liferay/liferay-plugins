@@ -54,7 +54,7 @@ for (SocialActivity activity : results) {
 		<h3><liferay-ui:message key="<%= message %>" /></h3>
 	</c:if>
 
-	<div class="activity-item">
+	<div class="activity-item clearfix">
 
 		<%
 		User curUser = null;
