@@ -14,6 +14,8 @@
 
 package com.liferay.samplelar.service.impl;
 
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.samplelar.model.SampleLARBooking;
 import com.liferay.samplelar.service.base.SampleLARBookingLocalServiceBaseImpl;
 
 /**
@@ -21,4 +23,14 @@ import com.liferay.samplelar.service.base.SampleLARBookingLocalServiceBaseImpl;
  */
 public class SampleLARBookingLocalServiceImpl
 	extends SampleLARBookingLocalServiceBaseImpl {
+
+	public void deleteSampleLARBookings(long groupId) throws SystemException {
+		for (SampleLARBooking sampleLARBooking :
+				sampleLARBookingPersistence.findByGroupId(groupId)) {
+
+			sampleLARBookingLocalService.deleteSampleLARBooking(
+				sampleLARBooking);
+		}
+	}
+
 }
