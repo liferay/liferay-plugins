@@ -14,8 +14,18 @@
 
 package com.liferay.samplelar.datahandler;
 
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
 import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
+import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.samplelar.model.SampleLARBooking;
+import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
+import com.liferay.samplelar.service.persistence.SampleLARBookingExportActionableDynamicQuery;
+
+import java.util.List;
 
 import javax.portlet.PortletPreferences;
 
@@ -27,6 +37,13 @@ public class SampleLARPortletDataHandler extends BasePortletDataHandler {
 	public static final String NAMESPACE = "samplelar";
 
 	public SampleLARPortletDataHandler() {
+		setDeletionSystemEventStagedModelTypes(
+			new StagedModelType(SampleLARBooking.class));
+		setExportControls(
+			new PortletDataHandlerBoolean(
+				NAMESPACE, "bookings", true, false, null,
+				SampleLARBooking.class.getName()));
+		setImportControls(getExportControls());
 	}
 
 	@Override
@@ -35,8 +52,16 @@ public class SampleLARPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		return super.doDeleteData(
-			portletDataContext, portletId, portletPreferences);
+		if (portletDataContext.addPrimaryKey(
+				SampleLARPortletDataHandler.class, "deleteData")) {
+
+			return portletPreferences;
+		}
+
+		SampleLARBookingLocalServiceUtil.deleteSampleLARBookings(
+			portletDataContext.getScopeGroupId());
+
+		return portletPreferences;
 	}
 
 	@Override
@@ -45,8 +70,22 @@ public class SampleLARPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		return super.doExportData(
-			portletDataContext, portletId, portletPreferences);
+		Element rootElement = addExportDataRootElement(portletDataContext);
+
+		if (!portletDataContext.getBooleanParameter(NAMESPACE, "bookings")) {
+			return getExportDataRootElementString(rootElement);
+		}
+
+		rootElement.addAttribute(
+			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
+
+		ActionableDynamicQuery sampleLARBookingActionableDynamicQuery =
+			new SampleLARBookingExportActionableDynamicQuery(
+				portletDataContext);
+
+		sampleLARBookingActionableDynamicQuery.performActions();
+
+		return getExportDataRootElementString(rootElement);
 	}
 
 	@Override
@@ -55,8 +94,23 @@ public class SampleLARPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences, String data)
 		throws Exception {
 
-		return super.doImportData(
-			portletDataContext, portletId, portletPreferences, data);
+		if (!portletDataContext.getBooleanParameter(NAMESPACE, "bookings")) {
+			return null;
+		}
+
+		Element sampleLARBookingsElement =
+			portletDataContext.getImportDataGroupElement(
+				SampleLARBooking.class);
+
+		List<Element> sampleLARBookingElements =
+			sampleLARBookingsElement.elements();
+
+		for (Element sampleLARBookingElement : sampleLARBookingElements) {
+			StagedModelDataHandlerUtil.importStagedModel(
+				portletDataContext, sampleLARBookingElement);
+		}
+
+		return null;
 	}
 
 	@Override
@@ -65,7 +119,11 @@ public class SampleLARPortletDataHandler extends BasePortletDataHandler {
 			PortletPreferences portletPreferences)
 		throws Exception {
 
-		super.doPrepareManifestSummary(portletDataContext, portletPreferences);
+		ActionableDynamicQuery sampleLARBookingActionableDynamicQuery =
+			new SampleLARBookingExportActionableDynamicQuery(
+				portletDataContext);
+
+		sampleLARBookingActionableDynamicQuery.performCount();
 	}
 
 }
