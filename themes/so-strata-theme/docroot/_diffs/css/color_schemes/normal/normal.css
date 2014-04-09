@@ -133,7 +133,7 @@ a {
 	}
 }
 
-/* --------- Calendar --------- */
+/* ---------- Calendar ---------- */
 
 .aui-calendar-content .aui-calendar-day {
 	&, &.aui-state-default {
@@ -168,7 +168,7 @@ a {
 	@include hidden-accessible;
 }
 
-/* --------- Forms --------- */
+/* ---------- Forms ---------- */
 
 fieldset {
 	@include default-border;

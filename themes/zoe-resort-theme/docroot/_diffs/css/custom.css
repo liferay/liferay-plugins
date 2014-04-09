@@ -1,13 +1,13 @@
 @import "compass";
 
-/* -------- Variables -------- */
+/* ---------- Variables ---------- */
 
 $bannerHeight: 454px;
 $smallBannerHeight: 224px;
 $navHeight: 46px;
 $color: #3D7899;
 
-/* -------- Global -------- */
+/* ---------- Global ---------- */
 
 #breadcrumbs h1, #footer-social a span, #heading .page-title, #navigation .child-menu, #navigation h1, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
 	clip: rect(0 0 0 0);
@@ -43,7 +43,7 @@ body {
 	width: 960px;
 }
 
-/* -------- Banner / Navigation -------- */
+/* ---------- Banner / Navigation ---------- */
 
 #banner {
 	background: url(../images/custom/small_banner.jpg) 0 0 no-repeat;
@@ -129,7 +129,7 @@ body {
 	zoom: 1;
 }
 
-/* -------- Breadcrumbs -------- */
+/* ---------- Breadcrumbs ---------- */
 
 #breadcrumbs {
 	display: inline-block;
@@ -189,7 +189,7 @@ body {
 	}
 }
 
-/* -------- Content -------- */
+/* ---------- Content ---------- */
 
 .left {
 	float: left;
@@ -237,7 +237,7 @@ img.center {
 	width: 920px;
 }
 
-/* -------- Portlet -------- */
+/* ---------- Portlet ---------- */
 
 .portlet-column-content {
 	padding: 0 5px;
@@ -284,7 +284,7 @@ img.center {
 	color: $color;
 }
 
-/* -------- Carousel -------- */
+/* ---------- Carousel ---------- */
 
 .portlet-column-content {
 	padding: 5px 10px;
@@ -308,7 +308,7 @@ img.center {
 	display: none;
 }
 
-/* -------- Footer -------- */
+/* ---------- Footer ---------- */
 
 #footer {
 	background: url(../images/custom/footer_gradient.png) repeat-x #F6F6F6;
@@ -391,7 +391,7 @@ img.center {
 	}
 }
 
-/* -------- Extras -------- */
+/* ---------- Extras ---------- */
 
 #wrapper {
 	@include box-shadow(#000 0 0 10px);

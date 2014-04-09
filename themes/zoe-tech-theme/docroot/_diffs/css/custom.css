@@ -1,6 +1,6 @@
 @import "compass";
 
-/* -------- Set Compass Defaults -------- */
+/* ---------- Set Compass Defaults ---------- */
 
 $default-box-shadow-blur-offset: 6px;
 $default-box-shadow-color: #999;
@@ -8,7 +8,7 @@ $default-box-shadow-h-offset: 0;
 $default-box-shadow-spread: 1px;
 $default-box-shadow-v-offset: 1px;
 
-/* -------- Global -------- */
+/* ---------- Global ---------- */
 
 #breadcrumbs, #heading .page-title, #navigation .child-menu, #navigation h1, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
 	clip: rect(0 0 0 0);
@@ -121,7 +121,7 @@ hr {
 	width: 100%;
 }
 
-/* -------- Global-Layout -------- */
+/* ---------- Global-Layout ---------- */
 
 .columns-1-3-1 {
 	.aui-w33, #column-2, #column-3, #column-4 {
@@ -155,7 +155,7 @@ hr {
 	}
 }
 
-/* -------- Heading -------- */
+/* ---------- Heading ---------- */
 
 #heading {
 	position: relative;
@@ -193,7 +193,7 @@ hr {
 	}
 }
 
-/* -------- Search Bar -------- */
+/* ---------- Search Bar ---------- */
 
 #pageSearch {
 		background-image: url(../images/custom/page_search.png);
@@ -232,7 +232,7 @@ hr {
 	}
 }
 
-/* -------- Navigation -------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	background: url(../images/custom/nav_bg.png) repeat-x 0 10px;
@@ -285,7 +285,7 @@ hr {
 	padding-bottom: 20px;
 }
 
-/* -------- Carousel ------- */
+/* ---------- Carousel ---------- */
 
 .carousel-container {
 	background: #1D1D1B;
@@ -362,7 +362,7 @@ hr {
 	color: #C2C2C2;
 }
 
-/* -------- Pod -------- */
+/* ---------- Pod ---------- */
 
 .pod {
 	width: 305px;
@@ -408,7 +408,7 @@ hr {
 	}
 }
 
-/* -------- Quote Box ------- */
+/* ---------- Quote Box ---------- */
 
 #quoteBox {
 	padding-top: 15px;
@@ -467,7 +467,7 @@ hr {
 	}
 }
 
-/* -------- Side Bar -------- */
+/* ---------- Side Bar ---------- */
 
 .list-block {
 	.title {
@@ -501,7 +501,7 @@ ul.arrow {
 	}
 }
 
-/* -------- Footer -------- */
+/* ---------- Footer ---------- */
 
 #footerWrapper {
 	background-color: #142933;
@@ -577,7 +577,7 @@ ul.arrow {
 	}
 }
 
-/* ------- Browser Specific Rules ------ */
+/* ---------- Browser Specific Rules ---------- */
 
 .ie6 {
 	.aui-carousel-menu-active {
@@ -591,7 +591,7 @@ ul.arrow {
 	}
 }
 
-/* -------- Extras -------- */
+/* ---------- Extras ---------- */
 
 #banner .site-name {
 	@include background(linear-gradient(top left, #132832, #193340));

@@ -4,7 +4,7 @@
 @import url(color_schemes/republican.css);
 @import url(color_schemes/independent.css);
 
-/* -------- Global -------- */
+/* ---------- Global ---------- */
 
 #breadcrumbs, #footer, #heading, #navigation h1, #navigation .child-menu, #skip-to-content, .page-title, .powered-by {
 	clip: rect(0 0 0 0);
@@ -245,7 +245,7 @@ h3 {
 	}
 }
 
-/* -------- Web Content -------- */
+/* ---------- Web Content ---------- */
 
 .home-content {
 	.main-banner {
@@ -268,7 +268,7 @@ h3 {
 	height: 4px;
 }
 
-/* -------- Extras -------- */
+/* ---------- Extras ---------- */
 
 .button:hover {
 	@include box-shadow(rgba(0, 0, 0, 0.5) 1px 1px 15px);

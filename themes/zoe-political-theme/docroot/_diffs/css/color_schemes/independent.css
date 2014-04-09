@@ -73,7 +73,7 @@ body.independent {
 		background: #D4D4D6;
 	}
 
-	/* -------- Extras -------- */
+	/* ---------- Extras ---------- */
 
 	#content #main-content {
 		@include box-shadow(none);

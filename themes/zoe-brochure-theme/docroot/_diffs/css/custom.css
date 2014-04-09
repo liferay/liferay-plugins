@@ -1,6 +1,6 @@
 @import "compass";
 
-/* -------- Common Color Variables -------- */
+/* ---------- Common Color Variables ---------- */
 
 $bgColor: #DADADA;
 $textColor: #004461;
@@ -8,7 +8,7 @@ $textShadowColor1: #FFF;
 $textShadowColor2: #333;
 $textShadowColor3: #444;
 
-/* -------- Set Compass Defaults -------- */
+/* ---------- Set Compass Defaults ---------- */
 
 $default-box-shadow-blur-offset: 6px;
 $default-box-shadow-color: #999;
@@ -16,7 +16,7 @@ $default-box-shadow-h-offset: 0px;
 $default-box-shadow-spread: 1px;
 $default-box-shadow-v-offset: 1px;
 
-/* -------- Global -------- */
+/* ---------- Global ---------- */
 
 #breadcrumbs, #heading .page-title, #navigation h1, #skip-to-content {
 	clip: rect(0 0 0 0);
@@ -53,7 +53,7 @@ p {
 	color: #666;
 }
 
-/* -------- Wrapper / Skip / Sign-in -------- */
+/* ---------- Wrapper / Skip / Sign-in ---------- */
 
 #wrapper {
 	background: #FFF url(../images/custom/header_bg.png) no-repeat 0 0;
@@ -83,7 +83,7 @@ p {
 	top: 5px;
 }
 
-/* -------- Heading -------- */
+/* ---------- Heading ---------- */
 
 #banner #heading {
 	h1 {
@@ -110,7 +110,7 @@ p {
 	}
 }
 
-/* -------- Navigation -------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	background: url(../images/custom/nav_bg.png) no-repeat 0 0;
@@ -161,7 +161,7 @@ p {
 	}
 }
 
-/* -------- Content -------- */
+/* ---------- Content ---------- */
 
 #content {
 	background: url(../images/custom/content_bg.png) repeat-x 0 285px;
@@ -299,7 +299,7 @@ p {
 	}
 }
 
-/* -------- Footer -------- */
+/* ---------- Footer ---------- */
 
 #footer {
 	background: url(../images/custom/footer_bg.png) repeat-x 0 0;
@@ -317,13 +317,13 @@ p {
 	}
 }
 
-/* -------- Portlet -------- */
+/* ---------- Portlet ---------- */
 
 .portlet ul li a {
 	text-shadow: none;
 }
 
-/* -------- Portlet Max -------- */
+/* ---------- Portlet Max ---------- */
 
 .columns-max {
 	.portlet span {
@@ -356,7 +356,7 @@ p {
 	}
 }
 
-/* -------- Custom Classes -------- */
+/* ---------- Custom Classes ---------- */
 
 .left {
 	float: left;
@@ -366,7 +366,7 @@ p {
 	float: right;
 }
 
-/* -------- AUI -------- */
+/* ---------- AUI ---------- */
 
 .aui-combobox-content {
 	padding: 15px 0 0;
@@ -388,7 +388,7 @@ p {
 	text-shadow: none;
 }
 
-/* -------- Web Content -------- */
+/* ---------- Web Content ---------- */
 
 .pod {
 	background: url(../images/custom/home_pod.png) no-repeat 0 0;
@@ -639,7 +639,7 @@ p {
 	}
 }
 
-/* -------- Columns -------- */
+/* ---------- Columns ---------- */
 
 .column-text {
 	margin-top: 33px;
@@ -664,7 +664,7 @@ ul.aui-tabview-list {
 	text-transform: uppercase;
 }
 
-/* -------- Extras -------- */
+/* ---------- Extras ---------- */
 
 a, a:link, a:visited, p, #navigation ul, .columns-max .portlet-topper-toolbar, .ie8 .pod.button span.description, .innovation-title, .pod {
 	@include single-text-shadow($textShadowColor1, 1px, 1px, 1px);
