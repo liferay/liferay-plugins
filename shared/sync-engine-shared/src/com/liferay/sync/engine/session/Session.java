@@ -81,7 +81,7 @@ public class Session {
 
 		httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
 
-		httpClientBuilder.setMaxConnPerRoute(2);
+		httpClientBuilder.setMaxConnPerRoute(5);
 		httpClientBuilder.setRoutePlanner(_getHttpRoutePlanner());
 
 		if (trustSelfSigned) {
