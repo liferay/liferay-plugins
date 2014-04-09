@@ -4,4 +4,8 @@
 <hook>
 	<portal-properties>portal.properties</portal-properties>
 	<custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
+	<service>
+		<service-type>com.liferay.portlet.expando.service.ExpandoValueLocalService</service-type>
+		<service-impl>com.liferay.compat.hook.service.impl.CompatExpandoValueLocalServiceImpl</service-impl>
+	</service>
 </hook>
