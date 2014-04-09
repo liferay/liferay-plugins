@@ -4,7 +4,7 @@
 <liferay-portlet-app>
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<portlet-data-handler-class>com.liferay.samplelar.plugin.LARPlugin</portlet-data-handler-class>
+		<portlet-data-handler-class>com.liferay.samplelar.datahandler.SampleLARPortletDataHandler</portlet-data-handler-class>
 		<instanceable>true</instanceable>
 	</portlet>
 	<role-mapper>
