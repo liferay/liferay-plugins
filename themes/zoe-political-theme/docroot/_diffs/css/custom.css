@@ -10,7 +10,7 @@ $dockbarGradientStart: #118ADE;
 $dockbarOpenGradientEnd: #0993DD;
 $dockbarOpenGradientStart: #0EA6F9;
 
-/* -------- Global -------- */
+/* ---------- Global ---------- */
 
 .aui {
 	#breadcrumbs, #footer, #heading, #navigation .child-menu, #skip-to-content, .powered-by {
@@ -168,7 +168,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 		}
 	}
 
-	/* -------- Navigation -------- */
+	/* ---------- Navigation ---------- */
 
 	#navigation {
 		ul {
@@ -222,7 +222,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 		}
 	}
 
-	/* -------- Content -------- */
+	/* ---------- Content ---------- */
 
 	#content {
 		#main-content {
@@ -254,7 +254,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 		}
 	}
 
-	/* -------- Color scheme-------- */
+	/* ---------- Color scheme---------- */
 
 	@each $color-scheme in democrat, republican, independent {
 		body.#{$color-scheme} {
@@ -300,7 +300,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 		}
 	}
 
-/* -------- Web content -------- */
+/* ---------- Web content ---------- */
 
 	.home-content {
 		.main-banner {
@@ -327,7 +327,7 @@ $dockbarOpenGradientStart: #0EA6F9;
 		height: 4px;
 	}
 
-	/* -------- Extras -------- */
+	/* ---------- Extras ---------- */
 
 	.btn:hover {
 		@include box-shadow(rgba(0, 0, 0, 0.5) 1px 1px 15px);
