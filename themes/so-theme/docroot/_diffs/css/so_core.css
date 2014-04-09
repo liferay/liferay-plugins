@@ -1871,7 +1871,7 @@ html.aui {
 			display: none;
 		}
 
-/* -------------------- Mobile Popups -------------------- */
+		/* ---------- Mobile pop ups ---------- */
 
 		&.dialog-iframe-root-node {
 			padding: 10px !important;
