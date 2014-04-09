@@ -213,7 +213,7 @@ public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
 				deleteFile(syncFile, true);
 			}
 			else if (event.equals(SyncFile.EVENT_UPDATE)) {
-				updateFile(syncFile);
+				updateFile(syncFile, filePathName);
 			}
 		}
 
@@ -225,10 +225,18 @@ public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
 		SyncSiteService.update(syncSite);
 	}
 
-	protected void updateFile(SyncFile targetSyncFile) throws Exception {
+	protected void updateFile(SyncFile targetSyncFile, String filePathName)
+		throws Exception {
+
 		SyncFile sourceSyncFile = SyncFileService.fetchSyncFile(
 			targetSyncFile.getRepositoryId(), getSyncAccountId(),
 			targetSyncFile.getTypePK());
+
+		if (sourceSyncFile == null) {
+			addFile(targetSyncFile, filePathName);
+
+			return;
+		}
 
 		String sourceVersion = sourceSyncFile.getVersion();
 
