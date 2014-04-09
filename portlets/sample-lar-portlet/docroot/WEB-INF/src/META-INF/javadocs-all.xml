@@ -2,14 +2,14 @@
 
 <javadocs>
 	<javadoc>
-		<name>LARPlugin</name>
-		<type>com.liferay.samplelar.plugin.LARPlugin</type>
-		<author><![CDATA[Raymond Augé]]></author>
+		<name>SampleLARPortletDataHandler</name>
+		<type>com.liferay.samplelar.lar.SampleLARPortletDataHandler</type>
+		<author><![CDATA[Mate Thurzo]]></author>
 		<method>
-			<name>LARPlugin</name>
+			<name>SampleLARPortletDataHandler</name>
 		</method>
 		<method>
-			<name>deleteData</name>
+			<name>doDeleteData</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
@@ -21,7 +21,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>preferences</name>
+				<name>portletPreferences</name>
 				<type>javax.portlet.PortletPreferences</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -29,13 +29,13 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 			<throws>
-				<name>PortletDataException</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>exportData</name>
+			<name>doExportData</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
@@ -47,7 +47,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>preferences</name>
+				<name>portletPreferences</name>
 				<type>javax.portlet.PortletPreferences</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -55,13 +55,13 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 			<throws>
-				<name>PortletDataException</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<method>
-			<name>importData</name>
+			<name>doImportData</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
@@ -73,7 +73,7 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>preferences</name>
+				<name>portletPreferences</name>
 				<type>javax.portlet.PortletPreferences</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -86,19 +86,57 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 			<throws>
-				<name>PortletDataException</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataException</type>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doPrepareManifestSummary</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
 		<field>
-			<name>_NAMESPACE</name>
+			<name>NAMESPACE</name>
 		</field>
-		<field>
-			<name>_PUBLISH_TO_LIVE_BY_DEFAULT</name>
-		</field>
-		<field>
-			<name>_log</name>
-		</field>
+	</javadoc>
+	<javadoc>
+		<name>SampleLARBookingImpl</name>
+		<type>com.liferay.samplelar.model.impl.SampleLARBookingImpl</type>
+		<author><![CDATA[Mate Thurzo]]></author>
+		<method>
+			<name>SampleLARBookingImpl</name>
+		</method>
+	</javadoc>
+	<javadoc>
+		<name>SampleLARBookingLocalServiceImpl</name>
+		<type>com.liferay.samplelar.service.impl.SampleLARBookingLocalServiceImpl</type>
+		<author><![CDATA[Mate Thurzo]]></author>
+		<method>
+			<name>deleteSampleLARBookings</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
 	</javadoc>
 </javadocs>

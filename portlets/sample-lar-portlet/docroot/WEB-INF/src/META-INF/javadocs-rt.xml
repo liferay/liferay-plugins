@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<javadocs></javadocs>
+<javadocs><javadoc><name>SampleLARBookingLocalServiceImpl</name><type>com.liferay.samplelar.service.impl.SampleLARBookingLocalServiceImpl</type><author><![CDATA[Mate Thurzo]]></author><method><name>deleteSampleLARBookings</name><param><name>groupId</name><type>long</type><comment><![CDATA[]]></comment></param><throws><name>SystemException</name><type>com.liferay.portal.kernel.exception.SystemException</type><comment><![CDATA[]]></comment></throws></method></javadoc></javadocs>
