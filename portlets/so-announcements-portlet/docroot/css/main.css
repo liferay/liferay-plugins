@@ -26,15 +26,16 @@
 
 	.user-portrait {
 		float: left;
-		height: 45px;
 		left: 0;
 		position: absolute;
 		top: 0;
+		margin-bottom: .4em;
+		max-height: 45px;
 		width: 45px;
 
 		.avatar {
 			display: block;
-			height: 45px;
+			max-height: 45px;
 			overflow: hidden;
 
 			img {
