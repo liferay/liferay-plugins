@@ -171,6 +171,9 @@ public class SyncEngine {
 		SyncWatchEventProcessor syncWatchEventProcessor =
 			new SyncWatchEventProcessor();
 
+		_syncWatchEventProcessorExecutorService =
+			Executors.newSingleThreadScheduledExecutor();
+
 		_syncWatchEventProcessorExecutorService.scheduleAtFixedRate(
 			syncWatchEventProcessor, 0, 3, TimeUnit.SECONDS);
 
@@ -217,8 +220,7 @@ public class SyncEngine {
 	private static Map<Long, Object[]> _syncAccountTasks =
 		new HashMap<Long, Object[]>();
 	private static ScheduledExecutorService
-		_syncWatchEventProcessorExecutorService =
-			Executors.newSingleThreadScheduledExecutor();
+		_syncWatchEventProcessorExecutorService;
 	private static ExecutorService _watcherExecutorService =
 		Executors.newCachedThreadPool();
 
