@@ -27,10 +27,10 @@
 	.user-portrait {
 		float: left;
 		left: 0;
-		position: absolute;
-		top: 0;
 		margin-bottom: .4em;
 		max-height: 45px;
+		position: absolute;
+		top: 0;
 		width: 45px;
 
 		.avatar {
@@ -46,19 +46,15 @@
 
 	.entry-block, .entry-header {
 		margin-left: 55px;
+		overflow: hidden;
 	}
 
 	.entry-header {
 		margin-bottom: .4em;
-		overflow: hidden;
 
 		a {
 			font-weight: bold;
 		}
-	}
-
-	.entry-action {
-		float: left;
 	}
 
 	.entry-time {
@@ -68,6 +64,10 @@
 		margin-left: 1em;
 	}
 
+	.entry-action {
+		float: left;
+	}
+
 	.entry-scope {
 		color: #555;
 		display: block;
@@ -75,7 +75,6 @@
 
 	.entry-block {
 		clear: both;
-		overflow: hidden;
 	}
 
 	.entry-body {
