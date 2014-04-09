@@ -1,4 +1,4 @@
-/* -------- Global -------- */
+/* ---------- Global ---------- */
 
 #skip-to-content,
 #heading .community-title,
@@ -25,7 +25,7 @@ a {
 	color: #039;
 }
 
-/* -------- Wrapper / Skip / Sign-in -------- */
+/* ---------- Wrapper / Skip / Sign-in ---------- */
 
 #wrapper {
 	font-size: 12px;
@@ -52,13 +52,13 @@ a {
 	top: 1.5em;
 }
 
-/* -------- Heading -------- */
+/* ---------- Heading ---------- */
 
 #heading .company-title a {
 	margin: 0;
 }
 
-/* -------- Navigation -------- */
+/* ---------- Navigation ---------- */
 
 #navigation {
 	background: #020509;
@@ -108,13 +108,13 @@ a {
 	padding-left: 10px;
 }
 
-/* -------- Content -------- */
+/* ---------- Content ---------- */
 
 #breadcrumbs {
 	display: none;
 }
 
-/* -------- Portlet -------- */
+/* ---------- Portlet ---------- */
 
 .portlet {
 	background: #FFF;

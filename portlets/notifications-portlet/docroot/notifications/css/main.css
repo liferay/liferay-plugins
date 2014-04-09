@@ -59,7 +59,7 @@
 
 	.dropdown-menu {
 		@include box-sizing(border-box);
-		
+
 		width: 350px;
 	}
 

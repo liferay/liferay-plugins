@@ -7,7 +7,7 @@ $dockbarGradientStart: #A0BA70;
 $dockbarOpenGradientEnd: #85A056;
 $dockbarOpenGradientStart: #A7C86C;
 
-/* -------- Global -------- */
+/* ---------- Global ---------- */
 
 .aui {
 	#navigation .child-menu, #skip-to-content {
@@ -85,7 +85,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		}
 	}
 
-	/* -------- Wrapper / Sign-in -------- */
+	/* ---------- Wrapper / Sign-in ---------- */
 
 	#wrapper {
 		background: #FFF url(../images/custom/header-bg.png) repeat-x 0 0;
@@ -108,7 +108,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		right: 0;
 	}
 
-	/* -------- Banner -------- */
+	/* ---------- Banner ---------- */
 
 	#banner {
 		background: url(../images/custom/banner-bg.png) repeat-x 0 23px;
@@ -168,7 +168,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		background-image: none;
 	}
 
-	/* -------- Navigation -------- */
+	/* ---------- Navigation ---------- */
 
 	#navigation {
 		height: 50px;
@@ -222,7 +222,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		z-index: 300;
 	}
 
-	/* -------- Content layout -------- */
+	/* ---------- Content layout ---------- */
 
 	.columns-1-2-3 #layout-column_column-1, .columns-2-1-4 #layout-column_column-1 {
 		padding-top: 0;
@@ -241,7 +241,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		padding: 5px 10px;
 	}
 
-	/* -------- Content -------- */
+	/* ---------- Content ---------- */
 
 	.left {
 		float: left;
@@ -298,7 +298,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		margin: 0 0 10px 0;
 	}
 
-	/* -------- Navigation portlet -------- */
+	/* ---------- Navigation portlet ---------- */
 
 	.portlet-navigation .nav-menu {
 		background-color: #E6E6E6;
@@ -362,7 +362,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		background-color: #343434;
 	}
 
-	/* -------- Make an appointment / Web form -------- */
+	/* ---------- Make an appointment / Web form ---------- */
 
 	.web-form-portlet.make-appointment {
 		padding: 10px 20px;
@@ -412,7 +412,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		padding-left: 41px;
 	}
 
-	/* -------- Footer -------- */
+	/* ---------- Footer ---------- */
 
 	#footer {
 		background: #202020 url(../images/custom/footer.png) 0 -5px repeat-x;
@@ -476,7 +476,7 @@ $dockbarOpenGradientStart: #A7C86C;
 		}
 	}
 
-	/* -------- Extras -------- */
+	/* ---------- Extras ---------- */
 
 	.dockbar-split .dockbar {
 		.navbar-inner {

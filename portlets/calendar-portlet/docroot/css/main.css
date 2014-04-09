@@ -482,7 +482,7 @@
 	border: 1px solid #DDD;
 }
 
-/* --- YUI calendar --- */
+/* ---------- YUI calendar ---------- */
 
 .yui3-skin-sam .calendar-portlet {
 	.yui3-calendar-day, .yui3-calendar-header-label, .yui3-calendar-weekday {
@@ -533,7 +533,7 @@
 	}
 }
 
-/* --- Extras --- */
+/* ---------- Extras ---------- */
 
 .scheduler-event-recorder-content {
 	@include background-image(linear-gradient(top, #F7F7F7, white));

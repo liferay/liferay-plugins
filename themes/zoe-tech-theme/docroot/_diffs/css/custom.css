@@ -1,6 +1,6 @@
 @import "compass";
 
-/* -------- Set compass defaults -------- */
+/* ---------- Set compass defaults ---------- */
 
 $default-box-shadow-blur-offset: 6px;
 $default-box-shadow-color: #999;
@@ -8,7 +8,7 @@ $default-box-shadow-h-offset: 0;
 $default-box-shadow-spread: 1px;
 $default-box-shadow-v-offset: 1px;
 
-/* -------- Global -------- */
+/* ---------- Global ---------- */
 
 .aui {
 	#breadcrumbs, #navigation .child-menu, #navigation h1, #skip-to-content, .portlet-journal-content-search .lfr-search-button, .portlet-journal-content-search .lfr-search-keywords {
@@ -122,13 +122,13 @@ $default-box-shadow-v-offset: 1px;
 		width: 100%;
 	}
 
-	/* -------- Dockbar -------- */
+	/* ---------- Dockbar ---------- */
 
 	.dockbar-split .dockbar .navbar-inner .nav-add-controls > li {
 		background: transparent;
 	}
 
-	/* -------- Heading -------- */
+	/* ---------- Heading ---------- */
 
 	#heading {
 		position: relative;
@@ -167,7 +167,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Search bar -------- */
+	/* ---------- Search bar ---------- */
 
 	#pageSearch {
 		background-image: url(../images/custom/page_search.png);
@@ -205,7 +205,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Navigation -------- */
+	/* ---------- Navigation ---------- */
 
 	#navigation {
 		background: url(../images/custom/nav_bg.png) repeat-x 0 10px;
@@ -273,7 +273,7 @@ $default-box-shadow-v-offset: 1px;
 		padding-bottom: 20px;
 	}
 
-	/* -------- Carousel ------- */
+	/* ---------- Carousel ---------- */
 
 	.carousel-container {
 		background: #1D1D1B;
@@ -349,7 +349,7 @@ $default-box-shadow-v-offset: 1px;
 		color: #C2C2C2;
 	}
 
-	/* -------- Pod -------- */
+	/* ---------- Pod ---------- */
 
 	.pod {
 		max-width: 305px;
@@ -391,7 +391,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Quote box ------- */
+	/* ---------- Quote box ---------- */
 
 	#quoteBox {
 		padding-top: 15px;
@@ -450,7 +450,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Side bar -------- */
+	/* ---------- Side bar ---------- */
 
 	.list-block {
 		.title {
@@ -484,7 +484,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Footer -------- */
+	/* ---------- Footer ---------- */
 
 	#footerWrapper {
 		background-color: #142933;
@@ -560,7 +560,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* ------- Browser specific rules ------ */
+	/* ---------- Browser specific rules ---------- */
 
 	.ie6 {
 		.carousel-menu-active {
@@ -574,7 +574,7 @@ $default-box-shadow-v-offset: 1px;
 		}
 	}
 
-	/* -------- Extras -------- */
+	/* ---------- Extras ---------- */
 
 	#banner .site-name {
 		@include background(linear-gradient(top left, #132832, #193340));
