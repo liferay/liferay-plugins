@@ -37,7 +37,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 	</c:when>
 	<c:otherwise>
 		<div class="so-portlet-activities">
-			<div class="activity-item microblogs-entry">
+			<div class="activity-item clearfix microblogs-entry">
 
 				<%
 				User receiverUser = UserLocalServiceUtil.getUserById(microblogsEntry.getUserId());
