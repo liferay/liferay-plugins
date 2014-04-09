@@ -407,7 +407,8 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	}
 
 	@Override
-	public int compareTo(SampleLARBooking sampleLARBooking) {
+	public int compareTo(
+		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking) {
 		return _sampleLARBooking.compareTo(sampleLARBooking);
 	}
 
@@ -417,17 +418,17 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<SampleLARBooking> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<com.liferay.samplelar.model.SampleLARBooking> toCacheModel() {
 		return _sampleLARBooking.toCacheModel();
 	}
 
 	@Override
-	public SampleLARBooking toEscapedModel() {
+	public com.liferay.samplelar.model.SampleLARBooking toEscapedModel() {
 		return new SampleLARBookingWrapper(_sampleLARBooking.toEscapedModel());
 	}
 
 	@Override
-	public SampleLARBooking toUnescapedModel() {
+	public com.liferay.samplelar.model.SampleLARBooking toUnescapedModel() {
 		return new SampleLARBookingWrapper(_sampleLARBooking.toUnescapedModel());
 	}
 

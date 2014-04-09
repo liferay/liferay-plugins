@@ -129,6 +129,10 @@ public class SampleLARBookingLocalServiceClpInvoker {
 		_methodName43 = "setBeanIdentifier";
 
 		_methodParameterTypes43 = new String[] { "java.lang.String" };
+
+		_methodName48 = "deleteSampleLARBookings";
+
+		_methodParameterTypes48 = new String[] { "long" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -256,6 +260,13 @@ public class SampleLARBookingLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+			SampleLARBookingLocalServiceUtil.deleteSampleLARBookings(((Long)arguments[0]).longValue());
+
+			return null;
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -303,4 +314,6 @@ public class SampleLARBookingLocalServiceClpInvoker {
 	private String[] _methodParameterTypes42;
 	private String _methodName43;
 	private String[] _methodParameterTypes43;
+	private String _methodName48;
+	private String[] _methodParameterTypes48;
 }
