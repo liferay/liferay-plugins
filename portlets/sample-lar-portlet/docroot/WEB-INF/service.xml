@@ -4,11 +4,11 @@
 <service-builder package-path="com.liferay.samplelar" auto-namespace-tables="false">
 	<author>Mate Thurzo</author>
 	<namespace>SampleLAR</namespace>
-	<entity name="Booking" uuid="true" local-service="true" remote-service="false">
+	<entity name="SampleLARBooking" uuid="true" local-service="true" remote-service="false">
 
 		<!-- PK fields -->
 
-		<column name="bookingId" type="long" primary="true" />
+		<column name="sampleLARBookingId" type="long" primary="true" />
 
 		<!-- Group instance -->
 
