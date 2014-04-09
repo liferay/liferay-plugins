@@ -683,7 +683,6 @@ public class SampleLARBookingUtil {
 	/**
 	 * @deprecated As of 6.2.0
 	 */
-	@Deprecated
 	public void setPersistence(SampleLARBookingPersistence persistence) {
 	}
 

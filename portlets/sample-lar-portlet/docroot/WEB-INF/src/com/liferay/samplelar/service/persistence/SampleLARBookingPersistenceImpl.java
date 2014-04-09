@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.UnmodifiableList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.CacheModel;
@@ -243,7 +244,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 					Collections.sort(list);
 
-					list = Collections.unmodifiableList(list);
+					list = new UnmodifiableList<SampleLARBooking>(list);
 				}
 				else {
 					list = (List<SampleLARBooking>)QueryUtil.list(q,
@@ -1058,7 +1059,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 					Collections.sort(list);
 
-					list = Collections.unmodifiableList(list);
+					list = new UnmodifiableList<SampleLARBooking>(list);
 				}
 				else {
 					list = (List<SampleLARBooking>)QueryUtil.list(q,
@@ -1520,7 +1521,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 			CacheRegistryUtil.clear(SampleLARBookingImpl.class.getName());
 		}
 
-		EntityCacheUtil.clearCache(SampleLARBookingImpl.class);
+		EntityCacheUtil.clearCache(SampleLARBookingImpl.class.getName());
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_ENTITY);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
@@ -1802,12 +1803,10 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 		EntityCacheUtil.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
 			SampleLARBookingImpl.class, sampleLARBooking.getPrimaryKey(),
-			sampleLARBooking, false);
+			sampleLARBooking);
 
 		clearUniqueFindersCache(sampleLARBooking);
 		cacheUniqueFindersCache(sampleLARBooking);
-
-		sampleLARBooking.resetOriginalValues();
 
 		return sampleLARBooking;
 	}
@@ -2036,7 +2035,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 
 					Collections.sort(list);
 
-					list = Collections.unmodifiableList(list);
+					list = new UnmodifiableList<SampleLARBooking>(list);
 				}
 				else {
 					list = (List<SampleLARBooking>)QueryUtil.list(q,

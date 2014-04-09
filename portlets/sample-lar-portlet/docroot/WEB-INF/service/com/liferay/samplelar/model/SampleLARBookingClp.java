@@ -17,7 +17,6 @@ package com.liferay.samplelar.model;
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.BaseModel;
@@ -87,9 +86,6 @@ public class SampleLARBookingClp extends BaseModelImpl<SampleLARBooking>
 		attributes.put("modifiedDate", getModifiedDate());
 		attributes.put("bookingNumber", getBookingNumber());
 
-		attributes.put("entityCacheEnabled", isEntityCacheEnabled());
-		attributes.put("finderCacheEnabled", isFinderCacheEnabled());
-
 		return attributes;
 	}
 
@@ -148,9 +144,6 @@ public class SampleLARBookingClp extends BaseModelImpl<SampleLARBooking>
 		if (bookingNumber != null) {
 			setBookingNumber(bookingNumber);
 		}
-
-		_entityCacheEnabled = GetterUtil.getBoolean("entityCacheEnabled");
-		_finderCacheEnabled = GetterUtil.getBoolean("finderCacheEnabled");
 	}
 
 	@Override
@@ -502,16 +495,6 @@ public class SampleLARBookingClp extends BaseModelImpl<SampleLARBooking>
 	}
 
 	@Override
-	public boolean isEntityCacheEnabled() {
-		return _entityCacheEnabled;
-	}
-
-	@Override
-	public boolean isFinderCacheEnabled() {
-		return _finderCacheEnabled;
-	}
-
-	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(19);
 
@@ -599,6 +582,4 @@ public class SampleLARBookingClp extends BaseModelImpl<SampleLARBooking>
 	private Date _modifiedDate;
 	private String _bookingNumber;
 	private BaseModel<?> _sampleLARBookingRemoteModel;
-	private boolean _entityCacheEnabled;
-	private boolean _finderCacheEnabled;
 }

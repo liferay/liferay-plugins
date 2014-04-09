@@ -475,7 +475,6 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedModel}
 	 */
-	@Deprecated
 	public SampleLARBooking getWrappedSampleLARBooking() {
 		return _sampleLARBooking;
 	}
@@ -483,16 +482,6 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	@Override
 	public SampleLARBooking getWrappedModel() {
 		return _sampleLARBooking;
-	}
-
-	@Override
-	public boolean isEntityCacheEnabled() {
-		return _sampleLARBooking.isEntityCacheEnabled();
-	}
-
-	@Override
-	public boolean isFinderCacheEnabled() {
-		return _sampleLARBooking.isFinderCacheEnabled();
 	}
 
 	@Override
