@@ -17,6 +17,10 @@
 		<service-type>com.liferay.portlet.documentlibrary.service.DLFileEntryService</service-type>
 		<service-impl>com.liferay.compat.hook.service.impl.CompatDLFileEntryServiceImpl</service-impl>
 	</service>
+	<service>
+		<service-type>com.liferay.portlet.expando.service.ExpandoValueLocalService</service-type>
+		<service-impl>com.liferay.compat.hook.service.impl.CompatExpandoValueLocalServiceImpl</service-impl>
+	</service>
 	<servlet-filter>
 		<servlet-filter-name>Social Office Compatibility Filter</servlet-filter-name>
 		<servlet-filter-impl>com.liferay.compat.hook.filter.CompatWebDAVFilter</servlet-filter-impl>
