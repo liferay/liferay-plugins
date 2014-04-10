@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.samplelar.datahandler;
+package com.liferay.samplelar.lar;
 
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.lar.BasePortletDataHandler;
