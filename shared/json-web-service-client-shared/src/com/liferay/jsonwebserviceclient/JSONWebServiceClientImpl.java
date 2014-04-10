@@ -21,6 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.security.auth.login.CredentialException;
 
@@ -34,24 +35,18 @@ import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.AuthCache;
 import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
-import org.apache.http.client.protocol.ClientContext;
 import org.apache.http.client.utils.URLEncodedUtils;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.impl.auth.BasicScheme;
-import org.apache.http.impl.client.BasicAuthCache;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.PoolingClientConnectionManager;
+import org.apache.http.impl.client.BasicCredentialsProvider;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreConnectionPNames;
-import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.BasicHttpContext;
-import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
 import org.slf4j.Logger;
@@ -64,25 +59,55 @@ import org.slf4j.LoggerFactory;
 public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 	public void afterPropertiesSet() {
-		PoolingClientConnectionManager poolingClientConnectionManager =
-			new PoolingClientConnectionManager();
+		PoolingHttpClientConnectionManager poolingHttpClientConnectionManager =
+			new PoolingHttpClientConnectionManager(
+				60000, TimeUnit.MILLISECONDS);
 
-		poolingClientConnectionManager.setMaxTotal(20);
+		poolingHttpClientConnectionManager.setMaxTotal(20);
 
-		_defaultHttpClient = new DefaultHttpClient(
-			poolingClientConnectionManager);
+		HttpClientBuilder httpClientBuilder = HttpClients.custom();
 
-		HttpParams httpParams = _defaultHttpClient.getParams();
+		httpClientBuilder.setConnectionManager(
+			poolingHttpClientConnectionManager);
 
-		httpParams.setIntParameter(
-			CoreConnectionPNames.CONNECTION_TIMEOUT, 60000);
+		if ((_login != null) && (_password != null)) {
+			CredentialsProvider credentialsProvider =
+				new BasicCredentialsProvider();
+
+			UsernamePasswordCredentials usernamePasswordCredentials =
+				new UsernamePasswordCredentials(_login, _password);
+
+			AuthScope authScope = new AuthScope(_hostName, _port);
+
+			credentialsProvider.setCredentials(
+				authScope, usernamePasswordCredentials);
+
+			httpClientBuilder.setDefaultCredentialsProvider(
+				credentialsProvider);
+		}
+		else {
+			if (_logger.isWarnEnabled()) {
+				_logger.warn("Username and password are required.");
+			}
+		}
+
+		_closeableHttpClient = httpClientBuilder.build();
+
+		if (_logger.isDebugEnabled()) {
+			_logger.debug(
+				"HTTPS Client configured for " + _protocol + "://" + _hostName);
+		}
 	}
 
 	public void destroy() {
-		ClientConnectionManager clientConnectionManager =
-			_defaultHttpClient.getConnectionManager();
+		try {
+			_closeableHttpClient.close();
+		}
+		catch (IOException e) {
+			_logger.error("Failed to close http client.", e);
+		}
 
-		clientConnectionManager.shutdown();
+		_closeableHttpClient = null;
 	}
 
 	@Override
@@ -176,42 +201,12 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		HttpHost httpHost = new HttpHost(_hostName, _port, _protocol);
 
 		try {
-			HttpContext httpContext = null;
-
-			if ((_login != null) && (_password != null)) {
-				CredentialsProvider credentialsProvider =
-					_defaultHttpClient.getCredentialsProvider();
-
-				AuthScope authScope = new AuthScope(
-					httpHost.getHostName(), httpHost.getPort());
-
-				UsernamePasswordCredentials usernamePasswordCredentials =
-					new UsernamePasswordCredentials(_login, _password);
-
-				credentialsProvider.setCredentials(
-					authScope, usernamePasswordCredentials);
-
-				httpContext = new BasicHttpContext();
-
-				AuthCache authCache = new BasicAuthCache();
-
-				BasicScheme basicScheme = new BasicScheme();
-
-				authCache.put(httpHost, basicScheme);
-
-				httpContext.setAttribute(ClientContext.AUTH_CACHE, authCache);
+			if (_closeableHttpClient == null) {
+				afterPropertiesSet();
 			}
 
-			HttpResponse httpResponse = null;
-
-			if (httpContext == null) {
-				httpResponse = _defaultHttpClient.execute(
-					httpHost, httpRequestBase);
-			}
-			else {
-				httpResponse = _defaultHttpClient.execute(
-					httpHost, httpRequestBase, httpContext);
-			}
+			HttpResponse httpResponse = _closeableHttpClient.execute(
+				httpHost, httpRequestBase);
 
 			StatusLine statusLine = httpResponse.getStatusLine();
 
@@ -272,7 +267,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	private static Logger _logger = LoggerFactory.getLogger(
 		JSONWebServiceClientImpl.class);
 
-	private DefaultHttpClient _defaultHttpClient;
+	private CloseableHttpClient _closeableHttpClient;
 	private String _hostName;
 	private String _login;
 	private String _password;
