@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
@@ -73,20 +72,19 @@ public class SOAnnouncementsUserNotificationHandler
 			return null;
 		}
 
-		StringBundler sb = new StringBundler(5);
+		String title = serviceContext.translate(
+			"x-sent-a-new-announcement",
+			HtmlUtil.escape(
+				PortalUtil.getUserName(
+					announcementEntry.getUserId(), StringPool.BLANK)));
 
-		sb.append("<div class=\"title\">");
-		sb.append(
-			serviceContext.translate(
-				"x-sent-a-new-announcement",
+		return StringUtil.replace(
+			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
+			new String[] {
 				HtmlUtil.escape(
-					PortalUtil.getUserName(
-						announcementEntry.getUserId(), StringPool.BLANK))));
-		sb.append("</div><div class=\"body\">");
-		sb.append(StringUtil.shorten(announcementEntry.getContent(), 50));
-		sb.append("</div>");
-
-		return sb.toString();
+					StringUtil.shorten(announcementEntry.getContent(), 50)),
+				title
+			});
 	}
 
 	@Override
