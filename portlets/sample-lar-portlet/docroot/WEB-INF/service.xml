@@ -38,4 +38,7 @@
 			<finder-column name="groupId" />
 		</finder>
 	</entity>
+	<exceptions>
+		<exception>BookingNumber</exception>
+	</exceptions>
 </service-builder>

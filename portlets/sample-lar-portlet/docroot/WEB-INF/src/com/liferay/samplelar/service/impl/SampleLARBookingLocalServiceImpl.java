@@ -14,10 +14,16 @@
 
 package com.liferay.samplelar.service.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.User;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.samplelar.BookingNumberException;
 import com.liferay.samplelar.model.SampleLARBooking;
 import com.liferay.samplelar.service.base.SampleLARBookingLocalServiceBaseImpl;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +32,34 @@ import java.util.List;
 public class SampleLARBookingLocalServiceImpl
 	extends SampleLARBookingLocalServiceBaseImpl {
 
+	public SampleLARBooking addSampleLARBooking(
+			long userId, long groupId, String bookingNumber,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		User user = userPersistence.findByPrimaryKey(userId);
+		Date now = new Date();
+
+		validate(bookingNumber);
+
+		long sampleLARBookingId = counterLocalService.increment();
+
+		SampleLARBooking sampleLARBooking = sampleLARBookingPersistence.create(
+			sampleLARBookingId);
+
+		sampleLARBooking.setGroupId(groupId);
+		sampleLARBooking.setCompanyId(user.getCompanyId());
+		sampleLARBooking.setUserId(userId);
+		sampleLARBooking.setUserName(user.getFullName());
+		sampleLARBooking.setCreateDate(serviceContext.getCreateDate(now));
+		sampleLARBooking.setModifiedDate(serviceContext.getModifiedDate(now));
+		sampleLARBooking.setBookingNumber(bookingNumber);
+
+		sampleLARBookingPersistence.update(sampleLARBooking);
+
+		return sampleLARBooking;
+	}
+
 	public void deleteSampleLARBookings(long groupId) throws SystemException {
 		List<SampleLARBooking> sampleLARBookings =
 			sampleLARBookingPersistence.findByGroupId(groupId);
@@ -33,6 +67,33 @@ public class SampleLARBookingLocalServiceImpl
 		for (SampleLARBooking sampleLARBooking : sampleLARBookings) {
 			sampleLARBookingLocalService.deleteSampleLARBooking(
 				sampleLARBooking);
+		}
+	}
+
+	public SampleLARBooking updateSampleLARBooking(
+			long userId, long sampleLARBookingId, String bookingNumber,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		User user = userPersistence.findByPrimaryKey(userId);
+
+		SampleLARBooking sampleLARBooking =
+			sampleLARBookingPersistence.findByPrimaryKey(sampleLARBookingId);
+
+		validate(bookingNumber);
+
+		sampleLARBooking.setUserId(userId);
+		sampleLARBooking.setUserName(user.getFullName());
+		sampleLARBooking.setModifiedDate(
+			serviceContext.getModifiedDate(new Date()));
+		sampleLARBooking.setBookingNumber(bookingNumber);
+
+		return sampleLARBookingPersistence.update(sampleLARBooking);
+	}
+
+	protected void validate(String bookingNumber) throws PortalException {
+		if (Validator.isNull(bookingNumber)) {
+			throw new BookingNumberException();
 		}
 	}
 
