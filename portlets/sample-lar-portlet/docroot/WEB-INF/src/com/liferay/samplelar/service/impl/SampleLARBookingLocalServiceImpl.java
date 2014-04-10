@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.samplelar.BookingNumberException;
+import com.liferay.samplelar.SampleLARBookingBookingNumberException;
 import com.liferay.samplelar.model.SampleLARBooking;
 import com.liferay.samplelar.service.base.SampleLARBookingLocalServiceBaseImpl;
 
@@ -77,10 +77,10 @@ public class SampleLARBookingLocalServiceImpl
 
 		User user = userPersistence.findByPrimaryKey(userId);
 
+		validate(bookingNumber);
+
 		SampleLARBooking sampleLARBooking =
 			sampleLARBookingPersistence.findByPrimaryKey(sampleLARBookingId);
-
-		validate(bookingNumber);
 
 		sampleLARBooking.setUserId(userId);
 		sampleLARBooking.setUserName(user.getFullName());
@@ -93,7 +93,7 @@ public class SampleLARBookingLocalServiceImpl
 
 	protected void validate(String bookingNumber) throws PortalException {
 		if (Validator.isNull(bookingNumber)) {
-			throw new BookingNumberException();
+			throw new SampleLARBookingBookingNumberException();
 		}
 	}
 
