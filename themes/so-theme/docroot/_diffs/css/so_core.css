@@ -1863,6 +1863,19 @@ html.aui {
 	}
 
 	@media (max-width: 767px) {
+		body #banner {
+			padding: .5em 1em;
+			text-align: center;
+
+			.site-title {
+				width: 100%;
+			}
+
+			.avatar, .logo img {
+				display: none;
+			}
+		}
+
 		.row-fluid [class*="span"] {
 			width: 100%;
 		}
