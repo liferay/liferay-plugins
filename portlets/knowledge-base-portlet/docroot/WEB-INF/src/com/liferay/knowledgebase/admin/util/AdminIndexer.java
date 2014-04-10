@@ -64,10 +64,9 @@ public class AdminIndexer extends BaseIndexer {
 
 	public AdminIndexer() {
 		setDefaultSelectedFieldNames(
-			new String[] {
 				Field.COMPANY_ID, Field.CONTENT, Field.DESCRIPTION,
 				Field.ENTRY_CLASS_NAME, Field.ENTRY_CLASS_PK, Field.TITLE,
-				Field.UID});
+				Field.UID);
 		setFilterSearch(true);
 		setPermissionAware(true);
 	}
