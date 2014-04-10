@@ -16,6 +16,8 @@ package com.liferay.jsonwebserviceclient;
 
 import java.io.IOException;
 
+import java.security.KeyStore;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -182,6 +184,11 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	}
 
 	@Override
+	public void setKeyStore(KeyStore keyStore) {
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
 	public void setLogin(String login) {
 		_login = login;
 	}
@@ -264,14 +271,14 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		return nameValuePairs;
 	}
 
+	protected CloseableHttpClient _closeableHttpClient;
+	protected String _hostName;
+	protected String _login;
+	protected String _password;
+	protected int _port = 80;
+	protected String _protocol = "http";
+
 	private static Logger _logger = LoggerFactory.getLogger(
 		JSONWebServiceClientImpl.class);
-
-	private CloseableHttpClient _closeableHttpClient;
-	private String _hostName;
-	private String _login;
-	private String _password;
-	private int _port = 80;
-	private String _protocol = "http";
 
 }
