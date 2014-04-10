@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationFeedEntry;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.ServiceContext;
 
@@ -52,7 +53,35 @@ public abstract class BaseUserNotificationHandler
 		return null;
 	}
 
+	protected String getBodyTemplate() throws Exception {
+		if (isActionable()) {
+			StringBundler sb = new StringBundler(5);
+
+			sb.append("<div class=\"title\">[$TITLE$]</div><div ");
+			sb.append("class=\"body\"><a class=\"btn btn-action ");
+			sb.append("btn-success\" href=\"[$CONFIRM_URL$]\">[$CONFIRM$]</a>");
+			sb.append("<a class=\"btn btn-action btn-warning\" href=\"");
+			sb.append("[$IGNORE_URL$]\">[$IGNORE$]</a></div>");
+
+			return sb.toString();
+		}
+		else {
+			return "<div class=\"title\">[$TITLE$]</div><div class=\"body\">" +
+				"[$BODY$]</div>";
+		}
+	}
+
+	protected boolean isActionable() {
+		return _actionable;
+	}
+
+	protected void setActionable(boolean actionable) {
+		_actionable = actionable;
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		BaseUserNotificationHandler.class);
+
+	private boolean _actionable = false;
 
 }
