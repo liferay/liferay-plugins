@@ -130,9 +130,23 @@ public class SampleLARBookingLocalServiceClpInvoker {
 
 		_methodParameterTypes43 = new String[] { "java.lang.String" };
 
-		_methodName48 = "deleteSampleLARBookings";
+		_methodName48 = "addSampleLARBooking";
 
-		_methodParameterTypes48 = new String[] { "long" };
+		_methodParameterTypes48 = new String[] {
+				"long", "long", "java.lang.String",
+				"com.liferay.portal.service.ServiceContext"
+			};
+
+		_methodName49 = "deleteSampleLARBookings";
+
+		_methodParameterTypes49 = new String[] { "long" };
+
+		_methodName50 = "updateSampleLARBooking";
+
+		_methodParameterTypes50 = new String[] {
+				"long", "long", "java.lang.String",
+				"com.liferay.portal.service.ServiceContext"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -262,9 +276,25 @@ public class SampleLARBookingLocalServiceClpInvoker {
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
+			return SampleLARBookingLocalServiceUtil.addSampleLARBooking(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2],
+				(com.liferay.portal.service.ServiceContext)arguments[3]);
+		}
+
+		if (_methodName49.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
 			SampleLARBookingLocalServiceUtil.deleteSampleLARBookings(((Long)arguments[0]).longValue());
 
 			return null;
+		}
+
+		if (_methodName50.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			return SampleLARBookingLocalServiceUtil.updateSampleLARBooking(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue(),
+				(java.lang.String)arguments[2],
+				(com.liferay.portal.service.ServiceContext)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();
@@ -316,4 +346,8 @@ public class SampleLARBookingLocalServiceClpInvoker {
 	private String[] _methodParameterTypes43;
 	private String _methodName48;
 	private String[] _methodParameterTypes48;
+	private String _methodName49;
+	private String[] _methodParameterTypes49;
+	private String _methodName50;
+	private String[] _methodParameterTypes50;
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.samplelar.service.persistence;
+package com.liferay.samplelar.service.persistence.impl;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -44,6 +44,7 @@ import com.liferay.samplelar.NoSuchBookingException;
 import com.liferay.samplelar.model.SampleLARBooking;
 import com.liferay.samplelar.model.impl.SampleLARBookingImpl;
 import com.liferay.samplelar.model.impl.SampleLARBookingModelImpl;
+import com.liferay.samplelar.service.persistence.SampleLARBookingPersistence;
 
 import java.io.Serializable;
 

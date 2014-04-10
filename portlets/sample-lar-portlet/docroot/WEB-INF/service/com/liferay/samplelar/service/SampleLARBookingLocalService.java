@@ -305,6 +305,18 @@ public interface SampleLARBookingLocalService extends BaseLocalService,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
 
+	public com.liferay.samplelar.model.SampleLARBooking addSampleLARBooking(
+		long userId, long groupId, java.lang.String bookingNumber,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void deleteSampleLARBookings(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
+		long userId, long sampleLARBookingId, java.lang.String bookingNumber,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
 }

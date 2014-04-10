@@ -358,9 +358,29 @@ public class SampleLARBookingLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.samplelar.model.SampleLARBooking addSampleLARBooking(
+		long userId, long groupId, java.lang.String bookingNumber,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _sampleLARBookingLocalService.addSampleLARBooking(userId,
+			groupId, bookingNumber, serviceContext);
+	}
+
+	@Override
 	public void deleteSampleLARBookings(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		_sampleLARBookingLocalService.deleteSampleLARBookings(groupId);
+	}
+
+	@Override
+	public com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
+		long userId, long sampleLARBookingId, java.lang.String bookingNumber,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _sampleLARBookingLocalService.updateSampleLARBooking(userId,
+			sampleLARBookingId, bookingNumber, serviceContext);
 	}
 
 	/**
