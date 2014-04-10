@@ -14,11 +14,14 @@
 
 package com.liferay.samplelar.lar;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.BaseStagedModelDataHandler;
+import com.liferay.portal.kernel.lar.ExportImportPathUtil;
 import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.xml.Element;
+import com.liferay.portal.service.ServiceContext;
 import com.liferay.samplelar.model.SampleLARBooking;
+import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
 
 /**
  * @author Mate Thurzo
@@ -32,7 +35,16 @@ public class SampleLARBookingStagedModelDataHandler
 	@Override
 	public void deleteStagedModel(
 			String uuid, long groupId, String className, String extraData)
-		throws PortalException, SystemException {
+		throws SystemException {
+
+		SampleLARBooking sampleLARBooking =
+			SampleLARBookingLocalServiceUtil.
+				fetchSampleLARBookingByUuidAndGroupId(uuid, groupId);
+
+		if (sampleLARBooking != null) {
+			SampleLARBookingLocalServiceUtil.deleteSampleLARBooking(
+				sampleLARBooking);
+		}
 	}
 
 	@Override
@@ -41,10 +53,23 @@ public class SampleLARBookingStagedModelDataHandler
 	}
 
 	@Override
+	public String getDisplayName(SampleLARBooking sampleLARBooking) {
+		return sampleLARBooking.getBookingNumber();
+	}
+
+	@Override
 	protected void doExportStagedModel(
 			PortletDataContext portletDataContext,
 			SampleLARBooking sampleLARBooking)
 		throws Exception {
+
+		Element sampleLARBookingElement =
+			portletDataContext.getExportDataElement(sampleLARBooking);
+
+		portletDataContext.addClassedModel(
+			sampleLARBookingElement,
+			ExportImportPathUtil.getModelPath(sampleLARBooking),
+			sampleLARBooking);
 	}
 
 	@Override
@@ -52,6 +77,47 @@ public class SampleLARBookingStagedModelDataHandler
 			PortletDataContext portletDataContext,
 			SampleLARBooking sampleLARBooking)
 		throws Exception {
+
+		long userId = portletDataContext.getUserId(
+			sampleLARBooking.getUserUuid());
+
+		ServiceContext serviceContext = portletDataContext.createServiceContext(
+			sampleLARBooking);
+
+		SampleLARBooking importedSampleLARBooking = null;
+
+		if (portletDataContext.isDataStrategyMirror()) {
+			SampleLARBooking existingSampleLARBooking =
+				SampleLARBookingLocalServiceUtil.
+					fetchSampleLARBookingByUuidAndGroupId(
+						sampleLARBooking.getUuid(),
+						portletDataContext.getScopeGroupId());
+
+			if (existingSampleLARBooking == null) {
+				serviceContext.setUuid(sampleLARBooking.getUuid());
+
+				importedSampleLARBooking =
+					SampleLARBookingLocalServiceUtil.addSampleLARBooking(
+						userId, portletDataContext.getScopeGroupId(),
+						sampleLARBooking.getBookingNumber(), serviceContext);
+			}
+			else {
+				importedSampleLARBooking =
+					SampleLARBookingLocalServiceUtil.updateSampleLARBooking(
+						userId,
+						existingSampleLARBooking.getSampleLARBookingId(),
+						sampleLARBooking.getBookingNumber(), serviceContext);
+			}
+		}
+		else {
+			importedSampleLARBooking =
+				SampleLARBookingLocalServiceUtil.addSampleLARBooking(
+					userId, portletDataContext.getScopeGroupId(),
+					sampleLARBooking.getBookingNumber(), serviceContext);
+		}
+
+		portletDataContext.importClassedModel(
+			sampleLARBooking, importedSampleLARBooking);
 	}
 
 }
