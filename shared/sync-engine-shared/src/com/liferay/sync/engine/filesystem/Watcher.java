@@ -64,19 +64,28 @@ public class Watcher implements Runnable {
 	}
 
 	public void close() throws IOException {
-		_watchService.close();
+		try {
+			_watchService.close();
+		}
+		catch (Exception e) {
+			_watchService = null;
+		}
 	}
 
 	@Override
 	public void run() {
 		while (true) {
+			if (_watchService == null) {
+				break;
+			}
+
 			WatchKey watchKey = null;
 
 			try {
 				watchKey = _watchService.take();
 			}
 			catch (Exception e) {
-				return;
+				break;
 			}
 
 			Path parentFilePath = _filePaths.get(watchKey);
@@ -92,6 +101,10 @@ public class Watcher implements Runnable {
 					i);
 
 				PathImpl pathImpl = (PathImpl)watchEvent.context();
+
+				if (pathImpl == null) {
+					continue;
+				}
 
 				Path childFilePath = parentFilePath.resolve(
 					pathImpl.toString());
