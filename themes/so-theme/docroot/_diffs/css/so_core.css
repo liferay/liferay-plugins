@@ -2033,6 +2033,14 @@ html.aui {
 			padding: 1em 0;
 		}
 
+		/* ---------- Portlet: document library ---------- */
+
+		.portlet-document-library .row-fluid {
+			.span2, .span10 {
+				width: auto;
+			}
+		}
+
 		/* ---------- Portlet: microblogs ---------- */
 
 		.user-dashboard .microblogs-portlet {
