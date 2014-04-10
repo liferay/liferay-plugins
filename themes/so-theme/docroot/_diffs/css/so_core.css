@@ -508,7 +508,7 @@ html.aui {
 .portlet-column .portlet-column-content {
 	border: solid $defaultBorderColor;
 	border-width: 0 1px 0 0;
-	margin: 0 0 0 -1px;
+	margin: 0;
 	padding: 0;
 }
 
