@@ -2032,5 +2032,17 @@ html.aui {
 		.so-portlet-activities .activity-item {
 			padding: 1em 0;
 		}
+
+		/* ---------- Portlet: microblogs ---------- */
+
+		.user-dashboard .microblogs-portlet {
+			.microblogs-entry-form {
+				margin-bottom: 0;
+			}
+
+			.microblogs-status-container {
+				display: none;
+			}
+		}
 	}
 }
