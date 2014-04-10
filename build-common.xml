@@ -1941,6 +1941,7 @@ Please find a solution that does not require portal-impl.jar.
 						<available file="@{module.dir}/test/@{test.type}" type="dir" />
 						<then>
 							<junit dir="${sdk.dir}" fork="on" forkmode="@{junit.forkmode}" outputtoformatters="false" printsummary="on" showoutput="true">
+								<sysproperty key="app.server.tomcat.dir" value="${app.server.tomcat.dir}" />
 								<sysproperty key="net.sourceforge.cobertura.datafile" file="@{module.dir}/test-coverage/cobertura.ser" />
 								<jvmarg line="${junit.debug.jpda}" />
 								<jvmarg value="-Xmx${junit.java.mx}" />
