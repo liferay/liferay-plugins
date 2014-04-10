@@ -39,6 +39,6 @@
 		</finder>
 	</entity>
 	<exceptions>
-		<exception>BookingNumber</exception>
+		<exception>SampleLARBookingBookingNumber</exception>
 	</exceptions>
 </service-builder>
