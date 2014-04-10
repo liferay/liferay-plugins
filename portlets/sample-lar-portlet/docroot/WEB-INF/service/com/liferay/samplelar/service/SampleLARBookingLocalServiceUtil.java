@@ -337,6 +337,11 @@ public class SampleLARBookingLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static void deleteSampleLARBookings(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getService().deleteSampleLARBookings(groupId);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}
