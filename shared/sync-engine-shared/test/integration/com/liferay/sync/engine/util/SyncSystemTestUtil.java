@@ -49,33 +49,33 @@ public class SyncSystemTestUtil {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
-		parameters.put("companyId", getCompanyId(syncAccountId));
-		parameters.put("autoPassword", false);
-		parameters.put("password1", "test");
-		parameters.put("password2", "test");
-		parameters.put("autoScreenName", false);
-		parameters.put("screenName", name);
-		parameters.put("emailAddress", name.concat("@liferay.com"));
-		parameters.put("facebookId", 0);
-		parameters.put("openId", "");
-		parameters.put("locale", Locale.getDefault());
-		parameters.put("firstName", name);
-		parameters.put("middleName", "");
-		parameters.put("lastName", "");
-		parameters.put("prefixId", 0);
-		parameters.put("suffixId", 0);
-		parameters.put("male", true);
-		parameters.put("birthdayMonth", 1);
-		parameters.put("birthdayDay", 1);
-		parameters.put("birthdayYear", 1901);
-		parameters.put("jobTitle", "");
-		parameters.put("groupIds", getGuestGroupId(syncAccountId));
 		parameters.put("-organizationIds", null);
 		parameters.put("-roleIds", null);
 		parameters.put("-userGroupIds", null);
+		parameters.put("autoPassword", false);
+		parameters.put("autoScreenName", false);
+		parameters.put("birthdayDay", 1);
+		parameters.put("birthdayMonth", 1);
+		parameters.put("birthdayYear", 1901);
+		parameters.put("companyId", getCompanyId(syncAccountId));
+		parameters.put("emailAddress", name.concat("@liferay.com"));
+		parameters.put("facebookId", 0);
+		parameters.put("firstName", name);
+		parameters.put("groupIds", getGuestGroupId(syncAccountId));
+		parameters.put("jobTitle", "");
+		parameters.put("lastName", "");
+		parameters.put("locale", Locale.getDefault());
+		parameters.put("male", true);
+		parameters.put("middleName", "");
+		parameters.put("openId", "");
+		parameters.put("password1", "test");
+		parameters.put("password2", "test");
+		parameters.put("prefixId", 0);
+		parameters.put("screenName", name);
 		parameters.put("sendEmail", false);
+		parameters.put("suffixId", 0);
 
-		executePost(_ADD_USER_URL_PATH, parameters, syncAccountId);
+		executePost("/user/add-user", parameters, syncAccountId);
 	}
 
 	public static void deleteUser(long userId, long syncAccountId)
@@ -85,7 +85,7 @@ public class SyncSystemTestUtil {
 
 		parameters.put("userId", userId);
 
-		executePost(_DELETE_USER_URL_PATH, parameters, syncAccountId);
+		executePost("/user/delete-user", parameters, syncAccountId);
 	}
 
 	public static long getGuestGroupId(long syncAccountId) throws Exception {
@@ -101,7 +101,7 @@ public class SyncSystemTestUtil {
 		Session session = SessionManager.getSession(syncAccountId);
 
 		HttpResponse httpResponse = session.executePost(
-			_GET_GROUP_URL_PATH, parameters);
+			"/group/get-group", parameters);
 
 		HttpEntity httpEntity = httpResponse.getEntity();
 
@@ -158,18 +158,18 @@ public class SyncSystemTestUtil {
 	}
 
 	protected static Process executeCommand(String action) throws Exception {
+		Runtime runtime = Runtime.getRuntime();
+
 		String command = null;
 
-		String tomcatDir = System.getProperty("app.server.tomcat.dir");
+		String dirName = System.getProperty("app.server.tomcat.dir");
 
 		if (OSDetector.isWindows()) {
-			command = tomcatDir.concat("/bin/catalina.bat ").concat(action);
+			command = dirName + "/bin/catalina.bat " + action;
 		}
 		else {
-			command = tomcatDir.concat("/bin/catalina.sh ").concat(action);
+			command = dirName + "/bin/catalina.sh " + action;
 		}
-
-		Runtime runtime = Runtime.getRuntime();
 
 		return runtime.exec(command);
 	}
@@ -195,7 +195,7 @@ public class SyncSystemTestUtil {
 		Session session = SessionManager.getSession(syncAccountId);
 
 		HttpResponse httpResponse = session.executePost(
-			_GET_COMPANY_URL_PATH, parameters);
+			"/company/get-company-by-virtual-host", parameters);
 
 		HttpEntity httpEntity = httpResponse.getEntity();
 
@@ -224,15 +224,6 @@ public class SyncSystemTestUtil {
 			return false;
 		}
 	}
-
-	private static final String _ADD_USER_URL_PATH = "/user/add-user";
-
-	private static final String _DELETE_USER_URL_PATH = "/user/delete-user";
-
-	private static final String _GET_COMPANY_URL_PATH =
-		"/company/get-company-by-virtual-host";
-
-	private static final String _GET_GROUP_URL_PATH = "/group/get-group";
 
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncSystemTestUtil.class);
