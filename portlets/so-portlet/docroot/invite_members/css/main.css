@@ -181,27 +181,29 @@
 
 /* ---------- Responsive ---------- */
 
-html.aui {
-	@media (max-width: 767px) {
-		.so-portlet-invite-members .modal-body {
-			.user-search-wrapper {
-				float: none;
-				margin-top: 10px;
-			}
+@media (max-width: 767px) {
+	.so-portlet-invite-members.modal {
+		.user-search-wrapper {
+			float: none;
+			margin-top: 10px;
 
-			.search {
-				height: auto;
-				max-height: 300px;
-				width: auto;
+			h2 {
+				line-height: 1em;
 			}
+		}
 
-			.invited-users-wrapper {
-				margin-left: 0;
-			}
+		.search {
+			height: auto;
+			max-height: 300px;
+			width: auto;
+		}
 
-			.user-invited h2 span {
-				display: none;
-			}
+		.invited-users-wrapper {
+			margin-left: 0;
+		}
+
+		.user-invited h2 span {
+			display: none;
 		}
 	}
 }
