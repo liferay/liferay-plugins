@@ -2,8 +2,9 @@
 
 <classpath>
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="src" />
-	<classpathentry kind="src" path="/portal-master" />
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER" />
+	<classpathentry kind="src" path="/portal-master" />
+	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="test/integration" />
 	<classpathentry excluding="**/.svn/**|.svn/" kind="src" path="test/unit" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/junit.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/mockito.jar" />
