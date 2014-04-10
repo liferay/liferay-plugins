@@ -337,9 +337,29 @@ public class SampleLARBookingLocalServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static com.liferay.samplelar.model.SampleLARBooking addSampleLARBooking(
+		long userId, long groupId, java.lang.String bookingNumber,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addSampleLARBooking(userId, groupId, bookingNumber,
+			serviceContext);
+	}
+
 	public static void deleteSampleLARBookings(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteSampleLARBookings(groupId);
+	}
+
+	public static com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
+		long userId, long sampleLARBookingId, java.lang.String bookingNumber,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateSampleLARBooking(userId, sampleLARBookingId,
+			bookingNumber, serviceContext);
 	}
 
 	public static void clearService() {
