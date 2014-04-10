@@ -138,33 +138,17 @@ public class SyncSystemTest {
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			_syncAccounts.get(doAsSyncAccount));
 
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("tests/dependencies/");
-
-		Path testFileNameFilePath = testFilePath.getFileName();
-
-		String testFileName = testFileNameFilePath.toString();
-
-		sb.append(FilenameUtils.removeExtension(testFileName));
-
-		sb.append("/");
-
-		String dependency = getString(stepJsonNode, "dependency");
-
-		sb.append(dependency);
-
-		Path sourceFilePath = getResourceFilePath(sb.toString());
-
 		String syncSiteName = getString(stepJsonNode, "site");
 
 		SyncSite syncSite = SyncSiteService.fetchSyncSite(
 			_syncSites.get(syncSiteName), syncAccount.getSyncAccountId());
 
+		String dependency = getString(stepJsonNode, "dependency");
+
 		Path targetFilePath = Paths.get(
 			syncSite.getFilePathName() + "/" + dependency);
 
-		Files.copy(sourceFilePath, targetFilePath);
+		Files.copy(getSourceFilePath(testFilePath, dependency), targetFilePath);
 	}
 
 	protected void cleanUp() throws Exception {
@@ -271,6 +255,26 @@ public class SyncSystemTest {
 		return Paths.get(url.getPath());
 	}
 
+	protected Path getSourceFilePath(Path testFilePath, String dependency) {
+		StringBuilder sb = new StringBuilder();
+
+		sb.append("tests/dependencies/");
+
+		Path testFileNameFilePath = testFilePath.getFileName();
+
+		String testFileName = testFileNameFilePath.toString();
+
+		sb.append(FilenameUtils.removeExtension(testFileName));
+
+		sb.append("/");
+
+		sb.append(dependency);
+
+		Path sourceFilePath = getResourceFilePath(sb.toString());
+
+		return sourceFilePath;
+	}
+
 	protected String getString(JsonNode jsonNode, String key) {
 		JsonNode childJsonNode = jsonNode.get(key);
 
@@ -307,9 +311,9 @@ public class SyncSystemTest {
 		BufferedReader bufferedReader = Files.newBufferedReader(
 			testFilePath, Charset.defaultCharset());
 
-		ObjectMapper mapper = new ObjectMapper();
+		ObjectMapper objectMapper = new ObjectMapper();
 
-		JsonNode rootJsonNode = mapper.readTree(bufferedReader);
+		JsonNode rootJsonNode = objectMapper.readTree(bufferedReader);
 
 		executeSteps(testFilePath, rootJsonNode);
 
