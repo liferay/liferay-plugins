@@ -9,8 +9,8 @@
 
 	<dependencies defaultconf="default">
 		<dependency name="commons-codec" org="commons-codec" rev="1.7" />
-		<dependency name="httpclient" org="org.apache.httpcomponents" rev="4.2.4" />
-		<dependency name="httpcore" org="org.apache.httpcomponents" rev="4.2.4" />
+		<dependency name="httpclient" org="org.apache.httpcomponents" rev="4.3.3" />
+		<dependency name="httpcore" org="org.apache.httpcomponents" rev="4.3.2" />
 		<dependency name="slf4j-api" org="org.slf4j" rev="1.7.2" />
 	</dependencies>
 </ivy-module>
