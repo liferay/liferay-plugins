@@ -25,6 +25,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import javax.net.ssl.SSLContext;
+
 import javax.security.auth.login.CredentialException;
 
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +45,10 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.SSLContextBuilder;
+import org.apache.http.conn.ssl.SSLContexts;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -61,13 +67,13 @@ import org.slf4j.LoggerFactory;
 public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 	public void afterPropertiesSet() {
+		HttpClientBuilder httpClientBuilder = HttpClients.custom();
+
 		PoolingHttpClientConnectionManager poolingHttpClientConnectionManager =
 			new PoolingHttpClientConnectionManager(
 				60000, TimeUnit.MILLISECONDS);
 
 		poolingHttpClientConnectionManager.setMaxTotal(20);
-
-		HttpClientBuilder httpClientBuilder = HttpClients.custom();
 
 		httpClientBuilder.setConnectionManager(
 			poolingHttpClientConnectionManager);
@@ -76,28 +82,31 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			CredentialsProvider credentialsProvider =
 				new BasicCredentialsProvider();
 
-			UsernamePasswordCredentials usernamePasswordCredentials =
-				new UsernamePasswordCredentials(_login, _password);
-
-			AuthScope authScope = new AuthScope(_hostName, _port);
-
 			credentialsProvider.setCredentials(
-				authScope, usernamePasswordCredentials);
+				new AuthScope(_hostName, _hostPort),
+				new UsernamePasswordCredentials(_login, _password));
 
 			httpClientBuilder.setDefaultCredentialsProvider(
 				credentialsProvider);
 		}
 		else {
 			if (_logger.isWarnEnabled()) {
-				_logger.warn("Username and password are required.");
+				_logger.warn("Login and password are required");
 			}
 		}
 
-		_closeableHttpClient = httpClientBuilder.build();
+		try {
+			setSSLConnectionSocketFactory(httpClientBuilder);
 
-		if (_logger.isDebugEnabled()) {
-			_logger.debug(
-				"HTTPS Client configured for " + _protocol + "://" + _hostName);
+			_closeableHttpClient = httpClientBuilder.build();
+
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(
+					"Configured client for " + _protocol + "://" + _hostName);
+			}
+		}
+		catch (Exception e) {
+			_logger.error("Unable to configure client", e);
 		}
 	}
 
@@ -106,7 +115,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			_closeableHttpClient.close();
 		}
 		catch (IOException e) {
-			_logger.error("Failed to close http client.", e);
+			_logger.error("Unable to close client", e);
 		}
 
 		_closeableHttpClient = null;
@@ -161,7 +170,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	}
 
 	public int getPort() {
-		return _port;
+		return _hostPort;
 	}
 
 	public String getProtocol() {
@@ -179,13 +188,13 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		_hostName = hostName;
 	}
 
-	public void setHostPort(int port) {
-		_port = port;
+	public void setHostPort(int hostPort) {
+		_hostPort = hostPort;
 	}
 
 	@Override
 	public void setKeyStore(KeyStore keyStore) {
-		throw new UnsupportedOperationException();
+		_keyStore = keyStore;
 	}
 
 	@Override
@@ -205,7 +214,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	protected String execute(HttpRequestBase httpRequestBase)
 		throws CredentialException, IOException {
 
-		HttpHost httpHost = new HttpHost(_hostName, _port, _protocol);
+		HttpHost httpHost = new HttpHost(_hostName, _hostPort, _protocol);
 
 		try {
 			if (_closeableHttpClient == null) {
@@ -241,6 +250,31 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		}
 	}
 
+	protected void setSSLConnectionSocketFactory(
+			HttpClientBuilder httpClientBuilder)
+		throws Exception {
+
+		if (_keyStore == null) {
+			return;
+		}
+
+		if (_sslConnectionSocketFactory == null) {
+			SSLContextBuilder sslContextBuilder = SSLContexts.custom();
+
+			sslContextBuilder.loadTrustMaterial(
+				_keyStore, new TrustSelfSignedStrategy());
+
+			SSLContext sslContext = sslContextBuilder.build();
+
+			_sslConnectionSocketFactory = new SSLConnectionSocketFactory(
+				sslContext, new String[] {"TLSv1"}, null,
+				SSLConnectionSocketFactory.
+					BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
+		}
+
+		httpClientBuilder.setSSLSocketFactory(_sslConnectionSocketFactory);
+	}
+
 	protected List<NameValuePair> toNameValuePairs(
 		Map<String, String> parameters) {
 
@@ -271,14 +305,16 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		return nameValuePairs;
 	}
 
-	protected CloseableHttpClient _closeableHttpClient;
-	protected String _hostName;
-	protected String _login;
-	protected String _password;
-	protected int _port = 80;
-	protected String _protocol = "http";
-
 	private static Logger _logger = LoggerFactory.getLogger(
 		JSONWebServiceClientImpl.class);
+
+	private CloseableHttpClient _closeableHttpClient;
+	private String _hostName;
+	private int _hostPort = 80;
+	private KeyStore _keyStore;
+	private String _login;
+	private String _password;
+	private String _protocol = "http";
+	private SSLConnectionSocketFactory _sslConnectionSocketFactory;
 
 }
