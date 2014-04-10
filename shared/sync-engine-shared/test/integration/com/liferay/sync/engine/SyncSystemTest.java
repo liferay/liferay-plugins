@@ -95,12 +95,12 @@ public class SyncSystemTest {
 	protected void activateSite(JsonNode stepJsonNode) throws Exception {
 		String doAsSyncAccount = getString(stepJsonNode, "doAsSyncAccount");
 
-		long syncAccountId = _syncAccounts.get(doAsSyncAccount);
+		long syncAccountId = _syncAccountIds.get(doAsSyncAccount);
 
 		String syncSiteName = getString(stepJsonNode, "name");
 
 		SyncSite syncSite = SyncSiteService.fetchSyncSite(
-			_syncSites.get(syncSiteName), syncAccountId);
+			_syncSiteIds.get(syncSiteName), syncAccountId);
 
 		syncSite.setActive(true);
 
@@ -127,7 +127,7 @@ public class SyncSystemTest {
 
 		SyncAccountService.update(syncAccount);
 
-		_syncAccounts.put(name, syncAccount.getSyncAccountId());
+		_syncAccountIds.put(name, syncAccount.getSyncAccountId());
 	}
 
 	protected void addFile(Path testFilePath, JsonNode stepJsonNode)
@@ -136,12 +136,12 @@ public class SyncSystemTest {
 		String doAsSyncAccount = getString(stepJsonNode, "doAsSyncAccount");
 
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-			_syncAccounts.get(doAsSyncAccount));
+			_syncAccountIds.get(doAsSyncAccount));
 
 		String syncSiteName = getString(stepJsonNode, "site");
 
 		SyncSite syncSite = SyncSiteService.fetchSyncSite(
-			_syncSites.get(syncSiteName), syncAccount.getSyncAccountId());
+			_syncSiteIds.get(syncSiteName), syncAccount.getSyncAccountId());
 
 		String dependency = getString(stepJsonNode, "dependency");
 
@@ -152,7 +152,7 @@ public class SyncSystemTest {
 	}
 
 	protected void cleanUp() throws Exception {
-		for (long syncAccountId : _syncAccounts.values()) {
+		for (long syncAccountId : _syncAccountIds.values()) {
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 				syncAccountId);
 
@@ -198,7 +198,7 @@ public class SyncSystemTest {
 
 			});
 
-		for (long syncAccountId : _syncAccounts.values()) {
+		for (long syncAccountId : _syncAccountIds.values()) {
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 				syncAccountId);
 
@@ -216,10 +216,10 @@ public class SyncSystemTest {
 
 		JsonNode stepsJsonNode = rootJsonNode.get("steps");
 
-		Iterator<JsonNode> stepJsonNodes = stepsJsonNode.elements();
+		Iterator<JsonNode> stepsJsonNodeIterator = stepsJsonNode.elements();
 
-		while (stepJsonNodes.hasNext()) {
-			JsonNode stepJsonNode = stepJsonNodes.next();
+		while (stepsJsonNodeIterator.hasNext()) {
+			JsonNode stepJsonNode = stepsJsonNodeIterator.next();
 
 			String action = getString(stepJsonNode, "action");
 
@@ -306,7 +306,7 @@ public class SyncSystemTest {
 		long guestGroupId = SyncSystemTestUtil.getGuestGroupId(
 			_syncAccount.getSyncAccountId());
 
-		_syncSites.put("Guest", guestGroupId);
+		_syncSiteIds.put("Guest", guestGroupId);
 
 		BufferedReader bufferedReader = Files.newBufferedReader(
 			testFilePath, Charset.defaultCharset());
@@ -324,12 +324,12 @@ public class SyncSystemTest {
 		String doAsSyncAccount = getString(stepJsonNode, "doAsSyncAccount");
 
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-			_syncAccounts.get(doAsSyncAccount));
+			_syncAccountIds.get(doAsSyncAccount));
 
 		String syncSiteName = getString(stepJsonNode, "site");
 
 		SyncSite syncSite = SyncSiteService.fetchSyncSite(
-			_syncSites.get(syncSiteName), syncAccount.getSyncAccountId());
+			_syncSiteIds.get(syncSiteName), syncAccount.getSyncAccountId());
 
 		String source = getString(stepJsonNode, "source");
 
@@ -356,9 +356,9 @@ public class SyncSystemTest {
 	private static String _filePathName;
 	private static boolean _liferayStarted;
 	private static SyncAccount _syncAccount;
-	private static Map<String, Long> _syncAccounts =
+	private static Map<String, Long> _syncAccountIds =
 		new HashMap<String, Long>();
-	private static Map<String, Long> _syncSites = new HashMap<String, Long>();
+	private static Map<String, Long> _syncSiteIds = new HashMap<String, Long>();
 	private static String _testFileName;
 
 }
