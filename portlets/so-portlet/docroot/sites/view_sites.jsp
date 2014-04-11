@@ -197,7 +197,7 @@ else {
 
 						if (leaveURLOnly) {
 							if (result.leaveURL) {
-								leaveHTML = '<span class="action leave"><a class="leave-site" href="' + result.leaveURL + '"><liferay-ui:message key="leave" /></a></span>';
+								leaveHTML = '<span class="action leave"><a class="leave-site" href="' + result.leaveURL + '"><liferay-ui:message key="leave-site" /></a></span>';
 							}
 							else {
 								leaveHTML = '<span class="action leave" title="<liferay-ui:message key='you-cannot-leave-the-site-as-a-user-group-member-or-organization-member' />"><a class="disabled"></a></span>';
