@@ -32,7 +32,7 @@ if (enableKBArticleViewCountIncrement && !kbArticle.isDraft()) {
 
 <div class="float-container kb-entity-header">
 	<div class="kb-title">
-		<%= kbArticle.getTitle() %>
+		<%= HtmlUtil.escape(kbArticle.getTitle()) %>
 	</div>
 
 	<div class="kb-tools">
