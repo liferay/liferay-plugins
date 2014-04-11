@@ -69,6 +69,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBArticle"
+				escapedModel="<%= true %>"
 				keyProperty="version"
 				modelVar="curKBArticle"
 			>
@@ -170,7 +171,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 			<div class="float-container kb-entity-header">
 				<div class="kb-title">
-					<%= AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "title") %>
+					<%= HtmlUtil.escape(AdminUtil.getKBArticleDiff(kbArticle.getResourcePrimKey(), sourceVersion, targetVersion, "title")) %>
 				</div>
 
 				<div class="kb-tools">
