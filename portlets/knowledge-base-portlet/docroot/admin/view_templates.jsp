@@ -50,6 +50,7 @@
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBTemplate"
+				escapedModel="<%= true %>"
 				keyProperty="kbTemplateId"
 				modelVar="kbTemplate"
 			>

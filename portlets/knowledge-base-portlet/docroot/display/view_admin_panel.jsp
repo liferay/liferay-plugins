@@ -83,6 +83,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 
 			<liferay-ui:search-container-row
 				className="com.liferay.knowledgebase.model.KBArticle"
+				escapedModel="<%= true %>"
 				keyProperty="resourcePrimKey"
 				modelVar="kbArticle"
 			>
@@ -169,6 +170,7 @@ String orderByType2 = ParamUtil.getString(request, "orderByType2", "desc");
 
 				<liferay-ui:search-container-row
 					className="com.liferay.knowledgebase.model.KBTemplate"
+					escapedModel="<%= true %>"
 					keyProperty="kbTemplateId"
 					modelVar="kbTemplate"
 				>
