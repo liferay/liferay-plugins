@@ -410,31 +410,6 @@ AUI.add(
 				);
 			},
 
-			getResourceCalendars: function(calendarResourceId, callback) {
-				var instance = this;
-
-				var resourceCalendarsURL = Lang.sub(
-					TPL_RESOURCE_CALENDARS_URL,
-					{
-						calendarResourceId: calendarResourceId,
-						portletNamespace: instance.PORTLET_NAMESPACE,
-						resourceCalendarsURL: instance.RESOURCE_CALENDARS_URL
-					}
-				);
-
-				A.io.request(
-					resourceCalendarsURL,
-					{
-						dataType: 'json',
-						on: {
-							success: function() {
-								callback(this.get('responseData'));
-							}
-						}
-					}
-				);
-			},
-
 			getDatesList: function(startDate, total) {
 				var instance = this;
 
@@ -511,6 +486,31 @@ AUI.add(
 				map[themeDisplay.getLanguageId()] = value;
 
 				return A.JSON.stringify(map);
+			},
+
+			getResourceCalendars: function(calendarResourceId, callback) {
+				var instance = this;
+
+				var resourceCalendarsURL = Lang.sub(
+					TPL_RESOURCE_CALENDARS_URL,
+					{
+						calendarResourceId: calendarResourceId,
+						portletNamespace: instance.PORTLET_NAMESPACE,
+						resourceCalendarsURL: instance.RESOURCE_CALENDARS_URL
+					}
+				);
+
+				A.io.request(
+					resourceCalendarsURL,
+					{
+						dataType: 'json',
+						on: {
+							success: function() {
+								callback(this.get('responseData'));
+							}
+						}
+					}
+				);
 			},
 
 			hasChildCalendarBookings: function(schedulerEvent, callback) {
