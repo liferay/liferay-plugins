@@ -206,6 +206,8 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 	window.<portlet:namespace />syncCalendarsMap = syncCalendarsMap;
 
+	window.<portlet:namespace />calendarLists = {};
+
 	<c:if test="<%= themeDisplay.isSignedIn() || (groupCalendarResource != null) %>">
 		window.<portlet:namespace />myCalendarList = new Liferay.CalendarList(
 			{
@@ -229,6 +231,8 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 				visible: <%= themeDisplay.isSignedIn() %>
 			}
 		).render();
+
+		window.<portlet:namespace />calendarLists['<%= userCalendarResource.getCalendarResourceId() %>'] = window.<portlet:namespace />myCalendarList;
 	</c:if>
 
 	<c:if test="<%= themeDisplay.isSignedIn() %>">
@@ -285,6 +289,8 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 				simpleMenu: window.<portlet:namespace />calendarsMenu
 			}
 		).render();
+
+		window.<portlet:namespace />calendarLists['<%= groupCalendarResource.getCalendarResourceId() %>'] = window.<portlet:namespace />siteCalendarList;
 	</c:if>
 
 	syncCalendarsMap();
