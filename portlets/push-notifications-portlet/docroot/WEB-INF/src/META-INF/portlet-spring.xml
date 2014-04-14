@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService" class="com.liferay.pushnotifications.service.impl.PushNotificationsDeviceLocalServiceImpl" />
+	<bean id="com.liferay.pushnotifications.service.PushNotificationsDeviceService" class="com.liferay.pushnotifications.service.impl.PushNotificationsDeviceServiceImpl" />
+	<bean id="com.liferay.pushnotifications.service.persistence.PushNotificationsDevicePersistence" class="com.liferay.pushnotifications.service.persistence.impl.PushNotificationsDevicePersistenceImpl" parent="basePersistence" />
+</beans>
