@@ -3,6 +3,6 @@
 
 <display>
 	<category name="category.social">
-		<portlet id="push-notifications" />
+		<portlet id="1" />
 	</category>
 </display>
