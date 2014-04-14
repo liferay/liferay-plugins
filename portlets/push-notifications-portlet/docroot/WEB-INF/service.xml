@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.0.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_0_0.dtd">
+
+<service-builder package-path="com.liferay.mobile.pushnotifications" auto-namespace-tables="false">
+	<namespace>PushNotifications</namespace>
+	<entity name="UserDevice" local-service="true" remote-service="true">
+
+		<!-- PK fields -->
+
+		<column name="deviceId" type="long" primary="true" />
+
+		<!-- Audit fields -->
+
+		<column name="userId" type="long" />
+		<column name="createDate" type="Date" />
+		<column name="platform" type="String" />
+
+		<!-- Other fields -->
+
+		<column name="token" type="String" />
+	</entity>
+</service-builder>
