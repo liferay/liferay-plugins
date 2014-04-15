@@ -99,7 +99,7 @@ public class SettingsFactoryImpl implements SettingsFactory {
 
 		return new PortletPreferencesSettings(
 			getPortletInstancePortletPreferences(layout, portletId),
-			getGroupSettings(layout.getCompanyId(), portletId));
+			getGroupSettings(layout.getGroupId(), portletId));
 	}
 
 	protected PortletPreferences getCompanyPortletPreferences(
