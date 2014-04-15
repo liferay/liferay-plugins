@@ -14,11 +14,57 @@
 
 package com.liferay.pushnotifications.service.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.pushnotifications.NoSuchDeviceException;
+import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceServiceBaseImpl;
 
 /**
  * @author Silvio Santos
+ * @author Bruno Farache
  */
 public class PushNotificationsDeviceServiceImpl
 	extends PushNotificationsDeviceServiceBaseImpl {
+
+	@Override
+	public PushNotificationsDevice addPushNotificationsDevice(
+			String token, String platform)
+		throws PortalException, SystemException {
+
+		return pushNotificationsDeviceLocalService.addPushNotificationsDevice(
+			getUserId(), token, platform);
+	}
+
+	@Override
+	public PushNotificationsDevice deletePushNotificationsDevice(String token)
+		throws PortalException, SystemException {
+
+		PushNotificationsDevice pushNotificationsDevice = null;
+
+		try {
+			PushNotificationsDevice existingPushNotificationsDevice =
+				pushNotificationsDeviceLocalService.getPushNotificationsDevices(
+					token);
+
+			if (getUserId() == existingPushNotificationsDevice.getUserId()) {
+				pushNotificationsDevice =
+					pushNotificationsDeviceLocalService.
+						deletePushNotificationsDevice(token);
+			}
+		}
+		catch (NoSuchDeviceException nsde) {
+			if (_log.isInfoEnabled()) {
+				_log.info("Device " + token + " does not exist");
+			}
+		}
+
+		return pushNotificationsDevice;
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		PushNotificationsDeviceServiceImpl.class);
+
 }
