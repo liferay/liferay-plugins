@@ -401,10 +401,10 @@ public class SyncFileService {
 	}
 
 	public static List<SyncFile> findSyncFiles(
-		long localSyncTime, long syncAccountId) {
+		String checksum, long syncAccountId) {
 
 		try {
-			return _syncFilePersistence.findByL_S(localSyncTime, syncAccountId);
+			return _syncFilePersistence.findByC_S(checksum, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -416,10 +416,11 @@ public class SyncFileService {
 	}
 
 	public static List<SyncFile> findSyncFiles(
-		String checksum, long syncAccountId) {
+		String filePathName, long localSyncTime, long syncAccountId) {
 
 		try {
-			return _syncFilePersistence.findByC_S(checksum, syncAccountId);
+			return _syncFilePersistence.findByF_L_S(
+				filePathName, localSyncTime, syncAccountId);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
@@ -624,6 +625,7 @@ public class SyncFileService {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
+		parameters.put("-description", null);
 		parameters.put("folderId", syncFile.getTypePK());
 		parameters.put("name", filePath.getFileName());
 		parameters.put("syncFile", syncFile);

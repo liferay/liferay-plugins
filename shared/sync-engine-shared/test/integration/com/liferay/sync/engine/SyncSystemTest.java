@@ -247,15 +247,17 @@ public class SyncSystemTest {
 		return childJsonNode.longValue();
 	}
 
-	protected Path getResourceFilePath(String name) {
+	protected Path getResourceFilePath(String name) throws Exception {
 		Class<?> clazz = getClass();
 
 		URL url = clazz.getResource(name);
 
-		return Paths.get(url.getPath());
+		return Paths.get(url.toURI());
 	}
 
-	protected Path getSourceFilePath(Path testFilePath, String dependency) {
+	protected Path getSourceFilePath(Path testFilePath, String dependency)
+		throws Exception {
+
 		StringBuilder sb = new StringBuilder();
 
 		sb.append("tests/dependencies/");

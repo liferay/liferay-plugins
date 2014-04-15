@@ -18,6 +18,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.sync.engine.documentlibrary.event.Event;
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.SyncAccountService;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -43,12 +45,12 @@ public class BaseJSONHandler extends BaseHandler {
 
 		String response = EntityUtils.toString(httpEntity);
 
-		handlePortalException(response);
-
-		processResponse(response);
+		if (!handlePortalException(response)) {
+			processResponse(response);
+		}
 	}
 
-	protected void handlePortalException(String response) throws Exception {
+	protected boolean handlePortalException(String response) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		JsonNode responseJsonNode = null;
@@ -57,18 +59,28 @@ public class BaseJSONHandler extends BaseHandler {
 			responseJsonNode = objectMapper.readTree(response);
 		}
 		catch (Exception e) {
-			return;
+			return false;
 		}
 
 		JsonNode exceptionJsonNode = responseJsonNode.get("exception");
 
 		if (exceptionJsonNode == null) {
-			return;
+			return false;
 		}
 
 		String exception = exceptionJsonNode.asText();
 
-		if (exception.equals("java.lang.SecurityException")) {
+		if (exception.equals("java.lang.RuntimeException")) {
+			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+				getSyncAccountId());
+
+			syncAccount.setActive(false);
+			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
+			syncAccount.setUiEvent(SyncAccount.UI_EVENT_SYNC_WEB_MISSING);
+
+			SyncAccountService.update(syncAccount);
+		}
+		else if (exception.equals("java.lang.SecurityException")) {
 			JsonNode messageJsonNode = responseJsonNode.get("message");
 
 			String message = messageJsonNode.asText();
@@ -78,6 +90,8 @@ public class BaseJSONHandler extends BaseHandler {
 					HttpServletResponse.SC_UNAUTHORIZED, message);
 			}
 		}
+
+		return true;
 	}
 
 	protected void processResponse(String response) throws Exception {

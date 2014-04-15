@@ -98,18 +98,27 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		return queryForFieldValues(fieldValues);
 	}
 
-	public List<SyncFile> findByL_S(long localSyncTime, long syncAccountId)
+	public List<SyncFile> findByF_L_S(
+			String filePathName, long localSyncTime, long syncAccountId)
 		throws SQLException {
 
 		QueryBuilder<SyncFile, Long> queryBuilder = queryBuilder();
 
 		Where<SyncFile, Long> where = queryBuilder.where();
 
+		where.like("filePathName", filePathName + "%");
+
+		where.and();
+
 		where.lt("localSyncTime", localSyncTime);
 
 		where.and();
 
 		where.eq("syncAccountId", syncAccountId);
+
+		where.and();
+
+		where.ne("type", SyncFile.TYPE_SYSTEM);
 
 		return query(queryBuilder.prepare());
 	}

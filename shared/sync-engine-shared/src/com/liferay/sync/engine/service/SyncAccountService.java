@@ -68,7 +68,7 @@ public class SyncAccountService {
 		SyncFileService.addSyncFile(
 			null, null, filePathName, FileUtil.getFileKey(filePathName),
 			filePathName, null, filePathName, 0, 0,
-			syncAccount.getSyncAccountId(), SyncFile.TYPE_FOLDER);
+			syncAccount.getSyncAccountId(), SyncFile.TYPE_SYSTEM);
 
 		return syncAccount;
 	}

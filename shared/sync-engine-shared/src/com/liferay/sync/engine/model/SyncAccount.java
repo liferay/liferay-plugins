@@ -33,6 +33,8 @@ public class SyncAccount extends StateAwareModel {
 
 	public static final int UI_EVENT_CONNECTION_EXCEPTION = 2;
 
+	public static final int UI_EVENT_SYNC_WEB_MISSING = 3;
+
 	public boolean getActive() {
 		return active;
 	}

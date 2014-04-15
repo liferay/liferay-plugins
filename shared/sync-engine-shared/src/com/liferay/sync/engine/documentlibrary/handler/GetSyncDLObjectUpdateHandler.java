@@ -188,12 +188,12 @@ public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
 				syncFile.getRepositoryId(), getSyncAccountId(),
 				syncFile.getParentFolderId());
 
-			String filePathName = null;
-
-			if (parentSyncFile != null) {
-				filePathName = FilePathNameUtil.getFilePathName(
-					parentSyncFile.getFilePathName(), syncFile.getName());
+			if (parentSyncFile == null) {
+				continue;
 			}
+
+			String filePathName = FilePathNameUtil.getFilePathName(
+				parentSyncFile.getFilePathName(), syncFile.getName());
 
 			String event = syncFile.getEvent();
 
