@@ -103,6 +103,7 @@
 		background-color: #D1D6DC;
 		border: 1px solid #C8C9CA;
 		margin: 1em 0;
+		overflow: auto;
 
 		.dl-horizontal {
 			margin: 0;
@@ -125,10 +126,12 @@
 				float: left;
 				font-weight: bold;
 				text-align: right;
+				width: 55px;
 			}
 
 			dd {
 				background-color: #FFF;
+				margin-left: 60px;
 				padding-left: 10px;
 				word-wrap: break-word;
 			}
