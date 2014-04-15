@@ -68,9 +68,7 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 						</c:if>
 					</c:when>
 					<c:otherwise>
-						<aui:field-wrapper label="code">
-							<liferay-ui:input-resource url="<%= code %>" />
-						</aui:field-wrapper>
+						<aui:input name="code" type="resource" value="<%= code %>" />
 					</c:otherwise>
 				</c:choose>
 
