@@ -65,7 +65,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	}
 
 	@Override
-	public PushNotificationsDevice getPushNotificationsDeviceByToken(
+	public PushNotificationsDevice getPushNotificationsDevices(
 			String token)
 		throws PortalException, SystemException {
 
