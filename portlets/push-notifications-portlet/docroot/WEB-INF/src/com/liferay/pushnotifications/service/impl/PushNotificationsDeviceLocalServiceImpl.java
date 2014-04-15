@@ -14,11 +14,39 @@
 
 package com.liferay.pushnotifications.service.impl;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl;
 
+import java.util.Date;
+
 /**
+ * @author Silvio Santos
  * @author Bruno Farache
  */
 public class PushNotificationsDeviceLocalServiceImpl
 	extends PushNotificationsDeviceLocalServiceBaseImpl {
+
+	@Override
+	public PushNotificationsDevice addPushNotificationsDevice(
+			long userId, String platform, String token)
+		throws PortalException, SystemException {
+
+		long pushNotificationsDeviceId = counterLocalService.increment();
+
+		PushNotificationsDevice pushNotificationsDevice =
+			pushNotificationsDevicePersistence.create(
+				pushNotificationsDeviceId);
+
+		pushNotificationsDevice.setUserId(userId);
+		pushNotificationsDevice.setCreateDate(new Date());
+		pushNotificationsDevice.setPlatform(platform);
+		pushNotificationsDevice.setToken(token);
+
+		pushNotificationsDevicePersistence.update(pushNotificationsDevice);
+
+		return pushNotificationsDevice;
+	}
+
 }
