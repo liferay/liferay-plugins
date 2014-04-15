@@ -19,7 +19,7 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link PushNotificationsDeviceLocalService}.
  *
- * @author Bruno Farache
+ * @author Silvio Santos
  * @see PushNotificationsDeviceLocalService
  * @generated
  */
@@ -288,6 +288,38 @@ public class PushNotificationsDeviceLocalServiceWrapper
 		throws java.lang.Throwable {
 		return _pushNotificationsDeviceLocalService.invokeMethod(name,
 			parameterTypes, arguments);
+	}
+
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
+		long userId, java.lang.String platform, java.lang.String token)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsDeviceLocalService.addPushNotificationsDevice(userId,
+			platform, token);
+	}
+
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
+		java.lang.String token)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsDeviceLocalService.deletePushNotificationsDevice(token);
+	}
+
+	@Override
+	public com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevices(
+		java.lang.String token)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsDeviceLocalService.getPushNotificationsDevices(token);
+	}
+
+	@Override
+	public java.util.List<java.lang.String> getTokens(long userId,
+		java.lang.String platform, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _pushNotificationsDeviceLocalService.getTokens(userId, platform,
+			start, end);
 	}
 
 	/**

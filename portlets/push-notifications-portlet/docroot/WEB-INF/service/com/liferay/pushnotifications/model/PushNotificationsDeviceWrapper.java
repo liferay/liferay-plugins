@@ -26,7 +26,7 @@ import java.util.Map;
  * This class is a wrapper for {@link PushNotificationsDevice}.
  * </p>
  *
- * @author Bruno Farache
+ * @author Silvio Santos
  * @see PushNotificationsDevice
  * @generated
  */
@@ -301,8 +301,7 @@ public class PushNotificationsDeviceWrapper implements PushNotificationsDevice,
 	}
 
 	@Override
-	public int compareTo(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
+	public int compareTo(PushNotificationsDevice pushNotificationsDevice) {
 		return _pushNotificationsDevice.compareTo(pushNotificationsDevice);
 	}
 
@@ -312,17 +311,17 @@ public class PushNotificationsDeviceWrapper implements PushNotificationsDevice,
 	}
 
 	@Override
-	public com.liferay.portal.model.CacheModel<com.liferay.pushnotifications.model.PushNotificationsDevice> toCacheModel() {
+	public com.liferay.portal.model.CacheModel<PushNotificationsDevice> toCacheModel() {
 		return _pushNotificationsDevice.toCacheModel();
 	}
 
 	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsDevice toEscapedModel() {
+	public PushNotificationsDevice toEscapedModel() {
 		return new PushNotificationsDeviceWrapper(_pushNotificationsDevice.toEscapedModel());
 	}
 
 	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsDevice toUnescapedModel() {
+	public PushNotificationsDevice toUnescapedModel() {
 		return new PushNotificationsDeviceWrapper(_pushNotificationsDevice.toUnescapedModel());
 	}
 

@@ -35,7 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Bruno Farache
+ * @author Silvio Santos
  */
 public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsDevice>
 	implements PushNotificationsDevice {

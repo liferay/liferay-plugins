@@ -17,7 +17,7 @@ package com.liferay.pushnotifications.service.impl;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceServiceBaseImpl;
 
 /**
- * @author Bruno Farache
+ * @author Silvio Santos
  */
 public class PushNotificationsDeviceServiceImpl
 	extends PushNotificationsDeviceServiceBaseImpl {

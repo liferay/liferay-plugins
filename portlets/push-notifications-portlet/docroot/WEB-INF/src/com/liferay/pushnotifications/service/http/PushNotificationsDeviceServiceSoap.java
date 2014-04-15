@@ -48,7 +48,7 @@ package com.liferay.pushnotifications.service.http;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author Bruno Farache
+ * @author Silvio Santos
  * @see PushNotificationsDeviceServiceHttp
  * @see com.liferay.pushnotifications.model.PushNotificationsDeviceSoap
  * @see com.liferay.pushnotifications.service.PushNotificationsDeviceServiceUtil

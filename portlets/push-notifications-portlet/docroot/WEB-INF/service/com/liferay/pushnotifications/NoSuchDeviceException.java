@@ -17,7 +17,7 @@ package com.liferay.pushnotifications;
 import com.liferay.portal.NoSuchModelException;
 
 /**
- * @author Bruno Farache
+ * @author Silvio Santos
  */
 public class NoSuchDeviceException extends NoSuchModelException {
 

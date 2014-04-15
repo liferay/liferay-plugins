@@ -19,7 +19,7 @@ import com.liferay.pushnotifications.service.PushNotificationsDeviceServiceUtil;
 import java.util.Arrays;
 
 /**
- * @author Bruno Farache
+ * @author Silvio Santos
  * @generated
  */
 public class PushNotificationsDeviceServiceClpInvoker {

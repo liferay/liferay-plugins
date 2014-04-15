@@ -17,7 +17,7 @@ package com.liferay.pushnotifications.service;
 import com.liferay.portal.service.InvokableService;
 
 /**
- * @author Bruno Farache
+ * @author Silvio Santos
  * @generated
  */
 public class PushNotificationsDeviceServiceClp

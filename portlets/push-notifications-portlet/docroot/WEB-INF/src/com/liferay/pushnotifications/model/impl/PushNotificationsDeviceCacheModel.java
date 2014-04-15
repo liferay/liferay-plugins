@@ -30,7 +30,7 @@ import java.util.Date;
 /**
  * The cache model class for representing PushNotificationsDevice in entity cache.
  *
- * @author Bruno Farache
+ * @author Silvio Santos
  * @see PushNotificationsDevice
  * @generated
  */
