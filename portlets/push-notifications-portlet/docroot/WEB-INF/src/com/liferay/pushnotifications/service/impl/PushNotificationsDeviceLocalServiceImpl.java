@@ -67,7 +67,7 @@ public class PushNotificationsDeviceLocalServiceImpl
 	@Override
 	public PushNotificationsDevice getPushNotificationsDeviceByToken(
 			String token)
-		throws NoSuchDeviceException, SystemException {
+		throws PortalException, SystemException {
 
 		return pushNotificationsDevicePersistence.findByToken(token);
 	}
