@@ -19,5 +19,15 @@
 
 		<column name="platform" type="String" />
 		<column name="token" type="String" />
+
+		<!-- Finder methods -->
+
+		<finder name="Token" return-type="Device" unique="true">
+			<finder-column name="token" />
+		</finder>
+		<finder name="U_P" return-type="Collection">
+			<finder-column name="userId" />
+			<finder-column name="platform" />
+		</finder>
 	</entity>
 </service-builder>
