@@ -16,10 +16,13 @@ package com.liferay.pushnotifications.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.pushnotifications.NoSuchDeviceException;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Silvio Santos
@@ -47,6 +50,44 @@ public class PushNotificationsDeviceLocalServiceImpl
 		pushNotificationsDevicePersistence.update(pushNotificationsDevice);
 
 		return pushNotificationsDevice;
+	}
+
+	@Override
+	public PushNotificationsDevice deletePushNotificationsDevice(String token)
+		throws NoSuchDeviceException, SystemException {
+
+		PushNotificationsDevice pushNotificationsDevice =
+			pushNotificationsDevicePersistence.findByToken(token);
+
+		pushNotificationsDevicePersistence.remove(pushNotificationsDevice);
+
+		return pushNotificationsDevice;
+	}
+
+	@Override
+	public PushNotificationsDevice getPushNotificationsDeviceByToken(
+			String token)
+		throws NoSuchDeviceException, SystemException {
+
+		return pushNotificationsDevicePersistence.findByToken(token);
+	}
+
+	@Override
+	public List<String> getTokens(long userId, String platform)
+		throws SystemException {
+
+		List<String> tokens = new ArrayList<String>();
+
+		List<PushNotificationsDevice> pushNotificationsDevices =
+			pushNotificationsDevicePersistence.findByU_P(userId, platform);
+
+		for (PushNotificationsDevice pushNotificationsDevice :
+				pushNotificationsDevices) {
+
+			tokens.add(pushNotificationsDevice.getToken());
+		}
+
+		return tokens;
 	}
 
 }
