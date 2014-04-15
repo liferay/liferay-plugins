@@ -2,9 +2,9 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.sync.service.SyncDLFileVersionDiffLocalService" class="com.liferay.sync.service.impl.SyncDLFileVersionDiffLocalServiceImpl" />
-	<bean id="com.liferay.sync.service.persistence.SyncDLFileVersionDiffPersistence" class="com.liferay.sync.service.persistence.SyncDLFileVersionDiffPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.sync.service.persistence.SyncDLFileVersionDiffPersistence" class="com.liferay.sync.service.persistence.impl.SyncDLFileVersionDiffPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.sync.service.SyncDLObjectLocalService" class="com.liferay.sync.service.impl.SyncDLObjectLocalServiceImpl" />
 	<bean id="com.liferay.sync.service.SyncDLObjectService" class="com.liferay.sync.service.impl.SyncDLObjectServiceImpl" />
-	<bean id="com.liferay.sync.service.persistence.SyncDLObjectPersistence" class="com.liferay.sync.service.persistence.SyncDLObjectPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.sync.service.persistence.SyncDLObjectFinder" class="com.liferay.sync.service.persistence.SyncDLObjectFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.sync.service.persistence.SyncDLObjectPersistence" class="com.liferay.sync.service.persistence.impl.SyncDLObjectPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.sync.service.persistence.SyncDLObjectFinder" class="com.liferay.sync.service.persistence.impl.SyncDLObjectFinderImpl" parent="basePersistence" />
 </beans>

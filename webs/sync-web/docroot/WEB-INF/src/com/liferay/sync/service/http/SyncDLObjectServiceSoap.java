@@ -145,6 +145,25 @@ public class SyncDLObjectServiceSoap {
 		}
 	}
 
+	/**
+	* @deprecated As of 7.0.0, with no direct replacement
+	*/
+	@Deprecated
+	public static com.liferay.sync.model.SyncDLObjectUpdate getAllSyncDLObjects(
+		long repositoryId, long folderId) throws RemoteException {
+		try {
+			com.liferay.sync.model.SyncDLObjectUpdate returnValue = SyncDLObjectServiceUtil.getAllSyncDLObjects(repositoryId,
+					folderId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.sync.model.SyncDLObjectSoap getFileEntrySyncDLObject(
 		long groupId, long folderId, java.lang.String title)
 		throws RemoteException {
