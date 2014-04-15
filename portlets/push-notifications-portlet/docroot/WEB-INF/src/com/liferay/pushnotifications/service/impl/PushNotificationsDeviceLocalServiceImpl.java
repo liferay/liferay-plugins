@@ -73,13 +73,15 @@ public class PushNotificationsDeviceLocalServiceImpl
 	}
 
 	@Override
-	public List<String> getTokens(long userId, String platform)
+	public List<String> getTokens(
+			long userId, String platform, int start, int end)
 		throws SystemException {
 
 		List<String> tokens = new ArrayList<String>();
 
 		List<PushNotificationsDevice> pushNotificationsDevices =
-			pushNotificationsDevicePersistence.findByU_P(userId, platform);
+			pushNotificationsDevicePersistence.findByU_P(
+				userId, platform, start, end);
 
 		for (PushNotificationsDevice pushNotificationsDevice :
 				pushNotificationsDevices) {
