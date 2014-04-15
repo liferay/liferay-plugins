@@ -26,7 +26,7 @@ import java.util.Map;
  * This class is a wrapper for {@link PushNotificationsDevice}.
  * </p>
  *
- * @author Bruno Farache
+ * @author Silvio Santos
  * @see PushNotificationsDevice
  * @generated
  */

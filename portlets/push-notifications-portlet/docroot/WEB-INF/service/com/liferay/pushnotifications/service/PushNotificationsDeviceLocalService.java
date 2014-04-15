@@ -29,7 +29,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
  * credentials because this service can only be accessed from within the same
  * VM.
  *
- * @author Bruno Farache
+ * @author Silvio Santos
  * @see PushNotificationsDeviceLocalServiceUtil
  * @see com.liferay.pushnotifications.service.base.PushNotificationsDeviceLocalServiceBaseImpl
  * @see com.liferay.pushnotifications.service.impl.PushNotificationsDeviceLocalServiceImpl
@@ -248,4 +248,24 @@ public interface PushNotificationsDeviceLocalService extends BaseLocalService,
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
+		long userId, java.lang.String platform, java.lang.String token)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
+		java.lang.String token)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevices(
+		java.lang.String token)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.String> getTokens(long userId,
+		java.lang.String platform, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

@@ -19,7 +19,7 @@ import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService
 import java.util.Arrays;
 
 /**
- * @author Bruno Farache
+ * @author Silvio Santos
  * @generated
  */
 public class PushNotificationsDeviceLocalServiceClpInvoker {
@@ -113,6 +113,26 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 		_methodName35 = "setBeanIdentifier";
 
 		_methodParameterTypes35 = new String[] { "java.lang.String" };
+
+		_methodName40 = "addPushNotificationsDevice";
+
+		_methodParameterTypes40 = new String[] {
+				"long", "java.lang.String", "java.lang.String"
+			};
+
+		_methodName41 = "deletePushNotificationsDevice";
+
+		_methodParameterTypes41 = new String[] { "java.lang.String" };
+
+		_methodName42 = "getPushNotificationsDevices";
+
+		_methodParameterTypes42 = new String[] { "java.lang.String" };
+
+		_methodName43 = "getTokens";
+
+		_methodParameterTypes43 = new String[] {
+				"long", "java.lang.String", "int", "int"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -216,6 +236,30 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+			return PushNotificationsDeviceLocalServiceUtil.addPushNotificationsDevice(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
+		}
+
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+			return PushNotificationsDeviceLocalServiceUtil.deletePushNotificationsDevice((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName42.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
+			return PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevices((java.lang.String)arguments[0]);
+		}
+
+		if (_methodName43.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+			return PushNotificationsDeviceLocalServiceUtil.getTokens(((Long)arguments[0]).longValue(),
+				(java.lang.String)arguments[1],
+				((Integer)arguments[2]).intValue(),
+				((Integer)arguments[3]).intValue());
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -255,4 +299,12 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes34;
 	private String _methodName35;
 	private String[] _methodParameterTypes35;
+	private String _methodName40;
+	private String[] _methodParameterTypes40;
+	private String _methodName41;
+	private String[] _methodParameterTypes41;
+	private String _methodName42;
+	private String[] _methodParameterTypes42;
+	private String _methodName43;
+	private String[] _methodParameterTypes43;
 }
