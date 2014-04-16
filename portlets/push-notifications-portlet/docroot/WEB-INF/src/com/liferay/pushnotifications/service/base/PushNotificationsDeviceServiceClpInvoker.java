@@ -31,6 +31,16 @@ public class PushNotificationsDeviceServiceClpInvoker {
 		_methodName25 = "setBeanIdentifier";
 
 		_methodParameterTypes25 = new String[] { "java.lang.String" };
+
+		_methodName30 = "addPushNotificationsDevice";
+
+		_methodParameterTypes30 = new String[] {
+				"java.lang.String", "java.lang.String"
+			};
+
+		_methodName31 = "deletePushNotificationsDevice";
+
+		_methodParameterTypes31 = new String[] { "java.lang.String" };
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -47,6 +57,17 @@ public class PushNotificationsDeviceServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName30.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes30, parameterTypes)) {
+			return PushNotificationsDeviceServiceUtil.addPushNotificationsDevice((java.lang.String)arguments[0],
+				(java.lang.String)arguments[1]);
+		}
+
+		if (_methodName31.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes31, parameterTypes)) {
+			return PushNotificationsDeviceServiceUtil.deletePushNotificationsDevice((java.lang.String)arguments[0]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -54,4 +75,8 @@ public class PushNotificationsDeviceServiceClpInvoker {
 	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
+	private String _methodName30;
+	private String[] _methodParameterTypes30;
+	private String _methodName31;
+	private String[] _methodParameterTypes31;
 }
