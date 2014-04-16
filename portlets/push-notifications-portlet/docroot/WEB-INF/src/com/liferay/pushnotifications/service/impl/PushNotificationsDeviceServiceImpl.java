@@ -50,10 +50,17 @@ public class PushNotificationsDeviceServiceImpl
 			}
 		}
 		else {
-			if (getUserId() == pushNotificationsDevice.getUserId()) {
+			long userId = getUserId();
+
+			if (pushNotificationsDevice.getUserId() == userId ) {
 				pushNotificationsDevice =
 					pushNotificationsDeviceLocalService.
 						deletePushNotificationsDevice(token);
+			}
+			else if (_log.isInfoEnabled()) {
+				_log.info(
+					"Device found with token " + token +
+						" does not belong to user " userId );
 			}
 		}
 
