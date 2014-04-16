@@ -40,8 +40,8 @@ public class SyncDLObjectFinderImpl
 	public static final String FIND_BY_DELETE_EVENT =
 		SyncDLObjectFinder.class.getName() + ".findByDeleteEvent";
 
-	public static final String FIND_BY_FILE_TYPE =
-		SyncDLObjectFinder.class.getName() + ".findByFileType";
+	public static final String FIND_BY_FILE_OR_PWC_TYPE =
+		SyncDLObjectFinder.class.getName() + ".findByFileOrPWCType";
 
 	public static final String FIND_BY_FOLDER_TYPE =
 		SyncDLObjectFinder.class.getName() + ".findByFolderType";
@@ -63,7 +63,7 @@ public class SyncDLObjectFinderImpl
 			sb.append(sql);
 			sb.append(" UNION ALL ");
 
-			sql = CustomSQLUtil.get(FIND_BY_FILE_TYPE);
+			sql = CustomSQLUtil.get(FIND_BY_FILE_OR_PWC_TYPE);
 
 			sql = InlineSQLHelperUtil.replacePermissionCheck(
 				sql, DLFileEntry.class.getName(), "SyncDLObject.typePK", null,
