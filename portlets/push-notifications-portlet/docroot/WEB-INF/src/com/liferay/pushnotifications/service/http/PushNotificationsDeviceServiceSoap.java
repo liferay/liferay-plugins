@@ -14,6 +14,13 @@
 
 package com.liferay.pushnotifications.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import com.liferay.pushnotifications.service.PushNotificationsDeviceServiceUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
  * {@link com.liferay.pushnotifications.service.PushNotificationsDeviceServiceUtil} service utility. The
@@ -55,4 +62,37 @@ package com.liferay.pushnotifications.service.http;
  * @generated
  */
 public class PushNotificationsDeviceServiceSoap {
+	public static com.liferay.pushnotifications.model.PushNotificationsDeviceSoap addPushNotificationsDevice(
+		java.lang.String token, java.lang.String platform)
+		throws RemoteException {
+		try {
+			com.liferay.pushnotifications.model.PushNotificationsDevice returnValue =
+				PushNotificationsDeviceServiceUtil.addPushNotificationsDevice(token,
+					platform);
+
+			return com.liferay.pushnotifications.model.PushNotificationsDeviceSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static com.liferay.pushnotifications.model.PushNotificationsDeviceSoap deletePushNotificationsDevice(
+		java.lang.String token) throws RemoteException {
+		try {
+			com.liferay.pushnotifications.model.PushNotificationsDevice returnValue =
+				PushNotificationsDeviceServiceUtil.deletePushNotificationsDevice(token);
+
+			return com.liferay.pushnotifications.model.PushNotificationsDeviceSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(PushNotificationsDeviceServiceSoap.class);
 }
