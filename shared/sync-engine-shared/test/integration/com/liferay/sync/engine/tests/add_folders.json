@@ -20,21 +20,22 @@
 			"action": "pause"
 		},
 		{
-			"action": "addFile",
-			"dependency": "Thumbs.db",
+			"action": "addFolder",
+			"dependency": "Parent Folder",
 			"doAsSyncAccount": "test1"
 		},
 		{
-			"action": "pause"
+			"action": "pause",
+			"delay": 15
 		},
 		{
 			"action": "verifyFile",
 			"doAsSyncAccount": "test2",
-			"source": "Thumbs.db",
-			"operation": "notExists"
+			"source": "Parent Folder/Child Folder/Test.txt"
 		},
 		{
-			"action": "cleanUp"
+			"action": "cleanUp",
+			"delay": 15
 		}
 	]
 }

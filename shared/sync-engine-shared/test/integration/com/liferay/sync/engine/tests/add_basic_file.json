@@ -10,34 +10,30 @@
 		},
 		{
 			"action": "activateSite",
-			"doAsSyncAccount": "test1",
-			"name": "Guest"
+			"doAsSyncAccount": "test1"
 		},
 		{
 			"action": "activateSite",
-			"doAsSyncAccount": "test2",
-			"name": "Guest"
+			"doAsSyncAccount": "test2"
 		},
 		{
-			"action": "pause",
-			"length": 5
+			"action": "pause"
 		},
 		{
 			"action": "addFile",
 			"dependency": "Test.txt",
-			"doAsSyncAccount": "test1",
-			"site": "Guest"
+			"doAsSyncAccount": "test1"
 		},
 		{
-			"action": "pause",
-			"length": 5
+			"action": "pause"
 		},
 		{
 			"action": "verifyFile",
 			"doAsSyncAccount": "test2",
-			"site": "Guest",
-			"source": "Test.txt",
-			"operation": "exists"
+			"source": "Test.txt"
+		},
+		{
+			"action": "cleanUp"
 		}
 	]
 }
