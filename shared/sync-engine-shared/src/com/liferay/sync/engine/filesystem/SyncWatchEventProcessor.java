@@ -148,14 +148,12 @@ public class SyncWatchEventProcessor implements Runnable {
 				SyncWatchEvent.EVENT_TYPE_DELETE, syncFile.getFilePathName(),
 				syncWatchEvent.getTimestamp());
 
-		Path sourceFilePath = null;
+		if (relatedSyncWatchEvent == null) {
+			return;
+		}
 
-		if (relatedSyncWatchEvent != null) {
-			sourceFilePath = Paths.get(relatedSyncWatchEvent.getFilePathName());
-		}
-		else {
-			sourceFilePath = Paths.get(syncFile.getFilePathName());
-		}
+		Path sourceFilePath = Paths.get(
+			relatedSyncWatchEvent.getFilePathName());
 
 		if (parentTargetFilePath.equals(sourceFilePath.getParent())) {
 			SyncFileService.updateFileSyncFile(
@@ -170,9 +168,7 @@ public class SyncWatchEventProcessor implements Runnable {
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			syncWatchEvent.getSyncAccountId());
 
-		if ((relatedSyncWatchEvent != null) &&
-			(syncAccount.getState() != SyncAccount.STATE_DISCONNECTED)) {
-
+		if (syncAccount.getState() != SyncAccount.STATE_DISCONNECTED) {
 			_processedSyncWatchEventIds.add(
 				relatedSyncWatchEvent.getSyncWatchEventId());
 		}
@@ -205,14 +201,12 @@ public class SyncWatchEventProcessor implements Runnable {
 				SyncWatchEvent.EVENT_TYPE_DELETE, syncFile.getFilePathName(),
 				syncWatchEvent.getTimestamp());
 
-		Path sourceFilePath = null;
+		if (relatedSyncWatchEvent == null) {
+			return;
+		}
 
-		if (relatedSyncWatchEvent != null) {
-			sourceFilePath = Paths.get(relatedSyncWatchEvent.getFilePathName());
-		}
-		else {
-			sourceFilePath = Paths.get(syncFile.getFilePathName());
-		}
+		Path sourceFilePath = Paths.get(
+			relatedSyncWatchEvent.getFilePathName());
 
 		if (parentTargetFilePath.equals(sourceFilePath.getParent())) {
 			SyncFileService.updateFolderSyncFile(
@@ -227,9 +221,7 @@ public class SyncWatchEventProcessor implements Runnable {
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			syncWatchEvent.getSyncAccountId());
 
-		if ((relatedSyncWatchEvent != null) &&
-			(syncAccount.getState() != SyncAccount.STATE_DISCONNECTED)) {
-
+		if (syncAccount.getState() != SyncAccount.STATE_DISCONNECTED) {
 			_processedSyncWatchEventIds.add(
 				relatedSyncWatchEvent.getSyncWatchEventId());
 		}
