@@ -35,13 +35,6 @@
 		<system>true</system>
 	</portlet>
 	<portlet>
-		<portlet-name>7</portlet-name>
-		<use-default-template>false</use-default-template>
-		<header-portlet-css>/dockbar_notifications/css/main.css</header-portlet-css>
-		<css-class-wrapper>so-portlet-dockbar-notifications</css-class-wrapper>
-		<add-default-resource>true</add-default-resource>
-	</portlet>
-	<portlet>
 		<portlet-name>8</portlet-name>
 		<icon>/user_bar/icon.png</icon>
 		<use-default-template>false</use-default-template>
