@@ -2033,6 +2033,35 @@ html.aui {
 			padding: 1em 0;
 		}
 
+		.profile-page .so-portlet-activities .portlet-title {
+			text-align: left;
+		}
+
+		/* ---------- Portlet: contacts ---------- */
+
+		.contacts-portlet .contacts-profile {
+			.profile-actions {
+				margin: 10px 0;
+			}
+
+			.user-information-title {
+				text-align: left;
+				width: auto;
+			}
+
+			.section {
+				h3 {
+					float: none;
+					text-align: left;
+					width: auto;
+				}
+
+				.property-list {
+					margin-left: 10px;
+				}
+			}
+		}
+
 		/* ---------- Portlet: document library ---------- */
 
 		.portlet-document-library .row-fluid {
