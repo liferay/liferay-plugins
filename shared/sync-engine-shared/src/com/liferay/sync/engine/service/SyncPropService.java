@@ -56,10 +56,6 @@ public class SyncPropService {
 			return Integer.parseInt(syncProp.getValue());
 		}
 		catch (SQLException sqle) {
-			if (_logger.isDebugEnabled()) {
-				_logger.debug(sqle.getMessage(), sqle);
-			}
-
 			return 0;
 		}
 	}

@@ -64,7 +64,7 @@ public class Watcher implements Runnable {
 		register(filePath, recursive);
 	}
 
-	public void close() throws IOException {
+	public void close() {
 		try {
 			_watchService.close();
 		}
@@ -209,6 +209,16 @@ public class Watcher implements Runnable {
 	}
 
 	protected void fireWatchEventListener(String eventType, Path filePath) {
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(filePath),
+			_watchEventListener.getSyncAccountId());
+
+		if (syncFile != null) {
+			syncFile.setLocalSyncTime(System.currentTimeMillis());
+
+			SyncFileService.update(syncFile);
+		}
+
 		_watchEventListener.watchEvent(eventType, filePath);
 	}
 

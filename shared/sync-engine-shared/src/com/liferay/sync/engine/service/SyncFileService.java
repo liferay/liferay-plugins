@@ -695,6 +695,10 @@ public class SyncFileService {
 	}
 
 	protected static String incrementChangeLog(String versionString) {
+		if (versionString == null) {
+			return null;
+		}
+
 		BigDecimal versionBigDecimal = new BigDecimal(versionString);
 
 		versionBigDecimal = versionBigDecimal.add(_CHANGE_LOG_INCREMENT);
