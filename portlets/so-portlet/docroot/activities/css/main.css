@@ -1,4 +1,5 @@
 @import "compass";
+@import "mixins";
 
 $default-border-color: #E7E7E7;
 
@@ -407,7 +408,7 @@ $default-border-color: #E7E7E7;
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 767px) {
+@include respond-to(phone) {
 	.so-portlet-activities {
 		.user-portrait {
 			left: 0;

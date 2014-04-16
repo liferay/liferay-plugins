@@ -1,4 +1,5 @@
 @import "compass";
+@import "mixins";
 
 .private-messaging-portlet {
 	.layout {
@@ -210,7 +211,7 @@
 /* ---------- Responsive ---------- */
 
 html.aui {
-	@media (max-width: 979px) {
+	@include respond-to(phone, tablet) {
 		.private-messaging-portlet {
 			.btn-group, .button-holder {
 				width: auto;
@@ -218,7 +219,7 @@ html.aui {
 		}
 	}
 
-	@media (max-width: 767px) {
+	@include respond-to(phone) {
 		.private-messaging-portlet {
 			.messages {
 				.button-holder{

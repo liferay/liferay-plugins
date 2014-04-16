@@ -1,4 +1,5 @@
 @import "compass";
+@import "mixins";
 @import "so";
 
 /* ---------- Banner ---------- */
@@ -1828,7 +1829,7 @@ html.aui {
 		}
 	}
 
-	@media (max-width: 979px) {
+	@include respond-to(phone, tablet) {
 		.navbar {
 			.info-items, .info-link-container {
 				display: none;
@@ -1862,7 +1863,7 @@ html.aui {
 		}
 	}
 
-	@media (max-width: 767px) {
+	@include respond-to(phone) {
 		body #banner {
 			padding: .5em 1em;
 			text-align: center;
