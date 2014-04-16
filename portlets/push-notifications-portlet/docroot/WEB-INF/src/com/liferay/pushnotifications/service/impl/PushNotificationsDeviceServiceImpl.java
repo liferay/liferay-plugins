@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.pushnotifications.NoSuchDeviceException;
 import com.liferay.pushnotifications.model.PushNotificationsDevice;
 import com.liferay.pushnotifications.service.base.PushNotificationsDeviceServiceBaseImpl;
 
@@ -42,22 +41,19 @@ public class PushNotificationsDeviceServiceImpl
 	public PushNotificationsDevice deletePushNotificationsDevice(String token)
 		throws PortalException, SystemException {
 
-		PushNotificationsDevice pushNotificationsDevice = null;
+		PushNotificationsDevice pushNotificationsDevice =
+			pushNotificationsDevicePersistence.fetchByToken(token);
 
-		try {
-			PushNotificationsDevice existingPushNotificationsDevice =
-				pushNotificationsDeviceLocalService.getPushNotificationsDevices(
-					token);
-
-			if (getUserId() == existingPushNotificationsDevice.getUserId()) {
+		if (pushNotificationsDevice == null) {
+			if (_log.isInfoEnabled()) {
+				_log.info("No device found with token " + token);
+			}
+		}
+		else {
+			if (getUserId() == pushNotificationsDevice.getUserId()) {
 				pushNotificationsDevice =
 					pushNotificationsDeviceLocalService.
 						deletePushNotificationsDevice(token);
-			}
-		}
-		catch (NoSuchDeviceException nsde) {
-			if (_log.isInfoEnabled()) {
-				_log.info("Device " + token + " does not exist");
 			}
 		}
 
