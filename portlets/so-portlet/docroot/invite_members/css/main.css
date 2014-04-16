@@ -1,3 +1,6 @@
+@import "compass";
+@import "mixins";
+
 .so-portlet-invite-members {
 	.email-invited h2 span {
 		color: #999;
@@ -181,7 +184,7 @@
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 767px) {
+@include respond-to(phone) {
 	.so-portlet-invite-members.modal {
 		.user-search-wrapper {
 			float: none;

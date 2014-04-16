@@ -1,4 +1,5 @@
 @import "compass";
+@import "mixins";
 
 $border-color: #C9C9C9;
 $section-header-bg: #CCE6F7;
@@ -722,7 +723,7 @@ $section-header-bg: #CCE6F7;
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 767px) {
+@include respond-to(phone) {
 	.contacts-portlet {
 		.layout .toolbar-content {
 			.filter-container {

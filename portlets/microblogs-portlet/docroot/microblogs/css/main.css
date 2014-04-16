@@ -1,4 +1,5 @@
 @import "compass";
+@import "mixins";
 
 $microblogs-border-color: #EAEAEA;
 
@@ -279,7 +280,7 @@ $microblogs-border-color: #EAEAEA;
 			width: 100%;
 		}
 
-		@media (max-width: 979px) {
+		@include respond-to(phone, tablet) {
 			font-size: 18px;
 		}
 	}

@@ -1,4 +1,5 @@
-@import "compass/css3";
+@import "compass";
+@import "mixins";
 
 $defaultBackgroundColor: #252D31;
 $defaultTextColor: #202020;
@@ -267,7 +268,7 @@ $defaultTextColor: #202020;
 
 /* ---------- Responsive ---------- */
 
-@media (max-width: 979px) {
+@include respond-to(phone, tablet) {
 	.aui .so-portlet-user-bar {
 		height: 3.15em;
 		z-index: auto;
@@ -466,7 +467,7 @@ $defaultTextColor: #202020;
 	}
 }
 
-@media (max-width: 767px) {
+@include respond-to(phone) {
 	html.aui body {
 		padding: 0;
 	}
