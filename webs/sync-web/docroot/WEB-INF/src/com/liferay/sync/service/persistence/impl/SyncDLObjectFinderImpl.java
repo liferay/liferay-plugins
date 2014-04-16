@@ -12,20 +12,21 @@
  * details.
  */
 
-package com.liferay.sync.service.persistence;
+package com.liferay.sync.service.persistence.impl;
 
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
-import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
+import com.liferay.sync.service.persistence.SyncDLObjectFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.List;
@@ -36,11 +37,14 @@ import java.util.List;
 public class SyncDLObjectFinderImpl
 	extends BasePersistenceImpl<SyncDLObject> implements SyncDLObjectFinder {
 
-	public static final String FIND_BY_C_M_R_E =
-		SyncDLObjectFinder.class.getName() + ".findByC_M_R_E";
+	public static final String FIND_BY_DELETE_EVENT =
+		SyncDLObjectFinder.class.getName() + ".findByDeleteEvent";
 
-	public static final String FIND_BY_C_M_R_T =
-		SyncDLObjectFinder.class.getName() + ".findByC_M_R_T";
+	public static final String FIND_BY_FILE_TYPE =
+		SyncDLObjectFinder.class.getName() + ".findByFileType";
+
+	public static final String FIND_BY_FOLDER_TYPE =
+		SyncDLObjectFinder.class.getName() + ".findByFolderType";
 
 	@Override
 	public List<SyncDLObject> filterFindByC_M_R(
@@ -54,12 +58,12 @@ public class SyncDLObjectFinderImpl
 
 			StringBundler sb = new StringBundler(5);
 
-			String sql = CustomSQLUtil.get(FIND_BY_C_M_R_E);
+			String sql = CustomSQLUtil.get(FIND_BY_DELETE_EVENT);
 
 			sb.append(sql);
 			sb.append(" UNION ALL ");
 
-			sql = CustomSQLUtil.get(FIND_BY_C_M_R_T);
+			sql = CustomSQLUtil.get(FIND_BY_FILE_TYPE);
 
 			sql = InlineSQLHelperUtil.replacePermissionCheck(
 				sql, DLFileEntry.class.getName(), "SyncDLObject.typePK", null,
@@ -69,7 +73,7 @@ public class SyncDLObjectFinderImpl
 			sb.append(sql);
 			sb.append(" UNION ALL ");
 
-			sql = CustomSQLUtil.get(FIND_BY_C_M_R_T);
+			sql = CustomSQLUtil.get(FIND_BY_FOLDER_TYPE);
 
 			sql = InlineSQLHelperUtil.replacePermissionCheck(
 				sql, DLFolder.class.getName(), "SyncDLObject.typePK", null,
@@ -89,15 +93,13 @@ public class SyncDLObjectFinderImpl
 			qPos.add(companyId);
 			qPos.add(modifiedTime);
 			qPos.add(repositoryId);
-			qPos.add(DLSyncConstants.EVENT_DELETE);
 			qPos.add(companyId);
 			qPos.add(modifiedTime);
 			qPos.add(repositoryId);
-			qPos.add(DLSyncConstants.TYPE_FILE);
+			qPos.add(PrincipalThreadLocal.getUserId());
 			qPos.add(companyId);
 			qPos.add(modifiedTime);
 			qPos.add(repositoryId);
-			qPos.add(DLSyncConstants.TYPE_FOLDER);
 
 			return q.list();
 		}
