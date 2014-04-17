@@ -171,6 +171,10 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			fileEntry, SyncConstants.EVENT_CHECK_OUT);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	@Override
 	public SyncDLObjectUpdate getAllSyncDLObjects(
 			long repositoryId, long folderId)
