@@ -52,7 +52,7 @@ public class PushNotificationsDeviceServiceImpl
 		else {
 			long userId = getUserId();
 
-			if (pushNotificationsDevice.getUserId() == userId ) {
+			if (pushNotificationsDevice.getUserId() == userId) {
 				pushNotificationsDevice =
 					pushNotificationsDeviceLocalService.
 						deletePushNotificationsDevice(token);
@@ -60,7 +60,7 @@ public class PushNotificationsDeviceServiceImpl
 			else if (_log.isInfoEnabled()) {
 				_log.info(
 					"Device found with token " + token +
-						" does not belong to user " userId );
+						" does not belong to user " + userId);
 			}
 		}
 
