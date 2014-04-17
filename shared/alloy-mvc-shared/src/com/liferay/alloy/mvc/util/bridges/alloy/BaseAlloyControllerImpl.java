@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.compat.util.bridges.alloy;
+package com.liferay.alloy.mvc.util.bridges.alloy;
 
 import com.liferay.compat.portal.kernel.bean.ConstantsBeanFactoryUtil;
 import com.liferay.compat.portal.kernel.scheduler.SchedulerEngineHelperUtil;
