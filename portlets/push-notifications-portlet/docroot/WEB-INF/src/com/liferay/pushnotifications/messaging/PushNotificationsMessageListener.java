@@ -29,10 +29,10 @@ public class PushNotificationsMessageListener implements MessageListener {
 
 	@Override
 	public void receive(Message message) throws MessageListenerException {
-		JSONObject payload = (JSONObject)message.getPayload();
+		JSONObject payloadJSONObject = (JSONObject)message.getPayload();
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Received message " + payload);
+			_log.debug("Received message " + payloadJSONObject);
 		}
 	}
 
