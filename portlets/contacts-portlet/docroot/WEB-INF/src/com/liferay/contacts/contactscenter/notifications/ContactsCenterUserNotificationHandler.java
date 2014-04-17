@@ -84,8 +84,6 @@ public class ContactsCenterUserNotificationHandler
 				creatorUserName);
 		}
 
-		String body = getNotificationTemplate();
-
 		LiferayPortletResponse liferayPortletResponse =
 			serviceContext.getLiferayPortletResponse();
 
@@ -119,20 +117,17 @@ public class ContactsCenterUserNotificationHandler
 			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
 		ignoreURL.setWindowState(WindowState.NORMAL);
 
-		body = StringUtil.replace(
-			body,
+		return StringUtil.replace(
+			getBodyTemplate(),
 			new String[] {
-				"[$CONFIRM$]", "[$CONFIRM_URL$]", "[$IGNORE$]", "[$IGNORE_URL$]"
-				, "[$TITLE$]"
+				"[$CONFIRM$]", "[$CONFIRM_URL$]", "[$IGNORE$]",
+				"[$IGNORE_URL$]", "[$TITLE$]"
 			},
 			new String[] {
 				serviceContext.translate("confirm"),
 				confirmURL.toString(), serviceContext.translate("ignore"),
 				ignoreURL.toString(), title
-			}
-		);
-
-		return body;
+			});
 	}
 
 	@Override

@@ -72,24 +72,19 @@ public class SOAnnouncementsUserNotificationHandler
 			return null;
 		}
 
-		String body = getNotificationTemplate();
-
 		String title = serviceContext.translate(
 			"x-sent-a-new-announcement",
 			HtmlUtil.escape(
 				PortalUtil.getUserName(
 					announcementEntry.getUserId(), StringPool.BLANK)));
 
-		body = StringUtil.replace(
-				body, new String[] {"[$BODY$]", "[$TITLE$]"},
-				new String[] {
-					HtmlUtil.escape(
-						StringUtil.shorten(announcementEntry.getContent(), 50)),
-					title
-				}
-			);
-
-		return body;
+		return StringUtil.replace(
+			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
+			new String[] {
+				HtmlUtil.escape(
+					StringUtil.shorten(announcementEntry.getContent(), 50)),
+				title
+			});
 	}
 
 	@Override

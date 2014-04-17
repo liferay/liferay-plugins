@@ -67,8 +67,6 @@ public class MicroblogsUserNotificationHandler
 			return null;
 		}
 
-		String body = getNotificationTemplate();
-
 		String title = StringPool.BLANK;
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
@@ -80,15 +78,12 @@ public class MicroblogsUserNotificationHandler
 				"x-commented-on-your-post", userFullName);
 		}
 
-		body = StringUtil.replace(
-			body, new String[] {"[$BODY$]", "[$TITLE$]"},
+		return StringUtil.replace(
+			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
 			new String[] {
 				HtmlUtil.escape(
 					StringUtil.shorten(microblogsEntry.getContent(), 50)), title
-			}
-		);
-
-		return body;
+			});
 	}
 
 	@Override

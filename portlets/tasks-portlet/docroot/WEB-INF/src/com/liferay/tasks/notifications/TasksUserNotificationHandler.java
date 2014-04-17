@@ -64,24 +64,19 @@ public class TasksUserNotificationHandler extends BaseUserNotificationHandler {
 			return null;
 		}
 
-		String body = getNotificationTemplate();
-
 		String title = serviceContext.translate(
 			jsonObject.getString("title"),
 			HtmlUtil.escape(
 				PortalUtil.getUserName(
 					jsonObject.getLong("userId"), StringPool.BLANK)));
 
-		body = StringUtil.replace(
-			body, new String[] {"[$BODY$]", "[$TITLE$]"},
+		return StringUtil.replace(
+			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
 			new String[] {
 				HtmlUtil.escape(
 					StringUtil.shorten(HtmlUtil.escape(tasksEntry.getTitle()))),
 				title
-			}
-		);
-
-		return body;
+			});
 	}
 
 	@Override

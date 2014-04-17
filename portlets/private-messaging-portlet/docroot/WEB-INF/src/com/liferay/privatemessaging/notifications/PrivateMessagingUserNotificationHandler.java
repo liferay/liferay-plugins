@@ -61,7 +61,7 @@ public class PrivateMessagingUserNotificationHandler
 			ServiceContext serviceContext)
 		throws Exception {
 
-		String messageBody = null;
+		String body = null;
 		long userId = 0;
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
@@ -72,9 +72,9 @@ public class PrivateMessagingUserNotificationHandler
 		MBMessage mbMessage = MBMessageLocalServiceUtil.fetchMBMessage(classPK);
 
 		if (mbMessage == null) {
-			messageBody = jsonObject.getString("body");
+			body = jsonObject.getString("body");
 
-			if (Validator.isNull(messageBody)) {
+			if (Validator.isNull(body)) {
 				UserNotificationEventLocalServiceUtil.
 					deleteUserNotificationEvent(
 						userNotificationEvent.getUserNotificationEventId());
@@ -96,24 +96,19 @@ public class PrivateMessagingUserNotificationHandler
 				return null;
 			}
 
-			messageBody = mbMessage.getBody();
+			body = mbMessage.getBody();
 			userId = mbMessage.getUserId();
 		}
-
-		String body = getNotificationTemplate();
 
 		String title = serviceContext.translate(
 			"x-sent-you-a-message",
 			HtmlUtil.escape(PortalUtil.getUserName(userId, StringPool.BLANK)));
 
-		body = StringUtil.replace(
-			body, new String[] {"[$BODY$]", "[$TITLE$]"},
+		return StringUtil.replace(
+			getBodyTemplate(), new String[] {"[$BODY$]", "[$TITLE$]"},
 			new String[] {
-				HtmlUtil.escape(StringUtil.shorten(messageBody, 50)), title
-			}
-		);
-
-		return body;
+				HtmlUtil.escape(StringUtil.shorten(body, 50)), title
+			});
 	}
 
 	@Override
