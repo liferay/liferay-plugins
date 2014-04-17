@@ -122,7 +122,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	<aui:model-context bean="<%= calendarBooking %>" model="<%= CalendarBooking.class %>" />
 
 	<aui:fieldset>
-		<aui:input name="title" />
+		<aui:input defaultLanguageId="<%= themeDisplay.getLanguageId() %>" name="title" />
 
 		<div class="<%= allDay ? "allday-class-active" : "" %>" id="<portlet:namespace />startDateContainer">
 			<aui:input label="start-date" name="startTime" value="<%= startTimeJCalendar %>" />
@@ -140,7 +140,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			<a class="calendar-portlet-recurrence-summary" href="javascript:;" id="<portlet:namespace />summary"></a>
 		</aui:field-wrapper>
 
-		<aui:input name="description" />
+		<aui:input defaultLanguageId="<%= themeDisplay.getLanguageId() %>" name="description" />
 	</aui:fieldset>
 
 	<aui:fieldset>
