@@ -93,7 +93,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			href="<%= rowURL %>"
 			name="title"
 			orderable="<%= true %>"
-			value="<%= (String)tuple.getObject(1) %>"
+			value="<%= HtmlUtil.escape((String)tuple.getObject(1)) %>"
 		/>
 
 		<c:if test="<%= showKBArticleAuthorColumn %>">
@@ -102,7 +102,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				name="author"
 				orderable="<%= true %>"
 				orderableProperty="user-name"
-				value="<%= (String)tuple.getObject(2) %>"
+				value="<%= HtmlUtil.escape((String)tuple.getObject(2)) %>"
 			/>
 		</c:if>
 
