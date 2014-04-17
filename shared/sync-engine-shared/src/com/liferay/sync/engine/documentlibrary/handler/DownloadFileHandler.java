@@ -64,26 +64,22 @@ public class DownloadFileHandler extends BaseHandler {
 
 			if ((Boolean)getParameterValue("patch")) {
 				IODeltaUtil.patch(tempFilePath, inputStream);
-
-				Files.move(
-					tempFilePath, filePath, StandardCopyOption.ATOMIC_MOVE,
-					StandardCopyOption.REPLACE_EXISTING);
 			}
 			else {
 				Files.copy(
 					inputStream, tempFilePath,
 					StandardCopyOption.REPLACE_EXISTING);
-
-				Files.move(
-					tempFilePath, filePath, StandardCopyOption.ATOMIC_MOVE,
-					StandardCopyOption.REPLACE_EXISTING);
 			}
 
-			syncFile.setFileKey(FileUtil.getFileKey(filePath));
+			syncFile.setFileKey(FileUtil.getFileKey(tempFilePath));
 			syncFile.setState(SyncFile.STATE_SYNCED);
 			syncFile.setUiEvent(SyncFile.UI_EVENT_DOWNLOADED);
 
 			SyncFileService.update(syncFile);
+
+			Files.move(
+				tempFilePath, filePath, StandardCopyOption.ATOMIC_MOVE,
+				StandardCopyOption.REPLACE_EXISTING);
 		}
 		finally {
 			StreamUtil.cleanUp(inputStream);

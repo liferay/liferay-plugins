@@ -60,13 +60,18 @@ public class BaseHandler implements Handler<Void> {
 			if (syncFile.getVersion() == null) {
 				SyncFileService.deleteSyncFile(syncFile);
 			}
-
-			return;
 		}
 		else if (e instanceof HttpHostConnectException) {
+			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
 			syncAccount.setUiEvent(SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
+
+			SyncAccountService.update(syncAccount);
+
+			retryServerConnection();
 		}
 		else if (e instanceof HttpResponseException) {
+			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
+
 			HttpResponseException hre = (HttpResponseException)e;
 
 			int statusCode = hre.getStatusCode();
@@ -79,13 +84,9 @@ public class BaseHandler implements Handler<Void> {
 				syncAccount.setUiEvent(
 					SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
 			}
+
+			SyncAccountService.update(syncAccount);
 		}
-
-		syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
-
-		SyncAccountService.update(syncAccount);
-
-		retryServerConnection();
 	}
 
 	@Override

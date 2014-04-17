@@ -207,7 +207,7 @@ public class SyncSystemTest {
 							Path filePath, IOException ioe)
 						throws IOException {
 
-						Files.delete(filePath);
+						Files.deleteIfExists(filePath);
 
 						return FileVisitResult.CONTINUE;
 					}
@@ -218,7 +218,7 @@ public class SyncSystemTest {
 							BasicFileAttributes basicFileAttributes)
 						throws IOException {
 
-						Files.delete(filePath);
+						Files.deleteIfExists(filePath);
 
 						return FileVisitResult.CONTINUE;
 					}

@@ -275,6 +275,7 @@ public class SyncFileService {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("fileEntryId", syncFile.getTypePK());
+		parameters.put("syncFile", syncFile);
 
 		MoveFileEntryToTrashEvent moveFileEntryToTrashEvent =
 			new MoveFileEntryToTrashEvent(syncAccountId, parameters);
@@ -299,6 +300,7 @@ public class SyncFileService {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("folderId", syncFile.getTypePK());
+		parameters.put("syncFile", syncFile);
 
 		MoveFolderToTrashEvent moveFolderToTrashEvent =
 			new MoveFolderToTrashEvent(syncAccountId, parameters);

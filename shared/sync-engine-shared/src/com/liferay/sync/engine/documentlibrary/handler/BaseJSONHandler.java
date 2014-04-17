@@ -19,7 +19,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.liferay.sync.engine.documentlibrary.event.Event;
 import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
+import com.liferay.sync.engine.service.SyncFileService;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -70,7 +76,29 @@ public class BaseJSONHandler extends BaseHandler {
 
 		String exception = exceptionJsonNode.asText();
 
-		if (exception.equals("java.lang.RuntimeException")) {
+		if (exception.equals(
+				"com.liferay.portal.security.auth.PrincipalException")) {
+
+			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+			syncFile.setState(SyncFile.STATE_ERROR);
+			syncFile.setUiEvent(SyncFile.UI_EVENT_INVALID_PERMISSIONS);
+
+			SyncFileService.update(syncFile);
+		}
+		else if (exception.equals(
+					"com.liferay.portlet.documentlibrary." +
+						"NoSuchFileEntryException")) {
+
+			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+			Path filePath = Paths.get(syncFile.getFilePathName());
+
+			Files.deleteIfExists(filePath);
+
+			SyncFileService.deleteSyncFile(syncFile);
+		}
+		else if (exception.equals("java.lang.RuntimeException")) {
 			SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 				getSyncAccountId());
 
