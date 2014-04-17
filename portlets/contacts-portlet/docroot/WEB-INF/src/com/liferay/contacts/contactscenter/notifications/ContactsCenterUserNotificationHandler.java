@@ -122,13 +122,13 @@ public class ContactsCenterUserNotificationHandler
 		body = StringUtil.replace(
 			body,
 			new String[] {
-				"[$TITLE$]", "[$CONFIRM_URL$]", "[$CONFIRM$]", "[$IGNORE_URL$]",
-				"[$IGNORE$]"
+				"[$CONFIRM$]", "[$CONFIRM_URL$]", "[$IGNORE$]", "[$IGNORE_URL$]"
+				, "[$TITLE$]"
 			},
 			new String[] {
-				title, confirmURL.toString(),
-				serviceContext.translate("confirm"), ignoreURL.toString(),
-				serviceContext.translate("ignore")
+				serviceContext.translate("confirm"),
+				confirmURL.toString(), serviceContext.translate("ignore"),
+				ignoreURL.toString(), title
 			}
 		);
 

@@ -73,11 +73,11 @@ public class TasksUserNotificationHandler extends BaseUserNotificationHandler {
 					jsonObject.getLong("userId"), StringPool.BLANK)));
 
 		body = StringUtil.replace(
-			body, new String[] {"[$TITLE$]", "[$BODY$]"},
+			body, new String[] {"[$BODY$]", "[$TITLE$]"},
 			new String[] {
-				title,
 				HtmlUtil.escape(
-					StringUtil.shorten(HtmlUtil.escape(tasksEntry.getTitle())))
+					StringUtil.shorten(HtmlUtil.escape(tasksEntry.getTitle()))),
+				title
 			}
 		);
 

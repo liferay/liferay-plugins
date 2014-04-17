@@ -107,9 +107,9 @@ public class PrivateMessagingUserNotificationHandler
 			HtmlUtil.escape(PortalUtil.getUserName(userId, StringPool.BLANK)));
 
 		body = StringUtil.replace(
-			body, new String[] {"[$TITLE$]", "[$BODY$]"},
+			body, new String[] {"[$BODY$]", "[$TITLE$]"},
 			new String[] {
-				title, HtmlUtil.escape(StringUtil.shorten(messageBody, 50))
+				HtmlUtil.escape(StringUtil.shorten(messageBody, 50)), title
 			}
 		);
 

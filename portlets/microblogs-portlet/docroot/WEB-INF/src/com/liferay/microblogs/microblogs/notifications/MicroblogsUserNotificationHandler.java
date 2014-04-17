@@ -81,11 +81,10 @@ public class MicroblogsUserNotificationHandler
 		}
 
 		body = StringUtil.replace(
-			body, new String[] {"[$TITLE$]", "[$BODY$]"},
+			body, new String[] {"[$BODY$]", "[$TITLE$]"},
 			new String[] {
-				title,
 				HtmlUtil.escape(
-					StringUtil.shorten(microblogsEntry.getContent(), 50))
+					StringUtil.shorten(microblogsEntry.getContent(), 50)), title
 			}
 		);
 

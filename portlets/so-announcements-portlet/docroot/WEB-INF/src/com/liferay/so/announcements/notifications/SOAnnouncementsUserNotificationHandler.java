@@ -81,11 +81,11 @@ public class SOAnnouncementsUserNotificationHandler
 					announcementEntry.getUserId(), StringPool.BLANK)));
 
 		body = StringUtil.replace(
-				body, new String[] {"[$TITLE$]", "[$BODY$]"},
+				body, new String[] {"[$BODY$]", "[$TITLE$]"},
 				new String[] {
-					title,
 					HtmlUtil.escape(
-						StringUtil.shorten(announcementEntry.getContent(), 50))
+						StringUtil.shorten(announcementEntry.getContent(), 50)),
+					title
 				}
 			);
 
