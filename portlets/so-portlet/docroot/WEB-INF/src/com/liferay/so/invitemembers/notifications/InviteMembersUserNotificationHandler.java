@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.MembershipRequestConstants;
 import com.liferay.portal.model.User;
@@ -47,6 +48,7 @@ public class InviteMembersUserNotificationHandler
 	extends BaseUserNotificationHandler {
 
 	public InviteMembersUserNotificationHandler() {
+		setActionable(true);
 		setPortletId(PortletKeys.SO_INVITE_MEMBERS);
 	}
 
@@ -71,25 +73,20 @@ public class InviteMembersUserNotificationHandler
 			return null;
 		}
 
-		StringBundler sb = new StringBundler(12);
-
-		sb.append("<div class=\"title\">");
+		String title = StringPool.BLANK;
 
 		if (memberRequest.getStatus() ==
 				MembershipRequestConstants.STATUS_PENDING) {
 
-			sb.append(
-				serviceContext.translate(
-					"x-invited-you-to-join-x",
-					new Object[] {
-						getUserNameLink(
-							memberRequest.getUserId(), serviceContext),
-						getSiteDescriptiveName(
-							memberRequest.getGroupId(), serviceContext)}));
+			title = serviceContext.translate(
+				"x-invited-you-to-join-x",
+				new Object[] {
+					getUserNameLink(memberRequest.getUserId(), serviceContext),
+					getSiteDescriptiveName(
+						memberRequest.getGroupId(), serviceContext)});
 		}
 
-		sb.append("</div><div class=\"body\">");
-		sb.append("<a class=\"btn btn-success\" href=\"");
+		String body = getNotificationTemplate();
 
 		LiferayPortletResponse liferayPortletResponse =
 			serviceContext.getLiferayPortletResponse();
@@ -109,12 +106,6 @@ public class InviteMembersUserNotificationHandler
 			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
 		confirmURL.setWindowState(WindowState.NORMAL);
 
-		sb.append(confirmURL);
-
-		sb.append("\">");
-		sb.append(serviceContext.translate("confirm"));
-		sb.append("</a><a class=\"btn btn-warning\" href=\"");
-
 		PortletURL ignoreURL = liferayPortletResponse.createActionURL(
 			PortletKeys.SO_INVITE_MEMBERS);
 
@@ -129,13 +120,20 @@ public class InviteMembersUserNotificationHandler
 			String.valueOf(userNotificationEvent.getUserNotificationEventId()));
 		ignoreURL.setWindowState(WindowState.NORMAL);
 
-		sb.append(ignoreURL);
+		body = StringUtil.replace(
+			body,
+			new String[] {
+				"[$TITLE$]", "[$CONFIRM_URL$]", "[$CONFIRM$]", "[$IGNORE_URL$]",
+				"[$IGNORE$]"
+			},
+			new String[] {
+				title, confirmURL.toString(),
+				serviceContext.translate("confirm"), ignoreURL.toString(),
+				serviceContext.translate("ignore")
+			}
+		);
 
-		sb.append("\">");
-		sb.append(serviceContext.translate("ignore"));
-		sb.append("</a></div>");
-
-		return sb.toString();
+		return body;
 	}
 
 	@Override
@@ -170,7 +168,7 @@ public class InviteMembersUserNotificationHandler
 
 			portletURL.setParameter("struts_action", "/my_sites/view");
 			portletURL.setParameter("groupId", String.valueOf(groupId));
-			portletURL.setParameter("privateLayout", String.valueOf(true));
+			portletURL.setParameter("privateLayout", String.valueOf(false));
 
 			sb.append(portletURL);
 

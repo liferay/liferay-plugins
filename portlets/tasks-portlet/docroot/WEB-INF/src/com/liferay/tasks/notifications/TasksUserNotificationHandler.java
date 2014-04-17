@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
@@ -64,20 +64,24 @@ public class TasksUserNotificationHandler extends BaseUserNotificationHandler {
 			return null;
 		}
 
-		StringBundler sb = new StringBundler(5);
+		String body = getNotificationTemplate();
 
-		sb.append("<div class=\"title\">");
-		sb.append(
-			serviceContext.translate(
-				jsonObject.getString("title"),
+		String title = serviceContext.translate(
+			jsonObject.getString("title"),
+			HtmlUtil.escape(
+				PortalUtil.getUserName(
+					jsonObject.getLong("userId"), StringPool.BLANK)));
+
+		body = StringUtil.replace(
+			body, new String[] {"[$TITLE$]", "[$BODY$]"},
+			new String[] {
+				title,
 				HtmlUtil.escape(
-					PortalUtil.getUserName(
-						jsonObject.getLong("userId"), StringPool.BLANK))));
-		sb.append("</div><div class=\"body\">");
-		sb.append(HtmlUtil.escape(tasksEntry.getTitle()));
-		sb.append("</div>");
+					StringUtil.shorten(HtmlUtil.escape(tasksEntry.getTitle())))
+			}
+		);
 
-		return sb.toString();
+		return body;
 	}
 
 	@Override

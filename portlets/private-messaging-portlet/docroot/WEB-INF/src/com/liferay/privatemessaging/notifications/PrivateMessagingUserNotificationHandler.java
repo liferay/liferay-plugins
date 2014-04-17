@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -62,7 +61,7 @@ public class PrivateMessagingUserNotificationHandler
 			ServiceContext serviceContext)
 		throws Exception {
 
-		String body = null;
+		String messageBody = null;
 		long userId = 0;
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
@@ -73,9 +72,9 @@ public class PrivateMessagingUserNotificationHandler
 		MBMessage mbMessage = MBMessageLocalServiceUtil.fetchMBMessage(classPK);
 
 		if (mbMessage == null) {
-			body = jsonObject.getString("body");
+			messageBody = jsonObject.getString("body");
 
-			if (Validator.isNull(body)) {
+			if (Validator.isNull(messageBody)) {
 				UserNotificationEventLocalServiceUtil.
 					deleteUserNotificationEvent(
 						userNotificationEvent.getUserNotificationEventId());
@@ -97,23 +96,24 @@ public class PrivateMessagingUserNotificationHandler
 				return null;
 			}
 
-			body = mbMessage.getBody();
+			messageBody = mbMessage.getBody();
 			userId = mbMessage.getUserId();
 		}
 
-		StringBundler sb = new StringBundler(5);
+		String body = getNotificationTemplate();
 
-		sb.append("<div class=\"title\">");
-		sb.append(
-			serviceContext.translate(
-				"x-sent-you-a-message",
-				HtmlUtil.escape(
-					PortalUtil.getUserName(userId, StringPool.BLANK))));
-		sb.append("</div><div class=\"body\">");
-		sb.append(HtmlUtil.escape(StringUtil.shorten(body, 50)));
-		sb.append("</div>");
+		String title = serviceContext.translate(
+			"x-sent-you-a-message",
+			HtmlUtil.escape(PortalUtil.getUserName(userId, StringPool.BLANK)));
 
-		return sb.toString();
+		body = StringUtil.replace(
+			body, new String[] {"[$TITLE$]", "[$BODY$]"},
+			new String[] {
+				title, HtmlUtil.escape(StringUtil.shorten(messageBody, 50))
+			}
+		);
+
+		return body;
 	}
 
 	@Override

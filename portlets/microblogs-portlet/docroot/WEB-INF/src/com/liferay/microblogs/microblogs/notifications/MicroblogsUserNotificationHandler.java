@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseUserNotificationHandler;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.UserNotificationEvent;
@@ -68,27 +67,29 @@ public class MicroblogsUserNotificationHandler
 			return null;
 		}
 
-		StringBundler sb = new StringBundler(5);
+		String body = getNotificationTemplate();
 
-		sb.append("<div class=\"title\">");
+		String title = StringPool.BLANK;
 
 		if (microblogsEntry.getType() == MicroblogsEntryConstants.TYPE_REPLY) {
 			String userFullName = HtmlUtil.escape(
 				PortalUtil.getUserName(
 					microblogsEntry.getUserId(), StringPool.BLANK));
 
-			sb.append(
-				serviceContext.translate(
-					"x-commented-on-your-post", userFullName));
+			title = serviceContext.translate(
+				"x-commented-on-your-post", userFullName);
 		}
 
-		sb.append("</div><div class=\"body\">");
-		sb.append(
-			HtmlUtil.escape(
-				StringUtil.shorten(microblogsEntry.getContent(), 50)));
-		sb.append("</div>");
+		body = StringUtil.replace(
+			body, new String[] {"[$TITLE$]", "[$BODY$]"},
+			new String[] {
+				title,
+				HtmlUtil.escape(
+					StringUtil.shorten(microblogsEntry.getContent(), 50))
+			}
+		);
 
-		return sb.toString();
+		return body;
 	}
 
 	@Override
