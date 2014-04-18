@@ -1228,7 +1228,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	private ExtRepositoryFileVersionAdapter _toExtRepositoryFileVersionAdapter(
 			ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter,
 			ExtRepositoryFileVersion extRepositoryFileVersion)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		ExtRepositoryAdapterCache extRepositoryAdapterCache =
 			ExtRepositoryAdapterCache.getInstance();
@@ -1261,7 +1261,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			_toExtRepositoryFileVersionAdapters(
 				ExtRepositoryFileEntryAdapter extRepositoryFileEntryAdapter,
 				List<ExtRepositoryFileVersion> extRepositoryFileVersions)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		List<ExtRepositoryFileVersionAdapter> extRepositoryFileVersionAdapters =
 			new ArrayList<ExtRepositoryFileVersionAdapter>();
