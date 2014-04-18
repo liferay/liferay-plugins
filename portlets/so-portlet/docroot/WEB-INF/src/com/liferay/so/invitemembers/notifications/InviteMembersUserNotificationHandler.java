@@ -163,7 +163,7 @@ public class InviteMembersUserNotificationHandler
 
 			portletURL.setParameter("struts_action", "/my_sites/view");
 			portletURL.setParameter("groupId", String.valueOf(groupId));
-			portletURL.setParameter("privateLayout", String.valueOf(false));
+			portletURL.setParameter("privateLayout", Boolean.FALSE.toString());
 
 			sb.append(portletURL);
 
