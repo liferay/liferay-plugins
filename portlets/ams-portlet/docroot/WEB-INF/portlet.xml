@@ -4,7 +4,7 @@
 	<portlet>
 		<portlet-name>1</portlet-name>
 		<display-name>Asset Management System</display-name>
-		<portlet-class>com.liferay.util.bridges.alloy.AlloyPortlet</portlet-class>
+		<portlet-class>com.liferay.alloy.mvc.util.bridges.alloy.AlloyPortlet</portlet-class>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
