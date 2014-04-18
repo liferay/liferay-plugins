@@ -82,6 +82,6 @@ public abstract class BaseUserNotificationHandler
 	private static Log _log = LogFactoryUtil.getLog(
 		BaseUserNotificationHandler.class);
 
-	private boolean _actionable = false;
+	private boolean _actionable;
 
 }
