@@ -16,6 +16,7 @@ package com.liferay.httpservice.internal.servlet;
 
 import com.liferay.httpservice.mock.MockFilter;
 import com.liferay.httpservice.servlet.ResourceServlet;
+import com.liferay.portal.kernel.test.CaptureHandler;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.util.PortalUtil;
@@ -120,35 +121,43 @@ public class BundleServletContextTest extends PowerMockito {
 	public void testGetFilterChain() throws Exception {
 		mockBundleWiring();
 
-		List<LogRecord> logRecords = JDKLoggerTestUtil.configureJDKLogger(
+		CaptureHandler captureHandler = JDKLoggerTestUtil.configureJDKLogger(
 			MockLoggingFilter.class.getName(), Level.INFO);
 
-		String cssFilterName = "CSS Filter";
+		try {
+			List<LogRecord> logRecords = captureHandler.getLogRecords();
 
-		registerFilter(
-			cssFilterName, new MockLoggingFilter(cssFilterName), null,
-			"/css/*");
+			String cssFilterName = "CSS Filter";
 
-		String jsFilterName = "JS Filter";
+			registerFilter(
+				cssFilterName, new MockLoggingFilter(cssFilterName), null,
+				"/css/*");
 
-		registerFilter(
-			jsFilterName, new MockLoggingFilter(jsFilterName), null, "/js/*");
+			String jsFilterName = "JS Filter";
 
-		FilterChain filterChain = _bundleServletContext.getFilterChain(
-			"/js/main.js");
+			registerFilter(
+				jsFilterName, new MockLoggingFilter(jsFilterName), null,
+				"/js/*");
 
-		Assert.assertNotNull(filterChain);
+			FilterChain filterChain = _bundleServletContext.getFilterChain(
+				"/js/main.js");
 
-		filterChain.doFilter(
-			new MockHttpServletRequest(), new MockHttpServletResponse());
+			Assert.assertNotNull(filterChain);
 
-		Assert.assertEquals(1, logRecords.size());
+			filterChain.doFilter(
+				new MockHttpServletRequest(), new MockHttpServletResponse());
 
-		LogRecord logRecord = logRecords.get(0);
+			Assert.assertEquals(1, logRecords.size());
 
-		Assert.assertEquals(jsFilterName, logRecord.getMessage());
+			LogRecord logRecord = logRecords.get(0);
 
-		verifyBundleWiring();
+			Assert.assertEquals(jsFilterName, logRecord.getMessage());
+
+			verifyBundleWiring();
+		}
+		finally {
+			captureHandler.close();
+		}
 	}
 
 	@Test
