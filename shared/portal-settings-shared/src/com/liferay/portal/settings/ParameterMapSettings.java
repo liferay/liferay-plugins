@@ -32,7 +32,7 @@ public class ParameterMapSettings implements Settings {
 	public static final String SETTINGS_PREFIX = "settings--";
 
 	public ParameterMapSettings(
-		Settings defaultSettings, Map<String, String[]> parameterMap) {
+		Map<String, String[]> parameterMap, Settings defaultSettings) {
 
 		_defaultSettings = defaultSettings;
 		_parameterMap = parameterMap;
