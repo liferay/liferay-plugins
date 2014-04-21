@@ -85,6 +85,9 @@
   .portlet-document-library .form-builder-source-wrapper .form-builder-source, .portlet-dynamic-data-mapping .form-builder-source-wrapper .form-builder-source {
     position: relative; }
 
+.ltr .form-builder-rtl-inputs .portlet-dynamic-data-mapping .form-builder-content input[type="text"], .ltr .form-builder-rtl-inputs .portlet-dynamic-data-mapping .form-builder-content textarea, .ltr .form-builder-rtl-inputs .textcelleditor input[type="text"], .ltr .form-builder-rtl-inputs .textcelleditor textarea, .ltr .form-builder-rtl-inputs .textareacelleditor input[type="text"], .ltr .form-builder-rtl-inputs .textareacelleditor textarea, .rtl .form-builder-ltr-inputs .portlet-dynamic-data-mapping .form-builder-content input[type="text"], .rtl .form-builder-ltr-inputs .portlet-dynamic-data-mapping .form-builder-content textarea, .rtl .form-builder-ltr-inputs .textcelleditor input[type="text"], .rtl .form-builder-ltr-inputs .textcelleditor textarea, .rtl .form-builder-ltr-inputs .textareacelleditor input[type="text"], .rtl .form-builder-ltr-inputs .textareacelleditor textarea {
+  direction: rtl; }
+
 .ie6 .lfr-editor-container, .ie7 .lfr-editor-container {
   zoom: 1; }
 
