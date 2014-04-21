@@ -247,6 +247,24 @@ public class ComboServletFilter extends BasePortalFilter {
 		String[] modulePaths = modulePathsSet.toArray(
 			new String[modulePathsSet.size()]);
 
+		String firstModulePath = modulePaths[0];
+
+		String extension = FileUtil.getExtension(firstModulePath);
+
+		String minifierType = ParamUtil.getString(request, "minifierType");
+
+		if (Validator.isNull(minifierType)) {
+			minifierType = "js";
+
+			if (StringUtil.equalsIgnoreCase(extension, _CSS_EXTENSION)) {
+				minifierType = "css";
+			}
+		}
+
+		if (!minifierType.equals("css") && !minifierType.equals("js")) {
+			minifierType = "js";
+		}
+
 		String modulePathsString = null;
 
 		byte[][] bytesArray = null;
@@ -257,26 +275,8 @@ public class ComboServletFilter extends BasePortalFilter {
 			bytesArray = _bytesArrayPortalCache.get(modulePathsString);
 		}
 
-		String firstModulePath = modulePaths[0];
-
-		String extension = FileUtil.getExtension(firstModulePath);
-
 		if (bytesArray == null) {
 			String rootPath = ServletContextUtil.getRootPath(_servletContext);
-
-			String minifierType = ParamUtil.getString(request, "minifierType");
-
-			if (Validator.isNull(minifierType)) {
-				minifierType = "js";
-
-				if (StringUtil.equalsIgnoreCase(extension, _CSS_EXTENSION)) {
-					minifierType = "css";
-				}
-			}
-
-			if (!minifierType.equals("css") && !minifierType.equals("js")) {
-				minifierType = "js";
-			}
 
 			bytesArray = new byte[modulePaths.length][];
 
