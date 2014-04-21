@@ -30,10 +30,10 @@ import org.powermock.api.mockito.PowerMockito;
 public class ParameterMapSettingsTest extends PowerMockito {
 
 	public ParameterMapSettingsTest() {
-		_settings = mock(Settings.class);
+		_defaultSettings = mock(Settings.class);
 
 		_parameterMapSettings = new ParameterMapSettings(
-			_settings, _parameterMap);
+			_defaultSettings, _parameterMap);
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class ParameterMapSettingsTest extends PowerMockito {
 
 	protected void mockSettingsGetValue(String key, String value) {
 		when(
-			_settings.getValue(Matchers.eq(key), Matchers.anyString())
+			_defaultSettings.getValue(Matchers.eq(key), Matchers.anyString())
 		).thenReturn(
 			value
 		);
@@ -90,15 +90,16 @@ public class ParameterMapSettingsTest extends PowerMockito {
 
 	protected void mockSettingsGetValues(String key, String... values) {
 		when(
-			_settings.getValues(Matchers.eq(key), Matchers.any(String[].class))
+			_defaultSettings.getValues(
+				Matchers.eq(key), Matchers.any(String[].class))
 		).thenReturn(
 			values
 		);
 	}
 
+	private Settings _defaultSettings;
 	private Map<String, String[]> _parameterMap =
 		new HashMap<String, String[]>();
 	private ParameterMapSettings _parameterMapSettings;
-	private Settings _settings;
 
 }
