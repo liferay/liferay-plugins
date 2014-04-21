@@ -32,14 +32,14 @@ public class ParameterMapSettings implements Settings {
 	public static final String SETTINGS_PREFIX = "settings--";
 
 	public ParameterMapSettings(
-		Settings settings, Map<String, String[]> parameterMap) {
+		Settings defaultSettings, Map<String, String[]> parameterMap) {
 
-		_settings = settings;
+		_defaultSettings = defaultSettings;
 		_parameterMap = parameterMap;
 	}
 
 	public Settings getDefaultSettings() {
-		return _settings;
+		return _defaultSettings;
 	}
 
 	@Override
@@ -50,7 +50,7 @@ public class ParameterMapSettings implements Settings {
 			return values[0];
 		}
 
-		return _settings.getValue(key, defaultValue);
+		return _defaultSettings.getValue(key, defaultValue);
 	}
 
 	@Override
@@ -61,27 +61,27 @@ public class ParameterMapSettings implements Settings {
 			return values;
 		}
 
-		return _settings.getValues(key, defaultValue);
+		return _defaultSettings.getValues(key, defaultValue);
 	}
 
 	@Override
 	public void reset(String key) {
-		_settings.reset(key);
+		_defaultSettings.reset(key);
 	}
 
 	@Override
 	public Settings setValue(String key, String value) {
-		return _settings.setValue(key, value);
+		return _defaultSettings.setValue(key, value);
 	}
 
 	@Override
 	public Settings setValues(String key, String[] values) {
-		return _settings.setValues(key, values);
+		return _defaultSettings.setValues(key, values);
 	}
 
 	@Override
 	public void store() throws IOException, ValidatorException {
-		_settings.store();
+		_defaultSettings.store();
 	}
 
 	protected String[] getParameterValue(String key) {
@@ -100,7 +100,7 @@ public class ParameterMapSettings implements Settings {
 		return values;
 	}
 
+	private Settings _defaultSettings;
 	private Map<String, String[]> _parameterMap;
-	private Settings _settings;
 
 }
