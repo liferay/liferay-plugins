@@ -53,9 +53,9 @@ import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -67,150 +67,19 @@ import javax.servlet.http.HttpServletResponse;
  * @author Eduardo Garcia
  * @see com.liferay.portal.servlet.ComboServlet
  */
-public class ComboServletFilter extends HttpServlet {
+public class ComboServletFilter extends BasePortalFilter {
 
 	@Override
-	public void service(
-			HttpServletRequest request, HttpServletResponse response)
-		throws IOException, ServletException {
-
-		try {
-			doService(request, response);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-
-			PortalUtil.sendError(
-				HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e, request,
-				response);
-		}
+	public void init(FilterConfig filterConfig) {
+		doInit(filterConfig, filterConfig.getServletContext());
 	}
 
-	protected void doService(
-			HttpServletRequest request, HttpServletResponse response)
-		throws Exception {
+	protected void doInit(
+		FilterConfig filterConfig, ServletContext servletContext) {
 
-		Set<String> modulePathsSet = new LinkedHashSet<String>();
+		super.init(filterConfig);
 
-		Enumeration<String> enu = request.getParameterNames();
-
-		if (ServerDetector.isWebSphere()) {
-			Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
-				request.getQueryString());
-
-			enu = Collections.enumeration(parameterMap.keySet());
-		}
-
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
-
-			if (_protectedParameters.contains(name)) {
-				continue;
-			}
-
-			modulePathsSet.add(name);
-		}
-
-		if (modulePathsSet.size() == 0) {
-			response.sendError(
-				HttpServletResponse.SC_BAD_REQUEST,
-				"Modules paths set is empty");
-
-			return;
-		}
-
-		String[] modulePaths = modulePathsSet.toArray(
-			new String[modulePathsSet.size()]);
-
-		String modulePathsString = null;
-
-		byte[][] bytesArray = null;
-
-		if (!PropsValues.COMBO_CHECK_TIMESTAMP) {
-			modulePathsString = Arrays.toString(modulePaths);
-
-			bytesArray = _bytesArrayPortalCache.get(modulePathsString);
-		}
-
-		String firstModulePath = modulePaths[0];
-
-		String extension = FileUtil.getExtension(firstModulePath);
-
-		if (bytesArray == null) {
-			ServletContext servletContext = getServletContext();
-
-			String rootPath = ServletContextUtil.getRootPath(servletContext);
-
-			String minifierType = ParamUtil.getString(request, "minifierType");
-
-			if (Validator.isNull(minifierType)) {
-				minifierType = "js";
-
-				if (StringUtil.equalsIgnoreCase(extension, _CSS_EXTENSION)) {
-					minifierType = "css";
-				}
-			}
-
-			if (!minifierType.equals("css") && !minifierType.equals("js")) {
-				minifierType = "js";
-			}
-
-			bytesArray = new byte[modulePaths.length][];
-
-			for (int i = 0; i < modulePaths.length; i++) {
-				String modulePath = modulePaths[i];
-
-				if (!validateModuleExtension(modulePath)) {
-					response.setHeader(
-						HttpHeaders.CACHE_CONTROL,
-						HttpHeaders.CACHE_CONTROL_NO_CACHE_VALUE);
-					response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-
-					return;
-				}
-
-				byte[] bytes = new byte[0];
-
-				if (Validator.isNotNull(modulePath)) {
-					modulePath = StringUtil.replaceFirst(
-						modulePath, PortalUtil.getPathContext(),
-						StringPool.BLANK);
-
-					URL url = getResourceURL(
-						servletContext, rootPath, modulePath);
-
-					if (url == null) {
-						response.setHeader(
-							HttpHeaders.CACHE_CONTROL,
-							HttpHeaders.CACHE_CONTROL_NO_CACHE_VALUE);
-						response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-
-						return;
-					}
-
-					bytes = getResourceContent(
-						request, response, url, modulePath, minifierType);
-				}
-
-				bytesArray[i] = bytes;
-			}
-
-			if ((modulePathsString != null) &&
-				!PropsValues.COMBO_CHECK_TIMESTAMP) {
-
-				_bytesArrayPortalCache.put(modulePathsString, bytesArray);
-			}
-		}
-
-		String contentType = ContentTypes.TEXT_JAVASCRIPT;
-
-		if (StringUtil.equalsIgnoreCase(extension, _CSS_EXTENSION)) {
-			contentType = ContentTypes.TEXT_CSS;
-		}
-
-		response.setContentType(contentType);
-
-		ServletResponseUtil.write(response, bytesArray);
+		_servletContext = servletContext;
 	}
 
 	protected byte[] getResourceContent(
@@ -222,7 +91,7 @@ public class ComboServletFilter extends HttpServlet {
 			minifierType);
 
 		FileContentBag fileContentBag = _fileContentBagPortalCache.get(
-				fileContentKey);
+			fileContentKey);
 
 		if ((fileContentBag != null) && !PropsValues.COMBO_CHECK_TIMESTAMP) {
 			return fileContentBag._fileContent;
@@ -263,7 +132,7 @@ public class ComboServletFilter extends HttpServlet {
 				if (minifierType.equals("css")) {
 					try {
 						stringFileContent = DynamicCSSUtil.parseSass(
-							getServletContext(), request, resourcePath,
+							_servletContext, request, resourcePath,
 							stringFileContent);
 					}
 					catch (Exception e) {
@@ -338,6 +207,133 @@ public class ComboServletFilter extends HttpServlet {
 		return null;
 	}
 
+	@Override
+	protected void processFilter(
+			HttpServletRequest request, HttpServletResponse response,
+			FilterChain filterChain)
+		throws Exception {
+
+		Set<String> modulePathsSet = new LinkedHashSet<String>();
+
+		Enumeration<String> enu = request.getParameterNames();
+
+		if (ServerDetector.isWebSphere()) {
+			Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
+				request.getQueryString());
+
+			enu = Collections.enumeration(parameterMap.keySet());
+		}
+
+		while (enu.hasMoreElements()) {
+			String name = enu.nextElement();
+
+			if (_protectedParameters.contains(name)) {
+				continue;
+			}
+
+			modulePathsSet.add(name);
+		}
+
+		if (modulePathsSet.size() == 0) {
+			response.sendError(
+				HttpServletResponse.SC_BAD_REQUEST,
+				"Modules paths set is empty");
+
+			return;
+		}
+
+		String[] modulePaths = modulePathsSet.toArray(
+			new String[modulePathsSet.size()]);
+
+		String modulePathsString = null;
+
+		byte[][] bytesArray = null;
+
+		if (!PropsValues.COMBO_CHECK_TIMESTAMP) {
+			modulePathsString = Arrays.toString(modulePaths);
+
+			bytesArray = _bytesArrayPortalCache.get(modulePathsString);
+		}
+
+		String firstModulePath = modulePaths[0];
+
+		String extension = FileUtil.getExtension(firstModulePath);
+
+		if (bytesArray == null) {
+			String rootPath = ServletContextUtil.getRootPath(_servletContext);
+
+			String minifierType = ParamUtil.getString(request, "minifierType");
+
+			if (Validator.isNull(minifierType)) {
+				minifierType = "js";
+
+				if (StringUtil.equalsIgnoreCase(extension, _CSS_EXTENSION)) {
+					minifierType = "css";
+				}
+			}
+
+			if (!minifierType.equals("css") && !minifierType.equals("js")) {
+				minifierType = "js";
+			}
+
+			bytesArray = new byte[modulePaths.length][];
+
+			for (int i = 0; i < modulePaths.length; i++) {
+				String modulePath = modulePaths[i];
+
+				if (!validateModuleExtension(modulePath)) {
+					response.setHeader(
+						HttpHeaders.CACHE_CONTROL,
+						HttpHeaders.CACHE_CONTROL_NO_CACHE_VALUE);
+					response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
+					return;
+				}
+
+				byte[] bytes = new byte[0];
+
+				if (Validator.isNotNull(modulePath)) {
+					modulePath = StringUtil.replaceFirst(
+						modulePath, PortalUtil.getPathContext(),
+						StringPool.BLANK);
+
+					URL url = getResourceURL(
+						_servletContext, rootPath, modulePath);
+
+					if (url == null) {
+						response.setHeader(
+							HttpHeaders.CACHE_CONTROL,
+							HttpHeaders.CACHE_CONTROL_NO_CACHE_VALUE);
+						response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
+						return;
+					}
+
+					bytes = getResourceContent(
+						request, response, url, modulePath, minifierType);
+				}
+
+				bytesArray[i] = bytes;
+			}
+
+			if ((modulePathsString != null) &&
+				!PropsValues.COMBO_CHECK_TIMESTAMP) {
+
+				_bytesArrayPortalCache.put(modulePathsString, bytesArray);
+			}
+		}
+
+		String contentType = ContentTypes.TEXT_JAVASCRIPT;
+
+		if (StringUtil.equalsIgnoreCase(extension, _CSS_EXTENSION)) {
+			contentType = ContentTypes.TEXT_CSS;
+		}
+
+		response.setContentType(contentType);
+
+		ServletResponseUtil.write(response, bytesArray);
+	}
+
 	protected boolean validateModuleExtension(String moduleName)
 		throws Exception {
 
@@ -378,6 +374,7 @@ public class ComboServletFilter extends HttpServlet {
 		SingleVMPoolUtil.getCache(FileContentBag.class.getName());
 	private Set<String> _protectedParameters = SetUtil.fromArray(
 		new String[] {"b", "browserId", "minifierType", "languageId", "t"});
+	private ServletContext _servletContext;
 
 	private static class FileContentBag implements Serializable {
 
