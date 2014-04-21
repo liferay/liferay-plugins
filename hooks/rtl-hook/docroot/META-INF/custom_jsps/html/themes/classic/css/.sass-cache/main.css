@@ -2554,7 +2554,8 @@ body:first-of-type .portlet-content:hover .lfr-icon-actions .taglib-text {
         -moz-user-select: none;
         user-select: none; }
         .aui .add-content-menu .accordion .accordion-group .toggler-header .accordion-toggle, .aui .lfr-edit-layout-panel .accordion .accordion-group .toggler-header .accordion-toggle, .aui .panel-page-menu .portlet-borderless-container .accordion .accordion-group .toggler-header .accordion-toggle {
-          background: #f2f2f2 url(@base_url@/html/themes/classic/css/../images/arrows/13_left.png) no-repeat 100% -20px; }
+          background: #f2f2f2 url(@base_url@/html/themes/classic/css/../images/arrows/13_right.png) no-repeat;
+          background-position: 100% -20px; }
       .aui .add-content-menu .accordion .accordion-group .toggler-header-collapsed, .aui .lfr-edit-layout-panel .accordion .accordion-group .toggler-header-collapsed, .aui .panel-page-menu .portlet-borderless-container .accordion .accordion-group .toggler-header-collapsed {
         border-bottom-width: 0; }
         .aui .add-content-menu .accordion .accordion-group .toggler-header-collapsed .accordion-toggle, .aui .lfr-edit-layout-panel .accordion .accordion-group .toggler-header-collapsed .accordion-toggle, .aui .panel-page-menu .portlet-borderless-container .accordion .accordion-group .toggler-header-collapsed .accordion-toggle {
