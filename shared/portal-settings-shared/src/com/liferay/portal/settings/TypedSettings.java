@@ -57,6 +57,10 @@ public class TypedSettings implements Settings {
 		return GetterUtil.getBoolean(value, defaultValue);
 	}
 
+	public Settings getDefaultSettings() {
+		return _settings.getDefaultSettings();
+	}
+
 	public double getDoubleValue(String key) {
 		return getDoubleValue(key, 0);
 	}

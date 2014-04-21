@@ -38,6 +38,10 @@ public class ParameterMapSettings implements Settings {
 		_parameterMap = parameterMap;
 	}
 
+	public Settings getDefaultSettings() {
+		return _settings;
+	}
+
 	@Override
 	public String getValue(String key, String defaultValue) {
 		String[] values = getParameterValue(key);

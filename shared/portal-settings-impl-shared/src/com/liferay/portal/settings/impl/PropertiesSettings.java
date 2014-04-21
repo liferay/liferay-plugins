@@ -33,6 +33,10 @@ public class PropertiesSettings implements Settings {
 		_properties = properties;
 	}
 
+	public Settings getDefaultSettings() {
+		return null;
+	}
+
 	@Override
 	public String getValue(String key, String defaultValue) {
 		String value = getProperty(key);

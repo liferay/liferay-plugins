@@ -28,6 +28,10 @@ public class FallbackSettings implements Settings {
 		_fallbackKeys = fallbackKeys;
 	}
 
+	public Settings getDefaultSettings() {
+		return _settings.getDefaultSettings();
+	}
+
 	@Override
 	public String getValue(String key, String defaultValue) {
 		if (key == null) {

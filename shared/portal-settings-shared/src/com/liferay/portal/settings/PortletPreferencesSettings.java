@@ -43,6 +43,10 @@ public class PortletPreferencesSettings implements Settings {
 		_defaultSettings = defaultSettings;
 	}
 
+	public Settings getDefaultSettings() {
+		return _defaultSettings;
+	}
+
 	public PortletPreferences getPortletPreferences() {
 		return _portletPreferences;
 	}

@@ -30,6 +30,10 @@ public class BaseServiceSettings implements Settings {
 		typedSettings = new TypedSettings(fallbackSettings);
 	}
 
+	public Settings getDefaultSettings() {
+		return typedSettings.getDefaultSettings();
+	}
+
 	@Override
 	public String getValue(String key, String defaultValue) {
 		return typedSettings.getValue(key, defaultValue);

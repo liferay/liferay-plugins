@@ -25,6 +25,8 @@ import javax.portlet.ValidatorException;
  */
 public interface Settings {
 
+	public Settings getDefaultSettings();
+
 	public String getValue(String key, String defaultValue);
 
 	public String[] getValues(String key, String[] defaultValue);
