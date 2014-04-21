@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -33,18 +34,18 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.servlet.filters.dynamiccss.DynamicCSSUtil;
-import com.liferay.portal.util.AggregateUtil;
-import com.liferay.portal.util.MinifierUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.PrefsPropsUtil;
-import com.liferay.portal.util.PropsValues;
 import com.liferay.rtl.hook.filter.dynamiccss.DynamicCSSUtil;
+import com.liferay.rtl.util.AggregateUtil;
+import com.liferay.rtl.util.MinifierUtil;
+import com.liferay.rtl.util.PropsValues;
 
 import java.io.IOException;
 import java.io.Serializable;
+
 import java.net.URL;
 import java.net.URLConnection;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -63,6 +64,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Edward Han
  * @author Zsigmond Rab
  * @author Raymond Augé
+ * @author Eduardo Garcia
+ * @see com.liferay.portal.servlet.ComboServlet
  */
 public class ComboServletFilter extends HttpServlet {
 
@@ -260,8 +263,8 @@ public class ComboServletFilter extends HttpServlet {
 				if (minifierType.equals("css")) {
 					try {
 						stringFileContent = DynamicCSSUtil.parseSass(
-								getServletContext(), request, resourcePath,
-								stringFileContent);
+							getServletContext(), request, resourcePath,
+							stringFileContent);
 					}
 					catch (Exception e) {
 						_log.error(
@@ -370,7 +373,7 @@ public class ComboServletFilter extends HttpServlet {
 	private static Log _log = LogFactoryUtil.getLog(ComboServletFilter.class);
 
 	private PortalCache<String, byte[][]> _bytesArrayPortalCache =
-		SingleVMPoolUtil.getCache(ComboServlet.class.getName());
+		SingleVMPoolUtil.getCache("com.liferay.portal.servlet.ComboServlet");
 	private PortalCache<String, FileContentBag> _fileContentBagPortalCache =
 		SingleVMPoolUtil.getCache(FileContentBag.class.getName());
 	private Set<String> _protectedParameters = SetUtil.fromArray(
