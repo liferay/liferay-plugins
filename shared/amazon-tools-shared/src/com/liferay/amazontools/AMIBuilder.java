@@ -89,6 +89,17 @@ public class AMIBuilder extends BaseAMITool {
 			(String)cmdLineParser.getOptionValue(imageNameOption), output,
 			(String)cmdLineParser.getOptionValue(propertiesFileNameOption));
 
+		Runtime runtime = Runtime.getRuntime();
+
+		runtime.addShutdownHook(
+			new Thread() {
+
+				public void run() {
+					amiBuilder.destroy();
+				}
+
+			});
+
 		try {
 			amiBuilder.start();
 
@@ -165,9 +176,15 @@ public class AMIBuilder extends BaseAMITool {
 	}
 
 	protected void destroy() {
+		if (_instanceId == null) {
+			return;
+		}
+
 		terminateInstance(_instanceId);
 
 		amazonEC2Client.shutdown();
+
+		_instanceId = null;
 	}
 
 	protected void executeScript(SSHClient sshClient, String scriptFileName)
