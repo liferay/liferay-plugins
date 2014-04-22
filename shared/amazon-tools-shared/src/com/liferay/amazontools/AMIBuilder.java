@@ -76,12 +76,17 @@ public class AMIBuilder extends BaseAMITool {
 			cmdLineParser.addStringOption("properties.file.name");
 		CmdLineParser.Option imageNameOption = cmdLineParser.addStringOption(
 			"image.name");
+		CmdLineParser.Option outputOption = cmdLineParser.addStringOption(
+			"output");
 
 		cmdLineParser.parse(args);
 
-		AMIBuilder amiBuilder = new AMIBuilder(
+		boolean output = Boolean.parseBoolean(
+			(String)cmdLineParser.getOptionValue(outputOption));
+
+		final AMIBuilder amiBuilder = new AMIBuilder(
 			(String)cmdLineParser.getOptionValue(baseDirOption),
-			(String)cmdLineParser.getOptionValue(imageNameOption),
+			(String)cmdLineParser.getOptionValue(imageNameOption), output,
 			(String)cmdLineParser.getOptionValue(propertiesFileNameOption));
 
 		try {
@@ -101,13 +106,15 @@ public class AMIBuilder extends BaseAMITool {
 	}
 
 	public AMIBuilder(
-			String baseDirName, String imageName, String propertiesFileName)
+			String baseDirName, String imageName, boolean output,
+			String propertiesFileName)
 		throws Exception {
 
 		super(propertiesFileName);
 
 		_baseDirName = baseDirName;
 		_imageName = imageName;
+		_output = output;
 
 		Security.addProvider(new BouncyCastleProvider());
 
@@ -189,19 +196,16 @@ public class AMIBuilder extends BaseAMITool {
 
 		Session session = sshClient.startSession();
 
+		session.allocateDefaultPTY();
+
 		try {
 			Session.Command sessionCommand = session.exec(command);
 
-			ByteArrayOutputStream byteArrayOutputStream = IOUtils.readFully(
-				sessionCommand.getInputStream());
-
-			String result = byteArrayOutputStream.toString();
-
-			if ((result != null) && (result.length() > 0)) {
-				System.out.println("Result: " + result);
+			if (_output) {
+				new StreamCopier(session.getInputStream(), System.out).copy();
 			}
 
-			sessionCommand.join(5, TimeUnit.SECONDS);
+			sessionCommand.join();
 		}
 		finally {
 			session.close();
@@ -553,6 +557,7 @@ public class AMIBuilder extends BaseAMITool {
 	private String _baseDirName;
 	private String _imageName;
 	private String _instanceId;
+	private boolean _output;
 	private Map<String, String> _provisioners;
 	private String _publicIpAddress;
 
