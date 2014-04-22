@@ -30,6 +30,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.apache.http.HttpHost;
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
@@ -108,6 +109,18 @@ public class Session {
 
 		_httpHost = new HttpHost(
 			url.getHost(), url.getPort(), url.getProtocol());
+	}
+
+	public HttpResponse execute(HttpRequest httpRequest) throws Exception {
+		return _httpClient.execute(
+			_httpHost, httpRequest, _getBasicHttpContext());
+	}
+
+	public <T> T execute(HttpRequest httpRequest, Handler<? extends T> handler)
+		throws Exception {
+
+		return _httpClient.execute(
+			_httpHost, httpRequest, handler, _getBasicHttpContext());
 	}
 
 	public HttpResponse executeGet(String urlPath) throws Exception {
