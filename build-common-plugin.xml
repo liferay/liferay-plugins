@@ -209,7 +209,6 @@
 			<arg value="service.spring.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
 			<arg value="service.api.dir=${basedir}/docroot/WEB-INF/service" />
 			<arg value="service.impl.dir=${basedir}/docroot/WEB-INF/src" />
-			<arg value="service.json.file=${basedir}/docroot/js/service.js" />
 			<arg value="service.sql.dir=${basedir}/docroot/WEB-INF/sql" />
 			<arg value="service.sql.file=tables.sql" />
 			<arg value="service.sql.indexes.file=indexes.sql" />
