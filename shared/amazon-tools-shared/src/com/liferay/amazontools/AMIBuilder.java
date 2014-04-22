@@ -38,8 +38,9 @@ import com.amazonaws.util.json.JSONObject;
 
 import jargs.gnu.CmdLineParser;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+
+import java.net.ConnectException;
 
 import java.security.Security;
 
@@ -49,10 +50,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.concurrent.TimeUnit;
 
 import net.schmizz.sshj.SSHClient;
-import net.schmizz.sshj.common.IOUtils;
+import net.schmizz.sshj.common.StreamCopier;
 import net.schmizz.sshj.connection.channel.direct.Session;
 import net.schmizz.sshj.sftp.SFTPClient;
 import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
@@ -337,18 +337,37 @@ public class AMIBuilder extends BaseAMITool {
 	}
 
 	protected void provision() throws Exception {
-		sleep(45);
-
-		SSHClient sshClient = new SSHClient();
-
-		sshClient.addHostKeyVerifier(new PromiscuousVerifier());
-		sshClient.setTimeout(
-			Integer.parseInt(properties.getProperty("ssh.timeout")) * 1000);
-		sshClient.useCompression();
+		SSHClient sshClient = null;
 
 		System.out.println("Connecting via SSH to " + _publicIpAddress);
 
-		sshClient.connect(_publicIpAddress);
+		for (int i = 0; i < 6; i++) {
+			sleep(30);
+
+			sshClient = new SSHClient();
+
+			sshClient.addHostKeyVerifier(new PromiscuousVerifier());
+			sshClient.setTimeout(
+				Integer.parseInt(properties.getProperty("ssh.timeout")) * 1000);
+
+			sshClient.useCompression();
+
+			try {
+				sshClient.connect(_publicIpAddress);
+
+				break;
+			}
+			catch (ConnectException ce) {
+				sshClient = null;
+
+				continue;
+			}
+		}
+
+		if (sshClient == null) {
+			throw new RuntimeException(
+				"Unable to connect via SSH to " + _publicIpAddress);
+		}
 
 		FileKeyProvider fileKeyProvider = new PKCS8KeyFile();
 
