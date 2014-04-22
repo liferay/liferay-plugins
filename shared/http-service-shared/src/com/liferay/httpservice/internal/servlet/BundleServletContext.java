@@ -453,13 +453,14 @@ public class BundleServletContext
 
 		BundleContext bundleContext = _bundle.getBundleContext();
 
-		_serviceRegistration = (ServiceRegistration<ServletContext>)
-			bundleContext.registerService(
-				new String[]{
-					BundleServletContext.class.getName(),
-					ServletContext.class.getName()
-				},
-				this, properties);
+		_serviceRegistration =
+			(ServiceRegistration<ServletContext>)
+				bundleContext.registerService(
+					new String[] {
+						BundleServletContext.class.getName(),
+						ServletContext.class.getName()
+					},
+					this, properties);
 
 		_httpServiceTracker = new HttpServiceTracker(bundleContext, _bundle);
 
