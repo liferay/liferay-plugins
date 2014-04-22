@@ -453,8 +453,13 @@ public class BundleServletContext
 
 		BundleContext bundleContext = _bundle.getBundleContext();
 
-		_serviceRegistration = bundleContext.registerService(
-			BundleServletContext.class, this, properties);
+		_serviceRegistration = (ServiceRegistration<ServletContext>)
+			bundleContext.registerService(
+				new String[]{
+					BundleServletContext.class.getName(),
+					ServletContext.class.getName()
+				},
+				this, properties);
 
 		_httpServiceTracker = new HttpServiceTracker(bundleContext, _bundle);
 
@@ -1077,7 +1082,7 @@ public class BundleServletContext
 	private HttpContext _httpContext;
 	private HttpServiceTracker _httpServiceTracker;
 	private Map<String, String> _initParameters = new HashMap<String, String>();
-	private ServiceRegistration<BundleServletContext> _serviceRegistration;
+	private ServiceRegistration<ServletContext> _serviceRegistration;
 	private List<ServletContextAttributeListener>
 		_servletContextAttributeListeners =
 			new ArrayList<ServletContextAttributeListener>();
