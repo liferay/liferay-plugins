@@ -36,10 +36,10 @@ public class KaleoDefinitionModelListener
 
 			message.put("command", "delete");
 			message.put("name", kaleoDefinition.getName());
-			message.put("version", kaleoDefinition.getVersion());
 			message.put(
 				"serviceContext",
 				ServiceContextThreadLocal.getServiceContext());
+			message.put("version", kaleoDefinition.getVersion());
 
 			MessageBusUtil.sendMessage("liferay/kaleo_definition", message);
 		}
