@@ -216,6 +216,7 @@
 			<arg value="service.plugin.name=${plugin.name}" />
 			<arg value="service.props.util=com.liferay.util.service.ServiceProps" />
 			<arg value="service.remoting.file=" />
+			<arg value="service.resources.dir=${basedir}/docroot/WEB-INF/src" />
 			<arg value="service.spring.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
 			<arg value="service.sql.dir=${basedir}/docroot/WEB-INF/sql" />
 			<arg value="service.sql.file=tables.sql" />
