@@ -30,7 +30,7 @@ List<KBTemplate> kbTemplates = KBTemplateServiceUtil.getGroupKBTemplates(scopeGr
 		<aui:button href="<%= addBasicKBArticleURL %>" value="add-article" />
 	</c:when>
 	<c:otherwise>
-		<liferay-ui:icon-menu direction="down" extended="<%= false %>" icon="<%= StringPool.BLANK %>" message="add-article" showWhenSingleIcon="<%= true %>" triggerCssClass="btn kb-add-article">
+		<liferay-ui:icon-menu direction="down" extended="<%= false %>" icon="<%= StringPool.BLANK %>" message="add-article" showWhenSingleIcon="<%= true %>" triggerCssClass="btn kb-add-article-button">
 			<liferay-ui:icon
 				message="basic-article"
 				url="<%= addBasicKBArticleURL %>"
