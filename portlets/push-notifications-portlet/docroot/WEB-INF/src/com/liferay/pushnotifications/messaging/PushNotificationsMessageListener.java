@@ -20,6 +20,9 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.MessageListenerException;
+import com.liferay.pushnotifications.sender.PushNotificationSender;
+
+import java.util.List;
 
 /**
  * @author Silvio Santos
@@ -27,16 +30,34 @@ import com.liferay.portal.kernel.messaging.MessageListenerException;
  */
 public class PushNotificationsMessageListener implements MessageListener {
 
+	public List<PushNotificationSender> getPushNotificationSenders() {
+		return _pushNotificationSenders;
+	}
+
 	@Override
 	public void receive(Message message) throws MessageListenerException {
-		JSONObject payloadJSONObject = (JSONObject)message.getPayload();
+		JSONObject jsonObj = (JSONObject)message.getPayload();
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Received message " + payloadJSONObject);
+			_log.debug("Received message " + jsonObj);
 		}
+
+		for (PushNotificationSender pushNotificationSender :
+				_pushNotificationSenders) {
+
+			pushNotificationSender.send(jsonObj);
+		}
+	}
+
+	public void setPushNotificationSenders(
+		List<PushNotificationSender> pushNotificationSenders) {
+
+		_pushNotificationSenders = pushNotificationSenders;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		PushNotificationsMessageListener.class);
+
+	private List<PushNotificationSender> _pushNotificationSenders;
 
 }
