@@ -1153,6 +1153,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 					PortletKeys.KNOWLEDGE_BASE_ARTICLE,
 					kbArticle.getAttachmentsFolderId(), inputStream,
 					shortFileName, mimeType, true);
+
+				deleteTempAttachment(dirName, shortFileName, serviceContext);
 			}
 			finally {
 				StreamUtil.cleanUp(inputStream);
@@ -1357,6 +1359,15 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			unsubscribeKBArticle(
 				subscription.getUserId(), subscription.getClassPK());
 		}
+	}
+
+	protected void deleteTempAttachment(
+			String dirName, String shortFileName, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		DLStoreUtil.deleteFile(
+			serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+			dirName + StringPool.SLASH + shortFileName);
 	}
 
 	protected Map<String, String> getEmailKBArticleDiffs(KBArticle kbArticle) {
