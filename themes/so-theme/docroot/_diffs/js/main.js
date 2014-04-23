@@ -16,6 +16,7 @@ AUI().ready(
 							themeDisplay.getPathMain() + '/portal/session_click',
 							{
 								data: {
+									p_auth: Liferay.authToken,
 									'so-layout-fluid': body.hasClass('so-layout-fluid')
 								}
 							}
