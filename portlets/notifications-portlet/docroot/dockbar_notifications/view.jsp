@@ -53,19 +53,11 @@
 
 			var userNotificationsList = userNotifications.one('.dropdown-menu');
 
-			if (!userNotificationsList.io) {
-				userNotificationsList.plug(
-					A.Plugin.IO,
-					{
-						autoLoad: false
-					}
-				);
-			}
-
 			<portlet:renderURL var="unreadURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 				<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
 				<portlet:param name="filter" value="unread" />
-				<portlet:param name="fullView" value="false" />
+				<portlet:param name="dockbar" value="<%= Boolean.TRUE.toString() %>" />
+				<portlet:param name="fullView" value="<%= Boolean.FALSE.toString() %>" />
 			</portlet:renderURL>
 
 			new Liferay.MenuToggle(
@@ -73,8 +65,7 @@
 					after: {
 						openChange: function(event) {
 							if (event.newVal) {
-								userNotificationsList.io.set('uri', '<%= unreadURL %>');
-								userNotificationsList.io.start();
+								Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= unreadURL %>');
 
 								A.io.request('<liferay-portlet:actionURL name="setDelivered" />');
 
@@ -86,14 +77,6 @@
 					toggleTouch: true,
 					trigger: '#<portlet:namespace />userNotifications .dropdown-toggle'
 				}
-			);
-
-			userNotificationsList.delegate(
-				'click',
-				function(event) {
-					Liferay.Notifications.viewNotification(event);
-				},
-				'.user-notification .user-notification-link'
 			);
 		</aui:script>
 	</li>
