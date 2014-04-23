@@ -10,7 +10,13 @@
 
 	<!-- Listeners -->
 
-	<bean id="messageListener.push_notification" class="com.liferay.pushnotifications.messaging.PushNotificationsMessageListener" />
+	<bean id="messageListener.push_notification" class="com.liferay.pushnotifications.messaging.PushNotificationsMessageListener">
+	    <property name="pushNotificationSenders">
+		    <list value-type="com.liferay.pushnotifications.sender.PushNotificationSender">
+				<ref bean="com.liferay.pushnotifications.sender.apple.ApplePushNotificationSenderImpl" />
+			</list>
+		</property>
+	</bean>
 
 	<!-- Configurator -->
 
