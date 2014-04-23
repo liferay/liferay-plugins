@@ -57,93 +57,49 @@
 
 	var userNotificationsList = userNotifications.one('.user-notifications-list-container .user-notifications-list');
 
-	var renderUserNotificationsList = function(uri) {
-		if (userNotificationsList) {
-			if (!userNotificationsList.io) {
-				userNotificationsList.plug(
-					A.Plugin.IO,
-					{
-					autoLoad: false
-					}
-				);
-			}
-
-			userNotificationsList.io.set('uri', uri);
-			userNotificationsList.io.start();
-		}
-	};
-
 	<portlet:renderURL var="unreadURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 		<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
 		<portlet:param name="filter" value="unread" />
 	</portlet:renderURL>
 
-	renderUserNotificationsList('<%= unreadURL %>');
+	Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= unreadURL %>');
 
 	var userNotificationsSidebar = userNotifications.one('.user-notifications-sidebar');
 
+	var clickSidebarMenu = function(node, uri) {
+		if (node) {
+			node.on(
+				'click',
+				function(event) {
+					Liferay.Notifications.renderNotificationsList(userNotificationsList, uri);
+
+					A.io.request('<liferay-portlet:actionURL name="setDelivered" />');
+
+					userNotificationsSidebar.all('.nav a').removeClass('selected');
+
+					node.addClass('selected');
+				}
+			);
+		}
+	};
+
 	var unreadNav = userNotificationsSidebar.one('.unread');
 
-	if (unreadNav) {
-		unreadNav.on(
-			'click',
-			function(event) {
-				renderUserNotificationsList('<%= unreadURL %>');
-
-				A.io.request('<liferay-portlet:actionURL name="setDelivered" />');
-
-				userNotificationsSidebar.all('.nav a').removeClass('selected');
-
-				unreadNav.addClass('selected');
-			}
-		);
-	}
+	clickSidebarMenu(unreadNav, '<%= unreadURL %>');
 
 	var allNotificationsNav = userNotificationsSidebar.one('.all-notifications');
 
-	if (allNotificationsNav) {
-		allNotificationsNav.on(
-			'click',
-			function(event) {
-				<portlet:renderURL var="allNotificationsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-					<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
-				</portlet:renderURL>
+	<portlet:renderURL var="allNotificationsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+		<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
+	</portlet:renderURL>
 
-				renderUserNotificationsList('<%= allNotificationsURL %>');
-
-				A.io.request('<liferay-portlet:actionURL name="setDelivered" />');
-
-				userNotificationsSidebar.all('.nav a').removeClass('selected');
-
-				allNotificationsNav.addClass('selected');
-			}
-		);
-	}
+	clickSidebarMenu(allNotificationsNav, '<%= allNotificationsURL %>');
 
 	var manageNav = userNotificationsSidebar.one('.manage');
 
-	if (manageNav) {
-		manageNav.on(
-			'click',
-			function(event) {
-				<portlet:renderURL var="configurationURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-					<portlet:param name="mvcPath" value="/notifications/configuration.jsp" />
-				</portlet:renderURL>
+	<portlet:renderURL var="configurationURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+		<portlet:param name="mvcPath" value="/notifications/configuration.jsp" />
+	</portlet:renderURL>
 
-				renderUserNotificationsList('<%= configurationURL %>');
-
-				userNotificationsSidebar.all('.nav a').removeClass('selected');
-
-				manageNav.addClass('selected');
-			}
-		);
-	}
-
-	userNotificationsList.delegate(
-		'click',
-		function(event) {
-			Liferay.Notifications.viewNotification(event);
-		},
-		'.user-notification .user-notification-link'
-	);
+	clickSidebarMenu(manageNav, '<%= configurationURL %>');
 </aui:script>
