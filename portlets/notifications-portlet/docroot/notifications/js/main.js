@@ -5,6 +5,22 @@ AUI().use(
 		Liferay.namespace('Notifications');
 
 		Liferay.Notifications = {
+			renderNotificationsList: function(node, uri) {
+				if (node) {
+					if (!node.io) {
+						node.plug(
+							A.Plugin.IO,
+							{
+								autoLoad: false
+							}
+						);
+					}
+
+					node.io.set('uri', uri);
+					node.io.start();
+				}
+			},
+
 			viewNotification: function(event) {
 				var instance = this;
 
