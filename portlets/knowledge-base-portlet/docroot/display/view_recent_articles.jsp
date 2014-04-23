@@ -115,12 +115,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 	<aui:button-row cssClass="float-container">
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) && DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADMINISTRATOR) %>">
-			<liferay-portlet:renderURL var="addKBArticleURL">
-				<portlet:param name="mvcPath" value="/display/edit_article.jsp" />
-				<portlet:param name="redirect" value="<%= redirect %>" />
-			</liferay-portlet:renderURL>
-
-			<aui:button href="<%= addKBArticleURL %>" value="add-article" />
+			<liferay-util:include page="/admin/common/add_article_button.jsp" servletContext="<%= application %>" />
 		</c:if>
 
 		<c:if test="<%= DisplayPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">

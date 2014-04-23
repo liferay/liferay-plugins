@@ -67,6 +67,10 @@
 
 	/* ---------- Portlet ---------- */
 
+	.kb-add-article {
+		font-weight: normal;
+	}
+
 	.kb-article-breadcrumbs {
 		margin: 0 5px 10px;
 	}
