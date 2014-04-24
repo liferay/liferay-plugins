@@ -28,9 +28,7 @@ import org.mozilla.javascript.ScriptableObject;
  */
 public class RTLCSSUtil {
 
-	public static String getRtlCss(String fileName, String css)
-		throws Exception {
-
+	public static String getRtlCss(String css) throws Exception {
 		Context context = Context.enter();
 
 		String rtlCss = css;
@@ -46,11 +44,6 @@ public class RTLCSSUtil {
 				context, scope, scope, new Object[] {css});
 
 			rtlCss = (String)Context.jsToJava(result, String.class);
-		}
-		catch (Exception e) {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to parse " + fileName + " to RTL");
-			}
 		}
 		finally {
 			Context.exit();

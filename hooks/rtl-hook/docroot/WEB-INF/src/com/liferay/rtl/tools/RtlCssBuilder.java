@@ -139,8 +139,7 @@ public class RtlCssBuilder {
 
 		File rtlCacheFile = new File (docrootDirName.concat(rtlFileName));
 
-		String rtlCacheContent = RTLCSSUtil.getRtlCss(
-			cacheFileName, cacheContent);
+		String rtlCacheContent = RTLCSSUtil.getRtlCss(cacheContent);
 
 		// Append custom CSS for RTL
 
