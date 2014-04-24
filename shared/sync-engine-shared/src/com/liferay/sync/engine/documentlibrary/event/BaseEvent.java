@@ -16,6 +16,8 @@ package com.liferay.sync.engine.documentlibrary.event;
 
 import com.liferay.sync.engine.SyncEngine;
 import com.liferay.sync.engine.documentlibrary.handler.Handler;
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.session.Session;
 import com.liferay.sync.engine.session.SessionManager;
 
@@ -83,7 +85,11 @@ public abstract class BaseEvent implements Event {
 	protected abstract Handler<?> getHandler();
 
 	protected void processRequest() throws Exception {
-		executePost(_urlPath, _parameters);
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			getSyncAccountId());
+
+		executePost(
+			syncAccount.getUrl() + "/api/jsonws" + _urlPath, _parameters);
 	}
 
 	private Handler<?> _handler;

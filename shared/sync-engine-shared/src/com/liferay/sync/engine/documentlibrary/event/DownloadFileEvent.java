@@ -21,8 +21,6 @@ import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
 
-import java.net.URL;
-
 import java.util.Map;
 
 /**
@@ -52,7 +50,12 @@ public class DownloadFileEvent extends BaseEvent {
 
 		StringBuilder sb = new StringBuilder(9);
 
-		sb.append(replaceURLPath(getSyncAccountId()));
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			getSyncAccountId());
+
+		sb.append(syncAccount.getUrl());
+
+		sb.append(_URL_PATH);
 		sb.append("/");
 		sb.append(syncFile.getRepositoryId());
 		sb.append("/");
@@ -70,17 +73,6 @@ public class DownloadFileEvent extends BaseEvent {
 		}
 
 		executeGet(sb.toString());
-	}
-
-	protected String replaceURLPath(long syncAccountId) throws Exception {
-		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
-			syncAccountId);
-
-		String url = syncAccount.getUrl();
-
-		URL urlObj = new URL(url);
-
-		return url.replace(urlObj.getPath(), _URL_PATH);
 	}
 
 	private static final String _URL_PATH = "/sync-web/download";

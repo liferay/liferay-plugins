@@ -69,8 +69,6 @@ public class Session {
 	public Session(
 		URL url, String login, String password, boolean trustSelfSigned) {
 
-		_url = url;
-
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
 
 		CredentialsProvider credentialsProvider =
@@ -142,7 +140,7 @@ public class Session {
 			String urlPath, Map<String, Object> parameters)
 		throws Exception {
 
-		HttpPost httpPost = new HttpPost(_url.toString() + urlPath);
+		HttpPost httpPost = new HttpPost(urlPath);
 
 		_buildHttpPostBody(httpPost, parameters);
 
@@ -154,7 +152,7 @@ public class Session {
 			Handler<? extends T> handler)
 		throws Exception {
 
-		HttpPost httpPost = new HttpPost(_url.toString() + urlPath);
+		HttpPost httpPost = new HttpPost(urlPath);
 
 		_buildHttpPostBody(httpPost, parameters);
 
@@ -268,6 +266,5 @@ public class Session {
 	private HttpHost _httpHost;
 	private Set<String> _ignoredParameterKeys = new HashSet<String>(
 		Arrays.asList("filePath", "syncFile", "syncSite"));
-	private URL _url;
 
 }
