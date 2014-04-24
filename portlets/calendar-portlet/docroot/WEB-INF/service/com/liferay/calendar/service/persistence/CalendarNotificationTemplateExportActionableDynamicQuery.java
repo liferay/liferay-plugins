@@ -28,8 +28,10 @@ import com.liferay.portal.util.PortalUtil;
 
 /**
  * @author Eduardo Lundgren
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public class CalendarNotificationTemplateExportActionableDynamicQuery
 	extends CalendarNotificationTemplateActionableDynamicQuery {
 	public CalendarNotificationTemplateExportActionableDynamicQuery(

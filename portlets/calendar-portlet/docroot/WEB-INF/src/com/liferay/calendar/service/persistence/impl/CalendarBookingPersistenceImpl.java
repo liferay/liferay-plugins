@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.calendar.service.persistence;
+package com.liferay.calendar.service.persistence.impl;
 
 import com.liferay.calendar.NoSuchBookingException;
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.impl.CalendarBookingImpl;
 import com.liferay.calendar.model.impl.CalendarBookingModelImpl;
+import com.liferay.calendar.service.persistence.CalendarBookingPersistence;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;

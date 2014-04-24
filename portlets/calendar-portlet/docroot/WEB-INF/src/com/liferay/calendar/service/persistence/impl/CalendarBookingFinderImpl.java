@@ -12,10 +12,11 @@
  * details.
  */
 
-package com.liferay.calendar.service.persistence;
+package com.liferay.calendar.service.persistence.impl;
 
 import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.model.impl.CalendarBookingImpl;
+import com.liferay.calendar.service.persistence.CalendarBookingFinder;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;

@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.calendar.service.persistence;
+package com.liferay.calendar.service.persistence.impl;
 
 import com.liferay.calendar.NoSuchCalendarException;
 import com.liferay.calendar.model.Calendar;
 import com.liferay.calendar.model.impl.CalendarImpl;
 import com.liferay.calendar.model.impl.CalendarModelImpl;
+import com.liferay.calendar.service.persistence.CalendarPersistence;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;

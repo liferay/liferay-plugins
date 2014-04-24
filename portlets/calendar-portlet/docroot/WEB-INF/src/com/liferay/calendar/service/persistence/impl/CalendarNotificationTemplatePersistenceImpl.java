@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.calendar.service.persistence;
+package com.liferay.calendar.service.persistence.impl;
 
 import com.liferay.calendar.NoSuchNotificationTemplateException;
 import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.model.impl.CalendarNotificationTemplateImpl;
 import com.liferay.calendar.model.impl.CalendarNotificationTemplateModelImpl;
+import com.liferay.calendar.service.persistence.CalendarNotificationTemplatePersistence;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;

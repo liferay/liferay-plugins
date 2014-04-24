@@ -22,8 +22,10 @@ import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Eduardo Lundgren
+ * @deprecated As of 7.0.0, replaced by {@link CalendarLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class CalendarActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public CalendarActionableDynamicQuery() throws SystemException {

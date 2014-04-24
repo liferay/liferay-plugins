@@ -28,8 +28,10 @@ import com.liferay.portal.util.PortalUtil;
 
 /**
  * @author Eduardo Lundgren
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.calendar.service.CalendarLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public class CalendarExportActionableDynamicQuery
 	extends CalendarActionableDynamicQuery {
 	public CalendarExportActionableDynamicQuery(
