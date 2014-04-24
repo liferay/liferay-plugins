@@ -26,7 +26,6 @@ import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
@@ -115,15 +114,7 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		for (com.liferay.so.activities.model.SocialActivity
 			activity : activities) {
 
-			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
-
-			PermissionChecker permissionChecker =
-				themeDisplay.getPermissionChecker();
-
-			if (!hasPermissions(
-					permissionChecker, activity.getPortalSocialActivity(),
-				ActionKeys.VIEW, serviceContext)) {
-
+			if (!hasPermissions(activity, serviceContext)) {
 				continue;
 			}
 

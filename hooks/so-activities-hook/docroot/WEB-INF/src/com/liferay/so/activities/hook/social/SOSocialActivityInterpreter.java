@@ -161,15 +161,7 @@ public abstract class SOSocialActivityInterpreter
 		for (com.liferay.so.activities.model.SocialActivity activity :
 				activities) {
 
-			ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
-
-			PermissionChecker permissionChecker =
-				themeDisplay.getPermissionChecker();
-
-			if (!hasPermissions(
-					permissionChecker, activity.getPortalSocialActivity(),
-					ActionKeys.VIEW, serviceContext)) {
-
+			if (!hasPermissions(activity, serviceContext)) {
 				continue;
 			}
 

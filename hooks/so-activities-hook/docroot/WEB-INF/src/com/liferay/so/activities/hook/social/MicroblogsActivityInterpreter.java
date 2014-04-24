@@ -185,6 +185,10 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 			SocialActivitySet activitySet, ServiceContext serviceContext)
 		throws Exception {
 
+		if (!hasPermissions(activitySet, serviceContext)) {
+			return null;
+		}
+
 		return getBody(
 			activitySet.getClassPK(), activitySet.getType(), serviceContext);
 	}

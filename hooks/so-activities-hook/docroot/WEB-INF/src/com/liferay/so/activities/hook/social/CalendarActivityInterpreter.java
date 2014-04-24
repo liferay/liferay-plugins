@@ -83,6 +83,10 @@ public class CalendarActivityInterpreter extends SOSocialActivityInterpreter {
 		if (activitySet.getType() ==
 				SocialActivityKeyConstants.CALENDAR_UPDATE_EVENT) {
 
+			if (!hasPermissions(activitySet, serviceContext)) {
+				return null;
+			}
+
 			return getBody(
 				activitySet.getClassName(), activitySet.getClassPK(),
 				serviceContext);
