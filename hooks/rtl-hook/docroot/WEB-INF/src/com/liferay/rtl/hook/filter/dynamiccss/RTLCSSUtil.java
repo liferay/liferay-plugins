@@ -38,17 +38,6 @@ public class RTLCSSUtil {
 		try {
 			ScriptableObject scope = context.initStandardObjects();
 
-			// Prepare the context to execute the script with Rhino 1.7
-
-			context.evaluateString(
-				scope, "var module = {exports: {}};", "module", 1, null);
-			context.evaluateString(
-				scope, "function require() {}", "require", 1, null);
-			context.evaluateString(
-				scope,
-				"String.prototype.trim = function() {return " +
-					"this.replace(/^\\s+|\\s+$/g, '');}",
-				"trim", 1, null);
 			context.evaluateString(scope, _jsScript, "script", 1, null);
 
 			Function function = (Function)scope.get("r2", scope);
