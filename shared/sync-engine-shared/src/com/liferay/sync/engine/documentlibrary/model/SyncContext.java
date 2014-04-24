@@ -24,7 +24,7 @@ import java.util.List;
  * @author Dennis Ju
  */
 @JsonIgnoreProperties(
-	{"portalEELicenseDigest", "socialOfficeEELicenseDigest" })
+	{"portalEELicenseDigest", "socialOfficeEELicenseDigest"})
 public class SyncContext {
 
 	public String getPluginVersion() {
