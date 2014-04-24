@@ -4,6 +4,25 @@
 <project name="rtl-hook" basedir="." default="deploy">
 	<import file="../build-common-hook.xml" />
 
+	<target name="build-rtl-css" depends="clean-rtl-css,compile">
+		<java
+			classname="com.liferay.rtl.tools.RtlCssBuilder"
+			classpathref="plugin.classpath"
+			fork="true"
+			newenvironment="true"
+		>
+			<jvmarg value="-Dliferay.lib.portal.dir=${app.server.lib.portal.dir}" />
+			<arg value="sass.dir=/" />
+			<arg value="sass.docroot.dir=${basedir}/docroot" />
+		</java>
+	</target>
+
+	<target name="clean-rtl-css">
+		<delete failonerror="false" includeemptydirs="true">
+			<fileset dir="${basedir}/docroot" includes="**/.sass-cache/*_rtl.*" />
+		</delete>
+	</target>
+
 	<target name="update-from-portal">
 		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
 			<fileset
