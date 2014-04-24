@@ -35,39 +35,36 @@ import java.util.List;
  */
 public class ApplePushNotificationsSender implements PushNotificationsSender {
 
-	public static final String IOS = "ios";
-
 	public ApplePushNotificationsSender() {
-		ApnsServiceBuilder builder = APNS.newService();
+		ApnsServiceBuilder appleServiceBuilder = APNS.newService();
 
-		String path = PortletPropsValues.APPLE_CERTIFICATE_PATH;
-		String password = PortletPropsValues.APPLE_CERTIFICATE_PASSWORD;
-		boolean sandbox = PortletPropsValues.APPLE_SANDBOX;
+		appleServiceBuilder.withCert(
+			PortletPropsValues.APPLE_CERTIFICATE_PATH,
+			PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
 
-		builder.withCert(path, password);
-
-		if (sandbox) {
-			builder.withSandboxDestination();
+		if (PortletPropsValues.APPLE_SANDBOX) {
+			appleServiceBuilder.withSandboxDestination();
 		}
 
-		_apnsService = builder.build();
+		_apnsService = appleServiceBuilder.build();
 	}
 
 	@Override
-	public void send(JSONObject jsonObj) {
-		long userId = jsonObj.getLong("userId");
+	public void send(JSONObject jsonObject) {
 		String payload = null;
 
 		try {
+			long userId = jsonObject.getLong("userId");
+
 			List<String> tokens =
 				PushNotificationsDeviceLocalServiceUtil.getTokens(
-					userId, IOS, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+					userId, "ios", QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			if (tokens.isEmpty()) {
 				return;
 			}
 
-			payload = buildPayload(jsonObj);
+			payload = buildPayload(jsonObject);
 
 			_apnsService.push(tokens, payload);
 		}
@@ -76,10 +73,10 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 		}
 	}
 
-	protected String buildPayload(JSONObject jsonObj) {
+	protected String buildPayload(JSONObject jsonObject) {
 		PayloadBuilder payload = PayloadBuilder.newPayload();
 
-		String body = jsonObj.getString("entryTitle");
+		String body = jsonObject.getString("entryTitle");
 
 		if (body != null) {
 			payload.alertBody(body);
