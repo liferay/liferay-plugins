@@ -117,7 +117,7 @@ public class SyncSystemTest {
 
 		_syncAccount = SyncAccountService.addSyncAccount(
 			_rootFilePathName + "/test", 10, "test@liferay.com", "test", "test",
-			false, "http://localhost:8080/api/jsonws");
+			null, false, "http://localhost:8080/api/jsonws");
 
 		long guestGroupId = SyncSystemTestUtil.getGuestGroupId(
 			_syncAccount.getSyncAccountId());
@@ -250,7 +250,7 @@ public class SyncSystemTest {
 			System.getProperty("user.home") + "/liferay-sync-test/" + name);
 
 		SyncAccount syncAccount = SyncAccountService.addSyncAccount(
-			filePathName, 3, name + "@liferay.com", name, "test", false,
+			filePathName, 3, name + "@liferay.com", name, "test", null, false,
 			"http://localhost:8080/api/jsonws");
 
 		syncAccount.setActive(true);

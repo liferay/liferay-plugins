@@ -15,6 +15,7 @@
 package com.liferay.sync.engine;
 
 import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.upgrade.util.UpgradeUtil;
 import com.liferay.sync.engine.util.FilePathNameUtil;
@@ -76,7 +77,7 @@ public abstract class BaseTestCase {
 			System.getProperty("user.home") + "/liferay-sync-test");
 
 		syncAccount = SyncAccountService.addSyncAccount(
-			filePathName, 10, "test@liferay.com", "test", "test", false,
+			filePathName, 10, "test@liferay.com", "test", "test", null, false,
 			"http://localhost:8080/api/jsonws");
 
 		syncAccount.setActive(true);

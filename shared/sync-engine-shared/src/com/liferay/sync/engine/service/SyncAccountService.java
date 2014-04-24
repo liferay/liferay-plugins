@@ -18,6 +18,7 @@ import com.liferay.sync.engine.documentlibrary.event.GetSyncContextEvent;
 import com.liferay.sync.engine.model.ModelListener;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.persistence.SyncAccountPersistence;
 import com.liferay.sync.engine.util.Encryptor;
 import com.liferay.sync.engine.util.FileUtil;
@@ -44,7 +45,8 @@ public class SyncAccountService {
 
 	public static SyncAccount addSyncAccount(
 			String filePathName, int interval, String login, String name,
-			String password, boolean trustSelfSigned, String url)
+			String password, SyncSite[] syncSites, boolean trustSelfSigned,
+			String url)
 		throws Exception {
 
 		// Sync account
@@ -69,6 +71,14 @@ public class SyncAccountService {
 			null, null, filePathName, FileUtil.getFileKey(filePathName),
 			filePathName, null, filePathName, 0, 0,
 			syncAccount.getSyncAccountId(), SyncFile.TYPE_SYSTEM);
+
+		// Sync sites
+
+		if (syncSites != null) {
+			for (SyncSite syncSite : syncSites) {
+				SyncSiteService.update(syncSite);
+			}
+		}
 
 		return syncAccount;
 	}
