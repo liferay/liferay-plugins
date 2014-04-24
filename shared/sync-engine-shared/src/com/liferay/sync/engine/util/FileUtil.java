@@ -28,6 +28,7 @@ import java.util.Set;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang.StringUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,7 +100,7 @@ public class FileUtil {
 	}
 
 	public static boolean isValidName(String name) {
-		if (name == null) {
+		if (StringUtils.isBlank(name)) {
 			return false;
 		}
 
