@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 /**
  * @author Bruno Farache
  */
-public interface PushNotificationSender {
+public interface PushNotificationsSender {
 
 	public void send(JSONObject jsonObject);
 

@@ -20,7 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.messaging.MessageListenerException;
-import com.liferay.pushnotifications.sender.PushNotificationSender;
+import com.liferay.pushnotifications.sender.PushNotificationsSender;
 
 import java.util.List;
 
@@ -30,8 +30,8 @@ import java.util.List;
  */
 public class PushNotificationsMessageListener implements MessageListener {
 
-	public List<PushNotificationSender> getPushNotificationSenders() {
-		return _pushNotificationSenders;
+	public List<PushNotificationsSender> getPushNotificationsSenders() {
+		return _pushNotificationsSenders;
 	}
 
 	@Override
@@ -42,22 +42,22 @@ public class PushNotificationsMessageListener implements MessageListener {
 			_log.debug("Received message " + jsonObject);
 		}
 
-		for (PushNotificationSender pushNotificationSender :
-				_pushNotificationSenders) {
+		for (PushNotificationsSender pushNotificationSender :
+				_pushNotificationsSenders) {
 
 			pushNotificationSender.send(jsonObject);
 		}
 	}
 
-	public void setPushNotificationSenders(
-		List<PushNotificationSender> pushNotificationSenders) {
+	public void setPushNotificationsSenders(
+		List<PushNotificationsSender> pushNotificationSenders) {
 
-		_pushNotificationSenders = pushNotificationSenders;
+		_pushNotificationsSenders = pushNotificationSenders;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
 		PushNotificationsMessageListener.class);
 
-	private List<PushNotificationSender> _pushNotificationSenders;
+	private List<PushNotificationsSender> _pushNotificationsSenders;
 
 }

@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.pushnotifications.sender.PushNotificationSender;
+import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil;
 import com.liferay.pushnotifications.util.PortletPropsValues;
 
@@ -33,11 +33,11 @@ import java.util.List;
  * @author Silvio Santos
  * @author Bruno Farache
  */
-public class ApplePushNotificationSenderImpl implements PushNotificationSender {
+public class ApplePushNotificationsSender implements PushNotificationsSender {
 
 	public static final String IOS = "ios";
 
-	public ApplePushNotificationSenderImpl() {
+	public ApplePushNotificationsSender() {
 		ApnsServiceBuilder builder = APNS.newService();
 
 		String path = PortletPropsValues.APPLE_CERTIFICATE_PATH;
@@ -89,7 +89,7 @@ public class ApplePushNotificationSenderImpl implements PushNotificationSender {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		ApplePushNotificationSenderImpl.class);
+		ApplePushNotificationsSender.class);
 
 	private ApnsService _apnsService;
 
