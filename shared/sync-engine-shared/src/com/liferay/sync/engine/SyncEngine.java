@@ -76,6 +76,10 @@ public class SyncEngine {
 		watcher.close();
 	}
 
+	public static boolean isRunning() {
+		return _running;
+	}
+
 	public static void scheduleSyncAccountTasks(long syncAccountId)
 		throws Exception {
 

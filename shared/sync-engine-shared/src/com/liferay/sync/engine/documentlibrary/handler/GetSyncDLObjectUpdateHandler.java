@@ -172,6 +172,10 @@ public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
 
 		Path targetFilePath = Paths.get(targetFilePathName);
 
+		if (Files.notExists(sourceFilePath)) {
+			return;
+		}
+
 		Files.move(sourceFilePath, targetFilePath);
 
 		sourceSyncFile.setFilePathName(targetFilePathName);
@@ -247,6 +251,10 @@ public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
 		String sourceVersion = sourceSyncFile.getVersion();
 
 		Path sourceFilePath = Paths.get(sourceSyncFile.getFilePathName());
+
+		if (Files.notExists(sourceFilePath)) {
+			return;
+		}
 
 		String sourceFileName = String.valueOf(sourceFilePath.getFileName());
 

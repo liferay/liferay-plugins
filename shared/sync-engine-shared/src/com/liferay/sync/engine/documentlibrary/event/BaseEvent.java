@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine.documentlibrary.event;
 
+import com.liferay.sync.engine.SyncEngine;
 import com.liferay.sync.engine.documentlibrary.handler.Handler;
 import com.liferay.sync.engine.session.Session;
 import com.liferay.sync.engine.session.SessionManager;
@@ -65,6 +66,10 @@ public abstract class BaseEvent implements Event {
 
 	@Override
 	public void run() {
+		if (!SyncEngine.isRunning()) {
+			return;
+		}
+
 		_handler = getHandler();
 
 		try {
