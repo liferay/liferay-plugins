@@ -25,15 +25,37 @@
 			"doAsSyncAccount": "test1"
 		},
 		{
+			"action": "addFolder",
+			"dependency": "common/Parent Folder",
+			"doAsSyncAccount": "test1"
+		},
+		{
 			"action": "pause"
+		},
+		{
+			"action": "moveFile",
+			"doAsSyncAccount": "test1",
+			"source": "Test.txt",
+			"target": "Parent Folder/Test.txt"
+		},
+		{
+			"action": "pause",
+			"delay": 15
 		},
 		{
 			"action": "verifyFile",
 			"doAsSyncAccount": "test2",
-			"source": "Test.txt"
+			"source": "Test.txt",
+			"operation": "notExists"
 		},
 		{
-			"action": "cleanUp"
+			"action": "verifyFile",
+			"doAsSyncAccount": "test2",
+			"source": "Parent Folder/Test.txt"
+		},
+		{
+			"action": "cleanUp",
+			"delay": 15
 		}
 	]
 }

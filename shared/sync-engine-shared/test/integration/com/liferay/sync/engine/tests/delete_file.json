@@ -28,9 +28,18 @@
 			"action": "pause"
 		},
 		{
+			"action": "deleteFile",
+			"doAsSyncAccount": "test1",
+			"source": "Test.txt"
+		},
+		{
+			"action": "pause"
+		},
+		{
 			"action": "verifyFile",
 			"doAsSyncAccount": "test2",
-			"source": "Test.txt"
+			"source": "Test.txt",
+			"operation": "notExists"
 		},
 		{
 			"action": "cleanUp"
