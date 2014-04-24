@@ -7,5 +7,5 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
 >
-	<bean id="com.liferay.pushnotifications.sender.apple.ApplePushNotificationSenderImpl" class="com.liferay.pushnotifications.sender.apple.ApplePushNotificationSenderImpl" />
+	<bean id="com.liferay.pushnotifications.sender.apple.ApplePushNotificationsSender" class="com.liferay.pushnotifications.sender.apple.ApplePushNotificationsSender" />
 </beans>
