@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.messaging.MessageListenerException;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 
 import java.util.List;
@@ -35,7 +34,7 @@ public class PushNotificationsMessageListener implements MessageListener {
 	}
 
 	@Override
-	public void receive(Message message) throws MessageListenerException {
+	public void receive(Message message) {
 		JSONObject jsonObject = (JSONObject)message.getPayload();
 
 		if (_log.isDebugEnabled()) {
