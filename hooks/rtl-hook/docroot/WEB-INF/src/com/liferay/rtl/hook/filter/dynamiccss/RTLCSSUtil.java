@@ -74,8 +74,7 @@ public class RTLCSSUtil {
 		try {
 			_jsScript = StringUtil.read(
 				PortletClassLoaderUtil.getClassLoader(),
-				"com/liferay/rtl/servlet/filters/dynamiccss" +
-					"/dependencies/r2.js");
+				"com/liferay/rtl/hook/filter/dynamiccss/dependencies/r2.js");
 		}
 		catch (Exception e) {
 			_log.error(e, e);
