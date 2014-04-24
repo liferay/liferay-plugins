@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.rtl.servlet.filters;
+package com.liferay.rtl.hook.filter;
 
 import com.liferay.portal.util.PortalUtil;
 

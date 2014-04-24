@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.rtl.servlet.filters.dynamiccss;
+package com.liferay.rtl.hook.filter.dynamiccss;
 
 import com.liferay.portal.kernel.cache.key.CacheKeyGenerator;
 import com.liferay.portal.kernel.cache.key.CacheKeyGeneratorUtil;
@@ -31,7 +31,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.rtl.servlet.filters.IgnoreModuleRequestFilter;
+import com.liferay.rtl.hook.filter.IgnoreModuleRequestFilter;
 
 import java.io.File;
 

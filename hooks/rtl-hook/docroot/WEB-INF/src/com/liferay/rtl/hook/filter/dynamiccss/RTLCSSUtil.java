@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.rtl.servlet.filters.dynamiccss;
+package com.liferay.rtl.hook.filter.dynamiccss;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
