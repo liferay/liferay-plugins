@@ -27,6 +27,7 @@ import java.util.Set;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,21 +98,20 @@ public class FileUtil {
 		return false;
 	}
 
-	@Override
-	public boolean isValidName(String name) {
-		if (Validator.isNull(name)) {
+	public static boolean isValidName(String name) {
+		if (name == null) {
 			return false;
 		}
 
-		for (String blacklistChar : PropsValues.DL_CHAR_BLACKLIST) {
+		for (String blacklistChar : PropsValues.SYNC_CHAR_BLACKLIST) {
 			if (name.contains(blacklistChar)) {
 				return false;
 			}
 		}
 
-		for (String blacklistLastChar : PropsValues.DL_CHAR_LAST_BLACKLIST) {
-			if (blacklistLastChar.startsWith(_UNICODE_PREFIX)) {
-				blacklistLastChar = UnicodeFormatter.parseString(
+		for (String blacklistLastChar : PropsValues.SYNC_CHAR_LAST_BLACKLIST) {
+			if (blacklistLastChar.startsWith("\\u")) {
+				blacklistLastChar = StringEscapeUtils.unescapeJava(
 					blacklistLastChar);
 			}
 
@@ -122,16 +122,14 @@ public class FileUtil {
 
 		String nameWithoutExtension = name;
 
-		if (name.contains(StringPool.PERIOD)) {
-			int index = name.lastIndexOf(StringPool.PERIOD);
+		if (name.contains(".")) {
+			int index = name.lastIndexOf(".");
 
 			nameWithoutExtension = name.substring(0, index);
 		}
 
-		for (String blacklistName : PropsValues.DL_NAME_BLACKLIST) {
-			if (StringUtil.equalsIgnoreCase(
-					nameWithoutExtension, blacklistName)) {
-
+		for (String blacklistName : PropsValues.SYNC_NAME_BLACKLIST) {
+			if (nameWithoutExtension.equalsIgnoreCase(blacklistName)) {
 				return false;
 			}
 		}

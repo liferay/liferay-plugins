@@ -19,6 +19,11 @@ package com.liferay.sync.engine.util;
  */
 public interface PropsKeys {
 
+	public static final String SYNC_CHAR_BLACKLIST = "sync.char.blacklist";
+
+	public static final String SYNC_CHAR_LAST_BLACKLIST =
+		"sync.char.last.blacklist";
+
 	public static final String SYNC_CONFIGURATION_DIRECTORY =
 		"sync.configuration.directory";
 
@@ -39,16 +44,11 @@ public interface PropsKeys {
 	public static final String SYNC_LOGGER_CONFIGURATION_FILE =
 		"sync.logger.configuration.file";
 
+	public static final String SYNC_NAME_BLACKLIST = "sync.name.blacklist";
+
 	public static final String SYNC_NOTIFICATION_FIELD_NAMES_PREFIX =
 		"sync.notification.field.names";
 
 	public static final String SYNC_PRODUCT_NAME = "sync.product.name";
-
-	public static final String DL_CHAR_BLACKLIST = "dl.char.blacklist";
-
-	public static final String DL_CHAR_LAST_BLACKLIST =
-		"dl.char.last.blacklist";
-
-	public static final String DL_NAME_BLACKLIST = "dl.name.blacklist";
 
 }
