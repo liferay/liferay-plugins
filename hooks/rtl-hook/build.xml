@@ -23,6 +23,15 @@
 		</delete>
 	</target>
 
+	<target name="compile" depends="build-common.compile, rtl-jar" />
+
+	<target name="rtl-jar">
+		<zip
+			basedir="docroot/WEB-INF/classes"
+			destfile="docroot/WEB-INF/lib/${plugin.name}.jar"
+		/>
+	</target>
+
 	<target name="update-from-portal">
 		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
 			<fileset
