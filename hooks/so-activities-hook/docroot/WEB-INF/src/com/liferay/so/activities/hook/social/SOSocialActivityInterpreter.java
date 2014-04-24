@@ -161,7 +161,9 @@ public abstract class SOSocialActivityInterpreter
 		for (com.liferay.so.activities.model.SocialActivity activity :
 				activities) {
 
-			if (!hasPermissions(activity, serviceContext)) {
+			if (!hasPermissions(
+					activity.getPortalSocialActivity(), serviceContext)) {
+
 				continue;
 			}
 
@@ -449,15 +451,17 @@ public abstract class SOSocialActivityInterpreter
 		PermissionChecker permissionChecker =
 			themeDisplay.getPermissionChecker();
 
-		List<SocialActivity> activities =
+		List<com.liferay.so.activities.model.SocialActivity> activities =
 			SocialActivityLocalServiceUtil.getActivitySetActivities(
 				activitySet.getActivitySetId(), 0, 1);
 
 		if (!activities.isEmpty()) {
-			SocialActivity activity = activities.get(0);
+			com.liferay.so.activities.model.SocialActivity activity =
+				activities.get(0);
 
 			return hasPermissions(
-				permissionChecker, activity, ActionKeys.VIEW, serviceContext);
+				permissionChecker, activity.getPortalSocialActivity(),
+				ActionKeys.VIEW, serviceContext);
 		}
 
 		return false;

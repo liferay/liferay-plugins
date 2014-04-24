@@ -114,7 +114,9 @@ public class TasksActivityInterpreter extends SOSocialActivityInterpreter {
 		for (com.liferay.so.activities.model.SocialActivity
 			activity : activities) {
 
-			if (!hasPermissions(activity, serviceContext)) {
+			if (!hasPermissions(
+					activity.getPortalSocialActivity(), serviceContext)) {
+
 				continue;
 			}
 
