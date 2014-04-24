@@ -44,4 +44,13 @@ public class PropsValues {
 	public static String SYNC_PRODUCT_NAME = PropsUtil.get(
 		PropsKeys.SYNC_PRODUCT_NAME);
 
+	public static String[] DL_CHAR_BLACKLIST = PropsUtil.getArray(
+		PropsKeys.DL_CHAR_BLACKLIST);
+
+	public static String[] DL_CHAR_LAST_BLACKLIST = PropsUtil.getArray(
+		PropsKeys.DL_CHAR_LAST_BLACKLIST);
+
+	public static String[] DL_NAME_BLACKLIST = PropsUtil.getArray(
+		PropsKeys.DL_NAME_BLACKLIST);
+
 }

@@ -44,4 +44,11 @@ public interface PropsKeys {
 
 	public static final String SYNC_PRODUCT_NAME = "sync.product.name";
 
+	public static final String DL_CHAR_BLACKLIST = "dl.char.blacklist";
+
+	public static final String DL_CHAR_LAST_BLACKLIST =
+		"dl.char.last.blacklist";
+
+	public static final String DL_NAME_BLACKLIST = "dl.name.blacklist";
+
 }

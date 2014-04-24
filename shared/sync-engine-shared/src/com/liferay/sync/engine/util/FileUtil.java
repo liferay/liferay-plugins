@@ -97,6 +97,48 @@ public class FileUtil {
 		return false;
 	}
 
+	@Override
+	public boolean isValidName(String name) {
+		if (Validator.isNull(name)) {
+			return false;
+		}
+
+		for (String blacklistChar : PropsValues.DL_CHAR_BLACKLIST) {
+			if (name.contains(blacklistChar)) {
+				return false;
+			}
+		}
+
+		for (String blacklistLastChar : PropsValues.DL_CHAR_LAST_BLACKLIST) {
+			if (blacklistLastChar.startsWith(_UNICODE_PREFIX)) {
+				blacklistLastChar = UnicodeFormatter.parseString(
+					blacklistLastChar);
+			}
+
+			if (name.endsWith(blacklistLastChar)) {
+				return false;
+			}
+		}
+
+		String nameWithoutExtension = name;
+
+		if (name.contains(StringPool.PERIOD)) {
+			int index = name.lastIndexOf(StringPool.PERIOD);
+
+			nameWithoutExtension = name.substring(0, index);
+		}
+
+		for (String blacklistName : PropsValues.DL_NAME_BLACKLIST) {
+			if (StringUtil.equalsIgnoreCase(
+					nameWithoutExtension, blacklistName)) {
+
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	private static Logger _logger = LoggerFactory.getLogger(FileUtil.class);
 
 	private static Set<String> _syncIgnoreFileNames = new HashSet<String>(
