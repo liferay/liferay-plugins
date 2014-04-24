@@ -266,10 +266,10 @@ public class AsgardAMIDeployer extends BaseAMITool {
 	protected boolean isInService(
 		JSONObject loadBalancerJSONObject, String autoScalingGroupName) {
 
+		List<JSONObject> instanceStateJSONObjects = new ArrayList<JSONObject>();
+
 		JSONArray instanceStatesJSONArray = loadBalancerJSONObject.getJSONArray(
 			"instanceStates");
-
-		List<JSONObject> instanceStates = new ArrayList<JSONObject>();
 
 		for (int i = 0; i < instanceStatesJSONArray.length(); i++) {
 			JSONObject instanceStateJSONObject =
@@ -281,16 +281,17 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			if (autoScalingGroupName.equals(
 					instanceStateAutoScalingGroupName)) {
 
-				instanceStates.add(instanceStateJSONObject);
+				instanceStateJSONObjects.add(instanceStateJSONObject);
 			}
 		}
 
-		if (instanceStates.isEmpty()) {
+		if (instanceStateJSONObjects.isEmpty()) {
 			return false;
 		}
 
-		for (int i = 0; i < instanceStates.size(); i++) {
-			JSONObject instanceStateJSONObject = instanceStates.get(i);
+		for (int i = 0; i < instanceStateJSONObjects.size(); i++) {
+			JSONObject instanceStateJSONObject = instanceStateJSONObjects.get(
+				i);
 
 			String state = instanceStateJSONObject.getString("state");
 

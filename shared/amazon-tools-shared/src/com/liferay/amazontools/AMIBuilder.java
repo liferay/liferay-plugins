@@ -81,12 +81,11 @@ public class AMIBuilder extends BaseAMITool {
 
 		cmdLineParser.parse(args);
 
-		boolean output = Boolean.parseBoolean(
-			(String)cmdLineParser.getOptionValue(outputOption));
-
 		final AMIBuilder amiBuilder = new AMIBuilder(
 			(String)cmdLineParser.getOptionValue(baseDirOption),
-			(String)cmdLineParser.getOptionValue(imageNameOption), output,
+			(String)cmdLineParser.getOptionValue(imageNameOption),
+			Boolean.parseBoolean(
+				(String)cmdLineParser.getOptionValue(outputOption)),
 			(String)cmdLineParser.getOptionValue(propertiesFileNameOption));
 
 		Runtime runtime = Runtime.getRuntime();
@@ -94,6 +93,7 @@ public class AMIBuilder extends BaseAMITool {
 		runtime.addShutdownHook(
 			new Thread() {
 
+				@Override
 				public void run() {
 					amiBuilder.destroy();
 				}
@@ -354,9 +354,9 @@ public class AMIBuilder extends BaseAMITool {
 	}
 
 	protected void provision() throws Exception {
-		SSHClient sshClient = null;
-
 		System.out.println("Connecting via SSH to " + _publicIpAddress);
+
+		SSHClient sshClient = null;
 
 		for (int i = 0; i < 6; i++) {
 			sleep(30);
