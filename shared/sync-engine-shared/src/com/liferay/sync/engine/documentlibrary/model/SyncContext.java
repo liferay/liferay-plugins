@@ -15,6 +15,7 @@
 package com.liferay.sync.engine.documentlibrary.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.liferay.sync.engine.model.SyncSite;
 
@@ -35,12 +36,12 @@ public class SyncContext {
 		return _portalBuildNumber;
 	}
 
-	public long getUserId() {
-		return _userId;
+	public List<SyncSite> getSyncSites() {
+		return _syncSites;
 	}
 
-	public List<SyncSite> getUserSitesGroups() {
-		return _userSitesGroups;
+	public long getUserId() {
+		return _userId;
 	}
 
 	public boolean isSocialOfficeInstalled() {
@@ -59,18 +60,21 @@ public class SyncContext {
 		_socialOfficeInstalled = socialOfficeInstalled;
 	}
 
-	public void setUserId(long userId) {
-		_userId = userId;
+	public void setSyncSites(List<SyncSite> syncSites) {
+		_syncSites = syncSites;
 	}
 
-	public void setUserSitesGroups(List<SyncSite> userSitesGroups) {
-		_userSitesGroups = userSitesGroups;
+	public void setUserId(long userId) {
+		_userId = userId;
 	}
 
 	private String _pluginVersion;
 	private int _portalBuildNumber;
 	private boolean _socialOfficeInstalled;
+
+	@JsonProperty("userSitesGroups")
+	private List<SyncSite> _syncSites;
+
 	private long _userId;
-	private List<SyncSite> _userSitesGroups;
 
 }
