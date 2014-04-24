@@ -24,8 +24,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -99,55 +97,9 @@ public class FileUtil {
 		return false;
 	}
 
-	public static boolean isValidName(String name) {
-		if (OSDetector.isWindows()) {
-			Matcher reservedNameMatcher = _windowsReservedNamePattern.matcher(
-				name);
-
-			Matcher illegalCharMatcher = _windowsIllegalCharPattern.matcher(
-				name);
-
-			if (!reservedNameMatcher.matches() && !illegalCharMatcher.find()) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else if (OSDetector.isApple() || OSDetector.isUnix()) {
-			Matcher matcher = _unixIllegalCharPattern.matcher(name);
-
-			if (!matcher.find()) {
-				return true;
-			}
-			else {
-				return false;
-			}
-		}
-		else {
-			return true;
-		}
-	}
-
-	private static final String _UNIX_ILLEGAL_CHAR_REGEX = "[/\\\\\\x00]";
-
-	private static final String _WINDOWS_ILLEGAL_CHAR_REGEX =
-		"[<>:\"/\\\\|?*\\x00-\\x1F]|[<>:\"/\\\\|?*\\x00-\\x1F\\ .]$";
-
-	private static final String _WINDOWS_RESERVED_NAME_REGEX =
-		"^(?:CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\\.[^.]*)?$";
-
 	private static Logger _logger = LoggerFactory.getLogger(FileUtil.class);
 
 	private static Set<String> _syncIgnoreFileNames = new HashSet<String>(
 		Arrays.asList(PropsValues.SYNC_IGNORE_FILE_NAMES));
-	private static Pattern _unixIllegalCharPattern = Pattern.compile(
-		_UNIX_ILLEGAL_CHAR_REGEX);
-	private static Pattern _windowsIllegalCharPattern = Pattern.compile(
-		_WINDOWS_ILLEGAL_CHAR_REGEX,
-		Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
-	private static Pattern _windowsReservedNamePattern = Pattern.compile(
-		_WINDOWS_RESERVED_NAME_REGEX,
-		Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
 
 }
