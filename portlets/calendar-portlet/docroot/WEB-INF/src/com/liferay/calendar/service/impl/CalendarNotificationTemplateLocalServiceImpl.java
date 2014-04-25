@@ -21,6 +21,8 @@ import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.service.base.CalendarNotificationTemplateLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
+import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 
@@ -72,6 +74,16 @@ public class CalendarNotificationTemplateLocalServiceImpl
 		calendarNotificationTemplate.setBody(body);
 
 		return calendarNotificationTemplatePersistence.update(
+			calendarNotificationTemplate);
+	}
+
+	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
+	public CalendarNotificationTemplate deleteCalendarNotificationTemplate(
+			CalendarNotificationTemplate calendarNotificationTemplate)
+		throws SystemException {
+
+		return calendarNotificationTemplatePersistence.remove(
 			calendarNotificationTemplate);
 	}
 
