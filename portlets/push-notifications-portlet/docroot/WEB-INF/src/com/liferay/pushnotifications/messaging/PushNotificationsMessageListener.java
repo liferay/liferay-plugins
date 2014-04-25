@@ -25,7 +25,6 @@ import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService
 
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 /**
  * @author Silvio Santos
@@ -40,15 +39,16 @@ public class PushNotificationsMessageListener implements MessageListener {
 	@Override
 	public void receive(Message message) {
 		JSONObject jsonObject = (JSONObject)message.getPayload();
+
 		long userId = jsonObject.getLong("userId");
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Received message " + jsonObject + " for userId " + userId);
+				"Received message " + jsonObject + " for user " + userId);
 		}
 
 		try {
-			for (Entry<String, PushNotificationsSender> entry :
+			for (Map.Entry<String, PushNotificationsSender> entry :
 					_pushNotificationsSenders.entrySet()) {
 
 				String platform = entry.getKey();
@@ -68,7 +68,7 @@ public class PushNotificationsMessageListener implements MessageListener {
 			}
 		}
 		catch (Exception e) {
-			_log.error("Could not send notification", e);
+			_log.error("Unable to send notification", e);
 		}
 	}
 
