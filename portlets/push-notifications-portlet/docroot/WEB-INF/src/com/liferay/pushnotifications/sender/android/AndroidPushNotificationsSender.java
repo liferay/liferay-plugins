@@ -12,16 +12,15 @@
  * details.
  */
 
-package com.liferay.pushnotifications.sender.apple;
+package com.liferay.pushnotifications.sender.android;
+
+import com.google.android.gcm.server.Message;
+import com.google.android.gcm.server.Message.Builder;
+import com.google.android.gcm.server.Sender;
 
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.pushnotifications.sender.PushNotificationsSender;
 import com.liferay.pushnotifications.util.PortletPropsValues;
-
-import com.notnoop.apns.APNS;
-import com.notnoop.apns.ApnsService;
-import com.notnoop.apns.ApnsServiceBuilder;
-import com.notnoop.apns.PayloadBuilder;
 
 import java.util.List;
 
@@ -29,43 +28,33 @@ import java.util.List;
  * @author Silvio Santos
  * @author Bruno Farache
  */
-public class ApplePushNotificationsSender implements PushNotificationsSender {
+public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
-	public ApplePushNotificationsSender() {
-		ApnsServiceBuilder appleServiceBuilder = APNS.newService();
-
-		appleServiceBuilder.withCert(
-			PortletPropsValues.APPLE_CERTIFICATE_PATH,
-			PortletPropsValues.APPLE_CERTIFICATE_PASSWORD);
-
-		if (PortletPropsValues.APPLE_SANDBOX) {
-			appleServiceBuilder.withSandboxDestination();
-		}
-
-		_apnsService = appleServiceBuilder.build();
+	public AndroidPushNotificationsSender() {
+		_sender = new Sender(PortletPropsValues.ANDROID_API_KEY);
 	}
 
 	@Override
 	public void send(List<String> tokens, JSONObject jsonObject)
 		throws Exception {
 
-		String payload = buildPayload(jsonObject);
+		Message message = buildMessage(jsonObject);
 
-		_apnsService.push(tokens, payload);
+		_sender.send(message, tokens, PortletPropsValues.ANDROID_RETRIES);
 	}
 
-	protected String buildPayload(JSONObject jsonObject) {
-		PayloadBuilder builder = PayloadBuilder.newPayload();
+	protected Message buildMessage(JSONObject jsonObject) {
+		Builder builder = new Builder();
 
 		String entryTitle = jsonObject.getString("entryTitle");
 
 		if (entryTitle != null) {
-			builder.alertBody(entryTitle);
+			builder.addData("data", entryTitle);
 		}
 
 		return builder.build();
 	}
 
-	private ApnsService _apnsService;
+	private Sender _sender;
 
 }

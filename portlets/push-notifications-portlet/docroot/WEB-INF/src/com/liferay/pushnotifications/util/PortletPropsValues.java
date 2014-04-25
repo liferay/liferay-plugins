@@ -22,6 +22,14 @@ import com.liferay.util.portlet.PortletProps;
  */
 public class PortletPropsValues {
 
+	public static final String ANDROID_API_KEY =
+		GetterUtil.getString(
+			PortletProps.get(PortletPropsKeys.ANDROID_API_KEY));
+
+	public static final int ANDROID_RETRIES =
+		GetterUtil.getInteger(
+			PortletProps.get(PortletPropsKeys.ANDROID_RETRIES));
+
 	public static final String APPLE_CERTIFICATE_PASSWORD =
 		GetterUtil.getString(
 			PortletProps.get(PortletPropsKeys.APPLE_CERTIFICATE_PASSWORD));
