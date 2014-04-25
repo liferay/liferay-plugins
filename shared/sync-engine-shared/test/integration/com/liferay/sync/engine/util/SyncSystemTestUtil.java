@@ -17,6 +17,8 @@ package com.liferay.sync.engine.util;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import com.liferay.sync.engine.model.SyncAccount;
+import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.session.Session;
 import com.liferay.sync.engine.session.SessionManager;
 
@@ -44,13 +46,12 @@ import org.slf4j.LoggerFactory;
  */
 public class SyncSystemTestUtil {
 
-	public static void addUser(String name, long syncAccountId)
+	public static void addUser(String name, boolean admin, long syncAccountId)
 		throws Exception {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("-organizationIds", null);
-		parameters.put("-roleIds", null);
 		parameters.put("-userGroupIds", null);
 		parameters.put("autoPassword", false);
 		parameters.put("autoScreenName", false);
@@ -71,6 +72,14 @@ public class SyncSystemTestUtil {
 		parameters.put("password1", "test");
 		parameters.put("password2", "test");
 		parameters.put("prefixId", 0);
+
+		if (admin) {
+			parameters.put("roleIds", getAdminRoleId(syncAccountId));
+		}
+		else {
+			parameters.put("-roleIds", null);
+		}
+
 		parameters.put("screenName", name);
 		parameters.put("sendEmail", false);
 		parameters.put("suffixId", 0);
@@ -98,10 +107,8 @@ public class SyncSystemTestUtil {
 		parameters.put("companyId", getCompanyId(syncAccountId));
 		parameters.put("name", "Guest");
 
-		Session session = SessionManager.getSession(syncAccountId);
-
-		HttpResponse httpResponse = session.executePost(
-			"/group/get-group", parameters);
+		HttpResponse httpResponse = executePost(
+			"/group/get-group", parameters, syncAccountId);
 
 		HttpEntity httpEntity = httpResponse.getEntity();
 
@@ -180,7 +187,39 @@ public class SyncSystemTestUtil {
 
 		Session session = SessionManager.getSession(syncAccountId);
 
-		return session.executePost(urlPath, parameters);
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			syncAccountId);
+
+		return session.executePost(
+			syncAccount.getUrl() + "/api/jsonws" + urlPath, parameters);
+	}
+
+	protected static long getAdminRoleId(long syncAccountId) throws Exception {
+		if (_adminRoleId > 0) {
+			return _adminRoleId;
+		}
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		parameters.put("companyId", getCompanyId(syncAccountId));
+		parameters.put("name", "Administrator");
+
+		HttpResponse httpResponse = executePost(
+			"/role/get-role", parameters, syncAccountId);
+
+		HttpEntity httpEntity = httpResponse.getEntity();
+
+		String response = EntityUtils.toString(httpEntity);
+
+		ObjectMapper mapper = new ObjectMapper();
+
+		JsonNode rootJsonNode = mapper.readTree(response);
+
+		JsonNode roleIdJsonNode = rootJsonNode.get("roleId");
+
+		_adminRoleId = roleIdJsonNode.asLong();
+
+		return _adminRoleId;
 	}
 
 	protected static long getCompanyId(long syncAccountId) throws Exception {
@@ -192,10 +231,8 @@ public class SyncSystemTestUtil {
 
 		parameters.put("virtualHost", "localhost");
 
-		Session session = SessionManager.getSession(syncAccountId);
-
-		HttpResponse httpResponse = session.executePost(
-			"/company/get-company-by-virtual-host", parameters);
+		HttpResponse httpResponse = executePost(
+			"/company/get-company-by-virtual-host", parameters, syncAccountId);
 
 		HttpEntity httpEntity = httpResponse.getEntity();
 
@@ -228,6 +265,7 @@ public class SyncSystemTestUtil {
 	private static Logger _logger = LoggerFactory.getLogger(
 		SyncSystemTestUtil.class);
 
+	private static long _adminRoleId;
 	private static long _companyId;
 	private static long _guestGroupId;
 

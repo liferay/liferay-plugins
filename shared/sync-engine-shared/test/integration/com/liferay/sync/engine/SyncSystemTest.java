@@ -30,6 +30,7 @@ import com.liferay.sync.engine.util.PropsUtil;
 import com.liferay.sync.engine.util.SyncSystemTestUtil;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 
 import java.net.URL;
@@ -43,12 +44,15 @@ import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
 import org.junit.AfterClass;
@@ -244,7 +248,7 @@ public class SyncSystemTest {
 
 		String name = getString(stepJsonNode, "name");
 
-		SyncSystemTestUtil.addUser(name, _syncAccount.getSyncAccountId());
+		SyncSystemTestUtil.addUser(name, true, _syncAccount.getSyncAccountId());
 
 		String filePathName = FilePathNameUtil.fixFilePathName(
 			System.getProperty("user.home") + "/liferay-sync-test/" + name);
@@ -473,6 +477,14 @@ public class SyncSystemTest {
 			_syncAccountIds.get(doAsSyncAccount));
 	}
 
+	protected Path getTargetFilePath(JsonNode jsonNode) {
+		SyncSite syncSite = getSyncSite(jsonNode);
+
+		String source = getString(jsonNode, "source");
+
+		return Paths.get(syncSite.getFilePathName() + "/" + source);
+	}
+
 	protected void moveFile(JsonNode stepJsonNode) throws Exception {
 		SyncSite syncSite = getSyncSite(stepJsonNode);
 
@@ -488,18 +500,41 @@ public class SyncSystemTest {
 	}
 
 	protected void verifyFile(JsonNode stepJsonNode) throws Exception {
-		SyncSite syncSite = getSyncSite(stepJsonNode);
-
-		String source = getString(stepJsonNode, "source");
-
-		Path targetFilePath = Paths.get(
-			syncSite.getFilePathName() + "/" + source);
+		boolean testPassed = true;
 
 		String operation = getString(stepJsonNode, "operation", "exists");
 
-		if ((operation.equals("exists") && Files.notExists(targetFilePath)) ||
-			(operation.equals("notExists") && Files.exists(targetFilePath))) {
+		if (operation.equals("exists")) {
+			if (Files.notExists(getTargetFilePath(stepJsonNode))) {
+				testPassed = false;
+			}
+		}
+		else if (operation.equals("notExists")) {
+			if (Files.exists(getTargetFilePath(stepJsonNode))) {
+				testPassed = false;
+			}
+		}
+		else if (operation.equals("equals")) {
+			List<File> files = new ArrayList<File>();
 
+			JsonNode filesJsonNode = stepJsonNode.get("files");
+
+			Iterator<JsonNode> filesJsonNodeIterator = filesJsonNode.elements();
+
+			while (filesJsonNodeIterator.hasNext()) {
+				JsonNode fileJsonNode = filesJsonNodeIterator.next();
+
+				Path targetFilePath = getTargetFilePath(fileJsonNode);
+
+				files.add(targetFilePath.toFile());
+			}
+
+			if (!FileUtils.contentEquals(files.get(0), files.get(1))) {
+				testPassed = false;
+			}
+		}
+
+		if (!testPassed) {
 			String testFileName = FilePathNameUtil.getFilePathName(
 				_testFilePath.getFileName());
 
