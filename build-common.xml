@@ -161,10 +161,6 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<pathconvert property="module.dir.unix" targetos="unix">
-				<path location="@{module.dir}" />
-			</pathconvert>
-
 			<java
 				classname="com.liferay.portal.tools.SassToCssBuilder"
 				classpathref="portal.classpath"
@@ -177,8 +173,6 @@ Error-Prone was automatically installed. Please rerun your task.
 				<arg value="sass.docroot.dir=${module.dir.unix}/docroot" />
 				<arg value="sass.portal.common.dir=${app.server.portal.dir}/html/css/common" />
 			</java>
-
-			<var name="module.dir.unix" unset="true" />
 		</sequential>
 	</macrodef>
 
@@ -189,7 +183,7 @@ Error-Prone was automatically installed. Please rerun your task.
 		<sequential>
 			<if>
 				<resourcecontains
-					resource="@{module.dir}/build.xml"
+					resource="${module.dir.unix}/build.xml"
 					substring="&lt;target name=&quot;@{macrodef.name}&quot;&gt;"
 				/>
 				<then>
@@ -345,7 +339,7 @@ Error-Prone was automatically installed. Please rerun your task.
 				<then>
 					<if>
 						<resourcecontains
-							resource="@{module.dir}/docroot/WEB-INF/.gitignore"
+							resource="${module.dir.unix}/docroot/WEB-INF/.gitignore"
 							substring="/lib"
 						/>
 						<then>
@@ -777,7 +771,7 @@ Please find a solution that does not require portal-impl.jar.
 				<then>
 					<if>
 						<resourcecontains
-							resource="@{module.dir}/docroot/WEB-INF/liferay-hook.xml"
+							resource="${module.dir.unix}/docroot/WEB-INF/liferay-hook.xml"
 							substring="&lt;language-properties&gt;content/Language*.properties&lt;/language-properties&gt;"
 						/>
 						<then>
@@ -1094,7 +1088,7 @@ Please find a solution that does not require portal-impl.jar.
 
 					<if>
 						<resourcecontains
-							resource="@{module.dir}/build.xml"
+							resource="${module.dir.unix}/build.xml"
 							substring="import file=&quot;../../build-common-osgi-plugin.xml&quot;"
 						/>
 						<then>
@@ -1373,7 +1367,7 @@ Please find a solution that does not require portal-impl.jar.
 
 			<if>
 				<resourcecontains
-					resource="@{module.dir}/build.xml"
+					resource="${module.dir.unix}/build.xml"
 					substring="import file=&quot;../../build-common-osgi-plugin.xml&quot;"
 				/>
 				<then>
@@ -1621,6 +1615,12 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
+			<var name="module.dir.unix" unset="true" />
+
+			<pathconvert property="module.dir.unix" targetos="unix">
+				<path location="@{module.dir}" />
+			</pathconvert>
+
 			<var name="plugin.jars" unset="true" />
 			<var name="plugin.required.contexts" unset="true" />
 			<var name="plugin.tlds" unset="true" />
@@ -1786,7 +1786,7 @@ Please find a solution that does not require portal-impl.jar.
 
 			<if>
 				<resourcecontains
-					resource="@{module.dir}/build.xml"
+					resource="${module.dir.unix}/build.xml"
 					substring="import file=&quot;../../build-common-osgi-plugin.xml&quot;"
 				/>
 				<then>
