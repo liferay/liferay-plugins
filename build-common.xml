@@ -187,10 +187,11 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<loadfile property="call-macrodef-or-target.build.xml.content" srcFile="@{module.dir}/build.xml" />
-
 			<if>
-				<contains string="${call-macrodef-or-target.build.xml.content}" substring="&lt;target name=&quot;@{macrodef.name}&quot;&gt;" />
+				<resourcecontains
+					resource="@{module.dir}/build.xml"
+					substring="&lt;target name=&quot;@{macrodef.name}&quot;&gt;"
+				/>
 				<then>
 					<ant dir="@{module.dir}" target="@{macrodef.name}" inheritAll="false" />
 				</then>
@@ -325,8 +326,6 @@ Error-Prone was automatically installed. Please rerun your task.
 					</if>
 				</else>
 			</if>
-
-			<var name="call-macrodef-or-target.build.xml.content" unset="true" />
 		</sequential>
 	</macrodef>
 
