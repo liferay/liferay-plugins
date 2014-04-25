@@ -59,7 +59,9 @@ public class DownloadFileHandler extends BaseHandler {
 				String.valueOf(filePath.getFileName()), ".tmp");
 
 			if (Files.exists(filePath)) {
-				Files.copy(filePath, tempFilePath);
+				Files.copy(
+					filePath, tempFilePath,
+					StandardCopyOption.REPLACE_EXISTING);
 			}
 
 			if ((Boolean)getParameterValue("patch")) {

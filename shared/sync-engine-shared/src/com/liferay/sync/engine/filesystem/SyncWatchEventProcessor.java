@@ -157,7 +157,8 @@ public class SyncWatchEventProcessor implements Runnable {
 
 		if (parentTargetFilePath.equals(sourceFilePath.getParent())) {
 			SyncFileService.updateFileSyncFile(
-				targetFilePath, syncWatchEvent.getSyncAccountId(), syncFile);
+				targetFilePath, syncWatchEvent.getSyncAccountId(), syncFile,
+				false);
 		}
 		else {
 			SyncFileService.moveFileSyncFile(
@@ -276,7 +277,7 @@ public class SyncWatchEventProcessor implements Runnable {
 		}
 
 		SyncFileService.updateFileSyncFile(
-			filePath, syncWatchEvent.getSyncAccountId(), syncFile);
+			filePath, syncWatchEvent.getSyncAccountId(), syncFile, false);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(

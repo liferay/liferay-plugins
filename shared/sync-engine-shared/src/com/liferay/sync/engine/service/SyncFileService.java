@@ -537,7 +537,7 @@ public class SyncFileService {
 	}
 
 	public static SyncFile updateFileSyncFile(
-			Path filePath, long syncAccountId, SyncFile syncFile)
+			Path filePath, long syncAccountId, SyncFile syncFile, boolean force)
 		throws Exception {
 
 		// Local sync file
@@ -584,7 +584,7 @@ public class SyncFileService {
 		parameters.put("syncFile", syncFile);
 		parameters.put("title", name);
 
-		if (sourceChecksum.equals(targetChecksum)) {
+		if (sourceChecksum.equals(targetChecksum) && !force) {
 			parameters.put("-file", null);
 		}
 		else {
