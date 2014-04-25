@@ -19,6 +19,10 @@ package com.liferay.pushnotifications.util;
  */
 public interface PortletPropsKeys {
 
+	public static final String ANDROID_API_KEY = "android.api.key";
+
+	public static final String ANDROID_RETRIES = "android.retries";
+
 	public static final String APPLE_CERTIFICATE_PASSWORD =
 		"apple.certificate.password";
 
