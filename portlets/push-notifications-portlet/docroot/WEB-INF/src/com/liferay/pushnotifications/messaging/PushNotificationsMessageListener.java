@@ -41,10 +41,10 @@ public class PushNotificationsMessageListener implements MessageListener {
 			_log.debug("Received message " + jsonObject);
 		}
 
-		for (PushNotificationsSender pushNotificationSender :
+		for (PushNotificationsSender pushNotificationsSender :
 				_pushNotificationsSenders) {
 
-			pushNotificationSender.send(jsonObject);
+			pushNotificationsSender.send(jsonObject);
 		}
 	}
 

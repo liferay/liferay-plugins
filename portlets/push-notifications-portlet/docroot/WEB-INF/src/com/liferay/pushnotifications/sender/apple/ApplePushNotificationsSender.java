@@ -58,7 +58,7 @@ public class ApplePushNotificationsSender implements PushNotificationsSender {
 
 			List<String> tokens =
 				PushNotificationsDeviceLocalServiceUtil.getTokens(
-					userId, "ios", QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+					userId, "apple", QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			if (tokens.isEmpty()) {
 				return;
