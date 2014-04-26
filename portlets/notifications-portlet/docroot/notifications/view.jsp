@@ -52,10 +52,8 @@
 	</aui:row>
 </div>
 
-<aui:script use="aui-base,aui-io-plugin-deprecated">
-	var userNotifications = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %>');
-
-	var userNotificationsList = userNotifications.one('.user-notifications-list-container .user-notifications-list');
+<aui:script use="aui-base">
+	var userNotificationsList = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %> .user-notifications-list-container .user-notifications-list');
 
 	<portlet:renderURL var="unreadURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 		<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
@@ -63,43 +61,4 @@
 	</portlet:renderURL>
 
 	Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= unreadURL %>');
-
-	var userNotificationsSidebar = userNotifications.one('.user-notifications-sidebar');
-
-	var clickSidebarMenu = function(node, uri) {
-		if (node) {
-			node.on(
-				'click',
-				function(event) {
-					Liferay.Notifications.renderNotificationsList(userNotificationsList, uri);
-
-					A.io.request('<liferay-portlet:actionURL name="setDelivered" />');
-
-					userNotificationsSidebar.all('.nav a').removeClass('selected');
-
-					node.addClass('selected');
-				}
-			);
-		}
-	};
-
-	var unreadNav = userNotificationsSidebar.one('.unread');
-
-	clickSidebarMenu(unreadNav, '<%= unreadURL %>');
-
-	var allNotificationsNav = userNotificationsSidebar.one('.all-notifications');
-
-	<portlet:renderURL var="allNotificationsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-		<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
-	</portlet:renderURL>
-
-	clickSidebarMenu(allNotificationsNav, '<%= allNotificationsURL %>');
-
-	var manageNav = userNotificationsSidebar.one('.manage');
-
-	<portlet:renderURL var="configurationURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-		<portlet:param name="mvcPath" value="/notifications/configuration.jsp" />
-	</portlet:renderURL>
-
-	clickSidebarMenu(manageNav, '<%= configurationURL %>');
 </aui:script>

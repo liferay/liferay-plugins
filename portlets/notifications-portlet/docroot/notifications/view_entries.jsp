@@ -60,7 +60,7 @@ else {
 	</c:when>
 </c:choose>
 
-<c:if test="<%= fullView %>">
+<c:if test='<%= fullView && filter.equals("unread") %>'>
 	<div class="fullViewMarkAllAsRead"></div>
 </c:if>
 
@@ -102,7 +102,7 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 
 				<liferay-portlet:actionURL name="markAsRead" var="markAsReadURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
 
-				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-markAsReadURL="<%= markAsReadURL %>" data-openDialog="<%= String.valueOf(userNotificationFeedEntry.isOpenDialog()) %>">
+				<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-markAsReadURL="<%= markAsReadURL %>"  data-openDialog="<%= String.valueOf(userNotificationFeedEntry.isOpenDialog()) %>">
 			</c:otherwise>
 		</c:choose>
 
@@ -176,240 +176,19 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 	</li>
 </c:if>
 
-<aui:script use="aui-base,aui-io-plugin-deprecated">
-	<c:if test='<%= filter.equals("unread") %>'>
-		var unreadCount = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %> .user-notifications-sidebar .unread .count');
-
-		if (unreadCount) {
-			unreadCount.setHTML('<%= userNotificationEventsCount %>');
-		}
-	</c:if>
-
-	var dockbarUserNotificationsList = A.one('.dockbar-user-notifications .user-notifications-list');
-
-	var userNotificationsList = A.one('#portlet_<%= PortletKeys.NOTIFICATIONS %> .user-notifications-list-container .user-notifications-list');
-
-	var createMarkAllAsReadNode = function() {
-		<c:if test="<%= !userNotificationEventIds.isEmpty() && (start == 0) %>">
-			<liferay-portlet:actionURL name="dismissNotifications" var="dismissNotificationsURL">
-				<portlet:param name="userNotificationEventIds" value="<%= StringUtil.merge(userNotificationEventIds) %>" />
-			</liferay-portlet:actionURL>
-
-			var nodeHTML = '<a class="dismiss-notifications" href="<%= dismissNotificationsURL %>"><%= LanguageUtil.format(pageContext, "mark-all-as-read-x", String.valueOf(userNotificationEventIds.size()), false) %></a>';
-
-			var dockbarDismiss = A.one('.dropDownMarkAllAsRead');
-
-			if (dockbarDismiss) {
-				dockbarDismiss.get('parentNode').replaceChild(A.Node.create(nodeHTML), dockbarDismiss);
-			}
-
-			var fullviewDismiss = A.one('.fullViewMarkAllAsRead');
-
-			if (fullviewDismiss) {
-				fullviewDismiss.get('parentNode').replaceChild(A.Node.create(nodeHTML), fullviewDismiss);
-			}
-		</c:if>
-	};
-
-	var delegateNotifications = function() {
-
-		<c:choose>
-			<c:when test="<%= fullView %>">
-				getDismissDelegation(userNotificationsList, false, '.user-notification .btn-action');
-				getDismissDelegation(userNotificationsList, true, '.dismiss-notifications');
-			</c:when>
-			<c:otherwise>
-				getDismissDelegation(dockbarUserNotificationsList, false, '.user-notification .btn-action');
-				getDismissDelegation(dockbarUserNotificationsList, true, '.dismiss-notifications');
-			</c:otherwise>
-		</c:choose>
-
-		getPaginateDelegation(false, '.message .next a');
-		getPaginateDelegation(true, '.message .previous a');
-
-		getViewDelegation(dockbarUserNotificationsList, '.user-notification .user-notification-link');
-		getViewDelegation(userNotificationsList, '.user-notification .user-notification-link');
-	};
-
-	var dismissNotifications = function(event, markAllAsRead) {
-		var currentRow;
-
-		var loadingRow = A.Node.create('<div class="loading-animation"></div>');
-
-		if (!markAllAsRead) {
-			currentRow = event.currentTarget.ancestor('.user-notification');
-			currentRow.hide().placeAfter(loadingRow);
-		}
-
-		A.io.request(
-			event.currentTarget.attr('href'),
-			{
-				after: {
-					success: function(event) {
-						var response = this.get('responseData');
-
-						if (response.success) {
-							getNotificationsCount(event, currentRow, loadingRow, markAllAsRead);
-						}
-					}
-				},
-				dataType: 'json'
-			}
-		);
-	};
-
-	var getDismissDelegation = function(notificationsList, markAllAsRead, selector) {
-		if (notificationsList) {
-			notificationsList.delegate(
-				'click',
-				function(event) {
-					event.preventDefault();
-
-					dismissNotifications(event, markAllAsRead);
-				},
-				selector
-			);
-		}
-	};
-
-	var getNotificationsCount = function(event, currentRow, loadingRow, markAllAsRead) {
-		event.preventDefault();
-
-		A.io.request(
-			'<portlet:resourceURL id="notifcationsCount" />',
-			{
-				on: {
-					success: function(event) {
-						var response = this.get('responseData');
-
-						if (response.success) {
-							updateNotificationsCount(response["newUserNotificationsCount"], response["unreadUserNotificationsCount"]);
-
-							if (!markAllAsRead) {
-								loadingRow.remove();
-								currentRow.remove();
-							}
-
-							<portlet:renderURL var="dockbarURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-								<portlet:param name="mvcPath" value="/dockbar_notifications/view.jsp" />
-								<portlet:param name="filter" value="unread" />
-								<portlet:param name="dockbar" value="<%= Boolean.TRUE.toString() %>" />
-								<portlet:param name="fullView" value="<%= Boolean.FALSE.toString() %>" />
-								<portlet:param name="menuOpen" value="<%= Boolean.TRUE.toString() %>" />
-							</portlet:renderURL>
-
-							<portlet:renderURL var="fullviewURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-								<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
-								<portlet:param name="filter" value="<%= filter %>" />
-								<portlet:param name="dockbar" value="<%= Boolean.FALSE.toString() %>" />
-								<portlet:param name="fullView" value="<%= Boolean.TRUE.toString() %>" />
-								<portlet:param name="start" value="<%= String.valueOf(start) %>" />
-								<portlet:param name="end" value="<%= String.valueOf(end) %>" />
-							</portlet:renderURL>
-
-							<c:choose>
-								<c:when test="<%= fullView %>">
-									Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= fullviewURL %>');
-								</c:when>
-								<c:otherwise>
-									if (userNotificationsList) {
-										Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= fullviewURL %>');
-									}
-
-									Liferay.Notifications.renderNotificationsList(dockbarUserNotificationsList, '<%= dockbarURL %>');
-								</c:otherwise>
-							</c:choose>
-						}
-					}
-				},
-				dataType: 'json'
-			}
-		);
-	};
-
-	var getPaginateDelegation = function(previous, selector) {
-		if (userNotificationsList) {
-			userNotificationsList.delegate(
-				'click',
-				function(event) {
-					event.preventDefault();
-
-					paginateNotifications(previous);
-				},
-				selector
-			);
-		}
-	};
-
-	var getViewDelegation = function(notificationsList, selector) {
-		if (notificationsList) {
-			notificationsList.delegate(
-				'click',
-				function(event) {
-					Liferay.Notifications.viewNotification(event);
-				},
-				selector
-			);
-		}
-	}
-
-	var paginateNotifications = function(previous) {
-		if (userNotificationsList) {
-			<portlet:renderURL var="nextURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-				<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
-				<portlet:param name="filter" value="<%= filter %>" />
-				<portlet:param name="fullView" value="<%= Boolean.TRUE.toString() %>" />
-				<portlet:param name="start" value="<%= String.valueOf(start + delta) %>" />
-				<portlet:param name="end" value="<%= String.valueOf(end + delta) %>" />
-			</portlet:renderURL>
-
-			<portlet:renderURL var="previousURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-				<portlet:param name="mvcPath" value="/notifications/view_entries.jsp" />
-				<portlet:param name="filter" value="<%= filter %>" />
-				<portlet:param name="fullView" value="<%= Boolean.TRUE.toString() %>" />
-				<portlet:param name="start" value="<%= String.valueOf(start - delta) %>" />
-				<portlet:param name="end" value="<%= String.valueOf(end - delta) %>" />
-			</portlet:renderURL>
-
-			if (previous) {
-				Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= previousURL %>');
-			}
-			else {
-				Liferay.Notifications.renderNotificationsList(userNotificationsList, '<%= nextURL %>');
-			}
-		}
-	}
-
-	var updateNotificationsCount = function(newUserNotificationsCount, unreadUserNotificationsCount) {
-		var dockbarUserNotifications = A.one('.dockbar-user-notifications');
-
-		if (dockbarUserNotifications) {
-			var dockbarUserNotificationsCount = dockbarUserNotifications.one('.user-notifications-count');
-
-			if (dockbarUserNotificationsCount) {
-				dockbarUserNotificationsCount.toggleClass('alert', (newUserNotificationsCount > 0));
-
-				dockbarUserNotificationsCount.setHTML(unreadUserNotificationsCount);
-			}
-		}
-
-		var sidebarUserNotifications = A.one('.user-notifications-sidebar');
-
-		if (sidebarUserNotifications) {
-			var sidebarUnreadCount = sidebarUserNotifications.one('.count');
-
-			if (sidebarUnreadCount) {
-				sidebarUnreadCount.setHTML(unreadUserNotificationsCount);
-			}
-		}
-	};
-
-	A.on(
-		'domready',
-		function() {
-			createMarkAllAsReadNode();
-
-			delegateNotifications();
+<aui:script use="aui-base">
+	Liferay.Notifications.init(
+		{
+			baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
+			baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
+			baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
+			currentPageNotificationEventsCount: <%= userNotificationEventIds.size() %>,
+			delta: <%= delta %>,
+			end: <%= end %>,
+			filter: '<%= HtmlUtil.escape(filter) %>',
+			start: <%= start %>,
+			userNotificationEventsCount: <%= userNotificationEventsCount %>,
+			userNotificationEventIds: '<%= StringUtil.merge(userNotificationEventIds) %>'
 		}
 	);
 </aui:script>
