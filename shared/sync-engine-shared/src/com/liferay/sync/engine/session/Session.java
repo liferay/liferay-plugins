@@ -54,6 +54,7 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
 import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HttpContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -110,15 +111,29 @@ public class Session {
 	}
 
 	public HttpResponse execute(HttpRequest httpRequest) throws Exception {
-		return _httpClient.execute(
-			_httpHost, httpRequest, _getBasicHttpContext());
+		return execute(httpRequest, _getBasicHttpContext());
 	}
 
 	public <T> T execute(HttpRequest httpRequest, Handler<? extends T> handler)
 		throws Exception {
 
+		return execute(httpRequest, handler, _getBasicHttpContext());
+	}
+
+	public <T> T execute(
+			HttpRequest httpRequest, Handler<? extends T> handler,
+			HttpContext httpContext)
+		throws Exception {
+
 		return _httpClient.execute(
-			_httpHost, httpRequest, handler, _getBasicHttpContext());
+			_httpHost, httpRequest, handler, httpContext);
+	}
+
+	public HttpResponse execute(
+			HttpRequest httpRequest, HttpContext httpContext)
+		throws Exception {
+
+		return _httpClient.execute(_httpHost, httpRequest, httpContext);
 	}
 
 	public HttpResponse executeGet(String urlPath) throws Exception {
