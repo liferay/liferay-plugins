@@ -519,10 +519,10 @@ public class SyncSystemTest {
 
 			JsonNode filesJsonNode = stepJsonNode.get("files");
 
-			Iterator<JsonNode> filesJsonNodeIterator = filesJsonNode.elements();
+			Iterator<JsonNode> iterator = filesJsonNode.elements();
 
-			while (filesJsonNodeIterator.hasNext()) {
-				JsonNode fileJsonNode = filesJsonNodeIterator.next();
+			while (iterator.hasNext()) {
+				JsonNode fileJsonNode = iterator.next();
 
 				Path targetFilePath = getTargetFilePath(fileJsonNode);
 

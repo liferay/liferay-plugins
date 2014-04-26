@@ -110,13 +110,7 @@ public class SyncSystemTestUtil {
 		HttpResponse httpResponse = executePost(
 			"/group/get-group", parameters, syncAccountId);
 
-		HttpEntity httpEntity = httpResponse.getEntity();
-
-		String response = EntityUtils.toString(httpEntity);
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		JsonNode rootJsonNode = mapper.readTree(response);
+		JsonNode rootJsonNode = toJsonNode(httpResponse);
 
 		JsonNode groupIdJsonNode = rootJsonNode.get("groupId");
 
@@ -207,13 +201,7 @@ public class SyncSystemTestUtil {
 		HttpResponse httpResponse = executePost(
 			"/role/get-role", parameters, syncAccountId);
 
-		HttpEntity httpEntity = httpResponse.getEntity();
-
-		String response = EntityUtils.toString(httpEntity);
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		JsonNode rootJsonNode = mapper.readTree(response);
+		JsonNode rootJsonNode = toJsonNode(httpResponse);
 
 		JsonNode roleIdJsonNode = rootJsonNode.get("roleId");
 
@@ -234,13 +222,7 @@ public class SyncSystemTestUtil {
 		HttpResponse httpResponse = executePost(
 			"/company/get-company-by-virtual-host", parameters, syncAccountId);
 
-		HttpEntity httpEntity = httpResponse.getEntity();
-
-		String response = EntityUtils.toString(httpEntity);
-
-		ObjectMapper mapper = new ObjectMapper();
-
-		JsonNode rootJsonNode = mapper.readTree(response);
+		JsonNode rootJsonNode = toJsonNode(httpResponse);
 
 		JsonNode companyIdJsonNode = rootJsonNode.get("companyId");
 
@@ -260,6 +242,16 @@ public class SyncSystemTestUtil {
 		catch (IOException ioe) {
 			return false;
 		}
+	}
+
+	protected static JsonNode toJsonNode(HttpResponse httpResponse) {
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		HttpEntity httpEntity = httpResponse.getEntity();
+
+		String response = EntityUtils.toString(httpEntity);
+
+		return objectMapper.readTree(response);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
