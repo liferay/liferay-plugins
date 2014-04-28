@@ -39,6 +39,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.util.EntityUtils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Shinn Lok
  */
@@ -81,8 +84,22 @@ public class BaseJSONHandler extends BaseHandler {
 
 		String exception = exceptionJsonNode.asText();
 
+		if (_logger.isDebugEnabled()) {
+			_logger.debug(exception);
+		}
+
 		if (exception.equals(
-				"com.liferay.portal.security.auth.PrincipalException")) {
+				"com.liferay.portal.kernel.upload.UploadException")) {
+
+			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
+
+			syncFile.setState(SyncFile.STATE_ERROR);
+			syncFile.setUiEvent(SyncFile.UI_EVENT_EXCEEDED_SIZE_LIMIT);
+
+			SyncFileService.update(syncFile);
+		}
+		else if (exception.equals(
+					"com.liferay.portal.security.auth.PrincipalException")) {
 
 			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
 
@@ -160,5 +177,8 @@ public class BaseJSONHandler extends BaseHandler {
 
 	protected void processResponse(String response) throws Exception {
 	}
+
+	private static Logger _logger = LoggerFactory.getLogger(
+		BaseJSONHandler.class);
 
 }
