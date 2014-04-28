@@ -372,10 +372,10 @@ public class SyncSystemTest {
 
 		JsonNode stepsJsonNode = rootJsonNode.get("steps");
 
-		Iterator<JsonNode> stepsJsonNodeIterator = stepsJsonNode.elements();
+		Iterator<JsonNode> iterator = stepsJsonNode.elements();
 
-		while (stepsJsonNodeIterator.hasNext()) {
-			JsonNode stepJsonNode = stepsJsonNodeIterator.next();
+		while (iterator.hasNext()) {
+			JsonNode stepJsonNode = iterator.next();
 
 			String action = getString(stepJsonNode, "action");
 
@@ -504,17 +504,7 @@ public class SyncSystemTest {
 
 		String operation = getString(stepJsonNode, "operation", "exists");
 
-		if (operation.equals("exists")) {
-			if (Files.notExists(getTargetFilePath(stepJsonNode))) {
-				testPassed = false;
-			}
-		}
-		else if (operation.equals("notExists")) {
-			if (Files.exists(getTargetFilePath(stepJsonNode))) {
-				testPassed = false;
-			}
-		}
-		else if (operation.equals("equals")) {
+		if (operation.equals("equals")) {
 			List<File> files = new ArrayList<File>();
 
 			JsonNode filesJsonNode = stepJsonNode.get("files");
@@ -530,6 +520,16 @@ public class SyncSystemTest {
 			}
 
 			if (!FileUtils.contentEquals(files.get(0), files.get(1))) {
+				testPassed = false;
+			}
+		}
+		else if (operation.equals("exists")) {
+			if (Files.notExists(getTargetFilePath(stepJsonNode))) {
+				testPassed = false;
+			}
+		}
+		else if (operation.equals("notExists")) {
+			if (Files.exists(getTargetFilePath(stepJsonNode))) {
 				testPassed = false;
 			}
 		}
