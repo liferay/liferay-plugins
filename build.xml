@@ -50,50 +50,6 @@
 		</java>
 	</target>
 
-	<target name="clean">
-		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
-			<sequential>
-				<loop-modules
-					loop.modules.cmd="clean"
-					loop.modules.dir="@{loop.modules.dir}"
-				/>
-			</sequential>
-		</for>
-	</target>
-
-	<target name="compile">
-		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
-			<sequential>
-				<loop-modules
-					loop.modules.cmd="compile"
-					loop.modules.dir="@{loop.modules.dir}"
-				/>
-			</sequential>
-		</for>
-	</target>
-
-	<target name="deploy">
-		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
-			<sequential>
-				<loop-modules
-					loop.modules.cmd="deploy"
-					loop.modules.dir="@{loop.modules.dir}"
-				/>
-			</sequential>
-		</for>
-	</target>
-
-	<target name="direct-deploy">
-		<for list="hooks,layouttpl,portlets,themes,webs" param="loop.modules.dir">
-			<sequential>
-				<loop-modules
-					loop.modules.cmd="direct-deploy"
-					loop.modules.dir="@{loop.modules.dir}"
-				/>
-			</sequential>
-		</for>
-	</target>
-
 	<target name="ear">
 		<delete dir="dist/liferay-portal.ear" />
 		<delete dir="dist/modules" />
@@ -225,20 +181,16 @@
 	</target>
 
 	<target name="setup-eclipse">
-		<for list="hooks,portlets,webs" param="loop.modules.dir">
+		<for list="${plugins.includes.path}" param="module.dir">
 			<sequential>
-				<loop-modules
-					loop.modules.cmd="clean"
-					loop.modules.dir="@{loop.modules.dir}"
+				<call-macrodef-or-target
+					macrodef.name="clean"
+					module.dir="@{module.dir}"
 				/>
-			</sequential>
-		</for>
 
-		<for list="hooks,portlets,webs" param="loop.modules.dir">
-			<sequential>
-				<loop-modules
-					loop.modules.cmd="compile"
-					loop.modules.dir="@{loop.modules.dir}"
+				<call-macrodef-or-target
+					macrodef.name="compile"
+					module.dir="@{module.dir}"
 				/>
 			</sequential>
 		</for>
@@ -246,50 +198,6 @@
 		<ant dir="hooks" target="setup-eclipse" inheritAll="false" />
 		<ant dir="portlets" target="setup-eclipse" inheritAll="false" />
 		<ant dir="webs" target="setup-eclipse" inheritAll="false" />
-	</target>
-
-	<target name="test">
-		<for list="hooks,portlets,shared,webs" param="loop.modules.dir">
-			<sequential>
-				<loop-modules
-					loop.modules.cmd="test"
-					loop.modules.dir="@{loop.modules.dir}"
-				/>
-			</sequential>
-		</for>
-	</target>
-
-	<target name="test-integration">
-		<for list="hooks,portlets,shared,webs" param="loop.modules.dir">
-			<sequential>
-				<loop-modules
-					loop.modules.cmd="test-integration"
-					loop.modules.dir="@{loop.modules.dir}"
-				/>
-			</sequential>
-		</for>
-	</target>
-
-	<target name="test-unit">
-		<for list="hooks,portlets,shared,webs" param="loop.modules.dir">
-			<sequential>
-				<loop-modules
-					loop.modules.cmd="test-unit"
-					loop.modules.dir="@{loop.modules.dir}"
-				/>
-			</sequential>
-		</for>
-	</target>
-
-	<target name="war">
-		<for list="hooks,layouttpl,portlets,shared,themes,webs" param="loop.modules.dir">
-			<sequential>
-				<loop-modules
-					loop.modules.cmd="war"
-					loop.modules.dir="@{loop.modules.dir}"
-				/>
-			</sequential>
-		</for>
 	</target>
 
 	<target name="zip-portal">

@@ -42,41 +42,6 @@
 		</for>
 	</target>
 
-	<target name="clean">
-		<loop-modules
-			loop.modules.cmd="clean"
-			loop.modules.dir="."
-		/>
-	</target>
-
-	<target name="compile">
-		<loop-modules
-			loop.modules.cmd="compile"
-			loop.modules.dir="."
-		/>
-	</target>
-
-	<target name="deploy">
-		<loop-modules
-			loop.modules.cmd="deploy"
-			loop.modules.dir="."
-		/>
-	</target>
-
-	<target name="direct-deploy">
-		<loop-modules
-			loop.modules.cmd="direct-deploy"
-			loop.modules.dir="."
-		/>
-	</target>
-
-	<target name="jar">
-		<loop-modules
-			loop.modules.cmd="jar"
-			loop.modules.dir="."
-		/>
-	</target>
-
 	<target name="loop-modules">
 		<if>
 			<not>
@@ -109,33 +74,5 @@
 
 	<target name="setup-eclipse-module">
 		<ant dir="${module.name}" target="setup-eclipse" inheritAll="false" />
-	</target>
-
-	<target name="test">
-		<loop-modules
-			loop.modules.cmd="test"
-			loop.modules.dir="."
-		/>
-	</target>
-
-	<target name="test-integration">
-		<loop-modules
-			loop.modules.cmd="test-integration"
-			loop.modules.dir="."
-		/>
-	</target>
-
-	<target name="test-unit">
-		<loop-modules
-			loop.modules.cmd="test-unit"
-			loop.modules.dir="."
-		/>
-	</target>
-
-	<target name="war">
-		<loop-modules
-			loop.modules.cmd="war"
-			loop.modules.dir="."
-		/>
 	</target>
 </project>
