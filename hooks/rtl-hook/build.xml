@@ -6,10 +6,11 @@
 
 	<target name="update-from-portal">
 		<copy overwrite="true" preservelastmodified="true" todir="docroot/META-INF/custom_jsps">
-			<fileset dir="${app.server.portal.dir}">
-				<include name="**/*.css" />
-				<exclude name="**/_diffs/**" />
-			</fileset>
+			<fileset
+				dir="${app.server.portal.dir}"
+				excludes="**/_diffs/**"
+				includes="**/*.css"
+			/>
 		</copy>
 	</target>
 </project>
