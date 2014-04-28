@@ -272,6 +272,10 @@ public class SyncFileService {
 
 		// Remote sync file
 
+		if (syncFile.getState() == SyncFile.STATE_ERROR) {
+			return syncFile;
+		}
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("fileEntryId", syncFile.getTypePK());
@@ -296,6 +300,10 @@ public class SyncFileService {
 		deleteSyncFile(syncFile);
 
 		// Remote sync file
+
+		if (syncFile.getState() == SyncFile.STATE_ERROR) {
+			return syncFile;
+		}
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -464,6 +472,10 @@ public class SyncFileService {
 
 		// Remote sync file
 
+		if (syncFile.getState() == SyncFile.STATE_ERROR) {
+			return syncFile;
+		}
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("fileEntryId", syncFile.getTypePK());
@@ -492,6 +504,10 @@ public class SyncFileService {
 		updateSyncFile(filePath, parentFolderId, syncFile);
 
 		// Remote sync file
+
+		if (syncFile.getState() == SyncFile.STATE_ERROR) {
+			return syncFile;
+		}
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
@@ -572,6 +588,10 @@ public class SyncFileService {
 
 		// Remote sync file
 
+		if (syncFile.getState() == SyncFile.STATE_ERROR) {
+			return syncFile;
+		}
+
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.put("changeLog", changeLog);
@@ -624,6 +644,10 @@ public class SyncFileService {
 		updateSyncFile(filePath, syncFile.getParentFolderId(), syncFile);
 
 		// Remote sync file
+
+		if (syncFile.getState() == SyncFile.STATE_ERROR) {
+			return syncFile;
+		}
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
