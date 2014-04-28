@@ -34,7 +34,7 @@ AUI().use(
 				instance._updateFullviewNotificationsCount(instance._filter, instance._userNotificationEventsCount);
 			},
 
-			initDockbar: function(config) {
+			initDockbarNotifications: function(config) {
 				var instance = this;
 
 				instance._baseActionURL = config.baseActionURL;
@@ -42,12 +42,13 @@ AUI().use(
 				instance._portletKey = config.portletKey;
 
 				instance._createMenuToggle();
-			},
 
-			poller: function() {
-				var instance = this;
-
-				Liferay.Poller.addListener(instance._portletKey, instance._onPollerUpdate, instance);
+				A.on(
+					'domready',
+					function() {
+						Liferay.Poller.addListener(instance._portletKey, instance._onPollerUpdate, instance);
+					}
+				);
 			},
 
 			renderNotificationsList: function(notificationsList, uri) {

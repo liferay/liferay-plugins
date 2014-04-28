@@ -31,18 +31,11 @@
 		<ul class="dropdown-menu pull-right user-notifications-list"></ul>
 
 		<aui:script use="aui-base">
-			Liferay.Notifications.initDockbar(
+			Liferay.Notifications.initDockbarNotifications(
 				{
 					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
 					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 					portletKey: '<%= PortletKeys.DOCKBAR_NOTIFICATIONS %>'
-				}
-			);
-
-			A.on(
-				'domready',
-				function() {
-					Liferay.Notifications.poller();
 				}
 			);
 		</aui:script>
