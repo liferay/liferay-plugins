@@ -53,7 +53,7 @@ import org.slf4j.LoggerFactory;
  */
 public class SyncEngine {
 
-	public static void cancelSyncAccountTasks(long syncAccountId)
+	public synchronized static void cancelSyncAccountTasks(long syncAccountId)
 		throws Exception {
 
 		if (!_running) {
@@ -76,11 +76,11 @@ public class SyncEngine {
 		watcher.close();
 	}
 
-	public static boolean isRunning() {
+	public synchronized static boolean isRunning() {
 		return _running;
 	}
 
-	public static void scheduleSyncAccountTasks(long syncAccountId)
+	public synchronized static void scheduleSyncAccountTasks(long syncAccountId)
 		throws Exception {
 
 		if (!_running) {
@@ -147,7 +147,7 @@ public class SyncEngine {
 			syncAccountId, new Object[] {scheduledFuture, watcher});
 	}
 
-	public static void start() {
+	public synchronized static void start() {
 		if (_running) {
 			return;
 		}
@@ -162,7 +162,7 @@ public class SyncEngine {
 		}
 	}
 
-	public static void stop() {
+	public synchronized static void stop() {
 		if (!_running) {
 			return;
 		}
