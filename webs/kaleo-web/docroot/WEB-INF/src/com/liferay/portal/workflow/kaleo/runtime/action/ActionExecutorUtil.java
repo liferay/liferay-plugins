@@ -18,8 +18,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.definition.ExecutionType;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
+import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
+import com.liferay.portal.workflow.kaleo.service.KaleoInstanceLocalServiceUtil;
 import com.liferay.portal.workflow.kaleo.service.KaleoLogLocalServiceUtil;
 
 import java.util.List;
@@ -49,6 +51,14 @@ public class ActionExecutorUtil {
 						kaleoAction.getScriptLanguage());
 
 				actionExecutor.execute(kaleoAction, executionContext);
+
+				KaleoInstanceToken kaleoInstanceToken =
+					executionContext.getKaleoInstanceToken();
+
+				KaleoInstanceLocalServiceUtil.updateKaleoInstance(
+					kaleoInstanceToken.getKaleoInstanceId(),
+					executionContext.getWorkflowContext(),
+					executionContext.getServiceContext());
 			}
 			catch (Exception e) {
 				comment = e.getMessage();

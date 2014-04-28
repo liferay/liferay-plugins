@@ -25,6 +25,9 @@ import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
 import com.liferay.portal.workflow.kaleo.runtime.util.RulesContextBuilder;
+import com.liferay.portal.workflow.kaleo.util.WorkflowContextUtil;
+
+import java.io.Serializable;
 
 import java.util.Collection;
 import java.util.List;
@@ -55,6 +58,13 @@ public class DRLScriptingTaskAssignmentSelector
 		Map<String, ?> results = RulesEngineUtil.execute(
 			rulesResourceRetriever, facts, query,
 			PortalClassLoaderUtil.getClassLoader());
+
+		Map<String, Serializable> resultsWorkflowContext =
+			(Map<String, Serializable>)results.get(
+				WorkflowContextUtil.WORKFLOW_CONTEXT_NAME);
+
+		WorkflowContextUtil.mergeWorkflowContexts(
+			executionContext, resultsWorkflowContext);
 
 		return getKaleoTaskAssignments(results);
 	}
