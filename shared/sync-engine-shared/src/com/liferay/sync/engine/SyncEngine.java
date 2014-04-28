@@ -187,10 +187,13 @@ public class SyncEngine {
 
 		UpgradeUtil.upgrade();
 
-		SyncAccountService.registerModelListener(
-			new SyncAccountModelListener());
-		SyncFileService.registerModelListener(new SyncFileModelListener());
-		SyncSiteService.registerModelListener(new SyncSiteModelListener());
+		_syncAccountModelListener = new SyncAccountModelListener();
+		_syncFileModelListener = new SyncFileModelListener();
+		_syncSiteModelListener = new SyncSiteModelListener();
+
+		SyncAccountService.registerModelListener(_syncAccountModelListener);
+		SyncFileService.registerModelListener(_syncFileModelListener);
+		SyncSiteService.registerModelListener(_syncSiteModelListener);
 
 		SyncWatchEventProcessor syncWatchEventProcessor =
 			new SyncWatchEventProcessor();
@@ -230,10 +233,9 @@ public class SyncEngine {
 
 		_syncWatchEventProcessorExecutorService.shutdown();
 
-		SyncAccountService.unregisterModelListener(
-			new SyncAccountModelListener());
-		SyncFileService.unregisterModelListener(new SyncFileModelListener());
-		SyncSiteService.unregisterModelListener(new SyncSiteModelListener());
+		SyncAccountService.unregisterModelListener(_syncAccountModelListener);
+		SyncFileService.unregisterModelListener(_syncFileModelListener);
+		SyncSiteService.unregisterModelListener(_syncSiteModelListener);
 
 		SyncEngineUtil.fireSyncEngineStateChanged(
 			SyncEngineUtil.SYNC_ENGINE_STATE_STOPPED);
@@ -244,8 +246,11 @@ public class SyncEngine {
 	private static ScheduledExecutorService _eventScheduledExecutorService =
 		Executors.newScheduledThreadPool(5);
 	private static boolean _running;
+	private static SyncAccountModelListener _syncAccountModelListener;
 	private static Map<Long, Object[]> _syncAccountTasks =
 		new HashMap<Long, Object[]>();
+	private static SyncFileModelListener _syncFileModelListener;
+	private static SyncSiteModelListener _syncSiteModelListener;
 	private static ScheduledExecutorService
 		_syncWatchEventProcessorExecutorService;
 	private static ExecutorService _watcherExecutorService =
