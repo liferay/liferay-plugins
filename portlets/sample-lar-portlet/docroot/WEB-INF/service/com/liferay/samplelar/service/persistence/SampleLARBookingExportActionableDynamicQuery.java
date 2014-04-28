@@ -28,8 +28,10 @@ import com.liferay.samplelar.model.SampleLARBooking;
 
 /**
  * @author Mate Thurzo
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public class SampleLARBookingExportActionableDynamicQuery
 	extends SampleLARBookingActionableDynamicQuery {
 	public SampleLARBookingExportActionableDynamicQuery(

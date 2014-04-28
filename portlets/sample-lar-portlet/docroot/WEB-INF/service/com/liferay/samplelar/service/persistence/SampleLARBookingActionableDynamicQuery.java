@@ -22,8 +22,10 @@ import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
 
 /**
  * @author Mate Thurzo
+ * @deprecated As of 7.0.0, replaced by {@link SampleLARBookingLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class SampleLARBookingActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public SampleLARBookingActionableDynamicQuery() throws SystemException {
