@@ -17,6 +17,7 @@
 		<field name="title" type="String">
 			<hint name="max-length">4000</hint>
 		</field>
+		<field name="urlTitle" type="String" />
 		<field name="content" type="String">
 			<hint-collection name="CLOB" />
 		</field>

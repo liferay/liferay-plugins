@@ -28,6 +28,7 @@
 			<basic name="parentResourcePrimKey" />
 			<basic name="version" />
 			<basic name="title" />
+			<basic name="urlTitle" />
 			<basic name="content" />
 			<basic name="description" />
 			<basic name="priority" />

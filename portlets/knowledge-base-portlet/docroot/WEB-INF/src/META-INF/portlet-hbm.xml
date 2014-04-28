@@ -22,6 +22,7 @@
 		<property name="parentResourcePrimKey" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="version" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="urlTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="priority" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />

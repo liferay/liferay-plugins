@@ -286,6 +286,21 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	public void setTitle(String title);
 
 	/**
+	 * Returns the url title of this k b article.
+	 *
+	 * @return the url title of this k b article
+	 */
+	@AutoEscape
+	public String getUrlTitle();
+
+	/**
+	 * Sets the url title of this k b article.
+	 *
+	 * @param urlTitle the url title of this k b article
+	 */
+	public void setUrlTitle(String urlTitle);
+
+	/**
 	 * Returns the content of this k b article.
 	 *
 	 * @return the content of this k b article
