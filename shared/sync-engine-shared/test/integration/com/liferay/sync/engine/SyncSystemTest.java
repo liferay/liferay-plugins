@@ -372,11 +372,7 @@ public class SyncSystemTest {
 
 		JsonNode stepsJsonNode = rootJsonNode.get("steps");
 
-		Iterator<JsonNode> iterator = stepsJsonNode.elements();
-
-		while (iterator.hasNext()) {
-			JsonNode stepJsonNode = iterator.next();
-
+		for (JsonNode stepJsonNode : stepsJsonNode) {
 			String action = getString(stepJsonNode, "action");
 
 			if (action.equals("activateSite")) {
