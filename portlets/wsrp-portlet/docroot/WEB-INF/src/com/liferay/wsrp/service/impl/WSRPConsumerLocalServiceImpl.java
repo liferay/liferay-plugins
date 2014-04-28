@@ -18,6 +18,7 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -25,6 +26,7 @@ import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
+import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.wsrp.NoSuchConsumerException;
@@ -95,10 +97,13 @@ public class WSRPConsumerLocalServiceImpl
 		WSRPConsumer wsrpConsumer = wsrpConsumerPersistence.findByPrimaryKey(
 			wsrpConsumerId);
 
-		return deleteWSRPConsumer(wsrpConsumer);
+		return wsrpConsumerLocalService.deleteWSRPConsumer(wsrpConsumer);
 	}
 
 	@Override
+	@SystemEvent(
+		action = SystemEventConstants.ACTION_SKIP,
+		type = SystemEventConstants.TYPE_DELETE)
 	public WSRPConsumer deleteWSRPConsumer(WSRPConsumer wsrpConsumer)
 		throws PortalException, SystemException {
 

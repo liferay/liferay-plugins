@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
+import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -36,6 +37,7 @@ import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletApp;
 import com.liferay.portal.model.PortletInfo;
+import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
@@ -131,7 +133,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 			wsrpConsumerPortletPersistence.findByPrimaryKey(
 				wsrpConsumerPortletId);
 
-		return deleteWSRPConsumerPortlet(wsrpConsumerPortlet);
+		return wsrpConsumerPortletLocalService.deleteWSRPConsumerPortlet(
+			wsrpConsumerPortlet);
 	}
 
 	public void deleteWSRPConsumerPortlet(String wsrpConsumerPortletUuid)
@@ -141,11 +144,13 @@ public class WSRPConsumerPortletLocalServiceImpl
 			wsrpConsumerPortletPersistence.findByUuid(wsrpConsumerPortletUuid);
 
 		if (!wsrpConsumerPortlets.isEmpty()) {
-			deleteWSRPConsumerPortlet(wsrpConsumerPortlets.get(0));
+			wsrpConsumerPortletLocalService.deleteWSRPConsumerPortlet(
+				wsrpConsumerPortlets.get(0));
 		}
 	}
 
 	@Override
+	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public WSRPConsumerPortlet deleteWSRPConsumerPortlet(
 			WSRPConsumerPortlet wsrpConsumerPortlet)
 		throws PortalException, SystemException {
@@ -169,7 +174,8 @@ public class WSRPConsumerPortletLocalServiceImpl
 			wsrpConsumerPortletPersistence.findByWsrpConsumerId(wsrpConsumerId);
 
 		for (WSRPConsumerPortlet wsrpConsumerPortlet : wsrpConsumerPortlets) {
-			deleteWSRPConsumerPortlet(wsrpConsumerPortlet);
+			wsrpConsumerPortletLocalService.deleteWSRPConsumerPortlet(
+				wsrpConsumerPortlet);
 		}
 	}
 
