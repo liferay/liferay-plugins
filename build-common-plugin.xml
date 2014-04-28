@@ -4,6 +4,8 @@
 <project name="build-common-plugin" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<property name="plugins.includes.path" value="${basedir}" />
+
 	<set-module-properties
 		module.dir="."
 	/>
