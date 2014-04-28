@@ -244,7 +244,9 @@ public class SyncSystemTestUtil {
 		}
 	}
 
-	protected static JsonNode toJsonNode(HttpResponse httpResponse) {
+	protected static JsonNode toJsonNode(HttpResponse httpResponse)
+		throws Exception {
+
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		HttpEntity httpEntity = httpResponse.getEntity();
