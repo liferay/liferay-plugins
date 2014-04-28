@@ -1,0 +1,249 @@
+$preferred-padding: 10px;
+
+@mixin ctrl-button-hover($name, $btn-size) {
+	background-image: url('../images/btns-' + $btn-size + '/btn-' + $name + '.png');
+	&:hover {
+		background-image: url('../images/btns-' + $btn-size + '/btn-' + $name + '-hover.png');
+	}
+}
+
+@mixin ctrl-buttons($btn-size) {
+	&.accept {
+		@include ctrl-button-hover(accept, $btn-size);
+	}
+
+	&.call {
+		@include ctrl-button-hover(call, $btn-size);
+	}
+
+	&.fullscreen {
+		&.off {
+			@include ctrl-button-hover(fullscreen, $btn-size);
+		}
+
+		&.on {
+			@include ctrl-button-hover(fullscreen-exit, $btn-size);
+		}
+	}
+
+	&.hangup {
+		@include ctrl-button-hover(hangup, $btn-size);
+	}
+
+	&.mike {
+		&.muted {
+			@include ctrl-button-hover(mic-off, $btn-size);
+		}
+
+		&.unmuted {
+			@include ctrl-button-hover(mic-on, $btn-size);
+		}
+	}
+}
+
+@mixin transform-mirror() {
+	-webkit-transform: scale(-1, 1);
+	transform: scale(-1, 1);	
+}
+
+.chat-bar,
+.chat-video-overlay {
+	.chat-video-ctrl-buttons a {
+		background-repeat: no-repeat;
+		display: block;
+		float: right;
+	}
+
+	.remote-video {
+		cursor: pointer;
+		height: 100%;
+		position: relative;
+		width: 100%;
+
+		video.local {
+			bottom: $preferred-padding;
+			border: 2px solid transparentize(white, .3);
+			border-radius: 2px;
+			height: 160px;
+			left: $preferred-padding;
+			position: absolute;
+			width: auto;
+		}
+
+		video.local {
+			@include transform-mirror();
+		}
+
+		video.remote {
+			height: 100%;
+			width: 100%;
+		}
+	}
+
+	.remote-video-container {
+		background: black;
+		border-radius: 3px;
+		height: 165px;
+
+		video.local {
+			display: none;
+		}
+	}
+}
+
+.chat-bar {
+	.chat-video-available {
+		$dimension: 16px;
+
+		background: url(../images/icon-video.png) no-repeat;
+		display: inline-block;
+		float: right;
+		height: $dimension;
+		margin-right: 5px;
+		padding: 0;
+		position: relative;
+		top: 4px;
+		width: $dimension;
+	}
+
+	.chat-video-ctrl {
+		$height: 24px;
+
+		background: #20272b;
+		height: $height;
+		padding: $preferred-padding;
+		position: relative;
+
+		.chat-video-ctrl-buttons {
+			a {
+				height: $height;
+				margin-left: 5px;
+				width: $height;
+				
+				@include ctrl-buttons(24);
+			}
+		}
+
+		.chat-video-msg {
+			height: $height;
+			left: 0;
+			padding: 5px 0px 5px 35px;
+			position: absolute;
+			top: 5px;
+			width: 90px;
+
+			.msg {
+				color: #c5ccd0;
+				height: 100%;
+				line-height: 110%;
+				overflow: hidden;
+			}
+
+			&.error {
+				padding-left: 5px;
+				width: 150px;
+
+				.msg {
+					color: #ff6670;
+				}
+			}
+
+			&.in-call {
+				padding-left: 15px;
+
+				.msg {
+					position: relative;
+					top: 6px;
+					font-weight: bold;
+				}
+			}
+
+			.working {
+				background-image: url(../images/working.gif);
+				background-repeat: no-repeat;
+				height: $height;
+				left: 5px;
+				position: absolute;
+				top: 5px;
+				width: $height;
+			}
+		}
+	}
+
+	.panel-self-view {
+		$dimension: 48px;
+
+		border: 1px solid #000;
+		display: block;
+		height: $dimension;
+		left: 6px;
+		position: absolute;
+		top: 4px;
+		width: $dimension;
+
+		img, video {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+
+		img {
+			background: #333;
+		}
+
+		video {
+			background: black;
+		}
+	}
+}
+
+.chat-video-overlay {
+	$btn-dimension: 32px;
+
+	background: transparentize(black, .1);
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 2000;
+
+	.chat-video-ctrl-buttons,
+	.call-time {
+		background: rgba(white, 0.5);
+		border-radius: 3px;
+		position: absolute;
+		z-index: 2001;
+	}
+
+	.chat-video-ctrl-buttons {
+		$nb-buttons: 3;
+		$inner-width: ($nb-buttons + 1) * $preferred-padding + $nb-buttons * $btn-dimension;
+
+		bottom: $preferred-padding;
+		left: 50%;
+		margin-left: -($inner-width / 2);
+		padding: $preferred-padding 0px $preferred-padding $preferred-padding;
+		
+		a {
+			height: $btn-dimension;
+			margin-right: $preferred-padding;
+			width: $btn-dimension;
+
+			@include ctrl-buttons(32);
+		}
+	}
+
+	.call-time {
+		display: inline-block;
+		color: black;
+		font-size: 18px;
+		padding: $preferred-padding;
+		right: $preferred-padding;
+		top: $preferred-padding;
+	}
+
+	video.local {
+		display: block;
+	}
+}
