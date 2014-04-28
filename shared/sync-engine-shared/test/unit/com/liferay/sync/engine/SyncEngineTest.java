@@ -34,7 +34,7 @@ public class SyncEngineTest {
 				if (syncEngineState ==
 						SyncEngineUtil.SYNC_ENGINE_STATE_STOPPED) {
 
-					_engineStopped = true;
+					_stopped = true;
 				}
 			}
 
@@ -60,11 +60,11 @@ public class SyncEngineTest {
 
 		Thread.sleep(100);
 
-		if (!_engineStopped) {
+		if (!_stopped) {
 			Assert.fail();
 		}
 	}
 
-	private boolean _engineStopped;
+	private boolean _stopped;
 
 }

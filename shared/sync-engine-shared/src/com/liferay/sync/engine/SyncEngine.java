@@ -188,11 +188,15 @@ public class SyncEngine {
 		UpgradeUtil.upgrade();
 
 		_syncAccountModelListener = new SyncAccountModelListener();
-		_syncFileModelListener = new SyncFileModelListener();
-		_syncSiteModelListener = new SyncSiteModelListener();
 
 		SyncAccountService.registerModelListener(_syncAccountModelListener);
+
+		_syncFileModelListener = new SyncFileModelListener();
+
 		SyncFileService.registerModelListener(_syncFileModelListener);
+
+		_syncSiteModelListener = new SyncSiteModelListener();
+
 		SyncSiteService.registerModelListener(_syncSiteModelListener);
 
 		SyncWatchEventProcessor syncWatchEventProcessor =
