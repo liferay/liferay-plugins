@@ -1453,37 +1453,6 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="loop-modules">
-		<attribute name="loop.modules.cmd" />
-		<attribute name="loop.modules.dir" />
-
-		<sequential>
-			<if>
-				<not>
-					<equals arg1="${plugins.includes}" arg2="" />
-				</not>
-				<then>
-					<path id="module.dirs.path">
-						<dirset dir="@{loop.modules.dir}" excludes="${plugins.excludes}" includes="${plugins.includes}" />
-					</path>
-
-					<pathconvert pathsep="," property="module.dirs" refid="module.dirs.path" targetos="unix" />
-
-					<for list="${module.dirs}" param="module.dir">
-						<sequential>
-							<call-macrodef-or-target
-								macrodef.name="@{loop.modules.cmd}"
-								module.dir="@{module.dir}"
-							/>
-						</sequential>
-					</for>
-
-					<var name="module.dirs" unset="true" />
-				</then>
-			</if>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="manifest-helper">
 		<attribute name="analyze" default="false" />
 
@@ -2168,6 +2137,28 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<target name="clean">
+		<for list="${plugins.includes.path}" param="module.dir">
+			<sequential>
+				<call-macrodef-or-target
+					macrodef.name="clean"
+					module.dir="@{module.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="compile">
+		<for list="${plugins.includes.path}" param="module.dir">
+			<sequential>
+				<call-macrodef-or-target
+					macrodef.name="compile"
+					module.dir="@{module.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
 	<target name="create">
 		<if>
 			<or>
@@ -2199,6 +2190,28 @@ Please find a solution that does not require portal-impl.jar.
 		</if>
 	</target>
 
+	<target name="deploy">
+		<for list="${plugins.includes.path}" param="module.dir">
+			<sequential>
+				<call-macrodef-or-target
+					macrodef.name="deploy"
+					module.dir="@{module.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="direct-deploy">
+		<for list="${plugins.includes.path}" param="module.dir">
+			<sequential>
+				<call-macrodef-or-target
+					macrodef.name="direct-deploy"
+					module.dir="@{module.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
 	<target name="format-javadoc">
 		<java
 			classname="com.liferay.portal.tools.JavadocFormatter"
@@ -2227,6 +2240,17 @@ Please find a solution that does not require portal-impl.jar.
 		</java>
 
 		<delete file="ServiceBuilder.temp" />
+	</target>
+
+	<target name="jar">
+		<for list="${plugins.includes.path}" param="module.dir">
+			<sequential>
+				<call-macrodef-or-target
+					macrodef.name="jar"
+					module.dir="@{module.dir}"
+				/>
+			</sequential>
+		</for>
 	</target>
 
 	<target name="print-current-time">
@@ -2290,5 +2314,49 @@ Please find a solution that does not require portal-impl.jar.
 			<jvmarg value="-Xss2048k" />
 			<arg value="sort.xml.file.name=${sort.xml.file.name}" />
 		</java>
+	</target>
+
+	<target name="test">
+		<for list="${plugins.includes.path}" param="module.dir">
+			<sequential>
+				<call-macrodef-or-target
+					macrodef.name="test"
+					module.dir="@{module.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="test-integration">
+		<for list="${plugins.includes.path}" param="module.dir">
+			<sequential>
+				<call-macrodef-or-target
+					macrodef.name="test-integration"
+					module.dir="@{module.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="test-unit">
+		<for list="${plugins.includes.path}" param="module.dir">
+			<sequential>
+				<call-macrodef-or-target
+					macrodef.name="test-unit"
+					module.dir="@{module.dir}"
+				/>
+			</sequential>
+		</for>
+	</target>
+
+	<target name="war">
+		<for list="${plugins.includes.path}" param="module.dir">
+			<sequential>
+				<call-macrodef-or-target
+					macrodef.name="war"
+					module.dir="@{module.dir}"
+				/>
+			</sequential>
+		</for>
 	</target>
 </project>

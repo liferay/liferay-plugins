@@ -414,18 +414,6 @@
 		<delete dir="${tstamp.value}" />
 	</target>
 
-	<target name="clean">
-		<clean
-			module.dir="."
-		/>
-	</target>
-
-	<target name="compile">
-		<compile
-			module.dir="."
-		/>
-	</target>
-
 	<target name="compile-import-shared">
 		<compile-import-shared
 			module.dir="."
@@ -446,18 +434,6 @@
 
 	<target name="compile-test-unit">
 		<compile-test-unit
-			module.dir="."
-		/>
-	</target>
-
-	<target name="deploy">
-		<deploy
-			module.dir="."
-		/>
-	</target>
-
-	<target name="direct-deploy">
-		<direct-deploy
 			module.dir="."
 		/>
 	</target>
@@ -626,34 +602,10 @@
 		<delete dir="${tstamp.value}" />
 	</target>
 
-	<target name="test">
-		<test
-			module.dir="."
-		/>
-	</target>
-
 	<target name="test-class">
 		<test-class
 			module.dir="."
 			test.class="${test.class}"
-		/>
-	</target>
-
-	<target name="test-integration">
-		<test-integration
-			module.dir="."
-		/>
-	</target>
-
-	<target name="test-unit">
-		<test-unit
-			module.dir="."
-		/>
-	</target>
-
-	<target name="war">
-		<war-macro
-			module.dir="."
 		/>
 	</target>
 </project>
