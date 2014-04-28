@@ -4,6 +4,17 @@
 <project name="plugins" basedir="." default="all" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<path id="plugins.includes.path">
+		<dirset dir="hooks" excludes="${plugins.excludes}" includes="${plugins.includes}" />
+		<dirset dir="layouttpl" excludes="${plugins.excludes}" includes="${plugins.includes}" />
+		<dirset dir="portlets" excludes="${plugins.excludes}" includes="${plugins.includes}" />
+		<dirset dir="shared" excludes="${plugins.excludes}" includes="${plugins.includes}" />
+		<dirset dir="themes" excludes="${plugins.excludes}" includes="${plugins.includes}" />
+		<dirset dir="webs" excludes="${plugins.excludes}" includes="${plugins.includes}" />
+	</path>
+
+	<pathconvert pathsep="," property="plugins.includes.path" refid="plugins.includes.path" targetos="unix" />
+
 	<target name="all">
 		<antcall target="clean" />
 		<antcall target="deploy" />

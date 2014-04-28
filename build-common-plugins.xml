@@ -4,6 +4,12 @@
 <project name="build-common-plugins" xmlns:antelope="antlib:ise.antelope.tasks">
 	<import file="build-common.xml" />
 
+	<path id="plugins.includes.path">
+		<dirset dir="." includes="*" />
+	</path>
+
+	<pathconvert pathsep="," property="plugins.includes.path" refid="plugins.includes.path" targetos="unix" />
+
 	<if>
 		<equals arg1="${basedir}" arg2="${user.dir}" />
 		<then>
