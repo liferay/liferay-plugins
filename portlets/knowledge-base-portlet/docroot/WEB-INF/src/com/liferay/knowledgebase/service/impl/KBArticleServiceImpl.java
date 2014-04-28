@@ -85,8 +85,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 
 	public KBArticle addKBArticle(
 			String portletId, long parentResourcePrimKey, String title,
-			String content, String description, String[] sections,
-			String dirName, ServiceContext serviceContext)
+			String urlTitle, String content, String description,
+			String[] sections, String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
@@ -101,8 +101,8 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		}
 
 		return kbArticleLocalService.addKBArticle(
-			getUserId(), parentResourcePrimKey, title, content, description,
-			sections, dirName, serviceContext);
+			getUserId(), parentResourcePrimKey, title, urlTitle, content,
+			description, sections, dirName, serviceContext);
 	}
 
 	public void deleteAttachment(
