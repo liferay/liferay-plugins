@@ -505,11 +505,7 @@ public class SyncSystemTest {
 
 			JsonNode filesJsonNode = stepJsonNode.get("files");
 
-			Iterator<JsonNode> iterator = filesJsonNode.elements();
-
-			while (iterator.hasNext()) {
-				JsonNode fileJsonNode = iterator.next();
-
+			for (JsonNode fileJsonNode : filesJsonNode) {
 				Path targetFilePath = getTargetFilePath(fileJsonNode);
 
 				files.add(targetFilePath.toFile());
