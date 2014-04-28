@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.search.SortFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -45,13 +46,16 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.journal.model.JournalArticle;
 
 import java.io.InputStream;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 /**
  * @author Peter Shin
@@ -246,6 +250,27 @@ public class KnowledgeBaseUtil {
 		};
 	}
 
+	public static String getUrlTitle(long id, String title) {
+		if (title == null) {
+			return String.valueOf(id);
+		}
+
+		title = StringUtil.toLowerCase(title.trim());
+
+		if (Validator.isNull(title) || Validator.isNumber(title) ||
+			title.equals("rss")) {
+
+			title = String.valueOf(id);
+		}
+		else {
+			title = FriendlyURLNormalizerUtil.normalize(
+				title, _friendlyURLPattern);
+		}
+
+		return ModelHintsUtil.trimString(
+			JournalArticle.class.getName(), "urlTitle", title);
+	}
+
 	public static String[] parseKeywords(String values) {
 		List<String> keywords = new UniqueList<String>();
 
@@ -314,5 +339,7 @@ public class KnowledgeBaseUtil {
 
 	private static final int _SQL_DATA_MAX_PARAMETERS = GetterUtil.getInteger(
 		PropsUtil.get(PropsKeys.SQL_DATA_MAX_PARAMETERS));
+
+	private static Pattern _friendlyURLPattern = Pattern.compile("[^a-z0-9_-]");
 
 }

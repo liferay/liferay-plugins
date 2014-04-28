@@ -17,6 +17,7 @@ package com.liferay.knowledgebase.service.impl;
 import com.liferay.knowledgebase.KBArticleContentException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleTitleException;
+import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.admin.social.AdminActivityKeys;
 import com.liferay.knowledgebase.admin.util.AdminSubscriptionSender;
 import com.liferay.knowledgebase.admin.util.AdminUtil;
@@ -81,6 +82,7 @@ import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
+import com.liferay.portlet.journal.util.comparator.ArticleVersionComparator;
 
 import java.io.File;
 import java.io.InputStream;
@@ -130,8 +132,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	public KBArticle addKBArticle(
 			long userId, long parentResourcePrimKey, String title,
-			String content, String description, String[] sections,
-			String dirName, ServiceContext serviceContext)
+			String urlTitle, String content, String description,
+			String[] sections, String dirName, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
 		// KB article
@@ -164,6 +166,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setParentResourcePrimKey(parentResourcePrimKey);
 		kbArticle.setVersion(KBArticleConstants.DEFAULT_VERSION);
 		kbArticle.setTitle(title);
+		kbArticle.setUrlTitle(
+			getUniqueUrlTitle(kbArticleId, title, urlTitle, serviceContext));
 		kbArticle.setContent(content);
 		kbArticle.setDescription(description);
 		kbArticle.setPriority(priority);
@@ -520,6 +524,23 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return Collections.unmodifiableList(kbArticles);
 	}
 
+	@Override
+	public KBArticle getKBArticleByUrlTitle(long groupId, String urlTitle)
+		throws PortalException, SystemException {
+
+		// Get the latest KB article that is approved, if none are approved, get
+		// the latest unapproved KB article
+
+		try {
+			return getLatestKBArticleByUrlTitle(
+				groupId, urlTitle, WorkflowConstants.STATUS_APPROVED);
+		}
+		catch (NoSuchArticleException nsae) {
+			return getLatestKBArticleByUrlTitle(
+				groupId, urlTitle, WorkflowConstants.STATUS_PENDING);
+		}
+	}
+
 	public List<KBArticle> getKBArticles(
 			long[] resourcePrimKeys, int status,
 			OrderByComparator orderByComparator)
@@ -592,6 +613,33 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		return kbArticlePersistence.findByR_S_First(
 			resourcePrimKey, status, new KBArticleVersionComparator());
+	}
+
+	@Override
+	public KBArticle getLatestKBArticleByUrlTitle(
+			long groupId, String urlTitle, int status)
+		throws PortalException, SystemException {
+
+		List<KBArticle> kbArticles = null;
+
+		OrderByComparator orderByComparator = new ArticleVersionComparator();
+
+		if (status == WorkflowConstants.STATUS_ANY) {
+			kbArticles = kbArticlePersistence.findByG_UT(
+				groupId, urlTitle, 0, 1, orderByComparator);
+		}
+		else {
+			kbArticles = kbArticlePersistence.findByG_UT_ST(
+				groupId, urlTitle, status, 0, 1, orderByComparator);
+		}
+
+		if (kbArticles.isEmpty()) {
+			throw new NoSuchArticleException(
+				"No KBArticle exists with the key {groupId=" + groupId +
+					", urlTitle=" + urlTitle + ", status=" + status + "}");
+		}
+
+		return kbArticles.get(0);
 	}
 
 	public List<KBArticle> getSectionsKBArticles(
@@ -1427,6 +1475,75 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 	protected Date getTicketExpirationDate() {
 		return new Date(System.currentTimeMillis() + _TICKET_EXPIRATION);
+	}
+
+	protected String getUniqueUrlTitle(
+			long groupId, long kbArticleId, String title)
+		throws PortalException, SystemException {
+
+		String urlTitle = KnowledgeBaseUtil.getUrlTitle(kbArticleId, title);
+
+		for (int i = 1;; i++) {
+			KBArticle kbArticle = null;
+
+			try {
+				kbArticle = getKBArticleByUrlTitle(groupId, urlTitle);
+			}
+			catch (NoSuchArticleException nsae) {
+			}
+
+			if ((kbArticle == null) ||
+				(kbArticleId == kbArticle.getKbArticleId())) {
+
+				break;
+			}
+			else {
+				String suffix = StringPool.DASH + i;
+
+				String prefix = urlTitle;
+
+				if (urlTitle.length() > suffix.length()) {
+					prefix = urlTitle.substring(
+						0, urlTitle.length() - suffix.length());
+				}
+
+				urlTitle = prefix + suffix;
+			}
+		}
+
+		return urlTitle;
+	}
+
+	protected String getUniqueUrlTitle(
+			long kbArticleId, String title, String urlTitle,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		if (Validator.isNotNull(urlTitle)) {
+			urlTitle = KnowledgeBaseUtil.getUrlTitle(kbArticleId, urlTitle);
+		}
+		else {
+			urlTitle = getUniqueUrlTitle(
+				serviceContext.getScopeGroupId(), kbArticleId, title);
+		}
+
+		KBArticle urlTitleArticle = null;
+
+		try {
+			urlTitleArticle = getKBArticleByUrlTitle(
+				serviceContext.getScopeGroupId(), urlTitle);
+		}
+		catch (NoSuchArticleException nsae) {
+		}
+
+		if ((urlTitleArticle != null) &&
+			(kbArticleId != urlTitleArticle.getKbArticleId())) {
+
+			urlTitle = getUniqueUrlTitle(
+				serviceContext.getScopeGroupId(), kbArticleId, urlTitle);
+		}
+
+		return urlTitle;
 	}
 
 	protected boolean isValidDirName(String dirName) throws SystemException {
