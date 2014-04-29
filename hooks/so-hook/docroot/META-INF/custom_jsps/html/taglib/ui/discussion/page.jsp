@@ -400,7 +400,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 														<liferay-ui:icon
 															iconCssClass="icon-reply"
 															label="<%= true %>"
-															message="post-reply"
+															message="reply"
 															url="<%= taglibPostReplyURL %>"
 														/>
 													</li>
