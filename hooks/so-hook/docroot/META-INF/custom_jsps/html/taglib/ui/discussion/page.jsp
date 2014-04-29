@@ -304,6 +304,57 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 											userId="<%= message.getUserId() %>"
 											userName="<%= HtmlUtil.escape(message.getUserName()) %>"
 										/>
+
+										<div class="lfr-discussion-posted-on">
+											<c:choose>
+												<c:when test="<%= message.getParentMessageId() == rootMessage.getMessageId() %>">
+													<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(message.getModifiedDate())) %>
+												</c:when>
+												<c:otherwise>
+
+													<%
+													MBMessage parentMessage = MBMessageLocalServiceUtil.getMessage(message.getParentMessageId());
+													%>
+
+													<liferay-util:buffer var="buffer">
+
+														<%
+														User parentMessageUser = UserLocalServiceUtil.fetchUser(parentMessage.getUserId());
+
+														long imageId = (parentMessageUser == null) ? 0 : parentMessageUser.getPortraitId();
+														%>
+
+														<span id="lfr-discussion-reply-user-info">
+															<div class="lfr-discussion-reply-user-avatar">
+																<img alt="<%= parentMessage.getUserName() %>" class="user-status-avatar-image" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), true, imageId) %>" width="30" />
+															</div>
+
+															<div class="lfr-discussion-reply-user-name">
+																	<%= parentMessage.getUserName() %>
+															</div>
+
+															<div class="lfr-discussion-reply-creation-date">
+																<%= dateFormatDateTime.format(parentMessage.getCreateDate()) %>
+															</div>
+														</span>
+													</liferay-util:buffer>
+
+													<%
+													StringBundler sb = new StringBundler(7);
+
+													sb.append("<a class=\"lfr-discussion-parent-link\" data-title=\"");
+													sb.append(HtmlUtil.escape(buffer));
+													sb.append("\"data-metaData=\"");
+													sb.append(HtmlUtil.escape(parentMessage.getBody()));
+													sb.append("\">");
+													sb.append(HtmlUtil.escape(parentMessage.getUserName()));
+													sb.append("</a>");
+													%>
+
+													<%= LanguageUtil.format(pageContext, "posted-on-x-in-reply-to-x", new Object[] {dateFormatDateTime.format(message.getModifiedDate()), sb.toString()}) %>
+												</c:otherwise>
+											</c:choose>
+										</div>
 									</aui:col>
 
 									<aui:col cssClass="lfr-discussion-body" width="75">
@@ -463,57 +514,6 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 										</div>
 									</c:if>
 								</aui:row>
-
-								<div class="lfr-discussion-posted-on">
-									<c:choose>
-										<c:when test="<%= message.getParentMessageId() == rootMessage.getMessageId() %>">
-											<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(message.getModifiedDate())) %>
-										</c:when>
-										<c:otherwise>
-
-											<%
-											MBMessage parentMessage = MBMessageLocalServiceUtil.getMessage(message.getParentMessageId());
-											%>
-
-											<liferay-util:buffer var="buffer">
-
-												<%
-												User parentMessageUser = UserLocalServiceUtil.fetchUser(parentMessage.getUserId());
-
-												long imageId = (parentMessageUser == null) ? 0 : parentMessageUser.getPortraitId();
-												%>
-
-												<span id="lfr-discussion-reply-user-info">
-													<div class="lfr-discussion-reply-user-avatar">
-														<img alt="<%= parentMessage.getUserName() %>" class="user-status-avatar-image" src="<%= UserConstants.getPortraitURL(themeDisplay.getPathImage(), true, imageId) %>" width="30" />
-													</div>
-
-													<div class="lfr-discussion-reply-user-name">
-															<%= parentMessage.getUserName() %>
-													</div>
-
-													<div class="lfr-discussion-reply-creation-date">
-														<%= dateFormatDateTime.format(parentMessage.getCreateDate()) %>
-													</div>
-												</span>
-											</liferay-util:buffer>
-
-											<%
-											StringBundler sb = new StringBundler(7);
-
-											sb.append("<a class=\"lfr-discussion-parent-link\" data-title=\"");
-											sb.append(HtmlUtil.escape(buffer));
-											sb.append("\"data-metaData=\"");
-											sb.append(HtmlUtil.escape(parentMessage.getBody()));
-											sb.append("\">");
-											sb.append(HtmlUtil.escape(parentMessage.getUserName()));
-											sb.append("</a>");
-											%>
-
-											<%= LanguageUtil.format(pageContext, "posted-on-x-in-reply-to-x", new Object[] {dateFormatDateTime.format(message.getModifiedDate()), sb.toString()}) %>
-										</c:otherwise>
-									</c:choose>
-								</div>
 							</div>
 
 						<%
