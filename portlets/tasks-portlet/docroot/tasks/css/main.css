@@ -227,8 +227,6 @@
 /* ---------- Dialog ---------- */
 
 .tasks-dialog {
-	font-size: 11px;
-
 	.lfr-table .lfr-label {
 		font-weight: bold;
 		vertical-align: top;
