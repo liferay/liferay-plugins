@@ -398,7 +398,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 														%>
 
 														<liferay-ui:icon
-															image="reply"
+															iconCssClass="icon-reply"
 															label="<%= true %>"
 															message="post-reply"
 															url="<%= taglibPostReplyURL %>"
@@ -414,8 +414,9 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 													<li class="lfr-discussion-top-link">
 														<liferay-ui:icon
-															image="top"
+															iconCssClass="icon-long-arrow-up"
 															label="<%= true %>"
+															message="top"
 															url="<%= taglibTopURL %>"
 															/>
 													</li>
@@ -428,8 +429,9 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 														<li class="lfr-discussion-edit">
 															<liferay-ui:icon
-																image="edit"
+																iconCssClass="icon-edit"
 																label="<%= true %>"
+																message="edit"
 																url="<%= taglibEditURL %>"
 															/>
 														</li>
@@ -442,8 +444,10 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 														%>
 
 														<li class="lfr-discussion-delete">
-															<liferay-ui:icon-delete
+															<liferay-ui:icon
+																iconCssClass="icon-remove"
 																label="<%= true %>"
+																message="delete"
 																url="<%= taglibDeleteURL %>"
 															/>
 														</li>
