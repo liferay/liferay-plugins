@@ -66,6 +66,8 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 	<c:if test="<%= (messagesCount > 1) || MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, userId, ActionKeys.VIEW) %>">
 		<div class="taglib-discussion" id="<portlet:namespace />discussion-container">
+			<a name="<%= randomNamespace %>messages_top"></a>
+
 			<aui:form action="<%= formAction %>" method="post" name="<%= formName %>">
 				<aui:input name="randomNamespace" type="hidden" value="<%= randomNamespace %>" />
 				<aui:input id="<%= randomNamespace + Constants.CMD %>" name="<%= Constants.CMD %>" type="hidden" />
@@ -185,8 +187,6 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 				</c:if>
 
 				<c:if test="<%= messagesCount > 1 %>">
-					<a name="<%= randomNamespace %>messages_top"></a>
-
 					<c:if test="<%= treeWalker != null %>">
 					<table class="tree-walker table table-bordered table-hover table-striped">
 						<thead class="table-columns">
