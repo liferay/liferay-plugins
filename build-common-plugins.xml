@@ -5,7 +5,7 @@
 	<import file="build-common.xml" />
 
 	<path id="plugins.includes.path">
-		<dirset dir="." includes="*" />
+		<dirset dir="." includes="${plugins.includes}" />
 	</path>
 
 	<pathconvert pathsep="," property="plugins.includes.path" refid="plugins.includes.path" targetos="unix" />
