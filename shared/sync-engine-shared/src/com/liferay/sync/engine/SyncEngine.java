@@ -152,8 +152,6 @@ public class SyncEngine {
 			return;
 		}
 
-		_running = true;
-
 		try {
 			doStart();
 		}
@@ -167,8 +165,6 @@ public class SyncEngine {
 			return;
 		}
 
-		_running = false;
-
 		try {
 			doStop();
 		}
@@ -178,6 +174,8 @@ public class SyncEngine {
 	}
 
 	protected static void doStart() throws Exception {
+		_running = true;
+
 		SyncEngineUtil.fireSyncEngineStateChanged(
 			SyncEngineUtil.SYNC_ENGINE_STATE_STARTING);
 
@@ -243,6 +241,8 @@ public class SyncEngine {
 
 		SyncEngineUtil.fireSyncEngineStateChanged(
 			SyncEngineUtil.SYNC_ENGINE_STATE_STOPPED);
+
+		_running = false;
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(SyncEngine.class);

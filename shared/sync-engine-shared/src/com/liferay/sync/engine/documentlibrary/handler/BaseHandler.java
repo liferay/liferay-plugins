@@ -79,13 +79,17 @@ public class BaseHandler implements Handler<Void> {
 			if (statusCode == HttpServletResponse.SC_UNAUTHORIZED) {
 				syncAccount.setUiEvent(
 					SyncAccount.UI_EVENT_AUTHENTICATION_EXCEPTION);
+
+				SyncAccountService.update(syncAccount);
 			}
 			else {
 				syncAccount.setUiEvent(
 					SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
-			}
 
-			SyncAccountService.update(syncAccount);
+				SyncAccountService.update(syncAccount);
+
+				retryServerConnection();
+			}
 		}
 	}
 
@@ -147,8 +151,6 @@ public class BaseHandler implements Handler<Void> {
 						"Attempting to reconnect to {}. Retry #{}.",
 						syncAccount.getUrl(), retryContext.getRetryCount() + 1);
 				}
-
-				SyncAccountService.synchronizeSyncAccount(getSyncAccountId());
 
 				syncAccount = SyncAccountService.synchronizeSyncAccount(
 					getSyncAccountId());
