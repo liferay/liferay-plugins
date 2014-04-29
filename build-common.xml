@@ -1635,10 +1635,10 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 				<else>
 					<antelope:grep
-						group="2"
+						group="1"
 						in="@{module.dir}"
 						property="plugin.name"
-						regex="(.*/)(.*)"
+						regex="(?:.*[/\\])(.*)"
 					/>
 				</else>
 			</if>
