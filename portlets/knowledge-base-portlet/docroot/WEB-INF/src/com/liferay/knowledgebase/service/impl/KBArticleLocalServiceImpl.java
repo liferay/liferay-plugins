@@ -82,7 +82,6 @@ import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
 import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
-import com.liferay.portlet.journal.util.comparator.ArticleVersionComparator;
 
 import java.io.File;
 import java.io.InputStream;
@@ -524,7 +523,6 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return Collections.unmodifiableList(kbArticles);
 	}
 
-	@Override
 	public KBArticle getKBArticleByUrlTitle(long groupId, String urlTitle)
 		throws PortalException, SystemException {
 
@@ -615,14 +613,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, status, new KBArticleVersionComparator());
 	}
 
-	@Override
 	public KBArticle getLatestKBArticleByUrlTitle(
 			long groupId, String urlTitle, int status)
 		throws PortalException, SystemException {
 
 		List<KBArticle> kbArticles = null;
 
-		OrderByComparator orderByComparator = new ArticleVersionComparator();
+		OrderByComparator orderByComparator = new KBArticleVersionComparator();
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			kbArticles = kbArticlePersistence.findByG_UT(
@@ -1527,17 +1524,17 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				serviceContext.getScopeGroupId(), kbArticleId, title);
 		}
 
-		KBArticle urlTitleArticle = null;
+		KBArticle kbArticle = null;
 
 		try {
-			urlTitleArticle = getKBArticleByUrlTitle(
+			kbArticle = getKBArticleByUrlTitle(
 				serviceContext.getScopeGroupId(), urlTitle);
 		}
 		catch (NoSuchArticleException nsae) {
 		}
 
-		if ((urlTitleArticle != null) &&
-			(kbArticleId != urlTitleArticle.getKbArticleId())) {
+		if ((kbArticle != null) &&
+			(kbArticleId != kbArticle.getKbArticleId())) {
 
 			urlTitle = getUniqueUrlTitle(
 				serviceContext.getScopeGroupId(), kbArticleId, urlTitle);

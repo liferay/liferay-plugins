@@ -75,7 +75,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 	<aui:fieldset>
 		<aui:input name="title" />
 
-		<aui:input disabled="<%= (kbArticle != null) %>" name="urlTitle" />
+		<aui:input disabled="<%= kbArticle != null %>" name="urlTitle" />
 
 		<aui:field-wrapper label="content">
 			<liferay-ui:input-editor width="100%" />
