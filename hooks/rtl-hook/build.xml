@@ -23,7 +23,7 @@
 		</delete>
 	</target>
 
-	<target name="compile" depends="build-common.compile, rtl-jar" />
+	<target name="compile" depends="build-common.compile,rtl-jar" />
 
 	<target name="rtl-jar">
 		<zip

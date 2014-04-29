@@ -200,7 +200,6 @@ public class RtlCssBuilder {
 	 * @see com.liferay.portal.util.FileImpl#write(File file, String string)
 	 */
 	private void _writeFile(File file, String s) throws IOException {
-
 		if (s == null) {
 			return;
 		}
