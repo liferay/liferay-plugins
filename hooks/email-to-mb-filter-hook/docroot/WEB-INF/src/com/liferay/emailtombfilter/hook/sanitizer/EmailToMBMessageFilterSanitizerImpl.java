@@ -106,30 +106,30 @@ public class EmailToMBMessageFilterSanitizerImpl implements Sanitizer {
 
 		sb.append(s.substring(0, matcher.start()));
 
+		int lastTextPos = 0;
+		int lastQuotedTextPos = 0;
+
 		String quotedText = s.substring(matcher.end(), s.length());
 
 		String[] quotedTextLines = quotedText.split("\r\n|\n|\r");
 
-		int lastTextPos = 0;
-		int lastQuotedTextPos = 0;
-
 		for (int i = 0; i < quotedTextLines.length; i++ ) {
-			if (Validator.isNotNull(quotedTextLines[i])) {
-				if (quotedTextLines[i].startsWith(StringPool.GREATER_THAN)) {
-					lastQuotedTextPos = i;
+			if (Validator.isNull(quotedTextLines[i])) {
+				continue;
+			}
 
-					if ((lastTextPos > 0) &&
-						(lastTextPos < lastQuotedTextPos)) {
+			if (quotedTextLines[i].startsWith(StringPool.GREATER_THAN)) {
+				lastQuotedTextPos = i;
 
-						return s;
-					}
+				if ((lastTextPos > 0) && (lastTextPos < lastQuotedTextPos)) {
+					return s;
 				}
-				else {
-					lastTextPos = i;
+			}
+			else {
+				lastTextPos = i;
 
-					sb.append(quotedTextLines[i]);
-					sb.append(StringPool.RETURN_NEW_LINE);
-				}
+				sb.append(quotedTextLines[i]);
+				sb.append(StringPool.RETURN_NEW_LINE);
 			}
 		}
 
