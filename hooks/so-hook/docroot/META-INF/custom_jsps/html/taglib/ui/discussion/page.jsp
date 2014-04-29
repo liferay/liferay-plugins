@@ -563,16 +563,18 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 				window,
 				'<%= randomNamespace %>deleteMessage',
 				function(i) {
-					var A = AUI();
+					if(confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-the-selected-comment" />')) {
+						var A = AUI();
 
-					var form = A.one('#<%= namespace %><%= HtmlUtil.escapeJS(formName) %>');
+						var form = A.one('#<%= namespace %><%= HtmlUtil.escapeJS(formName) %>');
 
-					var messageId = form.one('#<%= namespace %>messageId' + i).val();
+						var messageId = form.one('#<%= namespace %>messageId' + i).val();
 
-					form.one('#<%= namespace %><%= randomNamespace %><%= Constants.CMD %>').val('<%= Constants.DELETE %>');
-					form.one('#<%= namespace %>messageId').val(messageId);
+						form.one('#<%= namespace %><%= randomNamespace %><%= Constants.CMD %>').val('<%= Constants.DELETE %>');
+						form.one('#<%= namespace %>messageId').val(messageId);
 
-					<portlet:namespace />sendMessage(form);
+						<portlet:namespace />sendMessage(form);
+					}
 				},
 				['aui-base']
 			);
