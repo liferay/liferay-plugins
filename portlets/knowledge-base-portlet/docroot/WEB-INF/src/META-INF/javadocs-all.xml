@@ -448,20 +448,155 @@
 			</throws>
 		</method>
 		<method>
-			<name>exportKBArticle</name>
+			<name>doPrepareManifestSummary</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
+				<name>portletPreferences</name>
+				<type>javax.portlet.PortletPreferences</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getKBArticleActionableDynamicQuery</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getKBCommentActionableDynamicQuery</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<field>
+			<name>NAMESPACE</name>
+		</field>
+		<field>
+			<name>RESOURCE_NAME</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>KBArticleStagedModelDataHandler</name>
+		<type>com.liferay.knowledgebase.admin.lar.KBArticleStagedModelDataHandler</type>
+		<author><![CDATA[Daniel Kocsis]]></author>
+		<method>
+			<name>deleteStagedModel</name>
+			<param>
+				<name>uuid</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>path</name>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>className</name>
 				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>extraData</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getDisplayName</name>
+			<param>
+				<name>kbArticle</name>
+				<type>com.liferay.knowledgebase.model.KBArticle</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>countStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kbArticle</name>
+				<type>com.liferay.knowledgebase.model.KBArticle</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doExportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kbArticle</name>
+				<type>com.liferay.knowledgebase.model.KBArticle</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>doImportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -480,194 +615,6 @@
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>kbArticle</name>
-				<type>com.liferay.knowledgebase.model.KBArticle</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>exportKBArticles</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>exportKBArticleVersions</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>kbArticleElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>resourcePrimKey</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>exportKBComment</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>path</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>kbComment</name>
-				<type>com.liferay.knowledgebase.model.KBComment</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>exportKBComments</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>exportKBTemplate</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>path</name>
-				<type>java.lang.String</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>kbTemplate</name>
-				<type>com.liferay.knowledgebase.model.KBTemplate</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>exportKBTemplates</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>getKBArticles</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>getPortletPath</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<return>
-				<comment><![CDATA[]]></comment>
-			</return>
-		</method>
-		<method>
-			<name>importKBArticle</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>dirNames</name>
-				<type>java.util.Map</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -694,22 +641,12 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>importId</name>
-				<type>long</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>dirNames</name>
-				<type>java.util.Map</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>kbArticleElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
 				<name>kbArticle</name>
+				<type>com.liferay.knowledgebase.model.KBArticle</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>importedKBArticle</name>
 				<type>com.liferay.knowledgebase.model.KBArticle</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -719,70 +656,69 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>CLASS_NAMES</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>KBCommentStagedModelDataHandler</name>
+		<type>com.liferay.knowledgebase.admin.lar.KBCommentStagedModelDataHandler</type>
+		<author><![CDATA[Daniel Kocsis]]></author>
 		<method>
-			<name>importKBArticles</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
-		</method>
-		<method>
-			<name>importKBArticleVersions</name>
-			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
+			<name>deleteStagedModel</name>
 			<param>
 				<name>uuid</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>parentResourcePrimKey</name>
+				<name>groupId</name>
 				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>dirName</name>
+				<name>className</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>kbArticleElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
+				<name>extraData</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getDisplayName</name>
+			<param>
+				<name>kbComment</name>
+				<type>com.liferay.knowledgebase.model.KBComment</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
-			<throws>
-				<name>Exception</name>
-				<type>java.lang.Exception</type>
-				<comment><![CDATA[]]></comment>
-			</throws>
 		</method>
 		<method>
-			<name>importKBComment</name>
+			<name>doExportStagedModel</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
-				<comment><![CDATA[]]></comment>
-			</param>
-			<param>
-				<name>kbCommentElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -797,15 +733,15 @@
 			</throws>
 		</method>
 		<method>
-			<name>importKBComments</name>
+			<name>doImportStagedModel</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
+				<name>kbComment</name>
+				<type>com.liferay.knowledgebase.model.KBComment</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -814,16 +750,69 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
+		<field>
+			<name>CLASS_NAMES</name>
+		</field>
+	</javadoc>
+	<javadoc>
+		<name>KBTemplateStagedModelDataHandler</name>
+		<type>com.liferay.knowledgebase.admin.lar.KBTemplateStagedModelDataHandler</type>
+		<author><![CDATA[Daniel Kocsis]]></author>
 		<method>
-			<name>importKBTemplate</name>
+			<name>deleteStagedModel</name>
 			<param>
-				<name>portletDataContext</name>
-				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
+				<name>uuid</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>kbTemplateElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>className</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>extraData</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getClassNames</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getDisplayName</name>
+			<param>
+				<name>kbTemplate</name>
+				<type>com.liferay.knowledgebase.model.KBTemplate</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>doExportStagedModel</name>
+			<param>
+				<name>portletDataContext</name>
+				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -838,15 +827,15 @@
 			</throws>
 		</method>
 		<method>
-			<name>importKBTemplates</name>
+			<name>doImportStagedModel</name>
 			<param>
 				<name>portletDataContext</name>
 				<type>com.liferay.portal.kernel.lar.PortletDataContext</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
-				<name>rootElement</name>
-				<type>com.liferay.portal.kernel.xml.Element</type>
+				<name>kbTemplate</name>
+				<type>com.liferay.knowledgebase.model.KBTemplate</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<throws>
@@ -856,10 +845,7 @@
 			</throws>
 		</method>
 		<field>
-			<name>NAMESPACE</name>
-		</field>
-		<field>
-			<name>RESOURCE_NAME</name>
+			<name>CLASS_NAMES</name>
 		</field>
 	</javadoc>
 	<javadoc>
@@ -1269,6 +1255,19 @@
 				<type>javax.portlet.ActionResponse</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+		</method>
+		<method>
+			<name>checkExceededSizeLimit</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>doDispatch</name>
@@ -2997,6 +2996,19 @@
 			</param>
 		</method>
 		<method>
+			<name>checkExceededSizeLimit</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>doDispatch</name>
 			<param>
 				<name>renderRequest</name>
@@ -3470,6 +3482,19 @@
 			</param>
 		</method>
 		<method>
+			<name>checkExceededSizeLimit</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>doDispatch</name>
 			<param>
 				<name>renderRequest</name>
@@ -3668,6 +3693,22 @@
 			<param>
 				<name>request</name>
 				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>Exception</name>
+				<type>java.lang.Exception</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getPortletId</name>
+			<param>
+				<name>plid</name>
+				<type>long</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -3892,9 +3933,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_ARTICLE_CLASS_NAME</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>UpgradeRatingsStats</name>
@@ -3932,9 +3970,6 @@
 				<comment><![CDATA[]]></comment>
 			</throws>
 		</method>
-		<field>
-			<name>_ARTICLE_CLASS_NAME</name>
-		</field>
 	</javadoc>
 	<javadoc>
 		<name>UpgradeClassName</name>
@@ -5187,8 +5222,15 @@
 		<name>KBCommentImpl</name>
 		<type>com.liferay.knowledgebase.model.impl.KBCommentImpl</type>
 		<author><![CDATA[Peter Shin]]></author>
+		<author><![CDATA[Daniel Kocsis]]></author>
 		<method>
 			<name>KBCommentImpl</name>
+		</method>
+		<method>
+			<name>getStagedModelType</name>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 		</method>
 	</javadoc>
 	<javadoc>
@@ -5553,6 +5595,19 @@
 				<type>javax.portlet.ActionResponse</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+		</method>
+		<method>
+			<name>checkExceededSizeLimit</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 		</method>
 		<method>
 			<name>doDispatch</name>
@@ -5922,6 +5977,19 @@
 			</param>
 		</method>
 		<method>
+			<name>checkExceededSizeLimit</name>
+			<param>
+				<name>request</name>
+				<type>javax.servlet.http.HttpServletRequest</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>doDispatch</name>
 			<param>
 				<name>renderRequest</name>
@@ -6050,6 +6118,11 @@
 			</param>
 			<param>
 				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>urlTitle</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
@@ -6319,6 +6392,58 @@
 			</throws>
 		</method>
 		<method>
+			<name>fetchLatestKBArticle</name>
+			<param>
+				<name>resourcePrimKey</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>status</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getAttachment</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getCompanyKBArticles</name>
 			<param>
 				<name>companyId</name>
@@ -6485,6 +6610,32 @@
 			</throws>
 		</method>
 		<method>
+			<name>getKBArticleByUrlTitle</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>urlTitle</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>getKBArticles</name>
 			<param>
 				<name>resourcePrimKeys</name>
@@ -6572,6 +6723,37 @@
 			<param>
 				<name>resourcePrimKey</name>
 				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>status</name>
+				<type>int</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getLatestKBArticleByUrlTitle</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>urlTitle</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
@@ -7405,6 +7587,73 @@
 			</return>
 		</method>
 		<method>
+			<name>getUniqueUrlTitle</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>kbArticleId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getUniqueUrlTitle</name>
+			<param>
+				<name>kbArticleId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>urlTitle</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>serviceContext</name>
+				<type>com.liferay.portal.service.ServiceContext</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
 			<name>isValidDirName</name>
 			<param>
 				<name>dirName</name>
@@ -7622,6 +7871,11 @@
 				<comment><![CDATA[]]></comment>
 			</param>
 			<param>
+				<name>urlTitle</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
 				<name>content</name>
 				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
@@ -7731,6 +7985,47 @@
 				<type>long[]</type>
 				<comment><![CDATA[]]></comment>
 			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>getAttachment</name>
+			<param>
+				<name>companyId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>resourcePrimKey</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
 			<throws>
 				<name>PortalException</name>
 				<type>com.liferay.portal.kernel.exception.PortalException</type>
@@ -8604,6 +8899,34 @@
 			<return>
 				<comment><![CDATA[]]></comment>
 			</return>
+			<throws>
+				<name>SystemException</name>
+				<type>com.liferay.portal.kernel.exception.SystemException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
+		</method>
+		<method>
+			<name>checkAttachmentPermissions</name>
+			<param>
+				<name>groupId</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>portletId</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>resourcePrimKey</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<throws>
+				<name>PortalException</name>
+				<type>com.liferay.portal.kernel.exception.PortalException</type>
+				<comment><![CDATA[]]></comment>
+			</throws>
 			<throws>
 				<name>SystemException</name>
 				<type>com.liferay.portal.kernel.exception.SystemException</type>
@@ -9701,10 +10024,42 @@
 			</return>
 		</method>
 		<method>
+			<name>getMimeType</name>
+			<param>
+				<name>bytes</name>
+				<type>byte[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>fileName</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
 			<name>getParams</name>
 			<param>
 				<name>params</name>
 				<type>java.lang.Long[]</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
+		<method>
+			<name>getUrlTitle</name>
+			<param>
+				<name>id</name>
+				<type>long</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<param>
+				<name>title</name>
+				<type>java.lang.String</type>
 				<comment><![CDATA[]]></comment>
 			</param>
 			<return>
@@ -9738,8 +10093,22 @@
 				<comment><![CDATA[]]></comment>
 			</return>
 		</method>
+		<method>
+			<name>trimLeadingSlash</name>
+			<param>
+				<name>s</name>
+				<type>java.lang.String</type>
+				<comment><![CDATA[]]></comment>
+			</param>
+			<return>
+				<comment><![CDATA[]]></comment>
+			</return>
+		</method>
 		<field>
 			<name>_SQL_DATA_MAX_PARAMETERS</name>
+		</field>
+		<field>
+			<name>_friendlyURLPattern</name>
 		</field>
 	</javadoc>
 	<javadoc>
