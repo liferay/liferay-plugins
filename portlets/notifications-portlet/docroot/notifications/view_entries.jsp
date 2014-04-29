@@ -18,7 +18,6 @@
 
 <%
 String filter = ParamUtil.getString(request, "filter");
-boolean dockbar = ParamUtil.getBoolean(request, "dockbar", false);
 boolean fullView = ParamUtil.getBoolean(request, "fullView", true);
 int start = ParamUtil.getInteger(request, "start", 0);
 int end = ParamUtil.getInteger(request, "end", delta);
@@ -147,7 +146,7 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 	</li>
 </c:if>
 
-<c:if test="<%= dockbar %>">
+<c:if test="<%= !fullView %>">
 
 	<%
 	long notificationsPlid = themeDisplay.getPlid();
