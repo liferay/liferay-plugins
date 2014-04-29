@@ -38,7 +38,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(51);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -66,6 +66,8 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		sb.append(version);
 		sb.append(", title=");
 		sb.append(title);
+		sb.append(", urlTitle=");
+		sb.append(urlTitle);
 		sb.append(", content=");
 		sb.append(content);
 		sb.append(", description=");
@@ -142,6 +144,13 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 			kbArticleImpl.setTitle(title);
 		}
 
+		if (urlTitle == null) {
+			kbArticleImpl.setUrlTitle(StringPool.BLANK);
+		}
+		else {
+			kbArticleImpl.setUrlTitle(urlTitle);
+		}
+
 		if (content == null) {
 			kbArticleImpl.setContent(StringPool.BLANK);
 		}
@@ -205,6 +214,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		parentResourcePrimKey = objectInput.readLong();
 		version = objectInput.readInt();
 		title = objectInput.readUTF();
+		urlTitle = objectInput.readUTF();
 		content = objectInput.readUTF();
 		description = objectInput.readUTF();
 		priority = objectInput.readDouble();
@@ -252,6 +262,13 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 		}
 		else {
 			objectOutput.writeUTF(title);
+		}
+
+		if (urlTitle == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(urlTitle);
 		}
 
 		if (content == null) {
@@ -306,6 +323,7 @@ public class KBArticleCacheModel implements CacheModel<KBArticle>,
 	public long parentResourcePrimKey;
 	public int version;
 	public String title;
+	public String urlTitle;
 	public String content;
 	public String description;
 	public double priority;

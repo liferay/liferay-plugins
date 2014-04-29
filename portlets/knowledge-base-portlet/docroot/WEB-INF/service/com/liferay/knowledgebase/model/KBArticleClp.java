@@ -18,15 +18,19 @@ import com.liferay.knowledgebase.service.ClpSerializer;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
@@ -91,6 +95,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		attributes.put("parentResourcePrimKey", getParentResourcePrimKey());
 		attributes.put("version", getVersion());
 		attributes.put("title", getTitle());
+		attributes.put("urlTitle", getUrlTitle());
 		attributes.put("content", getContent());
 		attributes.put("description", getDescription());
 		attributes.put("priority", getPriority());
@@ -188,6 +193,12 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 		if (title != null) {
 			setTitle(title);
+		}
+
+		String urlTitle = (String)attributes.get("urlTitle");
+
+		if (urlTitle != null) {
+			setUrlTitle(urlTitle);
 		}
 
 		String content = (String)attributes.get("content");
@@ -409,12 +420,18 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public String getUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+		try {
+			User user = UserLocalServiceUtil.getUserById(getUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setUserUuid(String userUuid) {
-		_userUuid = userUuid;
 	}
 
 	@Override
@@ -573,6 +590,29 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 				Method method = clazz.getMethod("setTitle", String.class);
 
 				method.invoke(_kbArticleRemoteModel, title);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getUrlTitle() {
+		return _urlTitle;
+	}
+
+	@Override
+	public void setUrlTitle(String urlTitle) {
+		_urlTitle = urlTitle;
+
+		if (_kbArticleRemoteModel != null) {
+			try {
+				Class<?> clazz = _kbArticleRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUrlTitle", String.class);
+
+				method.invoke(_kbArticleRemoteModel, urlTitle);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -799,13 +839,18 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public String getStatusByUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getStatusByUserId(), "uuid",
-			_statusByUserUuid);
+		try {
+			User user = UserLocalServiceUtil.getUserById(getStatusByUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setStatusByUserUuid(String statusByUserUuid) {
-		_statusByUserUuid = statusByUserUuid;
 	}
 
 	@Override
@@ -1166,6 +1211,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		clone.setParentResourcePrimKey(getParentResourcePrimKey());
 		clone.setVersion(getVersion());
 		clone.setTitle(getTitle());
+		clone.setUrlTitle(getUrlTitle());
 		clone.setContent(getContent());
 		clone.setDescription(getDescription());
 		clone.setPriority(getPriority());
@@ -1236,7 +1282,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(51);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1264,6 +1310,8 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		sb.append(getVersion());
 		sb.append(", title=");
 		sb.append(getTitle());
+		sb.append(", urlTitle=");
+		sb.append(getUrlTitle());
 		sb.append(", content=");
 		sb.append(getContent());
 		sb.append(", description=");
@@ -1293,7 +1341,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(76);
+		StringBundler sb = new StringBundler(79);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBArticle");
@@ -1352,6 +1400,10 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 		sb.append(getTitle());
 		sb.append("]]></column-value></column>");
 		sb.append(
+			"<column><column-name>urlTitle</column-name><column-value><![CDATA[");
+		sb.append(getUrlTitle());
+		sb.append("]]></column-value></column>");
+		sb.append(
 			"<column><column-name>content</column-name><column-value><![CDATA[");
 		sb.append(getContent());
 		sb.append("]]></column-value></column>");
@@ -1408,7 +1460,6 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	private long _groupId;
 	private long _companyId;
 	private long _userId;
-	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
@@ -1416,6 +1467,7 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	private long _parentResourcePrimKey;
 	private int _version;
 	private String _title;
+	private String _urlTitle;
 	private String _content;
 	private String _description;
 	private double _priority;
@@ -1425,7 +1477,6 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	private boolean _main;
 	private int _status;
 	private long _statusByUserId;
-	private String _statusByUserUuid;
 	private String _statusByUserName;
 	private Date _statusDate;
 	private BaseModel<?> _kbArticleRemoteModel;

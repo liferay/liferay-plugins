@@ -97,84 +97,94 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 
 		_methodParameterTypes13 = new String[] { "long" };
 
-		_methodName14 = "getPersistedModel";
+		_methodName14 = "getActionableDynamicQuery";
 
-		_methodParameterTypes14 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes14 = new String[] {  };
 
-		_methodName15 = "getKBTemplateByUuidAndCompanyId";
+		_methodName15 = "getExportActionableDynamicQuery";
 
-		_methodParameterTypes15 = new String[] { "java.lang.String", "long" };
-
-		_methodName16 = "getKBTemplateByUuidAndGroupId";
-
-		_methodParameterTypes16 = new String[] { "java.lang.String", "long" };
-
-		_methodName17 = "getKBTemplates";
-
-		_methodParameterTypes17 = new String[] { "int", "int" };
-
-		_methodName18 = "getKBTemplatesCount";
-
-		_methodParameterTypes18 = new String[] {  };
-
-		_methodName19 = "updateKBTemplate";
-
-		_methodParameterTypes19 = new String[] {
-				"com.liferay.knowledgebase.model.KBTemplate"
+		_methodParameterTypes15 = new String[] {
+				"com.liferay.portal.kernel.lar.PortletDataContext"
 			};
 
-		_methodName20 = "getBeanIdentifier";
+		_methodName16 = "getPersistedModel";
+
+		_methodParameterTypes16 = new String[] { "java.io.Serializable" };
+
+		_methodName17 = "getKBTemplateByUuidAndCompanyId";
+
+		_methodParameterTypes17 = new String[] { "java.lang.String", "long" };
+
+		_methodName18 = "getKBTemplateByUuidAndGroupId";
+
+		_methodParameterTypes18 = new String[] { "java.lang.String", "long" };
+
+		_methodName19 = "getKBTemplates";
+
+		_methodParameterTypes19 = new String[] { "int", "int" };
+
+		_methodName20 = "getKBTemplatesCount";
 
 		_methodParameterTypes20 = new String[] {  };
 
-		_methodName21 = "setBeanIdentifier";
+		_methodName21 = "updateKBTemplate";
 
-		_methodParameterTypes21 = new String[] { "java.lang.String" };
+		_methodParameterTypes21 = new String[] {
+				"com.liferay.knowledgebase.model.KBTemplate"
+			};
 
-		_methodName23 = "addKBTemplate";
+		_methodName22 = "getBeanIdentifier";
 
-		_methodParameterTypes23 = new String[] {
+		_methodParameterTypes22 = new String[] {  };
+
+		_methodName23 = "setBeanIdentifier";
+
+		_methodParameterTypes23 = new String[] { "java.lang.String" };
+
+		_methodName25 = "addKBTemplate";
+
+		_methodParameterTypes25 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName24 = "deleteGroupKBTemplates";
+		_methodName26 = "deleteGroupKBTemplates";
 
-		_methodParameterTypes24 = new String[] { "long" };
+		_methodParameterTypes26 = new String[] { "long" };
 
-		_methodName25 = "deleteKBTemplates";
+		_methodName27 = "deleteKBTemplates";
 
-		_methodParameterTypes25 = new String[] { "long[][]" };
+		_methodParameterTypes27 = new String[] { "long[][]" };
 
-		_methodName26 = "getGroupKBTemplates";
+		_methodName28 = "getGroupKBTemplates";
 
-		_methodParameterTypes26 = new String[] {
+		_methodParameterTypes28 = new String[] {
 				"long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName27 = "getGroupKBTemplatesCount";
+		_methodName29 = "getGroupKBTemplatesCount";
 
-		_methodParameterTypes27 = new String[] { "long" };
+		_methodParameterTypes29 = new String[] { "long" };
 
-		_methodName28 = "search";
+		_methodName30 = "search";
 
-		_methodParameterTypes28 = new String[] {
+		_methodParameterTypes30 = new String[] {
 				"long", "java.lang.String", "java.lang.String", "java.util.Date",
 				"java.util.Date", "boolean", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName29 = "updateKBTemplate";
+		_methodName31 = "updateKBTemplate";
 
-		_methodParameterTypes29 = new String[] {
+		_methodParameterTypes31 = new String[] {
 				"long", "java.lang.String", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName30 = "updateKBTemplateResources";
+		_methodName32 = "updateKBTemplateResources";
 
-		_methodParameterTypes30 = new String[] {
+		_methodParameterTypes32 = new String[] {
 				"com.liferay.knowledgebase.model.KBTemplate",
 				"java.lang.String[][]", "java.lang.String[][]"
 			};
@@ -624,6 +634,66 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15,
+					new Object[] {
+						ClpSerializer.translateInput(portletDataContext)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -631,8 +701,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14,
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -666,8 +736,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15,
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17,
 					new Object[] { ClpSerializer.translateInput(uuid), companyId });
 		}
 		catch (Throwable t) {
@@ -701,8 +771,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16,
+			returnObj = _invokableLocalService.invokeMethod(_methodName18,
+					_methodParameterTypes18,
 					new Object[] { ClpSerializer.translateInput(uuid), groupId });
 		}
 		catch (Throwable t) {
@@ -735,8 +805,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName17,
-					_methodParameterTypes17, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -763,8 +833,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName18,
-					_methodParameterTypes18, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -792,8 +862,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
 					new Object[] { ClpSerializer.translateInput(kbTemplate) });
 		}
 		catch (Throwable t) {
@@ -820,8 +890,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -841,8 +911,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName21,
-				_methodParameterTypes21,
+			_invokableLocalService.invokeMethod(_methodName23,
+				_methodParameterTypes23,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -874,8 +944,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						userId,
 						
@@ -914,8 +984,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName24,
-				_methodParameterTypes24, new Object[] { groupId });
+			_invokableLocalService.invokeMethod(_methodName26,
+				_methodParameterTypes26, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -943,8 +1013,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName25,
-				_methodParameterTypes25,
+			_invokableLocalService.invokeMethod(_methodName27,
+				_methodParameterTypes27,
 				new Object[] { ClpSerializer.translateInput(kbTemplateIds) });
 		}
 		catch (Throwable t) {
@@ -976,8 +1046,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] {
 						groupId,
 						
@@ -1013,8 +1083,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1045,8 +1115,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] {
 						groupId,
 						
@@ -1095,8 +1165,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31,
 					new Object[] {
 						kbTemplateId,
 						
@@ -1137,8 +1207,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName30,
-				_methodParameterTypes30,
+			_invokableLocalService.invokeMethod(_methodName32,
+				_methodParameterTypes32,
 				new Object[] {
 					ClpSerializer.translateInput(kbTemplate),
 					
@@ -1213,10 +1283,10 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
 	private String[] _methodParameterTypes21;
+	private String _methodName22;
+	private String[] _methodParameterTypes22;
 	private String _methodName23;
 	private String[] _methodParameterTypes23;
-	private String _methodName24;
-	private String[] _methodParameterTypes24;
 	private String _methodName25;
 	private String[] _methodParameterTypes25;
 	private String _methodName26;
@@ -1229,4 +1299,8 @@ public class KBTemplateLocalServiceClp implements KBTemplateLocalService {
 	private String[] _methodParameterTypes29;
 	private String _methodName30;
 	private String[] _methodParameterTypes30;
+	private String _methodName31;
+	private String[] _methodParameterTypes31;
+	private String _methodName32;
+	private String[] _methodParameterTypes32;
 }

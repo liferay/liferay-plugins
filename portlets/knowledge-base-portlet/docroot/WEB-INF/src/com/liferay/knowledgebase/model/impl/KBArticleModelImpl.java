@@ -85,6 +85,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			{ "parentResourcePrimKey", Types.BIGINT },
 			{ "version", Types.INTEGER },
 			{ "title", Types.VARCHAR },
+			{ "urlTitle", Types.VARCHAR },
 			{ "content", Types.CLOB },
 			{ "description", Types.VARCHAR },
 			{ "priority", Types.DOUBLE },
@@ -97,7 +98,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table KBArticle (uuid_ VARCHAR(75) null,kbArticleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourcePrimKey LONG,version INTEGER,title STRING null,content TEXT null,description STRING null,priority DOUBLE,sections STRING null,viewCount INTEGER,latest BOOLEAN,main BOOLEAN,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table KBArticle (uuid_ VARCHAR(75) null,kbArticleId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,rootResourcePrimKey LONG,parentResourcePrimKey LONG,version INTEGER,title STRING null,urlTitle VARCHAR(75) null,content TEXT null,description STRING null,priority DOUBLE,sections STRING null,viewCount INTEGER,latest BOOLEAN,main BOOLEAN,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table KBArticle";
 	public static final String ORDER_BY_JPQL = " ORDER BY kbArticle.modifiedDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY KBArticle.modifiedDate DESC";
@@ -121,9 +122,10 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	public static long RESOURCEPRIMKEY_COLUMN_BITMASK = 32L;
 	public static long SECTIONS_COLUMN_BITMASK = 64L;
 	public static long STATUS_COLUMN_BITMASK = 128L;
-	public static long UUID_COLUMN_BITMASK = 256L;
-	public static long VERSION_COLUMN_BITMASK = 512L;
-	public static long MODIFIEDDATE_COLUMN_BITMASK = 1024L;
+	public static long URLTITLE_COLUMN_BITMASK = 256L;
+	public static long UUID_COLUMN_BITMASK = 512L;
+	public static long VERSION_COLUMN_BITMASK = 1024L;
+	public static long MODIFIEDDATE_COLUMN_BITMASK = 2048L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -151,6 +153,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		model.setParentResourcePrimKey(soapModel.getParentResourcePrimKey());
 		model.setVersion(soapModel.getVersion());
 		model.setTitle(soapModel.getTitle());
+		model.setUrlTitle(soapModel.getUrlTitle());
 		model.setContent(soapModel.getContent());
 		model.setDescription(soapModel.getDescription());
 		model.setPriority(soapModel.getPriority());
@@ -239,6 +242,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		attributes.put("parentResourcePrimKey", getParentResourcePrimKey());
 		attributes.put("version", getVersion());
 		attributes.put("title", getTitle());
+		attributes.put("urlTitle", getUrlTitle());
 		attributes.put("content", getContent());
 		attributes.put("description", getDescription());
 		attributes.put("priority", getPriority());
@@ -336,6 +340,12 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 		if (title != null) {
 			setTitle(title);
+		}
+
+		String urlTitle = (String)attributes.get("urlTitle");
+
+		if (urlTitle != null) {
+			setUrlTitle(urlTitle);
 		}
 
 		String content = (String)attributes.get("content");
@@ -652,6 +662,32 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	@Override
 	public void setTitle(String title) {
 		_title = title;
+	}
+
+	@JSON
+	@Override
+	public String getUrlTitle() {
+		if (_urlTitle == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _urlTitle;
+		}
+	}
+
+	@Override
+	public void setUrlTitle(String urlTitle) {
+		_columnBitmask |= URLTITLE_COLUMN_BITMASK;
+
+		if (_originalUrlTitle == null) {
+			_originalUrlTitle = _urlTitle;
+		}
+
+		_urlTitle = urlTitle;
+	}
+
+	public String getOriginalUrlTitle() {
+		return GetterUtil.getString(_originalUrlTitle);
 	}
 
 	@JSON
@@ -1006,6 +1042,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		kbArticleImpl.setParentResourcePrimKey(getParentResourcePrimKey());
 		kbArticleImpl.setVersion(getVersion());
 		kbArticleImpl.setTitle(getTitle());
+		kbArticleImpl.setUrlTitle(getUrlTitle());
 		kbArticleImpl.setContent(getContent());
 		kbArticleImpl.setDescription(getDescription());
 		kbArticleImpl.setPriority(getPriority());
@@ -1102,6 +1139,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 		kbArticleModelImpl._setOriginalVersion = false;
 
+		kbArticleModelImpl._originalUrlTitle = kbArticleModelImpl._urlTitle;
+
 		kbArticleModelImpl._originalSections = kbArticleModelImpl._sections;
 
 		kbArticleModelImpl._originalLatest = kbArticleModelImpl._latest;
@@ -1181,6 +1220,14 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 			kbArticleCacheModel.title = null;
 		}
 
+		kbArticleCacheModel.urlTitle = getUrlTitle();
+
+		String urlTitle = kbArticleCacheModel.urlTitle;
+
+		if ((urlTitle != null) && (urlTitle.length() == 0)) {
+			kbArticleCacheModel.urlTitle = null;
+		}
+
 		kbArticleCacheModel.content = getContent();
 
 		String content = kbArticleCacheModel.content;
@@ -1239,7 +1286,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(49);
+		StringBundler sb = new StringBundler(51);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1267,6 +1314,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		sb.append(getVersion());
 		sb.append(", title=");
 		sb.append(getTitle());
+		sb.append(", urlTitle=");
+		sb.append(getUrlTitle());
 		sb.append(", content=");
 		sb.append(getContent());
 		sb.append(", description=");
@@ -1296,7 +1345,7 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(76);
+		StringBundler sb = new StringBundler(79);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.knowledgebase.model.KBArticle");
@@ -1353,6 +1402,10 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 		sb.append(
 			"<column><column-name>title</column-name><column-value><![CDATA[");
 		sb.append(getTitle());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>urlTitle</column-name><column-value><![CDATA[");
+		sb.append(getUrlTitle());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>content</column-name><column-value><![CDATA[");
@@ -1432,6 +1485,8 @@ public class KBArticleModelImpl extends BaseModelImpl<KBArticle>
 	private int _originalVersion;
 	private boolean _setOriginalVersion;
 	private String _title;
+	private String _urlTitle;
+	private String _originalUrlTitle;
 	private String _content;
 	private String _description;
 	private double _priority;

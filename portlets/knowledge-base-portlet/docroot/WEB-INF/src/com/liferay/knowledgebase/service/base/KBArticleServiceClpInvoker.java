@@ -44,8 +44,9 @@ public class KBArticleServiceClpInvoker {
 
 		_methodParameterTypes95 = new String[] {
 				"java.lang.String", "long", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String[][]",
-				"java.lang.String", "com.liferay.portal.service.ServiceContext"
+				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String[][]", "java.lang.String",
+				"com.liferay.portal.service.ServiceContext"
 			};
 
 		_methodName96 = "deleteAttachment";
@@ -239,10 +240,10 @@ public class KBArticleServiceClpInvoker {
 			return KBArticleServiceUtil.addKBArticle((java.lang.String)arguments[0],
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
-				(java.lang.String)arguments[4],
-				(java.lang.String[])arguments[5],
-				(java.lang.String)arguments[6],
-				(com.liferay.portal.service.ServiceContext)arguments[7]);
+				(java.lang.String)arguments[4], (java.lang.String)arguments[5],
+				(java.lang.String[])arguments[6],
+				(java.lang.String)arguments[7],
+				(com.liferay.portal.service.ServiceContext)arguments[8]);
 		}
 
 		if (_methodName96.equals(name) &&

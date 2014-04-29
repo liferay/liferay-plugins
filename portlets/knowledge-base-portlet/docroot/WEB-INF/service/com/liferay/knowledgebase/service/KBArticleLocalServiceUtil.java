@@ -232,6 +232,17 @@ public class KBArticleLocalServiceUtil {
 		return getService().getKBArticle(kbArticleId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -348,14 +359,15 @@ public class KBArticleLocalServiceUtil {
 
 	public static com.liferay.knowledgebase.model.KBArticle addKBArticle(
 		long userId, long parentResourcePrimKey, java.lang.String title,
-		java.lang.String content, java.lang.String description,
-		java.lang.String[] sections, java.lang.String dirName,
+		java.lang.String urlTitle, java.lang.String content,
+		java.lang.String description, java.lang.String[] sections,
+		java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .addKBArticle(userId, parentResourcePrimKey, title, content,
-			description, sections, dirName, serviceContext);
+				   .addKBArticle(userId, parentResourcePrimKey, title,
+			urlTitle, content, description, sections, dirName, serviceContext);
 	}
 
 	public static void addKBArticleResources(
@@ -478,6 +490,13 @@ public class KBArticleLocalServiceUtil {
 			orderByComparator);
 	}
 
+	public static com.liferay.knowledgebase.model.KBArticle getKBArticleByUrlTitle(
+		long groupId, java.lang.String urlTitle)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getKBArticleByUrlTitle(groupId, urlTitle);
+	}
+
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
 		long[] resourcePrimKeys, int status,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
@@ -505,6 +524,14 @@ public class KBArticleLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getLatestKBArticle(resourcePrimKey, status);
+	}
+
+	public static com.liferay.knowledgebase.model.KBArticle getLatestKBArticleByUrlTitle(
+		long groupId, java.lang.String urlTitle, int status)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getLatestKBArticleByUrlTitle(groupId, urlTitle, status);
 	}
 
 	public static java.util.List<com.liferay.knowledgebase.model.KBArticle> getSectionsKBArticles(

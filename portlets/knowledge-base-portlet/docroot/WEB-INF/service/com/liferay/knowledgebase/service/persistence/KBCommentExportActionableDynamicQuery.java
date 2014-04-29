@@ -30,8 +30,10 @@ import com.liferay.portal.util.PortalUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link com.liferay.knowledgebase.service.KBCommentLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public class KBCommentExportActionableDynamicQuery
 	extends KBCommentActionableDynamicQuery {
 	public KBCommentExportActionableDynamicQuery(

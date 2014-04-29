@@ -74,9 +74,9 @@ public interface KBArticleService extends BaseService, InvokableService {
 
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
 		java.lang.String portletId, long parentResourcePrimKey,
-		java.lang.String title, java.lang.String content,
-		java.lang.String description, java.lang.String[] sections,
-		java.lang.String dirName,
+		java.lang.String title, java.lang.String urlTitle,
+		java.lang.String content, java.lang.String description,
+		java.lang.String[] sections, java.lang.String dirName,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
