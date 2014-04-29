@@ -55,12 +55,15 @@ public class ChatPollerProcessor extends BasePollerProcessor {
 	}
 
 	@Override
-	protected void doReceive(
-			PollerRequest pollerRequest, PollerResponse pollerResponse)
+	protected PollerResponse doReceive(PollerRequest pollerRequest)
 		throws Exception {
+
+		PollerResponse pollerResponse = pollerRequest.createPollerResponse();
 
 		getBuddies(pollerRequest, pollerResponse);
 		getEntries(pollerRequest, pollerResponse);
+
+		return pollerResponse;
 	}
 
 	@Override

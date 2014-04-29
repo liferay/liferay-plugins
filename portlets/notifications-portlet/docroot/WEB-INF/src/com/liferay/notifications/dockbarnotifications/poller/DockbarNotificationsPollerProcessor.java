@@ -25,20 +25,21 @@ import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 
 	@Override
-	protected void doReceive(
-			PollerRequest pollerRequest, PollerResponse pollerResponse)
+	protected PollerResponse doReceive(PollerRequest pollerRequest)
 		throws Exception {
 
-		setUserNotificationsCount(pollerRequest, pollerResponse);
+		return setUserNotificationsCount(pollerRequest);
 	}
 
 	@Override
 	protected void doSend(PollerRequest pollerRequest) throws Exception {
 	}
 
-	protected void setUserNotificationsCount(
-			PollerRequest pollerRequest, PollerResponse pollerResponse)
+	protected PollerResponse setUserNotificationsCount(
+			PollerRequest pollerRequest)
 		throws Exception {
+
+		PollerResponse pollerResponse = pollerRequest.createPollerResponse();
 
 		int newUserNotificationsCount =
 			UserNotificationEventLocalServiceUtil.
@@ -57,6 +58,8 @@ public class DockbarNotificationsPollerProcessor extends BasePollerProcessor {
 		pollerResponse.setParameter(
 			"unreadUserNotificationsCount",
 			String.valueOf(unreadUserNotificationsCount));
+
+		return pollerResponse;
 	}
 
 }
