@@ -153,7 +153,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 						<aui:input name="emailAddress" type="hidden" />
 
 						<div id="<%= randomNamespace %>postReplyForm<%= i %>" style="display: none;">
-							<aui:input id='<%= randomNamespace + "postReplyBody" + i %>' label="comment" name='<%= "postReplyBody" + i %>' type="textarea" wrap="soft" />
+							<aui:input id='<%= randomNamespace + "postReplyBody" + i %>' label="comment" name='<%= "postReplyBody" + i %>' placeholder="leave-a-comment" type="textarea" wrap="soft" />
 
 							<%
 							String postReplyButtonLabel = LanguageUtil.get(pageContext, "submit");
@@ -461,7 +461,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 								<aui:row cssClass="lfr-discussion-form-container" fluid="<%= true %>">
 									<div class="lfr-discussion-form lfr-discussion-form-reply span12" id="<%= randomNamespace %>postReplyForm<%= i %>" style='<%= "display: none;" %>'>
 
-										<aui:input id='<%= randomNamespace + "postReplyBody" + i %>' label="" name='<%= "postReplyBody" + i %>' type="textarea" wrap="soft" />
+										<aui:input id='<%= randomNamespace + "postReplyBody" + i %>' label="" name='<%= "postReplyBody" + i %>' placeholder="leave-a-reply" type="textarea" wrap="soft" />
 
 										<aui:button-row>
 											<aui:button cssClass="btn-comment" id='<%= namespace + randomNamespace + "postReplyButton" + i %>' onClick='<%= randomNamespace + "postReply(" + i + ");" %>' value='<%= themeDisplay.isSignedIn() ? "submit" : "submit-as" %>' />
