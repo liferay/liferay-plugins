@@ -114,7 +114,6 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 									</c:when>
 									<c:otherwise>
 										<liferay-ui:icon
-											image="reply"
 											label="<%= true %>"
 											message="add-comment"
 											url="<%= taglibPostReplyURL %>"
@@ -135,7 +134,6 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 								<c:when test="<%= subscribed %>">
 									<liferay-ui:icon
 										cssClass="subscribe-link"
-										image="unsubscribe"
 										label="<%= true %>"
 										message="unsubscribe-from-comments"
 										url="<%= subscriptionURL %>"
@@ -144,7 +142,6 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 								<c:otherwise>
 									<liferay-ui:icon
 										cssClass="subscribe-link"
-										image="subscribe"
 										label="<%= true %>"
 										message="subscribe-to-comments"
 										url="<%= subscriptionURL %>"
