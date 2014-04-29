@@ -48,7 +48,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.journal.model.JournalArticle;
 
 import java.io.InputStream;
 
@@ -268,7 +267,7 @@ public class KnowledgeBaseUtil {
 		}
 
 		return ModelHintsUtil.trimString(
-			JournalArticle.class.getName(), "urlTitle", title);
+			KBArticle.class.getName(), "urlTitle", title);
 	}
 
 	public static String[] parseKeywords(String values) {

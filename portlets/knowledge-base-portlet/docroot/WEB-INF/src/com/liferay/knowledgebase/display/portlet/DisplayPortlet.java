@@ -431,6 +431,7 @@ public class DisplayPortlet extends MVCPortlet {
 		long parentResourcePrimKey = ParamUtil.getLong(
 			actionRequest, "parentResourcePrimKey");
 		String title = ParamUtil.getString(actionRequest, "title");
+		String urlTitle = ParamUtil.getString(actionRequest, "urlTitle");
 		String content = ParamUtil.getString(actionRequest, "content");
 		String description = ParamUtil.getString(actionRequest, "description");
 		String[] sections = actionRequest.getParameterValues("sections");
@@ -445,8 +446,8 @@ public class DisplayPortlet extends MVCPortlet {
 
 		if (cmd.equals(Constants.ADD)) {
 			kbArticle = KBArticleServiceUtil.addKBArticle(
-				portletId, parentResourcePrimKey, title, content, description,
-				sections, dirName, serviceContext);
+				portletId, parentResourcePrimKey, title, urlTitle, content,
+				description, sections, dirName, serviceContext);
 		}
 		else if (cmd.equals(Constants.UPDATE)) {
 			kbArticle = KBArticleServiceUtil.updateKBArticle(
