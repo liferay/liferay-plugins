@@ -15,3 +15,5 @@
 --%>
 
 <%@ include file="/init.jsp" %>
+
+<%@ page import="com.liferay.knowledgebase.navigation.util.KBNavigationUtil" %>
