@@ -118,7 +118,9 @@ public class DynamicCSSUtil {
 					_log.warn("No theme found for " + currentURL);
 				}
 
-				if (isRightToLeft(request)) {
+				if (isRightToLeft(request) &&
+					!RTLCSSUtil.isExcludedPath(resourcePath)) {
+
 					content = RTLCSSUtil.getRtlCss(content);
 				}
 
@@ -168,8 +170,8 @@ public class DynamicCSSUtil {
 				servletContext, request, themeDisplay, theme, resourcePath,
 				content);
 
-			if (isRightToLeft(request)) {
-				parsedContent = RTLCSSUtil.getRtlCss(parsedContent);
+			if (isRightToLeft(request) &&
+				!RTLCSSUtil.isExcludedPath(resourcePath)) {
 
 				// Append custom CSS for RTL
 
