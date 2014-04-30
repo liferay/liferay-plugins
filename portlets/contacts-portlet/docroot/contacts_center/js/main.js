@@ -446,7 +446,7 @@ AUI.add(
 						return new A.DataSource.IO(
 							{
 								ioConfig: {
-									method: "post"
+									method: "POST"
 								},
 								on: {
 									request: function(event) {
@@ -638,7 +638,7 @@ AUI.add(
 												instance.addContactResults(this.get('responseData'));
 											}
 										},
-										dataType: 'json'
+										dataType: 'JSON'
 									}
 								);
 							}

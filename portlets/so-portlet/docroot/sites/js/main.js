@@ -126,7 +126,7 @@ AUI().use(
 				return new A.DataSource.IO(
 					{
 						ioConfig: {
-							method: "post"
+							method: "POST"
 						},
 						on: {
 							request: function(event) {

@@ -49,7 +49,7 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/rename_folder',
 				{
-					dataType: 'json',
+					dataType: 'JSON',
 					form: {
 						id: form.getDOMNode()
 					},

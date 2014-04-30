@@ -143,7 +143,7 @@ else {
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/send_message',
 				{
-					dataType: 'json',
+					dataType: 'JSON',
 					form: {
 						id: form.getDOMNode(),
 						upload: true
@@ -180,7 +180,7 @@ else {
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/save_draft',
 				{
-					dataType: 'json',
+					dataType: 'JSON',
 					form: {
 						id: form.getDOMNode()
 					},

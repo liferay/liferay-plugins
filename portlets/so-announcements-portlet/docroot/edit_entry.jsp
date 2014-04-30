@@ -294,7 +294,7 @@ if (entry == null) {
 						}
 					}
 				},
-				dataType: 'json',
+				dataType: 'JSON',
 				form: {
 					id: form
 				}

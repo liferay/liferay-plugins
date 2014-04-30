@@ -70,7 +70,7 @@ AUI.add(
 								folderId: folderId
 							}
 						),
-						dataType: 'json',
+						dataType: 'JSON',
 						method: 'POST',
 						on: {
 							success: function(event, id, obj) {
@@ -105,7 +105,7 @@ AUI.add(
 								messageIds: messageIds
 							}
 						),
-						dataType: 'json',
+						dataType: 'JSON',
 						method: 'POST',
 						on: {
 							failure: function(event, id, obj) {
@@ -169,7 +169,7 @@ AUI.add(
 								value: value
 							}
 						),
-						dataType: 'json',
+						dataType: 'JSON',
 						method: 'POST',
 						on: {
 							failure: function(event, id, obj) {
@@ -385,7 +385,7 @@ AUI.add(
 								messageIds: messageIds
 							}
 						),
-						dataType: 'json',
+						dataType: 'JSON',
 						method: 'POST',
 						on: {
 							failure: function(event, id, obj) {

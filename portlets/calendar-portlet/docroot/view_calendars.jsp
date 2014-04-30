@@ -127,12 +127,12 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 								A.io.request(
 									url,
 									{
-										dataType: 'json',
+										dataType: 'JSON',
 										form: {
 											id: '<portlet:namespace />importFm',
 											upload: true
 										},
-										method: 'post',
+										method: 'POST',
 										on: {
 											complete: function() {
 												var responseData = this.get('responseData');

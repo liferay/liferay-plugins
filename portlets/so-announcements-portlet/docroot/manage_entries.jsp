@@ -196,7 +196,7 @@ portletURL.setWindowState(LiferayWindowState.POP_UP);
 								}
 							}
 						},
-						dataType: 'json'
+						dataType: 'JSON'
 					}
 				);
 			}

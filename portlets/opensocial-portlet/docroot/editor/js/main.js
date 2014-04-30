@@ -1001,7 +1001,7 @@ AUI.add(
 								instance._getResourceURL(resourceId),
 								{
 									autoLoad: false,
-									dataType: 'json',
+									dataType: 'JSON',
 									on: {
 										failure: function(event) {
 											instance._loadingMask.hide();

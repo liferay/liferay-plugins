@@ -113,7 +113,7 @@ if (group.isUser() && !showManageEntries) {
 
 							}
 						},
-						dataType: 'json'
+						dataType: 'JSON'
 					}
 				);
 			}

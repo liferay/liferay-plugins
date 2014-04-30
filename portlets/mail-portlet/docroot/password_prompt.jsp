@@ -52,7 +52,7 @@ MailManager mailManager = MailManager.getInstance(request);
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/store_password',
 				{
-					dataType: 'json',
+					dataType: 'JSON',
 					form: {
 						id: form.getDOMNode()
 					},

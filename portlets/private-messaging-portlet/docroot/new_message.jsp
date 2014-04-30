@@ -152,7 +152,7 @@ to = sb.toString() + to;
 			A.io.request(
 				'<liferay-portlet:resourceURL id="sendMessage"></liferay-portlet:resourceURL>',
 				{
-					dataType: 'json',
+					dataType: 'JSON',
 					form: {
 						id: form,
 						upload: true

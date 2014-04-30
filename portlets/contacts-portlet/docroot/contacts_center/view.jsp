@@ -489,7 +489,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								<portlet:namespace />keywords: searchInput.get('value'),
 								<portlet:namespace />start: start
 							},
-							dataType: 'json'
+							dataType: 'JSON'
 						}
 					);
 				},
@@ -522,7 +522,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								data: {
 									<portlet:namespace />userId: userId
 								},
-								dataType: 'json'
+								dataType: 'JSON'
 							}
 						);
 					}

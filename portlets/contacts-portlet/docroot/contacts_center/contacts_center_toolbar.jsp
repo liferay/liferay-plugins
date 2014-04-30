@@ -335,7 +335,7 @@ if (user2 != null) {
 					<portlet:namespace />start: 0,
 					<portlet:namespace />userIds: userIds.join()
 				},
-				dataType: 'json'
+				dataType: 'JSON'
 			}
 		);
 	}

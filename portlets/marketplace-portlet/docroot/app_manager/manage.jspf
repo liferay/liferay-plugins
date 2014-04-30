@@ -313,7 +313,7 @@ portletURL.setParameter("category", category);
 							actionButton.removeClass('disabled');
 						}
 					},
-					method: 'post',
+					method: 'POST',
 					on: {
 						failure: function(event, id, obj) {
 							showMessage(

@@ -168,7 +168,7 @@ for (int i = 0; i < accountsJSONArray.length(); i++) {
 			A.io.request(
 				themeDisplay.getLayoutURL() + '/-/mail/update_account',
 				{
-					dataType: 'json',
+					dataType: 'JSON',
 					form: {
 						id: form.getDOMNode()
 					},

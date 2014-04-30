@@ -147,7 +147,7 @@ if (extension) {
 							}
 						}
 					},
-					dataType: 'json',
+					dataType: 'JSON',
 					form: {
 						id: form
 					}

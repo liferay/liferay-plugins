@@ -362,7 +362,7 @@ AUI.add(
 				A.io.request(
 					inviteesURL,
 					{
-						dataType: 'json',
+						dataType: 'JSON',
 						on: {
 							success: function() {
 								callback(this.get('responseData'));
@@ -400,7 +400,7 @@ AUI.add(
 				A.io.request(
 					renderingRulesURL,
 					{
-						dataType: 'json',
+						dataType: 'JSON',
 						on: {
 							success: function() {
 								callback(this.get('responseData'));
@@ -543,7 +543,7 @@ AUI.add(
 							cmd: A.JSON.stringify(payload),
 							p_auth: Liferay.authToken
 						},
-						dataType: 'json',
+						dataType: 'JSON',
 						on: {
 							failure: callback.failure,
 							start: callback.start,

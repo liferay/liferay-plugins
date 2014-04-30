@@ -112,7 +112,7 @@ if (entryId > 0) {
 						<portlet:namespace />keywords: searchInput.get('value'),
 						<portlet:namespace />start: 0
 					},
-					dataType: 'json',
+					dataType: 'JSON',
 					form: {
 						id: form
 					}

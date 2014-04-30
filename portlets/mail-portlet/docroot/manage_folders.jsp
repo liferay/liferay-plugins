@@ -93,7 +93,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 								displayName: displayName
 							}
 						),
-						dataType: 'json',
+						dataType: 'JSON',
 						method: 'POST',
 						on: {
 							failure: <portlet:namespace />onIOFailure,
@@ -126,7 +126,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 								folderId: id
 							}
 						),
-						dataType: 'json',
+						dataType: 'JSON',
 						method: 'POST',
 						on: {
 							failure: <portlet:namespace />onIOFailure,

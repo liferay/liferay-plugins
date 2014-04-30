@@ -160,7 +160,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		return new A.DataSource.IO(
 			{
 				ioConfig: {
-					method: "post"
+					method: "POST"
 				},
 				on: {
 					request: function(event) {
@@ -300,7 +300,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 						<portlet:namespace />keywords: inviteUserSearch.get('value'),
 						<portlet:namespace />start: <portlet:namespace />start
 					},
-					dataType: 'json'
+					dataType: 'JSON'
 				}
 			);
 		},
