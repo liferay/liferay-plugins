@@ -17,6 +17,20 @@
 		</java>
 	</target>
 
+	<target name="clean">
+		<var name="custom-jsps.tmp.dir" value="${basedir}/custom_jsps_tmp" />
+
+		<mkdir dir="@{custom-jsps.tmp.dir}" />
+
+		<move todir="@{custom-jsps.tmp.dir}" file="${basedir}/docroot/META-INF/custom_jsps/html" />
+
+		<clean module.dir="${basedir}" />
+
+		<move todir="${basedir}/docroot/META-INF/custom_jsps" file="@{custom-jsps.tmp.dir}/html" />
+
+		<delete dir="@{custom-jsps.tmp.dir}" />
+	</target>
+
 	<target name="clean-rtl-css">
 		<delete failonerror="false" includeemptydirs="true">
 			<fileset dir="${basedir}/docroot" includes="**/.sass-cache/*_rtl.*" />
