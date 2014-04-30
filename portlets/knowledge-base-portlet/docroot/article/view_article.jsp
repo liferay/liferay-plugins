@@ -22,4 +22,30 @@
 	</div>
 </c:if>
 
-<liferay-util:include page="/admin/common/view_article.jsp" servletContext="<%= application %>" />
+<div class="kb-article-container">
+	<liferay-util:include page="/admin/common/view_article.jsp" servletContext="<%= application %>" />
+</div>
+
+<aui:script use="aui-base,aui-io-request,aui-parse-content">
+	Liferay.on(
+		'knowledgeBaseNavigation',
+		function(event) {
+			A.io.request(
+				event.url,
+				{
+					after: {
+						success: function(event, id, obj) {
+							var responseData = this.get('responseData');
+
+							var container = A.one('.kb-article-container');
+
+							container.plug(A.Plugin.ParseContent);
+
+							container.setContent(responseData);
+						}
+					}
+				}
+			);
+		}
+	);
+</aui:script>
