@@ -446,7 +446,7 @@ AUI.add(
 						return new A.DataSource.IO(
 							{
 								ioConfig: {
-									method: "POST"
+									method: 'POST'
 								},
 								on: {
 									request: function(event) {

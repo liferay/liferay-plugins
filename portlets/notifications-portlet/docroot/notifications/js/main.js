@@ -57,7 +57,7 @@ AUI().use(
 			},
 
 			_redirect: function(uri, openDialog) {
-				if (openDialog === "false") {
+				if (openDialog === 'false') {
 					var topWindow = Liferay.Util.getTop();
 
 					topWindow.location.href = uri;

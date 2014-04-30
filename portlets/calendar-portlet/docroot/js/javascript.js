@@ -468,7 +468,7 @@ AUI.add(
 				A.io.request(
 					calendarBookingsURL,
 					{
-						dataType: 'json',
+						dataType: 'JSON',
 						on: {
 							failure: failure,
 							success: function() {
@@ -503,7 +503,7 @@ AUI.add(
 				A.io.request(
 					resourceCalendarsURL,
 					{
-						dataType: 'json',
+						dataType: 'JSON',
 						on: {
 							success: function() {
 								callback(this.get('responseData'));
@@ -1882,7 +1882,7 @@ AUI.add(
 							[
 								{
 									cssClass: 'close',
-									label: "\u00D7",
+									label: '\u00D7',
 									on: {
 										click: A.bind(instance._handleCancelEvent, instance)
 									},

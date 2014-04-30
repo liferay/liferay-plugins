@@ -626,7 +626,7 @@ AUI.add(
 
 						var messageId = link.getData('messageId');
 
-						instance.loadCompose(instance.accountId, messageId, "edit", 0);
+						instance.loadCompose(instance.accountId, messageId, 'edit', 0);
 					},
 					'.draft-link'
 				);

@@ -126,7 +126,7 @@ AUI().use(
 				return new A.DataSource.IO(
 					{
 						ioConfig: {
-							method: "POST"
+							method: 'POST'
 						},
 						on: {
 							request: function(event) {
@@ -370,14 +370,14 @@ AUI().use(
 								var favoriteHTML;
 
 								if (result.favoriteURL == '') {
-									favoriteHTML = getSiteActionHtml('favorite', 'disabled', Liferay.Language.get("you-must-be-a-member-of-the-site-to-add-to-favorites"), '#');
+									favoriteHTML = getSiteActionHtml('favorite', 'disabled', Liferay.Language.get('you-must-be-a-member-of-the-site-to-add-to-favorites'), '#');
 								}
 								else {
 									if (result.favoriteURL) {
-										favoriteHTML = getSiteActionHtml('action favorite', '', Liferay.Language.get("add-to-favorites"), result.favoriteURL);
+										favoriteHTML = getSiteActionHtml('action favorite', '', Liferay.Language.get('add-to-favorites'), result.favoriteURL);
 									}
 									else {
-										favoriteHTML = getSiteActionHtml('action unfavorite', '', Liferay.Language.get("remove-from-favorites"), result.unfavoriteURL);
+										favoriteHTML = getSiteActionHtml('action unfavorite', '', Liferay.Language.get('remove-from-favorites'), result.unfavoriteURL);
 									}
 								}
 
@@ -387,7 +387,7 @@ AUI().use(
 									name = '<a href="' + result.publicLayoutsURL + '">' + name + '</a>';
 
 									if (result.privateLayoutsURL) {
-										name += '<a class="private-pages" href="' + result.privateLayoutsURL + '"> (' + Liferay.Language.get("private-pages") + ')</a>';
+										name += '<a class="private-pages" href="' + result.privateLayoutsURL + '"> (' + Liferay.Language.get('private-pages') + ')</a>';
 									}
 								}
 								else if (!result.publicLayoutsURL && result.privateLayoutsURL) {
