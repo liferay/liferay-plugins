@@ -30,12 +30,12 @@
 />
 
 <aui:script>
-Liferay.on(
-	'<%= portletDisplay.getId() %>:messagePosted',
-	function(event) {
-		var popup = Liferay.Tasks.getPopup();
+	Liferay.on(
+		'<%= portletDisplay.getId() %>:messagePosted',
+		function(event) {
+			var popup = Liferay.Tasks.getPopup();
 
-		popup.io.start();
-	}
-);
+			popup.io.start();
+		}
+	);
 </aui:script>

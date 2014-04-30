@@ -563,7 +563,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 				window,
 				'<%= randomNamespace %>deleteMessage',
 				function(i) {
-					if(confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-the-selected-comment" />')) {
+					if (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-the-selected-comment" />')) {
 						var A = AUI();
 
 						var form = A.one('#<%= namespace %><%= HtmlUtil.escapeJS(formName) %>');
@@ -847,6 +847,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 		return RatingsStatsUtil.create(0);
 	}
 	%>
+
 </liferay-util:buffer>
 
 <c:choose>
