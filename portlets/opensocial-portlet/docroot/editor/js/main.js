@@ -1148,13 +1148,13 @@ AUI.add(
 						var instance = this;
 
 						var loadingMask = A.one('#editorPortlet').plug(
-						   A.LoadingMask,
-						   {
-							  background: 'none',
-							  strings: {
-								 loading: Liferay.Language.get('busy')
-							  }
-						   }
+							A.LoadingMask,
+							{
+								background: 'none',
+								strings: {
+									loading: Liferay.Language.get('busy')
+								}
+							}
 						).loadingmask;
 
 						instance._loadingMask = loadingMask;

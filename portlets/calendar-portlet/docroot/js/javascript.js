@@ -49,7 +49,7 @@ AUI.add(
 										'<button type="button" class="btn btn-primary calendar-add-event-btn">' +
 											Liferay.Language.get('add-calendar-booking') +
 										'</div>' +
-									 '</button>';
+									'</button>';
 
 		var TPL_MESSAGE_UPDATE_ALL_INVITED = '<p class="calendar-portlet-confirmation-text">' +
 												Liferay.Language.get('invited-users-will-be-notified') +

@@ -330,7 +330,7 @@ AUI().use(
 							'</a>' +
 						'</span>';
 
-					return 	A.Lang.sub(
+					return	A.Lang.sub(
 						siteActionTemplate,
 						{
 							actionClassNames: actionClassNames,

@@ -92,7 +92,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
-<div class="hide calendar-portlet-import-container" id="<portlet:namespace />importCalendarContainer">
+<div class="calendar-portlet-import-container hide" id="<portlet:namespace />importCalendarContainer">
 	<div class="hide portlet-msg-error" id="<portlet:namespace />portletErrorMessage"></div>
 
 	<div class="hide portlet-msg-success" id="<portlet:namespace />portletSuccessMessage">

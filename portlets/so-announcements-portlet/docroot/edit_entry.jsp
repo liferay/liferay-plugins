@@ -172,7 +172,7 @@ if (entry == null) {
 			<div class="entry-footer" id="<portlet:namespace />entryFooter">
 				<div class="entry-footer-toolbar">
 					<div class="edit-actions">
-						<span class="toggle action hide">
+						<span class="action hide toggle">
 							<a class="toggle-entry" data-entryId="preview" href="javascript:;">
 								<i class="icon-expand-alt"></i>
 

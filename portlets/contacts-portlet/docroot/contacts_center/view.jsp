@@ -140,7 +140,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					<i class="icon-chevron-left"></i>
 				</div>
 
-				<div class="lfr-search-column contacts-search search-bar">
+				<div class="contacts-search lfr-search-column search-bar">
 					<aui:input cssClass="search-input" id="name" label="" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
 
 					<i class="icon-search"></i>
@@ -335,7 +335,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 								int followingUsersCount = UserLocalServiceUtil.searchCount(themeDisplay.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, params);
 								%>
 
-								<aui:layout cssClass="contacts-count connections">
+								<aui:layout cssClass="connections contacts-count">
 									<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(connectionUsersCount) %>" key='<%= showOnlySiteMembers ? "you-have-x-connections-in-this-site" : "you-have-x-connections" %>' translateArguments="<%= false %>" /></a>
 								</aui:layout>
 
@@ -349,12 +349,12 @@ portletURL.setWindowState(WindowState.NORMAL);
 									int myContactsCount = EntryLocalServiceUtil.getEntriesCount(user.getUserId());
 									%>
 
-									<aui:layout cssClass="contacts-count contacts">
+									<aui:layout cssClass="contacts contacts-count">
 										<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(myContactsCount) %>" key="view-my-x-contacts" translateArguments="<%= false %>" /></a>
 									</aui:layout>
 								</c:if>
 
-								<aui:layout cssClass="contacts-count all">
+								<aui:layout cssClass="all contacts-count">
 									<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(allUsersCount) %>" key="view-all-x-users" translateArguments="<%= false %>" /></a>
 								</aui:layout>
 
