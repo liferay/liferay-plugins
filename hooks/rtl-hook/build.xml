@@ -18,17 +18,23 @@
 	</target>
 
 	<target name="clean">
-		<var name="custom-jsps.tmp.dir" value="${basedir}/custom_jsps_tmp" />
+		<mkdir dir="custom_jsps" />
 
-		<mkdir dir="@{custom-jsps.tmp.dir}" />
+		<move
+			file="docroot/META-INF/custom_jsps/html"
+			todir="custom_jsps"
+		/>
 
-		<move todir="@{custom-jsps.tmp.dir}" file="${basedir}/docroot/META-INF/custom_jsps/html" />
+		<clean
+			module.dir="${basedir}"
+		/>
 
-		<clean module.dir="${basedir}" />
+		<move
+			file="custom_jsps/html"
+			todir="docroot/META-INF/custom_jsps"
+		/>
 
-		<move todir="${basedir}/docroot/META-INF/custom_jsps" file="@{custom-jsps.tmp.dir}/html" />
-
-		<delete dir="@{custom-jsps.tmp.dir}" />
+		<delete dir="custom_jsps" />
 	</target>
 
 	<target name="clean-rtl-css">
