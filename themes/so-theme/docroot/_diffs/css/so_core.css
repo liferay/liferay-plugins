@@ -1788,6 +1788,115 @@ html.aui {
 	}
 }
 
+/* ---------- Taglib: discussion ---------- */
+
+.taglib-discussion {
+	.add-comment {
+		border-bottom: 1px solid #DDD;
+		padding: 0;
+
+		a {
+			display: inline-block;
+			padding: 5px 10px 5px 0;
+		}
+
+		.control-label {
+			@include hidden-accessible();
+		}
+	}
+
+	.form .add-comment, .lfr-discussion-form-container .lfr-discussion-form {
+		textarea {
+			box-sizing: border-box;
+			margin-bottom: 0;
+			width: 100%;
+		}
+
+		.control-group {
+			margin-bottom: 5px;
+		}
+
+		.button-holder {
+			border-top-width: 0;
+			margin: 0 0 10px;
+			padding: 0;
+		}
+	}
+
+	.lfr-discussion {
+		margin: 10px 0;
+		padding: 0;
+
+		.lfr-discussion-form-container .lfr-discussion-form {
+			background: transparent;
+			padding: 0;
+		}
+	}
+
+	.taglib-user-display {
+		padding: 0;
+	}
+
+	.user-profile-image {
+		left: 0;
+		max-height: 45px;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+	}
+
+	.avatar {
+		height: auto;
+		width: 45px;
+	}
+
+	.taglib-user-display .user-name {
+		margin-left: 55px;
+		text-align: left;
+	}
+
+	.user-details {
+		margin-top: 0;
+	}
+
+	.lfr-discussion-posted-on {
+		clear: none;
+		float: none;
+		margin: 5px 0 0 55px;
+		padding-top: 0;
+	}
+
+	.lfr-discussion-message {
+		clear: both;
+		padding: 10px 0;
+	}
+
+	.lfr-discussion-controls {
+		background-color: #EAEAEA;
+		border: 1px solid #DDD;
+		margin-bottom: 10px;
+		overflow: hidden;
+	}
+
+	.taglib-ratings {
+		margin: 0;
+		padding: 5px;
+	}
+
+	.lfr-discussion-actions {
+		li {
+			display: inline;
+		}
+		margin-right: 4px;
+
+		.taglib-icon {
+			clip: auto;
+			padding: 5px;
+			position: static;
+		}
+	}
+}
+
 /* ---------- Tags ---------- */
 
 .autocomplete-content .toolbar {
@@ -2080,6 +2189,28 @@ html.aui {
 
 			.microblogs-status-container {
 				display: none;
+			}
+		}
+
+		/* ---------- Taglib: discussion ---------- */
+
+		.taglib-discussion {
+			margin: 0;
+
+			.lfr-discussion-actions .taglib-icon {
+				padding: 5px 10px;
+
+				.taglib-text {
+					@include hidden-accessible();
+				}
+			}
+
+			.add-comment, .lfr-discussion-form-container .lfr-discussion-form {
+				.button-holder .btn {
+					display: inline-block;
+					margin-top: 0;
+					width: auto;
+				}
 			}
 		}
 	}
