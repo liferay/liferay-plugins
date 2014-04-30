@@ -14,7 +14,10 @@
  */
 --%>
 
-<%@ page import="com.liferay.ams.model.Asset" %><%@
+<%@ page import="com.liferay.alloy.mvc.util.bridges.alloy.AlloyController" %><%@
+page import="com.liferay.alloy.mvc.util.bridges.alloy.AlloySearchResult" %><%@
+page import="com.liferay.alloy.mvc.util.bridges.alloy.BaseAlloyIndexer" %><%@
+page import="com.liferay.ams.model.Asset" %><%@
 page import="com.liferay.ams.model.Definition" %><%@
 page import="com.liferay.ams.model.Type" %><%@
 page import="com.liferay.ams.service.AssetLocalServiceUtil" %><%@
@@ -26,10 +29,7 @@ page import="com.liferay.portal.kernel.search.Field" %><%@
 page import="com.liferay.portal.kernel.search.Indexer" %><%@
 page import="com.liferay.portal.kernel.search.SearchContext" %><%@
 page import="com.liferay.portal.kernel.search.Summary" %><%@
-page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
-page import="com.liferay.alloy.mvc.util.bridges.alloy.AlloyController" %><%@
-page import="com.liferay.alloy.mvc.util.bridges.alloy.AlloySearchResult" %><%@
-page import="com.liferay.alloy.mvc.util.bridges.alloy.BaseAlloyIndexer" %>
+page import="com.liferay.portal.kernel.util.ParamUtil" %>
 
 <%@ page import="java.util.Locale" %>
 
