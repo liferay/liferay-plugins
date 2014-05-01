@@ -16,7 +16,7 @@
 
 <%@ include file="/WEB-INF/jsp/util/init.jsp" %>
 
-<%@ page import="com.liferay.alloy.mvc.util.bridges.alloy.BaseAlloyControllerImpl" %>
+<%@ page import="com.liferay.alloy.mvc.BaseAlloyControllerImpl" %>
 
 <%
 AlloyController alloyController = new AlloyControllerImpl();
