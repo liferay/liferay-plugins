@@ -60,6 +60,11 @@
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,jargs.jar,javax.servlet-api.jar,jsp-api.jar,qdox.jar" />
 	</path>
 
+	<path id="portal-ant.classpath">
+		<path refid="portal.classpath" />
+		<fileset dir="${sdk.dir}/lib" includes="bnd.jar,portal-ant-shared.jar" />
+	</path>
+
 	<path id="test.classpath">
 		<path refid="plugin.classpath" />
 		<path refid="plugin-test-type.classpath" />
@@ -136,7 +141,7 @@ Error-Prone was automatically installed. Please rerun your task.
 		<sequential>
 			<taskdef
 				classname="com.liferay.portal.ant.bnd.BaselineJarTask"
-				classpathref="plugin.classpath"
+				classpathref="portal-ant.classpath"
 				name="baseline-jar"
 			/>
 
@@ -383,6 +388,20 @@ Error-Prone was automatically installed. Please rerun your task.
 			<delete file="${plugin.sources.file}" />
 			<delete file="${plugin.src.file}" />
 
+			<if>
+				<equals arg1="${clean.delete.ivy.md5}" arg2="true" />
+				<then>
+					<delete file="@{module.dir}/ivy.xml.MD5" />
+				</then>
+			</if>
+
+			<if>
+				<equals arg1="${clean.delete.lib}" arg2="true" />
+				<then>
+					<delete dir="@{module.dir}/lib" />
+				</then>
+			</if>
+
 			<call-macrodef-or-target
 				macrodef.name="clean-portal-dependencies"
 				module.dir="@{module.dir}"
@@ -524,6 +543,10 @@ Error-Prone was automatically installed. Please rerun your task.
 				<else>
 					<call-macrodef-or-target
 						macrodef.name="compile-import-shared"
+						module.dir="@{module.dir}"
+					/>
+
+					<process-ivy
 						module.dir="@{module.dir}"
 					/>
 
@@ -1548,7 +1571,7 @@ Please find a solution that does not require portal-impl.jar.
 		<sequential>
 			<taskdef
 				classname="com.liferay.portal.ant.ManifestHelperTask"
-				classpathref="plugin.classpath"
+				classpathref="portal-ant.classpath"
 				name="liferay-manifest-helper"
 			/>
 
@@ -1849,6 +1872,11 @@ Please find a solution that does not require portal-impl.jar.
 				/>
 				<then>
 					<property name="plugin-lib.classpath.path" refid="plugin-lib.classpath" />
+
+					<set-build-xml-var
+						build.xml.var.name="ignore.osgi.portal.classpath"
+						module.dir="@{module.dir}"
+					/>
 
 					<path id="plugin-lib.classpath">
 						<path refid="portal.classpath" />
