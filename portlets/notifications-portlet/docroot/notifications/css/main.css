@@ -211,7 +211,7 @@
 	.user-notifications-list {
 		margin: 0;
 
-		.dismiss-notifications {
+		.mark-all-as-read {
 			background-color: #FFF;
 			border-radius: 4px;
 			color: #000;

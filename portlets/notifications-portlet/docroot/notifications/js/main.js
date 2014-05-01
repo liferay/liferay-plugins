@@ -65,32 +65,32 @@ AUI().use(
 				}
 			},
 
-			_bindDismissDelegation: function(fullView, notificationsList, markAllAsRead, selector) {
+			_bindMarkAllAsRead: function() {
+				var instance = this;
+
+				instance._bindMarkAsReadDelegation(false, instance._getDockbarNotificationsList(), true, '.mark-all-as-read');
+				instance._bindMarkAsReadDelegation(true, instance._getFullviewNotificationsList(), true, '.mark-all-as-read');
+			},
+
+			_bindMarkAsRead: function() {
+				var instance = this;
+
+				instance._bindMarkAsReadDelegation(false, instance._getDockbarNotificationsList(), false, '.user-notification .btn-action');
+				instance._bindMarkAsReadDelegation(true, instance._getFullviewNotificationsList(), false, '.user-notification .btn-action');
+			},
+
+			_bindMarkAsReadDelegation: function(fullView, notificationsList, markAllAsRead, selector) {
 				var instance = this;
 
 				if (notificationsList) {
 					notificationsList.delegate(
 						'click',
 						function(event) {
-							instance._dismissNotifications(event, fullView, markAllAsRead);
+							instance._markAsRead(event, fullView, markAllAsRead);
 						},
 						selector
 					);
 				}
-			},
-
-			_bindDismissNotification: function() {
-				var instance = this;
-
-				instance._bindDismissDelegation(false, instance._getDockbarNotificationsList(), false, '.user-notification .btn-action');
-				instance._bindDismissDelegation(true, instance._getFullviewNotificationsList(), false, '.user-notification .btn-action');
-			},
-
-			_bindDismissAllNotifications: function() {
-				var instance = this;
-
-				instance._bindDismissDelegation(false, instance._getDockbarNotificationsList(), true, '.dismiss-notifications');
-				instance._bindDismissDelegation(true, instance._getFullviewNotificationsList(), true, '.dismiss-notifications');
 			},
 
 			_bindNavMenu: function(menu, uri, allNotifications, unread) {
@@ -161,15 +161,15 @@ AUI().use(
 			_bindUI: function() {
 				var instance = this;
 
-				instance._bindDismissNotification();
+				instance._bindMarkAllAsRead();
 
-				instance._bindDismissAllNotifications();
-
-				instance._bindUserNotificationsSideBar();
+				instance._bindMarkAsRead();
 
 				instance._bindNextPageNotifications();
 
 				instance._bindPreviousPageNotifications();
+
+				instance._bindUserNotificationsSideBar();
 
 				instance._bindViewNotification();
 			},
@@ -219,19 +219,19 @@ AUI().use(
 				var instance = this;
 
 				if (config.userNotificationEventsCount > 0) {
-					var nodeHTML = '<a class="dismiss-notifications" href="' + instance._getActionURL('markAllAsRead', config.userNotificationEventIds) + '">' +
+					var nodeHTML = '<a class="mark-all-as-read" href="' + instance._getActionURL('markAllAsRead', config.userNotificationEventIds) + '">' +
 							A.Lang.sub(Liferay.Language.get('mark-all-as-read-x'), [config.currentPageNotificationEventsCount]) + '</a>';
 
-					var dockbarDismiss = A.one('.dropDownMarkAllAsRead');
+					var dockbarMarkAllAsRead = A.one('.dockbarMarkAllAsRead');
 
-					if (dockbarDismiss) {
-						dockbarDismiss.get('parentNode').replaceChild(A.Node.create(nodeHTML), dockbarDismiss);
+					if (dockbarMarkAllAsRead) {
+						dockbarMarkAllAsRead.get('parentNode').replaceChild(A.Node.create(nodeHTML), dockbarMarkAllAsRead);
 					}
 
-					var fullviewDismiss = A.one('.fullViewMarkAllAsRead');
+					var fullViewMarkAllAsRead = A.one('.fullViewMarkAllAsRead');
 
-					if (fullviewDismiss) {
-						fullviewDismiss.get('parentNode').replaceChild(A.Node.create(nodeHTML), fullviewDismiss);
+					if (fullViewMarkAllAsRead) {
+						fullViewMarkAllAsRead.get('parentNode').replaceChild(A.Node.create(nodeHTML), fullViewMarkAllAsRead);
 					}
 				}
 			},
@@ -270,7 +270,7 @@ AUI().use(
 				);
 			},
 
-			_dismissNotifications: function(event, fullView, markAllAsRead) {
+			_markAsRead: function(event, fullView, markAllAsRead) {
 				event.preventDefault();
 
 				var instance = this;
@@ -493,7 +493,7 @@ AUI().use(
 								}
 							}
 						},
-						dataType: 'json'
+						dataType: 'JSON'
 					}
 				);
 			},

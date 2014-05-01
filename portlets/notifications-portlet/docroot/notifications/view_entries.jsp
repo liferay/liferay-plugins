@@ -170,7 +170,7 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 		<a href="<%= viewAllNotifications %>"><liferay-ui:message key="view-all-notifications" /></a>
 
 		<c:if test="<%= !userNotificationEventIds.isEmpty() %>">
-			<div class="dropDownMarkAllAsRead"></div>
+			<div class="dockbarMarkAllAsRead"></div>
 		</c:if>
 	</li>
 </c:if>
