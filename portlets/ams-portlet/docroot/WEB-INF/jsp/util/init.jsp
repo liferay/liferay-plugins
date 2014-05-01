@@ -14,9 +14,9 @@
  */
 --%>
 
-<%@ page import="com.liferay.alloy.mvc.util.bridges.alloy.AlloyController" %><%@
-page import="com.liferay.alloy.mvc.util.bridges.alloy.AlloySearchResult" %><%@
-page import="com.liferay.alloy.mvc.util.bridges.alloy.BaseAlloyIndexer" %><%@
+<%@ page import="com.liferay.alloy.mvc.AlloyController" %><%@
+page import="com.liferay.alloy.mvc.AlloySearchResult" %><%@
+page import="com.liferay.alloy.mvc.BaseAlloyIndexer" %><%@
 page import="com.liferay.ams.model.Asset" %><%@
 page import="com.liferay.ams.model.Definition" %><%@
 page import="com.liferay.ams.model.Type" %><%@
