@@ -43,14 +43,14 @@ public class NotificationsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		String[] userNotificationEventIds = StringUtil.split(
-			ParamUtil.getString(actionRequest, "userNotificationEventIds"));
+		long[] userNotificationEventIds = ParamUtil.getLongValues(
+			actionRequest, "userNotificationEventIds");
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
-			for (String userNotificationEventId : userNotificationEventIds) {
-				doSetArchived(GetterUtil.getLong(userNotificationEventId));
+			for (long userNotificationEventId : userNotificationEventIds) {
+				doSetArchived(userNotificationEventId);
 			}
 
 			jsonObject.put("success", Boolean.TRUE);
