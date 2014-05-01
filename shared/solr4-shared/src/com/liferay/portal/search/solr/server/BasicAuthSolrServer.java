@@ -64,7 +64,8 @@ public class BasicAuthSolrServer extends SolrServer {
 			for (HttpRequestInterceptor httpRequestInterceptor :
 					_httpRequestInterceptors) {
 
-				defaultHttpClient.addRequestInterceptor(httpRequestInterceptor);
+				defaultHttpClient.addRequestInterceptor(
+					httpRequestInterceptor, 0);
 			}
 		}
 
