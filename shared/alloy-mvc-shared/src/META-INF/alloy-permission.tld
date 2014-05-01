@@ -11,7 +11,7 @@
 	<uri>http://liferay.com/tld/alloy-permission</uri>
 	<function>
 		<name>contains</name>
-		<function-class>com.liferay.compat.util.bridges.alloy.AlloyPermission</function-class>
+		<function-class>com.liferay.alloy.mvc.AlloyPermission</function-class>
 		<function-signature>boolean contains(com.liferay.portal.theme.ThemeDisplay, java.lang.String, java.lang.String)</function-signature>
 	</function>
 </taglib>

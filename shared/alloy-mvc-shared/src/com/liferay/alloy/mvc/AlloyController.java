@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.alloy.mvc.util.bridges.alloy;
+package com.liferay.alloy.mvc;
 
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.Portlet;
