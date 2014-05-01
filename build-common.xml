@@ -2091,6 +2091,51 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="war-alloy-portlet">
+		<attribute name="module.dir" />
+
+		<sequential>
+			<loadfile property="portlet.xml.content" srcFile="docroot/WEB-INF/portlet.xml" /> 
+
+			<if>
+				<contains string="${portlet.xml.content}" substring="com.liferay.alloy.mvc.AlloyPortlet" />
+				<then>
+					<for param="dir">
+						<dirset dir="docroot/WEB-INF/jsp" includes="*" />
+						<sequential>
+							<if>
+								<available file="@{dir}/views" type="dir" />
+								<then>
+									<antelope:stringutil property="module.dir" string="@{module.dir}">
+										<antelope:replace regex="\\" replacement="/" />
+									</antelope:stringutil>
+
+									<antelope:stringutil property="dir" string="@{dir}">
+										<antelope:replace regex="\\" replacement="/" />
+									</antelope:stringutil>
+
+									<antelope:stringutil property="dir" string="${dir}">
+										<antelope:replace regex="${module.dir}/docroot/" replacement="" />
+									</antelope:stringutil>
+
+									<zip
+										destfile="${plugin.file}"
+										update="true"
+									>
+										<mappedresources>
+											<globmapper from="*" to="${dir}/views/touch.jsp" />
+											<javaresource classpathref="portal.classpath" name="com/liferay/portal/deploy/dependencies/touch.jsp" />
+										</mappedresources>
+									</zip>
+								</then>
+							</if>
+						</sequential>
+					</for>
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="war-macro">
 		<attribute name="module.dir" />
 
@@ -2266,6 +2311,15 @@ Please find a solution that does not require portal-impl.jar.
 							includes="WEB-INF/liferay-hook.xml.processed"
 						/>
 					</zip>
+				</then>
+			</if>
+
+			<if>
+				<antelope:endswith string="${plugin.name}" with="-portlet" />
+				<then>
+					<war-alloy-portlet
+						module.dir="@{module.dir}"
+					/>
 				</then>
 			</if>
 		</sequential>
