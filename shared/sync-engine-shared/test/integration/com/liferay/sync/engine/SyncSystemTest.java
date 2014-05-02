@@ -408,6 +408,18 @@ public class SyncSystemTest {
 
 				pause(delay);
 			}
+			else if (action.equals("startEngine")) {
+				SyncEngine.start();
+			}
+			else if (action.equals("stopEngine")) {
+				SyncEngine.stop();
+			}
+			else if (action.equals("startLiferay")) {
+				SyncSystemTestUtil.startLiferay();
+			}
+			else if (action.equals("stopLiferay")) {
+				SyncSystemTestUtil.stopLiferay();
+			}
 			else if (action.equals("verifyFile")) {
 				verifyFile(stepJsonNode);
 			}
