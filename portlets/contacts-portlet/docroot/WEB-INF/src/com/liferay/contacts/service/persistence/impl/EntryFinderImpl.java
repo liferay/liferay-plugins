@@ -20,6 +20,7 @@ package com.liferay.contacts.service.persistence.impl;
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.model.impl.EntryImpl;
 import com.liferay.contacts.service.persistence.EntryFinder;
+import com.liferay.contacts.service.persistence.EntryUtil;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -30,6 +31,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.service.persistence.UserFinderUtil;
+import com.liferay.portal.service.persistence.UserUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.util.comparator.UserLastNameComparator;
 import com.liferay.util.dao.orm.CustomSQLUtil;
@@ -54,23 +56,22 @@ public class EntryFinderImpl
 	public int countByKeywords(long companyId, long userId, String keywords)
 		throws SystemException {
 
-		String[] fullNames = null;
-		String[] emailAddresses = null;
-		boolean andOperator = false;
-
 		if (Validator.isNotNull(keywords)) {
-			fullNames = CustomSQLUtil.keywords(keywords);
-			emailAddresses = CustomSQLUtil.keywords(keywords);
-		}
-		else {
-			andOperator = true;
+			String[] fullNames = CustomSQLUtil.keywords(keywords);
+			String[] emailAddresses = CustomSQLUtil.keywords(keywords);
+
+			int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
+				companyId, fullNames, fullNames, fullNames, fullNames,
+				emailAddresses, 0, null, false);
+
+			count += countByU_FN_EA(userId, fullNames, emailAddresses, false);
+
+			return count;
 		}
 
-		int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
-			companyId, fullNames, fullNames, fullNames, fullNames,
-			emailAddresses, 0, null, andOperator);
+		int count = UserUtil.countByC_DU_S(companyId, false, 0);
 
-		count += countByU_FN_EA(userId, fullNames, emailAddresses, andOperator);
+		count += EntryUtil.countByUserId(userId);
 
 		return count;
 	}
@@ -79,23 +80,82 @@ public class EntryFinderImpl
 	public int countByKeywords(long userId, String keywords)
 		throws SystemException {
 
-		String[] fullNames = null;
-		String[] emailAddresses = null;
-		boolean andOperator = false;
-
 		if (Validator.isNotNull(keywords)) {
-			fullNames = CustomSQLUtil.keywords(keywords);
-			emailAddresses = CustomSQLUtil.keywords(keywords);
-		}
-		else {
-			andOperator = true;
+			String[] fullNames = CustomSQLUtil.keywords(keywords);
+			String[] emailAddresses = CustomSQLUtil.keywords(keywords);
+
+			return countByU_FN_EA(userId, fullNames, emailAddresses, false);
 		}
 
-		return countByU_FN_EA(userId, fullNames, emailAddresses, andOperator);
+		return EntryUtil.countByUserId(userId);
 	}
 
 	@Override
-	public int countByU_FN_EA(
+	public List<BaseModel<?>> findByKeywords(
+			long companyId, long userId, String keywords, int start, int end)
+		throws SystemException {
+
+		List<BaseModel<?>> models = new ArrayList<BaseModel<?>>();
+
+		if (Validator.isNotNull(keywords)) {
+			String[] fullNames = CustomSQLUtil.keywords(keywords);
+			String[] emailAddresses = CustomSQLUtil.keywords(keywords);
+
+			models.addAll(
+				UserFinderUtil.findByC_FN_MN_LN_SN_EA_S(
+					companyId, fullNames, fullNames, fullNames, fullNames,
+					emailAddresses, 0, null, false, start, end,
+					new UserLastNameComparator(true)));
+
+			if (models.size() < (end - start)) {
+				int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
+					companyId, fullNames, fullNames, fullNames, fullNames,
+					emailAddresses, 0, null, false);
+
+				start -= count;
+				end -= count;
+
+				models.addAll(
+					findByU_FN_EA(
+						userId, fullNames, emailAddresses, false, start, end));
+			}
+		}
+		else {
+			models.addAll(
+				UserUtil.findByC_DU_S(
+					companyId, false, 0, start, end,
+					new UserLastNameComparator(true)));
+
+			if (models.size() < (end - start)) {
+				int count = UserUtil.countByC_DU_S(companyId, false, 0);
+
+				start -= count;
+				end -= count;
+
+				models.addAll(EntryUtil.findByUserId(userId, start, end));
+			}
+		}
+
+		return models;
+	}
+
+	@Override
+	public List<Entry> findByKeywords(
+			long userId, String keywords, int start, int end)
+		throws SystemException {
+
+		if (Validator.isNotNull(keywords)) {
+			String[] fullNames = CustomSQLUtil.keywords(keywords);
+			String[] emailAddresses = CustomSQLUtil.keywords(keywords);
+
+			return findByU_FN_EA(
+				userId, fullNames, emailAddresses, false, start, end);
+		}
+
+		return EntryUtil.findByUserId(userId, start, end);
+	}
+
+	protected int countByU_FN_EA(
 			long userId, String[] fullNames, String[] emailAddresses,
 			boolean andOperator)
 		throws SystemException {
@@ -147,71 +207,7 @@ public class EntryFinderImpl
 		}
 	}
 
-	@Override
-	public List<BaseModel<?>> findByKeywords(
-			long companyId, long userId, String keywords, int start, int end)
-		throws SystemException {
-
-		String[] fullNames = null;
-		String[] emailAddresses = null;
-		boolean andOperator = false;
-
-		if (Validator.isNotNull(keywords)) {
-			fullNames = CustomSQLUtil.keywords(keywords);
-			emailAddresses = CustomSQLUtil.keywords(keywords);
-		}
-		else {
-			andOperator = true;
-		}
-
-		List<BaseModel<?>> models = new ArrayList<BaseModel<?>>();
-
-		models.addAll(
-			UserFinderUtil.findByC_FN_MN_LN_SN_EA_S(
-				companyId, fullNames, fullNames, fullNames, fullNames,
-				emailAddresses, 0, null, andOperator, start, end,
-				new UserLastNameComparator(true)));
-
-		if (models.size() < (end - start)) {
-			int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
-				companyId, fullNames, fullNames, fullNames, fullNames,
-				emailAddresses, 0, null, andOperator);
-
-			start -= count;
-			end -= count;
-
-			models.addAll(
-				findByU_FN_EA(
-					userId, fullNames, emailAddresses, andOperator, start,
-					end));
-		}
-
-		return models;
-	}
-
-	@Override
-	public List<Entry> findByKeywords(
-			long userId, String keywords, int start, int end)
-		throws SystemException {
-
-		String[] fullNames = null;
-		String[] emailAddresses = null;
-		boolean andOperator = false;
-
-		if (Validator.isNotNull(keywords)) {
-			fullNames = CustomSQLUtil.keywords(keywords);
-			emailAddresses = CustomSQLUtil.keywords(keywords);
-		}
-		else {
-			andOperator = true;
-		}
-
-		return findByU_FN_EA(
-			userId, fullNames, emailAddresses, andOperator, start, end);
-	}
-
-	@Override
-	public List<Entry> findByU_FN_EA(
+	protected List<Entry> findByU_FN_EA(
 			long userId, String[] fullNames, String[] emailAddresses,
 			boolean andOperator, int start, int end)
 		throws SystemException {
