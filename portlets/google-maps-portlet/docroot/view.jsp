@@ -24,10 +24,8 @@
 					<c:choose>
 						<c:when test="<%= mapInputEnabled %>">
 							<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= (directionsInputEnabled || Validator.isNotNull(directionsAddress)) ? "from" : StringPool.BLANK %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
-
-							<c:if test="<%= !directionsInputEnabled && !mapInputEnabled && Validator.isNotNull(directionsAddress) %>">
-								<aui:button name="getMapButton" value="get-map" />
-							</c:if>
+							<aui:button name="getMapButton" value="get-map" />
+							
 						</c:when>
 						<c:otherwise>
 							<c:if test="<%= Validator.isNotNull(mapAddress) && (Validator.isNotNull(directionsAddress) || directionsInputEnabled) %>">
@@ -89,17 +87,14 @@
 			new Liferay.Portlet.GoogleMaps(
 				{
 					directionsAddress: '<%= directionsAddress %>',
-
-					<c:if test="<%= PortalUtil.isSecure(request) %>">
-						googleMapsURL: 'https://maps-api-ssl.google.com/maps/api/js',
-					</c:if>
-
 					languageId: '<%= themeDisplay.getLanguageId() %>',
 					mapAddress: '<%= mapAddress %>',
 					mapInputEnabled: <%= mapInputEnabled %>,
 					namespace: '<portlet:namespace />',
 					portletId: '<%= portletDisplay.getId() %>',
-					showDirectionSteps: <%= showDirectionSteps %>
+					showDirectionSteps: <%= showDirectionSteps %>,
+					zoomDisplay: '<%= mapZoom %>',
+					mapKey: '<%= mapKey %>'
 				}
 			).render();
 		</aui:script>

@@ -25,6 +25,12 @@ AUI.add(
 
 		var WIN = A.config.win;
 
+		var STR_ZOOM_MAP = 'zoomDisplay';
+		
+		var STR_KEY_MAP = 'mapKey';
+		
+		// chave ---->   AIzaSyCzzyBbkOxZzw-XMMOqMS7PfZSFVq_WSLo
+		
 		var GoogleMaps = A.Component.create(
 			{
 				ATTRS: {
@@ -34,7 +40,7 @@ AUI.add(
 
 					googleMapsURL: {
 						validator: Lang.isString,
-						value: 'http://maps.google.com/maps/api/js'
+						value: 'https://maps.googleapis.com/maps/api/js' 
 					},
 
 					languageId: {
@@ -54,8 +60,7 @@ AUI.add(
 					mapParams: {
 						validator: Lang.isObject,
 						value: {
-							mapTypeId: MAP_TYPE_ROADMAP,
-							zoom: 8
+							mapTypeId: MAP_TYPE_ROADMAP
 						}
 					},
 
@@ -70,7 +75,18 @@ AUI.add(
 					showDirectionSteps: {
 						validator: Lang.isBoolean,
 						value: false
+					},
+					
+					zoomDisplay: {
+						validator: Lang.isString,
+						getter: '_getZoomDisplay'
+					},
+					
+					mapKey: {
+						validator: Lang.isString,
+						getter: '_getMapKey'
 					}
+					
 				},
 
 				AUGMENTS: [Liferay.PortletBase],
@@ -220,7 +236,7 @@ AUI.add(
 						var instance = this;
 
 						var mapAddress = instance.get(STR_MAP_ADDRESS);
-
+						
 						instance._removeMarkers();
 
 						instance._getAddress(mapAddress);
@@ -251,7 +267,9 @@ AUI.add(
 
 						var googleMapsURL = instance.get('googleMapsURL');
 
-						googleMapsURL = googleMapsURL + '?sensor=true&language=' + instance.get('languageId') + '&callback=Liferay.GOOGLE_MAPS.onGoogleMapsLoaded';
+						var key = instance.get(STR_KEY_MAP);
+						
+						googleMapsURL = googleMapsURL + '?key='+ key +'&sensor=true&language=' + instance.get('languageId') + '&callback=Liferay.GOOGLE_MAPS.onGoogleMapsLoaded';
 
 						A.Get.script(googleMapsURL);
 					},
@@ -299,7 +317,7 @@ AUI.add(
 							}
 
 							if (!instance._infoWindow) {
-								instance._infoWindow = new googleMaps.InfoWindow(
+							instance._infoWindow = new googleMaps.InfoWindow(
 									{
 										content: address
 									}
@@ -400,13 +418,13 @@ AUI.add(
 
 					_renderMap: function() {
 						var instance = this;
-
 						var mapParams = instance.get('mapParams');
-
+						var zoomDisplay = parseInt( instance.get(STR_ZOOM_MAP) );
 						mapParams = A.merge(
 							mapParams,
 							{
-								mapTypeId: instance._getGoogleMapType(mapParams.mapTypeId)
+								mapTypeId: instance._getGoogleMapType(mapParams.mapTypeId),
+								zoom: zoomDisplay
 							}
 						);
 
@@ -459,6 +477,16 @@ AUI.add(
 
 							markersArray.push(marker);
 						}
+					},
+					
+					_getZoomDisplay: function(value) {
+						var instance = this;
+						return value;
+					},
+					
+					_getMapKey: function(value) {
+						var instance = this;
+						return value;
 					}
 				}
 			}

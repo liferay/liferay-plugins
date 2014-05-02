@@ -50,4 +50,10 @@ if (directionsInputEnabled) {
 int height = GetterUtil.getInteger(portletPreferences.getValue("height", null), 400);
 boolean showDirectionSteps = GetterUtil.getBoolean(portletPreferences.getValue("showDirectionSteps", null));
 boolean showGoogleMapsLink = GetterUtil.getBoolean(portletPreferences.getValue("showGoogleMapsLink", null));
+
+String mapKey = GetterUtil.getString(portletPreferences.getValue("mapKey", null));
+
+Integer mapZoom = GetterUtil.getInteger(portletPreferences.getValue("mapZoom", null), 13);
+
+
 %>

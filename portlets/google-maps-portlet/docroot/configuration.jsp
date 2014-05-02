@@ -22,8 +22,16 @@
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<aui:fieldset>
+	
+		<aui:input cssClass="lfr-input-text-container" name="preferences--mapKey--" type="text" value="<%= mapKey %>" />
+		<aui:a href="https://developers.google.com/maps/documentation/javascript/tutorial#api_key" label="api-key" target="_blank" />
+		
+		<hr />
+
 		<aui:input cssClass="lfr-input-text-container" name="preferences--mapAddress--" type="text" value="<%= mapAddress %>" />
 
+		<aui:input cssClass="lfr-input-text-container" name="preferences--mapZoom--" type="text" value="<%= mapZoom %>" />
+		
 		<aui:input label="allow-map-address-to-be-edited" name="preferences--mapInputEnabled--" type="checkbox" value="<%= mapInputEnabled %>" />
 
 		<aui:input cssClass="lfr-input-text-container" name="preferences--directionsAddress--" type="text" value="<%= directionsAddress %>" />
