@@ -35,8 +35,6 @@ AUI.add(
 
 		var TPL_CALENDAR_BOOKINGS_URL = '{calendarBookingsURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}statuses={statuses}';
 
-		var TPL_INVITEES_URL = '{inviteesURL}&{portletNamespace}parentCalendarBookingId={calendarBookingId}';
-
 		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}ruleName={ruleName}';
 
 		var TPL_RESOURCE_CALENDARS_URL = '{resourceCalendarsURL}&{portletNamespace}calendarResourceId={calendarResourceId}';
@@ -97,7 +95,6 @@ AUI.add(
 
 		var CalendarUtil = {
 			CALENDAR_BOOKINGS_URL: null,
-			INVITEES_URL: null,
 			INVOKER_URL: themeDisplay.getPathContext() + '/api/jsonws/invoke',
 			NOTIFICATION_DEFAULT_TYPE: 'email',
 			PORTLET_NAMESPACE: STR_BLANK,
@@ -350,24 +347,13 @@ AUI.add(
 			getCalendarBookingInvitees: function(calendarBookingId, callback) {
 				var instance = this;
 
-				var inviteesURL = Lang.sub(
-					TPL_INVITEES_URL,
+				instance.invokeResourceURL(
+					'calendarBookingInvitees',
+					'1_WAR_calendarportlet',
 					{
 						calendarBookingId: calendarBookingId,
 						inviteesURL: instance.INVITEES_URL,
 						portletNamespace: instance.PORTLET_NAMESPACE
-					}
-				);
-
-				A.io.request(
-					inviteesURL,
-					{
-						dataType: 'JSON',
-						on: {
-							success: function() {
-								callback(this.get('responseData'));
-							}
-						}
 					}
 				);
 			},
