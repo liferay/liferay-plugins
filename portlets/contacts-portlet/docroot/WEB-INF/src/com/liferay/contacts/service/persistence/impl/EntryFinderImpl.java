@@ -17,12 +17,9 @@
 
 package com.liferay.contacts.service.persistence.impl;
 
-import com.liferay.contacts.service.persistence.EntryFinder;
-import com.liferay.contacts.service.persistence.EntryUtil;
-
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.model.impl.EntryImpl;
-import com.liferay.contacts.service.EntryLocalServiceUtil;
+import com.liferay.contacts.service.persistence.EntryFinder;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -32,8 +29,9 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
-import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.persistence.UserFinderUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
+import com.liferay.portal.util.comparator.UserLastNameComparator;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.ArrayList;
@@ -49,14 +47,8 @@ public class EntryFinderImpl
 	public static final String COUNT_BY_U_FN_EA =
 		EntryFinder.class.getName() + ".countByU_FN_EA";
 
-	public static final String COUNT_BY_C_U_FN_EA =
-		EntryFinder.class.getName() + ".countByC_U_FN_EA";
-
 	public static final String FIND_BY_U_FN_EA =
 		EntryFinder.class.getName() + ".findByU_FN_EA";
-
-	public static final String FIND_BY_C_U_FN_EA =
-		EntryFinder.class.getName() + ".findByC_U_FN_EA";
 
 	@Override
 	public int countByKeywords(long companyId, long userId, String keywords)
@@ -156,70 +148,13 @@ public class EntryFinderImpl
 			String[] emailAddresses, boolean andOperator)
 		throws SystemException {
 
-		fullNames = CustomSQLUtil.keywords(fullNames, true);
-		emailAddresses = CustomSQLUtil.keywords(emailAddresses, true);
+		int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
+			companyId, fullNames, fullNames, fullNames, fullNames,
+			emailAddresses, 0, null, andOperator);
 
-		Session session = null;
+		count += countByU_FN_EA(userId, fullNames, emailAddresses, andOperator);
 
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(COUNT_BY_C_U_FN_EA);
-
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.firstName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.middleName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.lastName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.screenName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.emailAddress)", StringPool.LIKE, true,
-				emailAddresses);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(Contacts_Entry.fullName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(Contacts_Entry.emailAddress)", StringPool.LIKE,
-				true, emailAddresses);
-			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
-
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
-
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(companyId);
-			qPos.add(fullNames, 8);
-			qPos.add(emailAddresses, 2);
-			qPos.add(userId);
-			qPos.add(fullNames, 2);
-			qPos.add(emailAddresses, 2);
-
-			Iterator<Long> itr = q.iterate();
-
-			if (itr.hasNext()) {
-				Long count = itr.next();
-
-				if (count != null) {
-					return count.intValue();
-				}
-			}
-
-			return 0;
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+		return count;
 	}
 
 	@Override
@@ -314,86 +249,29 @@ public class EntryFinderImpl
 			String[] emailAddresses, boolean andOperator, int start, int end)
 		throws SystemException {
 
-		fullNames = CustomSQLUtil.keywords(fullNames, true);
-		emailAddresses = CustomSQLUtil.keywords(emailAddresses, true);
+		List<BaseModel<?>> models = new ArrayList<BaseModel<?>>();
 
-		Session session = null;
+		models.addAll(
+			UserFinderUtil.findByC_FN_MN_LN_SN_EA_S(
+				companyId, fullNames, fullNames, fullNames, fullNames,
+				emailAddresses, 0, null, andOperator, start, end,
+				new UserLastNameComparator(true)));
 
-		try {
-			session = openSession();
+		if (models.size() < (end - start)) {
+			int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
+				companyId, fullNames, fullNames, fullNames, fullNames,
+				emailAddresses, 0, null, andOperator);
 
-			String sql = CustomSQLUtil.get(FIND_BY_C_U_FN_EA);
+			start -= count;
+			end -= count;
 
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.firstName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.middleName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.lastName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.screenName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(User_.emailAddress)", StringPool.LIKE, true,
-				emailAddresses);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(Contacts_Entry.fullName)", StringPool.LIKE, false,
-				fullNames);
-			sql = CustomSQLUtil.replaceKeywords(
-				sql, "lower(Contacts_Entry.emailAddress)", StringPool.LIKE,
-				true, emailAddresses);
-			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
-
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
-
-			q.addScalar("id", Type.LONG);
-			q.addScalar("name", Type.STRING);
-			q.addScalar("portalUser", Type.INTEGER);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(companyId);
-			qPos.add(fullNames, 8);
-			qPos.add(emailAddresses, 2);
-			qPos.add(userId);
-			qPos.add(fullNames, 2);
-			qPos.add(emailAddresses, 2);
-
-			List<BaseModel<?>> models = new ArrayList<BaseModel<?>>();
-
-			Iterator<Object[]> itr = (Iterator<Object[]>)QueryUtil.iterate(
-				q, getDialect(), start, end);
-
-			while (itr.hasNext()) {
-				Object[] array = itr.next();
-
-				long id = (Long)array[0];
-				//String name = (String)array[1];
-				int portalUser = (Integer)array[2];
-
-				BaseModel<?> model = null;
-
-				if (portalUser == 1) {
-					model = UserLocalServiceUtil.getUser(id);
-				}
-				else {
-					model = EntryLocalServiceUtil.getEntry(id);
-				}
-
-				models.add(model);
-			}
-
-			return models;
+			models.addAll(
+				findByU_FN_EA(
+					userId, fullNames, emailAddresses, andOperator, start,
+					end));
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
+
+		return models;
 	}
 
 }

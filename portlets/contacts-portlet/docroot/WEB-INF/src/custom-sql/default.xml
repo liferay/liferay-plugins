@@ -15,41 +15,6 @@
 				)
 		]]>
 	</sql>
-	<sql id="com.liferay.contacts.service.persistence.EntryFinder.countByC_U_FN_EA">
-		<![CDATA[
-			SELECT
-				COUNT(*) AS COUNT_VALUE
-			FROM
-			(
-				SELECT
-					userId as id, lastName as name, 1 as portalUser
-				FROM
-					User_
-				WHERE
-					(companyId = ?) AND
-					(defaultUser = [$FALSE$]) AND
-					(
-						(lower(User_.firstName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(User_.middleName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(User_.lastName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(User_.screenName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(User_.emailAddress) LIKE ? [$AND_OR_NULL_CHECK$])
-					) AND
-					(status = 0)
-				UNION ALL
-				SELECT
-					entryId as id, fullName as name, 0 as portalUser
-				FROM
-					Contacts_Entry
-				WHERE
-					(userId = ?) AND
-					(
-						(lower(Contacts_Entry.fullName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(Contacts_Entry.emailAddress) LIKE ? [$AND_OR_NULL_CHECK$])
-					)
-			) TEMP_TABLE
-		]]>
-	</sql>
 	<sql id="com.liferay.contacts.service.persistence.EntryFinder.findByU_FN_EA">
 		<![CDATA[
 			SELECT
@@ -64,43 +29,6 @@
 				)
 			ORDER BY
 				fullName ASC
-		]]>
-	</sql>
-	<sql id="com.liferay.contacts.service.persistence.EntryFinder.findByC_U_FN_EA">
-		<![CDATA[
-			SELECT
-				id, name, portalUser
-			FROM
-			(
-				SELECT
-					userId as id, lastName as name, 1 as portalUser
-				FROM
-					User_
-				WHERE
-					(companyId = ?) AND
-					(defaultUser = [$FALSE$]) AND
-					(
-						(lower(User_.firstName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(User_.middleName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(User_.lastName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(User_.screenName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(User_.emailAddress) LIKE ? [$AND_OR_NULL_CHECK$])
-					) AND
-					(status = 0)
-				UNION ALL
-				SELECT
-					entryId as id, fullName as name, 0 as portalUser
-				FROM
-					Contacts_Entry
-				WHERE
-					(userId = ?) AND
-					(
-						(lower(Contacts_Entry.fullName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(Contacts_Entry.emailAddress) LIKE ? [$AND_OR_NULL_CHECK$])
-					)
-			) TEMP_TABLE
-			ORDER BY
-				name ASC
 		]]>
 	</sql>
 </custom-sql>
