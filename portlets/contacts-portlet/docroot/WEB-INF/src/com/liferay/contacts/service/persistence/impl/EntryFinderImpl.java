@@ -64,7 +64,7 @@ public class EntryFinderImpl
 				companyId, fullNames, fullNames, fullNames, fullNames,
 				emailAddresses, 0, null, false);
 
-			count += countByU_FN_EA(userId, fullNames, emailAddresses, false);
+			count += countByU_FN_EA(userId, fullNames, emailAddresses);
 
 			return count;
 		}
@@ -84,7 +84,7 @@ public class EntryFinderImpl
 			String[] fullNames = CustomSQLUtil.keywords(keywords);
 			String[] emailAddresses = CustomSQLUtil.keywords(keywords);
 
-			return countByU_FN_EA(userId, fullNames, emailAddresses, false);
+			return countByU_FN_EA(userId, fullNames, emailAddresses);
 		}
 
 		return EntryUtil.countByUserId(userId);
@@ -117,7 +117,7 @@ public class EntryFinderImpl
 
 				models.addAll(
 					findByU_FN_EA(
-						userId, fullNames, emailAddresses, false, start, end));
+						userId, fullNames, emailAddresses, start, end));
 			}
 		}
 		else {
@@ -148,16 +148,14 @@ public class EntryFinderImpl
 			String[] fullNames = CustomSQLUtil.keywords(keywords);
 			String[] emailAddresses = CustomSQLUtil.keywords(keywords);
 
-			return findByU_FN_EA(
-				userId, fullNames, emailAddresses, false, start, end);
+			return findByU_FN_EA(userId, fullNames, emailAddresses, start, end);
 		}
 
 		return EntryUtil.findByUserId(userId, start, end);
 	}
 
 	protected int countByU_FN_EA(
-			long userId, String[] fullNames, String[] emailAddresses,
-			boolean andOperator)
+			long userId, String[] fullNames, String[] emailAddresses)
 		throws SystemException {
 
 		fullNames = CustomSQLUtil.keywords(fullNames, true);
@@ -175,7 +173,7 @@ public class EntryFinderImpl
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "lower(emailAddress)", StringPool.LIKE, true,
 				emailAddresses);
-			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
+			sql = CustomSQLUtil.replaceAndOperator(sql, false);
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
@@ -208,8 +206,8 @@ public class EntryFinderImpl
 	}
 
 	protected List<Entry> findByU_FN_EA(
-			long userId, String[] fullNames, String[] emailAddresses,
-			boolean andOperator, int start, int end)
+			long userId, String[] fullNames, String[] emailAddresses, int start,
+			int end)
 		throws SystemException {
 
 		fullNames = CustomSQLUtil.keywords(fullNames, true);
@@ -227,7 +225,7 @@ public class EntryFinderImpl
 			sql = CustomSQLUtil.replaceKeywords(
 				sql, "lower(emailAddress)", StringPool.LIKE, true,
 				emailAddresses);
-			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
+			sql = CustomSQLUtil.replaceAndOperator(sql, false);
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
