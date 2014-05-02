@@ -24,6 +24,7 @@
 					<c:choose>
 						<c:when test="<%= mapInputEnabled %>">
 							<aui:input cssClass="address-field" inlineField="<%= true %>" label='<%= (directionsInputEnabled || Validator.isNotNull(directionsAddress)) ? "from" : StringPool.BLANK %>' name="mapAddress" type="text" value="<%= mapAddress %>" />
+
 							<aui:button name="getMapButton" value="get-map" />
 							
 						</c:when>

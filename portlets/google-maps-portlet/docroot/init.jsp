@@ -52,7 +52,6 @@ boolean showDirectionSteps = GetterUtil.getBoolean(portletPreferences.getValue("
 boolean showGoogleMapsLink = GetterUtil.getBoolean(portletPreferences.getValue("showGoogleMapsLink", null));
 
 String mapKey = GetterUtil.getString(portletPreferences.getValue("mapKey", null));
-
 Integer mapZoom = GetterUtil.getInteger(portletPreferences.getValue("mapZoom", null), 13);
 
 
