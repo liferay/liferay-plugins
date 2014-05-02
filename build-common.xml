@@ -2100,40 +2100,50 @@ Please find a solution that does not require portal-impl.jar.
 			/>
 
 			<if>
-				<available file="@{module.dir}/docroot/WEB-INF/portlet.xml" />
+				<resourcecontains
+					resource="${module.dir.unix}/docroot/WEB-INF/portlet.xml"
+					substring="com.liferay.alloy.mvc.AlloyPortlet"
+				/>
 				<then>
-					<var name="portlet.xml.content" unset="true" />
+					<for param="alloy.portlet.dir">
+						<dirset dir="@{module.dir}/docroot/WEB-INF/jsp" includes="*" />
+						<sequential>
+							<if>
+								<available file="@{alloy.portlet.dir}/views" type="dir" />
+								<then>
+									<antelope:stringutil property="alloy.portlet.dir" string="@{alloy.portlet.dir}">
+										<antelope:replace regex="\\" replacement="/" />
+									</antelope:stringutil>
 
-					<loadfile property="portlet.xml.content" srcFile="@{module.dir}/docroot/WEB-INF/portlet.xml" /> 
+									<antelope:stringutil property="alloy.portlet.dir" string="${alloy.portlet.dir}">
+										<antelope:replace regex="${module.dir.unix}/docroot/" replacement="" />
+									</antelope:stringutil>
 
-					<if>
-						<contains string="${portlet.xml.content}" substring="com.liferay.alloy.mvc.AlloyPortlet" />
-						<then>
-							<for param="dir">
-								<dirset dir="@{module.dir}/docroot/WEB-INF/jsp" includes="*" />
-								<sequential>
-									<if>
-										<available file="@{dir}/views" type="dir" />
-										<then>
-											<antelope:stringutil property="module.dir" string="@{module.dir}">
-												<antelope:replace regex="\\" replacement="/" />
-											</antelope:stringutil>
+									<zip
+										destfile="${plugin.file}"
+										update="true"
+									>
+										<mappedresources>
+											<globmapper from="*" to="${alloy.portlet.dir}/views/touch.jsp" />
+											<string><![CDATA[<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
 
-											<antelope:stringutil property="dir" string="@{dir}">
-												<antelope:replace regex="\\" replacement="/" />
-											</antelope:stringutil>
+@generated
+--%>
 
-											<antelope:stringutil property="dir" string="${dir}">
-												<antelope:replace regex="${module.dir}/docroot/" replacement="" />
-											</antelope:stringutil>
-
-											<zip
-												destfile="${plugin.file}"
-												update="true"
-											>
-												<mappedresources>
-													<globmapper from="*" to="${dir}/views/touch.jsp" />
-													<string><![CDATA[<%@ include file="init.jsp" %>
+<%@ include file="init.jsp" %>
 
 <%@ page import="com.liferay.portal.model.Portlet" %>
 <%@ page import="com.liferay.portal.service.PortletLocalServiceUtil" %>
@@ -2166,14 +2176,12 @@ for (String path : paths) {
 <%
 }
 %>]]></string>
-												</mappedresources>
-											</zip>
-										</then>
-									</if>
-								</sequential>
-							</for>
-						</then>
-					</if>
+										</mappedresources>
+									</zip>
+								</then>
+							</if>
+						</sequential>
+					</for>
 				</then>
 			</if>
 		</sequential>
