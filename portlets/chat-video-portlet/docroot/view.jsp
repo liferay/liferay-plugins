@@ -22,6 +22,10 @@
 	Portlet portlet = PortletLocalServiceUtil.getPortletById(company.getCompanyId(), portletDisplay.getId());
 	%>
 
+	<liferay-util:html-top>
+		<link href="<%= PortalUtil.getStaticResourceURL(request, request.getContextPath() + "/css/main.css", portlet.getTimestamp()) %>" rel="stylesheet" type="text/css" />
+	</liferay-util:html-top>
+
 	<liferay-util:html-bottom>
 		<script defer="defer" src="<%= PortalUtil.getStaticResourceURL(request, PortalUtil.getPathContext(request) + "/js/inject_chat_portlet.js", portlet.getTimestamp()) %>" type="text/javascript"></script>
 		<script defer="defer" src="<%= PortalUtil.getStaticResourceURL(request, PortalUtil.getPathContext(request) + "/js/webrtc.js", portlet.getTimestamp()) %>" type="text/javascript"></script>
@@ -33,7 +37,9 @@
 
 		<audio id="chatVideoOutRingtone" loop="loop" preload="auto" src="<%= PortalUtil.getStaticResourceURL(request, request.getContextPath() + "/audio/out_ringtone.ogg", portlet.getTimestamp()) %>"></audio>
 
-		<div class="hide" id="chatVideoOverlay"></div>
+		<div class="hide" id="chatVideoOverlay">
+			<div id="chatVideoOverlayCallTime"></div>
+		</div>
 
 		<div class="hide unmuted" id="chatVideoMuteCtrl"></div>
 
