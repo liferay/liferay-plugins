@@ -32,23 +32,6 @@ public class EntryFinderUtil {
 		return getFinder().countByKeywords(userId, keywords);
 	}
 
-	public static int countByU_FN_EA(long userId, java.lang.String[] fullNames,
-		java.lang.String[] emailAddresses, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder()
-				   .countByU_FN_EA(userId, fullNames, emailAddresses,
-			andOperator);
-	}
-
-	public static int countByC_U_FN_EA(long companyId, long userId,
-		java.lang.String[] fullNames, java.lang.String[] emailAddresses,
-		boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder()
-				   .countByC_U_FN_EA(companyId, userId, fullNames,
-			emailAddresses, andOperator);
-	}
-
 	public static java.util.List<com.liferay.portal.model.BaseModel<?>> findByKeywords(
 		long companyId, long userId, java.lang.String keywords, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
@@ -60,24 +43,6 @@ public class EntryFinderUtil {
 		long userId, java.lang.String keywords, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder().findByKeywords(userId, keywords, start, end);
-	}
-
-	public static java.util.List<com.liferay.contacts.model.Entry> findByU_FN_EA(
-		long userId, java.lang.String[] fullNames,
-		java.lang.String[] emailAddresses, boolean andOperator, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder()
-				   .findByU_FN_EA(userId, fullNames, emailAddresses,
-			andOperator, start, end);
-	}
-
-	public static java.util.List<com.liferay.portal.model.BaseModel<?>> findByC_U_FN_EA(
-		long companyId, long userId, java.lang.String[] fullNames,
-		java.lang.String[] emailAddresses, boolean andOperator, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder()
-				   .findByC_U_FN_EA(companyId, userId, fullNames,
-			emailAddresses, andOperator, start, end);
 	}
 
 	public static EntryFinder getFinder() {
