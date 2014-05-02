@@ -22,8 +22,10 @@ import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link EntryLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class EntryActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public EntryActionableDynamicQuery() throws SystemException {

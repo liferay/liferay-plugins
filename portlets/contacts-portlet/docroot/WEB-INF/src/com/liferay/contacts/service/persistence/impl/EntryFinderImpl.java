@@ -15,7 +15,10 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.contacts.service.persistence;
+package com.liferay.contacts.service.persistence.impl;
+
+import com.liferay.contacts.service.persistence.EntryFinder;
+import com.liferay.contacts.service.persistence.EntryUtil;
 
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.model.impl.EntryImpl;

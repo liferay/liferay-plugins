@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.contacts.service.persistence;
+package com.liferay.contacts.service.persistence.impl;
 
 import com.liferay.contacts.NoSuchEntryException;
 import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.model.impl.EntryImpl;
 import com.liferay.contacts.model.impl.EntryModelImpl;
+import com.liferay.contacts.service.persistence.EntryPersistence;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
