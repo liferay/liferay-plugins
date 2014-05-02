@@ -13,6 +13,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Release Tools</title>
 			<short-title>Release Tools</short-title>

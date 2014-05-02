@@ -17,6 +17,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>SVN</title>
 			<short-title>SVN</short-title>
@@ -47,6 +48,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>JIRA</title>
 			<short-title>JIRA</short-title>

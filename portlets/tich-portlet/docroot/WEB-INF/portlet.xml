@@ -13,6 +13,7 @@
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Today in Christian History</title>
 			<short-title>Today in Christian History</short-title>
