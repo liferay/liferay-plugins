@@ -25,8 +25,6 @@ int end = ParamUtil.getInteger(request, "end", delta);
 List<UserNotificationEvent> userNotificationEvents = null;
 int userNotificationEventsCount = 0;
 
-List<Long> userNotificationEventIds = new ArrayList<Long>();
-
 if (filter.equals("unread")) {
 	userNotificationEvents = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEvents(themeDisplay.getUserId(), false, start, end);
 	userNotificationEventsCount = UserNotificationEventLocalServiceUtil.getArchivedUserNotificationEventsCount(themeDisplay.getUserId(), false);
@@ -64,6 +62,8 @@ else {
 </c:if>
 
 <%
+List<Long> userNotificationEventIds = new ArrayList<Long>();
+
 for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 	UserNotificationFeedEntry userNotificationFeedEntry = UserNotificationManagerUtil.interpret(StringPool.BLANK, userNotificationEvent, ServiceContextFactory.getInstance(request));
 
