@@ -1744,18 +1744,31 @@ Please find a solution that does not require portal-impl.jar.
 				</else>
 			</if>
 
+			<set-build-xml-var
+				build.xml.var.name="plugin.name"
+				module.dir="@{module.dir}"
+			/>
+
 			<if>
-				<equals arg1="@{module.dir}" arg2="." />
+				<isset property="set-build-xml-var.return" />
 				<then>
-					<var name="plugin.name" value="${ant.project.name}" />
+					<var name="plugin.name" value="${set-build-xml-var.return}" />
 				</then>
 				<else>
-					<antelope:grep
-						group="1"
-						in="@{module.dir}"
-						property="plugin.name"
-						regex="(?:.*[/\\])(.*)"
-					/>
+					<if>
+						<equals arg1="@{module.dir}" arg2="." />
+						<then>
+							<var name="plugin.name" value="${ant.project.name}" />
+						</then>
+						<else>
+							<antelope:grep
+								group="1"
+								in="@{module.dir}"
+								property="plugin.name"
+								regex="(?:.*[/\\])(.*)"
+							/>
+						</else>
+					</if>
 				</else>
 			</if>
 
