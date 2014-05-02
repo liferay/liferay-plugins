@@ -66,8 +66,13 @@ public class EntryFinderImpl
 			andOperator = true;
 		}
 
-		return countByC_U_FN_EA(
-			companyId, userId, fullNames, emailAddresses, andOperator);
+		int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
+			companyId, fullNames, fullNames, fullNames, fullNames,
+			emailAddresses, 0, null, andOperator);
+
+		count += countByU_FN_EA(userId, fullNames, emailAddresses, andOperator);
+
+		return count;
 	}
 
 	@Override
@@ -143,21 +148,6 @@ public class EntryFinderImpl
 	}
 
 	@Override
-	public int countByC_U_FN_EA(
-			long companyId, long userId, String[] fullNames,
-			String[] emailAddresses, boolean andOperator)
-		throws SystemException {
-
-		int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
-			companyId, fullNames, fullNames, fullNames, fullNames,
-			emailAddresses, 0, null, andOperator);
-
-		count += countByU_FN_EA(userId, fullNames, emailAddresses, andOperator);
-
-		return count;
-	}
-
-	@Override
 	public List<BaseModel<?>> findByKeywords(
 			long companyId, long userId, String keywords, int start, int end)
 		throws SystemException {
@@ -174,9 +164,29 @@ public class EntryFinderImpl
 			andOperator = true;
 		}
 
-		return findByC_U_FN_EA(
-			companyId, userId, fullNames, emailAddresses, andOperator, start,
-			end);
+		List<BaseModel<?>> models = new ArrayList<BaseModel<?>>();
+
+		models.addAll(
+			UserFinderUtil.findByC_FN_MN_LN_SN_EA_S(
+				companyId, fullNames, fullNames, fullNames, fullNames,
+				emailAddresses, 0, null, andOperator, start, end,
+				new UserLastNameComparator(true)));
+
+		if (models.size() < (end - start)) {
+			int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
+				companyId, fullNames, fullNames, fullNames, fullNames,
+				emailAddresses, 0, null, andOperator);
+
+			start -= count;
+			end -= count;
+
+			models.addAll(
+				findByU_FN_EA(
+					userId, fullNames, emailAddresses, andOperator, start,
+					end));
+		}
+
+		return models;
 	}
 
 	@Override
@@ -241,37 +251,6 @@ public class EntryFinderImpl
 		finally {
 			closeSession(session);
 		}
-	}
-
-	@Override
-	public List<BaseModel<?>> findByC_U_FN_EA(
-			long companyId, long userId, String[] fullNames,
-			String[] emailAddresses, boolean andOperator, int start, int end)
-		throws SystemException {
-
-		List<BaseModel<?>> models = new ArrayList<BaseModel<?>>();
-
-		models.addAll(
-			UserFinderUtil.findByC_FN_MN_LN_SN_EA_S(
-				companyId, fullNames, fullNames, fullNames, fullNames,
-				emailAddresses, 0, null, andOperator, start, end,
-				new UserLastNameComparator(true)));
-
-		if (models.size() < (end - start)) {
-			int count = UserFinderUtil.countByC_FN_MN_LN_SN_EA_S(
-				companyId, fullNames, fullNames, fullNames, fullNames,
-				emailAddresses, 0, null, andOperator);
-
-			start -= count;
-			end -= count;
-
-			models.addAll(
-				findByU_FN_EA(
-					userId, fullNames, emailAddresses, andOperator, start,
-					end));
-		}
-
-		return models;
 	}
 
 }
