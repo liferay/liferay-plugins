@@ -58,6 +58,7 @@ public class EntryFinderImpl
 	public static final String FIND_BY_C_U_FN_EA =
 		EntryFinder.class.getName() + ".findByC_U_FN_EA";
 
+	@Override
 	public int countByKeywords(long companyId, long userId, String keywords)
 		throws SystemException {
 
@@ -77,6 +78,7 @@ public class EntryFinderImpl
 			companyId, userId, fullNames, emailAddresses, andOperator);
 	}
 
+	@Override
 	public int countByKeywords(long userId, String keywords)
 		throws SystemException {
 
@@ -95,6 +97,7 @@ public class EntryFinderImpl
 		return countByU_FN_EA(userId, fullNames, emailAddresses, andOperator);
 	}
 
+	@Override
 	public int countByU_FN_EA(
 			long userId, String[] fullNames, String[] emailAddresses,
 			boolean andOperator)
@@ -147,6 +150,7 @@ public class EntryFinderImpl
 		}
 	}
 
+	@Override
 	public int countByC_U_FN_EA(
 			long companyId, long userId, String[] fullNames,
 			String[] emailAddresses, boolean andOperator)
@@ -218,6 +222,7 @@ public class EntryFinderImpl
 		}
 	}
 
+	@Override
 	public List<BaseModel<?>> findByKeywords(
 			long companyId, long userId, String keywords, int start, int end)
 		throws SystemException {
@@ -239,6 +244,7 @@ public class EntryFinderImpl
 			end);
 	}
 
+	@Override
 	public List<Entry> findByKeywords(
 			long userId, String keywords, int start, int end)
 		throws SystemException {
@@ -259,6 +265,7 @@ public class EntryFinderImpl
 			userId, fullNames, emailAddresses, andOperator, start, end);
 	}
 
+	@Override
 	public List<Entry> findByU_FN_EA(
 			long userId, String[] fullNames, String[] emailAddresses,
 			boolean andOperator, int start, int end)
@@ -301,6 +308,7 @@ public class EntryFinderImpl
 		}
 	}
 
+	@Override
 	public List<BaseModel<?>> findByC_U_FN_EA(
 			long companyId, long userId, String[] fullNames,
 			String[] emailAddresses, boolean andOperator, int start, int end)
