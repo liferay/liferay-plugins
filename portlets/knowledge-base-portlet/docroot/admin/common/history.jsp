@@ -40,11 +40,6 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 	<aui:input name="targetVersion" type="hidden" value="<%= targetVersion %>" />
 
 	<aui:fieldset>
-		<liferay-portlet:renderURL varImpl="iteratorURL">
-			<portlet:param name="mvcPath" value='<%= templatePath + "history.jsp" %>' />
-			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
-		</liferay-portlet:renderURL>
 
 		<%
 		RowChecker rowChecker = new RowChecker(renderResponse);
@@ -53,6 +48,12 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 
 		int selStatus = KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.UPDATE) ? WorkflowConstants.STATUS_ANY : status;
 		%>
+
+		<liferay-portlet:renderURL varImpl="iteratorURL">
+			<portlet:param name="mvcPath" value='<%= templatePath + "history.jsp" %>' />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
+			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+		</liferay-portlet:renderURL>
 
 		<liferay-ui:search-container
 			emptyResultsMessage="no-articles-were-found"
