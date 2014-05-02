@@ -50,7 +50,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 		try {
 			for (long userNotificationEventId : userNotificationEventIds) {
-				doSetArchived(userNotificationEventId);
+				updateArchived(userNotificationEventId);
 			}
 
 			jsonObject.put("success", Boolean.TRUE);
@@ -72,7 +72,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
 		try {
-			doSetArchived(userNotificationEventId);
+			updateArchived(userNotificationEventId);
 
 			jsonObject.put("success", Boolean.TRUE);
 		}
@@ -190,19 +190,6 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void doSetArchived(long userNotificationEventId)
-		throws Exception {
-
-		UserNotificationEvent userNotificationEvent =
-			UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
-				userNotificationEventId);
-
-		userNotificationEvent.setArchived(true);
-
-		UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(
-			userNotificationEvent);
-	}
-
 	protected void getNotificationsCount(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
@@ -235,6 +222,19 @@ public class NotificationsPortlet extends MVCPortlet {
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonObject);
+	}
+
+	protected void updateArchived(long userNotificationEventId)
+		throws Exception {
+
+		UserNotificationEvent userNotificationEvent =
+			UserNotificationEventLocalServiceUtil.getUserNotificationEvent(
+				userNotificationEventId);
+
+		userNotificationEvent.setArchived(true);
+
+		UserNotificationEventLocalServiceUtil.updateUserNotificationEvent(
+			userNotificationEvent);
 	}
 
 }
