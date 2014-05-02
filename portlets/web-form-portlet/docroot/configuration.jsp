@@ -273,16 +273,17 @@ if (!fieldsEditingDisabled) {
 			'.label-name input'
 		);
 
-		<liferay-portlet:renderURL portletConfiguration="true" var="editFieldURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
-		</liferay-portlet:renderURL>
-
 		new Liferay.AutoFields(
 			{
 				contentBox: webFields,
 				fieldIndexes: '<portlet:namespace />formFieldsIndexes',
 				sortable: true,
 				sortableHandle: '.field-label',
+
+				<liferay-portlet:renderURL portletConfiguration="true" var="editFieldURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
+				</liferay-portlet:renderURL>
+
 				url: '<%= editFieldURL %>'
 			}
 		).render();
