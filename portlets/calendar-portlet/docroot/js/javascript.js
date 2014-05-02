@@ -33,8 +33,6 @@ AUI.add(
 
 		var STR_SPACE = ' ';
 
-		var TPL_CALENDAR_BOOKINGS_URL = '{calendarBookingsURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}statuses={statuses}';
-
 		var TPL_RESOURCE_CALENDARS_URL = '{resourceCalendarsURL}&{portletNamespace}calendarResourceId={calendarResourceId}';
 
 		var CONTROLS_NODE = 'controlsNode';
@@ -92,7 +90,6 @@ AUI.add(
 		Liferay.Time = Time;
 
 		var CalendarUtil = {
-			CALENDAR_BOOKINGS_URL: null,
 			INVOKER_URL: themeDisplay.getPathContext() + '/api/jsonws/invoke',
 			NOTIFICATION_DEFAULT_TYPE: 'email',
 			PORTLET_NAMESPACE: STR_BLANK,
@@ -420,34 +417,21 @@ AUI.add(
 				);
 			},
 
-			getEvents: function(startDate, endDate, status, success, failure) {
+			getEvents: function(startDate, endDate, status, callback) {
 				var instance = this;
 
 				var calendarIds = AObject.keys(instance.availableCalendars);
 
-				var calendarBookingsURL = Lang.sub(
-					TPL_CALENDAR_BOOKINGS_URL,
+				instance.invokeResourceURL(
+					'calendarBookings',
+					'1_WAR_calendarportlet',
 					{
-						calendarBookingsURL: instance.CALENDAR_BOOKINGS_URL,
 						calendarIds: calendarIds.join(','),
 						endTime: endDate.getTime(),
-						portletNamespace: instance.PORTLET_NAMESPACE,
 						startTime: startDate.getTime(),
 						statuses: status.join(',')
-					}
-				);
-
-				A.io.request(
-					calendarBookingsURL,
-					{
-						dataType: 'JSON',
-						on: {
-							failure: failure,
-							success: function() {
-								success(this.get('responseData'));
-							}
-						}
-					}
+					},
+					callback
 				);
 			},
 
