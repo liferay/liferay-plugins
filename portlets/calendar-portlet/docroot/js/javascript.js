@@ -530,6 +530,34 @@ AUI.add(
 				);
 			},
 
+			invokeResourceURL: function(resourceId, portletId, parameters, callback) {
+				var instance = this;
+
+				var url = Liferay.PortletURL.createResourceURL()
+
+				url.setParameter('p_p_id', portletId);
+				url.setResourceId(resourceId);
+
+				A.each(
+					parameters,
+					function(item, index, collection) {
+						url.setParameter(index, item);
+					}
+				);
+
+				A.io.request(
+					url.toString(),
+					{
+						dataType: 'json',
+						on: {
+							success: function() {
+								callback(this.get('responseData'));
+							}
+						}
+					}
+				);
+			},
+
 			invokeService: function(payload, callback) {
 				var instance = this;
 
