@@ -800,22 +800,19 @@ html.aui {
 		margin: 0;
 	}
 
-	.lfr-meta-actions {
-		margin-top: -36px;
-		padding: 4px;
-		position: absolute;
-		right: 0;
-		width: auto;
+	.edit-actions {
+		margin: 0;
+		padding-top: 0;
 
-		.lfr-table tr td, .lfr-table tr th {
-			padding: 0 2px;
+		.lfr-table td {
+			display: inline-block;
 		}
 
 		a {
 			color: #34404F;
 			display: inline-block;
 			font-weight: bold;
-			padding: 3px 5px 3px 3px;
+			margin: 5px 5px 5px 0;
 
 			&:hover {
 				text-decoration: none;
