@@ -19,36 +19,36 @@ package com.liferay.sync.engine.util;
  */
 public class PropsValues {
 
-	public static String[] SYNC_CHAR_BLACKLIST = PropsUtil.getArray(
-		PropsKeys.SYNC_CHAR_BLACKLIST);
-
-	public static String[] SYNC_CHAR_LAST_BLACKLIST = PropsUtil.getArray(
-		PropsKeys.SYNC_CHAR_LAST_BLACKLIST);
-
 	public static String SYNC_CONFIGURATION_DIRECTORY = PropsUtil.get(
 		PropsKeys.SYNC_CONFIGURATION_DIRECTORY);
 
 	public static String SYNC_DATABASE_NAME = PropsUtil.get(
 		PropsKeys.SYNC_DATABASE_NAME);
 
+	public static String[] SYNC_FILE_BLACKLIST_CHARS = PropsUtil.getArray(
+		PropsKeys.SYNC_FILE_BLACKLIST_CHARS);
+
+	public static String[] SYNC_FILE_BLACKLIST_CHARS_LAST = PropsUtil.getArray(
+		PropsKeys.SYNC_FILE_BLACKLIST_CHARS_LAST);
+
+	public static String[] SYNC_FILE_BLACKLIST_NAMES = PropsUtil.getArray(
+		PropsKeys.SYNC_FILE_BLACKLIST_NAMES);
+
+	public static boolean SYNC_FILE_IGNORE_HIDDEN = Boolean.valueOf(
+		PropsUtil.get(PropsKeys.SYNC_FILE_IGNORE_HIDDEN));
+
+	public static String[] SYNC_FILE_IGNORE_NAMES = PropsUtil.getArray(
+		PropsKeys.SYNC_FILE_IGNORE_NAMES);
+
 	public static String[] SYNC_FILE_PATCHING_IGNORE_FILE_EXTENSIONS =
-		PropsUtil.getArray(PropsKeys.SYNC_FILE_PATCHING_IGNORE_FILE_EXTENSIONS);
+		PropsUtil.getArray(PropsKeys.SYNC_FILE_PATCHING_IGNORE_EXTENSIONS);
 
 	public static long SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD =
 		Long.valueOf(
 			PropsUtil.get(PropsKeys.SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD));
 
-	public static String[] SYNC_IGNORE_FILE_NAMES = PropsUtil.getArray(
-		PropsKeys.SYNC_IGNORE_FILE_NAMES);
-
-	public static boolean SYNC_IGNORE_HIDDEN_FILES = Boolean.valueOf(
-		PropsUtil.get(PropsKeys.SYNC_IGNORE_HIDDEN_FILES));
-
 	public static String SYNC_LOGGER_CONFIGURATION_FILE = PropsUtil.get(
 		PropsKeys.SYNC_LOGGER_CONFIGURATION_FILE);
-
-	public static String[] SYNC_NAME_BLACKLIST = PropsUtil.getArray(
-		PropsKeys.SYNC_NAME_BLACKLIST);
 
 	public static String SYNC_PRODUCT_NAME = PropsUtil.get(
 		PropsKeys.SYNC_PRODUCT_NAME);

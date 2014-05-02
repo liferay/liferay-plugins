@@ -27,6 +27,7 @@ import java.util.Set;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -88,8 +89,8 @@ public class FileUtil {
 	public static boolean isIgnoredFilePath(Path filePath) throws Exception {
 		String fileName = String.valueOf(filePath.getFileName());
 
-		if (_syncIgnoreFileNames.contains(fileName) ||
-			(PropsValues.SYNC_IGNORE_HIDDEN_FILES &&
+		if (_syncFileIgnoreNames.contains(fileName) ||
+			(PropsValues.SYNC_FILE_IGNORE_HIDDEN &&
 			 Files.isHidden(filePath)) ||
 			Files.isSymbolicLink(filePath) || fileName.endsWith(".lnk")) {
 
@@ -99,37 +100,33 @@ public class FileUtil {
 		return false;
 	}
 
-	public static boolean isValidName(String name) {
-		if (StringUtils.isBlank(name)) {
+	public static boolean isValidFileName(String fileName) {
+		if (StringUtils.isBlank(fileName)) {
 			return false;
 		}
 
-		for (String blacklistChar : PropsValues.SYNC_CHAR_BLACKLIST) {
-			if (name.contains(blacklistChar)) {
+		for (String blacklistChar : PropsValues.SYNC_FILE_BLACKLIST_CHARS) {
+			if (fileName.contains(blacklistChar)) {
 				return false;
 			}
 		}
 
-		for (String blacklistLastChar : PropsValues.SYNC_CHAR_LAST_BLACKLIST) {
+		for (String blacklistLastChar :
+				PropsValues.SYNC_FILE_BLACKLIST_CHARS_LAST) {
+
 			if (blacklistLastChar.startsWith("\\u")) {
 				blacklistLastChar = StringEscapeUtils.unescapeJava(
 					blacklistLastChar);
 			}
 
-			if (name.endsWith(blacklistLastChar)) {
+			if (fileName.endsWith(blacklistLastChar)) {
 				return false;
 			}
 		}
 
-		String nameWithoutExtension = name;
+		String nameWithoutExtension = FilenameUtils.removeExtension(fileName);
 
-		if (name.contains(".")) {
-			int index = name.lastIndexOf(".");
-
-			nameWithoutExtension = name.substring(0, index);
-		}
-
-		for (String blacklistName : PropsValues.SYNC_NAME_BLACKLIST) {
+		for (String blacklistName : PropsValues.SYNC_FILE_BLACKLIST_NAMES) {
 			if (nameWithoutExtension.equalsIgnoreCase(blacklistName)) {
 				return false;
 			}
@@ -140,7 +137,7 @@ public class FileUtil {
 
 	private static Logger _logger = LoggerFactory.getLogger(FileUtil.class);
 
-	private static Set<String> _syncIgnoreFileNames = new HashSet<String>(
-		Arrays.asList(PropsValues.SYNC_IGNORE_FILE_NAMES));
+	private static Set<String> _syncFileIgnoreNames = new HashSet<String>(
+		Arrays.asList(PropsValues.SYNC_FILE_IGNORE_NAMES));
 
 }

@@ -50,8 +50,10 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 
 	protected void addSyncWatchEvent(String eventType, Path filePath) {
 		try {
-			if (eventType.equals(SyncWatchEvent.EVENT_TYPE_CREATE) &&
-				FileUtil.isIgnoredFilePath(filePath)) {
+			if ((eventType.equals(SyncWatchEvent.EVENT_TYPE_CREATE) &&
+				 FileUtil.isIgnoredFilePath(filePath)) ||
+				!FileUtil.isValidFileName(
+					String.valueOf(filePath.getFileName()))) {
 
 				return;
 			}

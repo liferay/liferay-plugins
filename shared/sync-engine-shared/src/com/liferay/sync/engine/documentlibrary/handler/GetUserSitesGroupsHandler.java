@@ -22,6 +22,7 @@ import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncSiteService;
+import com.liferay.sync.engine.util.FileUtil;
 
 import java.util.HashSet;
 import java.util.List;
@@ -53,9 +54,14 @@ public class GetUserSitesGroupsHandler extends BaseJSONHandler {
 				SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 					getSyncAccountId());
 
+				String name = remoteSyncSite.getName();
+
+				if (!FileUtil.isValidFileName(name)) {
+					name = String.valueOf(remoteSyncSite.getGroupId());
+				}
+
 				remoteSyncSite.setFilePathName(
-					syncAccount.getFilePathName() + "/" +
-						remoteSyncSite.getName());
+					syncAccount.getFilePathName() + "/" + name);
 
 				remoteSyncSite.setSyncAccountId(getSyncAccountId());
 
