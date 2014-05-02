@@ -81,7 +81,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 			<div id="<portlet:namespace />calendarListContainer">
 				<c:if test="<%= themeDisplay.isSignedIn() %>">
-					<div class="toggler-header-expanded calendar-portlet-list-header">
+					<div class="calendar-portlet-list-header toggler-header-expanded">
 						<span class="calendar-portlet-list-arrow"></span>
 
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="my-calendars" /></span>
@@ -95,7 +95,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 				</c:if>
 
 				<c:if test="<%= groupCalendarResource != null %>">
-					<div class="toggler-header-expanded calendar-portlet-list-header">
+					<div class="calendar-portlet-list-header toggler-header-expanded">
 						<span class="calendar-portlet-list-arrow"></span>
 
 						<span class="calendar-portlet-list-text"><liferay-ui:message key="current-site-calendars" /></span>
@@ -160,12 +160,13 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 				<liferay-util:param name="permissionsCalendarBookingURL" value="<%= permissionsCalendarBookingURL %>" />
 
+				<liferay-util:param name="showAddEventBtn" value="<%= String.valueOf((userDefaultCalendar != null) && CalendarPermission.contains(permissionChecker, userDefaultCalendar, ActionKeys.MANAGE_BOOKINGS)) %>" />
+
 				<portlet:renderURL var="viewCalendarBookingURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value="/view_calendar_booking.jsp" />
 					<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
 				</portlet:renderURL>
 
-				<liferay-util:param name="showAddEventBtn" value="<%= String.valueOf((userDefaultCalendar != null) && CalendarPermission.contains(permissionChecker, userDefaultCalendar, ActionKeys.MANAGE_BOOKINGS)) %>" />
 				<liferay-util:param name="viewCalendarBookingURL" value="<%= viewCalendarBookingURL %>" />
 			</liferay-util:include>
 		</aui:col>
@@ -315,9 +316,9 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	);
 
 	<c:if test="<%= themeDisplay.isSignedIn() %>">
-		<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="calendarResources" var="calendarResourcesURL" />
-
 		var addOtherCalendarInput = A.one('#<portlet:namespace />addOtherCalendar');
+
+		<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="calendarResources" var="calendarResourcesURL" />
 
 		Liferay.CalendarUtil.createCalendarsAutoComplete(
 			'<%= calendarResourcesURL %>',

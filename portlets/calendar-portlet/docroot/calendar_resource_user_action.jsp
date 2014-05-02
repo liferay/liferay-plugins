@@ -23,7 +23,6 @@ User curUser = (User)row.getObject();
 %>
 
 <liferay-ui:icon-menu>
-
 	<portlet:renderURL var="calendarsURL">
 		<portlet:param name="mvcPath" value="/view_calendars.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
