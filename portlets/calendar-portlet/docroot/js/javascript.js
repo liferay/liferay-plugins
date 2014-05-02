@@ -33,8 +33,6 @@ AUI.add(
 
 		var STR_SPACE = ' ';
 
-		var TPL_RESOURCE_CALENDARS_URL = '{resourceCalendarsURL}&{portletNamespace}calendarResourceId={calendarResourceId}';
-
 		var CONTROLS_NODE = 'controlsNode';
 
 		var ICON_ADD_EVENT_NODE = 'iconAddEventNode';
@@ -93,7 +91,6 @@ AUI.add(
 			INVOKER_URL: themeDisplay.getPathContext() + '/api/jsonws/invoke',
 			NOTIFICATION_DEFAULT_TYPE: 'email',
 			PORTLET_NAMESPACE: STR_BLANK,
-			RESOURCE_CALENDARS_URL: null,
 			USER_TIME_ZONE: 'UTC',
 
 			availableCalendars: {},
@@ -447,25 +444,13 @@ AUI.add(
 			getResourceCalendars: function(calendarResourceId, callback) {
 				var instance = this;
 
-				var resourceCalendarsURL = Lang.sub(
-					TPL_RESOURCE_CALENDARS_URL,
+				instance.invokeResourceURL(
+					'resourceCalendars',
+					'1_WAR_calendarportlet',
 					{
 						calendarResourceId: calendarResourceId,
-						portletNamespace: instance.PORTLET_NAMESPACE,
-						resourceCalendarsURL: instance.RESOURCE_CALENDARS_URL
-					}
-				);
-
-				A.io.request(
-					resourceCalendarsURL,
-					{
-						dataType: 'JSON',
-						on: {
-							success: function() {
-								callback(this.get('responseData'));
-							}
-						}
-					}
+					},
+					callback
 				);
 			},
 
