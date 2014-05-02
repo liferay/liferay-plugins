@@ -298,6 +298,7 @@
 		.entry-block {
 			float: left;
 			margin-left: 0;
+			width: 100%;
 		}
 	}
 }
