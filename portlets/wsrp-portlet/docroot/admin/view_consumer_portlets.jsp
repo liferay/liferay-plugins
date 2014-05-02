@@ -29,13 +29,13 @@ portletURL.setParameter("mvcPath", "/admin/view_consumer_portlets.jsp");
 portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 %>
 
-<portlet:renderURL var="addPortletURL">
-	<portlet:param name="mvcPath" value="/admin/edit_consumer_portlet.jsp" />
-	<portlet:param name="redirect" value="<%= currentURL %>" />
-	<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
-</portlet:renderURL>
-
 <aui:button-row>
+	<portlet:renderURL var="addPortletURL">
+		<portlet:param name="mvcPath" value="/admin/edit_consumer_portlet.jsp" />
+		<portlet:param name="redirect" value="<%= currentURL %>" />
+		<portlet:param name="wsrpConsumerId" value="<%= String.valueOf(wsrpConsumer.getWsrpConsumerId()) %>" />
+	</portlet:renderURL>
+
 	<aui:button href="<%= addPortletURL %>" value="add-portlet" />
 </aui:button-row>
 
