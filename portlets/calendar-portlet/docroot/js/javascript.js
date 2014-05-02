@@ -35,8 +35,6 @@ AUI.add(
 
 		var TPL_CALENDAR_BOOKINGS_URL = '{calendarBookingsURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}statuses={statuses}';
 
-		var TPL_RENDERING_RULES_URL = '{renderingRulesURL}&{portletNamespace}calendarIds={calendarIds}&{portletNamespace}startTime={startTime}&{portletNamespace}endTime={endTime}&{portletNamespace}ruleName={ruleName}';
-
 		var TPL_RESOURCE_CALENDARS_URL = '{resourceCalendarsURL}&{portletNamespace}calendarResourceId={calendarResourceId}';
 
 		var CONTROLS_NODE = 'controlsNode';
@@ -98,7 +96,6 @@ AUI.add(
 			INVOKER_URL: themeDisplay.getPathContext() + '/api/jsonws/invoke',
 			NOTIFICATION_DEFAULT_TYPE: 'email',
 			PORTLET_NAMESPACE: STR_BLANK,
-			RENDERING_RULES_URL: null,
 			RESOURCE_CALENDARS_URL: null,
 			USER_TIME_ZONE: 'UTC',
 
@@ -370,29 +367,18 @@ AUI.add(
 
 			getCalendarRenderingRules: function(calendarIds, startDate, endDate, ruleName, callback) {
 				var instance = this;
+				var instance = this;
 
-				var renderingRulesURL = Lang.sub(
-					TPL_RENDERING_RULES_URL,
+				instance.invokeResourceURL(
+					'calendarRenderingRules',
+					'1_WAR_calendarportlet',
 					{
 						calendarIds: calendarIds.join(),
 						endTime: endDate.getTime(),
-						portletNamespace: instance.PORTLET_NAMESPACE,
-						renderingRulesURL: instance.RENDERING_RULES_URL,
 						ruleName: ruleName,
 						startTime: startDate.getTime()
-					}
-				);
-
-				A.io.request(
-					renderingRulesURL,
-					{
-						dataType: 'JSON',
-						on: {
-							success: function() {
-								callback(this.get('responseData'));
-							}
-						}
-					}
+					},
+					callback
 				);
 			},
 
