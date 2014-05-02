@@ -22,9 +22,8 @@ import com.liferay.sync.engine.service.SyncFileService;
 
 import java.io.FileNotFoundException;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
@@ -76,7 +75,7 @@ public class BaseHandler implements Handler<Void> {
 
 			int statusCode = hre.getStatusCode();
 
-			if (statusCode == HttpServletResponse.SC_UNAUTHORIZED) {
+			if (statusCode == HttpStatus.SC_UNAUTHORIZED) {
 				syncAccount.setUiEvent(
 					SyncAccount.UI_EVENT_AUTHENTICATION_EXCEPTION);
 
@@ -98,7 +97,7 @@ public class BaseHandler implements Handler<Void> {
 		try {
 			StatusLine statusLine = httpResponse.getStatusLine();
 
-			if (statusLine.getStatusCode() != HttpServletResponse.SC_OK) {
+			if (statusLine.getStatusCode() != HttpStatus.SC_OK) {
 				_logger.error("Status code {}", statusLine.getStatusCode());
 
 				throw new HttpResponseException(

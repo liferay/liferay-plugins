@@ -32,10 +32,9 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.util.EntityUtils;
 
@@ -168,7 +167,7 @@ public class BaseJSONHandler extends BaseHandler {
 
 			if (message.equals("Authenticated access required")) {
 				throw new HttpResponseException(
-					HttpServletResponse.SC_UNAUTHORIZED, message);
+					HttpStatus.SC_UNAUTHORIZED, message);
 			}
 		}
 
