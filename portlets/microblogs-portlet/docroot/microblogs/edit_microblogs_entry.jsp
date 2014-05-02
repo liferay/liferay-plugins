@@ -122,12 +122,12 @@ if (comment) {
 
 <portlet:actionURL name="updateMicroblogsEntry" var="updateMicroblogsEntryURL" />
 
-<portlet:renderURL var="commentsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-	<portlet:param name="mvcPath" value="/microblogs/view_comments.jsp" />
-	<portlet:param name="receiverMicroblogsEntryId" value="<%= String.valueOf(microblogsEntryId) %>" />
-</portlet:renderURL>
-
 <aui:form action="<%= updateMicroblogsEntryURL %>" cssClass="<%= formCssClass %>" name="<%= formName %>">
+	<portlet:renderURL var="commentsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+		<portlet:param name="mvcPath" value="/microblogs/view_comments.jsp" />
+		<portlet:param name="receiverMicroblogsEntryId" value="<%= String.valueOf(microblogsEntryId) %>" />
+	</portlet:renderURL>
+
 	<aui:input name="redirect" type="hidden" value="<%= comment ? commentsURL : redirect %>" />
 	<aui:input name="microblogsEntryId" type="hidden" value="<%= edit ? microblogsEntryId : 0 %>" />
 	<aui:input name="receiverUserId" type="hidden" value="<%= receiverUserId %>" />
