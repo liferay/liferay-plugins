@@ -76,6 +76,17 @@ public class SyncAccountService {
 
 		if (syncSites != null) {
 			for (SyncSite syncSite : syncSites) {
+				String syncSiteName = syncSite.getName();
+
+				if (!FileUtil.isValidFileName(syncSiteName)) {
+					syncSiteName = String.valueOf(syncSite.getGroupId());
+				}
+
+				syncSite.setFilePathName(
+					syncAccount.getFilePathName() + "/" + syncSiteName);
+
+				syncSite.setSyncAccountId(syncAccount.getSyncAccountId());
+
 				SyncSiteService.update(syncSite);
 			}
 		}
