@@ -113,12 +113,6 @@ int roleUsersCount = UserLocalServiceUtil.getRoleUsersCount(role.getRoleId());
 	Group userGroup = user.getGroup();
 	%>
 
-	<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="dashboardURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
-		<portlet:param name="struts_action" value="/my_sites/view" />
-		<portlet:param name="groupId" value="<%= String.valueOf(userGroup.getGroupId()) %>" />
-		<portlet:param name="privateLayout" value="<%= Boolean.TRUE.toString() %>" />
-	</liferay-portlet:actionURL>
-
 	Liferay.provide(
 		window,
 		'<portlet:namespace />updateRole',
@@ -126,6 +120,12 @@ int roleUsersCount = UserLocalServiceUtil.getRoleUsersCount(role.getRoleId());
 			var A = AUI();
 
 			var addAllUsers = A.one('#addAllUsers input[type=checkbox]');
+
+			<liferay-portlet:actionURL portletName="<%= PortletKeys.SITE_REDIRECTOR %>" var="dashboardURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>">
+				<portlet:param name="struts_action" value="/my_sites/view" />
+				<portlet:param name="groupId" value="<%= String.valueOf(userGroup.getGroupId()) %>" />
+				<portlet:param name="privateLayout" value="<%= Boolean.TRUE.toString() %>" />
+			</liferay-portlet:actionURL>
 
 			if (addAllUsers && addAllUsers.get('checked')) {
 				if (finished) {
