@@ -29,16 +29,17 @@ long blogsPlid = PortalUtil.getPlidFromPortletId(mbMessage.getGroupId(), Portlet
 %>
 
 <liferay-ui:icon-menu>
-	<liferay-portlet:renderURL plid="<%= blogsPlid %>" portletName="<%= PortletKeys.BLOGS %>" varImpl="viewURL">
-		<portlet:param name="struts_action" value="/blogs/view_entry" />
-		<portlet:param name="entryId" value="<%= String.valueOf(mbDiscussion.getClassPK()) %>" />
-	</liferay-portlet:renderURL>
 
 	<%
 	String className = PortalUtil.getClassName(mbDiscussion.getClassNameId());
 	%>
 
 	<c:if test="<%= className.equals(BlogsEntry.class.getName()) %>">
+		<liferay-portlet:renderURL plid="<%= blogsPlid %>" portletName="<%= PortletKeys.BLOGS %>" varImpl="viewURL">
+			<portlet:param name="struts_action" value="/blogs/view_entry" />
+			<portlet:param name="entryId" value="<%= String.valueOf(mbDiscussion.getClassPK()) %>" />
+		</liferay-portlet:renderURL>
+
 		<liferay-ui:icon image="page" message="view-in-context" target="_blank" url="<%= String.valueOf(viewURL) %>" />
 	</c:if>
 
