@@ -50,15 +50,6 @@ String svnUserId = user2.getScreenName();
 				%>
 
 					<c:if test="<%= SVNRevisionLocalServiceUtil.getSVNRevisionsCount(svnUserId, svnRepository.getSvnRepositoryId()) > 0 %>">
-						<portlet:renderURL var="userRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-							<portlet:param name="url" value="<%= url %>" />
-						</portlet:renderURL>
-
-						<portlet:renderURL var="allRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
-							<portlet:param name="url" value="<%= url %>" />
-							<portlet:param name="all" value="true" />
-						</portlet:renderURL>
-
 						<div class="project-details">
 							<h5 class="project-section">
 								<%= svnRepository.getShortURL() %>
@@ -67,6 +58,10 @@ String svnUserId = user2.getScreenName();
 							<table class="lfr-table">
 							<tr>
 								<td>
+									<portlet:renderURL var="userRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+										<portlet:param name="url" value="<%= url %>" />
+									</portlet:renderURL>
+
 									<a href="<%= userRevisionsURL %>">
 
 									<c:choose>
@@ -95,6 +90,11 @@ String svnUserId = user2.getScreenName();
 							</tr>
 							<tr>
 								<td>
+									<portlet:renderURL var="allRevisionsURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
+										<portlet:param name="url" value="<%= url %>" />
+										<portlet:param name="all" value="true" />
+									</portlet:renderURL>
+
 									<a href="<%= allRevisionsURL %>"><liferay-ui:message key="all-commits" /></a>
 								</td>
 								<td>
