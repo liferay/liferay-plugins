@@ -39,6 +39,10 @@ boolean fieldsEditingDisabled = false;
 if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0) {
 	fieldsEditingDisabled = true;
 }
+
+// setting a variable to hold the index count
+int fieldCount = 0;
+
 %>
 
 <liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
@@ -179,6 +183,10 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 				<%
 					index++;
 				}
+				
+				// set the fieldcount to the current index count so we can add the index to the url when a new row is added
+				fieldCount = index;
+				
 				%>
 
 			</aui:fieldset>
@@ -276,6 +284,9 @@ if (!fieldsEditingDisabled) {
 		<liferay-portlet:renderURL portletConfiguration="true" var="editFieldURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD %>" />
 		</liferay-portlet:renderURL>
+		
+		// this puts the fieldcount variable into the javascript scope so we can use it for the url
+		var fieldCount = <%= fieldCount %>;
 
 		new Liferay.AutoFields(
 			{
@@ -283,7 +294,16 @@ if (!fieldsEditingDisabled) {
 				fieldIndexes: '<portlet:namespace />formFieldsIndexes',
 				sortable: true,
 				sortableHandle: '.field-label',
-				url: '<%= editFieldURL %>'
+				// this adds the current index the url so edit_field will provide a proper new row with a unique index
+				url: '<%= editFieldURL %>&<portlet:namespace />index=' + fieldCount,
+				// this will increment the index when a new row is added and update the url paramater so a new row can be added
+				on: {
+					'clone': function() {
+					fieldCount++;
+					this.url = '<%= editFieldURL %>&<portlet:namespace />index=' + fieldCount;
+			            }
+		        }
+
 			}
 		).render();
 	</c:if>
