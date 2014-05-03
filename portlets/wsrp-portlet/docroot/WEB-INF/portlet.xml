@@ -29,11 +29,13 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
+		<display-name>Consumer</display-name>
 		<portlet-class>com.liferay.wsrp.consumer.portlet.ConsumerPortlet</portlet-class>
 		<expiration-cache>0</expiration-cache>
 		<supports>
 			<mime-type>text/html</mime-type>
 		</supports>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>WSRP Consumer</title>
 			<short-title>WSRP Consumer</short-title>
