@@ -678,18 +678,33 @@ Error-Prone was automatically installed. Please rerun your task.
 						module.dir="@{import.shared.current.dir}"
 					/>
 
+					<set-build-xml-var
+						build.xml.var.name="plugin.name"
+						module.dir="@{import.shared.current.dir}"
+					/>
+
+					<if>
+						<isset property="set-build-xml-var.return" />
+						<then>
+							<var name="import.shared.current.plugin.name" value="${set-build-xml-var.return}" />
+						</then>
+						<else>
+							<var name="import.shared.current.plugin.name" value="@{import.shared.current}" />
+						</else>
+					</if>
+
 					<set-module-properties
 						module.dir="@{module.dir}"
 					/>
 
 					<for param="import.shared.full.path">
 						<path>
-							<fileset dir="${sdk.dir}/dist" includes="@{import.shared.current}-${lp.version}.*.jar" />
+							<fileset dir="${sdk.dir}/dist" includes="${import.shared.current.plugin.name}-${lp.version}.*.jar" />
 						</path>
 						<sequential>
 							<copy
 								file="@{import.shared.full.path}"
-								tofile="${plugin.lib.dir}/@{import.shared.current}.jar"
+								tofile="${plugin.lib.dir}/${import.shared.current.plugin.name}.jar"
 							/>
 						</sequential>
 					</for>
