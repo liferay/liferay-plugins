@@ -2169,6 +2169,10 @@ html.aui {
 			}
 		}
 
+		.profile-page .contacts-portlet .projects {
+			padding: 10px;
+		}
+
 		/* ---------- Portlet: document library ---------- */
 
 		.portlet-document-library .row-fluid {
