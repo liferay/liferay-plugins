@@ -23,8 +23,6 @@ UserThreadLocalServiceUtil.markUserThreadAsRead(user.getUserId(), mbThreadId);
 boolean hasExistingRecipients = false;
 %>
 
-<portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
-
 <aui:button-row cssClass="controls">
 	<liferay-portlet:actionURL name="markMessagesAsUnread" var="markAsUnreadURL">
 		<portlet:param name="mbThreadIds" value="<%= String.valueOf(mbThreadId) %>" />
@@ -38,6 +36,8 @@ boolean hasExistingRecipients = false;
 
 	<aui:button data-delete-message-url="<%= deleteMessageURL %>" name="deleteMessage" value="delete" />
 </aui:button-row >
+
+<portlet:renderURL var="backURL" windowState="<%= WindowState.NORMAL.toString() %>" />
 
 <%
 String subject = PrivateMessagingUtil.getThreadSubject(mbThreadId);
@@ -238,11 +238,6 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 							for (FileEntry fileEntry : attachmentsFileEntries) {
 							%>
 
-								<liferay-portlet:resourceURL id="getMessageAttachment" var="attachmentURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-									<portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" />
-									<portlet:param name="attachment" value="<%= fileEntry.getTitle() %>" />
-								</liferay-portlet:resourceURL>
-
 								<li class="message-attachment">
 
 									<%
@@ -253,6 +248,11 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 									sb.append(TextFormatter.formatStorageSize(fileEntry.getSize(), locale));
 									sb.append(StringPool.CLOSE_PARENTHESIS);
 									%>
+
+									<liferay-portlet:resourceURL id="getMessageAttachment" var="attachmentURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+										<portlet:param name="messageId" value="<%= String.valueOf(mbMessage.getMessageId()) %>" />
+										<portlet:param name="attachment" value="<%= fileEntry.getTitle() %>" />
+									</liferay-portlet:resourceURL>
 
 									<liferay-ui:icon
 										image='<%= "../file_system/small/" + DLUtil.getFileIcon(fileEntry.getExtension()) %>'
