@@ -71,12 +71,12 @@ boolean ignoreRequestValue = (index != formFieldsIndex);
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
 			<aui:select ignoreRequestValue="<%= ignoreRequestValue %>" label="type" name='<%= "fieldType" + index %>' value="<%= fieldType %>">
-				<aui:option label="text" />
-				<aui:option label="text-box" value="textarea" />
-				<aui:option label="options" />
-				<aui:option label="radio-buttons" value="radio" />
-				<aui:option label="paragraph" />
-				<aui:option label="check-box" value="checkbox" />
+				<aui:option selected='<%= fieldType.equals("text") %>' label="text" />
+				<aui:option selected='<%= fieldType.equals("textarea") %>' label="text-box" value="textarea" />
+				<aui:option selected='<%= fieldType.equals("options") %>' label="options" />
+				<aui:option selected='<%= fieldType.equals("radio") %>' label="radio-buttons" value="radio" />
+				<aui:option selected='<%= fieldType.equals("paragraph") %>' label="paragraph" />
+				<aui:option selected='<%= fieldType.equals("checkbox") %>' label="check-box" value="checkbox" />
 			</aui:select>
 		</c:when>
 		<c:otherwise>
