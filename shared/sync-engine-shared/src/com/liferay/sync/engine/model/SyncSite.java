@@ -68,6 +68,10 @@ public class SyncSite extends StateAwareModel {
 		return name;
 	}
 
+	public long getParentGroupId() {
+		return parentGroupId;
+	}
+
 	public long getRemoteSyncTime() {
 		return remoteSyncTime;
 	}
@@ -128,6 +132,10 @@ public class SyncSite extends StateAwareModel {
 		this.name = name;
 	}
 
+	public void setParentGroupId(long parentGroupId) {
+		this.parentGroupId = parentGroupId;
+	}
+
 	public void setRemoteSyncTime(long remoteSyncTime) {
 		this.remoteSyncTime = remoteSyncTime;
 	}
@@ -172,6 +180,9 @@ public class SyncSite extends StateAwareModel {
 
 	@DatabaseField(useGetSet = true)
 	protected String name;
+
+	@DatabaseField(useGetSet = true)
+	protected long parentGroupId;
 
 	@DatabaseField(useGetSet = true)
 	protected long remoteSyncTime;
