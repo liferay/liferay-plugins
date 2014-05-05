@@ -105,7 +105,7 @@ $defaultTextColor: #202020;
 				border-top-width: 0;
 				margin: 0;
 				position: static;
-				right: 0px;
+				right: 0;
 
 				> li {
 					background: $defaultBackgroundColor url(../images/user_bar_default_bg.png) 0 0 repeat-x;
