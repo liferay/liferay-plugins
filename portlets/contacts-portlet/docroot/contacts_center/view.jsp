@@ -128,7 +128,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 					</aui:layout>
 				</div>
 
-				<c:if test="<%= !showOnlySiteMembers %>">
+				<c:if test="<%= !showOnlySiteMembers && !userPublicPage %>">
 					<aui:button cssClass="add-contact" icon="icon-plus-sign" id='<%= renderResponse.getNamespace() + "addContact" %>' value="add-contact" />
 				</c:if>
 			</aui:layout>
