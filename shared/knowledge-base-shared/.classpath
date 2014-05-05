@@ -16,9 +16,6 @@
 	<classpathentry kind="lib" path="/portal-6.2.x/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-6.2.x/util-taglib/util-taglib.jar" />
-	<classpathentry kind="lib" path="lib/cdi-api.jar" />
-	<classpathentry kind="lib" path="lib/javax.servlet-api.jar" />
 	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
-	<classpathentry kind="lib" path="lib/portlet-api.jar" />
 	<classpathentry kind="output" path="bin" />
 </classpath>
