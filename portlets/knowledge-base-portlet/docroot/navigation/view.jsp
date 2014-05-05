@@ -54,7 +54,14 @@ List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getSiblingKBArticles(them
 								id:'<portlet:namespace/><%= childKBArticle.getResourcePrimKey() %>',
 								label: '<%= childKBArticle.getTitle() %>',
 								on: {
-									select: A.bind('fire', Liferay, 'knowledgeBaseNavigation', {url: '<%= viewChildURL %>'})
+									select: A.bind(
+										'fire',
+										Liferay,
+										'knowledgeBaseNavigation',
+										{
+											url: '<%= viewChildURL %>'
+										}
+									)
 								}
 
 							<c:choose>
