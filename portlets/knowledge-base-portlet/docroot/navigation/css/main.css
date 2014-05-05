@@ -1,12 +1,11 @@
 /* ---------- Portlet ---------- */
 
 .knowledge-base-portlet-navigation {
-	.tree-node .tree-node-content .tree-label {
+	.tree-node .tree-label {
 		color: #009ae5;
 		font-size: 20px;
 		line-height: 20px;
 		margin-bottom: 5px;
 		margin-top:  5px;
-		text-decoration: underline;
 	}
 }
