@@ -29,25 +29,17 @@
 </div>
 
 <aui:script use="aui-base,aui-io-request,aui-parse-content">
-
 	var messageContainer = A.one('#<portlet:namespace />message-container');
 
-	Liferay.provide(
-		window,
-		'<portlet:namespace />showStatusMessage',
-		function(type, message) {
-			var messageContainer = A.one('#<portlet:namespace />message-container');
+	var showStatusMessage = function(type, message) {
+		messageContainer.removeClass('alert-error').removeClass('alert-success');
 
-			messageContainer.removeClass('alert-error').removeClass('alert-success');
+		messageContainer.addClass('alert alert-' + type);
 
-			messageContainer.addClass('alert alert-' + type);
+		messageContainer.html(message);
 
-			messageContainer.html(message);
-
-			messageContainer.show();
-		},
-		['aui-base']
-	);
+		messageContainer.show();
+	};
 
 	Liferay.on(
 		'knowledgeBaseNavigation',
@@ -57,22 +49,18 @@
 				{
 					after: {
 						failure: function(event, id, obj) {
-							message = '<%= UnicodeLanguageUtil.get(pageContext, "your-request-failed-to-complete") %>';
-
-							<portlet:namespace />showStatusMessage('error', message);
+							showStatusMessage('error', '<%= UnicodeLanguageUtil.get(pageContext, "your-request-failed-to-complete") %>');
 						},
 						success: function(event, id, obj) {
-							message = '<%= UnicodeLanguageUtil.get(pageContext, "your-request-processed-successfully") %>';
+							var instance = this;
 
-							<portlet:namespace />showStatusMessage('success', message);
-
-							var responseData = this.get('responseData');
+							showStatusMessage('success', '<%= UnicodeLanguageUtil.get(pageContext, "your-request-processed-successfully") %>');
 
 							var container = A.one('.kb-article-container');
 
 							container.plug(A.Plugin.ParseContent);
 
-							container.setContent(responseData);
+							container.setContent(instance.get('responseData'));
 						}
 					}
 				}
