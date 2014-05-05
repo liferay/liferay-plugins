@@ -65,6 +65,10 @@ public class SyncSite extends StateAwareModel {
 	}
 
 	public String getName() {
+		if ((type == 0) && !site) {
+			return friendlyURL.substring(1);
+		}
+
 		return name;
 	}
 
