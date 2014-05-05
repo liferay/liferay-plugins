@@ -250,11 +250,11 @@ public class WebRTCManager {
 	}
 
 	public void pushICECandidateWebRTCMail(
-		long sourceUserId, long destinationUserId, String ice) {
+		long sourceUserId, long destinationUserId, String candidate) {
 
 		JSONObject messageJSONObject = JSONFactoryUtil.createJSONObject();
 
-		messageJSONObject.put("ice", ice);
+		messageJSONObject.put("candidate", candidate);
 
 		WebRTCMail webRTCMail = new ICECandidateWebRTCMail(
 			sourceUserId, messageJSONObject);
