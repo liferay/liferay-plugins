@@ -482,11 +482,13 @@ AUI().use(
 										instance.renderNotificationsList(instance._getDockbarNotificationsList(), instance._dockbarNotificationsURL);
 									}
 
-									if (instance._lastPage && (markAllAsRead || (instance._currentPageNotificationEventsCount == 1))) {
-										instance.renderNotificationsList(instance._getFullviewNotificationsList(), instance._previousPageNotificationsURL);
-									}
-									else {
-										instance.renderNotificationsList(instance._getFullviewNotificationsList(),  instance._fullviewNotificationsURL);
+									if (instance._unread || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unread) == 'undefined'))) {
+										if (instance._lastPage && (markAllAsRead || (instance._currentPageNotificationEventsCount == 1))) {
+											instance.renderNotificationsList(instance._getFullviewNotificationsList(), instance._previousPageNotificationsURL);
+										}
+										else {
+											instance.renderNotificationsList(instance._getFullviewNotificationsList(),  instance._fullviewNotificationsURL);
+										}
 									}
 
 									instance._updateNotificationsCount(response["newUserNotificationsCount"], response["unreadUserNotificationsCount"]);
