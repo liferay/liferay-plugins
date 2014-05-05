@@ -339,6 +339,7 @@ $defaultTextColor: #202020;
 							margin-left: 0;
 							min-width: 100%;
 							padding: 0;
+							position: static;
 
 							li {
 								background-color: transparent;
