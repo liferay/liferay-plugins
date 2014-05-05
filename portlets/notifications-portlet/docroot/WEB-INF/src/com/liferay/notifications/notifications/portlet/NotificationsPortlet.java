@@ -16,9 +16,7 @@ package com.liferay.notifications.notifications.portlet;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil;
