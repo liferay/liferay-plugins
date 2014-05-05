@@ -2,6 +2,7 @@ $preferred-padding: 10px;
 
 @mixin ctrl-button-hover($name, $btn-size) {
 	background-image: url('../images/btns-' + $btn-size + '/btn-' + $name + '.png');
+
 	&:hover {
 		background-image: url('../images/btns-' + $btn-size + '/btn-' + $name + '-hover.png');
 	}
@@ -60,20 +61,6 @@ $preferred-padding: 10px;
 		position: relative;
 		width: 100%;
 
-		video.local {
-			bottom: $preferred-padding;
-			border: 2px solid transparentize(white, .3);
-			border-radius: 2px;
-			height: 160px;
-			left: $preferred-padding;
-			position: absolute;
-			width: auto;
-		}
-
-		video.local {
-			@include transform-mirror();
-		}
-
 		video.remote {
 			height: 100%;
 			width: 100%;
@@ -88,6 +75,10 @@ $preferred-padding: 10px;
 		video.local {
 			display: none;
 		}
+	}
+
+	video.local {
+		@include transform-mirror();
 	}
 }
 
@@ -244,6 +235,13 @@ $preferred-padding: 10px;
 	}
 
 	video.local {
+		border: 2px solid transparentize(white, .3);
+		border-radius: 2px;
+		bottom: $preferred-padding;
 		display: block;
+		height: 160px;
+		left: $preferred-padding;
+		position: absolute;
+		width: auto;
 	}
 }
