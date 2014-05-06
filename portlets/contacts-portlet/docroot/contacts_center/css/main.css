@@ -68,6 +68,10 @@ $section-header-bg: #CCE6F7;
 		display: block;
 		overflow: hidden;
 
+		.comments {
+			margin-left: 10px;
+		}
+
 		.lfr-contact-thumb {
 			float: left;
 		}
