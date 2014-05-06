@@ -120,15 +120,7 @@ AUI().use(
 				if (instance._webRtcAdapter) {
 					instance.debugMsg('WebRTC seems supported!');
 
-					instance._cb.disableInRinging = config.cb.disableInRinging;
-					instance._cb.disableOutRinging = config.cb.disableOutRinging;
-					instance._cb.enableInRinging = config.cb.enableInRinging;
-					instance._cb.enableOutRinging = config.cb.enableOutRinging;
-					instance._cb.ensurePanel = config.cb.ensurePanel;
-					instance._cb.isUserAvailable = config.cb.isUserAvailable;
-					instance._cb.onMediaDisabled = config.cb.onMediaDisabled
-					instance._cb.onMediaEnabled = config.cb.onMediaEnabled;
-					instance._cb.send = config.cb.send;
+					A.mix(instance._cb, config.cb, true);
 
 					instance._currentState = Liferay.Chat.WebRtcManager.State.INIT;
 
@@ -444,11 +436,7 @@ AUI().use(
 				}
 			},
 
-			_cb: {
-				getConversation: null,
-				isUserAvailable: null,
-				send: null
-			},
+			_cb: {},
 			_conversations: [],
 			_currentState: null,
 			_localStream: null,
@@ -462,11 +450,8 @@ AUI().use(
 			instance._userId = config.userId;
 			Liferay.Chat.WebRtcManager.debugMsg('creating new WebRTC conversation (ID ' + instance._userId + ')');
 
-			instance._cb = {
-				onError: config.cb.onError,
-				onStateChange: config.cb.onStateChange,
-				onWebRtcEvent: config.cb.onWebRtcEvent
-			};
+			instance._cb = {};
+			A.mix(instance._cb, config.cb, true);
 
 			instance._remoteVideoEl = config.remoteVideoEl;
 			instance._localVideoEl = config.localVideoEl;
