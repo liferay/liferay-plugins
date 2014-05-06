@@ -84,6 +84,19 @@ public class SampleLARBookingLocalServiceImpl
 	}
 
 	@Override
+	public List<SampleLARBooking> getSampleLARBookings(
+			long groupId, int start, int end)
+		throws SystemException {
+
+		return sampleLARBookingPersistence.findByGroupId(groupId, start, end);
+	}
+
+	@Override
+	public int getSampleLARBookingsCount(long groupId) throws SystemException {
+		return sampleLARBookingPersistence.countByGroupId(groupId);
+	}
+
+	@Override
 	public SampleLARBooking updateSampleLARBooking(
 			long userId, long sampleLARBookingId, String bookingNumber,
 			ServiceContext serviceContext)
