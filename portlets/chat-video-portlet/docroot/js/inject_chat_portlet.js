@@ -825,14 +825,14 @@ AUI().use(
 						}
 					);
 
-					instance._chatVideoCtrlButtonsNodes['accept'].on(
+					instance._chatVideoCtrlButtonsNodes.accept.on(
 						'click',
 						function() {
 							instance._webRtc.onPressAccept();
 						}
 					);
 
-					instance._chatVideoCtrlButtonsNodes['hangUp'].on(
+					instance._chatVideoCtrlButtonsNodes.hangUp.on(
 						'click',
 						function() {
 							instance._disableVideoFullScreen();
@@ -840,7 +840,7 @@ AUI().use(
 						}
 					);
 
-					instance._chatVideoCtrlButtonsNodes['call'].on(
+					instance._chatVideoCtrlButtonsNodes.call.on(
 						'click',
 						function() {
 							if (Liferay.Chat.VideoManager.isUserAvailable(instance._panelId)) {
@@ -849,14 +849,14 @@ AUI().use(
 						}
 					);
 
-					instance._chatVideoCtrlButtonsNodes['fullScreen'].on(
+					instance._chatVideoCtrlButtonsNodes.fullScreen.on(
 						'click',
 						function() {
 							instance._toggleFullScreen();
 						}
 					);
 
-					instance._chatVideoCtrlButtonsNodes['mike'].on(
+					instance._chatVideoCtrlButtonsNodes.mike.on(
 						'click',
 						function() {
 							var node = this;
