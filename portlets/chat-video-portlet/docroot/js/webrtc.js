@@ -57,36 +57,37 @@ AUI().use(
 				};
 
 				for (userId in instance._conversations) {
-					var conv = instance._conversations[userId];
+					var conversation = instance._conversations[userId];
+					var conversationState = conversation.getState();
 
-					if (conv.getState() !== State.STOPPED &&
-						   conv.getState() !== State.DELETED &&
-						   conv.getState() !== State.STOPPING &&
-						   conv.getState() !== State.DELETING) {
+					if (conversationState !== State.STOPPED &&
+						   conversationState !== State.DELETED &&
+						   conversationState !== State.STOPPING &&
+						   conversationState !== State.DELETING) {
 						ret.active = true;
 
-						if (conv.getState() !== State.CONNECTED) {
+						if (conversationState !== State.CONNECTED) {
 							ret.communicationRequired = true;
 						}
 					}
 
-					if (conv.getState() === State.STOPPING ||
-						   conv.getState() === State.DELETING) {
+					if (conversationState === State.STOPPING ||
+						   conversationState === State.DELETING) {
 						ret.communicationRequired = true;
 					}
 
-					if (conv.getState() === State.CALLING ||
-						   conv.getState() === State.CALLED) {
+					if (conversationState === State.CALLING ||
+						   conversationState === State.CALLED) {
 						ret.outRinging = true;
 					}
 
-					if (conv.getState() === State.GOTCALL ||
-						   conv.getState() === State.GOTCALLWAITING) {
+					if (conversationState === State.GOTCALL ||
+						   conversationState === State.GOTCALLWAITING) {
 						ret.inRinging = true;
 					}
 
-					if (conv.getState() === State.CALLINGWAITING ||
-						   conv.getState() === State.GOTCALLWAITING) {
+					if (conversationState === State.CALLINGWAITING ||
+						   conversationState === State.GOTCALLWAITING) {
 						ret.waiting = true;
 					}
 				}
@@ -265,11 +266,11 @@ AUI().use(
 				}
 			},
 
-			registerConversation: function(conv) {
+			registerConversation: function(conversation) {
 				var instance = Liferay.Chat.WebRtcManager;
 
-				instance._conversations[conv.getToUserId()] = conv;
-				instance.debugMsg('registering conversation ID ' + conv.getToUserId());
+				instance._conversations[conversation.getToUserId()] = conversation;
+				instance.debugMsg('registering conversation ID ' + conversation.getToUserId());
 			},
 
 			sendMsg: function(msgType, payload) {
@@ -412,14 +413,16 @@ AUI().use(
 				var instance = Liferay.Chat.WebRtcManager;
 
 				for (var i in instance._conversations) {
-					var conv = instance._conversations[i];
-					conv.onError(Liferay.Chat.WebRtcConversation.Error.CANNOTGETUSERMEDIA);
+					var conversation = instance._conversations[i];
+					var conversationState = conversation.getState();
 
-					if (conv.getState() === Liferay.Chat.WebRtcConversation.State.GOTCALLWAITING) {
-						conv.setState(Liferay.Chat.WebRtcConversation.State.DENYINGCALL);
+					conversation.onError(Liferay.Chat.WebRtcConversation.Error.CANNOTGETUSERMEDIA);
+
+					if (conversationState === Liferay.Chat.WebRtcConversation.State.GOTCALLWAITING) {
+						conversation.setState(Liferay.Chat.WebRtcConversation.State.DENYINGCALL);
 					}
-					else if (conv.getState() === Liferay.Chat.WebRtcConversation.State.CALLINGWAITING) {
-						conv.setState(Liferay.Chat.WebRtcConversation.State.STOPPED);
+					else if (conversationState === Liferay.Chat.WebRtcConversation.State.CALLINGWAITING) {
+						conversation.setState(Liferay.Chat.WebRtcConversation.State.STOPPED);
 					}
 				}
 			},
@@ -428,14 +431,15 @@ AUI().use(
 				var instance = Liferay.Chat.WebRtcManager;
 
 				for (var i in instance._conversations) {
-					var conv = instance._conversations[i];
+					var conversation = instance._conversations[i];
+					var conversationState = conversation.getState();
 
-					if (conv.getState() === Liferay.Chat.WebRtcConversation.State.GOTCALLWAITING) {
-						conv.setState(Liferay.Chat.WebRtcConversation.State.GOTCALL);
+					if (conversationState === Liferay.Chat.WebRtcConversation.State.GOTCALLWAITING) {
+						conversation.setState(Liferay.Chat.WebRtcConversation.State.GOTCALL);
 					}
 
-					if (conv.getState() === Liferay.Chat.WebRtcConversation.State.CALLINGWAITING) {
-						conv.setState(Liferay.Chat.WebRtcConversation.State.CALLING);
+					if (conversationState === Liferay.Chat.WebRtcConversation.State.CALLINGWAITING) {
+						conversation.setState(Liferay.Chat.WebRtcConversation.State.CALLING);
 					}
 				}
 			},
