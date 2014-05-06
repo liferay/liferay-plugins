@@ -17,18 +17,18 @@
 <%@ include file="/init.jsp" %>
 
 <aui:script position="inline">
-	google_ad_client = "<%= adClient %>";
-	google_ad_channel = "<%= adChannel %>";
-	google_ad_type = "<%= adTypeValue %>";
+	google_ad_client = '<%= adClient %>';
+	google_ad_channel = '<%= adChannel %>';
+	google_ad_type = '<%= adTypeValue %>';
 	google_ad_height = <%= adTypeHeight %>;
 	google_ad_width = <%= adTypeWidth %>;
-	google_ad_format = "<%= adTypeWidth %>x<%= adTypeHeight %>_as";
+	google_ad_format = '<%= adTypeWidth %>x<%= adTypeHeight %>_as';
 
-	google_color_border = "<%= colorBorder %>";
-	google_color_bg = "<%= colorBg %>";
-	google_color_link = "<%= colorLink %>";
-	google_color_text = "<%= colorText %>";
-	google_color_url = "<%= colorUrl %>";
+	google_color_border = '<%= colorBorder %>';
+	google_color_bg = '<%= colorBg %>';
+	google_color_link = '<%= colorLink %>';
+	google_color_text = '<%= colorText %>';
+	google_color_url = '<%= colorUrl %>';
 </aui:script>
 
 <script src="http://pagead2.googlesyndication.com/pagead/show_ads.js" type="text/javascript"></script>
