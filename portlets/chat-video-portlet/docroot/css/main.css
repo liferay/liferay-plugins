@@ -188,7 +188,7 @@ $preferredPadding: 10px;
 }
 
 .chat-video-overlay {
-	$btn-dimension: 32px;
+	$btnDimension: 32px;
 
 	background: transparentize(#000, 0.1);
 	height: 100%;
@@ -205,20 +205,20 @@ $preferredPadding: 10px;
 	}
 
 	.chat-video-ctrl-buttons {
-		$nb-buttons: 3;
-		$inner-width: ($nb-buttons + 1) * $preferredPadding + $nb-buttons * $btn-dimension;
+		$nbButtons: 3;
+		$innerWidth: ($nbButtons + 1) * $preferredPadding + $nbButtons * $btnDimension;
 
 		bottom: $preferredPadding;
 		left: 50%;
-		margin-left: -($inner-width / 2);
+		margin-left: -($innerWidth / 2);
 		padding: $preferredPadding 0 $preferredPadding $preferredPadding;
 
 		a {
 			@include ctrl-buttons(32);
 
-			height: $btn-dimension;
+			height: $btnDimension;
 			margin-right: $preferredPadding;
-			width: $btn-dimension;
+			width: $btnDimension;
 		}
 	}
 
