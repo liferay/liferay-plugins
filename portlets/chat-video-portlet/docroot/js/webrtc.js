@@ -111,7 +111,7 @@ AUI().use(
 				return instance._currentState;
 			},
 
-			init: function(conf) {
+			init: function(config) {
 				var instance = Liferay.Chat.WebRtcManager;
 
 				instance.debugMsg('initializing the WebRTC manager');
@@ -120,15 +120,15 @@ AUI().use(
 				if (instance._webRtcAdapter) {
 					instance.debugMsg('WebRTC seems supported!');
 
-					instance._cb.disableInRinging = conf.cb.disableInRinging;
-					instance._cb.disableOutRinging = conf.cb.disableOutRinging;
-					instance._cb.enableInRinging = conf.cb.enableInRinging;
-					instance._cb.enableOutRinging = conf.cb.enableOutRinging;
-					instance._cb.ensurePanel = conf.cb.ensurePanel;
-					instance._cb.isUserAvailable = conf.cb.isUserAvailable;
-					instance._cb.onMediaDisabled = conf.cb.onMediaDisabled
-					instance._cb.onMediaEnabled = conf.cb.onMediaEnabled;
-					instance._cb.send = conf.cb.send;
+					instance._cb.disableInRinging = config.cb.disableInRinging;
+					instance._cb.disableOutRinging = config.cb.disableOutRinging;
+					instance._cb.enableInRinging = config.cb.enableInRinging;
+					instance._cb.enableOutRinging = config.cb.enableOutRinging;
+					instance._cb.ensurePanel = config.cb.ensurePanel;
+					instance._cb.isUserAvailable = config.cb.isUserAvailable;
+					instance._cb.onMediaDisabled = config.cb.onMediaDisabled
+					instance._cb.onMediaEnabled = config.cb.onMediaEnabled;
+					instance._cb.send = config.cb.send;
 
 					instance._currentState = Liferay.Chat.WebRtcManager.State.INIT;
 
@@ -456,26 +456,26 @@ AUI().use(
 			_webRtcAdapter: null
 		};
 
-		Liferay.Chat.WebRtcConversation = function(conf) {
+		Liferay.Chat.WebRtcConversation = function(config) {
 			var instance = this;
 
-			instance._userId = conf.userId;
+			instance._userId = config.userId;
 			Liferay.Chat.WebRtcManager.debugMsg('creating new WebRTC conversation (ID ' + instance._userId + ')');
 
 			instance._cb = {
-				onError: conf.cb.onError,
-				onStateChange: conf.cb.onStateChange,
-				onWebRtcEvent: conf.cb.onWebRtcEvent
+				onError: config.cb.onError,
+				onStateChange: config.cb.onStateChange,
+				onWebRtcEvent: config.cb.onWebRtcEvent
 			};
 
-			instance._remoteVideoEl = conf.remoteVideoEl;
-			instance._localVideoEl = conf.localVideoEl;
+			instance._remoteVideoEl = config.remoteVideoEl;
+			instance._localVideoEl = config.localVideoEl;
 
 			instance._lastError = Liferay.Chat.WebRtcConversation.Error.NOERROR;
 
 			instance._iceServers = [];
-			for (var i in conf.iceServers) {
-				var ice = conf.iceServers[i];
+			for (var i in config.iceServers) {
+				var ice = config.iceServers[i];
 				var compatIce = Liferay.Chat.WebRtcManager.getWebRtcAdapter().createIceServer(ice);
 
 				if (compatIce !== null) {
