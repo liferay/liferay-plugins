@@ -1177,7 +1177,7 @@ AUI().use(
 				_showRemoteVideo: function() {
 					var instance = this;
 
-					instance._remoteVideoContainerNode.setStyle('height', '0');
+					instance._remoteVideoContainerNode.height(0);
 					instance._remoteVideoContainerNode.show();
 
 					var remoteVideoAnim = new A.Anim(
