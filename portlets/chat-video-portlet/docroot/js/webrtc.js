@@ -50,6 +50,7 @@ AUI().use(
 
 			getConversationsGlobalState: function() {
 				var instance = this;
+
 				var State = Liferay.Chat.WebRtcConversation.State;
 				var ret = {
 					active: false,
@@ -177,6 +178,7 @@ AUI().use(
 
 			onConversationStateChange: function() {
 				var instance = Liferay.Chat.WebRtcManager;
+
 				var globalState = instance.getConversationsGlobalState();
 
 				if (!globalState.active) {
@@ -290,6 +292,7 @@ AUI().use(
 
 			sendSetAvailabilityMsg: function(available) {
 				var instance = Liferay.Chat.WebRtcManager;
+
 				var msgType = 'setAvailability';
 				var msg = {
 					available: available
@@ -300,6 +303,7 @@ AUI().use(
 
 			sendUpdatePresenceMsg: function() {
 				var instance = Liferay.Chat.WebRtcManager;
+
 				var msgType = 'updatePresence';
 
 				instance.sendMsg(msgType, {});
@@ -605,6 +609,7 @@ AUI().use(
 
 			onMsgGotCall: function() {
 				var instance = this;
+
 				var wrongState = false;
 
 				switch (instance.getState()) {
@@ -724,6 +729,7 @@ AUI().use(
 
 			onPressHangUp: function() {
 				var instance = this;
+
 				var State = Liferay.Chat.WebRtcConversation.State;
 
 				Liferay.Chat.WebRtcManager.debugMsg('event: user pressed "hang up"');
@@ -837,6 +843,7 @@ AUI().use(
 
 			_isUserAvailable: function() {
 				var instance = this;
+
 				var destUserId = instance.getToUserId();
 
 				return Liferay.Chat.WebRtcManager.isUserAvailable(destUserId);

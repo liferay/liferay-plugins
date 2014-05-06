@@ -203,6 +203,7 @@ AUI().use(
 
 			onChatVideoConversationStateChange: function() {
 				var instance = this;
+
 				var globalState = instance._webRtcManager.getConversationsGlobalState();
 
 				if (globalState.communicationRequired) {
@@ -247,6 +248,7 @@ AUI().use(
 
 			_onAfterUpdateBuddies: function(buddies) {
 				var instance = this;
+
 				var listItems = instance._chatManager._onlineBuddies.all('li.user');
 
 				listItems.each(
@@ -264,6 +266,7 @@ AUI().use(
 
 			_onAfterUpdateSettings: function() {
 				var instance = this;
+
 				var globalState = instance._webRtcManager.getConversationsGlobalState();
 
 				if (!instance._chatManager._playSound) {
@@ -296,6 +299,7 @@ AUI().use(
 
 			_onPanelClose: function(event) {
 				var instance = this;
+
 				var panel = event.target;
 				var userId = panel._panelId;
 
