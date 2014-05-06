@@ -14,7 +14,7 @@
 			<mime-type>text/html</mime-type>
 		</supports>
 		<supported-locale>en</supported-locale>
-		<resource-bundle>com.liferay.samplelar.resources.Resource</resource-bundle>
+		<resource-bundle>content.Language</resource-bundle>
 		<portlet-info>
 			<title>Sample LAR</title>
 			<short-title>Sample LAR</short-title>
