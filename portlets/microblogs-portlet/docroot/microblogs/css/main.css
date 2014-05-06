@@ -324,6 +324,12 @@ $microblogs-border-color: #EAEAEA;
 
 /* ---------- Responsive ---------- */
 
+@include respond-to(phone, tablet) {
+	.microblogs-portlet .microblogs-entry .footer .action {
+		display: inline-block;
+	}
+}
+
 @include respond-to(phone) {
 	.microblogs-portlet .microblogs-post {
 		width: auto;
