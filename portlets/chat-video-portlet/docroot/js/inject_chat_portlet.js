@@ -93,13 +93,13 @@ AUI().use(
 					instance._webRtcManager.init(
 						{
 							cb: {
-								disableInRinging: Liferay.Chat.VideoManager.disableInRinging.bind(instance),
+								disableInRinging: A.bind('disableInRinging', instance),
 
-								disableOutRinging: Liferay.Chat.VideoManager.disableOutRinging.bind(instance),
+								disableOutRinging: A.bind('disableOutRinging', instance),
 
-								enableInRinging: Liferay.Chat.VideoManager.enableInRinging.bind(instance),
+								enableInRinging: A.bind('enableInRinging', instance),
 
-								enableOutRinging: Liferay.Chat.VideoManager.enableOutRinging.bind(instance),
+								enableOutRinging: A.bind('enableOutRinging', instance),
 
 								ensurePanel: function(userId) {
 									var buddy = instance._chatManager._buddies[userId];
