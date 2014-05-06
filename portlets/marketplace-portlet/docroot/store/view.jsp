@@ -81,7 +81,7 @@
 			else if (response.cmd == 'goto') {
 				var url = null;
 
-				if (response.panel === "control-panel") {
+				if (response.panel === 'control-panel') {
 					url = '<%= themeDisplay.getURLControlPanel() %>';
 				}
 				else {
