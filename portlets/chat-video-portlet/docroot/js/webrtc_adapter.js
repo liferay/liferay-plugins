@@ -261,13 +261,7 @@ AUI().use(
 				var result = sdpLine.match(pattern);
 				var sdp;
 
-				if (result && result.length == 2) {
-					sdp = result[1];
-				} else {
-					sdp = null;
-				}
-
-				return sdp;
+				return (result && result[1]) || null;
 			},
 
 			_removeCn: function(sdpLines, mLineIndex) {
