@@ -247,10 +247,10 @@ AUI().use(
 
 				listItems.each(
 					function(item, index, collection) {
-						var uid = item.getAttribute('data-userId');
+						var userId = item.getAttribute('data-userId');
 						var userImageNode = item.one('img');
 
-						if (uid && instance.isUserAvailable(uid)) {
+						if (instance.isUserAvailable(userId)) {
 							var iconNode = A.Node.create('<div class="chat-video-available"></div>');
 							userImageNode.placeAfter(iconNode);
 						}

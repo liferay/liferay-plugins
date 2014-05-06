@@ -60,8 +60,8 @@ AUI().use(
 					waiting: false
 				};
 
-				for (uid in instance._conversations) {
-					var conv = instance._conversations[uid];
+				for (userId in instance._conversations) {
+					var conv = instance._conversations[userId];
 
 					if (conv.getState() !== State.STOPPED &&
 						   conv.getState() !== State.DELETED &&
