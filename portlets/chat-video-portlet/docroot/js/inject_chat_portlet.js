@@ -171,7 +171,7 @@ AUI().use(
 
 					instance.hideOverlay();
 
-					instance._onAfterUpdateSettings();
+					instance._afterUpdateSettings();
 				}
 			},
 
@@ -245,7 +245,7 @@ AUI().use(
 				instance._updateMikeButtons('unmuted');
 			},
 
-			_onAfterUpdateBuddies: function(buddies) {
+			_afterUpdateBuddies: function(buddies) {
 				var instance = this;
 
 				var listItems = instance._chatManager._onlineBuddies.all('li.user');
@@ -262,7 +262,7 @@ AUI().use(
 				);
 			},
 
-			_onAfterUpdateSettings: function() {
+			_afterUpdateSettings: function() {
 				var instance = this;
 
 				var globalState = instance._webRtcManager.getConversationsGlobalState();
@@ -583,6 +583,9 @@ AUI().use(
 		Liferay.on('chatPortletReady', function(event) {
 			var instance = this;
 
+			var chatManager = Liferay.Chat.Manager;
+			var videoManager = Liferay.Chat.VideoManager;
+
 			A.on(
 				function(options) {
 					var instance = this;
@@ -593,29 +596,9 @@ AUI().use(
 				'init'
 			);
 
-			A.on(
-				function(event) {
-					Liferay.Chat.VideoManager._onPanelClose(event);
-				},
-				Liferay.Chat.Manager,
-				'_onPanelClose'
-			);
-
-			A.after(
-				function(buddies) {
-					Liferay.Chat.VideoManager._onAfterUpdateBuddies(buddies);
-				},
-				Liferay.Chat.Manager,
-				'_updateBuddies'
-			);
-
-			A.after(
-				function() {
-					Liferay.Chat.VideoManager._onAfterUpdateSettings();
-				},
-				Liferay.Chat.Manager,
-				'_updateSettings'
-			);
+			A.on(videoManager._onPanelClose, chatManager, '_onPanelClose', videoManager);
+			A.after(videoManager._afterUpdateBuddies, chatManager, '_updateBuddies', videoManager);
+			A.after(videoManager._afterUpdateSettings, chatManager, '_updateSettings', videoManager);
 
 			var Chat = Liferay.Chat;
 			Chat.ConversationPanel = Chat.Conversation;
