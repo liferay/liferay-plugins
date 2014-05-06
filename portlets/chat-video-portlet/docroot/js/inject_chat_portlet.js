@@ -17,6 +17,49 @@ AUI().use(
 				'</label>' +
 			'</li>';
 
+		var TPL_CHAT_PANEL =
+			'<li class="user user_{panelId}" panelId="{panelId}">' +
+				'<div class="panel-trigger">' +
+					'<span class="trigger-name"></span>' +
+					'<div class="typing-status"></div>' +
+				'</div>' +
+				'<div class="chat-panel">' +
+					'<div class="remote-video-container hide">' +
+						'<div class="remote-video">' +
+							'<video autoplay="autoplay" class="remote"></video>' +
+						'</div>' +
+					'</div>' +
+					'<div class="panel-window">' +
+						'<div class="panel-button minimize"></div>' +
+						'<div class="panel-button close"></div>' +
+						'<div class="panel-self-view">' +
+							'<img alt="" src="{userImagePath}" />' +
+							'<video autoplay="autoplay" class="local hide" muted="muted"></video>' +
+						'</div>' +
+						'<div class="panel-title">{panelTitle}</div>' +
+						'<div class="panel-profile">...</div>' +
+						'<div class="hide chat-video-ctrl">' +
+							'<div class="hide chat-video-msg">' +
+								'<div class="msg"></div>' +
+								'<div class="working"></div>' +
+							'</div>' +
+							'<div class="chat-video-ctrl-buttons">' +
+								'<a class="accept hide" href="javascript:void(0);" title="Accept video call"></a>' +
+								'<a class="hangup hide" href="javascript:void(0);" title="Hang up video call"></a>' +
+								'<a class="call hide" href="javascript:void(0);" title="Start video call"></a>' +
+								'<a class="hide mike unmuted" href="javascript:void(0);" title="Mute/unmute microphone"></a>' +
+								'<a class="fullscreen hide off" href="javascript:void(0);" title="Enable/disable fullscreen video call"></a>' +
+								'<div style="clear: both;"></div>' +
+							'</div>' +
+						'</div>' +
+						'<div class="panel-output"></div>' +
+						'<div class="panel-input">' +
+							'<textarea class="message-input"></textarea>' +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+			'</li>';
+
 		Liferay.Chat.VideoManager = {
 			appendNodeToOverlay: function(node) {
 				var instance = this;
@@ -1104,48 +1147,14 @@ AUI().use(
 					var userImagePath = Liferay.Chat.Util.getUserImagePath(instance._panelIcon);
 
 					// Custom HTML with integrated chat video elements
-					var html =
-						'<li class="user user_' + instance._panelId + '" panelId="' + instance._panelId + '">' +
-							'<div class="panel-trigger">' +
-								'<span class="trigger-name"></span>' +
-								'<div class="typing-status"></div>' +
-							'</div>' +
-							'<div class="chat-panel">' +
-								'<div class="remote-video-container hide">' +
-									'<div class="remote-video">' +
-										'<video autoplay="autoplay" class="remote"></video>' +
-									'</div>' +
-								'</div>' +
-								'<div class="panel-window">' +
-									'<div class="panel-button minimize"></div>' +
-									'<div class="panel-button close"></div>' +
-									'<div class="panel-self-view">' +
-										'<img alt="" src="' + userImagePath + '" />' +
-										'<video autoplay="autoplay" class="local hide" muted="muted"></video>' +
-									'</div>' +
-									'<div class="panel-title">' + Liferay.Util.escapeHTML(instance._panelTitle) + '</div>' +
-									'<div class="panel-profile">...</div>' +
-									'<div class="hide chat-video-ctrl">' +
-										'<div class="hide chat-video-msg">' +
-											'<div class="msg"></div>' +
-											'<div class="working"></div>' +
-										'</div>' +
-										'<div class="chat-video-ctrl-buttons">' +
-											'<a class="accept hide" href="javascript:void(0);" title="Accept video call"></a>' +
-											'<a class="hangup hide" href="javascript:void(0);" title="Hang up video call"></a>' +
-											'<a class="call hide" href="javascript:void(0);" title="Start video call"></a>' +
-											'<a class="hide mike unmuted" href="javascript:void(0);" title="Mute/unmute microphone"></a>' +
-											'<a class="fullscreen hide off" href="javascript:void(0);" title="Enable/disable fullscreen video call"></a>' +
-											'<div style="clear: both;"></div>' +
-										'</div>' +
-									'</div>' +
-									'<div class="panel-output"></div>' +
-									'<div class="panel-input">' +
-										'<textarea class="message-input"></textarea>' +
-									'</div>' +
-								'</div>' +
-							'</div>' +
-						'</li>';
+					var html = A.Lang.sub(
+						TPL_CHAT_PANEL,
+						{
+							panelId: instance._panelId,
+							userImagePath: userImagePath,
+							panelTitle: Liferay.Util.escapeHTML(instance._panelTitle)
+						}
+					);
 
 					return html;
 				},
