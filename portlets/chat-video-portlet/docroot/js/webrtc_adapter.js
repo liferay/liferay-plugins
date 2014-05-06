@@ -116,7 +116,7 @@ AUI().use(
 						else if (urlParts[0].indexOf('turn') === 0) {
 							if (browserVersion < 28) {
 								// Chrome < 28: use old TURN format
-								var urlTurnParts = iceCandidate.url.split("turn:");
+								var urlTurnParts = iceCandidate.url.split('turn:');
 								iceServer = {
 									url: 'turn:' + iceCandidate.username + '@' + urlTurnParts[1],
 									credential: iceCandidate.password
@@ -211,7 +211,7 @@ AUI().use(
 							if (browserVersion < 27) {
 								// Create ICE server with TURN URL
 								// Ignore transport parameter from TURN URL for FF < 27
-								var turnUrlParts = url.split("?");
+								var turnUrlParts = url.split('?');
 
 								if (turnUrlParts.length === 1 ||
 										turnUrlParts[1].indexOf('transport=udp') === 0) {
