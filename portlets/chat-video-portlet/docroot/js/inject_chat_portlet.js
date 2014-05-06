@@ -74,8 +74,8 @@ AUI().use(
 				instance._webRtcManager = Liferay.Chat.WebRtcManager;
 
 				if (instance._webRtcManager.isSupported()) {
-					var pollerNotificationsTimeout = parseInt(A.one('#chatVideoPortletPollerNotificationsTimeout').val());
-					var pollerRequestTimeout = parseInt(A.one('#chatVideoPortletPollerRequestTimeout').val());
+					var pollerNotificationsTimeout = A.Lang.toInt(A.one('#chatVideoPortletPollerNotificationsTimeout').val());
+					var pollerRequestTimeout = A.Lang.toInt(A.one('#chatVideoPortletPollerRequestTimeout').val());
 
 					instance._fastPollingRate = false;
 					instance._fastPollingRateDelayMs = pollerNotificationsTimeout + pollerRequestTimeout + 100;
