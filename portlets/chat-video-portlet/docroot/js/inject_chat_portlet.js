@@ -391,13 +391,12 @@ AUI().use(
 			}
 		};
 
-		Liferay.Chat.VideoCallTimer =
-			function(onTimeChange) {
-				var instance = this;
+		Liferay.Chat.VideoCallTimer = function(onTimeChange) {
+			var instance = this;
 
-				instance._onTimeChange = onTimeChange;
-				instance._timer = null;
-			}
+			instance._onTimeChange = onTimeChange;
+			instance._timer = null;
+		}
 
 		Liferay.Chat.VideoCallTimer.prototype = {
 			reset: function() {
@@ -441,19 +440,18 @@ AUI().use(
 			}
 		};
 
-		Liferay.Chat.VideoConversationStatus =
-			function(node) {
-				var instance = this;
+		Liferay.Chat.VideoConversationStatus = function(node) {
+			var instance = this;
 
-				instance._destroyed = false;
-				instance._node = node;
-				instance._msgNode = node.one('.msg');
-				instance._workingNode = node.one('.working');
-				instance._errorTimeout = null;
-				instance._errorAnim = null;
+			instance._destroyed = false;
+			instance._node = node;
+			instance._msgNode = node.one('.msg');
+			instance._workingNode = node.one('.working');
+			instance._errorTimeout = null;
+			instance._errorAnim = null;
 
-				instance.hide();
-			};
+			instance.hide();
+		};
 
 		Liferay.Chat.VideoConversationStatus.prototype = {
 			destroy: function() {

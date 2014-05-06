@@ -456,37 +456,36 @@ AUI().use(
 			_webRtcAdapter: null
 		};
 
-		Liferay.Chat.WebRtcConversation =
-			function(conf) {
-				var instance = this;
+		Liferay.Chat.WebRtcConversation = function(conf) {
+			var instance = this;
 
-				instance._userId = conf.userId;
-				Liferay.Chat.WebRtcManager.debugMsg('creating new WebRTC conversation (ID ' + instance._userId + ')');
+			instance._userId = conf.userId;
+			Liferay.Chat.WebRtcManager.debugMsg('creating new WebRTC conversation (ID ' + instance._userId + ')');
 
-				instance._cb = {
-					onError: conf.cb.onError,
-					onStateChange: conf.cb.onStateChange,
-					onWebRtcEvent: conf.cb.onWebRtcEvent
-				};
-
-				instance._remoteVideoEl = conf.remoteVideoEl;
-				instance._localVideoEl = conf.localVideoEl;
-
-				instance._lastError = Liferay.Chat.WebRtcConversation.Error.NOERROR;
-
-				instance._iceServers = [];
-				for (var i in conf.iceServers) {
-					var ice = conf.iceServers[i];
-					var compatIce = Liferay.Chat.WebRtcManager.getWebRtcAdapter().createIceServer(ice);
-
-					if (compatIce !== null) {
-						instance._iceServers.push(compatIce);
-					}
-				}
-
-				Liferay.Chat.WebRtcManager.registerConversation(instance);
-				instance.setState(Liferay.Chat.WebRtcConversation.State.STOPPED);
+			instance._cb = {
+				onError: conf.cb.onError,
+				onStateChange: conf.cb.onStateChange,
+				onWebRtcEvent: conf.cb.onWebRtcEvent
 			};
+
+			instance._remoteVideoEl = conf.remoteVideoEl;
+			instance._localVideoEl = conf.localVideoEl;
+
+			instance._lastError = Liferay.Chat.WebRtcConversation.Error.NOERROR;
+
+			instance._iceServers = [];
+			for (var i in conf.iceServers) {
+				var ice = conf.iceServers[i];
+				var compatIce = Liferay.Chat.WebRtcManager.getWebRtcAdapter().createIceServer(ice);
+
+				if (compatIce !== null) {
+					instance._iceServers.push(compatIce);
+				}
+			}
+
+			Liferay.Chat.WebRtcManager.registerConversation(instance);
+			instance.setState(Liferay.Chat.WebRtcConversation.State.STOPPED);
+		};
 
 		Liferay.Chat.WebRtcConversation.State = {
 			ACCEPTINGCALL: 'acceptingCall',
