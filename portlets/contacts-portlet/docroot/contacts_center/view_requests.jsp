@@ -43,7 +43,6 @@
 		<liferay-ui:search-container-column-text
 			name="requests"
 		>
-
 			<liferay-portlet:renderURL varImpl="rowURL">
 				<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
 				<portlet:param name="backURL" value="<%= currentURL %>" />
