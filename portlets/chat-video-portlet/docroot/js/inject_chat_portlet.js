@@ -16,20 +16,20 @@ AUI().use(
             disableInRinging: function() {
                 var instance = this;
 
-                instance._tryDisableAudio(instance._inRingingNodeDom);
+                instance._tryDisableAudio(instance._inRingingEl);
             },
 
             disableOutRinging: function() {
                 var instance = this;
 
-                instance._tryDisableAudio(instance._outRingingNodeDom);
+                instance._tryDisableAudio(instance._outRingingEl);
             },
 
             enableInRinging: function() {
                 var instance = this;
 
                 if (instance._chatManager._playSound) {
-                    instance._inRingingNodeDom.play();
+                    instance._inRingingEl.play();
                 }
             },
 
@@ -37,7 +37,7 @@ AUI().use(
                 var instance = this;
 
                 if (instance._chatManager._playSound) {
-                    instance._outRingingNodeDom.play();
+                    instance._outRingingEl.play();
                 }
             },
 
@@ -135,8 +135,8 @@ AUI().use(
                     }
                 });
 
-                instance._inRingingNodeDom = A.one('#chatVideoInRingtone').getDOM();
-                instance._outRingingNodeDom = A.one('#chatVideoOutRingtone').getDOM();
+                instance._inRingingEl = A.one('#chatVideoInRingtone').getDOM();
+                instance._outRingingEl = A.one('#chatVideoOutRingtone').getDOM();
                 instance._chatVideoOverlayNode = A.one('#chatVideoOverlay');
                 instance._overlayVideoCallTimeNode = instance._chatVideoOverlayNode.one('.call-time');
 
@@ -144,9 +144,9 @@ AUI().use(
                  * video calls. This is hackish using plain DOM elements because we need
                  * to modify a text node without touching the checkbox node.
                  */
-                var playSoundLabelDom = A.one('#playSound').ancestor().getDOM();
-                var playSoundLabelTextNodeDom = playSoundLabelDom.childNodes[1];
-                playSoundLabelTextNodeDom.nodeValue = ' Play a sound when I receive a new message in a hidden window and for video calls ringtones.';
+                var playSoundLabelEl = A.one('#playSound').ancestor().getDOM();
+                var playSoundLabelTextEl = playSoundLabelEl.childNodes[1];
+                playSoundLabelTextEl.nodeValue = ' Play a sound when I receive a new message in a hidden window and for video calls ringtones.';
 
                 var showOnlineSettingNode = A.one('#onlineStatus').ancestor('li');
                 var availableForChatVideoSettingHtml =
@@ -351,7 +351,7 @@ AUI().use(
                 Liferay.Poller.cancelCustomDelay();
             },
 
-            _tryDisableAudio: function(domElem) {
+            _tryDisableAudio: function(el) {
                 /* We do this here because when modifying the playback state
                  * of an HTMLMediaElement, it can throw some exceptions when
                  * not ready for some reason. Since it's not loaded anyway,
@@ -359,8 +359,8 @@ AUI().use(
                  * playing and we want to disable it anyway.
                  */
                 try {
-                    domElem.pause();
-                    domElem.currentTime = 0;
+                    el.pause();
+                    el.currentTime = 0;
                 }
                 catch(e) {
                     // Probably not ready yet: not playing anyway
@@ -831,8 +831,8 @@ AUI().use(
                     },
 
                     iceServers: [],
-                    localVideoDomElem: instance._localVideoNode.getDOM(),
-                    remoteVideoDomElem: instance._remoteVideoNode.getDOM(),
+                    localVideoEl: instance._localVideoNode.getDOM(),
+                    remoteVideoEl: instance._remoteVideoNode.getDOM(),
                     userId: instance._panelId
                 });
 

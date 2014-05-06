@@ -463,8 +463,8 @@ AUI().use(
                     onWebRtcEvent: conf.cb.onWebRtcEvent
                 };
 
-                instance._remoteVideoDomElem = conf.remoteVideoDomElem;
-                instance._localVideoDomElem = conf.localVideoDomElem;
+                instance._remoteVideoEl = conf.remoteVideoEl;
+                instance._localVideoEl = conf.localVideoEl;
 
                 instance._lastError = Liferay.Chat.WebRtcConversation.Error.NOERROR;
 
@@ -525,7 +525,7 @@ AUI().use(
 
             isRemoteStreamFlowing: function() {
                 var instance = this;
-                var remoteVideo = instance._remoteVideoDomElem;
+                var remoteVideo = instance._remoteVideoEl;
                 var flowing = !(remoteVideo.readyState <= HTMLMediaElement.HAVE_CURRENT_DATA ||
                         remoteVideo.paused || remoteVideo.currentTime <= 0);
 
@@ -1092,14 +1092,14 @@ AUI().use(
                 var localStream = Liferay.Chat.WebRtcManager.getLocalStream();
 
                 if (localStream) {
-                    instance._setVideoStream(instance._localVideoDomElem, localStream);
+                    instance._setVideoStream(instance._localVideoEl, localStream);
                 }
             },
 
             _setRemoteVideoStream: function(stream) {
                 var instance = this;
 
-                instance._setVideoStream(instance._remoteVideoDomElem, stream);
+                instance._setVideoStream(instance._remoteVideoEl, stream);
             },
 
             _setVideoStream: function(elem, stream) {
