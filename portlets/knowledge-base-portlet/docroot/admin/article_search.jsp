@@ -73,5 +73,5 @@ KBArticleDisplayTerms displayTerms = (KBArticleDisplayTerms)searchContainer.getD
 </liferay-ui:search-toggle>
 
 <aui:script>
-	Liferay.Util.toggleSelectBox("<portlet:namespace /><%= displayTerms.ANYTIME %>", "<%= false %>", "<portlet:namespace />datesOptions");
+	Liferay.Util.toggleSelectBox('<portlet:namespace /><%= displayTerms.ANYTIME %>', '<%= false %>', '<portlet:namespace />datesOptions');
 </aui:script>

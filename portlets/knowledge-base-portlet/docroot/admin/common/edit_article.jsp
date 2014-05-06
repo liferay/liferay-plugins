@@ -151,21 +151,21 @@ String dirName = ParamUtil.getString(request, "dirName");
 
 <aui:script>
 	function <portlet:namespace />initEditor() {
-		return "<%= UnicodeFormatter.toString(content) %>";
+		return '<%= UnicodeFormatter.toString(content) %>';
 	}
 
 	function <portlet:namespace />publishKBArticle() {
-		document.<portlet:namespace />fm.<portlet:namespace />workflowAction.value = "<%= WorkflowConstants.ACTION_PUBLISH %>";
+		document.<portlet:namespace />fm.<portlet:namespace />workflowAction.value = '<%= WorkflowConstants.ACTION_PUBLISH %>';
 		<portlet:namespace />updateKBArticle();
 	}
 
 	function <portlet:namespace />updateAttachments(dirName, html) {
 		document.<portlet:namespace />fm.<portlet:namespace />dirName.value = dirName;
-		document.getElementById("<portlet:namespace />attachments").innerHTML = html;
+		document.getElementById('<portlet:namespace />attachments').innerHTML = html;
 	}
 
 	function <portlet:namespace />updateKBArticle() {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= (kbArticle == null) ? Constants.ADD : Constants.UPDATE %>";
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= (kbArticle == null) ? Constants.ADD : Constants.UPDATE %>';
 		document.<portlet:namespace />fm.<portlet:namespace />content.value = window.<portlet:namespace />editor.getHTML();
 		submitForm(document.<portlet:namespace />fm);
 	}
