@@ -7,6 +7,7 @@
 		<portlet-data-handler-class>com.liferay.samplelar.lar.SampleLARPortletDataHandler</portlet-data-handler-class>
 		<staged-model-data-handler-class>com.liferay.samplelar.lar.SampleLARBookingStagedModelDataHandler</staged-model-data-handler-class>
 		<instanceable>true</instanceable>
+		<header-portlet-css>/css/main.css</header-portlet-css>
 	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>

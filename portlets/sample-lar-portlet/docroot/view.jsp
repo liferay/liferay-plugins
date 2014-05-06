@@ -14,63 +14,29 @@
  */
 --%>
 
-<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ include file="/init.jsp" %>
 
-<%@ page import="java.util.Date" %>
+<aui:fieldset label="sample-lar-portlet-information">
+	<div class="sample-lar-paragraph">
+		This is the <strong>Sample LAR Portlet</strong>. This was made to demonstrate the portlet's export/import and staging capabilities.
+	</div>
 
-<portlet:defineObjects />
+	<div class="sample-lar-paragraph">
+		For trying out the export/import you can click on the wrench icon, and then select the Export/Import menu.
+	</div>
 
-<%
-long exportDate = Long.parseLong(portletPreferences.getValue("last-export-date", "0"));
-long importDate = Long.parseLong(portletPreferences.getValue("last-import-date", "0"));
-%>
+	<div class="sample-lar-paragraph">
+		The content of this portlet can be staged, you can find the option for this in the site configuration - staging settings. Once the content of this portlet is staged, it can be selected for publishing on the related screen.
+	</div>
+</aui:fieldset>
 
-This is the <strong>Sample LAR Portlet</strong>. This was made to demonstrate the portlet
-LAR plugin feature.
+<aui:fieldset label="sample-data">
+	<portlet:actionURL name="addSampleData" var="addSampleDataURL">
+		<portlet:param name="mvcPath" value="/view.jsp" />
+		<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
+	</portlet:actionURL>
 
-<br /><br />
+	<aui:button href="<%= addSampleDataURL %>" value="add-sample-data" />
 
-This portlet plugin allows you to store data in the LAR file (Liferay Archive)
-when the portlet exists in the Community being exported.
-
-<br /><br />
-
-Date of last export:
-
-<%
-if (exportDate == 0) {
-%>
-
-	Never
-
-<%
-}
-else {
-%>
-
-	<%= new Date(exportDate) %>
-
-<%
-}
-%>
-
-<br />
-
-Date of last import:
-
-<%
-if (importDate == 0) {
-%>
-
-	Never
-
-<%
-}
-else {
-%>
-
-	<%= new Date(importDate) %>
-
-<%
-}
-%>
+	<%@ include file="/view_sample_data.jsp" %>
+</aui:fieldset>
