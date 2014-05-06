@@ -50,6 +50,18 @@ public class TasksEntryFinderImpl
 			long[] notAssetTagIds)
 		throws SystemException {
 
+		if ((assetTagIds.length == 0) && (notAssetTagIds.length == 0) &&
+			(priority <= 0)) {
+
+			if ((assigneeUserId > 0) && (reporterUserId <= 0)) {
+				return countByG_A_S(groupId, assigneeUserId, status);
+			}
+
+			if ((reporterUserId > 0) && (assigneeUserId <= 0)) {
+				return countByG_R_S(groupId, reporterUserId, status);
+			}
+		}
+
 		Session session = null;
 
 		try {
@@ -172,6 +184,18 @@ public class TasksEntryFinderImpl
 			long[] notAssetTagIds, int start, int end)
 		throws SystemException {
 
+		if ((assetTagIds.length == 0) && (notAssetTagIds.length == 0) &&
+			(priority <= 0)) {
+
+			if ((assigneeUserId > 0) && (reporterUserId <= 0)) {
+				return findByG_A_S(groupId, assigneeUserId, status, start, end);
+			}
+
+			if ((reporterUserId > 0) && (assigneeUserId <= 0)) {
+				return findByG_R_S(groupId, reporterUserId, status, start, end);
+			}
+		}
+
 		Session session = null;
 
 		try {
@@ -285,11 +309,122 @@ public class TasksEntryFinderImpl
 		}
 	}
 
+	protected int countByG_A_S(long groupId, long assigneeUserId, int status)
+		throws SystemException {
+
+		if (status != TasksEntryConstants.STATUS_ALL) {
+			if (groupId > 0) {
+				return TasksEntryUtil.countByG_A_S(
+					groupId, assigneeUserId, getStatusArray(status));
+			}
+
+			return TasksEntryUtil.countByA_S(
+				assigneeUserId, getStatusArray(status));
+		}
+
+		if (groupId > 0) {
+			return TasksEntryUtil.countByG_A(groupId, assigneeUserId);
+		}
+
+		return TasksEntryUtil.countByAssigneeUserId(assigneeUserId);
+	}
+
+	protected int countByG_R_S(long groupId, long reporterUserId, int status)
+		throws SystemException {
+
+		if (status != TasksEntryConstants.STATUS_ALL) {
+			if (groupId > 0) {
+				return TasksEntryUtil.countByG_U_S(
+					groupId, reporterUserId, getStatusArray(status));
+			}
+
+			return TasksEntryUtil.countByU_S(
+				reporterUserId, getStatusArray(status));
+		}
+
+		if (groupId > 0) {
+			return TasksEntryUtil.countByG_U(groupId, reporterUserId);
+		}
+
+		return TasksEntryUtil.countByUserId(reporterUserId);
+	}
+
+	protected List<TasksEntry> findByG_A_S(
+			long groupId, long assigneeUserId, int status, int start, int end)
+		throws SystemException {
+
+		if (status != TasksEntryConstants.STATUS_ALL) {
+			if (groupId > 0) {
+				return TasksEntryUtil.findByG_A_S(
+					groupId, assigneeUserId, getStatusArray(status), start,
+					end);
+			}
+
+			return TasksEntryUtil.findByA_S(
+				assigneeUserId, getStatusArray(status), start, end);
+		}
+
+		if (groupId > 0) {
+			return TasksEntryUtil.findByG_A(
+				groupId, assigneeUserId, start, end);
+		}
+
+		return TasksEntryUtil.findByAssigneeUserId(assigneeUserId, start, end);
+	}
+
+	protected List<TasksEntry> findByG_R_S(
+			long groupId, long reporterUserId, int status, int start, int end)
+		throws SystemException {
+
+		if (status != TasksEntryConstants.STATUS_ALL) {
+			if (groupId > 0) {
+				return TasksEntryUtil.findByG_U_S(
+					groupId, reporterUserId, getStatusArray(status), start,
+					end);
+			}
+
+			return TasksEntryUtil.findByU_S(
+				reporterUserId, getStatusArray(status), start, end);
+		}
+
+		if (groupId > 0) {
+			return TasksEntryUtil.findByG_U(
+				groupId, reporterUserId, start, end);
+		}
+
+		return TasksEntryUtil.findByUserId(reporterUserId, start, end);
+	}
+
+	protected int[] getStatusArray(int status) {
+		if (status == TasksEntryConstants.STATUS_ALL) {
+			return null;
+		}
+
+		if (status == TasksEntryConstants.STATUS_RESOLVED) {
+			return _RESOLVED_STATUS_ARRAY;
+		}
+
+		return _OPEN_STATUSES_ARRAY;
+	}
+
 	protected void setTagsEntryIds(QueryPos qPos, long[] assetTagIds) {
 		for (int i = 0; i < assetTagIds.length; i++) {
 			qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
 			qPos.add(assetTagIds[i]);
 		}
 	}
+
+	private static final int[] _OPEN_STATUSES_ARRAY = {
+		TasksEntryConstants.STATUS_OPEN,
+		TasksEntryConstants.STATUS_PERCENT_TWENTY,
+		TasksEntryConstants.STATUS_PERCENT_SIXTY,
+		TasksEntryConstants.STATUS_PERCENT_FORTY,
+		TasksEntryConstants.STATUS_PERCENT_EIGHTY,
+		TasksEntryConstants.STATUS_REOPENED
+	};
+
+	private static final int[] _RESOLVED_STATUS_ARRAY = {
+		TasksEntryConstants.STATUS_RESOLVED
+	};
 
 }
