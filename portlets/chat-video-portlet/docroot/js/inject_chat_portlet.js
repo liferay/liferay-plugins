@@ -624,12 +624,14 @@ AUI().use(
 					instance._selfViewImgNode = panel.one('.panel-self-view img');
 					instance._ctrlButtonsContainerNode = panel.one('.chat-video-ctrl');
 
+					var ctrlButtonsContainerNode = instance._ctrlButtonsContainerNode;
+
 					instance._chatVideoCtrlButtonsNodes = {
-						'accept': instance._ctrlButtonsContainerNode.one('a.accept'),
-						'call': instance._ctrlButtonsContainerNode.one('a.call'),
-						'fullScreen': instance._ctrlButtonsContainerNode.one('a.fullscreen'),
-						'hangUp': instance._ctrlButtonsContainerNode.one('a.hangup'),
-						'mike': instance._ctrlButtonsContainerNode.one('a.mike')
+						'accept': ctrlButtonsContainerNode.one('a.accept'),
+						'call': ctrlButtonsContainerNode.one('a.call'),
+						'fullScreen': ctrlButtonsContainerNode.one('a.fullscreen'),
+						'hangUp': ctrlButtonsContainerNode.one('a.hangup'),
+						'mike': ctrlButtonsContainerNode.one('a.mike')
 					};
 
 					var chatVideoMsgContainerNode = panel.one('.chat-video-msg');
