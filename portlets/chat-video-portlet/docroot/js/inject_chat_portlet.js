@@ -482,7 +482,7 @@ AUI().use(
 
 					instance._workingNode.hide();
 
-					instance._msgNode.setHTML(msg);
+					instance._msgNode.html(msg);
 
 					instance.show();
 
@@ -523,7 +523,7 @@ AUI().use(
 
 					instance._workingNode.hide();
 
-					instance._msgNode.setHTML(msg);
+					instance._msgNode.html(msg);
 
 					instance.show();
 				}
@@ -542,7 +542,7 @@ AUI().use(
 					instance._node.removeClass('in-call');
 					instance._node.removeClass('error');
 
-					instance._msgNode.setHTML(msg);
+					instance._msgNode.html(msg);
 
 					if (working) {
 						instance._workingNode.show();
