@@ -1076,10 +1076,10 @@ AUI().use(
 				instance._setVideoStream(instance._remoteVideoEl, stream);
 			},
 
-			_setVideoStream: function(elem, stream) {
+			_setVideoStream: function(el, stream) {
 				var instance = this;
 
-				Liferay.Chat.WebRtcManager.getWebRtcAdapter().attachMediaStream(elem, stream);
+				Liferay.Chat.WebRtcManager.getWebRtcAdapter().attachMediaStream(el, stream);
 			},
 
 			_webRtcAnswer: function(desc) {
