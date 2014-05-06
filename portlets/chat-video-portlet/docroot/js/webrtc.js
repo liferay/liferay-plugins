@@ -13,7 +13,7 @@ AUI().use(
             },
 
             debugIO: function(msgType, details, dir) {
-                var msg = '';
+                var msg = null;
 
                 if (dir === 'i') {
                     msg += '[S -> C]';
@@ -21,12 +21,11 @@ AUI().use(
                 else if (dir === 'o') {
                     msg += '[C -> S]';
                 }
-                else {
-                    return;
-                }
 
-                msg += ' (' + msgType + ') ' + details;
-                Liferay.Chat.WebRtcManager.debugMsg(msg);
+                if (msg) {
+                    msg += ' (' + msgType + ') ' + details;
+                    Liferay.Chat.WebRtcManager.debugMsg(msg);
+                }
             },
 
             debugJsonIO: function(msgType, msgObj, dir) {
@@ -120,33 +119,33 @@ AUI().use(
                 instance.debugMsg('initializing the WebRTC manager');
 
                 instance._webRtcAdapter = Liferay.Chat.WebRtcAdapter.getWebRtcAdapter();
-                if (instance._webRtcAdapter === null) {
-                    instance.debugMsg('WebRTC is not supported');
-                    return;
+                if (instance._webRtcAdapter) {
+                    instance.debugMsg('WebRTC seems supported!');
+
+                    instance._cb.disableInRinging = conf.cb.disableInRinging;
+                    instance._cb.disableOutRinging = conf.cb.disableOutRinging;
+                    instance._cb.enableInRinging = conf.cb.enableInRinging;
+                    instance._cb.enableOutRinging = conf.cb.enableOutRinging;
+                    instance._cb.ensurePanel = conf.cb.ensurePanel;
+                    instance._cb.isUserAvailableForChatVideo = conf.cb.isUserAvailableForChatVideo;
+                    instance._cb.onMediaDisabled = conf.cb.onMediaDisabled
+                    instance._cb.onMediaEnabled = conf.cb.onMediaEnabled;
+                    instance._cb.send = conf.cb.send;
+
+                    instance._currentState = Liferay.Chat.WebRtcManager.State.INIT;
+
+                    instance.sendResetMsg();
+
+                    instance._updatePresenceTimerId = setInterval(
+                        function() {
+                            instance._updatePresence();
+                        },
+                        UPDATE_PRESENCE_PERIOD_MS
+                    );
                 }
-
-                instance.debugMsg('WebRTC seems supported!');
-
-                instance._cb.disableInRinging = conf.cb.disableInRinging;
-                instance._cb.disableOutRinging = conf.cb.disableOutRinging;
-                instance._cb.enableInRinging = conf.cb.enableInRinging;
-                instance._cb.enableOutRinging = conf.cb.enableOutRinging;
-                instance._cb.ensurePanel = conf.cb.ensurePanel;
-                instance._cb.isUserAvailableForChatVideo = conf.cb.isUserAvailableForChatVideo;
-                instance._cb.onMediaDisabled = conf.cb.onMediaDisabled
-                instance._cb.onMediaEnabled = conf.cb.onMediaEnabled;
-                instance._cb.send = conf.cb.send;
-
-                instance._currentState = Liferay.Chat.WebRtcManager.State.INIT;
-
-                instance.sendResetMsg();
-
-                instance._updatePresenceTimerId = setInterval(
-                    function() {
-                        instance._updatePresence();
-                    },
-                    UPDATE_PRESENCE_PERIOD_MS
-                );
+                else {
+                    instance.debugMsg('WebRTC is not supported');
+                }
             },
 
             isSupported: function() {
@@ -350,11 +349,11 @@ AUI().use(
                             var globalState = instance.getConversationsGlobalState();
                             if (!globalState.active) {
                                 instance._disableMedia(false);
-                                return;
                             }
-
-                            instance._cb.onMediaEnabled();
-                            instance._updateWaitingConversationsNextState();
+                            else {
+                                instance._cb.onMediaEnabled();
+                                instance._updateWaitingConversationsNextState();
+                            }
                         },
                         function(e) {
                             instance.doError('error while trying to acquired user media');
@@ -593,21 +592,20 @@ AUI().use(
             onMsgGotAnswer: function(msg) {
                 var instance = this;
 
-                if (instance.getState() !== State.CALLED) {
-                    return;
-                }
-
-                if (msg.answer) {
-                    instance.setState(State.GOTANSWER);
-                }
-                else {
-                    instance.onError(Error.REMOTEPEERDENIEDCALL);
-                    instance.setState(State.STOPPED);
+                if (instance.getState() === State.CALLED) {
+                    if (msg.answer) {
+                        instance.setState(State.GOTANSWER);
+                    }
+                    else {
+                        instance.onError(Error.REMOTEPEERDENIEDCALL);
+                        instance.setState(State.STOPPED);
+                    }
                 }
             },
 
             onMsgGotCall: function() {
                 var instance = this;
+                var wrongState = false;
 
                 switch (instance.getState()) {
                     case State.STOPPED:
@@ -628,10 +626,12 @@ AUI().use(
                     default:
                         // Error: wrong state for an incoming call, so deny it
                         instance.setState(State.DENYINGCALL);
-                        return;
+                        wrongState = true;
                 }
 
-                instance.setState(State.GOTCALLWAITING);
+                if (!wrongState) {
+                    instance.setState(State.GOTCALLWAITING);
+                }
             },
 
             onMsgGotStatus: function(msg) {
@@ -650,25 +650,23 @@ AUI().use(
             onMsgNewIceCandidate: function(msg) {
                 var instance = this;
 
-                if (!instance._isWebRtcStarted()) {
-                    return;
-                }
+                if (instance._isWebRtcStarted()) {
+                    var iceCandidate = JSON.parse(msg.candidate);
 
-                var iceCandidate = JSON.parse(msg.candidate);
+                    RTCIceCandidate = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCIceCandidate;
+                    var rtcIce = new RTCIceCandidate(
+                        {
+                            sdpMLineIndex: iceCandidate.sdpMLineIndex,
+                            candidate: iceCandidate.candidate
+                        }
+                    );
 
-                RTCIceCandidate = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCIceCandidate;
-                var rtcIce = new RTCIceCandidate(
-                    {
-                        sdpMLineIndex: iceCandidate.sdpMLineIndex,
-                        candidate: iceCandidate.candidate
+                    if (!instance._pc || !instance._acceptIceCandidates) {
+                        instance._iceCandidatesBuffer.push(rtcIce);
                     }
-                );
-
-                if (!instance._pc || !instance._acceptIceCandidates) {
-                    instance._iceCandidatesBuffer.push(rtcIce);
-                }
-                else {
-                    instance._addIceCandidate(rtcIce);
+                    else {
+                        instance._addIceCandidate(rtcIce);
+                    }
                 }
             },
 
@@ -677,15 +675,13 @@ AUI().use(
 
                 var description = JSON.parse(msg.description);
 
-                if (!instance._isWebRtcStarted()) {
-                    return;
-                }
-
-                if (instance._isCaller) {
-                    instance._webRtcCompleteOffer(description);
-                }
-                else {
-                    instance._webRtcAnswer(description);
+                if (instance._isWebRtcStarted()) {
+                    if (instance._isCaller) {
+                        instance._webRtcCompleteOffer(description);
+                    }
+                    else {
+                        instance._webRtcAnswer(description);
+                    }
                 }
             },
 
@@ -694,20 +690,19 @@ AUI().use(
 
                 Liferay.Chat.WebRtcManager.debugMsg('event: user pressed "accept"');
 
-                if (instance.getState() !== State.GOTCALL && instance.getState() !== State.GOTCALLWAITING) {
+                if (instance.getState() === State.GOTCALL || instance.getState() === State.GOTCALLWAITING) {
+                    if (!instance._isUserAvailableForChatVideo()) {
+                        instance.onError(Error.REMOTEPEERNOTAVAILABLE);
+                        instance.setState(State.DENYINGCALL);
+                        Liferay.Chat.WebRtcManager.doError('remote peer not available for WebRTC to "accept"');
+                    }
+                    else {
+                        instance.setState(State.ACCEPTINGCALL);
+                    }
+                }
+                else {
                     Liferay.Chat.WebRtcManager.doError('wrong state "' + instance.getState() + ' to "accept"');
-
-                    return;
                 }
-
-                if (!instance._isUserAvailableForChatVideo()) {
-                    instance.onError(Error.REMOTEPEERNOTAVAILABLE);
-                    instance.setState(State.DENYINGCALL);
-                    Liferay.Chat.WebRtcManager.doError('remote peer not available for WebRTC to "accept"');
-
-                    return;
-                }
-                instance.setState(State.ACCEPTINGCALL);
             },
 
             onPressCall: function() {
@@ -715,17 +710,16 @@ AUI().use(
 
                 Liferay.Chat.WebRtcManager.debugMsg('event: user pressed "call"');
 
-                if (instance.getState() !== State.STOPPED) {
+                if (instance.getState() === State.STOPPED) {
+                    if (!instance._isUserAvailableForChatVideo()) {
+                        Liferay.Chat.WebRtcManager.doError('remote peer not available for WebRTC to "call"');
+                    }
+
+                    instance.setState(State.CALLINGWAITING);
+                }
+                else {
                     Liferay.Chat.WebRtcManager.doError('wrong state "' + instance.getState() + ' to "call"');
-
-                    return;
                 }
-
-                if (!instance._isUserAvailableForChatVideo()) {
-                    Liferay.Chat.WebRtcManager.doError('remote peer not available for WebRTC to "call"');
-                }
-
-                instance.setState(State.CALLINGWAITING);
             },
 
             onPressHangUp: function() {
@@ -783,15 +777,14 @@ AUI().use(
             _addIceCandidate: function(ice) {
                 var instance = this;
 
-                if (!instance._acceptIceCandidates) {
+                if (instance._acceptIceCandidates) {
+                    Liferay.Chat.WebRtcManager.debugMsg('adding remote ICE candidate to peer connection');
+                    instance._pc.addIceCandidate(ice);
+                }
+                else {
                     Liferay.Chat.WebRtcManager.doError('cannot add following ICE candidate to peer connection:');
                     Liferay.Chat.WebRtcManager.debugObj(ice);
-
-                    return;
                 }
-
-                Liferay.Chat.WebRtcManager.debugMsg('adding remote ICE candidate to peer connection');
-                instance._pc.addIceCandidate(ice);
             },
 
             _configurePC: function() {
@@ -818,33 +811,28 @@ AUI().use(
             _doWebRtcCall: function() {
                 var instance = this;
 
-                if (!instance._isWebRtcStarted()) {
-                    return;
+                if (instance._isWebRtcStarted()) {
+                    if (instance._isCaller) {
+                        instance._webRtcOffer();
+                    }
+                    else {
+                        Liferay.Chat.WebRtcManager.doError('cannot call with WebRTC because we\'re not the original caller');
+                    }
                 }
-
-                if (!instance._isCaller) {
-                    Liferay.Chat.WebRtcManager.doError('cannot call with WebRTC because we\'re not the original caller');
-
-                    return;
-                }
-
-                instance._webRtcOffer();
             },
 
             _flushIceCandidatesBuffer: function() {
                 var instance = this;
 
-                if (!instance._isWebRtcStarted()) {
-                    return;
+                if (instance._isWebRtcStarted()) {
+                    Liferay.Chat.WebRtcManager.debugMsg('flushing ICE candidates buffer (length=' + instance._iceCandidatesBuffer.length + ')');
+
+                    for (var i in instance._iceCandidatesBuffer) {
+                        instance._addIceCandidate(instance._iceCandidatesBuffer[i]);
+                    }
+
+                    instance._iceCandidatesBuffer.length = 0;
                 }
-
-                Liferay.Chat.WebRtcManager.debugMsg('flushing ICE candidates buffer (length=' + instance._iceCandidatesBuffer.length + ')');
-
-                for (var i in instance._iceCandidatesBuffer) {
-                    instance._addIceCandidate(instance._iceCandidatesBuffer[i]);
-                }
-
-                instance._iceCandidatesBuffer.length = 0;
             },
 
             _isUserAvailableForChatVideo: function() {
@@ -865,29 +853,21 @@ AUI().use(
             _onAddStream: function(e) {
                 var instance = this;
 
-                if (!instance._isWebRtcStarted()) {
-                    return;
+                if (instance._isWebRtcStarted() && e) {
+                    Liferay.Chat.WebRtcManager.debugMsg('added remote stream');
+
+                    instance._setRemoteVideoStream(e.stream);
+                    instance.setState(State.CONNECTED);
                 }
-
-                if (!e) {
-                    return;
-                }
-
-                Liferay.Chat.WebRtcManager.debugMsg('added remote stream');
-
-                instance._setRemoteVideoStream(e.stream);
-                instance.setState(State.CONNECTED);
             },
 
             _onIceCandidate: function(e) {
                 var instance = this;
 
-                if (!instance._pc || !e || !e.candidate) {
-                    return;
+                if (instance._pc && e && e.candidate) {
+                    Liferay.Chat.WebRtcManager.debugMsg('new local ICE candidate ready');
+                    instance._sendIceMsg(e.candidate);
                 }
-
-                Liferay.Chat.WebRtcManager.debugMsg('new local ICE candidate ready');
-                instance._sendIceMsg(e.candidate);
             },
 
             _onLostConnection: function(reason) {
@@ -1118,49 +1098,47 @@ AUI().use(
 
                 instance._configurePC();
 
-                if (!instance._pc) {
-                    Liferay.Chat.WebRtcManager.doError('when trying to create WebRTC answer: no peer connection available');
-
-                    return;
-                }
-
-                var RTCSessionDescription = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCSessionDescription;
-                var remoteDesc = new RTCSessionDescription(desc);
-                instance._pc.setRemoteDescription(remoteDesc);
-                instance._pc.createAnswer(
-                    function(desc) {
-                        desc.sdp = Liferay.Chat.WebRtcAdapter.preferOpus(desc.sdp);
-                        Liferay.Chat.WebRtcManager.debugMsg('generated SDP answer');
-                        instance._pc.setLocalDescription(desc);
-                        instance._sendSdpMsg(desc);
-                        instance._acceptIceCandidates = true;
-                        instance._flushIceCandidatesBuffer();
-                    },
-                    function(error) {
-                        Liferay.Chat.WebRtcManager.doError(error.message);
-                    },
-                    {
-                        mandatory: {
-                            OfferToReceiveAudio: true,
-                            OfferToReceiveVideo: true
+                if (instance._pc) {
+                    var RTCSessionDescription = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCSessionDescription;
+                    var remoteDesc = new RTCSessionDescription(desc);
+                    instance._pc.setRemoteDescription(remoteDesc);
+                    instance._pc.createAnswer(
+                        function(desc) {
+                            desc.sdp = Liferay.Chat.WebRtcAdapter.preferOpus(desc.sdp);
+                            Liferay.Chat.WebRtcManager.debugMsg('generated SDP answer');
+                            instance._pc.setLocalDescription(desc);
+                            instance._sendSdpMsg(desc);
+                            instance._acceptIceCandidates = true;
+                            instance._flushIceCandidatesBuffer();
+                        },
+                        function(error) {
+                            Liferay.Chat.WebRtcManager.doError(error.message);
+                        },
+                        {
+                            mandatory: {
+                                OfferToReceiveAudio: true,
+                                OfferToReceiveVideo: true
+                            }
                         }
-                    }
-                );
+                    );
+                }
+                else {
+                    Liferay.Chat.WebRtcManager.doError('when trying to create WebRTC answer: no peer connection available');
+                }
             },
 
             _webRtcCompleteOffer: function(desc) {
                 var instance = this;
 
-                if (!instance._pc) {
-                    Liferay.Chat.WebRtcManager.doError('when trying to complete WebRTC offer: no peer connection available');
+                if (instance._pc) {
+                    instance._flushIceCandidatesBuffer();
 
-                    return;
+                    var RTCSessionDescription = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCSessionDescription;
+                    instance._pc.setRemoteDescription(new RTCSessionDescription(desc));
                 }
-
-                instance._flushIceCandidatesBuffer();
-
-                var RTCSessionDescription = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCSessionDescription;
-                instance._pc.setRemoteDescription(new RTCSessionDescription(desc));
+                else {
+                    Liferay.Chat.WebRtcManager.doError('when trying to complete WebRTC offer: no peer connection available');
+                }
             },
 
             _webRtcOffer: function() {
@@ -1168,31 +1146,30 @@ AUI().use(
 
                 instance._configurePC();
 
-                if (!instance._pc) {
-                    Liferay.Chat.WebRtcManager.doError('when trying to create WebRTC offer: no peer connection available');
-
-                    return;
-                }
-
-                instance._pc.createOffer(
-                    function(desc) {
-                        desc.sdp = Liferay.Chat.WebRtcAdapter.preferOpus(desc.sdp);
-                        Liferay.Chat.WebRtcManager.debugMsg('generated SDP offer');
-                        instance._pc.setLocalDescription(desc);
-                        instance._sendSdpMsg(desc);
-                        instance._acceptIceCandidates = true;
-                    },
-                    function(error) {
-                        Liferay.Chat.WebRtcManager.doError(error.message);
-                    },
-                    {
-                        mandatory: {
-                            OfferToReceiveAudio: true,
-                            OfferToReceiveVideo: true
+                if (instance._pc) {
+                    instance._pc.createOffer(
+                        function(desc) {
+                            desc.sdp = Liferay.Chat.WebRtcAdapter.preferOpus(desc.sdp);
+                            Liferay.Chat.WebRtcManager.debugMsg('generated SDP offer');
+                            instance._pc.setLocalDescription(desc);
+                            instance._sendSdpMsg(desc);
+                            instance._acceptIceCandidates = true;
                         },
-                        optional: []
-                    }
-                );
+                        function(error) {
+                            Liferay.Chat.WebRtcManager.doError(error.message);
+                        },
+                        {
+                            mandatory: {
+                                OfferToReceiveAudio: true,
+                                OfferToReceiveVideo: true
+                            },
+                            optional: []
+                        }
+                    );
+                }
+                else {
+                    Liferay.Chat.WebRtcManager.doError('when trying to create WebRTC offer: no peer connection available');
+                }
             }
         };
     });
