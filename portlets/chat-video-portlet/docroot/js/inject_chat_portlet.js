@@ -247,7 +247,7 @@ AUI().use(
 
 				listItems.each(
 					function(item, index, collection) {
-						var userId = item.getAttribute('data-userId');
+						var userId = item.attr('data-userId');
 						var userImageNode = item.one('img');
 
 						if (instance.isUserAvailable(userId)) {
