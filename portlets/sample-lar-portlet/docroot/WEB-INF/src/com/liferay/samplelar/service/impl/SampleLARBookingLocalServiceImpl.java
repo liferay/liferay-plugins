@@ -64,6 +64,17 @@ public class SampleLARBookingLocalServiceImpl
 	}
 
 	@Override
+	public SampleLARBooking deleteSampleLARBooking(long sampleLARBookingId)
+		throws SystemException {
+
+		SampleLARBooking sampleLARBooking =
+			sampleLARBookingPersistence.fetchByPrimaryKey(sampleLARBookingId);
+
+		return sampleLARBookingLocalService.deleteSampleLARBooking(
+			sampleLARBooking);
+	}
+
+	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public SampleLARBooking deleteSampleLARBooking(
 			SampleLARBooking sampleLARBooking)
