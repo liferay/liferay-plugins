@@ -144,7 +144,9 @@ AUI().use(
                 instance._updatePresenceTimerId = setInterval(
                     function() {
                         instance._updatePresence();
-                    }, UPDATE_PRESENCE_PERIOD_MS);
+                    },
+                    UPDATE_PRESENCE_PERIOD_MS
+                );
             },
 
             isSupported: function() {
@@ -359,7 +361,8 @@ AUI().use(
 
                             instance.setState(instance.State.INIT);
                             instance._updateWaitingConversationsCancel();
-                        });
+                        }
+                    );
                 }
                 else if (instance.getState() === instance.State.ACQUIRED) {
                     instance._updateWaitingConversationsNextState();
@@ -654,10 +657,12 @@ AUI().use(
                 var iceCandidate = JSON.parse(msg.candidate);
 
                 RTCIceCandidate = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCIceCandidate;
-                var rtcIce = new RTCIceCandidate({
-                    sdpMLineIndex: iceCandidate.sdpMLineIndex,
-                    candidate: iceCandidate.candidate
-                });
+                var rtcIce = new RTCIceCandidate(
+                    {
+                        sdpMLineIndex: iceCandidate.sdpMLineIndex,
+                        candidate: iceCandidate.candidate
+                    }
+                );
 
                 if (!instance._pc || !instance._acceptIceCandidates) {
                     instance._iceCandidatesBuffer.push(rtcIce);
@@ -1133,12 +1138,14 @@ AUI().use(
                     },
                     function(error) {
                         Liferay.Chat.WebRtcManager.doError(error.message);
-                    }, {
+                    },
+                    {
                         mandatory: {
                             OfferToReceiveAudio: true,
                             OfferToReceiveVideo: true
                         }
-                    });
+                    }
+                );
             },
 
             _webRtcCompleteOffer: function(desc) {
@@ -1177,13 +1184,15 @@ AUI().use(
                     },
                     function(error) {
                         Liferay.Chat.WebRtcManager.doError(error.message);
-                    }, {
+                    },
+                    {
                         mandatory: {
                             OfferToReceiveAudio: true,
                             OfferToReceiveVideo: true
                         },
                         optional: []
-                    });
+                    }
+                );
             }
         };
     });
