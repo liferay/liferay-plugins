@@ -16,9 +16,11 @@ package com.liferay.samplelar.portlet;
 
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.auth.CompanyThreadLocal;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.samplelar.service.SampleLARBookingLocalServiceUtil;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
@@ -30,20 +32,20 @@ import javax.portlet.ActionResponse;
  */
 public class SampleLARPortlet extends MVCPortlet {
 
-	public void addSampleData(
+	public void addSampleLARBooking(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long userId = UserLocalServiceUtil.getDefaultUserId(
-			CompanyThreadLocal.getCompanyId());
-		long groupId = ParamUtil.getLong(actionRequest, "groupId");
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
 		for (int i = 0; i <= 1; i++) {
 			String bookingNumber =
 				"LR" + GetterUtil.getInteger(Math.random() * 100);
 
 			SampleLARBookingLocalServiceUtil.addSampleLARBooking(
-				userId, groupId, bookingNumber, new ServiceContext());
+				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(),
+				bookingNumber, new ServiceContext());
 		}
 	}
 

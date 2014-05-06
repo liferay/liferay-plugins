@@ -31,12 +31,11 @@
 </aui:fieldset>
 
 <aui:fieldset label="sample-data">
-	<portlet:actionURL name="addSampleData" var="addSampleDataURL">
+	<portlet:actionURL name="addSampleLARBooking" var="addSampleLARBookingURL">
 		<portlet:param name="mvcPath" value="/view.jsp" />
-		<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
 	</portlet:actionURL>
 
-	<aui:button href="<%= addSampleDataURL %>" value="add-sample-data" />
+	<aui:button href="<%= addSampleLARBookingURL %>" value="add-sample-data" />
 
-	<%@ include file="/view_sample_data.jsp" %>
+	<%@ include file="/view_sample_lar_bookings.jsp.jsp" %>
 </aui:fieldset>
