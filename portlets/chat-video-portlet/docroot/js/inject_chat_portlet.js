@@ -976,8 +976,7 @@ AUI().use(
 						Liferay.Chat.VideoManager.appendNodeToOverlay(instance._remoteVideoOuterNode);
 						instance._localVideoNode.appendTo(instance._remoteVideoOuterNode);
 						Liferay.Chat.VideoManager.appendNodeToOverlay(instance._ctrlButtonsNode);
-						instance._chatVideoCtrlButtonsNodes['fullScreen'].removeClass('off');
-						instance._chatVideoCtrlButtonsNodes['fullScreen'].addClass('on');
+						instance._chatVideoCtrlButtonsNodes.fullScreen.replaceClass('off', 'on');
 						Liferay.Chat.VideoManager.showOverlay();
 						instance._playVideos();
 					}
@@ -990,8 +989,7 @@ AUI().use(
 					instance._remoteVideoOuterNode.appendTo(instance._remoteVideoContainerNode);
 					instance._localVideoNode.appendTo(instance._selfViewNode);
 					instance._ctrlButtonsNode.appendTo(instance._ctrlButtonsContainerNode);
-					instance._chatVideoCtrlButtonsNodes['fullScreen'].removeClass('on');
-					instance._chatVideoCtrlButtonsNodes['fullScreen'].addClass('off');
+					instance._chatVideoCtrlButtonsNodes.fullScreen.replaceClass('on', 'off');
 					instance._playVideos();
 				},
 
