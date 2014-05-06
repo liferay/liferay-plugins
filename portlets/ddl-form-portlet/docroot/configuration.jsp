@@ -181,7 +181,7 @@ catch (NoSuchRecordSetException nsrse) {
 			var A = AUI();
 
 			document.<portlet:namespace />fm.<portlet:namespace />recordSetId.value = recordSetId;
-			document.<portlet:namespace />fm.<portlet:namespace />formDDMTemplateId.value = "";
+			document.<portlet:namespace />fm.<portlet:namespace />formDDMTemplateId.value = '';
 
 			A.one('.displaying-record-set-id-holder').show();
 			A.one('.displaying-help-message-holder').hide();
