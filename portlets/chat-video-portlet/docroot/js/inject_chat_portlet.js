@@ -613,14 +613,16 @@ AUI().use(
 					instance._availableForChatVideo = false;
 					instance._videoCallTimer = null;
 
-					instance._ctrlButtonsNode = instance._panel.one('.chat-video-ctrl-buttons');
-					instance._localVideoNode = instance._panel.one('.panel-self-view video.local');
-					instance._remoteVideoContainerNode = instance._panel.one('.remote-video-container');
-					instance._remoteVideoOuterNode = instance._panel.one('.remote-video');
+					var panel = instance._panel;
+
+					instance._ctrlButtonsNode = panel.one('.chat-video-ctrl-buttons');
+					instance._localVideoNode = panel.one('.panel-self-view video.local');
+					instance._remoteVideoContainerNode = panel.one('.remote-video-container');
+					instance._remoteVideoOuterNode = panel.one('.remote-video');
 					instance._remoteVideoNode = instance._remoteVideoOuterNode.one('video.remote');
-					instance._selfViewNode = instance._panel.one('.panel-self-view');
-					instance._selfViewImgNode = instance._panel.one('.panel-self-view img');
-					instance._ctrlButtonsContainerNode = instance._panel.one('.chat-video-ctrl');
+					instance._selfViewNode = panel.one('.panel-self-view');
+					instance._selfViewImgNode = panel.one('.panel-self-view img');
+					instance._ctrlButtonsContainerNode = panel.one('.chat-video-ctrl');
 
 					instance._chatVideoCtrlButtonsNodes = {
 						'accept': instance._ctrlButtonsContainerNode.one('a.accept'),
@@ -630,7 +632,7 @@ AUI().use(
 						'mike': instance._ctrlButtonsContainerNode.one('a.mike')
 					};
 
-					var chatVideoMsgContainerNode = instance._panel.one('.chat-video-msg');
+					var chatVideoMsgContainerNode = panel.one('.chat-video-msg');
 					instance._status = new Liferay.Chat.VideoConversationStatus(chatVideoMsgContainerNode);
 
 					instance._videoCallTimer = new Liferay.Chat.VideoCallTimer(
