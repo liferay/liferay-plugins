@@ -120,8 +120,8 @@ AUI().use(
 									}
 								},
 
-								isUserAvailableForChatVideo: function(userId) {
-									return instance.isUserAvailableForChatVideo(userId);
+								isUserAvailable: function(userId) {
+									return instance.isUserAvailable(userId);
 								},
 
 								onMediaDisabled: function() {
@@ -170,27 +170,28 @@ AUI().use(
 				}
 			},
 
-			isMyselfAvailableForChatVideo: function() {
+			isAvailable: function() {
 				var instance = this;
-				var isMyselfAvailable = false;
+
+				var available = false;
 
 				if (typeof instance._availableForChatVideoSettingCheckboxNode !== 'undefined') {
-					isMyselfAvailable = instance._availableForChatVideoSettingCheckboxNode.get('checked');
+					available = instance._availableForChatVideoSettingCheckboxNode.get('checked');
 				}
 
-				return isMyselfAvailable;
+				return available;
 			},
 
-			isUserAvailableForChatVideo: function(userId) {
+			isUserAvailable: function(userId) {
 				var instance = this;
 
-				var isAvailable = false;
+				var available = false;
 
 				if (typeof userId !== 'undefined' && userId !== null) {
-					isAvailable = (typeof instance._buddies[userId] !== 'undefined');
+					available = (typeof instance._buddies[userId] !== 'undefined');
 				}
 
-				return isAvailable;
+				return available;
 			},
 
 			mute: function() {
@@ -253,7 +254,7 @@ AUI().use(
 						var uid = liNode.getAttribute('data-userId');
 						var userImageNode = liNode.one('img');
 
-						if (uid && instance.isUserAvailableForChatVideo(uid)) {
+						if (uid && instance.isUserAvailable(uid)) {
 							var iconNode = A.Node.create('<div class="chat-video-available"></div>');
 							userImageNode.placeAfter(iconNode);
 						}
@@ -280,10 +281,10 @@ AUI().use(
 				}
 
 				if (typeof instance._availableForChatVideoSettingCheckboxNode !== 'undefined') {
-					var isMyselfAvailable = instance.isMyselfAvailableForChatVideo();
-					instance._webRtcManager.sendSetAvailabilityMsg(isMyselfAvailable);
+					var available = instance.isAvailable();
+					instance._webRtcManager.sendSetAvailabilityMsg(available);
 
-					if (!isMyselfAvailable) {
+					if (!available) {
 						for (var id in instance._chatManager._chatSessions) {
 							var session = instance._chatManager._chatSessions[id];
 
@@ -316,7 +317,7 @@ AUI().use(
 					var session = instance._chatManager._chatSessions[id];
 
 					if (session._panelId in instance._buddies) {
-						session.setAvailableForChatVideo(instance.isUserAvailableForChatVideo(session._panelId));
+						session.setAvailableForChatVideo(instance.isUserAvailable(session._panelId));
 					}
 					else {
 						session.setAvailableForChatVideo(false);
@@ -858,7 +859,7 @@ AUI().use(
 					instance._chatVideoCtrlButtonsNodes['call'].on(
 						'click',
 						function() {
-							if (Liferay.Chat.VideoManager.isUserAvailableForChatVideo(instance._panelId)) {
+							if (Liferay.Chat.VideoManager.isUserAvailable(instance._panelId)) {
 								instance._webRtc.onPressCall();
 							}
 						}
@@ -892,7 +893,7 @@ AUI().use(
 						}
 					);
 
-					instance.setAvailableForChatVideo(Liferay.Chat.VideoManager.isUserAvailableForChatVideo(instance._panelId));
+					instance.setAvailableForChatVideo(Liferay.Chat.VideoManager.isUserAvailable(instance._panelId));
 				}
 			};
 
@@ -957,7 +958,7 @@ AUI().use(
 					var instance = this;
 
 					// Prevent showing control buttons if myself is not available for chat video
-					if (Liferay.Chat.VideoManager.isMyselfAvailableForChatVideo()) {
+					if (Liferay.Chat.VideoManager.isAvailable()) {
 						instance._ctrlButtonsContainerNode.show();
 					}
 				},
