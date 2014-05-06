@@ -40,7 +40,7 @@ AUI().use(
 				console.log(obj);
 			},
 
-			doError: function(errorMsg) {
+			errorMsg: function(errorMsg) {
 				Liferay.Chat.WebRtcManager.errorMsg(errorMsg);
 			},
 
@@ -224,7 +224,7 @@ AUI().use(
 
 					var webRtcConversation = instance._conversations[mail.sourceUserId];
 					if (!webRtcConversation) {
-						instance.doError('got message for user ' + mail.sourceUserId + ', but conversation not registered');
+						instance.errorMsg('got message for user ' + mail.sourceUserId + ', but conversation not registered');
 						continue;
 					}
 
@@ -251,7 +251,7 @@ AUI().use(
 									break;
 
 								default:
-									instance.doError('got "conn" message, but unknown connection message type "' + msg.type + '"');
+									instance.errorMsg('got "conn" message, but unknown connection message type "' + msg.type + '"');
 							}
 							break;
 
@@ -264,7 +264,7 @@ AUI().use(
 							break;
 
 						default:
-							instance.doError('got message, but unknown message type "' + mail.type + '"');
+							instance.errorMsg('got message, but unknown message type "' + mail.type + '"');
 					}
 				}
 			},
@@ -360,7 +360,7 @@ AUI().use(
 							}
 						},
 						function(e) {
-							instance.doError('error while trying to acquired user media');
+							instance.errorMsg('error while trying to acquired user media');
 
 							instance.setState(instance.State.INIT);
 							instance._updateWaitingConversationsCancel();
@@ -586,7 +586,7 @@ AUI().use(
 					case 'unavailableUser':
 					case 'invalidState':
 					case 'cannotAnswer':
-						Liferay.Chat.WebRtcManager.doError('error from server: "' + msg.id + '"');
+						Liferay.Chat.WebRtcManager.errorMsg('error from server: "' + msg.id + '"');
 						instance.setState(State.STOPPED);
 						break;
 				}
@@ -698,14 +698,14 @@ AUI().use(
 					if (!instance._isUserAvailable()) {
 						instance.onError(Error.REMOTEPEERNOTAVAILABLE);
 						instance.setState(State.DENYINGCALL);
-						Liferay.Chat.WebRtcManager.doError('remote peer not available for WebRTC to "accept"');
+						Liferay.Chat.WebRtcManager.errorMsg('remote peer not available for WebRTC to "accept"');
 					}
 					else {
 						instance.setState(State.ACCEPTINGCALL);
 					}
 				}
 				else {
-					Liferay.Chat.WebRtcManager.doError('wrong state "' + instance.getState() + ' to "accept"');
+					Liferay.Chat.WebRtcManager.errorMsg('wrong state "' + instance.getState() + ' to "accept"');
 				}
 			},
 
@@ -716,13 +716,13 @@ AUI().use(
 
 				if (instance.getState() === State.STOPPED) {
 					if (!instance._isUserAvailable()) {
-						Liferay.Chat.WebRtcManager.doError('remote peer not available for WebRTC to "call"');
+						Liferay.Chat.WebRtcManager.errorMsg('remote peer not available for WebRTC to "call"');
 					}
 
 					instance.setState(State.CALLINGWAITING);
 				}
 				else {
-					Liferay.Chat.WebRtcManager.doError('wrong state "' + instance.getState() + ' to "call"');
+					Liferay.Chat.WebRtcManager.errorMsg('wrong state "' + instance.getState() + ' to "call"');
 				}
 			},
 
@@ -787,7 +787,7 @@ AUI().use(
 					instance._pc.addIceCandidate(ice);
 				}
 				else {
-					Liferay.Chat.WebRtcManager.doError('cannot add following ICE candidate to peer connection:');
+					Liferay.Chat.WebRtcManager.errorMsg('cannot add following ICE candidate to peer connection:');
 					Liferay.Chat.WebRtcManager.debugObj(ice);
 				}
 			},
@@ -821,7 +821,7 @@ AUI().use(
 						instance._webRtcOffer();
 					}
 					else {
-						Liferay.Chat.WebRtcManager.doError('cannot call with WebRTC because we\'re not the original caller');
+						Liferay.Chat.WebRtcManager.errorMsg('cannot call with WebRTC because we\'re not the original caller');
 					}
 				}
 			},
@@ -1118,7 +1118,7 @@ AUI().use(
 							instance._flushIceCandidatesBuffer();
 						},
 						function(error) {
-							Liferay.Chat.WebRtcManager.doError(error.message);
+							Liferay.Chat.WebRtcManager.errorMsg(error.message);
 						},
 						{
 							mandatory: {
@@ -1129,7 +1129,7 @@ AUI().use(
 					);
 				}
 				else {
-					Liferay.Chat.WebRtcManager.doError('when trying to create WebRTC answer: no peer connection available');
+					Liferay.Chat.WebRtcManager.errorMsg('when trying to create WebRTC answer: no peer connection available');
 				}
 			},
 
@@ -1143,7 +1143,7 @@ AUI().use(
 					instance._pc.setRemoteDescription(new RTCSessionDescription(desc));
 				}
 				else {
-					Liferay.Chat.WebRtcManager.doError('when trying to complete WebRTC offer: no peer connection available');
+					Liferay.Chat.WebRtcManager.errorMsg('when trying to complete WebRTC offer: no peer connection available');
 				}
 			},
 
@@ -1162,7 +1162,7 @@ AUI().use(
 							instance._acceptIceCandidates = true;
 						},
 						function(error) {
-							Liferay.Chat.WebRtcManager.doError(error.message);
+							Liferay.Chat.WebRtcManager.errorMsg(error.message);
 						},
 						{
 							mandatory: {
@@ -1174,7 +1174,7 @@ AUI().use(
 					);
 				}
 				else {
-					Liferay.Chat.WebRtcManager.doError('when trying to create WebRTC offer: no peer connection available');
+					Liferay.Chat.WebRtcManager.errorMsg('when trying to create WebRTC offer: no peer connection available');
 				}
 			}
 		};
