@@ -6,6 +6,17 @@ AUI().use(
 	function(A) {
 		Liferay.namespace('Chat');
 
+		var TPL_CHAT_VIDEO_AVAILABLE =
+			'<div class="chat-video-available"></div>';
+
+		var TPL_SHOW_ME_AS_AVAILABLE_SETTING_LI =
+			'<li>' +
+				'<label for="availableForChatVideo">' +
+					'<input checked="checked" id="availableForChatVideo" type="checkbox">' +
+					' Show me as available for video calls.' +
+				'</label>' +
+			'</li>';
+
 		Liferay.Chat.VideoManager = {
 			appendNodeToOverlay: function(node) {
 				var instance = this;
@@ -153,13 +164,7 @@ AUI().use(
 					playSoundLabelTextEl.nodeValue = ' Play a sound when I receive a new message in a hidden window and for video calls ringtones.';
 
 					var showOnlineSettingNode = A.one('#onlineStatus').ancestor('li');
-					var availableForChatVideoSettingHtml =
-						'<li>' +
-							'<label for="availableForChatVideo">' +
-								'<input checked="checked" id="availableForChatVideo" type="checkbox">' +
-								' Show me as available for video calls.' +
-							'</label>' +
-						'</li>';
+					var availableForChatVideoSettingHtml = TPL_SHOW_ME_AS_AVAILABLE_SETTING_LI;
 					var availableForChatVideoSettingNode = A.Node.create(availableForChatVideoSettingHtml);
 					showOnlineSettingNode.placeAfter(availableForChatVideoSettingNode);
 					instance._availableForChatVideoSettingCheckboxNode = A.one('#availableForChatVideo');
@@ -251,8 +256,7 @@ AUI().use(
 						var userImageNode = item.one('img');
 
 						if (instance.isUserAvailable(userId)) {
-							var iconNode = A.Node.create('<div class="chat-video-available"></div>');
-							userImageNode.placeAfter(iconNode);
+							userImageNode.placeAfter(TPL_CHAT_VIDEO_AVAILABLE);
 						}
 					}
 				);
