@@ -245,7 +245,7 @@ if (comment) {
 			var contentInput = event.currentTarget;
 
 			var countdown = form.one('.microblogs-countdown');
-			var submitButton = form.one('#<portlet:namespace />submit');
+			var submitButton = form.one('.microblogs-post');
 
 			var remaining = (150 - contentInput.val().length);
 
