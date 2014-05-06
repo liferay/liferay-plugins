@@ -127,7 +127,7 @@ AUI().use(
 					instance._cb.enableInRinging = conf.cb.enableInRinging;
 					instance._cb.enableOutRinging = conf.cb.enableOutRinging;
 					instance._cb.ensurePanel = conf.cb.ensurePanel;
-					instance._cb.isUserAvailableForChatVideo = conf.cb.isUserAvailableForChatVideo;
+					instance._cb.isUserAvailable = conf.cb.isUserAvailable;
 					instance._cb.onMediaDisabled = conf.cb.onMediaDisabled
 					instance._cb.onMediaEnabled = conf.cb.onMediaEnabled;
 					instance._cb.send = conf.cb.send;
@@ -158,10 +158,10 @@ AUI().use(
 				return instance.getWebRtcAdapter() !== null;
 			},
 
-			isUserAvailableForChatVideo: function(userId) {
+			isUserAvailable: function(userId) {
 				var instance = Liferay.Chat.WebRtcManager;
 
-				return instance._cb.isUserAvailableForChatVideo(userId);
+				return instance._cb.isUserAvailable(userId);
 			},
 
 			muteMike: function() {
@@ -442,7 +442,7 @@ AUI().use(
 
 			_cb: {
 				getConversation: null,
-				isUserAvailableForChatVideo: null,
+				isUserAvailable: null,
 				send: null
 			},
 			_conversations: [],
@@ -676,7 +676,7 @@ AUI().use(
 				var description = JSON.parse(msg.description);
 
 				if (instance._isWebRtcStarted()) {
-					if (instance._isCaller) {
+					if (instance._caller) {
 						instance._webRtcCompleteOffer(description);
 					}
 					else {
@@ -691,7 +691,7 @@ AUI().use(
 				Liferay.Chat.WebRtcManager.debugMsg('event: user pressed "accept"');
 
 				if (instance.getState() === State.GOTCALL || instance.getState() === State.GOTCALLWAITING) {
-					if (!instance._isUserAvailableForChatVideo()) {
+					if (!instance._isUserAvailable()) {
 						instance.onError(Error.REMOTEPEERNOTAVAILABLE);
 						instance.setState(State.DENYINGCALL);
 						Liferay.Chat.WebRtcManager.doError('remote peer not available for WebRTC to "accept"');
@@ -711,7 +711,7 @@ AUI().use(
 				Liferay.Chat.WebRtcManager.debugMsg('event: user pressed "call"');
 
 				if (instance.getState() === State.STOPPED) {
-					if (!instance._isUserAvailableForChatVideo()) {
+					if (!instance._isUserAvailable()) {
 						Liferay.Chat.WebRtcManager.doError('remote peer not available for WebRTC to "call"');
 					}
 
@@ -812,7 +812,7 @@ AUI().use(
 				var instance = this;
 
 				if (instance._isWebRtcStarted()) {
-					if (instance._isCaller) {
+					if (instance._caller) {
 						instance._webRtcOffer();
 					}
 					else {
@@ -835,11 +835,11 @@ AUI().use(
 				}
 			},
 
-			_isUserAvailableForChatVideo: function() {
+			_isUserAvailable: function() {
 				var instance = this;
 				var destUserId = instance.getToUserId();
 
-				return Liferay.Chat.WebRtcManager.isUserAvailableForChatVideo(destUserId);
+				return Liferay.Chat.WebRtcManager.isUserAvailable(destUserId);
 			},
 
 			_isWebRtcStarted: function() {
@@ -908,7 +908,7 @@ AUI().use(
 			_onStateCalled: function() {
 				var instance = this;
 
-				instance._isCaller = true;
+				instance._caller = true;
 				instance._setLocalVideoStream();
 			},
 
@@ -916,7 +916,7 @@ AUI().use(
 				var instance = this;
 
 				instance._sendCallMsg();
-				instance._isCaller = true;
+				instance._caller = true;
 				instance.setState(State.CALLED);
 			},
 
@@ -990,7 +990,7 @@ AUI().use(
 			_onStateGotCall: function() {
 				var instance = this;
 
-				instance._isCaller = false;
+				instance._caller = false;
 
 				instance._setLocalVideoStream();
 			},
@@ -1009,7 +1009,7 @@ AUI().use(
 				var instance = this;
 
 				instance._pc = null;
-				instance._isCaller = false;
+				instance._caller = false;
 				instance._iceCandidatesBuffer = [];
 				instance._acceptIceCandidates = false;
 			},
