@@ -1,54 +1,54 @@
-$preferred-padding: 10px;
+@import "compass";
 
-@mixin ctrl-button-hover($name, $btn-size) {
-	background-image: url('../images/btns-' + $btn-size + '/btn-' + $name + '.png');
+$preferredPadding: 10px;
+
+@mixin ctrl-button-hover($name, $btnSize) {
+	background-image: url('../images/btns_' + $btnSize + '/' + $name + '.png');
 
 	&:hover {
-		background-image: url('../images/btns-' + $btn-size + '/btn-' + $name + '-hover.png');
+		background-image: url('../images/btns_' + $btnSize + '/' + $name + '_hover.png');
 	}
 }
 
-@mixin ctrl-buttons($btn-size) {
+@mixin ctrl-buttons($btnSize) {
 	&.accept {
-		@include ctrl-button-hover(accept, $btn-size);
+		@include ctrl-button-hover(accept, $btnSize);
 	}
 
 	&.call {
-		@include ctrl-button-hover(call, $btn-size);
+		@include ctrl-button-hover(call, $btnSize);
 	}
 
 	&.fullscreen {
 		&.off {
-			@include ctrl-button-hover(fullscreen, $btn-size);
+			@include ctrl-button-hover(fullscreen, $btnSize);
 		}
 
 		&.on {
-			@include ctrl-button-hover(fullscreen-exit, $btn-size);
+			@include ctrl-button-hover(fullscreen_exit, $btnSize);
 		}
 	}
 
 	&.hangup {
-		@include ctrl-button-hover(hangup, $btn-size);
+		@include ctrl-button-hover(hangup, $btnSize);
 	}
 
 	&.mike {
 		&.muted {
-			@include ctrl-button-hover(mic-off, $btn-size);
+			@include ctrl-button-hover(mic_off, $btnSize);
 		}
 
 		&.unmuted {
-			@include ctrl-button-hover(mic-on, $btn-size);
+			@include ctrl-button-hover(mic_on, $btnSize);
 		}
 	}
 }
 
 @mixin transform-mirror() {
-	-webkit-transform: scale(-1, 1);
-	transform: scale(-1, 1);	
+	@include transform(scale(-1, 1));
 }
 
-.chat-bar,
-.chat-video-overlay {
+.chat-bar, .chat-video-overlay {
 	.chat-video-ctrl-buttons a {
 		background-repeat: no-repeat;
 		display: block;
@@ -68,8 +68,7 @@ $preferred-padding: 10px;
 	}
 
 	.remote-video-container {
-		background: black;
-		border-radius: 3px;
+		background: #000;
 		height: 165px;
 
 		video.local {
@@ -86,7 +85,7 @@ $preferred-padding: 10px;
 	.chat-video-available {
 		$dimension: 16px;
 
-		background: url(../images/icon-video.png) no-repeat;
+		background: url(../images/icon_video.png) no-repeat;
 		display: inline-block;
 		float: right;
 		height: $dimension;
@@ -100,31 +99,31 @@ $preferred-padding: 10px;
 	.chat-video-ctrl {
 		$height: 24px;
 
-		background: #20272b;
+		background: #20272B;
 		height: $height;
-		padding: $preferred-padding;
+		padding: $preferredPadding;
 		position: relative;
 
 		.chat-video-ctrl-buttons {
 			a {
+				@include ctrl-buttons(24);
+
 				height: $height;
 				margin-left: 5px;
 				width: $height;
-				
-				@include ctrl-buttons(24);
 			}
 		}
 
 		.chat-video-msg {
 			height: $height;
 			left: 0;
-			padding: 5px 0px 5px 35px;
+			padding: 5px 0 5px 35px;
 			position: absolute;
 			top: 5px;
 			width: 90px;
 
 			.msg {
-				color: #c5ccd0;
+				color: #C5CCD0;
 				height: 100%;
 				line-height: 110%;
 				overflow: hidden;
@@ -135,7 +134,7 @@ $preferred-padding: 10px;
 				width: 150px;
 
 				.msg {
-					color: #ff6670;
+					color: #FF6670;
 				}
 			}
 
@@ -143,9 +142,9 @@ $preferred-padding: 10px;
 				padding-left: 15px;
 
 				.msg {
+					font-weight: bold;
 					position: relative;
 					top: 6px;
-					font-weight: bold;
 				}
 			}
 
@@ -183,7 +182,7 @@ $preferred-padding: 10px;
 		}
 
 		video {
-			background: black;
+			background: #000;
 		}
 	}
 }
@@ -191,7 +190,7 @@ $preferred-padding: 10px;
 .chat-video-overlay {
 	$btn-dimension: 32px;
 
-	background: transparentize(black, .1);
+	background: transparentize(#000, 0.1);
 	height: 100%;
 	left: 0;
 	position: fixed;
@@ -199,49 +198,65 @@ $preferred-padding: 10px;
 	width: 100%;
 	z-index: 2000;
 
-	.chat-video-ctrl-buttons,
-	.call-time {
-		background: rgba(white, 0.5);
-		border-radius: 3px;
+	.chat-video-ctrl-buttons, .call-time {
+		background: rgba(#fff, 0.5);
 		position: absolute;
 		z-index: 2001;
 	}
 
 	.chat-video-ctrl-buttons {
 		$nb-buttons: 3;
-		$inner-width: ($nb-buttons + 1) * $preferred-padding + $nb-buttons * $btn-dimension;
+		$inner-width: ($nb-buttons + 1) * $preferredPadding + $nb-buttons * $btn-dimension;
 
-		bottom: $preferred-padding;
+		bottom: $preferredPadding;
 		left: 50%;
 		margin-left: -($inner-width / 2);
-		padding: $preferred-padding 0px $preferred-padding $preferred-padding;
-		
-		a {
-			height: $btn-dimension;
-			margin-right: $preferred-padding;
-			width: $btn-dimension;
+		padding: $preferredPadding 0 $preferredPadding $preferredPadding;
 
+		a {
 			@include ctrl-buttons(32);
+
+			height: $btn-dimension;
+			margin-right: $preferredPadding;
+			width: $btn-dimension;
 		}
 	}
 
 	.call-time {
+		color: #000;
 		display: inline-block;
-		color: black;
 		font-size: 18px;
-		padding: $preferred-padding;
-		right: $preferred-padding;
-		top: $preferred-padding;
+		padding: $preferredPadding;
+		right: $preferredPadding;
+		top: $preferredPadding;
 	}
 
 	video.local {
-		border: 2px solid transparentize(white, .3);
-		border-radius: 2px;
-		bottom: $preferred-padding;
+		border: 2px solid transparentize(#fff, 0.3);
+		bottom: $preferredPadding;
 		display: block;
 		height: 160px;
-		left: $preferred-padding;
+		left: $preferredPadding;
 		position: absolute;
 		width: auto;
+	}
+}
+
+
+// Extras
+
+.chat-bar, .chat-video-overlay {
+	.remote-video-container {
+		@include border-radius(3px);
+	}
+}
+
+.chat-video-overlay {
+	.chat-video-ctrl-buttons, .call-time {
+		@include border-radius(3px);
+	}
+
+	video.local {
+		@include border-radius(2px);
 	}
 }
