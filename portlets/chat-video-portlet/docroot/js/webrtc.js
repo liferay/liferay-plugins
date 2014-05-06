@@ -766,7 +766,7 @@ AUI().use(
 			setState: function(state) {
 				var instance = this;
 
-				if (typeof instance.getState() === 'undefined') {
+				if (A.Lang.isUndefined(instance.getState())) {
 					Liferay.Chat.WebRtcManager.debugMsg('{' + state + '}');
 				}
 				else {
