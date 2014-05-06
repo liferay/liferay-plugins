@@ -544,12 +544,7 @@ AUI().use(
 
 					instance._msgNode.html(msg);
 
-					if (working) {
-						instance._workingNode.show();
-					}
-					else {
-						instance._workingNode.hide();
-					}
+					instance._workingNode.toggle(working);
 
 					instance.show();
 				}
