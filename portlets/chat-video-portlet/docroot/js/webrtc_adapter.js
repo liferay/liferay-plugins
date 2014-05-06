@@ -290,18 +290,15 @@ AUI().use(
 
 			_setDefaultCodec: function(mLine, payload) {
 				var elements = mLine.split(' ');
-				var newLine = [];
-				var index = 0;
 
-				for (var i = 0; i < elements.length; ++i) {
-					if (index === 3) {
-						newLine[index++] = payload;
+				var newLine = A.Array.filter(
+					elements,
+					function(item, index, collection) {
+						return item !== payload;
 					}
+				);
 
-					if (elements[i] !== payload) {
-						newLine[index++] = elements[i];
-					}
-				}
+				newLine.splice(3, 0, payload);
 
 				return newLine.join(' ');
 			}
