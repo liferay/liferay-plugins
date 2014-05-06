@@ -9,7 +9,7 @@
 	</servlet-filter>
 	<servlet-filter>
 		<servlet-filter-name>Dynamic CSS Filter</servlet-filter-name>
-		<servlet-filter-impl>com.liferay.rtl.hook.filter.dynamiccss.DynamicCSSFilter</servlet-filter-impl>
+		<servlet-filter-impl>com.liferay.rtl.hook.filter.dynamiccss.PortalDynamicCSSFilter</servlet-filter-impl>
 	</servlet-filter>
 	<servlet-filter-mapping>
 		<servlet-filter-name>Combo Servlet Filter</servlet-filter-name>
