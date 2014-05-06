@@ -180,16 +180,16 @@ portletURL.setWindowState(WindowState.NORMAL);
 									</div>
 								</c:if>
 
-								<liferay-portlet:renderURL var="viewUserSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-									<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
-									<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-									<portlet:param name="portalUser" value="<%= Boolean.TRUE.toString() %>" />
-								</liferay-portlet:renderURL>
-
 								<div class="lfr-contact">
 									<div class="lfr-contact-checkbox">
 										<input class="contact-ids" <%= themeDisplay.getUserId() == user2.getUserId() ? "disabled=\"true\"" : StringPool.BLANK %> name="contact-ids-<%= user2.getUserId() %>" type="checkbox" value="<%= user2.getUserId() %>" />
 									</div>
+
+									<liferay-portlet:renderURL var="viewUserSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+										<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
+										<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+										<portlet:param name="portalUser" value="<%= Boolean.TRUE.toString() %>" />
+									</liferay-portlet:renderURL>
 
 									<div class="lfr-contact-grid-item" data-userId="<%= user2.getUserId() %>" data-viewSummaryURL="<%= viewUserSummaryURL %>">
 										<div class="lfr-contact-thumb">
@@ -241,17 +241,17 @@ portletURL.setWindowState(WindowState.NORMAL);
 									</div>
 								</c:if>
 
-								<liferay-portlet:renderURL var="viewContactSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-									<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
-									<portlet:param name="redirect" value="<%= currentURL %>" />
-									<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
-									<portlet:param name="portalUser" value="<%= Boolean.FALSE.toString() %>" />
-								</liferay-portlet:renderURL>
-
 								<div class="lfr-contact">
 									<div class="lfr-contact-checkbox">
 										<input class="contact-ids" disabled="true" label="" name="contact-ids-<%= entry.getEntryId() %>" type="checkbox" value="<%= entry.getEntryId() %>" />
 									</div>
+
+									<liferay-portlet:renderURL var="viewContactSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+										<portlet:param name="mvcPath" value="/contacts_center/view_resources.jsp" />
+										<portlet:param name="redirect" value="<%= currentURL %>" />
+										<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
+										<portlet:param name="portalUser" value="<%= Boolean.FALSE.toString() %>" />
+									</liferay-portlet:renderURL>
 
 									<div class="lfr-contact-grid-item" data-userId="" data-viewSummaryURL="<%= viewContactSummaryURL %>">
 										<div class="lfr-contact-thumb">

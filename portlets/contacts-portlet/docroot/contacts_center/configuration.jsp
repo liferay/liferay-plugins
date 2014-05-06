@@ -19,9 +19,9 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
-
 <div class="contacts-portlet">
+	<liferay-portlet:actionURL portletConfiguration="true" var="configurationActionURL" />
+
 	<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 

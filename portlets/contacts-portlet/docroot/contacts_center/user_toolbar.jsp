@@ -208,11 +208,6 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 </aui:script>
 
 <aui:script use="aui-base,aui-io-request-deprecated">
-	<liferay-portlet:renderURL var="viewSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
-		<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
-		<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
-	</liferay-portlet:renderURL>
-
 	var contactAction = A.one('.contacts-portlet .contacts-action-content');
 
 	if (contactAction) {
@@ -237,8 +232,12 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 									);
 								}
 
-								contactProfile.io.set('uri', '<%= viewSummaryURL %>');
+								<liferay-portlet:renderURL var="viewSummaryURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
+									<portlet:param name="mvcPath" value="/contacts_center/view_user.jsp" />
+									<portlet:param name="userId" value="<%= String.valueOf(user2.getUserId()) %>" />
+								</liferay-portlet:renderURL>
 
+								contactProfile.io.set('uri', '<%= viewSummaryURL %>');
 								contactProfile.io.start();
 							}
 						}
