@@ -61,7 +61,8 @@ if (entryId > 0) {
 		var errorMessage = A.one('#<portlet:namespace />errorMessage');
 
 		if (errorMessage) {
-			errorMessage.html('<span class="alert alert-error"><liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" /></span>');
+			errorMessage.addClass('alert alert-error');
+			errorMessage.html('<liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" />');
 		}
 	}
 
@@ -96,7 +97,8 @@ if (entryId > 0) {
 								var message = A.one('#<portlet:namespace />errorMessage');
 
 								if (message) {
-									message.html('<span class="alert alert-error">' + responseData.message + '</span>');
+									message.addClass('alert alert-error');
+									message.html(responseData.message);
 								}
 							}
 							else {
