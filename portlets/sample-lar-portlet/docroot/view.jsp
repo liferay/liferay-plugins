@@ -22,20 +22,20 @@
 	</div>
 
 	<div class="sample-lar-paragraph">
-		For trying out the export/import you can click on the wrench icon, and then select the Export/Import menu.
+		For trying out the export/import, click on the wrench icon, and then select the Export/Import menu.
 	</div>
 
 	<div class="sample-lar-paragraph">
-		The content of this portlet can be staged, you can find the option for this in the site configuration - staging settings. Once the content of this portlet is staged, it can be selected for publishing on the related screen.
+		The content of this portlet can be staged, you can find the option for this in the site configuration under staging settings. Once the content of this portlet is staged, it can be selected for publishing on the related screen.
 	</div>
 </aui:fieldset>
 
-<aui:fieldset label="sample-data">
+<aui:fieldset label="sample-bookings">
 	<portlet:actionURL name="addSampleLARBooking" var="addSampleLARBookingURL">
 		<portlet:param name="mvcPath" value="/view.jsp" />
 	</portlet:actionURL>
 
-	<aui:button href="<%= addSampleLARBookingURL %>" value="add-sample-data" />
+	<aui:button href="<%= addSampleLARBookingURL %>" value="add-sample-bookings" />
 
 	<%@ include file="/view_sample_lar_bookings.jsp.jsp" %>
 </aui:fieldset>
