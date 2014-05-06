@@ -363,6 +363,17 @@ public class SampleLARBookingLocalServiceUtil {
 		getService().deleteSampleLARBookings(groupId);
 	}
 
+	public static java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookings(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getSampleLARBookings(groupId, start, end);
+	}
+
+	public static int getSampleLARBookingsCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getSampleLARBookingsCount(groupId);
+	}
+
 	public static com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
 		long userId, long sampleLARBookingId, java.lang.String bookingNumber,
 		com.liferay.portal.service.ServiceContext serviceContext)

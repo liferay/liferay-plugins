@@ -153,9 +153,17 @@ public class SampleLARBookingLocalServiceClp
 
 		_methodParameterTypes26 = new String[] { "long" };
 
-		_methodName27 = "updateSampleLARBooking";
+		_methodName27 = "getSampleLARBookings";
 
-		_methodParameterTypes27 = new String[] {
+		_methodParameterTypes27 = new String[] { "long", "int", "int" };
+
+		_methodName28 = "getSampleLARBookingsCount";
+
+		_methodParameterTypes28 = new String[] { "long" };
+
+		_methodName29 = "updateSampleLARBooking";
+
+		_methodParameterTypes29 = new String[] {
 				"long", "long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -973,6 +981,64 @@ public class SampleLARBookingLocalServiceClp
 	}
 
 	@Override
+	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookings(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
+					new Object[] { groupId, start, end });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<com.liferay.samplelar.model.SampleLARBooking>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public int getSampleLARBookingsCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28, new Object[] { groupId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return ((Integer)returnObj).intValue();
+	}
+
+	@Override
 	public com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
 		long userId, long sampleLARBookingId, java.lang.String bookingNumber,
 		com.liferay.portal.service.ServiceContext serviceContext)
@@ -981,8 +1047,8 @@ public class SampleLARBookingLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
 					new Object[] {
 						userId,
 						
@@ -1071,4 +1137,8 @@ public class SampleLARBookingLocalServiceClp
 	private String[] _methodParameterTypes26;
 	private String _methodName27;
 	private String[] _methodParameterTypes27;
+	private String _methodName28;
+	private String[] _methodParameterTypes28;
+	private String _methodName29;
+	private String[] _methodParameterTypes29;
 }

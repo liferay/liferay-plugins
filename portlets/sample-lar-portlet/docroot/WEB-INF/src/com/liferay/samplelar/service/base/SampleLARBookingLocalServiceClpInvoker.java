@@ -149,17 +149,29 @@ public class SampleLARBookingLocalServiceClpInvoker {
 
 		_methodName52 = "deleteSampleLARBooking";
 
-		_methodParameterTypes52 = new String[] {
+		_methodParameterTypes52 = new String[] { "long" };
+
+		_methodName53 = "deleteSampleLARBooking";
+
+		_methodParameterTypes53 = new String[] {
 				"com.liferay.samplelar.model.SampleLARBooking"
 			};
 
-		_methodName53 = "deleteSampleLARBookings";
+		_methodName54 = "deleteSampleLARBookings";
 
-		_methodParameterTypes53 = new String[] { "long" };
+		_methodParameterTypes54 = new String[] { "long" };
 
-		_methodName54 = "updateSampleLARBooking";
+		_methodName55 = "getSampleLARBookings";
 
-		_methodParameterTypes54 = new String[] {
+		_methodParameterTypes55 = new String[] { "long", "int", "int" };
+
+		_methodName56 = "getSampleLARBookingsCount";
+
+		_methodParameterTypes56 = new String[] { "long" };
+
+		_methodName57 = "updateSampleLARBooking";
+
+		_methodParameterTypes57 = new String[] {
 				"long", "long", "java.lang.String",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -310,18 +322,35 @@ public class SampleLARBookingLocalServiceClpInvoker {
 
 		if (_methodName52.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes52, parameterTypes)) {
-			return SampleLARBookingLocalServiceUtil.deleteSampleLARBooking((com.liferay.samplelar.model.SampleLARBooking)arguments[0]);
+			return SampleLARBookingLocalServiceUtil.deleteSampleLARBooking(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName53.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
+			return SampleLARBookingLocalServiceUtil.deleteSampleLARBooking((com.liferay.samplelar.model.SampleLARBooking)arguments[0]);
+		}
+
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			SampleLARBookingLocalServiceUtil.deleteSampleLARBookings(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName54.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
+		if (_methodName55.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes55, parameterTypes)) {
+			return SampleLARBookingLocalServiceUtil.getSampleLARBookings(((Long)arguments[0]).longValue(),
+				((Integer)arguments[1]).intValue(),
+				((Integer)arguments[2]).intValue());
+		}
+
+		if (_methodName56.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+			return SampleLARBookingLocalServiceUtil.getSampleLARBookingsCount(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName57.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
 			return SampleLARBookingLocalServiceUtil.updateSampleLARBooking(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -387,4 +416,10 @@ public class SampleLARBookingLocalServiceClpInvoker {
 	private String[] _methodParameterTypes53;
 	private String _methodName54;
 	private String[] _methodParameterTypes54;
+	private String _methodName55;
+	private String[] _methodParameterTypes55;
+	private String _methodName56;
+	private String[] _methodParameterTypes56;
+	private String _methodName57;
+	private String[] _methodParameterTypes57;
 }

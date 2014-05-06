@@ -387,6 +387,20 @@ public class SampleLARBookingLocalServiceWrapper
 	}
 
 	@Override
+	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> getSampleLARBookings(
+		long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _sampleLARBookingLocalService.getSampleLARBookings(groupId,
+			start, end);
+	}
+
+	@Override
+	public int getSampleLARBookingsCount(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _sampleLARBookingLocalService.getSampleLARBookingsCount(groupId);
+	}
+
+	@Override
 	public com.liferay.samplelar.model.SampleLARBooking updateSampleLARBooking(
 		long userId, long sampleLARBookingId, java.lang.String bookingNumber,
 		com.liferay.portal.service.ServiceContext serviceContext)
