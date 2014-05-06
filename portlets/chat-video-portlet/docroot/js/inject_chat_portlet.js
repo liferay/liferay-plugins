@@ -246,9 +246,9 @@ AUI().use(
 				var listItems = instance._chatManager._onlineBuddies.all('li.user');
 
 				listItems.each(
-					function(liNode) {
-						var uid = liNode.getAttribute('data-userId');
-						var userImageNode = liNode.one('img');
+					function(item, index, collection) {
+						var uid = item.getAttribute('data-userId');
+						var userImageNode = item.one('img');
 
 						if (uid && instance.isUserAvailable(uid)) {
 							var iconNode = A.Node.create('<div class="chat-video-available"></div>');
