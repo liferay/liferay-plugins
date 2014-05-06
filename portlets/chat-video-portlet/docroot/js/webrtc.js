@@ -33,15 +33,11 @@ AUI().use(
 			},
 
 			debugMsg: function(msg) {
-				console.log('WebRTC: ' + msg);
+				console.debug('WebRTC: ' + msg);
 			},
 
 			debugObj: function(obj) {
-				console.log(obj);
-			},
-
-			errorMsg: function(errorMsg) {
-				Liferay.Chat.WebRtcManager.errorMsg(errorMsg);
+				console.debug(obj);
 			},
 
 			errorMsg: function(msg) {
