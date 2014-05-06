@@ -68,7 +68,6 @@ AUI().use(
                 var instance = this;
 
                 instance._chatManager = chatManager;
-                chatManager._videoManager = instance;
 
                 instance._buddies = {};
                 instance._portletId = A.one('#chatVideoPortletId').val();
