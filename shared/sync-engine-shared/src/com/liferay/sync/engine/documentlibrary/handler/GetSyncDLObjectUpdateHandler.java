@@ -146,7 +146,9 @@ public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
 
 		String targetVersion = syncFile.getVersion();
 
-		if (patch && !sourceVersion.equals(targetVersion)) {
+		if (patch &&
+			(Double.valueOf(targetVersion) > Double.valueOf(sourceVersion))) {
+
 			parameters.put("patch", true);
 			parameters.put("sourceVersion", sourceVersion);
 			parameters.put("targetVersion", targetVersion);
