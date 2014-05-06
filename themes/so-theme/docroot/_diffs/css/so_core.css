@@ -1032,6 +1032,10 @@ html.aui {
 		padding-top: 10px;
 	}
 
+	.project-current {
+		margin-left: 20px;
+	}
+
 	.projects {
 		padding: 20px 65px;
 
