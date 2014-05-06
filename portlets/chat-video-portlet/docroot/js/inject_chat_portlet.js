@@ -185,13 +185,7 @@ AUI().use(
 			isUserAvailable: function(userId) {
 				var instance = this;
 
-				var available = false;
-
-				if (!A.Lang.isUndefined(userId) && userId !== null) {
-					available = !A.Lang.isUndefined(instance._buddies[userId]);
-				}
-
-				return available;
+				return A.Lang.isValue(userId) && !A.Lang.isUndefined(instance._buddies[userId]);
 			},
 
 			mute: function() {
