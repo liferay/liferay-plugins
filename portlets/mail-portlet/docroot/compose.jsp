@@ -123,7 +123,7 @@ else {
 
 <aui:script>
 	function <portlet:namespace />initEditor() {
-		return "<%= UnicodeFormatter.toString(body) %>";
+		return '<%= UnicodeFormatter.toString(body) %>';
 	}
 </aui:script>
 
