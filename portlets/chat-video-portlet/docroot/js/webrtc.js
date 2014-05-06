@@ -17,10 +17,10 @@ AUI().use(
 				var msg = null;
 
 				if (dir === 'i') {
-					msg += '[S -> C]';
+					msg = '[S -> C]';
 				}
 				else if (dir === 'o') {
-					msg += '[C -> S]';
+					msg = '[C -> S]';
 				}
 
 				if (msg) {
