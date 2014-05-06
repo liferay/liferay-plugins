@@ -4,325 +4,325 @@
  *   * <https://code.google.com/p/webrtc/source/browse/trunk/samples/js/base/adapter.js>
  */
 ;(function() {
-    Liferay.namespace('Chat');
+	Liferay.namespace('Chat');
 
-    Liferay.Chat.WebRtcAdapter = {
-        getWebRtcAdapter: function() {
-            var rtc = null;
+	Liferay.Chat.WebRtcAdapter = {
+		getWebRtcAdapter: function() {
+			var rtc = null;
 
-            if (navigator.mozGetUserMedia && mozRTCPeerConnection) {
-                // Firefox
-                var firefoxVersionString = navigator.userAgent.match(/Firefox\/([0-9]+)\./);
-                if (firefoxVersionString) {
-                    var browserVersion = parseInt(firefoxVersionString[1]);
+			if (navigator.mozGetUserMedia && mozRTCPeerConnection) {
+				// Firefox
+				var firefoxVersionString = navigator.userAgent.match(/Firefox\/([0-9]+)\./);
+				if (firefoxVersionString) {
+					var browserVersion = parseInt(firefoxVersionString[1]);
 
-                    if (browserVersion >= 22) {
-                        rtc = Liferay.Chat.WebRtcAdapter._getFirefoxWebRtcAdapter(browserVersion);
-                    }
-                }
-            }
-            else if (navigator.webkitGetUserMedia && webkitRTCPeerConnection) {
-                // Chrome/Chromium
-                var rtc = null;
-                var chromeVersionString = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+					if (browserVersion >= 22) {
+						rtc = Liferay.Chat.WebRtcAdapter._getFirefoxWebRtcAdapter(browserVersion);
+					}
+				}
+			}
+			else if (navigator.webkitGetUserMedia && webkitRTCPeerConnection) {
+				// Chrome/Chromium
+				var rtc = null;
+				var chromeVersionString = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
 
-                if (chromeVersionString) {
-                    var browserVersion = parseInt(chromeVersionString[2]);
+				if (chromeVersionString) {
+					var browserVersion = parseInt(chromeVersionString[2]);
 
-                    rtc = Liferay.Chat.WebRtcAdapter._getChromeWebRtcAdapter(browserVersion);
-                }
-            }
+					rtc = Liferay.Chat.WebRtcAdapter._getChromeWebRtcAdapter(browserVersion);
+				}
+			}
 
-            if (rtc !== null) {
-                rtc.getUserMediaConstraints = {
-                    audio: true,
-                    video: {
-                        mandatory: {},
-                        optional: []
-                    }
-                };
+			if (rtc !== null) {
+				rtc.getUserMediaConstraints = {
+					audio: true,
+					video: {
+						mandatory: {},
+						optional: []
+					}
+				};
 
-                if (navigator.userAgent.indexOf('Android') !== -1) {
-                    rtc.getUserMediaConstraints.video.mandatory.minWidth = 320;
-                    rtc.getUserMediaConstraints.video.mandatory.minHeight = 240;
-                    rtc.getUserMediaConstraints.video.mandatory.maxFrameRate = 15;
-                }
-            }
+				if (navigator.userAgent.indexOf('Android') !== -1) {
+					rtc.getUserMediaConstraints.video.mandatory.minWidth = 320;
+					rtc.getUserMediaConstraints.video.mandatory.minHeight = 240;
+					rtc.getUserMediaConstraints.video.mandatory.maxFrameRate = 15;
+				}
+			}
 
-            return rtc;
-        },
+			return rtc;
+		},
 
-        preferOpus: function(sdp) {
-            var sdpLines = sdp.split('\r\n');
+		preferOpus: function(sdp) {
+			var sdpLines = sdp.split('\r\n');
 
-            // Search for m line
-            var mLineIndex = null;
-            for (var i = 0; i < sdpLines.length; ++i) {
-                if (sdpLines[i].search('m=audio') !== -1) {
-                    mLineIndex = i;
-                    break;
-                }
-            }
+			// Search for m line
+			var mLineIndex = null;
+			for (var i = 0; i < sdpLines.length; ++i) {
+				if (sdpLines[i].search('m=audio') !== -1) {
+					mLineIndex = i;
+					break;
+				}
+			}
 
-            if (mLineIndex === null) {
-                return sdp;
-            }
+			if (mLineIndex === null) {
+				return sdp;
+			}
 
-            // If Opus is available, set it as the default in m line
-            for (var i = 0; i < sdpLines.length; ++i) {
-                if (sdpLines[i].search('opus/48000') !== -1) {
-                    var opusPayload = Liferay.Chat.WebRtcAdapter._extractSdp(sdpLines[i], /:(\d+) opus\/48000/i);
+			// If Opus is available, set it as the default in m line
+			for (var i = 0; i < sdpLines.length; ++i) {
+				if (sdpLines[i].search('opus/48000') !== -1) {
+					var opusPayload = Liferay.Chat.WebRtcAdapter._extractSdp(sdpLines[i], /:(\d+) opus\/48000/i);
 
-                    if (opusPayload) {
-                        sdpLines[mLineIndex] = Liferay.Chat.WebRtcAdapter._setDefaultCodec(sdpLines[mLineIndex], opusPayload);
-                    }
-                    break;
-                }
-            }
+					if (opusPayload) {
+						sdpLines[mLineIndex] = Liferay.Chat.WebRtcAdapter._setDefaultCodec(sdpLines[mLineIndex], opusPayload);
+					}
+					break;
+				}
+			}
 
-            // Remove CN in m line and SDP
-            sdpLines = Liferay.Chat.WebRtcAdapter._removeCn(sdpLines, mLineIndex);
+			// Remove CN in m line and SDP
+			sdpLines = Liferay.Chat.WebRtcAdapter._removeCn(sdpLines, mLineIndex);
 
-            sdp = sdpLines.join('\r\n');
+			sdp = sdpLines.join('\r\n');
 
-            return sdp;
-        },
+			return sdp;
+		},
 
-        _getChromeWebRtcAdapter: function(browserVersion) {
-            var setStreamAudioTracksEnable =
-                function(stream, en) {
-                    var audioTracks = null;
+		_getChromeWebRtcAdapter: function(browserVersion) {
+			var setStreamAudioTracksEnable =
+				function(stream, en) {
+					var audioTracks = null;
 
-                    if (!webkitMediaStream.prototype.getAudioTracks) {
-                        if (stream.audioTracks) {
-                            audioTracks = audioTracks;
-                        }
-                    } else {
-                        audioTracks = stream.getAudioTracks();
-                    }
+					if (!webkitMediaStream.prototype.getAudioTracks) {
+						if (stream.audioTracks) {
+							audioTracks = audioTracks;
+						}
+					} else {
+						audioTracks = stream.getAudioTracks();
+					}
 
-                    if (!audioTracks) {
-                        return;
-                    }
+					if (!audioTracks) {
+						return;
+					}
 
-                    for (var i = 0; i < audioTracks.length; ++i) {
-                        var audioTrack = audioTracks[i];
-                        audioTrack.enabled = en;
-                    }
-                };
+					for (var i = 0; i < audioTracks.length; ++i) {
+						var audioTrack = audioTracks[i];
+						audioTrack.enabled = en;
+					}
+				};
 
-            rtc = {
-                attachMediaStream: function(element, stream) {
-                    element.src = webkitURL.createObjectURL(stream);
-                },
+			rtc = {
+				attachMediaStream: function(element, stream) {
+					element.src = webkitURL.createObjectURL(stream);
+				},
 
-                createIceServer: function(iceCandidate) {
-                    var iceServer = null;
-                    var urlParts = iceCandidate.url.split(':');
+				createIceServer: function(iceCandidate) {
+					var iceServer = null;
+					var urlParts = iceCandidate.url.split(':');
 
-                    if (urlParts[0].indexOf('stun') === 0) {
-                        // Create ICE server with STUN URL
-                        iceServer = {
-                            url: iceCandidate.url
-                        };
-                    }
-                    else if (urlParts[0].indexOf('turn') === 0) {
-                        if (browserVersion < 28) {
-                            // Chrome < 28: use old TURN format
-                            var urlTurnParts = iceCandidate.url.split("turn:");
-                            iceServer = {
-                                url: 'turn:' + iceCandidate.username + '@' + urlTurnParts[1],
-                                credential: iceCandidate.password
-                            };
-                        }
-                        else {
-                            // Chrome >= 28: use new TURN format
-                            iceServer = {
-                                url: iceCandidate.url,
-                                credential: iceCandidate.password,
-                                username: iceCandidate.username
-                            };
-                        }
-                    }
+					if (urlParts[0].indexOf('stun') === 0) {
+						// Create ICE server with STUN URL
+						iceServer = {
+							url: iceCandidate.url
+						};
+					}
+					else if (urlParts[0].indexOf('turn') === 0) {
+						if (browserVersion < 28) {
+							// Chrome < 28: use old TURN format
+							var urlTurnParts = iceCandidate.url.split("turn:");
+							iceServer = {
+								url: 'turn:' + iceCandidate.username + '@' + urlTurnParts[1],
+								credential: iceCandidate.password
+							};
+						}
+						else {
+							// Chrome >= 28: use new TURN format
+							iceServer = {
+								url: iceCandidate.url,
+								credential: iceCandidate.password,
+								username: iceCandidate.username
+							};
+						}
+					}
 
-                    return iceServer;
-                },
+					return iceServer;
+				},
 
-                getUserMedia: navigator.webkitGetUserMedia.bind(navigator),
+				getUserMedia: navigator.webkitGetUserMedia.bind(navigator),
 
-                muteStreamAudio: function(stream) {
-                    setStreamAudioTracksEnable(stream, false);
-                },
+				muteStreamAudio: function(stream) {
+					setStreamAudioTracksEnable(stream, false);
+				},
 
-                peerConnectionConstraints: {
-                    optional: [
-                        {
-                            DtlsSrtpKeyAgreement: true
-                        }
-                    ]
-                },
+				peerConnectionConstraints: {
+					optional: [
+						{
+							DtlsSrtpKeyAgreement: true
+						}
+					]
+				},
 
-                RTCIceCandidate: RTCIceCandidate,
+				RTCIceCandidate: RTCIceCandidate,
 
-                RTCPeerConnection: webkitRTCPeerConnection,
+				RTCPeerConnection: webkitRTCPeerConnection,
 
-                RTCSessionDescription: RTCSessionDescription,
+				RTCSessionDescription: RTCSessionDescription,
 
-                unmuteStreamAudio: function(stream) {
-                    setStreamAudioTracksEnable(stream, true);
-                }
-            };
+				unmuteStreamAudio: function(stream) {
+					setStreamAudioTracksEnable(stream, true);
+				}
+			};
 
-            // Disable DTLS on Android
-            if (navigator.userAgent.indexOf('Android') !== -1) {
-                rtc.peerConnectionConstraints = {};
-            }
+			// Disable DTLS on Android
+			if (navigator.userAgent.indexOf('Android') !== -1) {
+				rtc.peerConnectionConstraints = {};
+			}
 
-            // New syntax of getLocalStreams/getRemoteStreams methods in Chrome 26
-            if (!webkitRTCPeerConnection.prototype.getLocalStreams) {
-                webkitRTCPeerConnection.prototype.getLocalStreams = function() {
-                    return this.localStreams;
-                };
+			// New syntax of getLocalStreams/getRemoteStreams methods in Chrome 26
+			if (!webkitRTCPeerConnection.prototype.getLocalStreams) {
+				webkitRTCPeerConnection.prototype.getLocalStreams = function() {
+					return this.localStreams;
+				};
 
-                webkitRTCPeerConnection.prototype.getRemoteStreams = function() {
-                    return this.remoteStreams;
-                };
-            }
+				webkitRTCPeerConnection.prototype.getRemoteStreams = function() {
+					return this.remoteStreams;
+				};
+			}
 
-            return rtc;
-        },
+			return rtc;
+		},
 
-        _getFirefoxWebRtcAdapter: function(browserVersion) {
-            var setStreamAudioTracksEnable =
-                function(stream, en) {
-                    if (MediaStream.prototype.getAudioTracks) {
-                        var audioTracks = stream.getAudioTracks();
-                        for (var i = 0; i < audioTracks.length; ++i) {
-                            var audioTrack = audioTracks[i];
-                            audioTrack.enabled = en;
-                        }
-                    }
-                };
+		_getFirefoxWebRtcAdapter: function(browserVersion) {
+			var setStreamAudioTracksEnable =
+				function(stream, en) {
+					if (MediaStream.prototype.getAudioTracks) {
+						var audioTracks = stream.getAudioTracks();
+						for (var i = 0; i < audioTracks.length; ++i) {
+							var audioTrack = audioTracks[i];
+							audioTrack.enabled = en;
+						}
+					}
+				};
 
-            rtc = {
-                attachMediaStream: function(element, stream) {
-                    element.mozSrcObject = stream;
-                    element.play();
-                },
+			rtc = {
+				attachMediaStream: function(element, stream) {
+					element.mozSrcObject = stream;
+					element.play();
+				},
 
-                createIceServer: function(iceCandidate) {
-                    var iceServer = null;
-                    var urlParts = iceCandidate.url.split(':');
+				createIceServer: function(iceCandidate) {
+					var iceServer = null;
+					var urlParts = iceCandidate.url.split(':');
 
-                    if (urlParts[0].indexOf('stun') === 0) {
-                        // Create ICE server with STUN URL
-                        iceServer = {
-                            url: iceCandidate.url
-                        };
-                    }
-                    else if (urlParts[0].indexOf('turn') === 0) {
-                        if (browserVersion < 27) {
-                            // Create ICE server with TURN URL
-                            // Ignore transport parameter from TURN URL for FF < 27
-                            var turnUrlParts = url.split("?");
+					if (urlParts[0].indexOf('stun') === 0) {
+						// Create ICE server with STUN URL
+						iceServer = {
+							url: iceCandidate.url
+						};
+					}
+					else if (urlParts[0].indexOf('turn') === 0) {
+						if (browserVersion < 27) {
+							// Create ICE server with TURN URL
+							// Ignore transport parameter from TURN URL for FF < 27
+							var turnUrlParts = url.split("?");
 
-                            if (turnUrlParts.length === 1 ||
-                                    turnUrlParts[1].indexOf('transport=udp') === 0) {
-                                iceServer = {
-                                    url: turn_url_parts[0],
-                                    credential: password,
-                                    username: username
-                                };
-                            }
-                        }
-                        else {
-                            // FF >= 27 supports transport parameters in TURN URL
-                            iceServer = {
-                                url: url,
-                                credential: password,
-                                username: username
-                            };
-                        }
-                    }
+							if (turnUrlParts.length === 1 ||
+									turnUrlParts[1].indexOf('transport=udp') === 0) {
+								iceServer = {
+									url: turn_url_parts[0],
+									credential: password,
+									username: username
+								};
+							}
+						}
+						else {
+							// FF >= 27 supports transport parameters in TURN URL
+							iceServer = {
+								url: url,
+								credential: password,
+								username: username
+							};
+						}
+					}
 
-                    return iceServer;
-                },
+					return iceServer;
+				},
 
-                getUserMedia: navigator.mozGetUserMedia.bind(navigator),
+				getUserMedia: navigator.mozGetUserMedia.bind(navigator),
 
-                muteStreamAudio: function(stream) {
-                    setStreamAudioTracksEnable(stream, false);
-                },
+				muteStreamAudio: function(stream) {
+					setStreamAudioTracksEnable(stream, false);
+				},
 
-                peerConnectionConstraints: {},
+				peerConnectionConstraints: {},
 
-                RTCIceCandidate: mozRTCIceCandidate,
+				RTCIceCandidate: mozRTCIceCandidate,
 
-                RTCPeerConnection: mozRTCPeerConnection,
+				RTCPeerConnection: mozRTCPeerConnection,
 
-                RTCSessionDescription: mozRTCSessionDescription,
+				RTCSessionDescription: mozRTCSessionDescription,
 
-                unmuteStreamAudio: function(stream) {
-                    setStreamAudioTracksEnable(stream, true);
-                }
-            };
+				unmuteStreamAudio: function(stream) {
+					setStreamAudioTracksEnable(stream, true);
+				}
+			};
 
-            return rtc;
-        },
+			return rtc;
+		},
 
-        _extractSdp: function(sdpLine, pattern) {
-            var result = sdpLine.match(pattern);
-            var sdp;
+		_extractSdp: function(sdpLine, pattern) {
+			var result = sdpLine.match(pattern);
+			var sdp;
 
-            if (result && result.length == 2) {
-                sdp = result[1];
-            } else {
-                sdp = null;
-            }
+			if (result && result.length == 2) {
+				sdp = result[1];
+			} else {
+				sdp = null;
+			}
 
-            return sdp;
-        },
+			return sdp;
+		},
 
-        _removeCn: function(sdpLines, mLineIndex) {
-            var mLineElements = sdpLines[mLineIndex].split(' ');
+		_removeCn: function(sdpLines, mLineIndex) {
+			var mLineElements = sdpLines[mLineIndex].split(' ');
 
-            for (var i = sdpLines.length - 1; i >= 0; --i) {
-                var payload = Liferay.Chat.WebRtcAdapter._extractSdp(sdpLines[i], /a=rtpmap:(\d+) CN\/\d+/i);
+			for (var i = sdpLines.length - 1; i >= 0; --i) {
+				var payload = Liferay.Chat.WebRtcAdapter._extractSdp(sdpLines[i], /a=rtpmap:(\d+) CN\/\d+/i);
 
-                if (payload) {
-                    var cnPos = mLineElements.indexOf(payload);
+				if (payload) {
+					var cnPos = mLineElements.indexOf(payload);
 
-                    if (cnPos !== -1) {
-                        // Remove CN payload from m line
-                        mLineElements.splice(cnPos, 1);
-                    }
+					if (cnPos !== -1) {
+						// Remove CN payload from m line
+						mLineElements.splice(cnPos, 1);
+					}
 
-                    // Remove CN line in SDP
-                    sdpLines.splice(i, 1);
-                }
-            }
+					// Remove CN line in SDP
+					sdpLines.splice(i, 1);
+				}
+			}
 
-            sdpLines[mLineIndex] = mLineElements.join(' ');
+			sdpLines[mLineIndex] = mLineElements.join(' ');
 
-            return sdpLines;
-        },
+			return sdpLines;
+		},
 
-        _setDefaultCodec: function(mLine, payload) {
-            var elements = mLine.split(' ');
-            var newLine = [];
-            var index = 0;
+		_setDefaultCodec: function(mLine, payload) {
+			var elements = mLine.split(' ');
+			var newLine = [];
+			var index = 0;
 
-            for (var i = 0; i < elements.length; ++i) {
-                if (index === 3) {
-                    newLine[index++] = payload;
-                }
+			for (var i = 0; i < elements.length; ++i) {
+				if (index === 3) {
+					newLine[index++] = payload;
+				}
 
-                if (elements[i] !== payload) {
-                    newLine[index++] = elements[i];
-                }
-            }
+				if (elements[i] !== payload) {
+					newLine[index++] = elements[i];
+				}
+			}
 
-            return newLine.join(' ');
-        }
-    };
+			return newLine.join(' ');
+		}
+	};
 }());
