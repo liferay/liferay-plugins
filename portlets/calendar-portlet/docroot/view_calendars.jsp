@@ -165,7 +165,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 				var buttonClose = [
 					{
 						cssClass: 'close',
-						label: "\u00D7",
+						label: '\u00D7',
 						render: true,
 						on: {
 							click: function() {
