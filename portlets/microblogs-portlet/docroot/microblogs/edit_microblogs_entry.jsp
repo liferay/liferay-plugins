@@ -229,7 +229,7 @@ if (comment) {
 
 	var TPL_SEARCH_RESULTS = '<div class="microblogs-autocomplete">' +
 		'<div class="thumbnail">' +
-			'<img src="{portraitURL}" alt="{fullName}" />' +
+			'<img alt="{fullName}" src="{portraitURL}" />' +
 		'</div>' +
 		'<div>' +
 			'<span class="user-name">{fullName}</span><br />' +
