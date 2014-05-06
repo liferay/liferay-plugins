@@ -1,6 +1,6 @@
 AUI().use(
 	'aui-base',
-	function() {
+	function(A) {
 		Liferay.namespace('Chat');
 
 		Liferay.Chat.WebRtcAdapter = {
@@ -9,25 +9,15 @@ AUI().use(
 
 				if (navigator.mozGetUserMedia && mozRTCPeerConnection) {
 					// Firefox
-					var firefoxVersionString = navigator.userAgent.match(/Firefox\/([0-9]+)\./);
-					if (firefoxVersionString) {
-						var browserVersion = parseInt(firefoxVersionString[1]);
+					var browserVersion = A.UA.firefox;
 
-						if (browserVersion >= 22) {
-							rtc = Liferay.Chat.WebRtcAdapter._getFirefoxWebRtcAdapter(browserVersion);
-						}
+					if (browserVersion >= 22) {
+						rtc = Liferay.Chat.WebRtcAdapter._getFirefoxWebRtcAdapter(browserVersion);
 					}
 				}
 				else if (navigator.webkitGetUserMedia && webkitRTCPeerConnection) {
 					// Chrome/Chromium
-					var rtc = null;
-					var chromeVersionString = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
-
-					if (chromeVersionString) {
-						var browserVersion = parseInt(chromeVersionString[2]);
-
-						rtc = Liferay.Chat.WebRtcAdapter._getChromeWebRtcAdapter(browserVersion);
-					}
+					rtc = Liferay.Chat.WebRtcAdapter._getChromeWebRtcAdapter(A.UA.chrome);
 				}
 
 				if (rtc !== null) {
@@ -39,7 +29,7 @@ AUI().use(
 						}
 					};
 
-					if (navigator.userAgent.indexOf('Android') !== -1) {
+					if (A.UA.android) {
 						rtc.getUserMediaConstraints.video.mandatory.minWidth = 320;
 						rtc.getUserMediaConstraints.video.mandatory.minHeight = 240;
 						rtc.getUserMediaConstraints.video.mandatory.maxFrameRate = 15;
