@@ -348,7 +348,7 @@ AUI().use(
 								instance._updateWaitingConversationsNextState();
 							}
 						},
-						function(e) {
+						function(event) {
 							instance.errorMsg('error while trying to acquired user media');
 
 							instance.setState(instance.State.INIT);
@@ -788,13 +788,13 @@ AUI().use(
 				instance._pc.addStream(Liferay.Chat.WebRtcManager.getLocalStream());
 
 				instance._pc.onicecandidate =
-					function(e) {
-						instance._onIceCandidate(e);
+					function(event) {
+						instance._onIceCandidate(event);
 					};
 
 				instance._pc.onaddstream =
-					function(e) {
-						instance._onAddStream(e);
+					function(event) {
+						instance._onAddStream(event);
 					};
 			},
 
@@ -839,23 +839,23 @@ AUI().use(
 					instance.getState() === State.CONNECTED;
 			},
 
-			_onAddStream: function(e) {
+			_onAddStream: function(event) {
 				var instance = this;
 
-				if (instance._isWebRtcStarted() && e) {
+				if (instance._isWebRtcStarted() && event) {
 					Liferay.Chat.WebRtcManager.debugMsg('added remote stream');
 
-					instance._setRemoteVideoStream(e.stream);
+					instance._setRemoteVideoStream(event.stream);
 					instance.setState(State.CONNECTED);
 				}
 			},
 
-			_onIceCandidate: function(e) {
+			_onIceCandidate: function(event) {
 				var instance = this;
 
-				if (instance._pc && e && e.candidate) {
+				if (instance._pc && event && event.candidate) {
 					Liferay.Chat.WebRtcManager.debugMsg('new local ICE candidate ready');
-					instance._sendIceMsg(e.candidate);
+					instance._sendIceMsg(event.candidate);
 				}
 			},
 
