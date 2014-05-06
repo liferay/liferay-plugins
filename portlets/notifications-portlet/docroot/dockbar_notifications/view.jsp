@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-boolean menuOpen = ParamUtil.getBoolean(request, "menuOpen", false);
+boolean menuOpen = ParamUtil.getBoolean(request, "menuOpen");
 %>
 
 <c:if test="<%= PortletPropsValues.NOTIFICATIONS_DOCKBAR_DISPLAY_ENABLED %>">
