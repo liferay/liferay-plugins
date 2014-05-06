@@ -175,7 +175,7 @@ AUI().use(
 
 				var available = false;
 
-				if (typeof instance._availableForChatVideoSettingCheckboxNode !== 'undefined') {
+				if (!A.Lang.isUndefined(instance._availableForChatVideoSettingCheckboxNode)) {
 					available = instance._availableForChatVideoSettingCheckboxNode.get('checked');
 				}
 
@@ -187,8 +187,8 @@ AUI().use(
 
 				var available = false;
 
-				if (typeof userId !== 'undefined' && userId !== null) {
-					available = (typeof instance._buddies[userId] !== 'undefined');
+				if (!A.Lang.isUndefined(userId) && userId !== null) {
+					available = !A.Lang.isUndefined(instance._buddies[userId]);
 				}
 
 				return available;
@@ -283,7 +283,7 @@ AUI().use(
 					}
 				}
 
-				if (typeof instance._availableForChatVideoSettingCheckboxNode !== 'undefined') {
+				if (!A.Lang.isUndefined(instance._availableForChatVideoSettingCheckboxNode)) {
 					var available = instance.isAvailable();
 					instance._webRtcManager.sendSetAvailabilityMsg(available);
 
@@ -535,7 +535,7 @@ AUI().use(
 				var instance = this;
 
 				if (!instance._destroyed) {
-					if (typeof working === 'undefined') {
+					if (A.Lang.isUndefined(working)) {
 						working = false;
 					}
 
