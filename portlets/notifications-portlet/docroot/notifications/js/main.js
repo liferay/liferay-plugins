@@ -438,7 +438,7 @@ AUI().use(
 								}
 							}
 						},
-						dataType: 'json'
+						dataType: 'JSON'
 					}
 				);
 			},
