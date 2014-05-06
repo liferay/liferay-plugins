@@ -176,7 +176,7 @@ AUI().use(
 				var available = false;
 
 				if (!A.Lang.isUndefined(instance._availableForChatVideoSettingCheckboxNode)) {
-					available = instance._availableForChatVideoSettingCheckboxNode.get('checked');
+					available = instance._availableForChatVideoSettingCheckboxNode.attr('checked');
 				}
 
 				return available;
