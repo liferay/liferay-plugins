@@ -311,8 +311,10 @@ AUI().use(
 
 				instance._buddies = {};
 
-				for (var i in response.webRTCResponse.clients) {
-					instance._buddies[response.webRTCResponse.clients[i]] = true;
+				var clients = response.webRTCResponse.clients;
+
+				for (var i in clients) {
+					instance._buddies[clients[i]] = true;
 				}
 
 				for (var id in instance._chatManager._chatSessions) {
