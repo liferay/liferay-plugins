@@ -38,13 +38,13 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 }
 %>
 
-<portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL" />
-
 <c:choose>
 	<c:when test="<%= (tasksEntry == null) && (tasksEntryId > 0) %>">
 		<span class="alert alert-error"><liferay-ui:message key="task-could-not-be-found" /></span>
 	</c:when>
 	<c:otherwise>
+		<portlet:actionURL name="updateTasksEntry" var="updateTasksEntryURL" />
+
 		<aui:form action="<%= updateTasksEntryURL %>" method="post" name="fm1" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveForm();" %>'>
 			<aui:input name="mvcPath" type="hidden" value="/tasks/edit_task.jsp" />
 			<aui:input name="tasksEntryId" type="hidden" value="<%= tasksEntryId %>" />
