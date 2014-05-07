@@ -473,15 +473,27 @@ AUI().use(
 
 				var curTimeMs = A.Lang.now();
 				var elapsedMsTotal = curTimeMs - instance._beginMs;
-				var elapsedSecondsTotal = parseInt(elapsedMsTotal / 1000);
-				var elapsedMinutes = parseInt(elapsedSecondsTotal / 60);
-				var elapsedSeconds = elapsedSecondsTotal - elapsedMinutes * 60;
+				var elapsedSeconds = parseInt(elapsedMsTotal / 1000);
+				var elapsedHours = parseInt(elapsedSeconds / 3600);
+				elapsedSeconds -= elapsedHours * 3600;
+				var elapsedMinutes = parseInt(elapsedSeconds / 60);
+				elapsedSeconds -= elapsedMinutes * 60;
 
 				if (elapsedSeconds < 10) {
 					elapsedSeconds = '0' + elapsedSeconds;
 				}
 
-				var elapsedTimeString = elapsedMinutes + ':' + elapsedSeconds;
+				var elapsedTimeString = '';
+
+				if (elapsedHours > 0) {
+					elapsedTimeString += elapsedHours + ':';
+
+					if (elapsedMinutes < 10) {
+						elapsedMinutes = '0' + elapsedMinutes;
+					}
+				}
+
+				elapsedTimeString += elapsedMinutes + ':' + elapsedSeconds;
 
 				instance._onTimeChange(elapsedTimeString);
 			}
