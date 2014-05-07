@@ -460,18 +460,20 @@ AUI().use(
 			_redirect: function(uri) {
 				var instance = this;
 
-				if (instance._openWindow(uri)) {
-					Liferay.Util.openWindow(
-						{
-							id: 'notificationsWindow',
-							uri: uri
-						}
-					);
-				}
-				else {
-					var topWindow = Liferay.Util.getTop();
+				if (uri) {
+					if (instance._openWindow(uri)) {
+						Liferay.Util.openWindow(
+							{
+								id: 'notificationsWindow',
+								uri: uri
+							}
+						);
+					}
+					else {
+						var topWindow = Liferay.Util.getTop();
 
-					topWindow.location.href = uri;
+						topWindow.location.href = uri;
+					}
 				}
 			},
 
@@ -552,44 +554,42 @@ AUI().use(
 
 				var uri = currentTarget.attr('data-href');
 
-				if (uri) {
-					var markAsReadURL = currentTarget.attr('data-markAsReadURL');
+				var markAsReadURL = currentTarget.attr('data-markAsReadURL');
 
-					if (markAsReadURL) {
-						A.io.request(
-							markAsReadURL,
-							{
-								after: {
-									success: function() {
-										var responseData = this.get('responseData');
+				if (markAsReadURL) {
+					A.io.request(
+						markAsReadURL,
+						{
+							after: {
+								success: function() {
+									var responseData = this.get('responseData');
 
-										if (responseData.success) {
-											var userNotification = currentTarget.ancestor('.user-notification');
+									if (responseData.success) {
+										var userNotification = currentTarget.ancestor('.user-notification');
 
-											if (userNotification) {
-												userNotification.removeClass('unread');
+										if (userNotification) {
+											userNotification.removeClass('unread');
 
-												var read = userNotification.one('.content .read');
+											var read = userNotification.one('.content .read');
 
-												if (read) {
-													read.setHTML(Liferay.Language.get('read'));
-												}
-
-												instance._redirect(uri);
+											if (read) {
+												read.setHTML(Liferay.Language.get('read'));
 											}
+
+											instance._redirect(uri);
 										}
 									}
-								},
-								dataType: 'JSON'
-							}
-						);
-					}
-					else {
-						var userNotification = currentTarget.ancestor('.user-notification');
-
-						if (userNotification) {
-							instance._redirect(uri);
+								}
+							},
+							dataType: 'JSON'
 						}
+					);
+				}
+				else {
+					var userNotification = currentTarget.ancestor('.user-notification');
+
+					if (userNotification) {
+						instance._redirect(uri);
 					}
 				}
 			}
