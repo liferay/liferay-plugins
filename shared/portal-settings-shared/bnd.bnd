@@ -1,0 +1,3 @@
+Bundle-Name: Portal Settings API
+Export-Package: *
+Include-Resource: classes
