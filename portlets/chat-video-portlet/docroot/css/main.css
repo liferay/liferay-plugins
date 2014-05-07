@@ -1,6 +1,7 @@
 @import "compass";
 
 $preferredPadding: 10px;
+$remoteVideoHeight: 165px;
 
 @mixin ctrl-button-hover($name, $btnSize) {
 	background-image: url('../images/btns_' + $btnSize + '/' + $name + '.png');
@@ -48,6 +49,34 @@ $preferredPadding: 10px;
 	@include transform(scale(-1, 1));
 }
 
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+@mixin animation ($name, $duration) {
+	-webkit-animation-duration: $duration;
+	-webkit-animation-name: $name;
+	-webkit-animation-fill-mode: forwards;
+
+	-moz-animation-duration: $duration;
+	-moz-animation-name: $name;
+	-moz-animation-fill-mode: forwards;
+
+	animation-duration: $duration;
+	animation-name: $name;
+	animation-fill-mode: forwards;
+}
+
 .chat-bar, .chat-video-overlay {
 	.chat-video-ctrl-buttons a {
 		background-repeat: no-repeat;
@@ -69,7 +98,7 @@ $preferredPadding: 10px;
 
 	.remote-video-container {
 		background: #000;
-		height: 165px;
+		height: 0;
 
 		video.local {
 			display: none;
@@ -117,6 +146,9 @@ $preferredPadding: 10px;
 		.chat-video-msg {
 			height: $height;
 			left: 0;
+
+			@include opacity(0);
+
 			padding: 5px 0 5px 35px;
 			position: absolute;
 			top: 5px;
@@ -193,6 +225,9 @@ $preferredPadding: 10px;
 	background: transparentize(#000, 0.1);
 	height: 100%;
 	left: 0;
+
+	@include opacity(0);
+
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -258,5 +293,61 @@ $preferredPadding: 10px;
 
 	video.local {
 		@include border-radius(2px);
+	}
+}
+
+.chat-video-show-remote-video {
+	@include animation(chat-video-remote-video-in-kf, 1s);
+}
+
+.chat-video-hide-remote-video {
+	@include animation(chat-video-remote-video-out-kf, 1s);
+}
+
+.chat-video-fade-in {
+	@include animation(chat-video-fade-in-kf, 0.5s);
+}
+
+.chat-video-fade-out {
+	@include animation(chat-video-fade-out-kf, 0.5s);
+}
+
+@include keyframes(chat-video-remote-video-in-kf) {
+	from {
+		height: 0;
+	}
+
+	to {
+		height: $remoteVideoHeight;
+	}
+}
+
+@include keyframes(chat-video-remote-video-out-kf) {
+	from {
+		height: $remoteVideoHeight;
+	}
+
+	to {
+		height: 0;
+	}
+}
+
+@include keyframes(chat-video-fade-in-kf) {
+	from {
+		@include opacity(0);
+	}
+
+	to {
+		@include opacity(1);
+	}
+}
+
+@include keyframes(chat-video-fade-out-kf) {
+	from {
+		@include opacity(1);
+	}
+
+	to {
+		@include opacity(0);
 	}
 }
