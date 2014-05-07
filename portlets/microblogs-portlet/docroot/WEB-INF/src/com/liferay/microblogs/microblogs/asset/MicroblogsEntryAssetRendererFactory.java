@@ -53,6 +53,11 @@ public class MicroblogsEntryAssetRendererFactory
 	}
 
 	@Override
+	public String getIconCssClass() {
+		return "icon-comment";
+	}
+
+	@Override
 	public String getType() {
 		return TYPE;
 	}

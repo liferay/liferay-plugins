@@ -77,6 +77,11 @@ public class KBArticleAssetRendererFactory extends BaseAssetRendererFactory {
 	}
 
 	@Override
+	public String getIconCssClass() {
+		return "icon-file";
+	}
+
+	@Override
 	public String getPortletId() {
 		return PortletKeys.KNOWLEDGE_BASE_DISPLAY;
 	}

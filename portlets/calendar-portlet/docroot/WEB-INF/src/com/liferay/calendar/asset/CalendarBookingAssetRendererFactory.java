@@ -69,6 +69,11 @@ public class CalendarBookingAssetRendererFactory
 	}
 
 	@Override
+	public String getIconCssClass() {
+		return "icon-calendar";
+	}
+
+	@Override
 	public String getType() {
 		return TYPE;
 	}
