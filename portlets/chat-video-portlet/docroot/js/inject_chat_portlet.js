@@ -38,7 +38,7 @@ AUI().use(
 						'<div class="panel-title">{panelTitle}</div>' +
 						'<div class="panel-profile">...</div>' +
 						'<div class="hide chat-video-ctrl">' +
-							'<div class="hide chat-video-msg">' +
+							'<div class="chat-video-msg">' +
 								'<div class="msg"></div>' +
 								'<div class="working"></div>' +
 							'</div>' +
@@ -97,24 +97,9 @@ AUI().use(
 			hideOverlay: function() {
 				var instance = this;
 
-				var overlayAnim = new A.Anim(
-					{
-						node: instance._chatVideoOverlayNode,
-						to: {
-							opacity: 0
-						},
-						duration: 0.25
-					}
-				);
-
-				overlayAnim.on(
-					'end',
-					function() {
-						instance._chatVideoOverlayNode.hide();
-					}
-				);
-
-				overlayAnim.run();
+				if (instance._chatVideoOverlayNode.hasClass('chat-video-fade-in')) {
+					instance._chatVideoOverlayNode.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
+				}
 			},
 
 			init: function(chatManager) {
@@ -195,7 +180,11 @@ AUI().use(
 					instance._inRingingEl = A.one('#chatVideoInRingtone').getDOM();
 					instance._outRingingEl = A.one('#chatVideoOutRingtone').getDOM();
 					instance._chatVideoOverlayNode = A.one('#chatVideoOverlay');
+					instance._chatVideoOverlayEl = instance._chatVideoOverlayNode.getDOM();
 					instance._overlayVideoCallTimeNode = instance._chatVideoOverlayNode.one('.call-time');
+
+					instance._chatVideoOverlayEl.addEventListener('animationend', A.bind('_onOverlayAnimationEnd', instance));
+					instance._chatVideoOverlayEl.addEventListener('webkitAnimationEnd', A.bind('_onOverlayAnimationEnd', instance));
 
 					/* Modify the "Play sound..." setting checkbox text to include sounds of
 					 * video calls. This is hackish using plain DOM elements because we need
@@ -215,8 +204,6 @@ AUI().use(
 					var availableForChatVideoSettingNode = A.Node.create(availableForChatVideoSettingHtml);
 					showOnlineSettingNode.placeAfter(availableForChatVideoSettingNode);
 					instance._availableForChatVideoSettingCheckboxNode = A.one('#availableForChatVideo');
-
-					instance.hideOverlay();
 
 					instance._afterUpdateSettings();
 				}
@@ -269,20 +256,8 @@ AUI().use(
 			showOverlay: function() {
 				var instance = this;
 
-				instance._chatVideoOverlayNode.setStyle('opacity', '0');
+				instance._chatVideoOverlayNode.replaceClass('chat-video-fade-out', 'chat-video-fade-in');
 				instance._chatVideoOverlayNode.show();
-
-				var overlayAnim = new A.Anim(
-					{
-						node: instance._chatVideoOverlayNode,
-						to: {
-							opacity: 1
-						},
-						duration: 0.4
-					}
-				);
-
-				overlayAnim.run();
 			},
 
 			unmute: function() {
@@ -339,6 +314,14 @@ AUI().use(
 							session.hideCtrlButtons();
 						}
 					}
+				}
+			},
+
+			_onOverlayAnimationEnd: function(event) {
+				var instance = this;
+
+				if (event.animationName === 'chat-video-fade-out-kf') {
+					instance._chatVideoOverlayNode.hide();
 				}
 			},
 
@@ -507,7 +490,6 @@ AUI().use(
 			instance._msgNode = node.one('.msg');
 			instance._workingNode = node.one('.working');
 			instance._errorTimeout = null;
-			instance._errorAnim = null;
 
 			instance.hide();
 		};
@@ -526,7 +508,12 @@ AUI().use(
 				var instance = this;
 
 				if (!instance._destroyed && instance._errorTimeout === null) {
-					instance._node.hide();
+					if (instance._node.hasClass('chat-video-fade-in')) {
+						instance._node.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
+						instance._node.on('webkitAnimationEnd', function() {
+							alert('end');
+						});
+					}
 				}
 			},
 
@@ -548,23 +535,7 @@ AUI().use(
 					instance._errorTimeout = setTimeout(
 						function() {
 							instance._errorTimeout = null;
-							instance._errorAnim = new A.Anim(
-								{
-									node: instance._node,
-									to: {
-										opacity: 0
-									},
-									duration: 0.4
-								}
-							);
-							instance._errorAnim.on(
-								'end',
-								function() {
-									instance._errorAnim = null;
-									instance.hide();
-								}
-							);
-							instance._errorAnim.run();
+							instance._node.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
 						},
 						3000
 					);
@@ -613,13 +584,8 @@ AUI().use(
 				var instance = this;
 
 				if (!instance._destroyed) {
-					if (instance._errorAnim !== null) {
-						instance._errorAnim.stop();
-					}
-
-					instance._node.setStyle('opacity', '1');
-
 					instance._node.show();
+					instance._node.replaceClass('chat-video-fade-out', 'chat-video-fade-in');
 				}
 			},
 
@@ -630,11 +596,6 @@ AUI().use(
 					clearTimeout(instance._errorTimeout);
 					instance._errorTimeout = null;
 					instance.hide();
-				}
-
-				if (instance._errorAnim !== null) {
-					instance._errorAnim.stop();
-					instance._errorAnim = null;
 				}
 			}
 		};
@@ -1105,25 +1066,7 @@ AUI().use(
 				_hideRemoteVideo: function() {
 					var instance = this;
 
-					var remoteVideoAnim = new A.Anim(
-						{
-							node: instance._remoteVideoContainerNode,
-							to: {
-								height: 0
-							},
-							duration: 0.8,
-							easing: A.Easing.easeOutStrong
-						}
-					);
-
-					remoteVideoAnim.on(
-						'end',
-						function(event) {
-							instance._remoteVideoContainerNode.hide();
-						}
-					);
-
-					remoteVideoAnim.run();
+					instance._remoteVideoContainerNode.replaceClass('chat-video-show-remote-video', 'chat-video-hide-remote-video');
 				},
 
 				_onRemoteStreamFlowing: function() {
@@ -1201,18 +1144,7 @@ AUI().use(
 					instance._remoteVideoContainerNode.height(0);
 					instance._remoteVideoContainerNode.show();
 
-					var remoteVideoAnim = new A.Anim(
-						{
-							node: instance._remoteVideoContainerNode,
-							to: {
-								height: 165
-							},
-							duration: 0.8,
-							easing: A.Easing.easeOutStrong
-						}
-					);
-
-					remoteVideoAnim.run();
+					instance._remoteVideoContainerNode.replaceClass('chat-video-hide-remote-video', 'chat-video-show-remote-video');
 				},
 
 				_toggleFullScreen: function() {
