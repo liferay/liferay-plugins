@@ -120,7 +120,7 @@ $preferredPadding: 10px;
 			padding: 5px 0 5px 35px;
 			position: absolute;
 			top: 5px;
-			width: 90px;
+			width: 120px;
 
 			.msg {
 				color: #C5CCD0;
@@ -131,7 +131,7 @@ $preferredPadding: 10px;
 
 			&.error {
 				padding-left: 5px;
-				width: 150px;
+				width: 180px;
 
 				.msg {
 					color: #FF6670;
