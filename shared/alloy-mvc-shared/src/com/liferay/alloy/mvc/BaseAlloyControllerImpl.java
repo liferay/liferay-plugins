@@ -184,52 +184,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	@Override
-	public void setPageContext(PageContext pageContext) {
-		this.pageContext = pageContext;
-	}
-
-	@Override
-	public void updateModel(BaseModel<?> baseModel, Object... properties)
-		throws Exception {
-
-		BeanPropertiesUtil.setProperties(baseModel, request);
-
-		if (baseModel.isNew()) {
-			baseModel.setPrimaryKeyObj(increment());
-		}
-
-		updateAuditedModel(baseModel);
-		updateGroupedModel(baseModel);
-		updateAttachedModel(baseModel);
-
-		if ((properties.length % 2) != 0) {
-			throw new IllegalArgumentException(
-				"Properties length is not an even number");
-		}
-
-		for (int i = 0; i < properties.length; i += 2) {
-			String propertyName = String.valueOf(properties[i]);
-			Object propertyValue = properties[i + 1];
-
-			BeanPropertiesUtil.setProperty(
-				baseModel, propertyName, propertyValue);
-		}
-
-		if (baseModel instanceof PersistedModel) {
-			PersistedModel persistedModel = (PersistedModel)baseModel;
-
-			try {
-				persistedModel.persist();
-			}
-			catch (Exception e) {
-				log.error(e, e);
-
-				renderError("an-unexpected-system-error-occurred");
-
-				return;
-			}
-		}
-
+	public void indexModel(BaseModel<?> baseModel) throws Exception {
 		if ((indexer != null) &&
 			indexerClassName.equals(baseModel.getModelClassName())) {
 
@@ -243,6 +198,78 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 				baseModelIndexer.reindex(baseModel);
 			}
 		}
+	}
+
+	@Override
+	public void persistModel(BaseModel<?> baseModel) throws Exception {
+		if (!(baseModel instanceof PersistedModel)) {
+			return;
+		}
+
+		PersistedModel persistedModel = (PersistedModel)baseModel;
+
+		persistedModel.persist();
+	}
+
+	@Override
+	public void setModel(BaseModel<?> baseModel, Object... properties)
+		throws Exception {
+
+		if (baseModel.isNew()) {
+			baseModel.setPrimaryKeyObj(increment());
+		}
+
+		setAuditedModel(baseModel);
+		setGroupedModel(baseModel);
+		setAttachedModel(baseModel);
+
+		if ((properties.length % 2) != 0) {
+			throw new IllegalArgumentException(
+				"Properties length is not an even number");
+		}
+
+		for (int i = 0; i < properties.length; i += 2) {
+			String propertyName = String.valueOf(properties[i]);
+			Object propertyValue = properties[i + 1];
+
+			BeanPropertiesUtil.setProperty(
+				baseModel, propertyName, propertyValue);
+		}
+	}
+
+	@Override
+	public void setPageContext(PageContext pageContext) {
+		this.pageContext = pageContext;
+	}
+
+	@Override
+	public void updateModel(BaseModel<?> baseModel, Object... properties)
+		throws Exception {
+
+		BeanPropertiesUtil.setProperties(baseModel, request);
+
+		updateModelIgnoreRequest(baseModel, properties);
+	}
+
+	@Override
+	public void updateModelIgnoreRequest(
+			BaseModel<?> baseModel, Object... properties)
+		throws Exception {
+
+		setModel(baseModel, properties);
+
+		try {
+			persistModel(baseModel);
+		}
+		catch (Exception e) {
+			log.error(e, e);
+
+			renderError("an-unexpected-system-error-occurred");
+
+			return;
+		}
+
+		indexModel(baseModel);
 	}
 
 	protected void addSuccessMessage() {
@@ -841,17 +868,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		alloyServiceInvoker = new AlloyServiceInvoker(clazz.getName());
 	}
 
-	protected void setPermissioned(boolean permissioned) {
-		this.permissioned = permissioned;
-	}
-
-	protected String translate(String pattern, Object... arguments) {
-		return LanguageUtil.format(locale, pattern, arguments);
-	}
-
-	protected void updateAttachedModel(BaseModel<?> baseModel)
-		throws Exception {
-
+	protected void setAttachedModel(BaseModel<?> baseModel) throws Exception {
 		if (!(baseModel instanceof AttachedModel)) {
 			return;
 		}
@@ -877,7 +894,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 	}
 
-	protected void updateAuditedModel(BaseModel<?> baseModel) throws Exception {
+	protected void setAuditedModel(BaseModel<?> baseModel) throws Exception {
 		if (!(baseModel instanceof AuditedModel)) {
 			return;
 		}
@@ -896,7 +913,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 	}
 
-	protected void updateGroupedModel(BaseModel<?> baseModel) throws Exception {
+	protected void setGroupedModel(BaseModel<?> baseModel) throws Exception {
 		if (!(baseModel instanceof GroupedModel) || !baseModel.isNew()) {
 			return;
 		}
@@ -904,6 +921,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		GroupedModel groupedModel = (GroupedModel)baseModel;
 
 		groupedModel.setGroupId(themeDisplay.getScopeGroupId());
+	}
+
+	protected void setPermissioned(boolean permissioned) {
+		this.permissioned = permissioned;
+	}
+
+	protected String translate(String pattern, Object... arguments) {
+		return LanguageUtil.format(locale, pattern, arguments);
 	}
 
 	protected void writeJSON(Object json) throws Exception {
