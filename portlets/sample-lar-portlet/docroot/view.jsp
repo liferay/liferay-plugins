@@ -18,15 +18,15 @@
 
 <aui:fieldset label="sample-lar-portlet-information">
 	<div class="sample-lar-paragraph">
-		This is the <strong>Sample LAR Portlet</strong>. This was made to demonstrate the portlet's export/import and staging capabilities.
+		This is the <strong>Sample LAR Portlet</strong>. It demonstrates exporting, importing, and staging capabilities that can be implemented in a portlet.
 	</div>
 
 	<div class="sample-lar-paragraph">
-		For trying out the export/import, click on the wrench icon, and then select the Export/Import menu.
+		The portlet's sample data can be exported to a LAR file. And data from LAR files can be imported into the portlet. To export or import portlet data, click on the gear icon of the portlet and select <em>Export/Import</em>.
 	</div>
 
 	<div class="sample-lar-paragraph">
-		The content of this portlet can be staged, you can find the option for this in the site configuration under staging settings. Once the content of this portlet is staged, it can be selected for publishing on the related screen.
+		In addition, the portlet supports staging. It's easy to enable staging for its content. First, navigate to the site's <em>Configuration</em> page, click on <em>Site Settings</em> in the side menu, and click on <em>Staging</em> in the Advanced section. Then select either <em>Remote Live</em> or <em>Local Live</em>, and select <em>Sample LAR</em> in the Content Type section. Any changes to the portlet's content will be staged for publishing.
 	</div>
 </aui:fieldset>
 
