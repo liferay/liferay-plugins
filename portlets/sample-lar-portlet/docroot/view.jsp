@@ -35,7 +35,7 @@
 		<portlet:param name="mvcPath" value="/view.jsp" />
 	</portlet:actionURL>
 
-	<aui:button href="<%= addSampleLARBookingURL %>" value="add-sample-bookings" />
+	<aui:button href="<%= addSampleLARBookingURL %>" value="add-sample-booking" />
 
 	<%@ include file="/view_sample_lar_bookings.jsp" %>
 </aui:fieldset>

@@ -37,14 +37,12 @@ public class SampleLARPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		for (int i = 0; i <= 1; i++) {
-			String bookingNumber =
-				"LR" + GetterUtil.getInteger(Math.random() * 100);
+		String bookingNumber =
+			"LR" + GetterUtil.getInteger(Math.random() * 100);
 
-			SampleLARBookingLocalServiceUtil.addSampleLARBooking(
-				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(),
-				bookingNumber, new ServiceContext());
-		}
+		SampleLARBookingLocalServiceUtil.addSampleLARBooking(
+			themeDisplay.getUserId(), themeDisplay.getScopeGroupId(),
+			bookingNumber, new ServiceContext());
 	}
 
 	public void deleteSampleLARBooking(
