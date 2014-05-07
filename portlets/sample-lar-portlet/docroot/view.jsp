@@ -18,7 +18,7 @@
 
 <aui:fieldset label="sample-lar-portlet-information">
 	<div class="sample-lar-paragraph">
-		This is the <strong>Sample LAR Portlet</strong>. It demonstrates exporting, importing, and staging capabilities that can be implemented in a portlet.
+		This is the <strong>Sample LAR portlet</strong>. It demonstrates exporting, importing, and staging capabilities that can be implemented in a portlet.
 	</div>
 
 	<div class="sample-lar-paragraph">
