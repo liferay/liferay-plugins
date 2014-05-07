@@ -12,8 +12,7 @@ AUI().use(
 		var TPL_SHOW_ME_AS_AVAILABLE_SETTING_LI =
 			'<li>' +
 				'<label for="availableForChatVideo">' +
-					'<input checked="checked" id="availableForChatVideo" type="checkbox">' +
-					' Show me as available for video calls.' +
+					'<input checked="checked" id="availableForChatVideo" type="checkbox"> {showMeAsAvailableText}' +
 				'</label>' +
 			'</li>';
 
@@ -44,11 +43,11 @@ AUI().use(
 								'<div class="working"></div>' +
 							'</div>' +
 							'<div class="chat-video-ctrl-buttons">' +
-								'<a class="accept hide" href="javascript:void(0);" title="Accept video call"></a>' +
-								'<a class="hangup hide" href="javascript:void(0);" title="Hang up video call"></a>' +
-								'<a class="call hide" href="javascript:void(0);" title="Start video call"></a>' +
-								'<a class="hide mike unmuted" href="javascript:void(0);" title="Mute/unmute microphone"></a>' +
-								'<a class="fullscreen hide off" href="javascript:void(0);" title="Enable/disable fullscreen video call"></a>' +
+								'<a class="accept hide" href="javascript:void(0);" title="{acceptTitle}"></a>' +
+								'<a class="hangup hide" href="javascript:void(0);" title="{hangUpTitle}"></a>' +
+								'<a class="call hide" href="javascript:void(0);" title="{callTitle}"></a>' +
+								'<a class="hide mike unmuted" href="javascript:void(0);" title="{muteUnmuteTitle}"></a>' +
+								'<a class="fullscreen hide off" href="javascript:void(0);" title="{fullScreenTitle}"></a>' +
 								'<div style="clear: both;"></div>' +
 							'</div>' +
 						'</div>' +
@@ -204,10 +203,15 @@ AUI().use(
 					 */
 					var playSoundLabelEl = A.one('#playSound').ancestor().getDOM();
 					var playSoundLabelTextEl = playSoundLabelEl.childNodes[1];
-					playSoundLabelTextEl.nodeValue = ' Play a sound when I receive a new message in a hidden window and for video calls ringtones.';
+					playSoundLabelTextEl.nodeValue = ' ' + Liferay.Language.get('play-a-sound');
 
 					var showOnlineSettingNode = A.one('#onlineStatus').ancestor('li');
-					var availableForChatVideoSettingHtml = TPL_SHOW_ME_AS_AVAILABLE_SETTING_LI;
+					var availableForChatVideoSettingHtml = A.Lang.sub(
+						TPL_SHOW_ME_AS_AVAILABLE_SETTING_LI,
+						{
+							showMeAsAvailableText: Liferay.Language.get('show-me-as-available')
+						}
+					);
 					var availableForChatVideoSettingNode = A.Node.create(availableForChatVideoSettingHtml);
 					showOnlineSettingNode.placeAfter(availableForChatVideoSettingNode);
 					instance._availableForChatVideoSettingCheckboxNode = A.one('#availableForChatVideo');
@@ -693,11 +697,11 @@ AUI().use(
 									var Error = Liferay.Chat.WebRtcConversation.Error;
 
 									var errorMessages = {};
-									errorMessages[Error.CANNOTGETUSERMEDIA] = 'Cannot access your camera';
-									errorMessages[Error.HANGUP] = 'Your friend hung up';
-									errorMessages[Error.REMOTEPEERDENIEDCALL] = 'Your friend denied your call';
-									errorMessages[Error.REMOTEPEERNOTAVAILABLE] = 'Your friend is not available';
-									errorMessages[Error.REMOTEPEERRESET] = 'Your friend had an issue with the video call';
+									errorMessages[Error.CANNOTGETUSERMEDIA] = Liferay.Language.get('cannot-access-your-camera');
+									errorMessages[Error.HANGUP] = Liferay.Language.get('video-call-ended');
+									errorMessages[Error.REMOTEPEERDENIEDCALL] = Liferay.Language.get('your-friend-denied-your-call');
+									errorMessages[Error.REMOTEPEERNOTAVAILABLE] = Liferay.Language.get('your-friend-is-not-available');
+									errorMessages[Error.REMOTEPEERRESET] = Liferay.Language.get('your-friend-had-an-issue');
 
 									if (error in errorMessages) {
 										instance._status.setErrorMessage(errorMessages[error]);
@@ -768,27 +772,27 @@ AUI().use(
 
 										case State.CALLINGWAITING:
 										case State.GOTCALLWAITING:
-											instance._status.setRegularMessage('Please share camera', true);
+											instance._status.setRegularMessage(Liferay.Language.get('please-share-your-camera'), true);
 											break;
 
 										case State.CALLING:
 										case State.CALLED:
-											instance._status.setRegularMessage('Calling friend...', true);
+											instance._status.setRegularMessage(Liferay.Language.get('calling-friend'), true);
 											break;
 
 										case State.GOTCALL:
-											instance._status.setRegularMessage('Incoming video call...', true);
+											instance._status.setRegularMessage(Liferay.Language.get('incoming-video-call'), true);
 											break;
 
 										case State.GOTANSWER:
 										case State.ANSWERED:
 										case State.ACCEPTINGCALL:
-											instance._status.setRegularMessage('Establishing connection...', true);
+											instance._status.setRegularMessage(Liferay.Language.get('establishing-connection'), true);
 											break;
 
 										case State.STOPPING:
 										case State.DELETING:
-											instance._status.setRegularMessage('Stopping video call...', true);
+											instance._status.setRegularMessage(Liferay.Language.get('stopping-video-call'), true);
 											break;
 
 										case State.CONNECTED:
@@ -1150,9 +1154,14 @@ AUI().use(
 					var html = A.Lang.sub(
 						TPL_CHAT_PANEL,
 						{
+							acceptTitle: Liferay.Language.get('accept-title'),
+							callTitle: Liferay.Language.get('call-title'),
+							fullScreenTitle: Liferay.Language.get('fullscreen-title'),
+							hangUpTitle: Liferay.Language.get('hangup-title'),
+							muteUnmuteTitle: Liferay.Language.get('mute-unmute-title'),
 							panelId: instance._panelId,
-							userImagePath: userImagePath,
-							panelTitle: Liferay.Util.escapeHTML(instance._panelTitle)
+							panelTitle: Liferay.Util.escapeHTML(instance._panelTitle),
+							userImagePath: userImagePath
 						}
 					);
 
