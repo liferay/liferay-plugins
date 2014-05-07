@@ -27,11 +27,6 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.ClassResolverUtil;
-import com.liferay.portal.kernel.util.MethodKey;
-import com.liferay.portal.kernel.util.PortalClassInvoker;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portlet.social.model.SocialRelationConstants;
 import com.liferay.util.dao.orm.CustomSQLUtil;
@@ -70,23 +65,6 @@ public class MicroblogsEntryFinderImpl
 
 	public static final String FIND_BY_U_T_MU =
 		MicroblogsEntryFinder.class.getName() + ".findByU_T_MU";
-
-	public MicroblogsEntryFinderImpl() {
-		try {
-			MethodKey methodKey = new MethodKey(
-				ClassResolverUtil.resolveByPortalClassLoader(
-					"com.liferay.util.dao.orm.CustomSQL"),
-				"get", String.class);
-
-			_joinBySocialRelationSQL = (String)PortalClassInvoker.invoke(
-				methodKey,
-				"com.liferay.portal.service.persistence." +
-					"UserFinder.joinBySocialRelation");
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-	}
 
 	public int countByUserId(long userId) throws SystemException {
 		Session session = null;
@@ -398,10 +376,5 @@ public class MicroblogsEntryFinderImpl
 			closeSession(session);
 		}
 	}
-
-	private static Log _log = LogFactoryUtil.getLog(
-		MicroblogsEntryFinderImpl.class);
-
-	private String _joinBySocialRelationSQL;
 
 }
