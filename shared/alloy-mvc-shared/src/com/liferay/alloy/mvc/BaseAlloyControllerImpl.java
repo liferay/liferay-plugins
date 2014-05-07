@@ -181,7 +181,9 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		this.pageContext = pageContext;
 	}
 
-	public void updateModel(BaseModel<?> baseModel) throws Exception {
+	public void updateModel(BaseModel<?> baseModel, Object... properties)
+		throws Exception {
+
 		BeanPropertiesUtil.setProperties(baseModel, request);
 
 		if (baseModel.isNew()) {
@@ -191,6 +193,19 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		updateAuditedModel(baseModel);
 		updateGroupedModel(baseModel);
 		updateAttachedModel(baseModel);
+
+		if ((properties.length % 2) != 0) {
+			throw new IllegalArgumentException(
+				"Properties length is not an even number");
+		}
+
+		for (int i = 0; i < properties.length; i += 2) {
+			String propertyName = String.valueOf(properties[i]);
+			Object propertyValue = properties[i + 1];
+
+			BeanPropertiesUtil.setProperty(
+				baseModel, propertyName, propertyValue);
+		}
 
 		if (baseModel instanceof PersistedModel) {
 			PersistedModel persistedModel = (PersistedModel)baseModel;
@@ -766,11 +781,14 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		Class<?> indexerClass = Class.forName(indexerClassName);
 
-		try {
-			indexerClass.getField(Field.GROUP_ID);
-		}
-		catch (Exception e) {
+		if (!GroupedModel.class.isAssignableFrom(indexerClass)) {
 			searchContext.setGroupIds(null);
+		}
+		else if (searchContext.getAttribute(Field.GROUP_ID) != null) {
+			long groupId = GetterUtil.getLong(
+				searchContext.getAttribute(Field.GROUP_ID));
+
+			searchContext.setGroupIds(new long[] {groupId});
 		}
 
 		if (Validator.isNotNull(keywords)) {
