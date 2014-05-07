@@ -14,7 +14,7 @@
 
 package com.liferay.alloy.mvc;
 
-import com.liferay.portal.kernel.search.BaseIndexer;
+import com.liferay.compat.portal.kernel.search.BaseIndexer;
 import com.liferay.portal.kernel.search.BooleanQuery;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentImpl;

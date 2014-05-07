@@ -15,9 +15,11 @@
 package com.liferay.alloy.mvc;
 
 import com.liferay.compat.portal.kernel.bean.ConstantsBeanFactoryUtil;
+import com.liferay.compat.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.compat.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.compat.portal.kernel.util.ArrayUtil;
 import com.liferay.compat.portal.kernel.util.ServiceBeanMethodInvocationFactoryUtil;
+import com.liferay.compat.portal.util.PortalUtil;
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -34,7 +36,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
-import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.scheduler.CronText;
 import com.liferay.portal.kernel.scheduler.CronTrigger;
 import com.liferay.portal.kernel.scheduler.StorageType;
@@ -69,7 +70,6 @@ import com.liferay.portal.model.PersistedModel;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
 
 import java.io.Serializable;
 
