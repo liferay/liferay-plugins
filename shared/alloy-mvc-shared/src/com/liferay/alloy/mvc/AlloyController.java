@@ -38,8 +38,19 @@ public interface AlloyController {
 
 	public long increment() throws Exception;
 
+	public void indexModel(BaseModel<?> baseModel) throws Exception;
+
+	public void persistModel(BaseModel<?> baseModel) throws Exception;
+
+	public void setModel(BaseModel<?> baseModel, Object... properties)
+		throws Exception;
+
 	public void setPageContext(PageContext pageContext);
 
 	public void updateModel(BaseModel<?> baseModel) throws Exception;
+
+	public void updateModelIgnoreRequest(
+			BaseModel<?> baseModel, Object... properties)
+		throws Exception;
 
 }
