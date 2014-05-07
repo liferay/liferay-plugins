@@ -37,5 +37,5 @@
 
 	<aui:button href="<%= addSampleLARBookingURL %>" value="add-sample-bookings" />
 
-	<%@ include file="/view_sample_lar_bookings.jsp.jsp" %>
+	<%@ include file="/view_sample_lar_bookings.jsp" %>
 </aui:fieldset>
