@@ -130,9 +130,15 @@ public class SyncWatchEventProcessor implements Runnable {
 			FilePathNameUtil.getFilePathName(parentTargetFilePath),
 			syncWatchEvent.getSyncAccountId());
 
-		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
-			FileUtil.getFileKey(targetFilePath),
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			FilePathNameUtil.getFilePathName(targetFilePath),
 			syncWatchEvent.getSyncAccountId());
+
+		if (syncFile == null) {
+			syncFile = SyncFileService.fetchSyncFileByFileKey(
+				FileUtil.getFileKey(targetFilePath),
+				syncWatchEvent.getSyncAccountId());
+		}
 
 		if (syncFile == null) {
 			SyncFileService.addFileSyncFile(
