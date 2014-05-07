@@ -309,8 +309,6 @@ public class WebRTCManager {
 
 		WebRTCClient webRTCClient = getWebRTCClient(userId);
 
-		webRTCClient.removeBilateralWebRTCConnections();
-
 		webRTCClient.setAvailable(available);
 	}
 
