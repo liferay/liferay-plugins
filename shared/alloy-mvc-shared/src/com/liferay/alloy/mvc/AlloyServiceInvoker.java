@@ -92,7 +92,7 @@ public class AlloyServiceInvoker {
 
 			Property property = PropertyFactoryUtil.forName(propertyName);
 
-			Object propertyValue = (properties[i + 1]);
+			Object propertyValue = properties[i + 1];
 
 			dynamicQuery.add(property.eq(propertyValue));
 		}
