@@ -1013,47 +1013,10 @@ AUI().use(
 					instance._playVideos();
 				},
 
-				_flickerCtrlButtonsBackground: function() {
-					var instance = this;
-
-					/* Some weird rendering bug is happening in Chromium/Chrome. Even if the
-					 * cache is completely disabled, the full screen and mute controls do not
-					 * show when supposed to. Those tested actions can show them back:
-					 *
-					 *   * minimizing/maximizing the panel
-					 *   * going to another tab and coming back
-					 *   * hovering where they are supposed to be
-					 *   * going full screen (clicking on the remote video element) and going
-					 *     back to normal
-					 *
-					 * It seems like a rendering bug in the browser itself that's somehow
-					 * related to the context.
-					 *
-					 * The (really ugly) solution is to modify the background color of the
-					 * controls container and then, after a few ms, reset it to its original
-					 * value. The user doesn't see this flicker; it's too fast. However, it
-					 * seems like the browser, when having to render again the controls images
-					 * over the new background color, will do properly this time.
-					 *
-					 * This bug does not exist on Firefox.
-					 */
-					var origBackgroundColor = instance._ctrlButtonsContainerNode.getStyle('backgroundColor');
-
-					instance._ctrlButtonsContainerNode.setStyle('backgroundColor', '#20272c');
-
-					setTimeout(
-						function() {
-							instance._ctrlButtonsContainerNode.setStyle('backgroundColor', origBackgroundColor);
-						},
-						2
-					);
-				},
-
 				_hideCtrlButton: function(btnId) {
 					var instance = this;
 
 					instance._chatVideoCtrlButtonsNodes[btnId].hide();
-					instance._flickerCtrlButtonsBackground();
 				},
 
 				_hideLocalVideo: function() {
@@ -1127,7 +1090,6 @@ AUI().use(
 					var instance = this;
 
 					instance._chatVideoCtrlButtonsNodes[btnId].show();
-					instance._flickerCtrlButtonsBackground();
 				},
 
 				_showLocalVideo: function() {
