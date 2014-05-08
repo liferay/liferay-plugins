@@ -340,8 +340,9 @@ AUI.add(
 				instance.invokeResourceURL(
 					'calendarBookingInvitees',
 					{
-						calendarBookingId: calendarBookingId
-					}
+						parentCalendarBookingId: calendarBookingId
+					},
+					callback
 				);
 			},
 
