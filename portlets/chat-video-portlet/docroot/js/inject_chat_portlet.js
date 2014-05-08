@@ -974,7 +974,9 @@ AUI().use(
 				_hideRemoteVideo: function() {
 					var instance = this;
 
-					instance._remoteVideoContainerNode.replaceClass('chat-video-show-remote-video', 'chat-video-hide-remote-video');
+					if (instance._remoteVideoContainerNode.hasClass('chat-video-show-remote-video')) {
+						instance._remoteVideoContainerNode.replaceClass('chat-video-show-remote-video', 'chat-video-hide-remote-video');
+					}
 				},
 
 				_onRemoteStreamFlowing: function() {
