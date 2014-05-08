@@ -62,6 +62,7 @@ if (entryId > 0) {
 
 		if (errorMessage) {
 			errorMessage.addClass('alert alert-error');
+
 			errorMessage.html('<liferay-ui:message key="an-error-occurred-while-retrieving-the-users-information" unicode="<%= true %>" />');
 		}
 	}
@@ -98,6 +99,7 @@ if (entryId > 0) {
 
 								if (message) {
 									message.addClass('alert alert-error');
+
 									message.html(responseData.message);
 								}
 							}
