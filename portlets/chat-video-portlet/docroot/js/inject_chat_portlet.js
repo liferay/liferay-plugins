@@ -687,142 +687,87 @@ AUI().use(
 									Liferay.Chat.VideoManager.onChatVideoConversationStateChange();
 
 									// Accept control button
-									switch (state) {
-										case State.GOTCALL:
-											instance._showCtrlButton('accept');
-											break;
-
-										default:
-											instance._hideCtrlButton('accept');
-											break;
+									if (state === State.GOTCALL) {
+										instance._showCtrlButton('accept');
+									}
+									else {
+										instance._hideCtrlButton('accept');
 									}
 
 									// Hangup control button
-									switch (state) {
-										case State.STOPPED:
-										case State.STOPPING:
-										case State.DELETED:
-										case State.DELETING:
-											instance._hideCtrlButton('hangUp');
-											break;
-
-										default:
-											instance._showCtrlButton('hangUp');
-											break;
+									if (state === State.STOPPED || state === State.STOPPING ||
+											state === State.DELETED || state === State.DELETING) {
+										instance._hideCtrlButton('hangUp');
+									}
+									else {
+										instance._showCtrlButton('hangUp');
 									}
 
 									// Call control button
-									switch (state) {
-										case State.STOPPED:
-											instance._showCtrlButton('call');
-											break;
-
-										default:
-											instance._hideCtrlButton('call');
-											break;
+									if (state === State.STOPPED) {
+										instance._showCtrlButton('call');
+									}
+									else {
+										instance._hideCtrlButton('call');
 									}
 
-									// Mute/unmute control button
-									switch (state) {
-										default:
-											instance._hideCtrlButton('mike');
-											break;
+									// Mute/unmute, fullscreen control buttons
+									instance._hideCtrlButton('mike');
+									instance._hideCtrlButton('fullScreen');
+
+									// Status messages
+									if (state === State.DELETED || state === State.STOPPED) {
+										instance._status.hide();
 									}
-
-									// Fullscreen control button
-									switch (state) {
-										default:
-											instance._hideCtrlButton('fullScreen');
-											break;
+									else if (state === State.CALLINGWAITING || state === State.GOTCALLWAITING) {
+										instance._status.setRegularMessage(Liferay.Language.get('please-share-your-camera'), true);
 									}
-
-									// Status message
-									switch (state) {
-										case State.DELETED:
-										case State.STOPPED:
-											instance._status.hide();
-											break;
-
-										case State.CALLINGWAITING:
-										case State.GOTCALLWAITING:
-											instance._status.setRegularMessage(Liferay.Language.get('please-share-your-camera'), true);
-											break;
-
-										case State.CALLING:
-										case State.CALLED:
-											instance._status.setRegularMessage(Liferay.Language.get('calling-friend'), true);
-											break;
-
-										case State.GOTCALL:
-											instance._status.setRegularMessage(Liferay.Language.get('incoming-video-call'), true);
-											break;
-
-										case State.GOTANSWER:
-										case State.ANSWERED:
-										case State.ACCEPTINGCALL:
-											instance._status.setRegularMessage(Liferay.Language.get('establishing-connection'), true);
-											break;
-
-										case State.STOPPING:
-										case State.DELETING:
-											instance._status.setRegularMessage(Liferay.Language.get('stopping-video-call'), true);
-											break;
-
-										case State.CONNECTED:
-											instance._videoCallTimeStr = '0:00';
-											instance._status.setInCallMessage(instance._videoCallTimeStr);
-											break;
+									else if (state === State.CALLING || state === State.CALLED) {
+										instance._status.setRegularMessage(Liferay.Language.get('calling-friend'), true);
+									}
+									else if (state === State.GOTCALL) {
+										instance._status.setRegularMessage(Liferay.Language.get('incoming-video-call'), true);
+									}
+									else if (state === State.GOTANSWER || state === State.ANSWERED || state === State.ACCEPTINGCALL) {
+										instance._status.setRegularMessage(Liferay.Language.get('establishing-connection'), true);
+									}
+									else if (state === State.STOPPING || state === State.DELETING) {
+										instance._status.setRegularMessage(Liferay.Language.get('stopping-video-call'), true);
+									}
+									else if (state === State.CONNECTED) {
+										instance._videoCallTimeStr = '0:00';
+										instance._status.setInCallMessage(instance._videoCallTimeStr);
 									}
 
 									// Fullscreen hiding
-									switch (state) {
-										case State.DELETED:
-										case State.DELETING:
-										case State.STOPPED:
-										case State.STOPPING:
-											instance._disableVideoFullScreen();
-											break;
+									if (state === State.DELETED || state === State.DELETING ||
+											state === State.STOPPED || state === State.STOPPING) {
+										instance._disableVideoFullScreen();
 									}
 
 									// Remote video hiding
-									switch (state) {
-										case State.DELETED:
-										case State.DELETING:
-											instance._remoteVideoContainerNode.hide();
-											break;
-
-										case State.STOPPED:
-										case State.STOPPING:
-											instance._hideRemoteVideo();
-											break;
+									if (state === State.DELETED || state === State.DELETING) {
+										instance._remoteVideoContainerNode.hide();
+									}
+									else if (state === State.STOPPED || state === State.STOPPING) {
+										instance._hideRemoteVideo();
 									}
 
 									// Local video
-									switch (state) {
-										case State.CALLING:
-										case State.CALLED:
-										case State.GOTCALL:
-										case State.ANSWERED:
-										case State.GOTANSWER:
-										case State.ACCEPTINGCALL:
-										case State.DENYINGCALL:
-										case State.CONNECTED:
-											instance._showLocalVideo();
-											break;
-
-										default:
-											instance._hideLocalVideo();
-											break;
+									if (state === State.CALLING || state === State.CALLED ||
+											state === State.GOTCALL || state === State.ANSWERED ||
+											state === State.GOTANSWER || state === State.ACCEPTINGCALL ||
+											state === State.DENYINGCALL || state === State.CONNECTED) {
+										instance._showLocalVideo();
+									}
+									else {
+										instance._hideLocalVideo();
 									}
 
 									// Video call timer
-									switch (state) {
-										case State.STOPPING:
-										case State.DELETING:
-										case State.STOPPED:
-										case State.DELETED:
-											instance._videoCallTimer.reset();
-											break;
+									if (state === State.DELETED || state === State.DELETING ||
+											state === State.STOPPED || state === State.STOPPING) {
+										instance._videoCallTimer.reset();
 									}
 
 									// Special handler for connected state
