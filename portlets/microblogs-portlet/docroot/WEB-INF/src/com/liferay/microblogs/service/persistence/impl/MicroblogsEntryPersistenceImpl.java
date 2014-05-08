@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.microblogs.service.persistence;
+package com.liferay.microblogs.service.persistence.impl;
 
 import com.liferay.microblogs.NoSuchEntryException;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.impl.MicroblogsEntryImpl;
 import com.liferay.microblogs.model.impl.MicroblogsEntryModelImpl;
+import com.liferay.microblogs.service.persistence.MicroblogsEntryPersistence;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -40,6 +41,7 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.security.permission.InlineSQLHelperUtil;
@@ -47,8 +49,11 @@ import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 
 import java.io.Serializable;
 
+import java.sql.Timestamp;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -4563,6 +4568,1113 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	private static final String _FINDER_COLUMN_T_RMEI_TYPE_2_SQL = "microblogsEntry.type_ = ? AND ";
 	private static final String _FINDER_COLUMN_T_RMEI_RECEIVERMICROBLOGSENTRYID_2 =
 		"microblogsEntry.receiverMicroblogsEntryId = ?";
+	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_C_T_S = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
+			MicroblogsEntryImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
+			"findByU_C_T_S",
+			new String[] {
+				Long.class.getName(), Date.class.getName(),
+				Integer.class.getName(), Integer.class.getName(),
+				
+			Integer.class.getName(), Integer.class.getName(),
+				OrderByComparator.class.getName()
+			});
+	public static final FinderPath FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_C_T_S =
+		new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED,
+			MicroblogsEntryImpl.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByU_C_T_S",
+			new String[] {
+				Long.class.getName(), Date.class.getName(),
+				Integer.class.getName(), Integer.class.getName()
+			},
+			MicroblogsEntryModelImpl.USERID_COLUMN_BITMASK |
+			MicroblogsEntryModelImpl.CREATEDATE_COLUMN_BITMASK |
+			MicroblogsEntryModelImpl.TYPE_COLUMN_BITMASK |
+			MicroblogsEntryModelImpl.SOCIALRELATIONTYPE_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_C_T_S = new FinderPath(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
+			MicroblogsEntryModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_C_T_S",
+			new String[] {
+				Long.class.getName(), Date.class.getName(),
+				Integer.class.getName(), Integer.class.getName()
+			});
+
+	/**
+	 * Returns all the microblogs entries where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @return the matching microblogs entries
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<MicroblogsEntry> findByU_C_T_S(long userId, Date createDate,
+		int type, int socialRelationType) throws SystemException {
+		return findByU_C_T_S(userId, createDate, type, socialRelationType,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the microblogs entries where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.microblogs.model.impl.MicroblogsEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param start the lower bound of the range of microblogs entries
+	 * @param end the upper bound of the range of microblogs entries (not inclusive)
+	 * @return the range of matching microblogs entries
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<MicroblogsEntry> findByU_C_T_S(long userId, Date createDate,
+		int type, int socialRelationType, int start, int end)
+		throws SystemException {
+		return findByU_C_T_S(userId, createDate, type, socialRelationType,
+			start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the microblogs entries where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.microblogs.model.impl.MicroblogsEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param start the lower bound of the range of microblogs entries
+	 * @param end the upper bound of the range of microblogs entries (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching microblogs entries
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<MicroblogsEntry> findByU_C_T_S(long userId, Date createDate,
+		int type, int socialRelationType, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		boolean pagination = true;
+		FinderPath finderPath = null;
+		Object[] finderArgs = null;
+
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+				(orderByComparator == null)) {
+			pagination = false;
+			finderPath = FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_C_T_S;
+			finderArgs = new Object[] {
+					userId, createDate, type, socialRelationType
+				};
+		}
+		else {
+			finderPath = FINDER_PATH_WITH_PAGINATION_FIND_BY_U_C_T_S;
+			finderArgs = new Object[] {
+					userId, createDate, type, socialRelationType,
+					
+					start, end, orderByComparator
+				};
+		}
+
+		List<MicroblogsEntry> list = (List<MicroblogsEntry>)FinderCacheUtil.getResult(finderPath,
+				finderArgs, this);
+
+		if ((list != null) && !list.isEmpty()) {
+			for (MicroblogsEntry microblogsEntry : list) {
+				if ((userId != microblogsEntry.getUserId()) ||
+						!Validator.equals(createDate,
+							microblogsEntry.getCreateDate()) ||
+						(type != microblogsEntry.getType()) ||
+						(socialRelationType != microblogsEntry.getSocialRelationType())) {
+					list = null;
+
+					break;
+				}
+			}
+		}
+
+		if (list == null) {
+			StringBundler query = null;
+
+			if (orderByComparator != null) {
+				query = new StringBundler(6 +
+						(orderByComparator.getOrderByFields().length * 3));
+			}
+			else {
+				query = new StringBundler(6);
+			}
+
+			query.append(_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+
+			query.append(_FINDER_COLUMN_U_C_T_S_USERID_2);
+
+			boolean bindCreateDate = false;
+
+			if (createDate == null) {
+				query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_1);
+			}
+			else {
+				bindCreateDate = true;
+
+				query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_2);
+			}
+
+			query.append(_FINDER_COLUMN_U_C_T_S_TYPE_2);
+
+			query.append(_FINDER_COLUMN_U_C_T_S_SOCIALRELATIONTYPE_2);
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator);
+			}
+			else
+			 if (pagination) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				if (bindCreateDate) {
+					qPos.add(new Timestamp(createDate.getTime()));
+				}
+
+				qPos.add(type);
+
+				qPos.add(socialRelationType);
+
+				if (!pagination) {
+					list = (List<MicroblogsEntry>)QueryUtil.list(q,
+							getDialect(), start, end, false);
+
+					Collections.sort(list);
+
+					list = Collections.unmodifiableList(list);
+				}
+				else {
+					list = (List<MicroblogsEntry>)QueryUtil.list(q,
+							getDialect(), start, end);
+				}
+
+				cacheResult(list);
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, list);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return list;
+	}
+
+	/**
+	 * Returns the first microblogs entry in the ordered set where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching microblogs entry
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public MicroblogsEntry findByU_C_T_S_First(long userId, Date createDate,
+		int type, int socialRelationType, OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByU_C_T_S_First(userId,
+				createDate, type, socialRelationType, orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(", createDate=");
+		msg.append(createDate);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(", socialRelationType=");
+		msg.append(socialRelationType);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the first microblogs entry in the ordered set where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public MicroblogsEntry fetchByU_C_T_S_First(long userId, Date createDate,
+		int type, int socialRelationType, OrderByComparator orderByComparator)
+		throws SystemException {
+		List<MicroblogsEntry> list = findByU_C_T_S(userId, createDate, type,
+				socialRelationType, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last microblogs entry in the ordered set where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching microblogs entry
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public MicroblogsEntry findByU_C_T_S_Last(long userId, Date createDate,
+		int type, int socialRelationType, OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = fetchByU_C_T_S_Last(userId,
+				createDate, type, socialRelationType, orderByComparator);
+
+		if (microblogsEntry != null) {
+			return microblogsEntry;
+		}
+
+		StringBundler msg = new StringBundler(10);
+
+		msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		msg.append("userId=");
+		msg.append(userId);
+
+		msg.append(", createDate=");
+		msg.append(createDate);
+
+		msg.append(", type=");
+		msg.append(type);
+
+		msg.append(", socialRelationType=");
+		msg.append(socialRelationType);
+
+		msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+		throw new NoSuchEntryException(msg.toString());
+	}
+
+	/**
+	 * Returns the last microblogs entry in the ordered set where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public MicroblogsEntry fetchByU_C_T_S_Last(long userId, Date createDate,
+		int type, int socialRelationType, OrderByComparator orderByComparator)
+		throws SystemException {
+		int count = countByU_C_T_S(userId, createDate, type, socialRelationType);
+
+		if (count == 0) {
+			return null;
+		}
+
+		List<MicroblogsEntry> list = findByU_C_T_S(userId, createDate, type,
+				socialRelationType, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the microblogs entries before and after the current microblogs entry in the ordered set where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param microblogsEntryId the primary key of the current microblogs entry
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next microblogs entry
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public MicroblogsEntry[] findByU_C_T_S_PrevAndNext(long microblogsEntryId,
+		long userId, Date createDate, int type, int socialRelationType,
+		OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			MicroblogsEntry[] array = new MicroblogsEntryImpl[3];
+
+			array[0] = getByU_C_T_S_PrevAndNext(session, microblogsEntry,
+					userId, createDate, type, socialRelationType,
+					orderByComparator, true);
+
+			array[1] = microblogsEntry;
+
+			array[2] = getByU_C_T_S_PrevAndNext(session, microblogsEntry,
+					userId, createDate, type, socialRelationType,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected MicroblogsEntry getByU_C_T_S_PrevAndNext(Session session,
+		MicroblogsEntry microblogsEntry, long userId, Date createDate,
+		int type, int socialRelationType, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		query.append(_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+
+		query.append(_FINDER_COLUMN_U_C_T_S_USERID_2);
+
+		boolean bindCreateDate = false;
+
+		if (createDate == null) {
+			query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_1);
+		}
+		else {
+			bindCreateDate = true;
+
+			query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_2);
+		}
+
+		query.append(_FINDER_COLUMN_U_C_T_S_TYPE_2);
+
+		query.append(_FINDER_COLUMN_U_C_T_S_SOCIALRELATIONTYPE_2);
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				query.append(_ORDER_BY_ENTITY_ALIAS);
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = query.toString();
+
+		Query q = session.createQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		if (bindCreateDate) {
+			qPos.add(new Timestamp(createDate.getTime()));
+		}
+
+		qPos.add(type);
+
+		qPos.add(socialRelationType);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(microblogsEntry);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MicroblogsEntry> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns all the microblogs entries that the user has permission to view where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @return the matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
+		Date createDate, int type, int socialRelationType)
+		throws SystemException {
+		return filterFindByU_C_T_S(userId, createDate, type,
+			socialRelationType, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+	}
+
+	/**
+	 * Returns a range of all the microblogs entries that the user has permission to view where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.microblogs.model.impl.MicroblogsEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param start the lower bound of the range of microblogs entries
+	 * @param end the upper bound of the range of microblogs entries (not inclusive)
+	 * @return the range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
+		Date createDate, int type, int socialRelationType, int start, int end)
+		throws SystemException {
+		return filterFindByU_C_T_S(userId, createDate, type,
+			socialRelationType, start, end, null);
+	}
+
+	/**
+	 * Returns an ordered range of all the microblogs entries that the user has permissions to view where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.microblogs.model.impl.MicroblogsEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * </p>
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param start the lower bound of the range of microblogs entries
+	 * @param end the upper bound of the range of microblogs entries (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
+		Date createDate, int type, int socialRelationType, int start, int end,
+		OrderByComparator orderByComparator) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByU_C_T_S(userId, createDate, type, socialRelationType,
+				start, end, orderByComparator);
+		}
+
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
+		else {
+			query = new StringBundler(6);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_U_C_T_S_USERID_2);
+
+		boolean bindCreateDate = false;
+
+		if (createDate == null) {
+			query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_1);
+		}
+		else {
+			bindCreateDate = true;
+
+			query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_2);
+		}
+
+		query.append(_FINDER_COLUMN_U_C_T_S_TYPE_2_SQL);
+
+		query.append(_FINDER_COLUMN_U_C_T_S_SOCIALRELATIONTYPE_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			if (getDB().isSupportsInlineDistinct()) {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_ALIAS,
+					orderByComparator, true);
+			}
+			else {
+				appendOrderByComparator(query, _ORDER_BY_ENTITY_TABLE,
+					orderByComparator, true);
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+
+			if (getDB().isSupportsInlineDistinct()) {
+				q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+			}
+			else {
+				q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+			}
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			if (bindCreateDate) {
+				qPos.add(new Timestamp(createDate.getTime()));
+			}
+
+			qPos.add(type);
+
+			qPos.add(socialRelationType);
+
+			return (List<MicroblogsEntry>)QueryUtil.list(q, getDialect(),
+				start, end);
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	/**
+	 * Returns the microblogs entries before and after the current microblogs entry in the ordered set of microblogs entries that the user has permission to view where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param microblogsEntryId the primary key of the current microblogs entry
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next microblogs entry
+	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public MicroblogsEntry[] filterFindByU_C_T_S_PrevAndNext(
+		long microblogsEntryId, long userId, Date createDate, int type,
+		int socialRelationType, OrderByComparator orderByComparator)
+		throws NoSuchEntryException, SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return findByU_C_T_S_PrevAndNext(microblogsEntryId, userId,
+				createDate, type, socialRelationType, orderByComparator);
+		}
+
+		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			MicroblogsEntry[] array = new MicroblogsEntryImpl[3];
+
+			array[0] = filterGetByU_C_T_S_PrevAndNext(session, microblogsEntry,
+					userId, createDate, type, socialRelationType,
+					orderByComparator, true);
+
+			array[1] = microblogsEntry;
+
+			array[2] = filterGetByU_C_T_S_PrevAndNext(session, microblogsEntry,
+					userId, createDate, type, socialRelationType,
+					orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected MicroblogsEntry filterGetByU_C_T_S_PrevAndNext(Session session,
+		MicroblogsEntry microblogsEntry, long userId, Date createDate,
+		int type, int socialRelationType, OrderByComparator orderByComparator,
+		boolean previous) {
+		StringBundler query = null;
+
+		if (orderByComparator != null) {
+			query = new StringBundler(6 +
+					(orderByComparator.getOrderByFields().length * 6));
+		}
+		else {
+			query = new StringBundler(3);
+		}
+
+		if (getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_WHERE);
+		}
+		else {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_1);
+		}
+
+		query.append(_FINDER_COLUMN_U_C_T_S_USERID_2);
+
+		boolean bindCreateDate = false;
+
+		if (createDate == null) {
+			query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_1);
+		}
+		else {
+			bindCreateDate = true;
+
+			query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_2);
+		}
+
+		query.append(_FINDER_COLUMN_U_C_T_S_TYPE_2_SQL);
+
+		query.append(_FINDER_COLUMN_U_C_T_S_SOCIALRELATIONTYPE_2);
+
+		if (!getDB().isSupportsInlineDistinct()) {
+			query.append(_FILTER_SQL_SELECT_MICROBLOGSENTRY_NO_INLINE_DISTINCT_WHERE_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields = orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				query.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(WHERE_GREATER_THAN);
+					}
+					else {
+						query.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			query.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				if (getDB().isSupportsInlineDistinct()) {
+					query.append(_ORDER_BY_ENTITY_ALIAS);
+				}
+				else {
+					query.append(_ORDER_BY_ENTITY_TABLE);
+				}
+
+				query.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						query.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						query.append(ORDER_BY_ASC);
+					}
+					else {
+						query.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			if (getDB().isSupportsInlineDistinct()) {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_JPQL);
+			}
+			else {
+				query.append(MicroblogsEntryModelImpl.ORDER_BY_SQL);
+			}
+		}
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		SQLQuery q = session.createSynchronizedSQLQuery(sql);
+
+		q.setFirstResult(0);
+		q.setMaxResults(2);
+
+		if (getDB().isSupportsInlineDistinct()) {
+			q.addEntity(_FILTER_ENTITY_ALIAS, MicroblogsEntryImpl.class);
+		}
+		else {
+			q.addEntity(_FILTER_ENTITY_TABLE, MicroblogsEntryImpl.class);
+		}
+
+		QueryPos qPos = QueryPos.getInstance(q);
+
+		qPos.add(userId);
+
+		if (bindCreateDate) {
+			qPos.add(new Timestamp(createDate.getTime()));
+		}
+
+		qPos.add(type);
+
+		qPos.add(socialRelationType);
+
+		if (orderByComparator != null) {
+			Object[] values = orderByComparator.getOrderByConditionValues(microblogsEntry);
+
+			for (Object value : values) {
+				qPos.add(value);
+			}
+		}
+
+		List<MicroblogsEntry> list = q.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
+		}
+	}
+
+	/**
+	 * Removes all the microblogs entries where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public void removeByU_C_T_S(long userId, Date createDate, int type,
+		int socialRelationType) throws SystemException {
+		for (MicroblogsEntry microblogsEntry : findByU_C_T_S(userId,
+				createDate, type, socialRelationType, QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS, null)) {
+			remove(microblogsEntry);
+		}
+	}
+
+	/**
+	 * Returns the number of microblogs entries where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @return the number of matching microblogs entries
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByU_C_T_S(long userId, Date createDate, int type,
+		int socialRelationType) throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_C_T_S;
+
+		Object[] finderArgs = new Object[] {
+				userId, createDate, type, socialRelationType
+			};
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(5);
+
+			query.append(_SQL_COUNT_MICROBLOGSENTRY_WHERE);
+
+			query.append(_FINDER_COLUMN_U_C_T_S_USERID_2);
+
+			boolean bindCreateDate = false;
+
+			if (createDate == null) {
+				query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_1);
+			}
+			else {
+				bindCreateDate = true;
+
+				query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_2);
+			}
+
+			query.append(_FINDER_COLUMN_U_C_T_S_TYPE_2);
+
+			query.append(_FINDER_COLUMN_U_C_T_S_SOCIALRELATIONTYPE_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				if (bindCreateDate) {
+					qPos.add(new Timestamp(createDate.getTime()));
+				}
+
+				qPos.add(type);
+
+				qPos.add(socialRelationType);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	/**
+	 * Returns the number of microblogs entries that the user has permission to view where userId = &#63; and createDate = &#63; and type = &#63; and socialRelationType = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param createDate the create date
+	 * @param type the type
+	 * @param socialRelationType the social relation type
+	 * @return the number of matching microblogs entries that the user has permission to view
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int filterCountByU_C_T_S(long userId, Date createDate, int type,
+		int socialRelationType) throws SystemException {
+		if (!InlineSQLHelperUtil.isEnabled()) {
+			return countByU_C_T_S(userId, createDate, type, socialRelationType);
+		}
+
+		StringBundler query = new StringBundler(5);
+
+		query.append(_FILTER_SQL_COUNT_MICROBLOGSENTRY_WHERE);
+
+		query.append(_FINDER_COLUMN_U_C_T_S_USERID_2);
+
+		boolean bindCreateDate = false;
+
+		if (createDate == null) {
+			query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_1);
+		}
+		else {
+			bindCreateDate = true;
+
+			query.append(_FINDER_COLUMN_U_C_T_S_CREATEDATE_2);
+		}
+
+		query.append(_FINDER_COLUMN_U_C_T_S_TYPE_2_SQL);
+
+		query.append(_FINDER_COLUMN_U_C_T_S_SOCIALRELATIONTYPE_2);
+
+		String sql = InlineSQLHelperUtil.replacePermissionCheck(query.toString(),
+				MicroblogsEntry.class.getName(),
+				_FILTER_ENTITY_TABLE_FILTER_PK_COLUMN);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+
+			q.addScalar(COUNT_COLUMN_NAME,
+				com.liferay.portal.kernel.dao.orm.Type.LONG);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+
+			if (bindCreateDate) {
+				qPos.add(new Timestamp(createDate.getTime()));
+			}
+
+			qPos.add(type);
+
+			qPos.add(socialRelationType);
+
+			Long count = (Long)q.uniqueResult();
+
+			return count.intValue();
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	private static final String _FINDER_COLUMN_U_C_T_S_USERID_2 = "microblogsEntry.userId = ? AND ";
+	private static final String _FINDER_COLUMN_U_C_T_S_CREATEDATE_1 = "microblogsEntry.createDate IS NULL AND ";
+	private static final String _FINDER_COLUMN_U_C_T_S_CREATEDATE_2 = "microblogsEntry.createDate = ? AND ";
+	private static final String _FINDER_COLUMN_U_C_T_S_TYPE_2 = "microblogsEntry.type = ? AND ";
+	private static final String _FINDER_COLUMN_U_C_T_S_TYPE_2_SQL = "microblogsEntry.type_ = ? AND ";
+	private static final String _FINDER_COLUMN_U_C_T_S_SOCIALRELATIONTYPE_2 = "microblogsEntry.socialRelationType = ?";
 
 	public MicroblogsEntryPersistenceImpl() {
 		setModelClass(MicroblogsEntry.class);
@@ -4887,6 +5999,31 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_T_RMEI, args);
 				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_T_RMEI,
+					args);
+			}
+
+			if ((microblogsEntryModelImpl.getColumnBitmask() &
+					FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_C_T_S.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						microblogsEntryModelImpl.getOriginalUserId(),
+						microblogsEntryModelImpl.getOriginalCreateDate(),
+						microblogsEntryModelImpl.getOriginalType(),
+						microblogsEntryModelImpl.getOriginalSocialRelationType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_C_T_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_C_T_S,
+					args);
+
+				args = new Object[] {
+						microblogsEntryModelImpl.getUserId(),
+						microblogsEntryModelImpl.getCreateDate(),
+						microblogsEntryModelImpl.getType(),
+						microblogsEntryModelImpl.getSocialRelationType()
+					};
+
+				FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_C_T_S, args);
+				FinderCacheUtil.removeResult(FINDER_PATH_WITHOUT_PAGINATION_FIND_BY_U_C_T_S,
 					args);
 			}
 		}

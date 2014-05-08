@@ -3,6 +3,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.microblogs.service.MicroblogsEntryLocalService" class="com.liferay.microblogs.service.impl.MicroblogsEntryLocalServiceImpl" />
 	<bean id="com.liferay.microblogs.service.MicroblogsEntryService" class="com.liferay.microblogs.service.impl.MicroblogsEntryServiceImpl" />
-	<bean id="com.liferay.microblogs.service.persistence.MicroblogsEntryPersistence" class="com.liferay.microblogs.service.persistence.MicroblogsEntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder" class="com.liferay.microblogs.service.persistence.MicroblogsEntryFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.microblogs.service.persistence.MicroblogsEntryPersistence" class="com.liferay.microblogs.service.persistence.impl.MicroblogsEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.microblogs.service.persistence.MicroblogsEntryFinder" class="com.liferay.microblogs.service.persistence.impl.MicroblogsEntryFinderImpl" parent="basePersistence" />
 </beans>

@@ -98,11 +98,12 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 				"value.object.column.bitmask.enabled.com.liferay.microblogs.model.MicroblogsEntry"),
 			true);
 	public static long COMPANYID_COLUMN_BITMASK = 1L;
-	public static long RECEIVERMICROBLOGSENTRYID_COLUMN_BITMASK = 2L;
-	public static long RECEIVERUSERID_COLUMN_BITMASK = 4L;
-	public static long TYPE_COLUMN_BITMASK = 8L;
-	public static long USERID_COLUMN_BITMASK = 16L;
-	public static long CREATEDATE_COLUMN_BITMASK = 32L;
+	public static long CREATEDATE_COLUMN_BITMASK = 2L;
+	public static long RECEIVERMICROBLOGSENTRYID_COLUMN_BITMASK = 4L;
+	public static long RECEIVERUSERID_COLUMN_BITMASK = 8L;
+	public static long SOCIALRELATIONTYPE_COLUMN_BITMASK = 16L;
+	public static long TYPE_COLUMN_BITMASK = 32L;
+	public static long USERID_COLUMN_BITMASK = 64L;
 
 	/**
 	 * Converts the soap model instance into a normal model instance.
@@ -382,7 +383,15 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	public void setCreateDate(Date createDate) {
 		_columnBitmask = -1L;
 
+		if (_originalCreateDate == null) {
+			_originalCreateDate = _createDate;
+		}
+
 		_createDate = createDate;
+	}
+
+	public Date getOriginalCreateDate() {
+		return _originalCreateDate;
 	}
 
 	@JSON
@@ -505,7 +514,19 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 	@Override
 	public void setSocialRelationType(int socialRelationType) {
+		_columnBitmask |= SOCIALRELATIONTYPE_COLUMN_BITMASK;
+
+		if (!_setOriginalSocialRelationType) {
+			_setOriginalSocialRelationType = true;
+
+			_originalSocialRelationType = _socialRelationType;
+		}
+
 		_socialRelationType = socialRelationType;
+	}
+
+	public int getOriginalSocialRelationType() {
+		return _originalSocialRelationType;
 	}
 
 	public long getColumnBitmask() {
@@ -621,6 +642,8 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 
 		microblogsEntryModelImpl._setOriginalUserId = false;
 
+		microblogsEntryModelImpl._originalCreateDate = microblogsEntryModelImpl._createDate;
+
 		microblogsEntryModelImpl._originalType = microblogsEntryModelImpl._type;
 
 		microblogsEntryModelImpl._setOriginalType = false;
@@ -632,6 +655,10 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 		microblogsEntryModelImpl._originalReceiverMicroblogsEntryId = microblogsEntryModelImpl._receiverMicroblogsEntryId;
 
 		microblogsEntryModelImpl._setOriginalReceiverMicroblogsEntryId = false;
+
+		microblogsEntryModelImpl._originalSocialRelationType = microblogsEntryModelImpl._socialRelationType;
+
+		microblogsEntryModelImpl._setOriginalSocialRelationType = false;
 
 		microblogsEntryModelImpl._columnBitmask = 0;
 	}
@@ -793,6 +820,7 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	private boolean _setOriginalUserId;
 	private String _userName;
 	private Date _createDate;
+	private Date _originalCreateDate;
 	private Date _modifiedDate;
 	private String _content;
 	private int _type;
@@ -805,6 +833,8 @@ public class MicroblogsEntryModelImpl extends BaseModelImpl<MicroblogsEntry>
 	private long _originalReceiverMicroblogsEntryId;
 	private boolean _setOriginalReceiverMicroblogsEntryId;
 	private int _socialRelationType;
+	private int _originalSocialRelationType;
+	private boolean _setOriginalSocialRelationType;
 	private long _columnBitmask;
 	private MicroblogsEntry _escapedModel;
 }

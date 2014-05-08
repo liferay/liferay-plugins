@@ -90,100 +90,104 @@ public class MicroblogsEntryLocalServiceClp
 
 		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getPersistedModel";
+		_methodName12 = "getActionableDynamicQuery";
 
-		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "getMicroblogsEntries";
+		_methodName13 = "getPersistedModel";
 
-		_methodParameterTypes13 = new String[] { "int", "int" };
+		_methodParameterTypes13 = new String[] { "java.io.Serializable" };
 
-		_methodName14 = "getMicroblogsEntriesCount";
+		_methodName14 = "getMicroblogsEntries";
 
-		_methodParameterTypes14 = new String[] {  };
+		_methodParameterTypes14 = new String[] { "int", "int" };
 
-		_methodName15 = "updateMicroblogsEntry";
+		_methodName15 = "getMicroblogsEntriesCount";
 
-		_methodParameterTypes15 = new String[] {
+		_methodParameterTypes15 = new String[] {  };
+
+		_methodName16 = "updateMicroblogsEntry";
+
+		_methodParameterTypes16 = new String[] {
 				"com.liferay.microblogs.model.MicroblogsEntry"
 			};
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName17 = "getBeanIdentifier";
 
-		_methodParameterTypes16 = new String[] {  };
+		_methodParameterTypes17 = new String[] {  };
 
-		_methodName17 = "setBeanIdentifier";
+		_methodName18 = "setBeanIdentifier";
 
-		_methodParameterTypes17 = new String[] { "java.lang.String" };
+		_methodParameterTypes18 = new String[] { "java.lang.String" };
 
-		_methodName19 = "addMicroblogsEntry";
+		_methodName20 = "addMicroblogsEntry";
 
-		_methodParameterTypes19 = new String[] {
+		_methodParameterTypes20 = new String[] {
 				"long", "java.lang.String", "int", "long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName20 = "deleteUserMicroblogsEntries";
+		_methodName21 = "deleteUserMicroblogsEntries";
 
-		_methodParameterTypes20 = new String[] { "long" };
+		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName21 = "getCompanyMicroblogsEntries";
+		_methodName22 = "getCompanyMicroblogsEntries";
 
-		_methodParameterTypes21 = new String[] { "long", "int", "int" };
+		_methodParameterTypes22 = new String[] { "long", "int", "int" };
 
-		_methodName22 = "getCompanyMicroblogsEntriesCount";
+		_methodName23 = "getCompanyMicroblogsEntriesCount";
 
-		_methodParameterTypes22 = new String[] { "long" };
-
-		_methodName23 = "getReceiverMicroblogsEntryMicroblogsEntries";
-
-		_methodParameterTypes23 = new String[] { "int", "long", "int", "int" };
+		_methodParameterTypes23 = new String[] { "long" };
 
 		_methodName24 = "getReceiverMicroblogsEntryMicroblogsEntries";
 
-		_methodParameterTypes24 = new String[] {
+		_methodParameterTypes24 = new String[] { "int", "long", "int", "int" };
+
+		_methodName25 = "getReceiverMicroblogsEntryMicroblogsEntries";
+
+		_methodParameterTypes25 = new String[] {
 				"int", "long", "int", "int",
 				"com.liferay.portal.kernel.util.OrderByComparator"
 			};
 
-		_methodName25 = "getReceiverMicroblogsEntryMicroblogsEntriesCount";
+		_methodName26 = "getReceiverMicroblogsEntryMicroblogsEntriesCount";
 
-		_methodParameterTypes25 = new String[] { "int", "long" };
+		_methodParameterTypes26 = new String[] { "int", "long" };
 
-		_methodName26 = "getReceiverUserMicroblogsEntries";
+		_methodName27 = "getReceiverUserMicroblogsEntries";
 
-		_methodParameterTypes26 = new String[] { "int", "long", "int", "int" };
+		_methodParameterTypes27 = new String[] { "int", "long", "int", "int" };
 
-		_methodName27 = "getReceiverUserMicroblogsEntriesCount";
+		_methodName28 = "getReceiverUserMicroblogsEntriesCount";
 
-		_methodParameterTypes27 = new String[] { "int", "long" };
-
-		_methodName28 = "getUserMicroblogsEntries";
-
-		_methodParameterTypes28 = new String[] { "long", "int", "int" };
+		_methodParameterTypes28 = new String[] { "int", "long" };
 
 		_methodName29 = "getUserMicroblogsEntries";
 
-		_methodParameterTypes29 = new String[] { "long", "int", "int", "int" };
+		_methodParameterTypes29 = new String[] { "long", "int", "int" };
 
-		_methodName30 = "getUserMicroblogsEntriesCount";
+		_methodName30 = "getUserMicroblogsEntries";
 
-		_methodParameterTypes30 = new String[] { "long" };
+		_methodParameterTypes30 = new String[] { "long", "int", "int", "int" };
 
 		_methodName31 = "getUserMicroblogsEntriesCount";
 
-		_methodParameterTypes31 = new String[] { "long", "int" };
+		_methodParameterTypes31 = new String[] { "long" };
 
-		_methodName32 = "updateAsset";
+		_methodName32 = "getUserMicroblogsEntriesCount";
 
-		_methodParameterTypes32 = new String[] {
+		_methodParameterTypes32 = new String[] { "long", "int" };
+
+		_methodName33 = "updateAsset";
+
+		_methodParameterTypes33 = new String[] {
 				"com.liferay.microblogs.model.MicroblogsEntry", "long[][]",
 				"java.lang.String[][]"
 			};
 
-		_methodName33 = "updateMicroblogsEntry";
+		_methodName34 = "updateMicroblogsEntry";
 
-		_methodParameterTypes33 = new String[] {
+		_methodParameterTypes34 = new String[] {
 				"long", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -573,6 +577,34 @@ public class MicroblogsEntryLocalServiceClp
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName12,
+					_methodParameterTypes12, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -580,8 +612,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName12,
-					_methodParameterTypes12,
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -614,8 +646,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -642,8 +674,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -671,8 +703,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15,
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16,
 					new Object[] { ClpSerializer.translateInput(microblogsEntry) });
 		}
 		catch (Throwable t) {
@@ -699,8 +731,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -720,8 +752,8 @@ public class MicroblogsEntryLocalServiceClp
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName17,
-				_methodParameterTypes17,
+			_invokableLocalService.invokeMethod(_methodName18,
+				_methodParameterTypes18,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -754,8 +786,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] {
 						userId,
 						
@@ -800,8 +832,8 @@ public class MicroblogsEntryLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName20,
-				_methodParameterTypes20, new Object[] { userId });
+			_invokableLocalService.invokeMethod(_methodName21,
+				_methodParameterTypes21, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -831,8 +863,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21,
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22,
 					new Object[] { companyId, start, end });
 		}
 		catch (Throwable t) {
@@ -860,8 +892,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22, new Object[] { companyId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23, new Object[] { companyId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -889,8 +921,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { type, receiverMicroblogsEntryId, start, end });
 		}
 		catch (Throwable t) {
@@ -920,8 +952,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
 					new Object[] {
 						type,
 						
@@ -960,8 +992,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25,
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
 					new Object[] { type, receiverMicroblogsEntryId });
 		}
 		catch (Throwable t) {
@@ -990,8 +1022,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { type, receiverUserId, start, end });
 		}
 		catch (Throwable t) {
@@ -1020,8 +1052,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27,
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28,
 					new Object[] { type, receiverUserId });
 		}
 		catch (Throwable t) {
@@ -1050,8 +1082,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28, new Object[] { userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29, new Object[] { userId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1079,8 +1111,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29,
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30,
 					new Object[] { userId, type, start, end });
 		}
 		catch (Throwable t) {
@@ -1108,8 +1140,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName30,
-					_methodParameterTypes30, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1136,8 +1168,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName31,
-					_methodParameterTypes31, new Object[] { userId, type });
+			returnObj = _invokableLocalService.invokeMethod(_methodName32,
+					_methodParameterTypes32, new Object[] { userId, type });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1165,8 +1197,8 @@ public class MicroblogsEntryLocalServiceClp
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName32,
-				_methodParameterTypes32,
+			_invokableLocalService.invokeMethod(_methodName33,
+				_methodParameterTypes33,
 				new Object[] {
 					ClpSerializer.translateInput(microblogsEntry),
 					
@@ -1206,8 +1238,8 @@ public class MicroblogsEntryLocalServiceClp
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName33,
-					_methodParameterTypes33,
+			returnObj = _invokableLocalService.invokeMethod(_methodName34,
+					_methodParameterTypes34,
 					new Object[] {
 						microblogsEntryId,
 						
@@ -1278,8 +1310,8 @@ public class MicroblogsEntryLocalServiceClp
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
-	private String _methodName19;
-	private String[] _methodParameterTypes19;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
@@ -1308,4 +1340,6 @@ public class MicroblogsEntryLocalServiceClp
 	private String[] _methodParameterTypes32;
 	private String _methodName33;
 	private String[] _methodParameterTypes33;
+	private String _methodName34;
+	private String[] _methodParameterTypes34;
 }

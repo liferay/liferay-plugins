@@ -15,7 +15,10 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.microblogs.service.persistence;
+package com.liferay.microblogs.service.persistence.impl;
+
+import com.liferay.microblogs.service.persistence.MicroblogsEntryFinder;
+import com.liferay.microblogs.service.persistence.MicroblogsEntryUtil;
 
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
