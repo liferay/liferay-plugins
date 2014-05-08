@@ -29,7 +29,7 @@ List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getSiblingKBArticles(them
 		for (int i = 0; i < kbArticles.size(); i++) {
 			KBArticle kbArticle = kbArticles.get(i);
 
-			List<KBArticle> childKBArticles = KBNavigationUtil.getChildKBArticles(kbArticle, new ArrayList<KBArticle>());
+			List<KBArticle> childKBArticles = NavigationUtil.getChildKBArticles(kbArticle, new ArrayList<KBArticle>());
 		%>
 
 			{

@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * @author Roberto Díaz
  */
-public class KBNavigationUtil {
+public class NavigationUtil {
 
 	public static List<KBArticle> getChildKBArticles(
 			KBArticle kbArticle, List<KBArticle> childKBArticles)
