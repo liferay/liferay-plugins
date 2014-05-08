@@ -205,8 +205,10 @@ AUI().use(
 				for (var i = 0; i < mails.length; ++i) {
 					var mail = mails[i];
 					var msg = mail.message;
+					var mailType = mail.type;
+					var msgType = msg.type;
 
-					var ensurePanel = !(mail.type === 'conn' && msg.type === 'status');
+					var ensurePanel = !(mailType === 'conn' && msgType === 'status');
 					if (ensurePanel) {
 						instance.debugMsg('asking host to ensure panel for user ID ' + mail.sourceUserId);
 						var webRtcConversation = instance._cb.ensurePanel(mail.sourceUserId);
@@ -218,43 +220,35 @@ AUI().use(
 						continue;
 					}
 
-					Liferay.Chat.WebRtcManager.debugJsonIO(mail.type, msg, 'i');
+					Liferay.Chat.WebRtcManager.debugJsonIO(mailType, msg, 'i');
 
-					switch (mail.type) {
-						case 'err':
-							webRtcConversation.onMsgError(msg);
-							break;
+					if (mailType === 'err') {
+						webRtcConversation.onMsgError(msg);
+					}
+					else if (mailType === 'conn') {
+						webRtcConversation._cb.onWebRtcEvent();
 
-						case 'conn':
-							webRtcConversation._cb.onWebRtcEvent();
-							switch (msg.type) {
-								case 'call':
-									webRtcConversation.onMsgGotCall();
-									break;
-
-								case 'answer':
-									webRtcConversation.onMsgGotAnswer(msg);
-									break;
-
-								case 'status':
-									webRtcConversation.onMsgGotStatus(msg);
-									break;
-
-								default:
-									instance.errorMsg('got "conn" message, but unknown connection message type "' + msg.type + '"');
-							}
-							break;
-
-						case 'ice':
-							webRtcConversation.onMsgNewIceCandidate(msg);
-							break;
-
-						case 'sdp':
-							webRtcConversation.onMsgNewSdp(msg);
-							break;
-
-						default:
-							instance.errorMsg('got message, but unknown message type "' + mail.type + '"');
+						if (msgType === 'call') {
+							webRtcConversation.onMsgGotCall();
+						}
+						else if (msgType === 'answer') {
+							webRtcConversation.onMsgGotAnswer(msg);
+						}
+						else if (msgType === 'status') {
+							webRtcConversation.onMsgGotStatus(msg);
+						}
+						else {
+							instance.errorMsg('got "conn" message, but unknown connection message type "' + msg.type + '"');
+						}
+					}
+					else if (mailType === 'ice') {
+						webRtcConversation.onMsgNewIceCandidate(msg);
+					}
+					else if (mailType === 'sdp') {
+						webRtcConversation.onMsgNewSdp(msg);
+					}
+					else {
+						instance.errorMsg('got message, but unknown message type "' + mail.type + '"');
 					}
 				}
 			},
@@ -457,8 +451,6 @@ AUI().use(
 			instance._remoteVideoEl = config.remoteVideoEl;
 			instance._localVideoEl = config.localVideoEl;
 
-			instance._lastError = Liferay.Chat.WebRtcConversation.Error.NOERROR;
-
 			instance._iceServers = [];
 			for (var i in config.iceServers) {
 				var ice = config.iceServers[i];
@@ -469,8 +461,25 @@ AUI().use(
 				}
 			}
 
+			var State = Liferay.Chat.WebRtcConversation.State;
+
+			var stateHandlers = {}
+
+			stateHandlers[State.STOPPED] = A.bind('_onStateStopped', instance);
+			stateHandlers[State.DELETED] = A.bind('_onStateDeleted', instance);
+			stateHandlers[State.CALLING] = A.bind('_onStateCalling', instance);
+			stateHandlers[State.CALLED] = A.bind('_onStateCalled', instance);
+			stateHandlers[State.GOTCALL] = A.bind('_onStateGotCall', instance);
+			stateHandlers[State.ACCEPTINGCALL] = A.bind('_onStateAcceptingCall', instance);
+			stateHandlers[State.DENYINGCALL] = A.bind('_onStateDenyingCall', instance);
+			stateHandlers[State.GOTANSWER] = A.bind('_onStateGotAnswer', instance);
+			stateHandlers[State.STOPPING] = A.bind('_onStateStopping', instance);
+			stateHandlers[State.DELETING] = A.bind('_onStateDeleting', instance);
+
+			instance._stateHandlers = stateHandlers;
+
 			Liferay.Chat.WebRtcManager.registerConversation(instance);
-			instance.setState(Liferay.Chat.WebRtcConversation.State.STOPPED);
+			instance.setState(State.STOPPED);
 		};
 
 		Liferay.Chat.WebRtcConversation.State = {
@@ -528,30 +537,24 @@ AUI().use(
 
 				Liferay.Chat.WebRtcManager.debugMsg('event: conversation deleted');
 
-				switch (instance.getState()) {
-					case State.CALLED:
-					case State.ACCEPTINGCALL:
-					case State.ANSWERED:
-					case State.GOTANSWER:
-					case State.CONNECTED:
-						instance.setState(Liferay.Chat.WebRtcConversation.State.DELETING);
-						instance._sendHangUpMsg();
-						break;
+				var state = instance.getState();
 
-					case State.STOPPING:
-						instance.setState(Liferay.Chat.WebRtcConversation.State.DELETING);
-						break;
-
-					case State.GOTCALL:
-					case State.GOTCALLWAITING:
-					case State.DENYINGCALL:
-						instance.setState(Liferay.Chat.WebRtcConversation.State.DELETED);
-						instance._sendAnswerMsg(false);
-						break;
-
-					default:
-						instance.setState(Liferay.Chat.WebRtcConversation.State.DELETED);
-						break;
+				if (state === State.CALLED || state === State.ACCEPTINGCALL ||
+						state === State.ANSWERED || state === State.GOTANSWER ||
+						state === State.CONNECTED) {
+					instance.setState(State.DELETING);
+					instance._sendHangUpMsg();
+				}
+				else if (state === State.STOPPING) {
+					instance.setState(State.DELETING);
+				}
+				else if (state === State.GOTCALL || state === State.GOTCALLWAITING ||
+						state === State.DENYINGCALL) {
+					instance.setState(State.DELETED);
+					instance._sendAnswerMsg(false);
+				}
+				else {
+					instance.setState(State.DELETED);
 				}
 			},
 
@@ -565,16 +568,12 @@ AUI().use(
 				var instance = this;
 
 				instance._cb.onWebRtcEvent();
-				switch (msg.id) {
-					case 'existingConnection':
-						break;
 
-					case 'unavailableUser':
-					case 'invalidState':
-					case 'cannotAnswer':
-						Liferay.Chat.WebRtcManager.errorMsg('error from server: "' + msg.id + '"');
-						instance.setState(State.STOPPED);
-						break;
+				var msgId = msg.id;
+
+				if (msgId === 'unavailableUser' || msgId === 'invalidState' || msgId === 'cannotAnswer') {
+					Liferay.Chat.WebRtcManager.errorMsg('error from server: "' + msg.id + '"');
+					instance.setState(State.STOPPED);
 				}
 			},
 
@@ -595,45 +594,27 @@ AUI().use(
 			onMsgGotCall: function() {
 				var instance = this;
 
-				var wrongState = false;
+				var state = instance.getState();
 
-				switch (instance.getState()) {
-					case State.STOPPED:
-					case State.STOPPING:
-					case State.DELETED:
-					case State.DELETING:
-						break;
-
-					case State.CALLED:
-					case State.CALLING:
-						instance.setState(State.GOTCALL);
-						break;
-
-					case State.CALLINGWAITING:
-						instance.setState(State.GOTCALLWAITING);
-						break;
-
-					default:
-						// Error: wrong state for an incoming call, so deny it
-						instance.setState(State.DENYINGCALL);
-						wrongState = true;
-				}
-
-				if (!wrongState) {
+				if (state === State.STOPPED || state === State.STOPPING ||
+						state === State.DELETED || state === State.DELETING ||
+						state === State.CALLINGWAITING) {
 					instance.setState(State.GOTCALLWAITING);
+				}
+				else if (state === State.CALLED || state === State.CALLING) {
+					instance.setState(State.GOTCALL);
+				}
+				else {
+					// Error: wrong state for an incoming call, so deny it
+					instance.setState(State.DENYINGCALL);
 				}
 			},
 
 			onMsgGotStatus: function(msg) {
 				var instance = this;
 
-				switch (msg.status) {
-					case 'lost':
-						instance._onLostConnection(msg.reason);
-						break;
-
-					default:
-						// Unknown connection status
+				if (msg.status === 'lost') {
+					instance._onLostConnection(msg.reason);
 				}
 			},
 
@@ -715,36 +696,22 @@ AUI().use(
 			onPressHangUp: function() {
 				var instance = this;
 
-				var State = Liferay.Chat.WebRtcConversation.State;
-
 				Liferay.Chat.WebRtcManager.debugMsg('event: user pressed "hang up"');
 
-				switch (instance.getState()) {
-					case State.GOTCALL:
-					case State.GOTCALLWAITING:
-						instance.setState(State.DENYINGCALL);
-						break;
+				var state = instance.getState();
 
-					case State.CALLED:
-					case State.CALLING:
-					case State.ANSWERED:
-					case State.ACCEPTINGCALL:
-					case State.DENYINGCALL:
-					case State.GOTANSWER:
-					case State.CONNECTED:
-						instance._sendHangUpMsg();
-						instance.setState(State.STOPPING);
-						break;
-
-					case State.CALLINGWAITING:
-						instance.setState(State.STOPPED);
-						break;
-
-					case State.STOPPING:
-					case State.STOPPED:
-					case State.DELETING:
-					case State.DELETED:
-						break;
+				if (state === State.GOTCALL || state === State.GOTCALLWAITING) {
+					instance.setState(State.DENYINGCALL);
+				}
+				else if (state === State.CALLED || state === State.CALLING ||
+						state === State.ANSWERED || state === State.ACCEPTINGCALL ||
+						state === State.DENYINGCALL || state === State.GOTANSWER ||
+						state === State.CONNECTED) {
+					instance._sendHangUpMsg();
+					instance.setState(State.STOPPING);
+				}
+				else if (state === State.CALLINGWAITING) {
+					instance.setState(State.STOPPED);
 				}
 			},
 
@@ -864,7 +831,7 @@ AUI().use(
 				var instance = this;
 
 				Liferay.Chat.WebRtcManager.debugMsg('event: lost logical connection with remote peer');
-				
+
 				if (instance._pc) {
 					instance._pc.close();
 					instance._pc = null;
@@ -874,17 +841,16 @@ AUI().use(
 					instance.onError(Error.HANGUP);
 				}
 				else if (reason === 'reset') {
-					instance.onError(Error.REMOTEPEERRESET);   
+					instance.onError(Error.REMOTEPEERRESET);
 				}
 
-				switch (instance.getState()) {
-					case Liferay.Chat.WebRtcConversation.State.DELETING:
-						instance.setState(State.DELETED);
-						break;
+				var state = instance.getState();
 
-					default:
-						instance.setState(State.STOPPED);
-						break;
+				if (state === State.DELETING) {
+					instance.setState(State.DELETED);
+				}
+				else {
+					instance.setState(State.STOPPED);
 				}
 			},
 
@@ -913,46 +879,10 @@ AUI().use(
 			_onStateChange: function() {
 				var instance = this;
 
-				switch (instance.getState()) {
-					case State.STOPPED:
-						instance._onStateStopped();
-						break;
+				var state = instance.getState();
 
-					case State.DELETED:
-						instance._onStateDeleted();
-						break;
-
-					case State.CALLING:
-						instance._onStateCalling();
-						break;
-
-					case State.CALLED:
-						instance._onStateCalled();
-						break;
-
-					case State.GOTCALL:
-						instance._onStateGotCall();
-						break;
-
-					case State.ACCEPTINGCALL:
-						instance._onStateAcceptingCall();
-						break;
-
-					case State.DENYINGCALL:
-						instance._onStateDenyingCall();
-						break;
-
-					case State.GOTANSWER:
-						instance._onStateGotAnswer();
-						break;
-
-					case State.STOPPING:
-						instance._onStateStopping();
-						break;
-
-					case State.DELETING:
-						instance._onStateDeleting();
-						break;
+				if (state in instance._stateHandlers) {
+					instance._stateHandlers[state]();
 				}
 			},
 
