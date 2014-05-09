@@ -90,9 +90,8 @@ public class Watcher implements Runnable {
 				if (e instanceof ConcurrentModificationException) {
 					continue;
 				}
-				else {
-					break;
-				}
+
+				break;
 			}
 
 			Path parentFilePath = _filePaths.get(watchKey);
