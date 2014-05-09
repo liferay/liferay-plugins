@@ -6,7 +6,7 @@
 
 	<target name="compile">
 		<compile
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 
 		<if>

@@ -16,7 +16,7 @@
 
 	<target name="merge">
 		<merge
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 
 		<delete file="tmp/WEB-INF/lib/log4j-1.2.15.jar" />

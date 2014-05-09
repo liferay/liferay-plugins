@@ -19,7 +19,7 @@
 		</antcall>
 
 		<compile
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 </project>

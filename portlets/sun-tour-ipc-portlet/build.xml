@@ -13,7 +13,7 @@
 
 	<target name="merge">
 		<merge
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 
 		<replace file="tmp/WEB-INF/portlet.xml">
