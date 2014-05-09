@@ -145,7 +145,7 @@ String htmlAttributes =
 	}
 
 	function <portlet:namespace />updateWidget(link, title, description, thumbnail) {
-		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = "<%= Constants.UPDATE %>";
+		document.<portlet:namespace />fm.<portlet:namespace /><%= Constants.CMD %>.value = '<%= Constants.UPDATE %>';
 		document.<portlet:namespace />fm.<portlet:namespace />link.value = link;
 		document.<portlet:namespace />fm.<portlet:namespace />title.value = title;
 		document.<portlet:namespace />fm.<portlet:namespace />description.value = description;
