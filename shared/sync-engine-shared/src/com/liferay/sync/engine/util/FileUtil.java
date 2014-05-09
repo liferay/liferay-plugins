@@ -40,6 +40,10 @@ import org.slf4j.LoggerFactory;
 public class FileUtil {
 
 	public static String getChecksum(Path filePath) {
+		if (!Files.exists(filePath)) {
+			return "";
+		}
+
 		InputStream fileInputStream = null;
 
 		try {
@@ -52,7 +56,7 @@ public class FileUtil {
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
 
-			return null;
+			return "";
 		}
 		finally {
 			StreamUtil.cleanUp(fileInputStream);
@@ -60,6 +64,10 @@ public class FileUtil {
 	}
 
 	public static String getFileKey(Path filePath) {
+		if (!Files.exists(filePath)) {
+			return "";
+		}
+
 		try {
 			BasicFileAttributes basicFileAttributes = Files.readAttributes(
 				filePath, BasicFileAttributes.class);
@@ -76,7 +84,7 @@ public class FileUtil {
 		catch (Exception e) {
 			_logger.error(e.getMessage(), e);
 
-			return null;
+			return "";
 		}
 	}
 

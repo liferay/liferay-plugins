@@ -28,6 +28,7 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -86,7 +87,12 @@ public class Watcher implements Runnable {
 				watchKey = _watchService.take();
 			}
 			catch (Exception e) {
-				break;
+				if (e instanceof ConcurrentModificationException) {
+					continue;
+				}
+				else {
+					break;
+				}
 			}
 
 			Path parentFilePath = _filePaths.get(watchKey);

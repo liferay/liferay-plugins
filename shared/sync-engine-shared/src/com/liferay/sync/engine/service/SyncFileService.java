@@ -117,6 +117,10 @@ public class SyncFileService {
 
 		// Local sync file
 
+		if (Files.notExists(filePath)) {
+			return null;
+		}
+
 		String name = String.valueOf(filePath.getFileName());
 
 		SyncFile syncFile = addSyncFile(
