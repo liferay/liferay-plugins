@@ -181,19 +181,15 @@
 	</target>
 
 	<target name="setup-eclipse">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="clean"
-					module.dir="@{module.dir}"
-				/>
+		<loop-macrodef-or-target
+			macrodef.name="clean"
+			module.dirs="${plugins.includes.path}"
+		/>
 
-				<call-macrodef-or-target
-					macrodef.name="compile"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="compile"
+			module.dirs="${plugins.includes.path}"
+		/>
 
 		<ant dir="hooks" target="setup-eclipse" inheritAll="false" />
 		<ant dir="portlets" target="setup-eclipse" inheritAll="false" />
