@@ -4,6 +4,23 @@
 <project name="build-common-ivy" xmlns:antelope="antlib:ise.antelope.tasks" xmlns:ivy="antlib:org.apache.ivy.ant">
 	<property name="ivy.home" value="${sdk.dir}/.ivy" />
 
+	<basename property="basedir.name" file="${basedir}" />
+
+	<propertyregex
+		input="${basedir.name}"
+		property="ivy.module.name"
+		regexp="(.*)\-(.*)$"
+		select="com.liferay.\1"
+	/>
+
+	<propertyregex
+		input="${ivy.module.name}"
+		override="true"
+		property="ivy.module.name"
+		regexp="\-"
+		replace="\."
+	/>
+
 	<if>
 		<not>
 			<available file="${ivy.home}/ivy-${ivy.version}.jar" />
