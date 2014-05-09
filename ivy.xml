@@ -5,7 +5,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
 >
-	<info module="plugins" organisation="com.liferay" />
+	<info module="com.liferay.sdk" organisation="com.liferay.sdk">
+		<license name="LGPL 2.1" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt" />
+
+		<description homepage="http://www.liferay.com" />
+	</info>
+
+	<configurations>
+		<conf name="default" />
+		<conf name="provided" />
+	</configurations>
 
 	<dependencies defaultconf="default">
 		<dependency name="activation" org="javax.activation" rev="1.1" />
