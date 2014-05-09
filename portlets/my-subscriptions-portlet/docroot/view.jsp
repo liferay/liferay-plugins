@@ -143,8 +143,8 @@
 		window,
 		'<portlet:namespace />unsubscribe',
 		function() {
-			document.<portlet:namespace />fm.method = "post";
-			document.<portlet:namespace />fm.<portlet:namespace />subscriptionIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+			document.<portlet:namespace />fm.method = 'post';
+			document.<portlet:namespace />fm.<portlet:namespace />subscriptionIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
 			submitForm(document.<portlet:namespace />fm);
 		},
