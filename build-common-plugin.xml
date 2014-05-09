@@ -7,7 +7,7 @@
 	<property name="plugins.includes.path" value="${basedir}" />
 
 	<set-module-properties
-		module.dir="."
+		module.dir="${basedir}"
 	/>
 
 	<macrodef name="classpath-to-jar">
@@ -271,7 +271,7 @@
 	<target name="build-wsdd">
 		<call-macrodef-or-target
 			macrodef.name="compile"
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 
 		<path id="wsdd.classpath">
@@ -416,25 +416,25 @@
 
 	<target name="compile-import-shared">
 		<compile-import-shared
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
 	<target name="compile-test">
 		<compile-test
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
 	<target name="compile-test-integration">
 		<compile-test-integration
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
 	<target name="compile-test-unit">
 		<compile-test-unit
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
@@ -486,31 +486,31 @@
 
 	<target name="jar-javadoc" depends="javadoc">
 		<jar-javadoc
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
 	<target name="jar-source">
 		<jar-source
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
 	<target name="javadoc">
 		<javadoc-macro
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
 	<target name="merge">
 		<merge
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
 	<target name="merge-unzip">
 		<merge-unzip
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 
@@ -604,7 +604,7 @@
 
 	<target name="test-class">
 		<test-class
-			module.dir="."
+			module.dir="${basedir}"
 			test.class="${test.class}"
 		/>
 	</target>

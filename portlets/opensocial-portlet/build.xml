@@ -17,7 +17,7 @@
 		<!-- Merge -->
 
 		<merge
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 
 		<!-- Configure Modules -->
@@ -364,7 +364,7 @@
 
 	<target name="merge-unzip">
 		<merge-unzip
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 
 		<copy

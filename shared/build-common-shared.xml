@@ -6,7 +6,7 @@
 
 	<target name="jar">
 		<jar-macro
-			module.dir="."
+			module.dir="${basedir}"
 		/>
 	</target>
 </project>
