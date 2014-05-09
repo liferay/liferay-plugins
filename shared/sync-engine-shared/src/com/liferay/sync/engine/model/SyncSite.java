@@ -69,7 +69,7 @@ public class SyncSite extends StateAwareModel {
 			return friendlyURL.substring(1);
 		}
 
-		return name;
+		return name.replace(" LFR_ORGANIZATION", " (Org)");
 	}
 
 	public long getParentGroupId() {
