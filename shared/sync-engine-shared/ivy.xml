@@ -6,15 +6,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
 >
-	<info module="sync.engine" organisation="com.liferay">
-		<license name="LGPL 2.1" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt" />
-
-		<description homepage="http://www.liferay.com" />
+	<info module="com.liferay.sync.engine" organisation="com.liferay.sync.engine">
+		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay.sdk" revision="latest.integration" />
 	</info>
-
-	<configurations>
-		<conf name="provided" />
-	</configurations>
 
 	<publications>
 		<artifact type="jar" />
@@ -23,27 +17,27 @@
 	</publications>
 
 	<dependencies defaultconf="default">
-		<dependency conf="provided->default" name="commons-codec" org="commons-codec" rev="1.9" />
-		<dependency conf="provided->default" name="commons-configuration" org="commons-configuration" rev="1.10" />
-		<dependency conf="provided->default" name="commons-io" org="commons-io" rev="2.4" />
-		<dependency conf="provided->default" name="commons-lang" org="commons-lang" rev="2.6" />
-		<dependency conf="provided->default" name="commons-logging" org="commons-logging" rev="1.1.3" />
-		<dependency conf="provided->default" name="h2" org="com.h2database" rev="1.3.174" />
-		<dependency conf="provided->default" name="httpclient" org="org.apache.httpcomponents" rev="4.3.1" />
-		<dependency conf="provided->default" name="httpcore" org="org.apache.httpcomponents" rev="4.3.1" />
-		<dependency conf="provided->default" name="httpmime" org="org.apache.httpcomponents" rev="4.3.1" />
-		<dependency conf="provided->default" name="jackson-annotations" org="com.fasterxml.jackson.core" rev="2.1.5" />
-		<dependency conf="provided->default" name="jackson-core" org="com.fasterxml.jackson.core" rev="2.1.5" />
-		<dependency conf="provided->default" name="jackson-databind" org="com.fasterxml.jackson.core" rev="2.1.5" />
-		<dependency conf="provided->default" name="jpathwatch" org="net.sf.jpathwatch" rev="0.95" />
-		<dependency conf="provided->default" name="log4j" org="log4j" rev="1.2.17" />
-		<dependency conf="provided->default" name="ormlite-core" org="com.j256.ormlite" rev="4.47" />
-		<dependency conf="provided->default" name="ormlite-jdbc" org="com.j256.ormlite" rev="4.47" />
-		<dependency conf="provided->default" name="proxy-vole" org="com.btr" rev="20131209" />
-		<dependency conf="provided->default" name="slf4j-api" org="org.slf4j" rev="1.7.5" />
-		<dependency conf="provided->default" name="slf4j-log4j12" org="org.slf4j" rev="1.7.5" />
-		<dependency conf="provided->default" name="spring" org="org.springframework" rev="2.5.6.SEC03" />
-		<dependency conf="provided->default" name="spring-retry" org="org.springframework.retry" rev="1.0.3.RELEASE" />
-		<dependency conf="provided->default" name="spring-web" org="org.springframework" rev="4.0.2.RELEASE" />
+		<dependency name="commons-codec" org="commons-codec" rev="1.9" />
+		<dependency name="commons-configuration" org="commons-configuration" rev="1.10" />
+		<dependency name="commons-io" org="commons-io" rev="2.4" />
+		<dependency name="commons-lang" org="commons-lang" rev="2.6" />
+		<dependency name="commons-logging" org="commons-logging" rev="1.1.3" />
+		<dependency name="h2" org="com.h2database" rev="1.3.174" />
+		<dependency name="httpclient" org="org.apache.httpcomponents" rev="4.3.1" />
+		<dependency name="httpcore" org="org.apache.httpcomponents" rev="4.3.1" />
+		<dependency name="httpmime" org="org.apache.httpcomponents" rev="4.3.1" />
+		<dependency name="jackson-annotations" org="com.fasterxml.jackson.core" rev="2.1.5" />
+		<dependency name="jackson-core" org="com.fasterxml.jackson.core" rev="2.1.5" />
+		<dependency name="jackson-databind" org="com.fasterxml.jackson.core" rev="2.1.5" />
+		<dependency name="jpathwatch" org="net.sf.jpathwatch" rev="0.95" />
+		<dependency name="log4j" org="log4j" rev="1.2.17" />
+		<dependency name="ormlite-core" org="com.j256.ormlite" rev="4.47" />
+		<dependency name="ormlite-jdbc" org="com.j256.ormlite" rev="4.47" />
+		<dependency name="proxy-vole" org="com.btr" rev="20131209" />
+		<dependency name="slf4j-api" org="org.slf4j" rev="1.7.5" />
+		<dependency name="slf4j-log4j12" org="org.slf4j" rev="1.7.5" />
+		<dependency name="spring" org="org.springframework" rev="2.5.6.SEC03" />
+		<dependency name="spring-retry" org="org.springframework.retry" rev="1.0.3.RELEASE" />
+		<dependency name="spring-web" org="org.springframework" rev="4.0.2.RELEASE" />
 	</dependencies>
 </ivy-module>
