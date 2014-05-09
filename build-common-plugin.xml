@@ -269,9 +269,9 @@
 	</target>
 
 	<target name="build-wsdd">
-		<call-macrodef-or-target
+		<loop-macrodef-or-target
 			macrodef.name="compile"
-			module.dir="${basedir}"
+			module.dirs="${basedir}"
 		/>
 
 		<path id="wsdd.classpath">

@@ -187,154 +187,42 @@ Error-Prone was automatically installed. Please rerun your task.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="call-macrodef-or-target">
+	<macrodef name="loop-macrodef-or-target">
 		<attribute name="macrodef.name" />
-		<attribute name="module.dir" />
+		<attribute name="module.dirs" />
 
 		<sequential>
-			<set-module-properties
-				module.dir="@{module.dir}"
-			/>
+			<var name="macrodef.name" value="@{macrodef.name}" />
+			<var name="module.dirs" value="@{module.dirs}" />
 
-			<if>
-				<resourcecontains
-					resource="${module.dir.unix}/build.xml"
-					substring="&lt;target name=&quot;@{macrodef.name}&quot;&gt;"
-				/>
-				<then>
-					<ant dir="@{module.dir}" target="@{macrodef.name}" inheritAll="false" />
-				</then>
-				<else>
-					<if>
-						<equals arg1="@{macrodef.name}" arg2="clean" />
-						<then>
-							<clean
-								module.dir="@{module.dir}"
-							/>
-						</then>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="clean-portal-dependencies" />
-							<then>
-								<clean-portal-dependencies
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="compile" />
-							<then>
-								<compile
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="compile-import-shared" />
-							<then>
-								<compile-import-shared
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="deploy" />
-							<then>
-								<deploy
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="direct-deploy" />
-							<then>
-								<direct-deploy
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="jar" />
-							<then>
-								<jar-macro
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="jar-javadoc" />
-							<then>
-								<jar-javadoc
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="jar-source" />
-							<then>
-								<jar-source
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="javadoc" />
-							<then>
-								<javadoc-macro
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="merge" />
-							<then>
-								<merge
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="merge-unzip" />
-							<then>
-								<merge-unzip
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="test" />
-							<then>
-								<test
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="test-integration" />
-							<then>
-								<test-integration
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="test-unit" />
-							<then>
-								<test-unit
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-						<elseif>
-							<equals arg1="@{macrodef.name}" arg2="war" />
-							<then>
-								<war-macro
-									module.dir="@{module.dir}"
-								/>
-							</then>
-						</elseif>
-					</if>
-				</else>
-			</if>
+			<groovy><![CDATA[
+				if (
+					properties["macrodef.name"] == "jar" ||
+					properties["macrodef.name"] == "javadoc" ||
+					properties["macrodef.name"] == "war"
+				) {
+					macrodefName = "${properties["macrodef.name"]}-macro"
+				}
+				else {
+					macrodefName = "${properties["macrodef.name"]}"
+				}
+
+				moduleDirs = "${properties["module.dirs"]}".split( ',' )
+
+				for (moduleDir in moduleDirs) {
+					ant."set-module-properties"("module.dir":moduleDir)
+
+					moduleXmlContents = new File(moduleDir + "/build.xml").text
+					targetCall = '<target name="' + macrodefName + '"'
+
+					if (moduleXmlContents =~ targetCall) {
+						ant.ant(dir:moduleDir,target:macrodefName)
+					}
+					else {
+						ant."${macrodefName}"("module.dir":moduleDir)
+					}
+				}
+			]]></groovy>
 		</sequential>
 	</macrodef>
 
@@ -412,9 +300,9 @@ Error-Prone was automatically installed. Please rerun your task.
 				</then>
 			</if>
 
-			<call-macrodef-or-target
+			<loop-macrodef-or-target
 				macrodef.name="clean-portal-dependencies"
-				module.dir="@{module.dir}"
+				module.dirs="@{module.dir}"
 			/>
 
 			<if>
@@ -536,9 +424,9 @@ Error-Prone was automatically installed. Please rerun your task.
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
 					<then>
-						<call-macrodef-or-target
+						<loop-macrodef-or-target
 							macrodef.name="merge"
-							module.dir="@{module.dir}"
+							module.dirs="@{module.dir}"
 						/>
 					</then>
 				</elseif>
@@ -551,9 +439,9 @@ Error-Prone was automatically installed. Please rerun your task.
 					</then>
 				</elseif>
 				<else>
-					<call-macrodef-or-target
+					<loop-macrodef-or-target
 						macrodef.name="compile-import-shared"
-						module.dir="@{module.dir}"
+						module.dirs="@{module.dir}"
 					/>
 
 					<process-ivy
@@ -679,9 +567,9 @@ Error-Prone was automatically installed. Please rerun your task.
 			<if>
 				<available file="@{import.shared.current.dir}/src" />
 				<then>
-					<call-macrodef-or-target
+					<loop-macrodef-or-target
 						macrodef.name="jar"
-						module.dir="@{import.shared.current.dir}"
+						module.dirs="@{import.shared.current.dir}"
 					/>
 
 					<set-build-xml-var
@@ -760,14 +648,14 @@ Error-Prone was automatically installed. Please rerun your task.
 				module.dir="@{module.dir}"
 			/>
 
-			<call-macrodef-or-target
+			<loop-macrodef-or-target
 				macrodef.name="merge"
-				module.dir="@{module.dir}"
+				module.dirs="@{module.dir}"
 			/>
 
-			<call-macrodef-or-target
+			<loop-macrodef-or-target
 				macrodef.name="compile-import-shared"
-				module.dir="@{module.dir}"
+				module.dirs="@{module.dir}"
 			/>
 
 			<mkdir dir="@{module.dir}/docroot/WEB-INF/classes" />
@@ -904,9 +792,9 @@ Please find a solution that does not require portal-impl.jar.
 				</then>
 			</if>
 
-			<call-macrodef-or-target
+			<loop-macrodef-or-target
 				macrodef.name="merge"
-				module.dir="@{module.dir}"
+				module.dirs="@{module.dir}"
 			/>
 		</sequential>
 	</macrodef>
@@ -1175,17 +1063,17 @@ Please find a solution that does not require portal-impl.jar.
 					<antelope:endswith string="${plugin.name}" with="-web" />
 				</or>
 				<then>
-					<call-macrodef-or-target
+					<loop-macrodef-or-target
 						macrodef.name="war"
-						module.dir="@{module.dir}"
+						module.dirs="@{module.dir}"
 					/>
 
 					<copy file="${plugin.file}" todir="${auto.deploy.dir}" />
 				</then>
 				<else>
-					<call-macrodef-or-target
+					<loop-macrodef-or-target
 						macrodef.name="jar"
-						module.dir="@{module.dir}"
+						module.dirs="@{module.dir}"
 					/>
 
 					<if>
@@ -1249,9 +1137,9 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<call-macrodef-or-target
+			<loop-macrodef-or-target
 				macrodef.name="war"
-				module.dir="@{module.dir}"
+				module.dirs="@{module.dir}"
 			/>
 
 			<if>
@@ -1495,9 +1383,9 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<call-macrodef-or-target
+			<loop-macrodef-or-target
 				macrodef.name="compile"
-				module.dir="@{module.dir}"
+				module.dirs="@{module.dir}"
 			/>
 
 			<mkdir dir="${sdk.dir}/dist" />
@@ -1633,9 +1521,9 @@ Please find a solution that does not require portal-impl.jar.
 							<mkdir dir="@{module.dir}/tmp/WEB-INF/classes" />
 							<mkdir dir="@{module.dir}/tmp/WEB-INF/lib" />
 
-							<call-macrodef-or-target
+							<loop-macrodef-or-target
 								macrodef.name="merge-unzip"
-								module.dir="@{module.dir}"
+								module.dirs="@{module.dir}"
 							/>
 
 							<copy todir="@{module.dir}/tmp" overwrite="true">
@@ -2230,9 +2118,9 @@ for (String path : paths) {
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-portlet" />
 					<then>
-						<call-macrodef-or-target
+						<loop-macrodef-or-target
 							macrodef.name="compile"
-							module.dir="@{module.dir}"
+							module.dirs="@{module.dir}"
 						/>
 
 						<build-css
@@ -2251,9 +2139,9 @@ for (String path : paths) {
 				<elseif>
 					<antelope:endswith string="${plugin.name}" with="-theme" />
 					<then>
-						<call-macrodef-or-target
+						<loop-macrodef-or-target
 							macrodef.name="compile"
-							module.dir="@{module.dir}"
+							module.dirs="@{module.dir}"
 						/>
 
 						<build-css
@@ -2290,9 +2178,9 @@ for (String path : paths) {
 					</then>
 				</elseif>
 				<else>
-					<call-macrodef-or-target
+					<loop-macrodef-or-target
 						macrodef.name="jar"
-						module.dir="@{module.dir}"
+						module.dirs="@{module.dir}"
 					/>
 				</else>
 			</if>
@@ -2307,9 +2195,9 @@ for (String path : paths) {
 				module.dir="@{module.dir}"
 			/>
 
-			<call-macrodef-or-target
+			<loop-macrodef-or-target
 				macrodef.name="compile"
-				module.dir="@{module.dir}"
+				module.dirs="@{module.dir}"
 			/>
 
 			<mkdir dir="${sdk.dir}/dist" />
@@ -2393,25 +2281,17 @@ for (String path : paths) {
 	</macrodef>
 
 	<target name="clean">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="clean"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="clean"
+			module.dirs="${plugins.includes.path}"
+		/>
 	</target>
 
 	<target name="compile">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="compile"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="compile"
+			module.dirs="${plugins.includes.path}"
+		/>
 	</target>
 
 	<target name="create">
@@ -2446,25 +2326,17 @@ for (String path : paths) {
 	</target>
 
 	<target name="deploy">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="deploy"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="deploy"
+			module.dirs="${plugins.includes.path}"
+		/>
 	</target>
 
 	<target name="direct-deploy">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="direct-deploy"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="direct-deploy"
+			module.dirs="${plugins.includes.path}"
+		/>
 	</target>
 
 	<target name="format-javadoc">
@@ -2498,14 +2370,10 @@ for (String path : paths) {
 	</target>
 
 	<target name="jar">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="jar"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="jar"
+			module.dirs="${plugins.includes.path}"
+		/>
 	</target>
 
 	<target name="print-current-time">
@@ -2572,46 +2440,30 @@ for (String path : paths) {
 	</target>
 
 	<target name="test">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="test"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="test"
+			module.dirs="${plugins.includes.path}"
+		/>
 	</target>
 
 	<target name="test-integration">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="test-integration"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="test-integration"
+			module.dirs="${plugins.includes.path}"
+		/>
 	</target>
 
 	<target name="test-unit">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="test-unit"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="test-unit"
+			module.dirs="${plugins.includes.path}"
+		/>
 	</target>
 
 	<target name="war">
-		<for list="${plugins.includes.path}" param="module.dir">
-			<sequential>
-				<call-macrodef-or-target
-					macrodef.name="war"
-					module.dir="@{module.dir}"
-				/>
-			</sequential>
-		</for>
+		<loop-macrodef-or-target
+			macrodef.name="war"
+			module.dirs="${plugins.includes.path}"
+		/>
 	</target>
 </project>
