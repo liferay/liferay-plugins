@@ -23,6 +23,9 @@ import com.liferay.sync.engine.session.SessionManager;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * @author Shinn Lok
  */
@@ -83,6 +86,12 @@ public abstract class BaseEvent implements Event {
 		_handler = getHandler();
 
 		try {
+			if (_logger.isTraceEnabled()) {
+				Class<?> clazz = this.getClass();
+
+				_logger.trace("Processing {}", clazz.getSimpleName());
+			}
+
 			processRequest();
 		}
 		catch (Exception e) {
@@ -95,6 +104,8 @@ public abstract class BaseEvent implements Event {
 	protected void processRequest() throws Exception {
 		executePost(_urlPath, _parameters);
 	}
+
+	private static Logger _logger = LoggerFactory.getLogger(BaseEvent.class);
 
 	private Handler<?> _handler;
 	private Map<String, Object> _parameters;

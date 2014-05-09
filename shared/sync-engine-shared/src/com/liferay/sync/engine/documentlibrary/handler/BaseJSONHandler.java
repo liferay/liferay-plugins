@@ -59,6 +59,10 @@ public class BaseJSONHandler extends BaseHandler {
 		String response = EntityUtils.toString(httpEntity);
 
 		if (!handlePortalException(response)) {
+			if (_logger.isTraceEnabled()) {
+				_logger.trace("Handling response {}", response);
+			}
+
 			processResponse(response);
 		}
 	}
@@ -84,7 +88,11 @@ public class BaseJSONHandler extends BaseHandler {
 		String exception = exceptionJsonNode.asText();
 
 		if (_logger.isDebugEnabled()) {
-			_logger.debug(exception);
+			JsonNode messageJsonNode = responseJsonNode.get("message");
+
+			_logger.debug(
+				"Handling exception {} message {}", exception,
+				messageJsonNode.asText());
 		}
 
 		if (exception.equals(
