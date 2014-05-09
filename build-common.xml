@@ -74,6 +74,12 @@
 
 	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
 
+	<taskdef
+		classname="org.codehaus.groovy.ant.Groovy"
+		classpathref="lib.classpath"
+		name="groovy"
+	/>
+
 	<condition property="correct.ant.version">
 		<antversion atleast="1.8.0" />
 	</condition>
