@@ -531,7 +531,7 @@ AUI().use(
 										}
 									}
 
-									instance._updateNotificationsCount(response["newUserNotificationsCount"], response["unreadUserNotificationsCount"]);
+									instance._updateNotificationsCount(response['newUserNotificationsCount'], response['unreadUserNotificationsCount']);
 								}
 							}
 						},
