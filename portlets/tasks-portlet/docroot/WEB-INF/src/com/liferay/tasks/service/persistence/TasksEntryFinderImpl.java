@@ -23,8 +23,10 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.tasks.model.TasksEntry;
@@ -41,8 +43,17 @@ import java.util.List;
 public class TasksEntryFinderImpl
 	extends BasePersistenceImpl<TasksEntry> implements TasksEntryFinder {
 
-	public static final String FIND_BY_C_T =
-		TasksEntryFinder.class.getName() + ".findByC_T";
+	public static final String COUNT_BY_G_P_A_R_S_T_N =
+		TasksEntryFinder.class.getName() + ".countByG_P_A_R_S_T_N";
+
+	public static final String FIND_BY_G_P_A_R_S_T_N =
+		TasksEntryFinder.class.getName() + ".findByG_P_A_R_S_T_N";
+
+	public static final String JOIN_BY_ASSET_TAGS =
+		TasksEntryFinder.class.getName() + ".joinByAssetTags";
+
+	public static final String JOIN_BY_NOT_ASSET_TAGS =
+		TasksEntryFinder.class.getName() + ".joinByNotAssetTags";
 
 	public int countByG_P_A_R_S_T_N(
 			long groupId, int priority, long assigneeUserId,
@@ -67,77 +78,47 @@ public class TasksEntryFinderImpl
 		try {
 			session = openSession();
 
-			StringBuilder sb = new StringBuilder();
+			String sql = CustomSQLUtil.get(COUNT_BY_G_P_A_R_S_T_N);
 
-			sb.append("SELECT COUNT(DISTINCT tasksEntryId) AS COUNT_VALUE ");
-			sb.append("FROM TMS_TasksEntry WHERE");
+			sql = StringUtil.replace(
+				sql, "[$JOIN$]", getJoin(assetTagIds, notAssetTagIds));
 
-			if (groupId > 0) {
-				sb.append(" AND TMS_TasksEntry.groupId = ?");
+			String assetTagTagIds = getAssetTagTagIds(
+				assetTagIds, notAssetTagIds);
+
+			sql = StringUtil.replace(
+				sql, "[$ASSET_TAG_TAG_IDS$]", assetTagTagIds);
+
+			if (Validator.isNotNull(assetTagIds)) {
+				sql = StringUtil.replaceLast(sql, "WHERE", StringPool.BLANK);
 			}
 
-			if (priority > 0) {
-				sb.append(" AND TMS_TasksEntry.priority = ?");
-			}
+			sql = StringUtil.replace(sql, "[$GROUP_ID$]", getGroupId(groupId));
+			sql = StringUtil.replace(
+				sql, "[$PRIORITY$]", getPriority(priority));
+			sql = StringUtil.replace(
+				sql, "[$ASSIGNEE_USER_ID$]", getAssigneeUserId(assigneeUserId));
+			sql = StringUtil.replace(
+				sql, "[$REPORTER_USER_ID$]", getReporterUserId(reporterUserId));
 
-			if (assigneeUserId > 0) {
-				sb.append(" AND TMS_TasksEntry.assigneeUserId = ?");
-			}
+			int[] statusArray = getStatusArray(status);
 
-			if (reporterUserId > 0) {
-				sb.append(" AND TMS_TasksEntry.userId = ?");
-			}
+			sql = StringUtil.replace(sql, "[$STATUS$]", getStatus(statusArray));
 
-			if (status == TasksEntryConstants.STATUS_ALL) {
-			}
-			else if (status == TasksEntryConstants.STATUS_RESOLVED) {
-				sb.append(" AND TMS_TasksEntry.finishDate IS NOT NULL");
-			}
-			else {
-				sb.append(" AND TMS_TasksEntry.finishDate IS NULL");
-			}
-
-			if (assetTagIds.length > 0) {
-				sb.append(" AND TMS_TasksEntry.tasksEntryId IN (");
-
-				for (int i = 0; i < assetTagIds.length; i++) {
-					sb.append(CustomSQLUtil.get(FIND_BY_C_T));
-
-					if ((i + 1) < assetTagIds.length) {
-						sb.append(" OR AssetEntry.classPK IN (");
-					}
-				}
-
-				for (int i = 0; i < assetTagIds.length; i++) {
-					sb.append(StringPool.CLOSE_PARENTHESIS);
-				}
-			}
-
-			if (notAssetTagIds.length > 0) {
-				sb.append(" AND (");
-
-				for (int i = 0; i < notAssetTagIds.length; i++) {
-					sb.append("TMS_TasksEntry.tasksEntryId NOT IN (");
-					sb.append(CustomSQLUtil.get(FIND_BY_C_T));
-					sb.append(StringPool.CLOSE_PARENTHESIS);
-
-					if ((i + 1) < notAssetTagIds.length) {
-						sb.append(" OR ");
-					}
-				}
-
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-			}
-
-			String sql = sb.toString();
-
-			sql = StringUtil.replaceFirst(sql, " WHERE AND ", " WHERE ");
+			sql = StringUtil.replaceLast(sql, "AND", StringPool.BLANK);
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
 			QueryPos qPos = QueryPos.getInstance(q);
+
+			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
+				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
+
+				setTagsEntryIds(qPos, assetTagIds);
+				setTagsEntryIds(qPos, notAssetTagIds);
+			}
 
 			if (groupId > 0) {
 				qPos.add(groupId);
@@ -155,8 +136,11 @@ public class TasksEntryFinderImpl
 				qPos.add(reporterUserId);
 			}
 
-			setTagsEntryIds(qPos, assetTagIds);
-			setTagsEntryIds(qPos, notAssetTagIds);
+			if (statusArray != null) {
+				for (int curStatus : statusArray) {
+					qPos.add(curStatus);
+				}
+			}
 
 			Iterator<Long> itr = q.iterate();
 
@@ -201,83 +185,47 @@ public class TasksEntryFinderImpl
 		try {
 			session = openSession();
 
-			StringBuilder sb = new StringBuilder();
+			String sql = CustomSQLUtil.get(FIND_BY_G_P_A_R_S_T_N);
 
-			sb.append("SELECT DISTINCT {TMS_TasksEntry.*} ");
-			sb.append("FROM TMS_TasksEntry WHERE");
+			sql = StringUtil.replace(
+				sql, "[$JOIN$]", getJoin(assetTagIds, notAssetTagIds));
 
-			if (groupId > 0) {
-				sb.append(" AND TMS_TasksEntry.groupId = ?");
+			String assetTagTagIds = getAssetTagTagIds(
+				assetTagIds, notAssetTagIds);
+
+			sql = StringUtil.replace(
+				sql, "[$ASSET_TAG_TAG_IDS$]", assetTagTagIds);
+
+			if (Validator.isNotNull(assetTagIds)) {
+				sql = StringUtil.replaceLast(sql, "WHERE", StringPool.BLANK);
 			}
 
-			if (priority > 0) {
-				sb.append(" AND TMS_TasksEntry.priority = ?");
-			}
+			sql = StringUtil.replace(sql, "[$GROUP_ID$]", getGroupId(groupId));
+			sql = StringUtil.replace(
+				sql, "[$PRIORITY$]", getPriority(priority));
+			sql = StringUtil.replace(
+				sql, "[$ASSIGNEE_USER_ID$]", getAssigneeUserId(assigneeUserId));
+			sql = StringUtil.replace(
+				sql, "[$REPORTER_USER_ID$]", getReporterUserId(reporterUserId));
 
-			if (assigneeUserId > 0) {
-				sb.append(" AND TMS_TasksEntry.assigneeUserId = ?");
-			}
+			int[] statusArray = getStatusArray(status);
 
-			if (reporterUserId > 0) {
-				sb.append(" AND TMS_TasksEntry.userId = ?");
-			}
+			sql = StringUtil.replace(sql, "[$STATUS$]", getStatus(statusArray));
 
-			if (status == TasksEntryConstants.STATUS_ALL) {
-			}
-			else if (status == TasksEntryConstants.STATUS_RESOLVED) {
-				sb.append(" AND TMS_TasksEntry.finishDate IS NOT NULL");
-			}
-			else {
-				sb.append(" AND TMS_TasksEntry.finishDate IS NULL");
-			}
-
-			if (assetTagIds.length > 0) {
-				sb.append(" AND TMS_TasksEntry.tasksEntryId IN (");
-
-				for (int i = 0; i < assetTagIds.length; i++) {
-					sb.append(CustomSQLUtil.get(FIND_BY_C_T));
-
-					if ((i + 1) < assetTagIds.length) {
-						sb.append(" OR AssetEntry.classPK IN (");
-					}
-				}
-
-				for (int i = 0; i < assetTagIds.length; i++) {
-					sb.append(StringPool.CLOSE_PARENTHESIS);
-				}
-			}
-
-			if (notAssetTagIds.length > 0) {
-				sb.append(" AND (");
-
-				for (int i = 0; i < notAssetTagIds.length; i++) {
-					sb.append("TMS_TasksEntry.tasksEntryId NOT IN (");
-					sb.append(CustomSQLUtil.get(FIND_BY_C_T));
-					sb.append(StringPool.CLOSE_PARENTHESIS);
-
-					if ((i + 1) < notAssetTagIds.length) {
-						sb.append(" OR ");
-					}
-				}
-
-				sb.append(StringPool.CLOSE_PARENTHESIS);
-			}
-
-			sb.append(" ORDER BY ");
-
-			sb.append("priority ASC, ");
-			sb.append("dueDate ASC, ");
-			sb.append("createDate ASC");
-
-			String sql = sb.toString();
-
-			sql = StringUtil.replaceFirst(sql, " WHERE AND ", " WHERE ");
+			sql = StringUtil.replaceLast(sql, "AND", StringPool.BLANK);
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
 
 			q.addEntity("TMS_TasksEntry", TasksEntryImpl.class);
 
 			QueryPos qPos = QueryPos.getInstance(q);
+
+			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
+				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
+
+				setTagsEntryIds(qPos, assetTagIds);
+				setTagsEntryIds(qPos, notAssetTagIds);
+			}
 
 			if (groupId > 0) {
 				qPos.add(groupId);
@@ -295,8 +243,11 @@ public class TasksEntryFinderImpl
 				qPos.add(reporterUserId);
 			}
 
-			setTagsEntryIds(qPos, assetTagIds);
-			setTagsEntryIds(qPos, notAssetTagIds);
+			if (statusArray != null) {
+				for (int curStatus : statusArray) {
+					qPos.add(curStatus);
+				}
+			}
 
 			return (List<TasksEntry>)QueryUtil.list(
 				q, getDialect(), start, end);
@@ -395,6 +346,119 @@ public class TasksEntryFinderImpl
 		return TasksEntryUtil.findByUserId(reporterUserId, start, end);
 	}
 
+	protected String getAssetTagTagIds(
+		long[] assetTagIds, boolean equalsOperator) {
+
+		StringBundler sb = new StringBundler((assetTagIds.length * 4) + 1);
+
+		sb.append(" (");
+
+		for (int i = 0; i < assetTagIds.length; i++) {
+			sb.append("AssetEntries_AssetTags.tagId ");
+
+			if (equalsOperator) {
+				sb.append(StringPool.EQUAL);
+			}
+			else {
+				sb.append(StringPool.NOT_EQUAL);
+			}
+
+			sb.append(" ? ");
+
+			if ((i + 1) != assetTagIds.length) {
+				if (equalsOperator) {
+					sb.append("OR ");
+				}
+				else {
+					sb.append("AND ");
+				}
+			}
+		}
+
+		sb.append(StringPool.CLOSE_PARENTHESIS);
+
+		return sb.toString();
+	}
+
+	protected String getAssetTagTagIds(
+		long[] assetTagIds, long[] notAssetTagIds) {
+
+		if ((assetTagIds != null) && (assetTagIds.length > 0)) {
+			return getAssetTagTagIds(assetTagIds, true);
+		}
+
+		if ((notAssetTagIds != null) && (notAssetTagIds.length > 0)) {
+			return getAssetTagTagIds(notAssetTagIds, false);
+		}
+
+		return StringPool.BLANK;
+	}
+
+	protected String getAssigneeUserId(long assigneeUserId) {
+		if (assigneeUserId > 0) {
+			return "TMS_TasksEntry.assigneeUserId = ? AND";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	protected String getGroupId(long groupId) {
+		if (groupId > 0) {
+			return "TMS_TasksEntry.groupId = ? AND";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	protected String getJoin(long[] assetTagIds, long[] notAssetTagIds) {
+		if ((assetTagIds != null) && (assetTagIds.length > 0)) {
+			return CustomSQLUtil.get(JOIN_BY_ASSET_TAGS);
+		}
+
+		if ((notAssetTagIds != null) && (notAssetTagIds.length > 0)) {
+			return CustomSQLUtil.get(JOIN_BY_NOT_ASSET_TAGS);
+		}
+
+		return StringPool.BLANK;
+	}
+
+	protected String getPriority(int priority) {
+		if (priority > 0) {
+			return "TMS_TasksEntry.priority = ? AND";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	protected String getReporterUserId(long reporterUserId) {
+		if (reporterUserId > 0) {
+			return "TMS_TasksEntry.userId = ? AND";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	protected String getStatus(int[] statusArray) {
+		if (statusArray == null) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler((statusArray.length * 2) + 1);
+
+		sb.append(" (");
+
+		for (int i = 0; i < statusArray.length; i++) {
+			sb.append("TMS_TasksEntry.status = ? ");
+			sb.append("OR ");
+		}
+
+		sb.setIndex(sb.index() - 1);
+
+		sb.append(") AND ");
+
+		return sb.toString();
+	}
+
 	protected int[] getStatusArray(int status) {
 		if (status == TasksEntryConstants.STATUS_ALL) {
 			return null;
@@ -409,7 +473,6 @@ public class TasksEntryFinderImpl
 
 	protected void setTagsEntryIds(QueryPos qPos, long[] assetTagIds) {
 		for (int i = 0; i < assetTagIds.length; i++) {
-			qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
 			qPos.add(assetTagIds[i]);
 		}
 	}

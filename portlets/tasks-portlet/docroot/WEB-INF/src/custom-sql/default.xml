@@ -1,17 +1,59 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.findByC_T">
-		SELECT
-			DISTINCT AssetEntry.classPK
-		FROM
-			AssetEntry
+	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.joinByAssetTags">
+		INNER JOIN
+			AssetEntry ON
+				(TMS_TasksEntry.tasksEntryId = AssetEntry.classPK)
 		INNER JOIN
 			AssetEntries_AssetTags ON
 				(AssetEntry.entryId = AssetEntries_AssetTags.entryId)
 		WHERE
 			(AssetEntry.classNameId = ?) AND
-			(AssetEntries_AssetTags.tagId = ?)
-
+			[$ASSET_TAG_TAG_IDS$] AND
+	</sql>
+	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.joinByNotAssetTags">
+		LEFT JOIN
+			AssetEntry ON
+				(TMS_TasksEntry.tasksEntryId = AssetEntry.classPK)
+		LEFT JOIN
+			AssetEntries_AssetTags ON
+				(AssetEntry.entryId = AssetEntries_AssetTags.entryId)
+		WHERE
+			(AssetEntry.classNameId = ?) AND
+			(
+				[$ASSET_TAG_TAG_IDS$] OR
+				AssetEntries_AssetTags.tagId IS NULL
+			) AND
+	</sql>
+	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.countByG_P_A_R_S_T_N">
+		SELECT
+			COUNT(DISTINCT TMS_TasksEntry.tasksEntryId) AS COUNT_VALUE
+		FROM
+			TMS_TasksEntry
+		[$JOIN$]
+		WHERE
+			[$GROUP_ID$]
+			[$PRIORITY$]
+			[$ASSIGNEE_USER_ID$]
+			[$REPORTER_USER_ID$]
+			[$STATUS$]
+		ORDER BY
+			TMS_TasksEntry.priority ASC, TMS_TasksEntry.dueDate ASC, TMS_TasksEntry.createDate ASC
+	</sql>
+	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.findByG_P_A_R_S_T_N">
+		SELECT
+			DISTINCT {TMS_TasksEntry.*}
+		FROM
+			TMS_TasksEntry
+		[$JOIN$]
+		WHERE
+			[$GROUP_ID$]
+			[$PRIORITY$]
+			[$ASSIGNEE_USER_ID$]
+			[$REPORTER_USER_ID$]
+			[$STATUS$]
+		ORDER BY
+			TMS_TasksEntry.priority ASC, TMS_TasksEntry.dueDate ASC, TMS_TasksEntry.createDate ASC
 	</sql>
 </custom-sql>
