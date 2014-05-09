@@ -145,21 +145,32 @@ catch (NoSuchRoleException nsre) {
 		}
 	}
 
-	var mySites = A.one('.portlet-dockbar .my-sites');
+	var navAccountControlsBtn = A.one('#<%= PortalUtil.getPortletNamespace(PortletKeys.DOCKBAR) %>navAccountControlsNavbarBtn');
 
-	if (mySites) {
-		mySites.delegate(
+	if (navAccountControlsBtn) {
+		navAccountControlsBtn.on(
 			'click',
 			function(event) {
-				var sitesDirectory = mySites.one('.sites-directory');
+				var sitesDirectory = A.one('.portlet-dockbar .sites-directory');
 
 				if (!sitesDirectory) {
-					var mySitesMenu = mySites.one('.my-sites-menu');
+					var mySitesMenu = A.one('.portlet-dockbar .my-sites .my-sites-menu');
+					var sitesDirectoryString = '<li class="sites-directory last"><a href="javascript:;" onclick="<portlet:namespace />openWindow()"><i class="icon-reorder"></i><span class="site-name"> ' + Liferay.Language.get('sites-directory') + '</span></a></li>';
 
-					mySitesMenu.insert('<li class="sites-directory last"><a href="javascript:;" onclick="<portlet:namespace />openWindow()"><i class="icon-reorder"></i><span class="site-name"> ' + Liferay.Language.get('sites-directory') + '</span></a></li>')
+					if (mySitesMenu) {
+						mySitesMenu.insert(sitesDirectoryString);
+					}
+					else {
+						var navAccountControls = A.one('.nav-account-controls');
+
+						var dividerVertical  = navAccountControls.one('.divider-vertical ');
+
+						if (dividerVertical) {
+							navAccountControls.insertBefore(sitesDirectoryString, dividerVertical);
+						}
+					}
 				}
-			},
-			'.dropdown-toggle'
+			}
 		);
 	}
 </aui:script>
