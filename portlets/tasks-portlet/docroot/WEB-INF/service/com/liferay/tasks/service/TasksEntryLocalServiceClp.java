@@ -89,127 +89,131 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getPersistedModel";
+		_methodName12 = "getActionableDynamicQuery";
 
-		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "getTasksEntries";
+		_methodName13 = "getPersistedModel";
 
-		_methodParameterTypes13 = new String[] { "int", "int" };
+		_methodParameterTypes13 = new String[] { "java.io.Serializable" };
 
-		_methodName14 = "getTasksEntriesCount";
+		_methodName14 = "getTasksEntries";
 
-		_methodParameterTypes14 = new String[] {  };
+		_methodParameterTypes14 = new String[] { "int", "int" };
 
-		_methodName15 = "updateTasksEntry";
+		_methodName15 = "getTasksEntriesCount";
 
-		_methodParameterTypes15 = new String[] {
+		_methodParameterTypes15 = new String[] {  };
+
+		_methodName16 = "updateTasksEntry";
+
+		_methodParameterTypes16 = new String[] {
 				"com.liferay.tasks.model.TasksEntry"
 			};
 
-		_methodName16 = "getBeanIdentifier";
+		_methodName17 = "getBeanIdentifier";
 
-		_methodParameterTypes16 = new String[] {  };
+		_methodParameterTypes17 = new String[] {  };
 
-		_methodName17 = "setBeanIdentifier";
+		_methodName18 = "setBeanIdentifier";
 
-		_methodParameterTypes17 = new String[] { "java.lang.String" };
+		_methodParameterTypes18 = new String[] { "java.lang.String" };
 
-		_methodName19 = "addTasksEntry";
+		_methodName20 = "addTasksEntry";
 
-		_methodParameterTypes19 = new String[] {
+		_methodParameterTypes20 = new String[] {
 				"long", "java.lang.String", "int", "long", "int", "int", "int",
 				"int", "int", "boolean",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName20 = "getAssigneeTasksEntries";
+		_methodName21 = "getAssigneeTasksEntries";
 
-		_methodParameterTypes20 = new String[] { "long", "int", "int" };
+		_methodParameterTypes21 = new String[] { "long", "int", "int" };
 
-		_methodName21 = "getAssigneeTasksEntriesCount";
+		_methodName22 = "getAssigneeTasksEntriesCount";
 
-		_methodParameterTypes21 = new String[] { "long" };
+		_methodParameterTypes22 = new String[] { "long" };
 
-		_methodName22 = "getGroupAssigneeTasksEntries";
+		_methodName23 = "getGroupAssigneeTasksEntries";
 
-		_methodParameterTypes22 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes23 = new String[] { "long", "long", "int", "int" };
 
-		_methodName23 = "getGroupAssigneeTasksEntriesCount";
+		_methodName24 = "getGroupAssigneeTasksEntriesCount";
 
-		_methodParameterTypes23 = new String[] { "long", "long" };
+		_methodParameterTypes24 = new String[] { "long", "long" };
 
-		_methodName24 = "getGroupResolverTasksEntries";
+		_methodName25 = "getGroupResolverTasksEntries";
 
-		_methodParameterTypes24 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes25 = new String[] { "long", "long", "int", "int" };
 
-		_methodName25 = "getGroupResolverTasksEntriesCount";
+		_methodName26 = "getGroupResolverTasksEntriesCount";
 
-		_methodParameterTypes25 = new String[] { "long", "long" };
+		_methodParameterTypes26 = new String[] { "long", "long" };
 
-		_methodName26 = "getGroupUserTasksEntries";
+		_methodName27 = "getGroupUserTasksEntries";
 
-		_methodParameterTypes26 = new String[] { "long", "long", "int", "int" };
+		_methodParameterTypes27 = new String[] { "long", "long", "int", "int" };
 
-		_methodName27 = "getGroupUserTasksEntriesCount";
+		_methodName28 = "getGroupUserTasksEntriesCount";
 
-		_methodParameterTypes27 = new String[] { "long", "long" };
+		_methodParameterTypes28 = new String[] { "long", "long" };
 
-		_methodName28 = "getResolverTasksEntries";
+		_methodName29 = "getResolverTasksEntries";
 
-		_methodParameterTypes28 = new String[] { "long", "int", "int" };
+		_methodParameterTypes29 = new String[] { "long", "int", "int" };
 
-		_methodName29 = "getResolverTasksEntriesCount";
+		_methodName30 = "getResolverTasksEntriesCount";
 
-		_methodParameterTypes29 = new String[] { "long" };
-
-		_methodName30 = "getTasksEntries";
-
-		_methodParameterTypes30 = new String[] { "long", "int", "int" };
+		_methodParameterTypes30 = new String[] { "long" };
 
 		_methodName31 = "getTasksEntries";
 
-		_methodParameterTypes31 = new String[] {
-				"long", "int", "long", "long", "int", "long[][]", "long[][]",
+		_methodParameterTypes31 = new String[] { "long", "int", "int" };
+
+		_methodName32 = "getTasksEntries";
+
+		_methodParameterTypes32 = new String[] {
+				"long", "long", "int", "long", "int", "long[][]", "long[][]",
 				"int", "int"
 			};
 
-		_methodName32 = "getTasksEntriesCount";
-
-		_methodParameterTypes32 = new String[] { "long" };
-
 		_methodName33 = "getTasksEntriesCount";
 
-		_methodParameterTypes33 = new String[] {
-				"long", "int", "long", "long", "int", "long[][]", "long[][]"
+		_methodParameterTypes33 = new String[] { "long" };
+
+		_methodName34 = "getTasksEntriesCount";
+
+		_methodParameterTypes34 = new String[] {
+				"long", "long", "int", "long", "int", "long[][]", "long[][]"
 			};
 
-		_methodName34 = "getUserTasksEntries";
+		_methodName35 = "getUserTasksEntries";
 
-		_methodParameterTypes34 = new String[] { "long", "int", "int" };
+		_methodParameterTypes35 = new String[] { "long", "int", "int" };
 
-		_methodName35 = "getUserTasksEntriesCount";
+		_methodName36 = "getUserTasksEntriesCount";
 
-		_methodParameterTypes35 = new String[] { "long" };
+		_methodParameterTypes36 = new String[] { "long" };
 
-		_methodName36 = "updateAsset";
+		_methodName37 = "updateAsset";
 
-		_methodParameterTypes36 = new String[] {
+		_methodParameterTypes37 = new String[] {
 				"long", "com.liferay.tasks.model.TasksEntry", "long[][]",
 				"java.lang.String[][]"
 			};
 
-		_methodName37 = "updateTasksEntry";
+		_methodName38 = "updateTasksEntry";
 
-		_methodParameterTypes37 = new String[] {
+		_methodParameterTypes38 = new String[] {
 				"long", "java.lang.String", "int", "long", "long", "int", "int",
 				"int", "int", "int", "boolean", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName38 = "updateTasksEntryStatus";
+		_methodName39 = "updateTasksEntryStatus";
 
-		_methodParameterTypes38 = new String[] {
+		_methodParameterTypes39 = new String[] {
 				"long", "long", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
@@ -597,6 +601,34 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName12,
+					_methodParameterTypes12, new Object[] {  });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -604,8 +636,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName12,
-					_methodParameterTypes12,
+			returnObj = _invokableLocalService.invokeMethod(_methodName13,
+					_methodParameterTypes13,
 					new Object[] { ClpSerializer.translateInput(primaryKeyObj) });
 		}
 		catch (Throwable t) {
@@ -638,8 +670,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName13,
-					_methodParameterTypes13, new Object[] { start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName14,
+					_methodParameterTypes14, new Object[] { start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -666,8 +698,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName14,
-					_methodParameterTypes14, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName15,
+					_methodParameterTypes15, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -695,8 +727,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName15,
-					_methodParameterTypes15,
+			returnObj = _invokableLocalService.invokeMethod(_methodName16,
+					_methodParameterTypes16,
 					new Object[] { ClpSerializer.translateInput(tasksEntry) });
 		}
 		catch (Throwable t) {
@@ -723,8 +755,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName16,
-					_methodParameterTypes16, new Object[] {  });
+			returnObj = _invokableLocalService.invokeMethod(_methodName17,
+					_methodParameterTypes17, new Object[] {  });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -744,8 +776,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	@Override
 	public void setBeanIdentifier(java.lang.String beanIdentifier) {
 		try {
-			_invokableLocalService.invokeMethod(_methodName17,
-				_methodParameterTypes17,
+			_invokableLocalService.invokeMethod(_methodName18,
+				_methodParameterTypes18,
 				new Object[] { ClpSerializer.translateInput(beanIdentifier) });
 		}
 		catch (Throwable t) {
@@ -779,8 +811,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName19,
-					_methodParameterTypes19,
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
 					new Object[] {
 						userId,
 						
@@ -830,13 +862,14 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getAssigneeTasksEntries(
-		long userId, int start, int end)
+		long assigneeUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21,
+					new Object[] { assigneeUserId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -858,13 +891,13 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getAssigneeTasksEntriesCount(long userId)
+	public int getAssigneeTasksEntriesCount(long assigneeUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] { assigneeUserId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -887,14 +920,14 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupAssigneeTasksEntries(
-		long groupId, long userId, int start, int end)
+		long groupId, long assigneeUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
-					new Object[] { groupId, userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
+					new Object[] { groupId, assigneeUserId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -916,13 +949,15 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getGroupAssigneeTasksEntriesCount(long groupId, long userId)
+	public int getGroupAssigneeTasksEntriesCount(long groupId,
+		long assigneeUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23, new Object[] { groupId, userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
+					new Object[] { groupId, assigneeUserId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -945,14 +980,14 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupResolverTasksEntries(
-		long groupId, long userId, int start, int end)
+		long groupId, long resolverUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName24,
-					_methodParameterTypes24,
-					new Object[] { groupId, userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName25,
+					_methodParameterTypes25,
+					new Object[] { groupId, resolverUserId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -974,13 +1009,15 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getGroupResolverTasksEntriesCount(long groupId, long userId)
+	public int getGroupResolverTasksEntriesCount(long groupId,
+		long resolverUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName25,
-					_methodParameterTypes25, new Object[] { groupId, userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName26,
+					_methodParameterTypes26,
+					new Object[] { groupId, resolverUserId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1008,8 +1045,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName26,
-					_methodParameterTypes26,
+			returnObj = _invokableLocalService.invokeMethod(_methodName27,
+					_methodParameterTypes27,
 					new Object[] { groupId, userId, start, end });
 		}
 		catch (Throwable t) {
@@ -1037,8 +1074,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName27,
-					_methodParameterTypes27, new Object[] { groupId, userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName28,
+					_methodParameterTypes28, new Object[] { groupId, userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1061,13 +1098,14 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getResolverTasksEntries(
-		long userId, int start, int end)
+		long resolverUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName28,
-					_methodParameterTypes28, new Object[] { userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName29,
+					_methodParameterTypes29,
+					new Object[] { resolverUserId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1089,13 +1127,13 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getResolverTasksEntriesCount(long userId)
+	public int getResolverTasksEntriesCount(long resolverUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName29,
-					_methodParameterTypes29, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName30,
+					_methodParameterTypes30, new Object[] { resolverUserId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1123,8 +1161,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName30,
-					_methodParameterTypes30,
+			returnObj = _invokableLocalService.invokeMethod(_methodName31,
+					_methodParameterTypes31,
 					new Object[] { groupId, start, end });
 		}
 		catch (Throwable t) {
@@ -1148,22 +1186,22 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
-		long groupId, int priority, long assigneeUserId, long reporterUserId,
+		long groupId, long userId, int priority, long assigneeUserId,
 		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName31,
-					_methodParameterTypes31,
+			returnObj = _invokableLocalService.invokeMethod(_methodName32,
+					_methodParameterTypes32,
 					new Object[] {
 						groupId,
+						
+					userId,
 						
 					priority,
 						
 					assigneeUserId,
-						
-					reporterUserId,
 						
 					status,
 						
@@ -1201,8 +1239,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName32,
-					_methodParameterTypes32, new Object[] { groupId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName33,
+					_methodParameterTypes33, new Object[] { groupId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1224,23 +1262,23 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	}
 
 	@Override
-	public int getTasksEntriesCount(long groupId, int priority,
-		long assigneeUserId, long reporterUserId, int status,
-		long[] tagsEntryIds, long[] notTagsEntryIds)
+	public int getTasksEntriesCount(long groupId, long userId, int priority,
+		long assigneeUserId, int status, long[] tagsEntryIds,
+		long[] notTagsEntryIds)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName33,
-					_methodParameterTypes33,
+			returnObj = _invokableLocalService.invokeMethod(_methodName34,
+					_methodParameterTypes34,
 					new Object[] {
 						groupId,
+						
+					userId,
 						
 					priority,
 						
 					assigneeUserId,
-						
-					reporterUserId,
 						
 					status,
 						
@@ -1275,8 +1313,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName34,
-					_methodParameterTypes34, new Object[] { userId, start, end });
+			returnObj = _invokableLocalService.invokeMethod(_methodName35,
+					_methodParameterTypes35, new Object[] { userId, start, end });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1303,8 +1341,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName35,
-					_methodParameterTypes35, new Object[] { userId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName36,
+					_methodParameterTypes36, new Object[] { userId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -1332,8 +1370,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
-			_invokableLocalService.invokeMethod(_methodName36,
-				_methodParameterTypes36,
+			_invokableLocalService.invokeMethod(_methodName37,
+				_methodParameterTypes37,
 				new Object[] {
 					userId,
 					
@@ -1377,8 +1415,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName37,
-					_methodParameterTypes37,
+			returnObj = _invokableLocalService.invokeMethod(_methodName38,
+					_methodParameterTypes38,
 					new Object[] {
 						tasksEntryId,
 						
@@ -1439,8 +1477,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName38,
-					_methodParameterTypes38,
+			returnObj = _invokableLocalService.invokeMethod(_methodName39,
+					_methodParameterTypes39,
 					new Object[] {
 						tasksEntryId,
 						
@@ -1511,8 +1549,8 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
-	private String _methodName19;
-	private String[] _methodParameterTypes19;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
 	private String _methodName20;
 	private String[] _methodParameterTypes20;
 	private String _methodName21;
@@ -1551,4 +1589,6 @@ public class TasksEntryLocalServiceClp implements TasksEntryLocalService {
 	private String[] _methodParameterTypes37;
 	private String _methodName38;
 	private String[] _methodParameterTypes38;
+	private String _methodName39;
+	private String[] _methodParameterTypes39;
 }

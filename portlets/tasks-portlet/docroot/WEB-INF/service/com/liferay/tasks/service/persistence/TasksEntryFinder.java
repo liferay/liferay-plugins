@@ -18,13 +18,13 @@ package com.liferay.tasks.service.persistence;
  * @author Ryan Park
  */
 public interface TasksEntryFinder {
-	public int countByG_P_A_R_S_T_N(long groupId, int priority,
-		long assigneeUserId, long reporterUserId, int status,
-		long[] assetTagIds, long[] notAssetTagIds)
+	public int countByG_U_P_A_S_T_N(long groupId, long userId, int priority,
+		long assigneeUserId, int status, long[] assetTagIds,
+		long[] notAssetTagIds)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_P_A_R_S_T_N(
-		long groupId, int priority, long assigneeUserId, long reporterUserId,
+	public java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_P_A_S_T_N(
+		long groupId, long userId, int priority, long assigneeUserId,
 		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 }

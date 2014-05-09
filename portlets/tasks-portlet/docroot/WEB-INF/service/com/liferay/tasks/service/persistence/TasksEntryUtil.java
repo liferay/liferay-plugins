@@ -1657,6 +1657,1400 @@ public class TasksEntryUtil {
 	}
 
 	/**
+	* Returns all the tasks entries where userId = &#63; and status = &#63;.
+	*
+	* @param userId the user ID
+	* @param status the status
+	* @return the matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByU_S(
+		long userId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_S(userId, status);
+	}
+
+	/**
+	* Returns a range of all the tasks entries where userId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByU_S(
+		long userId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_S(userId, status, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries where userId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByU_S(
+		long userId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_S(userId, status, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns the first tasks entry in the ordered set where userId = &#63; and status = &#63;.
+	*
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry findByU_S_First(
+		long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByU_S_First(userId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the first tasks entry in the ordered set where userId = &#63; and status = &#63;.
+	*
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry fetchByU_S_First(
+		long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_S_First(userId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the last tasks entry in the ordered set where userId = &#63; and status = &#63;.
+	*
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry findByU_S_Last(
+		long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence().findByU_S_Last(userId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the last tasks entry in the ordered set where userId = &#63; and status = &#63;.
+	*
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry fetchByU_S_Last(
+		long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_S_Last(userId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the tasks entries before and after the current tasks entry in the ordered set where userId = &#63; and status = &#63;.
+	*
+	* @param tasksEntryId the primary key of the current tasks entry
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry[] findByU_S_PrevAndNext(
+		long tasksEntryId, long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByU_S_PrevAndNext(tasksEntryId, userId, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns all the tasks entries where userId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @return the matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByU_S(
+		long userId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_S(userId, statuses);
+	}
+
+	/**
+	* Returns a range of all the tasks entries where userId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByU_S(
+		long userId, int[] statuses, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByU_S(userId, statuses, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries where userId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByU_S(
+		long userId, int[] statuses, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByU_S(userId, statuses, start, end, orderByComparator);
+	}
+
+	/**
+	* Removes all the tasks entries where userId = &#63; and status = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByU_S(long userId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByU_S(userId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries where userId = &#63; and status = &#63;.
+	*
+	* @param userId the user ID
+	* @param status the status
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_S(long userId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_S(userId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries where userId = &#63; and status = any &#63;.
+	*
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_S(long userId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_S(userId, statuses);
+	}
+
+	/**
+	* Returns all the tasks entries where assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @return the matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByA_S(
+		long assigneeUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA_S(assigneeUserId, status);
+	}
+
+	/**
+	* Returns a range of all the tasks entries where assigneeUserId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByA_S(
+		long assigneeUserId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA_S(assigneeUserId, status, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries where assigneeUserId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByA_S(
+		long assigneeUserId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByA_S(assigneeUserId, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first tasks entry in the ordered set where assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry findByA_S_First(
+		long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByA_S_First(assigneeUserId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the first tasks entry in the ordered set where assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry fetchByA_S_First(
+		long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByA_S_First(assigneeUserId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the last tasks entry in the ordered set where assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry findByA_S_Last(
+		long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByA_S_Last(assigneeUserId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the last tasks entry in the ordered set where assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry fetchByA_S_Last(
+		long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByA_S_Last(assigneeUserId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the tasks entries before and after the current tasks entry in the ordered set where assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param tasksEntryId the primary key of the current tasks entry
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry[] findByA_S_PrevAndNext(
+		long tasksEntryId, long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByA_S_PrevAndNext(tasksEntryId, assigneeUserId, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns all the tasks entries where assigneeUserId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @return the matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByA_S(
+		long assigneeUserId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA_S(assigneeUserId, statuses);
+	}
+
+	/**
+	* Returns a range of all the tasks entries where assigneeUserId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByA_S(
+		long assigneeUserId, int[] statuses, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByA_S(assigneeUserId, statuses, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries where assigneeUserId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByA_S(
+		long assigneeUserId, int[] statuses, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByA_S(assigneeUserId, statuses, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Removes all the tasks entries where assigneeUserId = &#63; and status = &#63; from the database.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByA_S(long assigneeUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByA_S(assigneeUserId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries where assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByA_S(long assigneeUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByA_S(assigneeUserId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries where assigneeUserId = &#63; and status = any &#63;.
+	*
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByA_S(long assigneeUserId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByA_S(assigneeUserId, statuses);
+	}
+
+	/**
+	* Returns all the tasks entries where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @return the matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_S(
+		long groupId, long userId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_U_S(groupId, userId, status);
+	}
+
+	/**
+	* Returns a range of all the tasks entries where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_S(
+		long groupId, long userId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_U_S(groupId, userId, status, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_S(
+		long groupId, long userId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_U_S(groupId, userId, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first tasks entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry findByG_U_S_First(
+		long groupId, long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByG_U_S_First(groupId, userId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the first tasks entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry fetchByG_U_S_First(
+		long groupId, long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_U_S_First(groupId, userId, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last tasks entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry findByG_U_S_Last(
+		long groupId, long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByG_U_S_Last(groupId, userId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the last tasks entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry fetchByG_U_S_Last(
+		long groupId, long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_U_S_Last(groupId, userId, status, orderByComparator);
+	}
+
+	/**
+	* Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param tasksEntryId the primary key of the current tasks entry
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry[] findByG_U_S_PrevAndNext(
+		long tasksEntryId, long groupId, long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByG_U_S_PrevAndNext(tasksEntryId, groupId, userId,
+			status, orderByComparator);
+	}
+
+	/**
+	* Returns all the tasks entries that the user has permission to view where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @return the matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_U_S(
+		long groupId, long userId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_U_S(groupId, userId, status);
+	}
+
+	/**
+	* Returns a range of all the tasks entries that the user has permission to view where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_U_S(
+		long groupId, long userId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_U_S(groupId, userId, status, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries that the user has permissions to view where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_U_S(
+		long groupId, long userId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_U_S(groupId, userId, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param tasksEntryId the primary key of the current tasks entry
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry[] filterFindByG_U_S_PrevAndNext(
+		long tasksEntryId, long groupId, long userId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .filterFindByG_U_S_PrevAndNext(tasksEntryId, groupId,
+			userId, status, orderByComparator);
+	}
+
+	/**
+	* Returns all the tasks entries that the user has permission to view where groupId = &#63; and userId = &#63; and status = any &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @return the matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_U_S(
+		long groupId, long userId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterFindByG_U_S(groupId, userId, statuses);
+	}
+
+	/**
+	* Returns a range of all the tasks entries that the user has permission to view where groupId = &#63; and userId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_U_S(
+		long groupId, long userId, int[] statuses, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_U_S(groupId, userId, statuses, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries that the user has permission to view where groupId = &#63; and userId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_U_S(
+		long groupId, long userId, int[] statuses, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_U_S(groupId, userId, statuses, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns all the tasks entries where groupId = &#63; and userId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @return the matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_S(
+		long groupId, long userId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_U_S(groupId, userId, statuses);
+	}
+
+	/**
+	* Returns a range of all the tasks entries where groupId = &#63; and userId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_S(
+		long groupId, long userId, int[] statuses, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_U_S(groupId, userId, statuses, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries where groupId = &#63; and userId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_U_S(
+		long groupId, long userId, int[] statuses, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_U_S(groupId, userId, statuses, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Removes all the tasks entries where groupId = &#63; and userId = &#63; and status = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_U_S(long groupId, long userId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_U_S(groupId, userId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_U_S(long groupId, long userId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_U_S(groupId, userId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries where groupId = &#63; and userId = &#63; and status = any &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_U_S(long groupId, long userId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_U_S(groupId, userId, statuses);
+	}
+
+	/**
+	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and userId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param status the status
+	* @return the number of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_U_S(long groupId, long userId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_U_S(groupId, userId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and userId = &#63; and status = any &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param statuses the statuses
+	* @return the number of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_U_S(long groupId, long userId,
+		int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().filterCountByG_U_S(groupId, userId, statuses);
+	}
+
+	/**
+	* Returns all the tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @return the matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_A_S(
+		long groupId, long assigneeUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_A_S(groupId, assigneeUserId, status);
+	}
+
+	/**
+	* Returns a range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_A_S(
+		long groupId, long assigneeUserId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_A_S(groupId, assigneeUserId, status, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_A_S(
+		long groupId, long assigneeUserId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_A_S(groupId, assigneeUserId, status, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry findByG_A_S_First(
+		long groupId, long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByG_A_S_First(groupId, assigneeUserId, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the first tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry fetchByG_A_S_First(
+		long groupId, long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_A_S_First(groupId, assigneeUserId, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry findByG_A_S_Last(
+		long groupId, long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByG_A_S_Last(groupId, assigneeUserId, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the last tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching tasks entry, or <code>null</code> if a matching tasks entry could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry fetchByG_A_S_Last(
+		long groupId, long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByG_A_S_Last(groupId, assigneeUserId, status,
+			orderByComparator);
+	}
+
+	/**
+	* Returns the tasks entries before and after the current tasks entry in the ordered set where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param tasksEntryId the primary key of the current tasks entry
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry[] findByG_A_S_PrevAndNext(
+		long tasksEntryId, long groupId, long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .findByG_A_S_PrevAndNext(tasksEntryId, groupId,
+			assigneeUserId, status, orderByComparator);
+	}
+
+	/**
+	* Returns all the tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @return the matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_A_S(
+		long groupId, long assigneeUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_A_S(groupId, assigneeUserId, status);
+	}
+
+	/**
+	* Returns a range of all the tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_A_S(
+		long groupId, long assigneeUserId, int status, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_A_S(groupId, assigneeUserId, status, start,
+			end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries that the user has permissions to view where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_A_S(
+		long groupId, long assigneeUserId, int status, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_A_S(groupId, assigneeUserId, status, start,
+			end, orderByComparator);
+	}
+
+	/**
+	* Returns the tasks entries before and after the current tasks entry in the ordered set of tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param tasksEntryId the primary key of the current tasks entry
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next tasks entry
+	* @throws com.liferay.tasks.NoSuchTasksEntryException if a tasks entry with the primary key could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.tasks.model.TasksEntry[] filterFindByG_A_S_PrevAndNext(
+		long tasksEntryId, long groupId, long assigneeUserId, int status,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.tasks.NoSuchTasksEntryException {
+		return getPersistence()
+				   .filterFindByG_A_S_PrevAndNext(tasksEntryId, groupId,
+			assigneeUserId, status, orderByComparator);
+	}
+
+	/**
+	* Returns all the tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63; and status = any &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @return the matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_A_S(
+		long groupId, long assigneeUserId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_A_S(groupId, assigneeUserId, statuses);
+	}
+
+	/**
+	* Returns a range of all the tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_A_S(
+		long groupId, long assigneeUserId, int[] statuses, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_A_S(groupId, assigneeUserId, statuses, start,
+			end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> filterFindByG_A_S(
+		long groupId, long assigneeUserId, int[] statuses, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterFindByG_A_S(groupId, assigneeUserId, statuses, start,
+			end, orderByComparator);
+	}
+
+	/**
+	* Returns all the tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @return the matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_A_S(
+		long groupId, long assigneeUserId, int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_A_S(groupId, assigneeUserId, statuses);
+	}
+
+	/**
+	* Returns a range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @return the range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_A_S(
+		long groupId, long assigneeUserId, int[] statuses, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_A_S(groupId, assigneeUserId, statuses, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = any &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link com.liferay.tasks.model.impl.TasksEntryModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @param start the lower bound of the range of tasks entries
+	* @param end the upper bound of the range of tasks entries (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static java.util.List<com.liferay.tasks.model.TasksEntry> findByG_A_S(
+		long groupId, long assigneeUserId, int[] statuses, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .findByG_A_S(groupId, assigneeUserId, statuses, start, end,
+			orderByComparator);
+	}
+
+	/**
+	* Removes all the tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @throws SystemException if a system exception occurred
+	*/
+	public static void removeByG_A_S(long groupId, long assigneeUserId,
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		getPersistence().removeByG_A_S(groupId, assigneeUserId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_A_S(long groupId, long assigneeUserId, int status)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_A_S(groupId, assigneeUserId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries where groupId = &#63; and assigneeUserId = &#63; and status = any &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @return the number of matching tasks entries
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_A_S(long groupId, long assigneeUserId,
+		int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_A_S(groupId, assigneeUserId, statuses);
+	}
+
+	/**
+	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63; and status = &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param status the status
+	* @return the number of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_A_S(long groupId, long assigneeUserId,
+		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByG_A_S(groupId, assigneeUserId, status);
+	}
+
+	/**
+	* Returns the number of tasks entries that the user has permission to view where groupId = &#63; and assigneeUserId = &#63; and status = any &#63;.
+	*
+	* @param groupId the group ID
+	* @param assigneeUserId the assignee user ID
+	* @param statuses the statuses
+	* @return the number of matching tasks entries that the user has permission to view
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int filterCountByG_A_S(long groupId, long assigneeUserId,
+		int[] statuses)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .filterCountByG_A_S(groupId, assigneeUserId, statuses);
+	}
+
+	/**
 	* Caches the tasks entry in the entity cache if it is enabled.
 	*
 	* @param tasksEntry the tasks entry

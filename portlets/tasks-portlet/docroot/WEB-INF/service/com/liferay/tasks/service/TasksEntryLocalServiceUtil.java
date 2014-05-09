@@ -204,6 +204,11 @@ public class TasksEntryLocalServiceUtil {
 		return getService().getTasksEntry(tasksEntryId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getActionableDynamicQuery();
+	}
+
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -291,38 +296,44 @@ public class TasksEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.tasks.model.TasksEntry> getAssigneeTasksEntries(
-		long userId, int start, int end)
+		long assigneeUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAssigneeTasksEntries(userId, start, end);
+		return getService().getAssigneeTasksEntries(assigneeUserId, start, end);
 	}
 
-	public static int getAssigneeTasksEntriesCount(long userId)
+	public static int getAssigneeTasksEntriesCount(long assigneeUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getAssigneeTasksEntriesCount(userId);
+		return getService().getAssigneeTasksEntriesCount(assigneeUserId);
 	}
 
 	public static java.util.List<com.liferay.tasks.model.TasksEntry> getGroupAssigneeTasksEntries(
-		long groupId, long userId, int start, int end)
+		long groupId, long assigneeUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getGroupAssigneeTasksEntries(groupId, userId, start, end);
+				   .getGroupAssigneeTasksEntries(groupId, assigneeUserId,
+			start, end);
 	}
 
 	public static int getGroupAssigneeTasksEntriesCount(long groupId,
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getGroupAssigneeTasksEntriesCount(groupId, userId);
+		long assigneeUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getGroupAssigneeTasksEntriesCount(groupId, assigneeUserId);
 	}
 
 	public static java.util.List<com.liferay.tasks.model.TasksEntry> getGroupResolverTasksEntries(
-		long groupId, long userId, int start, int end)
+		long groupId, long resolverUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getGroupResolverTasksEntries(groupId, userId, start, end);
+				   .getGroupResolverTasksEntries(groupId, resolverUserId,
+			start, end);
 	}
 
 	public static int getGroupResolverTasksEntriesCount(long groupId,
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getGroupResolverTasksEntriesCount(groupId, userId);
+		long resolverUserId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getGroupResolverTasksEntriesCount(groupId, resolverUserId);
 	}
 
 	public static java.util.List<com.liferay.tasks.model.TasksEntry> getGroupUserTasksEntries(
@@ -337,14 +348,14 @@ public class TasksEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.tasks.model.TasksEntry> getResolverTasksEntries(
-		long userId, int start, int end)
+		long resolverUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getResolverTasksEntries(userId, start, end);
+		return getService().getResolverTasksEntries(resolverUserId, start, end);
 	}
 
-	public static int getResolverTasksEntriesCount(long userId)
+	public static int getResolverTasksEntriesCount(long resolverUserId)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().getResolverTasksEntriesCount(userId);
+		return getService().getResolverTasksEntriesCount(resolverUserId);
 	}
 
 	public static java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
@@ -354,12 +365,12 @@ public class TasksEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
-		long groupId, int priority, long assigneeUserId, long reporterUserId,
+		long groupId, long userId, int priority, long assigneeUserId,
 		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getTasksEntries(groupId, priority, assigneeUserId,
-			reporterUserId, status, assetTagIds, notAssetTagIds, start, end);
+				   .getTasksEntries(groupId, userId, priority, assigneeUserId,
+			status, assetTagIds, notAssetTagIds, start, end);
 	}
 
 	public static int getTasksEntriesCount(long groupId)
@@ -367,13 +378,13 @@ public class TasksEntryLocalServiceUtil {
 		return getService().getTasksEntriesCount(groupId);
 	}
 
-	public static int getTasksEntriesCount(long groupId, int priority,
-		long assigneeUserId, long reporterUserId, int status,
-		long[] tagsEntryIds, long[] notTagsEntryIds)
+	public static int getTasksEntriesCount(long groupId, long userId,
+		int priority, long assigneeUserId, int status, long[] tagsEntryIds,
+		long[] notTagsEntryIds)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getTasksEntriesCount(groupId, priority, assigneeUserId,
-			reporterUserId, status, tagsEntryIds, notTagsEntryIds);
+				   .getTasksEntriesCount(groupId, userId, priority,
+			assigneeUserId, status, tagsEntryIds, notTagsEntryIds);
 	}
 
 	public static java.util.List<com.liferay.tasks.model.TasksEntry> getUserTasksEntries(

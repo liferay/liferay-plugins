@@ -3,6 +3,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
 	<bean id="com.liferay.tasks.service.TasksEntryLocalService" class="com.liferay.tasks.service.impl.TasksEntryLocalServiceImpl" />
 	<bean id="com.liferay.tasks.service.TasksEntryService" class="com.liferay.tasks.service.impl.TasksEntryServiceImpl" />
-	<bean id="com.liferay.tasks.service.persistence.TasksEntryPersistence" class="com.liferay.tasks.service.persistence.TasksEntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.tasks.service.persistence.TasksEntryFinder" class="com.liferay.tasks.service.persistence.TasksEntryFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.tasks.service.persistence.TasksEntryPersistence" class="com.liferay.tasks.service.persistence.impl.TasksEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.tasks.service.persistence.TasksEntryFinder" class="com.liferay.tasks.service.persistence.impl.TasksEntryFinderImpl" parent="basePersistence" />
 </beans>

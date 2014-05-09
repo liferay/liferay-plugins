@@ -185,6 +185,10 @@ public interface TasksEntryLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
@@ -259,29 +263,31 @@ public interface TasksEntryLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getAssigneeTasksEntries(
-		long userId, int start, int end)
+		long assigneeUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getAssigneeTasksEntriesCount(long userId)
+	public int getAssigneeTasksEntriesCount(long assigneeUserId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupAssigneeTasksEntries(
-		long groupId, long userId, int start, int end)
+		long groupId, long assigneeUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupAssigneeTasksEntriesCount(long groupId, long userId)
+	public int getGroupAssigneeTasksEntriesCount(long groupId,
+		long assigneeUserId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getGroupResolverTasksEntries(
-		long groupId, long userId, int start, int end)
+		long groupId, long resolverUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getGroupResolverTasksEntriesCount(long groupId, long userId)
+	public int getGroupResolverTasksEntriesCount(long groupId,
+		long resolverUserId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -295,11 +301,11 @@ public interface TasksEntryLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getResolverTasksEntries(
-		long userId, int start, int end)
+		long resolverUserId, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getResolverTasksEntriesCount(long userId)
+	public int getResolverTasksEntriesCount(long resolverUserId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -309,7 +315,7 @@ public interface TasksEntryLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
-		long groupId, int priority, long assigneeUserId, long reporterUserId,
+		long groupId, long userId, int priority, long assigneeUserId,
 		int status, long[] assetTagIds, long[] notAssetTagIds, int start,
 		int end) throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -318,9 +324,9 @@ public interface TasksEntryLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getTasksEntriesCount(long groupId, int priority,
-		long assigneeUserId, long reporterUserId, int status,
-		long[] tagsEntryIds, long[] notTagsEntryIds)
+	public int getTasksEntriesCount(long groupId, long userId, int priority,
+		long assigneeUserId, int status, long[] tagsEntryIds,
+		long[] notTagsEntryIds)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
