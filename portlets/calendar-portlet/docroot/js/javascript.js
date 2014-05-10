@@ -442,7 +442,7 @@ AUI.add(
 				instance.invokeResourceURL(
 					'resourceCalendars',
 					{
-						calendarResourceId: calendarResourceId,
+						calendarResourceId: calendarResourceId
 					},
 					callback
 				);
