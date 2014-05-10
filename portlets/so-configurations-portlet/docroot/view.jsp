@@ -136,8 +136,8 @@ int roleUsersCount = UserLocalServiceUtil.getRoleUsersCount(role.getRoleId());
 				}
 			}
 			else {
-				document.<portlet:namespace />fm.<portlet:namespace />addIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
-				document.<portlet:namespace />fm.<portlet:namespace />removeIds.value = Liferay.Util.listUncheckedExcept(document.<portlet:namespace />fm, "<portlet:namespace />allRowIds");
+				document.<portlet:namespace />fm.<portlet:namespace />addIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
+				document.<portlet:namespace />fm.<portlet:namespace />removeIds.value = Liferay.Util.listUncheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
 				if (<%= tabs1.equals("users") %>) {
 					if (finished) {
