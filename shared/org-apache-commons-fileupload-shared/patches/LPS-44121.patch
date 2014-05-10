@@ -1,0 +1,133 @@
+diff -Naur original/commons-fileupload-1.2.2-src/src/changes/changes.xml patched/commons-fileupload-1.2.2-src/src/changes/changes.xml
+--- original/commons-fileupload-1.2.2-src/src/changes/changes.xml	2014-05-08 12:25:41.356647683 +0200
++++ patched/commons-fileupload-1.2.2-src/src/changes/changes.xml	2014-05-08 12:27:03.364649879 +0200
+@@ -80,6 +80,13 @@
+         A FileSizeLimitExceededException does now contain the
+         file and field name of the item, which caused the problem.
+       </action>
++      <action dev="markt" type="fix">
++        Fix CVE-2014-0050. Specially crafted input can trigger a DoS if the
++        buffer used by the <code>MultipartStream</code> is not big enough. When
++        constructing <code>MultipartStream</code> enforce the requirements for
++        buffer size by throwing an <code>IllegalArgumentException</code> if the
++        requested buffer size is too small. This prevents the DoS. 
++      </action>
+     </release>
+ 
+     <release version="1.2.1" date="2008-01-18">
+diff -Naur original/commons-fileupload-1.2.2-src/src/java/org/apache/commons/fileupload/FileUploadBase.java patched/commons-fileupload-1.2.2-src/src/java/org/apache/commons/fileupload/FileUploadBase.java
+--- original/commons-fileupload-1.2.2-src/src/java/org/apache/commons/fileupload/FileUploadBase.java	2014-05-08 12:25:55.020648049 +0200
++++ patched/commons-fileupload-1.2.2-src/src/java/org/apache/commons/fileupload/FileUploadBase.java	2014-05-08 12:32:33.676658725 +0200
+@@ -958,7 +958,12 @@
+ 
+             notifier = new MultipartStream.ProgressNotifier(listener,
+                     ctx.getContentLength());
+-            multi = new MultipartStream(input, boundary, notifier);
++            try {
++                multi = new MultipartStream(input, boundary, notifier);
++            }  catch (IllegalArgumentException iae) {
++                throw new InvalidContentTypeException(
++                    "The boundary specified in the " + CONTENT_TYPE + " header is too long", iae);
++            }
+             multi.setHeaderEncoding(charEncoding);
+ 
+             skipPreamble = true;
+@@ -1129,7 +1134,7 @@
+          * detail message.
+          */
+         public InvalidContentTypeException() {
+-            // Nothing to do.
++            super();
+         }
+ 
+         /**
+@@ -1141,6 +1146,10 @@
+         public InvalidContentTypeException(String message) {
+             super(message);
+         }
++
++        public InvalidContentTypeException(String msg, Throwable cause) {
++            super(msg, cause);
++        }
+     }
+ 
+     /**
+diff -Naur original/commons-fileupload-1.2.2-src/src/java/org/apache/commons/fileupload/MultipartStream.java patched/commons-fileupload-1.2.2-src/src/java/org/apache/commons/fileupload/MultipartStream.java
+--- original/commons-fileupload-1.2.2-src/src/java/org/apache/commons/fileupload/MultipartStream.java	2014-05-08 12:26:18.468648677 +0200
++++ patched/commons-fileupload-1.2.2-src/src/java/org/apache/commons/fileupload/MultipartStream.java	2014-05-08 12:26:54.136649632 +0200
+@@ -319,8 +319,7 @@
+      * @param pNotifier The notifier, which is used for calling the
+      *                  progress listener, if any.
+      *
+-     * @see #MultipartStream(InputStream, byte[],
+-     *     MultipartStream.ProgressNotifier)
++     * @throws IllegalArgumentException If the buffer size is too small
+      */
+     MultipartStream(InputStream input,
+             byte[] boundary,
+@@ -333,9 +332,14 @@
+ 
+         // We prepend CR/LF to the boundary to chop trailng CR/LF from
+         // body-data tokens.
+-        this.boundary = new byte[boundary.length + BOUNDARY_PREFIX.length];
+         this.boundaryLength = boundary.length + BOUNDARY_PREFIX.length;
++        if (bufSize < this.boundaryLength + 1) {
++            throw new IllegalArgumentException(
++                    "The buffer size specified for the MultipartStream is too small");
++        }
++        this.boundary = new byte[this.boundaryLength];
+         this.keepRegion = this.boundary.length;
++
+         System.arraycopy(BOUNDARY_PREFIX, 0, this.boundary, 0,
+                 BOUNDARY_PREFIX.length);
+         System.arraycopy(boundary, 0, this.boundary, BOUNDARY_PREFIX.length,
+@@ -355,8 +359,7 @@
+      * @param pNotifier An object for calling the progress listener, if any.
+      *
+      *
+-     * @see #MultipartStream(InputStream, byte[], int,
+-     *     MultipartStream.ProgressNotifier)
++     * @see #MultipartStream(InputStream, byte[], int, ProgressNotifier)
+      */
+     MultipartStream(InputStream input,
+             byte[] boundary,
+diff -Naur original/commons-fileupload-1.2.2-src/src/test/org/apache/commons/fileupload/MultipartStreamTest.java patched/commons-fileupload-1.2.2-src/src/test/org/apache/commons/fileupload/MultipartStreamTest.java
+--- original/commons-fileupload-1.2.2-src/src/test/org/apache/commons/fileupload/MultipartStreamTest.java	2014-05-08 12:26:04.968648316 +0200
++++ patched/commons-fileupload-1.2.2-src/src/test/org/apache/commons/fileupload/MultipartStreamTest.java	2014-05-08 12:43:20.072676035 +0200
+@@ -36,7 +36,8 @@
+ 		final byte[] contents = strData.getBytes();
+ 		InputStream input = new ByteArrayInputStream(contents);
+     	byte[] boundary = BOUNDARY_TEXT.getBytes();
+-    	int iBufSize = boundary.length;
++        int iBufSize =
++                boundary.length + MultipartStream.BOUNDARY_PREFIX.length + 1;
+     	MultipartStream ms = new MultipartStream(
+     			input,
+     			boundary,
+@@ -44,6 +45,26 @@
+     			new MultipartStream.ProgressNotifier(null, contents.length));
+     }
+ 
++    public void testSmallBuffer() throws Exception {
++        final String strData = "foobar";
++        final byte[] contents = strData.getBytes();
++        InputStream input = new ByteArrayInputStream(contents);
++        byte[] boundary = BOUNDARY_TEXT.getBytes();
++        int iBufSize = 1;
++
++        try {
++			MultipartStream ms = new MultipartStream(
++					input,
++					boundary,
++					iBufSize,
++					new MultipartStream.ProgressNotifier(null, contents.length));
++		}
++		catch (IllegalArgumentException iae) {
++		    return;
++		}
++		fail("IllegalArgumentException was not thrown.");
++    }
++
+ 	public void testTwoParamConstructor() throws Exception {
+ 		final String strData = "foobar";
+ 		final byte[] contents = strData.getBytes();
