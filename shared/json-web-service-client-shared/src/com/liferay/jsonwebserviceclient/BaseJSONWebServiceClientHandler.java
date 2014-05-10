@@ -16,6 +16,7 @@ package com.liferay.jsonwebserviceclient;
 
 import com.liferay.portal.kernel.json.JSONDeserializer;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 
@@ -73,7 +74,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		String json = doGet(url, parametersArray);
 
-		if (json == null || json.equals("")) {
+		if (Validator.isNull(json)) {
 			return null;
 		}
 
@@ -89,7 +90,7 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		String json = doGet(url, parametersArray);
 
-		if (json == null || json.equals("")) {
+		if (Validator.isNull(json)) {
 			return null;
 		}
 
