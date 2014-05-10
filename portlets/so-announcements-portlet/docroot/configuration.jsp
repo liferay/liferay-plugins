@@ -292,7 +292,7 @@ if (!roles.isEmpty()) {
 
 	var selected = form.all('.left-selector');
 
-	var selectedHTML = "";
+	var selectedHTML = '';
 
 	for (var i = selected._nodes.length - 1; i >= 0; --i) {
 		selectedHTML = selectedHTML.concat(selected._nodes[i].innerHTML);
@@ -301,7 +301,7 @@ if (!roles.isEmpty()) {
 	Liferay.on(
 		'inputmoveboxes:moveItem',
 		function(event) {
-			var currSelectedHTML = "";
+			var currSelectedHTML = '';
 
 			for (var i = selected._nodes.length - 1; i >= 0; --i) {
 				currSelectedHTML = currSelectedHTML.concat(selected._nodes[i].innerHTML);
