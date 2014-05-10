@@ -73,6 +73,10 @@ public abstract class BaseJSONWebServiceClientHandler {
 
 		String json = doGet(url, parametersArray);
 
+		if (json == null || json.equals("")) {
+			return null;
+		}
+
 		if (json.contains("exception")) {
 			throw new Exception(getExceptionMessage(json));
 		}
@@ -84,6 +88,10 @@ public abstract class BaseJSONWebServiceClientHandler {
 		throws Exception {
 
 		String json = doGet(url, parametersArray);
+
+		if (json == null || json.equals("")) {
+			return null;
+		}
 
 		if (json.contains("exception")) {
 			throw new Exception(getExceptionMessage(json));
