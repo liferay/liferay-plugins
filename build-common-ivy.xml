@@ -147,8 +147,7 @@
 			pubrevision="${ivy.pom.version}"
 			resolver="${ivy.publish.resolver}"
 		>
-			<artifacts pattern="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}.[ext]" />
-			<artifacts pattern="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}-[type].[ext]" />
+			<artifacts pattern="${sdk.dir}/dist/${plugin.name}-${plugin.full.version}(-[classifier]).[ext]" />
 		</ivy:publish>
 	</target>
 </project>
