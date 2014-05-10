@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE project>
+
+<project name="org-apache-commons-fileupload-shared" basedir="." default="compile">
+	<property name="plugin.version" value="1" />
+
+	<import file="../build-common-shared.xml" />
+
+	<property name="original.lib.name" value="commons-fileupload" />
+	<property name="original.lib.url" value="http://search.maven.org/remotecontent?filepath=commons-fileupload" />
+	<property name="original.lib.version" value="1.2.2" />
+
+	<target name="compile">
+		<antcall target="patch">
+			<param name="patch.destination" value="**" />
+			<!--<param name="patch.destination" value="org/apache/commons/fileupload/FileUploadBase.java,org/apache/commons/fileupload/MultipartStream.java" />-->
+			<param name="patch.original.lib.name" value="${original.lib.name}" />
+			<param name="patch.original.lib.version" value="${original.lib.version}" />
+			<param name="patch.original.lib.url" value="${original.lib.url}" />
+			<param name="patch.source" value="patches/LPS-44121.patch" />
+		</antcall>
+
+		<compile
+			module.dir="${basedir}"
+		/>
+	</target>
+</project>
