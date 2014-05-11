@@ -25,8 +25,8 @@ if (displayStyle.equals("vertical")) {
 %>
 
 <script type="text/javascript">
-	slashdot_title="<%= HtmlUtil.escapeJS(title) %>";
-	slashdot_url="<%= url %>";
+	slashdot_title='<%= HtmlUtil.escapeJS(title) %>';
+	slashdot_url='<%= url %>';
 	<%= slashdotDisplayStyle %>
 </script>
 
