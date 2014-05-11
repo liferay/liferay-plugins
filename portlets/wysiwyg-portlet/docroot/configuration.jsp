@@ -30,7 +30,7 @@
 
 <aui:script>
 	function <portlet:namespace />initEditor() {
-		return "<%= UnicodeFormatter.toString(message) %>";
+		return '<%= UnicodeFormatter.toString(message) %>';
 	}
 
 	function <portlet:namespace />saveMessage() {
