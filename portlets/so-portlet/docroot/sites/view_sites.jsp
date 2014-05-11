@@ -353,7 +353,7 @@ else {
 
 			var currentTargetClass = event.currentTarget.getAttribute('class');
 
-			if ((currentTargetClass == 'delete-site') || (currentTargetClass == "leave-site") || (currentTargetClass == "join-site") || (currentTargetClass == "request-site")) {
+			if ((currentTargetClass == 'delete-site') || (currentTargetClass == 'leave-site') || (currentTargetClass == 'join-site') || (currentTargetClass == 'request-site')) {
 				var confirmMessage = '';
 
 				var siteAction = '';
@@ -368,15 +368,15 @@ else {
 
 				var unescapedSiteName = Liferay.Util.unescapeHTML(siteName.getContent());
 
-				if (currentTargetClass == "leave-site") {
+				if (currentTargetClass == 'leave-site') {
 					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-leave-x", "' + unescapedSiteName + '", false) %>';
 					siteAction = '<%= LanguageUtil.format(pageContext, "you-left-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
-				else if (currentTargetClass == "join-site") {
+				else if (currentTargetClass == 'join-site') {
 					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-join-x", "' + unescapedSiteName + '", false) %>';
 					siteAction = '<%= LanguageUtil.format(pageContext, "you-joined-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
-				else if (currentTargetClass == "request-site") {
+				else if (currentTargetClass == 'request-site') {
 					confirmMessage = '<%= LanguageUtil.format(pageContext, "this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x", "' + unescapedSiteName + '", false) %>';
 					siteAction = '<%= LanguageUtil.get(pageContext, "your-membership-request-has-been-sent") %>';
 				}

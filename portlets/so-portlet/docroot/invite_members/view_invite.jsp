@@ -160,7 +160,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		return new A.DataSource.IO(
 			{
 				ioConfig: {
-					method: "POST"
+					method: 'POST'
 				},
 				on: {
 					request: function(event) {
@@ -236,7 +236,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 						return A.Lang.sub(
 							userTemplate,
 							{
-								cssClass: invited ? "invited user" : "user",
+								cssClass: invited ? 'invited user' : 'user',
 								userEmailAddress: result.userEmailAddress,
 								userFullName: result.userFullName,
 								userId: result.userId

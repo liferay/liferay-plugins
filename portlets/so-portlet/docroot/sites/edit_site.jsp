@@ -378,9 +378,9 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 	typeSelect.on(
 		'change',
 		function(event) {
-			var type = typeSelect.get("value");
+			var type = typeSelect.get('value');
 
-			var message = "";
+			var message = '';
 
 			if (type == <%= GroupConstants.TYPE_SITE_OPEN %>) {
 				message = '<%= UnicodeLanguageUtil.get(pageContext, "open-sites-are-listed-pages-are-public-and-users-are-free-to-join-and-collaborate") %>';
