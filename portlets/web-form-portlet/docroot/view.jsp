@@ -173,12 +173,12 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 					String fieldValidationErrorMessage = portletPreferences.getValue("fieldValidationErrorMessage" + i, StringPool.BLANK);
 				%>
 
-					var key = "<%= fieldName %>";
+					var key = '<%= fieldName %>';
 
 					keys[<%= i %>] = key;
 
-					fieldLabels[key] = "<%= HtmlUtil.escape(fieldLabel) %>";
-					fieldValidationErrorMessages[key] = "<%= fieldValidationErrorMessage %>";
+					fieldLabels[key] = '<%= HtmlUtil.escape(fieldLabel) %>';
+					fieldValidationErrorMessages[key] = '<%= fieldValidationErrorMessage %>';
 
 					function fieldValidationFunction<%= i %>(currentFieldValue, fieldsMap) {
 						<c:choose>
