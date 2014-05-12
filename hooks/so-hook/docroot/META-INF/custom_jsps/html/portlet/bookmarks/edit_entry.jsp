@@ -113,7 +113,7 @@ long folderId = BeanParamUtil.getLong(entry, request, "folderId");
 		nameEl.innerHTML = folderName + '&nbsp;';
 	}
 
-	<c:if test='<%= windowState.equals(WindowState.MAXIMIZED) %>'>
+	<c:if test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 		Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />name);
 	</c:if>
 </aui:script>
