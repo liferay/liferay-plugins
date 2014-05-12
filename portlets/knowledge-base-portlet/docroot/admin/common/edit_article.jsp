@@ -28,11 +28,13 @@ String content = BeanParamUtil.getString(kbArticle, request, "content", BeanProp
 String[] sections = AdminUtil.unescapeSections(BeanPropertiesUtil.getString(kbArticle, "sections", StringUtil.merge(PortletPropsValues.ADMIN_KB_ARTICLE_DEFAULT_SECTIONS)));
 
 String dirName = ParamUtil.getString(request, "dirName");
+boolean kbArticlePresent = (kbArticle != null);
 %>
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= (kbArticle != null) ? kbArticle.getTitle() : "new-article" %>'
+	localizeTitle="<%= !kbArticlePresent %>"
+	title='<%= kbArticlePresent ? kbArticle.getTitle() : "new-article" %>'
 />
 
 <liferay-portlet:actionURL name="updateKBArticle" var="updateKBArticleURL" />
