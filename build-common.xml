@@ -209,8 +209,8 @@ Error-Prone was automatically installed. Please rerun your task.
 
 						buildXmlContent = new File(moduleDir + "/build.xml").text
 
-						if (buildXmlContent =~ "<target name=\"" + macrodefName + "\"") {
-							ant.ant(dir: moduleDir, target: macrodefName)
+						if (buildXmlContent =~ "<target name=\"" + "${properties["macrodef.name"]}" + "\"") {
+							ant.ant(dir: moduleDir, target: "${properties["macrodef.name"]}")
 						}
 						else {
 							ant."${macrodefName}"("module.dir": moduleDir)
