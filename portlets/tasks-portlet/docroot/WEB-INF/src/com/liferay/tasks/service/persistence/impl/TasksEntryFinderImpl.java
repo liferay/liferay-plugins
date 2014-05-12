@@ -69,7 +69,7 @@ public class TasksEntryFinderImpl
 			}
 
 			if ((userId > 0) && (assigneeUserId <= 0)) {
-				return countByG_R_S(groupId, userId, status);
+				return countByG_U_S(groupId, userId, status);
 			}
 		}
 
@@ -167,7 +167,7 @@ public class TasksEntryFinderImpl
 			}
 
 			if ((userId > 0) && (assigneeUserId <= 0)) {
-				return findByG_R_S(groupId, userId, status, start, end);
+				return findByG_U_S(groupId, userId, status, start, end);
 			}
 		}
 
@@ -262,7 +262,7 @@ public class TasksEntryFinderImpl
 		return TasksEntryUtil.countByAssigneeUserId(assigneeUserId);
 	}
 
-	protected int countByG_R_S(long groupId, long userId, int status)
+	protected int countByG_U_S(long groupId, long userId, int status)
 		throws SystemException {
 
 		if (status != TasksEntryConstants.STATUS_ALL) {
@@ -303,7 +303,7 @@ public class TasksEntryFinderImpl
 		return TasksEntryUtil.findByAssigneeUserId(assigneeUserId, start, end);
 	}
 
-	protected List<TasksEntry> findByG_R_S(
+	protected List<TasksEntry> findByG_U_S(
 			long groupId, long userId, int status, int start, int end)
 		throws SystemException {
 
