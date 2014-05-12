@@ -32,6 +32,10 @@
 		width: 60px;
 	}
 
+	.body {
+		word-break: break-word;
+	}
+
 	.thread .message-container {
 		margin: 0 10px;
 	}
@@ -81,6 +85,7 @@
 
 		.subject {
 			color: #333;
+			word-break: break-word;
 		}
 	}
 
@@ -148,6 +153,16 @@
 		.taglib-header {
 			border-top: 1px solid #C8C9CA;
 			margin-top: 0;
+			padding: 0 10px;
+
+			.header-title {
+				display: inline;
+
+				span {
+					white-space: normal;
+					word-break: break-all;
+				}
+			}
 		}
 
 		.body {
