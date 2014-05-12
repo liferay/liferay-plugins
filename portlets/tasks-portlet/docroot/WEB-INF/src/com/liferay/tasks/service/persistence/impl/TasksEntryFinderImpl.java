@@ -64,7 +64,7 @@ public class TasksEntryFinderImpl
 		if ((priority <= 0) && (assetTagIds.length == 0) &&
 			(notAssetTagIds.length == 0)) {
 
-			if ((assigneeUserId > 0) && (userId <= 0)) {
+			if ((userId <= 0) && (assigneeUserId > 0)) {
 				return countByG_A_S(groupId, assigneeUserId, status);
 			}
 
@@ -162,7 +162,7 @@ public class TasksEntryFinderImpl
 		if ((priority <= 0) && (assetTagIds.length == 0) &&
 			(notAssetTagIds.length == 0)) {
 
-			if ((assigneeUserId > 0) && (userId <= 0)) {
+			if ((userId <= 0) && (assigneeUserId > 0)) {
 				return findByG_A_S(groupId, assigneeUserId, status, start, end);
 			}
 
