@@ -15,7 +15,10 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.so.service.persistence;
+package com.liferay.so.service.persistence.impl;
+
+import com.liferay.so.service.persistence.FavoriteSiteFinder;
+import com.liferay.so.service.persistence.FavoriteSiteUtil;
 
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;

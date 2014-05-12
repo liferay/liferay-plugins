@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.service.persistence;
+package com.liferay.so.service.persistence.impl;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -43,6 +43,7 @@ import com.liferay.so.NoSuchMemberRequestException;
 import com.liferay.so.model.MemberRequest;
 import com.liferay.so.model.impl.MemberRequestImpl;
 import com.liferay.so.model.impl.MemberRequestModelImpl;
+import com.liferay.so.service.persistence.MemberRequestPersistence;
 
 import java.io.Serializable;
 

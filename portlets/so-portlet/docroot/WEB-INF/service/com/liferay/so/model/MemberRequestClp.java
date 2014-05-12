@@ -15,14 +15,17 @@
 package com.liferay.so.model;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 import com.liferay.so.service.ClpSerializer;
 import com.liferay.so.service.MemberRequestLocalServiceUtil;
@@ -268,12 +271,18 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public String getUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getUserId(), "uuid", _userUuid);
+		try {
+			User user = UserLocalServiceUtil.getUserById(getUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setUserUuid(String userUuid) {
-		_userUuid = userUuid;
 	}
 
 	@Override
@@ -393,13 +402,18 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 
 	@Override
 	public String getReceiverUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getReceiverUserId(), "uuid",
-			_receiverUserUuid);
+		try {
+			User user = UserLocalServiceUtil.getUserById(getReceiverUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setReceiverUserUuid(String receiverUserUuid) {
-		_receiverUserUuid = receiverUserUuid;
 	}
 
 	@Override
@@ -709,13 +723,11 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	private long _groupId;
 	private long _companyId;
 	private long _userId;
-	private String _userUuid;
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
 	private String _key;
 	private long _receiverUserId;
-	private String _receiverUserUuid;
 	private long _invitedRoleId;
 	private long _invitedTeamId;
 	private int _status;

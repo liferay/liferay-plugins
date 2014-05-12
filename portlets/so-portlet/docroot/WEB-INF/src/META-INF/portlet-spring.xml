@@ -2,11 +2,11 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.so.service.FavoriteSiteLocalService" class="com.liferay.so.service.impl.FavoriteSiteLocalServiceImpl" />
-	<bean id="com.liferay.so.service.persistence.FavoriteSitePersistence" class="com.liferay.so.service.persistence.FavoriteSitePersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.so.service.persistence.FavoriteSiteFinder" class="com.liferay.so.service.persistence.FavoriteSiteFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.so.service.persistence.FavoriteSitePersistence" class="com.liferay.so.service.persistence.impl.FavoriteSitePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.so.service.persistence.FavoriteSiteFinder" class="com.liferay.so.service.persistence.impl.FavoriteSiteFinderImpl" parent="basePersistence" />
 	<bean id="com.liferay.so.service.MemberRequestLocalService" class="com.liferay.so.service.impl.MemberRequestLocalServiceImpl" />
-	<bean id="com.liferay.so.service.persistence.MemberRequestPersistence" class="com.liferay.so.service.persistence.MemberRequestPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.so.service.persistence.MemberRequestPersistence" class="com.liferay.so.service.persistence.impl.MemberRequestPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.so.service.ProjectsEntryLocalService" class="com.liferay.so.service.impl.ProjectsEntryLocalServiceImpl" />
-	<bean id="com.liferay.so.service.persistence.ProjectsEntryPersistence" class="com.liferay.so.service.persistence.ProjectsEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.so.service.persistence.ProjectsEntryPersistence" class="com.liferay.so.service.persistence.impl.ProjectsEntryPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.so.service.SocialOfficeService" class="com.liferay.so.service.impl.SocialOfficeServiceImpl" />
 </beans>

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.so.service.persistence;
+package com.liferay.so.service.persistence.impl;
 
 import com.liferay.portal.kernel.cache.CacheRegistryUtil;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
@@ -41,6 +41,7 @@ import com.liferay.so.NoSuchFavoriteSiteException;
 import com.liferay.so.model.FavoriteSite;
 import com.liferay.so.model.impl.FavoriteSiteImpl;
 import com.liferay.so.model.impl.FavoriteSiteModelImpl;
+import com.liferay.so.service.persistence.FavoriteSitePersistence;
 
 import java.io.Serializable;
 

@@ -22,8 +22,10 @@ import com.liferay.so.service.ProjectsEntryLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link ProjectsEntryLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class ProjectsEntryActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public ProjectsEntryActionableDynamicQuery() throws SystemException {
