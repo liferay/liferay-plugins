@@ -8,7 +8,7 @@ toString : function() {
 	}
 	else {
 		date = new Date();
-		id = "" + date.getTime();
+		id = '' + date.getTime();
 	}
 
 	clickMe.innerHTML = 'Click me.';
