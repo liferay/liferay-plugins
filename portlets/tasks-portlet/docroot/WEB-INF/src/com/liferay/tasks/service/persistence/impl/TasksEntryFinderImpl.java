@@ -61,8 +61,8 @@ public class TasksEntryFinderImpl
 			int status, long[] assetTagIds, long[] notAssetTagIds)
 		throws SystemException {
 
-		if ((assetTagIds.length == 0) && (notAssetTagIds.length == 0) &&
-			(priority <= 0)) {
+		if ((priority <= 0) && (assetTagIds.length == 0) &&
+			(notAssetTagIds.length == 0)) {
 
 			if ((assigneeUserId > 0) && (userId <= 0)) {
 				return countByG_A_S(groupId, assigneeUserId, status);
@@ -159,8 +159,8 @@ public class TasksEntryFinderImpl
 			int end)
 		throws SystemException {
 
-		if ((assetTagIds.length == 0) && (notAssetTagIds.length == 0) &&
-			(priority <= 0)) {
+		if ((priority <= 0) && (assetTagIds.length == 0) &&
+			(notAssetTagIds.length == 0)) {
 
 			if ((assigneeUserId > 0) && (userId <= 0)) {
 				return findByG_A_S(groupId, assigneeUserId, status, start, end);
