@@ -35,12 +35,12 @@
 		portletURL.setParameter("privateLayout", Boolean.TRUE.toString());
 		%>
 
-		<div class="signed-in-as portlet-login">
+		<div class="portlet-login signed-in-as">
 			<div class="profile-image">
 				<a href="<%= portletURL %>"><img alt="<%= HtmlUtil.escape(user.getFullName()) %>" src="<%= user.getPortraitURL(themeDisplay) %>"></a>
 			</div>
 
-			<a class="user-name aui-state-default aui-buttonitem-content" href="<%= portletURL %>"><span class="aui-button-label"><liferay-ui:message key="my-dashboard" /></span></a>
+			<a class="aui-buttonitem-content aui-state-default user-name" href="<%= portletURL %>"><span class="aui-button-label"><liferay-ui:message key="my-dashboard" /></span></a>
 		</div>
 	</c:when>
 	<c:otherwise>
