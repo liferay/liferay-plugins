@@ -119,7 +119,7 @@
 		background: none;
 	}
 
-	/* Messages */
+	/* ---------- Messages ---------- */
 
 	.unread {
 		font-weight: bold;
@@ -129,7 +129,7 @@
 		}
 	}
 
-	/* Results */
+	/* ---------- Results ---------- */
 
 	.messages .table-data tr {
 		&:hover td, &:nth-child(odd) td, td {
@@ -155,7 +155,7 @@
 		margin-bottom: 0;
 	}
 
-	/* Thread */
+	/* ---------- Thread ---------- */
 
 	.thread {
 		.taglib-header {
@@ -228,6 +228,19 @@
 
 	.line-through {
 		text-decoration: line-through;
+	}
+}
+
+/* ---------- Extras ---------- */
+
+.private-messaging-portlet .controls {
+	@include border-radius(4px);
+}
+
+.ie7 .private-messaging-portlet {
+	.message-to {
+		position: relative;
+		z-index: 1;
 	}
 }
 
@@ -310,18 +323,5 @@ html.aui {
 				margin-top: 10px;
 			}
 		}
-	}
-}
-
-/* ---------- Extras ---------- */
-
-.private-messaging-portlet .controls {
-	@include border-radius(4px);
-}
-
-.ie7 .private-messaging-portlet {
-	.message-to {
-		position: relative;
-		z-index: 1;
 	}
 }
