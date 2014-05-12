@@ -67,10 +67,10 @@ taskListURL.setParameter("tabs2", tabs2);
 	emptyResultsMessage="no-tasks-were-found"
 	headerNames="description,due, "
 	iteratorURL="<%= portletURL %>"
-	total= "<%= TasksEntryLocalServiceUtil.getTasksEntriesCount(groupId, 0, assigneeUserId, reporterUserId, status, assetTagIds, new long[0]) %>"
+	total= "<%= TasksEntryLocalServiceUtil.getTasksEntriesCount(groupId, reporterUserId, 0, assigneeUserId, status, assetTagIds, new long[0]) %>"
 >
 	<liferay-ui:search-container-results
-		results="<%= TasksEntryLocalServiceUtil.getTasksEntries(groupId, 0, assigneeUserId, reporterUserId, status, assetTagIds, new long[0], searchContainer.getStart(), searchContainer.getEnd()) %>"
+		results="<%= TasksEntryLocalServiceUtil.getTasksEntries(groupId, reporterUserId, 0, assigneeUserId, status, assetTagIds, new long[0], searchContainer.getStart(), searchContainer.getEnd()) %>"
 	/>
 
 	<liferay-ui:search-container-row
