@@ -307,14 +307,6 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevices(
-		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _pushNotificationsDeviceLocalService.getPushNotificationsDevices(token);
-	}
-
-	@Override
 	public java.util.List<java.lang.String> getTokens(long userId,
 		java.lang.String platform, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

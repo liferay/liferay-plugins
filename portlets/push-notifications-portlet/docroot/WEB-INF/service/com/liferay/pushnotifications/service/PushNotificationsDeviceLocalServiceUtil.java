@@ -293,13 +293,6 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		return getService().deletePushNotificationsDevice(token);
 	}
 
-	public static com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevices(
-		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getPushNotificationsDevices(token);
-	}
-
 	public static java.util.List<java.lang.String> getTokens(long userId,
 		java.lang.String platform, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {

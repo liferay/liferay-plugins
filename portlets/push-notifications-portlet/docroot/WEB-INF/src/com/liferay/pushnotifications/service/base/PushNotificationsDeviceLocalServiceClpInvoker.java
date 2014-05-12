@@ -106,31 +106,27 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 				"com.liferay.pushnotifications.model.PushNotificationsDevice"
 			};
 
-		_methodName34 = "getBeanIdentifier";
+		_methodName40 = "getBeanIdentifier";
 
-		_methodParameterTypes34 = new String[] {  };
+		_methodParameterTypes40 = new String[] {  };
 
-		_methodName35 = "setBeanIdentifier";
-
-		_methodParameterTypes35 = new String[] { "java.lang.String" };
-
-		_methodName40 = "addPushNotificationsDevice";
-
-		_methodParameterTypes40 = new String[] {
-				"long", "java.lang.String", "java.lang.String"
-			};
-
-		_methodName41 = "deletePushNotificationsDevice";
+		_methodName41 = "setBeanIdentifier";
 
 		_methodParameterTypes41 = new String[] { "java.lang.String" };
 
-		_methodName42 = "getPushNotificationsDevices";
+		_methodName46 = "addPushNotificationsDevice";
 
-		_methodParameterTypes42 = new String[] { "java.lang.String" };
+		_methodParameterTypes46 = new String[] {
+				"long", "java.lang.String", "java.lang.String"
+			};
 
-		_methodName43 = "getTokens";
+		_methodName47 = "deletePushNotificationsDevice";
 
-		_methodParameterTypes43 = new String[] {
+		_methodParameterTypes47 = new String[] { "java.lang.String" };
+
+		_methodName48 = "getTokens";
+
+		_methodParameterTypes48 = new String[] {
 				"long", "java.lang.String", "int", "int"
 			};
 	}
@@ -224,36 +220,31 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 			return PushNotificationsDeviceLocalServiceUtil.updatePushNotificationsDevice((com.liferay.pushnotifications.model.PushNotificationsDevice)arguments[0]);
 		}
 
-		if (_methodName34.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes34, parameterTypes)) {
+		if (_methodName40.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
 			return PushNotificationsDeviceLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName35.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes35, parameterTypes)) {
+		if (_methodName41.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
 			PushNotificationsDeviceLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName40.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes40, parameterTypes)) {
+		if (_methodName46.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
 			return PushNotificationsDeviceLocalServiceUtil.addPushNotificationsDevice(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
 		}
 
-		if (_methodName41.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes41, parameterTypes)) {
+		if (_methodName47.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
 			return PushNotificationsDeviceLocalServiceUtil.deletePushNotificationsDevice((java.lang.String)arguments[0]);
 		}
 
-		if (_methodName42.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes42, parameterTypes)) {
-			return PushNotificationsDeviceLocalServiceUtil.getPushNotificationsDevices((java.lang.String)arguments[0]);
-		}
-
-		if (_methodName43.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes43, parameterTypes)) {
+		if (_methodName48.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
 			return PushNotificationsDeviceLocalServiceUtil.getTokens(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1],
 				((Integer)arguments[2]).intValue(),
@@ -295,16 +286,14 @@ public class PushNotificationsDeviceLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName34;
-	private String[] _methodParameterTypes34;
-	private String _methodName35;
-	private String[] _methodParameterTypes35;
 	private String _methodName40;
 	private String[] _methodParameterTypes40;
 	private String _methodName41;
 	private String[] _methodParameterTypes41;
-	private String _methodName42;
-	private String[] _methodParameterTypes42;
-	private String _methodName43;
-	private String[] _methodParameterTypes43;
+	private String _methodName46;
+	private String[] _methodParameterTypes46;
+	private String _methodName47;
+	private String[] _methodParameterTypes47;
+	private String _methodName48;
+	private String[] _methodParameterTypes48;
 }
