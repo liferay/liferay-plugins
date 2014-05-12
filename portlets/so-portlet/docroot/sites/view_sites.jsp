@@ -76,7 +76,7 @@ else {
 	<ul class="directory-list"></ul>
 
 	<aui:button-row>
-		<div class="directory-navigation buttons-left">
+		<div class="buttons-left directory-navigation">
 			<span class="page-indicator">
 				<%= LanguageUtil.format(pageContext, "page-x-of-x", new String[] {"<span class=\"current\">1</span>", "<span class=\"total\">" + String.valueOf((int)Math.ceil(groupsCount / (float)maxResultSize)) + "</span>"}, false) %>
 			</span>
