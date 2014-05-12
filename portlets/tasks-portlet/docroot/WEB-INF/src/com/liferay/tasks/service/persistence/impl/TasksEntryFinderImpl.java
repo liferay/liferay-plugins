@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.tasks.model.TasksEntry;
@@ -84,14 +83,11 @@ public class TasksEntryFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN$]", getJoin(assetTagIds, notAssetTagIds));
-
-			String assetTagTagIds = getAssetTagTagIds(
-				assetTagIds, notAssetTagIds);
-
 			sql = StringUtil.replace(
-				sql, "[$ASSET_TAG_TAG_IDS$]", assetTagTagIds);
+				sql, "[$ASSET_TAG_TAG_IDS$]",
+				getAssetTagTagIds(assetTagIds, notAssetTagIds));
 
-			if (Validator.isNotNull(assetTagIds)) {
+			if (assetTagIds.length > 0) {
 				sql = StringUtil.replaceLast(sql, "WHERE", StringPool.BLANK);
 			}
 
@@ -103,9 +99,9 @@ public class TasksEntryFinderImpl
 			sql = StringUtil.replace(
 				sql, "[$REPORTER_USER_ID$]", getReporterUserId(reporterUserId));
 
-			int[] statusArray = getStatusArray(status);
+			int[] statuses = getStatuses(status);
 
-			sql = StringUtil.replace(sql, "[$STATUS$]", getStatus(statusArray));
+			sql = StringUtil.replace(sql, "[$STATUS$]", getStatus(statuses));
 
 			sql = StringUtil.replaceLast(sql, "AND", StringPool.BLANK);
 
@@ -117,9 +113,8 @@ public class TasksEntryFinderImpl
 
 			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
 				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
-
-				setTagsEntryIds(qPos, assetTagIds);
-				setTagsEntryIds(qPos, notAssetTagIds);
+				qPos.add(assetTagIds);
+				qPos.add(notAssetTagIds);
 			}
 
 			if (groupId > 0) {
@@ -138,11 +133,7 @@ public class TasksEntryFinderImpl
 				qPos.add(reporterUserId);
 			}
 
-			if (statusArray != null) {
-				for (int curStatus : statusArray) {
-					qPos.add(curStatus);
-				}
-			}
+			qPos.add(statuses);
 
 			Iterator<Long> itr = q.iterate();
 
@@ -191,14 +182,11 @@ public class TasksEntryFinderImpl
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN$]", getJoin(assetTagIds, notAssetTagIds));
-
-			String assetTagTagIds = getAssetTagTagIds(
-				assetTagIds, notAssetTagIds);
-
 			sql = StringUtil.replace(
-				sql, "[$ASSET_TAG_TAG_IDS$]", assetTagTagIds);
+				sql, "[$ASSET_TAG_TAG_IDS$]",
+				getAssetTagTagIds(assetTagIds, notAssetTagIds));
 
-			if (Validator.isNotNull(assetTagIds)) {
+			if (assetTagIds.length > 0) {
 				sql = StringUtil.replaceLast(sql, "WHERE", StringPool.BLANK);
 			}
 
@@ -210,9 +198,9 @@ public class TasksEntryFinderImpl
 			sql = StringUtil.replace(
 				sql, "[$REPORTER_USER_ID$]", getReporterUserId(reporterUserId));
 
-			int[] statusArray = getStatusArray(status);
+			int[] statuses = getStatuses(status);
 
-			sql = StringUtil.replace(sql, "[$STATUS$]", getStatus(statusArray));
+			sql = StringUtil.replace(sql, "[$STATUS$]", getStatus(statuses));
 
 			sql = StringUtil.replaceLast(sql, "AND", StringPool.BLANK);
 
@@ -224,9 +212,8 @@ public class TasksEntryFinderImpl
 
 			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
 				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
-
-				setTagsEntryIds(qPos, assetTagIds);
-				setTagsEntryIds(qPos, notAssetTagIds);
+				qPos.add(assetTagIds);
+				qPos.add(notAssetTagIds);
 			}
 
 			if (groupId > 0) {
@@ -245,11 +232,7 @@ public class TasksEntryFinderImpl
 				qPos.add(reporterUserId);
 			}
 
-			if (statusArray != null) {
-				for (int curStatus : statusArray) {
-					qPos.add(curStatus);
-				}
-			}
+			qPos.add(statuses);
 
 			return (List<TasksEntry>)QueryUtil.list(
 				q, getDialect(), start, end);
@@ -268,11 +251,11 @@ public class TasksEntryFinderImpl
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
 				return TasksEntryUtil.countByG_A_S(
-					groupId, assigneeUserId, getStatusArray(status));
+					groupId, assigneeUserId, getStatuses(status));
 			}
 
 			return TasksEntryUtil.countByA_S(
-				assigneeUserId, getStatusArray(status));
+				assigneeUserId, getStatuses(status));
 		}
 
 		if (groupId > 0) {
@@ -288,11 +271,11 @@ public class TasksEntryFinderImpl
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
 				return TasksEntryUtil.countByG_U_S(
-					groupId, reporterUserId, getStatusArray(status));
+					groupId, reporterUserId, getStatuses(status));
 			}
 
 			return TasksEntryUtil.countByU_S(
-				reporterUserId, getStatusArray(status));
+				reporterUserId, getStatuses(status));
 		}
 
 		if (groupId > 0) {
@@ -309,12 +292,11 @@ public class TasksEntryFinderImpl
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
 				return TasksEntryUtil.findByG_A_S(
-					groupId, assigneeUserId, getStatusArray(status), start,
-					end);
+					groupId, assigneeUserId, getStatuses(status), start, end);
 			}
 
 			return TasksEntryUtil.findByA_S(
-				assigneeUserId, getStatusArray(status), start, end);
+				assigneeUserId, getStatuses(status), start, end);
 		}
 
 		if (groupId > 0) {
@@ -332,12 +314,11 @@ public class TasksEntryFinderImpl
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
 				return TasksEntryUtil.findByG_U_S(
-					groupId, reporterUserId, getStatusArray(status), start,
-					end);
+					groupId, reporterUserId, getStatuses(status), start, end);
 			}
 
 			return TasksEntryUtil.findByU_S(
-				reporterUserId, getStatusArray(status), start, end);
+				reporterUserId, getStatuses(status), start, end);
 		}
 
 		if (groupId > 0) {
@@ -440,16 +421,16 @@ public class TasksEntryFinderImpl
 		return StringPool.BLANK;
 	}
 
-	protected String getStatus(int[] statusArray) {
-		if (statusArray == null) {
+	protected String getStatus(int[] statuses) {
+		if (statuses.length == 0) {
 			return StringPool.BLANK;
 		}
 
-		StringBundler sb = new StringBundler((statusArray.length * 2) + 1);
+		StringBundler sb = new StringBundler((statuses.length * 2) + 1);
 
 		sb.append(" (");
 
-		for (int i = 0; i < statusArray.length; i++) {
+		for (int i = 0; i < statuses.length; i++) {
 			sb.append("TMS_TasksEntry.status = ? ");
 			sb.append("OR ");
 		}
@@ -461,9 +442,9 @@ public class TasksEntryFinderImpl
 		return sb.toString();
 	}
 
-	protected int[] getStatusArray(int status) {
+	protected int[] getStatuses(int status) {
 		if (status == TasksEntryConstants.STATUS_ALL) {
-			return null;
+			return new int[0];
 		}
 
 		if (status == TasksEntryConstants.STATUS_RESOLVED) {
@@ -471,12 +452,6 @@ public class TasksEntryFinderImpl
 		}
 
 		return _OPEN_STATUSES_ARRAY;
-	}
-
-	protected void setTagsEntryIds(QueryPos qPos, long[] assetTagIds) {
-		for (int i = 0; i < assetTagIds.length; i++) {
-			qPos.add(assetTagIds[i]);
-		}
 	}
 
 	private static final int[] _OPEN_STATUSES_ARRAY = {
