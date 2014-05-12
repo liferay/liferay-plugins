@@ -270,8 +270,8 @@
 
 	<target name="build-wsdd">
 		<loop-macrodef-or-target
-			macrodef.name="compile"
 			module.dirs="${basedir}"
+			target.name="compile"
 		/>
 
 		<path id="wsdd.classpath">

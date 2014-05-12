@@ -182,13 +182,13 @@
 
 	<target name="setup-eclipse">
 		<loop-macrodef-or-target
-			macrodef.name="clean"
 			module.dirs="${plugins.includes.path}"
+			target.name="clean"
 		/>
 
 		<loop-macrodef-or-target
-			macrodef.name="compile"
 			module.dirs="${plugins.includes.path}"
+			target.name="compile"
 		/>
 
 		<ant dir="hooks" target="setup-eclipse" inheritAll="false" />
