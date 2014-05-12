@@ -33,6 +33,7 @@
 	}
 
 	.body {
+		clear: right;
 		word-break: break-word;
 	}
 
@@ -72,7 +73,8 @@
 		padding: 0;
 	}
 
-	.author-sender {
+	.author-sender, .name {
+		float: left;
 		font-weight: bold;
 	}
 
@@ -89,6 +91,7 @@
 		}
 
 		.subject {
+			clear: right;
 			color: #333;
 			word-break: break-word;
 		}
@@ -171,7 +174,7 @@
 		}
 
 		.body {
-			padding: 5px 60px 0 0;
+			margin-top: 5px;
 
 			.image-thumbnail {
 				float: left;
@@ -265,7 +268,6 @@ html.aui {
 
 			button, button:hover {
 				margin-bottom: 5px;
-				margin-top: 0;
 				width: 100%;
 
 				&.close {
@@ -275,6 +277,37 @@ html.aui {
 				&:last-child {
 					margin-bottom: 0;
 				}
+			}
+
+			.message-link {
+				padding-left: 10px;
+			}
+
+			.user-profile-image {
+				height: 45px;
+			}
+
+			.avatar {
+				width: 45px;
+			}
+
+			.author-sender, .date, .name {
+				float: none;
+			}
+
+			.date {
+				display: block;
+				font-size: 1em;
+				margin-top: 3px;
+			}
+
+			.subject {
+				margin-top: 10px;
+			}
+
+			.body {
+				clear: both;
+				margin-top: 10px;
 			}
 		}
 	}
