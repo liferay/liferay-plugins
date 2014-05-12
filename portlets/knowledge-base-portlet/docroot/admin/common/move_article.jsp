@@ -29,6 +29,7 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
+	localizeTitle="<%= false %>"
 	title="<%= kbArticle.getTitle() %>"
 />
 
