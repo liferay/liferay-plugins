@@ -9,9 +9,9 @@
 		[$JOIN$]
 		WHERE
 			[$GROUP_ID$]
+			[$USER_ID$]
 			[$PRIORITY$]
 			[$ASSIGNEE_USER_ID$]
-			[$REPORTER_USER_ID$]
 			[$STATUS$]
 		ORDER BY
 			TMS_TasksEntry.priority ASC, TMS_TasksEntry.dueDate ASC, TMS_TasksEntry.createDate ASC
@@ -24,9 +24,9 @@
 		[$JOIN$]
 		WHERE
 			[$GROUP_ID$]
+			[$USER_ID$]
 			[$PRIORITY$]
 			[$ASSIGNEE_USER_ID$]
-			[$REPORTER_USER_ID$]
 			[$STATUS$]
 		ORDER BY
 			TMS_TasksEntry.priority ASC, TMS_TasksEntry.dueDate ASC, TMS_TasksEntry.createDate ASC

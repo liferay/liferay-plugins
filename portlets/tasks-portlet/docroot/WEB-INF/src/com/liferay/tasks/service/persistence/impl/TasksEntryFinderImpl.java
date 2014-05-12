@@ -58,19 +58,19 @@ public class TasksEntryFinderImpl
 
 	public int countByG_P_A_R_S_T_N(
 			long groupId, int priority, long assigneeUserId,
-			long reporterUserId, int status, long[] assetTagIds,
+			long userId, int status, long[] assetTagIds,
 			long[] notAssetTagIds)
 		throws SystemException {
 
 		if ((assetTagIds.length == 0) && (notAssetTagIds.length == 0) &&
 			(priority <= 0)) {
 
-			if ((assigneeUserId > 0) && (reporterUserId <= 0)) {
+			if ((assigneeUserId > 0) && (userId <= 0)) {
 				return countByG_A_S(groupId, assigneeUserId, status);
 			}
 
-			if ((reporterUserId > 0) && (assigneeUserId <= 0)) {
-				return countByG_R_S(groupId, reporterUserId, status);
+			if ((userId > 0) && (assigneeUserId <= 0)) {
+				return countByG_R_S(groupId, userId, status);
 			}
 		}
 
@@ -92,12 +92,11 @@ public class TasksEntryFinderImpl
 			}
 
 			sql = StringUtil.replace(sql, "[$GROUP_ID$]", getGroupId(groupId));
+			sql = StringUtil.replace(sql, "[$USER_ID$]", getUserId(userId));
 			sql = StringUtil.replace(
 				sql, "[$PRIORITY$]", getPriority(priority));
 			sql = StringUtil.replace(
 				sql, "[$ASSIGNEE_USER_ID$]", getAssigneeUserId(assigneeUserId));
-			sql = StringUtil.replace(
-				sql, "[$REPORTER_USER_ID$]", getReporterUserId(reporterUserId));
 
 			int[] statuses = getStatuses(status);
 
@@ -121,16 +120,16 @@ public class TasksEntryFinderImpl
 				qPos.add(groupId);
 			}
 
+			if (userId > 0) {
+				qPos.add(userId);
+			}
+
 			if (priority > 0) {
 				qPos.add(priority);
 			}
 
 			if (assigneeUserId > 0) {
 				qPos.add(assigneeUserId);
-			}
-
-			if (reporterUserId > 0) {
-				qPos.add(reporterUserId);
 			}
 
 			qPos.add(statuses);
@@ -157,19 +156,19 @@ public class TasksEntryFinderImpl
 
 	public List<TasksEntry> findByG_P_A_R_S_T_N(
 			long groupId, int priority, long assigneeUserId,
-			long reporterUserId, int status, long[] assetTagIds,
+			long userId, int status, long[] assetTagIds,
 			long[] notAssetTagIds, int start, int end)
 		throws SystemException {
 
 		if ((assetTagIds.length == 0) && (notAssetTagIds.length == 0) &&
 			(priority <= 0)) {
 
-			if ((assigneeUserId > 0) && (reporterUserId <= 0)) {
+			if ((assigneeUserId > 0) && (userId <= 0)) {
 				return findByG_A_S(groupId, assigneeUserId, status, start, end);
 			}
 
-			if ((reporterUserId > 0) && (assigneeUserId <= 0)) {
-				return findByG_R_S(groupId, reporterUserId, status, start, end);
+			if ((userId > 0) && (assigneeUserId <= 0)) {
+				return findByG_R_S(groupId, userId, status, start, end);
 			}
 		}
 
@@ -191,12 +190,11 @@ public class TasksEntryFinderImpl
 			}
 
 			sql = StringUtil.replace(sql, "[$GROUP_ID$]", getGroupId(groupId));
+			sql = StringUtil.replace(sql, "[$USER_ID$]", getUserId(userId));
 			sql = StringUtil.replace(
 				sql, "[$PRIORITY$]", getPriority(priority));
 			sql = StringUtil.replace(
 				sql, "[$ASSIGNEE_USER_ID$]", getAssigneeUserId(assigneeUserId));
-			sql = StringUtil.replace(
-				sql, "[$REPORTER_USER_ID$]", getReporterUserId(reporterUserId));
 
 			int[] statuses = getStatuses(status);
 
@@ -220,16 +218,16 @@ public class TasksEntryFinderImpl
 				qPos.add(groupId);
 			}
 
+			if (userId > 0) {
+				qPos.add(userId);
+			}
+
 			if (priority > 0) {
 				qPos.add(priority);
 			}
 
 			if (assigneeUserId > 0) {
 				qPos.add(assigneeUserId);
-			}
-
-			if (reporterUserId > 0) {
-				qPos.add(reporterUserId);
 			}
 
 			qPos.add(statuses);
@@ -265,24 +263,24 @@ public class TasksEntryFinderImpl
 		return TasksEntryUtil.countByAssigneeUserId(assigneeUserId);
 	}
 
-	protected int countByG_R_S(long groupId, long reporterUserId, int status)
+	protected int countByG_R_S(long groupId, long userId, int status)
 		throws SystemException {
 
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
 				return TasksEntryUtil.countByG_U_S(
-					groupId, reporterUserId, getStatuses(status));
+					groupId, userId, getStatuses(status));
 			}
 
 			return TasksEntryUtil.countByU_S(
-				reporterUserId, getStatuses(status));
+				userId, getStatuses(status));
 		}
 
 		if (groupId > 0) {
-			return TasksEntryUtil.countByG_U(groupId, reporterUserId);
+			return TasksEntryUtil.countByG_U(groupId, userId);
 		}
 
-		return TasksEntryUtil.countByUserId(reporterUserId);
+		return TasksEntryUtil.countByUserId(userId);
 	}
 
 	protected List<TasksEntry> findByG_A_S(
@@ -308,25 +306,25 @@ public class TasksEntryFinderImpl
 	}
 
 	protected List<TasksEntry> findByG_R_S(
-			long groupId, long reporterUserId, int status, int start, int end)
+			long groupId, long userId, int status, int start, int end)
 		throws SystemException {
 
 		if (status != TasksEntryConstants.STATUS_ALL) {
 			if (groupId > 0) {
 				return TasksEntryUtil.findByG_U_S(
-					groupId, reporterUserId, getStatuses(status), start, end);
+					groupId, userId, getStatuses(status), start, end);
 			}
 
 			return TasksEntryUtil.findByU_S(
-				reporterUserId, getStatuses(status), start, end);
+				userId, getStatuses(status), start, end);
 		}
 
 		if (groupId > 0) {
 			return TasksEntryUtil.findByG_U(
-				groupId, reporterUserId, start, end);
+				groupId, userId, start, end);
 		}
 
-		return TasksEntryUtil.findByUserId(reporterUserId, start, end);
+		return TasksEntryUtil.findByUserId(userId, start, end);
 	}
 
 	protected String getAssetTagTagIds(
@@ -413,14 +411,6 @@ public class TasksEntryFinderImpl
 		return StringPool.BLANK;
 	}
 
-	protected String getReporterUserId(long reporterUserId) {
-		if (reporterUserId > 0) {
-			return "TMS_TasksEntry.userId = ? AND";
-		}
-
-		return StringPool.BLANK;
-	}
-
 	protected String getStatus(int[] statuses) {
 		if (statuses.length == 0) {
 			return StringPool.BLANK;
@@ -452,6 +442,14 @@ public class TasksEntryFinderImpl
 		}
 
 		return _OPEN_STATUSES_ARRAY;
+	}
+
+	protected String getUserId(long userId) {
+		if (userId > 0) {
+			return "TMS_TasksEntry.userId = ? AND";
+		}
+
+		return StringPool.BLANK;
 	}
 
 	private static final int[] _OPEN_STATUSES_ARRAY = {
