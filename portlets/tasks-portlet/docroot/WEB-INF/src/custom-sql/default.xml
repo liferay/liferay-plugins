@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.countByG_P_A_R_S_T_N">
+	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.countByG_U_P_A_S_T_N">
 		SELECT
 			COUNT(DISTINCT TMS_TasksEntry.tasksEntryId) AS COUNT_VALUE
 		FROM
@@ -16,7 +16,7 @@
 		ORDER BY
 			TMS_TasksEntry.priority ASC, TMS_TasksEntry.dueDate ASC, TMS_TasksEntry.createDate ASC
 	</sql>
-	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.findByG_P_A_R_S_T_N">
+	<sql id="com.liferay.tasks.service.persistence.TasksEntryFinder.findByG_U_P_A_S_T_N">
 		SELECT
 			DISTINCT {TMS_TasksEntry.*}
 		FROM

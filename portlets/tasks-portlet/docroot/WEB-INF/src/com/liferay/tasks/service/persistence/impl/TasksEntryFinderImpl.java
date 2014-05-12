@@ -44,11 +44,11 @@ import java.util.List;
 public class TasksEntryFinderImpl
 	extends BasePersistenceImpl<TasksEntry> implements TasksEntryFinder {
 
-	public static final String COUNT_BY_G_P_A_R_S_T_N =
-		TasksEntryFinder.class.getName() + ".countByG_P_A_R_S_T_N";
+	public static final String COUNT_BY_G_U_P_A_S_T_N =
+		TasksEntryFinder.class.getName() + ".countByG_U_P_A_S_T_N";
 
-	public static final String FIND_BY_G_P_A_R_S_T_N =
-		TasksEntryFinder.class.getName() + ".findByG_P_A_R_S_T_N";
+	public static final String FIND_BY_G_U_P_A_S_T_N =
+		TasksEntryFinder.class.getName() + ".findByG_U_P_A_S_T_N";
 
 	public static final String JOIN_BY_ASSET_TAGS =
 		TasksEntryFinder.class.getName() + ".joinByAssetTags";
@@ -56,10 +56,9 @@ public class TasksEntryFinderImpl
 	public static final String JOIN_BY_NOT_ASSET_TAGS =
 		TasksEntryFinder.class.getName() + ".joinByNotAssetTags";
 
-	public int countByG_P_A_R_S_T_N(
-			long groupId, int priority, long assigneeUserId,
-			long userId, int status, long[] assetTagIds,
-			long[] notAssetTagIds)
+	public int countByG_U_P_A_S_T_N(
+			long groupId, long userId, int priority, long assigneeUserId,
+			int status, long[] assetTagIds, long[] notAssetTagIds)
 		throws SystemException {
 
 		if ((assetTagIds.length == 0) && (notAssetTagIds.length == 0) &&
@@ -79,7 +78,7 @@ public class TasksEntryFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(COUNT_BY_G_P_A_R_S_T_N);
+			String sql = CustomSQLUtil.get(COUNT_BY_G_U_P_A_S_T_N);
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN$]", getJoin(assetTagIds, notAssetTagIds));
@@ -154,10 +153,10 @@ public class TasksEntryFinderImpl
 		}
 	}
 
-	public List<TasksEntry> findByG_P_A_R_S_T_N(
-			long groupId, int priority, long assigneeUserId,
-			long userId, int status, long[] assetTagIds,
-			long[] notAssetTagIds, int start, int end)
+	public List<TasksEntry> findByG_U_P_A_S_T_N(
+			long groupId, long userId, int priority, long assigneeUserId,
+			int status, long[] assetTagIds, long[] notAssetTagIds, int start,
+			int end)
 		throws SystemException {
 
 		if ((assetTagIds.length == 0) && (notAssetTagIds.length == 0) &&
@@ -177,7 +176,7 @@ public class TasksEntryFinderImpl
 		try {
 			session = openSession();
 
-			String sql = CustomSQLUtil.get(FIND_BY_G_P_A_R_S_T_N);
+			String sql = CustomSQLUtil.get(FIND_BY_G_U_P_A_S_T_N);
 
 			sql = StringUtil.replace(
 				sql, "[$JOIN$]", getJoin(assetTagIds, notAssetTagIds));
@@ -272,8 +271,7 @@ public class TasksEntryFinderImpl
 					groupId, userId, getStatuses(status));
 			}
 
-			return TasksEntryUtil.countByU_S(
-				userId, getStatuses(status));
+			return TasksEntryUtil.countByU_S(userId, getStatuses(status));
 		}
 
 		if (groupId > 0) {
@@ -320,8 +318,7 @@ public class TasksEntryFinderImpl
 		}
 
 		if (groupId > 0) {
-			return TasksEntryUtil.findByG_U(
-				groupId, userId, start, end);
+			return TasksEntryUtil.findByG_U(groupId, userId, start, end);
 		}
 
 		return TasksEntryUtil.findByUserId(userId, start, end);

@@ -240,14 +240,14 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 	}
 
 	public List<TasksEntry> getTasksEntries(
-			long groupId, int priority, long assigneeUserId,
-			long reporterUserId, int status, long[] assetTagIds,
-			long[] notAssetTagIds, int start, int end)
+			long groupId, long userId, int priority, long assigneeUserId,
+			int status, long[] assetTagIds, long[] notAssetTagIds, int start,
+			int end)
 		throws SystemException {
 
-		return tasksEntryFinder.findByG_P_A_R_S_T_N(
-			groupId, priority, assigneeUserId, reporterUserId, status,
-			assetTagIds, notAssetTagIds, start, end);
+		return tasksEntryFinder.findByG_U_P_A_S_T_N(
+			groupId, userId, priority, assigneeUserId, status, assetTagIds,
+			notAssetTagIds, start, end);
 	}
 
 	public int getTasksEntriesCount(long groupId) throws SystemException {
@@ -255,14 +255,13 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 	}
 
 	public int getTasksEntriesCount(
-			long groupId, int priority, long assigneeUserId,
-			long reporterUserId, int status, long[] tagsEntryIds,
-			long[] notTagsEntryIds)
+			long groupId, long userId, int priority, long assigneeUserId,
+			int status, long[] tagsEntryIds, long[] notTagsEntryIds)
 		throws SystemException {
 
-		return tasksEntryFinder.countByG_P_A_R_S_T_N(
-			groupId, priority, assigneeUserId, reporterUserId, status,
-			tagsEntryIds, notTagsEntryIds);
+		return tasksEntryFinder.countByG_U_P_A_S_T_N(
+			groupId, userId, priority, assigneeUserId, status, tagsEntryIds,
+			notTagsEntryIds);
 	}
 
 	@Override
