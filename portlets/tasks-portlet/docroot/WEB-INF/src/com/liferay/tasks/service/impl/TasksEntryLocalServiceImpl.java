@@ -163,42 +163,47 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 	}
 
 	public List<TasksEntry> getAssigneeTasksEntries(
-			long userId, int start, int end)
+			long assigneeUserId, int start, int end)
 		throws SystemException {
 
-		return tasksEntryPersistence.findByAssigneeUserId(userId, start, end);
+		return tasksEntryPersistence.findByAssigneeUserId(
+			assigneeUserId, start, end);
 	}
 
-	public int getAssigneeTasksEntriesCount(long userId)
+	public int getAssigneeTasksEntriesCount(long assigneeUserId)
 		throws SystemException {
 
-		return tasksEntryPersistence.countByAssigneeUserId(userId);
+		return tasksEntryPersistence.countByAssigneeUserId(assigneeUserId);
 	}
 
 	public List<TasksEntry> getGroupAssigneeTasksEntries(
-			long groupId, long userId, int start, int end)
+			long groupId, long assigneeUserId, int start, int end)
 		throws SystemException {
 
-		return tasksEntryPersistence.findByG_A(groupId, userId, start, end);
+		return tasksEntryPersistence.findByG_A(
+			groupId, assigneeUserId, start, end);
 	}
 
-	public int getGroupAssigneeTasksEntriesCount(long groupId, long userId)
+	public int getGroupAssigneeTasksEntriesCount(
+			long groupId, long assigneeUserId)
 		throws SystemException {
 
-		return tasksEntryPersistence.countByG_A(groupId, userId);
+		return tasksEntryPersistence.countByG_A(groupId, assigneeUserId);
 	}
 
 	public List<TasksEntry> getGroupResolverTasksEntries(
-			long groupId, long userId, int start, int end)
+			long groupId, long resolverUserId, int start, int end)
 		throws SystemException {
 
-		return tasksEntryPersistence.findByG_R(groupId, userId, start, end);
+		return tasksEntryPersistence.findByG_R(
+			groupId, resolverUserId, start, end);
 	}
 
-	public int getGroupResolverTasksEntriesCount(long groupId, long userId)
+	public int getGroupResolverTasksEntriesCount(
+			long groupId, long resolverUserId)
 		throws SystemException {
 
-		return tasksEntryPersistence.countByG_R(groupId, userId);
+		return tasksEntryPersistence.countByG_R(groupId, resolverUserId);
 	}
 
 	public List<TasksEntry> getGroupUserTasksEntries(
@@ -215,16 +220,17 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 	}
 
 	public List<TasksEntry> getResolverTasksEntries(
-			long userId, int start, int end)
+			long resolverUserId, int start, int end)
 		throws SystemException {
 
-		return tasksEntryPersistence.findByResolverUserId(userId, start, end);
+		return tasksEntryPersistence.findByResolverUserId(
+			resolverUserId, start, end);
 	}
 
-	public int getResolverTasksEntriesCount(long userId)
+	public int getResolverTasksEntriesCount(long resolverUserId)
 		throws SystemException {
 
-		return tasksEntryPersistence.countByResolverUserId(userId);
+		return tasksEntryPersistence.countByResolverUserId(resolverUserId);
 	}
 
 	public List<TasksEntry> getTasksEntries(long groupId, int start, int end)
