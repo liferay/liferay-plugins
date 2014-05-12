@@ -22,8 +22,10 @@ import com.liferay.pushnotifications.service.PushNotificationsDeviceLocalService
 
 /**
  * @author Silvio Santos
+ * @deprecated As of 7.0.0, replaced by {@link PushNotificationsDeviceLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class PushNotificationsDeviceActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public PushNotificationsDeviceActionableDynamicQuery()

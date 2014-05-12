@@ -206,6 +206,11 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		return getService().getPushNotificationsDevice(pushNotificationsDeviceId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getActionableDynamicQuery();
+	}
+
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -291,13 +296,6 @@ public class PushNotificationsDeviceLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().deletePushNotificationsDevice(token);
-	}
-
-	public static com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevices(
-		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getPushNotificationsDevices(token);
 	}
 
 	public static java.util.List<java.lang.String> getTokens(long userId,
