@@ -33,8 +33,29 @@ public class PushNotificationsDeviceServiceImpl
 			String token, String platform)
 		throws PortalException, SystemException {
 
-		return pushNotificationsDeviceLocalService.addPushNotificationsDevice(
-			getUserId(), token, platform);
+		PushNotificationsDevice pushNotificationsDevice =
+			pushNotificationsDevicePersistence.fetchByToken(token);
+
+		if (pushNotificationsDevice == null) {
+			pushNotificationsDevice =
+				pushNotificationsDeviceLocalService.addPushNotificationsDevice(
+					getUserId(), platform, token);
+		}
+		else {
+			long userId = getUserId();
+
+			if (pushNotificationsDevice.getUserId() != userId) {
+				pushNotificationsDevice = null;
+
+				if (_log.isInfoEnabled()) {
+					_log.info(
+						"Device found with token " + token +
+							" does not belong to user " + userId);
+				}
+			}
+		}
+
+		return pushNotificationsDevice;
 	}
 
 	@Override
