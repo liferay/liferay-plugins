@@ -79,7 +79,7 @@ if (DLStoreUtil.hasDirectory(company.getCompanyId(), CompanyConstants.SYSTEM, di
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(resourcePrimKey) %>" />
 						<portlet:param name="fileName" value="<%= fileName %>" />
 					</liferay-portlet:resourceURL>
-					
+
 					<liferay-ui:icon
 						image="clip"
 						label="<%= true %>"
