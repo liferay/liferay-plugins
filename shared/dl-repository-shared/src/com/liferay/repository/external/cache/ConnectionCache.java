@@ -36,7 +36,7 @@ public class ConnectionCache<T> {
 
 		_sessionKey =
 			ConnectionCache.class + StringPool.POUND +
-			_SESSION_KEY_INDEX_GENERATOR.getAndIncrement();
+				_sessionKeyIndexGenerator.getAndIncrement();
 
 		_connectionThreadLocal = new AutoResetThreadLocal<T>(
 			connectionClass.getName());
@@ -77,7 +77,7 @@ public class ConnectionCache<T> {
 		return connection;
 	}
 
-	private static final AtomicInteger _SESSION_KEY_INDEX_GENERATOR =
+	private static AtomicInteger _sessionKeyIndexGenerator =
 		new AtomicInteger();
 
 	private ConnectionBuilder<T> _connectionBuilder;
