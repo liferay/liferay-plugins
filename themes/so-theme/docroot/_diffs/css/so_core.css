@@ -1908,12 +1908,13 @@ html.aui {
 				font-size: 50px;
 				line-height: 60px;
 				margin-top: -20px;
+				padding: 0;
 				width: 50px;
 			}
 
 			.modal-body {
 				padding: 0 10px;
-				width: auto;
+				width: 100%;
 
 				&.dialog-iframe-bd {
 					padding: 0;
