@@ -197,7 +197,7 @@ public class AdminIndexer extends BaseIndexer {
 		// See KBArticlePermission#contains
 
 		List<KBArticle> kbArticles =
-			KBArticleLocalServiceUtil.getKBArticleAndAllDescendants(
+			KBArticleLocalServiceUtil.getKBArticleAndAllDescendantKBArticles(
 				kbArticle.getResourcePrimKey(),
 				WorkflowConstants.STATUS_APPROVED, null);
 

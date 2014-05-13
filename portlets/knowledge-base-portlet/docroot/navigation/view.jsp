@@ -51,7 +51,7 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
 							KBArticle childKBArticle = childKBArticles.get(j);
 
-							List<KBArticle> nieceKBArticles = KBArticleLocalServiceUtil.getAllDescendants(childKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, null);
+							List<KBArticle> allDescendantKBArticles = KBArticleLocalServiceUtil.getAllDescendantKBArticles(childKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, null);
 
 							PortletURL viewChildURL = renderResponse.createRenderURL();
 
@@ -67,14 +67,14 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 								children: [
 
 									<%
-									for (int k = 0; k < nieceKBArticles.size(); k++) {
-										KBArticle nieceKBArticle = nieceKBArticles.get(k);
+									for (int k = 0; k < allDescendantKBArticles.size(); k++) {
+										KBArticle curKBArticle = allDescendantKBArticles.get(k);
 
-										PortletURL viewNieceURL = renderResponse.createRenderURL();
+										PortletURL viewCurKBArticleURL = renderResponse.createRenderURL();
 
-										viewNieceURL.setParameter("resourcePrimKey", String.valueOf(nieceKBArticle.getResourcePrimKey()));
+										viewCurKBArticleURL.setParameter("resourcePrimKey", String.valueOf(curKBArticle.getResourcePrimKey()));
 
-										if (nieceKBArticle.getResourcePrimKey() == resourcePrimKey) {
+										if (curKBArticle.getResourcePrimKey() == resourcePrimKey) {
 											expandedChildKBArticle = true;
 											expandedKBarticle = true;
 										}
@@ -82,11 +82,11 @@ long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
 										{
 											expanded: false,
-											id:'<portlet:namespace/><%= nieceKBArticle.getResourcePrimKey() %>',
-											label: '<a href="<%= viewNieceURL %>"><%= nieceKBArticle.getTitle() %></a>'
+											id:'<portlet:namespace/><%= curKBArticle.getResourcePrimKey() %>',
+											label: '<a href="<%= viewCurKBArticleURL %>"><%= curKBArticle.getTitle() %></a>'
 
 											<c:choose>
-												<c:when test="<%= k == (nieceKBArticles.size() - 1) %>">
+												<c:when test="<%= k == (allDescendantKBArticles.size() - 1) %>">
 													}
 												</c:when>
 												<c:otherwise>
