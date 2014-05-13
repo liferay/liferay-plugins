@@ -29,7 +29,7 @@ List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDispla
 		for (int i = 0; i < kbArticles.size(); i++) {
 			KBArticle kbArticle = kbArticles.get(i);
 
-			List<KBArticle> childKBArticles = NavigationUtil.getChildKBArticles(kbArticle, new ArrayList<KBArticle>());
+			List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getAllDescendants(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, null);
 		%>
 
 			{
