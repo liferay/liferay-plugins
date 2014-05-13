@@ -22,13 +22,12 @@ KBTemplate kbTemplate = (KBTemplate)request.getAttribute(WebKeys.KNOWLEDGE_BASE_
 long kbTemplateId = BeanParamUtil.getLong(kbTemplate, request, "kbTemplateId");
 
 String content = BeanParamUtil.getString(kbTemplate, request, "content");
-boolean kbTemplatePresent = (kbTemplate != null);
 %>
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	localizeTitle="<%= !kbTemplatePresent %>"
-	title='<%= kbTemplatePresent ? kbTemplate.getTitle() : "new-template" %>'
+	localizeTitle="<%= (kbTemplate == null) %>"
+	title='<%= (kbTemplate == null) ? "new-template" : kbTemplate.getTitle() %>'
 />
 
 <liferay-portlet:actionURL name="updateKBTemplate" var="updateKBTemplateURL" />
