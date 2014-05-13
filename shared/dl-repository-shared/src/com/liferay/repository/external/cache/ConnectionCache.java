@@ -39,7 +39,7 @@ public class ConnectionCache<T> {
 			ConnectionCache.class + StringPool.POUND +
 			_SESSION_KEY_INDEX_GENERATOR.getAndIncrement();
 
-		_sharepointConnectionThreadLocal = new AutoResetThreadLocal<T>(
+		_connectionThreadLocal = new AutoResetThreadLocal<T>(
 			connectionClass.getName());
 	}
 
@@ -57,7 +57,7 @@ public class ConnectionCache<T> {
 			}
 		}
 		else {
-			connection = _sharepointConnectionThreadLocal.get();
+			connection = _connectionThreadLocal.get();
 		}
 
 		if (connection != null) {
@@ -73,16 +73,16 @@ public class ConnectionCache<T> {
 			httpSession.setAttribute(_sessionKey, transientValue);
 		}
 
-		_sharepointConnectionThreadLocal.set(connection);
+		_connectionThreadLocal.set(connection);
 
 		return connection;
 	}
 
 	private static final AtomicInteger _SESSION_KEY_INDEX_GENERATOR =
-			new AtomicInteger();
+		new AtomicInteger();
 
 	private ConnectionBuilder<T> _connectionBuilder;
+	private AutoResetThreadLocal<T> _connectionThreadLocal;
 	private String _sessionKey;
-	private AutoResetThreadLocal<T> _sharepointConnectionThreadLocal;
 
 }
