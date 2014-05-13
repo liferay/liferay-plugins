@@ -77,18 +77,17 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 			portletDataContext, calendarNotificationTemplate, calendar,
 			PortletDataContext.REFERENCE_TYPE_STRONG);
 
-		Element calendarNotificationTemplateElement =
-			portletDataContext.getExportDataElement(
-				calendarNotificationTemplate);
-
 		String body = ExportImportHelperUtil.replaceExportContentReferences(
 			portletDataContext, calendarNotificationTemplate,
-			calendarNotificationTemplateElement,
 			calendarNotificationTemplate.getBody(),
 			portletDataContext.getBooleanParameter(
 				CalendarPortletDataHandler.NAMESPACE, "referenced-content"));
 
 		calendarNotificationTemplate.setBody(body);
+
+		Element calendarNotificationTemplateElement =
+			portletDataContext.getExportDataElement(
+				calendarNotificationTemplate);
 
 		portletDataContext.addClassedModel(
 			calendarNotificationTemplateElement,
