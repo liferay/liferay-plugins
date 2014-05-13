@@ -191,21 +191,6 @@ public class SyncAccountService {
 
 		update(syncAccount);
 
-		// Sync site
-
-		List<SyncSite> syncSites = SyncSiteService.findSyncSites(syncAccountId);
-
-		for (SyncSite syncSite : syncSites) {
-			String syncSiteFilePathName = syncSite.getFilePathName();
-
-			syncSiteFilePathName = syncSiteFilePathName.replace(
-				sourceFilePathName, targetFilePathName);
-
-			syncSite.setFilePathName(syncSiteFilePathName);
-
-			SyncSiteService.update(syncSite);
-		}
-
 		// Sync files
 
 		List<SyncFile> syncFiles = SyncFileService.findSyncFiles(syncAccountId);
@@ -219,6 +204,21 @@ public class SyncAccountService {
 			syncFile.setFilePathName(syncFileFilePathName);
 
 			SyncFileService.update(syncFile);
+		}
+
+		// Sync sites
+
+		List<SyncSite> syncSites = SyncSiteService.findSyncSites(syncAccountId);
+
+		for (SyncSite syncSite : syncSites) {
+			String syncSiteFilePathName = syncSite.getFilePathName();
+
+			syncSiteFilePathName = syncSiteFilePathName.replace(
+				sourceFilePathName, targetFilePathName);
+
+			syncSite.setFilePathName(syncSiteFilePathName);
+
+			SyncSiteService.update(syncSite);
 		}
 	}
 
