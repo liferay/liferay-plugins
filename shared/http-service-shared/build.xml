@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-
-<project name="http-service-shared" basedir="." default="compile">
-	<property name="plugin.version" value="1" />
-
-	<import file="../../build-common-osgi-plugin.xml" />
-
-	<property name="osgi.plugin.portal.lib.jars" value="axis.jar" />
-</project>
