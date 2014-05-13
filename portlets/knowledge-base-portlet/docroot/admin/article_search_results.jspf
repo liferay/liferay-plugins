@@ -18,11 +18,11 @@
 List results = new ArrayList();
 
 if (!searchTerms.hasSearchTerms()) {
-	total = KBArticleServiceUtil.getSiblingKBArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
+	total = KBArticleServiceUtil.getKBArticlesCount(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY);
 
 	searchContainer.setTotal(total);
 
-	results = KBArticleServiceUtil.getSiblingKBArticles(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
+	results = KBArticleServiceUtil.getKBArticles(scopeGroupId, parentResourcePrimKey, WorkflowConstants.STATUS_ANY, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 }
 else if (searchTerms.isAdvancedSearch()) {
 	KBArticleSearchDisplay kbArticleSearchDisplay = KBArticleServiceUtil.getKBArticleSearchDisplay(scopeGroupId, searchTerms.getTitle(), searchTerms.getContent(), searchTerms.getStatus(), searchTerms.getStartDate(timeZone), searchTerms.getEndDate(timeZone), searchTerms.isAndOperator(), searchTerms.getCurStartValues(), searchContainer.getCur(), searchContainer.getDelta(), searchContainer.getOrderByComparator());

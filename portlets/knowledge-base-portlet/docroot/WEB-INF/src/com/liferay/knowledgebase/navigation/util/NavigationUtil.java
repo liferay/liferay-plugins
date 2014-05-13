@@ -31,7 +31,7 @@ public class NavigationUtil {
 		throws Exception {
 
 		List<KBArticle> currentChildKBArticles =
-			KBArticleLocalServiceUtil.getSiblingKBArticles(
+			KBArticleLocalServiceUtil.getKBArticles(
 				kbArticle.getGroupId(), kbArticle.getResourcePrimKey(),
 				WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null);

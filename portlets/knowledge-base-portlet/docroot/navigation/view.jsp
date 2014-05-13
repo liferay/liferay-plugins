@@ -17,7 +17,7 @@
 <%@ include file="/navigation/init.jsp" %>
 
 <%
-List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getSiblingKBArticles(themeDisplay.getScopeGroupId(), KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 %>
 
 <div id="<portlet:namespace />kbArticlesTreeBoundingBox"></div>

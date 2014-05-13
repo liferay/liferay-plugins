@@ -21,28 +21,28 @@ int status = (Integer)request.getAttribute(WebKeys.KNOWLEDGE_BASE_STATUS);
 
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
 
-List<KBArticle> siblingKBArticles = KBArticleServiceUtil.getSiblingKBArticles(scopeGroupId, kbArticle.getResourcePrimKey(), status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
+List<KBArticle> childKBArticles = KBArticleServiceUtil.getKBArticles(scopeGroupId, kbArticle.getResourcePrimKey(), status, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator(true));
 %>
 
-<c:if test="<%= !siblingKBArticles.isEmpty() %>">
-	<div class="kb-article-siblings">
+<c:if test="<%= !childKBArticles.isEmpty() %>">
+	<div class="kb-article-child">
 		<div class="kb-elements">
 
 			<%
-			for (KBArticle siblingKBArticle : siblingKBArticles) {
+			for (KBArticle childrenKBArticle : childKBArticles) {
 			%>
 
 				<div class="kb-element-header">
 					<liferay-portlet:renderURL var="viewKBArticleURL">
 						<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
-						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(siblingKBArticle.getResourcePrimKey()) %>" />
+						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(childrenKBArticle.getResourcePrimKey()) %>" />
 						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
 						image="../trees/page"
 						label="<%= true %>"
-						message="<%= siblingKBArticle.getTitle() %>"
+						message="<%= childrenKBArticle.getTitle() %>"
 						method="get"
 						url="<%= viewKBArticleURL %>"
 					/>
@@ -50,17 +50,17 @@ List<KBArticle> siblingKBArticles = KBArticleServiceUtil.getSiblingKBArticles(sc
 				<div class="kb-element-body">
 
 					<%
-					request.setAttribute("article_icons.jsp-kb_article", siblingKBArticle);
+					request.setAttribute("article_icons.jsp-kb_article", childrenKBArticle);
 					%>
 
 					<liferay-util:include page="/admin/article_icons.jsp" servletContext="<%= application %>" />
 
 					<c:choose>
-						<c:when test="<%= Validator.isNotNull(siblingKBArticle.getDescription()) %>">
-							<%= siblingKBArticle.getDescription() %>
+						<c:when test="<%= Validator.isNotNull(childrenKBArticle.getDescription()) %>">
+							<%= childrenKBArticle.getDescription() %>
 						</c:when>
 						<c:otherwise>
-							<%= StringUtil.shorten(HtmlUtil.extractText(siblingKBArticle.getContent()), 500) %>
+							<%= StringUtil.shorten(HtmlUtil.extractText(childrenKBArticle.getContent()), 500) %>
 						</c:otherwise>
 					</c:choose>
 				</div>
