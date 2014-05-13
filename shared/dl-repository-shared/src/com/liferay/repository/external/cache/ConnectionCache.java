@@ -35,7 +35,7 @@ public class ConnectionCache<T> {
 		_connectionBuilder = connectionBuilder;
 
 		_sessionKey =
-			ConnectionCache.class + StringPool.POUND +
+			ConnectionCache.class.getName() + StringPool.POUND +
 				_sessionKeyIndexGenerator.getAndIncrement();
 
 		_connectionThreadLocal = new AutoResetThreadLocal<T>(
