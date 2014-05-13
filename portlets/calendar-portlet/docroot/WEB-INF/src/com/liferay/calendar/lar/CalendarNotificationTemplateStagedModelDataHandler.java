@@ -127,6 +127,10 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 		CalendarNotificationTemplate importedCalendarNotificationTemplate =
 			null;
 
+		String body = ExportImportHelperUtil.replaceImportContentReferences(
+			portletDataContext, calendarNotificationTemplate,
+			calendarNotificationTemplate.getBody());
+
 		if (portletDataContext.isDataStrategyMirror()) {
 			CalendarNotificationTemplate existingCalendarNotificationTemplate =
 				CalendarNotificationTemplateLocalServiceUtil.
@@ -144,8 +148,7 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 							calendarNotificationTemplate.
 								getNotificationTypeSettings(),
 							notificationTemplateType,
-							calendarNotificationTemplate.getSubject(),
-							calendarNotificationTemplate.getBody(),
+							calendarNotificationTemplate.getSubject(), body,
 							serviceContext);
 			}
 			else {
@@ -156,8 +159,7 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 								getCalendarNotificationTemplateId(),
 							calendarNotificationTemplate.
 								getNotificationTypeSettings(),
-							calendarNotificationTemplate.getSubject(),
-							calendarNotificationTemplate.getBody(),
+							calendarNotificationTemplate.getSubject(), body,
 							serviceContext);
 			}
 		}
@@ -169,8 +171,8 @@ public class CalendarNotificationTemplateStagedModelDataHandler
 						calendarNotificationTemplate.
 							getNotificationTypeSettings(),
 						notificationTemplateType,
-						calendarNotificationTemplate.getSubject(),
-						calendarNotificationTemplate.getBody(), serviceContext);
+						calendarNotificationTemplate.getSubject(), body,
+						serviceContext);
 		}
 
 		portletDataContext.importClassedModel(
