@@ -51,10 +51,10 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			orderByCol="<%= orderByCol %>"
 			orderByComparator="<%= KnowledgeBaseUtil.getKBArticleOrderByComparator(orderByCol, orderByType) %>"
 			orderByType="<%= orderByType %>"
-			total="<%= KBArticleServiceUtil.getSiblingKBArticlesCount(scopeGroupId, parentResourcePrimKey, status) %>"
+			total="<%= KBArticleServiceUtil.getKBArticlesCount(scopeGroupId, parentResourcePrimKey, status) %>"
 		>
 			<liferay-ui:search-container-results
-				results="<%= KBArticleServiceUtil.getSiblingKBArticles(scopeGroupId, parentResourcePrimKey, status, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
+				results="<%= KBArticleServiceUtil.getKBArticles(scopeGroupId, parentResourcePrimKey, status, searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator()) %>"
 			/>
 
 			<liferay-ui:search-container-row
@@ -72,7 +72,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 				</liferay-portlet:renderURL>
 
 				<%
-				if ((curKBArticle.getResourcePrimKey() == resourcePrimKey) || (KBArticleServiceUtil.getSiblingKBArticlesCount(scopeGroupId, curKBArticle.getResourcePrimKey(), status) == 0)) {
+				if ((curKBArticle.getResourcePrimKey() == resourcePrimKey) || (KBArticleServiceUtil.getKBArticlesCount(scopeGroupId, curKBArticle.getResourcePrimKey(), status) == 0)) {
 					rowURL = null;
 				}
 				%>
