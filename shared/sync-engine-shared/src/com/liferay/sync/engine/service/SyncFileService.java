@@ -354,6 +354,19 @@ public class SyncFileService {
 		}
 	}
 
+	public static SyncFile fetchSyncFile(long syncFileId) {
+		try {
+			return _syncFilePersistence.queryForId(syncFileId);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return null;
+		}
+	}
+
 	public static SyncFile fetchSyncFile(
 		long repositoryId, long syncAccountId, long typePK) {
 

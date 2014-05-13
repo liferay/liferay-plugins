@@ -178,6 +178,50 @@ public class SyncAccountService {
 		_activeSyncAccountIds = null;
 	}
 
+	public static void setFilePathName(
+		long syncAccountId, String targetFilePathName) {
+
+		// Sync account
+
+		SyncAccount syncAccount = fetchSyncAccount(syncAccountId);
+
+		String sourceFilePathName = syncAccount.getFilePathName();
+
+		syncAccount.setFilePathName(targetFilePathName);
+
+		update(syncAccount);
+
+		// Sync site
+
+		List<SyncSite> syncSites = SyncSiteService.findSyncSites(syncAccountId);
+
+		for (SyncSite syncSite : syncSites) {
+			String syncSiteFilePathName = syncSite.getFilePathName();
+
+			syncSiteFilePathName = syncSiteFilePathName.replace(
+				sourceFilePathName, targetFilePathName);
+
+			syncSite.setFilePathName(syncSiteFilePathName);
+
+			SyncSiteService.update(syncSite);
+		}
+
+		// Sync files
+
+		List<SyncFile> syncFiles = SyncFileService.findSyncFiles(syncAccountId);
+
+		for (SyncFile syncFile : syncFiles) {
+			String syncFileFilePathName = syncFile.getFilePathName();
+
+			syncFileFilePathName = syncFileFilePathName.replace(
+				sourceFilePathName, targetFilePathName);
+
+			syncFile.setFilePathName(syncFileFilePathName);
+
+			SyncFileService.update(syncFile);
+		}
+	}
+
 	public static SyncAccount synchronizeSyncAccount(long syncAccountId) {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 

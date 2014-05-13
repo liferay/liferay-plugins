@@ -39,7 +39,9 @@ public class SyncSiteTestUtil {
 
 		syncSite.setCompanyId(companyId);
 		syncSite.setFilePathName(filePathName);
+		syncSite.setFriendlyURL(filePathName);
 		syncSite.setGroupId(groupId);
+		syncSite.setName(filePathName);
 		syncSite.setSyncAccountId(syncAccountId);
 
 		SyncSitePersistence syncSitePersistence =
