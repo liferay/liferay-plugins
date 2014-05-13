@@ -14,9 +14,13 @@
 
 package com.liferay.sync.engine.filesystem;
 
+import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.model.SyncFile;
+import com.liferay.sync.engine.model.SyncSite;
 import com.liferay.sync.engine.model.SyncWatchEvent;
+import com.liferay.sync.engine.service.SyncAccountService;
 import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.service.SyncSiteService;
 import com.liferay.sync.engine.util.FilePathNameUtil;
 
 import java.io.IOException;
@@ -40,6 +44,7 @@ import name.pachler.nio.file.StandardWatchEventKind;
 import name.pachler.nio.file.WatchEvent;
 import name.pachler.nio.file.WatchKey;
 import name.pachler.nio.file.WatchService;
+import name.pachler.nio.file.ext.ExtendedWatchEventKind;
 import name.pachler.nio.file.impl.PathImpl;
 
 import org.slf4j.Logger;
@@ -141,8 +146,7 @@ public class Watcher implements Runnable {
 					_logger.trace("Unregistered file path {}", filePath);
 				}
 
-				fireWatchEventListener(
-					SyncWatchEvent.EVENT_TYPE_DELETE, filePath);
+				processMissingFilePath(filePath);
 
 				if (_filePaths.isEmpty()) {
 					break;
@@ -191,7 +195,8 @@ public class Watcher implements Runnable {
 				filePath.toString());
 
 			WatchKey watchKey = jpathwatchFilePath.register(
-				_watchService, StandardWatchEventKind.ENTRY_CREATE,
+				_watchService, ExtendedWatchEventKind.KEY_INVALID,
+				StandardWatchEventKind.ENTRY_CREATE,
 				StandardWatchEventKind.ENTRY_DELETE,
 				StandardWatchEventKind.ENTRY_MODIFY);
 
@@ -227,17 +232,49 @@ public class Watcher implements Runnable {
 		_watchEventListener.watchEvent(eventType, filePath);
 	}
 
+	protected void processMissingFilePath(Path filePath) {
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			_watchEventListener.getSyncAccountId());
+
+		String filePathName = FilePathNameUtil.getFilePathName(filePath);
+
+		SyncSite syncSite = SyncSiteService.fetchSyncSite(
+			syncAccount.getFilePathName(), syncAccount.getSyncAccountId());
+
+		if (filePathName.equals(syncAccount.getFilePathName())) {
+			syncAccount.setActive(false);
+			syncAccount.setUiEvent(
+				SyncAccount.UI_EVENT_SYNC_ACCOUNT_FOLDER_MISSING);
+
+			SyncAccountService.update(syncAccount);
+		}
+		else if (syncSite != null) {
+			syncSite.setActive(false);
+			syncSite.setUiEvent(SyncSite.UI_EVENT_SYNC_SITE_FOLDER_MISSING);
+
+			SyncSiteService.update(syncSite);
+		}
+		else {
+			fireWatchEventListener(SyncWatchEvent.EVENT_TYPE_DELETE, filePath);
+		}
+	}
+
 	protected void register(Path filePath, boolean recursive)
 		throws IOException {
+
+		if (Files.notExists(filePath)) {
+			processMissingFilePath(filePath);
+
+			return;
+		}
 
 		long startTime = System.currentTimeMillis();
 
 		doRegister(filePath, recursive);
 
-		String filePathName = FilePathNameUtil.getFilePathName(filePath);
-
 		List<SyncFile> syncFiles = SyncFileService.findSyncFiles(
-			filePathName, startTime, _watchEventListener.getSyncAccountId());
+			FilePathNameUtil.getFilePathName(filePath), startTime,
+			_watchEventListener.getSyncAccountId());
 
 		for (SyncFile syncFile : syncFiles) {
 			fireWatchEventListener(

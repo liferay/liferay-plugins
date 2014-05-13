@@ -40,6 +40,8 @@ public class SyncSite extends StateAwareModel {
 
 	public static final int TYPE_SYSTEM = 4;
 
+	public static final int UI_EVENT_SYNC_SITE_FOLDER_MISSING = 1;
+
 	public boolean getActive() {
 		return active;
 	}
