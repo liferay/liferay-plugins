@@ -18,6 +18,8 @@
 
 <%
 List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 %>
 
 <div id="<portlet:namespace />kbArticlesTreeBoundingBox"></div>
@@ -27,9 +29,15 @@ List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDispla
 
 		<%
 		for (int i = 0; i < kbArticles.size(); i++) {
+			boolean expandedKBarticle = false;
+
 			KBArticle kbArticle = kbArticles.get(i);
 
-			List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getAllDescendants(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, null);
+			if (kbArticle.getResourcePrimKey() == resourcePrimKey) {
+				expandedKBarticle = true;
+			}
+
+			List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 		%>
 
 			{
@@ -39,30 +47,62 @@ List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDispla
 
 						<%
 						for (int j = 0; j < childKBArticles.size(); j++) {
+							boolean expandedChildKBArticle = false;
+
 							KBArticle childKBArticle = childKBArticles.get(j);
+
+							List<KBArticle> nieceKBArticles = KBArticleLocalServiceUtil.getAllDescendants(childKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, null);
 
 							PortletURL viewChildURL = renderResponse.createRenderURL();
 
-							viewChildURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
-							viewChildURL.setParameter("mvcPath", "/article/view_article.jsp");
 							viewChildURL.setParameter("resourcePrimKey", String.valueOf(childKBArticle.getResourcePrimKey()));
+
+							if (childKBArticle.getResourcePrimKey() == resourcePrimKey) {
+								expandedChildKBArticle = true;
+								expandedKBarticle = true;
+							}
 						%>
 
 							{
-								expanded: false,
-								id:'<portlet:namespace/><%= childKBArticle.getResourcePrimKey() %>',
-								label: '<%= childKBArticle.getTitle() %>',
-								on: {
-									select: A.bind(
-										'fire',
-										Liferay,
-										'knowledgeBaseNavigation',
-										{
-											url: '<%= viewChildURL %>'
+								children: [
+
+									<%
+									for (int k = 0; k < nieceKBArticles.size(); k++) {
+										KBArticle nieceKBArticle = nieceKBArticles.get(k);
+
+										PortletURL viewNieceURL = renderResponse.createRenderURL();
+
+										viewNieceURL.setParameter("resourcePrimKey", String.valueOf(nieceKBArticle.getResourcePrimKey()));
+
+										if (nieceKBArticle.getResourcePrimKey() == resourcePrimKey) {
+											expandedChildKBArticle = true;
+											expandedKBarticle = true;
 										}
-									)
-								}
+									%>
+
+										{
+											expanded: false,
+											id:'<portlet:namespace/><%= nieceKBArticle.getResourcePrimKey() %>',
+											label: '<a href="<%= viewNieceURL %>"><%= nieceKBArticle.getTitle() %></a>'
+
+											<c:choose>
+												<c:when test="<%= k == (nieceKBArticles.size() - 1) %>">
+													}
+												</c:when>
+												<c:otherwise>
+													},
+												</c:otherwise>
+											</c:choose>
+
+									<%
+									}
+									%>
+
+								],
+
+								expanded: <%= expandedChildKBArticle %>,
+								id:'<portlet:namespace/><%= childKBArticle.getResourcePrimKey() %>',
+								label: '<a href="<%= viewChildURL %>"><%= childKBArticle.getTitle() %></a>'
 
 							<c:choose>
 								<c:when test="<%= j == (childKBArticles.size() - 1) %>">
@@ -83,15 +123,12 @@ List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDispla
 				<%
 				PortletURL viewURL = renderResponse.createRenderURL();
 
-				viewURL.setWindowState(LiferayWindowState.EXCLUSIVE);
-
-				viewURL.setParameter("mvcPath", "/article/view_article.jsp");
 				viewURL.setParameter("resourcePrimKey", String.valueOf(kbArticle.getResourcePrimKey()));
 				%>
 
-				expanded: false,
+				expanded: <%= expandedKBarticle %>,
 				id:'<portlet:namespace/><%= kbArticle.getResourcePrimKey() %>',
-				label: '<%= kbArticle.getTitle() %>',
+				label: '<a href="<%= viewURL %>"><%= kbArticle.getTitle() %></a>',
 				on: {
 					select: function(event) {
 						var node = event.currentTarget;
@@ -101,8 +138,6 @@ List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDispla
 						tree.collapseAll();
 
 						node.expand();
-
-						Liferay.fire('knowledgeBaseNavigation', {url: '<%= viewURL %>'});
 					}
 				}
 
