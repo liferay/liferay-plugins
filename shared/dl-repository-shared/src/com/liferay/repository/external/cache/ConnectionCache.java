@@ -81,7 +81,7 @@ public class ConnectionCache<T> {
 		new AtomicInteger();
 
 	private ConnectionBuilder<T> _connectionBuilder;
-	private AutoResetThreadLocal<T> _connectionThreadLocal;
+	private ThreadLocal<T> _connectionThreadLocal;
 	private String _sessionKey;
 
 }
