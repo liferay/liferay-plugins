@@ -14,8 +14,7 @@
 
 package com.liferay.repository.external.cache;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.repository.RepositoryException;
 import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
 import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.StringPool;
@@ -43,7 +42,7 @@ public class ConnectionCache<T> {
 			connectionClass.getName());
 	}
 
-	public T getConnection() throws PortalException, SystemException {
+	public T getConnection() throws RepositoryException {
 		T connection = null;
 
 		HttpSession httpSession = PortalSessionThreadLocal.getHttpSession();

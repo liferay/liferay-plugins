@@ -14,14 +14,13 @@
 
 package com.liferay.repository.external.cache;
 
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.repository.RepositoryException;
 
 /**
  * @author Iván Zaera
  */
 public interface ConnectionBuilder<T> {
 
-	public T buildConnection() throws PortalException, SystemException;
+	public T buildConnection() throws RepositoryException;
 
 }
