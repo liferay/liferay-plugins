@@ -398,12 +398,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			resourcePrimKey, status, new KBArticleVersionComparator());
 	}
 
-	public List<KBArticle> getAllDescendants(
+	public List<KBArticle> getAllDescendantKBArticles(
 			long resourcePrimKey, int status,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return getAllDescendants(
+		return getAllDescendantKBArticles(
 			resourcePrimKey, status, orderByComparator, false);
 	}
 
@@ -483,13 +483,27 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		return kbArticlePersistence.findByR_V(resourcePrimKey, version);
 	}
 
+	public List<KBArticle> getKBArticleAndAllDescendantKBArticles(
+			long resourcePrimKey, int status,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return getAllDescendantKBArticles(
+			resourcePrimKey, status, orderByComparator, true);
+	}
+
+	/**
+	 * @deprecated As of 7.0.0, replaced by
+	 *             {@link #getKBArticleAndAllDescendantKBArticles(long, int,
+	 *             com.liferay.portal.kernel.util.OrderByComparator)}
+	 */
 	public List<KBArticle> getKBArticleAndAllDescendants(
 			long resourcePrimKey, int status,
 			OrderByComparator orderByComparator)
 		throws SystemException {
 
-		return getAllDescendants(
-			resourcePrimKey, status, orderByComparator, true);
+		return getKBArticleAndAllDescendantKBArticles(
+			resourcePrimKey, status, orderByComparator);
 	}
 
 	public KBArticle getKBArticleByUrlTitle(long groupId, String urlTitle)
@@ -1408,7 +1422,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		}
 	}
 
-	protected List<KBArticle> getAllDescendants(
+	protected List<KBArticle> getAllDescendantKBArticles(
 			long resourcePrimKey, int status,
 			OrderByComparator orderByComparator, boolean includeParentArticle)
 		throws SystemException {
@@ -1781,7 +1795,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 		// Sync database
 
-		List<KBArticle> kbArticles1 = getKBArticleAndAllDescendants(
+		List<KBArticle> kbArticles1 = getKBArticleAndAllDescendantKBArticles(
 			resourcePrimKey, WorkflowConstants.STATUS_ANY, null);
 
 		for (KBArticle kbArticle1 : kbArticles1) {

@@ -222,7 +222,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return kbArticleLocalService.getKBArticle(resourcePrimKey, version);
 	}
 
-	public List<KBArticle> getKBArticleAndAllDescendants(
+	public List<KBArticle> getKBArticleAndAllDescendantKBArticles(
 			long groupId, long resourcePrimKey, int status,
 			OrderByComparator orderByComparator)
 		throws SystemException {
@@ -266,6 +266,20 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 		return Collections.unmodifiableList(kbArticles);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by
+	 *             {@link #getKBArticleAndAllDescendantKBArticles(long, long,
+	 *             int, com.liferay.portal.kernel.util.OrderByComparator)}
+	 */
+	public List<KBArticle> getKBArticleAndAllDescendants(
+			long groupId, long resourcePrimKey, int status,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		return getKBArticleAndAllDescendantKBArticles(
+			groupId, resourcePrimKey, status, orderByComparator);
+	}
+
 	public String getKBArticleRSS(
 			long resourcePrimKey, int status, int rssDelta,
 			String rssDisplayStyle, String rssFormat, ThemeDisplay themeDisplay)
@@ -281,7 +295,7 @@ public class KBArticleServiceImpl extends KBArticleServiceBaseImpl {
 			themeDisplay.getPlid(), resourcePrimKey, status,
 			themeDisplay.getPortalURL(), false);
 
-		List<KBArticle> kbArticles = getKBArticleAndAllDescendants(
+		List<KBArticle> kbArticles = getKBArticleAndAllDescendantKBArticles(
 			kbArticle.getGroupId(), resourcePrimKey, status,
 			new KBArticleModifiedDateComparator());
 
