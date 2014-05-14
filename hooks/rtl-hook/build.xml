@@ -48,10 +48,6 @@
 			module.dir="${basedir}"
 		/>
 
-		<antcall target="rtl-jar" />
-	</target>
-
-	<target name="rtl-jar">
 		<zip
 			basedir="docroot/WEB-INF/classes"
 			destfile="docroot/WEB-INF/lib/${plugin.name}.jar"
