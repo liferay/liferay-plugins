@@ -1098,7 +1098,7 @@ Please find a solution that does not require portal-impl.jar.
 								<available file="@{module.dir}/lib" />
 								<then>
 									<set-build-xml-var
-										build.xml.var.name="osgi.dependencies"
+										build.xml.var.name="osgi.runtime.dependencies"
 										module.dir="@{module.dir}"
 									/>
 

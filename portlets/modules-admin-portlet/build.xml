@@ -3,5 +3,5 @@
 <project name="modules-admin-portlet" basedir="." default="compile">
 	<import file="../../build-common-osgi-plugin.xml" />
 
-	<property name="osgi.plugin.portal.lib.jars" value="bnd.jar,freemarker.jar" />
+	<property name="osgi.ide.dependencies" value="bnd.jar,freemarker.jar" />
 </project>
