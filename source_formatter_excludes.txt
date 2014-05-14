@@ -1,7 +1,6 @@
 **/.git/**
 **/bin/**
 **/classes/**
-**/org-apache-commons-fileupload-shared/**
 **/test-classes/**
 **/test-coverage/**
 **/test-results/**
