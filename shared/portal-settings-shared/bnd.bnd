@@ -1,3 +1,0 @@
-Bundle-Name: Liferay Portal Settings API
-Export-Package: *
-Include-Resource: classes
