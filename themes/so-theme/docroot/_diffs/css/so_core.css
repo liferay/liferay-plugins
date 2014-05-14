@@ -1882,6 +1882,10 @@ html.aui {
 	.taglib-ratings {
 		margin: 0;
 		padding: 5px;
+
+		&.thumbs .thumbrating .rating-label {
+			display: inline-block;
+		}
 	}
 
 	.lfr-discussion-actions {
