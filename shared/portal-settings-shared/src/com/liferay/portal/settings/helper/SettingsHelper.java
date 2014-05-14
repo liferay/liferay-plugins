@@ -23,10 +23,6 @@ import com.liferay.portal.settings.Settings;
 public class SettingsHelper {
 
 	public void setValues(Settings sourceSettings, Settings targetSettings) {
-		for (String name : targetSettings.getSetKeys()) {
-			targetSettings.reset(name);
-		}
-
 		for (String name : sourceSettings.getSetKeys()) {
 			String[] values = sourceSettings.getValues(
 				name, StringPool.EMPTY_ARRAY);
@@ -37,6 +33,12 @@ public class SettingsHelper {
 			else {
 				targetSettings.setValues(name, values);
 			}
+		}
+	}
+
+	protected void reset(Settings settings) {
+		for (String name : settings.getSetKeys()) {
+			settings.reset(name);
 		}
 	}
 

@@ -28,6 +28,18 @@ import org.powermock.api.mockito.PowerMockito;
 public class SettingsHelperTest extends PowerMockito {
 
 	@Test
+	public void testReset() {
+		Settings settings = new InMemorySettings();
+
+		settings.setValue("key0", "value0");
+		settings.setValue("key1", "value1");
+
+		_settingsHelper.reset(settings);
+
+		Assert.assertEquals(0, settings.getSetKeys().size());
+	}
+
+	@Test
 	public void testSetValues() {
 		Settings sourceSettings = new InMemorySettings();
 		Settings targetSettings = new InMemorySettings();
@@ -39,7 +51,9 @@ public class SettingsHelperTest extends PowerMockito {
 
 		_settingsHelper.setValues(sourceSettings, targetSettings);
 
-		Assert.assertEquals(2, targetSettings.getSetKeys().size());
+		Assert.assertEquals(3, targetSettings.getSetKeys().size());
+		Assert.assertEquals(
+			"otherValue", targetSettings.getValue("otherKey", null));
 		Assert.assertEquals("value0", targetSettings.getValue("key0", null));
 		Assert.assertEquals("value1", targetSettings.getValue("key1", null));
 	}
