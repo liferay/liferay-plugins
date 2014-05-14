@@ -124,9 +124,8 @@ public class ContactsCenterUserNotificationHandler
 				"[$IGNORE_URL$]", "[$TITLE$]"
 			},
 			new String[] {
-				serviceContext.translate("confirm"),
-				confirmURL.toString(), serviceContext.translate("ignore"),
-				ignoreURL.toString(), title
+				serviceContext.translate("confirm"), confirmURL.toString(),
+				serviceContext.translate("ignore"), ignoreURL.toString(), title
 			});
 	}
 

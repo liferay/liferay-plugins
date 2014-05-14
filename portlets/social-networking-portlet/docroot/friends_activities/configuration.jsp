@@ -20,9 +20,9 @@
 
 <aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	
+
 	<liferay-portlet:renderURL portletConfiguration="true" var="configurationRenderURL" />
-	
+
 	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
 
 	<aui:fieldset>
