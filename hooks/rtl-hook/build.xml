@@ -43,7 +43,13 @@
 		</delete>
 	</target>
 
-	<target name="compile" depends="build-common.compile,rtl-jar" />
+	<target name="compile">
+		<compile
+			module.dir="${basedir}"
+		/>
+
+		<antcall target="rtl-jar" />
+	</target>
 
 	<target name="rtl-jar">
 		<zip
