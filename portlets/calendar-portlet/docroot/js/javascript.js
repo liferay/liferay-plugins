@@ -477,7 +477,7 @@ AUI.add(
 				A.io.request(
 					url.toString(),
 					{
-						dataType: 'json',
+						dataType: 'JSON',
 						on: {
 							success: function() {
 								callback(this.get('responseData'));
