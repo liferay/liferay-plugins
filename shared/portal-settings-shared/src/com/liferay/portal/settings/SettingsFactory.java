@@ -18,6 +18,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.Layout;
 
+import java.util.List;
+
 /**
  * @author Raymond Augé
  * @author Jorge Ferrer
@@ -35,6 +37,14 @@ public interface SettingsFactory {
 		throws PortalException, SystemException;
 
 	public Settings getGroupServiceSettings(long groupId, String serviceName)
+		throws PortalException, SystemException;
+
+	public ArchivedSettings getPortletInstanceArchivedSettings(
+			long groupId, String portletId, String name)
+		throws PortalException, SystemException;
+
+	public List<ArchivedSettings> getPortletInstanceArchivedSettingsList(
+			long groupId, String portletId)
 		throws PortalException, SystemException;
 
 	public Settings getPortletInstanceCompanyDefaultSettings(

@@ -19,6 +19,8 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 import com.liferay.portal.model.Layout;
 
+import java.util.List;
+
 /**
  * @author Raymond Augé
  * @author Jorge Ferrer
@@ -51,6 +53,22 @@ public class SettingsFactoryUtil {
 
 		return getSettingsFactory().getGroupServiceSettings(
 			groupId, serviceName);
+	}
+
+	public static ArchivedSettings getPortletInstanceArchivedSettings(
+			long groupId, String portletId, String name)
+		throws PortalException, SystemException {
+
+		return getSettingsFactory().getPortletInstanceArchivedSettings(
+			groupId, portletId, name);
+	}
+
+	public static List<ArchivedSettings> getPortletInstanceArchivedSettingsList(
+			long groupId, String portletId)
+		throws PortalException, SystemException {
+
+		return getSettingsFactory().getPortletInstanceArchivedSettingsList(
+			groupId, portletId);
 	}
 
 	public static Settings getPortletInstanceCompanyDefaultSettings(
