@@ -17,13 +17,11 @@
 
 package com.liferay.microblogs.service.persistence.impl;
 
-import com.liferay.microblogs.service.persistence.MicroblogsEntryFinder;
-import com.liferay.microblogs.service.persistence.MicroblogsEntryUtil;
-
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.model.MicroblogsEntryConstants;
 import com.liferay.microblogs.model.impl.MicroblogsEntryImpl;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
+import com.liferay.microblogs.service.persistence.MicroblogsEntryFinder;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;

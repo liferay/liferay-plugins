@@ -17,9 +17,6 @@
 
 package com.liferay.so.service.persistence.impl;
 
-import com.liferay.so.service.persistence.FavoriteSiteFinder;
-import com.liferay.so.service.persistence.FavoriteSiteUtil;
-
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -28,6 +25,7 @@ import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.so.model.FavoriteSite;
+import com.liferay.so.service.persistence.FavoriteSiteFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Iterator;
