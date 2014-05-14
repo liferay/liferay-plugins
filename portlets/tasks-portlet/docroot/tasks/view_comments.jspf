@@ -17,7 +17,7 @@
  */
 --%>
 
-<liferay-portlet:actionURL name="updateMessage" var="updateDiscussionURL"/>
+<liferay-portlet:actionURL name="updateMessage" var="updateDiscussionURL" />
 
 <liferay-ui:discussion
 	className="<%= TasksEntry.class.getName() %>"

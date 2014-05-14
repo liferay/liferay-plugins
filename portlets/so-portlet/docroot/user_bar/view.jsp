@@ -164,7 +164,7 @@ catch (NoSuchRoleException nsre) {
 					else {
 						var navAccountControls = A.one('.nav-account-controls');
 
-						var dividerVertical  = navAccountControls.one('.divider-vertical ');
+						var dividerVertical = navAccountControls.one('.divider-vertical ');
 
 						if (dividerVertical) {
 							navAccountControls.insertBefore(sitesDirectoryString, dividerVertical);
