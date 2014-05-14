@@ -156,7 +156,7 @@ catch (NoSuchRoleException nsre) {
 				if (!sitesDirectory) {
 					var mySitesMenu = A.one('.portlet-dockbar .my-sites .my-sites-menu');
 
-					var sitesDirectoryString = '<li class="sites-directory last"><a href="javascript:;" onclick="<portlet:namespace />openWindow();"><i class="icon-reorder"></i><span class="site-name"> ' + Liferay.Language.get('sites-directory') + '</span></a></li>';
+					var sitesDirectoryString = '<li class="last sites-directory"><a href="javascript:;" onclick="<portlet:namespace />openWindow();"><i class="icon-reorder"></i><span class="site-name"> ' + Liferay.Language.get('sites-directory') + '</span></a></li>';
 
 					if (mySitesMenu) {
 						mySitesMenu.insert(sitesDirectoryString);
