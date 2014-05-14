@@ -18,6 +18,7 @@ import java.io.IOException;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 import javax.portlet.ValidatorException;
@@ -38,7 +39,7 @@ public class InMemorySettings implements Settings {
 
 	@Override
 	public Collection<String> getSetKeys() {
-		return _map.keySet();
+		return new HashSet<String>(_map.keySet());
 	}
 
 	@Override
@@ -84,7 +85,6 @@ public class InMemorySettings implements Settings {
 
 	@Override
 	public void store() throws IOException, ValidatorException {
-		throw new UnsupportedOperationException();
 	}
 
 	private Map<String, String[]> _map;
