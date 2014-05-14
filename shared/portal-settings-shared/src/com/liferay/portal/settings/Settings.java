@@ -16,6 +16,8 @@ package com.liferay.portal.settings;
 
 import java.io.IOException;
 
+import java.util.Collection;
+
 import javax.portlet.ValidatorException;
 
 /**
@@ -26,6 +28,8 @@ import javax.portlet.ValidatorException;
 public interface Settings {
 
 	public Settings getDefaultSettings();
+
+	public Collection<String> getSetKeys();
 
 	public String getValue(String key, String defaultValue);
 

@@ -22,6 +22,11 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.portlet.PortletPreferences;
 import javax.portlet.ReadOnlyException;
 import javax.portlet.ValidatorException;
@@ -49,6 +54,19 @@ public class PortletPreferencesSettings implements Settings {
 
 	public PortletPreferences getPortletPreferences() {
 		return _portletPreferences;
+	}
+
+	@Override
+	public Collection<String> getSetKeys() {
+		Enumeration<String> names = _portletPreferences.getNames();
+
+		Set<String> setKeys = new HashSet<String>();
+
+		while (names.hasMoreElements()) {
+			setKeys.add(names.nextElement());
+		}
+
+		return setKeys;
 	}
 
 	@Override

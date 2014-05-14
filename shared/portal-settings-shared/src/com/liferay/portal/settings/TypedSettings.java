@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 
+import java.util.Collection;
 import java.util.Locale;
 
 import javax.portlet.ValidatorException;
@@ -121,6 +122,11 @@ public class TypedSettings implements Settings {
 		String value = getValue(key, null);
 
 		return GetterUtil.getLong(value, defaultValue);
+	}
+
+	@Override
+	public Collection<String> getSetKeys() {
+		return _settings.getSetKeys();
 	}
 
 	public String getValue(String key) {

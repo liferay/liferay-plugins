@@ -16,6 +16,8 @@ package com.liferay.portal.settings;
 
 import java.io.IOException;
 
+import java.util.Collection;
+
 import javax.portlet.ValidatorException;
 
 /**
@@ -32,6 +34,11 @@ public class BaseServiceSettings implements Settings {
 
 	public Settings getDefaultSettings() {
 		return typedSettings.getDefaultSettings();
+	}
+
+	@Override
+	public Collection<String> getSetKeys() {
+		return typedSettings.getSetKeys();
 	}
 
 	@Override
