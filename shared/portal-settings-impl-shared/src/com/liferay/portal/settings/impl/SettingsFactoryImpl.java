@@ -14,6 +14,7 @@
 
 package com.liferay.portal.settings.impl;
 
+import com.liferay.portal.NoSuchPortletItemException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.security.pacl.DoPrivileged;
@@ -82,20 +83,20 @@ public class SettingsFactoryImpl implements SettingsFactory {
 			long groupId, String portletId, String name)
 		throws PortalException, SystemException {
 
-		List<ArchivedSettings> archivedSettingsList =
-			getPortletInstanceArchivedSettingsList(groupId, portletId);
+		PortletItem portletItem = null;
 
-		for (ArchivedSettings archivedSettings : archivedSettingsList) {
-			if (archivedSettings.getName().equals(name)) {
-				return archivedSettings;
-			}
+		String className = PortletPreferences.class.getName();
+
+		try {
+			portletItem = PortletItemLocalServiceUtil.getPortletItem(
+				groupId, name, portletId, className);
 		}
+		catch (NoSuchPortletItemException nspie) {
+			long userId = PrincipalThreadLocal.getUserId();
 
-		long userId = PrincipalThreadLocal.getUserId();
-
-		PortletItem portletItem = PortletItemLocalServiceUtil.updatePortletItem(
-			userId, groupId, name, portletId,
-			PortletPreferences.class.getName());
+			portletItem = PortletItemLocalServiceUtil.updatePortletItem(
+				userId, groupId, name, portletId, className);
+		}
 
 		return new ArchivedSettingsImpl(portletItem);
 	}
