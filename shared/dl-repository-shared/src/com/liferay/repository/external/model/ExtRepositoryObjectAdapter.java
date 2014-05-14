@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.RepositoryException;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.repository.external.ExtRepositoryAdapter;
@@ -26,7 +27,9 @@ import com.liferay.repository.external.ExtRepositoryObject.ExtRepositoryPermissi
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Iván Zaera
@@ -39,6 +42,10 @@ public abstract class ExtRepositoryObjectAdapter<T>
 	public boolean containsPermission(
 			PermissionChecker permissionChecker, String actionId)
 		throws PortalException, SystemException {
+
+		if (_unsupportedActionsMap.containsKey(actionId)) {
+			return _unsupportedActionsMap.get(actionId);
+		}
 
 		try {
 			ExtRepositoryPermission extRepositoryPermission =
@@ -141,6 +148,13 @@ public abstract class ExtRepositoryObjectAdapter<T>
 			extRepositoryObject);
 
 		_extRepositoryObject = extRepositoryObject;
+	}
+
+	private static final Map<String, Boolean> _unsupportedActionsMap =
+		new HashMap<String, Boolean>();
+
+	static {
+		_unsupportedActionsMap.put(ActionKeys.SUBSCRIBE, false);
 	}
 
 	private ExtRepositoryObject _extRepositoryObject;
