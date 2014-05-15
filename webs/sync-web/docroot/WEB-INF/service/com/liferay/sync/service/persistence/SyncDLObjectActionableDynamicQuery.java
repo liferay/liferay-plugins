@@ -22,8 +22,10 @@ import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link SyncDLObjectLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class SyncDLObjectActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
 	public SyncDLObjectActionableDynamicQuery() throws SystemException {
