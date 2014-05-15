@@ -256,9 +256,8 @@ public class SyncSystemTest {
 			filePathName, 3, name + "@liferay.com", name, "test", null, false,
 			"http://localhost:8080");
 
-		syncAccount.setActive(true);
-
-		SyncAccountService.update(syncAccount);
+		SyncAccountService.activateSyncAccount(
+			syncAccount.getSyncAccountId(), false);
 
 		_syncAccountIds.put(name, syncAccount.getSyncAccountId());
 	}

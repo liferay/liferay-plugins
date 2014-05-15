@@ -43,6 +43,29 @@ import org.slf4j.LoggerFactory;
  */
 public class SyncAccountService {
 
+	public static SyncAccount activateSyncAccount(
+		long syncAccountId, boolean reset) {
+
+		SyncAccount syncAccount = fetchSyncAccount(syncAccountId);
+
+		syncAccount.setActive(true);
+
+		update(syncAccount);
+
+		if (reset) {
+			List<SyncSite> syncSites = SyncSiteService.findSyncSites(
+				syncAccountId);
+
+			for (SyncSite syncSite : syncSites) {
+				syncSite.setRemoteSyncTime(0);
+
+				SyncSiteService.update(syncSite);
+			}
+		}
+
+		return syncAccount;
+	}
+
 	public static SyncAccount addSyncAccount(
 			String filePathName, int interval, String login, String name,
 			String password, SyncSite[] syncSites, boolean trustSelfSigned,

@@ -36,6 +36,20 @@ import org.slf4j.LoggerFactory;
  */
 public class SyncSiteService {
 
+	public static SyncSite activateSyncSite(long syncAccountId, boolean reset) {
+		SyncSite syncSite = fetchSyncSite(syncAccountId);
+
+		syncSite.setActive(true);
+
+		if (reset) {
+			syncSite.setRemoteSyncTime(0);
+		}
+
+		update(syncSite);
+
+		return syncSite;
+	}
+
 	public static void deleteSyncSite(long syncSiteId) {
 		try {
 			_syncSitePersistence.deleteById(syncSiteId);
