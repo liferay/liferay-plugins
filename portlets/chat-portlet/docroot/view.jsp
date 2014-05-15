@@ -74,7 +74,7 @@
 
 						<div class="chat-panel">
 							<div class="panel-window">
-								<div class="panel-button minimize"></div>
+								<div class="minimize panel-button"></div>
 
 								<div class="panel-title">
 									<%= LanguageUtil.format(request, "online-friends-x", "(" + buddiesCount + ")", false) %>
@@ -94,7 +94,7 @@
 											long portraitId = (Long)buddy[5];
 										%>
 
-											<li class="user active" userId="<%= userId %>">
+											<li class="active user" userId="<%= userId %>">
 												<img alt="" src="<%= themeDisplay.getPathImage() %>/user_portrait?img_id=<%= portraitId %>&t=<%= WebServerServletTokenUtil.getToken(portraitId) %>" />
 
 												<div class="name">
@@ -120,7 +120,7 @@
 
 						<div class="chat-panel">
 							<div class="panel-window">
-								<div class="panel-button minimize"></div>
+								<div class="minimize panel-button"></div>
 
 								<div class="panel-title"><liferay-ui:message key="settings" /></div>
 

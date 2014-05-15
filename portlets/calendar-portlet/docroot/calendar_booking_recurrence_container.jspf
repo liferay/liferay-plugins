@@ -158,7 +158,7 @@ if (recurrence != null) {
 						<label><liferay-ui:message key="occurrences" /></label>
 					</aui:field-wrapper>
 
-					<aui:field-wrapper cssClass="calendar-portlet-recurrence-limit calendar-portlet-field-date" label="">
+					<aui:field-wrapper cssClass="calendar-portlet-field-date calendar-portlet-recurrence-limit" label="">
 						<aui:input checked="<%= onChecked %>" label="<%= StringPool.BLANK %>" name="ends" type="radio" value="on" />
 
 						<div class="calendar-portlet-field-datepicker clearfix">

@@ -478,7 +478,7 @@
 }
 
 .yui3-skin-sam .calendar-portlet-mini-calendar .yui3-calendar-content {
-	background: #FFFFFF !important;
+	background: #FFF !important;
 	border: 1px solid #DDD;
 }
 
@@ -490,7 +490,7 @@
 	}
 
 	.yui3-calendar-day, .yui3-calendar-prevmonth-day, .yui3-calendar-nextmonth-day, .yui3-calendar-content {
-		border: 0;
+		border-width: 0;
 	}
 
 	.yui3-calendar-weekday {
@@ -517,8 +517,8 @@
 	}
 
 	.yui3-calendar-day.lfr-current-day {
-		color: #FFF !important;
 		background-color: #009BE6 !important;
+		color: #FFF !important;
 	}
 
 	.lfr-busy-day:after {
@@ -536,8 +536,8 @@
 /* ---------- Extras ---------- */
 
 .scheduler-event-recorder-content {
-	@include background-image(linear-gradient(top, #F7F7F7, white));
-	@include box-shadow(inset 0 1px 2px #ddd);
+	@include background-image(linear-gradient(top, #F7F7F7, #FFF));
+	@include box-shadow(inset 0 1px 2px #DDD);
 	@include transition(background 0.3s ease-in, border-color 0.3s ease-out);
 }
 
@@ -562,7 +562,7 @@
 }
 
 .simple-menu-item {
-	@include transition(background .13s);
+	@include transition(background 0.13s);
 
 	&:hover {
 		@include transition(background 0s);
@@ -570,7 +570,7 @@
 }
 
 .simple-color-picker-item {
-	@include transition(border-color .13s);
+	@include transition(border-color 0.13s);
 }
 
 .simple-color-picker-item:hover, .simple-color-picker-item-selected {
