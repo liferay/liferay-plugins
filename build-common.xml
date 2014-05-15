@@ -192,14 +192,16 @@ Error-Prone was automatically installed. Please rerun your task.
 
 			<groovy>
 				<![CDATA[
+					targetName = properties["target.name"]
+
 					if ((properties["target.name"] == "jar") ||
 						(properties["target.name"] == "javadoc") ||
 						(properties["target.name"] == "war")) {
 
-						macrodefName = "${properties["target.name"]}-macro"
+						macrodefName = properties["target.name"] + "-macro"
 					}
 					else {
-						macrodefName = "${properties["target.name"]}"
+						macrodefName = properties["target.name"]
 					}
 
 					moduleDirs = "${properties["module.dirs"]}".split(",")
@@ -209,8 +211,8 @@ Error-Prone was automatically installed. Please rerun your task.
 
 						buildXmlContent = new File(moduleDir + "/build.xml").text
 
-						if (buildXmlContent =~ "<target name=\"" + "${properties["target.name"]}" + "\"") {
-							ant.ant(dir: moduleDir, target: "${properties["target.name"]}")
+						if (buildXmlContent =~ "<target name=\"" + targetName + "\"") {
+							ant.ant(dir: moduleDir, target: targetName)
 						}
 						else {
 							ant."${macrodefName}"("module.dir": moduleDir)
