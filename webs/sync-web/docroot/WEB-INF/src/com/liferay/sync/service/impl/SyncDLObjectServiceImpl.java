@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -37,13 +38,18 @@ import com.liferay.sync.model.SyncContext;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.SyncDLObjectUpdate;
 import com.liferay.sync.service.base.SyncDLObjectServiceBaseImpl;
+import com.liferay.sync.util.PortletPropsKeys;
 import com.liferay.sync.util.PortletPropsValues;
 import com.liferay.sync.util.SyncUtil;
 
 import java.io.File;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.portlet.PortletPreferences;
 
 /**
  * @author Michael Young
@@ -287,6 +293,8 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		PluginPackage soPortletPluginPackage =
 			DeployManagerUtil.getInstalledPluginPackage("so-portlet");
 
+		syncContext.setPreferences(_getPreferences());
+
 		if (soPortletPluginPackage != null) {
 			syncContext.setSocialOfficeInstalled(true);
 		}
@@ -512,6 +520,28 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			throw new SyncDLObjectChecksumException(sb.toString());
 		}
+	}
+
+	private Map<String, String> _getPreferences()
+		throws PortalException, SystemException {
+
+		Map<String, String> preferences = new HashMap<String, String>();
+
+		long companyId = getUser().getCompanyId();
+
+		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
+			companyId);
+
+		int syncClientPollInterval = PrefsPropsUtil.getInteger(
+			portletPreferences, companyId,
+			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
+			PortletPropsValues.SYNC_CLIENT_POLL_INTERVAL);
+
+		preferences.put(
+			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
+			String.valueOf(syncClientPollInterval));
+
+		return preferences;
 	}
 
 }

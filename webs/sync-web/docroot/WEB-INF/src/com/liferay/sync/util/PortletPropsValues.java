@@ -25,6 +25,9 @@ public class PortletPropsValues {
 	public static final String SYNC_AUTH_VERIFIER_PIPELINE = PortletProps.get(
 		PortletPropsKeys.SYNC_AUTH_VERIFIER_PIPELINE);
 
+	public static final int SYNC_CLIENT_POLL_INTERVAL = GetterUtil.getInteger(
+		PortletProps.get(PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL));
+
 	public static final int SYNC_FILE_DIFF_CACHE_DELETE_INTERVAL =
 		GetterUtil.getInteger(
 			PortletProps.get(
