@@ -50,19 +50,14 @@
 		<path refid="plugin-lib.classpath" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="annotations.jar,commons-logging.jar,log4j.jar,util-bridges.jar,util-java.jar,util-taglib.jar" />
-		<fileset dir="${sdk.dir}/lib" includes="activation.jar,bnd.jar,javax.servlet-api.jar,jsp-api.jar,mail.jar,portal-ant-shared.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="activation.jar,javax.servlet-api.jar,jsp-api.jar,mail.jar" />
 	</path>
 
 	<path id="portal.classpath">
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
-		<fileset dir="${app.server.lib.portal.dir}" excludes="bnd.jar" includes="*.jar" />
+		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
 		<fileset dir="${sdk.dir}/lib" includes="activation.jar,jargs.jar,javax.servlet-api.jar,jsp-api.jar,qdox.jar" />
-	</path>
-
-	<path id="portal-ant.classpath">
-		<path refid="portal.classpath" />
-		<fileset dir="${sdk.dir}/lib" includes="bnd.jar,portal-ant-shared.jar" />
 	</path>
 
 	<path id="test.classpath">
@@ -72,7 +67,7 @@
 		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
 	</path>
 
-	<taskdef classpathref="lib.classpath" resource="aQute/bnd/ant/taskdef.properties" />
+	<taskdef classpathref="portal.classpath" resource="aQute/bnd/ant/taskdef.properties" />
 	<taskdef classpathref="lib.classpath" resource="org/codehaus/groovy/antlib.xml" />
 
 	<condition property="correct.ant.version">
@@ -141,8 +136,8 @@ Error-Prone was automatically installed. Please rerun your task.
 
 		<sequential>
 			<taskdef
-				classname="com.liferay.portal.ant.bnd.BaselineJarTask"
-				classpathref="portal-ant.classpath"
+				classname="com.liferay.util.ant.bnd.BaselineJarTask"
+				classpathref="portal.classpath"
 				name="baseline-jar"
 			/>
 
@@ -1480,8 +1475,8 @@ Please find a solution that does not require portal-impl.jar.
 
 		<sequential>
 			<taskdef
-				classname="com.liferay.portal.ant.ManifestHelperTask"
-				classpathref="portal-ant.classpath"
+				classname="com.liferay.util.ant.ManifestHelperTask"
+				classpathref="portal.classpath"
 				name="liferay-manifest-helper"
 			/>
 
