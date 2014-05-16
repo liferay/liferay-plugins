@@ -85,7 +85,7 @@
 					for (int i = 0; i < users.size(); i++) {
 						User curUser = users.get(i);
 
-						String delimiter = (i != (users.size() - 1) ? (StringPool.NBSP + StringPool.COMMA + StringPool.NBSP) : StringPool.BLANK);
+						String delimiter = (i != users.size() - 1) ? (StringPool.COMMA + StringPool.NBSP) : StringPool.BLANK;
 					%>
 
 						<c:choose>
