@@ -238,9 +238,6 @@ public class Watcher implements Runnable {
 
 		String filePathName = FilePathNameUtil.getFilePathName(filePath);
 
-		SyncSite syncSite = SyncSiteService.fetchSyncSite(
-			syncAccount.getFilePathName(), syncAccount.getSyncAccountId());
-
 		if (filePathName.equals(syncAccount.getFilePathName())) {
 			syncAccount.setActive(false);
 			syncAccount.setUiEvent(
@@ -248,14 +245,20 @@ public class Watcher implements Runnable {
 
 			SyncAccountService.update(syncAccount);
 		}
-		else if (syncSite != null) {
-			syncSite.setActive(false);
-			syncSite.setUiEvent(SyncSite.UI_EVENT_SYNC_SITE_FOLDER_MISSING);
-
-			SyncSiteService.update(syncSite);
-		}
 		else {
-			fireWatchEventListener(SyncWatchEvent.EVENT_TYPE_DELETE, filePath);
+			SyncSite syncSite = SyncSiteService.fetchSyncSite(
+				syncAccount.getFilePathName(), syncAccount.getSyncAccountId());
+
+			if (syncSite != null) {
+				syncSite.setActive(false);
+				syncSite.setUiEvent(SyncSite.UI_EVENT_SYNC_SITE_FOLDER_MISSING);
+
+				SyncSiteService.update(syncSite);
+			}
+			else {
+				fireWatchEventListener(
+					SyncWatchEvent.EVENT_TYPE_DELETE, filePath);
+			}
 		}
 	}
 
