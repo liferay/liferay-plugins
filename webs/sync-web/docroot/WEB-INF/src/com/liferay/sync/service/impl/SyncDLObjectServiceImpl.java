@@ -294,7 +294,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		PluginPackage soPortletPluginPackage =
 			DeployManagerUtil.getInstalledPluginPackage("so-portlet");
 
-		syncContext.setPreferences(getPortletPreferencesMap());
+		syncContext.setPortletPreferencesMap(getPortletPreferencesMap());
 
 		if (soPortletPluginPackage != null) {
 			syncContext.setSocialOfficeInstalled(true);
