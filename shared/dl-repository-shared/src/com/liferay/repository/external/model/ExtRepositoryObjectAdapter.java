@@ -43,8 +43,8 @@ public abstract class ExtRepositoryObjectAdapter<T>
 			PermissionChecker permissionChecker, String actionId)
 		throws PortalException, SystemException {
 
-		if (_unsupportedActionsMap.containsKey(actionId)) {
-			return _unsupportedActionsMap.get(actionId);
+		if (_unsupportedActionIds.containsKey(actionId)) {
+			return _unsupportedActionIds.get(actionId);
 		}
 
 		try {
@@ -150,11 +150,11 @@ public abstract class ExtRepositoryObjectAdapter<T>
 		_extRepositoryObject = extRepositoryObject;
 	}
 
-	private static final Map<String, Boolean> _unsupportedActionsMap =
+	private static Map<String, Boolean> _unsupportedActionIds =
 		new HashMap<String, Boolean>();
 
 	static {
-		_unsupportedActionsMap.put(ActionKeys.SUBSCRIBE, false);
+		_unsupportedActionIds.put(ActionKeys.SUBSCRIBE, Boolean.FALSE);
 	}
 
 	private ExtRepositoryObject _extRepositoryObject;
