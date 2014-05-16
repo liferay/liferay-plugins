@@ -1628,7 +1628,13 @@ Please find a solution that does not require portal-impl.jar.
 
 					<property file="@{module.dir}/docroot/WEB-INF/liferay-plugin-package.properties" prefix="plugin-package" />
 
-					<var name="plugin.full.version" value="${plugin-package.module-full-version}" />
+					<if>
+						<isset property="plugin-package.module-full-version" />
+						<then>
+							<var name="plugin.full.version" value="${plugin-package.module-full-version}" />
+						</then>
+					</if>
+
 					<var name="plugin.jars" value="${plugin-package.portal-dependency-jars}" />
 					<var name="plugin.required.contexts" value="${plugin-package.required-deployment-contexts}" />
 					<var name="plugin.tlds" value="${plugin-package.portal-dependency-tlds}" />
