@@ -47,9 +47,9 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 
 		List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
 
-		KBArticle kbArticle = this;
-
 		ancestorResourcePrimaryKeys.add(getResourcePrimKey());
+
+		KBArticle kbArticle = this;
 
 		while (!kbArticle.isRoot()) {
 			kbArticle = kbArticle.getParentKBArticle();
