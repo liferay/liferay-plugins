@@ -35,8 +35,8 @@ public class SyncContext {
 	}
 
 	@JSON
-	public Map<String, String> getPreferences() {
-		return _preferences;
+	public Map<String, String> getPortletPreferencesMap() {
+		return _portletPreferencesMap;
 	}
 
 	public long getUserId() {
@@ -60,8 +60,10 @@ public class SyncContext {
 		_portalBuildNumber = portalBuildNumber;
 	}
 
-	public void setPreferences(Map<String, String> preferences) {
-		_preferences = preferences;
+	public void setPortletPreferencesMap(
+		Map<String, String> portletPreferencesMap) {
+
+		_portletPreferencesMap = portletPreferencesMap;
 	}
 
 	public void setSocialOfficeInstalled(boolean socialOfficeInstalled) {
@@ -78,7 +80,7 @@ public class SyncContext {
 
 	private String _pluginVersion;
 	private int _portalBuildNumber;
-	private Map<String, String> _preferences;
+	private Map<String, String> _portletPreferencesMap;
 	private boolean _socialOfficeInstalled;
 	private long _userId;
 	private List<Group> _userSitesGroups;

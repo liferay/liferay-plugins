@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
@@ -293,7 +294,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		PluginPackage soPortletPluginPackage =
 			DeployManagerUtil.getInstalledPluginPackage("so-portlet");
 
-		syncContext.setPreferences(_getPreferences());
+		syncContext.setPreferences(getPortletPreferencesMap());
 
 		if (soPortletPluginPackage != null) {
 			syncContext.setSocialOfficeInstalled(true);
@@ -509,6 +510,31 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		}
 	}
 
+	protected Map<String, String> getPortletPreferencesMap()
+		throws PortalException, SystemException {
+
+		Map<String, String> portletPreferencesMap =
+			new HashMap<String, String>();
+
+		User user = getUser();
+
+		long companyId = user.getCompanyId();
+
+		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
+			companyId);
+
+		int syncClientPollInterval = PrefsPropsUtil.getInteger(
+			portletPreferences, companyId,
+			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
+			PortletPropsValues.SYNC_CLIENT_POLL_INTERVAL);
+
+		portletPreferencesMap.put(
+			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
+			String.valueOf(syncClientPollInterval));
+
+		return portletPreferencesMap;
+	}
+
 	protected void validateChecksum(File file, String checksum)
 		throws PortalException {
 
@@ -524,28 +550,6 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			throw new SyncDLObjectChecksumException(sb.toString());
 		}
-	}
-
-	private Map<String, String> _getPreferences()
-		throws PortalException, SystemException {
-
-		Map<String, String> preferences = new HashMap<String, String>();
-
-		long companyId = getUser().getCompanyId();
-
-		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
-			companyId);
-
-		int syncClientPollInterval = PrefsPropsUtil.getInteger(
-			portletPreferences, companyId,
-			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
-			PortletPropsValues.SYNC_CLIENT_POLL_INTERVAL);
-
-		preferences.put(
-			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
-			String.valueOf(syncClientPollInterval));
-
-		return preferences;
 	}
 
 }
