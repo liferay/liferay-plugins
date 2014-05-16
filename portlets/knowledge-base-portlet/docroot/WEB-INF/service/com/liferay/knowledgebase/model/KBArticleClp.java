@@ -920,6 +920,25 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 	}
 
 	@Override
+	public java.util.List<java.lang.Long> getAncestorResourcePrimaryKeys() {
+		try {
+			String methodName = "getAncestorResourcePrimaryKeys";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			java.util.List<java.lang.Long> returnObj = (java.util.List<java.lang.Long>)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
 	public java.util.List<com.liferay.portal.kernel.repository.model.FileEntry> getAttachmentsFileEntries() {
 		try {
 			String methodName = "getAttachmentsFileEntries";
@@ -968,6 +987,25 @@ public class KBArticleClp extends BaseModelImpl<KBArticle> implements KBArticle 
 			Object[] parameterValues = new Object[] {  };
 
 			java.lang.String returnObj = (java.lang.String)invokeOnRemoteModel(methodName,
+					parameterTypes, parameterValues);
+
+			return returnObj;
+		}
+		catch (Exception e) {
+			throw new UnsupportedOperationException(e);
+		}
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBArticle getParentKBArticle() {
+		try {
+			String methodName = "getParentKBArticle";
+
+			Class<?>[] parameterTypes = new Class<?>[] {  };
+
+			Object[] parameterValues = new Object[] {  };
+
+			com.liferay.knowledgebase.model.KBArticle returnObj = (com.liferay.knowledgebase.model.KBArticle)invokeOnRemoteModel(methodName,
 					parameterTypes, parameterValues);
 
 			return returnObj;

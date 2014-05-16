@@ -1016,6 +1016,13 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	}
 
 	@Override
+	public java.util.List<java.lang.Long> getAncestorResourcePrimaryKeys()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticle.getAncestorResourcePrimaryKeys();
+	}
+
+	@Override
 	public java.lang.String getAttachmentsDirName() {
 		return _kbArticle.getAttachmentsDirName();
 	}
@@ -1044,6 +1051,13 @@ public class KBArticleWrapper implements KBArticle, ModelWrapper<KBArticle> {
 	@Override
 	public long getClassPK() {
 		return _kbArticle.getClassPK();
+	}
+
+	@Override
+	public com.liferay.knowledgebase.model.KBArticle getParentKBArticle()
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _kbArticle.getParentKBArticle();
 	}
 
 	@Override
