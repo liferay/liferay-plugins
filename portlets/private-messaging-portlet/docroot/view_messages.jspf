@@ -84,14 +84,16 @@
 
 					for (int i = 0; i < users.size(); i++) {
 						User curUser = users.get(i);
+
+						String delimiter = (i != (users.size() - 1) ? (StringPool.NBSP + StringPool.COMMA + StringPool.NBSP) : StringPool.BLANK);
 					%>
 
 						<c:choose>
 							<c:when test="<%= curUser.isActive() %>">
-								<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+								<span class="author-sender"><%= HtmlUtil.escape(curUser.getFullName()) %><%= delimiter %></span>
 							</c:when>
 							<c:otherwise>
-								<span class="author-sender line-through"><%= HtmlUtil.escape(curUser.getFullName()) %></span>
+								<span class="author-sender line-through"><%= HtmlUtil.escape(curUser.getFullName()) %><%= delimiter %></span>
 
 								<liferay-ui:icon
 									image="../aui/question-sign"
@@ -99,10 +101,6 @@
 								/>
 							</c:otherwise>
 						</c:choose>
-
-						<c:if test="<%= i != users.size() - 1 %>">
-							,
-						</c:if>
 
 					<%
 					}
