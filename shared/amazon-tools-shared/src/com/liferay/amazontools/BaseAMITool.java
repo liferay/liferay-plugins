@@ -99,7 +99,7 @@ public class BaseAMITool {
 			break;
 		}
 
-		if(image == null) {
+		if (image == null) {
 			throw new RuntimeException(
 				"Image " + imageName + " does not exist");
 		}
