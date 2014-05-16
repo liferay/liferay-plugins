@@ -275,8 +275,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			JSONObject instanceStateJSONObject =
 				instanceStatesJSONArray.getJSONObject(i);
 
-			String instanceStateAutoScalingGroupName =
-				instanceStateJSONObject.getString("autoScalingGroupName");
+			Object instanceStateAutoScalingGroupName =
+				instanceStateJSONObject.get("autoScalingGroupName");
 
 			if (autoScalingGroupName.equals(
 					instanceStateAutoScalingGroupName)) {
