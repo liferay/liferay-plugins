@@ -54,6 +54,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+
+			System.exit(-1);
 		}
 	}
 

@@ -113,6 +113,8 @@ public class AMIBuilder extends BaseAMITool {
 			e.printStackTrace();
 
 			amiBuilder.destroy();
+
+			System.exit(-1);
 		}
 	}
 
