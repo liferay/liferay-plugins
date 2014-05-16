@@ -15,7 +15,9 @@
 package com.liferay.knowledgebase.model.impl;
 
 import com.liferay.knowledgebase.article.util.KBArticleAttachmentsUtil;
+import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
+import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -27,6 +29,7 @@ import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +39,25 @@ import java.util.List;
 public class KBArticleImpl extends KBArticleBaseImpl {
 
 	public KBArticleImpl() {
+	}
+
+	@Override
+	public List<Long> getAncestorResourcePrimaryKeys()
+		throws PortalException, SystemException {
+
+		List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
+
+		KBArticle kbArticle = this;
+
+		ancestorResourcePrimaryKeys.add(getResourcePrimKey());
+
+		while (!kbArticle.isRoot()) {
+			kbArticle = kbArticle.getParentKBArticle();
+
+			ancestorResourcePrimaryKeys.add(kbArticle.getResourcePrimKey());
+		}
+
+		return ancestorResourcePrimaryKeys;
 	}
 
 	public String getAttachmentsDirName() {
@@ -84,6 +106,20 @@ public class KBArticleImpl extends KBArticleBaseImpl {
 		}
 
 		return getKbArticleId();
+	}
+
+	@Override
+	public KBArticle getParentKBArticle()
+		throws PortalException, SystemException {
+
+		long parentResourcePrimKey = getParentResourcePrimKey();
+
+		if (parentResourcePrimKey <= 0) {
+			return null;
+		}
+
+		return KBArticleLocalServiceUtil.getLatestKBArticle(
+			parentResourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 	}
 
 	public boolean isFirstVersion() {

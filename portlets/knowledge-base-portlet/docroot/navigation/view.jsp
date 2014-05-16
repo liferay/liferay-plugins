@@ -17,150 +17,123 @@
 <%@ include file="/navigation/init.jsp" %>
 
 <%
-List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
 
 long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
+
+if (resourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+	KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+
+	ancestorResourcePrimaryKeys = kbArticle.getAncestorResourcePrimaryKeys();
+
+	Collections.reverse(ancestorResourcePrimaryKeys);
+}
+else {
+	ancestorResourcePrimaryKeys.add(KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+}
 %>
 
-<div id="<portlet:namespace />kbArticlesTreeBoundingBox"></div>
+<div class="kbarticle-navigation">
 
-<aui:script use="aui-tree-view">
-	var children = [
+	<%
+	List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator());
 
-		<%
-		for (int i = 0; i < kbArticles.size(); i++) {
-			boolean expandedKBarticle = false;
+	for (KBArticle kbArticle : kbArticles) {
+		PortletURL viewURL = renderResponse.createRenderURL();
 
-			KBArticle kbArticle = kbArticles.get(i);
+		viewURL.setParameter("resourcePrimKey", String.valueOf(kbArticle.getResourcePrimKey()));
+	%>
 
-			if (kbArticle.getResourcePrimKey() == resourcePrimKey) {
-				expandedKBarticle = true;
-			}
+		<ul>
+			<li>
 
-			List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
-		%>
+				<%
+				boolean kbArticleExpanded = false;
 
-			{
+				if ((ancestorResourcePrimaryKeys.size() > 0) && (kbArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(0))) {
+					kbArticleExpanded = true;
+				}
 
-				<c:if test="<%= !childKBArticles.isEmpty() %>">
-					children: [
+				String kbArticleClass = StringPool.BLANK;
 
-						<%
-						for (int j = 0; j < childKBArticles.size(); j++) {
-							boolean expandedChildKBArticle = false;
+				if (kbArticle.getResourcePrimKey() == resourcePrimKey) {
+					kbArticleClass = "kbarticle-selected";
+				}
+				else if (kbArticleExpanded) {
+					kbArticleClass = "kbarticle-expanded";
+				}
+				%>
 
-							KBArticle childKBArticle = childKBArticles.get(j);
+				<a class="<%= kbArticleClass %>" href="<%= viewURL %>"><%= kbArticle.getTitle() %></a>
 
-							List<KBArticle> allDescendantKBArticles = KBArticleLocalServiceUtil.getAllDescendantKBArticles(childKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, null);
+				<c:if test="<%= kbArticleExpanded %>">
 
-							PortletURL viewChildURL = renderResponse.createRenderURL();
+					<%
+					List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator());
 
-							viewChildURL.setParameter("resourcePrimKey", String.valueOf(childKBArticle.getResourcePrimKey()));
+					for (KBArticle childKBArticle : childKBArticles) {
+						PortletURL viewChildURL = renderResponse.createRenderURL();
 
-							if (childKBArticle.getResourcePrimKey() == resourcePrimKey) {
-								expandedChildKBArticle = true;
-								expandedKBarticle = true;
-							}
-						%>
+						viewChildURL.setParameter("resourcePrimKey", String.valueOf(childKBArticle.getResourcePrimKey()));
+					%>
 
-							{
-								children: [
+						<ul>
+							<li>
+
+								<%
+								boolean childKBArticleExpanded = false;
+
+								if ((ancestorResourcePrimaryKeys.size() > 1) && (childKBArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(1))) {
+									childKBArticleExpanded = true;
+								}
+
+								String childKBArticleClass = StringPool.BLANK;
+
+								if (childKBArticle.getResourcePrimKey() == resourcePrimKey) {
+									childKBArticleClass = "kbarticle-selected";
+								}
+								else if (childKBArticleExpanded) {
+									childKBArticleClass = "kbarticle-expanded";
+								}
+								%>
+
+								<a class="<%= childKBArticleClass %>" href="<%= viewChildURL %>"><%= childKBArticle.getTitle() %></a>
+
+								<c:if test="<%= childKBArticleExpanded %>">
 
 									<%
-									for (int k = 0; k < allDescendantKBArticles.size(); k++) {
-										KBArticle curKBArticle = allDescendantKBArticles.get(k);
+									List<KBArticle> allDescendantKBArticles = KBArticleLocalServiceUtil.getAllDescendantKBArticles(childKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, new KBArticlePriorityComparator());
 
+									for (KBArticle curKBArticle : allDescendantKBArticles) {
 										PortletURL viewCurKBArticleURL = renderResponse.createRenderURL();
 
 										viewCurKBArticleURL.setParameter("resourcePrimKey", String.valueOf(curKBArticle.getResourcePrimKey()));
-
-										if (curKBArticle.getResourcePrimKey() == resourcePrimKey) {
-											expandedChildKBArticle = true;
-											expandedKBarticle = true;
-										}
 									%>
 
-										{
-											expanded: false,
-											id:'<portlet:namespace/><%= curKBArticle.getResourcePrimKey() %>',
-											label: '<a href="<%= viewCurKBArticleURL %>"><%= curKBArticle.getTitle() %></a>'
-
-											<c:choose>
-												<c:when test="<%= k == (allDescendantKBArticles.size() - 1) %>">
-													}
-												</c:when>
-												<c:otherwise>
-													},
-												</c:otherwise>
-											</c:choose>
+										<ul>
+											<li>
+												<a class="<%= curKBArticle.getResourcePrimKey() == resourcePrimKey ? "kbarticle-selected" : StringPool.BLANK %>" href="<%= viewCurKBArticleURL %>"><%= curKBArticle.getTitle() %></a>
+											</li>
+										</ul>
 
 									<%
 									}
 									%>
 
-								],
+								</c:if>
+							</li>
+						</ul>
 
-								expanded: <%= expandedChildKBArticle %>,
-								id:'<portlet:namespace/><%= childKBArticle.getResourcePrimKey() %>',
-								label: '<a href="<%= viewChildURL %>"><%= childKBArticle.getTitle() %></a>'
+					<%
+					}
+					%>
 
-							<c:choose>
-								<c:when test="<%= j == (childKBArticles.size() - 1) %>">
-									}
-								</c:when>
-								<c:otherwise>
-									},
-								</c:otherwise>
-							</c:choose>
-
-						<%
-						}
-						%>
-
-						],
 				</c:if>
+			</li>
+		</ul>
 
-				<%
-				PortletURL viewURL = renderResponse.createRenderURL();
+	<%
+	}
+	%>
 
-				viewURL.setParameter("resourcePrimKey", String.valueOf(kbArticle.getResourcePrimKey()));
-				%>
-
-				expanded: <%= expandedKBarticle %>,
-				id:'<portlet:namespace/><%= kbArticle.getResourcePrimKey() %>',
-				label: '<a href="<%= viewURL %>"><%= kbArticle.getTitle() %></a>',
-				on: {
-					select: function(event) {
-						var node = event.currentTarget;
-
-						var tree = node.get('ownerTree');
-
-						tree.collapseAll();
-
-						node.expand();
-					}
-				}
-
-			<c:choose>
-				<c:when test="<%= i == (kbArticles.size() - 1) %>">
-					}
-				</c:when>
-				<c:otherwise>
-					},
-				</c:otherwise>
-			</c:choose>
-
-		<%
-		}
-		%>
-
-	];
-
-	new A.TreeView(
-		{
-			boundingBox: '#<portlet:namespace />kbArticlesTreeBoundingBox',
-			children: children,
-			type: 'normal'
-		}
-	).render();
-</aui:script>
+</div>
