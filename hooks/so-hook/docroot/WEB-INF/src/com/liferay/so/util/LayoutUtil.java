@@ -135,13 +135,13 @@ public class LayoutUtil {
 			addResources(layout, portletId);
 
 			if (portletId.startsWith("1_WAR_eventsdisplayportlet")) {
-				updatePortletTitle(layout, portletId, "Events");
+				updatePortletTitle(layout, portletId, "events");
 			}
 			else if (portletId.startsWith("1_WAR_soannouncementsportlet")) {
-				updatePortletTitle(layout, portletId, "Announcements");
+				updatePortletTitle(layout, portletId, "announcements");
 			}
 			else if (portletId.startsWith("1_WAR_wysiwygportlet")) {
-				updatePortletTitle(layout, portletId, "Welcome");
+				updatePortletTitle(layout, portletId, "welcome");
 			}
 			else if (portletId.contains("_WAR_contactsportlet")) {
 				configureProfile(layout, portletId);
@@ -149,11 +149,11 @@ public class LayoutUtil {
 			}
 			else if (portletId.startsWith(PortletKeys.ASSET_PUBLISHER)) {
 				configureAssetPublisher(layout);
-				updatePortletTitle(layout, portletId, "Related Content");
+				updatePortletTitle(layout, portletId, "related-content");
 			}
 			else if (portletId.startsWith(PortletKeys.BLOGS_AGGREGATOR)) {
 				configureBlogsAggregator(layout);
-				updatePortletTitle(layout, portletId, "Recent Blogs");
+				updatePortletTitle(layout, portletId, "recent-blogs");
 			}
 			else if (portletId.startsWith(PortletKeys.BREADCRUMB)) {
 				removePortletBorder(layout, portletId);
