@@ -1630,6 +1630,9 @@ Please find a solution that does not require portal-impl.jar.
 				<path location="@{module.dir}" />
 			</pathconvert>
 
+			<var name="original.lib.name" unset="true" />
+			<var name="original.lib.version" unset="true" />
+			<var name="original.lib.url" unset="true" />
 			<var name="plugin.full.version" unset="true" />
 			<var name="plugin.jars" unset="true" />
 			<var name="plugin.required.contexts" unset="true" />
