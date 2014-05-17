@@ -210,7 +210,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			autoScalingGroupName = autoScalingGroupJSONObject.getString(
 				"autoScalingGroupName");
 
-			ArrayList<String> instanceIds = new ArrayList<String>();
+			List<String> instanceIds = new ArrayList<String>();
 
 			JSONArray instancesJSONArray =
 				autoScalingGroupJSONObject.getJSONArray("instances");
@@ -230,7 +230,9 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			else {
 				CreateTagsRequest createTagsRequest = new CreateTagsRequest();
 
-				ArrayList<Tag> tags = new ArrayList<Tag>();
+				createTagsRequest.setResources(instanceIds);
+
+				List<Tag> tags = new ArrayList<Tag>();
 
 				Tag tag = new Tag();
 
@@ -240,8 +242,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 				tags.add(tag);
 
 				createTagsRequest.setTags(tags);
-
-				createTagsRequest.setResources(instanceIds);
 
 				amazonEC2Client.createTags(createTagsRequest);
 
