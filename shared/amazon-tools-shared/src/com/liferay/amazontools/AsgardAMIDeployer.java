@@ -114,10 +114,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			_jsonWebServiceClient.doPost(
 				"/" + availabilityZone + "/cluster/delete", parameters);
 
-			System.out.println(
+			throw new RuntimeException(
 				"Unable to deploy Auto Scaling Group " + autoScalingGroupName);
-
-			return;
 		}
 
 		String json = _jsonWebServiceClient.doGet(
@@ -220,13 +218,9 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		}
 
 		if (!created) {
-			System.out.println(
+			throw new RuntimeException(
 				"Unable to create Auto Scaling Group " + autoScalingGroupName);
-
-			return null;
 		}
-
-		sleep(10);
 
 		System.out.println(
 			"Created Auto Scaling Group " + autoScalingGroupName);
