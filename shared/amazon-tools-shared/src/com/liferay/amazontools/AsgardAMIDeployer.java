@@ -14,6 +14,9 @@
 
 package com.liferay.amazontools;
 
+import com.amazonaws.services.ec2.model.CreateTagsRequest;
+import com.amazonaws.services.ec2.model.Tag;
+
 import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
 import com.liferay.jsonwebserviceclient.JSONWebServiceClientImpl;
 
@@ -88,7 +91,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		String availabilityZone = properties.getProperty("availability.zone");
 		boolean deployed = false;
 
-		for (int i = 1; i < 20; i++) {
+		for (int i = 1; i < 30; i++) {
 			String json = _jsonWebServiceClient.doGet(
 				"/" + availabilityZone + "/loadBalancer/show/" +
 					asgardClusterName + ".json",
@@ -192,7 +195,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		String autoScalingGroupName = null;
 		boolean created = false;
 
-		for (int i = 0; i < 6; i++) {
+		for (int i = 0; i < 12; i++) {
 			String json = _jsonWebServiceClient.doGet(
 				"/" + availabilityZone + "/cluster/show/" + asgardClusterName +
 					".json",
@@ -207,10 +210,41 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			autoScalingGroupName = autoScalingGroupJSONObject.getString(
 				"autoScalingGroupName");
 
-			if (!isInService(autoScalingGroupJSONObject)) {
+			ArrayList<String> instanceIds = new ArrayList<String>();
+
+			JSONArray instancesJSONArray =
+				autoScalingGroupJSONObject.getJSONArray("instances");
+
+			for (int j = 0; j < instancesJSONArray.length(); j++) {
+				JSONObject instanceJSONObject =
+					instancesJSONArray.getJSONObject(j);
+
+				instanceIds.add(instanceJSONObject.getString("instanceId"));
+			}
+
+			if (instanceIds.isEmpty() ||
+				!isInService(autoScalingGroupJSONObject)) {
+
 				sleep(15);
 			}
 			else {
+				CreateTagsRequest createTagsRequest = new CreateTagsRequest();
+
+				ArrayList<Tag> tags = new ArrayList<Tag>();
+
+				Tag tag = new Tag();
+
+				tag.withKey("Name");
+				tag.withValue(properties.getProperty("instance.name"));
+
+				tags.add(tag);
+
+				createTagsRequest.setTags(tags);
+
+				createTagsRequest.setResources(instanceIds);
+
+				amazonEC2Client.createTags(createTagsRequest);
+
 				created = true;
 
 				break;
