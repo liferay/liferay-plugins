@@ -110,7 +110,7 @@
 		}
 
 		if (id) {
-			previewNode.setContent(['<a href="', watchURL, id, '" rel="external" title="watch-this-video-at-youtube"><img src="', imageURL.replace('<%= id %>', id), '" alt="youtube-video" width="100%" height="100%" /></a>'].join(''));
+			previewNode.setContent(['<a href="', watchURL, id, '" rel="external" title="watch-this-video-at-youtube"><img alt="youtube-video" height="100%" src="', imageURL.replace('<%= id %>', id), '" width="100%" /></a>'].join(''));
 
 			new A.SWF(
 				{
