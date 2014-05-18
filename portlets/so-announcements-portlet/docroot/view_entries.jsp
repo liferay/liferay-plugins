@@ -22,7 +22,7 @@
 <%
 boolean readEntries = ParamUtil.getBoolean(request, "readEntries", true);
 
-int flagValue = AnnouncementsFlagConstants.NOT_HIDDEN;;
+int flagValue = AnnouncementsFlagConstants.NOT_HIDDEN;
 
 if (readEntries) {
 	flagValue = AnnouncementsFlagConstants.HIDDEN;
