@@ -218,7 +218,7 @@ if (entry == null) {
 		}
 
 		if (<%= entry != null %>) {
-			var scope = A.one('#<portlet:namespace />scope').get('value');;
+			var scope = A.one('#<portlet:namespace />scope').get('value');
 		}
 		else {
 			var optValue = A.one('select[name="<portlet:namespace />distributionScope"]').get('value');
