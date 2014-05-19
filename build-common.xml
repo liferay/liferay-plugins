@@ -1472,10 +1472,24 @@ Please find a solution that does not require portal-impl.jar.
 				module.dir="@{module.dir}"
 			/>
 
-			<jar
-				basedir="src"
-				jarfile="${plugin.sources.file}"
-			/>
+			<if>
+				<available file="patches" />
+				<then>
+					<jar jarfile="${plugin.sources.file}">
+						<fileset dir="src" />
+						<zipfileset
+							dir="patches"
+							prefix="META-INF/patches"
+						/>
+					</jar>
+				</then>
+				<else>
+					<jar
+						basedir="src"
+						jarfile="${plugin.sources.file}"
+					/>
+				</else>
+			</if>
 		</sequential>
 	</macrodef>
 
