@@ -28,7 +28,6 @@
 		<dependency name="commons-logging" org="commons-logging" rev="1.1.1" />
 		<dependency name="ecj" org="org.eclipse.jdt.core.compiler" rev="3.7.2" />
 		<dependency name="error_prone_ant" org="com.google.errorprone" rev="1.0.8" />
-		<dependency name="groovy-all" org="org.codehaus.groovy" rev="2.0.1" />
 		<dependency name="jalopy" org="jalopy" rev="1.5rc3" />
 		<dependency name="jargs" org="net.sf" rev="1.0" />
 		<dependency name="javax.servlet-api" org="javax.servlet" rev="3.0.1" />

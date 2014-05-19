@@ -67,8 +67,23 @@
 		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
 	</path>
 
-	<taskdef classpathref="portal.classpath" resource="aQute/bnd/ant/taskdef.properties" />
-	<taskdef classpathref="lib.classpath" resource="org/codehaus/groovy/antlib.xml" />
+	<path id="classpath.aQute.bnd">
+		<fileset dir="${sdk.dir}/dependencies/aQute.bnd/lib" includes="*.jar" />
+	</path>
+
+	<taskdef classpathref="classpath.aQute.bnd" resource="aQute/bnd/ant/taskdef.properties" />
+
+	<path id="classpath.com.liferay.ant.bnd">
+		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.bnd/lib" includes="*.jar" />
+	</path>
+
+	<taskdef classname="com.liferay.ant.bnd.BaselineJarTask" classpathref="classpath.com.liferay.ant.bnd" name="baseline-jar" />
+
+	<path id="classpath.org.codehaus.groovy">
+		<fileset dir="${sdk.dir}/dependencies/org.codehaus.groovy/lib" includes="*.jar" />
+	</path>
+
+	<taskdef classpathref="classpath.org.codehaus.groovy" resource="org/codehaus/groovy/antlib.xml" />
 
 	<condition property="correct.ant.version">
 		<antversion atleast="1.8.0" />
@@ -135,12 +150,6 @@ Error-Prone was automatically installed. Please rerun your task.
 		<attribute name="sourcePath" />
 
 		<sequential>
-			<taskdef
-				classname="com.liferay.util.ant.bnd.BaselineJarTask"
-				classpathref="portal.classpath"
-				name="baseline-jar"
-			/>
-
 			<manifest-helper />
 
 			<bndexpand propertyfile="@{bndRootFile}" />

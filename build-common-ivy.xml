@@ -48,11 +48,17 @@
 
 	<taskdef classpathref="ivy.lib.path" resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" />
 
+	<path id="sdk.dependencies.path">
+		<dirset dir="${sdk.dir}/dependencies" includes="*" />
+	</path>
+
+	<pathconvert pathsep="," property="sdk.dependencies.path" refid="sdk.dependencies.path" targetos="unix" />
+
 	<macrodef name="process-ivy">
 		<attribute default="${basedir}" name="module.dir" />
 
 		<sequential>
-			<for list="@{module.dir},${sdk.dir}" param="ivy.xml.dir">
+			<for list="@{module.dir},${sdk.dir},${sdk.dependencies.path}" param="ivy.xml.dir">
 				<sequential>
 					<if>
 						<available file="@{ivy.xml.dir}/ivy.xml" />
@@ -73,6 +79,7 @@
 									<if>
 										<or>
 											<equals arg1="@{ivy.xml.dir}" arg2="${sdk.dir}" />
+											<contains string="@{ivy.xml.dir}" substring="${sdk.dir}/dependencies" />
 											<antelope:endswith string="${ant.project.name}" with="-shared" />
 											<available file="@{ivy.xml.dir}/bnd.bnd" />
 										</or>
