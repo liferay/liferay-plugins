@@ -5,7 +5,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
 >
-	<info module="dependencies.org.codehaus.groovy" organisation="com.liferay.sdk" />
+	<info module="com.liferay.sdk.dependencies.org.codehaus.groovy" organisation="com.liferay" />
 
 	<dependencies defaultconf="default">
 		<dependency name="groovy-all" org="org.codehaus.groovy" rev="2.0.1" />
