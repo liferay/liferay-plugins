@@ -95,7 +95,7 @@
 								/>
 							</c:if>
 
-							<%= ((i + 1) < users.size()) ? StringPool.COMMA_AND_SPACE : StringPool.BLANK %>
+							<%= ((i + 1) < users.size()) ? StringPool.COMMA + StringPool.NBSP : StringPool.BLANK %>
 
 						</span>
 
