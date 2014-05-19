@@ -401,6 +401,10 @@ public class DynamicCSSUtil {
 	private static boolean _isThemeCssFastLoad(
 		HttpServletRequest request, ThemeDisplay themeDisplay) {
 
+		if (!_SUPPORTS_THEME_CSS_FAST_LOAD_DISABLED) {
+			return true;
+		}
+
 		if (themeDisplay != null) {
 			return themeDisplay.isThemeCssFastLoad();
 		}
@@ -500,6 +504,8 @@ public class DynamicCSSUtil {
 
 	private static final String _SASS_DIR_KEY =
 		DynamicCSSUtil.class.getName() + "#sass";
+
+	private static final boolean _SUPPORTS_THEME_CSS_FAST_LOAD_DISABLED = false;
 
 	private static Log _log = LogFactoryUtil.getLog(DynamicCSSUtil.class);
 
