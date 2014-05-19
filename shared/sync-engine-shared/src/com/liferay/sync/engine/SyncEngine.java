@@ -132,7 +132,7 @@ public class SyncEngine {
 
 		ScheduledFuture<?> scheduledFuture =
 			_eventScheduledExecutorService.scheduleAtFixedRate(
-				runnable, 0, syncAccount.getInterval(), TimeUnit.SECONDS);
+				runnable, 0, syncAccount.getPollInterval(), TimeUnit.SECONDS);
 
 		Path filePath = Paths.get(syncAccount.getFilePathName());
 
