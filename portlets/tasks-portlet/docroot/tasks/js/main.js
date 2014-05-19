@@ -89,6 +89,39 @@ AUI().use(
 				return instance._popup;
 			},
 
+			getPopupRefreshPage: function(uri) {
+				var instance = this;
+
+				var popup = this.getPopup();
+
+				if (uri) {
+					if (!instance._uriStack) {
+						var stack = [];
+
+						instance._uriStack = stack;
+					}
+
+					instance._uriStack.push(uri);
+
+					if (!instance._requestOnce) {
+						instance._requestOnce = true;
+
+						setTimeout(
+							function() {
+								popup.io.set('uri', instance._uriStack.pop());
+
+								instance._requestOnce = false;
+
+								instance._uriStack = null;
+
+								popup.io.start();
+							},
+							200
+						);
+					}
+				}
+			},
+
 			openTask: function(href) {
 				this.displayPopup(href, "Tasks");
 			},

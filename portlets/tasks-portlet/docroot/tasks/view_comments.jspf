@@ -33,9 +33,7 @@
 	Liferay.on(
 		'<%= portletDisplay.getId() %>:messagePosted',
 		function(event) {
-			var popup = Liferay.Tasks.getPopup();
-
-			popup.io.start();
+			Liferay.Tasks.getPopupRefreshPage('<%= currentURL %>');
 		}
 	);
 </aui:script>
