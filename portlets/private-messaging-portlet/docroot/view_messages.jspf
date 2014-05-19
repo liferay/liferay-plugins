@@ -86,9 +86,9 @@
 						User curUser = users.get(i);
 					%>
 
-						<span class="author-sender <%= curUser.isActive() ? "line-through" : StringPool.BLANK %>"><%= HtmlUtil.escape(curUser.getFullName()) %>
+						<span class="author-sender <%= !curUser.isActive() ? "line-through" : StringPool.BLANK %>"><%= HtmlUtil.escape(curUser.getFullName()) %>
 
-							<c:if test="<%= curUser.isActive() %>">
+							<c:if test="<%= !curUser.isActive() %>">
 								<liferay-ui:icon
 									image="../aui/question-sign"
 									message="deleted-user"
