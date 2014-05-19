@@ -7,7 +7,7 @@
 	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
 >
 	<info module="${ivy.module.name}" organisation="com.liferay">
-		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay.sdk" revision="latest.integration" />
+		<extends extendType="configurations,description,info" location="${sdk.dir}/ivy.xml" module="com.liferay.sdk" organisation="com.liferay" revision="latest.integration" />
 	</info>
 
 	<publications>
