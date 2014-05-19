@@ -22,6 +22,8 @@ import com.liferay.sync.engine.documentlibrary.model.SyncContext;
 import com.liferay.sync.engine.model.SyncAccount;
 import com.liferay.sync.engine.service.SyncAccountService;
 
+import java.util.Map;
+
 /**
  * @author Shinn Lok
  */
@@ -44,6 +46,15 @@ public class GetSyncContextHandler extends BaseJSONHandler {
 
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			getSyncAccountId());
+
+		Map<String, String> portletPreferencesMap =
+			syncContext.getPortletPreferencesMap();
+
+		int interval =
+			Integer.valueOf(
+				portletPreferencesMap.get("sync.client.poll.interval"));
+
+		syncAccount.setInterval(interval);
 
 		syncAccount.setSocialOfficeInstalled(
 			syncContext.isSocialOfficeInstalled());

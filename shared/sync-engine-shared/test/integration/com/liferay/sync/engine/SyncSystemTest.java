@@ -119,7 +119,7 @@ public class SyncSystemTest {
 			System.getProperty("user.home") + "/liferay-sync-test");
 
 		_syncAccount = SyncAccountService.addSyncAccount(
-			_rootFilePathName + "/test", 10, "test@liferay.com", "test", "test",
+			_rootFilePathName + "/test", "test@liferay.com", "test", "test",
 			null, false, "http://localhost:8080");
 
 		long guestGroupId = SyncSystemTestUtil.getGuestGroupId(
@@ -253,7 +253,7 @@ public class SyncSystemTest {
 			System.getProperty("user.home") + "/liferay-sync-test/" + name);
 
 		SyncAccount syncAccount = SyncAccountService.addSyncAccount(
-			filePathName, 3, name + "@liferay.com", name, "test", null, false,
+			filePathName, name + "@liferay.com", name, "test", null, false,
 			"http://localhost:8080");
 
 		SyncAccountService.activateSyncAccount(
