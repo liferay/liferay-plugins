@@ -86,7 +86,8 @@
 						User curUser = users.get(i);
 					%>
 
-						<span class="author-sender <%= !curUser.isActive() ? "line-through" : StringPool.BLANK %>"><%= HtmlUtil.escape(curUser.getFullName()) %>
+						<span class="author-sender">
+							<span class=<%= !curUser.isActive() ? "line-through" : StringPool.BLANK %>><%= HtmlUtil.escape(curUser.getFullName()) %></span>
 
 							<c:if test="<%= !curUser.isActive() %>">
 								<liferay-ui:icon
