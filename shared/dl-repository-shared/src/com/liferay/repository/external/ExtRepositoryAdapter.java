@@ -37,11 +37,12 @@ import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
-import com.liferay.portal.model.Company;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Lock;
 import com.liferay.portal.model.RepositoryEntry;
@@ -1144,16 +1145,16 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		String login = PrincipalThreadLocal.getName();
 
 		if (Validator.isNull(login)) {
-			return login;
+			return PropsUtil.get(PropsKeys.DL_REPOSITORY_GUEST_USERNAME);
 		}
 
 		try {
-			Company company = companyLocalService.getCompany(getCompanyId());
+			long userId = GetterUtil.getLong(login);
 
-			String authType = company.getAuthType();
+			String authType = _extRepository.getAuthType();
 
 			if (!authType.equals(CompanyConstants.AUTH_TYPE_ID)) {
-				User user = userLocalService.getUser(GetterUtil.getLong(login));
+				User user = userLocalService.getUser(userId);
 
 				if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {
 					login = user.getEmailAddress();
@@ -1188,6 +1189,12 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	}
 
 	private String _getPassword() {
+		String login = PrincipalThreadLocal.getName();
+
+		if (Validator.isNull(login)) {
+			return PropsUtil.get(PropsKeys.DL_REPOSITORY_GUEST_PASSWORD);
+		}
+
 		return PrincipalThreadLocal.getPassword();
 	}
 
