@@ -2011,8 +2011,21 @@ AUI.add(
 
 						data.date = date.getTime();
 
-						data.endTime = CalendarUtil.toUTC(data.endTime).getTime();
-						data.startTime = CalendarUtil.toUTC(data.startTime).getTime();
+						var endTime = new Date(data.endTime);
+
+						data.endTimeDay = endTime.getDate();
+						data.endTimeHour = endTime.getHours();
+						data.endTimeMinute = endTime.getMinutes();
+						data.endTimeMonth = endTime.getMonth();
+						data.endTimeYear = endTime.getFullYear();
+
+						startTime = new Date(data.startTime);
+
+						data.startTimeDay = startTime.getDate();
+						data.startTimeHour = startTime.getHours();
+						data.startTimeMinute = startTime.getMinutes();
+						data.startTimeMonth = startTime.getMonth();
+						data.startTimeYear = startTime.getFullYear();
 
 						data.titleCurrentValue = encodeURIComponent(data.content);
 

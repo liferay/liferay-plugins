@@ -140,8 +140,16 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 					<portlet:param name="calendarBookingId" value="{calendarBookingId}" />
 					<portlet:param name="calendarId" value="{calendarId}" />
 					<portlet:param name="date" value="{date}" />
-					<portlet:param name="endTime" value="{endTime}" />
-					<portlet:param name="startTime" value="{startTime}" />
+					<portlet:param name="endTimeDay" value="{endTimeDay}" />
+					<portlet:param name="endTimeHour" value="{endTimeHour}" />
+					<portlet:param name="endTimeMinute" value="{endTimeMinute}" />
+					<portlet:param name="endTimeMonth" value="{endTimeMonth}" />
+					<portlet:param name="endTimeYear" value="{endTimeYear}" />
+					<portlet:param name="startTimeDay" value="{startTimeDay}" />
+					<portlet:param name="startTimeHour" value="{startTimeHour}" />
+					<portlet:param name="startTimeMinute" value="{startTimeMinute}" />
+					<portlet:param name="startTimeMonth" value="{startTimeMonth}" />
+					<portlet:param name="startTimeYear" value="{startTimeYear}" />
 					<portlet:param name="titleCurrentValue" value="{titleCurrentValue}" />
 				</portlet:renderURL>
 
