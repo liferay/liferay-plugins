@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.TransientValue;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 import javax.servlet.http.HttpSession;
 
 /**
@@ -30,13 +28,14 @@ import javax.servlet.http.HttpSession;
 public class ConnectionCache<T> {
 
 	public ConnectionCache(
-		Class<T> connectionClass, ConnectionBuilder<T> connectionBuilder) {
+		Class<T> connectionClass, long repositoryId,
+		ConnectionBuilder<T> connectionBuilder) {
 
 		_connectionBuilder = connectionBuilder;
 
 		_sessionKey =
 			ConnectionCache.class.getName() + StringPool.POUND +
-				_sessionKeyIndexGenerator.getAndIncrement();
+			repositoryId;
 
 		_connectionThreadLocal = new AutoResetThreadLocal<T>(
 			connectionClass.getName());
@@ -76,9 +75,6 @@ public class ConnectionCache<T> {
 
 		return connection;
 	}
-
-	private static AtomicInteger _sessionKeyIndexGenerator =
-		new AtomicInteger();
 
 	private ConnectionBuilder<T> _connectionBuilder;
 	private ThreadLocal<T> _connectionThreadLocal;
