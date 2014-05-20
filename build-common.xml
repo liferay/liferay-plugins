@@ -57,7 +57,7 @@
 		<pathelement location="${app.server.classes.portal.dir}" />
 		<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
 		<fileset dir="${app.server.lib.portal.dir}" includes="*.jar" />
-		<fileset dir="${sdk.dir}/lib" includes="activation.jar,jargs.jar,javax.servlet-api.jar,jsp-api.jar,qdox.jar" />
+		<fileset dir="${sdk.dir}/lib" includes="activation.jar,javax.servlet-api.jar,jsp-api.jar,net.sf.jargs.jar,qdox.jar" />
 	</path>
 
 	<path id="test.classpath">

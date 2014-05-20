@@ -15,6 +15,6 @@
 		<dependency name="liferay-faces-bridge-impl" org="com.liferay.faces" rev="3.2.4-ga5" />
 		<dependency name="liferay-faces-portal" org="com.liferay.faces" rev="3.2.4-ga5" />
 		<dependency name="liferay-faces-util" org="com.liferay.faces" rev="3.2.4-ga5" />
-		<dependency name="primefaces" org="org.primefaces" rev="3.5" />
+		<dependency name="org.primefaces.primefaces" org="com.liferay" rev="3.5" />
 	</dependencies>
 </ivy-module>
