@@ -16,11 +16,11 @@
 		<dependency name="jackson-annotations" org="com.fasterxml.jackson.core" rev="2.1.5" />
 		<dependency name="jackson-core" org="com.fasterxml.jackson.core" rev="2.1.5" />
 		<dependency name="jackson-databind" org="com.fasterxml.jackson.core"  rev="2.1.5" />
-		<dependency name="jargs" org="net.sf" rev="1.0" />
 		<dependency name="jcl-over-slf4j" org="org.slf4j" rev="1.7.5" />
 		<dependency name="json" org="org.json" rev="20140107" />
 		<dependency name="jzlib" org="com.jcraft" rev="1.1.3" />
 		<dependency name="log4j" org="log4j" rev="1.2.17" />
+		<dependency name="net.sf.jargs" org="com.liferay" rev="1.0" />
 		<dependency name="slf4j-api" org="org.slf4j" rev="1.7.5" />
 		<dependency name="slf4j-log4j12" org="org.slf4j" rev="1.7.5" />
 		<dependency name="sshj" org="net.schmizz" rev="0.9.0" />
