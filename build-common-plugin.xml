@@ -536,6 +536,11 @@
 					dest="${plugin.source.dir}"
 					src="${patch.original.lib.name}-sources.jar"
 				>
+					<mapper
+						type="glob"
+						from="src/java/*"
+						to="*"
+					/>
 					<patternset includes="${patch.destination}" />
 				</unjar>
 
