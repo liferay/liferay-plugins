@@ -16,14 +16,16 @@
 	<classpathentry kind="lib" path="/portal-master/lib/development/mail.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/development/servlet-api.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/global/portlet.jar" />
-	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
-	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-io.jar" />
 	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-lang.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/commons-logging.jar" />
+	<classpathentry kind="lib" path="/portal-master/lib/portal/log4j.jar" />
 	<classpathentry kind="lib" path="/portal-master/portal-service/portal-service.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-bridges/util-bridges.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
+	<classpathentry kind="lib" path="lib/com.btr.proxy.vole.jar" />
+	<classpathentry kind="lib" path="lib/commons-codec-sources.jar" />
 	<classpathentry kind="lib" path="lib/commons-codec.jar" />
 	<classpathentry kind="lib" path="lib/commons-configuration.jar" />
 	<classpathentry kind="lib" path="lib/commons-io.jar" />
