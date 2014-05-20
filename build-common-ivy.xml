@@ -141,11 +141,16 @@
 		<property name="ivy.pom.version" value="${plugin.full.version}${plugin.release.qualifier}" />
 
 		<ivy:makepom
+			conf="default,provided,runtime"
 			description="${ivy.pom.description}"
 			ivyfile="ivy.xml"
 			pomfile="${plugin.pom.file}"
 			templatefile="${sdk.dir}/tools/pom_tmpl/template.pom"
-		/>
+		>
+			<mapping conf="default" scope="compile" />
+			<mapping conf="provided" scope="provided" />
+			<mapping conf="runtime" scope="runtime" />
+		</ivy:makepom>
 
 		<ivy:publish
 			forcedeliver="true"
