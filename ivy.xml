@@ -13,7 +13,7 @@
 
 	<configurations>
 		<conf name="default" />
-		<conf name="optional" />
+		<conf name="internal" />
 		<conf name="provided" />
 	</configurations>
 
