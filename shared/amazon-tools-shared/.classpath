@@ -24,11 +24,11 @@
 	<classpathentry kind="lib" path="lib/jackson-annotations.jar" />
 	<classpathentry kind="lib" path="lib/jackson-core.jar" />
 	<classpathentry kind="lib" path="lib/jackson-databind.jar" />
-	<classpathentry kind="lib" path="lib/jargs.jar" />
 	<classpathentry kind="lib" path="lib/jcl-over-slf4j.jar" />
 	<classpathentry kind="lib" path="lib/json-web-service-client-shared.jar" />
 	<classpathentry kind="lib" path="lib/json.jar" />
 	<classpathentry kind="lib" path="lib/jzlib.jar" />
+	<classpathentry kind="lib" path="lib/net.sf.jargs.jar" />
 	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
 	<classpathentry kind="lib" path="lib/slf4j-api.jar" />
 	<classpathentry kind="lib" path="lib/slf4j-log4j12.jar" />
