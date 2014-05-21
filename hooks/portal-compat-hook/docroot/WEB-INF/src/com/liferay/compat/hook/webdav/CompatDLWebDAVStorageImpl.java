@@ -74,9 +74,7 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 
 		Resource resource = super.getResource(webDAVRequest);
 
-		if ((resource != null) &&
-			isInstanceOfDLFileEntryResourceImpl(resource)) {
-
+		if (isInstanceOfDLFileEntryResourceImpl(resource)) {
 			return toCompatResource(resource);
 		}
 
@@ -298,6 +296,10 @@ public class CompatDLWebDAVStorageImpl extends WebDAVStorageWrapper {
 	}
 
 	protected boolean isInstanceOfDLFileEntryResourceImpl(Resource resource) {
+		if (resource == null) {
+			return false;
+		}
+
 		Class<?> clazz = resource.getClass();
 
 		String className = clazz.getName();
