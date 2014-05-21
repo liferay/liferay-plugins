@@ -183,7 +183,7 @@ portletURL.setParameter("tabs1", tabs1);
 
 									A.Array.each(
 										responseData.comments,
-										function(item, index, collection) {
+										function(item, index) {
 											Liferay.SO.Activities.addNewComment(commentsList, item);
 										}
 									);
