@@ -411,7 +411,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 		A.each(
 			Liferay.CalendarUtil.availableCalendars,
-			function(item, index, collection) {
+			function(item, index) {
 				item.set('disabled', true);
 			}
 		);
@@ -444,7 +444,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 					A.each(
 						Liferay.CalendarUtil.availableCalendars,
-						function(item, index, collection) {
+						function(item, index) {
 							item.set('visible', false);
 						}
 					);

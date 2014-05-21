@@ -662,7 +662,7 @@ AUI.add(
 
 						A.each(
 							calendars,
-							function(item, index, collection) {
+							function(item, index) {
 								var calendarId = item.get('calendarId');
 
 								availableCalendars[calendarId] = item;
@@ -1349,7 +1349,7 @@ AUI.add(
 
 						A.each(
 							Liferay.CalendarUtil.availableCalendars,
-							function(item, index, collection) {
+							function(item, index) {
 								item.reset(calendarEvents[index]);
 							}
 						);
@@ -1405,7 +1405,7 @@ AUI.add(
 
 							A.each(
 								changedAttributes,
-								function(item, index, collection) {
+								function(item, index) {
 									persist = AObject.owns(persistentAttrMap, index);
 								}
 							);

@@ -177,7 +177,7 @@
 
 							AArray.each(
 								items,
-								function(item, index, collection) {
+								function(item, index) {
 									var caption = item.caption;
 
 									if (!owns(item, 'id')) {
@@ -589,7 +589,7 @@
 
 							AArray.each(
 								val,
-								function(item, index, collection) {
+								function(item, index) {
 									var calendar = item;
 
 									if (!A.instanceOf(item, Liferay.SchedulerCalendar)) {
