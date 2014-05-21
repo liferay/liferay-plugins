@@ -25,7 +25,6 @@
 	<classpathentry kind="lib" path="/portal-master/util-java/util-java.jar" />
 	<classpathentry kind="lib" path="/portal-master/util-taglib/util-taglib.jar" />
 	<classpathentry kind="lib" path="lib/com.btr.proxy.vole.jar" />
-	<classpathentry kind="lib" path="lib/commons-codec-sources.jar" />
 	<classpathentry kind="lib" path="lib/commons-codec.jar" />
 	<classpathentry kind="lib" path="lib/commons-configuration.jar" />
 	<classpathentry kind="lib" path="lib/commons-io.jar" />
@@ -42,7 +41,6 @@
 	<classpathentry kind="lib" path="lib/ormlite-core.jar" />
 	<classpathentry kind="lib" path="lib/ormlite-jdbc.jar" />
 	<classpathentry kind="lib" path="lib/portal-compat-shared.jar" />
-	<classpathentry kind="lib" path="lib/proxy-vole.jar" />
 	<classpathentry kind="lib" path="lib/slf4j-api.jar" />
 	<classpathentry kind="lib" path="lib/slf4j-log4j12.jar" />
 	<classpathentry kind="lib" path="lib/spring-retry.jar" />
