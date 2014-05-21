@@ -99,7 +99,7 @@ if (comment) {
 		<c:otherwise>
 			<div class="microblogs-entry">
 				<span class="thumbnail">
-					<a href="<%= receiverUserDisplayURL %>"><img alt="<%= receiverUserFullName %>" src="<%= receiverUserPortaitURL %>" /></a>
+					<a href="<%= receiverUserDisplayURL %>"><img alt="<%= HtmlUtil.escapeAttribute(receiverUserFullName) %>" src="<%= receiverUserPortaitURL %>" /></a>
 				</span>
 
 				<div class="entry-bubble">
@@ -149,7 +149,7 @@ if (comment) {
 	<c:if test="<%= !repost %>">
 		<c:if test="<%= comment %>">
 			<span class="thumbnail">
-				<a href="<%= user.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(user.getFullName()) %>" src="<%= user.getPortraitURL(themeDisplay) %>" /></a>
+				<a href="<%= user.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escapeAttribute(user.getFullName()) %>" src="<%= user.getPortraitURL(themeDisplay) %>" /></a>
 			</span>
 		</c:if>
 

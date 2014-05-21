@@ -70,7 +70,7 @@ if (microblogsEntries != null) {
 
 		<div class="microblogs-entry" id="<portlet:namespace />microblogsEntry<%= microblogsEntry.getMicroblogsEntryId() %>">
 			<span class="thumbnail">
-				<a href="<%= userDisplayURL %>"><img alt="<%= userFullName %>" src="<%= userPortaitURL %>" /></a>
+				<a href="<%= userDisplayURL %>"><img alt="<%= HtmlUtil.escapeAttribute(userFullName) %>" src="<%= userPortaitURL %>" /></a>
 			</span>
 
 			<div class="entry-bubble">
