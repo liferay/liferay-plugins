@@ -293,7 +293,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 	A.each(
 		Liferay.CalendarUtil.availableCalendars,
-		function(item, index, collection) {
+		function(item, index) {
 			item.on(
 				{
 					'visibleChange': function(event) {
