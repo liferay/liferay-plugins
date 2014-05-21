@@ -1244,7 +1244,7 @@ AUI().use(
 
 				A.Array.each(
 					minimized,
-					function(item, index, collection) {
+					function(item, index) {
 						minimizedPanelIds[item] = true;
 
 						var buddy = buddies[item];
