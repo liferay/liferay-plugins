@@ -42,6 +42,11 @@
 		border: 1px solid #B0BAFF;
 		float: left;
 		padding: 12px;
+
+		.footnote {
+			color: #AAA;
+			font-size: 0.8em;
+		}
 	}
 
 	.invited-users-wrapper {
@@ -148,6 +153,10 @@
 	.controls a {
 		background: url(@theme_image_path@/custom/bullet.png) no-repeat 3px 50%;
 		padding-left: 10px;
+	}
+
+	.pending-member-request {
+		background: url(@theme_image_path@/common/check.png) no-repeat 0 50%;
 	}
 
 	.invited {

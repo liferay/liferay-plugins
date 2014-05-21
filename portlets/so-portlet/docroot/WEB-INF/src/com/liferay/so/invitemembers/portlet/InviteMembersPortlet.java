@@ -104,6 +104,10 @@ public class InviteMembersPortlet extends MVCPortlet {
 		for (User user : users) {
 			JSONObject userJSONObject = JSONFactoryUtil.createJSONObject();
 
+			userJSONObject.put(
+				"hasPendingMemberRequest",
+				MemberRequestLocalServiceUtil.hasPendingMemberRequest(
+					themeDisplay.getScopeGroupId(), user.getUserId()));
 			userJSONObject.put("userEmailAddress", user.getEmailAddress());
 			userJSONObject.put("userFullName", user.getFullName());
 			userJSONObject.put("userId", user.getUserId());
