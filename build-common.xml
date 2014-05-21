@@ -1639,6 +1639,42 @@ Please find a solution that does not require portal-impl.jar.
 			<var name="plugin.tlds" unset="true" />
 			<var name="plugin.version" unset="true" />
 
+			<set-build-xml-var
+				build.xml.var.name="original.lib.name"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="original.lib.name" value="${set-build-xml-var.return}" />
+				</then>
+			</if>
+
+			<set-build-xml-var
+				build.xml.var.name="original.lib.version"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="original.lib.version" value="${set-build-xml-var.return}" />
+				</then>
+			</if>
+
+			<set-build-xml-var
+				build.xml.var.name="original.lib.url"
+				module.dir="@{module.dir}"
+			/>
+
+			<if>
+				<isset property="set-build-xml-var.return" />
+				<then>
+					<var name="original.lib.url" value="${set-build-xml-var.return}" />
+				</then>
+			</if>
+
 			<if>
 				<available file="@{module.dir}/docroot/WEB-INF/liferay-plugin-package.properties" />
 				<then>
