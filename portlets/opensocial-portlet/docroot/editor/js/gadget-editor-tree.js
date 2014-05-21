@@ -155,7 +155,7 @@ AUI.add(
 
 						AArray.each(
 							children,
-							function(item, index, collection) {
+							function(item, index) {
 								if (item.isLeaf()) {
 									fileEntryChildren.push(item);
 								}
@@ -338,7 +338,7 @@ AUI.add(
 
 						AArray.each(
 							children,
-							function(item, index, collection) {
+							function(item, index) {
 								if (item.isLeaf()) {
 									fileEntryChildren.push(item);
 								}
