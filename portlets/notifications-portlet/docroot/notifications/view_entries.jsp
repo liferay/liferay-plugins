@@ -107,7 +107,7 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 
 		<div class="sender">
 			<span class="user-thumbnail">
-				<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
+				<img alt="<%= HtmlUtil.escapeAttribute(userFullName) %>" src="<%= userPortaitURL %>" />
 			</span>
 		</div>
 
