@@ -524,7 +524,7 @@ AUI.add(
 
 							AArray.each(
 								data,
-								function(item, index, collection) {
+								function(item, index) {
 									var node = new A.TreeNodeEditor(
 										{
 											entryId: item.entryId,
@@ -957,7 +957,7 @@ AUI.add(
 
 									AArray.each(
 										children,
-										function(item, index, collection) {
+										function(item, index) {
 											if (item.isLeaf()) {
 												instance.fire(
 													EVENT_CLOSE_FILE_ENTRY,
