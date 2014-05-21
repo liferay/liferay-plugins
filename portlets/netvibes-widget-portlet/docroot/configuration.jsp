@@ -82,7 +82,7 @@ String htmlAttributes =
 				href="<%= updateWidgetURL %>"
 				name="thumbnail"
 			>
-				<img alt="<%= curTitle %>" src="<%= curThumbnail %>" />
+				<img alt="<%= HtmlUtil.escapeAttribute(curTitle) %>" src="<%= curThumbnail %>" />
 			</liferay-ui:search-container-column-text>
 
 			<liferay-ui:search-container-column-text
@@ -103,7 +103,7 @@ String htmlAttributes =
 		<c:if test="<%= Validator.isNotNull(link) %>">
 			<aui:fieldset>
 				<div class="float-container">
-					<img alt="<%= title %>" src="<%= thumbnail %>" style="float: left; padding-right: 10px;" />
+					<img alt="<%= HtmlUtil.escapeAttribute(title) %>" src="<%= thumbnail %>" style="float: left; padding-right: 10px;" />
 
 					<div style="font-size: 1.2em;">
 						<strong><%= title %></strong>
