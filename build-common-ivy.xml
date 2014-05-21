@@ -57,6 +57,9 @@
 	<antelope:stringutil property="sdk.dependencies.home" string="${sdk.dir}/dependencies">
 		<antelope:replace regex="\\" replacement="/" />
 	</antelope:stringutil>
+	<antelope:stringutil property="sdk.dir.home" string="${sdk.dir}">
+		<antelope:replace regex="\\" replacement="/" />
+	</antelope:stringutil>
 
 	<macrodef name="process-ivy">
 		<attribute default="${basedir}" name="module.dir" />
@@ -82,7 +85,7 @@
 
 									<if>
 										<or>
-											<equals arg1="@{ivy.xml.dir}" arg2="${sdk.dir}" />
+											<equals arg1="@{ivy.xml.dir}" arg2="${sdk.dir.home}" />
 											<contains string="@{ivy.xml.dir}" substring="${sdk.dependencies.home}" />
 											<antelope:endswith string="${ant.project.name}" with="-shared" />
 											<available file="@{ivy.xml.dir}/bnd.bnd" />
