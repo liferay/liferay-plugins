@@ -51,7 +51,7 @@ public class UpgradeUtil {
 			return;
 		}
 
-		SyncPropService.addSyncProp(
+		SyncPropService.updateSyncProp(
 			"buildNumber", ReleaseInfo.getBuildNumber());
 	}
 

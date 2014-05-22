@@ -21,7 +21,7 @@ import java.sql.SQLException;
 /**
  * @author Shinn Lok
  */
-public class SyncPropPersistence extends BasePersistenceImpl<SyncProp, Long> {
+public class SyncPropPersistence extends BasePersistenceImpl<SyncProp, String> {
 
 	public SyncPropPersistence() throws SQLException {
 		super(SyncProp.class);
