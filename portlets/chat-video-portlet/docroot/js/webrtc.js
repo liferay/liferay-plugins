@@ -749,21 +749,22 @@ AUI().use(
 				var instance = this;
 
 				var RTCPeerConnection = Liferay.Chat.WebRtcManager.getWebRtcAdapter().RTCPeerConnection;
-				instance._pc = new RTCPeerConnection({
-					iceServers: instance._iceServers
-				}, Liferay.Chat.WebRtcManager.getWebRtcAdapter().peerConnectionConstraints);
+				instance._pc = new RTCPeerConnection(
+					{
+						iceServers: instance._iceServers
+					},
+					Liferay.Chat.WebRtcManager.getWebRtcAdapter().peerConnectionConstraints
+				);
 
 				instance._pc.addStream(Liferay.Chat.WebRtcManager.getLocalStream());
 
-				instance._pc.onicecandidate =
-					function(event) {
-						instance._onIceCandidate(event);
-					};
+				instance._pc.onicecandidate = function(event) {
+					instance._onIceCandidate(event);
+				};
 
-				instance._pc.onaddstream =
-					function(event) {
-						instance._onAddStream(event);
-					};
+				instance._pc.onaddstream = function(event) {
+					instance._onAddStream(event);
+				};
 			},
 
 			_doWebRtcCall: function() {
