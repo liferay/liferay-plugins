@@ -32,18 +32,13 @@ public class SyncPropService {
 	}
 
 	public static boolean getBoolean(String key, boolean defaultValue) {
-		try {
-			SyncProp syncProp = _syncPropPersistence.queryForId(key);
+		String value = getValue(key);
 
-			if (syncProp == null) {
-				return defaultValue;
-			}
-
-			return Boolean.parseBoolean(syncProp.getValue());
-		}
-		catch (SQLException sqle) {
+		if (value == null) {
 			return defaultValue;
 		}
+
+		return Boolean.parseBoolean(value);
 	}
 
 	public static int getInteger(String key) {
@@ -51,18 +46,13 @@ public class SyncPropService {
 	}
 
 	public static int getInteger(String key, int defaultValue) {
-		try {
-			SyncProp syncProp = _syncPropPersistence.queryForId(key);
+		String value = getValue(key);
 
-			if (syncProp == null) {
-				return defaultValue;
-			}
-
-			return Integer.parseInt(syncProp.getValue());
-		}
-		catch (SQLException sqle) {
+		if (value == null) {
 			return defaultValue;
 		}
+
+		return Integer.parseInt(value);
 	}
 
 	public static SyncPropPersistence getSyncPropPersistence() {
@@ -80,6 +70,21 @@ public class SyncPropService {
 		}
 
 		return _syncPropPersistence;
+	}
+
+	public static String getValue(String key) {
+		try {
+			SyncProp syncProp = _syncPropPersistence.queryForId(key);
+
+			if (syncProp == null) {
+				return null;
+			}
+
+			return syncProp.getValue();
+		}
+		catch (SQLException sqle) {
+			return null;
+		}
 	}
 
 	public static SyncProp updateSyncProp(String key, Object value)
