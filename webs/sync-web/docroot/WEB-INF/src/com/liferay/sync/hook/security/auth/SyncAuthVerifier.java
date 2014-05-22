@@ -93,8 +93,6 @@ public class SyncAuthVerifier extends BaseAutoLogin implements AuthVerifier {
 					clazz, "doLogin", HttpServletRequest.class,
 					HttpServletResponse.class);
 
-				method.setAccessible(true);
-
 				String[] credentials = (String[])method.invoke(
 					object, request, response);
 
