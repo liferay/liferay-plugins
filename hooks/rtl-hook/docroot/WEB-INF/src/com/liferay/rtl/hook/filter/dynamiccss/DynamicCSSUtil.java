@@ -151,8 +151,8 @@ public class DynamicCSSUtil {
 
 		if (themeCssFastLoad && (cacheResourceURLConnection != null) &&
 			(resourceURLConnection != null) &&
-			(cacheResourceURLConnection.getLastModified() ==
-				resourceURLConnection.getLastModified())) {
+			_isCacheResourceUpToDate(
+				cacheResourceURLConnection, resourceURLConnection)) {
 
 			parsedContent = StringUtil.read(
 				cacheResourceURLConnection.getInputStream());
@@ -396,6 +396,24 @@ public class DynamicCSSUtil {
 		}
 
 		return themeImagesPath;
+	}
+
+	private static boolean _isCacheResourceUpToDate(
+		URLConnection cacheResourceURLConnection,
+		URLConnection resourceURLConnection) {
+
+		if (!_SUPPORTS_THEME_CSS_FAST_LOAD_DISABLED) {
+			return true;
+		}
+
+		if (cacheResourceURLConnection.getLastModified() ==
+				resourceURLConnection.getLastModified()) {
+
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	private static boolean _isThemeCssFastLoad(
