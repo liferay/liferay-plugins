@@ -245,9 +245,7 @@ Test only in
 					<%= resourceBundleActualValue %>
 				</td>
 				<td>
-					<liferay-util:buffer var="taglibActualValue">
-						<liferay-ui:message key="<%= key %>" />
-					</liferay-util:buffer>
+					<liferay-util:buffer var="taglibActualValue"><liferay-ui:message key="<%= key %>" /></liferay-util:buffer>
 
 					<%= taglibActualValue %>
 				</td>
