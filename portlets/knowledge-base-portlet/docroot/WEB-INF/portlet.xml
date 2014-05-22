@@ -170,7 +170,6 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
-		<supported-public-render-parameter>resourcePrimKey</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
@@ -256,7 +255,6 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
-		<supported-public-render-parameter>resourcePrimKey</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>4</portlet-name>
@@ -471,10 +469,6 @@
 	<public-render-parameter>
 		<identifier>categoryId</identifier>
 		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:categoryId</qname>
-	</public-render-parameter>
-	<public-render-parameter>
-		<identifier>resourcePrimKey</identifier>
-		<qname xmlns:x="http://www.liferay.com/public-render-parameters">x:resourcePrimKey</qname>
 	</public-render-parameter>
 	<public-render-parameter>
 		<identifier>tag</identifier>
