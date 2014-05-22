@@ -45,7 +45,7 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 			cssClass="footnote"
 			image="check"
 			label="<%= true %>"
-			message="previous-invitation-has-been-sent"
+			message="previous-invitation-was-sent"
 		/>
 	</div>
 
