@@ -78,6 +78,7 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -456,10 +457,14 @@ public class AdminPortlet extends MVCPortlet {
 			String namespace = actionResponse.getNamespace();
 			String redirect = getRedirect(actionRequest, actionResponse);
 
+			WindowState windowState = actionResponse.getWindowState();
+
 			String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
 
 			editURL = HttpUtil.setParameter(
 				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
+			editURL = HttpUtil.setParameter(
+				editURL, "p_p_state", windowState.toString());
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "mvcPath",
 				templatePath + "edit_article.jsp");
