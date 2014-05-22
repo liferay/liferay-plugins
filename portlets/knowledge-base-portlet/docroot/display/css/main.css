@@ -3,3 +3,22 @@
 .portlet-configuration .kb-edit-link {
 	margin: 5px 0 0;
 }
+
+/* ---------- Portlet ---------- */
+
+.knowledge-base-portlet-display {
+	.kbarticle-navigation {
+		li, ul {
+			list-style: none;
+		}
+
+		.kbarticle-expanded {
+			color: #555;
+			font-weight: bold;
+		}
+
+		.kbarticle-selected {
+			color: #555;
+		}
+	}
+}
