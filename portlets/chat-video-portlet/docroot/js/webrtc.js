@@ -62,9 +62,9 @@ AUI().use(
 					var conversationState = conversation.getState();
 
 					if (conversationState !== State.STOPPED &&
-						   conversationState !== State.DELETED &&
-						   conversationState !== State.STOPPING &&
-						   conversationState !== State.DELETING) {
+						conversationState !== State.DELETED &&
+						conversationState !== State.STOPPING &&
+						conversationState !== State.DELETING) {
 						ret.active = true;
 
 						if (conversationState !== State.CONNECTED) {
@@ -73,22 +73,22 @@ AUI().use(
 					}
 
 					if (conversationState === State.STOPPING ||
-						   conversationState === State.DELETING) {
+							conversationState === State.DELETING) {
 						ret.communicationRequired = true;
 					}
 
 					if (conversationState === State.CALLING ||
-						   conversationState === State.CALLED) {
+							conversationState === State.CALLED) {
 						ret.outRinging = true;
 					}
 
 					if (conversationState === State.GOTCALL ||
-						   conversationState === State.GOTCALLWAITING) {
+							conversationState === State.GOTCALLWAITING) {
 						ret.inRinging = true;
 					}
 
 					if (conversationState === State.CALLINGWAITING ||
-						   conversationState === State.GOTCALLWAITING) {
+							conversationState === State.GOTCALLWAITING) {
 						ret.waiting = true;
 					}
 				}
