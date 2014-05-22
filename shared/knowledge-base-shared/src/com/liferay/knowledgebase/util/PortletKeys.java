@@ -35,9 +35,6 @@ public class PortletKeys extends com.liferay.portal.util.PortletKeys {
 	public static final String KNOWLEDGE_BASE_DISPLAY =
 		"2_WAR_knowledgebaseportlet";
 
-	public static final String KNOWLEDGE_BASE_NAVIGATION =
-		"6_WAR_knowledgebaseportlet";
-
 	public static final String KNOWLEDGE_BASE_SEARCH =
 		"5_WAR_knowledgebaseportlet";
 

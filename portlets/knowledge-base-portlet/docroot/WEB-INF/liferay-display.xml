@@ -7,14 +7,12 @@
 		<portlet id="3" />
 		<portlet id="4" />
 		<portlet id="5" />
-		<portlet id="6" />
 	</category>
 	<category name="category.kb">
 		<portlet id="2" />
 		<portlet id="3" />
 		<portlet id="4" />
 		<portlet id="5" />
-		<portlet id="6" />
 	</category>
 	<category name="category.hidden">
 		<portlet id="1" />
