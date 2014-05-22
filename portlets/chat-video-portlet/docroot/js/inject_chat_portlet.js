@@ -121,7 +121,8 @@ AUI().use(
 					instance._increasedPollingMaxCountMs = 30000;
 
 					Liferay.Poller.addListener(instance._portletId, instance._onPollerUpdate, instance);
-					Liferay.bind('sessionExpired',
+					Liferay.bind(
+						'sessionExpired',
 						function(event) {
 							instance._stopFastPolling();
 							Liferay.Poller.removeListener(instance._portletId);
@@ -192,6 +193,7 @@ AUI().use(
 					 */
 					var playSoundLabelEl = A.one('#playSound').ancestor().getDOM();
 					var playSoundLabelTextEl = playSoundLabelEl.childNodes[1];
+
 					playSoundLabelTextEl.nodeValue = ' ' + Liferay.Language.get('play-a-sound');
 
 					var showOnlineSettingNode = A.one('#onlineStatus').ancestor('li');
@@ -202,6 +204,7 @@ AUI().use(
 						}
 					);
 					var availableForChatVideoSettingNode = A.Node.create(availableForChatVideoSettingHtml);
+
 					showOnlineSettingNode.placeAfter(availableForChatVideoSettingNode);
 					instance._availableForChatVideoSettingCheckboxNode = A.one('#availableForChatVideo');
 
@@ -308,8 +311,10 @@ AUI().use(
 					instance._webRtcManager.sendSetAvailabilityMsg(available);
 
 					if (!available) {
-						for (var id in instance._chatManager._chatSessions) {
-							var session = instance._chatManager._chatSessions[id];
+						var chatSessions = instance._chatManager._chatSessions;
+
+						for (var id in chatSessions) {
+							var session = chatSessions[id];
 
 							session.hideCtrlButtons();
 						}
@@ -347,8 +352,10 @@ AUI().use(
 					instance._buddies[clients[i]] = true;
 				}
 
-				for (var id in instance._chatManager._chatSessions) {
-					var session = instance._chatManager._chatSessions[id];
+				var chatSessions = instance._chatManager._chatSessions;
+
+				for (var id in chatSessions) {
+					var session = chatSessions[id];
 
 					if (session._panelId in instance._buddies) {
 						session.setAvailableForChatVideo(instance.isUserAvailable(session._panelId));
@@ -407,7 +414,7 @@ AUI().use(
 					el.pause();
 					el.currentTime = 0;
 				}
-				catch(e) {
+				catch (e) {
 					// Probably not ready yet: not playing anyway
 				}
 			},
@@ -510,9 +517,12 @@ AUI().use(
 				if (!instance._destroyed && instance._errorTimeout === null) {
 					if (instance._node.hasClass('chat-video-fade-in')) {
 						instance._node.replaceClass('chat-video-fade-in', 'chat-video-fade-out');
-						instance._node.on('webkitAnimationEnd', function() {
-							alert('end');
-						});
+						instance._node.on(
+							'webkitAnimationEnd',
+							function() {
+								alert('end');
+							}
+						);
 					}
 				}
 			},
@@ -523,13 +533,9 @@ AUI().use(
 				if (!instance._destroyed) {
 					instance._stopErrorMessage();
 
-					instance._node.removeClass('in-call');
-					instance._node.addClass('error');
-
+					instance._node.replaceClass('in-call', 'error');
 					instance._workingNode.hide();
-
 					instance._msgNode.html(msg);
-
 					instance.show();
 
 					instance._errorTimeout = setTimeout(
@@ -548,11 +554,8 @@ AUI().use(
 				if (!instance._destroyed) {
 					instance._stopErrorMessage();
 
-					instance._node.removeClass('error');
-					instance._node.addClass('in-call');
-
+					instance._node.replaceClass('error', 'in-call');
 					instance._workingNode.hide();
-
 					instance._msgNode.html(msg);
 
 					instance.show();
