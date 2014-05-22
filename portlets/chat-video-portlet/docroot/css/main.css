@@ -64,17 +64,9 @@ $remoteVideoHeight: 165px;
 }
 
 @mixin animation ($name, $duration) {
-	-webkit-animation-duration: $duration;
-	-webkit-animation-name: $name;
-	-webkit-animation-fill-mode: forwards;
-
-	-moz-animation-duration: $duration;
-	-moz-animation-name: $name;
-	-moz-animation-fill-mode: forwards;
-
-	animation-duration: $duration;
-	animation-name: $name;
-	animation-fill-mode: forwards;
+	@include experimental(animation-duration, $duration, -moz, -webkit, not -o, not -ms);
+	@include experimental(animation-fill-mode, forwards, -moz, -webkit, not -o, not -ms);
+	@include experimental(animation-name, $name, -moz, -webkit, not -o, not -ms);
 }
 
 .chat-bar, .chat-video-overlay {
@@ -234,13 +226,14 @@ $remoteVideoHeight: 165px;
 	z-index: 2000;
 
 	.chat-video-ctrl-buttons, .call-time {
-		background: rgba(#fff, 0.5);
+		background: rgba(#FFF, 0.5);
 		position: absolute;
 		z-index: 2001;
 	}
 
 	.chat-video-ctrl-buttons {
 		$nbButtons: 3;
+
 		$innerWidth: ($nbButtons + 1) * $preferredPadding + $nbButtons * $btnDimension;
 
 		bottom: $preferredPadding;
@@ -267,7 +260,7 @@ $remoteVideoHeight: 165px;
 	}
 
 	video.local {
-		border: 2px solid transparentize(#fff, 0.3);
+		border: 2px solid transparentize(#FFF, 0.3);
 		bottom: $preferredPadding;
 		display: block;
 		height: 160px;
