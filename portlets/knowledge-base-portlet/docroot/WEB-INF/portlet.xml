@@ -134,16 +134,8 @@
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>enableKBTemplateKBComments</name>
-				<value>true</value>
-			</preference>
-			<preference>
-				<name>kbArticlesOrderByCol</name>
-				<value>priority</value>
-			</preference>
-			<preference>
-				<name>kbArticlesOrderByType</name>
-				<value>desc</value>
+				<name>resourcePrimKey</name>
+				<value>0</value>
 			</preference>
 			<preference>
 				<name>rssDelta</name>
@@ -162,36 +154,8 @@
 				<value>true</value>
 			</preference>
 			<preference>
-				<name>showKBArticleAuthorColumn</name>
-				<value>true</value>
-			</preference>
-			<preference>
-				<name>showKBArticleCreateDateColumn</name>
-				<value>true</value>
-			</preference>
-			<preference>
 				<name>showKBArticleKBComments</name>
 				<value>false</value>
-			</preference>
-			<preference>
-				<name>showKBArticleModifiedDateColumn</name>
-				<value>true</value>
-			</preference>
-			<preference>
-				<name>showKBArticlePriorityColumn</name>
-				<value>true</value>
-			</preference>
-			<preference>
-				<name>showKBArticleStatusColumn</name>
-				<value>true</value>
-			</preference>
-			<preference>
-				<name>showKBArticleViewsColumn</name>
-				<value>true</value>
-			</preference>
-			<preference>
-				<name>showKBTemplateKBComments</name>
-				<value>true</value>
 			</preference>
 		</portlet-preferences>
 		<security-role-ref>
@@ -206,8 +170,7 @@
 		<security-role-ref>
 			<role-name>user</role-name>
 		</security-role-ref>
-		<supported-public-render-parameter>categoryId</supported-public-render-parameter>
-		<supported-public-render-parameter>tag</supported-public-render-parameter>
+		<supported-public-render-parameter>resourcePrimKey</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>3</portlet-name>
