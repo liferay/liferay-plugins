@@ -84,7 +84,8 @@ AUI().use(
 							if (stream.audioTracks) {
 								audioTracks = audioTracks;
 							}
-						} else {
+						}
+						else {
 							audioTracks = stream.getAudioTracks();
 						}
 
