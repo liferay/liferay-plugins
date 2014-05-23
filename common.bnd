@@ -8,22 +8,6 @@ Javac-Debug: ${javac.debug}
 Javac-Deprecation: ${javac.deprecation}
 Javac-Encoding: ${javac.encoding}
 
--baseline: *
--baselinerepo: localrepo
 -donotcopy: (\.touch)
 -dsannotations: *
--plugin:\
-	aQute.bnd.deployer.repository.LocalIndexedRepo;\
-		local=${workspace}/.bnd/localrepo;\
-		name=localrepo;\
-		phase=build;\
-		type=R5,\
-	aQute.bnd.deployer.repository.FixedIndexedRepo;\
-		cache=${workspace}/.bnd/remoterepo;\
-		locations='http://obr.liferay.com/r5/liferay-portal/index.xml.gz';\
-		name=remoterepo;\
-		phase=any;\
-		type=R5
--pluginpath: ${workspace}/osgi/lib/plugin/bnd-repository.jar
--releaserepo: localrepo
 -sources: false
