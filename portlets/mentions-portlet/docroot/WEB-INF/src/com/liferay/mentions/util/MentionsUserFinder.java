@@ -17,7 +17,7 @@ package com.liferay.mentions.util;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.social.util.SocialInteractionsConfiguration;
 
 import java.util.List;
 
@@ -26,7 +26,9 @@ import java.util.List;
  */
 public interface MentionsUserFinder {
 
-	public List<User> getUsers(String query, ThemeDisplay themeDisplay)
+	public List<User> getUsers(
+			long companyId, long userId, String query,
+			SocialInteractionsConfiguration configuration)
 		throws PortalException, SystemException;
 
 }

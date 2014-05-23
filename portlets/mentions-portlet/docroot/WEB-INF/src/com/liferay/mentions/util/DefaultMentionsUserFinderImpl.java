@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.social.util.SocialInteractionsConfiguration;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 
 import java.util.List;
@@ -33,13 +33,14 @@ import java.util.List;
 public class DefaultMentionsUserFinderImpl implements MentionsUserFinder {
 
 	@Override
-	public List<User> getUsers(String query, ThemeDisplay themeDisplay)
+	public List<User> getUsers(
+			long companyId, long userId, String query,
+			SocialInteractionsConfiguration configuration)
 		throws PortalException, SystemException {
 
 		Hits hits = UserLocalServiceUtil.search(
-			themeDisplay.getCompanyId(), query, query, query, query,
-			StringPool.BLANK, WorkflowConstants.STATUS_APPROVED, null, false, 0,
-			100, (Sort)null);
+			companyId, query, query, query, query, StringPool.BLANK,
+			WorkflowConstants.STATUS_APPROVED, null, false, 0, 100, (Sort)null);
 
 		return UsersAdminUtil.getUsers(hits);
 	}
