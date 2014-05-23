@@ -17,12 +17,14 @@
 <%@ include file="/display/init.jsp" %>
 
 <%
+KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
+
 List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
 
 if (resourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
-	KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+	KBArticle latestKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED);
 
-	ancestorResourcePrimaryKeys = kbArticle.getAncestorResourcePrimaryKeys();
+	ancestorResourcePrimaryKeys = latestKBArticle.getAncestorResourcePrimaryKeys();
 
 	Collections.reverse(ancestorResourcePrimaryKeys);
 }
@@ -36,10 +38,10 @@ else {
 	<%
 	List<KBArticle> kbArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator());
 
-	for (KBArticle kbArticle : kbArticles) {
+	for (KBArticle curKBArticle : kbArticles) {
 		PortletURL viewURL = renderResponse.createRenderURL();
 
-		viewURL.setParameter("resourcePrimKey", String.valueOf(kbArticle.getResourcePrimKey()));
+		viewURL.setParameter("resourcePrimKey", String.valueOf(curKBArticle.getResourcePrimKey()));
 	%>
 
 		<ul>
@@ -48,13 +50,13 @@ else {
 				<%
 				boolean kbArticleExpanded = false;
 
-				if ((ancestorResourcePrimaryKeys.size() > 0) && (kbArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(0))) {
+				if ((ancestorResourcePrimaryKeys.size() > 0) && (curKBArticle.getResourcePrimKey() == ancestorResourcePrimaryKeys.get(0))) {
 					kbArticleExpanded = true;
 				}
 
 				String kbArticleClass = StringPool.BLANK;
 
-				if (kbArticle.getResourcePrimKey() == resourcePrimKey) {
+				if (curKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey()) {
 					kbArticleClass = "kbarticle-selected";
 				}
 				else if (kbArticleExpanded) {
@@ -62,12 +64,12 @@ else {
 				}
 				%>
 
-				<a class="<%= kbArticleClass %>" href="<%= viewURL %>"><%= kbArticle.getTitle() %></a>
+				<a class="<%= kbArticleClass %>" href="<%= viewURL %>"><%= curKBArticle.getTitle() %></a>
 
 				<c:if test="<%= kbArticleExpanded %>">
 
 					<%
-					List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator());
+					List<KBArticle> childKBArticles = KBArticleLocalServiceUtil.getKBArticles(themeDisplay.getScopeGroupId(), curKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new KBArticlePriorityComparator());
 
 					for (KBArticle childKBArticle : childKBArticles) {
 						PortletURL viewChildURL = renderResponse.createRenderURL();
@@ -87,7 +89,7 @@ else {
 
 								String childKBArticleClass = StringPool.BLANK;
 
-								if (childKBArticle.getResourcePrimKey() == resourcePrimKey) {
+								if (childKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey()) {
 									childKBArticleClass = "kbarticle-selected";
 								}
 								else if (childKBArticleExpanded) {
@@ -102,15 +104,15 @@ else {
 									<%
 									List<KBArticle> allDescendantKBArticles = KBArticleLocalServiceUtil.getAllDescendantKBArticles(childKBArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED, new KBArticlePriorityComparator());
 
-									for (KBArticle curKBArticle : allDescendantKBArticles) {
+									for (KBArticle descendantKBArticle : allDescendantKBArticles) {
 										PortletURL viewCurKBArticleURL = renderResponse.createRenderURL();
 
-										viewCurKBArticleURL.setParameter("resourcePrimKey", String.valueOf(curKBArticle.getResourcePrimKey()));
+										viewCurKBArticleURL.setParameter("resourcePrimKey", String.valueOf(descendantKBArticle.getResourcePrimKey()));
 									%>
 
 										<ul>
 											<li>
-												<a class="<%= curKBArticle.getResourcePrimKey() == resourcePrimKey ? "kbarticle-selected" : StringPool.BLANK %>" href="<%= viewCurKBArticleURL %>"><%= curKBArticle.getTitle() %></a>
+												<a class="<%= descendantKBArticle.getResourcePrimKey() == kbArticle.getResourcePrimKey() ? "kbarticle-selected" : StringPool.BLANK %>" href="<%= viewCurKBArticleURL %>"><%= descendantKBArticle.getTitle() %></a>
 											</li>
 										</ul>
 
