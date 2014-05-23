@@ -21,7 +21,12 @@ import com.amazonaws.services.autoscaling.model.AutoScalingGroup;
 import com.amazonaws.services.autoscaling.model.CreateOrUpdateTagsRequest;
 import com.amazonaws.services.autoscaling.model.DescribeAutoScalingGroupsResult;
 import com.amazonaws.services.ec2.model.CreateTagsRequest;
+import com.amazonaws.services.ec2.model.DeleteVolumeRequest;
+import com.amazonaws.services.ec2.model.DescribeVolumesRequest;
+import com.amazonaws.services.ec2.model.DescribeVolumesResult;
+import com.amazonaws.services.ec2.model.Filter;
 import com.amazonaws.services.ec2.model.Tag;
+import com.amazonaws.services.ec2.model.Volume;
 
 import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
 import com.liferay.jsonwebserviceclient.JSONWebServiceClientImpl;
@@ -348,6 +353,32 @@ public class AsgardAMIDeployer extends BaseAMITool {
 					break;
 				}
 			}
+		}
+
+		DescribeVolumesRequest describeVolumesRequest =
+			new DescribeVolumesRequest();
+
+		Filter filter = new Filter();
+
+		filter.setName("status");
+
+		filter.withValues("available");
+
+		describeVolumesRequest.withFilters(filter);
+
+		DescribeVolumesResult describeVolumesResult =
+			amazonEC2Client.describeVolumes(describeVolumesRequest);
+
+		List<Volume> volumes = describeVolumesResult.getVolumes();
+
+		for (int i=0; i<volumes.size(); i++) {
+			Volume volume =volumes.get(i);
+
+			DeleteVolumeRequest deleteVolumeRequest = new DeleteVolumeRequest();
+
+			deleteVolumeRequest.setVolumeId(volume.getVolumeId());
+
+			amazonEC2Client.deleteVolume(deleteVolumeRequest);
 		}
 
 		System.out.println(
