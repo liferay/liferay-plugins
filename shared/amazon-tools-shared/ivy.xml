@@ -8,15 +8,16 @@
 	<info module="amazon-tools-shared" organisation="com.liferay" />
 
 	<dependencies defaultconf="default">
-		<dependency name="aws-java-sdk" org="com.amazonaws" rev="1.6.12" />
+		<dependency name="aws-java-sdk" org="com.amazonaws" rev="1.7.9" />
 		<dependency name="bcprov-jdk16" org="org.bouncycastle" rev="1.46" />
 		<dependency name="commons-codec" org="commons-codec" rev="1.7" />
-		<dependency name="httpclient" org="org.apache.httpcomponents" rev="4.2.4" />
-		<dependency name="httpcore" org="org.apache.httpcomponents" rev="4.2.4" />
+		<dependency name="httpclient" org="org.apache.httpcomponents" rev="4.3.3" />
+		<dependency name="httpcore" org="org.apache.httpcomponents" rev="4.3.2" />
 		<dependency name="jackson-annotations" org="com.fasterxml.jackson.core" rev="2.1.5" />
 		<dependency name="jackson-core" org="com.fasterxml.jackson.core" rev="2.1.5" />
 		<dependency name="jackson-databind" org="com.fasterxml.jackson.core"  rev="2.1.5" />
 		<dependency name="jcl-over-slf4j" org="org.slf4j" rev="1.7.5" />
+		<dependency name="joda-time" org="joda-time" rev="2.3" />
 		<dependency name="json" org="org.json" rev="20140107" />
 		<dependency name="jzlib" org="com.jcraft" rev="1.1.3" />
 		<dependency name="log4j" org="log4j" rev="1.2.17" />
