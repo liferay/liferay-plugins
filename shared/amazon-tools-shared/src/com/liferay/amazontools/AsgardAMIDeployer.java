@@ -18,6 +18,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.autoscaling.AmazonAutoScalingClient;
 import com.amazonaws.services.autoscaling.model.AutoScalingGroup;
+import com.amazonaws.services.autoscaling.model.CreateOrUpdateTagsRequest;
 import com.amazonaws.services.autoscaling.model.DescribeAutoScalingGroupsResult;
 import com.amazonaws.services.ec2.model.CreateTagsRequest;
 import com.amazonaws.services.ec2.model.Tag;
@@ -277,6 +278,24 @@ public class AsgardAMIDeployer extends BaseAMITool {
 				createTagsRequest.setTags(tags);
 
 				amazonEC2Client.createTags(createTagsRequest);
+
+				CreateOrUpdateTagsRequest createOrUpdateTagsRequest =
+					new CreateOrUpdateTagsRequest();
+
+				com.amazonaws.services.autoscaling.model.Tag autoScalingTag =
+					new com.amazonaws.services.autoscaling.model.Tag();
+
+				autoScalingTag.setKey("Name");
+				autoScalingTag.setPropagateAtLaunch(true);
+				autoScalingTag.setResourceId(autoScalingGroupName);
+				autoScalingTag.setResourceType("auto-scaling-group");
+				autoScalingTag.setValue(
+					properties.getProperty("instance.name"));
+
+				createOrUpdateTagsRequest.withTags(autoScalingTag);
+
+				_amazonAutoScalingClient.createOrUpdateTags(
+					createOrUpdateTagsRequest);
 
 				created = true;
 
