@@ -50,7 +50,13 @@ AUI.add(
 
 							event.halt();
 
-							dialog.io.set('form', {id: form.getDOM()});
+							dialog.io.set(
+								'form',
+								{
+									id: form.getDOM()
+								}
+							);
+
 							dialog.io.set('uri', form.getAttribute('action'));
 
 							dialog.io.start();
