@@ -115,7 +115,7 @@ AUI.add(
 						var tab = null;
 
 						instance.some(
-							function(item, index, collection) {
+							function(item, index) {
 								if (item.get(ID) === id) {
 									tab = item;
 
