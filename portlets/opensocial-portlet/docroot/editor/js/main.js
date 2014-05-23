@@ -100,20 +100,27 @@ AUI.add(
 
 		var Editor = A.Component.create(
 			{
-				AUGMENTS: [Liferay.PortletBase],
-
 				ATTRS: {
 					baseRenderURL: {
 						validator: Lang.isString
 					},
+
 					editorGadgetURL: {},
+
 					gadgetPortletId: {},
+
 					gadgetServerBase: {},
+
 					publishGadgetPermission: {},
+
 					repositoryId: {},
+
 					resourceURL: {},
+
 					rootFolderId: {}
 				},
+
+				AUGMENTS: [Liferay.PortletBase],
 
 				NAME: 'gadget-editor',
 
@@ -1251,6 +1258,7 @@ AUI.add(
 						var previewButton = new A.Button(
 							{
 								icon: 'icon-eye-open',
+								label: Liferay.Language.get('preview'),
 								on: {
 									click: function(event) {
 										var entryId = instance._tabViewEditor.getSelectedTab().get(ENTRY_ID);
@@ -1262,8 +1270,7 @@ AUI.add(
 											}
 										);
 									}
-								},
-								label: Liferay.Language.get('preview')
+								}
 							}
 						);
 
@@ -1292,8 +1299,8 @@ AUI.add(
 						var searchEditorButton = new A.ToggleButton(
 							{
 								activeState: true,
-								label: Liferay.Language.get('search'),
 								icon: 'icon-search',
+								label: Liferay.Language.get('search'),
 								on: {
 									click: function(event) {
 										if (event.target.get('pressed')) {
@@ -1752,8 +1759,8 @@ AUI.add(
 						var buttons = [
 							new A.Button(
 								{
-									label: Liferay.Language.get('find'),
 									icon: 'icon-search',
+									label: Liferay.Language.get('find'),
 									on: {
 										click: function(event) {
 											var tab = instance._tabViewEditor.getSelectedTab();
@@ -1767,8 +1774,8 @@ AUI.add(
 							),
 							new A.Button(
 								{
-									label: Liferay.Language.get('replace'),
 									icon: 'icon-random',
+									label: Liferay.Language.get('replace'),
 									on: {
 										click: function(event) {
 											var tab = instance._tabViewEditor.getSelectedTab();
@@ -1784,8 +1791,8 @@ AUI.add(
 							),
 							new A.Button(
 								{
-									label: Liferay.Language.get('close'),
 									icon: 'icon-remove',
+									label: Liferay.Language.get('close'),
 									on: {
 										click: function(event) {
 											instance._closeSearchDialog();

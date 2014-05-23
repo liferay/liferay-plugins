@@ -54,9 +54,6 @@ AUI.add(
 
 		var TreeViewEditor = A.Component.create(
 			{
-				EXTENDS: A.TreeView,
-
-				NAME: 'tree-view-editor',
 
 				ATTRS: {
 					activeEditable: {
@@ -74,6 +71,10 @@ AUI.add(
 						}
 					}
 				},
+
+				EXTENDS: A.TreeView,
+
+				NAME: 'tree-view-editor',
 
 				prototype: {
 					addNewNodeToFolder: function(label, isLeaf, parentId) {
@@ -199,18 +200,14 @@ AUI.add(
 
 		var TreeNodeEditor = A.Component.create(
 			{
-				EXTENDS: A.TreeNodeIO,
-
-				NAME: 'tree-node-editor',
-
 				ATTRS: {
 					editable: {},
 
 					entryId: {
-						value: STR_EMPTY,
 						setter: function(value) {
 							return String(value);
-						}
+						},
+						value: STR_EMPTY
 					},
 
 					fileEntryLoaded: {
@@ -237,6 +234,10 @@ AUI.add(
 						value: {}
 					}
 				},
+
+				EXTENDS: A.TreeNodeIO,
+
+				NAME: 'tree-node-editor',
 
 				prototype: {
 					bindUI: function() {
@@ -766,10 +767,6 @@ AUI.add(
 
 		var EditableEditor = A.Component.create(
 			{
-				EXTENDS: A.Editable,
-
-				NAME: 'editable-editor',
-
 				ATTRS: {
 					entryId: {
 						setter: function(value) {
@@ -778,6 +775,10 @@ AUI.add(
 						value: STR_EMPTY
 					}
 				},
+
+				EXTENDS: A.Editable,
+
+				NAME: 'editable-editor',
 
 				prototype: {
 					_afterFocusedChangeEditable: function(event) {
