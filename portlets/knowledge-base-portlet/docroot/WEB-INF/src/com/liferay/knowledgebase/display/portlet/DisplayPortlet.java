@@ -75,8 +75,9 @@ import java.io.InputStream;
 /**
  * @author Peter Shin
  * @author Brian Wing Shun Chan
+ * @author Sergio González
  */
-public class ArticlePortlet extends MVCPortlet {
+public class DisplayPortlet extends MVCPortlet {
 
 	public void addAttachment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
@@ -502,7 +503,7 @@ public class ArticlePortlet extends MVCPortlet {
 		String mvcPath = ParamUtil.getString(renderRequest, "mvcPath");
 
 		if (((defaultValue == 0) && mvcPath.equals(viewTemplate)) ||
-			mvcPath.equals("/article/select_configuration_article.jsp")) {
+			mvcPath.equals("/display/select_configuration_article.jsp")) {
 
 			return 0;
 		}

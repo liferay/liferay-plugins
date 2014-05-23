@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/article/init.jsp" %>
+<%@ include file="/display/init.jsp" %>
 
 <div id="<portlet:namespace/>message-container"></div>
 

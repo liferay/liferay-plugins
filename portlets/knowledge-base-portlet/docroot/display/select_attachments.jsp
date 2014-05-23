@@ -14,6 +14,6 @@
  */
 --%>
 
-<%@ include file="/article/init.jsp" %>
+<%@ include file="/display/init.jsp" %>
 
 <liferay-util:include page="/admin/common/select_attachments.jsp" servletContext="<%= application %>" />

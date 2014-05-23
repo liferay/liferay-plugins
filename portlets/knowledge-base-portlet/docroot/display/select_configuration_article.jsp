@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/article/init.jsp" %>
+<%@ include file="/display/init.jsp" %>
 
 <%
 long selResourcePrimKey = ParamUtil.getLong(request, "selResourcePrimKey");
@@ -28,7 +28,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 />
 
 <liferay-portlet:renderURL varImpl="iteratorURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-	<portlet:param name="mvcPath" value="/article/select_configuration_article.jsp" />
+	<portlet:param name="mvcPath" value="/display/select_configuration_article.jsp" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:search-container
@@ -50,7 +50,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		modelVar="kbArticle"
 	>
 		<liferay-portlet:renderURL var="rowURL">
-			<portlet:param name="mvcPath" value="/article/print_article.jsp" />
+			<portlet:param name="mvcPath" value="/display/print_article.jsp" />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 		</liferay-portlet:renderURL>
 

@@ -14,7 +14,7 @@
  */
 --%>
 
-<%@ include file="/article/init.jsp" %>
+<%@ include file="/display/init.jsp" %>
 
 <%
 KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_ARTICLE);
@@ -22,7 +22,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 <c:choose>
 	<c:when test="<%= kbArticle != null %>">
-		<liferay-util:include page="/article/view_article.jsp" servletContext="<%= application %>" />
+		<liferay-util:include page="/display/view_article.jsp" servletContext="<%= application %>" />
 	</c:when>
 	<c:otherwise>
 
