@@ -14,12 +14,10 @@
  */
 --%>
 
-<%@ include file="/navigation/init.jsp" %>
+<%@ include file="/display/init.jsp" %>
 
 <%
 List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
-
-long resourcePrimKey = ParamUtil.getLong(request, "resourcePrimKey");
 
 if (resourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
 	KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
