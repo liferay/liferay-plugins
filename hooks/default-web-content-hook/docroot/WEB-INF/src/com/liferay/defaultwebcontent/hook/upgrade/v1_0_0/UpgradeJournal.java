@@ -65,7 +65,7 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
 		DDMStructureLocalServiceUtil.addStructure(
@@ -133,7 +133,7 @@ public class UpgradeJournal extends UpgradeProcess {
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 
 		DDMTemplateLocalServiceUtil.addTemplate(
