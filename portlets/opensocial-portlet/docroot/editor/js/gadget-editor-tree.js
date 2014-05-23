@@ -540,7 +540,7 @@ AUI.add(
 
 											AArray.each(
 												contextMenu.get('children')[0],
-												function(item, index, collection) {
+												function(item, index) {
 													if (A.instanceOf(item, A.Button)) {
 														item.render();
 													}

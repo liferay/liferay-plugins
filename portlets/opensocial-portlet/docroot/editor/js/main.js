@@ -1054,7 +1054,7 @@ AUI.add(
 						do {
 							duplicateLabel = AArray.some(
 								children,
-								function(item, index, collection) {
+								function(item, index) {
 									if (item.isLeaf() == leafNode && item.get(LABEL).toLowerCase() == label.toLowerCase()) {
 										i++;
 
