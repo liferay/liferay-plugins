@@ -25,6 +25,7 @@
 	<classpathentry kind="lib" path="lib/jackson-core.jar" />
 	<classpathentry kind="lib" path="lib/jackson-databind.jar" />
 	<classpathentry kind="lib" path="lib/jcl-over-slf4j.jar" />
+	<classpathentry kind="lib" path="lib/joda-time.jar" />
 	<classpathentry kind="lib" path="lib/json-web-service-client-shared.jar" />
 	<classpathentry kind="lib" path="lib/json.jar" />
 	<classpathentry kind="lib" path="lib/jzlib.jar" />
