@@ -44,7 +44,7 @@ public class BaseAMITool {
 		amazonEC2Client = getAmazonEC2Client(
 			properties.getProperty("access.key"),
 			properties.getProperty("secret.key"),
-			properties.getProperty("endpoint"));
+			properties.getProperty("ec2.endpoint"));
 	}
 
 	protected AmazonEC2Client getAmazonEC2Client(
