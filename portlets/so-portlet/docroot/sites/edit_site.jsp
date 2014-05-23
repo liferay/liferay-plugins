@@ -199,7 +199,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 			var deleteLayoutIds = [];
 
 			layoutElems.each(
-				function(layoutElem, index, collection) {
+				function(layoutElem, index) {
 					deleteLayoutIds.push(layoutElem.getAttribute('data-layoutId'));
 				}
 			);
