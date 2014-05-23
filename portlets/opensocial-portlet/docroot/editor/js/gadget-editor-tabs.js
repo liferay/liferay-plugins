@@ -182,30 +182,37 @@ AUI.add(
 					aceEditor: {
 						validator: '_validateAceEditor'
 					},
+
 					dirtyIndicatorNode: {
 						validator: '_validateDirtyIndicatorNode'
 					},
-					fileName: {
-						validator: Lang.isString
-					},
+
 					entryId: {
 						setter: function(value) {
 							return String(value);
 						},
 						value: STR_EMPTY
 					},
+
+					fileName: {
+						validator: Lang.isString
+					},
+
 					isDirty: {
 						validator: Lang.isBoolean,
 						value: false
 					},
+
 					isNew: {
 						validator: Lang.isBoolean,
 						value: true
 					},
+
 					isRendered: {
 						validator: Lang.isBoolean,
 						value: false
 					},
+
 					label: {
 						validator: Lang.isString
 					}
