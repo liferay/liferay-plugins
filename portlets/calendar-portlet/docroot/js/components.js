@@ -142,8 +142,8 @@
 							var Util = Liferay.Util;
 
 							var align = {
-								points: DEFAULT_ALIGN_POINTS,
-								node: instance.get('alignNode')
+								node: instance.get('alignNode'),
+								points: DEFAULT_ALIGN_POINTS
 							};
 
 							var centered = false;
@@ -509,20 +509,6 @@
 							}
 						},
 
-						_onHoverOver: function(event) {
-							var instance = this;
-
-							var currentTarget = event.currentTarget;
-
-							var calendar = instance.getCalendarByNode(currentTarget);
-
-							currentTarget.addClass(CSS_CALENDAR_LIST_ITEM_HOVER);
-
-							if (!calendar.get('visible')) {
-								instance._setCalendarColor(calendar, calendar.get('color'));
-							}
-						},
-
 						_onHoverOut: function(event) {
 							var instance = this;
 
@@ -535,6 +521,20 @@
 							}
 
 							currentTarget.removeClass(CSS_CALENDAR_LIST_ITEM_HOVER);
+						},
+
+						_onHoverOver: function(event) {
+							var instance = this;
+
+							var currentTarget = event.currentTarget;
+
+							var calendar = instance.getCalendarByNode(currentTarget);
+
+							currentTarget.addClass(CSS_CALENDAR_LIST_ITEM_HOVER);
+
+							if (!calendar.get('visible')) {
+								instance._setCalendarColor(calendar, calendar.get('color'));
+							}
 						},
 
 						_onSimpleMenuVisibleChange: function(event) {
@@ -794,15 +794,16 @@
 
 						strings: {
 							value: {
-								email: Liferay.Language.get('email'),
-								minutes: Liferay.Language.get('minutes'),
-								hours: Liferay.Language.get('hours'),
 								days: Liferay.Language.get('days'),
+								email: Liferay.Language.get('email'),
+								hours: Liferay.Language.get('hours'),
+								minutes: Liferay.Language.get('minutes'),
 								weeks: Liferay.Language.get('weeks')
 							}
 						},
 
 						values: {
+							validator: Lang.isArray,
 							value: [
 								{
 									interval: 10,
@@ -812,8 +813,7 @@
 									interval: 60,
 									type: Liferay.CalendarUtil.NOTIFICATION_DEFAULT_TYPE
 								}
-							],
-							validator: Lang.isArray
+							]
 						}
 					},
 
@@ -901,39 +901,6 @@
 			var toInt = Lang.toInt;
 
 			Liferay.DatePickerUtil = {
-				linkToSchedulerEvent: function(datePickerContainer, schedulerEvent, dateAttr) {
-					var instance = this;
-
-					var selects = A.one(datePickerContainer).all('select');
-
-					selects.on(
-						'change',
-						function(event) {
-							var currentTarget = event.currentTarget;
-
-							var date = schedulerEvent.get(dateAttr);
-
-							var selectedSetter = selects.indexOf(currentTarget);
-
-							var setters = [date.setMonth, date.setDate, date.setFullYear, date.setHours, date.setMinutes, date.setHours];
-
-							var value = toInt(currentTarget.val());
-
-							if ((selectedSetter === 3) && (date.getHours() > 12)) {
-								value += 12;
-							}
-
-							if (selectedSetter === 5) {
-								value = date.getHours() + ((value === 1) ? 12 : -12);
-							}
-
-							setters[selectedSetter].call(date, value);
-
-							schedulerEvent.get('scheduler').syncEventsUI();
-						}
-					);
-				},
-
 				syncUI: function(form, fieldName, date) {
 					var instance = this;
 
@@ -966,6 +933,39 @@
 					amPmNode.val(amPm);
 					hourNode.val(hours);
 					minuteNode.val(minutes);
+				},
+
+				linkToSchedulerEvent: function(datePickerContainer, schedulerEvent, dateAttr) {
+					var instance = this;
+
+					var selects = A.one(datePickerContainer).all('select');
+
+					selects.on(
+						'change',
+						function(event) {
+							var currentTarget = event.currentTarget;
+
+							var date = schedulerEvent.get(dateAttr);
+
+							var selectedSetter = selects.indexOf(currentTarget);
+
+							var setters = [date.setMonth, date.setDate, date.setFullYear, date.setHours, date.setMinutes, date.setHours];
+
+							var value = toInt(currentTarget.val());
+
+							if ((selectedSetter === 3) && (date.getHours() > 12)) {
+								value += 12;
+							}
+
+							if (selectedSetter === 5) {
+								value = date.getHours() + ((value === 1) ? 12 : -12);
+							}
+
+							setters[selectedSetter].call(date, value);
+
+							schedulerEvent.get('scheduler').syncEventsUI();
+						}
+					);
 				}
 			};
 		},
@@ -981,15 +981,15 @@
 			Liferay.RecurrenceUtil = {
 				FREQUENCY: {
 					DAILY: 'DAILY',
-					WEEKLY: 'WEEKLY',
 					MONTHLY: 'MONTHLY',
+					WEEKLY: 'WEEKLY',
 					YEARLY: 'YEARLY'
 				},
 
 				INTERVAL_LABELS: {
 					DAILY: Liferay.Language.get('days'),
-					WEEKLY: Liferay.Language.get('weeks'),
 					MONTHLY: Liferay.Language.get('months'),
+					WEEKLY: Liferay.Language.get('weeks'),
 					YEARLY: Liferay.Language.get('years')
 				},
 
@@ -1077,16 +1077,16 @@
 
 					var getButtonConfig = function(label, callback) {
 						return {
+							label: Liferay.Language.get(label),
 							on: {
-								click: function(event, buttonItem)  {
+								click: function(event, buttonItem) {
 									if (callback) {
 										callback.apply(confirmationPanel, arguments);
 									}
 
 									confirmationPanel.hide();
 								}
-							},
-							label: Liferay.Language.get(label)
+							}
 						};
 					};
 
@@ -1132,16 +1132,16 @@
 
 					var getButtonConfig = function(label, callback) {
 						return {
+							label: Liferay.Language.get(label),
 							on: {
-								click: function(event, buttonItem)  {
+								click: function(event, buttonItem) {
 									if (callback) {
 										callback.apply(confirmationPanel, arguments);
 									}
 
 									confirmationPanel.hide();
 								}
-							},
-							label: Liferay.Language.get(label)
+							}
 						};
 					};
 
