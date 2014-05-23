@@ -197,7 +197,9 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		Map<String, String> parameters = new HashMap<String, String>();
 
 		parameters.put("checkHealth", "true");
+		parameters.put("desiredCapacity", "1");
 		parameters.put("imageId", getImageId(_imageName));
+		parameters.put("min", "1");
 
 		String asgardClusterName = properties.getProperty(
 			"asgard.cluster.name");
@@ -228,6 +230,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		String autoScalingGroupName = null;
 		boolean created = false;
+		int maxSize = 0;
 
 		for (int i = 0; i < 12; i++) {
 			String json = _jsonWebServiceClient.doGet(
@@ -243,6 +246,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 			autoScalingGroupName = autoScalingGroupJSONObject.getString(
 				"autoScalingGroupName");
+			maxSize = autoScalingGroupJSONObject.getInt("maxSize");
 
 			List<String> instanceIds = new ArrayList<String>();
 
@@ -306,6 +310,44 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		if (!created) {
 			throw new RuntimeException(
 				"Unable to create Auto Scaling Group " + autoScalingGroupName);
+		}
+
+		int minSize = Integer.parseInt(
+			properties.getProperty("instance.min.size"));
+
+		if (minSize > 1) {
+			parameters.clear();
+
+			parameters.put("maxSize", String.valueOf(maxSize));
+			parameters.put("minSize", String.valueOf(minSize));
+			parameters.put("name", autoScalingGroupName);
+
+			_jsonWebServiceClient.doPost(
+				"/" + availabilityZone + "/cluster/resize", parameters);
+
+			for (int i = 0; i < 12; i++) {
+				String json = _jsonWebServiceClient.doGet(
+					"/" + availabilityZone + "/cluster/show/" +
+						asgardClusterName +
+						".json", Collections.<String, String>emptyMap()
+				);
+
+				JSONArray autoScalingGroupsJSONArray = new JSONArray(json);
+
+				JSONObject autoScalingGroupJSONObject =
+					autoScalingGroupsJSONArray.getJSONObject(
+						autoScalingGroupsJSONArray.length() - 1);
+
+				JSONArray instancesJSONArray =
+					autoScalingGroupJSONObject.getJSONArray("instances");
+
+				if (instancesJSONArray.length() == 1) {
+					sleep(15);
+				}
+				else {
+					break;
+				}
+			}
 		}
 
 		System.out.println(
