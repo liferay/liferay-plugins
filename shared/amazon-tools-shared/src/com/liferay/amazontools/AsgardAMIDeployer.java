@@ -14,6 +14,11 @@
 
 package com.liferay.amazontools;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.autoscaling.AmazonAutoScalingClient;
+import com.amazonaws.services.autoscaling.model.AutoScalingGroup;
+import com.amazonaws.services.autoscaling.model.DescribeAutoScalingGroupsResult;
 import com.amazonaws.services.ec2.model.CreateTagsRequest;
 import com.amazonaws.services.ec2.model.Tag;
 
@@ -66,6 +71,11 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		throws Exception {
 
 		super(propertiesFileName);
+
+		_amazonAutoScalingClient = getAmazonAutoScalingClient(
+			properties.getProperty("access.key"),
+			properties.getProperty("secret.key"),
+			properties.getProperty("autoscaling.endpoint"));
 
 		_imageName = imageName;
 
@@ -173,6 +183,14 @@ public class AsgardAMIDeployer extends BaseAMITool {
 	protected String createAutoScalingGroup() throws Exception {
 		System.out.println("Creating Auto Scaling Group");
 
+		DescribeAutoScalingGroupsResult describeAutoScalingGroupsResult =
+			_amazonAutoScalingClient.describeAutoScalingGroups();
+
+		List<AutoScalingGroup> autoScalingGroups =
+			describeAutoScalingGroupsResult.getAutoScalingGroups();
+
+		int oldAutoScalingGroupsSize = autoScalingGroups.size();
+
 		String availabilityZone = properties.getProperty("availability.zone");
 
 		Map<String, String> parameters = new HashMap<String, String>();
@@ -190,7 +208,22 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		_jsonWebServiceClient.doPost(
 			"/" + availabilityZone + "/cluster/createNextGroup", parameters);
 
-		sleep(20);
+		for (int i = 0; i < 12; i++) {
+			describeAutoScalingGroupsResult =
+				_amazonAutoScalingClient.describeAutoScalingGroups();
+
+			autoScalingGroups =
+				describeAutoScalingGroupsResult.getAutoScalingGroups();
+
+			int newAutoScalingGroupsSize = autoScalingGroups.size();
+
+			if (oldAutoScalingGroupsSize == newAutoScalingGroupsSize) {
+				sleep(15);
+			}
+			else {
+				break;
+			}
+		}
 
 		String autoScalingGroupName = null;
 		boolean created = false;
@@ -260,6 +293,20 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			"Created Auto Scaling Group " + autoScalingGroupName);
 
 		return autoScalingGroupName;
+	}
+
+	protected AmazonAutoScalingClient getAmazonAutoScalingClient(
+		String accessKey, String secretKey, String endpoint) {
+
+		AWSCredentials awsCredentials = new BasicAWSCredentials(
+			accessKey, secretKey);
+
+		AmazonAutoScalingClient amazonAutoScalingClient =
+			new AmazonAutoScalingClient(awsCredentials);
+
+		amazonAutoScalingClient.setEndpoint(endpoint);
+
+		return amazonAutoScalingClient;
 	}
 
 	protected JSONWebServiceClient getJSONWebServiceClient(
@@ -333,6 +380,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		return true;
 	}
 
+	private AmazonAutoScalingClient _amazonAutoScalingClient;
 	private String _imageName;
 	private JSONWebServiceClient _jsonWebServiceClient;
 
