@@ -82,13 +82,6 @@
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-search</css-class-wrapper>
 	</portlet>
-	<portlet>
-		<portlet-name>6</portlet-name>
-		<icon>/icons/navigation.png</icon>
-		<header-portlet-css>/admin/css/common.css</header-portlet-css>
-		<header-portlet-css>/navigation/css/main.css</header-portlet-css>
-		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-navigation</css-class-wrapper>
-	</portlet>
 	<role-mapper>
 		<role-name>administrator</role-name>
 		<role-link>Administrator</role-link>
