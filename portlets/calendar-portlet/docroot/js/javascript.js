@@ -69,7 +69,7 @@ AUI.add(
 				if (milliseconds > 0) {
 					AArray.some(
 						[ Time.WEEK, Time.DAY, Time.HOUR, Time.MINUTE ],
-						function(item, index, collection) {
+						function(item, index) {
 							value = milliseconds / item;
 							desc = Time.TIME_DESC[index];
 
@@ -211,7 +211,7 @@ AUI.add(
 						resultFilters: function(query, results) {
 							return AArray.filter(
 								results,
-								function(item, index, collection) {
+								function(item, index) {
 									return !instance.availableCalendars[item.raw.calendarId];
 								}
 							);
@@ -1280,7 +1280,7 @@ AUI.add(
 
 						AArray.each(
 							calendarBookings,
-							function(item, index, collection) {
+							function(item, index) {
 								var calendarId = item.calendarId;
 
 								if (!calendarEvents[calendarId]) {
