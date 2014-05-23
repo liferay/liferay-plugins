@@ -78,13 +78,12 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		super(propertiesFileName);
 
+		_imageName = imageName;
+
 		_amazonAutoScalingClient = getAmazonAutoScalingClient(
 			properties.getProperty("access.key"),
 			properties.getProperty("secret.key"),
 			properties.getProperty("autoscaling.endpoint"));
-
-		_imageName = imageName;
-
 		_jsonWebServiceClient = getJSONWebServiceClient(
 			properties.getProperty("asgard.host.name"),
 			Integer.valueOf(properties.getProperty("asgard.host.port")));
@@ -333,9 +332,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			for (int i = 0; i < 12; i++) {
 				String json = _jsonWebServiceClient.doGet(
 					"/" + availabilityZone + "/cluster/show/" +
-						asgardClusterName +
-						".json", Collections.<String, String>emptyMap()
-				);
+						asgardClusterName + ".json",
+					Collections.<String, String>emptyMap());
 
 				JSONArray autoScalingGroupsJSONArray = new JSONArray(json);
 
@@ -371,10 +369,10 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		List<Volume> volumes = describeVolumesResult.getVolumes();
 
-		for (int i=0; i<volumes.size(); i++) {
-			Volume volume =volumes.get(i);
-
+		for (int i = 0; i < volumes.size(); i++) {
 			DeleteVolumeRequest deleteVolumeRequest = new DeleteVolumeRequest();
+
+			Volume volume = volumes.get(i);
 
 			deleteVolumeRequest.setVolumeId(volume.getVolumeId());
 
