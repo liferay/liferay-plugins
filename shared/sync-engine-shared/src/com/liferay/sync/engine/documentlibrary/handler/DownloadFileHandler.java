@@ -56,7 +56,7 @@ public class DownloadFileHandler extends BaseHandler {
 			inputStream = httpEntity.getContent();
 
 			Path tempFilePath = Files.createTempFile(
-				String.valueOf(filePath.getFileName()), ".tmp");
+				String.valueOf(syncFile.getSyncFileId()), ".tmp");
 
 			if (Files.exists(filePath)) {
 				Files.copy(
