@@ -455,21 +455,26 @@ public class AdminPortlet extends MVCPortlet {
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
 			String namespace = actionResponse.getNamespace();
-			String redirect = getRedirect(actionRequest, actionResponse);
-
-			WindowState windowState = actionResponse.getWindowState();
 
 			String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
 
 			editURL = HttpUtil.setParameter(
 				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
+
+			WindowState windowState = actionResponse.getWindowState();
+
 			editURL = HttpUtil.setParameter(
 				editURL, "p_p_state", windowState.toString());
+
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "mvcPath",
 				templatePath + "edit_article.jsp");
+
+			String redirect = getRedirect(actionRequest, actionResponse);
+
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "redirect", redirect);
+
 			editURL = HttpUtil.setParameter(
 				editURL, namespace + "resourcePrimKey",
 				kbArticle.getResourcePrimKey());
