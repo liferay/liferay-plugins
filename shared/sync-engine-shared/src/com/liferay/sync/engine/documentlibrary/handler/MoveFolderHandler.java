@@ -33,12 +33,12 @@ public class MoveFolderHandler extends BaseJSONHandler {
 
 	@Override
 	protected void processResponse(String response) throws Exception {
+		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
+
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		SyncFile remoteSyncFile = objectMapper.readValue(
 			response, new TypeReference<SyncFile>() {});
-
-		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
 
 		SyncFile parentLocalSyncFile = SyncFileService.fetchSyncFile(
 			remoteSyncFile.getRepositoryId(), getSyncAccountId(),
