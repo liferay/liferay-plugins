@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String activeView = ParamUtil.getString(request, "activeView", defaultView);
+String activeView = ParamUtil.getString(request, "activeView", sessionView);
 long date = ParamUtil.getLong(request, "date", System.currentTimeMillis());
 
 List<Calendar> groupCalendars = null;
