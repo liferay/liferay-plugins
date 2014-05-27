@@ -33,7 +33,8 @@
 			"source": "Test.txt"
 		},
 		{
-			"action": "pause"
+			"action": "pause",
+			"delay": 15
 		},
 		{
 			"action": "verifyFile",

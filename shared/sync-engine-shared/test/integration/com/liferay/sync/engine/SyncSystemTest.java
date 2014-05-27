@@ -272,7 +272,8 @@ public class SyncSystemTest {
 		Path dependencyFilePath = getDependencyFilePath(
 			testFilePath, dependency);
 
-		dependency = dependency.replace("common/", "");
+		dependency = getString(
+			stepJsonNode, "target", dependency.replace("common/", ""));
 
 		Path targetFilePath = Paths.get(
 			syncSite.getFilePathName() + "/" + dependency);

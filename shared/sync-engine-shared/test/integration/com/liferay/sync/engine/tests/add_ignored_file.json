@@ -21,11 +21,13 @@
 		},
 		{
 			"action": "addFile",
-			"dependency": "Thumbs.db",
-			"doAsSyncAccount": "test1"
+			"dependency": "common/Test.txt",
+			"doAsSyncAccount": "test1",
+			"target": "Thumbs.db"
 		},
 		{
-			"action": "pause"
+			"action": "pause",
+			"delay": 15
 		},
 		{
 			"action": "verifyFile",

@@ -25,7 +25,8 @@
 			"doAsSyncAccount": "test1"
 		},
 		{
-			"action": "pause"
+			"action": "pause",
+			"delay": 15
 		},
 		{
 			"action": "verifyFile",

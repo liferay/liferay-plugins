@@ -34,7 +34,8 @@
 			"target": "Test2.txt"
 		},
 		{
-			"action": "pause"
+			"action": "pause",
+			"delay": 15
 		},
 		{
 			"action": "verifyFile",
