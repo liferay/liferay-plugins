@@ -37,7 +37,6 @@
 		<property name="swallowException" value="true" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.SolrIndexWriterImpl" class="com.liferay.portal.search.solr.SolrIndexWriterImpl">
-		<property name="commit" value="true" />
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>
 	<bean id="com.liferay.portal.search.solr.SolrSearchEngineImpl" class="com.liferay.portal.kernel.search.BaseSearchEngine">
