@@ -85,7 +85,9 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			properties.getProperty("secret.key"),
 			properties.getProperty("autoscaling.endpoint"));
 		_jsonWebServiceClient = getJSONWebServiceClient(
+			properties.getProperty("asgard.host.login"),
 			properties.getProperty("asgard.host.name"),
+			properties.getProperty("asgard.host.password"),
 			Integer.valueOf(properties.getProperty("asgard.host.port")));
 
 		String autoScalingGroupName = createAutoScalingGroup();
@@ -400,12 +402,14 @@ public class AsgardAMIDeployer extends BaseAMITool {
 	}
 
 	protected JSONWebServiceClient getJSONWebServiceClient(
-		String hostName, int hostPort) {
+		String hostLogin, String hostName, String hostPassword, int hostPort) {
 
 		JSONWebServiceClientImpl jsonWebServiceClient =
 			new JSONWebServiceClientImpl();
 
+		jsonWebServiceClient.setLogin(hostLogin);
 		jsonWebServiceClient.setHostName(hostName);
+		jsonWebServiceClient.setPassword(hostPassword);
 		jsonWebServiceClient.setHostPort(hostPort);
 
 		jsonWebServiceClient.afterPropertiesSet();
