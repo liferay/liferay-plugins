@@ -37,6 +37,8 @@ public class SyncAccount extends StateAwareModel {
 
 	public static final int UI_EVENT_SYNC_WEB_MISSING = 4;
 
+	public static final int UI_EVENT_SYNC_WEB_OUT_OF_DATE = 5;
+
 	public boolean getActive() {
 		return active;
 	}
