@@ -76,6 +76,7 @@
 	.author-sender, .name {
 		float: left;
 		font-weight: bold;
+		padding-right: 0.5em;
 	}
 
 	.message-link {
