@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-
-<project name="log-bridge-shared" basedir="." default="compile">
-	<property name="plugin.version" value="1" />
-
-	<import file="../../build-common-osgi-plugin.xml" />
-</project>

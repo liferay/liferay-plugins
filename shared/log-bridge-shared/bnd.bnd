@@ -1,5 +1,0 @@
-Bundle-Activator: com.liferay.logbridge.LogBridge
-Bundle-Name: Log Bridge
-Import-Package: *
-Include-Resource: classes
-Private-Package: *
