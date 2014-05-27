@@ -16,11 +16,15 @@ package com.liferay.calendar.action;
 
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.SessionClicks;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author Eduardo Lundgren
@@ -69,6 +73,12 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			"usePortalTimeZone", String.valueOf(usePortalTimeZone));
 		portletPreferences.setValue(
 			"weekStartsOn", String.valueOf(weekStartsOn));
+
+		HttpServletRequest httpServletRequest =
+			PortalUtil.getHttpServletRequest(actionRequest);
+
+		SessionClicks.put(
+			httpServletRequest, "calendar-portlet-default-view", defaultView);
 
 		portletPreferences.store();
 	}
