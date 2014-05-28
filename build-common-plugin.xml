@@ -546,7 +546,29 @@
 
 				<delete file="${patch.original.lib.name}-sources.jar" />
 
-				<patch dir="${plugin.source.dir}" patchfile="${patch.source}" strip="1" />
+				<if>
+					<available file="${patch.source}" type="dir" />
+					<then>
+						<pathconvert property="patch.sources">
+							<path>
+								<fileset dir="${patch.source}" />
+							</path>
+						</pathconvert>
+					</then>
+					<else>
+						<pathconvert property="patch.sources">
+							<path>
+								<fileset file="${patch.source}" />
+							</path>
+						</pathconvert>
+					</else>
+				</if>
+				<for list="${patch.sources}" param="patch.item" delimiter=":">
+					<sequential>
+						<echo>Patching @{patch.item}</echo>
+						<patch dir="${plugin.source.dir}" patchfile="@{patch.item}" strip="1" />
+					</sequential>
+				</for>
 			</then>
 		</if>
 
