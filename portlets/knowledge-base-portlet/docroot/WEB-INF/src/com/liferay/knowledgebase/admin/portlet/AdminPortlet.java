@@ -460,7 +460,8 @@ public class AdminPortlet extends MVCPortlet {
 				actionRequest, PortletKeys.KNOWLEDGE_BASE_ADMIN,
 				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
-			portletURL.setParameter("mvcPath", "/admin/edit_article.jsp");
+			portletURL.setParameter(
+				"mvcPath", templatePath + "edit_article.jsp");
 			portletURL.setParameter(
 				"redirect", getRedirect(actionRequest, actionResponse));
 			portletURL.setParameter(
