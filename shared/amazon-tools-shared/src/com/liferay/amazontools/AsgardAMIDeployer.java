@@ -111,7 +111,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		deactivateOldScalingGroup(autoScalingGroupName);
 
-		openAsgardHomePage();
+		openAsgardURL();
 
 		System.out.println(
 			"Deployed Auto Scaling Group " + autoScalingGroupName);
@@ -506,19 +506,19 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		return true;
 	}
 
-	protected void openAsgardHomePage() throws Exception {
+	protected void openAsgardURL() throws Exception {
+		Desktop desktop = Desktop.getDesktop();
+
 		String asgardClusterName = properties.getProperty(
 			"asgard.cluster.name");
 		String availabilityZone = properties.getProperty("availability.zone");
 
-		Desktop desktop = Desktop.getDesktop();
-
-		String asgardClusterURL =
+		String asgardURL =
 			"http://" + properties.getProperty("asgard.host.name") + ":" +
 				properties.getProperty("asgard.host.port") + "/" +
-				availabilityZone + "/cluster/show/" + asgardClusterName;
+					availabilityZone + "/cluster/show/" + asgardClusterName;
 
-		desktop.browse(URI.create(asgardClusterURL));
+		desktop.browse(URI.create(asgardURL));
 	}
 
 	private AmazonAutoScalingClient _amazonAutoScalingClient;
