@@ -242,6 +242,21 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 	}
 
 	@Override
+	public SyncDLObject getFolderSyncDLObject(
+			long repositoryId, long parentFolderId, String name)
+		throws PortalException, SystemException {
+
+		Folder folder = dlAppService.getFolder(
+			repositoryId, parentFolderId, name);
+
+		if (!SyncUtil.isSupportedFolder(folder)) {
+			return null;
+		}
+
+		return SyncUtil.toSyncDLObject(folder, SyncConstants.EVENT_GET);
+	}
+
+	@Override
 	public List<SyncDLObject> getFolderSyncDLObjects(
 			long repositoryId, long parentFolderId)
 		throws PortalException, SystemException {
