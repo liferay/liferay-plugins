@@ -19,6 +19,9 @@ import com.liferay.sync.engine.documentlibrary.event.AddFolderEvent;
 import com.liferay.sync.engine.documentlibrary.event.CancelCheckOutEvent;
 import com.liferay.sync.engine.documentlibrary.event.CheckInFileEntryEvent;
 import com.liferay.sync.engine.documentlibrary.event.CheckOutFileEntryEvent;
+import com.liferay.sync.engine.documentlibrary.event.Event;
+import com.liferay.sync.engine.documentlibrary.event.GetFileEntrySyncDLObjectEvent;
+import com.liferay.sync.engine.documentlibrary.event.GetFolderSyncDLObjectEvent;
 import com.liferay.sync.engine.documentlibrary.event.MoveFileEntryEvent;
 import com.liferay.sync.engine.documentlibrary.event.MoveFileEntryToTrashEvent;
 import com.liferay.sync.engine.documentlibrary.event.MoveFolderEvent;
@@ -546,6 +549,47 @@ public class SyncFileService {
 		ModelListener<SyncFile> modelListener) {
 
 		_syncFilePersistence.registerModelListener(modelListener);
+	}
+
+	public static SyncFile synchronizeSyncFile(
+		long syncAccountId, SyncFile syncFile) {
+
+		Path filePath = Paths.get(syncFile.getFilePathName());
+
+		String parentFilePathName = FilePathNameUtil.getFilePathName(
+			filePath.getParent());
+
+		SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
+			parentFilePathName, syncAccountId);
+
+		Map<String, Object> parameters = new HashMap<String, Object>();
+
+		if (syncFile.isFolder()) {
+			parameters.put("name", syncFile.getName());
+			parameters.put("parentFolderId", parentSyncFile.getTypePK());
+			parameters.put("repositoryId", parentSyncFile.getRepositoryId());
+		}
+		else {
+			parameters.put("folderId", parentSyncFile.getTypePK());
+			parameters.put("groupId", parentSyncFile.getRepositoryId());
+			parameters.put("title", syncFile.getName());
+		}
+
+		parameters.put("syncFile", syncFile);
+
+		Event event = null;
+
+		if (syncFile.isFolder()) {
+			event = new GetFolderSyncDLObjectEvent(syncAccountId, parameters);
+		}
+		else {
+			event = new GetFileEntrySyncDLObjectEvent(
+				syncAccountId, parameters);
+		}
+
+		event.run();
+
+		return syncFile;
 	}
 
 	public static void unregisterModelListener(

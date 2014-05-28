@@ -22,9 +22,9 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class GetFileEntrySyncDLObjectEvent extends BaseEvent {
+public class GetFolderSyncDLObjectEvent extends BaseEvent {
 
-	public GetFileEntrySyncDLObjectEvent(
+	public GetFolderSyncDLObjectEvent(
 		long syncAccountId, Map<String, Object> parameters) {
 
 		super(syncAccountId, _URL_PATH, parameters);
@@ -36,6 +36,6 @@ public class GetFileEntrySyncDLObjectEvent extends BaseEvent {
 	}
 
 	private static final String _URL_PATH =
-		"/sync-web.syncdlobject/get-file-entry-sync-dl-object";
+		"/sync-web.syncdlobject/get-folder-sync-dl-object";
 
 }
