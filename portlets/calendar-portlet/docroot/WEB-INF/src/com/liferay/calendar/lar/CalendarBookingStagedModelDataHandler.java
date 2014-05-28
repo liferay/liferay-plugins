@@ -27,8 +27,11 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 import java.util.Map;
 
@@ -198,6 +201,18 @@ public class CalendarBookingStagedModelDataHandler
 					calendarBooking.getFirstReminderType(),
 					calendarBooking.getSecondReminder(),
 					calendarBooking.getSecondReminderType(), serviceContext);
+		}
+
+		List<Element> discussions = portletDataContext.getReferenceElements(
+			calendarBooking, MBMessage.class);
+
+		if (ListUtil.isNotEmpty(discussions)) {
+			MBMessageLocalServiceUtil.addDiscussionMessage(
+				userId, importedCalendarBooking.getUserName(),
+				importedCalendarBooking.getGroupId(),
+				CalendarBooking.class.getName(),
+				importedCalendarBooking.getCalendarBookingId(),
+				WorkflowConstants.ACTION_PUBLISH);
 		}
 
 		portletDataContext.importClassedModel(
