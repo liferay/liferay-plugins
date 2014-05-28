@@ -564,25 +564,22 @@ public class SyncFileService {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
-		if (syncFile.isFolder()) {
-			parameters.put("name", syncFile.getName());
-			parameters.put("parentFolderId", parentSyncFile.getTypePK());
-			parameters.put("repositoryId", parentSyncFile.getRepositoryId());
-		}
-		else {
-			parameters.put("folderId", parentSyncFile.getTypePK());
-			parameters.put("groupId", parentSyncFile.getRepositoryId());
-			parameters.put("title", syncFile.getName());
-		}
-
 		parameters.put("syncFile", syncFile);
 
 		Event event = null;
 
 		if (syncFile.isFolder()) {
+			parameters.put("name", syncFile.getName());
+			parameters.put("parentFolderId", parentSyncFile.getTypePK());
+			parameters.put("repositoryId", parentSyncFile.getRepositoryId());
+
 			event = new GetFolderSyncDLObjectEvent(syncAccountId, parameters);
 		}
 		else {
+			parameters.put("folderId", parentSyncFile.getTypePK());
+			parameters.put("groupId", parentSyncFile.getRepositoryId());
+			parameters.put("title", syncFile.getName());
+
 			event = new GetFileEntrySyncDLObjectEvent(
 				syncAccountId, parameters);
 		}
