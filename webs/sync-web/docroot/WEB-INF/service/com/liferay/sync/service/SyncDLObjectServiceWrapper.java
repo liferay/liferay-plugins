@@ -157,6 +157,15 @@ public class SyncDLObjectServiceWrapper implements SyncDLObjectService,
 	}
 
 	@Override
+	public com.liferay.sync.model.SyncDLObject getFolderSyncDLObject(
+		long repositoryId, long parentFolderId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _syncDLObjectService.getFolderSyncDLObject(repositoryId,
+			parentFolderId, name);
+	}
+
+	@Override
 	public java.util.List<com.liferay.sync.model.SyncDLObject> getFolderSyncDLObjects(
 		long repositoryId, long parentFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,

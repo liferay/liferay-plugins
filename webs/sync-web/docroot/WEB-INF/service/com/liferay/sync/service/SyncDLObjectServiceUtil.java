@@ -155,6 +155,14 @@ public class SyncDLObjectServiceUtil {
 		return getService().getFolderSyncDLObject(folderId);
 	}
 
+	public static com.liferay.sync.model.SyncDLObject getFolderSyncDLObject(
+		long repositoryId, long parentFolderId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getFolderSyncDLObject(repositoryId, parentFolderId, name);
+	}
+
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> getFolderSyncDLObjects(
 		long repositoryId, long parentFolderId)
 		throws com.liferay.portal.kernel.exception.PortalException,

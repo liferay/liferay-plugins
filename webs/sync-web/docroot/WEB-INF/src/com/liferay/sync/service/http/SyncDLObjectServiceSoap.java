@@ -209,6 +209,22 @@ public class SyncDLObjectServiceSoap {
 		}
 	}
 
+	public static com.liferay.sync.model.SyncDLObjectSoap getFolderSyncDLObject(
+		long repositoryId, long parentFolderId, java.lang.String name)
+		throws RemoteException {
+		try {
+			com.liferay.sync.model.SyncDLObject returnValue = SyncDLObjectServiceUtil.getFolderSyncDLObject(repositoryId,
+					parentFolderId, name);
+
+			return com.liferay.sync.model.SyncDLObjectSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.sync.model.SyncDLObjectSoap[] getFolderSyncDLObjects(
 		long repositoryId, long parentFolderId) throws RemoteException {
 		try {
