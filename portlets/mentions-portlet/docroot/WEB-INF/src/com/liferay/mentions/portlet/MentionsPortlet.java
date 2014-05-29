@@ -98,8 +98,7 @@ public class MentionsPortlet extends MVCPortlet {
 
 		SocialInteractionsConfiguration socialInteractionsConfiguration =
 			SocialInteractionsConfigurationUtil.
-				getSocialInteractionsConfiguration(
-					themeDisplay.getCompanyId(), request);
+				getSocialInteractionsConfiguration(themeDisplay.getCompanyId());
 
 		List<User> users = MentionsUserFinderUtil.getUsers(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(), query,
