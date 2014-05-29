@@ -18,7 +18,10 @@
 
 <%
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+String exceptionArgs = ParamUtil.getString(request, "exceptionArgs");
 %>
+
+<liferay-ui:error exception="<%= KBArticleImportException.class %>" message="<%= exceptionArgs %>" />
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
@@ -145,6 +148,10 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 				<aui:button-row cssClass="float-container">
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
 						<liferay-util:include page="/admin/common/add_article_button.jsp" servletContext="<%= application %>" />
+					</c:if>
+
+					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
+						<liferay-util:include page="/admin/import_articles_button.jsp" servletContext="<%= application %>" />
 					</c:if>
 
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) && GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS) %>">
