@@ -15,6 +15,7 @@
 package com.liferay.knowledgebase.admin.portlet;
 
 import com.liferay.knowledgebase.KBArticleContentException;
+import com.liferay.knowledgebase.KBArticleImportException;
 import com.liferay.knowledgebase.KBArticlePriorityException;
 import com.liferay.knowledgebase.KBArticleTitleException;
 import com.liferay.knowledgebase.KBCommentContentException;
@@ -23,6 +24,8 @@ import com.liferay.knowledgebase.KBTemplateTitleException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
+import com.liferay.knowledgebase.admin.importer.KBArticleHierarchyImporter;
+import com.liferay.knowledgebase.admin.importer.KBArticleImporterContext;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBTemplate;
@@ -34,6 +37,7 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -48,14 +52,15 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.AssetCategoryException;
 import com.liferay.portlet.asset.AssetTagException;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
@@ -75,8 +80,6 @@ import java.util.Map;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
-import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -122,6 +125,46 @@ public class AdminPortlet extends MVCPortlet {
 		}
 		finally {
 			StreamUtil.cleanUp(inputStream);
+		}
+	}
+
+	public void addFile(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortalException, SystemException {
+
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		File file = uploadPortletRequest.getFile("file");
+
+		if (Validator.isNull(file)) {
+			throw new KBArticleImportException("Null import file");
+		}
+
+		String fileName = uploadPortletRequest.getParameter("uploadFileName");
+
+		if (Validator.isNull(fileName)) {
+			throw new KBArticleImportException("No import filename");
+		}
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			AdminPortlet.class.getName(), actionRequest);
+
+		serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
+
+		KBArticleImporterContext importerContext = new KBArticleImporterContext(
+			fileName, serviceContext);
+
+		KBArticleHierarchyImporter importer = new KBArticleHierarchyImporter();
+
+		try {
+			importer.processZipFile(file, importerContext);
+		}
+		catch (KBArticleImportException kbaie) {
+			actionResponse.setRenderParameter(
+				"exceptionArgs", kbaie.getLocalizedMessage());
+
+			throw kbaie;
 		}
 	}
 
@@ -456,20 +499,23 @@ public class AdminPortlet extends MVCPortlet {
 		}
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				actionRequest, PortletKeys.KNOWLEDGE_BASE_ADMIN,
-				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
+			String namespace = actionResponse.getNamespace();
+			String redirect = getRedirect(actionRequest, actionResponse);
 
-			portletURL.setParameter(
-				"mvcPath", templatePath + "edit_article.jsp");
-			portletURL.setParameter(
-				"redirect", getRedirect(actionRequest, actionResponse));
-			portletURL.setParameter(
-				"resourcePrimKey",
-				String.valueOf(kbArticle.getResourcePrimKey()));
-			portletURL.setWindowState(actionRequest.getWindowState());
+			String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
 
-			actionRequest.setAttribute(WebKeys.REDIRECT, portletURL.toString());
+			editURL = HttpUtil.setParameter(
+				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
+			editURL = HttpUtil.setParameter(
+				editURL, namespace + "mvcPath",
+				templatePath + "edit_article.jsp");
+			editURL = HttpUtil.setParameter(
+				editURL, namespace + "redirect", redirect);
+			editURL = HttpUtil.setParameter(
+				editURL, namespace + "resourcePrimKey",
+				kbArticle.getResourcePrimKey());
+
+			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
 		}
 	}
 
