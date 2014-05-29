@@ -34,7 +34,7 @@ if (userCalendarResource != null) {
 
 List<Calendar> otherCalendars = new ArrayList<Calendar>();
 
-long[] calendarIds = StringUtil.split(SessionClicks.get(request, "otherCalendars", StringPool.BLANK), 0L);
+long[] calendarIds = StringUtil.split(SessionClicks.get(request, "calendar-portlet-other-calendars", StringPool.BLANK), 0L);
 
 for (long calendarId : calendarIds) {
 	Calendar calendar = CalendarServiceUtil.fetchCalendar(calendarId);
@@ -242,7 +242,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 						var calendarIds = A.Array.invoke(event.newVal, 'get', 'calendarId');
 
-						Liferay.Store('otherCalendars', calendarIds.join());
+						Liferay.Store('calendar-portlet-other-calendars', calendarIds.join());
 					},
 					'scheduler-calendar:visibleChange': function(event) {
 						syncCalendarsMap();
