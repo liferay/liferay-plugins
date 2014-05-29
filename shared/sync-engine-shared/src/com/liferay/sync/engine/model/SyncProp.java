@@ -44,7 +44,7 @@ public class SyncProp extends BaseModel {
 	@DatabaseField(id = true, useGetSet = true)
 	protected String key;
 
-	@DatabaseField(useGetSet = true)
+	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String value;
 
 }
