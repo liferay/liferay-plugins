@@ -36,14 +36,12 @@ public class DefaultMentionsUserFinderImpl implements MentionsUserFinder {
 	@Override
 	public List<User> getUsers(
 			long companyId, long userId, String query,
-			SocialInteractionsConfiguration configuration)
+			SocialInteractionsConfiguration socialInteractionsConfiguration)
 		throws PortalException, SystemException {
 
-		if (!configuration.isSocialInteractionsEnabled()) {
-			return Collections.emptyList();
-		}
+		if (socialInteractionsConfiguration.
+				isSocialInteractionsAnyUserEnabled()) {
 
-		if (configuration.isSocialInteractionsAnyUserEnabled()) {
 			LinkedHashMap<String, Object> params =
 				new LinkedHashMap<String, Object>();
 
@@ -54,64 +52,39 @@ public class DefaultMentionsUserFinderImpl implements MentionsUserFinder {
 				_MAX_USERS, new UserScreenNameComparator());
 		}
 
-		int[] types = getRelationTypes(configuration);
+		User user = UserLocalServiceUtil.getUser(userId);
 
-		long[] groupIds = getGroupIds(userId, configuration);
+		int[] types =
+			socialInteractionsConfiguration.
+				getSocialInteractionsSocialRelationTypesArray();
 
-		boolean searchBySocialRelation =
-			configuration.isSocialInteractionsSocialRelationTypesEnabled() &&
-			types.length > 0;
+		if (socialInteractionsConfiguration.
+				isSocialInteractionsSocialRelationTypesEnabled() &&
+			socialInteractionsConfiguration.
+				isSocialInteractionsSitesEnabled()) {
 
-		boolean searchByGroup =
-			configuration.isSocialInteractionsSitesEnabled() &&
-				groupIds.length > 0;
-
-		if (searchBySocialRelation && searchByGroup) {
 			return UserLocalServiceUtil.searchSocial(
-				groupIds, userId, types, query, QueryUtil.ALL_POS,
+				user.getGroupIds(), userId, types, query, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 		}
 
-		if (searchByGroup) {
+		if (socialInteractionsConfiguration.
+				isSocialInteractionsSitesEnabled()) {
+
 			return UserLocalServiceUtil.searchSocial(
-				companyId, groupIds, query, QueryUtil.ALL_POS,
+				companyId, user.getGroupIds(), query, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS);
 		}
 
-		if (searchBySocialRelation) {
+		if (socialInteractionsConfiguration.
+				isSocialInteractionsSocialRelationTypesEnabled()) {
+
 			return UserLocalServiceUtil.searchSocial(
 				userId, types, query, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 		}
 
 		return Collections.emptyList();
 	}
-
-	protected int[] getRelationTypes(
-		SocialInteractionsConfiguration configuration) {
-
-		if (!configuration.isSocialInteractionsSocialRelationTypesEnabled()) {
-			return _EMPTY_TYPES;
-		}
-
-		return configuration.getSocialInteractionsSocialRelationTypesArray();
-	}
-
-	private long[] getGroupIds(
-			long userId, SocialInteractionsConfiguration configuration)
-		throws PortalException, SystemException {
-
-		if (!configuration.isSocialInteractionsSitesEnabled()) {
-			return _EMPTY_GROUPS;
-		}
-
-		User user = UserLocalServiceUtil.getUser(userId);
-
-		return user.getGroupIds();
-	}
-
-	private static long[] _EMPTY_GROUPS = {};
-
-	private static int[] _EMPTY_TYPES = {};
 
 	private static int _MAX_USERS = 100;
 

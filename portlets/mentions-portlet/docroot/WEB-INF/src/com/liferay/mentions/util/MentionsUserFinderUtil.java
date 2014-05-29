@@ -32,11 +32,11 @@ public class MentionsUserFinderUtil {
 
 	public static List<User> getUsers(
 			long companyId, long userId, String query,
-			SocialInteractionsConfiguration configuration)
+			SocialInteractionsConfiguration socialInteractionsConfiguration)
 		throws PortalException, SystemException {
 
 		return getMentionsUserFinder().getUsers(
-			companyId, userId, query, configuration);
+			companyId, userId, query, socialInteractionsConfiguration);
 	}
 
 	public void setMentionsUserFinder(MentionsUserFinder mentionsUserFinder) {

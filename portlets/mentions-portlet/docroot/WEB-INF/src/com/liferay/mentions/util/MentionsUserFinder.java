@@ -28,7 +28,7 @@ public interface MentionsUserFinder {
 
 	public List<User> getUsers(
 			long companyId, long userId, String query,
-			SocialInteractionsConfiguration configuration)
+			SocialInteractionsConfiguration socialInteractionsConfiguration)
 		throws PortalException, SystemException;
 
 }

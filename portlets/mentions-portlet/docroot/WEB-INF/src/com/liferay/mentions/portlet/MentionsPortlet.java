@@ -96,14 +96,14 @@ public class MentionsPortlet extends MVCPortlet {
 
 		String query = ParamUtil.getString(request, "query");
 
-		SocialInteractionsConfiguration configuration =
+		SocialInteractionsConfiguration socialInteractionsConfiguration =
 			SocialInteractionsConfigurationUtil.
 				getSocialInteractionsConfiguration(
 					themeDisplay.getCompanyId(), request);
 
 		List<User> users = MentionsUserFinderUtil.getUsers(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(), query,
-			configuration);
+			socialInteractionsConfiguration);
 
 		for (User user : users) {
 			if (user.isDefaultUser() ||
