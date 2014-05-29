@@ -255,7 +255,7 @@ public class KBArticleHierarchyImporter {
 		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
 
 		// Create map of the ZIP files folders to Markdown files, extracting the
-		// Learning Paths home page Markdown file along the way.
+		// root home page Markdown file along the way.
 
 		String rootHomeMarkdown = null;
 
@@ -264,9 +264,9 @@ public class KBArticleHierarchyImporter {
 				int lastSlash = zipEntry.lastIndexOf(StringPool.SLASH);
 
 				if (lastSlash == -1) {
-					if (zipEntry.equals(_HOME_MARKDOWN_FILE)) {
+					if (zipEntry.equals(_ROOT_HOME_MARKDOWN_FILE)) {
 						rootHomeMarkdown = zipReader.getEntryAsString(
-							_HOME_MARKDOWN_FILE);
+							_ROOT_HOME_MARKDOWN_FILE);
 					}
 
 					continue;
@@ -288,12 +288,12 @@ public class KBArticleHierarchyImporter {
 
 		if (Validator.isNull(rootHomeMarkdown)) {
 			throw new KBArticleImportException(
-				"Missing file entry: " + _HOME_MARKDOWN_FILE);
+				"Missing file entry: " + _ROOT_HOME_MARKDOWN_FILE);
 		}
 
 		KBArticle rootHomeKBArticle = createKBArticleFromMarkdown(
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			rootHomeMarkdown, importerContext, _HOME_MARKDOWN_FILE);
+			rootHomeMarkdown, importerContext, _ROOT_HOME_MARKDOWN_FILE);
 
 		// Create kb articles for each chapter home Markdown file and each
 		// chapter's tutorial Markdown files.
@@ -495,10 +495,8 @@ public class KBArticleHierarchyImporter {
 		return sb.toString();
 	}
 
-	private static final String _CHAPTER_HOME_MARKDOWN_FILE =
-		"00-introduction.markdown";
-
-	private static final String _HOME_MARKDOWN_FILE = "home.markdown";
+	private static final String _CHAPTER_HOME_MARKDOWN_FILE = "home.markdown";
+	private static final String _ROOT_HOME_MARKDOWN_FILE = "home.markdown";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleHierarchyImporter.class);
