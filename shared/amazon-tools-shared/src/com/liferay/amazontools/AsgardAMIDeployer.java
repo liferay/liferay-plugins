@@ -56,17 +56,17 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		CmdLineParser.Option imageNameOption = cmdLineParser.addStringOption(
 			"image.name");
+		CmdLineParser.Option parallelDeploymentOption =
+			cmdLineParser.addBooleanOption("parallel.deployment");
 		CmdLineParser.Option propertiesFileNameOption =
 			cmdLineParser.addStringOption("properties.file.name");
-		CmdLineParser.Option parallelDeployment =
-			cmdLineParser.addBooleanOption("parallel.deployment");
 
 		cmdLineParser.parse(args);
 
 		try {
 			new AsgardAMIDeployer(
 				(String)cmdLineParser.getOptionValue(imageNameOption),
-				(Boolean)cmdLineParser.getOptionValue(parallelDeployment),
+				(Boolean)cmdLineParser.getOptionValue(parallelDeploymentOption),
 				(String)cmdLineParser.getOptionValue(propertiesFileNameOption));
 		}
 		catch (Exception e) {
@@ -194,17 +194,17 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		parameters.put("checkHealth", "true");
 		parameters.put("imageId", getImageId(_imageName));
 
-		if (!_parallelDeployment) {
-			parameters.put("desiredCapacity", "1");
-			parameters.put("min", "1");
-		}
-
 		String asgardClusterName = properties.getProperty(
 			"asgard.cluster.name");
 
 		parameters.put("name", asgardClusterName);
 
 		parameters.put("trafficAllowed", "true");
+
+		if (!_parallelDeployment) {
+			parameters.put("desiredCapacity", "1");
+			parameters.put("min", "1");
+		}
 
 		_jsonWebServiceClient.doPost(
 			"/" + availabilityZone + "/cluster/createNextGroup", parameters);
