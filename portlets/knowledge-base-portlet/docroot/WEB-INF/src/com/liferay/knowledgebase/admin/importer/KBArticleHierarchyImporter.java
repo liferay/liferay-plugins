@@ -264,9 +264,9 @@ public class KBArticleHierarchyImporter {
 				int lastSlash = zipEntry.lastIndexOf(StringPool.SLASH);
 
 				if (lastSlash == -1) {
-					if (zipEntry.equals(_ROOT_HOME_MARKDOWN_FILE)) {
+					if (zipEntry.equals(_HOME_MARKDOWN)) {
 						rootHomeMarkdown = zipReader.getEntryAsString(
-							_ROOT_HOME_MARKDOWN_FILE);
+							_HOME_MARKDOWN);
 					}
 
 					continue;
@@ -288,12 +288,12 @@ public class KBArticleHierarchyImporter {
 
 		if (Validator.isNull(rootHomeMarkdown)) {
 			throw new KBArticleImportException(
-				"Missing file entry: " + _ROOT_HOME_MARKDOWN_FILE);
+				"Missing file entry: " + _HOME_MARKDOWN);
 		}
 
 		KBArticle rootHomeKBArticle = createKBArticleFromMarkdown(
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			rootHomeMarkdown, importerContext, _ROOT_HOME_MARKDOWN_FILE);
+			rootHomeMarkdown, importerContext, _HOME_MARKDOWN);
 
 		// Create kb articles for each chapter home Markdown file and each
 		// chapter's tutorial Markdown files.
@@ -311,7 +311,9 @@ public class KBArticleHierarchyImporter {
 			List<String> chapterMarkdownFileEntries = new ArrayList<String>();
 
 			for (String fileEntry : zipFileEntries) {
-				if (fileEntry.endsWith(_CHAPTER_HOME_MARKDOWN_FILE)) {
+				if (fileEntry.endsWith(_INTRODUCTION_MARKDOWN) ||
+					fileEntry.endsWith(_INTRO_MARKDOWN)) {
+
 					chapterHomeFileEntry = fileEntry;
 				}
 				else {
@@ -320,20 +322,16 @@ public class KBArticleHierarchyImporter {
 			}
 
 			if (Validator.isNull(chapterHomeFileEntry)) {
-				StringBuffer sb = new StringBuffer("Missing file entry: ");
 
-				sb.append(folder);
-				sb.append(StringPool.SLASH);
-				sb.append(_CHAPTER_HOME_MARKDOWN_FILE);
-
-				throw new KBArticleImportException(sb.toString());
+				throw new KBArticleImportException(
+					"Missing intro file entry in folder: " + folder);
 			}
 
-			String chapterHomeMarkdown = zipReader.getEntryAsString(
+			String chapterIntroMarkdown = zipReader.getEntryAsString(
 				chapterHomeFileEntry);
 
-			KBArticle chapterHomeKBArticle = createKBArticleFromMarkdown(
-				rootHomeKBArticle.getResourcePrimKey(), chapterHomeMarkdown,
+			KBArticle chapterIntroKBArticle = createKBArticleFromMarkdown(
+				rootHomeKBArticle.getResourcePrimKey(), chapterIntroMarkdown,
 				importerContext, chapterHomeFileEntry);
 
 			for (String tutorialFileEntry : chapterMarkdownFileEntries) {
@@ -342,7 +340,7 @@ public class KBArticleHierarchyImporter {
 
 				if (Validator.isNotNull(tutorialMarkdown)) {
 					createKBArticleFromMarkdown(
-						chapterHomeKBArticle.getResourcePrimKey(),
+						chapterIntroKBArticle.getResourcePrimKey(),
 						tutorialMarkdown, importerContext, tutorialFileEntry);
 				}
 				else {
@@ -495,8 +493,9 @@ public class KBArticleHierarchyImporter {
 		return sb.toString();
 	}
 
-	private static final String _CHAPTER_HOME_MARKDOWN_FILE = "home.markdown";
-	private static final String _ROOT_HOME_MARKDOWN_FILE = "home.markdown";
+	private static final String _HOME_MARKDOWN = "home.markdown";
+	private static final String _INTRO_MARKDOWN = "intro.markdown";
+	private static final String _INTRODUCTION_MARKDOWN = "introduction.markdown";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleHierarchyImporter.class);
