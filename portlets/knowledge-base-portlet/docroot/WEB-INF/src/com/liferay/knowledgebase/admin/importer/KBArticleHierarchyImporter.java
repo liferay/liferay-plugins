@@ -306,20 +306,20 @@ public class KBArticleHierarchyImporter {
 
 			List<String> zipFileEntries = _folderFileEntryMap.get(folder);
 
-			String chapterIntroFileEntry = null;
+			String chapterHomeFileEntry = null;
 
 			List<String> chapterMarkdownFileEntries = new ArrayList<String>();
 
 			for (String fileEntry : zipFileEntries) {
 				if (fileEntry.endsWith(_CHAPTER_HOME_MARKDOWN_FILE)) {
-					chapterIntroFileEntry = fileEntry;
+					chapterHomeFileEntry = fileEntry;
 				}
 				else {
 					chapterMarkdownFileEntries.add(fileEntry);
 				}
 			}
 
-			if (Validator.isNull(chapterIntroFileEntry)) {
+			if (Validator.isNull(chapterHomeFileEntry)) {
 				StringBuffer sb = new StringBuffer("Missing file entry: ");
 
 				sb.append(folder);
@@ -330,11 +330,11 @@ public class KBArticleHierarchyImporter {
 			}
 
 			String chapterHomeMarkdown = zipReader.getEntryAsString(
-				chapterIntroFileEntry);
+				chapterHomeFileEntry);
 
 			KBArticle chapterHomeKBArticle = createKBArticleFromMarkdown(
 				rootHomeKBArticle.getResourcePrimKey(), chapterHomeMarkdown,
-				importerContext, chapterIntroFileEntry);
+				importerContext, chapterHomeFileEntry);
 
 			for (String tutorialFileEntry : chapterMarkdownFileEntries) {
 				String tutorialMarkdown = zipReader.getEntryAsString(
