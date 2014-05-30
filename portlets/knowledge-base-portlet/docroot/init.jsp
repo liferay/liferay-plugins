@@ -25,7 +25,8 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
-<%@ page import="com.liferay.knowledgebase.KBArticleContentException" %><%@
+<%@ page import="com.liferay.compat.portal.kernel.util.ArrayUtil" %><%@
+page import="com.liferay.knowledgebase.KBArticleContentException" %><%@
 page import="com.liferay.knowledgebase.KBArticlePriorityException" %><%@
 page import="com.liferay.knowledgebase.KBArticleTitleException" %><%@
 page import="com.liferay.knowledgebase.KBCommentContentException" %><%@
@@ -73,7 +74,6 @@ page import="com.liferay.portal.kernel.search.Indexer" %><%@
 page import="com.liferay.portal.kernel.search.IndexerRegistryUtil" %><%@
 page import="com.liferay.portal.kernel.search.SearchContext" %><%@
 page import="com.liferay.portal.kernel.search.SearchContextFactory" %><%@
-page import="com.liferay.portal.kernel.util.ArrayUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.ContentTypes" %><%@
 page import="com.liferay.portal.kernel.util.FastDateFormatConstants" %><%@
