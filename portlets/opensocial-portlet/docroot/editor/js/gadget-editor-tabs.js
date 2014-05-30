@@ -223,15 +223,6 @@ AUI.add(
 				NAME: 'tab-editor',
 
 				prototype: {
-					bindUI: function() {
-						var instance = this;
-
-						TabEditor.superclass.bindUI.apply(this, arguments);
-
-						instance.on('isDirtyChange', instance._onIsDirtyChange);
-						instance.on('labelChange', instance._onLabelChange);
-					},
-
 					initializer: function(config) {
 						var instance = this;
 
@@ -270,6 +261,15 @@ AUI.add(
 						var instance = this;
 
 						TabEditor.superclass.renderUI.apply(this, arguments);
+					},
+
+					bindUI: function() {
+						var instance = this;
+
+						TabEditor.superclass.bindUI.apply(this, arguments);
+
+						instance.on('isDirtyChange', instance._onIsDirtyChange);
+						instance.on('labelChange', instance._onLabelChange);
 					},
 
 					searchEditorText: function(searchText, caseInsensitive, replaceText, doReplace) {
