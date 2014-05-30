@@ -1077,7 +1077,7 @@
 
 					var getButtonConfig = function(label, callback) {
 						return {
-							label: Liferay.Language.get(label),
+							label: label,
 							on: {
 								click: function(event, buttonItem) {
 									if (callback) {
@@ -1100,10 +1100,10 @@
 								resizable: false,
 								toolbars: {
 									footer: [
-										getButtonConfig('only-this-instance', onlyThisInstanceFn),
-										getButtonConfig('all-following', allFollowingFn),
-										getButtonConfig('all-events-in-the-series', allEventsInFn),
-										getButtonConfig('cancel-this-change', cancelFn)
+										getButtonConfig(Liferay.Language.get('only-this-instance'), onlyThisInstanceFn),
+										getButtonConfig(Liferay.Language.get('all-following'), allFollowingFn),
+										getButtonConfig(Liferay.Language.get('all-events-in-the-series'), allEventsInFn),
+										getButtonConfig(Liferay.Language.get('cancel-this-change'), cancelFn)
 									]
 								},
 								width: 700
@@ -1132,7 +1132,7 @@
 
 					var getButtonConfig = function(label, callback) {
 						return {
-							label: Liferay.Language.get(label),
+							label: label,
 							on: {
 								click: function(event, buttonItem) {
 									if (callback) {
