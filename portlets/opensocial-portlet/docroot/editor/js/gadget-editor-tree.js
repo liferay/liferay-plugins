@@ -240,6 +240,16 @@ AUI.add(
 				NAME: 'tree-node-editor',
 
 				prototype: {
+					renderUI: function() {
+						var instance = this;
+
+						TreeNodeEditor.superclass.renderUI.apply(this, arguments);
+
+						instance._renderContextMenu();
+						instance._renderEditable();
+						instance._renderFileEntryLoaded();
+					},
+
 					bindUI: function() {
 						var instance = this;
 
@@ -251,16 +261,6 @@ AUI.add(
 						instance.after('permissionsChange', instance._afterPermissionsChange);
 
 						instance.on('entryIdChange', instance._onEntryIdChange);
-					},
-
-					renderUI: function() {
-						var instance = this;
-
-						TreeNodeEditor.superclass.renderUI.apply(this, arguments);
-
-						instance._renderContextMenu();
-						instance._renderEditable();
-						instance._renderFileEntryLoaded();
 					},
 
 					appendChild: function(node) {
