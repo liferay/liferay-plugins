@@ -29,7 +29,7 @@ import java.util.Set;
 
 /**
  * @author Brian Wing Shun Chan
- * @author Raymond Aug�
+ * @author Raymond Augé
  * @author Eduardo Lundgren
  */
 public class LocaleUtil {
