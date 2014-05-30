@@ -181,7 +181,7 @@ public class AdminIndexer extends BaseIndexer {
 	@Override
 	protected void doReindex(String className, long classPK) throws Exception {
 		KBArticle kbArticle = KBArticleLocalServiceUtil.getLatestKBArticle(
-			classPK, WorkflowConstants.STATUS_APPROVED);
+			classPK, WorkflowConstants.STATUS_ANY);
 
 		reindexKBArticles(kbArticle);
 	}
