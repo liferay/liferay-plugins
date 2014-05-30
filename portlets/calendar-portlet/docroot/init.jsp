@@ -139,6 +139,8 @@ String timeZoneId = portletPreferences.getValue("timeZoneId", user.getTimeZoneId
 boolean usePortalTimeZone = GetterUtil.getBoolean(portletPreferences.getValue("usePortalTimeZone", Boolean.TRUE.toString()));
 int weekStartsOn = GetterUtil.getInteger(portletPreferences.getValue("weekStartsOn", null), 0);
 
+String sessionClicksDefaultView = SessionClicks.get(request, "calendar-portlet-default-view", defaultView);
+
 if (usePortalTimeZone) {
 	timeZoneId = user.getTimeZoneId();
 }
@@ -148,8 +150,6 @@ int rssDelta = GetterUtil.getInteger(portletPreferences.getValue("rssDelta", Str
 String rssDisplayStyle = portletPreferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
 String rssFeedType = portletPreferences.getValue("rssFeedType", RSSUtil.FEED_TYPE_DEFAULT);
 long rssTimeInterval = GetterUtil.getLong(portletPreferences.getValue("rssTimeInterval", StringPool.BLANK), Time.WEEK);
-
-String sessionClicksDefaultView = SessionClicks.get(request, "calendar-portlet-default-view", defaultView);
 
 TimeZone userTimeZone = TimeZone.getTimeZone(timeZoneId);
 TimeZone utcTimeZone = TimeZone.getTimeZone(StringPool.UTC);
