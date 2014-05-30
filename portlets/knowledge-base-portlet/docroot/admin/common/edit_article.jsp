@@ -96,7 +96,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 			</div>
 		</aui:field-wrapper>
 
-		<c:if test="<%= Validator.isNotNull(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) && (parentResourcePrimKey == KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
+		<c:if test="<%= ArrayUtil.isNotEmpty(PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) && (parentResourcePrimKey == KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) %>">
 			<aui:model-context bean="<%= null %>" model="<%= KBArticle.class %>" />
 
 			<aui:select ignoreRequestValue="<%= true %>" multiple="<%= true %>" name="sections">
