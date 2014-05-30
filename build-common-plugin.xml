@@ -566,10 +566,12 @@
 						</pathconvert>
 					</else>
 				</if>
-				<for list="${patch.sources}" param="patch.item" delimiter=":">
+
+				<for delimiter=":" list="${patch.sources}" param="patch.file">
 					<sequential>
-						<echo>Patching @{patch.item}</echo>
-						<patch dir="${plugin.source.dir}" patchfile="@{patch.item}" strip="1" />
+						<echo>Applying patch @{patch.file}</echo>
+
+						<patch dir="${plugin.source.dir}" patchfile="@{patch.file}" strip="1" />
 					</sequential>
 				</for>
 			</then>
