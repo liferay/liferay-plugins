@@ -150,14 +150,14 @@ AUI.add(
 					var emailAddresses = [];
 
 					instance._invitedMembersList.all('.user').each(
-						function(user, index) {
-							userIds.push(user.attr('data-userId'));
+						function(item, index) {
+							userIds.push(item.attr('data-userId'));
 						}
 					);
 
 					instance._invitedEmailList.all('.user').each(
-						function(emailAddress, index) {
-							emailAddresses.push(emailAddress.attr('data-emailAddress'));
+						function(item, index) {
+							emailAddresses.push(item.attr('data-emailAddress'));
 						}
 					);
 
