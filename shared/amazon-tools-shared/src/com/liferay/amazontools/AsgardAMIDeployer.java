@@ -57,7 +57,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		CmdLineParser.Option imageNameOption = cmdLineParser.addStringOption(
 			"image.name");
 		CmdLineParser.Option parallelDeploymentOption =
-			cmdLineParser.addBooleanOption("parallel.deployment");
+			cmdLineParser.addStringOption("parallel.deployment");
 		CmdLineParser.Option propertiesFileNameOption =
 			cmdLineParser.addStringOption("properties.file.name");
 
@@ -66,7 +66,9 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		try {
 			new AsgardAMIDeployer(
 				(String)cmdLineParser.getOptionValue(imageNameOption),
-				(Boolean)cmdLineParser.getOptionValue(parallelDeploymentOption),
+				Boolean.parseBoolean(
+					(String)cmdLineParser.getOptionValue(
+						parallelDeploymentOption)),
 				(String)cmdLineParser.getOptionValue(propertiesFileNameOption));
 		}
 		catch (Exception e) {
