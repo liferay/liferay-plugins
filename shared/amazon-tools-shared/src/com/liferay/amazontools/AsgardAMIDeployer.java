@@ -66,7 +66,8 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		try {
 			new AsgardAMIDeployer(
 				(String)cmdLineParser.getOptionValue(imageNameOption),
-				(Boolean)cmdLineParser.getOptionValue(parallelDeploymentOption),
+				(Boolean)cmdLineParser.getOptionValue(
+					parallelDeploymentOption, Boolean.FALSE),
 				(String)cmdLineParser.getOptionValue(propertiesFileNameOption));
 		}
 		catch (Exception e) {
