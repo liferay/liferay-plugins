@@ -549,14 +549,14 @@
 				<if>
 					<available file="${patch.source}" type="dir" />
 					<then>
-						<pathconvert property="patch.sources">
+						<pathconvert property="patch.files">
 							<path>
 								<fileset dir="${patch.source}" />
 							</path>
 						</pathconvert>
 					</then>
 					<else>
-						<pathconvert property="patch.sources">
+						<pathconvert property="patch.files">
 							<path>
 								<fileset file="${patch.source}" />
 							</path>
@@ -564,9 +564,9 @@
 					</else>
 				</if>
 
-				<for delimiter=":" list="${patch.sources}" param="patch.file">
+				<for delimiter=":" list="${patch.files}" param="patch.file">
 					<sequential>
-						<echo>Applying patch @{patch.file}</echo>
+						<echo>Applying patch @{patch.file}.</echo>
 
 						<patch dir="${plugin.source.dir}" patchfile="@{patch.file}" strip="1" />
 					</sequential>
