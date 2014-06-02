@@ -14,22 +14,13 @@
 
 package com.liferay.amazontools;
 
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.services.autoscaling.AmazonAutoScalingClient;
 import com.amazonaws.services.autoscaling.model.AutoScalingGroup;
 import com.amazonaws.services.autoscaling.model.CreateOrUpdateTagsRequest;
 import com.amazonaws.services.autoscaling.model.DescribeAutoScalingGroupsResult;
 import com.amazonaws.services.ec2.model.CreateTagsRequest;
-import com.amazonaws.services.ec2.model.DeleteVolumeRequest;
-import com.amazonaws.services.ec2.model.DescribeVolumesRequest;
-import com.amazonaws.services.ec2.model.DescribeVolumesResult;
-import com.amazonaws.services.ec2.model.Filter;
 import com.amazonaws.services.ec2.model.Tag;
-import com.amazonaws.services.ec2.model.Volume;
 
 import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
-import com.liferay.jsonwebserviceclient.JSONWebServiceClientImpl;
 
 import jargs.gnu.CmdLineParser;
 
@@ -87,19 +78,11 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		_imageName = imageName;
 		_parallelDeployment = parallelDeployment;
 
-		_amazonAutoScalingClient = getAmazonAutoScalingClient(
-			properties.getProperty("access.key"),
-			properties.getProperty("secret.key"),
-			properties.getProperty("autoscaling.endpoint"));
 		_jsonWebServiceClient = getJSONWebServiceClient(
 			properties.getProperty("asgard.host.name"),
 			Integer.valueOf(properties.getProperty("asgard.host.port")),
 			properties.getProperty("asgard.login"),
 			properties.getProperty("asgard.password"));
-
-		System.out.println("Deleting available Volumes");
-
-		deleteAvailableVolumes();
 
 		System.out.println("Creating Auto Scaling Group");
 
@@ -181,7 +164,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 	protected String createAutoScalingGroup() throws Exception {
 		DescribeAutoScalingGroupsResult describeAutoScalingGroupsResult =
-			_amazonAutoScalingClient.describeAutoScalingGroups();
+			amazonAutoScalingClient.describeAutoScalingGroups();
 
 		List<AutoScalingGroup> autoScalingGroups =
 			describeAutoScalingGroupsResult.getAutoScalingGroups();
@@ -212,7 +195,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 		for (int i = 0; i < 12; i++) {
 			describeAutoScalingGroupsResult =
-				_amazonAutoScalingClient.describeAutoScalingGroups();
+				amazonAutoScalingClient.describeAutoScalingGroups();
 
 			autoScalingGroups =
 				describeAutoScalingGroupsResult.getAutoScalingGroups();
@@ -297,7 +280,7 @@ public class AsgardAMIDeployer extends BaseAMITool {
 
 				createOrUpdateTagsRequest.withTags(autoScalingTag);
 
-				_amazonAutoScalingClient.createOrUpdateTags(
+				amazonAutoScalingClient.createOrUpdateTags(
 					createOrUpdateTagsRequest);
 
 				created = true;
@@ -399,48 +382,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		}
 	}
 
-	protected void deleteAvailableVolumes() {
-		DescribeVolumesRequest describeVolumesRequest =
-			new DescribeVolumesRequest();
-
-		Filter filter = new Filter();
-
-		filter.setName("status");
-
-		filter.withValues("available");
-
-		describeVolumesRequest.withFilters(filter);
-
-		DescribeVolumesResult describeVolumesResult =
-			amazonEC2Client.describeVolumes(describeVolumesRequest);
-
-		List<Volume> volumes = describeVolumesResult.getVolumes();
-
-		for (int i = 0; i < volumes.size(); i++) {
-			DeleteVolumeRequest deleteVolumeRequest = new DeleteVolumeRequest();
-
-			Volume volume = volumes.get(i);
-
-			deleteVolumeRequest.setVolumeId(volume.getVolumeId());
-
-			amazonEC2Client.deleteVolume(deleteVolumeRequest);
-		}
-	}
-
-	protected AmazonAutoScalingClient getAmazonAutoScalingClient(
-		String accessKey, String secretKey, String endpoint) {
-
-		AWSCredentials awsCredentials = new BasicAWSCredentials(
-			accessKey, secretKey);
-
-		AmazonAutoScalingClient amazonAutoScalingClient =
-			new AmazonAutoScalingClient(awsCredentials);
-
-		amazonAutoScalingClient.setEndpoint(endpoint);
-
-		return amazonAutoScalingClient;
-	}
-
 	protected List<JSONObject> getInstanceStateJSONObjects(
 		JSONObject loadBalancerJSONObject, String autoScalingGroupName) {
 
@@ -464,22 +405,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		}
 
 		return instanceStateJSONObjects;
-	}
-
-	protected JSONWebServiceClient getJSONWebServiceClient(
-		String hostName, int hostPort, String login, String password) {
-
-		JSONWebServiceClientImpl jsonWebServiceClient =
-			new JSONWebServiceClientImpl();
-
-		jsonWebServiceClient.setHostName(hostName);
-		jsonWebServiceClient.setHostPort(hostPort);
-		jsonWebServiceClient.setLogin(login);
-		jsonWebServiceClient.setPassword(password);
-
-		jsonWebServiceClient.afterPropertiesSet();
-
-		return jsonWebServiceClient;
 	}
 
 	protected boolean isInService(JSONObject autoScalingGroupJSONObject) {
@@ -539,7 +464,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 		desktop.browse(URI.create(asgardURL));
 	}
 
-	private AmazonAutoScalingClient _amazonAutoScalingClient;
 	private String _imageName;
 	private JSONWebServiceClient _jsonWebServiceClient;
 	private boolean _parallelDeployment;

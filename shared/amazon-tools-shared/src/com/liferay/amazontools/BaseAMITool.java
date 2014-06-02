@@ -16,11 +16,15 @@ package com.liferay.amazontools;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.services.autoscaling.AmazonAutoScalingClient;
 import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.DescribeImagesRequest;
 import com.amazonaws.services.ec2.model.DescribeImagesResult;
 import com.amazonaws.services.ec2.model.Filter;
 import com.amazonaws.services.ec2.model.Image;
+
+import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
+import com.liferay.jsonwebserviceclient.JSONWebServiceClientImpl;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -41,10 +45,29 @@ public class BaseAMITool {
 	public BaseAMITool(String propertiesFileName) throws Exception {
 		properties = getProperties(propertiesFileName);
 
+		amazonAutoScalingClient = getAmazonAutoScalingClient(
+			properties.getProperty("access.key"),
+			properties.getProperty("secret.key"),
+			properties.getProperty("autoscaling.endpoint"));
+
 		amazonEC2Client = getAmazonEC2Client(
 			properties.getProperty("access.key"),
 			properties.getProperty("secret.key"),
 			properties.getProperty("ec2.endpoint"));
+	}
+
+	protected AmazonAutoScalingClient getAmazonAutoScalingClient(
+		String accessKey, String secretKey, String endpoint) {
+
+		AWSCredentials awsCredentials = new BasicAWSCredentials(
+			accessKey, secretKey);
+
+		AmazonAutoScalingClient amazonAutoScalingClient =
+			new AmazonAutoScalingClient(awsCredentials);
+
+		amazonAutoScalingClient.setEndpoint(endpoint);
+
+		return amazonAutoScalingClient;
 	}
 
 	protected AmazonEC2Client getAmazonEC2Client(
@@ -107,6 +130,22 @@ public class BaseAMITool {
 		return image.getImageId();
 	}
 
+	protected JSONWebServiceClient getJSONWebServiceClient(
+		String hostName, int hostPort, String login, String password) {
+
+		JSONWebServiceClientImpl jsonWebServiceClient =
+			new JSONWebServiceClientImpl();
+
+		jsonWebServiceClient.setHostName(hostName);
+		jsonWebServiceClient.setHostPort(hostPort);
+		jsonWebServiceClient.setLogin(login);
+		jsonWebServiceClient.setPassword(password);
+
+		jsonWebServiceClient.afterPropertiesSet();
+
+		return jsonWebServiceClient;
+	}
+
 	protected Properties getProperties(String propertiesFileName)
 		throws Exception {
 
@@ -141,6 +180,7 @@ public class BaseAMITool {
 		}
 	}
 
+	protected AmazonAutoScalingClient amazonAutoScalingClient;
 	protected AmazonEC2Client amazonEC2Client;
 	protected Properties properties;
 
