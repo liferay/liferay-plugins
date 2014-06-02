@@ -1936,10 +1936,10 @@ set CATALINA_OPTS="%CATALINA_OPTS% %JMX_OPTS%"]]></echo>
 		<sequential>
 			<if>
 				<not>
-					<available file="${app.server.dir}/webapps/manager" type="dir" />
+					<available file="${app.server.tomcat.dir}/webapps/manager" type="dir" />
 				</not>
 				<then>
-					<antelope:stringutil string="${app.server.dir}" property="tomcat.version.beginindex">
+					<antelope:stringutil string="${app.server.tomcat.dir}" property="tomcat.version.beginindex">
 						<antelope:indexof string="tomcat-" fromindex="0" />
 					</antelope:stringutil>
 
@@ -1951,7 +1951,7 @@ set CATALINA_OPTS="%CATALINA_OPTS% %JMX_OPTS%"]]></echo>
 						result="tomcat.version.beginindex"
 					/>
 
-					<antelope:stringutil string="${app.server.dir}" property="tomcat.version">
+					<antelope:stringutil string="${app.server.tomcat.dir}" property="tomcat.version">
 						<antelope:substring beginindex="${tomcat.version.beginindex}" />
 					</antelope:stringutil>
 
@@ -1969,7 +1969,7 @@ set CATALINA_OPTS="%CATALINA_OPTS% %JMX_OPTS%"]]></echo>
 					/>
 
 			        <unzip
-			                dest="${app.server.dir}/webapps/"
+			                dest="${app.server.tomcat.dir}/webapps/"
 			                src="tomcat.zip"
 			        >
 			                <patternset
@@ -1983,12 +1983,12 @@ set CATALINA_OPTS="%CATALINA_OPTS% %JMX_OPTS%"]]></echo>
 			        <delete file="tomcat.zip" />
 
 					<copy
-						file="${app.server.dir}/conf/tomcat-users.xml"
+						file="${app.server.tomcat.dir}/conf/tomcat-users.xml"
 						overwrite="true"
-						tofile="${app.server.dir}/conf/tomcat-users.xml.orig"
+						tofile="${app.server.tomcat.dir}/conf/tomcat-users.xml.orig"
 					/>
 
-					<echo file="${app.server.dir}/conf/tomcat-users.xml"><![CDATA[<?xml version='1.0' encoding='utf-8'?>
+					<echo file="${app.server.tomcat.dir}/conf/tomcat-users.xml"><![CDATA[<?xml version='1.0' encoding='utf-8'?>
 
 <tomcat-users>
 	<role rolename="tomcat"/>
