@@ -49,7 +49,6 @@ public class BaseAMITool {
 			properties.getProperty("access.key"),
 			properties.getProperty("secret.key"),
 			properties.getProperty("autoscaling.endpoint"));
-
 		amazonEC2Client = getAmazonEC2Client(
 			properties.getProperty("access.key"),
 			properties.getProperty("secret.key"),
@@ -133,17 +132,17 @@ public class BaseAMITool {
 	protected JSONWebServiceClient getJSONWebServiceClient(
 		String hostName, int hostPort, String login, String password) {
 
-		JSONWebServiceClientImpl jsonWebServiceClient =
+		JSONWebServiceClientImpl jsonWebServiceClientImpl =
 			new JSONWebServiceClientImpl();
 
-		jsonWebServiceClient.setHostName(hostName);
-		jsonWebServiceClient.setHostPort(hostPort);
-		jsonWebServiceClient.setLogin(login);
-		jsonWebServiceClient.setPassword(password);
+		jsonWebServiceClientImpl.setHostName(hostName);
+		jsonWebServiceClientImpl.setHostPort(hostPort);
+		jsonWebServiceClientImpl.setLogin(login);
+		jsonWebServiceClientImpl.setPassword(password);
 
-		jsonWebServiceClient.afterPropertiesSet();
+		jsonWebServiceClientImpl.afterPropertiesSet();
 
-		return jsonWebServiceClient;
+		return jsonWebServiceClientImpl;
 	}
 
 	protected Properties getProperties(String propertiesFileName)
