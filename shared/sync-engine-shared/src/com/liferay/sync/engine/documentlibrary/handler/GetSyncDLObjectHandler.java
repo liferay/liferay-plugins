@@ -20,6 +20,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.liferay.sync.engine.documentlibrary.event.Event;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncFileService;
+import com.liferay.sync.engine.util.FilePathNameUtil;
+
+import java.io.IOException;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author Shinn Lok
@@ -30,6 +37,48 @@ public class GetSyncDLObjectHandler extends BaseJSONHandler {
 		super(event);
 	}
 
+	protected void processFilePathChange(
+			SyncFile sourceSyncFile, SyncFile targetSyncFile)
+		throws Exception {
+
+		String targetSyncFileName = targetSyncFile.getName();
+
+		if (sourceSyncFile.getParentFolderId() !=
+				targetSyncFile.getParentFolderId()) {
+
+			SyncFile targetParentSyncFile = SyncFileService.fetchSyncFile(
+				targetSyncFile.getRepositoryId(), getSyncAccountId(),
+				targetSyncFile.getParentFolderId());
+
+			Path targetParentFilePath = Paths.get(
+				targetParentSyncFile.getFilePathName());
+
+			Path targetFilePath = targetParentFilePath.resolve(
+				targetSyncFileName);
+
+			Files.move(
+				Paths.get(sourceSyncFile.getFilePathName()), targetFilePath);
+
+			sourceSyncFile.setFilePathName(
+				FilePathNameUtil.getFilePathName(targetFilePath));
+			sourceSyncFile.setName(targetSyncFileName);
+		}
+		else if (!targetSyncFileName.equals(sourceSyncFile.getName())) {
+			Path sourceSyncFilePath = Paths.get(
+				sourceSyncFile.getFilePathName());
+
+			Path targetFilePath = sourceSyncFilePath.resolveSibling(
+				targetSyncFileName);
+
+			Files.move(
+				Paths.get(sourceSyncFile.getFilePathName()), targetFilePath);
+
+			sourceSyncFile.setFilePathName(
+				FilePathNameUtil.getFilePathName(targetFilePath));
+			sourceSyncFile.setName(targetSyncFileName);
+		}
+	}
+
 	@Override
 	protected void processResponse(String response) throws Exception {
 		ObjectMapper objectMapper = new ObjectMapper();
@@ -38,6 +87,8 @@ public class GetSyncDLObjectHandler extends BaseJSONHandler {
 			response, new TypeReference<SyncFile>() {});
 
 		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
+
+		processFilePathChange(localSyncFile, remoteSyncFile);
 
 		localSyncFile.setCompanyId(remoteSyncFile.getCompanyId());
 		localSyncFile.setParentFolderId(remoteSyncFile.getParentFolderId());

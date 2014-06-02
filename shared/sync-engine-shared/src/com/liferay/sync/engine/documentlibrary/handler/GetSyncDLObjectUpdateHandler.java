@@ -43,7 +43,7 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
+public class GetSyncDLObjectUpdateHandler extends GetSyncDLObjectHandler {
 
 	public GetSyncDLObjectUpdateHandler(Event event) {
 		super(event);
@@ -258,18 +258,7 @@ public class GetSyncDLObjectUpdateHandler extends BaseJSONHandler {
 			return;
 		}
 
-		String sourceFileName = String.valueOf(sourceFilePath.getFileName());
-
-		if (!sourceFileName.equals(targetSyncFile.getName())) {
-			Path targetFilePath = sourceFilePath.resolveSibling(
-				targetSyncFile.getName());
-
-			Files.move(sourceFilePath, targetFilePath);
-
-			sourceSyncFile.setFilePathName(
-				FilePathNameUtil.getFilePathName(targetFilePath));
-			sourceSyncFile.setName(targetSyncFile.getName());
-		}
+		processFilePathChange(sourceSyncFile, targetSyncFile);
 
 		sourceSyncFile.setChangeLog(targetSyncFile.getChangeLog());
 		sourceSyncFile.setChecksum(targetSyncFile.getChecksum());

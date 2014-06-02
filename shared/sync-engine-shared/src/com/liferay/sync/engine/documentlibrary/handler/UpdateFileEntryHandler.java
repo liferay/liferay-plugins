@@ -24,7 +24,7 @@ import com.liferay.sync.engine.service.SyncFileService;
 /**
  * @author Shinn Lok
  */
-public class UpdateFileEntryHandler extends BaseJSONHandler {
+public class UpdateFileEntryHandler extends GetSyncDLObjectHandler {
 
 	public UpdateFileEntryHandler(Event event) {
 		super(event);
@@ -38,6 +38,8 @@ public class UpdateFileEntryHandler extends BaseJSONHandler {
 			response, new TypeReference<SyncFile>() {});
 
 		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
+
+		processFilePathChange(localSyncFile, remoteSyncFile);
 
 		localSyncFile.setModifiedTime(remoteSyncFile.getModifiedTime());
 		localSyncFile.setParentFolderId(remoteSyncFile.getParentFolderId());

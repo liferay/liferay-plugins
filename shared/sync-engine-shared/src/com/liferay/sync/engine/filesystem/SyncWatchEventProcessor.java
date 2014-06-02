@@ -149,17 +149,7 @@ public class SyncWatchEventProcessor implements Runnable {
 			return;
 		}
 
-		SyncWatchEvent relatedSyncWatchEvent =
-			SyncWatchEventService.fetchSyncWatchEvent(
-				SyncWatchEvent.EVENT_TYPE_DELETE, syncFile.getFilePathName(),
-				syncWatchEvent.getTimestamp());
-
-		if (relatedSyncWatchEvent == null) {
-			return;
-		}
-
-		Path sourceFilePath = Paths.get(
-			relatedSyncWatchEvent.getFilePathName());
+		Path sourceFilePath = Paths.get(syncFile.getFilePathName());
 
 		if (parentTargetFilePath.equals(sourceFilePath.getParent())) {
 			SyncFileService.updateFileSyncFile(
@@ -184,8 +174,16 @@ public class SyncWatchEventProcessor implements Runnable {
 			syncWatchEvent.getSyncAccountId());
 
 		if (syncAccount.getState() != SyncAccount.STATE_DISCONNECTED) {
-			_processedSyncWatchEventIds.add(
-				relatedSyncWatchEvent.getSyncWatchEventId());
+			SyncWatchEvent relatedSyncWatchEvent =
+				SyncWatchEventService.fetchSyncWatchEvent(
+					SyncWatchEvent.EVENT_TYPE_DELETE,
+					syncWatchEvent.getFilePathName(),
+					syncWatchEvent.getTimestamp());
+
+			if (relatedSyncWatchEvent != null) {
+				_processedSyncWatchEventIds.add(
+					relatedSyncWatchEvent.getSyncWatchEventId());
+			}
 		}
 	}
 
@@ -211,17 +209,7 @@ public class SyncWatchEventProcessor implements Runnable {
 			return;
 		}
 
-		SyncWatchEvent relatedSyncWatchEvent =
-			SyncWatchEventService.fetchSyncWatchEvent(
-				SyncWatchEvent.EVENT_TYPE_DELETE, syncFile.getFilePathName(),
-				syncWatchEvent.getTimestamp());
-
-		if (relatedSyncWatchEvent == null) {
-			return;
-		}
-
-		Path sourceFilePath = Paths.get(
-			relatedSyncWatchEvent.getFilePathName());
+		Path sourceFilePath = Paths.get(syncFile.getFilePathName());
 
 		if (parentTargetFilePath.equals(sourceFilePath.getParent())) {
 			SyncFileService.updateFolderSyncFile(
@@ -245,8 +233,16 @@ public class SyncWatchEventProcessor implements Runnable {
 			syncWatchEvent.getSyncAccountId());
 
 		if (syncAccount.getState() != SyncAccount.STATE_DISCONNECTED) {
-			_processedSyncWatchEventIds.add(
-				relatedSyncWatchEvent.getSyncWatchEventId());
+			SyncWatchEvent relatedSyncWatchEvent =
+				SyncWatchEventService.fetchSyncWatchEvent(
+					SyncWatchEvent.EVENT_TYPE_DELETE,
+					syncWatchEvent.getFilePathName(),
+					syncWatchEvent.getTimestamp());
+
+			if (relatedSyncWatchEvent != null) {
+				_processedSyncWatchEventIds.add(
+					relatedSyncWatchEvent.getSyncWatchEventId());
+			}
 		}
 	}
 
