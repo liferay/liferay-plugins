@@ -1932,6 +1932,60 @@ set CATALINA_OPTS="%CATALINA_OPTS% %JMX_OPTS%"]]></echo>
 		</sequential>
 	</macrodef>
 
+	<macrodef name="setup-tomcat-manager">
+		<sequential>
+			<if>
+				<not>
+					<available file="${app.server.dir}/webapps/manager" type="dir" />
+				</not>
+				<then>
+					<antelope:stringutil string="${app.server.dir}" property="tomcat.version.beginindex">
+						<antelope:indexof string="tomcat-" fromindex="0" />
+					</antelope:stringutil>
+
+					<antelope:math
+						datatype="int"
+						operand1="${tomcat.version.beginindex}"
+						operand2="7"
+						operation="+"
+						result="tomcat.version.beginindex"
+					/>
+
+					<antelope:stringutil string="${app.server.dir}" property="tomcat.version">
+						<antelope:substring beginindex="${tomcat.version.beginindex}" />
+					</antelope:stringutil>
+
+					<antelope:stringutil string="${tomcat.version}" property="tomcat.major.version.endindex">
+						<antelope:indexof string="." fromindex="0" />
+					</antelope:stringutil>
+
+					<antelope:stringutil string="${tomcat.version}" property="tomcat.major.version">
+						<antelope:substring beginindex="0" endindex="${tomcat.major.version.endindex}" />
+					</antelope:stringutil>
+
+					<get
+						dest="tomcat.zip"
+						src="http://archive.apache.org/dist/tomcat/tomcat-${tomcat.major.version}/v${tomcat.version}/bin/apache-tomcat-${tomcat.version}.zip"
+					/>
+
+			        <unzip
+			                dest="${app.server.dir}/webapps/"
+			                src="tomcat.zip"
+			        >
+			                <patternset
+								includes="apache-tomcat-${tomcat.version}/webapps/manager/**/*"
+			                />
+							<mapper>
+							    <globmapper from="apache-tomcat-${tomcat.version}/webapps/*" to="*"/>
+							</mapper>
+			        </unzip>
+
+			        <delete file="tomcat.zip" />
+				</then>
+			</if>
+		</sequential>
+	</macrodef>
+
 	<macrodef name="test">
 		<attribute name="module.dir" />
 
