@@ -1977,15 +1977,15 @@ Please find a solution that does not require portal-impl.jar.
 					/>
 
 			        <unzip
-			                dest="${app.server.tomcat.dir}/webapps/"
-			                src="tomcat.zip"
+						dest="${app.server.tomcat.dir}/webapps/"
+						src="tomcat.zip"
 			        >
-			                <patternset
-								includes="apache-tomcat-${tomcat.version}/webapps/manager/**/*"
-			                />
-							<mapper>
-							    <globmapper from="apache-tomcat-${tomcat.version}/webapps/*" to="*"/>
-							</mapper>
+						<patternset
+							includes="apache-tomcat-${tomcat.version}/webapps/manager/**/*"
+						/>
+						<mapper>
+							<globmapper from="apache-tomcat-${tomcat.version}/webapps/*" to="*"/>
+						</mapper>
 			        </unzip>
 
 			        <delete file="tomcat.zip" />
@@ -1996,16 +1996,20 @@ Please find a solution that does not require portal-impl.jar.
 						tofile="${app.server.tomcat.dir}/conf/tomcat-users.xml.orig"
 					/>
 
-					<echo file="${app.server.tomcat.dir}/conf/tomcat-users.xml"><![CDATA[<?xml version='1.0' encoding='utf-8'?>
+					<echo file="${app.server.tomcat.dir}/conf/tomcat-users.xml">
+						<![CDATA[
+							<?xml version="1.0"?>
 
-<tomcat-users>
-	<role rolename="tomcat"/>
-	<role rolename="manager-gui"/>
-	<role rolename="manager-script"/>
-	<role rolename="manager-jmx"/>
-	<role rolename="manager-status"/>
-	<user username="${app.server.tomcat.manager.user}" password="${app.server.tomcat.manager.password}" roles="tomcat,manager-gui,manager-script,manager-jmx,manager-status"/>
-</tomcat-users>]]></echo>
+							<tomcat-users>
+								<role rolename="tomcat"/>
+								<role rolename="manager-gui"/>
+								<role rolename="manager-script"/>
+								<role rolename="manager-jmx"/>
+								<role rolename="manager-status"/>
+								<user username="${app.server.tomcat.manager.user}" password="${app.server.tomcat.manager.password}" roles="tomcat,manager-gui,manager-script,manager-jmx,manager-status" />
+							</tomcat-users>
+						]]>
+					</echo>
 				</then>
 			</if>
 		</sequential>
