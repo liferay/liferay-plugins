@@ -1051,6 +1051,25 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
+	<macrodef name="configure-jmx">
+		<sequential>
+			<if>
+				<os family="unix" />
+				<then>
+					<echo file="${app.server.tomcat.dir}/bin/setenv.sh" append="true"><![CDATA[
+JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
+CATALINA_OPTS="${CATALINA_OPTS} ${JMX_OPTS}"]]></echo>
+				</then>
+				<else>
+					<echo file="${app.server.tomcat.dir}/bin/setenv.sh" append="true"><![CDATA[
+set JMX_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false"
+set CATALINA_OPTS="%CATALINA_OPTS% %JMX_OPTS%"]]></echo>
+				</else>
+			</if>
+		</sequential>
+
+	</macrodef>
+
 	<macrodef name="deploy">
 		<attribute name="module.dir" />
 
