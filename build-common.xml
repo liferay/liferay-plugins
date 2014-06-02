@@ -1051,7 +1051,7 @@ Please find a solution that does not require portal-impl.jar.
 		</sequential>
 	</macrodef>
 
-	<macrodef name="configure-jmx">
+	<macrodef name="setup-tomcat-jmx">
 		<sequential>
 			<if>
 				<os family="unix" />
