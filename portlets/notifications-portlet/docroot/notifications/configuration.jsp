@@ -28,7 +28,7 @@
 					<span><liferay-ui:message key="receive-a-notification-when-someone" /></span>
 				</c:when>
 				<c:otherwise>
-					<span><liferay-ui:message key="no-available-options-to-configure" /></span>
+					<span><liferay-ui:message key="there-are-no-available-options-to-configure" /></span>
 				</c:otherwise>
 			</c:choose>
 		</div>
