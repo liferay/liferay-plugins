@@ -523,7 +523,6 @@ public class WSRPConsumerPortletLocalServiceImpl
 
 		portlet.setCompanyId(companyId);
 		portlet.setPortletId(portletId);
-		portlet.setTimestamp(System.currentTimeMillis());
 
 		PortletApp portletApp = PortletLocalServiceUtil.getPortletApp(
 			ClpSerializer.getServletContextName());
