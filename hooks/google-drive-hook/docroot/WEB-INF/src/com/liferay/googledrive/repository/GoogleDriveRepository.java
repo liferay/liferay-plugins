@@ -31,7 +31,6 @@ import com.google.api.services.drive.model.ParentReference;
 import com.google.api.services.drive.model.Revision;
 import com.google.api.services.drive.model.RevisionList;
 
-import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.googledrive.repository.model.GoogleDriveFileEntry;
 import com.liferay.googledrive.repository.model.GoogleDriveFileVersion;
 import com.liferay.googledrive.repository.model.GoogleDriveFolder;
@@ -48,6 +47,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
