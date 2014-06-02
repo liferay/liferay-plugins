@@ -23,7 +23,14 @@
 		</div>
 
 		<div class="receive-notification">
-			<span><liferay-ui:message key="receive-a-notification-when-someone" /></span>
+			<c:choose>
+				<c:when test="<%= UserNotificationDeliveryLocalServiceUtil.getUserNotificationDeliveriesCount() > 0 %>">
+					<span><liferay-ui:message key="receive-a-notification-when-someone" /></span>
+				</c:when>
+				<c:otherwise>
+					<span><liferay-ui:message key="no-available-options-to-configure" /></span>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
 
