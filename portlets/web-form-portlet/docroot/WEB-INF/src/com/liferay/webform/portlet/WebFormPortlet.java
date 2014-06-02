@@ -207,8 +207,9 @@ public class WebFormPortlet extends MVCPortlet {
 				else {
 					SessionMessages.add(
 						actionRequest,
-						portletId + SessionMessages.
-							KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE);
+						portletId +
+							SessionMessages.
+								KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE);
 				}
 			}
 			else {
