@@ -286,6 +286,9 @@ public class MemberRequestLocalServiceImpl
 			createAccountURL = serviceContext.getPortalURL();
 		}
 
+		createAccountURL = addParameterWithPortletNamespace(
+			createAccountURL, "key", memberRequest.getKey());
+
 		try {
 			WorkflowDefinitionLinkLocalServiceUtil.
 				getDefaultWorkflowDefinitionLink(
@@ -293,9 +296,6 @@ public class MemberRequestLocalServiceImpl
 		}
 		catch (NoSuchWorkflowDefinitionLinkException nswdle) {
 			String redirectURL = getRedirectURL(serviceContext);
-
-			redirectURL = addParameterWithPortletNamespace(
-				redirectURL, "key", memberRequest.getKey());
 
 			createAccountURL = addParameterWithPortletNamespace(
 				createAccountURL, "redirect", redirectURL);
