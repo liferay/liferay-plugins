@@ -847,7 +847,11 @@ Please find a solution that does not require portal-impl.jar.
 						<then>
 							<path id="plugin-test-type.classpath">
 								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-								<ivy:resources file="@{module.dir}/ivy.xml" transitive="${ivy.resolve.transitive.dependencies}" conf="test"/>
+								<ivy:resources
+									conf="test"
+									file="@{module.dir}/ivy.xml"
+									transitive="${ivy.resolve.transitive.dependencies}"
+								/>
 							</path>
 						</then>
 					</if>
