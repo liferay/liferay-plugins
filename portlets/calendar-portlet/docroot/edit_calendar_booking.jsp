@@ -609,6 +609,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 					Liferay.DatePickerUtil.syncUI(formNode, 'startTime', event.newVal);
 				}
 			},
+			borderColor: '#000',
 			borderStyle: 'dashed',
 			borderWidth: '2px',
 			color: '#F8F8F8',
