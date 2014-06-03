@@ -3,4 +3,10 @@
 
 <project name="build-common-web">
 	<import file="../build-common-plugin.xml" />
+
+	<target name="setup-arquillian">
+		<setup-arquillian
+			module.dir="${basedir}"
+		/>
+	</target>
 </project>
