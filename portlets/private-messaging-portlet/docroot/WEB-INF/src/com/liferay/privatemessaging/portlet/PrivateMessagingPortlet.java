@@ -154,13 +154,13 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 	}
 
 	public void sendMessage(
-			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
 		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(resourceRequest);
+			PortalUtil.getUploadPortletRequest(actionRequest);
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		long userId = ParamUtil.getLong(uploadPortletRequest, "userId");
@@ -195,7 +195,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 				}
 				catch (Exception e) {
 					_log.error(
-						translate(resourceRequest, "unable to attach file ") +
+						translate(actionRequest, "unable to attach file ") +
 							fileName, e);
 				}
 			}
@@ -207,7 +207,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			jsonObject.put("success", Boolean.TRUE);
 		}
 		catch (Exception e) {
-			jsonObject.put("message", getMessage(resourceRequest, e));
+			jsonObject.put("message", getMessage(actionRequest, e));
 
 			jsonObject.put("success", Boolean.FALSE);
 		}
@@ -221,7 +221,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			}
 		}
 
-		writeJSON(resourceRequest, resourceResponse, jsonObject);
+		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
 	@Override
@@ -238,9 +238,6 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 			}
 			else if (resourceID.equals("getUsers")) {
 				getUsers(resourceRequest, resourceResponse);
-			}
-			else if (resourceID.equals("sendMessage")) {
-				sendMessage(resourceRequest, resourceResponse);
 			}
 			else {
 				super.serveResource(resourceRequest, resourceResponse);
