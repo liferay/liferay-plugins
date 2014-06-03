@@ -1932,7 +1932,16 @@ Please find a solution that does not require portal-impl.jar.
 		<attribute name="module.dir" />
 
 		<sequential>
-			<echo file="@{module.dir}/test/integration/arquillian.xml"><![CDATA[<?xml version="1.0"?>
+			<if>
+				<and>
+					<available file="@{module.dir}/test/integration" />
+					<resourcecontains
+						resource="${module.dir.unix}/build.xml"
+						substring="/build-common-osgi-plugin.xml&quot;"
+					/>
+				</and>
+				<then>
+					<echo file="@{module.dir}/test/integration/arquillian.xml"><![CDATA[<?xml version="1.0"?>
 
 <arquillian
 	xmlns="http://jboss.org/schema/arquillian"
@@ -1947,6 +1956,8 @@ Please find a solution that does not require portal-impl.jar.
 		</configuration>
 	</container>
 </arquillian>]]></echo>
+				</then>
+			</if>
 		</sequential>
 	</macrodef>
 
