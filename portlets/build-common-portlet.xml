@@ -9,10 +9,4 @@
 			module.dir="${basedir}"
 		/>
 	</target>
-
-	<target name="setup-arquillian">
-		<setup-arquillian
-			module.dir="${basedir}"
-		/>
-	</target>
 </project>

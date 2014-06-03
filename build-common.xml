@@ -2587,6 +2587,13 @@ for (String path : paths) {
 		<echo message="${current.time}" />
 	</target>
 
+	<target name="setup-arquillian">
+		<loop-macrodef-or-target
+			module.dirs="${plugins.includes.path}"
+			target.name="setup-arquillian"
+		/>
+	</target>
+
 	<target name="setup-eclipse">
 		<java
 			classname="com.liferay.portal.tools.PluginsEnvironmentBuilder"
