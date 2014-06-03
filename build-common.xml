@@ -2159,18 +2159,23 @@ Please find a solution that does not require portal-impl.jar.
 						test.type="@{test.type}"
 					/>
 
-					<path id="plugin-test-type.classpath">
-						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-					</path>
-
 					<if>
 						<available file="@{module.dir}/ivy.xml" />
 						<then>
 							<path id="plugin-test-type.classpath">
 								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-								<ivy:resources file="@{module.dir}/ivy.xml" transitive="${ivy.resolve.transitive.dependencies}" conf="test"/>
+								<ivy:resources
+									conf="test"
+									file="@{module.dir}/ivy.xml"
+									transitive="${ivy.resolve.transitive.dependencies}"
+								/>
 							</path>
 						</then>
+						<else>
+							<path id="plugin-test-type.classpath">
+								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+							</path>
+						</else>
 					</if>
 
 					<if>
