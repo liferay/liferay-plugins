@@ -20,7 +20,6 @@ package com.liferay.so.service.impl;
 import com.liferay.compat.portal.kernel.util.StringUtil;
 import com.liferay.mail.service.MailServiceUtil;
 import com.liferay.portal.NoSuchUserException;
-import com.liferay.portal.NoSuchWorkflowDefinitionLinkException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -35,6 +34,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -286,12 +286,10 @@ public class MemberRequestLocalServiceImpl
 		createAccountURL = addParameterWithPortletNamespace(
 			createAccountURL, "key", memberRequest.getKey());
 
-		try {
-			WorkflowDefinitionLinkLocalServiceUtil.
-				getDefaultWorkflowDefinitionLink(
-					memberRequest.getCompanyId(), User.class.getName(), 0, 0);
-		}
-		catch (NoSuchWorkflowDefinitionLinkException nswdle) {
+		if (!WorkflowDefinitionLinkLocalServiceUtil.hasWorkflowDefinitionLink(
+				memberRequest.getCompanyId(),
+				WorkflowConstants.DEFAULT_GROUP_ID, User.class.getName(), 0)) {
+
 			String redirectURL = getRedirectURL(serviceContext);
 
 			createAccountURL = addParameterWithPortletNamespace(
