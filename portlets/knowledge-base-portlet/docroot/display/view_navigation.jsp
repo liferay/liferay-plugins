@@ -21,7 +21,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 
 List<Long> ancestorResourcePrimaryKeys = new ArrayList<Long>();
 
-if (resourcePrimKey != KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+if (kbArticle != null) {
 	KBArticle latestKBArticle = KBArticleLocalServiceUtil.getLatestKBArticle(kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_APPROVED);
 
 	ancestorResourcePrimaryKeys = latestKBArticle.getAncestorResourcePrimaryKeys();
