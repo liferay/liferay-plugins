@@ -410,7 +410,7 @@ AUI().use(
 			_onPollerUpdate: function(response) {
 				var instance = this;
 
-				instance._updateDockbarNotificationsCount(response.timestamp, response.newUserNotificationsCount, response.unreadUserNotificationsCount);
+				instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.timestamp, response.unreadUserNotificationsCount);
 			},
 
 			_openWindow: function(uri) {
@@ -445,7 +445,7 @@ AUI().use(
 				A.io.request(instance._getActionURL('setDelivered'));
 			},
 
-			_updateDockbarNotificationsCount: function(timestamp, newUserNotificationsCount, unreadUserNotificationsCount) {
+			_updateDockbarNotificationsCount: function(newUserNotificationsCount, timestamp, unreadUserNotificationsCount) {
 				var instance = this;
 
 				if (!instance._previousTimestamp || instance._previousTimestamp < timestamp ) {
