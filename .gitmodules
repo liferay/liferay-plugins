@@ -1,3 +1,0 @@
-[submodule "suites/content-targeting"]
-	path = suites/content-targeting
-	url = git@github.com:liferay/liferay-plugins-content-targeting.git
