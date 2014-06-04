@@ -7,6 +7,7 @@
 		<icon>/icon.png</icon>
 		<configuration-action-class>com.liferay.calendar.action.ConfigurationActionImpl</configuration-action-class>
 		<indexer-class>com.liferay.calendar.util.CalendarBookingIndexer</indexer-class>
+		<indexer-class>com.liferay.calendar.util.CalendarIndexer</indexer-class>
 		<scheduler-entry>
 			<scheduler-event-listener-class>com.liferay.calendar.messaging.CheckBookingsMessageListener</scheduler-event-listener-class>
 			<trigger>
