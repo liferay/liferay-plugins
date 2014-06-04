@@ -209,6 +209,8 @@ public class NotificationsPortlet extends MVCPortlet {
 						themeDisplay.getUserId(), false);
 
 			jsonObject.put(
+				"timestamp", String.valueOf(System.currentTimeMillis()));
+			jsonObject.put(
 				"newUserNotificationsCount", newUserNotificationsCount);
 			jsonObject.put(
 				"unreadUserNotificationsCount", unreadUserNotificationsCount);

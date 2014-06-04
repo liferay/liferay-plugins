@@ -410,7 +410,7 @@ AUI().use(
 			_onPollerUpdate: function(response) {
 				var instance = this;
 
-				instance._updateDockbarNotificationsCount(response.newUserNotificationsCount, response.unreadUserNotificationsCount);
+				instance._updateDockbarNotificationsCount(response.timestamp, response.newUserNotificationsCount, response.unreadUserNotificationsCount);
 			},
 
 			_openWindow: function(uri) {
@@ -445,13 +445,19 @@ AUI().use(
 				A.io.request(instance._getActionURL('setDelivered'));
 			},
 
-			_updateDockbarNotificationsCount: function(newUserNotificationsCount, unreadUserNotificationsCount) {
-				var dockbarUserNotificationsCount = A.one('.dockbar-user-notifications .user-notifications-count');
+			_updateDockbarNotificationsCount: function(timestamp, newUserNotificationsCount, unreadUserNotificationsCount) {
+				var instance = this;
 
-				if (dockbarUserNotificationsCount) {
-					dockbarUserNotificationsCount.toggleClass('alert', (newUserNotificationsCount > 0));
+				if (!instance._previousTimestamp || instance._previousTimestamp < timestamp ) {
+					instance._previousTimestamp = timestamp;
 
-					dockbarUserNotificationsCount.setHTML(unreadUserNotificationsCount);
+					var dockbarUserNotificationsCount = A.one('.dockbar-user-notifications .user-notifications-count');
+
+					if (dockbarUserNotificationsCount) {
+						dockbarUserNotificationsCount.toggleClass('alert', (newUserNotificationsCount > 0));
+
+						dockbarUserNotificationsCount.setHTML(unreadUserNotificationsCount);
+					}
 				}
 			},
 
@@ -493,7 +499,7 @@ AUI().use(
 										}
 									}
 
-									instance._updateNotificationsCount(response['newUserNotificationsCount'], response['unreadUserNotificationsCount']);
+									instance._updateNotificationsCount(response['timestamp'], response['newUserNotificationsCount'], response['unreadUserNotificationsCount']);
 								}
 							}
 						},
@@ -502,10 +508,10 @@ AUI().use(
 				);
 			},
 
-			_updateNotificationsCount: function(newUserNotificationsCount, unreadUserNotificationsCount) {
+			_updateNotificationsCount: function(timestamp, newUserNotificationsCount, unreadUserNotificationsCount) {
 				var instance = this;
 
-				instance._updateDockbarNotificationsCount(newUserNotificationsCount, unreadUserNotificationsCount);
+				instance._updateDockbarNotificationsCount(timestamp, newUserNotificationsCount, unreadUserNotificationsCount);
 				instance._updateFullviewNotificationsCount('unread', unreadUserNotificationsCount);
 			},
 
