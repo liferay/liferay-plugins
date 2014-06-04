@@ -46,12 +46,12 @@ import com.liferay.calendar.util.CalendarDataFormat;
 import com.liferay.calendar.util.CalendarDataHandler;
 import com.liferay.calendar.util.CalendarDataHandlerFactory;
 import com.liferay.calendar.util.CalendarResourceUtil;
+import com.liferay.calendar.util.CalendarSearcher;
 import com.liferay.calendar.util.CalendarUtil;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.PortletKeys;
 import com.liferay.calendar.util.RSSUtil;
 import com.liferay.calendar.util.WebKeys;
-import com.liferay.calendar.util.comparator.CalendarResourceNameComparator;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
@@ -61,6 +61,11 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.Field;
+import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
@@ -102,9 +107,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.TimeZone;
 
 import javax.portlet.ActionRequest;
@@ -489,8 +496,8 @@ public class CalendarPortlet extends MVCPortlet {
 		}
 	}
 
-	protected void addCalendarJSONObject(
-			PortletRequest portletRequest, JSONArray jsonArray,
+	protected void addCalendar(
+			PortletRequest portletRequest, Set<Calendar> calendarSet,
 			long classNameId, long classPK)
 		throws PortalException {
 
@@ -520,10 +527,7 @@ public class CalendarPortlet extends MVCPortlet {
 				continue;
 			}
 
-			JSONObject jsonObject = CalendarUtil.toCalendarJSONObject(
-				themeDisplay, calendar);
-
-			jsonArray.put(jsonObject);
+			calendarSet.add(calendar);
 		}
 	}
 
@@ -850,6 +854,24 @@ public class CalendarPortlet extends MVCPortlet {
 		return false;
 	}
 
+	protected Hits search(long companyId, long userId, String keywords)
+		throws Exception {
+
+		SearchContext searchContext = new SearchContext();
+
+		searchContext.setAttribute(Field.NAME, keywords);
+		searchContext.setAttribute("resourceName", keywords);
+		searchContext.setCompanyId(companyId);
+		searchContext.setEnd(SearchContainer.DEFAULT_DELTA);
+		searchContext.setGroupIds(new long[]{});
+		searchContext.setStart(0);
+		searchContext.setUserId(userId);
+
+		Indexer indexer = CalendarSearcher.getInstance();
+
+		return indexer.search(searchContext);
+	}
+
 	protected void serveCalendarBookingInvitees(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws Exception {
@@ -987,42 +1009,21 @@ public class CalendarPortlet extends MVCPortlet {
 
 		String keywords = ParamUtil.getString(resourceRequest, "keywords");
 
+		Set<Calendar> calendarSet = new LinkedHashSet<Calendar>();
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
-		long classNameId = PortalUtil.getClassNameId(CalendarResource.class);
+		Hits hits = search(
+			themeDisplay.getCompanyId(), themeDisplay.getUserId(), keywords);
 
-		List<CalendarResource> calendarResources =
-			CalendarResourceServiceUtil.search(
-				themeDisplay.getCompanyId(),
-				new long[] {
-					themeDisplay.getCompanyGroupId(),
-					themeDisplay.getScopeGroupId()
-				},
-				new long[] {classNameId}, keywords, true, true, 0,
-				SearchContainer.DEFAULT_DELTA,
-				new CalendarResourceNameComparator());
+		for (Document document : hits.getDocs()) {
+			long calendarId = GetterUtil.getLong(
+				document.get(Field.ENTRY_CLASS_PK));
+			Calendar calendar = CalendarServiceUtil.getCalendar(calendarId);
 
-		for (CalendarResource calendarResource : calendarResources) {
-			addCalendarJSONObject(
-				resourceRequest, jsonArray, calendarResource.getClassNameId(),
-				calendarResource.getClassPK());
+			calendarSet.add(calendar);
 		}
 
 		long groupClassNameId = PortalUtil.getClassNameId(Group.class);
-
-		List<CalendarResource> companyCalendarResources =
-			CalendarResourceServiceUtil.search(
-				themeDisplay.getCompanyId(),
-				new long[] {themeDisplay.getCompanyGroupId()},
-				new long[] {groupClassNameId}, keywords, true, true, 0,
-				SearchContainer.DEFAULT_DELTA,
-				new CalendarResourceNameComparator());
-
-		for (CalendarResource calendarResource : companyCalendarResources) {
-			addCalendarJSONObject(
-				resourceRequest, jsonArray, calendarResource.getClassNameId(),
-				calendarResource.getClassPK());
-		}
 
 		String name = StringUtil.merge(
 			CustomSQLUtil.keywords(keywords), StringPool.BLANK);
@@ -1037,8 +1038,8 @@ public class CalendarPortlet extends MVCPortlet {
 			SearchContainer.DEFAULT_DELTA);
 
 		for (Group group : groups) {
-			addCalendarJSONObject(
-				resourceRequest, jsonArray, groupClassNameId,
+			addCalendar(
+				resourceRequest, calendarSet, groupClassNameId,
 				group.getGroupId());
 		}
 
@@ -1049,8 +1050,16 @@ public class CalendarPortlet extends MVCPortlet {
 			SearchContainer.DEFAULT_DELTA, new UserFirstNameComparator());
 
 		for (User user : users) {
-			addCalendarJSONObject(
-				resourceRequest, jsonArray, userClassNameId, user.getUserId());
+			addCalendar(
+				resourceRequest, calendarSet, userClassNameId,
+				user.getUserId());
+		}
+
+		for (Calendar calendar : calendarSet) {
+			JSONObject jsonObject = CalendarUtil.toCalendarJSONObject(
+				themeDisplay, calendar);
+
+			jsonArray.put(jsonObject);
 		}
 
 		writeJSON(resourceRequest, resourceResponse, jsonArray);
