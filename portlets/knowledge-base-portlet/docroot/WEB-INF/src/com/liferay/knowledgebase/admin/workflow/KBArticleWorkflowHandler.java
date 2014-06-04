@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * @author Peter Shin
  */
-public class KBArticleWorkflowHandler extends BaseWorkflowHandler {
+public class KBArticleWorkflowHandler extends BaseWorkflowHandler<KBArticle> {
 
 	@Override
 	public String getClassName() {
