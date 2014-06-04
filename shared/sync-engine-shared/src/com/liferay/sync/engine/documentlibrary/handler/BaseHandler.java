@@ -24,6 +24,7 @@ import java.io.FileNotFoundException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.NoHttpResponseException;
 import org.apache.http.StatusLine;
 import org.apache.http.client.HttpResponseException;
 import org.apache.http.conn.HttpHostConnectException;
@@ -60,7 +61,9 @@ public class BaseHandler implements Handler<Void> {
 				SyncFileService.deleteSyncFile(syncFile);
 			}
 		}
-		else if (e instanceof HttpHostConnectException) {
+		else if ((e instanceof HttpHostConnectException) ||
+				 (e instanceof NoHttpResponseException)) {
+
 			syncAccount.setState(SyncAccount.STATE_DISCONNECTED);
 			syncAccount.setUiEvent(SyncAccount.UI_EVENT_CONNECTION_EXCEPTION);
 
