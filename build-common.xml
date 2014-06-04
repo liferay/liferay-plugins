@@ -1939,10 +1939,12 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<and>
 					<available file="@{module.dir}/test/integration" />
-					<resourcecontains
-						resource="${module.dir.unix}/build.xml"
-						substring="/build-common-osgi-plugin.xml&quot;"
-					/>
+					<not>
+						<resourcecontains
+							resource="${module.dir.unix}/build.xml"
+							substring="/build-common-osgi-plugin.xml&quot;"
+						/>
+					</not>
 				</and>
 				<then>
 					<echo file="@{module.dir}/test/integration/arquillian.xml"><![CDATA[<?xml version="1.0"?>
