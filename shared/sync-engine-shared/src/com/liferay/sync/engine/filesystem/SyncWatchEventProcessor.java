@@ -152,6 +152,10 @@ public class SyncWatchEventProcessor implements Runnable {
 		Path sourceFilePath = Paths.get(syncFile.getFilePathName());
 
 		if (parentTargetFilePath.equals(sourceFilePath.getParent())) {
+			if (!FileUtil.hasFileChanged(syncFile)) {
+				return;
+			}
+
 			SyncFileService.updateFileSyncFile(
 				targetFilePath, syncWatchEvent.getSyncAccountId(), syncFile,
 				false);
@@ -212,6 +216,10 @@ public class SyncWatchEventProcessor implements Runnable {
 		Path sourceFilePath = Paths.get(syncFile.getFilePathName());
 
 		if (parentTargetFilePath.equals(sourceFilePath.getParent())) {
+			if (targetFilePath.equals(sourceFilePath)) {
+				return;
+			}
+
 			SyncFileService.updateFolderSyncFile(
 				targetFilePath, syncWatchEvent.getSyncAccountId(), syncFile);
 		}
@@ -284,13 +292,7 @@ public class SyncWatchEventProcessor implements Runnable {
 		SyncFile syncFile = SyncFileService.fetchSyncFileByFileKey(
 			FileUtil.getFileKey(filePath), syncWatchEvent.getSyncAccountId());
 
-		if (syncFile == null) {
-			return;
-		}
-
-		String checksum = syncFile.getChecksum();
-
-		if (checksum.equals(FileUtil.getChecksum(filePath))) {
+		if ((syncFile == null) || !FileUtil.hasFileChanged(syncFile)) {
 			return;
 		}
 

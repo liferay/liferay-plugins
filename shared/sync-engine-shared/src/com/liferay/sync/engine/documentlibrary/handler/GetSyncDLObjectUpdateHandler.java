@@ -59,9 +59,7 @@ public class GetSyncDLObjectUpdateHandler extends GetSyncDLObjectHandler {
 				return;
 			}
 
-			String checksum = FileUtil.getChecksum(filePath);
-
-			if (checksum.equals(syncFile.getChecksum())) {
+			if (!FileUtil.hasFileChanged(syncFile)) {
 				return;
 			}
 		}
@@ -277,9 +275,7 @@ public class GetSyncDLObjectUpdateHandler extends GetSyncDLObjectHandler {
 		SyncFileService.update(sourceSyncFile);
 
 		if (Files.exists(sourceFilePath) && !targetSyncFile.isFolder()) {
-			String checksum = FileUtil.getChecksum(sourceFilePath);
-
-			if (checksum.equals(targetSyncFile.getChecksum())) {
+			if (!FileUtil.hasFileChanged(targetSyncFile)) {
 				return;
 			}
 
