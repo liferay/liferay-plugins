@@ -20,7 +20,7 @@
 String filter = ParamUtil.getString(request, "filter");
 boolean fullView = ParamUtil.getBoolean(request, "fullView", true);
 int start = ParamUtil.getInteger(request, "start", 0);
-int end = ParamUtil.getInteger(request, "end", delta);
+int end = ParamUtil.getInteger(request, "end", fullView ? fullViewDelta : dockbarViewDelta);
 
 List<UserNotificationEvent> userNotificationEvents = null;
 int userNotificationEventsCount = 0;
@@ -48,7 +48,7 @@ else {
 			</c:choose>
 		</li>
 	</c:when>
-	<c:when test="<%= (userNotificationEventsCount > delta) && fullView %>">
+	<c:when test="<%= (userNotificationEventsCount > fullViewDelta) && fullView %>">
 		<li class="clearfix message top">
 			<span class="left-nav <%= start == 0 ? "disabled" : "previous" %>"><a href="javascript:;"><liferay-ui:message key="previous" /></a></span>
 			<span><liferay-ui:message arguments="<%= new Object[] {(start + 1), end <= userNotificationEventsCount ? end : userNotificationEventsCount, userNotificationEventsCount} %>" key="showing-x-x-of-x-results" translateArguments="<%= false %>" /></span>
@@ -182,7 +182,7 @@ for (UserNotificationEvent userNotificationEvent : userNotificationEvents) {
 			baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 			baseResourceURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RESOURCE_PHASE) %>',
 			currentPageNotificationEventsCount: <%= userNotificationEventIds.size() %>,
-			delta: <%= delta %>,
+			delta: <%= fullViewDelta %>,
 			end: <%= end %>,
 			filter: '<%= HtmlUtil.escape(filter) %>',
 			start: <%= start %>,

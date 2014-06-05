@@ -68,7 +68,8 @@ page import="java.util.Map" %>
 <liferay-theme:defineObjects />
 
 <%
-int delta = 10;
+int dockbarViewDelta = 5;
+int fullViewDelta = 10;
 
 Format simpleDateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("EEEE, MMMMM dd, yyyy 'at' h:mm a", themeDisplay.getLocale(), themeDisplay.getTimeZone());
 %>
