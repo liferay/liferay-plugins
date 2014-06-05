@@ -196,7 +196,8 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 				catch (Exception e) {
 					_log.error(
 						translate(actionRequest, "unable to attach file ") +
-							fileName, e);
+							fileName,
+						e);
 				}
 			}
 
