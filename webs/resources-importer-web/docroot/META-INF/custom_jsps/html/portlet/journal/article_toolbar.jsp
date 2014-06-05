@@ -16,6 +16,12 @@
 
 <%@ include file="/html/portlet/journal/init.jsp" %>
 
+<style type="text/css">
+	.portlet-journal .article-toolbar .icon-download {
+		background-image: none;
+	}
+</style>
+
 <%
 String referringPortletResource = ParamUtil.getString(request, "referringPortletResource");
 
@@ -116,6 +122,35 @@ long classNameId = BeanParamUtil.getLong(article, request, "classNameId");
 					}
 				},
 				title: '<liferay-ui:message key="this-preview-won't-include-the-theme-context" />'
+			}
+		);
+	</c:if>
+
+	<%
+	String structureId = BeanParamUtil.getString(article, request, "structureId");
+	%>
+
+	<c:if test="<%= (article != null) && Validator.isNotNull(structureId) %>">
+		toolbarButtonGroup.push(
+			{
+				icon: 'icon-download',
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "download") %>',
+				on: {
+					click: function(event) {
+						event.domEvent.preventDefault();
+
+						var downloadArticleContent = Liferay.Util.openWindow(
+							{
+								dialog: {
+									bodyContent: '<pre><%= HtmlUtil.escapeJS(HtmlUtil.escape(article.getContent())) %></pre>',
+									modal: true
+								},
+								id: '<portlet:namespace />articleDownload',
+								title: '<%= article.getTitle(locale) %>'
+							}
+						);
+					}
+				}
 			}
 		);
 	</c:if>
