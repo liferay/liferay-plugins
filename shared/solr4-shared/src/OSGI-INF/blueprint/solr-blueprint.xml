@@ -62,15 +62,17 @@
 		<property name="solrServer" ref="com.liferay.portal.search.solr.server.BasicAuthSolrServer" />
 	</bean>
 
-	<reference id="messageBus" interface="com.liferay.portal.kernel.messaging.MessageBus" timeout="30000" />
+	<!-- References -->
+
+	<reference id="com.liferay.portal.kernel.messaging.MessageBus" interface="com.liferay.portal.kernel.messaging.MessageBus" timeout="30000" />
 
 	<!-- Configurator -->
 
-	<service auto-export="all-classes" id="searchEngineConfigurator.solr">
+	<service auto-export="all-classes" id="com.liferay.portal.search.solr.osgi.OSGIPluginSearchEngineConfigurator">
 		<bean class="com.liferay.portal.search.solr.osgi.OSGIPluginSearchEngineConfigurator">
 			<property name="indexSearcher" ref="com.liferay.portal.search.solr.SolrIndexSearcher" />
 			<property name="indexWriter" ref="com.liferay.portal.search.solr.SolrIndexWriter" />
-			<property name="messageBus" ref="messageBus" />
+			<property name="messageBus" ref="com.liferay.portal.kernel.messaging.MessageBus" />
 			<property name="searchEngines">
 				<map>
 					<entry key="SYSTEM_ENGINE" value-ref="com.liferay.portal.search.solr.SolrSearchEngineImpl" />
