@@ -72,19 +72,8 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 				return;
 			}
 
-			SyncFile parentSyncFile = SyncFileService.fetchSyncFile(
-				parentFilePathName, getSyncAccountId());
-
-			if (parentSyncFile == null) {
-				Thread.sleep(1000);
-
-				addSyncWatchEvent(eventType, filePath);
-
-				return;
-			}
-
 			SyncSite syncSite = SyncSiteService.fetchSyncSite(
-				parentSyncFile.getRepositoryId(), getSyncAccountId());
+				getRepositoryId(filePath), getSyncAccountId());
 
 			Set<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
 				getSyncAccountId());
@@ -117,6 +106,23 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 		}
 
 		return SyncFile.TYPE_FILE;
+	}
+
+	protected long getRepositoryId(Path filePath) {
+		while (true) {
+			filePath = filePath.getParent();
+
+			if (filePath == null) {
+				return 0;
+			}
+
+			SyncFile syncFile = SyncFileService.fetchSyncFile(
+				FilePathNameUtil.getFilePathName(filePath), getSyncAccountId());
+
+			if (syncFile != null) {
+				return syncFile.getRepositoryId();
+			}
+		}
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(
