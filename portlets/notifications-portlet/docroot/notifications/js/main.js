@@ -448,7 +448,7 @@ AUI().use(
 			_updateDockbarNotificationsCount: function(newUserNotificationsCount, timestamp, unreadUserNotificationsCount) {
 				var instance = this;
 
-				if (!instance._previousTimestamp || instance._previousTimestamp < timestamp ) {
+				if (!instance._previousTimestamp || (instance._previousTimestamp < timestamp)) {
 					instance._previousTimestamp = timestamp;
 
 					var dockbarUserNotificationsCount = A.one('.dockbar-user-notifications .user-notifications-count');
