@@ -1635,8 +1635,8 @@ AUI.add(
 						else {
 							Liferay.CalendarMessageUtil.confirm(
 								TPL_MESSAGE_UPDATE_ALL_INVITED,
-								Liferay.Language.get('continue'),
-								Liferay.Language.get('dont-change-the-event'),
+								Liferay.Language.get('save-changes'),
+								Liferay.Language.get('do-not-change-the-event'),
 								function() {
 									showNextQuestion();
 								},
@@ -1710,8 +1710,8 @@ AUI.add(
 
 							Liferay.CalendarMessageUtil.confirm(
 								content,
-								Liferay.Language.get('continue'),
-								Liferay.Language.get('dont-change-the-event'),
+								Liferay.Language.get('save-changes'),
+								Liferay.Language.get('do-not-change-the-event'),
 								function() {
 									showNextQuestion();
 								},
