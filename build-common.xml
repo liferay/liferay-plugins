@@ -842,24 +842,9 @@ Please find a solution that does not require portal-impl.jar.
 						<fileset dir="@{module.dir}/test/@{test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
 					</copy>
 
-					<if>
-						<available file="@{module.dir}/ivy.xml" />
-						<then>
-							<path id="plugin-test-type.classpath">
-								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-								<ivy:resources
-									conf="test"
-									file="@{module.dir}/ivy.xml"
-									transitive="${ivy.resolve.transitive.dependencies}"
-								/>
-							</path>
-						</then>
-						<else>
-							<path id="plugin-test-type.classpath">
-								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-							</path>
-						</else>
-					</if>
+					<path id="plugin-test-type.classpath">
+						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+					</path>
 
 					<compile-java
 						javac.classpathref="test.classpath"
@@ -2176,24 +2161,9 @@ Please find a solution that does not require portal-impl.jar.
 						test.type="@{test.type}"
 					/>
 
-					<if>
-						<available file="@{module.dir}/ivy.xml" />
-						<then>
-							<path id="plugin-test-type.classpath">
-								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-								<ivy:resources
-									conf="test"
-									file="@{module.dir}/ivy.xml"
-									transitive="${ivy.resolve.transitive.dependencies}"
-								/>
-							</path>
-						</then>
-						<else>
-							<path id="plugin-test-type.classpath">
-								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-							</path>
-						</else>
-					</if>
+					<path id="plugin-test-type.classpath">
+						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+					</path>
 
 					<if>
 						<available file="@{module.dir}/test/@{test.type}" type="dir" />
