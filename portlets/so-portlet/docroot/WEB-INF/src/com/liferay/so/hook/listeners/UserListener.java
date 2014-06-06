@@ -15,7 +15,7 @@
  * Liferay Social Office. If not, see http://www.gnu.org/licenses/agpl-3.0.html.
  */
 
-package com.liferay.so.hook.listener;
+package com.liferay.so.hook.listeners;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.util.HttpUtil;
