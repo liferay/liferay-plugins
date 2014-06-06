@@ -38,6 +38,10 @@ public class SolrFacetFieldCollector implements FacetCollector {
 
 		if (counts != null) {
 			for (Count count : counts) {
+				if (count.getCount() == 0) {
+					continue;
+				}
+
 				_counts.put(count.getName(), count);
 			}
 		}
