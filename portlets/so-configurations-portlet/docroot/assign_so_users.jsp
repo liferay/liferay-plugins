@@ -20,7 +20,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "users");
+String tabs2 = ParamUtil.getString(request, "tabs2", "users");
 
 String keywords = ParamUtil.getString(request, "keywords");
 String searchFilter = ParamUtil.getString(request, "searchFilter");
@@ -31,7 +31,7 @@ RowChecker userRoleChecker = (RowChecker)InstanceFactory.newInstance(PortalClass
 %>
 
 <liferay-portlet:renderURL varImpl="portletURL">
-	<portlet:param name="tabs1" value="<%= tabs1 %>" />
+	<portlet:param name="tabs2" value="<%= tabs2 %>" />
 	<portlet:param name="searchFilter" value="<%= searchFilter %>" />
 </liferay-portlet:renderURL>
 
