@@ -3,4 +3,6 @@
 
 <project name="so-configurations-portlet" basedir="." default="deploy">
 	<import file="../build-common-portlet.xml" />
+
+	<property name="import.shared" value="so-configurations-shared" />
 </project>
