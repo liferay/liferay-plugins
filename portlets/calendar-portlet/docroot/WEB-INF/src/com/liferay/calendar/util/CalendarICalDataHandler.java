@@ -404,6 +404,7 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
 		serviceContext.setScopeGroupId(calendar.getGroupId());
+		serviceContext.setAttribute("sendEmail", false);
 
 		if (calendarBooking == null) {
 			serviceContext.setUuid(uuid);
