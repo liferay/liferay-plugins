@@ -20,7 +20,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1", "users");
+String tabs2 = ParamUtil.getString(request, "tabs2", "users");
 
 String keywords = ParamUtil.getString(request, "keywords");
 String searchFilter = ParamUtil.getString(request, "searchFilter", "available");
@@ -48,12 +48,12 @@ int roleUsersCount = UserLocalServiceUtil.getRoleUsersCount(role.getRoleId());
 </c:choose>
 
 <liferay-portlet:renderURL var="portletURL">
-	<portlet:param name="tabs1" value="<%= tabs1 %>" />
+	<portlet:param name="tabs2" value="<%= tabs2 %>" />
 </liferay-portlet:renderURL>
 
 <liferay-ui:tabs
 	names="users,organizations,user-groups"
-	param="tabs1"
+	param="tabs2"
 	url="<%= portletURL.toString() %>"
 />
 
@@ -74,13 +74,13 @@ int roleUsersCount = UserLocalServiceUtil.getRoleUsersCount(role.getRoleId());
 	</div>
 
 	<c:choose>
-		<c:when test='<%= tabs1.equals("organizations") %>'>
+		<c:when test='<%= tabs2.equals("organizations") %>'>
 			<liferay-util:include page="/assign_so_organizations.jsp" servletContext="<%= application %>" />
 		</c:when>
-		<c:when test='<%= tabs1.equals("user-groups") %>'>
+		<c:when test='<%= tabs2.equals("user-groups") %>'>
 			<liferay-util:include page="/assign_so_user_groups.jsp" servletContext="<%= application %>" />
 		</c:when>
-		<c:when test='<%= tabs1.equals("users") %>'>
+		<c:when test='<%= tabs2.equals("users") %>'>
 			<liferay-util:include page="/assign_so_users.jsp" servletContext="<%= application %>" />
 		</c:when>
 	</c:choose>
@@ -92,7 +92,7 @@ int roleUsersCount = UserLocalServiceUtil.getRoleUsersCount(role.getRoleId());
 	Group layoutGroup = layout.getGroup();
 	%>
 
-	<c:if test='<%= !layoutGroup.isControlPanel() && tabs1.equals("users") %>'>
+	<c:if test='<%= !layoutGroup.isControlPanel() && tabs2.equals("users") %>'>
 		<div id="addAllUsers">
 			<aui:input label="give-every-liferay-portal-user-access-to-social-office-can-be-configured-later" name="" type="checkbox" value="" />
 		</div>
@@ -139,7 +139,7 @@ int roleUsersCount = UserLocalServiceUtil.getRoleUsersCount(role.getRoleId());
 				document.<portlet:namespace />fm.<portlet:namespace />addIds.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 				document.<portlet:namespace />fm.<portlet:namespace />removeIds.value = Liferay.Util.listUncheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 
-				if (<%= tabs1.equals("users") %>) {
+				if (<%= tabs2.equals("users") %>) {
 					if (finished) {
 						uri = '<portlet:actionURL name="updateUsersRole"><portlet:param name="redirect" value="<%= dashboardURL %>" /></portlet:actionURL>';
 					}
