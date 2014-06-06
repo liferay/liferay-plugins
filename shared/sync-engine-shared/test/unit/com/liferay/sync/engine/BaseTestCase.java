@@ -105,7 +105,7 @@ public abstract class BaseTestCase {
 		SyncAccountService.deleteSyncAccount(syncAccount.getSyncAccountId());
 	}
 
-	protected InputStream getInputStream(String fileName) {
+	protected final InputStream getInputStream(String fileName) {
 		Class<?> clazz = getClass();
 
 		return clazz.getResourceAsStream(fileName);

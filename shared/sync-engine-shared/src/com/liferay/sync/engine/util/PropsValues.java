@@ -19,38 +19,38 @@ package com.liferay.sync.engine.util;
  */
 public class PropsValues {
 
-	public static String SYNC_CONFIGURATION_DIRECTORY = PropsUtil.get(
+	public static final String SYNC_CONFIGURATION_DIRECTORY = PropsUtil.get(
 		PropsKeys.SYNC_CONFIGURATION_DIRECTORY);
 
-	public static String SYNC_DATABASE_NAME = PropsUtil.get(
+	public static final String SYNC_DATABASE_NAME = PropsUtil.get(
 		PropsKeys.SYNC_DATABASE_NAME);
 
-	public static String[] SYNC_FILE_BLACKLIST_CHARS = PropsUtil.getArray(
+	public static final String[] SYNC_FILE_BLACKLIST_CHARS = PropsUtil.getArray(
 		PropsKeys.SYNC_FILE_BLACKLIST_CHARS);
 
-	public static String[] SYNC_FILE_BLACKLIST_CHARS_LAST = PropsUtil.getArray(
-		PropsKeys.SYNC_FILE_BLACKLIST_CHARS_LAST);
+	public static final String[] SYNC_FILE_BLACKLIST_CHARS_LAST =
+		PropsUtil.getArray(PropsKeys.SYNC_FILE_BLACKLIST_CHARS_LAST);
 
-	public static String[] SYNC_FILE_BLACKLIST_NAMES = PropsUtil.getArray(
+	public static final String[] SYNC_FILE_BLACKLIST_NAMES = PropsUtil.getArray(
 		PropsKeys.SYNC_FILE_BLACKLIST_NAMES);
 
-	public static boolean SYNC_FILE_IGNORE_HIDDEN = Boolean.valueOf(
+	public static final boolean SYNC_FILE_IGNORE_HIDDEN = Boolean.valueOf(
 		PropsUtil.get(PropsKeys.SYNC_FILE_IGNORE_HIDDEN));
 
-	public static String[] SYNC_FILE_IGNORE_NAMES = PropsUtil.getArray(
+	public static final String[] SYNC_FILE_IGNORE_NAMES = PropsUtil.getArray(
 		PropsKeys.SYNC_FILE_IGNORE_NAMES);
 
-	public static String[] SYNC_FILE_PATCHING_IGNORE_FILE_EXTENSIONS =
+	public static final String[] SYNC_FILE_PATCHING_IGNORE_FILE_EXTENSIONS =
 		PropsUtil.getArray(PropsKeys.SYNC_FILE_PATCHING_IGNORE_EXTENSIONS);
 
-	public static long SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD =
-		Long.valueOf(
+	public static final long SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD =
+		Long.parseLong(
 			PropsUtil.get(PropsKeys.SYNC_FILE_PATCHING_SIZE_RATIO_THRESHOLD));
 
-	public static String SYNC_LOGGER_CONFIGURATION_FILE = PropsUtil.get(
+	public static final String SYNC_LOGGER_CONFIGURATION_FILE = PropsUtil.get(
 		PropsKeys.SYNC_LOGGER_CONFIGURATION_FILE);
 
-	public static String SYNC_PRODUCT_NAME = PropsUtil.get(
+	public static final String SYNC_PRODUCT_NAME = PropsUtil.get(
 		PropsKeys.SYNC_PRODUCT_NAME);
 
 }

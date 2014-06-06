@@ -38,7 +38,7 @@ public class ReleaseInfo {
 		}
 
 		if (pluginVersion.startsWith("6.2") &&
-			(Integer.valueOf(matcher.group(1)) < 3)) {
+			(Integer.parseInt(matcher.group(1)) < 3)) {
 
 			return false;
 		}
@@ -51,6 +51,6 @@ public class ReleaseInfo {
 	private static final int _BUILD_NUMBER = Integer.parseInt(_BUILD);
 
 	private static Pattern _pattern = Pattern.compile(
-		"(?:[0-9]+\\.){3}([0-9])");
+		"(?:[0-9]+\\.){3}([0-9]+)");
 
 }

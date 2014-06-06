@@ -84,7 +84,7 @@ public class SyncFileService {
 
 		parameters.put("changeLog", _VERSION_DEFAULT);
 		parameters.put("checksum", checksum);
-		parameters.put("description", name);
+		parameters.put("description", "");
 		parameters.put("filePath", filePath);
 		parameters.put("folderId", folderId);
 		parameters.put("mimeType", mimeType);
@@ -136,7 +136,7 @@ public class SyncFileService {
 
 		Map<String, Object> parameters = new HashMap<String, Object>();
 
-		parameters.put("description", name);
+		parameters.put("description", "");
 		parameters.put("name", name);
 		parameters.put("parentFolderId", parentFolderId);
 		parameters.put("repositoryId", repositoryId);
