@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE look-and-feel PUBLIC "-//Liferay//DTD Look and Feel 6.2.0//EN"
+"http://www.liferay.com/dtd/liferay-look-and-feel_6_2_0.dtd">
+
+<look-and-feel>
+    <compatibility>
+        <version>6.2.0+</version>
+    </compatibility>
+    <theme id="noelle-portfolio" name="Noelle Portfolio">
+        <settings>
+            <setting key="header-type" value="detailed" />
+
+            <setting
+                    configurable="true"
+                    key="slogan"
+                    type="textarea"
+                    value=""
+		    />
+		    <setting
+                    configurable="true"
+                    key="display-slogan-header"
+                    type="checkbox"
+                    value="true"
+            />
+
+		    <setting
+                    configurable="true"
+                    key="portlet-setup-show-borders-default"
+                    type="checkbox"
+                    value="false"
+			/>
+
+<!-- 			<setting
+                    configurable="true"
+                    key="bullet-style"
+                    options="arrows,dots,classic,modern"
+                    value="dots"
+    		/> -->
+
+            <setting
+                    configurable="true"
+                    key="show-site-name-default"
+                    type="checkbox"
+                    value="true"
+            />
+            <setting
+                    configurable="true"
+                    key="show-site-name-supported"
+                    type="checkbox"
+                    value="true"
+            />
+
+        </settings>
+
+    <color-scheme id="01" name="Light">
+        <css-class>light</css-class>
+        <color-scheme-images-path>
+            ${images-path}/color_schemes/${css-class}
+        </color-scheme-images-path>
+    </color-scheme>
+    <color-scheme id="02" name="Dark">
+        <css-class>dark</css-class>
+    </color-scheme>
+
+    </theme>
+
+</look-and-feel>

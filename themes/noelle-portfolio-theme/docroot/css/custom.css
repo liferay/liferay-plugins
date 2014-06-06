@@ -1,0 +1,183 @@
+@import url(color_schemes/dark.css);
+@import url(color_schemes/light.css);
+
+/*.nav-menu-style-arrows ul {
+	list-style-image: url(https://cdn.lfrs.sl/www.liferay.com/osb-community-theme/images/navigation/bullet_selected.png);
+}*/
+
+/* ---------- Variables ---------- */
+
+$bannerHeight: 771px;
+$color: #3D7899;
+$navHeight: 46px;
+$smallBannerHeight: 257px;
+$dockbarWidth:57px;
+$navigationHeight:41px;
+
+/* ---------- Base styles ---------- */
+
+.aui {
+	#skip-to-content {
+		color: red;
+		clear: both;
+		margin-top: 150px;
+		text-align: center;
+	}
+
+	#wrapper {
+		margin: 0 auto 20px;
+		padding: 0;
+		max-width: 1156px;
+	}
+
+	.signed-in #wrapper {
+		padding-left: $dockbarWidth;
+	}
+
+	.signed-out #wrapper {
+		margin-top: $navigationHeight;
+	}
+
+	.signed-out #sign-in {
+		background: #FFF;
+		color: red;
+		position: absolute;
+		text-align: right;
+		top: 10px;
+	}
+
+	/* ---------- Dockbar ---------- */
+
+	.portlet-dockbar {
+		.navbar-inner {
+			background: transparent;
+			border: 0;
+			box-shadow: none;
+
+			ul.nav-add-controls {
+				position: fixed;
+				left: 5px;
+				top: 10%;
+				z-index: 2;
+
+				li {
+					background: #FFF;
+					border-radius: 5px;
+					clear: left;
+					margin: 10px auto;
+					padding: 3px;
+					width: 41px;
+
+					i {
+						height: 100%;
+						width: 100%;
+					}
+
+					.nav-item-label {
+						display: none;
+					}
+				}
+			}
+
+			ul.nav-account-controls {
+				background: #FFF;
+				position: relative;
+				margin: 0;
+				z-index: 2;
+
+				li {
+					background: #FFF;
+					float: left;
+				}
+			}
+		}
+	}
+
+	/* ---------- Banner / Navigation ---------- */
+
+	.home-page #banner {
+		background: url(../images/custom/banner.jpg) no-repeat;
+		height: $bannerHeight;
+		position: relative;
+		margin-top: 25px;
+	}
+
+	#banner {
+		background: url(../images/custom/small-banner.jpg) no-repeat;
+		height: $smallBannerHeight;
+		position: relative;
+
+		#heading {
+			.logo {
+				float: right;
+				margin: 20px 20px 0 20px;
+			}
+
+			.site-name {
+				background: $color;
+				color: #FFF;
+				display: inline-block;
+				margin: 30px 10px;
+				padding: 5px 10px;
+			}
+		}
+
+		.page-title {
+			text-align: center;
+		}
+
+		#navigation {
+			background: url(../images/custom/nav_bg.png) repeat-x 0 -1px;
+			float: left;
+			left: auto;
+			overflow: hidden;
+			position: fixed;
+			right: auto;
+			top: 0;
+			width: auto;
+			z-index: 1;
+
+			a {
+				display: block;
+				padding: 15px 20px;
+				text-decoration: none;
+
+				&:hover {
+					color: #FFF;
+				}
+			}
+
+			li {
+				float: left;
+				line-height: 14px;
+
+				.child-menu {
+					li {
+						background: url(../images/custom/nav_bg.png) repeat-x;
+						clear: left;
+						overflow: hidden;
+					}
+				}
+			}
+
+			ul {
+				list-style: none;
+				margin: 0;
+			}
+		}
+	}
+
+/*	.signed-in #banner #navigation {
+		padding-left: $dockbarWidth;
+	}*/
+
+	#content {
+		background: #FFF;
+		padding: 10px 20px;
+	}
+
+	#footer {
+		background: #000;
+		padding: 10px 20px;
+	}
+}
