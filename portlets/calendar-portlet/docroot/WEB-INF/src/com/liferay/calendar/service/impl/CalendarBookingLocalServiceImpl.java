@@ -54,6 +54,7 @@ import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -930,9 +931,14 @@ public class CalendarBookingLocalServiceImpl
 					CalendarBookingWorkflowConstants.STATUS_IN_TRASH,
 					serviceContext);
 
-				sendNotification(
-					childCalendarBooking,
-					NotificationTemplateType.MOVED_TO_TRASH);
+				boolean sendEmail = ParamUtil.getBoolean(
+					serviceContext, "sendEmail", true);
+
+				if (sendEmail) {
+					sendNotification(
+						childCalendarBooking,
+						NotificationTemplateType.MOVED_TO_TRASH);
+				}
 			}
 		}
 		else if (oldStatus ==
@@ -951,8 +957,13 @@ public class CalendarBookingLocalServiceImpl
 					CalendarBookingWorkflowConstants.STATUS_PENDING,
 					serviceContext);
 
-				sendNotification(
-					childCalendarBooking, NotificationTemplateType.INVITE);
+				boolean sendEmail = ParamUtil.getBoolean(
+					serviceContext, "sendEmail", true);
+
+				if (sendEmail) {
+					sendNotification(
+						childCalendarBooking, NotificationTemplateType.INVITE);
+				}
 			}
 		}
 
@@ -1028,6 +1039,9 @@ public class CalendarBookingLocalServiceImpl
 		Set<Long> existingCalendarBookingIds = new HashSet<Long>(
 			childCalendarIds.length);
 
+		boolean sendEmail = ParamUtil.getBoolean(
+			serviceContext, "sendEmail", true);
+
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
 			if (childCalendarBooking.isMasterBooking() ||
 				childCalendarBooking.isDenied()) {
@@ -1071,7 +1085,10 @@ public class CalendarBookingLocalServiceImpl
 				notificationTemplateType = NotificationTemplateType.UPDATE;
 			}
 
-			sendNotification(childCalendarBooking, notificationTemplateType);
+			if (sendEmail) {
+				sendNotification(
+					childCalendarBooking, notificationTemplateType);
+			}
 		}
 	}
 
