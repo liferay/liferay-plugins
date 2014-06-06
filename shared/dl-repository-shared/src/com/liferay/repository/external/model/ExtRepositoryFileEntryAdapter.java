@@ -171,6 +171,11 @@ public class ExtRepositoryFileEntryAdapter
 	}
 
 	@Override
+	public String getIconCssClass() {
+		return DLUtil.getFileIconCssClass(getExtension());
+	}
+
+	@Override
 	@SuppressWarnings("unused")
 	public FileVersion getLatestFileVersion()
 		throws PortalException, SystemException {
