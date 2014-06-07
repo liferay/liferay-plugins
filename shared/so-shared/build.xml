@@ -6,5 +6,5 @@
 
 	<import file="../build-common-shared.xml" />
 
-	<property name="import.shared" value="microblogs-shared,so-announcements-shared" />
+	<property name="import.shared" value="microblogs-shared,so-announcements-shared,so-configurations-shared" />
 </project>

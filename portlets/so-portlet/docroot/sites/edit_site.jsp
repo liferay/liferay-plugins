@@ -91,10 +91,21 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 				</aui:select>
 
 				<aui:select id="typeSelect" label="type" name="type">
-					<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_OPEN) %>" value="<%= GroupConstants.TYPE_SITE_OPEN %>" />
-					<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED) %>" value="<%= GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED %>" />
-					<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED) %>" value="<%= GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED %>" />
-					<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_PRIVATE) %>" value="<%= GroupConstants.TYPE_SITE_PRIVATE %>" />
+					<c:if test="<%= enableOpenSites %>">
+						<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_OPEN) %>" value="<%= GroupConstants.TYPE_SITE_OPEN %>" />
+					</c:if>
+
+					<c:if test="<%= enablePublicRestrictedSites %>">
+						<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED) %>" value="<%= GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED %>" />
+					</c:if>
+
+					<c:if test="<%= enablePrivateRestrictedSites %>">
+						<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED) %>" value="<%= GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED %>" />
+					</c:if>
+
+					<c:if test="<%= enablePrivateSites %>">
+						<aui:option label="<%= GroupConstants.getTypeLabel(GroupConstants.TYPE_SITE_PRIVATE) %>" value="<%= GroupConstants.TYPE_SITE_PRIVATE %>" />
+					</c:if>
 				</aui:select>
 			</div>
 
@@ -143,7 +154,25 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 							</div>
 
 							<div class="message">
-								<liferay-ui:message key="open-sites-are-listed-pages-are-public-and-users-are-free-to-join-and-collaborate" />
+
+								<%
+								String description = StringPool.BLANK;
+
+								if (enableOpenSites) {
+									description = "open-sites-are-listed-pages-are-public-and-users-are-free-to-join-and-collaborate";
+								}
+								else if (enablePublicRestrictedSites) {
+									description = "public-restricted-sites-are-listed-pages-are-public-and-users-must-request-to-join-and-collaborate";
+								}
+								else if (enablePrivateRestrictedSites) {
+									description = "private-restricted-sites-are-listed-pages-are-private-and-users-must-request-to-join-and-collaborate";
+								}
+								else if (enablePrivateSites) {
+									description = "private-sites-are-not-listed-pages-are-private-and-users-must-be-invited-to-collaborate";
+								}
+								%>
+
+								<liferay-ui:message key="<%= description %>" />
 							</div>
 						</div>
 					</aui:column>

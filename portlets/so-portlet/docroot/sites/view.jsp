@@ -102,7 +102,7 @@ pageContext.setAttribute("portletURL", portletURL);
 		var addSiteButton = new A.Toolbar(
 			{
 				children: [
-					<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) %>">
+					<c:if test="<%= PortalPermissionUtil.contains(permissionChecker, ActionKeys.ADD_COMMUNITY) && (enableOpenSites || enablePublicRestrictedSites || enablePrivateRestrictedSites || enablePrivateSites) %>">
 						{
 							icon: 'icon-plus',
 							label: '<liferay-ui:message key="add-site" unicode="<%= true %>" />',
