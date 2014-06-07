@@ -25,4 +25,11 @@
 String portletResource = ParamUtil.getString(request, "portletResource");
 
 int maxResultSize = GetterUtil.getInteger(portletPreferences.getValue("maxResultSize", null), 10);
+
+portletPreferences = PortletPreferencesLocalServiceUtil.getPreferences(themeDisplay.getCompanyId(), themeDisplay.getCompanyId(), PortletKeys.PREFS_OWNER_TYPE_COMPANY, LayoutConstants.DEFAULT_PLID, PortletKeys.SO_CONFIGURATIONS);
+
+boolean enableOpenSites = GetterUtil.getBoolean(portletPreferences.getValue("enableOpenSites", null), true);
+boolean enablePublicRestrictedSites = GetterUtil.getBoolean(portletPreferences.getValue("enablePublicRestrictedSites", null), true);
+boolean enablePrivateRestrictedSites = GetterUtil.getBoolean(portletPreferences.getValue("enablePrivateRestrictedSites", null), true);
+boolean enablePrivateSites = GetterUtil.getBoolean(portletPreferences.getValue("enablePrivateSites", null), true);
 %>
