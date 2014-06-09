@@ -63,20 +63,20 @@ public class SyncDLObjectFinderImpl
 			sb.append(sql);
 			sb.append(" UNION ALL ");
 
-			sql = CustomSQLUtil.get(FIND_BY_FILE_OR_PWC_TYPE);
+			sql = CustomSQLUtil.get(FIND_BY_FOLDER_TYPE);
 
 			sql = InlineSQLHelperUtil.replacePermissionCheck(
-				sql, DLFileEntry.class.getName(), "SyncDLObject.typePK", null,
+				sql, DLFolder.class.getName(), "SyncDLObject.typePK", null,
 				"SyncDLObject.repositoryId", new long[] {repositoryId},
 				null);
 
 			sb.append(sql);
 			sb.append(" UNION ALL ");
 
-			sql = CustomSQLUtil.get(FIND_BY_FOLDER_TYPE);
+			sql = CustomSQLUtil.get(FIND_BY_FILE_OR_PWC_TYPE);
 
 			sql = InlineSQLHelperUtil.replacePermissionCheck(
-				sql, DLFolder.class.getName(), "SyncDLObject.typePK", null,
+				sql, DLFileEntry.class.getName(), "SyncDLObject.typePK", null,
 				"SyncDLObject.repositoryId", new long[] {repositoryId},
 				null);
 
@@ -96,10 +96,10 @@ public class SyncDLObjectFinderImpl
 			qPos.add(companyId);
 			qPos.add(modifiedTime);
 			qPos.add(repositoryId);
-			qPos.add(PrincipalThreadLocal.getUserId());
 			qPos.add(companyId);
 			qPos.add(modifiedTime);
 			qPos.add(repositoryId);
+			qPos.add(PrincipalThreadLocal.getUserId());
 
 			return q.list();
 		}
