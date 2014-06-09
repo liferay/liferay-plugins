@@ -845,9 +845,9 @@ Please find a solution that does not require portal-impl.jar.
 					<if>
 						<available file="@{module.dir}/ivy.xml" />
 						<then>
-								<ivy:settings file="${ivy.custom.settings.file}" />
-							
-						<path id="plugin-test-type.classpath">
+							<ivy:settings file="${ivy.custom.settings.file}" />
+
+							<path id="plugin-test-type.classpath">
 								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
 
 								<ivy:resources
