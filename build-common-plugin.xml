@@ -150,22 +150,31 @@
 	</target>
 
 	<target name="build-service">
-		<mkdir dir="docroot/WEB-INF/classes" />
-		<mkdir dir="docroot/WEB-INF/lib" />
-		<mkdir dir="docroot/WEB-INF/service" />
-		<mkdir dir="docroot/WEB-INF/sql" />
-		<mkdir dir="docroot/WEB-INF/src" />
+		<if>
+			<not>
+				<isset property="service.base.dir" />
+			</not>
+			<then>
+				<property name="service.base.dir" value="docroot/WEB-INF" />
+			</then>
+		</if>
 
-		<copy todir="docroot/WEB-INF/classes">
-			<fileset dir="docroot/WEB-INF/src" excludes="**/*.java" />
+		<mkdir dir="${service.base.dir}/classes" />
+		<mkdir dir="${service.base.dir}/lib" />
+		<mkdir dir="${service.base.dir}/service" />
+		<mkdir dir="${service.base.dir}/sql" />
+		<mkdir dir="${service.base.dir}/src" />
+
+		<copy todir="${service.base.dir}/classes">
+			<fileset dir="${service.base.dir}/src" excludes="**/*.java" />
 		</copy>
 
 		<path id="service.classpath">
 			<path refid="lib.classpath" />
 			<path refid="portal.classpath" />
 			<fileset dir="${app.server.lib.portal.dir}" includes="commons-digester.jar,commons-lang.jar,easyconf.jar" />
-			<fileset dir="docroot/WEB-INF/lib" includes="*.jar" />
-			<pathelement location="docroot/WEB-INF/classes" />
+			<fileset dir="${service.base.dir}/lib" includes="*.jar" />
+			<pathelement location="${service.base.dir}/classes" />
 		</path>
 
 		<if>
@@ -183,7 +192,7 @@
 				<isset property="service.input.file" />
 			</not>
 			<then>
-				<property name="service.input.file" value="${basedir}/docroot/WEB-INF/service.xml" />
+				<property name="service.input.file" value="${basedir}/${service.base.dir}/service.xml" />
 			</then>
 		</if>
 
@@ -200,22 +209,22 @@
 			<jvmarg value="-XX:MaxPermSize=512m" />
 			<arg value="-Dexternal-properties=com/liferay/portal/tools/dependencies/portal-tools.properties" />
 			<arg value="-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.Log4JLogger" />
-			<arg value="service.api.dir=${basedir}/docroot/WEB-INF/service" />
+			<arg value="service.api.dir=${basedir}/${service.base.dir}/service" />
 			<arg value="service.auto.namespace.tables=true" />
 			<arg value="service.bean.locator.util=com.liferay.util.bean.PortletBeanLocatorUtil" />
 			<arg value="service.build.number=1" />
 			<arg value="service.build.number.increment=true" />
-			<arg value="service.hbm.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-hbm.xml" />
-			<arg value="service.impl.dir=${basedir}/docroot/WEB-INF/src" />
+			<arg value="service.hbm.file=${basedir}/${service.base.dir}/src/META-INF/portlet-hbm.xml" />
+			<arg value="service.impl.dir=${basedir}/${service.base.dir}/src" />
 			<arg value="service.input.file=${service.input.file}" />
-			<arg value="service.model.hints.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-model-hints.xml" />
+			<arg value="service.model.hints.file=${basedir}/${service.base.dir}/src/META-INF/portlet-model-hints.xml" />
 			<arg value="service.osgi.module=false" />
 			<arg value="service.plugin.name=${plugin.name}" />
 			<arg value="service.props.util=com.liferay.util.service.ServiceProps" />
 			<arg value="service.remoting.file=" />
-			<arg value="service.resources.dir=${basedir}/docroot/WEB-INF/src" />
-			<arg value="service.spring.file=${basedir}/docroot/WEB-INF/src/META-INF/portlet-spring.xml" />
-			<arg value="service.sql.dir=${basedir}/docroot/WEB-INF/sql" />
+			<arg value="service.resources.dir=${basedir}/${service.base.dir}/src" />
+			<arg value="service.spring.file=${basedir}/${service.base.dir}/src/META-INF/portlet-spring.xml" />
+			<arg value="service.sql.dir=${basedir}/${service.base.dir}/sql" />
 			<arg value="service.sql.file=tables.sql" />
 			<arg value="service.sql.indexes.file=indexes.sql" />
 			<arg value="service.sql.sequences.file=sequences.sql" />
@@ -241,26 +250,26 @@
 			</then>
 		</if>
 
-		<mkdir dir="docroot/WEB-INF/service-classes" />
+		<mkdir dir="${service.base.dir}/service-classes" />
 
 		<path id="service.classpath">
 			<path refid="lib.classpath" />
 			<fileset dir="${app.server.lib.global.dir}" includes="*.jar" />
-			<fileset dir="docroot/WEB-INF/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
+			<fileset dir="${service.base.dir}/lib" excludes="${plugin.name}-service.jar" includes="*.jar" />
 		</path>
 
 		<compile-java
 			javac.classpathref="service.classpath"
-			javac.destdir="docroot/WEB-INF/service-classes"
-			javac.srcdir="docroot/WEB-INF/service"
+			javac.destdir="${service.base.dir}/service-classes"
+			javac.srcdir="${service.base.dir}/service"
 		/>
 
 		<zip
-			basedir="docroot/WEB-INF/service-classes"
-			destfile="docroot/WEB-INF/lib/${plugin.name}-service.jar"
+			basedir="${service.base.dir}/service-classes"
+			destfile="${service.base.dir}/lib/${plugin.name}-service.jar"
 		/>
 
-		<delete dir="docroot/WEB-INF/service-classes" />
+		<delete dir="${service.base.dir}/service-classes" />
 	</target>
 
 	<target name="build-wsdd">
