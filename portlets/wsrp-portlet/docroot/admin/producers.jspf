@@ -65,6 +65,7 @@
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
+			cssClass="entry-action"
 			path="/admin/producer_action.jsp"
 			valign="top"
 		/>

@@ -52,6 +52,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
+			cssClass="entry-action"
 			path="/admin/gadget_action.jsp"
 			valign="top"
 		/>

@@ -112,6 +112,7 @@ request.setAttribute("view.jsp-viewFolder", Boolean.TRUE.toString());
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
+			cssClass="entry-action"
 			path="/html/portlet/bookmarks/entry_action.jsp"
 		/>
 	</liferay-ui:search-container-row>

@@ -91,6 +91,7 @@
 		/>
 
 		<liferay-ui:search-container-column-jsp
+			cssClass="entry-action"
 			path="/foo_action.jsp"
 			valign="top"
 		/>

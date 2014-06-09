@@ -78,6 +78,7 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
+			cssClass="entry-action"
 			path="/admin/consumer_portlet_action.jsp"
 			valign="top"
 		/>

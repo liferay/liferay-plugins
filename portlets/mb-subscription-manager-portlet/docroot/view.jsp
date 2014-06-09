@@ -67,6 +67,7 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
+			cssClass="entry-action"
 			path="/category_action.jsp"
 		/>
 	</liferay-ui:search-container-row>

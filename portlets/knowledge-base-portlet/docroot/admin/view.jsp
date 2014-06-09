@@ -137,6 +137,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 				<liferay-ui:search-container-column-jsp
 					align="right"
+					cssClass="entry-action"
 					path="/admin/article_action.jsp"
 				/>
 			</liferay-ui:search-container-row>

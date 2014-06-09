@@ -83,6 +83,7 @@
 
 			<liferay-ui:search-container-column-jsp
 				align="right"
+				cssClass="entry-action"
 				path="/moderation/wiki_pages_action.jsp"
 			/>
 		</liferay-ui:search-container-row>

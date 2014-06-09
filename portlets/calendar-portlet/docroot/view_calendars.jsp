@@ -84,6 +84,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 		<liferay-ui:search-container-column-jsp
 			align="right"
+			cssClass="entry-action"
 			path="/calendar_action.jsp"
 		/>
 
