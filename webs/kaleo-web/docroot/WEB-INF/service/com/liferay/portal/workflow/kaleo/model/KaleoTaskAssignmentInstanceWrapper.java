@@ -286,11 +286,9 @@ public class KaleoTaskAssignmentInstanceWrapper
 	* Returns the user uuid of this kaleo task assignment instance.
 	*
 	* @return the user uuid of this kaleo task assignment instance
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _kaleoTaskAssignmentInstance.getUserUuid();
 	}
 
@@ -674,8 +672,7 @@ public class KaleoTaskAssignmentInstanceWrapper
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kaleoTaskAssignmentInstance.persist();
 	}
 

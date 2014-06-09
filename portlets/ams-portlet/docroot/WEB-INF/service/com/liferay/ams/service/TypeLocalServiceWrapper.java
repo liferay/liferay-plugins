@@ -34,11 +34,9 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	*
 	* @param type the type
 	* @return the type that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public com.liferay.ams.model.Type addType(com.liferay.ams.model.Type type)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.ams.model.Type addType(com.liferay.ams.model.Type type) {
 		return _typeLocalService.addType(type);
 	}
 
@@ -59,12 +57,10 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	* @param typeId the primary key of the type
 	* @return the type that was removed
 	* @throws PortalException if a type with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.ams.model.Type deleteType(long typeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _typeLocalService.deleteType(typeId);
 	}
 
@@ -73,12 +69,10 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	*
 	* @param type the type
 	* @return the type that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.ams.model.Type deleteType(
-		com.liferay.ams.model.Type type)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.ams.model.Type type) {
 		return _typeLocalService.deleteType(type);
 	}
 
@@ -92,13 +86,11 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _typeLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -113,13 +105,12 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _typeLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -135,15 +126,13 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _typeLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -153,12 +142,10 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _typeLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -168,19 +155,16 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _typeLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
-	public com.liferay.ams.model.Type fetchType(long typeId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.ams.model.Type fetchType(long typeId) {
 		return _typeLocalService.fetchType(typeId);
 	}
 
@@ -190,20 +174,32 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	* @param typeId the primary key of the type
 	* @return the type
 	* @throws PortalException if a type with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.ams.model.Type getType(long typeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _typeLocalService.getType(typeId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _typeLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _typeLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _typeLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -217,11 +213,10 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	* @param start the lower bound of the range of types
 	* @param end the upper bound of the range of types (not inclusive)
 	* @return the range of types
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.ams.model.Type> getTypes(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _typeLocalService.getTypes(start, end);
 	}
 
@@ -229,11 +224,9 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	* Returns the number of types.
 	*
 	* @return the number of types
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getTypesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getTypesCount() {
 		return _typeLocalService.getTypesCount();
 	}
 
@@ -242,12 +235,10 @@ public class TypeLocalServiceWrapper implements TypeLocalService,
 	*
 	* @param type the type
 	* @return the type that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.ams.model.Type updateType(
-		com.liferay.ams.model.Type type)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.ams.model.Type type) {
 		return _typeLocalService.updateType(type);
 	}
 

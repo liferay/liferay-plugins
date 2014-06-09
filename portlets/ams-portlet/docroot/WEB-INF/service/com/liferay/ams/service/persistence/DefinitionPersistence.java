@@ -66,15 +66,12 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	* @param definitionId the primary key of the definition
 	* @return the definition that was removed
 	* @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.ams.model.Definition remove(long definitionId)
-		throws com.liferay.ams.NoSuchDefinitionException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.ams.NoSuchDefinitionException;
 
 	public com.liferay.ams.model.Definition updateImpl(
-		com.liferay.ams.model.Definition definition)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.ams.model.Definition definition);
 
 	/**
 	* Returns the definition with the primary key or throws a {@link com.liferay.ams.NoSuchDefinitionException} if it could not be found.
@@ -82,30 +79,24 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	* @param definitionId the primary key of the definition
 	* @return the definition
 	* @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.ams.model.Definition findByPrimaryKey(long definitionId)
-		throws com.liferay.ams.NoSuchDefinitionException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.ams.NoSuchDefinitionException;
 
 	/**
 	* Returns the definition with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param definitionId the primary key of the definition
 	* @return the definition, or <code>null</code> if a definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.ams.model.Definition fetchByPrimaryKey(long definitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.ams.model.Definition fetchByPrimaryKey(long definitionId);
 
 	/**
 	* Returns all the definitions.
 	*
 	* @return the definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.ams.model.Definition> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.ams.model.Definition> findAll();
 
 	/**
 	* Returns a range of all the definitions.
@@ -117,10 +108,9 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	* @param start the lower bound of the range of definitions
 	* @param end the upper bound of the range of definitions (not inclusive)
 	* @return the range of definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.ams.model.Definition> findAll(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the definitions.
@@ -133,27 +123,20 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	* @param end the upper bound of the range of definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.ams.model.Definition> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the definitions from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of definitions.
 	*
 	* @return the number of definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

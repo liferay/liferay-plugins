@@ -210,11 +210,9 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	* Returns the user uuid of this user thread.
 	*
 	* @return the user uuid of this user thread
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _userThread.getUserUuid();
 	}
 
@@ -488,8 +486,7 @@ public class UserThreadWrapper implements UserThread, ModelWrapper<UserThread> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_userThread.persist();
 	}
 

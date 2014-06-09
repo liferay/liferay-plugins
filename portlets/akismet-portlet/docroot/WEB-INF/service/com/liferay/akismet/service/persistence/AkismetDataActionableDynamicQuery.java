@@ -18,15 +18,16 @@ import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link AkismetDataLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class AkismetDataActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public AkismetDataActionableDynamicQuery() throws SystemException {
+	public AkismetDataActionableDynamicQuery() {
 		setBaseLocalService(AkismetDataLocalServiceUtil.getService());
 		setClass(AkismetData.class);
 

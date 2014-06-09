@@ -16,7 +16,6 @@ package com.liferay.wsrp.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class WSRPConsumerPortletUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class WSRPConsumerPortletUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<WSRPConsumerPortlet> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class WSRPConsumerPortletUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<WSRPConsumerPortlet> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class WSRPConsumerPortletUtil {
 	 */
 	public static List<WSRPConsumerPortlet> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -98,7 +95,7 @@ public class WSRPConsumerPortletUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
 	public static WSRPConsumerPortlet update(
-		WSRPConsumerPortlet wsrpConsumerPortlet) throws SystemException {
+		WSRPConsumerPortlet wsrpConsumerPortlet) {
 		return getPersistence().update(wsrpConsumerPortlet);
 	}
 
@@ -106,8 +103,7 @@ public class WSRPConsumerPortletUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static WSRPConsumerPortlet update(
-		WSRPConsumerPortlet wsrpConsumerPortlet, ServiceContext serviceContext)
-		throws SystemException {
+		WSRPConsumerPortlet wsrpConsumerPortlet, ServiceContext serviceContext) {
 		return getPersistence().update(wsrpConsumerPortlet, serviceContext);
 	}
 
@@ -116,11 +112,9 @@ public class WSRPConsumerPortletUtil {
 	*
 	* @param uuid the uuid
 	* @return the matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid) {
 		return getPersistence().findByUuid(uuid);
 	}
 
@@ -135,11 +129,9 @@ public class WSRPConsumerPortletUtil {
 	* @param start the lower bound of the range of w s r p consumer portlets
 	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @return the range of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, int start, int end) {
 		return getPersistence().findByUuid(uuid, start, end);
 	}
 
@@ -155,12 +147,10 @@ public class WSRPConsumerPortletUtil {
 	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -171,13 +161,11 @@ public class WSRPConsumerPortletUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
 
@@ -187,12 +175,10 @@ public class WSRPConsumerPortletUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -203,13 +189,11 @@ public class WSRPConsumerPortletUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -219,12 +203,10 @@ public class WSRPConsumerPortletUtil {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -236,13 +218,11 @@ public class WSRPConsumerPortletUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet[] findByUuid_PrevAndNext(
 		long wsrpConsumerPortletId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(wsrpConsumerPortletId, uuid,
 			orderByComparator);
@@ -252,10 +232,8 @@ public class WSRPConsumerPortletUtil {
 	* Removes all the w s r p consumer portlets where uuid = &#63; from the database.
 	*
 	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUuid(java.lang.String uuid) {
 		getPersistence().removeByUuid(uuid);
 	}
 
@@ -264,10 +242,8 @@ public class WSRPConsumerPortletUtil {
 	*
 	* @param uuid the uuid
 	* @return the number of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUuid(java.lang.String uuid) {
 		return getPersistence().countByUuid(uuid);
 	}
 
@@ -277,11 +253,9 @@ public class WSRPConsumerPortletUtil {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByUuid_C(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return getPersistence().findByUuid_C(uuid, companyId);
 	}
 
@@ -297,11 +271,9 @@ public class WSRPConsumerPortletUtil {
 	* @param start the lower bound of the range of w s r p consumer portlets
 	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @return the range of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId, int start, int end) {
 		return getPersistence().findByUuid_C(uuid, companyId, start, end);
 	}
 
@@ -318,12 +290,10 @@ public class WSRPConsumerPortletUtil {
 	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -336,13 +306,11 @@ public class WSRPConsumerPortletUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByUuid_C_First(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -354,12 +322,10 @@ public class WSRPConsumerPortletUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -372,13 +338,11 @@ public class WSRPConsumerPortletUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -390,12 +354,10 @@ public class WSRPConsumerPortletUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -409,13 +371,11 @@ public class WSRPConsumerPortletUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet[] findByUuid_C_PrevAndNext(
 		long wsrpConsumerPortletId, java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(wsrpConsumerPortletId, uuid,
 			companyId, orderByComparator);
@@ -426,10 +386,8 @@ public class WSRPConsumerPortletUtil {
 	*
 	* @param uuid the uuid
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUuid_C(java.lang.String uuid, long companyId) {
 		getPersistence().removeByUuid_C(uuid, companyId);
 	}
 
@@ -439,10 +397,8 @@ public class WSRPConsumerPortletUtil {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the number of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUuid_C(java.lang.String uuid, long companyId) {
 		return getPersistence().countByUuid_C(uuid, companyId);
 	}
 
@@ -451,11 +407,9 @@ public class WSRPConsumerPortletUtil {
 	*
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @return the matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByWsrpConsumerId(
-		long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long wsrpConsumerId) {
 		return getPersistence().findByWsrpConsumerId(wsrpConsumerId);
 	}
 
@@ -470,11 +424,9 @@ public class WSRPConsumerPortletUtil {
 	* @param start the lower bound of the range of w s r p consumer portlets
 	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @return the range of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByWsrpConsumerId(
-		long wsrpConsumerId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long wsrpConsumerId, int start, int end) {
 		return getPersistence().findByWsrpConsumerId(wsrpConsumerId, start, end);
 	}
 
@@ -490,12 +442,10 @@ public class WSRPConsumerPortletUtil {
 	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findByWsrpConsumerId(
 		long wsrpConsumerId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByWsrpConsumerId(wsrpConsumerId, start, end,
 			orderByComparator);
@@ -508,13 +458,11 @@ public class WSRPConsumerPortletUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByWsrpConsumerId_First(
 		long wsrpConsumerId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByWsrpConsumerId_First(wsrpConsumerId, orderByComparator);
 	}
@@ -525,12 +473,10 @@ public class WSRPConsumerPortletUtil {
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByWsrpConsumerId_First(
 		long wsrpConsumerId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByWsrpConsumerId_First(wsrpConsumerId,
 			orderByComparator);
@@ -543,13 +489,11 @@ public class WSRPConsumerPortletUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByWsrpConsumerId_Last(
 		long wsrpConsumerId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByWsrpConsumerId_Last(wsrpConsumerId, orderByComparator);
 	}
@@ -560,12 +504,10 @@ public class WSRPConsumerPortletUtil {
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByWsrpConsumerId_Last(
 		long wsrpConsumerId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByWsrpConsumerId_Last(wsrpConsumerId, orderByComparator);
 	}
@@ -578,13 +520,11 @@ public class WSRPConsumerPortletUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet[] findByWsrpConsumerId_PrevAndNext(
 		long wsrpConsumerPortletId, long wsrpConsumerId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence()
 				   .findByWsrpConsumerId_PrevAndNext(wsrpConsumerPortletId,
 			wsrpConsumerId, orderByComparator);
@@ -594,10 +534,8 @@ public class WSRPConsumerPortletUtil {
 	* Removes all the w s r p consumer portlets where wsrpConsumerId = &#63; from the database.
 	*
 	* @param wsrpConsumerId the wsrp consumer ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByWsrpConsumerId(long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByWsrpConsumerId(long wsrpConsumerId) {
 		getPersistence().removeByWsrpConsumerId(wsrpConsumerId);
 	}
 
@@ -606,10 +544,8 @@ public class WSRPConsumerPortletUtil {
 	*
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @return the number of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByWsrpConsumerId(long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByWsrpConsumerId(long wsrpConsumerId) {
 		return getPersistence().countByWsrpConsumerId(wsrpConsumerId);
 	}
 
@@ -620,12 +556,10 @@ public class WSRPConsumerPortletUtil {
 	* @param portletHandle the portlet handle
 	* @return the matching w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByW_P(
 		long wsrpConsumerId, java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence().findByW_P(wsrpConsumerId, portletHandle);
 	}
 
@@ -635,11 +569,9 @@ public class WSRPConsumerPortletUtil {
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @param portletHandle the portlet handle
 	* @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByW_P(
-		long wsrpConsumerId, java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long wsrpConsumerId, java.lang.String portletHandle) {
 		return getPersistence().fetchByW_P(wsrpConsumerId, portletHandle);
 	}
 
@@ -650,12 +582,10 @@ public class WSRPConsumerPortletUtil {
 	* @param portletHandle the portlet handle
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching w s r p consumer portlet, or <code>null</code> if a matching w s r p consumer portlet could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByW_P(
 		long wsrpConsumerId, java.lang.String portletHandle,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByW_P(wsrpConsumerId, portletHandle, retrieveFromCache);
 	}
@@ -666,12 +596,10 @@ public class WSRPConsumerPortletUtil {
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @param portletHandle the portlet handle
 	* @return the w s r p consumer portlet that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet removeByW_P(
 		long wsrpConsumerId, java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence().removeByW_P(wsrpConsumerId, portletHandle);
 	}
 
@@ -681,11 +609,9 @@ public class WSRPConsumerPortletUtil {
 	* @param wsrpConsumerId the wsrp consumer ID
 	* @param portletHandle the portlet handle
 	* @return the number of matching w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static int countByW_P(long wsrpConsumerId,
-		java.lang.String portletHandle)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String portletHandle) {
 		return getPersistence().countByW_P(wsrpConsumerId, portletHandle);
 	}
 
@@ -726,18 +652,15 @@ public class WSRPConsumerPortletUtil {
 	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
 	* @return the w s r p consumer portlet that was removed
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet remove(
 		long wsrpConsumerPortletId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence().remove(wsrpConsumerPortletId);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet updateImpl(
-		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.wsrp.model.WSRPConsumerPortlet wsrpConsumerPortlet) {
 		return getPersistence().updateImpl(wsrpConsumerPortlet);
 	}
 
@@ -747,12 +670,10 @@ public class WSRPConsumerPortletUtil {
 	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
 	* @return the w s r p consumer portlet
 	* @throws com.liferay.wsrp.NoSuchConsumerPortletException if a w s r p consumer portlet with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet findByPrimaryKey(
 		long wsrpConsumerPortletId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchConsumerPortletException {
+		throws com.liferay.wsrp.NoSuchConsumerPortletException {
 		return getPersistence().findByPrimaryKey(wsrpConsumerPortletId);
 	}
 
@@ -761,11 +682,9 @@ public class WSRPConsumerPortletUtil {
 	*
 	* @param wsrpConsumerPortletId the primary key of the w s r p consumer portlet
 	* @return the w s r p consumer portlet, or <code>null</code> if a w s r p consumer portlet with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPrimaryKey(
-		long wsrpConsumerPortletId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long wsrpConsumerPortletId) {
 		return getPersistence().fetchByPrimaryKey(wsrpConsumerPortletId);
 	}
 
@@ -773,10 +692,8 @@ public class WSRPConsumerPortletUtil {
 	* Returns all the w s r p consumer portlets.
 	*
 	* @return the w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -790,11 +707,9 @@ public class WSRPConsumerPortletUtil {
 	* @param start the lower bound of the range of w s r p consumer portlets
 	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @return the range of w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -809,22 +724,17 @@ public class WSRPConsumerPortletUtil {
 	* @param end the upper bound of the range of w s r p consumer portlets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumerPortlet> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the w s r p consumer portlets from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -832,10 +742,8 @@ public class WSRPConsumerPortletUtil {
 	* Returns the number of w s r p consumer portlets.
 	*
 	* @return the number of w s r p consumer portlets
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

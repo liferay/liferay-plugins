@@ -16,7 +16,6 @@ package com.liferay.socialnetworking.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class WallEntryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class WallEntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<WallEntry> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class WallEntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<WallEntry> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class WallEntryUtil {
 	 */
 	public static List<WallEntry> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class WallEntryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static WallEntry update(WallEntry wallEntry)
-		throws SystemException {
+	public static WallEntry update(WallEntry wallEntry) {
 		return getPersistence().update(wallEntry);
 	}
 
@@ -106,7 +102,7 @@ public class WallEntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static WallEntry update(WallEntry wallEntry,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(wallEntry, serviceContext);
 	}
 
@@ -115,11 +111,9 @@ public class WallEntryUtil {
 	*
 	* @param groupId the group ID
 	* @return the matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByGroupId(
-		long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId) {
 		return getPersistence().findByGroupId(groupId);
 	}
 
@@ -134,11 +128,9 @@ public class WallEntryUtil {
 	* @param start the lower bound of the range of wall entries
 	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @return the range of matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByGroupId(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, int start, int end) {
 		return getPersistence().findByGroupId(groupId, start, end);
 	}
 
@@ -154,12 +146,10 @@ public class WallEntryUtil {
 	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByGroupId(groupId, start, end, orderByComparator);
 	}
@@ -171,13 +161,11 @@ public class WallEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByGroupId_First(
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -187,12 +175,10 @@ public class WallEntryUtil {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wall entry, or <code>null</code> if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByGroupId_First(groupId, orderByComparator);
 	}
 
@@ -203,13 +189,11 @@ public class WallEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByGroupId_Last(
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -219,12 +203,10 @@ public class WallEntryUtil {
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wall entry, or <code>null</code> if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByGroupId_Last(groupId, orderByComparator);
 	}
 
@@ -236,13 +218,11 @@ public class WallEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry[] findByGroupId_PrevAndNext(
 		long wallEntryId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByGroupId_PrevAndNext(wallEntryId, groupId,
 			orderByComparator);
@@ -252,10 +232,8 @@ public class WallEntryUtil {
 	* Removes all the wall entries where groupId = &#63; from the database.
 	*
 	* @param groupId the group ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByGroupId(long groupId) {
 		getPersistence().removeByGroupId(groupId);
 	}
 
@@ -264,10 +242,8 @@ public class WallEntryUtil {
 	*
 	* @param groupId the group ID
 	* @return the number of matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByGroupId(long groupId) {
 		return getPersistence().countByGroupId(groupId);
 	}
 
@@ -276,10 +252,9 @@ public class WallEntryUtil {
 	*
 	* @param userId the user ID
 	* @return the matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return getPersistence().findByUserId(userId);
 	}
 
@@ -294,11 +269,9 @@ public class WallEntryUtil {
 	* @param start the lower bound of the range of wall entries
 	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @return the range of matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
@@ -314,12 +287,10 @@ public class WallEntryUtil {
 	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -331,13 +302,11 @@ public class WallEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByUserId_First(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -347,12 +316,10 @@ public class WallEntryUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wall entry, or <code>null</code> if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -363,13 +330,11 @@ public class WallEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByUserId_Last(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -379,12 +344,10 @@ public class WallEntryUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wall entry, or <code>null</code> if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -396,13 +359,11 @@ public class WallEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry[] findByUserId_PrevAndNext(
 		long wallEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(wallEntryId, userId,
 			orderByComparator);
@@ -412,10 +373,8 @@ public class WallEntryUtil {
 	* Removes all the wall entries where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUserId(long userId) {
 		getPersistence().removeByUserId(userId);
 	}
 
@@ -424,10 +383,8 @@ public class WallEntryUtil {
 	*
 	* @param userId the user ID
 	* @return the number of matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUserId(long userId) {
 		return getPersistence().countByUserId(userId);
 	}
 
@@ -437,11 +394,9 @@ public class WallEntryUtil {
 	* @param groupId the group ID
 	* @param userId the user ID
 	* @return the matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG_U(
-		long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long userId) {
 		return getPersistence().findByG_U(groupId, userId);
 	}
 
@@ -457,11 +412,9 @@ public class WallEntryUtil {
 	* @param start the lower bound of the range of wall entries
 	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @return the range of matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG_U(
-		long groupId, long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, long userId, int start, int end) {
 		return getPersistence().findByG_U(groupId, userId, start, end);
 	}
 
@@ -478,12 +431,10 @@ public class WallEntryUtil {
 	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG_U(
 		long groupId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByG_U(groupId, userId, start, end, orderByComparator);
 	}
@@ -496,13 +447,11 @@ public class WallEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByG_U_First(
 		long groupId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByG_U_First(groupId, userId, orderByComparator);
 	}
@@ -514,12 +463,10 @@ public class WallEntryUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching wall entry, or <code>null</code> if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByG_U_First(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByG_U_First(groupId, userId, orderByComparator);
 	}
@@ -532,13 +479,11 @@ public class WallEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByG_U_Last(
 		long groupId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByG_U_Last(groupId, userId, orderByComparator);
 	}
@@ -550,12 +495,10 @@ public class WallEntryUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching wall entry, or <code>null</code> if a matching wall entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByG_U_Last(
 		long groupId, long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByG_U_Last(groupId, userId, orderByComparator);
 	}
@@ -569,13 +512,11 @@ public class WallEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry[] findByG_U_PrevAndNext(
 		long wallEntryId, long groupId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence()
 				   .findByG_U_PrevAndNext(wallEntryId, groupId, userId,
 			orderByComparator);
@@ -586,10 +527,8 @@ public class WallEntryUtil {
 	*
 	* @param groupId the group ID
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByG_U(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByG_U(long groupId, long userId) {
 		getPersistence().removeByG_U(groupId, userId);
 	}
 
@@ -599,10 +538,8 @@ public class WallEntryUtil {
 	* @param groupId the group ID
 	* @param userId the user ID
 	* @return the number of matching wall entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByG_U(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByG_U(long groupId, long userId) {
 		return getPersistence().countByG_U(groupId, userId);
 	}
 
@@ -643,18 +580,15 @@ public class WallEntryUtil {
 	* @param wallEntryId the primary key of the wall entry
 	* @return the wall entry that was removed
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry remove(
 		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().remove(wallEntryId);
 	}
 
 	public static com.liferay.socialnetworking.model.WallEntry updateImpl(
-		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialnetworking.model.WallEntry wallEntry) {
 		return getPersistence().updateImpl(wallEntry);
 	}
 
@@ -664,12 +598,10 @@ public class WallEntryUtil {
 	* @param wallEntryId the primary key of the wall entry
 	* @return the wall entry
 	* @throws com.liferay.socialnetworking.NoSuchWallEntryException if a wall entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry findByPrimaryKey(
 		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchWallEntryException {
+		throws com.liferay.socialnetworking.NoSuchWallEntryException {
 		return getPersistence().findByPrimaryKey(wallEntryId);
 	}
 
@@ -678,11 +610,9 @@ public class WallEntryUtil {
 	*
 	* @param wallEntryId the primary key of the wall entry
 	* @return the wall entry, or <code>null</code> if a wall entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.WallEntry fetchByPrimaryKey(
-		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long wallEntryId) {
 		return getPersistence().fetchByPrimaryKey(wallEntryId);
 	}
 
@@ -690,10 +620,8 @@ public class WallEntryUtil {
 	* Returns all the wall entries.
 	*
 	* @return the wall entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -707,11 +635,9 @@ public class WallEntryUtil {
 	* @param start the lower bound of the range of wall entries
 	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @return the range of wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -726,22 +652,17 @@ public class WallEntryUtil {
 	* @param end the upper bound of the range of wall entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of wall entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the wall entries from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -749,10 +670,8 @@ public class WallEntryUtil {
 	* Returns the number of wall entries.
 	*
 	* @return the number of wall entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

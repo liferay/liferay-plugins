@@ -35,12 +35,10 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	*
 	* @param kbArticle the k b article
 	* @return the k b article that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle addKBArticle(
-		com.liferay.knowledgebase.model.KBArticle kbArticle)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.knowledgebase.model.KBArticle kbArticle) {
 		return _kbArticleLocalService.addKBArticle(kbArticle);
 	}
 
@@ -62,7 +60,7 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param kbArticleId the primary key of the k b article
 	* @return the k b article that was removed
 	* @throws PortalException if a k b article with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
@@ -78,7 +76,7 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param kbArticle the k b article
 	* @return the k b article that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle deleteKBArticle(
@@ -98,13 +96,11 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _kbArticleLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -119,13 +115,12 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _kbArticleLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,15 +136,13 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _kbArticleLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -159,12 +152,10 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _kbArticleLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,20 +165,17 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _kbArticleLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchKBArticle(
-		long kbArticleId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kbArticleId) {
 		return _kbArticleLocalService.fetchKBArticle(kbArticleId);
 	}
 
@@ -197,12 +185,10 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param uuid the k b article's UUID
 	* @param companyId the primary key of the company
 	* @return the matching k b article, or <code>null</code> if a matching k b article could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return _kbArticleLocalService.fetchKBArticleByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -213,12 +199,10 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param uuid the k b article's UUID
 	* @param groupId the primary key of the group
 	* @return the matching k b article, or <code>null</code> if a matching k b article could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle fetchKBArticleByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId) {
 		return _kbArticleLocalService.fetchKBArticleByUuidAndGroupId(uuid,
 			groupId);
 	}
@@ -229,34 +213,39 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param kbArticleId the primary key of the k b article
 	* @return the k b article
 	* @throws PortalException if a k b article with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle getKBArticle(
 		long kbArticleId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleLocalService.getKBArticle(kbArticleId);
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _kbArticleLocalService.getActionableDynamicQuery();
 	}
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
 		return _kbArticleLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kbArticleLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -267,13 +256,11 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param companyId the primary key of the company
 	* @return the matching k b article
 	* @throws PortalException if a matching k b article could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleLocalService.getKBArticleByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -285,13 +272,11 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param groupId the primary key of the group
 	* @return the matching k b article
 	* @throws PortalException if a matching k b article could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle getKBArticleByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kbArticleLocalService.getKBArticleByUuidAndGroupId(uuid, groupId);
 	}
 
@@ -305,12 +290,10 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* @param start the lower bound of the range of k b articles
 	* @param end the upper bound of the range of k b articles (not inclusive)
 	* @return the range of k b articles
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.knowledgebase.model.KBArticle> getKBArticles(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _kbArticleLocalService.getKBArticles(start, end);
 	}
 
@@ -318,11 +301,9 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	* Returns the number of k b articles.
 	*
 	* @return the number of k b articles
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getKBArticlesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getKBArticlesCount() {
 		return _kbArticleLocalService.getKBArticlesCount();
 	}
 
@@ -331,12 +312,10 @@ public class KBArticleLocalServiceWrapper implements KBArticleLocalService,
 	*
 	* @param kbArticle the k b article
 	* @return the k b article that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.knowledgebase.model.KBArticle updateKBArticle(
-		com.liferay.knowledgebase.model.KBArticle kbArticle)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.knowledgebase.model.KBArticle kbArticle) {
 		return _kbArticleLocalService.updateKBArticle(kbArticle);
 	}
 

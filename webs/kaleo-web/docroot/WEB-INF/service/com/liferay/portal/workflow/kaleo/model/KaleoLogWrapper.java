@@ -378,11 +378,9 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	* Returns the user uuid of this kaleo log.
 	*
 	* @return the user uuid of this kaleo log
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _kaleoLog.getUserUuid();
 	}
 
@@ -1029,8 +1027,7 @@ public class KaleoLogWrapper implements KaleoLog, ModelWrapper<KaleoLog> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kaleoLog.persist();
 	}
 

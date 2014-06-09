@@ -36,12 +36,10 @@ public class MicroblogsEntryLocalServiceWrapper
 	*
 	* @param microblogsEntry the microblogs entry
 	* @return the microblogs entry that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.microblogs.model.MicroblogsEntry addMicroblogsEntry(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry) {
 		return _microblogsEntryLocalService.addMicroblogsEntry(microblogsEntry);
 	}
 
@@ -63,7 +61,7 @@ public class MicroblogsEntryLocalServiceWrapper
 	* @param microblogsEntryId the primary key of the microblogs entry
 	* @return the microblogs entry that was removed
 	* @throws PortalException if a microblogs entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.microblogs.model.MicroblogsEntry deleteMicroblogsEntry(
@@ -79,7 +77,7 @@ public class MicroblogsEntryLocalServiceWrapper
 	* @param microblogsEntry the microblogs entry
 	* @return the microblogs entry that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.microblogs.model.MicroblogsEntry deleteMicroblogsEntry(
@@ -99,13 +97,11 @@ public class MicroblogsEntryLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _microblogsEntryLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -120,13 +116,12 @@ public class MicroblogsEntryLocalServiceWrapper
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _microblogsEntryLocalService.dynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -143,15 +138,13 @@ public class MicroblogsEntryLocalServiceWrapper
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _microblogsEntryLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -161,12 +154,10 @@ public class MicroblogsEntryLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _microblogsEntryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -176,21 +167,18 @@ public class MicroblogsEntryLocalServiceWrapper
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _microblogsEntryLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public com.liferay.microblogs.model.MicroblogsEntry fetchMicroblogsEntry(
-		long microblogsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long microblogsEntryId) {
 		return _microblogsEntryLocalService.fetchMicroblogsEntry(microblogsEntryId);
 	}
 
@@ -200,7 +188,7 @@ public class MicroblogsEntryLocalServiceWrapper
 	* @param microblogsEntryId the primary key of the microblogs entry
 	* @return the microblogs entry
 	* @throws PortalException if a microblogs entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.microblogs.model.MicroblogsEntry getMicroblogsEntry(
@@ -211,16 +199,24 @@ public class MicroblogsEntryLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _microblogsEntryLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _microblogsEntryLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _microblogsEntryLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -234,12 +230,10 @@ public class MicroblogsEntryLocalServiceWrapper
 	* @param start the lower bound of the range of microblogs entries
 	* @param end the upper bound of the range of microblogs entries (not inclusive)
 	* @return the range of microblogs entries
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.microblogs.model.MicroblogsEntry> getMicroblogsEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _microblogsEntryLocalService.getMicroblogsEntries(start, end);
 	}
 
@@ -247,11 +241,9 @@ public class MicroblogsEntryLocalServiceWrapper
 	* Returns the number of microblogs entries.
 	*
 	* @return the number of microblogs entries
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getMicroblogsEntriesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getMicroblogsEntriesCount() {
 		return _microblogsEntryLocalService.getMicroblogsEntriesCount();
 	}
 
@@ -260,12 +252,10 @@ public class MicroblogsEntryLocalServiceWrapper
 	*
 	* @param microblogsEntry the microblogs entry
 	* @return the microblogs entry that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.microblogs.model.MicroblogsEntry updateMicroblogsEntry(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry) {
 		return _microblogsEntryLocalService.updateMicroblogsEntry(microblogsEntry);
 	}
 

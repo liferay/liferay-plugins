@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -86,12 +88,10 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 *
 	 * @param kaleoTimer the kaleo timer
 	 * @return the kaleo timer that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public KaleoTimer addKaleoTimer(KaleoTimer kaleoTimer)
-		throws SystemException {
+	public KaleoTimer addKaleoTimer(KaleoTimer kaleoTimer) {
 		kaleoTimer.setNew(true);
 
 		return kaleoTimerPersistence.update(kaleoTimer);
@@ -114,12 +114,11 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 * @param kaleoTimerId the primary key of the kaleo timer
 	 * @return the kaleo timer that was removed
 	 * @throws PortalException if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoTimer deleteKaleoTimer(long kaleoTimerId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoTimerPersistence.remove(kaleoTimerId);
 	}
 
@@ -128,12 +127,10 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 *
 	 * @param kaleoTimer the kaleo timer
 	 * @return the kaleo timer that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public KaleoTimer deleteKaleoTimer(KaleoTimer kaleoTimer)
-		throws SystemException {
+	public KaleoTimer deleteKaleoTimer(KaleoTimer kaleoTimer) {
 		return kaleoTimerPersistence.remove(kaleoTimer);
 	}
 
@@ -150,12 +147,10 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return kaleoTimerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -170,12 +165,10 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return kaleoTimerPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -192,12 +185,11 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return kaleoTimerPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -207,11 +199,9 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return kaleoTimerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -221,18 +211,16 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return kaleoTimerPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public KaleoTimer fetchKaleoTimer(long kaleoTimerId)
-		throws SystemException {
+	public KaleoTimer fetchKaleoTimer(long kaleoTimerId) {
 		return kaleoTimerPersistence.fetchByPrimaryKey(kaleoTimerId);
 	}
 
@@ -242,17 +230,47 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 * @param kaleoTimerId the primary key of the kaleo timer
 	 * @return the kaleo timer
 	 * @throws PortalException if a kaleo timer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoTimer getKaleoTimer(long kaleoTimerId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoTimerPersistence.findByPrimaryKey(kaleoTimerId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(KaleoTimer.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("kaleoTimerId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(KaleoTimer.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("kaleoTimerId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteKaleoTimer((KaleoTimer)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoTimerPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -266,11 +284,9 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 * @param start the lower bound of the range of kaleo timers
 	 * @param end the upper bound of the range of kaleo timers (not inclusive)
 	 * @return the range of kaleo timers
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KaleoTimer> getKaleoTimers(int start, int end)
-		throws SystemException {
+	public List<KaleoTimer> getKaleoTimers(int start, int end) {
 		return kaleoTimerPersistence.findAll(start, end);
 	}
 
@@ -278,10 +294,9 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 * Returns the number of kaleo timers.
 	 *
 	 * @return the number of kaleo timers
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getKaleoTimersCount() throws SystemException {
+	public int getKaleoTimersCount() {
 		return kaleoTimerPersistence.countAll();
 	}
 
@@ -290,12 +305,10 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 *
 	 * @param kaleoTimer the kaleo timer
 	 * @return the kaleo timer that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public KaleoTimer updateKaleoTimer(KaleoTimer kaleoTimer)
-		throws SystemException {
+	public KaleoTimer updateKaleoTimer(KaleoTimer kaleoTimer) {
 		return kaleoTimerPersistence.update(kaleoTimer);
 	}
 
@@ -1163,7 +1176,7 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = kaleoTimerPersistence.getDataSource();
 

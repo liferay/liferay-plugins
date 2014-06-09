@@ -14,8 +14,6 @@
 
 package com.liferay.sync.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.service.SyncDLObjectLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class SyncDLObjectBaseImpl extends SyncDLObjectModelImpl
 	 * Never modify or reference this class directly. All methods that expect a sync d l object model instance should use the {@link SyncDLObject} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			SyncDLObjectLocalServiceUtil.addSyncDLObject(this);
 		}

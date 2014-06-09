@@ -41,11 +41,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	*
 	* @param companyId the company ID
 	* @return the matching kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId);
 
 	/**
 	* Returns a range of all the kaleo tasks where companyId = &#63;.
@@ -58,11 +56,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param start the lower bound of the range of kaleo tasks
 	* @param end the upper bound of the range of kaleo tasks (not inclusive)
 	* @return the range of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo tasks where companyId = &#63;.
@@ -76,12 +72,10 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param end the upper bound of the range of kaleo tasks (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first kaleo task in the ordered set where companyId = &#63;.
@@ -90,13 +84,11 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	/**
 	* Returns the first kaleo task in the ordered set where companyId = &#63;.
@@ -104,12 +96,10 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last kaleo task in the ordered set where companyId = &#63;.
@@ -118,13 +108,11 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	/**
 	* Returns the last kaleo task in the ordered set where companyId = &#63;.
@@ -132,12 +120,10 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the kaleo tasks before and after the current kaleo task in the ordered set where companyId = &#63;.
@@ -147,43 +133,35 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask[] findByCompanyId_PrevAndNext(
 		long kaleoTaskId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	/**
 	* Removes all the kaleo tasks where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByCompanyId(long companyId);
 
 	/**
 	* Returns the number of kaleo tasks where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the number of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByCompanyId(long companyId);
 
 	/**
 	* Returns all the kaleo tasks where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the matching kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findByKaleoDefinitionId(
-		long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoDefinitionId);
 
 	/**
 	* Returns a range of all the kaleo tasks where kaleoDefinitionId = &#63;.
@@ -196,11 +174,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param start the lower bound of the range of kaleo tasks
 	* @param end the upper bound of the range of kaleo tasks (not inclusive)
 	* @return the range of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findByKaleoDefinitionId(
-		long kaleoDefinitionId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoDefinitionId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo tasks where kaleoDefinitionId = &#63;.
@@ -214,12 +190,10 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param end the upper bound of the range of kaleo tasks (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findByKaleoDefinitionId(
 		long kaleoDefinitionId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first kaleo task in the ordered set where kaleoDefinitionId = &#63;.
@@ -228,13 +202,11 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask findByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	/**
 	* Returns the first kaleo task in the ordered set where kaleoDefinitionId = &#63;.
@@ -242,12 +214,10 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByKaleoDefinitionId_First(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last kaleo task in the ordered set where kaleoDefinitionId = &#63;.
@@ -256,13 +226,11 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask findByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	/**
 	* Returns the last kaleo task in the ordered set where kaleoDefinitionId = &#63;.
@@ -270,12 +238,10 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByKaleoDefinitionId_Last(
 		long kaleoDefinitionId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the kaleo tasks before and after the current kaleo task in the ordered set where kaleoDefinitionId = &#63;.
@@ -285,32 +251,26 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask[] findByKaleoDefinitionId_PrevAndNext(
 		long kaleoTaskId, long kaleoDefinitionId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	/**
 	* Removes all the kaleo tasks where kaleoDefinitionId = &#63; from the database.
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
 	* Returns the number of kaleo tasks where kaleoDefinitionId = &#63;.
 	*
 	* @param kaleoDefinitionId the kaleo definition ID
 	* @return the number of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByKaleoDefinitionId(long kaleoDefinitionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByKaleoDefinitionId(long kaleoDefinitionId);
 
 	/**
 	* Returns the kaleo task where kaleoNodeId = &#63; or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskException} if it could not be found.
@@ -318,23 +278,19 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param kaleoNodeId the kaleo node ID
 	* @return the matching kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask findByKaleoNodeId(
 		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	/**
 	* Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByKaleoNodeId(
-		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoNodeId);
 
 	/**
 	* Returns the kaleo task where kaleoNodeId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -342,33 +298,27 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param kaleoNodeId the kaleo node ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching kaleo task, or <code>null</code> if a matching kaleo task could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByKaleoNodeId(
-		long kaleoNodeId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoNodeId, boolean retrieveFromCache);
 
 	/**
 	* Removes the kaleo task where kaleoNodeId = &#63; from the database.
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @return the kaleo task that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask removeByKaleoNodeId(
 		long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	/**
 	* Returns the number of kaleo tasks where kaleoNodeId = &#63;.
 	*
 	* @param kaleoNodeId the kaleo node ID
 	* @return the number of matching kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByKaleoNodeId(long kaleoNodeId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByKaleoNodeId(long kaleoNodeId);
 
 	/**
 	* Caches the kaleo task in the entity cache if it is enabled.
@@ -401,16 +351,13 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param kaleoTaskId the primary key of the kaleo task
 	* @return the kaleo task that was removed
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask remove(
 		long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask updateImpl(
-		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.workflow.kaleo.model.KaleoTask kaleoTask);
 
 	/**
 	* Returns the kaleo task with the primary key or throws a {@link com.liferay.portal.workflow.kaleo.NoSuchTaskException} if it could not be found.
@@ -418,32 +365,26 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param kaleoTaskId the primary key of the kaleo task
 	* @return the kaleo task
 	* @throws com.liferay.portal.workflow.kaleo.NoSuchTaskException if a kaleo task with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask findByPrimaryKey(
 		long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.workflow.kaleo.NoSuchTaskException;
+		throws com.liferay.portal.workflow.kaleo.NoSuchTaskException;
 
 	/**
 	* Returns the kaleo task with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param kaleoTaskId the primary key of the kaleo task
 	* @return the kaleo task, or <code>null</code> if a kaleo task with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.portal.workflow.kaleo.model.KaleoTask fetchByPrimaryKey(
-		long kaleoTaskId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long kaleoTaskId);
 
 	/**
 	* Returns all the kaleo tasks.
 	*
 	* @return the kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findAll();
 
 	/**
 	* Returns a range of all the kaleo tasks.
@@ -455,11 +396,9 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param start the lower bound of the range of kaleo tasks
 	* @param end the upper bound of the range of kaleo tasks (not inclusive)
 	* @return the range of kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the kaleo tasks.
@@ -472,27 +411,20 @@ public interface KaleoTaskPersistence extends BasePersistence<KaleoTask> {
 	* @param end the upper bound of the range of kaleo tasks (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTask> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the kaleo tasks from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of kaleo tasks.
 	*
 	* @return the number of kaleo tasks
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

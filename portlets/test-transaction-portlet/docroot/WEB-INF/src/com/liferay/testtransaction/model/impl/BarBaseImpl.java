@@ -14,8 +14,6 @@
 
 package com.liferay.testtransaction.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.testtransaction.model.Bar;
 import com.liferay.testtransaction.service.BarLocalServiceUtil;
 
@@ -38,7 +36,7 @@ public abstract class BarBaseImpl extends BarModelImpl implements Bar {
 	 * Never modify or reference this class directly. All methods that expect a bar model instance should use the {@link Bar} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			BarLocalServiceUtil.addBar(this);
 		}

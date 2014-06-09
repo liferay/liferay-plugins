@@ -16,7 +16,6 @@ package com.liferay.testpacl.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,16 +60,14 @@ public class FooUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
-	public static List<Foo> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static List<Foo> findWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,7 +75,7 @@ public class FooUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<Foo> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -86,8 +83,7 @@ public class FooUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Foo> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -96,15 +92,14 @@ public class FooUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Foo update(Foo foo) throws SystemException {
+	public static Foo update(Foo foo) {
 		return getPersistence().update(foo);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Foo update(Foo foo, ServiceContext serviceContext)
-		throws SystemException {
+	public static Foo update(Foo foo, ServiceContext serviceContext) {
 		return getPersistence().update(foo, serviceContext);
 	}
 
@@ -113,11 +108,9 @@ public class FooUtil {
 	*
 	* @param field2 the field2
 	* @return the matching foos
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.testpacl.model.Foo> findByField2(
-		boolean field2)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean field2) {
 		return getPersistence().findByField2(field2);
 	}
 
@@ -132,11 +125,9 @@ public class FooUtil {
 	* @param start the lower bound of the range of foos
 	* @param end the upper bound of the range of foos (not inclusive)
 	* @return the range of matching foos
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.testpacl.model.Foo> findByField2(
-		boolean field2, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean field2, int start, int end) {
 		return getPersistence().findByField2(field2, start, end);
 	}
 
@@ -152,12 +143,10 @@ public class FooUtil {
 	* @param end the upper bound of the range of foos (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching foos
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.testpacl.model.Foo> findByField2(
 		boolean field2, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByField2(field2, start, end, orderByComparator);
 	}
@@ -169,13 +158,11 @@ public class FooUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching foo
 	* @throws com.liferay.testpacl.NoSuchFooException if a matching foo could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testpacl.model.Foo findByField2_First(
 		boolean field2,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.NoSuchFooException {
 		return getPersistence().findByField2_First(field2, orderByComparator);
 	}
 
@@ -185,12 +172,10 @@ public class FooUtil {
 	* @param field2 the field2
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching foo, or <code>null</code> if a matching foo could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testpacl.model.Foo fetchByField2_First(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByField2_First(field2, orderByComparator);
 	}
 
@@ -201,13 +186,11 @@ public class FooUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching foo
 	* @throws com.liferay.testpacl.NoSuchFooException if a matching foo could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testpacl.model.Foo findByField2_Last(
 		boolean field2,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.NoSuchFooException {
 		return getPersistence().findByField2_Last(field2, orderByComparator);
 	}
 
@@ -217,12 +200,10 @@ public class FooUtil {
 	* @param field2 the field2
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching foo, or <code>null</code> if a matching foo could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testpacl.model.Foo fetchByField2_Last(
 		boolean field2,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByField2_Last(field2, orderByComparator);
 	}
 
@@ -234,13 +215,11 @@ public class FooUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next foo
 	* @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testpacl.model.Foo[] findByField2_PrevAndNext(
 		long fooId, boolean field2,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.NoSuchFooException {
 		return getPersistence()
 				   .findByField2_PrevAndNext(fooId, field2, orderByComparator);
 	}
@@ -249,10 +228,8 @@ public class FooUtil {
 	* Removes all the foos where field2 = &#63; from the database.
 	*
 	* @param field2 the field2
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByField2(boolean field2)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByField2(boolean field2) {
 		getPersistence().removeByField2(field2);
 	}
 
@@ -261,10 +238,8 @@ public class FooUtil {
 	*
 	* @param field2 the field2
 	* @return the number of matching foos
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByField2(boolean field2)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByField2(boolean field2) {
 		return getPersistence().countByField2(field2);
 	}
 
@@ -303,17 +278,14 @@ public class FooUtil {
 	* @param fooId the primary key of the foo
 	* @return the foo that was removed
 	* @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testpacl.model.Foo remove(long fooId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.NoSuchFooException {
 		return getPersistence().remove(fooId);
 	}
 
 	public static com.liferay.testpacl.model.Foo updateImpl(
-		com.liferay.testpacl.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.testpacl.model.Foo foo) {
 		return getPersistence().updateImpl(foo);
 	}
 
@@ -323,11 +295,9 @@ public class FooUtil {
 	* @param fooId the primary key of the foo
 	* @return the foo
 	* @throws com.liferay.testpacl.NoSuchFooException if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testpacl.model.Foo findByPrimaryKey(long fooId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testpacl.NoSuchFooException {
+		throws com.liferay.testpacl.NoSuchFooException {
 		return getPersistence().findByPrimaryKey(fooId);
 	}
 
@@ -336,10 +306,8 @@ public class FooUtil {
 	*
 	* @param fooId the primary key of the foo
 	* @return the foo, or <code>null</code> if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.testpacl.model.Foo fetchByPrimaryKey(long fooId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.testpacl.model.Foo fetchByPrimaryKey(long fooId) {
 		return getPersistence().fetchByPrimaryKey(fooId);
 	}
 
@@ -347,10 +315,8 @@ public class FooUtil {
 	* Returns all the foos.
 	*
 	* @return the foos
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.testpacl.model.Foo> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.testpacl.model.Foo> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -364,11 +330,9 @@ public class FooUtil {
 	* @param start the lower bound of the range of foos
 	* @param end the upper bound of the range of foos (not inclusive)
 	* @return the range of foos
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.testpacl.model.Foo> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -383,22 +347,17 @@ public class FooUtil {
 	* @param end the upper bound of the range of foos (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of foos
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.testpacl.model.Foo> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the foos from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -406,10 +365,8 @@ public class FooUtil {
 	* Returns the number of foos.
 	*
 	* @return the number of foos
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

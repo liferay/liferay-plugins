@@ -26,6 +26,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -73,12 +75,10 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 *
 	 * @param oAuthConsumer the o auth consumer
 	 * @return the o auth consumer that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public OAuthConsumer addOAuthConsumer(OAuthConsumer oAuthConsumer)
-		throws SystemException {
+	public OAuthConsumer addOAuthConsumer(OAuthConsumer oAuthConsumer) {
 		oAuthConsumer.setNew(true);
 
 		return oAuthConsumerPersistence.update(oAuthConsumer);
@@ -101,7 +101,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @param oAuthConsumerId the primary key of the o auth consumer
 	 * @return the o auth consumer that was removed
 	 * @throws PortalException if a o auth consumer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -115,7 +115,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 *
 	 * @param oAuthConsumer the o auth consumer
 	 * @return the o auth consumer that was removed
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -137,12 +137,10 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return oAuthConsumerPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -157,12 +155,10 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return oAuthConsumerPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -179,12 +175,11 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return oAuthConsumerPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -194,11 +189,9 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return oAuthConsumerPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -208,18 +201,16 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return oAuthConsumerPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public OAuthConsumer fetchOAuthConsumer(long oAuthConsumerId)
-		throws SystemException {
+	public OAuthConsumer fetchOAuthConsumer(long oAuthConsumerId) {
 		return oAuthConsumerPersistence.fetchByPrimaryKey(oAuthConsumerId);
 	}
 
@@ -229,17 +220,47 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @param oAuthConsumerId the primary key of the o auth consumer
 	 * @return the o auth consumer
 	 * @throws PortalException if a o auth consumer with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public OAuthConsumer getOAuthConsumer(long oAuthConsumerId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return oAuthConsumerPersistence.findByPrimaryKey(oAuthConsumerId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(OAuthConsumer.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("oAuthConsumerId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.OAuthConsumerLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(OAuthConsumer.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("oAuthConsumerId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteOAuthConsumer((OAuthConsumer)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return oAuthConsumerPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -253,11 +274,9 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * @param start the lower bound of the range of o auth consumers
 	 * @param end the upper bound of the range of o auth consumers (not inclusive)
 	 * @return the range of o auth consumers
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<OAuthConsumer> getOAuthConsumers(int start, int end)
-		throws SystemException {
+	public List<OAuthConsumer> getOAuthConsumers(int start, int end) {
 		return oAuthConsumerPersistence.findAll(start, end);
 	}
 
@@ -265,10 +284,9 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 * Returns the number of o auth consumers.
 	 *
 	 * @return the number of o auth consumers
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getOAuthConsumersCount() throws SystemException {
+	public int getOAuthConsumersCount() {
 		return oAuthConsumerPersistence.countAll();
 	}
 
@@ -277,12 +295,10 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 *
 	 * @param oAuthConsumer the o auth consumer
 	 * @return the o auth consumer that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public OAuthConsumer updateOAuthConsumer(OAuthConsumer oAuthConsumer)
-		throws SystemException {
+	public OAuthConsumer updateOAuthConsumer(OAuthConsumer oAuthConsumer) {
 		return oAuthConsumerPersistence.update(oAuthConsumer);
 	}
 
@@ -637,7 +653,7 @@ public abstract class OAuthConsumerLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = oAuthConsumerPersistence.getDataSource();
 

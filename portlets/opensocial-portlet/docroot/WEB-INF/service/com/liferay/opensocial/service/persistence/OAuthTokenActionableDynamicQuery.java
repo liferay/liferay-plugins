@@ -18,15 +18,16 @@ import com.liferay.opensocial.model.OAuthToken;
 import com.liferay.opensocial.service.OAuthTokenLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link OAuthTokenLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class OAuthTokenActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public OAuthTokenActionableDynamicQuery() throws SystemException {
+	public OAuthTokenActionableDynamicQuery() {
 		setBaseLocalService(OAuthTokenLocalServiceUtil.getService());
 		setClass(OAuthToken.class);
 

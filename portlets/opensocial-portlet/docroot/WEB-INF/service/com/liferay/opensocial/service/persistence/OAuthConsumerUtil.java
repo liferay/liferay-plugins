@@ -18,7 +18,6 @@ import com.liferay.opensocial.model.OAuthConsumer;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class OAuthConsumerUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class OAuthConsumerUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<OAuthConsumer> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class OAuthConsumerUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<OAuthConsumer> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class OAuthConsumerUtil {
 	 */
 	public static List<OAuthConsumer> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class OAuthConsumerUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static OAuthConsumer update(OAuthConsumer oAuthConsumer)
-		throws SystemException {
+	public static OAuthConsumer update(OAuthConsumer oAuthConsumer) {
 		return getPersistence().update(oAuthConsumer);
 	}
 
@@ -106,7 +102,7 @@ public class OAuthConsumerUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static OAuthConsumer update(OAuthConsumer oAuthConsumer,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(oAuthConsumer, serviceContext);
 	}
 
@@ -115,11 +111,9 @@ public class OAuthConsumerUtil {
 	*
 	* @param gadgetKey the gadget key
 	* @return the matching o auth consumers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
-		java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey) {
 		return getPersistence().findByGadgetKey(gadgetKey);
 	}
 
@@ -134,11 +128,9 @@ public class OAuthConsumerUtil {
 	* @param start the lower bound of the range of o auth consumers
 	* @param end the upper bound of the range of o auth consumers (not inclusive)
 	* @return the range of matching o auth consumers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
-		java.lang.String gadgetKey, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey, int start, int end) {
 		return getPersistence().findByGadgetKey(gadgetKey, start, end);
 	}
 
@@ -154,12 +146,10 @@ public class OAuthConsumerUtil {
 	* @param end the upper bound of the range of o auth consumers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth consumers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findByGadgetKey(
 		java.lang.String gadgetKey, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByGadgetKey(gadgetKey, start, end, orderByComparator);
 	}
@@ -171,13 +161,11 @@ public class OAuthConsumerUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_First(
 		java.lang.String gadgetKey,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_First(gadgetKey, orderByComparator);
 	}
@@ -188,12 +176,10 @@ public class OAuthConsumerUtil {
 	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_First(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByGadgetKey_First(gadgetKey, orderByComparator);
 	}
@@ -205,13 +191,11 @@ public class OAuthConsumerUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer findByGadgetKey_Last(
 		java.lang.String gadgetKey,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_Last(gadgetKey, orderByComparator);
 	}
@@ -222,12 +206,10 @@ public class OAuthConsumerUtil {
 	* @param gadgetKey the gadget key
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer fetchByGadgetKey_Last(
 		java.lang.String gadgetKey,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByGadgetKey_Last(gadgetKey, orderByComparator);
 	}
@@ -240,13 +222,11 @@ public class OAuthConsumerUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer[] findByGadgetKey_PrevAndNext(
 		long oAuthConsumerId, java.lang.String gadgetKey,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence()
 				   .findByGadgetKey_PrevAndNext(oAuthConsumerId, gadgetKey,
 			orderByComparator);
@@ -256,10 +236,8 @@ public class OAuthConsumerUtil {
 	* Removes all the o auth consumers where gadgetKey = &#63; from the database.
 	*
 	* @param gadgetKey the gadget key
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByGadgetKey(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByGadgetKey(java.lang.String gadgetKey) {
 		getPersistence().removeByGadgetKey(gadgetKey);
 	}
 
@@ -268,10 +246,8 @@ public class OAuthConsumerUtil {
 	*
 	* @param gadgetKey the gadget key
 	* @return the number of matching o auth consumers
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByGadgetKey(java.lang.String gadgetKey)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByGadgetKey(java.lang.String gadgetKey) {
 		return getPersistence().countByGadgetKey(gadgetKey);
 	}
 
@@ -282,12 +258,10 @@ public class OAuthConsumerUtil {
 	* @param serviceName the service name
 	* @return the matching o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a matching o auth consumer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer findByG_S(
 		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence().findByG_S(gadgetKey, serviceName);
 	}
 
@@ -297,11 +271,9 @@ public class OAuthConsumerUtil {
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer fetchByG_S(
-		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String gadgetKey, java.lang.String serviceName) {
 		return getPersistence().fetchByG_S(gadgetKey, serviceName);
 	}
 
@@ -312,12 +284,10 @@ public class OAuthConsumerUtil {
 	* @param serviceName the service name
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching o auth consumer, or <code>null</code> if a matching o auth consumer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer fetchByG_S(
 		java.lang.String gadgetKey, java.lang.String serviceName,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByG_S(gadgetKey, serviceName, retrieveFromCache);
 	}
@@ -328,12 +298,10 @@ public class OAuthConsumerUtil {
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the o auth consumer that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer removeByG_S(
 		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence().removeByG_S(gadgetKey, serviceName);
 	}
 
@@ -343,11 +311,9 @@ public class OAuthConsumerUtil {
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the number of matching o auth consumers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static int countByG_S(java.lang.String gadgetKey,
-		java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String serviceName) {
 		return getPersistence().countByG_S(gadgetKey, serviceName);
 	}
 
@@ -388,18 +354,15 @@ public class OAuthConsumerUtil {
 	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @return the o auth consumer that was removed
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer remove(
 		long oAuthConsumerId)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence().remove(oAuthConsumerId);
 	}
 
 	public static com.liferay.opensocial.model.OAuthConsumer updateImpl(
-		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.opensocial.model.OAuthConsumer oAuthConsumer) {
 		return getPersistence().updateImpl(oAuthConsumer);
 	}
 
@@ -409,12 +372,10 @@ public class OAuthConsumerUtil {
 	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @return the o auth consumer
 	* @throws com.liferay.opensocial.NoSuchOAuthConsumerException if a o auth consumer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer findByPrimaryKey(
 		long oAuthConsumerId)
-		throws com.liferay.opensocial.NoSuchOAuthConsumerException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.opensocial.NoSuchOAuthConsumerException {
 		return getPersistence().findByPrimaryKey(oAuthConsumerId);
 	}
 
@@ -423,11 +384,9 @@ public class OAuthConsumerUtil {
 	*
 	* @param oAuthConsumerId the primary key of the o auth consumer
 	* @return the o auth consumer, or <code>null</code> if a o auth consumer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.opensocial.model.OAuthConsumer fetchByPrimaryKey(
-		long oAuthConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long oAuthConsumerId) {
 		return getPersistence().fetchByPrimaryKey(oAuthConsumerId);
 	}
 
@@ -435,10 +394,8 @@ public class OAuthConsumerUtil {
 	* Returns all the o auth consumers.
 	*
 	* @return the o auth consumers
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -452,11 +409,9 @@ public class OAuthConsumerUtil {
 	* @param start the lower bound of the range of o auth consumers
 	* @param end the upper bound of the range of o auth consumers (not inclusive)
 	* @return the range of o auth consumers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -471,22 +426,17 @@ public class OAuthConsumerUtil {
 	* @param end the upper bound of the range of o auth consumers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of o auth consumers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.opensocial.model.OAuthConsumer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the o auth consumers from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -494,10 +444,8 @@ public class OAuthConsumerUtil {
 	* Returns the number of o auth consumers.
 	*
 	* @return the number of o auth consumers
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

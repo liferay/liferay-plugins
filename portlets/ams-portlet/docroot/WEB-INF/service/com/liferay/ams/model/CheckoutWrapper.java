@@ -210,11 +210,9 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	* Returns the user uuid of this checkout.
 	*
 	* @return the user uuid of this checkout
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _checkout.getUserUuid();
 	}
 
@@ -467,8 +465,7 @@ public class CheckoutWrapper implements Checkout, ModelWrapper<Checkout> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_checkout.persist();
 	}
 

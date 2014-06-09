@@ -16,7 +16,6 @@ package com.liferay.so.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class FavoriteSiteUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class FavoriteSiteUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<FavoriteSite> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class FavoriteSiteUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<FavoriteSite> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class FavoriteSiteUtil {
 	 */
 	public static List<FavoriteSite> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class FavoriteSiteUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static FavoriteSite update(FavoriteSite favoriteSite)
-		throws SystemException {
+	public static FavoriteSite update(FavoriteSite favoriteSite) {
 		return getPersistence().update(favoriteSite);
 	}
 
@@ -106,7 +102,7 @@ public class FavoriteSiteUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static FavoriteSite update(FavoriteSite favoriteSite,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(favoriteSite, serviceContext);
 	}
 
@@ -115,10 +111,9 @@ public class FavoriteSiteUtil {
 	*
 	* @param userId the user ID
 	* @return the matching favorite sites
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.FavoriteSite> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return getPersistence().findByUserId(userId);
 	}
 
@@ -133,11 +128,9 @@ public class FavoriteSiteUtil {
 	* @param start the lower bound of the range of favorite sites
 	* @param end the upper bound of the range of favorite sites (not inclusive)
 	* @return the range of matching favorite sites
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.FavoriteSite> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
@@ -153,12 +146,10 @@ public class FavoriteSiteUtil {
 	* @param end the upper bound of the range of favorite sites (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching favorite sites
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.FavoriteSite> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -170,13 +161,11 @@ public class FavoriteSiteUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching favorite site
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite findByUserId_First(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -186,12 +175,10 @@ public class FavoriteSiteUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching favorite site, or <code>null</code> if a matching favorite site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -202,13 +189,11 @@ public class FavoriteSiteUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching favorite site
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite findByUserId_Last(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -218,12 +203,10 @@ public class FavoriteSiteUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching favorite site, or <code>null</code> if a matching favorite site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -235,13 +218,11 @@ public class FavoriteSiteUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next favorite site
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite[] findByUserId_PrevAndNext(
 		long favoriteSiteId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(favoriteSiteId, userId,
 			orderByComparator);
@@ -251,10 +232,8 @@ public class FavoriteSiteUtil {
 	* Removes all the favorite sites where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUserId(long userId) {
 		getPersistence().removeByUserId(userId);
 	}
 
@@ -263,10 +242,8 @@ public class FavoriteSiteUtil {
 	*
 	* @param userId the user ID
 	* @return the number of matching favorite sites
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUserId(long userId) {
 		return getPersistence().countByUserId(userId);
 	}
 
@@ -277,12 +254,9 @@ public class FavoriteSiteUtil {
 	* @param userId the user ID
 	* @return the matching favorite site
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a matching favorite site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite findByG_U(long groupId,
-		long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchFavoriteSiteException {
+		long userId) throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence().findByG_U(groupId, userId);
 	}
 
@@ -292,10 +266,9 @@ public class FavoriteSiteUtil {
 	* @param groupId the group ID
 	* @param userId the user ID
 	* @return the matching favorite site, or <code>null</code> if a matching favorite site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite fetchByG_U(long groupId,
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return getPersistence().fetchByG_U(groupId, userId);
 	}
 
@@ -306,11 +279,9 @@ public class FavoriteSiteUtil {
 	* @param userId the user ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching favorite site, or <code>null</code> if a matching favorite site could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite fetchByG_U(long groupId,
-		long userId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, boolean retrieveFromCache) {
 		return getPersistence().fetchByG_U(groupId, userId, retrieveFromCache);
 	}
 
@@ -320,12 +291,9 @@ public class FavoriteSiteUtil {
 	* @param groupId the group ID
 	* @param userId the user ID
 	* @return the favorite site that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite removeByG_U(long groupId,
-		long userId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchFavoriteSiteException {
+		long userId) throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence().removeByG_U(groupId, userId);
 	}
 
@@ -335,10 +303,8 @@ public class FavoriteSiteUtil {
 	* @param groupId the group ID
 	* @param userId the user ID
 	* @return the number of matching favorite sites
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByG_U(long groupId, long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByG_U(long groupId, long userId) {
 		return getPersistence().countByG_U(groupId, userId);
 	}
 
@@ -378,17 +344,14 @@ public class FavoriteSiteUtil {
 	* @param favoriteSiteId the primary key of the favorite site
 	* @return the favorite site that was removed
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite remove(long favoriteSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchFavoriteSiteException {
+		throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence().remove(favoriteSiteId);
 	}
 
 	public static com.liferay.so.model.FavoriteSite updateImpl(
-		com.liferay.so.model.FavoriteSite favoriteSite)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.so.model.FavoriteSite favoriteSite) {
 		return getPersistence().updateImpl(favoriteSite);
 	}
 
@@ -398,12 +361,9 @@ public class FavoriteSiteUtil {
 	* @param favoriteSiteId the primary key of the favorite site
 	* @return the favorite site
 	* @throws com.liferay.so.NoSuchFavoriteSiteException if a favorite site with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite findByPrimaryKey(
-		long favoriteSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchFavoriteSiteException {
+		long favoriteSiteId) throws com.liferay.so.NoSuchFavoriteSiteException {
 		return getPersistence().findByPrimaryKey(favoriteSiteId);
 	}
 
@@ -412,11 +372,9 @@ public class FavoriteSiteUtil {
 	*
 	* @param favoriteSiteId the primary key of the favorite site
 	* @return the favorite site, or <code>null</code> if a favorite site with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.FavoriteSite fetchByPrimaryKey(
-		long favoriteSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long favoriteSiteId) {
 		return getPersistence().fetchByPrimaryKey(favoriteSiteId);
 	}
 
@@ -424,10 +382,8 @@ public class FavoriteSiteUtil {
 	* Returns all the favorite sites.
 	*
 	* @return the favorite sites
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.so.model.FavoriteSite> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.so.model.FavoriteSite> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -441,11 +397,9 @@ public class FavoriteSiteUtil {
 	* @param start the lower bound of the range of favorite sites
 	* @param end the upper bound of the range of favorite sites (not inclusive)
 	* @return the range of favorite sites
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.FavoriteSite> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -460,22 +414,17 @@ public class FavoriteSiteUtil {
 	* @param end the upper bound of the range of favorite sites (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of favorite sites
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.FavoriteSite> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the favorite sites from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -483,10 +432,8 @@ public class FavoriteSiteUtil {
 	* Returns the number of favorite sites.
 	*
 	* @return the number of favorite sites
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

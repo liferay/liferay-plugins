@@ -42,11 +42,9 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	*
 	* @param uuid the uuid
 	* @return the matching test blob entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testblob.model.TestBlobEntry> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid);
 
 	/**
 	* Returns a range of all the test blob entries where uuid = &#63;.
@@ -59,11 +57,9 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param start the lower bound of the range of test blob entries
 	* @param end the upper bound of the range of test blob entries (not inclusive)
 	* @return the range of matching test blob entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testblob.model.TestBlobEntry> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, int start, int end);
 
 	/**
 	* Returns an ordered range of all the test blob entries where uuid = &#63;.
@@ -77,12 +73,10 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param end the upper bound of the range of test blob entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching test blob entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testblob.model.TestBlobEntry> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first test blob entry in the ordered set where uuid = &#63;.
@@ -91,13 +85,11 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching test blob entry
 	* @throws com.liferay.testblob.NoSuchEntryException if a matching test blob entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.TestBlobEntry findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testblob.NoSuchEntryException;
+		throws com.liferay.testblob.NoSuchEntryException;
 
 	/**
 	* Returns the first test blob entry in the ordered set where uuid = &#63;.
@@ -105,12 +97,10 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching test blob entry, or <code>null</code> if a matching test blob entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.TestBlobEntry fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last test blob entry in the ordered set where uuid = &#63;.
@@ -119,13 +109,11 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching test blob entry
 	* @throws com.liferay.testblob.NoSuchEntryException if a matching test blob entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.TestBlobEntry findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testblob.NoSuchEntryException;
+		throws com.liferay.testblob.NoSuchEntryException;
 
 	/**
 	* Returns the last test blob entry in the ordered set where uuid = &#63;.
@@ -133,12 +121,10 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching test blob entry, or <code>null</code> if a matching test blob entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.TestBlobEntry fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the test blob entries before and after the current test blob entry in the ordered set where uuid = &#63;.
@@ -148,32 +134,26 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next test blob entry
 	* @throws com.liferay.testblob.NoSuchEntryException if a test blob entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.TestBlobEntry[] findByUuid_PrevAndNext(
 		long testBlobEntryId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testblob.NoSuchEntryException;
+		throws com.liferay.testblob.NoSuchEntryException;
 
 	/**
 	* Removes all the test blob entries where uuid = &#63; from the database.
 	*
 	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUuid(java.lang.String uuid);
 
 	/**
 	* Returns the number of test blob entries where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @return the number of matching test blob entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUuid(java.lang.String uuid);
 
 	/**
 	* Caches the test blob entry in the entity cache if it is enabled.
@@ -205,15 +185,12 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param testBlobEntryId the primary key of the test blob entry
 	* @return the test blob entry that was removed
 	* @throws com.liferay.testblob.NoSuchEntryException if a test blob entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.TestBlobEntry remove(long testBlobEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testblob.NoSuchEntryException;
+		throws com.liferay.testblob.NoSuchEntryException;
 
 	public com.liferay.testblob.model.TestBlobEntry updateImpl(
-		com.liferay.testblob.model.TestBlobEntry testBlobEntry)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.testblob.model.TestBlobEntry testBlobEntry);
 
 	/**
 	* Returns the test blob entry with the primary key or throws a {@link com.liferay.testblob.NoSuchEntryException} if it could not be found.
@@ -221,32 +198,25 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param testBlobEntryId the primary key of the test blob entry
 	* @return the test blob entry
 	* @throws com.liferay.testblob.NoSuchEntryException if a test blob entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.TestBlobEntry findByPrimaryKey(
-		long testBlobEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testblob.NoSuchEntryException;
+		long testBlobEntryId) throws com.liferay.testblob.NoSuchEntryException;
 
 	/**
 	* Returns the test blob entry with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param testBlobEntryId the primary key of the test blob entry
 	* @return the test blob entry, or <code>null</code> if a test blob entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testblob.model.TestBlobEntry fetchByPrimaryKey(
-		long testBlobEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long testBlobEntryId);
 
 	/**
 	* Returns all the test blob entries.
 	*
 	* @return the test blob entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.testblob.model.TestBlobEntry> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.testblob.model.TestBlobEntry> findAll();
 
 	/**
 	* Returns a range of all the test blob entries.
@@ -258,11 +228,9 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param start the lower bound of the range of test blob entries
 	* @param end the upper bound of the range of test blob entries (not inclusive)
 	* @return the range of test blob entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testblob.model.TestBlobEntry> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the test blob entries.
@@ -275,27 +243,20 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	* @param end the upper bound of the range of test blob entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of test blob entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testblob.model.TestBlobEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the test blob entries from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of test blob entries.
 	*
 	* @return the number of test blob entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

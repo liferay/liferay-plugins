@@ -2,10 +2,10 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.socialnetworking.service.MeetupsEntryLocalService" class="com.liferay.socialnetworking.service.impl.MeetupsEntryLocalServiceImpl" />
-	<bean id="com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence" class="com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialnetworking.service.persistence.MeetupsEntryPersistence" class="com.liferay.socialnetworking.service.persistence.impl.MeetupsEntryPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.socialnetworking.service.MeetupsRegistrationLocalService" class="com.liferay.socialnetworking.service.impl.MeetupsRegistrationLocalServiceImpl" />
-	<bean id="com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence" class="com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialnetworking.service.persistence.MeetupsRegistrationPersistence" class="com.liferay.socialnetworking.service.persistence.impl.MeetupsRegistrationPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.socialnetworking.service.WallEntryLocalService" class="com.liferay.socialnetworking.service.impl.WallEntryLocalServiceImpl" />
-	<bean id="com.liferay.socialnetworking.service.persistence.WallEntryPersistence" class="com.liferay.socialnetworking.service.persistence.WallEntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.socialnetworking.service.persistence.WallEntryFinder" class="com.liferay.socialnetworking.service.persistence.WallEntryFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialnetworking.service.persistence.WallEntryPersistence" class="com.liferay.socialnetworking.service.persistence.impl.WallEntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialnetworking.service.persistence.WallEntryFinder" class="com.liferay.socialnetworking.service.persistence.impl.WallEntryFinderImpl" parent="basePersistence" />
 </beans>

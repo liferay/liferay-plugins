@@ -42,11 +42,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*
 	* @param uuid the uuid
 	* @return the matching modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid);
 
 	/**
 	* Returns a range of all the modules where uuid = &#63;.
@@ -59,11 +57,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param start the lower bound of the range of modules
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, int start, int end);
 
 	/**
 	* Returns an ordered range of all the modules where uuid = &#63;.
@@ -77,12 +73,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where uuid = &#63;.
@@ -91,13 +85,11 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Returns the first module in the ordered set where uuid = &#63;.
@@ -105,12 +97,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module, or <code>null</code> if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where uuid = &#63;.
@@ -119,13 +109,11 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Returns the last module in the ordered set where uuid = &#63;.
@@ -133,12 +121,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module, or <code>null</code> if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where uuid = &#63;.
@@ -148,42 +134,35 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module[] findByUuid_PrevAndNext(
 		long moduleId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Removes all the modules where uuid = &#63; from the database.
 	*
 	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUuid(java.lang.String uuid);
 
 	/**
 	* Returns the number of modules where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @return the number of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUuid(java.lang.String uuid);
 
 	/**
 	* Returns all the modules where appId = &#63;.
 	*
 	* @param appId the app ID
 	* @return the matching modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByAppId(
-		long appId) throws com.liferay.portal.kernel.exception.SystemException;
+		long appId);
 
 	/**
 	* Returns a range of all the modules where appId = &#63;.
@@ -196,11 +175,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param start the lower bound of the range of modules
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByAppId(
-		long appId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long appId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the modules where appId = &#63;.
@@ -214,12 +191,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByAppId(
 		long appId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where appId = &#63;.
@@ -228,12 +203,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module findByAppId_First(long appId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Returns the first module in the ordered set where appId = &#63;.
@@ -241,11 +214,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param appId the app ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module, or <code>null</code> if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module fetchByAppId_First(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where appId = &#63;.
@@ -254,12 +225,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module findByAppId_Last(long appId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Returns the last module in the ordered set where appId = &#63;.
@@ -267,11 +236,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param appId the app ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module, or <code>null</code> if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module fetchByAppId_Last(long appId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where appId = &#63;.
@@ -281,43 +248,35 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module[] findByAppId_PrevAndNext(
 		long moduleId, long appId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Removes all the modules where appId = &#63; from the database.
 	*
 	* @param appId the app ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByAppId(long appId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByAppId(long appId);
 
 	/**
 	* Returns the number of modules where appId = &#63;.
 	*
 	* @param appId the app ID
 	* @return the number of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByAppId(long appId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByAppId(long appId);
 
 	/**
 	* Returns all the modules where contextName = &#63;.
 	*
 	* @param contextName the context name
 	* @return the matching modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByContextName(
-		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String contextName);
 
 	/**
 	* Returns a range of all the modules where contextName = &#63;.
@@ -330,11 +289,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param start the lower bound of the range of modules
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByContextName(
-		java.lang.String contextName, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String contextName, int start, int end);
 
 	/**
 	* Returns an ordered range of all the modules where contextName = &#63;.
@@ -348,12 +305,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findByContextName(
 		java.lang.String contextName, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first module in the ordered set where contextName = &#63;.
@@ -362,13 +317,11 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module findByContextName_First(
 		java.lang.String contextName,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Returns the first module in the ordered set where contextName = &#63;.
@@ -376,12 +329,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching module, or <code>null</code> if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module fetchByContextName_First(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last module in the ordered set where contextName = &#63;.
@@ -390,13 +341,11 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module findByContextName_Last(
 		java.lang.String contextName,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Returns the last module in the ordered set where contextName = &#63;.
@@ -404,12 +353,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching module, or <code>null</code> if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module fetchByContextName_Last(
 		java.lang.String contextName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the modules before and after the current module in the ordered set where contextName = &#63;.
@@ -419,32 +366,26 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module[] findByContextName_PrevAndNext(
 		long moduleId, java.lang.String contextName,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Removes all the modules where contextName = &#63; from the database.
 	*
 	* @param contextName the context name
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByContextName(java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByContextName(java.lang.String contextName);
 
 	/**
 	* Returns the number of modules where contextName = &#63;.
 	*
 	* @param contextName the context name
 	* @return the number of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByContextName(java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByContextName(java.lang.String contextName);
 
 	/**
 	* Returns the module where appId = &#63; and contextName = &#63; or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
@@ -453,12 +394,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @return the matching module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module findByA_C(long appId,
 		java.lang.String contextName)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -466,11 +405,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param appId the app ID
 	* @param contextName the context name
 	* @return the matching module, or <code>null</code> if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module fetchByA_C(long appId,
-		java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String contextName);
 
 	/**
 	* Returns the module where appId = &#63; and contextName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -479,11 +416,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param contextName the context name
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching module, or <code>null</code> if a matching module could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module fetchByA_C(long appId,
-		java.lang.String contextName, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String contextName, boolean retrieveFromCache);
 
 	/**
 	* Removes the module where appId = &#63; and contextName = &#63; from the database.
@@ -491,12 +426,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param appId the app ID
 	* @param contextName the context name
 	* @return the module that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module removeByA_C(long appId,
 		java.lang.String contextName)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Returns the number of modules where appId = &#63; and contextName = &#63;.
@@ -504,10 +437,8 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param appId the app ID
 	* @param contextName the context name
 	* @return the number of matching modules
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByA_C(long appId, java.lang.String contextName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByA_C(long appId, java.lang.String contextName);
 
 	/**
 	* Caches the module in the entity cache if it is enabled.
@@ -538,15 +469,12 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param moduleId the primary key of the module
 	* @return the module that was removed
 	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module remove(long moduleId)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	public com.liferay.marketplace.model.Module updateImpl(
-		com.liferay.marketplace.model.Module module)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.marketplace.model.Module module);
 
 	/**
 	* Returns the module with the primary key or throws a {@link com.liferay.marketplace.NoSuchModuleException} if it could not be found.
@@ -554,30 +482,24 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param moduleId the primary key of the module
 	* @return the module
 	* @throws com.liferay.marketplace.NoSuchModuleException if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.marketplace.model.Module findByPrimaryKey(long moduleId)
-		throws com.liferay.marketplace.NoSuchModuleException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.marketplace.NoSuchModuleException;
 
 	/**
 	* Returns the module with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param moduleId the primary key of the module
 	* @return the module, or <code>null</code> if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.marketplace.model.Module fetchByPrimaryKey(long moduleId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.marketplace.model.Module fetchByPrimaryKey(long moduleId);
 
 	/**
 	* Returns all the modules.
 	*
 	* @return the modules
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.marketplace.model.Module> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.marketplace.model.Module> findAll();
 
 	/**
 	* Returns a range of all the modules.
@@ -589,11 +511,9 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param start the lower bound of the range of modules
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the modules.
@@ -606,27 +526,20 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.marketplace.model.Module> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the modules from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of modules.
 	*
 	* @return the number of modules
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

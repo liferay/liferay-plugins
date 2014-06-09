@@ -287,11 +287,9 @@ public class CalendarNotificationTemplateWrapper
 	* Returns the user uuid of this calendar notification template.
 	*
 	* @return the user uuid of this calendar notification template
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _calendarNotificationTemplate.getUserUuid();
 	}
 
@@ -587,8 +585,7 @@ public class CalendarNotificationTemplateWrapper
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_calendarNotificationTemplate.persist();
 	}
 

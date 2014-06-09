@@ -203,11 +203,9 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	* Returns the user uuid of this feed.
 	*
 	* @return the user uuid of this feed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _feed.getUserUuid();
 	}
 
@@ -305,11 +303,9 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	* Returns the twitter user uuid of this feed.
 	*
 	* @return the twitter user uuid of this feed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getTwitterUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getTwitterUserUuid() {
 		return _feed.getTwitterUserUuid();
 	}
 
@@ -462,8 +458,7 @@ public class FeedWrapper implements Feed, ModelWrapper<Feed> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_feed.persist();
 	}
 

@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -121,11 +120,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param companyId the company ID
 	 * @return the matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> findByCompanyId(long companyId)
-		throws SystemException {
+	public List<MicroblogsEntry> findByCompanyId(long companyId) {
 		return findByCompanyId(companyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
@@ -141,11 +138,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByCompanyId(long companyId, int start,
-		int end) throws SystemException {
+		int end) {
 		return findByCompanyId(companyId, start, end, null);
 	}
 
@@ -161,11 +157,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByCompanyId(long companyId, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+		int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -268,12 +263,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByCompanyId_First(companyId,
 				orderByComparator);
 
@@ -299,11 +292,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByCompanyId_First(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<MicroblogsEntry> list = findByCompanyId(companyId, 0, 1,
 				orderByComparator);
 
@@ -321,12 +313,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByCompanyId_Last(companyId,
 				orderByComparator);
 
@@ -352,11 +342,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByCompanyId_Last(long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByCompanyId(companyId);
 
 		if (count == 0) {
@@ -381,13 +370,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] findByCompanyId_PrevAndNext(
 		long microblogsEntryId, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
 		Session session = null;
@@ -525,11 +512,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param companyId the company ID
 	 * @return the matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> filterFindByCompanyId(long companyId)
-		throws SystemException {
+	public List<MicroblogsEntry> filterFindByCompanyId(long companyId) {
 		return filterFindByCompanyId(companyId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -545,11 +530,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByCompanyId(long companyId,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return filterFindByCompanyId(companyId, start, end, null);
 	}
 
@@ -565,12 +549,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByCompanyId(long companyId,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByCompanyId(companyId, start, end, orderByComparator);
 		}
@@ -658,13 +640,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] filterFindByCompanyId_PrevAndNext(
 		long microblogsEntryId, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByCompanyId_PrevAndNext(microblogsEntryId, companyId,
 				orderByComparator);
@@ -841,10 +821,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * Removes all the microblogs entries where companyId = &#63; from the database.
 	 *
 	 * @param companyId the company ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByCompanyId(long companyId) throws SystemException {
+	public void removeByCompanyId(long companyId) {
 		for (MicroblogsEntry microblogsEntry : findByCompanyId(companyId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(microblogsEntry);
@@ -856,10 +835,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param companyId the company ID
 	 * @return the number of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByCompanyId(long companyId) throws SystemException {
+	public int countByCompanyId(long companyId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_COMPANYID;
 
 		Object[] finderArgs = new Object[] { companyId };
@@ -909,10 +887,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param companyId the company ID
 	 * @return the number of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByCompanyId(long companyId) throws SystemException {
+	public int filterCountByCompanyId(long companyId) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByCompanyId(companyId);
 		}
@@ -982,11 +959,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param userId the user ID
 	 * @return the matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> findByUserId(long userId)
-		throws SystemException {
+	public List<MicroblogsEntry> findByUserId(long userId) {
 		return findByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -1001,11 +976,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> findByUserId(long userId, int start, int end)
-		throws SystemException {
+	public List<MicroblogsEntry> findByUserId(long userId, int start, int end) {
 		return findByUserId(userId, start, end, null);
 	}
 
@@ -1021,11 +994,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByUserId(long userId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1128,12 +1100,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByUserId_First(long userId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByUserId_First(userId,
 				orderByComparator);
 
@@ -1159,11 +1129,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByUserId_First(long userId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<MicroblogsEntry> list = findByUserId(userId, 0, 1,
 				orderByComparator);
 
@@ -1181,12 +1150,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByUserId_Last(long userId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByUserId_Last(userId,
 				orderByComparator);
 
@@ -1212,11 +1179,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param userId the user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByUserId_Last(long userId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByUserId(userId);
 
 		if (count == 0) {
@@ -1241,12 +1207,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] findByUserId_PrevAndNext(long microblogsEntryId,
 		long userId, OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
 		Session session = null;
@@ -1384,11 +1349,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param userId the user ID
 	 * @return the matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> filterFindByUserId(long userId)
-		throws SystemException {
+	public List<MicroblogsEntry> filterFindByUserId(long userId) {
 		return filterFindByUserId(userId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
@@ -1404,11 +1367,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByUserId(long userId, int start,
-		int end) throws SystemException {
+		int end) {
 		return filterFindByUserId(userId, start, end, null);
 	}
 
@@ -1424,11 +1386,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByUserId(long userId, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+		int end, OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByUserId(userId, start, end, orderByComparator);
 		}
@@ -1516,12 +1477,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] filterFindByUserId_PrevAndNext(
 		long microblogsEntryId, long userId, OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByUserId_PrevAndNext(microblogsEntryId, userId,
 				orderByComparator);
@@ -1698,10 +1658,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * Removes all the microblogs entries where userId = &#63; from the database.
 	 *
 	 * @param userId the user ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByUserId(long userId) throws SystemException {
+	public void removeByUserId(long userId) {
 		for (MicroblogsEntry microblogsEntry : findByUserId(userId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(microblogsEntry);
@@ -1713,10 +1672,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param userId the user ID
 	 * @return the number of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUserId(long userId) throws SystemException {
+	public int countByUserId(long userId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_USERID;
 
 		Object[] finderArgs = new Object[] { userId };
@@ -1766,10 +1724,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param userId the user ID
 	 * @return the number of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByUserId(long userId) throws SystemException {
+	public int filterCountByUserId(long userId) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByUserId(userId);
 		}
@@ -1840,11 +1797,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param userId the user ID
 	 * @param type the type
 	 * @return the matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> findByU_T(long userId, int type)
-		throws SystemException {
+	public List<MicroblogsEntry> findByU_T(long userId, int type) {
 		return findByU_T(userId, type, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
 			null);
 	}
@@ -1861,11 +1816,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByU_T(long userId, int type, int start,
-		int end) throws SystemException {
+		int end) {
 		return findByU_T(userId, type, start, end, null);
 	}
 
@@ -1882,11 +1836,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByU_T(long userId, int type, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+		int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1999,12 +1952,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByU_T_First(long userId, int type,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByU_T_First(userId, type,
 				orderByComparator);
 
@@ -2034,11 +1985,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByU_T_First(long userId, int type,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<MicroblogsEntry> list = findByU_T(userId, type, 0, 1,
 				orderByComparator);
 
@@ -2057,12 +2007,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByU_T_Last(long userId, int type,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByU_T_Last(userId, type,
 				orderByComparator);
 
@@ -2092,11 +2040,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByU_T_Last(long userId, int type,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByU_T(userId, type);
 
 		if (count == 0) {
@@ -2122,12 +2069,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] findByU_T_PrevAndNext(long microblogsEntryId,
 		long userId, int type, OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
 		Session session = null;
@@ -2270,11 +2216,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param userId the user ID
 	 * @param type the type
 	 * @return the matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> filterFindByU_T(long userId, int type)
-		throws SystemException {
+	public List<MicroblogsEntry> filterFindByU_T(long userId, int type) {
 		return filterFindByU_T(userId, type, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -2291,11 +2235,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByU_T(long userId, int type,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return filterFindByU_T(userId, type, start, end, null);
 	}
 
@@ -2312,12 +2255,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByU_T(long userId, int type,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByU_T(userId, type, start, end, orderByComparator);
 		}
@@ -2410,13 +2351,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] filterFindByU_T_PrevAndNext(
 		long microblogsEntryId, long userId, int type,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByU_T_PrevAndNext(microblogsEntryId, userId, type,
 				orderByComparator);
@@ -2598,10 +2537,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param userId the user ID
 	 * @param type the type
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByU_T(long userId, int type) throws SystemException {
+	public void removeByU_T(long userId, int type) {
 		for (MicroblogsEntry microblogsEntry : findByU_T(userId, type,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(microblogsEntry);
@@ -2614,10 +2552,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param userId the user ID
 	 * @param type the type
 	 * @return the number of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByU_T(long userId, int type) throws SystemException {
+	public int countByU_T(long userId, int type) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_T;
 
 		Object[] finderArgs = new Object[] { userId, type };
@@ -2672,11 +2609,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param userId the user ID
 	 * @param type the type
 	 * @return the number of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByU_T(long userId, int type)
-		throws SystemException {
+	public int filterCountByU_T(long userId, int type) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByU_T(userId, type);
 		}
@@ -2753,11 +2688,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param receiverUserId the receiver user ID
 	 * @return the matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> findByT_R(int type, long receiverUserId)
-		throws SystemException {
+	public List<MicroblogsEntry> findByT_R(int type, long receiverUserId) {
 		return findByT_R(type, receiverUserId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -2774,11 +2707,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByT_R(int type, long receiverUserId,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return findByT_R(type, receiverUserId, start, end, null);
 	}
 
@@ -2795,12 +2727,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByT_R(int type, long receiverUserId,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2913,12 +2843,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByT_R_First(int type, long receiverUserId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByT_R_First(type,
 				receiverUserId, orderByComparator);
 
@@ -2948,11 +2876,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param receiverUserId the receiver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByT_R_First(int type, long receiverUserId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<MicroblogsEntry> list = findByT_R(type, receiverUserId, 0, 1,
 				orderByComparator);
 
@@ -2971,12 +2898,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByT_R_Last(int type, long receiverUserId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByT_R_Last(type, receiverUserId,
 				orderByComparator);
 
@@ -3006,11 +2931,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param receiverUserId the receiver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByT_R_Last(int type, long receiverUserId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByT_R(type, receiverUserId);
 
 		if (count == 0) {
@@ -3036,12 +2960,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] findByT_R_PrevAndNext(long microblogsEntryId,
 		int type, long receiverUserId, OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
 		Session session = null;
@@ -3184,11 +3107,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param receiverUserId the receiver user ID
 	 * @return the matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> filterFindByT_R(int type, long receiverUserId)
-		throws SystemException {
+	public List<MicroblogsEntry> filterFindByT_R(int type, long receiverUserId) {
 		return filterFindByT_R(type, receiverUserId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -3205,11 +3126,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByT_R(int type, long receiverUserId,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return filterFindByT_R(type, receiverUserId, start, end, null);
 	}
 
@@ -3226,12 +3146,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByT_R(int type, long receiverUserId,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByT_R(type, receiverUserId, start, end, orderByComparator);
 		}
@@ -3324,13 +3242,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] filterFindByT_R_PrevAndNext(
 		long microblogsEntryId, int type, long receiverUserId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByT_R_PrevAndNext(microblogsEntryId, type,
 				receiverUserId, orderByComparator);
@@ -3512,11 +3428,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param type the type
 	 * @param receiverUserId the receiver user ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByT_R(int type, long receiverUserId)
-		throws SystemException {
+	public void removeByT_R(int type, long receiverUserId) {
 		for (MicroblogsEntry microblogsEntry : findByT_R(type, receiverUserId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(microblogsEntry);
@@ -3529,11 +3443,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param receiverUserId the receiver user ID
 	 * @return the number of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByT_R(int type, long receiverUserId)
-		throws SystemException {
+	public int countByT_R(int type, long receiverUserId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_T_R;
 
 		Object[] finderArgs = new Object[] { type, receiverUserId };
@@ -3588,11 +3500,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param receiverUserId the receiver user ID
 	 * @return the number of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByT_R(int type, long receiverUserId)
-		throws SystemException {
+	public int filterCountByT_R(int type, long receiverUserId) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByT_R(type, receiverUserId);
 		}
@@ -3670,11 +3580,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	 * @return the matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByT_RMEI(int type,
-		long receiverMicroblogsEntryId) throws SystemException {
+		long receiverMicroblogsEntryId) {
 		return findByT_RMEI(type, receiverMicroblogsEntryId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -3691,12 +3600,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByT_RMEI(int type,
-		long receiverMicroblogsEntryId, int start, int end)
-		throws SystemException {
+		long receiverMicroblogsEntryId, int start, int end) {
 		return findByT_RMEI(type, receiverMicroblogsEntryId, start, end, null);
 	}
 
@@ -3713,12 +3620,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByT_RMEI(int type,
 		long receiverMicroblogsEntryId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -3831,12 +3737,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByT_RMEI_First(int type,
 		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByT_RMEI_First(type,
 				receiverMicroblogsEntryId, orderByComparator);
 
@@ -3866,12 +3771,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByT_RMEI_First(int type,
-		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
-		throws SystemException {
+		long receiverMicroblogsEntryId, OrderByComparator orderByComparator) {
 		List<MicroblogsEntry> list = findByT_RMEI(type,
 				receiverMicroblogsEntryId, 0, 1, orderByComparator);
 
@@ -3890,12 +3793,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByT_RMEI_Last(int type,
 		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByT_RMEI_Last(type,
 				receiverMicroblogsEntryId, orderByComparator);
 
@@ -3925,12 +3827,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByT_RMEI_Last(int type,
-		long receiverMicroblogsEntryId, OrderByComparator orderByComparator)
-		throws SystemException {
+		long receiverMicroblogsEntryId, OrderByComparator orderByComparator) {
 		int count = countByT_RMEI(type, receiverMicroblogsEntryId);
 
 		if (count == 0) {
@@ -3956,13 +3856,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] findByT_RMEI_PrevAndNext(long microblogsEntryId,
 		int type, long receiverMicroblogsEntryId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
 		Session session = null;
@@ -4106,11 +4004,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	 * @return the matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByT_RMEI(int type,
-		long receiverMicroblogsEntryId) throws SystemException {
+		long receiverMicroblogsEntryId) {
 		return filterFindByT_RMEI(type, receiverMicroblogsEntryId,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -4127,12 +4024,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByT_RMEI(int type,
-		long receiverMicroblogsEntryId, int start, int end)
-		throws SystemException {
+		long receiverMicroblogsEntryId, int start, int end) {
 		return filterFindByT_RMEI(type, receiverMicroblogsEntryId, start, end,
 			null);
 	}
@@ -4150,12 +4045,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByT_RMEI(int type,
 		long receiverMicroblogsEntryId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByT_RMEI(type, receiverMicroblogsEntryId, start, end,
 				orderByComparator);
@@ -4249,13 +4143,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] filterFindByT_RMEI_PrevAndNext(
 		long microblogsEntryId, int type, long receiverMicroblogsEntryId,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByT_RMEI_PrevAndNext(microblogsEntryId, type,
 				receiverMicroblogsEntryId, orderByComparator);
@@ -4438,11 +4330,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param type the type
 	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByT_RMEI(int type, long receiverMicroblogsEntryId)
-		throws SystemException {
+	public void removeByT_RMEI(int type, long receiverMicroblogsEntryId) {
 		for (MicroblogsEntry microblogsEntry : findByT_RMEI(type,
 				receiverMicroblogsEntryId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
@@ -4456,11 +4346,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	 * @return the number of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByT_RMEI(int type, long receiverMicroblogsEntryId)
-		throws SystemException {
+	public int countByT_RMEI(int type, long receiverMicroblogsEntryId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_T_RMEI;
 
 		Object[] finderArgs = new Object[] { type, receiverMicroblogsEntryId };
@@ -4515,11 +4403,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param receiverMicroblogsEntryId the receiver microblogs entry ID
 	 * @return the number of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByT_RMEI(int type, long receiverMicroblogsEntryId)
-		throws SystemException {
+	public int filterCountByT_RMEI(int type, long receiverMicroblogsEntryId) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByT_RMEI(type, receiverMicroblogsEntryId);
 		}
@@ -4608,11 +4494,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param socialRelationType the social relation type
 	 * @return the matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByU_C_T_S(long userId, Date createDate,
-		int type, int socialRelationType) throws SystemException {
+		int type, int socialRelationType) {
 		return findByU_C_T_S(userId, createDate, type, socialRelationType,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -4631,12 +4516,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByU_C_T_S(long userId, Date createDate,
-		int type, int socialRelationType, int start, int end)
-		throws SystemException {
+		int type, int socialRelationType, int start, int end) {
 		return findByU_C_T_S(userId, createDate, type, socialRelationType,
 			start, end, null);
 	}
@@ -4656,12 +4539,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findByU_C_T_S(long userId, Date createDate,
 		int type, int socialRelationType, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -4800,12 +4682,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByU_C_T_S_First(long userId, Date createDate,
 		int type, int socialRelationType, OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByU_C_T_S_First(userId,
 				createDate, type, socialRelationType, orderByComparator);
 
@@ -4843,12 +4724,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param socialRelationType the social relation type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByU_C_T_S_First(long userId, Date createDate,
-		int type, int socialRelationType, OrderByComparator orderByComparator)
-		throws SystemException {
+		int type, int socialRelationType, OrderByComparator orderByComparator) {
 		List<MicroblogsEntry> list = findByU_C_T_S(userId, createDate, type,
 				socialRelationType, 0, 1, orderByComparator);
 
@@ -4869,12 +4748,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByU_C_T_S_Last(long userId, Date createDate,
 		int type, int socialRelationType, OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByU_C_T_S_Last(userId,
 				createDate, type, socialRelationType, orderByComparator);
 
@@ -4912,12 +4790,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param socialRelationType the social relation type
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching microblogs entry, or <code>null</code> if a matching microblogs entry could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry fetchByU_C_T_S_Last(long userId, Date createDate,
-		int type, int socialRelationType, OrderByComparator orderByComparator)
-		throws SystemException {
+		int type, int socialRelationType, OrderByComparator orderByComparator) {
 		int count = countByU_C_T_S(userId, createDate, type, socialRelationType);
 
 		if (count == 0) {
@@ -4945,13 +4821,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] findByU_C_T_S_PrevAndNext(long microblogsEntryId,
 		long userId, Date createDate, int type, int socialRelationType,
-		OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = findByPrimaryKey(microblogsEntryId);
 
 		Session session = null;
@@ -5118,12 +4992,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param socialRelationType the social relation type
 	 * @return the matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
-		Date createDate, int type, int socialRelationType)
-		throws SystemException {
+		Date createDate, int type, int socialRelationType) {
 		return filterFindByU_C_T_S(userId, createDate, type,
 			socialRelationType, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -5142,12 +5014,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
-		Date createDate, int type, int socialRelationType, int start, int end)
-		throws SystemException {
+		Date createDate, int type, int socialRelationType, int start, int end) {
 		return filterFindByU_C_T_S(userId, createDate, type,
 			socialRelationType, start, end, null);
 	}
@@ -5167,12 +5037,11 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> filterFindByU_C_T_S(long userId,
 		Date createDate, int type, int socialRelationType, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByU_C_T_S(userId, createDate, type, socialRelationType,
 				start, end, orderByComparator);
@@ -5287,13 +5156,12 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry[] filterFindByU_C_T_S_PrevAndNext(
 		long microblogsEntryId, long userId, Date createDate, int type,
 		int socialRelationType, OrderByComparator orderByComparator)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return findByU_C_T_S_PrevAndNext(microblogsEntryId, userId,
 				createDate, type, socialRelationType, orderByComparator);
@@ -5499,11 +5367,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param createDate the create date
 	 * @param type the type
 	 * @param socialRelationType the social relation type
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public void removeByU_C_T_S(long userId, Date createDate, int type,
-		int socialRelationType) throws SystemException {
+		int socialRelationType) {
 		for (MicroblogsEntry microblogsEntry : findByU_C_T_S(userId,
 				createDate, type, socialRelationType, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
@@ -5519,11 +5386,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param socialRelationType the social relation type
 	 * @return the number of matching microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public int countByU_C_T_S(long userId, Date createDate, int type,
-		int socialRelationType) throws SystemException {
+		int socialRelationType) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_C_T_S;
 
 		Object[] finderArgs = new Object[] {
@@ -5601,11 +5467,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param type the type
 	 * @param socialRelationType the social relation type
 	 * @return the number of matching microblogs entries that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public int filterCountByU_C_T_S(long userId, Date createDate, int type,
-		int socialRelationType) throws SystemException {
+		int socialRelationType) {
 		if (!InlineSQLHelperUtil.isEnabled()) {
 			return countByU_C_T_S(userId, createDate, type, socialRelationType);
 		}
@@ -5783,11 +5648,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param microblogsEntryId the primary key of the microblogs entry
 	 * @return the microblogs entry that was removed
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry remove(long microblogsEntryId)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		return remove((Serializable)microblogsEntryId);
 	}
 
@@ -5797,11 +5661,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param primaryKey the primary key of the microblogs entry
 	 * @return the microblogs entry that was removed
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry remove(Serializable primaryKey)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		Session session = null;
 
 		try {
@@ -5833,8 +5696,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	}
 
 	@Override
-	protected MicroblogsEntry removeImpl(MicroblogsEntry microblogsEntry)
-		throws SystemException {
+	protected MicroblogsEntry removeImpl(MicroblogsEntry microblogsEntry) {
 		microblogsEntry = toUnwrappedModel(microblogsEntry);
 
 		Session session = null;
@@ -5867,8 +5729,7 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 
 	@Override
 	public MicroblogsEntry updateImpl(
-		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry)
-		throws SystemException {
+		com.liferay.microblogs.model.MicroblogsEntry microblogsEntry) {
 		microblogsEntry = toUnwrappedModel(microblogsEntry);
 
 		boolean isNew = microblogsEntry.isNew();
@@ -6068,11 +5929,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param primaryKey the primary key of the microblogs entry
 	 * @return the microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		MicroblogsEntry microblogsEntry = fetchByPrimaryKey(primaryKey);
 
 		if (microblogsEntry == null) {
@@ -6093,11 +5953,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param microblogsEntryId the primary key of the microblogs entry
 	 * @return the microblogs entry
 	 * @throws com.liferay.microblogs.NoSuchEntryException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MicroblogsEntry findByPrimaryKey(long microblogsEntryId)
-		throws NoSuchEntryException, SystemException {
+		throws NoSuchEntryException {
 		return findByPrimaryKey((Serializable)microblogsEntryId);
 	}
 
@@ -6106,11 +5965,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param primaryKey the primary key of the microblogs entry
 	 * @return the microblogs entry, or <code>null</code> if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public MicroblogsEntry fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
+	public MicroblogsEntry fetchByPrimaryKey(Serializable primaryKey) {
 		MicroblogsEntry microblogsEntry = (MicroblogsEntry)EntityCacheUtil.getResult(MicroblogsEntryModelImpl.ENTITY_CACHE_ENABLED,
 				MicroblogsEntryImpl.class, primaryKey);
 
@@ -6155,11 +6012,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 *
 	 * @param microblogsEntryId the primary key of the microblogs entry
 	 * @return the microblogs entry, or <code>null</code> if a microblogs entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public MicroblogsEntry fetchByPrimaryKey(long microblogsEntryId)
-		throws SystemException {
+	public MicroblogsEntry fetchByPrimaryKey(long microblogsEntryId) {
 		return fetchByPrimaryKey((Serializable)microblogsEntryId);
 	}
 
@@ -6167,10 +6022,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * Returns all the microblogs entries.
 	 *
 	 * @return the microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> findAll() throws SystemException {
+	public List<MicroblogsEntry> findAll() {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -6184,11 +6038,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param start the lower bound of the range of microblogs entries
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @return the range of microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MicroblogsEntry> findAll(int start, int end)
-		throws SystemException {
+	public List<MicroblogsEntry> findAll(int start, int end) {
 		return findAll(start, end, null);
 	}
 
@@ -6203,11 +6055,10 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * @param end the upper bound of the range of microblogs entries (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MicroblogsEntry> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -6289,10 +6140,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	/**
 	 * Removes all the microblogs entries from the database.
 	 *
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeAll() throws SystemException {
+	public void removeAll() {
 		for (MicroblogsEntry microblogsEntry : findAll()) {
 			remove(microblogsEntry);
 		}
@@ -6302,10 +6152,9 @@ public class MicroblogsEntryPersistenceImpl extends BasePersistenceImpl<Microblo
 	 * Returns the number of microblogs entries.
 	 *
 	 * @return the number of microblogs entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countAll() throws SystemException {
+	public int countAll() {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 

@@ -18,7 +18,6 @@ import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
@@ -28,7 +27,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 @Deprecated
 public abstract class KBArticleActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public KBArticleActionableDynamicQuery() throws SystemException {
+	public KBArticleActionableDynamicQuery() {
 		setBaseLocalService(KBArticleLocalServiceUtil.getService());
 		setClass(KBArticle.class);
 

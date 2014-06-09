@@ -18,15 +18,16 @@ import com.liferay.ams.model.Checkout;
 import com.liferay.ams.service.CheckoutLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link CheckoutLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class CheckoutActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public CheckoutActionableDynamicQuery() throws SystemException {
+	public CheckoutActionableDynamicQuery() {
 		setBaseLocalService(CheckoutLocalServiceUtil.getService());
 		setClass(Checkout.class);
 

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
 
@@ -38,7 +37,7 @@ public abstract class KaleoActionBaseImpl extends KaleoActionModelImpl
 	 * Never modify or reference this class directly. All methods that expect a kaleo action model instance should use the {@link KaleoAction} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			KaleoActionLocalServiceUtil.addKaleoAction(this);
 		}

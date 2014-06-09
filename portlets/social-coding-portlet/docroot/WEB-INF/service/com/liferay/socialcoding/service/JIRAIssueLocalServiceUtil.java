@@ -44,11 +44,9 @@ public class JIRAIssueLocalServiceUtil {
 	*
 	* @param jiraIssue the j i r a issue
 	* @return the j i r a issue that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.JIRAIssue addJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
 		return getService().addJIRAIssue(jiraIssue);
 	}
 
@@ -69,12 +67,10 @@ public class JIRAIssueLocalServiceUtil {
 	* @param jiraIssueId the primary key of the j i r a issue
 	* @return the j i r a issue that was removed
 	* @throws PortalException if a j i r a issue with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
 		long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteJIRAIssue(jiraIssueId);
 	}
 
@@ -83,11 +79,9 @@ public class JIRAIssueLocalServiceUtil {
 	*
 	* @param jiraIssue the j i r a issue
 	* @return the j i r a issue that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
 		return getService().deleteJIRAIssue(jiraIssue);
 	}
 
@@ -100,12 +94,10 @@ public class JIRAIssueLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +112,11 @@ public class JIRAIssueLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +132,12 @@ public class JIRAIssueLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +147,9 @@ public class JIRAIssueLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,18 +159,15 @@ public class JIRAIssueLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.socialcoding.model.JIRAIssue fetchJIRAIssue(
-		long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long jiraIssueId) {
 		return getService().fetchJIRAIssue(jiraIssueId);
 	}
 
@@ -193,7 +177,7 @@ public class JIRAIssueLocalServiceUtil {
 	* @param jiraIssueId the primary key of the j i r a issue
 	* @return the j i r a issue
 	* @throws PortalException if a j i r a issue with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
 		long jiraIssueId)
@@ -202,10 +186,22 @@ public class JIRAIssueLocalServiceUtil {
 		return getService().getJIRAIssue(jiraIssueId);
 	}
 
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
+	}
+
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -219,11 +215,9 @@ public class JIRAIssueLocalServiceUtil {
 	* @param start the lower bound of the range of j i r a issues
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of j i r a issues
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialcoding.model.JIRAIssue> getJIRAIssues(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getJIRAIssues(start, end);
 	}
 
@@ -231,10 +225,8 @@ public class JIRAIssueLocalServiceUtil {
 	* Returns the number of j i r a issues.
 	*
 	* @return the number of j i r a issues
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getJIRAIssuesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getJIRAIssuesCount() {
 		return getService().getJIRAIssuesCount();
 	}
 
@@ -243,11 +235,9 @@ public class JIRAIssueLocalServiceUtil {
 	*
 	* @param jiraIssue the j i r a issue
 	* @return the j i r a issue that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.JIRAIssue updateJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
 		return getService().updateJIRAIssue(jiraIssue);
 	}
 

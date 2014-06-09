@@ -16,7 +16,6 @@ package com.liferay.calendar.model;
 
 import com.liferay.portal.LocaleException;
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.AttachedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -150,10 +149,9 @@ public interface CalendarResourceModel extends AttachedModel,
 	 * Returns the user uuid of this calendar resource.
 	 *
 	 * @return the user uuid of this calendar resource
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this calendar resource.

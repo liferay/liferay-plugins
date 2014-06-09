@@ -322,11 +322,9 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 	* Returns the user uuid of this account.
 	*
 	* @return the user uuid of this account
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _account.getUserUuid();
 	}
 
@@ -949,8 +947,7 @@ public class AccountWrapper implements Account, ModelWrapper<Account> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_account.persist();
 	}
 

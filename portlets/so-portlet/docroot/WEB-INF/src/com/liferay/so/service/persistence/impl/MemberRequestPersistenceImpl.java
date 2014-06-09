@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -103,11 +102,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param key the key
 	 * @return the matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest findByKey(String key)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = fetchByKey(key);
 
 		if (memberRequest == null) {
@@ -135,10 +133,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param key the key
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public MemberRequest fetchByKey(String key) throws SystemException {
+	public MemberRequest fetchByKey(String key) {
 		return fetchByKey(key, true);
 	}
 
@@ -148,11 +145,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param key the key
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public MemberRequest fetchByKey(String key, boolean retrieveFromCache)
-		throws SystemException {
+	public MemberRequest fetchByKey(String key, boolean retrieveFromCache) {
 		Object[] finderArgs = new Object[] { key };
 
 		Object result = null;
@@ -255,11 +250,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param key the key
 	 * @return the member request that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest removeByKey(String key)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = findByKey(key);
 
 		return remove(memberRequest);
@@ -270,10 +264,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param key the key
 	 * @return the number of matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByKey(String key) throws SystemException {
+	public int countByKey(String key) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_KEY;
 
 		Object[] finderArgs = new Object[] { key };
@@ -363,11 +356,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param receiverUserId the receiver user ID
 	 * @return the matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MemberRequest> findByReceiverUserId(long receiverUserId)
-		throws SystemException {
+	public List<MemberRequest> findByReceiverUserId(long receiverUserId) {
 		return findByReceiverUserId(receiverUserId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -383,11 +374,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @return the range of matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MemberRequest> findByReceiverUserId(long receiverUserId,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return findByReceiverUserId(receiverUserId, start, end, null);
 	}
 
@@ -403,12 +393,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MemberRequest> findByReceiverUserId(long receiverUserId,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -515,12 +503,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest findByReceiverUserId_First(long receiverUserId,
 		OrderByComparator orderByComparator)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = fetchByReceiverUserId_First(receiverUserId,
 				orderByComparator);
 
@@ -546,11 +533,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param receiverUserId the receiver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching member request, or <code>null</code> if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest fetchByReceiverUserId_First(long receiverUserId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<MemberRequest> list = findByReceiverUserId(receiverUserId, 0, 1,
 				orderByComparator);
 
@@ -568,12 +554,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest findByReceiverUserId_Last(long receiverUserId,
 		OrderByComparator orderByComparator)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = fetchByReceiverUserId_Last(receiverUserId,
 				orderByComparator);
 
@@ -599,11 +584,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param receiverUserId the receiver user ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching member request, or <code>null</code> if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest fetchByReceiverUserId_Last(long receiverUserId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByReceiverUserId(receiverUserId);
 
 		if (count == 0) {
@@ -628,13 +612,12 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest[] findByReceiverUserId_PrevAndNext(
 		long memberRequestId, long receiverUserId,
 		OrderByComparator orderByComparator)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = findByPrimaryKey(memberRequestId);
 
 		Session session = null;
@@ -771,11 +754,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * Removes all the member requests where receiverUserId = &#63; from the database.
 	 *
 	 * @param receiverUserId the receiver user ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByReceiverUserId(long receiverUserId)
-		throws SystemException {
+	public void removeByReceiverUserId(long receiverUserId) {
 		for (MemberRequest memberRequest : findByReceiverUserId(
 				receiverUserId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(memberRequest);
@@ -787,11 +768,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param receiverUserId the receiver user ID
 	 * @return the number of matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByReceiverUserId(long receiverUserId)
-		throws SystemException {
+	public int countByReceiverUserId(long receiverUserId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_RECEIVERUSERID;
 
 		Object[] finderArgs = new Object[] { receiverUserId };
@@ -866,11 +845,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
 	 * @return the matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MemberRequest> findByR_S(long receiverUserId, int status)
-		throws SystemException {
+	public List<MemberRequest> findByR_S(long receiverUserId, int status) {
 		return findByR_S(receiverUserId, status, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -887,11 +864,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @return the range of matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MemberRequest> findByR_S(long receiverUserId, int status,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return findByR_S(receiverUserId, status, start, end, null);
 	}
 
@@ -908,12 +884,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MemberRequest> findByR_S(long receiverUserId, int status,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1026,12 +1000,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest findByR_S_First(long receiverUserId, int status,
 		OrderByComparator orderByComparator)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = fetchByR_S_First(receiverUserId, status,
 				orderByComparator);
 
@@ -1061,11 +1034,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching member request, or <code>null</code> if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest fetchByR_S_First(long receiverUserId, int status,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<MemberRequest> list = findByR_S(receiverUserId, status, 0, 1,
 				orderByComparator);
 
@@ -1084,12 +1056,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest findByR_S_Last(long receiverUserId, int status,
 		OrderByComparator orderByComparator)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = fetchByR_S_Last(receiverUserId, status,
 				orderByComparator);
 
@@ -1119,11 +1090,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param status the status
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching member request, or <code>null</code> if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest fetchByR_S_Last(long receiverUserId, int status,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByR_S(receiverUserId, status);
 
 		if (count == 0) {
@@ -1149,12 +1119,11 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest[] findByR_S_PrevAndNext(long memberRequestId,
 		long receiverUserId, int status, OrderByComparator orderByComparator)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = findByPrimaryKey(memberRequestId);
 
 		Session session = null;
@@ -1296,11 +1265,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByR_S(long receiverUserId, int status)
-		throws SystemException {
+	public void removeByR_S(long receiverUserId, int status) {
 		for (MemberRequest memberRequest : findByR_S(receiverUserId, status,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(memberRequest);
@@ -1313,11 +1280,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
 	 * @return the number of matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByR_S(long receiverUserId, int status)
-		throws SystemException {
+	public int countByR_S(long receiverUserId, int status) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_R_S;
 
 		Object[] finderArgs = new Object[] { receiverUserId, status };
@@ -1394,11 +1359,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param status the status
 	 * @return the matching member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest findByG_R_S(long groupId, long receiverUserId,
-		int status) throws NoSuchMemberRequestException, SystemException {
+		int status) throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = fetchByG_R_S(groupId, receiverUserId,
 				status);
 
@@ -1435,11 +1399,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest fetchByG_R_S(long groupId, long receiverUserId,
-		int status) throws SystemException {
+		int status) {
 		return fetchByG_R_S(groupId, receiverUserId, status, true);
 	}
 
@@ -1451,11 +1414,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param status the status
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching member request, or <code>null</code> if a matching member request could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest fetchByG_R_S(long groupId, long receiverUserId,
-		int status, boolean retrieveFromCache) throws SystemException {
+		int status, boolean retrieveFromCache) {
 		Object[] finderArgs = new Object[] { groupId, receiverUserId, status };
 
 		Object result = null;
@@ -1557,11 +1519,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
 	 * @return the member request that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest removeByG_R_S(long groupId, long receiverUserId,
-		int status) throws NoSuchMemberRequestException, SystemException {
+		int status) throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = findByG_R_S(groupId, receiverUserId,
 				status);
 
@@ -1575,11 +1536,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param receiverUserId the receiver user ID
 	 * @param status the status
 	 * @return the number of matching member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByG_R_S(long groupId, long receiverUserId, int status)
-		throws SystemException {
+	public int countByG_R_S(long groupId, long receiverUserId, int status) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_G_R_S;
 
 		Object[] finderArgs = new Object[] { groupId, receiverUserId, status };
@@ -1840,11 +1799,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param memberRequestId the primary key of the member request
 	 * @return the member request that was removed
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest remove(long memberRequestId)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		return remove((Serializable)memberRequestId);
 	}
 
@@ -1854,11 +1812,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param primaryKey the primary key of the member request
 	 * @return the member request that was removed
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest remove(Serializable primaryKey)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		Session session = null;
 
 		try {
@@ -1890,8 +1847,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	}
 
 	@Override
-	protected MemberRequest removeImpl(MemberRequest memberRequest)
-		throws SystemException {
+	protected MemberRequest removeImpl(MemberRequest memberRequest) {
 		memberRequest = toUnwrappedModel(memberRequest);
 
 		Session session = null;
@@ -1924,8 +1880,7 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 
 	@Override
 	public MemberRequest updateImpl(
-		com.liferay.so.model.MemberRequest memberRequest)
-		throws SystemException {
+		com.liferay.so.model.MemberRequest memberRequest) {
 		memberRequest = toUnwrappedModel(memberRequest);
 
 		boolean isNew = memberRequest.isNew();
@@ -2045,11 +2000,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param primaryKey the primary key of the member request
 	 * @return the member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		MemberRequest memberRequest = fetchByPrimaryKey(primaryKey);
 
 		if (memberRequest == null) {
@@ -2070,11 +2024,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param memberRequestId the primary key of the member request
 	 * @return the member request
 	 * @throws com.liferay.so.NoSuchMemberRequestException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest findByPrimaryKey(long memberRequestId)
-		throws NoSuchMemberRequestException, SystemException {
+		throws NoSuchMemberRequestException {
 		return findByPrimaryKey((Serializable)memberRequestId);
 	}
 
@@ -2083,11 +2036,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param primaryKey the primary key of the member request
 	 * @return the member request, or <code>null</code> if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public MemberRequest fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
+	public MemberRequest fetchByPrimaryKey(Serializable primaryKey) {
 		MemberRequest memberRequest = (MemberRequest)EntityCacheUtil.getResult(MemberRequestModelImpl.ENTITY_CACHE_ENABLED,
 				MemberRequestImpl.class, primaryKey);
 
@@ -2131,11 +2082,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 *
 	 * @param memberRequestId the primary key of the member request
 	 * @return the member request, or <code>null</code> if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public MemberRequest fetchByPrimaryKey(long memberRequestId)
-		throws SystemException {
+	public MemberRequest fetchByPrimaryKey(long memberRequestId) {
 		return fetchByPrimaryKey((Serializable)memberRequestId);
 	}
 
@@ -2143,10 +2092,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * Returns all the member requests.
 	 *
 	 * @return the member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MemberRequest> findAll() throws SystemException {
+	public List<MemberRequest> findAll() {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -2160,11 +2108,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @return the range of member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MemberRequest> findAll(int start, int end)
-		throws SystemException {
+	public List<MemberRequest> findAll(int start, int end) {
 		return findAll(start, end, null);
 	}
 
@@ -2179,11 +2125,10 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<MemberRequest> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2265,10 +2210,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	/**
 	 * Removes all the member requests from the database.
 	 *
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeAll() throws SystemException {
+	public void removeAll() {
 		for (MemberRequest memberRequest : findAll()) {
 			remove(memberRequest);
 		}
@@ -2278,10 +2222,9 @@ public class MemberRequestPersistenceImpl extends BasePersistenceImpl<MemberRequ
 	 * Returns the number of member requests.
 	 *
 	 * @return the number of member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countAll() throws SystemException {
+	public int countAll() {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 

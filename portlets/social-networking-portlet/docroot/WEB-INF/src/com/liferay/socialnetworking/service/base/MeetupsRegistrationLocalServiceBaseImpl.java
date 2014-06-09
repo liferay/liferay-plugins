@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -74,12 +76,11 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @param meetupsRegistration the meetups registration
 	 * @return the meetups registration that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public MeetupsRegistration addMeetupsRegistration(
-		MeetupsRegistration meetupsRegistration) throws SystemException {
+		MeetupsRegistration meetupsRegistration) {
 		meetupsRegistration.setNew(true);
 
 		return meetupsRegistrationPersistence.update(meetupsRegistration);
@@ -103,12 +104,11 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param meetupsRegistrationId the primary key of the meetups registration
 	 * @return the meetups registration that was removed
 	 * @throws PortalException if a meetups registration with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public MeetupsRegistration deleteMeetupsRegistration(
-		long meetupsRegistrationId) throws PortalException, SystemException {
+		long meetupsRegistrationId) throws PortalException {
 		return meetupsRegistrationPersistence.remove(meetupsRegistrationId);
 	}
 
@@ -117,12 +117,11 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @param meetupsRegistration the meetups registration
 	 * @return the meetups registration that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public MeetupsRegistration deleteMeetupsRegistration(
-		MeetupsRegistration meetupsRegistration) throws SystemException {
+		MeetupsRegistration meetupsRegistration) {
 		return meetupsRegistrationPersistence.remove(meetupsRegistration);
 	}
 
@@ -139,12 +138,10 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return meetupsRegistrationPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -159,12 +156,10 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return meetupsRegistrationPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -181,12 +176,11 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return meetupsRegistrationPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -196,11 +190,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return meetupsRegistrationPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -210,18 +202,17 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return meetupsRegistrationPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public MeetupsRegistration fetchMeetupsRegistration(
-		long meetupsRegistrationId) throws SystemException {
+		long meetupsRegistrationId) {
 		return meetupsRegistrationPersistence.fetchByPrimaryKey(meetupsRegistrationId);
 	}
 
@@ -231,17 +222,49 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param meetupsRegistrationId the primary key of the meetups registration
 	 * @return the meetups registration
 	 * @throws PortalException if a meetups registration with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MeetupsRegistration getMeetupsRegistration(
-		long meetupsRegistrationId) throws PortalException, SystemException {
+		long meetupsRegistrationId) throws PortalException {
 		return meetupsRegistrationPersistence.findByPrimaryKey(meetupsRegistrationId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(MeetupsRegistration.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName(
+			"meetupsRegistrationId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.socialnetworking.service.MeetupsRegistrationLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(MeetupsRegistration.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName(
+			"meetupsRegistrationId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteMeetupsRegistration((MeetupsRegistration)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return meetupsRegistrationPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -255,11 +278,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * @param start the lower bound of the range of meetups registrations
 	 * @param end the upper bound of the range of meetups registrations (not inclusive)
 	 * @return the range of meetups registrations
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MeetupsRegistration> getMeetupsRegistrations(int start, int end)
-		throws SystemException {
+	public List<MeetupsRegistration> getMeetupsRegistrations(int start, int end) {
 		return meetupsRegistrationPersistence.findAll(start, end);
 	}
 
@@ -267,10 +288,9 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 * Returns the number of meetups registrations.
 	 *
 	 * @return the number of meetups registrations
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getMeetupsRegistrationsCount() throws SystemException {
+	public int getMeetupsRegistrationsCount() {
 		return meetupsRegistrationPersistence.countAll();
 	}
 
@@ -279,12 +299,11 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @param meetupsRegistration the meetups registration
 	 * @return the meetups registration that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public MeetupsRegistration updateMeetupsRegistration(
-		MeetupsRegistration meetupsRegistration) throws SystemException {
+		MeetupsRegistration meetupsRegistration) {
 		return meetupsRegistrationPersistence.update(meetupsRegistration);
 	}
 
@@ -639,7 +658,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = meetupsRegistrationPersistence.getDataSource();
 

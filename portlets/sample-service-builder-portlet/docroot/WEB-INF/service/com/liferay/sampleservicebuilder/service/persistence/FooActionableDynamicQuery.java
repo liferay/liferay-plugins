@@ -15,18 +15,19 @@
 package com.liferay.sampleservicebuilder.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.sampleservicebuilder.model.Foo;
 import com.liferay.sampleservicebuilder.service.FooLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link FooLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class FooActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public FooActionableDynamicQuery() throws SystemException {
+	public FooActionableDynamicQuery() {
 		setBaseLocalService(FooLocalServiceUtil.getService());
 		setClass(Foo.class);
 

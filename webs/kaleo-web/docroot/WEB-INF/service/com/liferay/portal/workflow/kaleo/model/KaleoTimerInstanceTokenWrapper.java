@@ -305,11 +305,9 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* Returns the user uuid of this kaleo timer instance token.
 	*
 	* @return the user uuid of this kaleo timer instance token
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _kaleoTimerInstanceToken.getUserUuid();
 	}
 
@@ -597,11 +595,9 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	* Returns the completion user uuid of this kaleo timer instance token.
 	*
 	* @return the completion user uuid of this kaleo timer instance token
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getCompletionUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getCompletionUserUuid() {
 		return _kaleoTimerInstanceToken.getCompletionUserUuid();
 	}
 
@@ -785,8 +781,7 @@ public class KaleoTimerInstanceTokenWrapper implements KaleoTimerInstanceToken,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kaleoTimerInstanceToken.persist();
 	}
 

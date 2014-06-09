@@ -18,15 +18,16 @@ import com.liferay.chat.model.Status;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link StatusLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class StatusActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public StatusActionableDynamicQuery() throws SystemException {
+	public StatusActionableDynamicQuery() {
 		setBaseLocalService(StatusLocalServiceUtil.getService());
 		setClass(Status.class);
 

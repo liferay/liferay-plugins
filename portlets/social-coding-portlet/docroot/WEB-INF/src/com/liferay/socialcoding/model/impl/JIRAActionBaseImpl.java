@@ -14,8 +14,6 @@
 
 package com.liferay.socialcoding.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.socialcoding.model.JIRAAction;
 import com.liferay.socialcoding.service.JIRAActionLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class JIRAActionBaseImpl extends JIRAActionModelImpl
 	 * Never modify or reference this class directly. All methods that expect a j i r a action model instance should use the {@link JIRAAction} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			JIRAActionLocalServiceUtil.addJIRAAction(this);
 		}

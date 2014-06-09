@@ -50,11 +50,9 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	*
 	* @param jiraChangeItem the j i r a change item
 	* @return the j i r a change item that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeItem addJIRAChangeItem(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem);
 
 	/**
 	* Creates a new j i r a change item with the primary key. Does not add the j i r a change item to the database.
@@ -71,23 +69,19 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param jiraChangeItemId the primary key of the j i r a change item
 	* @return the j i r a change item that was removed
 	* @throws PortalException if a j i r a change item with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
 		long jiraChangeItemId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the j i r a change item from the database. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItem the j i r a change item
 	* @return the j i r a change item that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeItem deleteJIRAChangeItem(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem);
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -96,12 +90,10 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -114,12 +106,11 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
@@ -133,25 +124,21 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -159,17 +146,14 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.dao.orm.Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAChangeItem fetchJIRAChangeItem(
-		long jiraChangeItemId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long jiraChangeItemId);
 
 	/**
 	* Returns the j i r a change item with the primary key.
@@ -177,7 +161,7 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param jiraChangeItemId the primary key of the j i r a change item
 	* @return the j i r a change item
 	* @throws PortalException if a j i r a change item with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.socialcoding.model.JIRAChangeItem getJIRAChangeItem(
@@ -185,12 +169,22 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns a range of all the j i r a change items.
@@ -202,33 +196,27 @@ public interface JIRAChangeItemLocalService extends BaseLocalService,
 	* @param start the lower bound of the range of j i r a change items
 	* @param end the upper bound of the range of j i r a change items (not inclusive)
 	* @return the range of j i r a change items
-	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeItem> getJIRAChangeItems(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns the number of j i r a change items.
 	*
 	* @return the number of j i r a change items
-	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getJIRAChangeItemsCount()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getJIRAChangeItemsCount();
 
 	/**
 	* Updates the j i r a change item in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param jiraChangeItem the j i r a change item
 	* @return the j i r a change item that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeItem updateJIRAChangeItem(
-		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.socialcoding.model.JIRAChangeItem jiraChangeItem);
 
 	/**
 	* Returns the Spring bean ID for this bean.

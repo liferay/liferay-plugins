@@ -18,15 +18,16 @@ import com.liferay.mail.model.Folder;
 import com.liferay.mail.service.FolderLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link FolderLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class FolderActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public FolderActionableDynamicQuery() throws SystemException {
+	public FolderActionableDynamicQuery() {
 		setBaseLocalService(FolderLocalServiceUtil.getService());
 		setClass(Folder.class);
 

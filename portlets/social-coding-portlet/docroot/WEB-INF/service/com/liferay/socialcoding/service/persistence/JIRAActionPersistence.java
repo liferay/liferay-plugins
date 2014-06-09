@@ -42,11 +42,9 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	*
 	* @param jiraUserId the jira user ID
 	* @return the matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByJiraUserId(
-		java.lang.String jiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String jiraUserId);
 
 	/**
 	* Returns a range of all the j i r a actions where jiraUserId = &#63;.
@@ -59,11 +57,9 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param start the lower bound of the range of j i r a actions
 	* @param end the upper bound of the range of j i r a actions (not inclusive)
 	* @return the range of matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByJiraUserId(
-		java.lang.String jiraUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String jiraUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a actions where jiraUserId = &#63;.
@@ -77,12 +73,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param end the upper bound of the range of j i r a actions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByJiraUserId(
 		java.lang.String jiraUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first j i r a action in the ordered set where jiraUserId = &#63;.
@@ -91,13 +85,11 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction findByJiraUserId_First(
 		java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Returns the first j i r a action in the ordered set where jiraUserId = &#63;.
@@ -105,12 +97,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param jiraUserId the jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction fetchByJiraUserId_First(
 		java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last j i r a action in the ordered set where jiraUserId = &#63;.
@@ -119,13 +109,11 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction findByJiraUserId_Last(
 		java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Returns the last j i r a action in the ordered set where jiraUserId = &#63;.
@@ -133,12 +121,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param jiraUserId the jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction fetchByJiraUserId_Last(
 		java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the j i r a actions before and after the current j i r a action in the ordered set where jiraUserId = &#63;.
@@ -148,43 +134,35 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction[] findByJiraUserId_PrevAndNext(
 		long jiraActionId, java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Removes all the j i r a actions where jiraUserId = &#63; from the database.
 	*
 	* @param jiraUserId the jira user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByJiraUserId(java.lang.String jiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByJiraUserId(java.lang.String jiraUserId);
 
 	/**
 	* Returns the number of j i r a actions where jiraUserId = &#63;.
 	*
 	* @param jiraUserId the jira user ID
 	* @return the number of matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByJiraUserId(java.lang.String jiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByJiraUserId(java.lang.String jiraUserId);
 
 	/**
 	* Returns all the j i r a actions where jiraIssueId = &#63;.
 	*
 	* @param jiraIssueId the jira issue ID
 	* @return the matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByJiraIssueId(
-		long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long jiraIssueId);
 
 	/**
 	* Returns a range of all the j i r a actions where jiraIssueId = &#63;.
@@ -197,11 +175,9 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param start the lower bound of the range of j i r a actions
 	* @param end the upper bound of the range of j i r a actions (not inclusive)
 	* @return the range of matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByJiraIssueId(
-		long jiraIssueId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long jiraIssueId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a actions where jiraIssueId = &#63;.
@@ -215,12 +191,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param end the upper bound of the range of j i r a actions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByJiraIssueId(
 		long jiraIssueId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first j i r a action in the ordered set where jiraIssueId = &#63;.
@@ -229,13 +203,11 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction findByJiraIssueId_First(
 		long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Returns the first j i r a action in the ordered set where jiraIssueId = &#63;.
@@ -243,12 +215,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param jiraIssueId the jira issue ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction fetchByJiraIssueId_First(
 		long jiraIssueId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last j i r a action in the ordered set where jiraIssueId = &#63;.
@@ -257,13 +227,11 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction findByJiraIssueId_Last(
 		long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Returns the last j i r a action in the ordered set where jiraIssueId = &#63;.
@@ -271,12 +239,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param jiraIssueId the jira issue ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction fetchByJiraIssueId_Last(
 		long jiraIssueId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the j i r a actions before and after the current j i r a action in the ordered set where jiraIssueId = &#63;.
@@ -286,43 +252,35 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction[] findByJiraIssueId_PrevAndNext(
 		long jiraActionId, long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Removes all the j i r a actions where jiraIssueId = &#63; from the database.
 	*
 	* @param jiraIssueId the jira issue ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByJiraIssueId(long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByJiraIssueId(long jiraIssueId);
 
 	/**
 	* Returns the number of j i r a actions where jiraIssueId = &#63;.
 	*
 	* @param jiraIssueId the jira issue ID
 	* @return the number of matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByJiraIssueId(long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByJiraIssueId(long jiraIssueId);
 
 	/**
 	* Returns all the j i r a actions where type = &#63;.
 	*
 	* @param type the type
 	* @return the matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByType(
-		java.lang.String type)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String type);
 
 	/**
 	* Returns a range of all the j i r a actions where type = &#63;.
@@ -335,11 +293,9 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param start the lower bound of the range of j i r a actions
 	* @param end the upper bound of the range of j i r a actions (not inclusive)
 	* @return the range of matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByType(
-		java.lang.String type, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String type, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a actions where type = &#63;.
@@ -353,12 +309,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param end the upper bound of the range of j i r a actions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findByType(
 		java.lang.String type, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first j i r a action in the ordered set where type = &#63;.
@@ -367,13 +321,11 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction findByType_First(
 		java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Returns the first j i r a action in the ordered set where type = &#63;.
@@ -381,12 +333,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction fetchByType_First(
 		java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last j i r a action in the ordered set where type = &#63;.
@@ -395,13 +345,11 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction findByType_Last(
 		java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Returns the last j i r a action in the ordered set where type = &#63;.
@@ -409,12 +357,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param type the type
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a action, or <code>null</code> if a matching j i r a action could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction fetchByType_Last(
 		java.lang.String type,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the j i r a actions before and after the current j i r a action in the ordered set where type = &#63;.
@@ -424,32 +370,26 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction[] findByType_PrevAndNext(
 		long jiraActionId, java.lang.String type,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Removes all the j i r a actions where type = &#63; from the database.
 	*
 	* @param type the type
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByType(java.lang.String type)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByType(java.lang.String type);
 
 	/**
 	* Returns the number of j i r a actions where type = &#63;.
 	*
 	* @param type the type
 	* @return the number of matching j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByType(java.lang.String type)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByType(java.lang.String type);
 
 	/**
 	* Caches the j i r a action in the entity cache if it is enabled.
@@ -481,15 +421,12 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param jiraActionId the primary key of the j i r a action
 	* @return the j i r a action that was removed
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction remove(long jiraActionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	public com.liferay.socialcoding.model.JIRAAction updateImpl(
-		com.liferay.socialcoding.model.JIRAAction jiraAction)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.socialcoding.model.JIRAAction jiraAction);
 
 	/**
 	* Returns the j i r a action with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAActionException} if it could not be found.
@@ -497,32 +434,26 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param jiraActionId the primary key of the j i r a action
 	* @return the j i r a action
 	* @throws com.liferay.socialcoding.NoSuchJIRAActionException if a j i r a action with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction findByPrimaryKey(
 		long jiraActionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAActionException;
+		throws com.liferay.socialcoding.NoSuchJIRAActionException;
 
 	/**
 	* Returns the j i r a action with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param jiraActionId the primary key of the j i r a action
 	* @return the j i r a action, or <code>null</code> if a j i r a action with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAAction fetchByPrimaryKey(
-		long jiraActionId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long jiraActionId);
 
 	/**
 	* Returns all the j i r a actions.
 	*
 	* @return the j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findAll();
 
 	/**
 	* Returns a range of all the j i r a actions.
@@ -534,11 +465,9 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param start the lower bound of the range of j i r a actions
 	* @param end the upper bound of the range of j i r a actions (not inclusive)
 	* @return the range of j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a actions.
@@ -551,27 +480,20 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	* @param end the upper bound of the range of j i r a actions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAAction> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the j i r a actions from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of j i r a actions.
 	*
 	* @return the number of j i r a actions
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

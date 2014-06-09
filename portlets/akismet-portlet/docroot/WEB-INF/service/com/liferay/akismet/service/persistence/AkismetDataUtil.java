@@ -18,7 +18,6 @@ import com.liferay.akismet.model.AkismetData;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class AkismetDataUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class AkismetDataUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<AkismetData> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class AkismetDataUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<AkismetData> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class AkismetDataUtil {
 	 */
 	public static List<AkismetData> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class AkismetDataUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static AkismetData update(AkismetData akismetData)
-		throws SystemException {
+	public static AkismetData update(AkismetData akismetData) {
 		return getPersistence().update(akismetData);
 	}
 
@@ -106,7 +102,7 @@ public class AkismetDataUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static AkismetData update(AkismetData akismetData,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(akismetData, serviceContext);
 	}
 
@@ -115,11 +111,9 @@ public class AkismetDataUtil {
 	*
 	* @param modifiedDate the modified date
 	* @return the matching akismet datas
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.akismet.model.AkismetData> findByLtModifiedDate(
-		java.util.Date modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.Date modifiedDate) {
 		return getPersistence().findByLtModifiedDate(modifiedDate);
 	}
 
@@ -134,11 +128,9 @@ public class AkismetDataUtil {
 	* @param start the lower bound of the range of akismet datas
 	* @param end the upper bound of the range of akismet datas (not inclusive)
 	* @return the range of matching akismet datas
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.akismet.model.AkismetData> findByLtModifiedDate(
-		java.util.Date modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.Date modifiedDate, int start, int end) {
 		return getPersistence().findByLtModifiedDate(modifiedDate, start, end);
 	}
 
@@ -154,12 +146,10 @@ public class AkismetDataUtil {
 	* @param end the upper bound of the range of akismet datas (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching akismet datas
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.akismet.model.AkismetData> findByLtModifiedDate(
 		java.util.Date modifiedDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByLtModifiedDate(modifiedDate, start, end,
 			orderByComparator);
@@ -172,13 +162,11 @@ public class AkismetDataUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching akismet data
 	* @throws com.liferay.akismet.NoSuchDataException if a matching akismet data could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData findByLtModifiedDate_First(
 		java.util.Date modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence()
 				   .findByLtModifiedDate_First(modifiedDate, orderByComparator);
 	}
@@ -189,12 +177,10 @@ public class AkismetDataUtil {
 	* @param modifiedDate the modified date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching akismet data, or <code>null</code> if a matching akismet data could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData fetchByLtModifiedDate_First(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByLtModifiedDate_First(modifiedDate, orderByComparator);
 	}
@@ -206,13 +192,11 @@ public class AkismetDataUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching akismet data
 	* @throws com.liferay.akismet.NoSuchDataException if a matching akismet data could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData findByLtModifiedDate_Last(
 		java.util.Date modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence()
 				   .findByLtModifiedDate_Last(modifiedDate, orderByComparator);
 	}
@@ -223,12 +207,10 @@ public class AkismetDataUtil {
 	* @param modifiedDate the modified date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching akismet data, or <code>null</code> if a matching akismet data could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData fetchByLtModifiedDate_Last(
 		java.util.Date modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByLtModifiedDate_Last(modifiedDate, orderByComparator);
 	}
@@ -241,13 +223,11 @@ public class AkismetDataUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next akismet data
 	* @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData[] findByLtModifiedDate_PrevAndNext(
 		long akismetDataId, java.util.Date modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence()
 				   .findByLtModifiedDate_PrevAndNext(akismetDataId,
 			modifiedDate, orderByComparator);
@@ -257,10 +237,8 @@ public class AkismetDataUtil {
 	* Removes all the akismet datas where modifiedDate &lt; &#63; from the database.
 	*
 	* @param modifiedDate the modified date
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByLtModifiedDate(java.util.Date modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByLtModifiedDate(java.util.Date modifiedDate) {
 		getPersistence().removeByLtModifiedDate(modifiedDate);
 	}
 
@@ -269,10 +247,8 @@ public class AkismetDataUtil {
 	*
 	* @param modifiedDate the modified date
 	* @return the number of matching akismet datas
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByLtModifiedDate(java.util.Date modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByLtModifiedDate(java.util.Date modifiedDate) {
 		return getPersistence().countByLtModifiedDate(modifiedDate);
 	}
 
@@ -283,12 +259,10 @@ public class AkismetDataUtil {
 	* @param classPK the class p k
 	* @return the matching akismet data
 	* @throws com.liferay.akismet.NoSuchDataException if a matching akismet data could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData findByC_C(
 		long classNameId, long classPK)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence().findByC_C(classNameId, classPK);
 	}
 
@@ -298,11 +272,9 @@ public class AkismetDataUtil {
 	* @param classNameId the class name ID
 	* @param classPK the class p k
 	* @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData fetchByC_C(
-		long classNameId, long classPK)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long classNameId, long classPK) {
 		return getPersistence().fetchByC_C(classNameId, classPK);
 	}
 
@@ -313,11 +285,9 @@ public class AkismetDataUtil {
 	* @param classPK the class p k
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching akismet data, or <code>null</code> if a matching akismet data could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData fetchByC_C(
-		long classNameId, long classPK, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long classNameId, long classPK, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByC_C(classNameId, classPK, retrieveFromCache);
 	}
@@ -328,12 +298,10 @@ public class AkismetDataUtil {
 	* @param classNameId the class name ID
 	* @param classPK the class p k
 	* @return the akismet data that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData removeByC_C(
 		long classNameId, long classPK)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence().removeByC_C(classNameId, classPK);
 	}
 
@@ -343,10 +311,8 @@ public class AkismetDataUtil {
 	* @param classNameId the class name ID
 	* @param classPK the class p k
 	* @return the number of matching akismet datas
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByC_C(long classNameId, long classPK)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByC_C(long classNameId, long classPK) {
 		return getPersistence().countByC_C(classNameId, classPK);
 	}
 
@@ -387,18 +353,14 @@ public class AkismetDataUtil {
 	* @param akismetDataId the primary key of the akismet data
 	* @return the akismet data that was removed
 	* @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData remove(
-		long akismetDataId)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long akismetDataId) throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence().remove(akismetDataId);
 	}
 
 	public static com.liferay.akismet.model.AkismetData updateImpl(
-		com.liferay.akismet.model.AkismetData akismetData)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.akismet.model.AkismetData akismetData) {
 		return getPersistence().updateImpl(akismetData);
 	}
 
@@ -408,12 +370,9 @@ public class AkismetDataUtil {
 	* @param akismetDataId the primary key of the akismet data
 	* @return the akismet data
 	* @throws com.liferay.akismet.NoSuchDataException if a akismet data with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData findByPrimaryKey(
-		long akismetDataId)
-		throws com.liferay.akismet.NoSuchDataException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long akismetDataId) throws com.liferay.akismet.NoSuchDataException {
 		return getPersistence().findByPrimaryKey(akismetDataId);
 	}
 
@@ -422,11 +381,9 @@ public class AkismetDataUtil {
 	*
 	* @param akismetDataId the primary key of the akismet data
 	* @return the akismet data, or <code>null</code> if a akismet data with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.akismet.model.AkismetData fetchByPrimaryKey(
-		long akismetDataId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long akismetDataId) {
 		return getPersistence().fetchByPrimaryKey(akismetDataId);
 	}
 
@@ -434,10 +391,8 @@ public class AkismetDataUtil {
 	* Returns all the akismet datas.
 	*
 	* @return the akismet datas
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.akismet.model.AkismetData> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.akismet.model.AkismetData> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -451,11 +406,9 @@ public class AkismetDataUtil {
 	* @param start the lower bound of the range of akismet datas
 	* @param end the upper bound of the range of akismet datas (not inclusive)
 	* @return the range of akismet datas
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.akismet.model.AkismetData> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -470,22 +423,17 @@ public class AkismetDataUtil {
 	* @param end the upper bound of the range of akismet datas (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of akismet datas
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.akismet.model.AkismetData> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the akismet datas from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -493,10 +441,8 @@ public class AkismetDataUtil {
 	* Returns the number of akismet datas.
 	*
 	* @return the number of akismet datas
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

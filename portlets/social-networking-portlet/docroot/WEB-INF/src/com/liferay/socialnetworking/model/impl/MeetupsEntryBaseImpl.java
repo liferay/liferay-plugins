@@ -14,8 +14,6 @@
 
 package com.liferay.socialnetworking.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.socialnetworking.model.MeetupsEntry;
 import com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class MeetupsEntryBaseImpl extends MeetupsEntryModelImpl
 	 * Never modify or reference this class directly. All methods that expect a meetups entry model instance should use the {@link MeetupsEntry} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			MeetupsEntryLocalServiceUtil.addMeetupsEntry(this);
 		}

@@ -42,11 +42,9 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*
 	* @param text the text
 	* @return the matching bars
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testtransaction.model.Bar> findByText(
-		java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String text);
 
 	/**
 	* Returns a range of all the bars where text = &#63;.
@@ -59,11 +57,9 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param start the lower bound of the range of bars
 	* @param end the upper bound of the range of bars (not inclusive)
 	* @return the range of matching bars
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testtransaction.model.Bar> findByText(
-		java.lang.String text, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String text, int start, int end);
 
 	/**
 	* Returns an ordered range of all the bars where text = &#63;.
@@ -77,12 +73,10 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param end the upper bound of the range of bars (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching bars
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testtransaction.model.Bar> findByText(
 		java.lang.String text, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first bar in the ordered set where text = &#63;.
@@ -91,13 +85,11 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching bar
 	* @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testtransaction.model.Bar findByText_First(
 		java.lang.String text,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
 	* Returns the first bar in the ordered set where text = &#63;.
@@ -105,12 +97,10 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param text the text
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching bar, or <code>null</code> if a matching bar could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testtransaction.model.Bar fetchByText_First(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last bar in the ordered set where text = &#63;.
@@ -119,13 +109,11 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching bar
 	* @throws com.liferay.testtransaction.NoSuchBarException if a matching bar could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testtransaction.model.Bar findByText_Last(
 		java.lang.String text,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
 	* Returns the last bar in the ordered set where text = &#63;.
@@ -133,12 +121,10 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param text the text
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching bar, or <code>null</code> if a matching bar could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testtransaction.model.Bar fetchByText_Last(
 		java.lang.String text,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the bars before and after the current bar in the ordered set where text = &#63;.
@@ -148,32 +134,26 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next bar
 	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testtransaction.model.Bar[] findByText_PrevAndNext(
 		long barId, java.lang.String text,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
 	* Removes all the bars where text = &#63; from the database.
 	*
 	* @param text the text
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByText(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByText(java.lang.String text);
 
 	/**
 	* Returns the number of bars where text = &#63;.
 	*
 	* @param text the text
 	* @return the number of matching bars
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByText(java.lang.String text)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByText(java.lang.String text);
 
 	/**
 	* Caches the bar in the entity cache if it is enabled.
@@ -204,15 +184,12 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param barId the primary key of the bar
 	* @return the bar that was removed
 	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testtransaction.model.Bar remove(long barId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.NoSuchBarException;
 
 	public com.liferay.testtransaction.model.Bar updateImpl(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.testtransaction.model.Bar bar);
 
 	/**
 	* Returns the bar with the primary key or throws a {@link com.liferay.testtransaction.NoSuchBarException} if it could not be found.
@@ -220,30 +197,24 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param barId the primary key of the bar
 	* @return the bar
 	* @throws com.liferay.testtransaction.NoSuchBarException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.testtransaction.model.Bar findByPrimaryKey(long barId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.testtransaction.NoSuchBarException;
+		throws com.liferay.testtransaction.NoSuchBarException;
 
 	/**
 	* Returns the bar with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param barId the primary key of the bar
 	* @return the bar, or <code>null</code> if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.testtransaction.model.Bar fetchByPrimaryKey(long barId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.testtransaction.model.Bar fetchByPrimaryKey(long barId);
 
 	/**
 	* Returns all the bars.
 	*
 	* @return the bars
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.testtransaction.model.Bar> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.testtransaction.model.Bar> findAll();
 
 	/**
 	* Returns a range of all the bars.
@@ -255,11 +226,9 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param start the lower bound of the range of bars
 	* @param end the upper bound of the range of bars (not inclusive)
 	* @return the range of bars
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testtransaction.model.Bar> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the bars.
@@ -272,27 +241,20 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	* @param end the upper bound of the range of bars (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of bars
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.testtransaction.model.Bar> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the bars from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of bars.
 	*
 	* @return the number of bars
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

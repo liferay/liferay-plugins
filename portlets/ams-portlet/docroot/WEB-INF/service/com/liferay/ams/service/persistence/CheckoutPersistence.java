@@ -66,15 +66,12 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 	* @param checkoutId the primary key of the checkout
 	* @return the checkout that was removed
 	* @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.ams.model.Checkout remove(long checkoutId)
-		throws com.liferay.ams.NoSuchCheckoutException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.ams.NoSuchCheckoutException;
 
 	public com.liferay.ams.model.Checkout updateImpl(
-		com.liferay.ams.model.Checkout checkout)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.ams.model.Checkout checkout);
 
 	/**
 	* Returns the checkout with the primary key or throws a {@link com.liferay.ams.NoSuchCheckoutException} if it could not be found.
@@ -82,30 +79,24 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 	* @param checkoutId the primary key of the checkout
 	* @return the checkout
 	* @throws com.liferay.ams.NoSuchCheckoutException if a checkout with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.ams.model.Checkout findByPrimaryKey(long checkoutId)
-		throws com.liferay.ams.NoSuchCheckoutException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.ams.NoSuchCheckoutException;
 
 	/**
 	* Returns the checkout with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param checkoutId the primary key of the checkout
 	* @return the checkout, or <code>null</code> if a checkout with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.ams.model.Checkout fetchByPrimaryKey(long checkoutId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.ams.model.Checkout fetchByPrimaryKey(long checkoutId);
 
 	/**
 	* Returns all the checkouts.
 	*
 	* @return the checkouts
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.ams.model.Checkout> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.ams.model.Checkout> findAll();
 
 	/**
 	* Returns a range of all the checkouts.
@@ -117,10 +108,9 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 	* @param start the lower bound of the range of checkouts
 	* @param end the upper bound of the range of checkouts (not inclusive)
 	* @return the range of checkouts
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.ams.model.Checkout> findAll(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the checkouts.
@@ -133,27 +123,20 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 	* @param end the upper bound of the range of checkouts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of checkouts
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.ams.model.Checkout> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the checkouts from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of checkouts.
 	*
 	* @return the number of checkouts
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

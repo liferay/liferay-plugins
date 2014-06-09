@@ -35,12 +35,10 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	*
 	* @param kaleoLog the kaleo log
 	* @return the kaleo log that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog addKaleoLog(
-		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog) {
 		return _kaleoLogLocalService.addKaleoLog(kaleoLog);
 	}
 
@@ -62,13 +60,11 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	* @param kaleoLogId the primary key of the kaleo log
 	* @return the kaleo log that was removed
 	* @throws PortalException if a kaleo log with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
 		long kaleoLogId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoLogLocalService.deleteKaleoLog(kaleoLogId);
 	}
 
@@ -77,12 +73,10 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	*
 	* @param kaleoLog the kaleo log
 	* @return the kaleo log that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog deleteKaleoLog(
-		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog) {
 		return _kaleoLogLocalService.deleteKaleoLog(kaleoLog);
 	}
 
@@ -96,13 +90,11 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _kaleoLogLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -117,13 +109,12 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _kaleoLogLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -139,15 +130,13 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _kaleoLogLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -157,12 +146,10 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _kaleoLogLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,20 +159,17 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _kaleoLogLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog fetchKaleoLog(
-		long kaleoLogId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long kaleoLogId) {
 		return _kaleoLogLocalService.fetchKaleoLog(kaleoLogId);
 	}
 
@@ -195,21 +179,33 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	* @param kaleoLogId the primary key of the kaleo log
 	* @return the kaleo log
 	* @throws PortalException if a kaleo log with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog getKaleoLog(
 		long kaleoLogId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoLogLocalService.getKaleoLog(kaleoLogId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _kaleoLogLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _kaleoLogLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _kaleoLogLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -223,12 +219,10 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	* @param start the lower bound of the range of kaleo logs
 	* @param end the upper bound of the range of kaleo logs (not inclusive)
 	* @return the range of kaleo logs
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoLog> getKaleoLogs(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _kaleoLogLocalService.getKaleoLogs(start, end);
 	}
 
@@ -236,11 +230,9 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	* Returns the number of kaleo logs.
 	*
 	* @return the number of kaleo logs
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getKaleoLogsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getKaleoLogsCount() {
 		return _kaleoLogLocalService.getKaleoLogsCount();
 	}
 
@@ -249,12 +241,10 @@ public class KaleoLogLocalServiceWrapper implements KaleoLogLocalService,
 	*
 	* @param kaleoLog the kaleo log
 	* @return the kaleo log that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog updateKaleoLog(
-		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.workflow.kaleo.model.KaleoLog kaleoLog) {
 		return _kaleoLogLocalService.updateKaleoLog(kaleoLog);
 	}
 

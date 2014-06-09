@@ -14,8 +14,6 @@
 
 package com.liferay.wsrp.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class WSRPProducerBaseImpl extends WSRPProducerModelImpl
 	 * Never modify or reference this class directly. All methods that expect a w s r p producer model instance should use the {@link WSRPProducer} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			WSRPProducerLocalServiceUtil.addWSRPProducer(this);
 		}

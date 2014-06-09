@@ -15,7 +15,6 @@
 package com.liferay.tasks.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
@@ -127,10 +126,9 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	 * Returns the user uuid of this tasks entry.
 	 *
 	 * @return the user uuid of this tasks entry
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this tasks entry.
@@ -236,9 +234,8 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	 * Returns the assignee user uuid of this tasks entry.
 	 *
 	 * @return the assignee user uuid of this tasks entry
-	 * @throws SystemException if a system exception occurred
 	 */
-	public String getAssigneeUserUuid() throws SystemException;
+	public String getAssigneeUserUuid();
 
 	/**
 	 * Sets the assignee user uuid of this tasks entry.
@@ -265,9 +262,8 @@ public interface TasksEntryModel extends BaseModel<TasksEntry>, GroupedModel {
 	 * Returns the resolver user uuid of this tasks entry.
 	 *
 	 * @return the resolver user uuid of this tasks entry
-	 * @throws SystemException if a system exception occurred
 	 */
-	public String getResolverUserUuid() throws SystemException;
+	public String getResolverUserUuid();
 
 	/**
 	 * Sets the resolver user uuid of this tasks entry.

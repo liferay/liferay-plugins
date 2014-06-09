@@ -34,12 +34,10 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	*
 	* @param account the account
 	* @return the account that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.mail.model.Account addAccount(
-		com.liferay.mail.model.Account account)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.mail.model.Account account) {
 		return _accountLocalService.addAccount(account);
 	}
 
@@ -60,7 +58,7 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	* @param accountId the primary key of the account
 	* @return the account that was removed
 	* @throws PortalException if a account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.mail.model.Account deleteAccount(long accountId)
@@ -75,7 +73,7 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	* @param account the account
 	* @return the account that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.mail.model.Account deleteAccount(
@@ -95,13 +93,11 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _accountLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -116,13 +112,12 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _accountLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -138,15 +133,13 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _accountLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -156,12 +149,10 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _accountLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -171,19 +162,16 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _accountLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
-	public com.liferay.mail.model.Account fetchAccount(long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.mail.model.Account fetchAccount(long accountId) {
 		return _accountLocalService.fetchAccount(accountId);
 	}
 
@@ -193,20 +181,32 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	* @param accountId the primary key of the account
 	* @return the account
 	* @throws PortalException if a account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.mail.model.Account getAccount(long accountId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _accountLocalService.getAccount(accountId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _accountLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _accountLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _accountLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -220,12 +220,10 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	* @param start the lower bound of the range of accounts
 	* @param end the upper bound of the range of accounts (not inclusive)
 	* @return the range of accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.mail.model.Account> getAccounts(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _accountLocalService.getAccounts(start, end);
 	}
 
@@ -233,11 +231,9 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	* Returns the number of accounts.
 	*
 	* @return the number of accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getAccountsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getAccountsCount() {
 		return _accountLocalService.getAccountsCount();
 	}
 
@@ -246,12 +242,10 @@ public class AccountLocalServiceWrapper implements AccountLocalService,
 	*
 	* @param account the account
 	* @return the account that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.mail.model.Account updateAccount(
-		com.liferay.mail.model.Account account)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.mail.model.Account account) {
 		return _accountLocalService.updateAccount(account);
 	}
 

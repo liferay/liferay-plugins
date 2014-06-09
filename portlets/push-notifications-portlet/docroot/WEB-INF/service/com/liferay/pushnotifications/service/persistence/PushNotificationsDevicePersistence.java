@@ -43,23 +43,19 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param token the token
 	* @return the matching push notifications device
 	* @throws com.liferay.pushnotifications.NoSuchDeviceException if a matching push notifications device could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice findByToken(
 		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.pushnotifications.NoSuchDeviceException;
+		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	/**
 	* Returns the push notifications device where token = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param token the token
 	* @return the matching push notifications device, or <code>null</code> if a matching push notifications device could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchByToken(
-		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String token);
 
 	/**
 	* Returns the push notifications device where token = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -67,33 +63,27 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param token the token
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching push notifications device, or <code>null</code> if a matching push notifications device could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchByToken(
-		java.lang.String token, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String token, boolean retrieveFromCache);
 
 	/**
 	* Removes the push notifications device where token = &#63; from the database.
 	*
 	* @param token the token
 	* @return the push notifications device that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice removeByToken(
 		java.lang.String token)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.pushnotifications.NoSuchDeviceException;
+		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	/**
 	* Returns the number of push notifications devices where token = &#63;.
 	*
 	* @param token the token
 	* @return the number of matching push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByToken(java.lang.String token)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByToken(java.lang.String token);
 
 	/**
 	* Returns all the push notifications devices where userId = &#63; and platform = &#63;.
@@ -101,11 +91,9 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param userId the user ID
 	* @param platform the platform
 	* @return the matching push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findByU_P(
-		long userId, java.lang.String platform)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId, java.lang.String platform);
 
 	/**
 	* Returns a range of all the push notifications devices where userId = &#63; and platform = &#63;.
@@ -119,11 +107,9 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param start the lower bound of the range of push notifications devices
 	* @param end the upper bound of the range of push notifications devices (not inclusive)
 	* @return the range of matching push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findByU_P(
-		long userId, java.lang.String platform, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId, java.lang.String platform, int start, int end);
 
 	/**
 	* Returns an ordered range of all the push notifications devices where userId = &#63; and platform = &#63;.
@@ -138,12 +124,10 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param end the upper bound of the range of push notifications devices (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findByU_P(
 		long userId, java.lang.String platform, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -153,13 +137,11 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching push notifications device
 	* @throws com.liferay.pushnotifications.NoSuchDeviceException if a matching push notifications device could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice findByU_P_First(
 		long userId, java.lang.String platform,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.pushnotifications.NoSuchDeviceException;
+		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	/**
 	* Returns the first push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -168,12 +150,10 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param platform the platform
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching push notifications device, or <code>null</code> if a matching push notifications device could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchByU_P_First(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -183,13 +163,11 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching push notifications device
 	* @throws com.liferay.pushnotifications.NoSuchDeviceException if a matching push notifications device could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice findByU_P_Last(
 		long userId, java.lang.String platform,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.pushnotifications.NoSuchDeviceException;
+		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	/**
 	* Returns the last push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -198,12 +176,10 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param platform the platform
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching push notifications device, or <code>null</code> if a matching push notifications device could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchByU_P_Last(
 		long userId, java.lang.String platform,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the push notifications devices before and after the current push notifications device in the ordered set where userId = &#63; and platform = &#63;.
@@ -214,23 +190,19 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next push notifications device
 	* @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice[] findByU_P_PrevAndNext(
 		long pushNotificationsDeviceId, long userId, java.lang.String platform,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.pushnotifications.NoSuchDeviceException;
+		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	/**
 	* Removes all the push notifications devices where userId = &#63; and platform = &#63; from the database.
 	*
 	* @param userId the user ID
 	* @param platform the platform
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByU_P(long userId, java.lang.String platform)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByU_P(long userId, java.lang.String platform);
 
 	/**
 	* Returns the number of push notifications devices where userId = &#63; and platform = &#63;.
@@ -238,10 +210,8 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param userId the user ID
 	* @param platform the platform
 	* @return the number of matching push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByU_P(long userId, java.lang.String platform)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByU_P(long userId, java.lang.String platform);
 
 	/**
 	* Caches the push notifications device in the entity cache if it is enabled.
@@ -274,16 +244,13 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param pushNotificationsDeviceId the primary key of the push notifications device
 	* @return the push notifications device that was removed
 	* @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice remove(
 		long pushNotificationsDeviceId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.pushnotifications.NoSuchDeviceException;
+		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	public com.liferay.pushnotifications.model.PushNotificationsDevice updateImpl(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice);
 
 	/**
 	* Returns the push notifications device with the primary key or throws a {@link com.liferay.pushnotifications.NoSuchDeviceException} if it could not be found.
@@ -291,32 +258,26 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param pushNotificationsDeviceId the primary key of the push notifications device
 	* @return the push notifications device
 	* @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice findByPrimaryKey(
 		long pushNotificationsDeviceId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.pushnotifications.NoSuchDeviceException;
+		throws com.liferay.pushnotifications.NoSuchDeviceException;
 
 	/**
 	* Returns the push notifications device with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param pushNotificationsDeviceId the primary key of the push notifications device
 	* @return the push notifications device, or <code>null</code> if a push notifications device with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchByPrimaryKey(
-		long pushNotificationsDeviceId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long pushNotificationsDeviceId);
 
 	/**
 	* Returns all the push notifications devices.
 	*
 	* @return the push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findAll();
 
 	/**
 	* Returns a range of all the push notifications devices.
@@ -328,11 +289,9 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param start the lower bound of the range of push notifications devices
 	* @param end the upper bound of the range of push notifications devices (not inclusive)
 	* @return the range of push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the push notifications devices.
@@ -345,27 +304,20 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	* @param end the upper bound of the range of push notifications devices (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the push notifications devices from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of push notifications devices.
 	*
 	* @return the number of push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

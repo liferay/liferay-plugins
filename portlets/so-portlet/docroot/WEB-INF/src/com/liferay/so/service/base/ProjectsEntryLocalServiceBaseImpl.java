@@ -76,12 +76,10 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 *
 	 * @param projectsEntry the projects entry
 	 * @return the projects entry that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public ProjectsEntry addProjectsEntry(ProjectsEntry projectsEntry)
-		throws SystemException {
+	public ProjectsEntry addProjectsEntry(ProjectsEntry projectsEntry) {
 		projectsEntry.setNew(true);
 
 		return projectsEntryPersistence.update(projectsEntry);
@@ -104,12 +102,11 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @param projectsEntryId the primary key of the projects entry
 	 * @return the projects entry that was removed
 	 * @throws PortalException if a projects entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public ProjectsEntry deleteProjectsEntry(long projectsEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return projectsEntryPersistence.remove(projectsEntryId);
 	}
 
@@ -118,12 +115,10 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 *
 	 * @param projectsEntry the projects entry
 	 * @return the projects entry that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public ProjectsEntry deleteProjectsEntry(ProjectsEntry projectsEntry)
-		throws SystemException {
+	public ProjectsEntry deleteProjectsEntry(ProjectsEntry projectsEntry) {
 		return projectsEntryPersistence.remove(projectsEntry);
 	}
 
@@ -140,12 +135,10 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return projectsEntryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -160,12 +153,10 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return projectsEntryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -182,12 +173,11 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return projectsEntryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -197,11 +187,9 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return projectsEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -211,18 +199,16 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return projectsEntryPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public ProjectsEntry fetchProjectsEntry(long projectsEntryId)
-		throws SystemException {
+	public ProjectsEntry fetchProjectsEntry(long projectsEntryId) {
 		return projectsEntryPersistence.fetchByPrimaryKey(projectsEntryId);
 	}
 
@@ -232,17 +218,15 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @param projectsEntryId the primary key of the projects entry
 	 * @return the projects entry
 	 * @throws PortalException if a projects entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public ProjectsEntry getProjectsEntry(long projectsEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return projectsEntryPersistence.findByPrimaryKey(projectsEntryId);
 	}
 
 	@Override
-	public ActionableDynamicQuery getActionableDynamicQuery()
-		throws SystemException {
+	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.ProjectsEntryLocalServiceUtil.getService());
@@ -255,8 +239,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	}
 
 	protected void initActionableDynamicQuery(
-		ActionableDynamicQuery actionableDynamicQuery)
-		throws SystemException {
+		ActionableDynamicQuery actionableDynamicQuery) {
 		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.ProjectsEntryLocalServiceUtil.getService());
 		actionableDynamicQuery.setClass(ProjectsEntry.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -264,9 +247,18 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 		actionableDynamicQuery.setPrimaryKeyPropertyName("projectsEntryId");
 	}
 
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteProjectsEntry((ProjectsEntry)persistedModel);
+	}
+
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return projectsEntryPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -280,11 +272,9 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * @param start the lower bound of the range of projects entries
 	 * @param end the upper bound of the range of projects entries (not inclusive)
 	 * @return the range of projects entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<ProjectsEntry> getProjectsEntries(int start, int end)
-		throws SystemException {
+	public List<ProjectsEntry> getProjectsEntries(int start, int end) {
 		return projectsEntryPersistence.findAll(start, end);
 	}
 
@@ -292,10 +282,9 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 * Returns the number of projects entries.
 	 *
 	 * @return the number of projects entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getProjectsEntriesCount() throws SystemException {
+	public int getProjectsEntriesCount() {
 		return projectsEntryPersistence.countAll();
 	}
 
@@ -304,12 +293,10 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 *
 	 * @param projectsEntry the projects entry
 	 * @return the projects entry that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public ProjectsEntry updateProjectsEntry(ProjectsEntry projectsEntry)
-		throws SystemException {
+	public ProjectsEntry updateProjectsEntry(ProjectsEntry projectsEntry) {
 		return projectsEntryPersistence.update(projectsEntry);
 	}
 
@@ -683,7 +670,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = projectsEntryPersistence.getDataSource();
 

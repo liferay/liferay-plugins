@@ -18,7 +18,6 @@ import com.liferay.ams.model.Definition;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class DefinitionUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class DefinitionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<Definition> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class DefinitionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<Definition> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class DefinitionUtil {
 	 */
 	public static List<Definition> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class DefinitionUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Definition update(Definition definition)
-		throws SystemException {
+	public static Definition update(Definition definition) {
 		return getPersistence().update(definition);
 	}
 
@@ -106,7 +102,7 @@ public class DefinitionUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static Definition update(Definition definition,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(definition, serviceContext);
 	}
 
@@ -145,17 +141,14 @@ public class DefinitionUtil {
 	* @param definitionId the primary key of the definition
 	* @return the definition that was removed
 	* @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.ams.model.Definition remove(long definitionId)
-		throws com.liferay.ams.NoSuchDefinitionException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.ams.NoSuchDefinitionException {
 		return getPersistence().remove(definitionId);
 	}
 
 	public static com.liferay.ams.model.Definition updateImpl(
-		com.liferay.ams.model.Definition definition)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.ams.model.Definition definition) {
 		return getPersistence().updateImpl(definition);
 	}
 
@@ -165,12 +158,9 @@ public class DefinitionUtil {
 	* @param definitionId the primary key of the definition
 	* @return the definition
 	* @throws com.liferay.ams.NoSuchDefinitionException if a definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.ams.model.Definition findByPrimaryKey(
-		long definitionId)
-		throws com.liferay.ams.NoSuchDefinitionException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long definitionId) throws com.liferay.ams.NoSuchDefinitionException {
 		return getPersistence().findByPrimaryKey(definitionId);
 	}
 
@@ -179,11 +169,9 @@ public class DefinitionUtil {
 	*
 	* @param definitionId the primary key of the definition
 	* @return the definition, or <code>null</code> if a definition with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.ams.model.Definition fetchByPrimaryKey(
-		long definitionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long definitionId) {
 		return getPersistence().fetchByPrimaryKey(definitionId);
 	}
 
@@ -191,10 +179,8 @@ public class DefinitionUtil {
 	* Returns all the definitions.
 	*
 	* @return the definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.ams.model.Definition> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.ams.model.Definition> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -208,11 +194,9 @@ public class DefinitionUtil {
 	* @param start the lower bound of the range of definitions
 	* @param end the upper bound of the range of definitions (not inclusive)
 	* @return the range of definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.ams.model.Definition> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -227,22 +211,17 @@ public class DefinitionUtil {
 	* @param end the upper bound of the range of definitions (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of definitions
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.ams.model.Definition> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the definitions from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -250,10 +229,8 @@ public class DefinitionUtil {
 	* Returns the number of definitions.
 	*
 	* @return the number of definitions
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

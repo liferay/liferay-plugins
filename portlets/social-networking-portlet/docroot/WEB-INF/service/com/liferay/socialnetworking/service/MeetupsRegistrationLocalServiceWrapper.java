@@ -36,12 +36,10 @@ public class MeetupsRegistrationLocalServiceWrapper
 	*
 	* @param meetupsRegistration the meetups registration
 	* @return the meetups registration that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration addMeetupsRegistration(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
 		return _meetupsRegistrationLocalService.addMeetupsRegistration(meetupsRegistration);
 	}
 
@@ -63,13 +61,11 @@ public class MeetupsRegistrationLocalServiceWrapper
 	* @param meetupsRegistrationId the primary key of the meetups registration
 	* @return the meetups registration that was removed
 	* @throws PortalException if a meetups registration with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
 		long meetupsRegistrationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _meetupsRegistrationLocalService.deleteMeetupsRegistration(meetupsRegistrationId);
 	}
 
@@ -78,12 +74,10 @@ public class MeetupsRegistrationLocalServiceWrapper
 	*
 	* @param meetupsRegistration the meetups registration
 	* @return the meetups registration that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration deleteMeetupsRegistration(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
 		return _meetupsRegistrationLocalService.deleteMeetupsRegistration(meetupsRegistration);
 	}
 
@@ -97,13 +91,11 @@ public class MeetupsRegistrationLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _meetupsRegistrationLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -118,13 +110,12 @@ public class MeetupsRegistrationLocalServiceWrapper
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _meetupsRegistrationLocalService.dynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -141,15 +132,13 @@ public class MeetupsRegistrationLocalServiceWrapper
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _meetupsRegistrationLocalService.dynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -159,12 +148,10 @@ public class MeetupsRegistrationLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _meetupsRegistrationLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,21 +161,18 @@ public class MeetupsRegistrationLocalServiceWrapper
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _meetupsRegistrationLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration fetchMeetupsRegistration(
-		long meetupsRegistrationId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long meetupsRegistrationId) {
 		return _meetupsRegistrationLocalService.fetchMeetupsRegistration(meetupsRegistrationId);
 	}
 
@@ -198,21 +182,33 @@ public class MeetupsRegistrationLocalServiceWrapper
 	* @param meetupsRegistrationId the primary key of the meetups registration
 	* @return the meetups registration
 	* @throws PortalException if a meetups registration with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
 		long meetupsRegistrationId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _meetupsRegistrationLocalService.getMeetupsRegistration(meetupsRegistrationId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _meetupsRegistrationLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _meetupsRegistrationLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _meetupsRegistrationLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -226,12 +222,10 @@ public class MeetupsRegistrationLocalServiceWrapper
 	* @param start the lower bound of the range of meetups registrations
 	* @param end the upper bound of the range of meetups registrations (not inclusive)
 	* @return the range of meetups registrations
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _meetupsRegistrationLocalService.getMeetupsRegistrations(start,
 			end);
 	}
@@ -240,11 +234,9 @@ public class MeetupsRegistrationLocalServiceWrapper
 	* Returns the number of meetups registrations.
 	*
 	* @return the number of meetups registrations
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getMeetupsRegistrationsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getMeetupsRegistrationsCount() {
 		return _meetupsRegistrationLocalService.getMeetupsRegistrationsCount();
 	}
 
@@ -253,12 +245,10 @@ public class MeetupsRegistrationLocalServiceWrapper
 	*
 	* @param meetupsRegistration the meetups registration
 	* @return the meetups registration that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
-		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialnetworking.model.MeetupsRegistration meetupsRegistration) {
 		return _meetupsRegistrationLocalService.updateMeetupsRegistration(meetupsRegistration);
 	}
 

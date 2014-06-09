@@ -15,7 +15,6 @@
 package com.liferay.sync.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -325,9 +324,8 @@ public interface SyncDLObjectModel extends BaseModel<SyncDLObject> {
 	 * Returns the lock user uuid of this sync d l object.
 	 *
 	 * @return the lock user uuid of this sync d l object
-	 * @throws SystemException if a system exception occurred
 	 */
-	public String getLockUserUuid() throws SystemException;
+	public String getLockUserUuid();
 
 	/**
 	 * Sets the lock user uuid of this sync d l object.

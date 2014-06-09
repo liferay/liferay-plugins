@@ -44,11 +44,9 @@ public class ModuleLocalServiceUtil {
 	*
 	* @param module the module
 	* @return the module that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.marketplace.model.Module addModule(
-		com.liferay.marketplace.model.Module module)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.marketplace.model.Module module) {
 		return getService().addModule(module);
 	}
 
@@ -69,12 +67,10 @@ public class ModuleLocalServiceUtil {
 	* @param moduleId the primary key of the module
 	* @return the module that was removed
 	* @throws PortalException if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.marketplace.model.Module deleteModule(
 		long moduleId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteModule(moduleId);
 	}
 
@@ -83,11 +79,9 @@ public class ModuleLocalServiceUtil {
 	*
 	* @param module the module
 	* @return the module that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.marketplace.model.Module deleteModule(
-		com.liferay.marketplace.model.Module module)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.marketplace.model.Module module) {
 		return getService().deleteModule(module);
 	}
 
@@ -100,12 +94,10 @@ public class ModuleLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +112,11 @@ public class ModuleLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +132,12 @@ public class ModuleLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +147,9 @@ public class ModuleLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,18 +159,15 @@ public class ModuleLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.marketplace.model.Module fetchModule(
-		long moduleId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long moduleId) {
 		return getService().fetchModule(moduleId);
 	}
 
@@ -193,18 +177,28 @@ public class ModuleLocalServiceUtil {
 	* @param moduleId the primary key of the module
 	* @return the module
 	* @throws PortalException if a module with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.marketplace.model.Module getModule(long moduleId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getModule(moduleId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -218,11 +212,9 @@ public class ModuleLocalServiceUtil {
 	* @param start the lower bound of the range of modules
 	* @param end the upper bound of the range of modules (not inclusive)
 	* @return the range of modules
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.marketplace.model.Module> getModules(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getModules(start, end);
 	}
 
@@ -230,10 +222,8 @@ public class ModuleLocalServiceUtil {
 	* Returns the number of modules.
 	*
 	* @return the number of modules
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getModulesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getModulesCount() {
 		return getService().getModulesCount();
 	}
 
@@ -242,11 +232,9 @@ public class ModuleLocalServiceUtil {
 	*
 	* @param module the module
 	* @return the module that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.marketplace.model.Module updateModule(
-		com.liferay.marketplace.model.Module module)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.marketplace.model.Module module) {
 		return getService().updateModule(module);
 	}
 

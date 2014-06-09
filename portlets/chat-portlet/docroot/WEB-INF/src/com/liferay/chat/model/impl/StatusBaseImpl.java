@@ -17,8 +17,6 @@ package com.liferay.chat.model.impl;
 import com.liferay.chat.model.Status;
 import com.liferay.chat.service.StatusLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the Status service. Represents a row in the &quot;Chat_Status&quot; database table, with each column mapped to a property of this class.
  *
@@ -38,7 +36,7 @@ public abstract class StatusBaseImpl extends StatusModelImpl implements Status {
 	 * Never modify or reference this class directly. All methods that expect a status model instance should use the {@link Status} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			StatusLocalServiceUtil.addStatus(this);
 		}

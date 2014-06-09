@@ -258,11 +258,9 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* Returns the user uuid of this tasks entry.
 	*
 	* @return the user uuid of this tasks entry
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _tasksEntry.getUserUuid();
 	}
 
@@ -400,11 +398,9 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* Returns the assignee user uuid of this tasks entry.
 	*
 	* @return the assignee user uuid of this tasks entry
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getAssigneeUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getAssigneeUserUuid() {
 		return _tasksEntry.getAssigneeUserUuid();
 	}
 
@@ -442,11 +438,9 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	* Returns the resolver user uuid of this tasks entry.
 	*
 	* @return the resolver user uuid of this tasks entry
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getResolverUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getResolverUserUuid() {
 		return _tasksEntry.getResolverUserUuid();
 	}
 
@@ -619,8 +613,7 @@ public class TasksEntryWrapper implements TasksEntry, ModelWrapper<TasksEntry> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_tasksEntry.persist();
 	}
 

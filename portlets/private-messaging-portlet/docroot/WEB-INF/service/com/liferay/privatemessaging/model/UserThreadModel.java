@@ -15,7 +15,6 @@
 package com.liferay.privatemessaging.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -111,10 +110,9 @@ public interface UserThreadModel extends AuditedModel, BaseModel<UserThread> {
 	 * Returns the user uuid of this user thread.
 	 *
 	 * @return the user uuid of this user thread
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this user thread.

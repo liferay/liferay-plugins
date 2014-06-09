@@ -275,11 +275,9 @@ public class KaleoTransitionWrapper implements KaleoTransition,
 	* Returns the user uuid of this kaleo transition.
 	*
 	* @return the user uuid of this kaleo transition
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _kaleoTransition.getUserUuid();
 	}
 
@@ -643,8 +641,7 @@ public class KaleoTransitionWrapper implements KaleoTransition,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kaleoTransition.persist();
 	}
 

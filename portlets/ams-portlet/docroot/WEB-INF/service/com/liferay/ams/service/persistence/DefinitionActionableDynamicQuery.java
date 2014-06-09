@@ -18,15 +18,16 @@ import com.liferay.ams.model.Definition;
 import com.liferay.ams.service.DefinitionLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link DefinitionLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class DefinitionActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public DefinitionActionableDynamicQuery() throws SystemException {
+	public DefinitionActionableDynamicQuery() {
 		setBaseLocalService(DefinitionLocalServiceUtil.getService());
 		setClass(Definition.class);
 

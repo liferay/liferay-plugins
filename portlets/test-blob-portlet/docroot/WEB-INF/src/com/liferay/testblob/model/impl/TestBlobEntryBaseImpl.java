@@ -14,8 +14,6 @@
 
 package com.liferay.testblob.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.testblob.model.TestBlobEntry;
 import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class TestBlobEntryBaseImpl extends TestBlobEntryModelImpl
 	 * Never modify or reference this class directly. All methods that expect a test blob entry model instance should use the {@link TestBlobEntry} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			TestBlobEntryLocalServiceUtil.addTestBlobEntry(this);
 		}

@@ -259,11 +259,9 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	* Returns the user uuid of this kaleo definition.
 	*
 	* @return the user uuid of this kaleo definition
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _kaleoDefinition.getUserUuid();
 	}
 
@@ -730,8 +728,7 @@ public class KaleoDefinitionWrapper implements KaleoDefinition,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kaleoDefinition.persist();
 	}
 

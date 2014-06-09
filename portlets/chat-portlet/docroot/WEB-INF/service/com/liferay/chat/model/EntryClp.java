@@ -18,13 +18,15 @@ import com.liferay.chat.service.ClpSerializer;
 import com.liferay.chat.service.EntryLocalServiceUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
-import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.BaseModelImpl;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.io.Serializable;
 
@@ -199,13 +201,19 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	}
 
 	@Override
-	public String getFromUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getFromUserId(), "uuid", _fromUserUuid);
+	public String getFromUserUuid() {
+		try {
+			User user = UserLocalServiceUtil.getUserById(getFromUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setFromUserUuid(String fromUserUuid) {
-		_fromUserUuid = fromUserUuid;
 	}
 
 	@Override
@@ -232,13 +240,19 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	}
 
 	@Override
-	public String getToUserUuid() throws SystemException {
-		return PortalUtil.getUserValue(getToUserId(), "uuid", _toUserUuid);
+	public String getToUserUuid() {
+		try {
+			User user = UserLocalServiceUtil.getUserById(getToUserId());
+
+			return user.getUuid();
+		}
+		catch (PortalException pe) {
+			return StringPool.BLANK;
+		}
 	}
 
 	@Override
 	public void setToUserUuid(String toUserUuid) {
-		_toUserUuid = toUserUuid;
 	}
 
 	@Override
@@ -337,7 +351,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	}
 
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			EntryLocalServiceUtil.addEntry(this);
 		}
@@ -488,9 +502,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	private long _entryId;
 	private long _createDate;
 	private long _fromUserId;
-	private String _fromUserUuid;
 	private long _toUserId;
-	private String _toUserUuid;
 	private String _content;
 	private int _flag;
 	private BaseModel<?> _entryRemoteModel;

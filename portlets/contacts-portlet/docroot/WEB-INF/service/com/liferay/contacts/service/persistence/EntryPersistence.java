@@ -42,10 +42,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*
 	* @param userId the user ID
 	* @return the matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.contacts.model.Entry> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+		long userId);
 
 	/**
 	* Returns a range of all the entries where userId = &#63;.
@@ -58,11 +57,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.contacts.model.Entry> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the entries where userId = &#63;.
@@ -76,12 +73,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.contacts.model.Entry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where userId = &#63;.
@@ -90,12 +85,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.contacts.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.contacts.NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where userId = &#63;.
@@ -103,11 +96,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where userId = &#63;.
@@ -116,12 +107,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.contacts.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.contacts.NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where userId = &#63;.
@@ -129,11 +118,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where userId = &#63;.
@@ -143,32 +130,26 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.contacts.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry[] findByUserId_PrevAndNext(
 		long entryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.contacts.NoSuchEntryException;
 
 	/**
 	* Removes all the entries where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUserId(long userId);
 
 	/**
 	* Returns the number of entries where userId = &#63;.
 	*
 	* @param userId the user ID
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUserId(long userId);
 
 	/**
 	* Returns the entry where userId = &#63; and emailAddress = &#63; or throws a {@link com.liferay.contacts.NoSuchEntryException} if it could not be found.
@@ -177,12 +158,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param emailAddress the email address
 	* @return the matching entry
 	* @throws com.liferay.contacts.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry findByU_EA(long userId,
 		java.lang.String emailAddress)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.contacts.NoSuchEntryException;
 
 	/**
 	* Returns the entry where userId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -190,11 +169,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param userId the user ID
 	* @param emailAddress the email address
 	* @return the matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry fetchByU_EA(long userId,
-		java.lang.String emailAddress)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String emailAddress);
 
 	/**
 	* Returns the entry where userId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -203,11 +180,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param emailAddress the email address
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry fetchByU_EA(long userId,
-		java.lang.String emailAddress, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String emailAddress, boolean retrieveFromCache);
 
 	/**
 	* Removes the entry where userId = &#63; and emailAddress = &#63; from the database.
@@ -215,12 +190,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param userId the user ID
 	* @param emailAddress the email address
 	* @return the entry that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry removeByU_EA(long userId,
 		java.lang.String emailAddress)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.contacts.NoSuchEntryException;
 
 	/**
 	* Returns the number of entries where userId = &#63; and emailAddress = &#63;.
@@ -228,10 +201,8 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param userId the user ID
 	* @param emailAddress the email address
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByU_EA(long userId, java.lang.String emailAddress)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByU_EA(long userId, java.lang.String emailAddress);
 
 	/**
 	* Caches the entry in the entity cache if it is enabled.
@@ -262,15 +233,12 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param entryId the primary key of the entry
 	* @return the entry that was removed
 	* @throws com.liferay.contacts.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry remove(long entryId)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.contacts.NoSuchEntryException;
 
 	public com.liferay.contacts.model.Entry updateImpl(
-		com.liferay.contacts.model.Entry entry)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.contacts.model.Entry entry);
 
 	/**
 	* Returns the entry with the primary key or throws a {@link com.liferay.contacts.NoSuchEntryException} if it could not be found.
@@ -278,30 +246,24 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param entryId the primary key of the entry
 	* @return the entry
 	* @throws com.liferay.contacts.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.contacts.model.Entry findByPrimaryKey(long entryId)
-		throws com.liferay.contacts.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.contacts.NoSuchEntryException;
 
 	/**
 	* Returns the entry with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param entryId the primary key of the entry
 	* @return the entry, or <code>null</code> if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.contacts.model.Entry fetchByPrimaryKey(long entryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.contacts.model.Entry fetchByPrimaryKey(long entryId);
 
 	/**
 	* Returns all the entries.
 	*
 	* @return the entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.contacts.model.Entry> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.contacts.model.Entry> findAll();
 
 	/**
 	* Returns a range of all the entries.
@@ -313,10 +275,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.contacts.model.Entry> findAll(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the entries.
@@ -329,27 +290,20 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.contacts.model.Entry> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the entries from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of entries.
 	*
 	* @return the number of entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

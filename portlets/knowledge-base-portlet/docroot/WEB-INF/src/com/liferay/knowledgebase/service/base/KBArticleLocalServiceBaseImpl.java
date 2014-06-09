@@ -96,12 +96,10 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param kbArticle the k b article
 	 * @return the k b article that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public KBArticle addKBArticle(KBArticle kbArticle)
-		throws SystemException {
+	public KBArticle addKBArticle(KBArticle kbArticle) {
 		kbArticle.setNew(true);
 
 		return kbArticlePersistence.update(kbArticle);
@@ -124,7 +122,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbArticleId the primary key of the k b article
 	 * @return the k b article that was removed
 	 * @throws PortalException if a k b article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -139,7 +137,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbArticle the k b article
 	 * @return the k b article that was removed
 	 * @throws PortalException
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -161,12 +159,10 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return kbArticlePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -181,12 +177,10 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return kbArticlePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -203,12 +197,11 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return kbArticlePersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -218,11 +211,9 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return kbArticlePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -232,17 +223,16 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return kbArticlePersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public KBArticle fetchKBArticle(long kbArticleId) throws SystemException {
+	public KBArticle fetchKBArticle(long kbArticleId) {
 		return kbArticlePersistence.fetchByPrimaryKey(kbArticleId);
 	}
 
@@ -252,11 +242,10 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param uuid the k b article's UUID
 	 * @param  companyId the primary key of the company
 	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBArticle fetchKBArticleByUuidAndCompanyId(String uuid,
-		long companyId) throws SystemException {
+		long companyId) {
 		return kbArticlePersistence.fetchByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -266,11 +255,9 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param uuid the k b article's UUID
 	 * @param groupId the primary key of the group
 	 * @return the matching k b article, or <code>null</code> if a matching k b article could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public KBArticle fetchKBArticleByUuidAndGroupId(String uuid, long groupId)
-		throws SystemException {
+	public KBArticle fetchKBArticleByUuidAndGroupId(String uuid, long groupId) {
 		return kbArticlePersistence.fetchByUUID_G(uuid, groupId);
 	}
 
@@ -280,17 +267,14 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param kbArticleId the primary key of the k b article
 	 * @return the k b article
 	 * @throws PortalException if a k b article with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public KBArticle getKBArticle(long kbArticleId)
-		throws PortalException, SystemException {
+	public KBArticle getKBArticle(long kbArticleId) throws PortalException {
 		return kbArticlePersistence.findByPrimaryKey(kbArticleId);
 	}
 
 	@Override
-	public ActionableDynamicQuery getActionableDynamicQuery()
-		throws SystemException {
+	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBArticleLocalServiceUtil.getService());
@@ -303,8 +287,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	protected void initActionableDynamicQuery(
-		ActionableDynamicQuery actionableDynamicQuery)
-		throws SystemException {
+		ActionableDynamicQuery actionableDynamicQuery) {
 		actionableDynamicQuery.setBaseLocalService(com.liferay.knowledgebase.service.KBArticleLocalServiceUtil.getService());
 		actionableDynamicQuery.setClass(KBArticle.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -314,11 +297,10 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 	@Override
 	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		final PortletDataContext portletDataContext) throws SystemException {
+		final PortletDataContext portletDataContext) {
 		final ExportActionableDynamicQuery exportActionableDynamicQuery = new ExportActionableDynamicQuery() {
 				@Override
-				public long performCount()
-					throws PortalException, SystemException {
+				public long performCount() throws PortalException {
 					ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
 
 					StagedModelType stagedModelType = getStagedModelType();
@@ -368,9 +350,8 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 
 		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod() {
 				@Override
-				@SuppressWarnings("unused")
 				public void performAction(Object object)
-					throws PortalException, SystemException {
+					throws PortalException {
 					KBArticle stagedModel = (KBArticle)object;
 
 					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
@@ -383,9 +364,18 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 		return exportActionableDynamicQuery;
 	}
 
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteKBArticle((KBArticle)persistedModel);
+	}
+
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kbArticlePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -396,11 +386,10 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param  companyId the primary key of the company
 	 * @return the matching k b article
 	 * @throws PortalException if a matching k b article could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBArticle getKBArticleByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kbArticlePersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -411,11 +400,10 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param groupId the primary key of the group
 	 * @return the matching k b article
 	 * @throws PortalException if a matching k b article could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBArticle getKBArticleByUuidAndGroupId(String uuid, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kbArticlePersistence.findByUUID_G(uuid, groupId);
 	}
 
@@ -429,11 +417,9 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of k b articles
 	 * @param end the upper bound of the range of k b articles (not inclusive)
 	 * @return the range of k b articles
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBArticle> getKBArticles(int start, int end)
-		throws SystemException {
+	public List<KBArticle> getKBArticles(int start, int end) {
 		return kbArticlePersistence.findAll(start, end);
 	}
 
@@ -441,10 +427,9 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * Returns the number of k b articles.
 	 *
 	 * @return the number of k b articles
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getKBArticlesCount() throws SystemException {
+	public int getKBArticlesCount() {
 		return kbArticlePersistence.countAll();
 	}
 
@@ -453,12 +438,10 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param kbArticle the k b article
 	 * @return the k b article that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public KBArticle updateKBArticle(KBArticle kbArticle)
-		throws SystemException {
+	public KBArticle updateKBArticle(KBArticle kbArticle) {
 		return kbArticlePersistence.update(kbArticle);
 	}
 
@@ -1342,7 +1325,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = kbArticlePersistence.getDataSource();
 

@@ -15,7 +15,6 @@
 package com.liferay.opensocial.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.AuditedModel;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -111,10 +110,9 @@ public interface OAuthTokenModel extends AuditedModel, BaseModel<OAuthToken> {
 	 * Returns the user uuid of this o auth token.
 	 *
 	 * @return the user uuid of this o auth token
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this o auth token.

@@ -18,7 +18,6 @@ import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Eduardo Lundgren
@@ -28,7 +27,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 @Deprecated
 public abstract class CalendarResourceActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public CalendarResourceActionableDynamicQuery() throws SystemException {
+	public CalendarResourceActionableDynamicQuery() {
 		setBaseLocalService(CalendarResourceLocalServiceUtil.getService());
 		setClass(CalendarResource.class);
 

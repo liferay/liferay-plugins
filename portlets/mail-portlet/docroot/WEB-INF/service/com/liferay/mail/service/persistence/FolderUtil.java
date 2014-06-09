@@ -18,7 +18,6 @@ import com.liferay.mail.model.Folder;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,16 +60,14 @@ public class FolderUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
-	public static List<Folder> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static List<Folder> findWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,7 +75,7 @@ public class FolderUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<Folder> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -86,8 +83,7 @@ public class FolderUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Folder> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -96,15 +92,14 @@ public class FolderUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Folder update(Folder folder) throws SystemException {
+	public static Folder update(Folder folder) {
 		return getPersistence().update(folder);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Folder update(Folder folder, ServiceContext serviceContext)
-		throws SystemException {
+	public static Folder update(Folder folder, ServiceContext serviceContext) {
 		return getPersistence().update(folder, serviceContext);
 	}
 
@@ -113,11 +108,9 @@ public class FolderUtil {
 	*
 	* @param accountId the account ID
 	* @return the matching folders
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
-		long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long accountId) {
 		return getPersistence().findByAccountId(accountId);
 	}
 
@@ -132,11 +125,9 @@ public class FolderUtil {
 	* @param start the lower bound of the range of folders
 	* @param end the upper bound of the range of folders (not inclusive)
 	* @return the range of matching folders
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
-		long accountId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long accountId, int start, int end) {
 		return getPersistence().findByAccountId(accountId, start, end);
 	}
 
@@ -152,12 +143,10 @@ public class FolderUtil {
 	* @param end the upper bound of the range of folders (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching folders
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findByAccountId(
 		long accountId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByAccountId(accountId, start, end, orderByComparator);
 	}
@@ -169,13 +158,11 @@ public class FolderUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching folder
 	* @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder findByAccountId_First(
 		long accountId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence()
 				   .findByAccountId_First(accountId, orderByComparator);
 	}
@@ -186,12 +173,10 @@ public class FolderUtil {
 	* @param accountId the account ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching folder, or <code>null</code> if a matching folder could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder fetchByAccountId_First(
 		long accountId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByAccountId_First(accountId, orderByComparator);
 	}
@@ -203,13 +188,11 @@ public class FolderUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching folder
 	* @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder findByAccountId_Last(
 		long accountId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence()
 				   .findByAccountId_Last(accountId, orderByComparator);
 	}
@@ -220,12 +203,10 @@ public class FolderUtil {
 	* @param accountId the account ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching folder, or <code>null</code> if a matching folder could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder fetchByAccountId_Last(
 		long accountId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByAccountId_Last(accountId, orderByComparator);
 	}
@@ -238,13 +219,11 @@ public class FolderUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next folder
 	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder[] findByAccountId_PrevAndNext(
 		long folderId, long accountId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence()
 				   .findByAccountId_PrevAndNext(folderId, accountId,
 			orderByComparator);
@@ -254,10 +233,8 @@ public class FolderUtil {
 	* Removes all the folders where accountId = &#63; from the database.
 	*
 	* @param accountId the account ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByAccountId(long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByAccountId(long accountId) {
 		getPersistence().removeByAccountId(accountId);
 	}
 
@@ -266,10 +243,8 @@ public class FolderUtil {
 	*
 	* @param accountId the account ID
 	* @return the number of matching folders
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByAccountId(long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByAccountId(long accountId) {
 		return getPersistence().countByAccountId(accountId);
 	}
 
@@ -280,12 +255,10 @@ public class FolderUtil {
 	* @param fullName the full name
 	* @return the matching folder
 	* @throws com.liferay.mail.NoSuchFolderException if a matching folder could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder findByA_F(long accountId,
 		java.lang.String fullName)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence().findByA_F(accountId, fullName);
 	}
 
@@ -295,11 +268,9 @@ public class FolderUtil {
 	* @param accountId the account ID
 	* @param fullName the full name
 	* @return the matching folder, or <code>null</code> if a matching folder could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder fetchByA_F(long accountId,
-		java.lang.String fullName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String fullName) {
 		return getPersistence().fetchByA_F(accountId, fullName);
 	}
 
@@ -310,11 +281,9 @@ public class FolderUtil {
 	* @param fullName the full name
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching folder, or <code>null</code> if a matching folder could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder fetchByA_F(long accountId,
-		java.lang.String fullName, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String fullName, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByA_F(accountId, fullName, retrieveFromCache);
 	}
@@ -325,12 +294,10 @@ public class FolderUtil {
 	* @param accountId the account ID
 	* @param fullName the full name
 	* @return the folder that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder removeByA_F(long accountId,
 		java.lang.String fullName)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence().removeByA_F(accountId, fullName);
 	}
 
@@ -340,10 +307,8 @@ public class FolderUtil {
 	* @param accountId the account ID
 	* @param fullName the full name
 	* @return the number of matching folders
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByA_F(long accountId, java.lang.String fullName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByA_F(long accountId, java.lang.String fullName) {
 		return getPersistence().countByA_F(accountId, fullName);
 	}
 
@@ -382,17 +347,14 @@ public class FolderUtil {
 	* @param folderId the primary key of the folder
 	* @return the folder that was removed
 	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder remove(long folderId)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence().remove(folderId);
 	}
 
 	public static com.liferay.mail.model.Folder updateImpl(
-		com.liferay.mail.model.Folder folder)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.mail.model.Folder folder) {
 		return getPersistence().updateImpl(folder);
 	}
 
@@ -402,11 +364,9 @@ public class FolderUtil {
 	* @param folderId the primary key of the folder
 	* @return the folder
 	* @throws com.liferay.mail.NoSuchFolderException if a folder with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Folder findByPrimaryKey(long folderId)
-		throws com.liferay.mail.NoSuchFolderException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchFolderException {
 		return getPersistence().findByPrimaryKey(folderId);
 	}
 
@@ -415,10 +375,8 @@ public class FolderUtil {
 	*
 	* @param folderId the primary key of the folder
 	* @return the folder, or <code>null</code> if a folder with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.mail.model.Folder fetchByPrimaryKey(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.mail.model.Folder fetchByPrimaryKey(long folderId) {
 		return getPersistence().fetchByPrimaryKey(folderId);
 	}
 
@@ -426,10 +384,8 @@ public class FolderUtil {
 	* Returns all the folders.
 	*
 	* @return the folders
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.mail.model.Folder> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.mail.model.Folder> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -443,11 +399,9 @@ public class FolderUtil {
 	* @param start the lower bound of the range of folders
 	* @param end the upper bound of the range of folders (not inclusive)
 	* @return the range of folders
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -462,22 +416,17 @@ public class FolderUtil {
 	* @param end the upper bound of the range of folders (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of folders
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Folder> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the folders from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -485,10 +434,8 @@ public class FolderUtil {
 	* Returns the number of folders.
 	*
 	* @return the number of folders
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

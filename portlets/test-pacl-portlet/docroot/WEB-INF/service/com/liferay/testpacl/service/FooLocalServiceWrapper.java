@@ -34,12 +34,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	*
 	* @param foo the foo
 	* @return the foo that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.testpacl.model.Foo addFoo(
-		com.liferay.testpacl.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.testpacl.model.Foo foo) {
 		return _fooLocalService.addFoo(foo);
 	}
 
@@ -60,12 +58,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @param fooId the primary key of the foo
 	* @return the foo that was removed
 	* @throws PortalException if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.testpacl.model.Foo deleteFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.deleteFoo(fooId);
 	}
 
@@ -74,12 +70,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	*
 	* @param foo the foo
 	* @return the foo that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.testpacl.model.Foo deleteFoo(
-		com.liferay.testpacl.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.testpacl.model.Foo foo) {
 		return _fooLocalService.deleteFoo(foo);
 	}
 
@@ -93,13 +87,11 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _fooLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -114,13 +106,12 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _fooLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -136,15 +127,13 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _fooLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -154,12 +143,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _fooLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -169,19 +156,16 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _fooLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
-	public com.liferay.testpacl.model.Foo fetchFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.testpacl.model.Foo fetchFoo(long fooId) {
 		return _fooLocalService.fetchFoo(fooId);
 	}
 
@@ -191,20 +175,32 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @param fooId the primary key of the foo
 	* @return the foo
 	* @throws PortalException if a foo with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.testpacl.model.Foo getFoo(long fooId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getFoo(fooId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _fooLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _fooLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _fooLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -218,11 +214,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* @param start the lower bound of the range of foos
 	* @param end the upper bound of the range of foos (not inclusive)
 	* @return the range of foos
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.testpacl.model.Foo> getFoos(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _fooLocalService.getFoos(start, end);
 	}
 
@@ -230,11 +225,9 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	* Returns the number of foos.
 	*
 	* @return the number of foos
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getFoosCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getFoosCount() {
 		return _fooLocalService.getFoosCount();
 	}
 
@@ -243,12 +236,10 @@ public class FooLocalServiceWrapper implements FooLocalService,
 	*
 	* @param foo the foo
 	* @return the foo that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.testpacl.model.Foo updateFoo(
-		com.liferay.testpacl.model.Foo foo)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.testpacl.model.Foo foo) {
 		return _fooLocalService.updateFoo(foo);
 	}
 

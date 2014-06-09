@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.kaleo.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimer;
 import com.liferay.portal.workflow.kaleo.service.KaleoTimerLocalServiceUtil;
 
@@ -38,7 +37,7 @@ public abstract class KaleoTimerBaseImpl extends KaleoTimerModelImpl
 	 * Never modify or reference this class directly. All methods that expect a kaleo timer model instance should use the {@link KaleoTimer} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			KaleoTimerLocalServiceUtil.addKaleoTimer(this);
 		}

@@ -16,7 +16,6 @@ package com.liferay.so.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class ProjectsEntryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class ProjectsEntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<ProjectsEntry> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class ProjectsEntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<ProjectsEntry> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class ProjectsEntryUtil {
 	 */
 	public static List<ProjectsEntry> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class ProjectsEntryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static ProjectsEntry update(ProjectsEntry projectsEntry)
-		throws SystemException {
+	public static ProjectsEntry update(ProjectsEntry projectsEntry) {
 		return getPersistence().update(projectsEntry);
 	}
 
@@ -106,7 +102,7 @@ public class ProjectsEntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static ProjectsEntry update(ProjectsEntry projectsEntry,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(projectsEntry, serviceContext);
 	}
 
@@ -115,10 +111,9 @@ public class ProjectsEntryUtil {
 	*
 	* @param userId the user ID
 	* @return the matching projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return getPersistence().findByUserId(userId);
 	}
 
@@ -133,11 +128,9 @@ public class ProjectsEntryUtil {
 	* @param start the lower bound of the range of projects entries
 	* @param end the upper bound of the range of projects entries (not inclusive)
 	* @return the range of matching projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
@@ -153,12 +146,10 @@ public class ProjectsEntryUtil {
 	* @param end the upper bound of the range of projects entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -170,13 +161,11 @@ public class ProjectsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry findByUserId_First(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -186,12 +175,10 @@ public class ProjectsEntryUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching projects entry, or <code>null</code> if a matching projects entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -202,13 +189,11 @@ public class ProjectsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry findByUserId_Last(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -218,12 +203,10 @@ public class ProjectsEntryUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching projects entry, or <code>null</code> if a matching projects entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -235,13 +218,11 @@ public class ProjectsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry[] findByUserId_PrevAndNext(
 		long projectsEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(projectsEntryId, userId,
 			orderByComparator);
@@ -251,10 +232,8 @@ public class ProjectsEntryUtil {
 	* Removes all the projects entries where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUserId(long userId) {
 		getPersistence().removeByUserId(userId);
 	}
 
@@ -263,10 +242,8 @@ public class ProjectsEntryUtil {
 	*
 	* @param userId the user ID
 	* @return the number of matching projects entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUserId(long userId) {
 		return getPersistence().countByUserId(userId);
 	}
 
@@ -307,18 +284,15 @@ public class ProjectsEntryUtil {
 	* @param projectsEntryId the primary key of the projects entry
 	* @return the projects entry that was removed
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry remove(
 		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().remove(projectsEntryId);
 	}
 
 	public static com.liferay.so.model.ProjectsEntry updateImpl(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.so.model.ProjectsEntry projectsEntry) {
 		return getPersistence().updateImpl(projectsEntry);
 	}
 
@@ -328,12 +302,10 @@ public class ProjectsEntryUtil {
 	* @param projectsEntryId the primary key of the projects entry
 	* @return the projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry findByPrimaryKey(
 		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException {
+		throws com.liferay.so.NoSuchProjectsEntryException {
 		return getPersistence().findByPrimaryKey(projectsEntryId);
 	}
 
@@ -342,11 +314,9 @@ public class ProjectsEntryUtil {
 	*
 	* @param projectsEntryId the primary key of the projects entry
 	* @return the projects entry, or <code>null</code> if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry fetchByPrimaryKey(
-		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long projectsEntryId) {
 		return getPersistence().fetchByPrimaryKey(projectsEntryId);
 	}
 
@@ -354,10 +324,8 @@ public class ProjectsEntryUtil {
 	* Returns all the projects entries.
 	*
 	* @return the projects entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -371,11 +339,9 @@ public class ProjectsEntryUtil {
 	* @param start the lower bound of the range of projects entries
 	* @param end the upper bound of the range of projects entries (not inclusive)
 	* @return the range of projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -390,22 +356,17 @@ public class ProjectsEntryUtil {
 	* @param end the upper bound of the range of projects entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the projects entries from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -413,10 +374,8 @@ public class ProjectsEntryUtil {
 	* Returns the number of projects entries.
 	*
 	* @return the number of projects entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

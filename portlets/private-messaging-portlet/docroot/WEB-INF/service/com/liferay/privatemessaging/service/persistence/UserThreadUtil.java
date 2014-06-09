@@ -16,7 +16,6 @@ package com.liferay.privatemessaging.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class UserThreadUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class UserThreadUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<UserThread> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class UserThreadUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<UserThread> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class UserThreadUtil {
 	 */
 	public static List<UserThread> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class UserThreadUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static UserThread update(UserThread userThread)
-		throws SystemException {
+	public static UserThread update(UserThread userThread) {
 		return getPersistence().update(userThread);
 	}
 
@@ -106,7 +102,7 @@ public class UserThreadUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static UserThread update(UserThread userThread,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(userThread, serviceContext);
 	}
 
@@ -115,11 +111,9 @@ public class UserThreadUtil {
 	*
 	* @param mbThreadId the mb thread ID
 	* @return the matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByMBThreadId(
-		long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long mbThreadId) {
 		return getPersistence().findByMBThreadId(mbThreadId);
 	}
 
@@ -134,11 +128,9 @@ public class UserThreadUtil {
 	* @param start the lower bound of the range of user threads
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @return the range of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByMBThreadId(
-		long mbThreadId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long mbThreadId, int start, int end) {
 		return getPersistence().findByMBThreadId(mbThreadId, start, end);
 	}
 
@@ -154,12 +146,10 @@ public class UserThreadUtil {
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByMBThreadId(
 		long mbThreadId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByMBThreadId(mbThreadId, start, end, orderByComparator);
 	}
@@ -171,13 +161,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByMBThreadId_First(
 		long mbThreadId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByMBThreadId_First(mbThreadId, orderByComparator);
 	}
@@ -188,12 +176,10 @@ public class UserThreadUtil {
 	* @param mbThreadId the mb thread ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByMBThreadId_First(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByMBThreadId_First(mbThreadId, orderByComparator);
 	}
@@ -205,13 +191,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByMBThreadId_Last(
 		long mbThreadId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByMBThreadId_Last(mbThreadId, orderByComparator);
 	}
@@ -222,12 +206,10 @@ public class UserThreadUtil {
 	* @param mbThreadId the mb thread ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByMBThreadId_Last(
 		long mbThreadId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByMBThreadId_Last(mbThreadId, orderByComparator);
 	}
@@ -240,13 +222,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread[] findByMBThreadId_PrevAndNext(
 		long userThreadId, long mbThreadId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByMBThreadId_PrevAndNext(userThreadId, mbThreadId,
 			orderByComparator);
@@ -256,10 +236,8 @@ public class UserThreadUtil {
 	* Removes all the user threads where mbThreadId = &#63; from the database.
 	*
 	* @param mbThreadId the mb thread ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByMBThreadId(long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByMBThreadId(long mbThreadId) {
 		getPersistence().removeByMBThreadId(mbThreadId);
 	}
 
@@ -268,10 +246,8 @@ public class UserThreadUtil {
 	*
 	* @param mbThreadId the mb thread ID
 	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByMBThreadId(long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByMBThreadId(long mbThreadId) {
 		return getPersistence().countByMBThreadId(mbThreadId);
 	}
 
@@ -280,10 +256,9 @@ public class UserThreadUtil {
 	*
 	* @param userId the user ID
 	* @return the matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return getPersistence().findByUserId(userId);
 	}
 
@@ -298,11 +273,9 @@ public class UserThreadUtil {
 	* @param start the lower bound of the range of user threads
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @return the range of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
@@ -318,12 +291,10 @@ public class UserThreadUtil {
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -335,13 +306,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByUserId_First(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -351,12 +320,10 @@ public class UserThreadUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -367,13 +334,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByUserId_Last(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -383,12 +348,10 @@ public class UserThreadUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -400,13 +363,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread[] findByUserId_PrevAndNext(
 		long userThreadId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(userThreadId, userId,
 			orderByComparator);
@@ -416,10 +377,8 @@ public class UserThreadUtil {
 	* Removes all the user threads where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUserId(long userId) {
 		getPersistence().removeByUserId(userId);
 	}
 
@@ -428,10 +387,8 @@ public class UserThreadUtil {
 	*
 	* @param userId the user ID
 	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUserId(long userId) {
 		return getPersistence().countByUserId(userId);
 	}
 
@@ -442,12 +399,10 @@ public class UserThreadUtil {
 	* @param mbThreadId the mb thread ID
 	* @return the matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByU_M(
 		long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence().findByU_M(userId, mbThreadId);
 	}
 
@@ -457,11 +412,9 @@ public class UserThreadUtil {
 	* @param userId the user ID
 	* @param mbThreadId the mb thread ID
 	* @return the matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_M(
-		long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, long mbThreadId) {
 		return getPersistence().fetchByU_M(userId, mbThreadId);
 	}
 
@@ -472,11 +425,9 @@ public class UserThreadUtil {
 	* @param mbThreadId the mb thread ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_M(
-		long userId, long mbThreadId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, long mbThreadId, boolean retrieveFromCache) {
 		return getPersistence().fetchByU_M(userId, mbThreadId, retrieveFromCache);
 	}
 
@@ -486,12 +437,10 @@ public class UserThreadUtil {
 	* @param userId the user ID
 	* @param mbThreadId the mb thread ID
 	* @return the user thread that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread removeByU_M(
 		long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence().removeByU_M(userId, mbThreadId);
 	}
 
@@ -501,10 +450,8 @@ public class UserThreadUtil {
 	* @param userId the user ID
 	* @param mbThreadId the mb thread ID
 	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByU_M(long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByU_M(long userId, long mbThreadId) {
 		return getPersistence().countByU_M(userId, mbThreadId);
 	}
 
@@ -514,11 +461,9 @@ public class UserThreadUtil {
 	* @param userId the user ID
 	* @param deleted the deleted
 	* @return the matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_D(
-		long userId, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, boolean deleted) {
 		return getPersistence().findByU_D(userId, deleted);
 	}
 
@@ -534,11 +479,9 @@ public class UserThreadUtil {
 	* @param start the lower bound of the range of user threads
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @return the range of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_D(
-		long userId, boolean deleted, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, boolean deleted, int start, int end) {
 		return getPersistence().findByU_D(userId, deleted, start, end);
 	}
 
@@ -555,12 +498,10 @@ public class UserThreadUtil {
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_D(
 		long userId, boolean deleted, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByU_D(userId, deleted, start, end, orderByComparator);
 	}
@@ -573,13 +514,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByU_D_First(
 		long userId, boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_D_First(userId, deleted, orderByComparator);
 	}
@@ -591,12 +530,10 @@ public class UserThreadUtil {
 	* @param deleted the deleted
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_D_First(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByU_D_First(userId, deleted, orderByComparator);
 	}
@@ -609,13 +546,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByU_D_Last(
 		long userId, boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_D_Last(userId, deleted, orderByComparator);
 	}
@@ -627,12 +562,10 @@ public class UserThreadUtil {
 	* @param deleted the deleted
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_D_Last(
 		long userId, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByU_D_Last(userId, deleted, orderByComparator);
 	}
@@ -646,13 +579,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread[] findByU_D_PrevAndNext(
 		long userThreadId, long userId, boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_D_PrevAndNext(userThreadId, userId, deleted,
 			orderByComparator);
@@ -663,10 +594,8 @@ public class UserThreadUtil {
 	*
 	* @param userId the user ID
 	* @param deleted the deleted
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByU_D(long userId, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByU_D(long userId, boolean deleted) {
 		getPersistence().removeByU_D(userId, deleted);
 	}
 
@@ -676,10 +605,8 @@ public class UserThreadUtil {
 	* @param userId the user ID
 	* @param deleted the deleted
 	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByU_D(long userId, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByU_D(long userId, boolean deleted) {
 		return getPersistence().countByU_D(userId, deleted);
 	}
 
@@ -690,11 +617,9 @@ public class UserThreadUtil {
 	* @param read the read
 	* @param deleted the deleted
 	* @return the matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_R_D(
-		long userId, boolean read, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, boolean read, boolean deleted) {
 		return getPersistence().findByU_R_D(userId, read, deleted);
 	}
 
@@ -711,11 +636,9 @@ public class UserThreadUtil {
 	* @param start the lower bound of the range of user threads
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @return the range of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_R_D(
-		long userId, boolean read, boolean deleted, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, boolean read, boolean deleted, int start, int end) {
 		return getPersistence().findByU_R_D(userId, read, deleted, start, end);
 	}
 
@@ -733,12 +656,10 @@ public class UserThreadUtil {
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findByU_R_D(
 		long userId, boolean read, boolean deleted, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByU_R_D(userId, read, deleted, start, end,
 			orderByComparator);
@@ -753,13 +674,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByU_R_D_First(
 		long userId, boolean read, boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_R_D_First(userId, read, deleted, orderByComparator);
 	}
@@ -772,12 +691,10 @@ public class UserThreadUtil {
 	* @param deleted the deleted
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_R_D_First(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByU_R_D_First(userId, read, deleted, orderByComparator);
 	}
@@ -791,13 +708,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByU_R_D_Last(
 		long userId, boolean read, boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_R_D_Last(userId, read, deleted, orderByComparator);
 	}
@@ -810,12 +725,10 @@ public class UserThreadUtil {
 	* @param deleted the deleted
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching user thread, or <code>null</code> if a matching user thread could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByU_R_D_Last(
 		long userId, boolean read, boolean deleted,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByU_R_D_Last(userId, read, deleted, orderByComparator);
 	}
@@ -830,13 +743,11 @@ public class UserThreadUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread[] findByU_R_D_PrevAndNext(
 		long userThreadId, long userId, boolean read, boolean deleted,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence()
 				   .findByU_R_D_PrevAndNext(userThreadId, userId, read,
 			deleted, orderByComparator);
@@ -848,10 +759,8 @@ public class UserThreadUtil {
 	* @param userId the user ID
 	* @param read the read
 	* @param deleted the deleted
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByU_R_D(long userId, boolean read, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByU_R_D(long userId, boolean read, boolean deleted) {
 		getPersistence().removeByU_R_D(userId, read, deleted);
 	}
 
@@ -862,10 +771,8 @@ public class UserThreadUtil {
 	* @param read the read
 	* @param deleted the deleted
 	* @return the number of matching user threads
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByU_R_D(long userId, boolean read, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByU_R_D(long userId, boolean read, boolean deleted) {
 		return getPersistence().countByU_R_D(userId, read, deleted);
 	}
 
@@ -906,18 +813,15 @@ public class UserThreadUtil {
 	* @param userThreadId the primary key of the user thread
 	* @return the user thread that was removed
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread remove(
 		long userThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence().remove(userThreadId);
 	}
 
 	public static com.liferay.privatemessaging.model.UserThread updateImpl(
-		com.liferay.privatemessaging.model.UserThread userThread)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.privatemessaging.model.UserThread userThread) {
 		return getPersistence().updateImpl(userThread);
 	}
 
@@ -927,12 +831,10 @@ public class UserThreadUtil {
 	* @param userThreadId the primary key of the user thread
 	* @return the user thread
 	* @throws com.liferay.privatemessaging.NoSuchUserThreadException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread findByPrimaryKey(
 		long userThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.privatemessaging.NoSuchUserThreadException {
+		throws com.liferay.privatemessaging.NoSuchUserThreadException {
 		return getPersistence().findByPrimaryKey(userThreadId);
 	}
 
@@ -941,11 +843,9 @@ public class UserThreadUtil {
 	*
 	* @param userThreadId the primary key of the user thread
 	* @return the user thread, or <code>null</code> if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread fetchByPrimaryKey(
-		long userThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userThreadId) {
 		return getPersistence().fetchByPrimaryKey(userThreadId);
 	}
 
@@ -953,10 +853,8 @@ public class UserThreadUtil {
 	* Returns all the user threads.
 	*
 	* @return the user threads
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -970,11 +868,9 @@ public class UserThreadUtil {
 	* @param start the lower bound of the range of user threads
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @return the range of user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -989,22 +885,17 @@ public class UserThreadUtil {
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the user threads from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -1012,10 +903,8 @@ public class UserThreadUtil {
 	* Returns the number of user threads.
 	*
 	* @return the number of user threads
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

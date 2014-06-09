@@ -44,11 +44,9 @@ public class MessageLocalServiceUtil {
 	*
 	* @param message the message
 	* @return the message that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message addMessage(
-		com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.mail.model.Message message) {
 		return getService().addMessage(message);
 	}
 
@@ -68,7 +66,7 @@ public class MessageLocalServiceUtil {
 	* @param messageId the primary key of the message
 	* @return the message that was removed
 	* @throws PortalException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.mail.model.Message deleteMessage(long messageId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -82,7 +80,7 @@ public class MessageLocalServiceUtil {
 	* @param message the message
 	* @return the message that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.mail.model.Message deleteMessage(
 		com.liferay.mail.model.Message message)
@@ -100,12 +98,10 @@ public class MessageLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +116,11 @@ public class MessageLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +136,12 @@ public class MessageLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +151,9 @@ public class MessageLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,17 +163,14 @@ public class MessageLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.mail.model.Message fetchMessage(long messageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.mail.model.Message fetchMessage(long messageId) {
 		return getService().fetchMessage(messageId);
 	}
 
@@ -192,18 +180,28 @@ public class MessageLocalServiceUtil {
 	* @param messageId the primary key of the message
 	* @return the message
 	* @throws PortalException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message getMessage(long messageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getMessage(messageId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -217,11 +215,9 @@ public class MessageLocalServiceUtil {
 	* @param start the lower bound of the range of messages
 	* @param end the upper bound of the range of messages (not inclusive)
 	* @return the range of messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Message> getMessages(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getMessages(start, end);
 	}
 
@@ -229,10 +225,8 @@ public class MessageLocalServiceUtil {
 	* Returns the number of messages.
 	*
 	* @return the number of messages
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getMessagesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getMessagesCount() {
 		return getService().getMessagesCount();
 	}
 
@@ -241,11 +235,9 @@ public class MessageLocalServiceUtil {
 	*
 	* @param message the message
 	* @return the message that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message updateMessage(
-		com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.mail.model.Message message) {
 		return getService().updateMessage(message);
 	}
 

@@ -265,11 +265,9 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	* Returns the user uuid of this k b comment.
 	*
 	* @return the user uuid of this k b comment
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _kbComment.getUserUuid();
 	}
 
@@ -547,8 +545,7 @@ public class KBCommentWrapper implements KBComment, ModelWrapper<KBComment> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kbComment.persist();
 	}
 

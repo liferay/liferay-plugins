@@ -17,8 +17,6 @@ package com.liferay.mail.model.impl;
 import com.liferay.mail.model.Folder;
 import com.liferay.mail.service.FolderLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the Folder service. Represents a row in the &quot;Mail_Folder&quot; database table, with each column mapped to a property of this class.
  *
@@ -38,7 +36,7 @@ public abstract class FolderBaseImpl extends FolderModelImpl implements Folder {
 	 * Never modify or reference this class directly. All methods that expect a folder model instance should use the {@link Folder} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			FolderLocalServiceUtil.addFolder(this);
 		}

@@ -188,11 +188,9 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	* Returns the user uuid of this favorite site.
 	*
 	* @return the user uuid of this favorite site
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _favoriteSite.getUserUuid();
 	}
 
@@ -305,8 +303,7 @@ public class FavoriteSiteWrapper implements FavoriteSite,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_favoriteSite.persist();
 	}
 

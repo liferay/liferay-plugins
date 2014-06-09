@@ -44,11 +44,9 @@ public class MeetupsEntryLocalServiceUtil {
 	*
 	* @param meetupsEntry the meetups entry
 	* @return the meetups entry that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry addMeetupsEntry(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
 		return getService().addMeetupsEntry(meetupsEntry);
 	}
 
@@ -69,7 +67,7 @@ public class MeetupsEntryLocalServiceUtil {
 	* @param meetupsEntryId the primary key of the meetups entry
 	* @return the meetups entry that was removed
 	* @throws PortalException if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
 		long meetupsEntryId)
@@ -83,11 +81,9 @@ public class MeetupsEntryLocalServiceUtil {
 	*
 	* @param meetupsEntry the meetups entry
 	* @return the meetups entry that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
 		return getService().deleteMeetupsEntry(meetupsEntry);
 	}
 
@@ -100,12 +96,10 @@ public class MeetupsEntryLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +114,11 @@ public class MeetupsEntryLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +134,12 @@ public class MeetupsEntryLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +149,9 @@ public class MeetupsEntryLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,18 +161,15 @@ public class MeetupsEntryLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchMeetupsEntry(
-		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long meetupsEntryId) {
 		return getService().fetchMeetupsEntry(meetupsEntryId);
 	}
 
@@ -193,19 +179,29 @@ public class MeetupsEntryLocalServiceUtil {
 	* @param meetupsEntryId the primary key of the meetups entry
 	* @return the meetups entry
 	* @throws PortalException if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry getMeetupsEntry(
 		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getMeetupsEntry(meetupsEntryId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -219,11 +215,9 @@ public class MeetupsEntryLocalServiceUtil {
 	* @param start the lower bound of the range of meetups entries
 	* @param end the upper bound of the range of meetups entries (not inclusive)
 	* @return the range of meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getMeetupsEntries(start, end);
 	}
 
@@ -231,10 +225,8 @@ public class MeetupsEntryLocalServiceUtil {
 	* Returns the number of meetups entries.
 	*
 	* @return the number of meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getMeetupsEntriesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getMeetupsEntriesCount() {
 		return getService().getMeetupsEntriesCount();
 	}
 
@@ -243,11 +235,9 @@ public class MeetupsEntryLocalServiceUtil {
 	*
 	* @param meetupsEntry the meetups entry
 	* @return the meetups entry that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry updateMeetupsEntry(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
 		return getService().updateMeetupsEntry(meetupsEntry);
 	}
 

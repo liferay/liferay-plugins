@@ -365,8 +365,7 @@ public class JIRAChangeItemWrapper implements JIRAChangeItem,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_jiraChangeItem.persist();
 	}
 

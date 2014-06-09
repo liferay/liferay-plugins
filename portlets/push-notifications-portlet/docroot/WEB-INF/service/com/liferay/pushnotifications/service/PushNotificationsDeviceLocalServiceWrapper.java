@@ -36,12 +36,10 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	*
 	* @param pushNotificationsDevice the push notifications device
 	* @return the push notifications device that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice addPushNotificationsDevice(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
 		return _pushNotificationsDeviceLocalService.addPushNotificationsDevice(pushNotificationsDevice);
 	}
 
@@ -63,13 +61,11 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	* @param pushNotificationsDeviceId the primary key of the push notifications device
 	* @return the push notifications device that was removed
 	* @throws PortalException if a push notifications device with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
 		long pushNotificationsDeviceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pushNotificationsDeviceLocalService.deletePushNotificationsDevice(pushNotificationsDeviceId);
 	}
 
@@ -78,12 +74,10 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	*
 	* @param pushNotificationsDevice the push notifications device
 	* @return the push notifications device that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice deletePushNotificationsDevice(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
 		return _pushNotificationsDeviceLocalService.deletePushNotificationsDevice(pushNotificationsDevice);
 	}
 
@@ -97,13 +91,11 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _pushNotificationsDeviceLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -118,13 +110,12 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _pushNotificationsDeviceLocalService.dynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -141,15 +132,13 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _pushNotificationsDeviceLocalService.dynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -159,12 +148,10 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _pushNotificationsDeviceLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,21 +161,18 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _pushNotificationsDeviceLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchPushNotificationsDevice(
-		long pushNotificationsDeviceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long pushNotificationsDeviceId) {
 		return _pushNotificationsDeviceLocalService.fetchPushNotificationsDevice(pushNotificationsDeviceId);
 	}
 
@@ -198,27 +182,33 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	* @param pushNotificationsDeviceId the primary key of the push notifications device
 	* @return the push notifications device
 	* @throws PortalException if a push notifications device with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice getPushNotificationsDevice(
 		long pushNotificationsDeviceId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pushNotificationsDeviceLocalService.getPushNotificationsDevice(pushNotificationsDeviceId);
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _pushNotificationsDeviceLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _pushNotificationsDeviceLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _pushNotificationsDeviceLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -232,12 +222,10 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	* @param start the lower bound of the range of push notifications devices
 	* @param end the upper bound of the range of push notifications devices (not inclusive)
 	* @return the range of push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.pushnotifications.model.PushNotificationsDevice> getPushNotificationsDevices(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _pushNotificationsDeviceLocalService.getPushNotificationsDevices(start,
 			end);
 	}
@@ -246,11 +234,9 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	* Returns the number of push notifications devices.
 	*
 	* @return the number of push notifications devices
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getPushNotificationsDevicesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getPushNotificationsDevicesCount() {
 		return _pushNotificationsDeviceLocalService.getPushNotificationsDevicesCount();
 	}
 
@@ -259,12 +245,10 @@ public class PushNotificationsDeviceLocalServiceWrapper
 	*
 	* @param pushNotificationsDevice the push notifications device
 	* @return the push notifications device that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.pushnotifications.model.PushNotificationsDevice updatePushNotificationsDevice(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
 		return _pushNotificationsDeviceLocalService.updatePushNotificationsDevice(pushNotificationsDevice);
 	}
 

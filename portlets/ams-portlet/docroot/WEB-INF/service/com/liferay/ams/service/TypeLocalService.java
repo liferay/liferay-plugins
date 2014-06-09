@@ -50,10 +50,8 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	*
 	* @param type the type
 	* @return the type that was added
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.ams.model.Type addType(com.liferay.ams.model.Type type)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.ams.model.Type addType(com.liferay.ams.model.Type type);
 
 	/**
 	* Creates a new type with the primary key. Does not add the type to the database.
@@ -69,22 +67,18 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param typeId the primary key of the type
 	* @return the type that was removed
 	* @throws PortalException if a type with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.ams.model.Type deleteType(long typeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the type from the database. Also notifies the appropriate model listeners.
 	*
 	* @param type the type
 	* @return the type that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.ams.model.Type deleteType(
-		com.liferay.ams.model.Type type)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.ams.model.Type type);
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -93,12 +87,10 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
 	* Performs a dynamic query on the database and returns a range of the matching rows.
@@ -111,12 +103,11 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Performs a dynamic query on the database and returns an ordered range of the matching rows.
@@ -130,25 +121,21 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery);
 
 	/**
 	* Returns the number of rows that match the dynamic query.
@@ -156,16 +143,13 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.dao.orm.Projection projection);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public com.liferay.ams.model.Type fetchType(long typeId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.ams.model.Type fetchType(long typeId);
 
 	/**
 	* Returns the type with the primary key.
@@ -173,19 +157,27 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param typeId the primary key of the type
 	* @return the type
 	* @throws PortalException if a type with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.ams.model.Type getType(long typeId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns a range of all the types.
@@ -197,32 +189,27 @@ public interface TypeLocalService extends BaseLocalService, InvokableLocalServic
 	* @param start the lower bound of the range of types
 	* @param end the upper bound of the range of types (not inclusive)
 	* @return the range of types
-	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.ams.model.Type> getTypes(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns the number of types.
 	*
 	* @return the number of types
-	* @throws SystemException if a system exception occurred
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getTypesCount()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getTypesCount();
 
 	/**
 	* Updates the type in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	*
 	* @param type the type
 	* @return the type that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.ams.model.Type updateType(
-		com.liferay.ams.model.Type type)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.ams.model.Type type);
 
 	/**
 	* Returns the Spring bean ID for this bean.

@@ -44,11 +44,9 @@ public class UserThreadLocalServiceUtil {
 	*
 	* @param userThread the user thread
 	* @return the user thread that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread addUserThread(
-		com.liferay.privatemessaging.model.UserThread userThread)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.privatemessaging.model.UserThread userThread) {
 		return getService().addUserThread(userThread);
 	}
 
@@ -69,12 +67,10 @@ public class UserThreadLocalServiceUtil {
 	* @param userThreadId the primary key of the user thread
 	* @return the user thread that was removed
 	* @throws PortalException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread deleteUserThread(
 		long userThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteUserThread(userThreadId);
 	}
 
@@ -83,11 +79,9 @@ public class UserThreadLocalServiceUtil {
 	*
 	* @param userThread the user thread
 	* @return the user thread that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread deleteUserThread(
-		com.liferay.privatemessaging.model.UserThread userThread)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.privatemessaging.model.UserThread userThread) {
 		return getService().deleteUserThread(userThread);
 	}
 
@@ -100,12 +94,10 @@ public class UserThreadLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +112,11 @@ public class UserThreadLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +132,12 @@ public class UserThreadLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +147,9 @@ public class UserThreadLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,18 +159,15 @@ public class UserThreadLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.privatemessaging.model.UserThread fetchUserThread(
-		long userThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userThreadId) {
 		return getService().fetchUserThread(userThreadId);
 	}
 
@@ -193,19 +177,29 @@ public class UserThreadLocalServiceUtil {
 	* @param userThreadId the primary key of the user thread
 	* @return the user thread
 	* @throws PortalException if a user thread with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread getUserThread(
 		long userThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUserThread(userThreadId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -219,11 +213,9 @@ public class UserThreadLocalServiceUtil {
 	* @param start the lower bound of the range of user threads
 	* @param end the upper bound of the range of user threads (not inclusive)
 	* @return the range of user threads
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.privatemessaging.model.UserThread> getUserThreads(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getUserThreads(start, end);
 	}
 
@@ -231,10 +223,8 @@ public class UserThreadLocalServiceUtil {
 	* Returns the number of user threads.
 	*
 	* @return the number of user threads
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getUserThreadsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getUserThreadsCount() {
 		return getService().getUserThreadsCount();
 	}
 
@@ -243,11 +233,9 @@ public class UserThreadLocalServiceUtil {
 	*
 	* @param userThread the user thread
 	* @return the user thread that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.privatemessaging.model.UserThread updateUserThread(
-		com.liferay.privatemessaging.model.UserThread userThread)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.privatemessaging.model.UserThread userThread) {
 		return getService().updateUserThread(userThread);
 	}
 

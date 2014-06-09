@@ -18,15 +18,16 @@ import com.liferay.marketplace.model.App;
 import com.liferay.marketplace.service.AppLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Ryan Park
+ * @deprecated As of 7.0.0, replaced by {@link AppLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class AppActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public AppActionableDynamicQuery() throws SystemException {
+	public AppActionableDynamicQuery() {
 		setBaseLocalService(AppLocalServiceUtil.getService());
 		setClass(App.class);
 

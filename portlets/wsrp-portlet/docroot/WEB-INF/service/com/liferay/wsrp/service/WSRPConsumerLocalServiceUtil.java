@@ -44,11 +44,9 @@ public class WSRPConsumerLocalServiceUtil {
 	*
 	* @param wsrpConsumer the w s r p consumer
 	* @return the w s r p consumer that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer addWSRPConsumer(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer) {
 		return getService().addWSRPConsumer(wsrpConsumer);
 	}
 
@@ -69,7 +67,7 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param wsrpConsumerId the primary key of the w s r p consumer
 	* @return the w s r p consumer that was removed
 	* @throws PortalException if a w s r p consumer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer deleteWSRPConsumer(
 		long wsrpConsumerId)
@@ -84,7 +82,7 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param wsrpConsumer the w s r p consumer
 	* @return the w s r p consumer that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer deleteWSRPConsumer(
 		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
@@ -102,12 +100,10 @@ public class WSRPConsumerLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -122,12 +118,11 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -143,14 +138,12 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -160,11 +153,9 @@ public class WSRPConsumerLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,18 +165,15 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.wsrp.model.WSRPConsumer fetchWSRPConsumer(
-		long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long wsrpConsumerId) {
 		return getService().fetchWSRPConsumer(wsrpConsumerId);
 	}
 
@@ -195,11 +183,9 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param uuid the w s r p consumer's UUID
 	* @param companyId the primary key of the company
 	* @return the matching w s r p consumer, or <code>null</code> if a matching w s r p consumer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer fetchWSRPConsumerByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return getService().fetchWSRPConsumerByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -209,19 +195,34 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param wsrpConsumerId the primary key of the w s r p consumer
 	* @return the w s r p consumer
 	* @throws PortalException if a w s r p consumer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer getWSRPConsumer(
 		long wsrpConsumerId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWSRPConsumer(wsrpConsumerId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -232,12 +233,10 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param companyId the primary key of the company
 	* @return the matching w s r p consumer
 	* @throws PortalException if a matching w s r p consumer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer getWSRPConsumerByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getWSRPConsumerByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -251,11 +250,9 @@ public class WSRPConsumerLocalServiceUtil {
 	* @param start the lower bound of the range of w s r p consumers
 	* @param end the upper bound of the range of w s r p consumers (not inclusive)
 	* @return the range of w s r p consumers
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.wsrp.model.WSRPConsumer> getWSRPConsumers(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getWSRPConsumers(start, end);
 	}
 
@@ -263,10 +260,8 @@ public class WSRPConsumerLocalServiceUtil {
 	* Returns the number of w s r p consumers.
 	*
 	* @return the number of w s r p consumers
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getWSRPConsumersCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getWSRPConsumersCount() {
 		return getService().getWSRPConsumersCount();
 	}
 
@@ -275,11 +270,9 @@ public class WSRPConsumerLocalServiceUtil {
 	*
 	* @param wsrpConsumer the w s r p consumer
 	* @return the w s r p consumer that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.wsrp.model.WSRPConsumer updateWSRPConsumer(
-		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.wsrp.model.WSRPConsumer wsrpConsumer) {
 		return getService().updateWSRPConsumer(wsrpConsumer);
 	}
 

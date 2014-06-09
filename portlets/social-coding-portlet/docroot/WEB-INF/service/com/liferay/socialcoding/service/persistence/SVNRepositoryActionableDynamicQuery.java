@@ -15,18 +15,19 @@
 package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.socialcoding.model.SVNRepository;
 import com.liferay.socialcoding.service.SVNRepositoryLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link SVNRepositoryLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class SVNRepositoryActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public SVNRepositoryActionableDynamicQuery() throws SystemException {
+	public SVNRepositoryActionableDynamicQuery() {
 		setBaseLocalService(SVNRepositoryLocalServiceUtil.getService());
 		setClass(SVNRepository.class);
 

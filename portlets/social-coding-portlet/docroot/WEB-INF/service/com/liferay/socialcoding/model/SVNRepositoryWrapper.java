@@ -257,8 +257,7 @@ public class SVNRepositoryWrapper implements SVNRepository,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_svnRepository.persist();
 	}
 

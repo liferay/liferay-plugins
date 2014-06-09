@@ -84,103 +84,113 @@ public class MessageLocalServiceClpInvoker {
 
 		_methodParameterTypes11 = new String[] { "long" };
 
-		_methodName12 = "getPersistedModel";
+		_methodName12 = "getActionableDynamicQuery";
 
-		_methodParameterTypes12 = new String[] { "java.io.Serializable" };
+		_methodParameterTypes12 = new String[] {  };
 
-		_methodName13 = "getMessages";
+		_methodName14 = "deletePersistedModel";
 
-		_methodParameterTypes13 = new String[] { "int", "int" };
+		_methodParameterTypes14 = new String[] {
+				"com.liferay.portal.model.PersistedModel"
+			};
 
-		_methodName14 = "getMessagesCount";
+		_methodName15 = "getPersistedModel";
 
-		_methodParameterTypes14 = new String[] {  };
+		_methodParameterTypes15 = new String[] { "java.io.Serializable" };
 
-		_methodName15 = "updateMessage";
+		_methodName16 = "getMessages";
 
-		_methodParameterTypes15 = new String[] { "com.liferay.mail.model.Message" };
+		_methodParameterTypes16 = new String[] { "int", "int" };
 
-		_methodName50 = "getBeanIdentifier";
+		_methodName17 = "getMessagesCount";
 
-		_methodParameterTypes50 = new String[] {  };
+		_methodParameterTypes17 = new String[] {  };
 
-		_methodName51 = "setBeanIdentifier";
+		_methodName18 = "updateMessage";
 
-		_methodParameterTypes51 = new String[] { "java.lang.String" };
+		_methodParameterTypes18 = new String[] { "com.liferay.mail.model.Message" };
 
-		_methodName56 = "addMessage";
+		_methodName53 = "getBeanIdentifier";
 
-		_methodParameterTypes56 = new String[] {
+		_methodParameterTypes53 = new String[] {  };
+
+		_methodName54 = "setBeanIdentifier";
+
+		_methodParameterTypes54 = new String[] { "java.lang.String" };
+
+		_methodName59 = "addMessage";
+
+		_methodParameterTypes59 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.util.Date",
 				"java.lang.String", "java.lang.String", "java.lang.String",
 				"long"
 			};
 
-		_methodName57 = "deleteMessage";
-
-		_methodParameterTypes57 = new String[] { "long" };
-
-		_methodName58 = "deleteMessage";
-
-		_methodParameterTypes58 = new String[] { "com.liferay.mail.model.Message" };
-
-		_methodName59 = "deleteMessages";
-
-		_methodParameterTypes59 = new String[] { "long" };
-
-		_methodName60 = "getAccountUnreadMessagesCount";
+		_methodName60 = "deleteMessage";
 
 		_methodParameterTypes60 = new String[] { "long" };
 
-		_methodName61 = "getCompanyMessages";
+		_methodName61 = "deleteMessage";
 
-		_methodParameterTypes61 = new String[] { "long", "int", "int" };
+		_methodParameterTypes61 = new String[] { "com.liferay.mail.model.Message" };
 
-		_methodName62 = "getCompanyMessagesCount";
+		_methodName62 = "deleteMessages";
 
 		_methodParameterTypes62 = new String[] { "long" };
 
-		_methodName63 = "getFolderMessages";
+		_methodName63 = "getAccountUnreadMessagesCount";
 
 		_methodParameterTypes63 = new String[] { "long" };
 
-		_methodName64 = "getFolderMessagesCount";
+		_methodName64 = "getCompanyMessages";
 
-		_methodParameterTypes64 = new String[] { "long" };
+		_methodParameterTypes64 = new String[] { "long", "int", "int" };
 
-		_methodName65 = "getFolderUnreadMessagesCount";
+		_methodName65 = "getCompanyMessagesCount";
 
 		_methodParameterTypes65 = new String[] { "long" };
 
-		_methodName66 = "getMessage";
+		_methodName66 = "getFolderMessages";
 
-		_methodParameterTypes66 = new String[] { "long", "long" };
+		_methodParameterTypes66 = new String[] { "long" };
 
-		_methodName67 = "getRemoteMessage";
+		_methodName67 = "getFolderMessagesCount";
 
-		_methodParameterTypes67 = new String[] { "long", "boolean" };
+		_methodParameterTypes67 = new String[] { "long" };
 
-		_methodName68 = "populateMessages";
+		_methodName68 = "getFolderUnreadMessagesCount";
 
-		_methodParameterTypes68 = new String[] {
+		_methodParameterTypes68 = new String[] { "long" };
+
+		_methodName69 = "getMessage";
+
+		_methodParameterTypes69 = new String[] { "long", "long" };
+
+		_methodName70 = "getRemoteMessage";
+
+		_methodParameterTypes70 = new String[] { "long", "boolean" };
+
+		_methodName71 = "populateMessages";
+
+		_methodParameterTypes71 = new String[] {
 				"java.util.List", "long", "java.lang.String", "int", "int",
 				"java.lang.String", "java.lang.String"
 			};
 
-		_methodName69 = "updateContent";
+		_methodName72 = "updateContent";
 
-		_methodParameterTypes69 = new String[] {
+		_methodParameterTypes72 = new String[] {
 				"long", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName70 = "updateFlag";
+		_methodName73 = "updateFlag";
 
-		_methodParameterTypes70 = new String[] { "long", "int", "boolean" };
+		_methodParameterTypes73 = new String[] { "long", "int", "boolean" };
 
-		_methodName71 = "updateMessage";
+		_methodName74 = "updateMessage";
 
-		_methodParameterTypes71 = new String[] {
+		_methodParameterTypes74 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.util.Date",
 				"java.lang.String", "java.lang.String", "java.lang.String",
@@ -258,39 +268,49 @@ public class MessageLocalServiceClpInvoker {
 
 		if (_methodName12.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes12, parameterTypes)) {
-			return MessageLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
-		}
-
-		if (_methodName13.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes13, parameterTypes)) {
-			return MessageLocalServiceUtil.getMessages(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue());
+			return MessageLocalServiceUtil.getActionableDynamicQuery();
 		}
 
 		if (_methodName14.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes14, parameterTypes)) {
-			return MessageLocalServiceUtil.getMessagesCount();
+			return MessageLocalServiceUtil.deletePersistedModel((com.liferay.portal.model.PersistedModel)arguments[0]);
 		}
 
 		if (_methodName15.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes15, parameterTypes)) {
+			return MessageLocalServiceUtil.getPersistedModel((java.io.Serializable)arguments[0]);
+		}
+
+		if (_methodName16.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes16, parameterTypes)) {
+			return MessageLocalServiceUtil.getMessages(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue());
+		}
+
+		if (_methodName17.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes17, parameterTypes)) {
+			return MessageLocalServiceUtil.getMessagesCount();
+		}
+
+		if (_methodName18.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes18, parameterTypes)) {
 			return MessageLocalServiceUtil.updateMessage((com.liferay.mail.model.Message)arguments[0]);
 		}
 
-		if (_methodName50.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+		if (_methodName53.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes53, parameterTypes)) {
 			return MessageLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName51.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
+		if (_methodName54.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes54, parameterTypes)) {
 			MessageLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName56.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
 			return MessageLocalServiceUtil.addMessage(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -300,69 +320,69 @@ public class MessageLocalServiceClpInvoker {
 				((Long)arguments[10]).longValue());
 		}
 
-		if (_methodName57.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
+		if (_methodName60.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return MessageLocalServiceUtil.deleteMessage(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName61.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
 			return MessageLocalServiceUtil.deleteMessage((com.liferay.mail.model.Message)arguments[0]);
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName62.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
 			MessageLocalServiceUtil.deleteMessages(((Long)arguments[0]).longValue());
 
 			return null;
 		}
 
-		if (_methodName60.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
+		if (_methodName63.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
 			return MessageLocalServiceUtil.getAccountUnreadMessagesCount(((Long)arguments[0]).longValue());
 		}
 
-		if (_methodName61.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes61, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return MessageLocalServiceUtil.getCompanyMessages(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Integer)arguments[2]).intValue());
 		}
 
-		if (_methodName62.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes62, parameterTypes)) {
-			return MessageLocalServiceUtil.getCompanyMessagesCount(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName63.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes63, parameterTypes)) {
-			return MessageLocalServiceUtil.getFolderMessages(((Long)arguments[0]).longValue());
-		}
-
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
-			return MessageLocalServiceUtil.getFolderMessagesCount(((Long)arguments[0]).longValue());
-		}
-
 		if (_methodName65.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
-			return MessageLocalServiceUtil.getFolderUnreadMessagesCount(((Long)arguments[0]).longValue());
+			return MessageLocalServiceUtil.getCompanyMessagesCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName66.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
-			return MessageLocalServiceUtil.getMessage(((Long)arguments[0]).longValue(),
-				((Long)arguments[1]).longValue());
+			return MessageLocalServiceUtil.getFolderMessages(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName67.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
-			return MessageLocalServiceUtil.getRemoteMessage(((Long)arguments[0]).longValue(),
-				((Boolean)arguments[1]).booleanValue());
+			return MessageLocalServiceUtil.getFolderMessagesCount(((Long)arguments[0]).longValue());
 		}
 
 		if (_methodName68.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+			return MessageLocalServiceUtil.getFolderUnreadMessagesCount(((Long)arguments[0]).longValue());
+		}
+
+		if (_methodName69.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+			return MessageLocalServiceUtil.getMessage(((Long)arguments[0]).longValue(),
+				((Long)arguments[1]).longValue());
+		}
+
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+			return MessageLocalServiceUtil.getRemoteMessage(((Long)arguments[0]).longValue(),
+				((Boolean)arguments[1]).booleanValue());
+		}
+
+		if (_methodName71.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
 			return MessageLocalServiceUtil.populateMessages((java.util.List<com.liferay.mail.model.Message>)arguments[0],
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2],
@@ -371,21 +391,21 @@ public class MessageLocalServiceClpInvoker {
 				(java.lang.String)arguments[5], (java.lang.String)arguments[6]);
 		}
 
-		if (_methodName69.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes69, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return MessageLocalServiceUtil.updateContent(((Long)arguments[0]).longValue(),
 				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
 		}
 
-		if (_methodName70.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
+		if (_methodName73.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes73, parameterTypes)) {
 			return MessageLocalServiceUtil.updateFlag(((Long)arguments[0]).longValue(),
 				((Integer)arguments[1]).intValue(),
 				((Boolean)arguments[2]).booleanValue());
 		}
 
-		if (_methodName71.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes71, parameterTypes)) {
+		if (_methodName74.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes74, parameterTypes)) {
 			return MessageLocalServiceUtil.updateMessage(((Long)arguments[0]).longValue(),
 				((Long)arguments[1]).longValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3],
@@ -424,22 +444,20 @@ public class MessageLocalServiceClpInvoker {
 	private String[] _methodParameterTypes11;
 	private String _methodName12;
 	private String[] _methodParameterTypes12;
-	private String _methodName13;
-	private String[] _methodParameterTypes13;
 	private String _methodName14;
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName50;
-	private String[] _methodParameterTypes50;
-	private String _methodName51;
-	private String[] _methodParameterTypes51;
-	private String _methodName56;
-	private String[] _methodParameterTypes56;
-	private String _methodName57;
-	private String[] _methodParameterTypes57;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
+	private String _methodName16;
+	private String[] _methodParameterTypes16;
+	private String _methodName17;
+	private String[] _methodParameterTypes17;
+	private String _methodName18;
+	private String[] _methodParameterTypes18;
+	private String _methodName53;
+	private String[] _methodParameterTypes53;
+	private String _methodName54;
+	private String[] _methodParameterTypes54;
 	private String _methodName59;
 	private String[] _methodParameterTypes59;
 	private String _methodName60;
@@ -466,4 +484,10 @@ public class MessageLocalServiceClpInvoker {
 	private String[] _methodParameterTypes70;
 	private String _methodName71;
 	private String[] _methodParameterTypes71;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
+	private String _methodName73;
+	private String[] _methodParameterTypes73;
+	private String _methodName74;
+	private String[] _methodParameterTypes74;
 }

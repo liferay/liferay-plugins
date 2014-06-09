@@ -35,12 +35,10 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	*
 	* @param jiraIssue the j i r a issue
 	* @return the j i r a issue that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.socialcoding.model.JIRAIssue addJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
 		return _jiraIssueLocalService.addJIRAIssue(jiraIssue);
 	}
 
@@ -62,13 +60,11 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @param jiraIssueId the primary key of the j i r a issue
 	* @return the j i r a issue that was removed
 	* @throws PortalException if a j i r a issue with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
 		long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _jiraIssueLocalService.deleteJIRAIssue(jiraIssueId);
 	}
 
@@ -77,12 +73,10 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	*
 	* @param jiraIssue the j i r a issue
 	* @return the j i r a issue that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.socialcoding.model.JIRAIssue deleteJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
 		return _jiraIssueLocalService.deleteJIRAIssue(jiraIssue);
 	}
 
@@ -96,13 +90,11 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _jiraIssueLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -117,13 +109,12 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _jiraIssueLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -139,15 +130,13 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _jiraIssueLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -157,12 +146,10 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _jiraIssueLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,20 +159,17 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _jiraIssueLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
 	public com.liferay.socialcoding.model.JIRAIssue fetchJIRAIssue(
-		long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long jiraIssueId) {
 		return _jiraIssueLocalService.fetchJIRAIssue(jiraIssueId);
 	}
 
@@ -195,7 +179,7 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @param jiraIssueId the primary key of the j i r a issue
 	* @return the j i r a issue
 	* @throws PortalException if a j i r a issue with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.socialcoding.model.JIRAIssue getJIRAIssue(
@@ -206,10 +190,24 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	}
 
 	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _jiraIssueLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _jiraIssueLocalService.deletePersistedModel(persistedModel);
+	}
+
+	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _jiraIssueLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -223,12 +221,10 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* @param start the lower bound of the range of j i r a issues
 	* @param end the upper bound of the range of j i r a issues (not inclusive)
 	* @return the range of j i r a issues
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.socialcoding.model.JIRAIssue> getJIRAIssues(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _jiraIssueLocalService.getJIRAIssues(start, end);
 	}
 
@@ -236,11 +232,9 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	* Returns the number of j i r a issues.
 	*
 	* @return the number of j i r a issues
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getJIRAIssuesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getJIRAIssuesCount() {
 		return _jiraIssueLocalService.getJIRAIssuesCount();
 	}
 
@@ -249,12 +243,10 @@ public class JIRAIssueLocalServiceWrapper implements JIRAIssueLocalService,
 	*
 	* @param jiraIssue the j i r a issue
 	* @return the j i r a issue that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.socialcoding.model.JIRAIssue updateJIRAIssue(
-		com.liferay.socialcoding.model.JIRAIssue jiraIssue)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialcoding.model.JIRAIssue jiraIssue) {
 		return _jiraIssueLocalService.updateJIRAIssue(jiraIssue);
 	}
 

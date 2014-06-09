@@ -79,12 +79,10 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 *
 	 * @param memberRequest the member request
 	 * @return the member request that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public MemberRequest addMemberRequest(MemberRequest memberRequest)
-		throws SystemException {
+	public MemberRequest addMemberRequest(MemberRequest memberRequest) {
 		memberRequest.setNew(true);
 
 		return memberRequestPersistence.update(memberRequest);
@@ -107,12 +105,11 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @param memberRequestId the primary key of the member request
 	 * @return the member request that was removed
 	 * @throws PortalException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public MemberRequest deleteMemberRequest(long memberRequestId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return memberRequestPersistence.remove(memberRequestId);
 	}
 
@@ -121,12 +118,10 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 *
 	 * @param memberRequest the member request
 	 * @return the member request that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public MemberRequest deleteMemberRequest(MemberRequest memberRequest)
-		throws SystemException {
+	public MemberRequest deleteMemberRequest(MemberRequest memberRequest) {
 		return memberRequestPersistence.remove(memberRequest);
 	}
 
@@ -143,12 +138,10 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return memberRequestPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -163,12 +156,10 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return memberRequestPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -185,12 +176,11 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return memberRequestPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -200,11 +190,9 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return memberRequestPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -214,18 +202,16 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return memberRequestPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public MemberRequest fetchMemberRequest(long memberRequestId)
-		throws SystemException {
+	public MemberRequest fetchMemberRequest(long memberRequestId) {
 		return memberRequestPersistence.fetchByPrimaryKey(memberRequestId);
 	}
 
@@ -235,17 +221,15 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @param memberRequestId the primary key of the member request
 	 * @return the member request
 	 * @throws PortalException if a member request with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MemberRequest getMemberRequest(long memberRequestId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return memberRequestPersistence.findByPrimaryKey(memberRequestId);
 	}
 
 	@Override
-	public ActionableDynamicQuery getActionableDynamicQuery()
-		throws SystemException {
+	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.MemberRequestLocalServiceUtil.getService());
@@ -258,8 +242,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	}
 
 	protected void initActionableDynamicQuery(
-		ActionableDynamicQuery actionableDynamicQuery)
-		throws SystemException {
+		ActionableDynamicQuery actionableDynamicQuery) {
 		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.MemberRequestLocalServiceUtil.getService());
 		actionableDynamicQuery.setClass(MemberRequest.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -267,9 +250,18 @@ public abstract class MemberRequestLocalServiceBaseImpl
 		actionableDynamicQuery.setPrimaryKeyPropertyName("memberRequestId");
 	}
 
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteMemberRequest((MemberRequest)persistedModel);
+	}
+
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return memberRequestPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -283,11 +275,9 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * @param start the lower bound of the range of member requests
 	 * @param end the upper bound of the range of member requests (not inclusive)
 	 * @return the range of member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MemberRequest> getMemberRequests(int start, int end)
-		throws SystemException {
+	public List<MemberRequest> getMemberRequests(int start, int end) {
 		return memberRequestPersistence.findAll(start, end);
 	}
 
@@ -295,10 +285,9 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 * Returns the number of member requests.
 	 *
 	 * @return the number of member requests
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getMemberRequestsCount() throws SystemException {
+	public int getMemberRequestsCount() {
 		return memberRequestPersistence.countAll();
 	}
 
@@ -307,12 +296,10 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 *
 	 * @param memberRequest the member request
 	 * @return the member request that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public MemberRequest updateMemberRequest(MemberRequest memberRequest)
-		throws SystemException {
+	public MemberRequest updateMemberRequest(MemberRequest memberRequest) {
 		return memberRequestPersistence.update(memberRequest);
 	}
 
@@ -855,7 +842,7 @@ public abstract class MemberRequestLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = memberRequestPersistence.getDataSource();
 

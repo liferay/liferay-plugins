@@ -294,11 +294,9 @@ public class CalendarResourceWrapper implements CalendarResource,
 	* Returns the user uuid of this calendar resource.
 	*
 	* @return the user uuid of this calendar resource
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _calendarResource.getUserUuid();
 	}
 
@@ -922,8 +920,7 @@ public class CalendarResourceWrapper implements CalendarResource,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_calendarResource.persist();
 	}
 

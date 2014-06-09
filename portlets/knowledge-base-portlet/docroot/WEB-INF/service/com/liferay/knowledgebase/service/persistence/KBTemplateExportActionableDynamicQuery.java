@@ -18,7 +18,6 @@ import com.liferay.knowledgebase.model.KBTemplate;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
 import com.liferay.portal.kernel.lar.ManifestSummary;
 import com.liferay.portal.kernel.lar.PortletDataContext;
@@ -35,7 +34,7 @@ import com.liferay.portal.util.PortalUtil;
 public class KBTemplateExportActionableDynamicQuery
 	extends KBTemplateActionableDynamicQuery {
 	public KBTemplateExportActionableDynamicQuery(
-		PortletDataContext portletDataContext) throws SystemException {
+		PortletDataContext portletDataContext) {
 		_portletDataContext = portletDataContext;
 
 		setCompanyId(_portletDataContext.getCompanyId());
@@ -44,7 +43,7 @@ public class KBTemplateExportActionableDynamicQuery
 	}
 
 	@Override
-	public long performCount() throws PortalException, SystemException {
+	public long performCount() throws PortalException {
 		ManifestSummary manifestSummary = _portletDataContext.getManifestSummary();
 
 		StagedModelType stagedModelType = getStagedModelType();
@@ -74,9 +73,7 @@ public class KBTemplateExportActionableDynamicQuery
 	}
 
 	@Override
-	@SuppressWarnings("unused")
-	protected void performAction(Object object)
-		throws PortalException, SystemException {
+	protected void performAction(Object object) throws PortalException {
 		KBTemplate stagedModel = (KBTemplate)object;
 
 		StagedModelDataHandlerUtil.exportStagedModel(_portletDataContext,

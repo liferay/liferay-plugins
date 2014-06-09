@@ -35,12 +35,10 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	*
 	* @param tasksEntry the tasks entry
 	* @return the tasks entry that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.tasks.model.TasksEntry addTasksEntry(
-		com.liferay.tasks.model.TasksEntry tasksEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.tasks.model.TasksEntry tasksEntry) {
 		return _tasksEntryLocalService.addTasksEntry(tasksEntry);
 	}
 
@@ -62,7 +60,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @param tasksEntryId the primary key of the tasks entry
 	* @return the tasks entry that was removed
 	* @throws PortalException if a tasks entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
@@ -78,7 +76,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @param tasksEntry the tasks entry
 	* @return the tasks entry that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.tasks.model.TasksEntry deleteTasksEntry(
@@ -98,13 +96,11 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _tasksEntryLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -119,13 +115,12 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _tasksEntryLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,15 +136,13 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _tasksEntryLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -159,12 +152,10 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _tasksEntryLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,20 +165,17 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _tasksEntryLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public com.liferay.tasks.model.TasksEntry fetchTasksEntry(long tasksEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.tasks.model.TasksEntry fetchTasksEntry(long tasksEntryId) {
 		return _tasksEntryLocalService.fetchTasksEntry(tasksEntryId);
 	}
 
@@ -197,7 +185,7 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @param tasksEntryId the primary key of the tasks entry
 	* @return the tasks entry
 	* @throws PortalException if a tasks entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.tasks.model.TasksEntry getTasksEntry(long tasksEntryId)
@@ -207,16 +195,24 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _tasksEntryLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _tasksEntryLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _tasksEntryLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -230,12 +226,10 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* @param start the lower bound of the range of tasks entries
 	* @param end the upper bound of the range of tasks entries (not inclusive)
 	* @return the range of tasks entries
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.tasks.model.TasksEntry> getTasksEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _tasksEntryLocalService.getTasksEntries(start, end);
 	}
 
@@ -243,11 +237,9 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	* Returns the number of tasks entries.
 	*
 	* @return the number of tasks entries
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getTasksEntriesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getTasksEntriesCount() {
 		return _tasksEntryLocalService.getTasksEntriesCount();
 	}
 
@@ -256,12 +248,10 @@ public class TasksEntryLocalServiceWrapper implements TasksEntryLocalService,
 	*
 	* @param tasksEntry the tasks entry
 	* @return the tasks entry that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.tasks.model.TasksEntry updateTasksEntry(
-		com.liferay.tasks.model.TasksEntry tasksEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.tasks.model.TasksEntry tasksEntry) {
 		return _tasksEntryLocalService.updateTasksEntry(tasksEntry);
 	}
 

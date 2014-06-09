@@ -18,7 +18,6 @@ import com.liferay.calendar.model.CalendarBooking;
 import com.liferay.calendar.service.CalendarBookingLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Eduardo Lundgren
@@ -28,7 +27,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 @Deprecated
 public abstract class CalendarBookingActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public CalendarBookingActionableDynamicQuery() throws SystemException {
+	public CalendarBookingActionableDynamicQuery() {
 		setBaseLocalService(CalendarBookingLocalServiceUtil.getService());
 		setClass(CalendarBooking.class);
 

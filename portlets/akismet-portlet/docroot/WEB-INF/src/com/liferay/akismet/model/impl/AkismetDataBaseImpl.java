@@ -17,8 +17,6 @@ package com.liferay.akismet.model.impl;
 import com.liferay.akismet.model.AkismetData;
 import com.liferay.akismet.service.AkismetDataLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the AkismetData service. Represents a row in the &quot;Akismet_AkismetData&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class AkismetDataBaseImpl extends AkismetDataModelImpl
 	 * Never modify or reference this class directly. All methods that expect a akismet data model instance should use the {@link AkismetData} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			AkismetDataLocalServiceUtil.addAkismetData(this);
 		}

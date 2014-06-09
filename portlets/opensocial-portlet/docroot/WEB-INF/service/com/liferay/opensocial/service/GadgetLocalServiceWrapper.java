@@ -34,12 +34,10 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	*
 	* @param gadget the gadget
 	* @return the gadget that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.opensocial.model.Gadget addGadget(
-		com.liferay.opensocial.model.Gadget gadget)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.opensocial.model.Gadget gadget) {
 		return _gadgetLocalService.addGadget(gadget);
 	}
 
@@ -60,7 +58,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @param gadgetId the primary key of the gadget
 	* @return the gadget that was removed
 	* @throws PortalException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.opensocial.model.Gadget deleteGadget(long gadgetId)
@@ -74,7 +72,7 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	*
 	* @param gadget the gadget
 	* @return the gadget that was removed
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.opensocial.model.Gadget deleteGadget(
@@ -93,13 +91,11 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _gadgetLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -114,13 +110,12 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _gadgetLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -136,15 +131,13 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _gadgetLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -154,12 +147,10 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _gadgetLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -169,19 +160,16 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _gadgetLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
-	public com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.opensocial.model.Gadget fetchGadget(long gadgetId) {
 		return _gadgetLocalService.fetchGadget(gadgetId);
 	}
 
@@ -191,12 +179,10 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @param uuid the gadget's UUID
 	* @param companyId the primary key of the company
 	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.opensocial.model.Gadget fetchGadgetByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return _gadgetLocalService.fetchGadgetByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -206,20 +192,38 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @param gadgetId the primary key of the gadget
 	* @return the gadget
 	* @throws PortalException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.opensocial.model.Gadget getGadget(long gadgetId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _gadgetLocalService.getGadget(gadgetId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _gadgetLocalService.getActionableDynamicQuery();
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
+		return _gadgetLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _gadgetLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _gadgetLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -230,13 +234,11 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @param companyId the primary key of the company
 	* @return the matching gadget
 	* @throws PortalException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.opensocial.model.Gadget getGadgetByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _gadgetLocalService.getGadgetByUuidAndCompanyId(uuid, companyId);
 	}
 
@@ -250,12 +252,10 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* @param start the lower bound of the range of gadgets
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.opensocial.model.Gadget> getGadgets(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _gadgetLocalService.getGadgets(start, end);
 	}
 
@@ -263,11 +263,9 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	* Returns the number of gadgets.
 	*
 	* @return the number of gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getGadgetsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getGadgetsCount() {
 		return _gadgetLocalService.getGadgetsCount();
 	}
 
@@ -276,12 +274,10 @@ public class GadgetLocalServiceWrapper implements GadgetLocalService,
 	*
 	* @param gadget the gadget
 	* @return the gadget that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.opensocial.model.Gadget updateGadget(
-		com.liferay.opensocial.model.Gadget gadget)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.opensocial.model.Gadget gadget) {
 		return _gadgetLocalService.updateGadget(gadget);
 	}
 

@@ -15,7 +15,6 @@
 package com.liferay.pushnotifications.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -92,9 +91,8 @@ public interface PushNotificationsDeviceModel extends BaseModel<PushNotification
 	 * Returns the user uuid of this push notifications device.
 	 *
 	 * @return the user uuid of this push notifications device
-	 * @throws SystemException if a system exception occurred
 	 */
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this push notifications device.

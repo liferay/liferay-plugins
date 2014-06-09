@@ -43,23 +43,19 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @param url the url
 	* @return the matching s v n repository
 	* @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a matching s v n repository could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.SVNRepository findByUrl(
 		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRepositoryException;
+		throws com.liferay.socialcoding.NoSuchSVNRepositoryException;
 
 	/**
 	* Returns the s v n repository where url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
 	* @param url the url
 	* @return the matching s v n repository, or <code>null</code> if a matching s v n repository could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.SVNRepository fetchByUrl(
-		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String url);
 
 	/**
 	* Returns the s v n repository where url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -67,33 +63,27 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @param url the url
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching s v n repository, or <code>null</code> if a matching s v n repository could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.SVNRepository fetchByUrl(
-		java.lang.String url, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String url, boolean retrieveFromCache);
 
 	/**
 	* Removes the s v n repository where url = &#63; from the database.
 	*
 	* @param url the url
 	* @return the s v n repository that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.SVNRepository removeByUrl(
 		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRepositoryException;
+		throws com.liferay.socialcoding.NoSuchSVNRepositoryException;
 
 	/**
 	* Returns the number of s v n repositories where url = &#63;.
 	*
 	* @param url the url
 	* @return the number of matching s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUrl(java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUrl(java.lang.String url);
 
 	/**
 	* Caches the s v n repository in the entity cache if it is enabled.
@@ -126,16 +116,13 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @param svnRepositoryId the primary key of the s v n repository
 	* @return the s v n repository that was removed
 	* @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.SVNRepository remove(
 		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRepositoryException;
+		throws com.liferay.socialcoding.NoSuchSVNRepositoryException;
 
 	public com.liferay.socialcoding.model.SVNRepository updateImpl(
-		com.liferay.socialcoding.model.SVNRepository svnRepository)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.socialcoding.model.SVNRepository svnRepository);
 
 	/**
 	* Returns the s v n repository with the primary key or throws a {@link com.liferay.socialcoding.NoSuchSVNRepositoryException} if it could not be found.
@@ -143,32 +130,26 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @param svnRepositoryId the primary key of the s v n repository
 	* @return the s v n repository
 	* @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.SVNRepository findByPrimaryKey(
 		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRepositoryException;
+		throws com.liferay.socialcoding.NoSuchSVNRepositoryException;
 
 	/**
 	* Returns the s v n repository with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param svnRepositoryId the primary key of the s v n repository
 	* @return the s v n repository, or <code>null</code> if a s v n repository with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.SVNRepository fetchByPrimaryKey(
-		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long svnRepositoryId);
 
 	/**
 	* Returns all the s v n repositories.
 	*
 	* @return the s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll();
 
 	/**
 	* Returns a range of all the s v n repositories.
@@ -180,11 +161,9 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @param start the lower bound of the range of s v n repositories
 	* @param end the upper bound of the range of s v n repositories (not inclusive)
 	* @return the range of s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the s v n repositories.
@@ -197,27 +176,20 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	* @param end the upper bound of the range of s v n repositories (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the s v n repositories from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of s v n repositories.
 	*
 	* @return the number of s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

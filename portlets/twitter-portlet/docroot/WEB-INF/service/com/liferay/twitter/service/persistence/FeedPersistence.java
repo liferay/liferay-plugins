@@ -44,12 +44,10 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @param twitterScreenName the twitter screen name
 	* @return the matching feed
 	* @throws com.liferay.twitter.NoSuchFeedException if a matching feed could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.twitter.model.Feed findByU_TSN(long userId,
 		java.lang.String twitterScreenName)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.twitter.NoSuchFeedException;
+		throws com.liferay.twitter.NoSuchFeedException;
 
 	/**
 	* Returns the feed where userId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -57,11 +55,9 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @param userId the user ID
 	* @param twitterScreenName the twitter screen name
 	* @return the matching feed, or <code>null</code> if a matching feed could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.twitter.model.Feed fetchByU_TSN(long userId,
-		java.lang.String twitterScreenName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String twitterScreenName);
 
 	/**
 	* Returns the feed where userId = &#63; and twitterScreenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -70,11 +66,9 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @param twitterScreenName the twitter screen name
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching feed, or <code>null</code> if a matching feed could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.twitter.model.Feed fetchByU_TSN(long userId,
-		java.lang.String twitterScreenName, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String twitterScreenName, boolean retrieveFromCache);
 
 	/**
 	* Removes the feed where userId = &#63; and twitterScreenName = &#63; from the database.
@@ -82,12 +76,10 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @param userId the user ID
 	* @param twitterScreenName the twitter screen name
 	* @return the feed that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.twitter.model.Feed removeByU_TSN(long userId,
 		java.lang.String twitterScreenName)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.twitter.NoSuchFeedException;
+		throws com.liferay.twitter.NoSuchFeedException;
 
 	/**
 	* Returns the number of feeds where userId = &#63; and twitterScreenName = &#63;.
@@ -95,10 +87,8 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @param userId the user ID
 	* @param twitterScreenName the twitter screen name
 	* @return the number of matching feeds
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByU_TSN(long userId, java.lang.String twitterScreenName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByU_TSN(long userId, java.lang.String twitterScreenName);
 
 	/**
 	* Caches the feed in the entity cache if it is enabled.
@@ -129,15 +119,12 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @param feedId the primary key of the feed
 	* @return the feed that was removed
 	* @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.twitter.model.Feed remove(long feedId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.twitter.NoSuchFeedException;
+		throws com.liferay.twitter.NoSuchFeedException;
 
 	public com.liferay.twitter.model.Feed updateImpl(
-		com.liferay.twitter.model.Feed feed)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.twitter.model.Feed feed);
 
 	/**
 	* Returns the feed with the primary key or throws a {@link com.liferay.twitter.NoSuchFeedException} if it could not be found.
@@ -145,30 +132,24 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @param feedId the primary key of the feed
 	* @return the feed
 	* @throws com.liferay.twitter.NoSuchFeedException if a feed with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.twitter.model.Feed findByPrimaryKey(long feedId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.twitter.NoSuchFeedException;
+		throws com.liferay.twitter.NoSuchFeedException;
 
 	/**
 	* Returns the feed with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param feedId the primary key of the feed
 	* @return the feed, or <code>null</code> if a feed with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.twitter.model.Feed fetchByPrimaryKey(long feedId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.twitter.model.Feed fetchByPrimaryKey(long feedId);
 
 	/**
 	* Returns all the feeds.
 	*
 	* @return the feeds
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.twitter.model.Feed> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.twitter.model.Feed> findAll();
 
 	/**
 	* Returns a range of all the feeds.
@@ -180,10 +161,9 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @param start the lower bound of the range of feeds
 	* @param end the upper bound of the range of feeds (not inclusive)
 	* @return the range of feeds
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.twitter.model.Feed> findAll(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the feeds.
@@ -196,27 +176,20 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	* @param end the upper bound of the range of feeds (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of feeds
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.twitter.model.Feed> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the feeds from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of feeds.
 	*
 	* @return the number of feeds
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

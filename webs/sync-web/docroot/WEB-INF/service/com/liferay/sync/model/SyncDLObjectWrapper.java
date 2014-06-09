@@ -595,11 +595,9 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	* Returns the lock user uuid of this sync d l object.
 	*
 	* @return the lock user uuid of this sync d l object
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getLockUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getLockUserUuid() {
 		return _syncDLObject.getLockUserUuid();
 	}
 
@@ -792,8 +790,7 @@ public class SyncDLObjectWrapper implements SyncDLObject,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_syncDLObject.persist();
 	}
 

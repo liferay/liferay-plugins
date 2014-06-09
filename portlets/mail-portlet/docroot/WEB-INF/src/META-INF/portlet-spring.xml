@@ -2,11 +2,11 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.mail.service.AccountLocalService" class="com.liferay.mail.service.impl.AccountLocalServiceImpl" />
-	<bean id="com.liferay.mail.service.persistence.AccountPersistence" class="com.liferay.mail.service.persistence.AccountPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.mail.service.persistence.AccountPersistence" class="com.liferay.mail.service.persistence.impl.AccountPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.mail.service.AttachmentLocalService" class="com.liferay.mail.service.impl.AttachmentLocalServiceImpl" />
-	<bean id="com.liferay.mail.service.persistence.AttachmentPersistence" class="com.liferay.mail.service.persistence.AttachmentPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.mail.service.persistence.AttachmentPersistence" class="com.liferay.mail.service.persistence.impl.AttachmentPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.mail.service.FolderLocalService" class="com.liferay.mail.service.impl.FolderLocalServiceImpl" />
-	<bean id="com.liferay.mail.service.persistence.FolderPersistence" class="com.liferay.mail.service.persistence.FolderPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.mail.service.persistence.FolderPersistence" class="com.liferay.mail.service.persistence.impl.FolderPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.mail.service.MessageLocalService" class="com.liferay.mail.service.impl.MessageLocalServiceImpl" />
-	<bean id="com.liferay.mail.service.persistence.MessagePersistence" class="com.liferay.mail.service.persistence.MessagePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.mail.service.persistence.MessagePersistence" class="com.liferay.mail.service.persistence.impl.MessagePersistenceImpl" parent="basePersistence" />
 </beans>

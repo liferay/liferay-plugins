@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -86,12 +88,10 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 *
 	 * @param kaleoDefinition the kaleo definition
 	 * @return the kaleo definition that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public KaleoDefinition addKaleoDefinition(KaleoDefinition kaleoDefinition)
-		throws SystemException {
+	public KaleoDefinition addKaleoDefinition(KaleoDefinition kaleoDefinition) {
 		kaleoDefinition.setNew(true);
 
 		return kaleoDefinitionPersistence.update(kaleoDefinition);
@@ -114,12 +114,11 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * @param kaleoDefinitionId the primary key of the kaleo definition
 	 * @return the kaleo definition that was removed
 	 * @throws PortalException if a kaleo definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoDefinition deleteKaleoDefinition(long kaleoDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoDefinitionPersistence.remove(kaleoDefinitionId);
 	}
 
@@ -128,12 +127,11 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 *
 	 * @param kaleoDefinition the kaleo definition
 	 * @return the kaleo definition that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoDefinition deleteKaleoDefinition(
-		KaleoDefinition kaleoDefinition) throws SystemException {
+		KaleoDefinition kaleoDefinition) {
 		return kaleoDefinitionPersistence.remove(kaleoDefinition);
 	}
 
@@ -150,12 +148,10 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return kaleoDefinitionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -170,12 +166,10 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return kaleoDefinitionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -192,12 +186,11 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return kaleoDefinitionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -207,11 +200,9 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return kaleoDefinitionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -221,18 +212,16 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return kaleoDefinitionPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public KaleoDefinition fetchKaleoDefinition(long kaleoDefinitionId)
-		throws SystemException {
+	public KaleoDefinition fetchKaleoDefinition(long kaleoDefinitionId) {
 		return kaleoDefinitionPersistence.fetchByPrimaryKey(kaleoDefinitionId);
 	}
 
@@ -242,17 +231,47 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * @param kaleoDefinitionId the primary key of the kaleo definition
 	 * @return the kaleo definition
 	 * @throws PortalException if a kaleo definition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoDefinition getKaleoDefinition(long kaleoDefinitionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoDefinitionPersistence.findByPrimaryKey(kaleoDefinitionId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(KaleoDefinition.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("kaleoDefinitionId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.service.KaleoDefinitionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(KaleoDefinition.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("kaleoDefinitionId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteKaleoDefinition((KaleoDefinition)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoDefinitionPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -266,11 +285,9 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of kaleo definitions
 	 * @param end the upper bound of the range of kaleo definitions (not inclusive)
 	 * @return the range of kaleo definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KaleoDefinition> getKaleoDefinitions(int start, int end)
-		throws SystemException {
+	public List<KaleoDefinition> getKaleoDefinitions(int start, int end) {
 		return kaleoDefinitionPersistence.findAll(start, end);
 	}
 
@@ -278,10 +295,9 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 * Returns the number of kaleo definitions.
 	 *
 	 * @return the number of kaleo definitions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getKaleoDefinitionsCount() throws SystemException {
+	public int getKaleoDefinitionsCount() {
 		return kaleoDefinitionPersistence.countAll();
 	}
 
@@ -290,12 +306,11 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 *
 	 * @param kaleoDefinition the kaleo definition
 	 * @return the kaleo definition that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public KaleoDefinition updateKaleoDefinition(
-		KaleoDefinition kaleoDefinition) throws SystemException {
+		KaleoDefinition kaleoDefinition) {
 		return kaleoDefinitionPersistence.update(kaleoDefinition);
 	}
 
@@ -1163,7 +1178,7 @@ public abstract class KaleoDefinitionLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = kaleoDefinitionPersistence.getDataSource();
 

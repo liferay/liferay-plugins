@@ -420,8 +420,7 @@ public class WSRPProducerWrapper implements WSRPProducer,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_wsrpProducer.persist();
 	}
 

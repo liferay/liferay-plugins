@@ -44,11 +44,9 @@ public class ProjectsEntryLocalServiceUtil {
 	*
 	* @param projectsEntry the projects entry
 	* @return the projects entry that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry addProjectsEntry(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.so.model.ProjectsEntry projectsEntry) {
 		return getService().addProjectsEntry(projectsEntry);
 	}
 
@@ -69,12 +67,10 @@ public class ProjectsEntryLocalServiceUtil {
 	* @param projectsEntryId the primary key of the projects entry
 	* @return the projects entry that was removed
 	* @throws PortalException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
 		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteProjectsEntry(projectsEntryId);
 	}
 
@@ -83,11 +79,9 @@ public class ProjectsEntryLocalServiceUtil {
 	*
 	* @param projectsEntry the projects entry
 	* @return the projects entry that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry deleteProjectsEntry(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.so.model.ProjectsEntry projectsEntry) {
 		return getService().deleteProjectsEntry(projectsEntry);
 	}
 
@@ -100,12 +94,10 @@ public class ProjectsEntryLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -120,12 +112,11 @@ public class ProjectsEntryLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -141,14 +132,12 @@ public class ProjectsEntryLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -158,11 +147,9 @@ public class ProjectsEntryLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,18 +159,15 @@ public class ProjectsEntryLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.so.model.ProjectsEntry fetchProjectsEntry(
-		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long projectsEntryId) {
 		return getService().fetchProjectsEntry(projectsEntryId);
 	}
 
@@ -193,24 +177,29 @@ public class ProjectsEntryLocalServiceUtil {
 	* @param projectsEntryId the primary key of the projects entry
 	* @return the projects entry
 	* @throws PortalException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry getProjectsEntry(
 		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getProjectsEntry(projectsEntryId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -224,11 +213,9 @@ public class ProjectsEntryLocalServiceUtil {
 	* @param start the lower bound of the range of projects entries
 	* @param end the upper bound of the range of projects entries (not inclusive)
 	* @return the range of projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.so.model.ProjectsEntry> getProjectsEntries(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getProjectsEntries(start, end);
 	}
 
@@ -236,10 +223,8 @@ public class ProjectsEntryLocalServiceUtil {
 	* Returns the number of projects entries.
 	*
 	* @return the number of projects entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getProjectsEntriesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getProjectsEntriesCount() {
 		return getService().getProjectsEntriesCount();
 	}
 
@@ -248,11 +233,9 @@ public class ProjectsEntryLocalServiceUtil {
 	*
 	* @param projectsEntry the projects entry
 	* @return the projects entry that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.so.model.ProjectsEntry updateProjectsEntry(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.so.model.ProjectsEntry projectsEntry) {
 		return getService().updateProjectsEntry(projectsEntry);
 	}
 

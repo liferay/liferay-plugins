@@ -19,7 +19,6 @@ import com.liferay.chat.model.EntryModel;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -231,7 +230,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	@Override
-	public String getFromUserUuid() throws SystemException {
+	public String getFromUserUuid() {
 		try {
 			User user = UserLocalServiceUtil.getUserById(getFromUserId());
 
@@ -269,7 +268,7 @@ public class EntryModelImpl extends BaseModelImpl<Entry> implements EntryModel {
 	}
 
 	@Override
-	public String getToUserUuid() throws SystemException {
+	public String getToUserUuid() {
 		try {
 			User user = UserLocalServiceUtil.getUserById(getToUserId());
 

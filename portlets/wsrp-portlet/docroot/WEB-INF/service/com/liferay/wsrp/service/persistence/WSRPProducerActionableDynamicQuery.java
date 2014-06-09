@@ -15,18 +15,19 @@
 package com.liferay.wsrp.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.wsrp.model.WSRPProducer;
 import com.liferay.wsrp.service.WSRPProducerLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link WSRPProducerLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class WSRPProducerActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public WSRPProducerActionableDynamicQuery() throws SystemException {
+	public WSRPProducerActionableDynamicQuery() {
 		setBaseLocalService(WSRPProducerLocalServiceUtil.getService());
 		setClass(WSRPProducer.class);
 

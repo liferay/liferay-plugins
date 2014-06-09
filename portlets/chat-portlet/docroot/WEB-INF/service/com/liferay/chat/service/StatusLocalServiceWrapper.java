@@ -34,12 +34,10 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	*
 	* @param status the status
 	* @return the status that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.chat.model.Status addStatus(
-		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.chat.model.Status status) {
 		return _statusLocalService.addStatus(status);
 	}
 
@@ -60,12 +58,10 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @param statusId the primary key of the status
 	* @return the status that was removed
 	* @throws PortalException if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.chat.model.Status deleteStatus(long statusId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _statusLocalService.deleteStatus(statusId);
 	}
 
@@ -74,12 +70,10 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	*
 	* @param status the status
 	* @return the status that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.chat.model.Status deleteStatus(
-		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.chat.model.Status status) {
 		return _statusLocalService.deleteStatus(status);
 	}
 
@@ -93,13 +87,11 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _statusLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -114,13 +106,12 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _statusLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -136,15 +127,13 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _statusLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -154,12 +143,10 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _statusLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -169,19 +156,16 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _statusLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
-	public com.liferay.chat.model.Status fetchStatus(long statusId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.chat.model.Status fetchStatus(long statusId) {
 		return _statusLocalService.fetchStatus(statusId);
 	}
 
@@ -191,20 +175,32 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @param statusId the primary key of the status
 	* @return the status
 	* @throws PortalException if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.chat.model.Status getStatus(long statusId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _statusLocalService.getStatus(statusId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _statusLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _statusLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _statusLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -218,12 +214,10 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* @param start the lower bound of the range of statuses
 	* @param end the upper bound of the range of statuses (not inclusive)
 	* @return the range of statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.chat.model.Status> getStatuses(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _statusLocalService.getStatuses(start, end);
 	}
 
@@ -231,11 +225,9 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	* Returns the number of statuses.
 	*
 	* @return the number of statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getStatusesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getStatusesCount() {
 		return _statusLocalService.getStatusesCount();
 	}
 
@@ -244,12 +236,10 @@ public class StatusLocalServiceWrapper implements StatusLocalService,
 	*
 	* @param status the status
 	* @return the status that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.chat.model.Status updateStatus(
-		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.chat.model.Status status) {
 		return _statusLocalService.updateStatus(status);
 	}
 

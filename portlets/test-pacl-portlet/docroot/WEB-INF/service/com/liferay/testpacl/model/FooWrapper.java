@@ -244,11 +244,9 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	* Returns the user uuid of this foo.
 	*
 	* @return the user uuid of this foo
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _foo.getUserUuid();
 	}
 
@@ -531,8 +529,7 @@ public class FooWrapper implements Foo, ModelWrapper<Foo> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_foo.persist();
 	}
 

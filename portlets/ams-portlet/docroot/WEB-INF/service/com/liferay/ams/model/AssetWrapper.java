@@ -210,11 +210,9 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	* Returns the user uuid of this asset.
 	*
 	* @return the user uuid of this asset
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _asset.getUserUuid();
 	}
 
@@ -477,8 +475,7 @@ public class AssetWrapper implements Asset, ModelWrapper<Asset> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_asset.persist();
 	}
 

@@ -18,15 +18,16 @@ import com.liferay.ams.model.Asset;
 import com.liferay.ams.service.AssetLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link AssetLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class AssetActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public AssetActionableDynamicQuery() throws SystemException {
+	public AssetActionableDynamicQuery() {
 		setBaseLocalService(AssetLocalServiceUtil.getService());
 		setClass(Asset.class);
 

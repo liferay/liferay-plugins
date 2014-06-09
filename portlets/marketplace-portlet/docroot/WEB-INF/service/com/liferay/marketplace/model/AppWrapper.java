@@ -252,11 +252,9 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	* Returns the user uuid of this app.
 	*
 	* @return the user uuid of this app
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _app.getUserUuid();
 	}
 
@@ -549,8 +547,7 @@ public class AppWrapper implements App, ModelWrapper<App> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_app.persist();
 	}
 

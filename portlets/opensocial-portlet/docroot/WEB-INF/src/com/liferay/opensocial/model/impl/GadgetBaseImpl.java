@@ -17,8 +17,6 @@ package com.liferay.opensocial.model.impl;
 import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the Gadget service. Represents a row in the &quot;OpenSocial_Gadget&quot; database table, with each column mapped to a property of this class.
  *
@@ -38,7 +36,7 @@ public abstract class GadgetBaseImpl extends GadgetModelImpl implements Gadget {
 	 * Never modify or reference this class directly. All methods that expect a gadget model instance should use the {@link Gadget} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			GadgetLocalServiceUtil.addGadget(this);
 		}

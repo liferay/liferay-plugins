@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -74,12 +76,10 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @param meetupsEntry the meetups entry
 	 * @return the meetups entry that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public MeetupsEntry addMeetupsEntry(MeetupsEntry meetupsEntry)
-		throws SystemException {
+	public MeetupsEntry addMeetupsEntry(MeetupsEntry meetupsEntry) {
 		meetupsEntry.setNew(true);
 
 		return meetupsEntryPersistence.update(meetupsEntry);
@@ -102,7 +102,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param meetupsEntryId the primary key of the meetups entry
 	 * @return the meetups entry that was removed
 	 * @throws PortalException if a meetups entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -116,12 +116,10 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @param meetupsEntry the meetups entry
 	 * @return the meetups entry that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public MeetupsEntry deleteMeetupsEntry(MeetupsEntry meetupsEntry)
-		throws SystemException {
+	public MeetupsEntry deleteMeetupsEntry(MeetupsEntry meetupsEntry) {
 		return meetupsEntryPersistence.remove(meetupsEntry);
 	}
 
@@ -138,12 +136,10 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return meetupsEntryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -158,12 +154,10 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return meetupsEntryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -180,12 +174,11 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return meetupsEntryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -195,11 +188,9 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return meetupsEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -209,18 +200,16 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return meetupsEntryPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public MeetupsEntry fetchMeetupsEntry(long meetupsEntryId)
-		throws SystemException {
+	public MeetupsEntry fetchMeetupsEntry(long meetupsEntryId) {
 		return meetupsEntryPersistence.fetchByPrimaryKey(meetupsEntryId);
 	}
 
@@ -230,17 +219,47 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param meetupsEntryId the primary key of the meetups entry
 	 * @return the meetups entry
 	 * @throws PortalException if a meetups entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public MeetupsEntry getMeetupsEntry(long meetupsEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return meetupsEntryPersistence.findByPrimaryKey(meetupsEntryId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(MeetupsEntry.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("meetupsEntryId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(MeetupsEntry.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("meetupsEntryId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteMeetupsEntry((MeetupsEntry)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return meetupsEntryPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -254,11 +273,9 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * @param start the lower bound of the range of meetups entries
 	 * @param end the upper bound of the range of meetups entries (not inclusive)
 	 * @return the range of meetups entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<MeetupsEntry> getMeetupsEntries(int start, int end)
-		throws SystemException {
+	public List<MeetupsEntry> getMeetupsEntries(int start, int end) {
 		return meetupsEntryPersistence.findAll(start, end);
 	}
 
@@ -266,10 +283,9 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 * Returns the number of meetups entries.
 	 *
 	 * @return the number of meetups entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getMeetupsEntriesCount() throws SystemException {
+	public int getMeetupsEntriesCount() {
 		return meetupsEntryPersistence.countAll();
 	}
 
@@ -278,12 +294,10 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @param meetupsEntry the meetups entry
 	 * @return the meetups entry that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public MeetupsEntry updateMeetupsEntry(MeetupsEntry meetupsEntry)
-		throws SystemException {
+	public MeetupsEntry updateMeetupsEntry(MeetupsEntry meetupsEntry) {
 		return meetupsEntryPersistence.update(meetupsEntry);
 	}
 
@@ -638,7 +652,7 @@ public abstract class MeetupsEntryLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = meetupsEntryPersistence.getDataSource();
 

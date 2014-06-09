@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
@@ -128,10 +127,9 @@ public interface KaleoInstanceTokenModel extends BaseModel<KaleoInstanceToken>,
 	 * Returns the user uuid of this kaleo instance token.
 	 *
 	 * @return the user uuid of this kaleo instance token
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this kaleo instance token.

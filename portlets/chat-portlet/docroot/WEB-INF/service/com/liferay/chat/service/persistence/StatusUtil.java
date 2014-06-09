@@ -18,7 +18,6 @@ import com.liferay.chat.model.Status;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,16 +60,14 @@ public class StatusUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
-	public static List<Status> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static List<Status> findWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,7 +75,7 @@ public class StatusUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<Status> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -86,8 +83,7 @@ public class StatusUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Status> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -96,15 +92,14 @@ public class StatusUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Status update(Status status) throws SystemException {
+	public static Status update(Status status) {
 		return getPersistence().update(status);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Status update(Status status, ServiceContext serviceContext)
-		throws SystemException {
+	public static Status update(Status status, ServiceContext serviceContext) {
 		return getPersistence().update(status, serviceContext);
 	}
 
@@ -114,11 +109,9 @@ public class StatusUtil {
 	* @param userId the user ID
 	* @return the matching status
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status findByUserId(long userId)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence().findByUserId(userId);
 	}
 
@@ -127,10 +120,8 @@ public class StatusUtil {
 	*
 	* @param userId the user ID
 	* @return the matching status, or <code>null</code> if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.chat.model.Status fetchByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.chat.model.Status fetchByUserId(long userId) {
 		return getPersistence().fetchByUserId(userId);
 	}
 
@@ -140,11 +131,9 @@ public class StatusUtil {
 	* @param userId the user ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching status, or <code>null</code> if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status fetchByUserId(long userId,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean retrieveFromCache) {
 		return getPersistence().fetchByUserId(userId, retrieveFromCache);
 	}
 
@@ -153,11 +142,9 @@ public class StatusUtil {
 	*
 	* @param userId the user ID
 	* @return the status that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status removeByUserId(long userId)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence().removeByUserId(userId);
 	}
 
@@ -166,10 +153,8 @@ public class StatusUtil {
 	*
 	* @param userId the user ID
 	* @return the number of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUserId(long userId) {
 		return getPersistence().countByUserId(userId);
 	}
 
@@ -178,11 +163,9 @@ public class StatusUtil {
 	*
 	* @param modifiedDate the modified date
 	* @return the matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
-		long modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long modifiedDate) {
 		return getPersistence().findByModifiedDate(modifiedDate);
 	}
 
@@ -197,11 +180,9 @@ public class StatusUtil {
 	* @param start the lower bound of the range of statuses
 	* @param end the upper bound of the range of statuses (not inclusive)
 	* @return the range of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
-		long modifiedDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long modifiedDate, int start, int end) {
 		return getPersistence().findByModifiedDate(modifiedDate, start, end);
 	}
 
@@ -217,12 +198,10 @@ public class StatusUtil {
 	* @param end the upper bound of the range of statuses (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findByModifiedDate(
 		long modifiedDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByModifiedDate(modifiedDate, start, end,
 			orderByComparator);
@@ -235,13 +214,11 @@ public class StatusUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching status
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status findByModifiedDate_First(
 		long modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence()
 				   .findByModifiedDate_First(modifiedDate, orderByComparator);
 	}
@@ -252,12 +229,10 @@ public class StatusUtil {
 	* @param modifiedDate the modified date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching status, or <code>null</code> if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status fetchByModifiedDate_First(
 		long modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByModifiedDate_First(modifiedDate, orderByComparator);
 	}
@@ -269,13 +244,11 @@ public class StatusUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching status
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status findByModifiedDate_Last(
 		long modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence()
 				   .findByModifiedDate_Last(modifiedDate, orderByComparator);
 	}
@@ -286,12 +259,10 @@ public class StatusUtil {
 	* @param modifiedDate the modified date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching status, or <code>null</code> if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status fetchByModifiedDate_Last(
 		long modifiedDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByModifiedDate_Last(modifiedDate, orderByComparator);
 	}
@@ -304,13 +275,11 @@ public class StatusUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next status
 	* @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status[] findByModifiedDate_PrevAndNext(
 		long statusId, long modifiedDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence()
 				   .findByModifiedDate_PrevAndNext(statusId, modifiedDate,
 			orderByComparator);
@@ -320,10 +289,8 @@ public class StatusUtil {
 	* Removes all the statuses where modifiedDate = &#63; from the database.
 	*
 	* @param modifiedDate the modified date
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByModifiedDate(long modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByModifiedDate(long modifiedDate) {
 		getPersistence().removeByModifiedDate(modifiedDate);
 	}
 
@@ -332,10 +299,8 @@ public class StatusUtil {
 	*
 	* @param modifiedDate the modified date
 	* @return the number of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByModifiedDate(long modifiedDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByModifiedDate(long modifiedDate) {
 		return getPersistence().countByModifiedDate(modifiedDate);
 	}
 
@@ -344,11 +309,9 @@ public class StatusUtil {
 	*
 	* @param online the online
 	* @return the matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findByOnline(
-		boolean online)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean online) {
 		return getPersistence().findByOnline(online);
 	}
 
@@ -363,11 +326,9 @@ public class StatusUtil {
 	* @param start the lower bound of the range of statuses
 	* @param end the upper bound of the range of statuses (not inclusive)
 	* @return the range of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findByOnline(
-		boolean online, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean online, int start, int end) {
 		return getPersistence().findByOnline(online, start, end);
 	}
 
@@ -383,12 +344,10 @@ public class StatusUtil {
 	* @param end the upper bound of the range of statuses (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findByOnline(
 		boolean online, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByOnline(online, start, end, orderByComparator);
 	}
@@ -400,13 +359,11 @@ public class StatusUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching status
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status findByOnline_First(
 		boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence().findByOnline_First(online, orderByComparator);
 	}
 
@@ -416,12 +373,10 @@ public class StatusUtil {
 	* @param online the online
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching status, or <code>null</code> if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status fetchByOnline_First(
 		boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByOnline_First(online, orderByComparator);
 	}
 
@@ -432,13 +387,11 @@ public class StatusUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching status
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status findByOnline_Last(
 		boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence().findByOnline_Last(online, orderByComparator);
 	}
 
@@ -448,12 +401,10 @@ public class StatusUtil {
 	* @param online the online
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching status, or <code>null</code> if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status fetchByOnline_Last(
 		boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByOnline_Last(online, orderByComparator);
 	}
 
@@ -465,13 +416,11 @@ public class StatusUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next status
 	* @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status[] findByOnline_PrevAndNext(
 		long statusId, boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence()
 				   .findByOnline_PrevAndNext(statusId, online, orderByComparator);
 	}
@@ -480,10 +429,8 @@ public class StatusUtil {
 	* Removes all the statuses where online = &#63; from the database.
 	*
 	* @param online the online
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByOnline(boolean online)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByOnline(boolean online) {
 		getPersistence().removeByOnline(online);
 	}
 
@@ -492,10 +439,8 @@ public class StatusUtil {
 	*
 	* @param online the online
 	* @return the number of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByOnline(boolean online)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByOnline(boolean online) {
 		return getPersistence().countByOnline(online);
 	}
 
@@ -505,11 +450,9 @@ public class StatusUtil {
 	* @param modifiedDate the modified date
 	* @param online the online
 	* @return the matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findByM_O(
-		long modifiedDate, boolean online)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long modifiedDate, boolean online) {
 		return getPersistence().findByM_O(modifiedDate, online);
 	}
 
@@ -525,11 +468,9 @@ public class StatusUtil {
 	* @param start the lower bound of the range of statuses
 	* @param end the upper bound of the range of statuses (not inclusive)
 	* @return the range of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findByM_O(
-		long modifiedDate, boolean online, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long modifiedDate, boolean online, int start, int end) {
 		return getPersistence().findByM_O(modifiedDate, online, start, end);
 	}
 
@@ -546,12 +487,10 @@ public class StatusUtil {
 	* @param end the upper bound of the range of statuses (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findByM_O(
 		long modifiedDate, boolean online, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByM_O(modifiedDate, online, start, end,
 			orderByComparator);
@@ -565,13 +504,11 @@ public class StatusUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching status
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status findByM_O_First(
 		long modifiedDate, boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence()
 				   .findByM_O_First(modifiedDate, online, orderByComparator);
 	}
@@ -583,12 +520,10 @@ public class StatusUtil {
 	* @param online the online
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching status, or <code>null</code> if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status fetchByM_O_First(
 		long modifiedDate, boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByM_O_First(modifiedDate, online, orderByComparator);
 	}
@@ -601,13 +536,11 @@ public class StatusUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching status
 	* @throws com.liferay.chat.NoSuchStatusException if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status findByM_O_Last(
 		long modifiedDate, boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence()
 				   .findByM_O_Last(modifiedDate, online, orderByComparator);
 	}
@@ -619,12 +552,10 @@ public class StatusUtil {
 	* @param online the online
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching status, or <code>null</code> if a matching status could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status fetchByM_O_Last(
 		long modifiedDate, boolean online,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByM_O_Last(modifiedDate, online, orderByComparator);
 	}
@@ -638,13 +569,11 @@ public class StatusUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next status
 	* @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status[] findByM_O_PrevAndNext(
 		long statusId, long modifiedDate, boolean online,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence()
 				   .findByM_O_PrevAndNext(statusId, modifiedDate, online,
 			orderByComparator);
@@ -655,10 +584,8 @@ public class StatusUtil {
 	*
 	* @param modifiedDate the modified date
 	* @param online the online
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByM_O(long modifiedDate, boolean online)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByM_O(long modifiedDate, boolean online) {
 		getPersistence().removeByM_O(modifiedDate, online);
 	}
 
@@ -668,10 +595,8 @@ public class StatusUtil {
 	* @param modifiedDate the modified date
 	* @param online the online
 	* @return the number of matching statuses
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByM_O(long modifiedDate, boolean online)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByM_O(long modifiedDate, boolean online) {
 		return getPersistence().countByM_O(modifiedDate, online);
 	}
 
@@ -710,17 +635,14 @@ public class StatusUtil {
 	* @param statusId the primary key of the status
 	* @return the status that was removed
 	* @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status remove(long statusId)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence().remove(statusId);
 	}
 
 	public static com.liferay.chat.model.Status updateImpl(
-		com.liferay.chat.model.Status status)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.chat.model.Status status) {
 		return getPersistence().updateImpl(status);
 	}
 
@@ -730,11 +652,9 @@ public class StatusUtil {
 	* @param statusId the primary key of the status
 	* @return the status
 	* @throws com.liferay.chat.NoSuchStatusException if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.chat.model.Status findByPrimaryKey(long statusId)
-		throws com.liferay.chat.NoSuchStatusException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.chat.NoSuchStatusException {
 		return getPersistence().findByPrimaryKey(statusId);
 	}
 
@@ -743,10 +663,8 @@ public class StatusUtil {
 	*
 	* @param statusId the primary key of the status
 	* @return the status, or <code>null</code> if a status with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.chat.model.Status fetchByPrimaryKey(long statusId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.chat.model.Status fetchByPrimaryKey(long statusId) {
 		return getPersistence().fetchByPrimaryKey(statusId);
 	}
 
@@ -754,10 +672,8 @@ public class StatusUtil {
 	* Returns all the statuses.
 	*
 	* @return the statuses
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.chat.model.Status> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.chat.model.Status> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -771,11 +687,9 @@ public class StatusUtil {
 	* @param start the lower bound of the range of statuses
 	* @param end the upper bound of the range of statuses (not inclusive)
 	* @return the range of statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -790,22 +704,17 @@ public class StatusUtil {
 	* @param end the upper bound of the range of statuses (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of statuses
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.chat.model.Status> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the statuses from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -813,10 +722,8 @@ public class StatusUtil {
 	* Returns the number of statuses.
 	*
 	* @return the number of statuses
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

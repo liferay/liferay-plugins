@@ -18,7 +18,6 @@ import com.liferay.mail.model.Attachment;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class AttachmentUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class AttachmentUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<Attachment> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class AttachmentUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<Attachment> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class AttachmentUtil {
 	 */
 	public static List<Attachment> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class AttachmentUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Attachment update(Attachment attachment)
-		throws SystemException {
+	public static Attachment update(Attachment attachment) {
 		return getPersistence().update(attachment);
 	}
 
@@ -106,7 +102,7 @@ public class AttachmentUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static Attachment update(Attachment attachment,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(attachment, serviceContext);
 	}
 
@@ -115,11 +111,9 @@ public class AttachmentUtil {
 	*
 	* @param messageId the message ID
 	* @return the matching attachments
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
-		long messageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long messageId) {
 		return getPersistence().findByMessageId(messageId);
 	}
 
@@ -134,11 +128,9 @@ public class AttachmentUtil {
 	* @param start the lower bound of the range of attachments
 	* @param end the upper bound of the range of attachments (not inclusive)
 	* @return the range of matching attachments
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
-		long messageId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long messageId, int start, int end) {
 		return getPersistence().findByMessageId(messageId, start, end);
 	}
 
@@ -154,12 +146,10 @@ public class AttachmentUtil {
 	* @param end the upper bound of the range of attachments (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching attachments
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Attachment> findByMessageId(
 		long messageId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByMessageId(messageId, start, end, orderByComparator);
 	}
@@ -171,13 +161,11 @@ public class AttachmentUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching attachment
 	* @throws com.liferay.mail.NoSuchAttachmentException if a matching attachment could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Attachment findByMessageId_First(
 		long messageId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchAttachmentException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchAttachmentException {
 		return getPersistence()
 				   .findByMessageId_First(messageId, orderByComparator);
 	}
@@ -188,12 +176,10 @@ public class AttachmentUtil {
 	* @param messageId the message ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching attachment, or <code>null</code> if a matching attachment could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Attachment fetchByMessageId_First(
 		long messageId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByMessageId_First(messageId, orderByComparator);
 	}
@@ -205,13 +191,11 @@ public class AttachmentUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching attachment
 	* @throws com.liferay.mail.NoSuchAttachmentException if a matching attachment could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Attachment findByMessageId_Last(
 		long messageId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchAttachmentException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchAttachmentException {
 		return getPersistence()
 				   .findByMessageId_Last(messageId, orderByComparator);
 	}
@@ -222,12 +206,10 @@ public class AttachmentUtil {
 	* @param messageId the message ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching attachment, or <code>null</code> if a matching attachment could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Attachment fetchByMessageId_Last(
 		long messageId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByMessageId_Last(messageId, orderByComparator);
 	}
@@ -240,13 +222,11 @@ public class AttachmentUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next attachment
 	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Attachment[] findByMessageId_PrevAndNext(
 		long attachmentId, long messageId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchAttachmentException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchAttachmentException {
 		return getPersistence()
 				   .findByMessageId_PrevAndNext(attachmentId, messageId,
 			orderByComparator);
@@ -256,10 +236,8 @@ public class AttachmentUtil {
 	* Removes all the attachments where messageId = &#63; from the database.
 	*
 	* @param messageId the message ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByMessageId(long messageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByMessageId(long messageId) {
 		getPersistence().removeByMessageId(messageId);
 	}
 
@@ -268,10 +246,8 @@ public class AttachmentUtil {
 	*
 	* @param messageId the message ID
 	* @return the number of matching attachments
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByMessageId(long messageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByMessageId(long messageId) {
 		return getPersistence().countByMessageId(messageId);
 	}
 
@@ -310,17 +286,14 @@ public class AttachmentUtil {
 	* @param attachmentId the primary key of the attachment
 	* @return the attachment that was removed
 	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Attachment remove(long attachmentId)
-		throws com.liferay.mail.NoSuchAttachmentException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchAttachmentException {
 		return getPersistence().remove(attachmentId);
 	}
 
 	public static com.liferay.mail.model.Attachment updateImpl(
-		com.liferay.mail.model.Attachment attachment)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.mail.model.Attachment attachment) {
 		return getPersistence().updateImpl(attachment);
 	}
 
@@ -330,12 +303,9 @@ public class AttachmentUtil {
 	* @param attachmentId the primary key of the attachment
 	* @return the attachment
 	* @throws com.liferay.mail.NoSuchAttachmentException if a attachment with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Attachment findByPrimaryKey(
-		long attachmentId)
-		throws com.liferay.mail.NoSuchAttachmentException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long attachmentId) throws com.liferay.mail.NoSuchAttachmentException {
 		return getPersistence().findByPrimaryKey(attachmentId);
 	}
 
@@ -344,11 +314,9 @@ public class AttachmentUtil {
 	*
 	* @param attachmentId the primary key of the attachment
 	* @return the attachment, or <code>null</code> if a attachment with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Attachment fetchByPrimaryKey(
-		long attachmentId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long attachmentId) {
 		return getPersistence().fetchByPrimaryKey(attachmentId);
 	}
 
@@ -356,10 +324,8 @@ public class AttachmentUtil {
 	* Returns all the attachments.
 	*
 	* @return the attachments
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.mail.model.Attachment> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.mail.model.Attachment> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -373,11 +339,9 @@ public class AttachmentUtil {
 	* @param start the lower bound of the range of attachments
 	* @param end the upper bound of the range of attachments (not inclusive)
 	* @return the range of attachments
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Attachment> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -392,22 +356,17 @@ public class AttachmentUtil {
 	* @param end the upper bound of the range of attachments (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of attachments
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Attachment> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the attachments from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -415,10 +374,8 @@ public class AttachmentUtil {
 	* Returns the number of attachments.
 	*
 	* @return the number of attachments
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

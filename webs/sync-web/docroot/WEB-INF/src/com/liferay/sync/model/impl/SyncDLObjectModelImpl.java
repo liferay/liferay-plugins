@@ -16,7 +16,6 @@ package com.liferay.sync.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
@@ -656,7 +655,7 @@ public class SyncDLObjectModelImpl extends BaseModelImpl<SyncDLObject>
 	}
 
 	@Override
-	public String getLockUserUuid() throws SystemException {
+	public String getLockUserUuid() {
 		try {
 			User user = UserLocalServiceUtil.getUserById(getLockUserId());
 

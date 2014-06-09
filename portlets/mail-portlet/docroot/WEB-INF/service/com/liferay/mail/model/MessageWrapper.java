@@ -273,11 +273,9 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	* Returns the user uuid of this message.
 	*
 	* @return the user uuid of this message
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _message.getUserUuid();
 	}
 
@@ -710,8 +708,7 @@ public class MessageWrapper implements Message, ModelWrapper<Message> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_message.persist();
 	}
 

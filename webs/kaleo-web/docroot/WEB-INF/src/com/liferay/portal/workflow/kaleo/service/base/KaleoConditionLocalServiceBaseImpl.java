@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -86,12 +88,10 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 *
 	 * @param kaleoCondition the kaleo condition
 	 * @return the kaleo condition that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public KaleoCondition addKaleoCondition(KaleoCondition kaleoCondition)
-		throws SystemException {
+	public KaleoCondition addKaleoCondition(KaleoCondition kaleoCondition) {
 		kaleoCondition.setNew(true);
 
 		return kaleoConditionPersistence.update(kaleoCondition);
@@ -114,12 +114,11 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @param kaleoConditionId the primary key of the kaleo condition
 	 * @return the kaleo condition that was removed
 	 * @throws PortalException if a kaleo condition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoCondition deleteKaleoCondition(long kaleoConditionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoConditionPersistence.remove(kaleoConditionId);
 	}
 
@@ -128,12 +127,10 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 *
 	 * @param kaleoCondition the kaleo condition
 	 * @return the kaleo condition that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public KaleoCondition deleteKaleoCondition(KaleoCondition kaleoCondition)
-		throws SystemException {
+	public KaleoCondition deleteKaleoCondition(KaleoCondition kaleoCondition) {
 		return kaleoConditionPersistence.remove(kaleoCondition);
 	}
 
@@ -150,12 +147,10 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return kaleoConditionPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -170,12 +165,10 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return kaleoConditionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -192,12 +185,11 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return kaleoConditionPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -207,11 +199,9 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return kaleoConditionPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -221,18 +211,16 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return kaleoConditionPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public KaleoCondition fetchKaleoCondition(long kaleoConditionId)
-		throws SystemException {
+	public KaleoCondition fetchKaleoCondition(long kaleoConditionId) {
 		return kaleoConditionPersistence.fetchByPrimaryKey(kaleoConditionId);
 	}
 
@@ -242,17 +230,47 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @param kaleoConditionId the primary key of the kaleo condition
 	 * @return the kaleo condition
 	 * @throws PortalException if a kaleo condition with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoCondition getKaleoCondition(long kaleoConditionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoConditionPersistence.findByPrimaryKey(kaleoConditionId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(KaleoCondition.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("kaleoConditionId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.service.KaleoConditionLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(KaleoCondition.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("kaleoConditionId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteKaleoCondition((KaleoCondition)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoConditionPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -266,11 +284,9 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * @param start the lower bound of the range of kaleo conditions
 	 * @param end the upper bound of the range of kaleo conditions (not inclusive)
 	 * @return the range of kaleo conditions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KaleoCondition> getKaleoConditions(int start, int end)
-		throws SystemException {
+	public List<KaleoCondition> getKaleoConditions(int start, int end) {
 		return kaleoConditionPersistence.findAll(start, end);
 	}
 
@@ -278,10 +294,9 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 * Returns the number of kaleo conditions.
 	 *
 	 * @return the number of kaleo conditions
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getKaleoConditionsCount() throws SystemException {
+	public int getKaleoConditionsCount() {
 		return kaleoConditionPersistence.countAll();
 	}
 
@@ -290,12 +305,10 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 *
 	 * @param kaleoCondition the kaleo condition
 	 * @return the kaleo condition that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public KaleoCondition updateKaleoCondition(KaleoCondition kaleoCondition)
-		throws SystemException {
+	public KaleoCondition updateKaleoCondition(KaleoCondition kaleoCondition) {
 		return kaleoConditionPersistence.update(kaleoCondition);
 	}
 
@@ -1163,7 +1176,7 @@ public abstract class KaleoConditionLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = kaleoConditionPersistence.getDataSource();
 

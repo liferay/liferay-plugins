@@ -18,7 +18,6 @@ import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Eduardo Lundgren
@@ -28,8 +27,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 @Deprecated
 public abstract class CalendarNotificationTemplateActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public CalendarNotificationTemplateActionableDynamicQuery()
-		throws SystemException {
+	public CalendarNotificationTemplateActionableDynamicQuery() {
 		setBaseLocalService(CalendarNotificationTemplateLocalServiceUtil.getService());
 		setClass(CalendarNotificationTemplate.class);
 

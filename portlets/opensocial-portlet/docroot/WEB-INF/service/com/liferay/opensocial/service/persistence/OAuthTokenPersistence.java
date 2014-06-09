@@ -43,11 +43,9 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the matching o auth tokens
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> findByG_S(
-		java.lang.String gadgetKey, java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String gadgetKey, java.lang.String serviceName);
 
 	/**
 	* Returns a range of all the o auth tokens where gadgetKey = &#63; and serviceName = &#63;.
@@ -61,11 +59,10 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param start the lower bound of the range of o auth tokens
 	* @param end the upper bound of the range of o auth tokens (not inclusive)
 	* @return the range of matching o auth tokens
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> findByG_S(
 		java.lang.String gadgetKey, java.lang.String serviceName, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the o auth tokens where gadgetKey = &#63; and serviceName = &#63;.
@@ -80,13 +77,11 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param end the upper bound of the range of o auth tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching o auth tokens
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> findByG_S(
 		java.lang.String gadgetKey, java.lang.String serviceName, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -96,13 +91,11 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken findByG_S_First(
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	/**
 	* Returns the first o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -111,12 +104,10 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param serviceName the service name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching o auth token, or <code>null</code> if a matching o auth token could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken fetchByG_S_First(
 		java.lang.String gadgetKey, java.lang.String serviceName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -126,13 +117,11 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken findByG_S_Last(
 		java.lang.String gadgetKey, java.lang.String serviceName,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	/**
 	* Returns the last o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -141,12 +130,10 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param serviceName the service name
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching o auth token, or <code>null</code> if a matching o auth token could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken fetchByG_S_Last(
 		java.lang.String gadgetKey, java.lang.String serviceName,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the o auth tokens before and after the current o auth token in the ordered set where gadgetKey = &#63; and serviceName = &#63;.
@@ -157,25 +144,21 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken[] findByG_S_PrevAndNext(
 		long oAuthTokenId, java.lang.String gadgetKey,
 		java.lang.String serviceName,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	/**
 	* Removes all the o auth tokens where gadgetKey = &#63; and serviceName = &#63; from the database.
 	*
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
-	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByG_S(java.lang.String gadgetKey,
-		java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String serviceName);
 
 	/**
 	* Returns the number of o auth tokens where gadgetKey = &#63; and serviceName = &#63;.
@@ -183,11 +166,9 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param gadgetKey the gadget key
 	* @param serviceName the service name
 	* @return the number of matching o auth tokens
-	* @throws SystemException if a system exception occurred
 	*/
 	public int countByG_S(java.lang.String gadgetKey,
-		java.lang.String serviceName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String serviceName);
 
 	/**
 	* Returns the o auth token where userId = &#63; and gadgetKey = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
@@ -199,13 +180,11 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param tokenName the token name
 	* @return the matching o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a matching o auth token could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken findByU_G_S_M_T(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	/**
 	* Returns the o auth token where userId = &#63; and gadgetKey = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -216,12 +195,10 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param moduleId the module ID
 	* @param tokenName the token name
 	* @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken fetchByU_G_S_M_T(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
-		long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long moduleId, java.lang.String tokenName);
 
 	/**
 	* Returns the o auth token where userId = &#63; and gadgetKey = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -233,12 +210,10 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param tokenName the token name
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching o auth token, or <code>null</code> if a matching o auth token could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken fetchByU_G_S_M_T(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
-		long moduleId, java.lang.String tokenName, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long moduleId, java.lang.String tokenName, boolean retrieveFromCache);
 
 	/**
 	* Removes the o auth token where userId = &#63; and gadgetKey = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63; from the database.
@@ -249,13 +224,11 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param moduleId the module ID
 	* @param tokenName the token name
 	* @return the o auth token that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken removeByU_G_S_M_T(
 		long userId, java.lang.String gadgetKey, java.lang.String serviceName,
 		long moduleId, java.lang.String tokenName)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	/**
 	* Returns the number of o auth tokens where userId = &#63; and gadgetKey = &#63; and serviceName = &#63; and moduleId = &#63; and tokenName = &#63;.
@@ -266,11 +239,9 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param moduleId the module ID
 	* @param tokenName the token name
 	* @return the number of matching o auth tokens
-	* @throws SystemException if a system exception occurred
 	*/
 	public int countByU_G_S_M_T(long userId, java.lang.String gadgetKey,
-		java.lang.String serviceName, long moduleId, java.lang.String tokenName)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String serviceName, long moduleId, java.lang.String tokenName);
 
 	/**
 	* Caches the o auth token in the entity cache if it is enabled.
@@ -301,15 +272,12 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param oAuthTokenId the primary key of the o auth token
 	* @return the o auth token that was removed
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken remove(long oAuthTokenId)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	public com.liferay.opensocial.model.OAuthToken updateImpl(
-		com.liferay.opensocial.model.OAuthToken oAuthToken)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.opensocial.model.OAuthToken oAuthToken);
 
 	/**
 	* Returns the o auth token with the primary key or throws a {@link com.liferay.opensocial.NoSuchOAuthTokenException} if it could not be found.
@@ -317,32 +285,26 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param oAuthTokenId the primary key of the o auth token
 	* @return the o auth token
 	* @throws com.liferay.opensocial.NoSuchOAuthTokenException if a o auth token with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken findByPrimaryKey(
 		long oAuthTokenId)
-		throws com.liferay.opensocial.NoSuchOAuthTokenException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchOAuthTokenException;
 
 	/**
 	* Returns the o auth token with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param oAuthTokenId the primary key of the o auth token
 	* @return the o auth token, or <code>null</code> if a o auth token with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.OAuthToken fetchByPrimaryKey(
-		long oAuthTokenId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long oAuthTokenId);
 
 	/**
 	* Returns all the o auth tokens.
 	*
 	* @return the o auth tokens
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.opensocial.model.OAuthToken> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.opensocial.model.OAuthToken> findAll();
 
 	/**
 	* Returns a range of all the o auth tokens.
@@ -354,11 +316,9 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param start the lower bound of the range of o auth tokens
 	* @param end the upper bound of the range of o auth tokens (not inclusive)
 	* @return the range of o auth tokens
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the o auth tokens.
@@ -371,27 +331,20 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	* @param end the upper bound of the range of o auth tokens (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of o auth tokens
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.OAuthToken> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the o auth tokens from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of o auth tokens.
 	*
 	* @return the number of o auth tokens
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

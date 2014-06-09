@@ -175,11 +175,9 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	* Returns the user uuid of this status.
 	*
 	* @return the user uuid of this status
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _status.getUserUuid();
 	}
 
@@ -442,8 +440,7 @@ public class StatusWrapper implements Status, ModelWrapper<Status> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_status.persist();
 	}
 

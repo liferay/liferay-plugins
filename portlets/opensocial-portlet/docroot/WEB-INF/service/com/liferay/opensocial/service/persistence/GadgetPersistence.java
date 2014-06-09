@@ -42,11 +42,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*
 	* @param uuid the uuid
 	* @return the matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid);
 
 	/**
 	* Returns a range of all the gadgets where uuid = &#63;.
@@ -59,11 +57,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param start the lower bound of the range of gadgets
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, int start, int end);
 
 	/**
 	* Returns an ordered range of all the gadgets where uuid = &#63;.
@@ -77,12 +73,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first gadget in the ordered set where uuid = &#63;.
@@ -91,13 +85,11 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns the first gadget in the ordered set where uuid = &#63;.
@@ -105,12 +97,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget, or <code>null</code> if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last gadget in the ordered set where uuid = &#63;.
@@ -119,13 +109,11 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns the last gadget in the ordered set where uuid = &#63;.
@@ -133,12 +121,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget, or <code>null</code> if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the gadgets before and after the current gadget in the ordered set where uuid = &#63;.
@@ -148,24 +134,20 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget[] findByUuid_PrevAndNext(
 		long gadgetId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns all the gadgets that the user has permission to view where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @return the matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> filterFindByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid);
 
 	/**
 	* Returns a range of all the gadgets that the user has permission to view where uuid = &#63;.
@@ -178,11 +160,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param start the lower bound of the range of gadgets
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> filterFindByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, int start, int end);
 
 	/**
 	* Returns an ordered range of all the gadgets that the user has permissions to view where uuid = &#63;.
@@ -196,12 +176,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> filterFindByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the gadgets before and after the current gadget in the ordered set of gadgets that the user has permission to view where uuid = &#63;.
@@ -211,42 +189,34 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget[] filterFindByUuid_PrevAndNext(
 		long gadgetId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Removes all the gadgets where uuid = &#63; from the database.
 	*
 	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUuid(java.lang.String uuid);
 
 	/**
 	* Returns the number of gadgets where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @return the number of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUuid(java.lang.String uuid);
 
 	/**
 	* Returns the number of gadgets that the user has permission to view where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @return the number of matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByUuid(java.lang.String uuid);
 
 	/**
 	* Returns all the gadgets where uuid = &#63; and companyId = &#63;.
@@ -254,11 +224,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByUuid_C(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long companyId);
 
 	/**
 	* Returns a range of all the gadgets where uuid = &#63; and companyId = &#63;.
@@ -272,11 +240,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param start the lower bound of the range of gadgets
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the gadgets where uuid = &#63; and companyId = &#63;.
@@ -291,12 +257,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first gadget in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -306,13 +270,11 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget findByUuid_C_First(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns the first gadget in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -321,12 +283,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget, or <code>null</code> if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last gadget in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -336,13 +296,11 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns the last gadget in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -351,12 +309,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget, or <code>null</code> if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the gadgets before and after the current gadget in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -367,13 +323,11 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget[] findByUuid_C_PrevAndNext(
 		long gadgetId, java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns all the gadgets that the user has permission to view where uuid = &#63; and companyId = &#63;.
@@ -381,11 +335,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> filterFindByUuid_C(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long companyId);
 
 	/**
 	* Returns a range of all the gadgets that the user has permission to view where uuid = &#63; and companyId = &#63;.
@@ -399,11 +351,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param start the lower bound of the range of gadgets
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> filterFindByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the gadgets that the user has permissions to view where uuid = &#63; and companyId = &#63;.
@@ -418,12 +368,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> filterFindByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the gadgets before and after the current gadget in the ordered set of gadgets that the user has permission to view where uuid = &#63; and companyId = &#63;.
@@ -434,23 +382,19 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget[] filterFindByUuid_C_PrevAndNext(
 		long gadgetId, java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Removes all the gadgets where uuid = &#63; and companyId = &#63; from the database.
 	*
 	* @param uuid the uuid
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUuid_C(java.lang.String uuid, long companyId);
 
 	/**
 	* Returns the number of gadgets where uuid = &#63; and companyId = &#63;.
@@ -458,10 +402,8 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the number of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUuid_C(java.lang.String uuid, long companyId);
 
 	/**
 	* Returns the number of gadgets that the user has permission to view where uuid = &#63; and companyId = &#63;.
@@ -469,21 +411,17 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the number of matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByUuid_C(java.lang.String uuid, long companyId);
 
 	/**
 	* Returns all the gadgets where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId);
 
 	/**
 	* Returns a range of all the gadgets where companyId = &#63;.
@@ -496,11 +434,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param start the lower bound of the range of gadgets
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the gadgets where companyId = &#63;.
@@ -514,12 +450,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first gadget in the ordered set where companyId = &#63;.
@@ -528,13 +462,11 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns the first gadget in the ordered set where companyId = &#63;.
@@ -542,12 +474,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching gadget, or <code>null</code> if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last gadget in the ordered set where companyId = &#63;.
@@ -556,13 +486,11 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns the last gadget in the ordered set where companyId = &#63;.
@@ -570,12 +498,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching gadget, or <code>null</code> if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the gadgets before and after the current gadget in the ordered set where companyId = &#63;.
@@ -585,24 +511,20 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget[] findByCompanyId_PrevAndNext(
 		long gadgetId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns all the gadgets that the user has permission to view where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> filterFindByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId);
 
 	/**
 	* Returns a range of all the gadgets that the user has permission to view where companyId = &#63;.
@@ -615,11 +537,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param start the lower bound of the range of gadgets
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> filterFindByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the gadgets that the user has permissions to view where companyId = &#63;.
@@ -633,12 +553,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> filterFindByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the gadgets before and after the current gadget in the ordered set of gadgets that the user has permission to view where companyId = &#63;.
@@ -648,42 +566,34 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget[] filterFindByCompanyId_PrevAndNext(
 		long gadgetId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Removes all the gadgets where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByCompanyId(long companyId);
 
 	/**
 	* Returns the number of gadgets where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the number of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByCompanyId(long companyId);
 
 	/**
 	* Returns the number of gadgets that the user has permission to view where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the number of matching gadgets that the user has permission to view
-	* @throws SystemException if a system exception occurred
 	*/
-	public int filterCountByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int filterCountByCompanyId(long companyId);
 
 	/**
 	* Returns the gadget where companyId = &#63; and url = &#63; or throws a {@link com.liferay.opensocial.NoSuchGadgetException} if it could not be found.
@@ -692,12 +602,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param url the url
 	* @return the matching gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget findByC_U(long companyId,
 		java.lang.String url)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -705,11 +613,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param companyId the company ID
 	* @param url the url
 	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget fetchByC_U(long companyId,
-		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String url);
 
 	/**
 	* Returns the gadget where companyId = &#63; and url = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -718,11 +624,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param url the url
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching gadget, or <code>null</code> if a matching gadget could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget fetchByC_U(long companyId,
-		java.lang.String url, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String url, boolean retrieveFromCache);
 
 	/**
 	* Removes the gadget where companyId = &#63; and url = &#63; from the database.
@@ -730,12 +634,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param companyId the company ID
 	* @param url the url
 	* @return the gadget that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget removeByC_U(long companyId,
 		java.lang.String url)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns the number of gadgets where companyId = &#63; and url = &#63;.
@@ -743,10 +645,8 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param companyId the company ID
 	* @param url the url
 	* @return the number of matching gadgets
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_U(long companyId, java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByC_U(long companyId, java.lang.String url);
 
 	/**
 	* Caches the gadget in the entity cache if it is enabled.
@@ -777,15 +677,12 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param gadgetId the primary key of the gadget
 	* @return the gadget that was removed
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget remove(long gadgetId)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	public com.liferay.opensocial.model.Gadget updateImpl(
-		com.liferay.opensocial.model.Gadget gadget)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.opensocial.model.Gadget gadget);
 
 	/**
 	* Returns the gadget with the primary key or throws a {@link com.liferay.opensocial.NoSuchGadgetException} if it could not be found.
@@ -793,30 +690,24 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param gadgetId the primary key of the gadget
 	* @return the gadget
 	* @throws com.liferay.opensocial.NoSuchGadgetException if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.opensocial.model.Gadget findByPrimaryKey(long gadgetId)
-		throws com.liferay.opensocial.NoSuchGadgetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.opensocial.NoSuchGadgetException;
 
 	/**
 	* Returns the gadget with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param gadgetId the primary key of the gadget
 	* @return the gadget, or <code>null</code> if a gadget with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.opensocial.model.Gadget fetchByPrimaryKey(long gadgetId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.opensocial.model.Gadget fetchByPrimaryKey(long gadgetId);
 
 	/**
 	* Returns all the gadgets.
 	*
 	* @return the gadgets
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.opensocial.model.Gadget> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.opensocial.model.Gadget> findAll();
 
 	/**
 	* Returns a range of all the gadgets.
@@ -828,11 +719,9 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param start the lower bound of the range of gadgets
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @return the range of gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the gadgets.
@@ -845,27 +734,20 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	* @param end the upper bound of the range of gadgets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of gadgets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.opensocial.model.Gadget> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the gadgets from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of gadgets.
 	*
 	* @return the number of gadgets
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

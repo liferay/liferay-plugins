@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -74,12 +76,10 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 *
 	 * @param attachment the attachment
 	 * @return the attachment that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public Attachment addAttachment(Attachment attachment)
-		throws SystemException {
+	public Attachment addAttachment(Attachment attachment) {
 		attachment.setNew(true);
 
 		return attachmentPersistence.update(attachment);
@@ -102,7 +102,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @param attachmentId the primary key of the attachment
 	 * @return the attachment that was removed
 	 * @throws PortalException if a attachment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -116,12 +116,10 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 *
 	 * @param attachment the attachment
 	 * @return the attachment that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Attachment deleteAttachment(Attachment attachment)
-		throws SystemException {
+	public Attachment deleteAttachment(Attachment attachment) {
 		return attachmentPersistence.remove(attachment);
 	}
 
@@ -138,12 +136,10 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return attachmentPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -158,12 +154,10 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return attachmentPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -180,12 +174,11 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return attachmentPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -195,11 +188,9 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return attachmentPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -209,18 +200,16 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return attachmentPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public Attachment fetchAttachment(long attachmentId)
-		throws SystemException {
+	public Attachment fetchAttachment(long attachmentId) {
 		return attachmentPersistence.fetchByPrimaryKey(attachmentId);
 	}
 
@@ -230,17 +219,47 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @param attachmentId the primary key of the attachment
 	 * @return the attachment
 	 * @throws PortalException if a attachment with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Attachment getAttachment(long attachmentId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return attachmentPersistence.findByPrimaryKey(attachmentId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.AttachmentLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(Attachment.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("attachmentId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.mail.service.AttachmentLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(Attachment.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("attachmentId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteAttachment((Attachment)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return attachmentPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -254,11 +273,9 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * @param start the lower bound of the range of attachments
 	 * @param end the upper bound of the range of attachments (not inclusive)
 	 * @return the range of attachments
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Attachment> getAttachments(int start, int end)
-		throws SystemException {
+	public List<Attachment> getAttachments(int start, int end) {
 		return attachmentPersistence.findAll(start, end);
 	}
 
@@ -266,10 +283,9 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 * Returns the number of attachments.
 	 *
 	 * @return the number of attachments
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getAttachmentsCount() throws SystemException {
+	public int getAttachmentsCount() {
 		return attachmentPersistence.countAll();
 	}
 
@@ -278,12 +294,10 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 *
 	 * @param attachment the attachment
 	 * @return the attachment that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public Attachment updateAttachment(Attachment attachment)
-		throws SystemException {
+	public Attachment updateAttachment(Attachment attachment) {
 		return attachmentPersistence.update(attachment);
 	}
 
@@ -655,7 +669,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = attachmentPersistence.getDataSource();
 

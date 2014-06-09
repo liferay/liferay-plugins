@@ -18,7 +18,6 @@ import com.liferay.mail.model.Message;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,16 +60,14 @@ public class MessageUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
-	public static List<Message> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static List<Message> findWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +75,7 @@ public class MessageUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<Message> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +84,7 @@ public class MessageUtil {
 	 */
 	public static List<Message> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,15 +93,14 @@ public class MessageUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Message update(Message message) throws SystemException {
+	public static Message update(Message message) {
 		return getPersistence().update(message);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Message update(Message message, ServiceContext serviceContext)
-		throws SystemException {
+	public static Message update(Message message, ServiceContext serviceContext) {
 		return getPersistence().update(message, serviceContext);
 	}
 
@@ -114,11 +109,9 @@ public class MessageUtil {
 	*
 	* @param companyId the company ID
 	* @return the matching messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Message> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
@@ -133,11 +126,9 @@ public class MessageUtil {
 	* @param start the lower bound of the range of messages
 	* @param end the upper bound of the range of messages (not inclusive)
 	* @return the range of matching messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Message> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
@@ -153,12 +144,10 @@ public class MessageUtil {
 	* @param end the upper bound of the range of messages (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Message> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -170,13 +159,11 @@ public class MessageUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
@@ -187,12 +174,10 @@ public class MessageUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message, or <code>null</code> if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -204,13 +189,11 @@ public class MessageUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -221,12 +204,10 @@ public class MessageUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message, or <code>null</code> if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -239,13 +220,11 @@ public class MessageUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message[] findByCompanyId_PrevAndNext(
 		long messageId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(messageId, companyId,
 			orderByComparator);
@@ -255,10 +234,8 @@ public class MessageUtil {
 	* Removes all the messages where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByCompanyId(long companyId) {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
@@ -267,10 +244,8 @@ public class MessageUtil {
 	*
 	* @param companyId the company ID
 	* @return the number of matching messages
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByCompanyId(long companyId) {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
@@ -279,11 +254,9 @@ public class MessageUtil {
 	*
 	* @param folderId the folder ID
 	* @return the matching messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Message> findByFolderId(
-		long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long folderId) {
 		return getPersistence().findByFolderId(folderId);
 	}
 
@@ -298,11 +271,9 @@ public class MessageUtil {
 	* @param start the lower bound of the range of messages
 	* @param end the upper bound of the range of messages (not inclusive)
 	* @return the range of matching messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Message> findByFolderId(
-		long folderId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long folderId, int start, int end) {
 		return getPersistence().findByFolderId(folderId, start, end);
 	}
 
@@ -318,12 +289,10 @@ public class MessageUtil {
 	* @param end the upper bound of the range of messages (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Message> findByFolderId(
 		long folderId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByFolderId(folderId, start, end, orderByComparator);
 	}
@@ -335,13 +304,11 @@ public class MessageUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message findByFolderId_First(
 		long folderId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence().findByFolderId_First(folderId, orderByComparator);
 	}
 
@@ -351,12 +318,10 @@ public class MessageUtil {
 	* @param folderId the folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching message, or <code>null</code> if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message fetchByFolderId_First(
 		long folderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByFolderId_First(folderId, orderByComparator);
 	}
@@ -368,13 +333,11 @@ public class MessageUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message findByFolderId_Last(
 		long folderId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence().findByFolderId_Last(folderId, orderByComparator);
 	}
 
@@ -384,12 +347,10 @@ public class MessageUtil {
 	* @param folderId the folder ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching message, or <code>null</code> if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message fetchByFolderId_Last(
 		long folderId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByFolderId_Last(folderId, orderByComparator);
 	}
 
@@ -401,13 +362,11 @@ public class MessageUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message[] findByFolderId_PrevAndNext(
 		long messageId, long folderId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence()
 				   .findByFolderId_PrevAndNext(messageId, folderId,
 			orderByComparator);
@@ -417,10 +376,8 @@ public class MessageUtil {
 	* Removes all the messages where folderId = &#63; from the database.
 	*
 	* @param folderId the folder ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByFolderId(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByFolderId(long folderId) {
 		getPersistence().removeByFolderId(folderId);
 	}
 
@@ -429,10 +386,8 @@ public class MessageUtil {
 	*
 	* @param folderId the folder ID
 	* @return the number of matching messages
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByFolderId(long folderId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByFolderId(long folderId) {
 		return getPersistence().countByFolderId(folderId);
 	}
 
@@ -443,12 +398,9 @@ public class MessageUtil {
 	* @param remoteMessageId the remote message ID
 	* @return the matching message
 	* @throws com.liferay.mail.NoSuchMessageException if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message findByF_R(long folderId,
-		long remoteMessageId)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long remoteMessageId) throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence().findByF_R(folderId, remoteMessageId);
 	}
 
@@ -458,11 +410,9 @@ public class MessageUtil {
 	* @param folderId the folder ID
 	* @param remoteMessageId the remote message ID
 	* @return the matching message, or <code>null</code> if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message fetchByF_R(long folderId,
-		long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long remoteMessageId) {
 		return getPersistence().fetchByF_R(folderId, remoteMessageId);
 	}
 
@@ -473,11 +423,9 @@ public class MessageUtil {
 	* @param remoteMessageId the remote message ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching message, or <code>null</code> if a matching message could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message fetchByF_R(long folderId,
-		long remoteMessageId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long remoteMessageId, boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByF_R(folderId, remoteMessageId, retrieveFromCache);
 	}
@@ -488,12 +436,9 @@ public class MessageUtil {
 	* @param folderId the folder ID
 	* @param remoteMessageId the remote message ID
 	* @return the message that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message removeByF_R(long folderId,
-		long remoteMessageId)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long remoteMessageId) throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence().removeByF_R(folderId, remoteMessageId);
 	}
 
@@ -503,10 +448,8 @@ public class MessageUtil {
 	* @param folderId the folder ID
 	* @param remoteMessageId the remote message ID
 	* @return the number of matching messages
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByF_R(long folderId, long remoteMessageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByF_R(long folderId, long remoteMessageId) {
 		return getPersistence().countByF_R(folderId, remoteMessageId);
 	}
 
@@ -545,17 +488,14 @@ public class MessageUtil {
 	* @param messageId the primary key of the message
 	* @return the message that was removed
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message remove(long messageId)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence().remove(messageId);
 	}
 
 	public static com.liferay.mail.model.Message updateImpl(
-		com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.mail.model.Message message) {
 		return getPersistence().updateImpl(message);
 	}
 
@@ -565,12 +505,9 @@ public class MessageUtil {
 	* @param messageId the primary key of the message
 	* @return the message
 	* @throws com.liferay.mail.NoSuchMessageException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message findByPrimaryKey(
-		long messageId)
-		throws com.liferay.mail.NoSuchMessageException,
-			com.liferay.portal.kernel.exception.SystemException {
+		long messageId) throws com.liferay.mail.NoSuchMessageException {
 		return getPersistence().findByPrimaryKey(messageId);
 	}
 
@@ -579,11 +516,9 @@ public class MessageUtil {
 	*
 	* @param messageId the primary key of the message
 	* @return the message, or <code>null</code> if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.mail.model.Message fetchByPrimaryKey(
-		long messageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long messageId) {
 		return getPersistence().fetchByPrimaryKey(messageId);
 	}
 
@@ -591,10 +526,8 @@ public class MessageUtil {
 	* Returns all the messages.
 	*
 	* @return the messages
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.mail.model.Message> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.mail.model.Message> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -608,11 +541,9 @@ public class MessageUtil {
 	* @param start the lower bound of the range of messages
 	* @param end the upper bound of the range of messages (not inclusive)
 	* @return the range of messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Message> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -627,22 +558,17 @@ public class MessageUtil {
 	* @param end the upper bound of the range of messages (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of messages
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.mail.model.Message> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the messages from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -650,10 +576,8 @@ public class MessageUtil {
 	* Returns the number of messages.
 	*
 	* @return the number of messages
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -73,12 +75,10 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 *
 	 * @param testBlobEntry the test blob entry
 	 * @return the test blob entry that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public TestBlobEntry addTestBlobEntry(TestBlobEntry testBlobEntry)
-		throws SystemException {
+	public TestBlobEntry addTestBlobEntry(TestBlobEntry testBlobEntry) {
 		testBlobEntry.setNew(true);
 
 		return testBlobEntryPersistence.update(testBlobEntry);
@@ -101,12 +101,11 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 * @param testBlobEntryId the primary key of the test blob entry
 	 * @return the test blob entry that was removed
 	 * @throws PortalException if a test blob entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public TestBlobEntry deleteTestBlobEntry(long testBlobEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return testBlobEntryPersistence.remove(testBlobEntryId);
 	}
 
@@ -115,12 +114,10 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 *
 	 * @param testBlobEntry the test blob entry
 	 * @return the test blob entry that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public TestBlobEntry deleteTestBlobEntry(TestBlobEntry testBlobEntry)
-		throws SystemException {
+	public TestBlobEntry deleteTestBlobEntry(TestBlobEntry testBlobEntry) {
 		return testBlobEntryPersistence.remove(testBlobEntry);
 	}
 
@@ -137,12 +134,10 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return testBlobEntryPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -157,12 +152,10 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return testBlobEntryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -179,12 +172,11 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return testBlobEntryPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -194,11 +186,9 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return testBlobEntryPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -208,18 +198,16 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return testBlobEntryPersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public TestBlobEntry fetchTestBlobEntry(long testBlobEntryId)
-		throws SystemException {
+	public TestBlobEntry fetchTestBlobEntry(long testBlobEntryId) {
 		return testBlobEntryPersistence.fetchByPrimaryKey(testBlobEntryId);
 	}
 
@@ -229,17 +217,47 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 * @param testBlobEntryId the primary key of the test blob entry
 	 * @return the test blob entry
 	 * @throws PortalException if a test blob entry with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public TestBlobEntry getTestBlobEntry(long testBlobEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return testBlobEntryPersistence.findByPrimaryKey(testBlobEntryId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.testblob.service.TestBlobEntryLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(TestBlobEntry.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("testBlobEntryId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.testblob.service.TestBlobEntryLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(TestBlobEntry.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("testBlobEntryId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteTestBlobEntry((TestBlobEntry)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return testBlobEntryPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -253,11 +271,9 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 * @param start the lower bound of the range of test blob entries
 	 * @param end the upper bound of the range of test blob entries (not inclusive)
 	 * @return the range of test blob entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<TestBlobEntry> getTestBlobEntries(int start, int end)
-		throws SystemException {
+	public List<TestBlobEntry> getTestBlobEntries(int start, int end) {
 		return testBlobEntryPersistence.findAll(start, end);
 	}
 
@@ -265,10 +281,9 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 * Returns the number of test blob entries.
 	 *
 	 * @return the number of test blob entries
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getTestBlobEntriesCount() throws SystemException {
+	public int getTestBlobEntriesCount() {
 		return testBlobEntryPersistence.countAll();
 	}
 
@@ -277,18 +292,16 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 *
 	 * @param testBlobEntry the test blob entry
 	 * @return the test blob entry that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public TestBlobEntry updateTestBlobEntry(TestBlobEntry testBlobEntry)
-		throws SystemException {
+	public TestBlobEntry updateTestBlobEntry(TestBlobEntry testBlobEntry) {
 		return testBlobEntryPersistence.update(testBlobEntry);
 	}
 
 	@Override
 	public TestBlobEntryBlobFieldBlobModel getBlobFieldBlobModel(
-		Serializable primaryKey) throws SystemException {
+		Serializable primaryKey) {
 		Session session = null;
 
 		try {
@@ -562,7 +575,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = testBlobEntryPersistence.getDataSource();
 

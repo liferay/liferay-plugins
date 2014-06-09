@@ -42,11 +42,9 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	*
 	* @param jiraUserId the jira user ID
 	* @return the matching j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByJiraUserId(
-		java.lang.String jiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String jiraUserId);
 
 	/**
 	* Returns a range of all the j i r a change groups where jiraUserId = &#63;.
@@ -59,11 +57,9 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param start the lower bound of the range of j i r a change groups
 	* @param end the upper bound of the range of j i r a change groups (not inclusive)
 	* @return the range of matching j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByJiraUserId(
-		java.lang.String jiraUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String jiraUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a change groups where jiraUserId = &#63;.
@@ -77,12 +73,10 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param end the upper bound of the range of j i r a change groups (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByJiraUserId(
 		java.lang.String jiraUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first j i r a change group in the ordered set where jiraUserId = &#63;.
@@ -91,13 +85,11 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup findByJiraUserId_First(
 		java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
+		throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the first j i r a change group in the ordered set where jiraUserId = &#63;.
@@ -105,12 +97,10 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param jiraUserId the jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a change group, or <code>null</code> if a matching j i r a change group could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup fetchByJiraUserId_First(
 		java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last j i r a change group in the ordered set where jiraUserId = &#63;.
@@ -119,13 +109,11 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup findByJiraUserId_Last(
 		java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
+		throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the last j i r a change group in the ordered set where jiraUserId = &#63;.
@@ -133,12 +121,10 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param jiraUserId the jira user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a change group, or <code>null</code> if a matching j i r a change group could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup fetchByJiraUserId_Last(
 		java.lang.String jiraUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the j i r a change groups before and after the current j i r a change group in the ordered set where jiraUserId = &#63;.
@@ -148,43 +134,35 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup[] findByJiraUserId_PrevAndNext(
 		long jiraChangeGroupId, java.lang.String jiraUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
+		throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
 
 	/**
 	* Removes all the j i r a change groups where jiraUserId = &#63; from the database.
 	*
 	* @param jiraUserId the jira user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByJiraUserId(java.lang.String jiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByJiraUserId(java.lang.String jiraUserId);
 
 	/**
 	* Returns the number of j i r a change groups where jiraUserId = &#63;.
 	*
 	* @param jiraUserId the jira user ID
 	* @return the number of matching j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByJiraUserId(java.lang.String jiraUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByJiraUserId(java.lang.String jiraUserId);
 
 	/**
 	* Returns all the j i r a change groups where jiraIssueId = &#63;.
 	*
 	* @param jiraIssueId the jira issue ID
 	* @return the matching j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByJiraIssueId(
-		long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long jiraIssueId);
 
 	/**
 	* Returns a range of all the j i r a change groups where jiraIssueId = &#63;.
@@ -197,11 +175,9 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param start the lower bound of the range of j i r a change groups
 	* @param end the upper bound of the range of j i r a change groups (not inclusive)
 	* @return the range of matching j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByJiraIssueId(
-		long jiraIssueId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long jiraIssueId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a change groups where jiraIssueId = &#63;.
@@ -215,12 +191,10 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param end the upper bound of the range of j i r a change groups (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findByJiraIssueId(
 		long jiraIssueId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first j i r a change group in the ordered set where jiraIssueId = &#63;.
@@ -229,13 +203,11 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup findByJiraIssueId_First(
 		long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
+		throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the first j i r a change group in the ordered set where jiraIssueId = &#63;.
@@ -243,12 +215,10 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param jiraIssueId the jira issue ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching j i r a change group, or <code>null</code> if a matching j i r a change group could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup fetchByJiraIssueId_First(
 		long jiraIssueId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last j i r a change group in the ordered set where jiraIssueId = &#63;.
@@ -257,13 +227,11 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a matching j i r a change group could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup findByJiraIssueId_Last(
 		long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
+		throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the last j i r a change group in the ordered set where jiraIssueId = &#63;.
@@ -271,12 +239,10 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param jiraIssueId the jira issue ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching j i r a change group, or <code>null</code> if a matching j i r a change group could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup fetchByJiraIssueId_Last(
 		long jiraIssueId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the j i r a change groups before and after the current j i r a change group in the ordered set where jiraIssueId = &#63;.
@@ -286,32 +252,26 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup[] findByJiraIssueId_PrevAndNext(
 		long jiraChangeGroupId, long jiraIssueId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
+		throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
 
 	/**
 	* Removes all the j i r a change groups where jiraIssueId = &#63; from the database.
 	*
 	* @param jiraIssueId the jira issue ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByJiraIssueId(long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByJiraIssueId(long jiraIssueId);
 
 	/**
 	* Returns the number of j i r a change groups where jiraIssueId = &#63;.
 	*
 	* @param jiraIssueId the jira issue ID
 	* @return the number of matching j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByJiraIssueId(long jiraIssueId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByJiraIssueId(long jiraIssueId);
 
 	/**
 	* Caches the j i r a change group in the entity cache if it is enabled.
@@ -344,16 +304,13 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param jiraChangeGroupId the primary key of the j i r a change group
 	* @return the j i r a change group that was removed
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup remove(
 		long jiraChangeGroupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
+		throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
 
 	public com.liferay.socialcoding.model.JIRAChangeGroup updateImpl(
-		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.socialcoding.model.JIRAChangeGroup jiraChangeGroup);
 
 	/**
 	* Returns the j i r a change group with the primary key or throws a {@link com.liferay.socialcoding.NoSuchJIRAChangeGroupException} if it could not be found.
@@ -361,32 +318,26 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param jiraChangeGroupId the primary key of the j i r a change group
 	* @return the j i r a change group
 	* @throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException if a j i r a change group with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup findByPrimaryKey(
 		long jiraChangeGroupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
+		throws com.liferay.socialcoding.NoSuchJIRAChangeGroupException;
 
 	/**
 	* Returns the j i r a change group with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param jiraChangeGroupId the primary key of the j i r a change group
 	* @return the j i r a change group, or <code>null</code> if a j i r a change group with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.socialcoding.model.JIRAChangeGroup fetchByPrimaryKey(
-		long jiraChangeGroupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long jiraChangeGroupId);
 
 	/**
 	* Returns all the j i r a change groups.
 	*
 	* @return the j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findAll();
 
 	/**
 	* Returns a range of all the j i r a change groups.
@@ -398,11 +349,9 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param start the lower bound of the range of j i r a change groups
 	* @param end the upper bound of the range of j i r a change groups (not inclusive)
 	* @return the range of j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the j i r a change groups.
@@ -415,27 +364,20 @@ public interface JIRAChangeGroupPersistence extends BasePersistence<JIRAChangeGr
 	* @param end the upper bound of the range of j i r a change groups (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.socialcoding.model.JIRAChangeGroup> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the j i r a change groups from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of j i r a change groups.
 	*
 	* @return the number of j i r a change groups
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

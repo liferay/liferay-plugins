@@ -2,9 +2,9 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.chat.service.EntryLocalService" class="com.liferay.chat.service.impl.EntryLocalServiceImpl" />
-	<bean id="com.liferay.chat.service.persistence.EntryPersistence" class="com.liferay.chat.service.persistence.EntryPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.chat.service.persistence.EntryFinder" class="com.liferay.chat.service.persistence.EntryFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.chat.service.persistence.EntryPersistence" class="com.liferay.chat.service.persistence.impl.EntryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.chat.service.persistence.EntryFinder" class="com.liferay.chat.service.persistence.impl.EntryFinderImpl" parent="basePersistence" />
 	<bean id="com.liferay.chat.service.StatusLocalService" class="com.liferay.chat.service.impl.StatusLocalServiceImpl" />
-	<bean id="com.liferay.chat.service.persistence.StatusPersistence" class="com.liferay.chat.service.persistence.StatusPersistenceImpl" parent="basePersistence" />
-	<bean id="com.liferay.chat.service.persistence.StatusFinder" class="com.liferay.chat.service.persistence.StatusFinderImpl" parent="basePersistence" />
+	<bean id="com.liferay.chat.service.persistence.StatusPersistence" class="com.liferay.chat.service.persistence.impl.StatusPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.chat.service.persistence.StatusFinder" class="com.liferay.chat.service.persistence.impl.StatusFinderImpl" parent="basePersistence" />
 </beans>

@@ -44,11 +44,9 @@ public class BarLocalServiceUtil {
 	*
 	* @param bar the bar
 	* @return the bar that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testtransaction.model.Bar addBar(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.testtransaction.model.Bar bar) {
 		return getService().addBar(bar);
 	}
 
@@ -68,11 +66,9 @@ public class BarLocalServiceUtil {
 	* @param barId the primary key of the bar
 	* @return the bar that was removed
 	* @throws PortalException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testtransaction.model.Bar deleteBar(long barId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteBar(barId);
 	}
 
@@ -81,7 +77,7 @@ public class BarLocalServiceUtil {
 	*
 	* @param bar the bar
 	* @return the bar that was removed
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.testtransaction.model.Bar deleteBar(
 		com.liferay.testtransaction.model.Bar bar)
@@ -98,12 +94,10 @@ public class BarLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -118,12 +112,11 @@ public class BarLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -139,14 +132,12 @@ public class BarLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -156,11 +147,9 @@ public class BarLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -170,17 +159,14 @@ public class BarLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.testtransaction.model.Bar fetchBar(long barId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.testtransaction.model.Bar fetchBar(long barId) {
 		return getService().fetchBar(barId);
 	}
 
@@ -190,18 +176,28 @@ public class BarLocalServiceUtil {
 	* @param barId the primary key of the bar
 	* @return the bar
 	* @throws PortalException if a bar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testtransaction.model.Bar getBar(long barId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getBar(barId);
+	}
+
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return getService().getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -215,11 +211,9 @@ public class BarLocalServiceUtil {
 	* @param start the lower bound of the range of bars
 	* @param end the upper bound of the range of bars (not inclusive)
 	* @return the range of bars
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.testtransaction.model.Bar> getBars(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getBars(start, end);
 	}
 
@@ -227,10 +221,8 @@ public class BarLocalServiceUtil {
 	* Returns the number of bars.
 	*
 	* @return the number of bars
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getBarsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getBarsCount() {
 		return getService().getBarsCount();
 	}
 
@@ -239,11 +231,9 @@ public class BarLocalServiceUtil {
 	*
 	* @param bar the bar
 	* @return the bar that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.testtransaction.model.Bar updateBar(
-		com.liferay.testtransaction.model.Bar bar)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.testtransaction.model.Bar bar) {
 		return getService().updateBar(bar);
 	}
 

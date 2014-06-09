@@ -221,11 +221,9 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	* Returns the user uuid of this microblogs entry.
 	*
 	* @return the user uuid of this microblogs entry
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _microblogsEntry.getUserUuid();
 	}
 
@@ -363,11 +361,9 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	* Returns the receiver user uuid of this microblogs entry.
 	*
 	* @return the receiver user uuid of this microblogs entry
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getReceiverUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getReceiverUserUuid() {
 		return _microblogsEntry.getReceiverUserUuid();
 	}
 
@@ -521,8 +517,7 @@ public class MicroblogsEntryWrapper implements MicroblogsEntry,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_microblogsEntry.persist();
 	}
 

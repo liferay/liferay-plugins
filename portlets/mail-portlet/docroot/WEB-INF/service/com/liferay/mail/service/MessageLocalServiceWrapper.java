@@ -34,12 +34,10 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	*
 	* @param message the message
 	* @return the message that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.mail.model.Message addMessage(
-		com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.mail.model.Message message) {
 		return _messageLocalService.addMessage(message);
 	}
 
@@ -60,7 +58,7 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	* @param messageId the primary key of the message
 	* @return the message that was removed
 	* @throws PortalException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.mail.model.Message deleteMessage(long messageId)
@@ -75,7 +73,7 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	* @param message the message
 	* @return the message that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.mail.model.Message deleteMessage(
@@ -95,13 +93,11 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _messageLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -116,13 +112,12 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _messageLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -138,15 +133,13 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _messageLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -156,12 +149,10 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _messageLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -171,19 +162,16 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _messageLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	@Override
-	public com.liferay.mail.model.Message fetchMessage(long messageId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.mail.model.Message fetchMessage(long messageId) {
 		return _messageLocalService.fetchMessage(messageId);
 	}
 
@@ -193,20 +181,32 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	* @param messageId the primary key of the message
 	* @return the message
 	* @throws PortalException if a message with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.mail.model.Message getMessage(long messageId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _messageLocalService.getMessage(messageId);
+	}
+
+	@Override
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
+		return _messageLocalService.getActionableDynamicQuery();
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _messageLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _messageLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -220,12 +220,10 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	* @param start the lower bound of the range of messages
 	* @param end the upper bound of the range of messages (not inclusive)
 	* @return the range of messages
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.mail.model.Message> getMessages(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _messageLocalService.getMessages(start, end);
 	}
 
@@ -233,11 +231,9 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	* Returns the number of messages.
 	*
 	* @return the number of messages
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getMessagesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getMessagesCount() {
 		return _messageLocalService.getMessagesCount();
 	}
 
@@ -246,12 +242,10 @@ public class MessageLocalServiceWrapper implements MessageLocalService,
 	*
 	* @param message the message
 	* @return the message that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.mail.model.Message updateMessage(
-		com.liferay.mail.model.Message message)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.mail.model.Message message) {
 		return _messageLocalService.updateMessage(message);
 	}
 

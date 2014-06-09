@@ -245,11 +245,9 @@ public class MemberRequestWrapper implements MemberRequest,
 	* Returns the user uuid of this member request.
 	*
 	* @return the user uuid of this member request
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _memberRequest.getUserUuid();
 	}
 
@@ -367,11 +365,9 @@ public class MemberRequestWrapper implements MemberRequest,
 	* Returns the receiver user uuid of this member request.
 	*
 	* @return the receiver user uuid of this member request
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getReceiverUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getReceiverUserUuid() {
 		return _memberRequest.getReceiverUserUuid();
 	}
 
@@ -544,8 +540,7 @@ public class MemberRequestWrapper implements MemberRequest,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_memberRequest.persist();
 	}
 

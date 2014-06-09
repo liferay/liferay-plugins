@@ -42,11 +42,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*
 	* @param createDate the create date
 	* @return the matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByCreateDate(
-		long createDate)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long createDate);
 
 	/**
 	* Returns a range of all the entries where createDate = &#63;.
@@ -59,11 +57,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByCreateDate(
-		long createDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long createDate, int start, int end);
 
 	/**
 	* Returns an ordered range of all the entries where createDate = &#63;.
@@ -77,12 +73,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByCreateDate(
 		long createDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63;.
@@ -91,13 +85,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByCreateDate_First(
 		long createDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63;.
@@ -105,12 +97,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param createDate the create date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByCreateDate_First(
 		long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63;.
@@ -119,12 +109,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByCreateDate_Last(long createDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63;.
@@ -132,12 +120,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param createDate the create date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByCreateDate_Last(
 		long createDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where createDate = &#63;.
@@ -147,43 +133,35 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry[] findByCreateDate_PrevAndNext(
 		long entryId, long createDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Removes all the entries where createDate = &#63; from the database.
 	*
 	* @param createDate the create date
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByCreateDate(long createDate)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByCreateDate(long createDate);
 
 	/**
 	* Returns the number of entries where createDate = &#63;.
 	*
 	* @param createDate the create date
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCreateDate(long createDate)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByCreateDate(long createDate);
 
 	/**
 	* Returns all the entries where fromUserId = &#63;.
 	*
 	* @param fromUserId the from user ID
 	* @return the matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByFromUserId(
-		long fromUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long fromUserId);
 
 	/**
 	* Returns a range of all the entries where fromUserId = &#63;.
@@ -196,11 +174,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByFromUserId(
-		long fromUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long fromUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the entries where fromUserId = &#63;.
@@ -214,12 +190,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByFromUserId(
 		long fromUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63;.
@@ -228,13 +202,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByFromUserId_First(
 		long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63;.
@@ -242,12 +214,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByFromUserId_First(
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where fromUserId = &#63;.
@@ -256,12 +226,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByFromUserId_Last(long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where fromUserId = &#63;.
@@ -269,12 +237,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByFromUserId_Last(
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63;.
@@ -284,43 +250,35 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry[] findByFromUserId_PrevAndNext(
 		long entryId, long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Removes all the entries where fromUserId = &#63; from the database.
 	*
 	* @param fromUserId the from user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByFromUserId(long fromUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByFromUserId(long fromUserId);
 
 	/**
 	* Returns the number of entries where fromUserId = &#63;.
 	*
 	* @param fromUserId the from user ID
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByFromUserId(long fromUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByFromUserId(long fromUserId);
 
 	/**
 	* Returns all the entries where toUserId = &#63;.
 	*
 	* @param toUserId the to user ID
 	* @return the matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByToUserId(
-		long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long toUserId);
 
 	/**
 	* Returns a range of all the entries where toUserId = &#63;.
@@ -333,11 +291,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByToUserId(
-		long toUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long toUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the entries where toUserId = &#63;.
@@ -351,12 +307,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByToUserId(
 		long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where toUserId = &#63;.
@@ -365,12 +319,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByToUserId_First(long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where toUserId = &#63;.
@@ -378,11 +330,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByToUserId_First(long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where toUserId = &#63;.
@@ -391,12 +341,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByToUserId_Last(long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where toUserId = &#63;.
@@ -404,11 +352,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByToUserId_Last(long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where toUserId = &#63;.
@@ -418,32 +364,26 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry[] findByToUserId_PrevAndNext(
 		long entryId, long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Removes all the entries where toUserId = &#63; from the database.
 	*
 	* @param toUserId the to user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByToUserId(long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByToUserId(long toUserId);
 
 	/**
 	* Returns the number of entries where toUserId = &#63;.
 	*
 	* @param toUserId the to user ID
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByToUserId(long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByToUserId(long toUserId);
 
 	/**
 	* Returns all the entries where createDate = &#63; and fromUserId = &#63;.
@@ -451,11 +391,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param createDate the create date
 	* @param fromUserId the from user ID
 	* @return the matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_F(
-		long createDate, long fromUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long createDate, long fromUserId);
 
 	/**
 	* Returns a range of all the entries where createDate = &#63; and fromUserId = &#63;.
@@ -469,11 +407,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_F(
-		long createDate, long fromUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long createDate, long fromUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the entries where createDate = &#63; and fromUserId = &#63;.
@@ -488,12 +424,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_F(
 		long createDate, long fromUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
@@ -503,13 +437,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByC_F_First(long createDate,
 		long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
@@ -518,12 +450,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByC_F_First(long createDate,
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
@@ -533,13 +463,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByC_F_Last(long createDate,
 		long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
@@ -548,12 +476,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param fromUserId the from user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByC_F_Last(long createDate,
 		long fromUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63;.
@@ -564,23 +490,19 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry[] findByC_F_PrevAndNext(long entryId,
 		long createDate, long fromUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Removes all the entries where createDate = &#63; and fromUserId = &#63; from the database.
 	*
 	* @param createDate the create date
 	* @param fromUserId the from user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_F(long createDate, long fromUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByC_F(long createDate, long fromUserId);
 
 	/**
 	* Returns the number of entries where createDate = &#63; and fromUserId = &#63;.
@@ -588,10 +510,8 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param createDate the create date
 	* @param fromUserId the from user ID
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_F(long createDate, long fromUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByC_F(long createDate, long fromUserId);
 
 	/**
 	* Returns all the entries where createDate = &#63; and toUserId = &#63;.
@@ -599,11 +519,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param createDate the create date
 	* @param toUserId the to user ID
 	* @return the matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_T(
-		long createDate, long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long createDate, long toUserId);
 
 	/**
 	* Returns a range of all the entries where createDate = &#63; and toUserId = &#63;.
@@ -617,11 +535,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_T(
-		long createDate, long toUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long createDate, long toUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the entries where createDate = &#63; and toUserId = &#63;.
@@ -636,12 +552,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_T(
 		long createDate, long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
@@ -651,13 +565,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByC_T_First(long createDate,
 		long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and toUserId = &#63;.
@@ -666,12 +578,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByC_T_First(long createDate,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
@@ -681,13 +591,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByC_T_Last(long createDate,
 		long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63; and toUserId = &#63;.
@@ -696,12 +604,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByC_T_Last(long createDate,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and toUserId = &#63;.
@@ -712,23 +618,19 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry[] findByC_T_PrevAndNext(long entryId,
 		long createDate, long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Removes all the entries where createDate = &#63; and toUserId = &#63; from the database.
 	*
 	* @param createDate the create date
 	* @param toUserId the to user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_T(long createDate, long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByC_T(long createDate, long toUserId);
 
 	/**
 	* Returns the number of entries where createDate = &#63; and toUserId = &#63;.
@@ -736,10 +638,8 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param createDate the create date
 	* @param toUserId the to user ID
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_T(long createDate, long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByC_T(long createDate, long toUserId);
 
 	/**
 	* Returns all the entries where fromUserId = &#63; and toUserId = &#63;.
@@ -747,11 +647,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
 	* @return the matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByF_T(
-		long fromUserId, long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long fromUserId, long toUserId);
 
 	/**
 	* Returns a range of all the entries where fromUserId = &#63; and toUserId = &#63;.
@@ -765,11 +663,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByF_T(
-		long fromUserId, long toUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long fromUserId, long toUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the entries where fromUserId = &#63; and toUserId = &#63;.
@@ -784,12 +680,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByF_T(
 		long fromUserId, long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
@@ -799,13 +693,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByF_T_First(long fromUserId,
 		long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
@@ -814,12 +706,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByF_T_First(long fromUserId,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
@@ -829,13 +719,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByF_T_Last(long fromUserId,
 		long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
@@ -844,12 +732,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByF_T_Last(long fromUserId,
 		long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63;.
@@ -860,23 +746,19 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry[] findByF_T_PrevAndNext(long entryId,
 		long fromUserId, long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Removes all the entries where fromUserId = &#63; and toUserId = &#63; from the database.
 	*
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByF_T(long fromUserId, long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByF_T(long fromUserId, long toUserId);
 
 	/**
 	* Returns the number of entries where fromUserId = &#63; and toUserId = &#63;.
@@ -884,10 +766,8 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByF_T(long fromUserId, long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByF_T(long fromUserId, long toUserId);
 
 	/**
 	* Returns all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -896,11 +776,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
 	* @return the matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_F_T(
-		long createDate, long fromUserId, long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long createDate, long fromUserId, long toUserId);
 
 	/**
 	* Returns a range of all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -915,11 +793,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_F_T(
-		long createDate, long fromUserId, long toUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long createDate, long fromUserId, long toUserId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -935,12 +811,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByC_F_T(
 		long createDate, long fromUserId, long toUserId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -951,13 +825,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByC_F_T_First(long createDate,
 		long fromUserId, long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -967,12 +839,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByC_F_T_First(long createDate,
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -983,13 +853,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByC_F_T_Last(long createDate,
 		long fromUserId, long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -999,12 +867,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByC_F_T_Last(long createDate,
 		long fromUserId, long toUserId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -1016,13 +882,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry[] findByC_F_T_PrevAndNext(
 		long entryId, long createDate, long fromUserId, long toUserId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Removes all the entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63; from the database.
@@ -1030,10 +894,8 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param createDate the create date
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByC_F_T(long createDate, long fromUserId, long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByC_F_T(long createDate, long fromUserId, long toUserId);
 
 	/**
 	* Returns the number of entries where createDate = &#63; and fromUserId = &#63; and toUserId = &#63;.
@@ -1042,10 +904,8 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByC_F_T(long createDate, long fromUserId, long toUserId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByC_F_T(long createDate, long fromUserId, long toUserId);
 
 	/**
 	* Returns all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1054,11 +914,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param content the content
 	* @return the matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByF_T_C(
-		long fromUserId, long toUserId, java.lang.String content)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long fromUserId, long toUserId, java.lang.String content);
 
 	/**
 	* Returns a range of all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1073,11 +931,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByF_T_C(
 		long fromUserId, long toUserId, java.lang.String content, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1093,13 +950,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findByF_T_C(
 		long fromUserId, long toUserId, java.lang.String content, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1110,13 +965,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByF_T_C_First(long fromUserId,
 		long toUserId, java.lang.String content,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the first entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1126,12 +979,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param content the content
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByF_T_C_First(long fromUserId,
 		long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1142,13 +993,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry
 	* @throws com.liferay.chat.NoSuchEntryException if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByF_T_C_Last(long fromUserId,
 		long toUserId, java.lang.String content,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the last entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1158,12 +1007,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param content the content
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching entry, or <code>null</code> if a matching entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry fetchByF_T_C_Last(long fromUserId,
 		long toUserId, java.lang.String content,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the entries before and after the current entry in the ordered set where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1175,13 +1022,11 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry[] findByF_T_C_PrevAndNext(
 		long entryId, long fromUserId, long toUserId, java.lang.String content,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Removes all the entries where fromUserId = &#63; and toUserId = &#63; and content = &#63; from the database.
@@ -1189,11 +1034,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param fromUserId the from user ID
 	* @param toUserId the to user ID
 	* @param content the content
-	* @throws SystemException if a system exception occurred
 	*/
 	public void removeByF_T_C(long fromUserId, long toUserId,
-		java.lang.String content)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String content);
 
 	/**
 	* Returns the number of entries where fromUserId = &#63; and toUserId = &#63; and content = &#63;.
@@ -1202,11 +1045,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param toUserId the to user ID
 	* @param content the content
 	* @return the number of matching entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public int countByF_T_C(long fromUserId, long toUserId,
-		java.lang.String content)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String content);
 
 	/**
 	* Caches the entry in the entity cache if it is enabled.
@@ -1237,15 +1078,12 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param entryId the primary key of the entry
 	* @return the entry that was removed
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry remove(long entryId)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	public com.liferay.chat.model.Entry updateImpl(
-		com.liferay.chat.model.Entry entry)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.chat.model.Entry entry);
 
 	/**
 	* Returns the entry with the primary key or throws a {@link com.liferay.chat.NoSuchEntryException} if it could not be found.
@@ -1253,30 +1091,24 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param entryId the primary key of the entry
 	* @return the entry
 	* @throws com.liferay.chat.NoSuchEntryException if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.chat.model.Entry findByPrimaryKey(long entryId)
-		throws com.liferay.chat.NoSuchEntryException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.chat.NoSuchEntryException;
 
 	/**
 	* Returns the entry with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param entryId the primary key of the entry
 	* @return the entry, or <code>null</code> if a entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.chat.model.Entry fetchByPrimaryKey(long entryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.chat.model.Entry fetchByPrimaryKey(long entryId);
 
 	/**
 	* Returns all the entries.
 	*
 	* @return the entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.chat.model.Entry> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.chat.model.Entry> findAll();
 
 	/**
 	* Returns a range of all the entries.
@@ -1288,10 +1120,9 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param start the lower bound of the range of entries
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @return the range of entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findAll(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the entries.
@@ -1304,27 +1135,20 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	* @param end the upper bound of the range of entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.chat.model.Entry> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the entries from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of entries.
 	*
 	* @return the number of entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

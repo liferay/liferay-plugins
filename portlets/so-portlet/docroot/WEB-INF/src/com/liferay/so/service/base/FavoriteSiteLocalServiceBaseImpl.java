@@ -78,12 +78,10 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param favoriteSite the favorite site
 	 * @return the favorite site that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public FavoriteSite addFavoriteSite(FavoriteSite favoriteSite)
-		throws SystemException {
+	public FavoriteSite addFavoriteSite(FavoriteSite favoriteSite) {
 		favoriteSite.setNew(true);
 
 		return favoriteSitePersistence.update(favoriteSite);
@@ -106,7 +104,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param favoriteSiteId the primary key of the favorite site
 	 * @return the favorite site that was removed
 	 * @throws PortalException if a favorite site with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -120,12 +118,10 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param favoriteSite the favorite site
 	 * @return the favorite site that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public FavoriteSite deleteFavoriteSite(FavoriteSite favoriteSite)
-		throws SystemException {
+	public FavoriteSite deleteFavoriteSite(FavoriteSite favoriteSite) {
 		return favoriteSitePersistence.remove(favoriteSite);
 	}
 
@@ -142,12 +138,10 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return favoriteSitePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -162,12 +156,10 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return favoriteSitePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -184,12 +176,11 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return favoriteSitePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -199,11 +190,9 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return favoriteSitePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -213,18 +202,16 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return favoriteSitePersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
-	public FavoriteSite fetchFavoriteSite(long favoriteSiteId)
-		throws SystemException {
+	public FavoriteSite fetchFavoriteSite(long favoriteSiteId) {
 		return favoriteSitePersistence.fetchByPrimaryKey(favoriteSiteId);
 	}
 
@@ -234,17 +221,15 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param favoriteSiteId the primary key of the favorite site
 	 * @return the favorite site
 	 * @throws PortalException if a favorite site with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public FavoriteSite getFavoriteSite(long favoriteSiteId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return favoriteSitePersistence.findByPrimaryKey(favoriteSiteId);
 	}
 
 	@Override
-	public ActionableDynamicQuery getActionableDynamicQuery()
-		throws SystemException {
+	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.FavoriteSiteLocalServiceUtil.getService());
@@ -257,8 +242,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	}
 
 	protected void initActionableDynamicQuery(
-		ActionableDynamicQuery actionableDynamicQuery)
-		throws SystemException {
+		ActionableDynamicQuery actionableDynamicQuery) {
 		actionableDynamicQuery.setBaseLocalService(com.liferay.so.service.FavoriteSiteLocalServiceUtil.getService());
 		actionableDynamicQuery.setClass(FavoriteSite.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -266,9 +250,18 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 		actionableDynamicQuery.setPrimaryKeyPropertyName("favoriteSiteId");
 	}
 
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteFavoriteSite((FavoriteSite)persistedModel);
+	}
+
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return favoriteSitePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -282,11 +275,9 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param start the lower bound of the range of favorite sites
 	 * @param end the upper bound of the range of favorite sites (not inclusive)
 	 * @return the range of favorite sites
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<FavoriteSite> getFavoriteSites(int start, int end)
-		throws SystemException {
+	public List<FavoriteSite> getFavoriteSites(int start, int end) {
 		return favoriteSitePersistence.findAll(start, end);
 	}
 
@@ -294,10 +285,9 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * Returns the number of favorite sites.
 	 *
 	 * @return the number of favorite sites
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getFavoriteSitesCount() throws SystemException {
+	public int getFavoriteSitesCount() {
 		return favoriteSitePersistence.countAll();
 	}
 
@@ -306,12 +296,10 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param favoriteSite the favorite site
 	 * @return the favorite site that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public FavoriteSite updateFavoriteSite(FavoriteSite favoriteSite)
-		throws SystemException {
+	public FavoriteSite updateFavoriteSite(FavoriteSite favoriteSite) {
 		return favoriteSitePersistence.update(favoriteSite);
 	}
 
@@ -797,7 +785,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = favoriteSitePersistence.getDataSource();
 

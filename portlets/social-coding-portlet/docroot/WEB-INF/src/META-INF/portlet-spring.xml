@@ -2,39 +2,39 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-lazy-init="true" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 	<bean id="com.liferay.socialcoding.service.JIRAActionLocalService" class="com.liferay.socialcoding.service.impl.JIRAActionLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.persistence.JIRAActionPersistence" class="com.liferay.socialcoding.service.persistence.JIRAActionPersistenceImpl" parent="basePersistence">
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAActionPersistence" class="com.liferay.socialcoding.service.persistence.impl.JIRAActionPersistenceImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
-	<bean id="com.liferay.socialcoding.service.persistence.JIRAActionFinder" class="com.liferay.socialcoding.service.persistence.JIRAActionFinderImpl" parent="basePersistence">
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAActionFinder" class="com.liferay.socialcoding.service.persistence.impl.JIRAActionFinderImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.JIRAChangeGroupLocalService" class="com.liferay.socialcoding.service.impl.JIRAChangeGroupLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence" class="com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistenceImpl" parent="basePersistence">
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupPersistence" class="com.liferay.socialcoding.service.persistence.impl.JIRAChangeGroupPersistenceImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
-	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder" class="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinderImpl" parent="basePersistence">
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeGroupFinder" class="com.liferay.socialcoding.service.persistence.impl.JIRAChangeGroupFinderImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.JIRAChangeItemLocalService" class="com.liferay.socialcoding.service.impl.JIRAChangeItemLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence" class="com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistenceImpl" parent="basePersistence">
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAChangeItemPersistence" class="com.liferay.socialcoding.service.persistence.impl.JIRAChangeItemPersistenceImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.JIRAIssueLocalService" class="com.liferay.socialcoding.service.impl.JIRAIssueLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.persistence.JIRAIssuePersistence" class="com.liferay.socialcoding.service.persistence.JIRAIssuePersistenceImpl" parent="basePersistence">
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAIssuePersistence" class="com.liferay.socialcoding.service.persistence.impl.JIRAIssuePersistenceImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
-	<bean id="com.liferay.socialcoding.service.persistence.JIRAIssueFinder" class="com.liferay.socialcoding.service.persistence.JIRAIssueFinderImpl" parent="basePersistence">
+	<bean id="com.liferay.socialcoding.service.persistence.JIRAIssueFinder" class="com.liferay.socialcoding.service.persistence.impl.JIRAIssueFinderImpl" parent="basePersistence">
 		<property name="dataSource" ref="jiraDataSource" />
 		<property name="sessionFactory" ref="jiraSessionFactory" />
 	</bean>
 	<bean id="com.liferay.socialcoding.service.SVNRepositoryLocalService" class="com.liferay.socialcoding.service.impl.SVNRepositoryLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence" class="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialcoding.service.persistence.SVNRepositoryPersistence" class="com.liferay.socialcoding.service.persistence.impl.SVNRepositoryPersistenceImpl" parent="basePersistence" />
 	<bean id="com.liferay.socialcoding.service.SVNRevisionLocalService" class="com.liferay.socialcoding.service.impl.SVNRevisionLocalServiceImpl" />
-	<bean id="com.liferay.socialcoding.service.persistence.SVNRevisionPersistence" class="com.liferay.socialcoding.service.persistence.SVNRevisionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.socialcoding.service.persistence.SVNRevisionPersistence" class="com.liferay.socialcoding.service.persistence.impl.SVNRevisionPersistenceImpl" parent="basePersistence" />
 </beans>

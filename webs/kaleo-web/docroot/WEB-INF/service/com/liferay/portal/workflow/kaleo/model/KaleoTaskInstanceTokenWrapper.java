@@ -296,11 +296,9 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* Returns the user uuid of this kaleo task instance token.
 	*
 	* @return the user uuid of this kaleo task instance token
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _kaleoTaskInstanceToken.getUserUuid();
 	}
 
@@ -538,11 +536,9 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	* Returns the completion user uuid of this kaleo task instance token.
 	*
 	* @return the completion user uuid of this kaleo task instance token
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getCompletionUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getCompletionUserUuid() {
 		return _kaleoTaskInstanceToken.getCompletionUserUuid();
 	}
 
@@ -746,8 +742,7 @@ public class KaleoTaskInstanceTokenWrapper implements KaleoTaskInstanceToken,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kaleoTaskInstanceToken.persist();
 	}
 

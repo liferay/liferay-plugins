@@ -15,18 +15,19 @@
 package com.liferay.socialnetworking.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.socialnetworking.model.MeetupsEntry;
 import com.liferay.socialnetworking.service.MeetupsEntryLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link MeetupsEntryLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class MeetupsEntryActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public MeetupsEntryActionableDynamicQuery() throws SystemException {
+	public MeetupsEntryActionableDynamicQuery() {
 		setBaseLocalService(MeetupsEntryLocalServiceUtil.getService());
 		setClass(MeetupsEntry.class);
 

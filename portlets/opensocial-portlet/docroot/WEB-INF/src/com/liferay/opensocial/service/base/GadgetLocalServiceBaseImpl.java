@@ -26,11 +26,19 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
+import com.liferay.portal.kernel.lar.ManifestSummary;
+import com.liferay.portal.kernel.lar.PortletDataContext;
+import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
+import com.liferay.portal.kernel.lar.StagedModelType;
 import com.liferay.portal.kernel.search.Indexable;
 import com.liferay.portal.kernel.search.IndexableType;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -72,11 +80,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param gadget the gadget
 	 * @return the gadget that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public Gadget addGadget(Gadget gadget) throws SystemException {
+	public Gadget addGadget(Gadget gadget) {
 		gadget.setNew(true);
 
 		return gadgetPersistence.update(gadget);
@@ -99,7 +106,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param gadgetId the primary key of the gadget
 	 * @return the gadget that was removed
 	 * @throws PortalException if a gadget with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -113,7 +120,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param gadget the gadget
 	 * @return the gadget that was removed
-	 * @throws SystemException if a system exception occurred
+	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
@@ -134,12 +141,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return gadgetPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -154,12 +159,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return gadgetPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -175,12 +178,11 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return gadgetPersistence.findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -190,11 +192,9 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return gadgetPersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -204,16 +204,15 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return gadgetPersistence.countWithDynamicQuery(dynamicQuery, projection);
 	}
 
 	@Override
-	public Gadget fetchGadget(long gadgetId) throws SystemException {
+	public Gadget fetchGadget(long gadgetId) {
 		return gadgetPersistence.fetchByPrimaryKey(gadgetId);
 	}
 
@@ -223,11 +222,9 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param uuid the gadget's UUID
 	 * @param  companyId the primary key of the company
 	 * @return the matching gadget, or <code>null</code> if a matching gadget could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Gadget fetchGadgetByUuidAndCompanyId(String uuid, long companyId)
-		throws SystemException {
+	public Gadget fetchGadgetByUuidAndCompanyId(String uuid, long companyId) {
 		return gadgetPersistence.fetchByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -237,17 +234,99 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param gadgetId the primary key of the gadget
 	 * @return the gadget
 	 * @throws PortalException if a gadget with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Gadget getGadget(long gadgetId)
-		throws PortalException, SystemException {
+	public Gadget getGadget(long gadgetId) throws PortalException {
 		return gadgetPersistence.findByPrimaryKey(gadgetId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.GadgetLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(Gadget.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("gadgetId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.opensocial.service.GadgetLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(Gadget.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("gadgetId");
+	}
+
+	@Override
+	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
+		final PortletDataContext portletDataContext) {
+		final ExportActionableDynamicQuery exportActionableDynamicQuery = new ExportActionableDynamicQuery() {
+				@Override
+				public long performCount() throws PortalException {
+					ManifestSummary manifestSummary = portletDataContext.getManifestSummary();
+
+					StagedModelType stagedModelType = getStagedModelType();
+
+					long modelAdditionCount = super.performCount();
+
+					manifestSummary.addModelAdditionCount(stagedModelType.toString(),
+						modelAdditionCount);
+
+					long modelDeletionCount = ExportImportHelperUtil.getModelDeletionCount(portletDataContext,
+							stagedModelType);
+
+					manifestSummary.addModelDeletionCount(stagedModelType.toString(),
+						modelDeletionCount);
+
+					return modelAdditionCount;
+				}
+			};
+
+		initActionableDynamicQuery(exportActionableDynamicQuery);
+
+		exportActionableDynamicQuery.setAddCriteriaMethod(new ActionableDynamicQuery.AddCriteriaMethod() {
+				@Override
+				public void addCriteria(DynamicQuery dynamicQuery) {
+					portletDataContext.addDateRangeCriteria(dynamicQuery,
+						"modifiedDate");
+				}
+			});
+
+		exportActionableDynamicQuery.setCompanyId(portletDataContext.getCompanyId());
+
+		exportActionableDynamicQuery.setPerformActionMethod(new ActionableDynamicQuery.PerformActionMethod() {
+				@Override
+				public void performAction(Object object)
+					throws PortalException {
+					Gadget stagedModel = (Gadget)object;
+
+					StagedModelDataHandlerUtil.exportStagedModel(portletDataContext,
+						stagedModel);
+				}
+			});
+		exportActionableDynamicQuery.setStagedModelType(new StagedModelType(
+				PortalUtil.getClassNameId(Gadget.class.getName())));
+
+		return exportActionableDynamicQuery;
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteGadget((Gadget)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return gadgetPersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -258,11 +337,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param  companyId the primary key of the company
 	 * @return the matching gadget
 	 * @throws PortalException if a matching gadget could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public Gadget getGadgetByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return gadgetPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -276,11 +354,9 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of gadgets
 	 * @param end the upper bound of the range of gadgets (not inclusive)
 	 * @return the range of gadgets
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Gadget> getGadgets(int start, int end)
-		throws SystemException {
+	public List<Gadget> getGadgets(int start, int end) {
 		return gadgetPersistence.findAll(start, end);
 	}
 
@@ -288,10 +364,9 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * Returns the number of gadgets.
 	 *
 	 * @return the number of gadgets
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getGadgetsCount() throws SystemException {
+	public int getGadgetsCount() {
 		return gadgetPersistence.countAll();
 	}
 
@@ -300,11 +375,10 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param gadget the gadget
 	 * @return the gadget that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public Gadget updateGadget(Gadget gadget) throws SystemException {
+	public Gadget updateGadget(Gadget gadget) {
 		return gadgetPersistence.update(gadget);
 	}
 
@@ -659,7 +733,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = gadgetPersistence.getDataSource();
 

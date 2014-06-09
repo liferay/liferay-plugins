@@ -17,8 +17,6 @@ package com.liferay.ams.model.impl;
 import com.liferay.ams.model.Asset;
 import com.liferay.ams.service.AssetLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the Asset service. Represents a row in the &quot;AMS_Asset&quot; database table, with each column mapped to a property of this class.
  *
@@ -38,7 +36,7 @@ public abstract class AssetBaseImpl extends AssetModelImpl implements Asset {
 	 * Never modify or reference this class directly. All methods that expect a asset model instance should use the {@link Asset} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			AssetLocalServiceUtil.addAsset(this);
 		}

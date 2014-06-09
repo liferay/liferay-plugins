@@ -18,15 +18,16 @@ import com.liferay.opensocial.model.Gadget;
 import com.liferay.opensocial.service.GadgetLocalServiceUtil;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link GadgetLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class GadgetActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public GadgetActionableDynamicQuery() throws SystemException {
+	public GadgetActionableDynamicQuery() {
 		setBaseLocalService(GadgetLocalServiceUtil.getService());
 		setClass(Gadget.class);
 

@@ -42,11 +42,9 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	*
 	* @param uuid the uuid
 	* @return the matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid);
 
 	/**
 	* Returns a range of all the sample l a r bookings where uuid = &#63;.
@@ -59,11 +57,9 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param start the lower bound of the range of sample l a r bookings
 	* @param end the upper bound of the range of sample l a r bookings (not inclusive)
 	* @return the range of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, int start, int end);
 
 	/**
 	* Returns an ordered range of all the sample l a r bookings where uuid = &#63;.
@@ -77,12 +73,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param end the upper bound of the range of sample l a r bookings (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first sample l a r booking in the ordered set where uuid = &#63;.
@@ -91,13 +85,11 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Returns the first sample l a r booking in the ordered set where uuid = &#63;.
@@ -105,12 +97,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last sample l a r booking in the ordered set where uuid = &#63;.
@@ -119,13 +109,11 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Returns the last sample l a r booking in the ordered set where uuid = &#63;.
@@ -133,12 +121,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the sample l a r bookings before and after the current sample l a r booking in the ordered set where uuid = &#63;.
@@ -148,32 +134,26 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking[] findByUuid_PrevAndNext(
 		long sampleLARBookingId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Removes all the sample l a r bookings where uuid = &#63; from the database.
 	*
 	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUuid(java.lang.String uuid);
 
 	/**
 	* Returns the number of sample l a r bookings where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @return the number of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUuid(java.lang.String uuid);
 
 	/**
 	* Returns the sample l a r booking where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.samplelar.NoSuchBookingException} if it could not be found.
@@ -182,12 +162,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param groupId the group ID
 	* @return the matching sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByUUID_G(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Returns the sample l a r booking where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -195,11 +173,9 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long groupId);
 
 	/**
 	* Returns the sample l a r booking where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -208,11 +184,9 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param groupId the group ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUUID_G(
-		java.lang.String uuid, long groupId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long groupId, boolean retrieveFromCache);
 
 	/**
 	* Removes the sample l a r booking where uuid = &#63; and groupId = &#63; from the database.
@@ -220,12 +194,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the sample l a r booking that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking removeByUUID_G(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Returns the number of sample l a r bookings where uuid = &#63; and groupId = &#63;.
@@ -233,10 +205,8 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the number of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUUID_G(java.lang.String uuid, long groupId);
 
 	/**
 	* Returns all the sample l a r bookings where uuid = &#63; and companyId = &#63;.
@@ -244,11 +214,9 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByUuid_C(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long companyId);
 
 	/**
 	* Returns a range of all the sample l a r bookings where uuid = &#63; and companyId = &#63;.
@@ -262,11 +230,9 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param start the lower bound of the range of sample l a r bookings
 	* @param end the upper bound of the range of sample l a r bookings (not inclusive)
 	* @return the range of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the sample l a r bookings where uuid = &#63; and companyId = &#63;.
@@ -281,12 +247,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param end the upper bound of the range of sample l a r bookings (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first sample l a r booking in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -296,13 +260,11 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByUuid_C_First(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Returns the first sample l a r booking in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -311,12 +273,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last sample l a r booking in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -326,13 +286,11 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Returns the last sample l a r booking in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -341,12 +299,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the sample l a r bookings before and after the current sample l a r booking in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -357,23 +313,19 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking[] findByUuid_C_PrevAndNext(
 		long sampleLARBookingId, java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Removes all the sample l a r bookings where uuid = &#63; and companyId = &#63; from the database.
 	*
 	* @param uuid the uuid
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUuid_C(java.lang.String uuid, long companyId);
 
 	/**
 	* Returns the number of sample l a r bookings where uuid = &#63; and companyId = &#63;.
@@ -381,21 +333,17 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the number of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUuid_C(java.lang.String uuid, long companyId);
 
 	/**
 	* Returns all the sample l a r bookings where groupId = &#63;.
 	*
 	* @param groupId the group ID
 	* @return the matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByGroupId(
-		long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId);
 
 	/**
 	* Returns a range of all the sample l a r bookings where groupId = &#63;.
@@ -408,11 +356,9 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param start the lower bound of the range of sample l a r bookings
 	* @param end the upper bound of the range of sample l a r bookings (not inclusive)
 	* @return the range of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByGroupId(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long groupId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the sample l a r bookings where groupId = &#63;.
@@ -426,12 +372,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param end the upper bound of the range of sample l a r bookings (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findByGroupId(
 		long groupId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first sample l a r booking in the ordered set where groupId = &#63;.
@@ -440,13 +384,11 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByGroupId_First(
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Returns the first sample l a r booking in the ordered set where groupId = &#63;.
@@ -454,12 +396,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByGroupId_First(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last sample l a r booking in the ordered set where groupId = &#63;.
@@ -468,13 +408,11 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByGroupId_Last(
 		long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Returns the last sample l a r booking in the ordered set where groupId = &#63;.
@@ -482,12 +420,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param groupId the group ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sample l a r booking, or <code>null</code> if a matching sample l a r booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByGroupId_Last(
 		long groupId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the sample l a r bookings before and after the current sample l a r booking in the ordered set where groupId = &#63;.
@@ -497,32 +433,26 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking[] findByGroupId_PrevAndNext(
 		long sampleLARBookingId, long groupId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Removes all the sample l a r bookings where groupId = &#63; from the database.
 	*
 	* @param groupId the group ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByGroupId(long groupId);
 
 	/**
 	* Returns the number of sample l a r bookings where groupId = &#63;.
 	*
 	* @param groupId the group ID
 	* @return the number of matching sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByGroupId(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByGroupId(long groupId);
 
 	/**
 	* Caches the sample l a r booking in the entity cache if it is enabled.
@@ -555,16 +485,13 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param sampleLARBookingId the primary key of the sample l a r booking
 	* @return the sample l a r booking that was removed
 	* @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking remove(
 		long sampleLARBookingId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	public com.liferay.samplelar.model.SampleLARBooking updateImpl(
-		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.samplelar.model.SampleLARBooking sampleLARBooking);
 
 	/**
 	* Returns the sample l a r booking with the primary key or throws a {@link com.liferay.samplelar.NoSuchBookingException} if it could not be found.
@@ -572,32 +499,26 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param sampleLARBookingId the primary key of the sample l a r booking
 	* @return the sample l a r booking
 	* @throws com.liferay.samplelar.NoSuchBookingException if a sample l a r booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking findByPrimaryKey(
 		long sampleLARBookingId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.samplelar.NoSuchBookingException;
+		throws com.liferay.samplelar.NoSuchBookingException;
 
 	/**
 	* Returns the sample l a r booking with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param sampleLARBookingId the primary key of the sample l a r booking
 	* @return the sample l a r booking, or <code>null</code> if a sample l a r booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.samplelar.model.SampleLARBooking fetchByPrimaryKey(
-		long sampleLARBookingId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long sampleLARBookingId);
 
 	/**
 	* Returns all the sample l a r bookings.
 	*
 	* @return the sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findAll();
 
 	/**
 	* Returns a range of all the sample l a r bookings.
@@ -609,11 +530,9 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param start the lower bound of the range of sample l a r bookings
 	* @param end the upper bound of the range of sample l a r bookings (not inclusive)
 	* @return the range of sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the sample l a r bookings.
@@ -626,27 +545,20 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	* @param end the upper bound of the range of sample l a r bookings (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.samplelar.model.SampleLARBooking> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the sample l a r bookings from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of sample l a r bookings.
 	*
 	* @return the number of sample l a r bookings
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

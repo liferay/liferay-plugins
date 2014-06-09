@@ -285,8 +285,7 @@ public class JIRAChangeGroupWrapper implements JIRAChangeGroup,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_jiraChangeGroup.persist();
 	}
 

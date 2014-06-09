@@ -65,15 +65,12 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	* @param assetId the primary key of the asset
 	* @return the asset that was removed
 	* @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.ams.model.Asset remove(long assetId)
-		throws com.liferay.ams.NoSuchAssetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.ams.NoSuchAssetException;
 
 	public com.liferay.ams.model.Asset updateImpl(
-		com.liferay.ams.model.Asset asset)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.ams.model.Asset asset);
 
 	/**
 	* Returns the asset with the primary key or throws a {@link com.liferay.ams.NoSuchAssetException} if it could not be found.
@@ -81,30 +78,24 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	* @param assetId the primary key of the asset
 	* @return the asset
 	* @throws com.liferay.ams.NoSuchAssetException if a asset with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.ams.model.Asset findByPrimaryKey(long assetId)
-		throws com.liferay.ams.NoSuchAssetException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.ams.NoSuchAssetException;
 
 	/**
 	* Returns the asset with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param assetId the primary key of the asset
 	* @return the asset, or <code>null</code> if a asset with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.ams.model.Asset fetchByPrimaryKey(long assetId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.ams.model.Asset fetchByPrimaryKey(long assetId);
 
 	/**
 	* Returns all the assets.
 	*
 	* @return the assets
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.ams.model.Asset> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.ams.model.Asset> findAll();
 
 	/**
 	* Returns a range of all the assets.
@@ -116,10 +107,9 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	* @param start the lower bound of the range of assets
 	* @param end the upper bound of the range of assets (not inclusive)
 	* @return the range of assets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.ams.model.Asset> findAll(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the assets.
@@ -132,27 +122,20 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	* @param end the upper bound of the range of assets (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of assets
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.ams.model.Asset> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the assets from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of assets.
 	*
 	* @return the number of assets
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

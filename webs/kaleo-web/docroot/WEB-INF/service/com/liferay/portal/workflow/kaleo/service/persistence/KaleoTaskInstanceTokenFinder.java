@@ -19,10 +19,10 @@ package com.liferay.portal.workflow.kaleo.service.persistence;
  */
 public interface KaleoTaskInstanceTokenFinder {
 	public int countKaleoTaskInstanceTokens(
-		com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
+		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findKaleoTaskInstanceTokens(
-		com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
+		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

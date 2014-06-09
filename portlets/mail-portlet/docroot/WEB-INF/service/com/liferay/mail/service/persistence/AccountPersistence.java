@@ -42,10 +42,9 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*
 	* @param userId the user ID
 	* @return the matching accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.mail.model.Account> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+		long userId);
 
 	/**
 	* Returns a range of all the accounts where userId = &#63;.
@@ -58,11 +57,9 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param start the lower bound of the range of accounts
 	* @param end the upper bound of the range of accounts (not inclusive)
 	* @return the range of matching accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.mail.model.Account> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the accounts where userId = &#63;.
@@ -76,12 +73,10 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param end the upper bound of the range of accounts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.mail.model.Account> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first account in the ordered set where userId = &#63;.
@@ -90,12 +85,10 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching account
 	* @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.mail.NoSuchAccountException;
 
 	/**
 	* Returns the first account in the ordered set where userId = &#63;.
@@ -103,11 +96,9 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching account, or <code>null</code> if a matching account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last account in the ordered set where userId = &#63;.
@@ -116,12 +107,10 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching account
 	* @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.mail.NoSuchAccountException;
 
 	/**
 	* Returns the last account in the ordered set where userId = &#63;.
@@ -129,11 +118,9 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching account, or <code>null</code> if a matching account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the accounts before and after the current account in the ordered set where userId = &#63;.
@@ -143,32 +130,26 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next account
 	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account[] findByUserId_PrevAndNext(
 		long accountId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.mail.NoSuchAccountException;
 
 	/**
 	* Removes all the accounts where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUserId(long userId);
 
 	/**
 	* Returns the number of accounts where userId = &#63;.
 	*
 	* @param userId the user ID
 	* @return the number of matching accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUserId(long userId);
 
 	/**
 	* Returns the account where userId = &#63; and address = &#63; or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
@@ -177,12 +158,10 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param address the address
 	* @return the matching account
 	* @throws com.liferay.mail.NoSuchAccountException if a matching account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account findByU_A(long userId,
 		java.lang.String address)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.mail.NoSuchAccountException;
 
 	/**
 	* Returns the account where userId = &#63; and address = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -190,11 +169,9 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param userId the user ID
 	* @param address the address
 	* @return the matching account, or <code>null</code> if a matching account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account fetchByU_A(long userId,
-		java.lang.String address)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String address);
 
 	/**
 	* Returns the account where userId = &#63; and address = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -203,11 +180,9 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param address the address
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching account, or <code>null</code> if a matching account could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account fetchByU_A(long userId,
-		java.lang.String address, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String address, boolean retrieveFromCache);
 
 	/**
 	* Removes the account where userId = &#63; and address = &#63; from the database.
@@ -215,12 +190,10 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param userId the user ID
 	* @param address the address
 	* @return the account that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account removeByU_A(long userId,
 		java.lang.String address)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.mail.NoSuchAccountException;
 
 	/**
 	* Returns the number of accounts where userId = &#63; and address = &#63;.
@@ -228,10 +201,8 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param userId the user ID
 	* @param address the address
 	* @return the number of matching accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByU_A(long userId, java.lang.String address)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByU_A(long userId, java.lang.String address);
 
 	/**
 	* Caches the account in the entity cache if it is enabled.
@@ -262,15 +233,12 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param accountId the primary key of the account
 	* @return the account that was removed
 	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account remove(long accountId)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.mail.NoSuchAccountException;
 
 	public com.liferay.mail.model.Account updateImpl(
-		com.liferay.mail.model.Account account)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.mail.model.Account account);
 
 	/**
 	* Returns the account with the primary key or throws a {@link com.liferay.mail.NoSuchAccountException} if it could not be found.
@@ -278,30 +246,24 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param accountId the primary key of the account
 	* @return the account
 	* @throws com.liferay.mail.NoSuchAccountException if a account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.mail.model.Account findByPrimaryKey(long accountId)
-		throws com.liferay.mail.NoSuchAccountException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.mail.NoSuchAccountException;
 
 	/**
 	* Returns the account with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param accountId the primary key of the account
 	* @return the account, or <code>null</code> if a account with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public com.liferay.mail.model.Account fetchByPrimaryKey(long accountId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.mail.model.Account fetchByPrimaryKey(long accountId);
 
 	/**
 	* Returns all the accounts.
 	*
 	* @return the accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.mail.model.Account> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.mail.model.Account> findAll();
 
 	/**
 	* Returns a range of all the accounts.
@@ -313,10 +275,9 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param start the lower bound of the range of accounts
 	* @param end the upper bound of the range of accounts (not inclusive)
 	* @return the range of accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.mail.model.Account> findAll(int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 
 	/**
 	* Returns an ordered range of all the accounts.
@@ -329,27 +290,20 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	* @param end the upper bound of the range of accounts (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of accounts
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.mail.model.Account> findAll(int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the accounts from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of accounts.
 	*
 	* @return the number of accounts
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

@@ -16,7 +16,6 @@ package com.liferay.tasks.model.impl;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -373,7 +372,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	@Override
-	public String getUserUuid() throws SystemException {
+	public String getUserUuid() {
 		try {
 			User user = UserLocalServiceUtil.getUserById(getUserId());
 
@@ -481,7 +480,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	@Override
-	public String getAssigneeUserUuid() throws SystemException {
+	public String getAssigneeUserUuid() {
 		try {
 			User user = UserLocalServiceUtil.getUserById(getAssigneeUserId());
 
@@ -520,7 +519,7 @@ public class TasksEntryModelImpl extends BaseModelImpl<TasksEntry>
 	}
 
 	@Override
-	public String getResolverUserUuid() throws SystemException {
+	public String getResolverUserUuid() {
 		try {
 			User user = UserLocalServiceUtil.getUserById(getResolverUserId());
 

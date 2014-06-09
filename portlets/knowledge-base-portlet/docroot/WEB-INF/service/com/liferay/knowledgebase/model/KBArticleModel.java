@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ResourcedModel;
@@ -166,10 +165,9 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	 * Returns the user uuid of this k b article.
 	 *
 	 * @return the user uuid of this k b article
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this k b article.
@@ -451,10 +449,9 @@ public interface KBArticleModel extends BaseModel<KBArticle>, ResourcedModel,
 	 * Returns the status by user uuid of this k b article.
 	 *
 	 * @return the status by user uuid of this k b article
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getStatusByUserUuid() throws SystemException;
+	public String getStatusByUserUuid();
 
 	/**
 	 * Sets the status by user uuid of this k b article.

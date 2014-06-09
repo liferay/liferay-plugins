@@ -16,7 +16,6 @@ package com.liferay.socialcoding.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class SVNRepositoryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class SVNRepositoryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<SVNRepository> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class SVNRepositoryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<SVNRepository> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class SVNRepositoryUtil {
 	 */
 	public static List<SVNRepository> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class SVNRepositoryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static SVNRepository update(SVNRepository svnRepository)
-		throws SystemException {
+	public static SVNRepository update(SVNRepository svnRepository) {
 		return getPersistence().update(svnRepository);
 	}
 
@@ -106,7 +102,7 @@ public class SVNRepositoryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static SVNRepository update(SVNRepository svnRepository,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(svnRepository, serviceContext);
 	}
 
@@ -116,12 +112,10 @@ public class SVNRepositoryUtil {
 	* @param url the url
 	* @return the matching s v n repository
 	* @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a matching s v n repository could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.SVNRepository findByUrl(
 		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRepositoryException {
+		throws com.liferay.socialcoding.NoSuchSVNRepositoryException {
 		return getPersistence().findByUrl(url);
 	}
 
@@ -130,11 +124,9 @@ public class SVNRepositoryUtil {
 	*
 	* @param url the url
 	* @return the matching s v n repository, or <code>null</code> if a matching s v n repository could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.SVNRepository fetchByUrl(
-		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String url) {
 		return getPersistence().fetchByUrl(url);
 	}
 
@@ -144,11 +136,9 @@ public class SVNRepositoryUtil {
 	* @param url the url
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching s v n repository, or <code>null</code> if a matching s v n repository could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.SVNRepository fetchByUrl(
-		java.lang.String url, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String url, boolean retrieveFromCache) {
 		return getPersistence().fetchByUrl(url, retrieveFromCache);
 	}
 
@@ -157,12 +147,10 @@ public class SVNRepositoryUtil {
 	*
 	* @param url the url
 	* @return the s v n repository that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.SVNRepository removeByUrl(
 		java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRepositoryException {
+		throws com.liferay.socialcoding.NoSuchSVNRepositoryException {
 		return getPersistence().removeByUrl(url);
 	}
 
@@ -171,10 +159,8 @@ public class SVNRepositoryUtil {
 	*
 	* @param url the url
 	* @return the number of matching s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUrl(java.lang.String url)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUrl(java.lang.String url) {
 		return getPersistence().countByUrl(url);
 	}
 
@@ -215,18 +201,15 @@ public class SVNRepositoryUtil {
 	* @param svnRepositoryId the primary key of the s v n repository
 	* @return the s v n repository that was removed
 	* @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.SVNRepository remove(
 		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRepositoryException {
+		throws com.liferay.socialcoding.NoSuchSVNRepositoryException {
 		return getPersistence().remove(svnRepositoryId);
 	}
 
 	public static com.liferay.socialcoding.model.SVNRepository updateImpl(
-		com.liferay.socialcoding.model.SVNRepository svnRepository)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialcoding.model.SVNRepository svnRepository) {
 		return getPersistence().updateImpl(svnRepository);
 	}
 
@@ -236,12 +219,10 @@ public class SVNRepositoryUtil {
 	* @param svnRepositoryId the primary key of the s v n repository
 	* @return the s v n repository
 	* @throws com.liferay.socialcoding.NoSuchSVNRepositoryException if a s v n repository with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.SVNRepository findByPrimaryKey(
 		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialcoding.NoSuchSVNRepositoryException {
+		throws com.liferay.socialcoding.NoSuchSVNRepositoryException {
 		return getPersistence().findByPrimaryKey(svnRepositoryId);
 	}
 
@@ -250,11 +231,9 @@ public class SVNRepositoryUtil {
 	*
 	* @param svnRepositoryId the primary key of the s v n repository
 	* @return the s v n repository, or <code>null</code> if a s v n repository with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialcoding.model.SVNRepository fetchByPrimaryKey(
-		long svnRepositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long svnRepositoryId) {
 		return getPersistence().fetchByPrimaryKey(svnRepositoryId);
 	}
 
@@ -262,10 +241,8 @@ public class SVNRepositoryUtil {
 	* Returns all the s v n repositories.
 	*
 	* @return the s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -279,11 +256,9 @@ public class SVNRepositoryUtil {
 	* @param start the lower bound of the range of s v n repositories
 	* @param end the upper bound of the range of s v n repositories (not inclusive)
 	* @return the range of s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -298,22 +273,17 @@ public class SVNRepositoryUtil {
 	* @param end the upper bound of the range of s v n repositories (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialcoding.model.SVNRepository> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the s v n repositories from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -321,10 +291,8 @@ public class SVNRepositoryUtil {
 	* Returns the number of s v n repositories.
 	*
 	* @return the number of s v n repositories
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

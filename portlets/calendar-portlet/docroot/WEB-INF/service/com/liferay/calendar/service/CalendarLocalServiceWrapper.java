@@ -35,12 +35,10 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	*
 	* @param calendar the calendar
 	* @return the calendar that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.Calendar addCalendar(
-		com.liferay.calendar.model.Calendar calendar)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.calendar.model.Calendar calendar) {
 		return _calendarLocalService.addCalendar(calendar);
 	}
 
@@ -61,7 +59,7 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param calendarId the primary key of the calendar
 	* @return the calendar that was removed
 	* @throws PortalException if a calendar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.Calendar deleteCalendar(long calendarId)
@@ -76,7 +74,7 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param calendar the calendar
 	* @return the calendar that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.Calendar deleteCalendar(
@@ -96,13 +94,11 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _calendarLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -117,13 +113,12 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _calendarLocalService.dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -139,15 +134,13 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _calendarLocalService.dynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -157,12 +150,10 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _calendarLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -172,13 +163,11 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _calendarLocalService.dynamicQueryCount(dynamicQuery, projection);
 	}
 
@@ -194,7 +183,7 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param uuid the calendar's UUID
 	* @param companyId the primary key of the company
 	* @return the matching calendar, or <code>null</code> if a matching calendar could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.Calendar fetchCalendarByUuidAndCompanyId(
@@ -210,7 +199,7 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param uuid the calendar's UUID
 	* @param groupId the primary key of the group
 	* @return the matching calendar, or <code>null</code> if a matching calendar could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.Calendar fetchCalendarByUuidAndGroupId(
@@ -225,7 +214,7 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param calendarId the primary key of the calendar
 	* @return the calendar
 	* @throws PortalException if a calendar with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.Calendar getCalendar(long calendarId)
@@ -235,23 +224,30 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _calendarLocalService.getActionableDynamicQuery();
 	}
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
 		return _calendarLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _calendarLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -262,7 +258,7 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param companyId the primary key of the company
 	* @return the matching calendar
 	* @throws PortalException if a matching calendar could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.Calendar getCalendarByUuidAndCompanyId(
@@ -280,7 +276,7 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param groupId the primary key of the group
 	* @return the matching calendar
 	* @throws PortalException if a matching calendar could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.Calendar getCalendarByUuidAndGroupId(
@@ -300,12 +296,10 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* @param start the lower bound of the range of calendars
 	* @param end the upper bound of the range of calendars (not inclusive)
 	* @return the range of calendars
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _calendarLocalService.getCalendars(start, end);
 	}
 
@@ -313,11 +307,9 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	* Returns the number of calendars.
 	*
 	* @return the number of calendars
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getCalendarsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getCalendarsCount() {
 		return _calendarLocalService.getCalendarsCount();
 	}
 
@@ -326,12 +318,10 @@ public class CalendarLocalServiceWrapper implements CalendarLocalService,
 	*
 	* @param calendar the calendar
 	* @return the calendar that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.Calendar updateCalendar(
-		com.liferay.calendar.model.Calendar calendar)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.calendar.model.Calendar calendar) {
 		return _calendarLocalService.updateCalendar(calendar);
 	}
 

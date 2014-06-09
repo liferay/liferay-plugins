@@ -245,11 +245,9 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	* Returns the user uuid of this sample l a r booking.
 	*
 	* @return the user uuid of this sample l a r booking
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _sampleLARBooking.getUserUuid();
 	}
 
@@ -443,8 +441,7 @@ public class SampleLARBookingWrapper implements SampleLARBooking,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_sampleLARBooking.persist();
 	}
 

@@ -15,17 +15,18 @@
 package com.liferay.portal.workflow.kaleo.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.workflow.kaleo.model.KaleoAction;
 import com.liferay.portal.workflow.kaleo.service.KaleoActionLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link KaleoActionLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class KaleoActionActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public KaleoActionActionableDynamicQuery() throws SystemException {
+	public KaleoActionActionableDynamicQuery() {
 		setBaseLocalService(KaleoActionLocalServiceUtil.getService());
 		setClass(KaleoAction.class);
 

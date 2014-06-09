@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.StagedGroupedModel;
@@ -145,10 +144,9 @@ public interface KBTemplateModel extends BaseModel<KBTemplate>,
 	 * Returns the user uuid of this k b template.
 	 *
 	 * @return the user uuid of this k b template
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this k b template.

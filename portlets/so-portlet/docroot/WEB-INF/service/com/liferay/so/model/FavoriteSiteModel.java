@@ -14,7 +14,6 @@
 
 package com.liferay.so.model;
 
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
@@ -117,9 +116,8 @@ public interface FavoriteSiteModel extends BaseModel<FavoriteSite> {
 	 * Returns the user uuid of this favorite site.
 	 *
 	 * @return the user uuid of this favorite site
-	 * @throws SystemException if a system exception occurred
 	 */
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this favorite site.

@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -113,10 +112,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param uuid the uuid
 	 * @return the matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBTemplate> findByUuid(String uuid) throws SystemException {
+	public List<KBTemplate> findByUuid(String uuid) {
 		return findByUuid(uuid, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -131,11 +129,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param start the lower bound of the range of k b templates
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @return the range of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBTemplate> findByUuid(String uuid, int start, int end)
-		throws SystemException {
+	public List<KBTemplate> findByUuid(String uuid, int start, int end) {
 		return findByUuid(uuid, start, end, null);
 	}
 
@@ -151,11 +147,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<KBTemplate> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -272,12 +267,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByUuid_First(String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByUuid_First(uuid, orderByComparator);
 
 		if (kbTemplate != null) {
@@ -302,11 +295,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b template, or <code>null</code> if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<KBTemplate> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -323,12 +315,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (kbTemplate != null) {
@@ -353,11 +343,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param uuid the uuid
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b template, or <code>null</code> if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -382,12 +371,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate[] findByUuid_PrevAndNext(long kbTemplateId, String uuid,
-		OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchTemplateException {
 		KBTemplate kbTemplate = findByPrimaryKey(kbTemplateId);
 
 		Session session = null;
@@ -538,10 +525,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * Removes all the k b templates where uuid = &#63; from the database.
 	 *
 	 * @param uuid the uuid
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByUuid(String uuid) throws SystemException {
+	public void removeByUuid(String uuid) {
 		for (KBTemplate kbTemplate : findByUuid(uuid, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
 			remove(kbTemplate);
@@ -553,10 +539,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param uuid the uuid
 	 * @return the number of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUuid(String uuid) throws SystemException {
+	public int countByUuid(String uuid) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID;
 
 		Object[] finderArgs = new Object[] { uuid };
@@ -636,11 +621,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param groupId the group ID
 	 * @return the matching k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByUUID_G(String uuid, long groupId)
-		throws NoSuchTemplateException, SystemException {
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByUUID_G(uuid, groupId);
 
 		if (kbTemplate == null) {
@@ -672,11 +656,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the matching k b template, or <code>null</code> if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public KBTemplate fetchByUUID_G(String uuid, long groupId)
-		throws SystemException {
+	public KBTemplate fetchByUUID_G(String uuid, long groupId) {
 		return fetchByUUID_G(uuid, groupId, true);
 	}
 
@@ -687,11 +669,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param groupId the group ID
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching k b template, or <code>null</code> if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate fetchByUUID_G(String uuid, long groupId,
-		boolean retrieveFromCache) throws SystemException {
+		boolean retrieveFromCache) {
 		Object[] finderArgs = new Object[] { uuid, groupId };
 
 		Object result = null;
@@ -794,11 +775,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the k b template that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate removeByUUID_G(String uuid, long groupId)
-		throws NoSuchTemplateException, SystemException {
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = findByUUID_G(uuid, groupId);
 
 		return remove(kbTemplate);
@@ -810,11 +790,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param uuid the uuid
 	 * @param groupId the group ID
 	 * @return the number of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUUID_G(String uuid, long groupId)
-		throws SystemException {
+	public int countByUUID_G(String uuid, long groupId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_G;
 
 		Object[] finderArgs = new Object[] { uuid, groupId };
@@ -909,11 +887,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @return the matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBTemplate> findByUuid_C(String uuid, long companyId)
-		throws SystemException {
+	public List<KBTemplate> findByUuid_C(String uuid, long companyId) {
 		return findByUuid_C(uuid, companyId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -930,11 +906,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param start the lower bound of the range of k b templates
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @return the range of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<KBTemplate> findByUuid_C(String uuid, long companyId,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return findByUuid_C(uuid, companyId, start, end, null);
 	}
 
@@ -951,12 +926,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<KBTemplate> findByUuid_C(String uuid, long companyId,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1083,12 +1056,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1118,11 +1089,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b template, or <code>null</code> if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<KBTemplate> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1141,12 +1111,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1176,11 +1144,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param companyId the company ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b template, or <code>null</code> if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1206,12 +1173,11 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate[] findByUuid_C_PrevAndNext(long kbTemplateId,
 		String uuid, long companyId, OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = findByPrimaryKey(kbTemplateId);
 
 		Session session = null;
@@ -1367,11 +1333,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param uuid the uuid
 	 * @param companyId the company ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByUuid_C(String uuid, long companyId)
-		throws SystemException {
+	public void removeByUuid_C(String uuid, long companyId) {
 		for (KBTemplate kbTemplate : findByUuid_C(uuid, companyId,
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(kbTemplate);
@@ -1384,11 +1348,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param uuid the uuid
 	 * @param companyId the company ID
 	 * @return the number of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByUuid_C(String uuid, long companyId)
-		throws SystemException {
+	public int countByUuid_C(String uuid, long companyId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_UUID_C;
 
 		Object[] finderArgs = new Object[] { uuid, companyId };
@@ -1481,11 +1443,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param groupId the group ID
 	 * @return the matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBTemplate> findByGroupId(long groupId)
-		throws SystemException {
+	public List<KBTemplate> findByGroupId(long groupId) {
 		return findByGroupId(groupId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -1500,11 +1460,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param start the lower bound of the range of k b templates
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @return the range of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBTemplate> findByGroupId(long groupId, int start, int end)
-		throws SystemException {
+	public List<KBTemplate> findByGroupId(long groupId, int start, int end) {
 		return findByGroupId(groupId, start, end, null);
 	}
 
@@ -1520,11 +1478,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<KBTemplate> findByGroupId(long groupId, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1627,12 +1584,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByGroupId_First(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByGroupId_First(groupId, orderByComparator);
 
 		if (kbTemplate != null) {
@@ -1657,11 +1612,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching k b template, or <code>null</code> if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate fetchByGroupId_First(long groupId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		List<KBTemplate> list = findByGroupId(groupId, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -1678,12 +1632,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByGroupId_Last(groupId, orderByComparator);
 
 		if (kbTemplate != null) {
@@ -1708,11 +1660,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param groupId the group ID
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching k b template, or <code>null</code> if a matching k b template could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate fetchByGroupId_Last(long groupId,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		int count = countByGroupId(groupId);
 
 		if (count == 0) {
@@ -1737,12 +1688,11 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate[] findByGroupId_PrevAndNext(long kbTemplateId,
 		long groupId, OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = findByPrimaryKey(kbTemplateId);
 
 		Session session = null;
@@ -1880,11 +1830,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param groupId the group ID
 	 * @return the matching k b templates that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBTemplate> filterFindByGroupId(long groupId)
-		throws SystemException {
+	public List<KBTemplate> filterFindByGroupId(long groupId) {
 		return filterFindByGroupId(groupId, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -1900,11 +1848,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param start the lower bound of the range of k b templates
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @return the range of matching k b templates that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBTemplate> filterFindByGroupId(long groupId, int start, int end)
-		throws SystemException {
+	public List<KBTemplate> filterFindByGroupId(long groupId, int start, int end) {
 		return filterFindByGroupId(groupId, start, end, null);
 	}
 
@@ -1920,11 +1866,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching k b templates that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<KBTemplate> filterFindByGroupId(long groupId, int start,
-		int end, OrderByComparator orderByComparator) throws SystemException {
+		int end, OrderByComparator orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId(groupId, start, end, orderByComparator);
 		}
@@ -2011,12 +1956,11 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate[] filterFindByGroupId_PrevAndNext(long kbTemplateId,
 		long groupId, OrderByComparator orderByComparator)
-		throws NoSuchTemplateException, SystemException {
+		throws NoSuchTemplateException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByGroupId_PrevAndNext(kbTemplateId, groupId,
 				orderByComparator);
@@ -2193,10 +2137,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * Removes all the k b templates where groupId = &#63; from the database.
 	 *
 	 * @param groupId the group ID
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByGroupId(long groupId) throws SystemException {
+	public void removeByGroupId(long groupId) {
 		for (KBTemplate kbTemplate : findByGroupId(groupId, QueryUtil.ALL_POS,
 				QueryUtil.ALL_POS, null)) {
 			remove(kbTemplate);
@@ -2208,10 +2151,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param groupId the group ID
 	 * @return the number of matching k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByGroupId(long groupId) throws SystemException {
+	public int countByGroupId(long groupId) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_GROUPID;
 
 		Object[] finderArgs = new Object[] { groupId };
@@ -2261,10 +2203,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param groupId the group ID
 	 * @return the number of matching k b templates that the user has permission to view
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int filterCountByGroupId(long groupId) throws SystemException {
+	public int filterCountByGroupId(long groupId) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return countByGroupId(groupId);
 		}
@@ -2474,11 +2415,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param kbTemplateId the primary key of the k b template
 	 * @return the k b template that was removed
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public KBTemplate remove(long kbTemplateId)
-		throws NoSuchTemplateException, SystemException {
+	public KBTemplate remove(long kbTemplateId) throws NoSuchTemplateException {
 		return remove((Serializable)kbTemplateId);
 	}
 
@@ -2488,11 +2427,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param primaryKey the primary key of the k b template
 	 * @return the k b template that was removed
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate remove(Serializable primaryKey)
-		throws NoSuchTemplateException, SystemException {
+		throws NoSuchTemplateException {
 		Session session = null;
 
 		try {
@@ -2524,8 +2462,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	}
 
 	@Override
-	protected KBTemplate removeImpl(KBTemplate kbTemplate)
-		throws SystemException {
+	protected KBTemplate removeImpl(KBTemplate kbTemplate) {
 		kbTemplate = toUnwrappedModel(kbTemplate);
 
 		Session session = null;
@@ -2558,8 +2495,7 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 
 	@Override
 	public KBTemplate updateImpl(
-		com.liferay.knowledgebase.model.KBTemplate kbTemplate)
-		throws SystemException {
+		com.liferay.knowledgebase.model.KBTemplate kbTemplate) {
 		kbTemplate = toUnwrappedModel(kbTemplate);
 
 		boolean isNew = kbTemplate.isNew();
@@ -2697,11 +2633,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param primaryKey the primary key of the k b template
 	 * @return the k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchTemplateException, SystemException {
+		throws NoSuchTemplateException {
 		KBTemplate kbTemplate = fetchByPrimaryKey(primaryKey);
 
 		if (kbTemplate == null) {
@@ -2722,11 +2657,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param kbTemplateId the primary key of the k b template
 	 * @return the k b template
 	 * @throws com.liferay.knowledgebase.NoSuchTemplateException if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KBTemplate findByPrimaryKey(long kbTemplateId)
-		throws NoSuchTemplateException, SystemException {
+		throws NoSuchTemplateException {
 		return findByPrimaryKey((Serializable)kbTemplateId);
 	}
 
@@ -2735,11 +2669,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param primaryKey the primary key of the k b template
 	 * @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public KBTemplate fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
+	public KBTemplate fetchByPrimaryKey(Serializable primaryKey) {
 		KBTemplate kbTemplate = (KBTemplate)EntityCacheUtil.getResult(KBTemplateModelImpl.ENTITY_CACHE_ENABLED,
 				KBTemplateImpl.class, primaryKey);
 
@@ -2783,11 +2715,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 *
 	 * @param kbTemplateId the primary key of the k b template
 	 * @return the k b template, or <code>null</code> if a k b template with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public KBTemplate fetchByPrimaryKey(long kbTemplateId)
-		throws SystemException {
+	public KBTemplate fetchByPrimaryKey(long kbTemplateId) {
 		return fetchByPrimaryKey((Serializable)kbTemplateId);
 	}
 
@@ -2795,10 +2725,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * Returns all the k b templates.
 	 *
 	 * @return the k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBTemplate> findAll() throws SystemException {
+	public List<KBTemplate> findAll() {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -2812,11 +2741,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param start the lower bound of the range of k b templates
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @return the range of k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<KBTemplate> findAll(int start, int end)
-		throws SystemException {
+	public List<KBTemplate> findAll(int start, int end) {
 		return findAll(start, end, null);
 	}
 
@@ -2831,11 +2758,10 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * @param end the upper bound of the range of k b templates (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<KBTemplate> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2917,10 +2843,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	/**
 	 * Removes all the k b templates from the database.
 	 *
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeAll() throws SystemException {
+	public void removeAll() {
 		for (KBTemplate kbTemplate : findAll()) {
 			remove(kbTemplate);
 		}
@@ -2930,10 +2855,9 @@ public class KBTemplatePersistenceImpl extends BasePersistenceImpl<KBTemplate>
 	 * Returns the number of k b templates.
 	 *
 	 * @return the number of k b templates
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countAll() throws SystemException {
+	public int countAll() {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 

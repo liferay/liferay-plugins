@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -86,13 +88,11 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 *
 	 * @param kaleoTaskAssignmentInstance the kaleo task assignment instance
 	 * @return the kaleo task assignment instance that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public KaleoTaskAssignmentInstance addKaleoTaskAssignmentInstance(
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
-		throws SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance) {
 		kaleoTaskAssignmentInstance.setNew(true);
 
 		return kaleoTaskAssignmentInstancePersistence.update(kaleoTaskAssignmentInstance);
@@ -116,13 +116,11 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 * @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
 	 * @return the kaleo task assignment instance that was removed
 	 * @throws PortalException if a kaleo task assignment instance with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoTaskAssignmentInstance deleteKaleoTaskAssignmentInstance(
-		long kaleoTaskAssignmentInstanceId)
-		throws PortalException, SystemException {
+		long kaleoTaskAssignmentInstanceId) throws PortalException {
 		return kaleoTaskAssignmentInstancePersistence.remove(kaleoTaskAssignmentInstanceId);
 	}
 
@@ -131,13 +129,11 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 *
 	 * @param kaleoTaskAssignmentInstance the kaleo task assignment instance
 	 * @return the kaleo task assignment instance that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public KaleoTaskAssignmentInstance deleteKaleoTaskAssignmentInstance(
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
-		throws SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance) {
 		return kaleoTaskAssignmentInstancePersistence.remove(kaleoTaskAssignmentInstance);
 	}
 
@@ -154,12 +150,10 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return kaleoTaskAssignmentInstancePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -174,12 +168,10 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return kaleoTaskAssignmentInstancePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -196,12 +188,11 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return kaleoTaskAssignmentInstancePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -211,11 +202,9 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return kaleoTaskAssignmentInstancePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -225,18 +214,17 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return kaleoTaskAssignmentInstancePersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public KaleoTaskAssignmentInstance fetchKaleoTaskAssignmentInstance(
-		long kaleoTaskAssignmentInstanceId) throws SystemException {
+		long kaleoTaskAssignmentInstanceId) {
 		return kaleoTaskAssignmentInstancePersistence.fetchByPrimaryKey(kaleoTaskAssignmentInstanceId);
 	}
 
@@ -246,18 +234,49 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 * @param kaleoTaskAssignmentInstanceId the primary key of the kaleo task assignment instance
 	 * @return the kaleo task assignment instance
 	 * @throws PortalException if a kaleo task assignment instance with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public KaleoTaskAssignmentInstance getKaleoTaskAssignmentInstance(
-		long kaleoTaskAssignmentInstanceId)
-		throws PortalException, SystemException {
+		long kaleoTaskAssignmentInstanceId) throws PortalException {
 		return kaleoTaskAssignmentInstancePersistence.findByPrimaryKey(kaleoTaskAssignmentInstanceId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(KaleoTaskAssignmentInstance.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName(
+			"kaleoTaskAssignmentInstanceId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.portal.workflow.kaleo.service.KaleoTaskAssignmentInstanceLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(KaleoTaskAssignmentInstance.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName(
+			"kaleoTaskAssignmentInstanceId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteKaleoTaskAssignmentInstance((KaleoTaskAssignmentInstance)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return kaleoTaskAssignmentInstancePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -271,11 +290,10 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 * @param start the lower bound of the range of kaleo task assignment instances
 	 * @param end the upper bound of the range of kaleo task assignment instances (not inclusive)
 	 * @return the range of kaleo task assignment instances
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<KaleoTaskAssignmentInstance> getKaleoTaskAssignmentInstances(
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return kaleoTaskAssignmentInstancePersistence.findAll(start, end);
 	}
 
@@ -283,10 +301,9 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 * Returns the number of kaleo task assignment instances.
 	 *
 	 * @return the number of kaleo task assignment instances
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getKaleoTaskAssignmentInstancesCount() throws SystemException {
+	public int getKaleoTaskAssignmentInstancesCount() {
 		return kaleoTaskAssignmentInstancePersistence.countAll();
 	}
 
@@ -295,13 +312,11 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 *
 	 * @param kaleoTaskAssignmentInstance the kaleo task assignment instance
 	 * @return the kaleo task assignment instance that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public KaleoTaskAssignmentInstance updateKaleoTaskAssignmentInstance(
-		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance)
-		throws SystemException {
+		KaleoTaskAssignmentInstance kaleoTaskAssignmentInstance) {
 		return kaleoTaskAssignmentInstancePersistence.update(kaleoTaskAssignmentInstance);
 	}
 
@@ -1169,7 +1184,7 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = kaleoTaskAssignmentInstancePersistence.getDataSource();
 

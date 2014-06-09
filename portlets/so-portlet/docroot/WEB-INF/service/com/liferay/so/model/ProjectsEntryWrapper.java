@@ -218,11 +218,9 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	* Returns the user uuid of this projects entry.
 	*
 	* @return the user uuid of this projects entry
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _projectsEntry.getUserUuid();
 	}
 
@@ -495,8 +493,7 @@ public class ProjectsEntryWrapper implements ProjectsEntry,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_projectsEntry.persist();
 	}
 

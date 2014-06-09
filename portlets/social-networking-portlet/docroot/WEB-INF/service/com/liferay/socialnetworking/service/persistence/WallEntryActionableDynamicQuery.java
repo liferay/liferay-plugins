@@ -15,18 +15,19 @@
 package com.liferay.socialnetworking.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link WallEntryLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class WallEntryActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public WallEntryActionableDynamicQuery() throws SystemException {
+	public WallEntryActionableDynamicQuery() {
 		setBaseLocalService(WallEntryLocalServiceUtil.getService());
 		setClass(WallEntry.class);
 

@@ -36,12 +36,10 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	*
 	* @param calendarNotificationTemplate the calendar notification template
 	* @return the calendar notification template that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate addCalendarNotificationTemplate(
-		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate) {
 		return _calendarNotificationTemplateLocalService.addCalendarNotificationTemplate(calendarNotificationTemplate);
 	}
 
@@ -63,13 +61,11 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param calendarNotificationTemplateId the primary key of the calendar notification template
 	* @return the calendar notification template that was removed
 	* @throws PortalException if a calendar notification template with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate deleteCalendarNotificationTemplate(
 		long calendarNotificationTemplateId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarNotificationTemplateLocalService.deleteCalendarNotificationTemplate(calendarNotificationTemplateId);
 	}
 
@@ -78,7 +74,7 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	*
 	* @param calendarNotificationTemplate the calendar notification template
 	* @return the calendar notification template that was removed
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate deleteCalendarNotificationTemplate(
@@ -97,13 +93,11 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _calendarNotificationTemplateLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -118,13 +112,12 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _calendarNotificationTemplateLocalService.dynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -141,15 +134,13 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _calendarNotificationTemplateLocalService.dynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -159,12 +150,10 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _calendarNotificationTemplateLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,21 +163,18 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _calendarNotificationTemplateLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplate(
-		long calendarNotificationTemplateId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long calendarNotificationTemplateId) {
 		return _calendarNotificationTemplateLocalService.fetchCalendarNotificationTemplate(calendarNotificationTemplateId);
 	}
 
@@ -198,12 +184,10 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param uuid the calendar notification template's UUID
 	* @param companyId the primary key of the company
 	* @return the matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplateByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return _calendarNotificationTemplateLocalService.fetchCalendarNotificationTemplateByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -214,12 +198,10 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param uuid the calendar notification template's UUID
 	* @param groupId the primary key of the group
 	* @return the matching calendar notification template, or <code>null</code> if a matching calendar notification template could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate fetchCalendarNotificationTemplateByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId) {
 		return _calendarNotificationTemplateLocalService.fetchCalendarNotificationTemplateByUuidAndGroupId(uuid,
 			groupId);
 	}
@@ -230,34 +212,39 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param calendarNotificationTemplateId the primary key of the calendar notification template
 	* @return the calendar notification template
 	* @throws PortalException if a calendar notification template with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate getCalendarNotificationTemplate(
 		long calendarNotificationTemplateId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarNotificationTemplateLocalService.getCalendarNotificationTemplate(calendarNotificationTemplateId);
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _calendarNotificationTemplateLocalService.getActionableDynamicQuery();
 	}
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
 		return _calendarNotificationTemplateLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _calendarNotificationTemplateLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarNotificationTemplateLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -268,13 +255,11 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param companyId the primary key of the company
 	* @return the matching calendar notification template
 	* @throws PortalException if a matching calendar notification template could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate getCalendarNotificationTemplateByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarNotificationTemplateLocalService.getCalendarNotificationTemplateByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -286,13 +271,11 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param groupId the primary key of the group
 	* @return the matching calendar notification template
 	* @throws PortalException if a matching calendar notification template could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate getCalendarNotificationTemplateByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarNotificationTemplateLocalService.getCalendarNotificationTemplateByUuidAndGroupId(uuid,
 			groupId);
 	}
@@ -307,12 +290,10 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* @param start the lower bound of the range of calendar notification templates
 	* @param end the upper bound of the range of calendar notification templates (not inclusive)
 	* @return the range of calendar notification templates
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> getCalendarNotificationTemplates(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _calendarNotificationTemplateLocalService.getCalendarNotificationTemplates(start,
 			end);
 	}
@@ -321,11 +302,9 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	* Returns the number of calendar notification templates.
 	*
 	* @return the number of calendar notification templates
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getCalendarNotificationTemplatesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getCalendarNotificationTemplatesCount() {
 		return _calendarNotificationTemplateLocalService.getCalendarNotificationTemplatesCount();
 	}
 
@@ -334,12 +313,10 @@ public class CalendarNotificationTemplateLocalServiceWrapper
 	*
 	* @param calendarNotificationTemplate the calendar notification template
 	* @return the calendar notification template that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarNotificationTemplate updateCalendarNotificationTemplate(
-		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.calendar.model.CalendarNotificationTemplate calendarNotificationTemplate) {
 		return _calendarNotificationTemplateLocalService.updateCalendarNotificationTemplate(calendarNotificationTemplate);
 	}
 

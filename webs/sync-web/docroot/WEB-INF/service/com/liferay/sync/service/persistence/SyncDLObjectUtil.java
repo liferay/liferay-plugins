@@ -16,7 +16,6 @@ package com.liferay.sync.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class SyncDLObjectUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class SyncDLObjectUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<SyncDLObject> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class SyncDLObjectUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<SyncDLObject> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class SyncDLObjectUtil {
 	 */
 	public static List<SyncDLObject> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class SyncDLObjectUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static SyncDLObject update(SyncDLObject syncDLObject)
-		throws SystemException {
+	public static SyncDLObject update(SyncDLObject syncDLObject) {
 		return getPersistence().update(syncDLObject);
 	}
 
@@ -106,7 +102,7 @@ public class SyncDLObjectUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static SyncDLObject update(SyncDLObject syncDLObject,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(syncDLObject, serviceContext);
 	}
 
@@ -117,12 +113,10 @@ public class SyncDLObjectUtil {
 	* @param typePK the type p k
 	* @return the matching sync d l object
 	* @throws com.liferay.sync.NoSuchDLObjectException if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject findByT_T(
 		java.lang.String type, long typePK)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
+		throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence().findByT_T(type, typePK);
 	}
 
@@ -132,11 +126,9 @@ public class SyncDLObjectUtil {
 	* @param type the type
 	* @param typePK the type p k
 	* @return the matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject fetchByT_T(
-		java.lang.String type, long typePK)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String type, long typePK) {
 		return getPersistence().fetchByT_T(type, typePK);
 	}
 
@@ -147,11 +139,9 @@ public class SyncDLObjectUtil {
 	* @param typePK the type p k
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject fetchByT_T(
-		java.lang.String type, long typePK, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String type, long typePK, boolean retrieveFromCache) {
 		return getPersistence().fetchByT_T(type, typePK, retrieveFromCache);
 	}
 
@@ -161,12 +151,10 @@ public class SyncDLObjectUtil {
 	* @param type the type
 	* @param typePK the type p k
 	* @return the sync d l object that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject removeByT_T(
 		java.lang.String type, long typePK)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
+		throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence().removeByT_T(type, typePK);
 	}
 
@@ -176,10 +164,8 @@ public class SyncDLObjectUtil {
 	* @param type the type
 	* @param typePK the type p k
 	* @return the number of matching sync d l objects
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByT_T(java.lang.String type, long typePK)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByT_T(java.lang.String type, long typePK) {
 		return getPersistence().countByT_T(type, typePK);
 	}
 
@@ -190,11 +176,9 @@ public class SyncDLObjectUtil {
 	* @param modifiedTime the modified time
 	* @param repositoryId the repository ID
 	* @return the matching sync d l objects
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByC_M_R(
-		long companyId, long modifiedTime, long repositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, long modifiedTime, long repositoryId) {
 		return getPersistence()
 				   .findByC_M_R(companyId, modifiedTime, repositoryId);
 	}
@@ -212,11 +196,9 @@ public class SyncDLObjectUtil {
 	* @param start the lower bound of the range of sync d l objects
 	* @param end the upper bound of the range of sync d l objects (not inclusive)
 	* @return the range of matching sync d l objects
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByC_M_R(
-		long companyId, long modifiedTime, long repositoryId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, long modifiedTime, long repositoryId, int start, int end) {
 		return getPersistence()
 				   .findByC_M_R(companyId, modifiedTime, repositoryId, start,
 			end);
@@ -236,13 +218,11 @@ public class SyncDLObjectUtil {
 	* @param end the upper bound of the range of sync d l objects (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sync d l objects
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> findByC_M_R(
 		long companyId, long modifiedTime, long repositoryId, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByC_M_R(companyId, modifiedTime, repositoryId, start,
 			end, orderByComparator);
@@ -257,13 +237,11 @@ public class SyncDLObjectUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sync d l object
 	* @throws com.liferay.sync.NoSuchDLObjectException if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject findByC_M_R_First(
 		long companyId, long modifiedTime, long repositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
+		throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence()
 				   .findByC_M_R_First(companyId, modifiedTime, repositoryId,
 			orderByComparator);
@@ -277,12 +255,10 @@ public class SyncDLObjectUtil {
 	* @param repositoryId the repository ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject fetchByC_M_R_First(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByC_M_R_First(companyId, modifiedTime, repositoryId,
 			orderByComparator);
@@ -297,13 +273,11 @@ public class SyncDLObjectUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sync d l object
 	* @throws com.liferay.sync.NoSuchDLObjectException if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject findByC_M_R_Last(
 		long companyId, long modifiedTime, long repositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
+		throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence()
 				   .findByC_M_R_Last(companyId, modifiedTime, repositoryId,
 			orderByComparator);
@@ -317,12 +291,10 @@ public class SyncDLObjectUtil {
 	* @param repositoryId the repository ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sync d l object, or <code>null</code> if a matching sync d l object could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject fetchByC_M_R_Last(
 		long companyId, long modifiedTime, long repositoryId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByC_M_R_Last(companyId, modifiedTime, repositoryId,
 			orderByComparator);
@@ -338,14 +310,12 @@ public class SyncDLObjectUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next sync d l object
 	* @throws com.liferay.sync.NoSuchDLObjectException if a sync d l object with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject[] findByC_M_R_PrevAndNext(
 		long syncDLObjectId, long companyId, long modifiedTime,
 		long repositoryId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
+		throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence()
 				   .findByC_M_R_PrevAndNext(syncDLObjectId, companyId,
 			modifiedTime, repositoryId, orderByComparator);
@@ -357,11 +327,9 @@ public class SyncDLObjectUtil {
 	* @param companyId the company ID
 	* @param modifiedTime the modified time
 	* @param repositoryId the repository ID
-	* @throws SystemException if a system exception occurred
 	*/
 	public static void removeByC_M_R(long companyId, long modifiedTime,
-		long repositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long repositoryId) {
 		getPersistence().removeByC_M_R(companyId, modifiedTime, repositoryId);
 	}
 
@@ -372,11 +340,9 @@ public class SyncDLObjectUtil {
 	* @param modifiedTime the modified time
 	* @param repositoryId the repository ID
 	* @return the number of matching sync d l objects
-	* @throws SystemException if a system exception occurred
 	*/
 	public static int countByC_M_R(long companyId, long modifiedTime,
-		long repositoryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long repositoryId) {
 		return getPersistence()
 				   .countByC_M_R(companyId, modifiedTime, repositoryId);
 	}
@@ -418,18 +384,14 @@ public class SyncDLObjectUtil {
 	* @param syncDLObjectId the primary key of the sync d l object
 	* @return the sync d l object that was removed
 	* @throws com.liferay.sync.NoSuchDLObjectException if a sync d l object with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject remove(
-		long syncDLObjectId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
+		long syncDLObjectId) throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence().remove(syncDLObjectId);
 	}
 
 	public static com.liferay.sync.model.SyncDLObject updateImpl(
-		com.liferay.sync.model.SyncDLObject syncDLObject)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.sync.model.SyncDLObject syncDLObject) {
 		return getPersistence().updateImpl(syncDLObject);
 	}
 
@@ -439,12 +401,9 @@ public class SyncDLObjectUtil {
 	* @param syncDLObjectId the primary key of the sync d l object
 	* @return the sync d l object
 	* @throws com.liferay.sync.NoSuchDLObjectException if a sync d l object with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject findByPrimaryKey(
-		long syncDLObjectId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLObjectException {
+		long syncDLObjectId) throws com.liferay.sync.NoSuchDLObjectException {
 		return getPersistence().findByPrimaryKey(syncDLObjectId);
 	}
 
@@ -453,11 +412,9 @@ public class SyncDLObjectUtil {
 	*
 	* @param syncDLObjectId the primary key of the sync d l object
 	* @return the sync d l object, or <code>null</code> if a sync d l object with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLObject fetchByPrimaryKey(
-		long syncDLObjectId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long syncDLObjectId) {
 		return getPersistence().fetchByPrimaryKey(syncDLObjectId);
 	}
 
@@ -465,10 +422,8 @@ public class SyncDLObjectUtil {
 	* Returns all the sync d l objects.
 	*
 	* @return the sync d l objects
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.sync.model.SyncDLObject> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.sync.model.SyncDLObject> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -482,11 +437,9 @@ public class SyncDLObjectUtil {
 	* @param start the lower bound of the range of sync d l objects
 	* @param end the upper bound of the range of sync d l objects (not inclusive)
 	* @return the range of sync d l objects
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -501,22 +454,17 @@ public class SyncDLObjectUtil {
 	* @param end the upper bound of the range of sync d l objects (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of sync d l objects
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLObject> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the sync d l objects from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -524,10 +472,8 @@ public class SyncDLObjectUtil {
 	* Returns the number of sync d l objects.
 	*
 	* @return the number of sync d l objects
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

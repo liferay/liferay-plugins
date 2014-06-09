@@ -15,7 +15,6 @@
 package com.liferay.tasks.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.tasks.model.TasksEntry;
 import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
@@ -28,7 +27,7 @@ import com.liferay.tasks.service.TasksEntryLocalServiceUtil;
 @Deprecated
 public abstract class TasksEntryActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public TasksEntryActionableDynamicQuery() throws SystemException {
+	public TasksEntryActionableDynamicQuery() {
 		setBaseLocalService(TasksEntryLocalServiceUtil.getService());
 		setClass(TasksEntry.class);
 

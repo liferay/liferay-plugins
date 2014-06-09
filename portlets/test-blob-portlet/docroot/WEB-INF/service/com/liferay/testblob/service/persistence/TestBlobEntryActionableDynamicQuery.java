@@ -15,18 +15,19 @@
 package com.liferay.testblob.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.testblob.model.TestBlobEntry;
 import com.liferay.testblob.service.TestBlobEntryLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link TestBlobEntryLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class TestBlobEntryActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public TestBlobEntryActionableDynamicQuery() throws SystemException {
+	public TestBlobEntryActionableDynamicQuery() {
 		setBaseLocalService(TestBlobEntryLocalServiceUtil.getService());
 		setClass(TestBlobEntry.class);
 

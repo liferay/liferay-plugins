@@ -181,11 +181,9 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	* Returns the from user uuid of this entry.
 	*
 	* @return the from user uuid of this entry
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getFromUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getFromUserUuid() {
 		return _entry.getFromUserUuid();
 	}
 
@@ -223,11 +221,9 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	* Returns the to user uuid of this entry.
 	*
 	* @return the to user uuid of this entry
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getToUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getToUserUuid() {
 		return _entry.getToUserUuid();
 	}
 
@@ -380,8 +376,7 @@ public class EntryWrapper implements Entry, ModelWrapper<Entry> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_entry.persist();
 	}
 

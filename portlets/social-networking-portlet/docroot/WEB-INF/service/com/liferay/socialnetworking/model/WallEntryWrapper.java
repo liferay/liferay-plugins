@@ -216,11 +216,9 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	* Returns the user uuid of this wall entry.
 	*
 	* @return the user uuid of this wall entry
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _wallEntry.getUserUuid();
 	}
 
@@ -413,8 +411,7 @@ public class WallEntryWrapper implements WallEntry, ModelWrapper<WallEntry> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_wallEntry.persist();
 	}
 

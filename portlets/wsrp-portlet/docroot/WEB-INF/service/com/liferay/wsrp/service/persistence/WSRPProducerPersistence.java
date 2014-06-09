@@ -42,11 +42,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	*
 	* @param uuid the uuid
 	* @return the matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findByUuid(
-		java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid);
 
 	/**
 	* Returns a range of all the w s r p producers where uuid = &#63;.
@@ -59,11 +57,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param start the lower bound of the range of w s r p producers
 	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @return the range of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findByUuid(
-		java.lang.String uuid, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, int start, int end);
 
 	/**
 	* Returns an ordered range of all the w s r p producers where uuid = &#63;.
@@ -77,12 +73,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first w s r p producer in the ordered set where uuid = &#63;.
@@ -91,13 +85,11 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer findByUuid_First(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Returns the first w s r p producer in the ordered set where uuid = &#63;.
@@ -105,12 +97,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last w s r p producer in the ordered set where uuid = &#63;.
@@ -119,13 +109,11 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer findByUuid_Last(
 		java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Returns the last w s r p producer in the ordered set where uuid = &#63;.
@@ -133,12 +121,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the w s r p producers before and after the current w s r p producer in the ordered set where uuid = &#63;.
@@ -148,32 +134,26 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer[] findByUuid_PrevAndNext(
 		long wsrpProducerId, java.lang.String uuid,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Removes all the w s r p producers where uuid = &#63; from the database.
 	*
 	* @param uuid the uuid
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUuid(java.lang.String uuid);
 
 	/**
 	* Returns the number of w s r p producers where uuid = &#63;.
 	*
 	* @param uuid the uuid
 	* @return the number of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUuid(java.lang.String uuid)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUuid(java.lang.String uuid);
 
 	/**
 	* Returns the w s r p producer where uuid = &#63; and groupId = &#63; or throws a {@link com.liferay.wsrp.NoSuchProducerException} if it could not be found.
@@ -182,12 +162,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param groupId the group ID
 	* @return the matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer findByUUID_G(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Returns the w s r p producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
@@ -195,11 +173,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer fetchByUUID_G(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long groupId);
 
 	/**
 	* Returns the w s r p producer where uuid = &#63; and groupId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
@@ -208,11 +184,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param groupId the group ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer fetchByUUID_G(
-		java.lang.String uuid, long groupId, boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long groupId, boolean retrieveFromCache);
 
 	/**
 	* Removes the w s r p producer where uuid = &#63; and groupId = &#63; from the database.
@@ -220,12 +194,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the w s r p producer that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer removeByUUID_G(
 		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Returns the number of w s r p producers where uuid = &#63; and groupId = &#63;.
@@ -233,10 +205,8 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @param groupId the group ID
 	* @return the number of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUUID_G(java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUUID_G(java.lang.String uuid, long groupId);
 
 	/**
 	* Returns all the w s r p producers where uuid = &#63; and companyId = &#63;.
@@ -244,11 +214,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findByUuid_C(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long companyId);
 
 	/**
 	* Returns a range of all the w s r p producers where uuid = &#63; and companyId = &#63;.
@@ -262,11 +230,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param start the lower bound of the range of w s r p producers
 	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @return the range of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findByUuid_C(
-		java.lang.String uuid, long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String uuid, long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the w s r p producers where uuid = &#63; and companyId = &#63;.
@@ -281,12 +247,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first w s r p producer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -296,13 +260,11 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer findByUuid_C_First(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Returns the first w s r p producer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -311,12 +273,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last w s r p producer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -326,13 +286,11 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Returns the last w s r p producer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -341,12 +299,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the w s r p producers before and after the current w s r p producer in the ordered set where uuid = &#63; and companyId = &#63;.
@@ -357,23 +313,19 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer[] findByUuid_C_PrevAndNext(
 		long wsrpProducerId, java.lang.String uuid, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Removes all the w s r p producers where uuid = &#63; and companyId = &#63; from the database.
 	*
 	* @param uuid the uuid
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUuid_C(java.lang.String uuid, long companyId);
 
 	/**
 	* Returns the number of w s r p producers where uuid = &#63; and companyId = &#63;.
@@ -381,21 +333,17 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param uuid the uuid
 	* @param companyId the company ID
 	* @return the number of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUuid_C(java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUuid_C(java.lang.String uuid, long companyId);
 
 	/**
 	* Returns all the w s r p producers where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId);
 
 	/**
 	* Returns a range of all the w s r p producers where companyId = &#63;.
@@ -408,11 +356,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param start the lower bound of the range of w s r p producers
 	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @return the range of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long companyId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the w s r p producers where companyId = &#63;.
@@ -426,12 +372,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first w s r p producer in the ordered set where companyId = &#63;.
@@ -440,13 +384,11 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Returns the first w s r p producer in the ordered set where companyId = &#63;.
@@ -454,12 +396,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last w s r p producer in the ordered set where companyId = &#63;.
@@ -468,13 +408,11 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Returns the last w s r p producer in the ordered set where companyId = &#63;.
@@ -482,12 +420,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching w s r p producer, or <code>null</code> if a matching w s r p producer could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the w s r p producers before and after the current w s r p producer in the ordered set where companyId = &#63;.
@@ -497,32 +433,26 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer[] findByCompanyId_PrevAndNext(
 		long wsrpProducerId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Removes all the w s r p producers where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByCompanyId(long companyId);
 
 	/**
 	* Returns the number of w s r p producers where companyId = &#63;.
 	*
 	* @param companyId the company ID
 	* @return the number of matching w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByCompanyId(long companyId);
 
 	/**
 	* Caches the w s r p producer in the entity cache if it is enabled.
@@ -553,15 +483,12 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param wsrpProducerId the primary key of the w s r p producer
 	* @return the w s r p producer that was removed
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer remove(long wsrpProducerId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		throws com.liferay.wsrp.NoSuchProducerException;
 
 	public com.liferay.wsrp.model.WSRPProducer updateImpl(
-		com.liferay.wsrp.model.WSRPProducer wsrpProducer)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.wsrp.model.WSRPProducer wsrpProducer);
 
 	/**
 	* Returns the w s r p producer with the primary key or throws a {@link com.liferay.wsrp.NoSuchProducerException} if it could not be found.
@@ -569,32 +496,25 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param wsrpProducerId the primary key of the w s r p producer
 	* @return the w s r p producer
 	* @throws com.liferay.wsrp.NoSuchProducerException if a w s r p producer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer findByPrimaryKey(
-		long wsrpProducerId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.wsrp.NoSuchProducerException;
+		long wsrpProducerId) throws com.liferay.wsrp.NoSuchProducerException;
 
 	/**
 	* Returns the w s r p producer with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param wsrpProducerId the primary key of the w s r p producer
 	* @return the w s r p producer, or <code>null</code> if a w s r p producer with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.wsrp.model.WSRPProducer fetchByPrimaryKey(
-		long wsrpProducerId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long wsrpProducerId);
 
 	/**
 	* Returns all the w s r p producers.
 	*
 	* @return the w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findAll();
 
 	/**
 	* Returns a range of all the w s r p producers.
@@ -606,11 +526,9 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param start the lower bound of the range of w s r p producers
 	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @return the range of w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the w s r p producers.
@@ -623,27 +541,20 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	* @param end the upper bound of the range of w s r p producers (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.wsrp.model.WSRPProducer> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the w s r p producers from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of w s r p producers.
 	*
 	* @return the number of w s r p producers
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

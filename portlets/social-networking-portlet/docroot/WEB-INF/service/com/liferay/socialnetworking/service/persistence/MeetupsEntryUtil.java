@@ -16,7 +16,6 @@ package com.liferay.socialnetworking.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class MeetupsEntryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class MeetupsEntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<MeetupsEntry> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class MeetupsEntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<MeetupsEntry> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class MeetupsEntryUtil {
 	 */
 	public static List<MeetupsEntry> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -97,8 +94,7 @@ public class MeetupsEntryUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static MeetupsEntry update(MeetupsEntry meetupsEntry)
-		throws SystemException {
+	public static MeetupsEntry update(MeetupsEntry meetupsEntry) {
 		return getPersistence().update(meetupsEntry);
 	}
 
@@ -106,7 +102,7 @@ public class MeetupsEntryUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
 	public static MeetupsEntry update(MeetupsEntry meetupsEntry,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(meetupsEntry, serviceContext);
 	}
 
@@ -115,11 +111,9 @@ public class MeetupsEntryUtil {
 	*
 	* @param companyId the company ID
 	* @return the matching meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByCompanyId(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return getPersistence().findByCompanyId(companyId);
 	}
 
@@ -134,11 +128,9 @@ public class MeetupsEntryUtil {
 	* @param start the lower bound of the range of meetups entries
 	* @param end the upper bound of the range of meetups entries (not inclusive)
 	* @return the range of matching meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByCompanyId(
-		long companyId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId, int start, int end) {
 		return getPersistence().findByCompanyId(companyId, start, end);
 	}
 
@@ -154,12 +146,10 @@ public class MeetupsEntryUtil {
 	* @param end the upper bound of the range of meetups entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByCompanyId(
 		long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByCompanyId(companyId, start, end, orderByComparator);
 	}
@@ -171,13 +161,11 @@ public class MeetupsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry findByCompanyId_First(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence()
 				   .findByCompanyId_First(companyId, orderByComparator);
 	}
@@ -188,12 +176,10 @@ public class MeetupsEntryUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching meetups entry, or <code>null</code> if a matching meetups entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByCompanyId_First(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_First(companyId, orderByComparator);
 	}
@@ -205,13 +191,11 @@ public class MeetupsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry findByCompanyId_Last(
 		long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence()
 				   .findByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -222,12 +206,10 @@ public class MeetupsEntryUtil {
 	* @param companyId the company ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching meetups entry, or <code>null</code> if a matching meetups entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByCompanyId_Last(
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByCompanyId_Last(companyId, orderByComparator);
 	}
@@ -240,13 +222,11 @@ public class MeetupsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry[] findByCompanyId_PrevAndNext(
 		long meetupsEntryId, long companyId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence()
 				   .findByCompanyId_PrevAndNext(meetupsEntryId, companyId,
 			orderByComparator);
@@ -256,10 +236,8 @@ public class MeetupsEntryUtil {
 	* Removes all the meetups entries where companyId = &#63; from the database.
 	*
 	* @param companyId the company ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByCompanyId(long companyId) {
 		getPersistence().removeByCompanyId(companyId);
 	}
 
@@ -268,10 +246,8 @@ public class MeetupsEntryUtil {
 	*
 	* @param companyId the company ID
 	* @return the number of matching meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByCompanyId(long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByCompanyId(long companyId) {
 		return getPersistence().countByCompanyId(companyId);
 	}
 
@@ -280,10 +256,9 @@ public class MeetupsEntryUtil {
 	*
 	* @param userId the user ID
 	* @return the matching meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return getPersistence().findByUserId(userId);
 	}
 
@@ -298,11 +273,9 @@ public class MeetupsEntryUtil {
 	* @param start the lower bound of the range of meetups entries
 	* @param end the upper bound of the range of meetups entries (not inclusive)
 	* @return the range of matching meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		return getPersistence().findByUserId(userId, start, end);
 	}
 
@@ -318,12 +291,10 @@ public class MeetupsEntryUtil {
 	* @param end the upper bound of the range of meetups entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByUserId(userId, start, end, orderByComparator);
 	}
@@ -335,13 +306,11 @@ public class MeetupsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry findByUserId_First(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence().findByUserId_First(userId, orderByComparator);
 	}
 
@@ -351,12 +320,10 @@ public class MeetupsEntryUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching meetups entry, or <code>null</code> if a matching meetups entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByUserId_First(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_First(userId, orderByComparator);
 	}
 
@@ -367,13 +334,11 @@ public class MeetupsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a matching meetups entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry findByUserId_Last(
 		long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence().findByUserId_Last(userId, orderByComparator);
 	}
 
@@ -383,12 +348,10 @@ public class MeetupsEntryUtil {
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching meetups entry, or <code>null</code> if a matching meetups entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByUserId_Last(
 		long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
 	}
 
@@ -400,13 +363,11 @@ public class MeetupsEntryUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry[] findByUserId_PrevAndNext(
 		long meetupsEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence()
 				   .findByUserId_PrevAndNext(meetupsEntryId, userId,
 			orderByComparator);
@@ -416,10 +377,8 @@ public class MeetupsEntryUtil {
 	* Removes all the meetups entries where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByUserId(long userId) {
 		getPersistence().removeByUserId(userId);
 	}
 
@@ -428,10 +387,8 @@ public class MeetupsEntryUtil {
 	*
 	* @param userId the user ID
 	* @return the number of matching meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUserId(long userId) {
 		return getPersistence().countByUserId(userId);
 	}
 
@@ -472,18 +429,15 @@ public class MeetupsEntryUtil {
 	* @param meetupsEntryId the primary key of the meetups entry
 	* @return the meetups entry that was removed
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry remove(
 		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence().remove(meetupsEntryId);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsEntry updateImpl(
-		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.socialnetworking.model.MeetupsEntry meetupsEntry) {
 		return getPersistence().updateImpl(meetupsEntry);
 	}
 
@@ -493,12 +447,10 @@ public class MeetupsEntryUtil {
 	* @param meetupsEntryId the primary key of the meetups entry
 	* @return the meetups entry
 	* @throws com.liferay.socialnetworking.NoSuchMeetupsEntryException if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry findByPrimaryKey(
 		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.socialnetworking.NoSuchMeetupsEntryException {
+		throws com.liferay.socialnetworking.NoSuchMeetupsEntryException {
 		return getPersistence().findByPrimaryKey(meetupsEntryId);
 	}
 
@@ -507,11 +459,9 @@ public class MeetupsEntryUtil {
 	*
 	* @param meetupsEntryId the primary key of the meetups entry
 	* @return the meetups entry, or <code>null</code> if a meetups entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry fetchByPrimaryKey(
-		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long meetupsEntryId) {
 		return getPersistence().fetchByPrimaryKey(meetupsEntryId);
 	}
 
@@ -519,10 +469,8 @@ public class MeetupsEntryUtil {
 	* Returns all the meetups entries.
 	*
 	* @return the meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -536,11 +484,9 @@ public class MeetupsEntryUtil {
 	* @param start the lower bound of the range of meetups entries
 	* @param end the upper bound of the range of meetups entries (not inclusive)
 	* @return the range of meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -555,22 +501,17 @@ public class MeetupsEntryUtil {
 	* @param end the upper bound of the range of meetups entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the meetups entries from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -578,10 +519,8 @@ public class MeetupsEntryUtil {
 	* Returns the number of meetups entries.
 	*
 	* @return the number of meetups entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

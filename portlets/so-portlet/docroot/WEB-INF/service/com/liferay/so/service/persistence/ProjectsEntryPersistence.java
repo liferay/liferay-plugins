@@ -42,10 +42,9 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	*
 	* @param userId the user ID
 	* @return the matching projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+		long userId);
 
 	/**
 	* Returns a range of all the projects entries where userId = &#63;.
@@ -58,11 +57,9 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param start the lower bound of the range of projects entries
 	* @param end the upper bound of the range of projects entries (not inclusive)
 	* @return the range of matching projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId, int start, int end);
 
 	/**
 	* Returns an ordered range of all the projects entries where userId = &#63;.
@@ -76,12 +73,10 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param end the upper bound of the range of projects entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findByUserId(
 		long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the first projects entry in the ordered set where userId = &#63;.
@@ -90,12 +85,10 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.so.model.ProjectsEntry findByUserId_First(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException;
+		throws com.liferay.so.NoSuchProjectsEntryException;
 
 	/**
 	* Returns the first projects entry in the ordered set where userId = &#63;.
@@ -103,11 +96,9 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching projects entry, or <code>null</code> if a matching projects entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.so.model.ProjectsEntry fetchByUserId_First(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the last projects entry in the ordered set where userId = &#63;.
@@ -116,12 +107,10 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a matching projects entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.so.model.ProjectsEntry findByUserId_Last(long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException;
+		throws com.liferay.so.NoSuchProjectsEntryException;
 
 	/**
 	* Returns the last projects entry in the ordered set where userId = &#63;.
@@ -129,11 +118,9 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param userId the user ID
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching projects entry, or <code>null</code> if a matching projects entry could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.so.model.ProjectsEntry fetchByUserId_Last(long userId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Returns the projects entries before and after the current projects entry in the ordered set where userId = &#63;.
@@ -143,32 +130,26 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.so.model.ProjectsEntry[] findByUserId_PrevAndNext(
 		long projectsEntryId, long userId,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException;
+		throws com.liferay.so.NoSuchProjectsEntryException;
 
 	/**
 	* Removes all the projects entries where userId = &#63; from the database.
 	*
 	* @param userId the user ID
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeByUserId(long userId);
 
 	/**
 	* Returns the number of projects entries where userId = &#63;.
 	*
 	* @param userId the user ID
 	* @return the number of matching projects entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countByUserId(long userId);
 
 	/**
 	* Caches the projects entry in the entity cache if it is enabled.
@@ -199,15 +180,12 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param projectsEntryId the primary key of the projects entry
 	* @return the projects entry that was removed
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.so.model.ProjectsEntry remove(long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException;
+		throws com.liferay.so.NoSuchProjectsEntryException;
 
 	public com.liferay.so.model.ProjectsEntry updateImpl(
-		com.liferay.so.model.ProjectsEntry projectsEntry)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.so.model.ProjectsEntry projectsEntry);
 
 	/**
 	* Returns the projects entry with the primary key or throws a {@link com.liferay.so.NoSuchProjectsEntryException} if it could not be found.
@@ -215,32 +193,26 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param projectsEntryId the primary key of the projects entry
 	* @return the projects entry
 	* @throws com.liferay.so.NoSuchProjectsEntryException if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.so.model.ProjectsEntry findByPrimaryKey(
 		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.so.NoSuchProjectsEntryException;
+		throws com.liferay.so.NoSuchProjectsEntryException;
 
 	/**
 	* Returns the projects entry with the primary key or returns <code>null</code> if it could not be found.
 	*
 	* @param projectsEntryId the primary key of the projects entry
 	* @return the projects entry, or <code>null</code> if a projects entry with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public com.liferay.so.model.ProjectsEntry fetchByPrimaryKey(
-		long projectsEntryId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long projectsEntryId);
 
 	/**
 	* Returns all the projects entries.
 	*
 	* @return the projects entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public java.util.List<com.liferay.so.model.ProjectsEntry> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.so.model.ProjectsEntry> findAll();
 
 	/**
 	* Returns a range of all the projects entries.
@@ -252,11 +224,9 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param start the lower bound of the range of projects entries
 	* @param end the upper bound of the range of projects entries (not inclusive)
 	* @return the range of projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		int start, int end);
 
 	/**
 	* Returns an ordered range of all the projects entries.
@@ -269,27 +239,20 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	* @param end the upper bound of the range of projects entries (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of projects entries
-	* @throws SystemException if a system exception occurred
 	*/
 	public java.util.List<com.liferay.so.model.ProjectsEntry> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	/**
 	* Removes all the projects entries from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public void removeAll();
 
 	/**
 	* Returns the number of projects entries.
 	*
 	* @return the number of projects entries
-	* @throws SystemException if a system exception occurred
 	*/
-	public int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int countAll();
 }

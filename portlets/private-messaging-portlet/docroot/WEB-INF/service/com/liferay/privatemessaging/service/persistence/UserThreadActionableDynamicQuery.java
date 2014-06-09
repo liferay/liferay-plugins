@@ -15,18 +15,19 @@
 package com.liferay.privatemessaging.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.BaseActionableDynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 
 import com.liferay.privatemessaging.model.UserThread;
 import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 
 /**
  * @author Brian Wing Shun Chan
+ * @deprecated As of 7.0.0, replaced by {@link UserThreadLocalServiceUtil#getExportActionableDynamicQuery()}
  * @generated
  */
+@Deprecated
 public abstract class UserThreadActionableDynamicQuery
 	extends BaseActionableDynamicQuery {
-	public UserThreadActionableDynamicQuery() throws SystemException {
+	public UserThreadActionableDynamicQuery() {
 		setBaseLocalService(UserThreadLocalServiceUtil.getService());
 		setClass(UserThread.class);
 

@@ -211,11 +211,9 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	* Returns the user uuid of this folder.
 	*
 	* @return the user uuid of this folder
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _folder.getUserUuid();
 	}
 
@@ -468,8 +466,7 @@ public class FolderWrapper implements Folder, ModelWrapper<Folder> {
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_folder.persist();
 	}
 

@@ -18,7 +18,6 @@ import com.liferay.ams.model.Type;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,16 +60,14 @@ public class TypeUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
-	public static List<Type> findWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static List<Type> findWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,7 +75,7 @@ public class TypeUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<Type> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -86,8 +83,7 @@ public class TypeUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int, OrderByComparator)
 	 */
 	public static List<Type> findWithDynamicQuery(DynamicQuery dynamicQuery,
-		int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		int start, int end, OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -96,15 +92,14 @@ public class TypeUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
-	public static Type update(Type type) throws SystemException {
+	public static Type update(Type type) {
 		return getPersistence().update(type);
 	}
 
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel, ServiceContext)
 	 */
-	public static Type update(Type type, ServiceContext serviceContext)
-		throws SystemException {
+	public static Type update(Type type, ServiceContext serviceContext) {
 		return getPersistence().update(type, serviceContext);
 	}
 
@@ -143,17 +138,14 @@ public class TypeUtil {
 	* @param typeId the primary key of the type
 	* @return the type that was removed
 	* @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.ams.model.Type remove(long typeId)
-		throws com.liferay.ams.NoSuchTypeException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.ams.NoSuchTypeException {
 		return getPersistence().remove(typeId);
 	}
 
 	public static com.liferay.ams.model.Type updateImpl(
-		com.liferay.ams.model.Type type)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.ams.model.Type type) {
 		return getPersistence().updateImpl(type);
 	}
 
@@ -163,11 +155,9 @@ public class TypeUtil {
 	* @param typeId the primary key of the type
 	* @return the type
 	* @throws com.liferay.ams.NoSuchTypeException if a type with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.ams.model.Type findByPrimaryKey(long typeId)
-		throws com.liferay.ams.NoSuchTypeException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.ams.NoSuchTypeException {
 		return getPersistence().findByPrimaryKey(typeId);
 	}
 
@@ -176,10 +166,8 @@ public class TypeUtil {
 	*
 	* @param typeId the primary key of the type
 	* @return the type, or <code>null</code> if a type with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
-	public static com.liferay.ams.model.Type fetchByPrimaryKey(long typeId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.ams.model.Type fetchByPrimaryKey(long typeId) {
 		return getPersistence().fetchByPrimaryKey(typeId);
 	}
 
@@ -187,10 +175,8 @@ public class TypeUtil {
 	* Returns all the types.
 	*
 	* @return the types
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.ams.model.Type> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.ams.model.Type> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -204,11 +190,9 @@ public class TypeUtil {
 	* @param start the lower bound of the range of types
 	* @param end the upper bound of the range of types (not inclusive)
 	* @return the range of types
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.ams.model.Type> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -223,22 +207,17 @@ public class TypeUtil {
 	* @param end the upper bound of the range of types (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of types
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.ams.model.Type> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the types from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -246,10 +225,8 @@ public class TypeUtil {
 	* Returns the number of types.
 	*
 	* @return the number of types
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 

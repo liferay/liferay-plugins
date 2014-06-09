@@ -36,12 +36,10 @@ public class CalendarBookingLocalServiceWrapper
 	*
 	* @param calendarBooking the calendar booking
 	* @return the calendar booking that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarBooking addCalendarBooking(
-		com.liferay.calendar.model.CalendarBooking calendarBooking)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.calendar.model.CalendarBooking calendarBooking) {
 		return _calendarBookingLocalService.addCalendarBooking(calendarBooking);
 	}
 
@@ -63,7 +61,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @param calendarBookingId the primary key of the calendar booking
 	* @return the calendar booking that was removed
 	* @throws PortalException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
@@ -79,7 +77,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @param calendarBooking the calendar booking
 	* @return the calendar booking that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarBooking deleteCalendarBooking(
@@ -99,13 +97,11 @@ public class CalendarBookingLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _calendarBookingLocalService.dynamicQuery(dynamicQuery);
 	}
 
@@ -120,13 +116,12 @@ public class CalendarBookingLocalServiceWrapper
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return _calendarBookingLocalService.dynamicQuery(dynamicQuery, start,
 			end);
 	}
@@ -143,15 +138,13 @@ public class CalendarBookingLocalServiceWrapper
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	@SuppressWarnings("rawtypes")
 	public java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return _calendarBookingLocalService.dynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -161,12 +154,10 @@ public class CalendarBookingLocalServiceWrapper
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return _calendarBookingLocalService.dynamicQueryCount(dynamicQuery);
 	}
 
@@ -176,21 +167,18 @@ public class CalendarBookingLocalServiceWrapper
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return _calendarBookingLocalService.dynamicQueryCount(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public com.liferay.calendar.model.CalendarBooking fetchCalendarBooking(
-		long calendarBookingId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long calendarBookingId) {
 		return _calendarBookingLocalService.fetchCalendarBooking(calendarBookingId);
 	}
 
@@ -200,12 +188,10 @@ public class CalendarBookingLocalServiceWrapper
 	* @param uuid the calendar booking's UUID
 	* @param companyId the primary key of the company
 	* @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarBooking fetchCalendarBookingByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return _calendarBookingLocalService.fetchCalendarBookingByUuidAndCompanyId(uuid,
 			companyId);
 	}
@@ -216,12 +202,10 @@ public class CalendarBookingLocalServiceWrapper
 	* @param uuid the calendar booking's UUID
 	* @param groupId the primary key of the group
 	* @return the matching calendar booking, or <code>null</code> if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarBooking fetchCalendarBookingByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId) {
 		return _calendarBookingLocalService.fetchCalendarBookingByUuidAndGroupId(uuid,
 			groupId);
 	}
@@ -232,7 +216,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @param calendarBookingId the primary key of the calendar booking
 	* @return the calendar booking
 	* @throws PortalException if a calendar booking with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarBooking getCalendarBooking(
@@ -243,23 +227,30 @@ public class CalendarBookingLocalServiceWrapper
 	}
 
 	@Override
-	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return _calendarBookingLocalService.getActionableDynamicQuery();
 	}
 
 	@Override
 	public com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
 		return _calendarBookingLocalService.getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	@Override
+	public com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _calendarBookingLocalService.deletePersistedModel(persistedModel);
 	}
 
 	@Override
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarBookingLocalService.getPersistedModel(primaryKeyObj);
 	}
 
@@ -270,7 +261,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @param companyId the primary key of the company
 	* @return the matching calendar booking
 	* @throws PortalException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarBooking getCalendarBookingByUuidAndCompanyId(
@@ -288,7 +279,7 @@ public class CalendarBookingLocalServiceWrapper
 	* @param groupId the primary key of the group
 	* @return the matching calendar booking
 	* @throws PortalException if a matching calendar booking could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarBooking getCalendarBookingByUuidAndGroupId(
@@ -309,12 +300,10 @@ public class CalendarBookingLocalServiceWrapper
 	* @param start the lower bound of the range of calendar bookings
 	* @param end the upper bound of the range of calendar bookings (not inclusive)
 	* @return the range of calendar bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public java.util.List<com.liferay.calendar.model.CalendarBooking> getCalendarBookings(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return _calendarBookingLocalService.getCalendarBookings(start, end);
 	}
 
@@ -322,11 +311,9 @@ public class CalendarBookingLocalServiceWrapper
 	* Returns the number of calendar bookings.
 	*
 	* @return the number of calendar bookings
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public int getCalendarBookingsCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getCalendarBookingsCount() {
 		return _calendarBookingLocalService.getCalendarBookingsCount();
 	}
 
@@ -335,12 +322,10 @@ public class CalendarBookingLocalServiceWrapper
 	*
 	* @param calendarBooking the calendar booking
 	* @return the calendar booking that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
 	public com.liferay.calendar.model.CalendarBooking updateCalendarBooking(
-		com.liferay.calendar.model.CalendarBooking calendarBooking)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.calendar.model.CalendarBooking calendarBooking) {
 		return _calendarBookingLocalService.updateCalendarBooking(calendarBooking);
 	}
 

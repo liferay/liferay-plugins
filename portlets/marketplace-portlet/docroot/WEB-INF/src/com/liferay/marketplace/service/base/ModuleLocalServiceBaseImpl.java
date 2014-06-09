@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdate;
 import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Projection;
@@ -71,11 +73,10 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param module the module
 	 * @return the module that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public Module addModule(Module module) throws SystemException {
+	public Module addModule(Module module) {
 		module.setNew(true);
 
 		return modulePersistence.update(module);
@@ -98,12 +99,10 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param moduleId the primary key of the module
 	 * @return the module that was removed
 	 * @throws PortalException if a module with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Module deleteModule(long moduleId)
-		throws PortalException, SystemException {
+	public Module deleteModule(long moduleId) throws PortalException {
 		return modulePersistence.remove(moduleId);
 	}
 
@@ -112,11 +111,10 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param module the module
 	 * @return the module that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Module deleteModule(Module module) throws SystemException {
+	public Module deleteModule(Module module) {
 		return modulePersistence.remove(module);
 	}
 
@@ -133,12 +131,10 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return modulePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -153,12 +149,10 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return modulePersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -174,12 +168,11 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return modulePersistence.findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
 	}
@@ -189,11 +182,9 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return modulePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -203,16 +194,15 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return modulePersistence.countWithDynamicQuery(dynamicQuery, projection);
 	}
 
 	@Override
-	public Module fetchModule(long moduleId) throws SystemException {
+	public Module fetchModule(long moduleId) {
 		return modulePersistence.fetchByPrimaryKey(moduleId);
 	}
 
@@ -222,17 +212,46 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param moduleId the primary key of the module
 	 * @return the module
 	 * @throws PortalException if a module with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public Module getModule(long moduleId)
-		throws PortalException, SystemException {
+	public Module getModule(long moduleId) throws PortalException {
 		return modulePersistence.findByPrimaryKey(moduleId);
 	}
 
 	@Override
+	public ActionableDynamicQuery getActionableDynamicQuery() {
+		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
+
+		actionableDynamicQuery.setBaseLocalService(com.liferay.marketplace.service.ModuleLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(Module.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("moduleId");
+
+		return actionableDynamicQuery;
+	}
+
+	protected void initActionableDynamicQuery(
+		ActionableDynamicQuery actionableDynamicQuery) {
+		actionableDynamicQuery.setBaseLocalService(com.liferay.marketplace.service.ModuleLocalServiceUtil.getService());
+		actionableDynamicQuery.setClass(Module.class);
+		actionableDynamicQuery.setClassLoader(getClassLoader());
+
+		actionableDynamicQuery.setPrimaryKeyPropertyName("moduleId");
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deleteModule((Module)persistedModel);
+	}
+
+	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return modulePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -246,11 +265,9 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param start the lower bound of the range of modules
 	 * @param end the upper bound of the range of modules (not inclusive)
 	 * @return the range of modules
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<Module> getModules(int start, int end)
-		throws SystemException {
+	public List<Module> getModules(int start, int end) {
 		return modulePersistence.findAll(start, end);
 	}
 
@@ -258,10 +275,9 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * Returns the number of modules.
 	 *
 	 * @return the number of modules
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getModulesCount() throws SystemException {
+	public int getModulesCount() {
 		return modulePersistence.countAll();
 	}
 
@@ -270,11 +286,10 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param module the module
 	 * @return the module that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
-	public Module updateModule(Module module) throws SystemException {
+	public Module updateModule(Module module) {
 		return modulePersistence.update(module);
 	}
 
@@ -590,7 +605,7 @@ public abstract class ModuleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = modulePersistence.getDataSource();
 

@@ -338,8 +338,7 @@ public class SVNRevisionWrapper implements SVNRevision,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_svnRevision.persist();
 	}
 

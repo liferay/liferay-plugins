@@ -17,8 +17,6 @@ package com.liferay.mail.model.impl;
 import com.liferay.mail.model.Account;
 import com.liferay.mail.service.AccountLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the Account service. Represents a row in the &quot;Mail_Account&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class AccountBaseImpl extends AccountModelImpl
 	 * Never modify or reference this class directly. All methods that expect a account model instance should use the {@link Account} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			AccountLocalServiceUtil.addAccount(this);
 		}

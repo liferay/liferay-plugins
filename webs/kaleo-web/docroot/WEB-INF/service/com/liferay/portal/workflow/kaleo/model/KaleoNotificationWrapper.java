@@ -280,11 +280,9 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 	* Returns the user uuid of this kaleo notification.
 	*
 	* @return the user uuid of this kaleo notification
-	* @throws SystemException if a system exception occurred
 	*/
 	@Override
-	public java.lang.String getUserUuid()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.lang.String getUserUuid() {
 		return _kaleoNotification.getUserUuid();
 	}
 
@@ -658,8 +656,7 @@ public class KaleoNotificationWrapper implements KaleoNotification,
 	}
 
 	@Override
-	public void persist()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void persist() {
 		_kaleoNotification.persist();
 	}
 

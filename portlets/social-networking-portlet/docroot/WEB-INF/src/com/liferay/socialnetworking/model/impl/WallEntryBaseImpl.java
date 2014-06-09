@@ -14,8 +14,6 @@
 
 package com.liferay.socialnetworking.model.impl;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.service.WallEntryLocalServiceUtil;
 
@@ -39,7 +37,7 @@ public abstract class WallEntryBaseImpl extends WallEntryModelImpl
 	 * Never modify or reference this class directly. All methods that expect a wall entry model instance should use the {@link WallEntry} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			WallEntryLocalServiceUtil.addWallEntry(this);
 		}

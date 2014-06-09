@@ -44,11 +44,9 @@ public class CalendarResourceLocalServiceUtil {
 	*
 	* @param calendarResource the calendar resource
 	* @return the calendar resource that was added
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.calendar.model.CalendarResource addCalendarResource(
-		com.liferay.calendar.model.CalendarResource calendarResource)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.calendar.model.CalendarResource calendarResource) {
 		return getService().addCalendarResource(calendarResource);
 	}
 
@@ -69,7 +67,7 @@ public class CalendarResourceLocalServiceUtil {
 	* @param calendarResourceId the primary key of the calendar resource
 	* @return the calendar resource that was removed
 	* @throws PortalException if a calendar resource with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.calendar.model.CalendarResource deleteCalendarResource(
 		long calendarResourceId)
@@ -84,7 +82,7 @@ public class CalendarResourceLocalServiceUtil {
 	* @param calendarResource the calendar resource
 	* @return the calendar resource that was removed
 	* @throws PortalException
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.calendar.model.CalendarResource deleteCalendarResource(
 		com.liferay.calendar.model.CalendarResource calendarResource)
@@ -102,12 +100,10 @@ public class CalendarResourceLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -122,12 +118,11 @@ public class CalendarResourceLocalServiceUtil {
 	* @param start the lower bound of the range of model instances
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @return the range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -143,14 +138,12 @@ public class CalendarResourceLocalServiceUtil {
 	* @param end the upper bound of the range of model instances (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching rows
-	* @throws SystemException if a system exception occurred
 	*/
 	@SuppressWarnings("rawtypes")
 	public static java.util.List dynamicQuery(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
 		int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getService()
 				   .dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
@@ -160,11 +153,9 @@ public class CalendarResourceLocalServiceUtil {
 	*
 	* @param dynamicQuery the dynamic query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -174,18 +165,15 @@ public class CalendarResourceLocalServiceUtil {
 	* @param dynamicQuery the dynamic query
 	* @param projection the projection to apply to the query
 	* @return the number of rows that match the dynamic query
-	* @throws SystemException if a system exception occurred
 	*/
 	public static long dynamicQueryCount(
 		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
-		com.liferay.portal.kernel.dao.orm.Projection projection)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.dao.orm.Projection projection) {
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
 	public static com.liferay.calendar.model.CalendarResource fetchCalendarResource(
-		long calendarResourceId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long calendarResourceId) {
 		return getService().fetchCalendarResource(calendarResourceId);
 	}
 
@@ -195,11 +183,9 @@ public class CalendarResourceLocalServiceUtil {
 	* @param uuid the calendar resource's UUID
 	* @param companyId the primary key of the company
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.calendar.model.CalendarResource fetchCalendarResourceByUuidAndCompanyId(
-		java.lang.String uuid, long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long companyId) {
 		return getService()
 				   .fetchCalendarResourceByUuidAndCompanyId(uuid, companyId);
 	}
@@ -210,11 +196,9 @@ public class CalendarResourceLocalServiceUtil {
 	* @param uuid the calendar resource's UUID
 	* @param groupId the primary key of the group
 	* @return the matching calendar resource, or <code>null</code> if a matching calendar resource could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.calendar.model.CalendarResource fetchCalendarResourceByUuidAndGroupId(
-		java.lang.String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String uuid, long groupId) {
 		return getService().fetchCalendarResourceByUuidAndGroupId(uuid, groupId);
 	}
 
@@ -224,7 +208,7 @@ public class CalendarResourceLocalServiceUtil {
 	* @param calendarResourceId the primary key of the calendar resource
 	* @return the calendar resource
 	* @throws PortalException if a calendar resource with the primary key could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.calendar.model.CalendarResource getCalendarResource(
 		long calendarResourceId)
@@ -233,21 +217,27 @@ public class CalendarResourceLocalServiceUtil {
 		return getService().getCalendarResource(calendarResourceId);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery() {
 		return getService().getActionableDynamicQuery();
 	}
 
 	public static com.liferay.portal.kernel.dao.orm.ExportActionableDynamicQuery getExportActionableDynamicQuery(
-		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.lar.PortletDataContext portletDataContext) {
 		return getService().getExportActionableDynamicQuery(portletDataContext);
+	}
+
+	/**
+	* @throws PortalException
+	*/
+	public static com.liferay.portal.model.PersistedModel deletePersistedModel(
+		com.liferay.portal.model.PersistedModel persistedModel)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deletePersistedModel(persistedModel);
 	}
 
 	public static com.liferay.portal.model.PersistedModel getPersistedModel(
 		java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
@@ -258,7 +248,7 @@ public class CalendarResourceLocalServiceUtil {
 	* @param companyId the primary key of the company
 	* @return the matching calendar resource
 	* @throws PortalException if a matching calendar resource could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.calendar.model.CalendarResource getCalendarResourceByUuidAndCompanyId(
 		java.lang.String uuid, long companyId)
@@ -275,7 +265,7 @@ public class CalendarResourceLocalServiceUtil {
 	* @param groupId the primary key of the group
 	* @return the matching calendar resource
 	* @throws PortalException if a matching calendar resource could not be found
-	* @throws SystemException if a system exception occurred
+	* @throws SystemException
 	*/
 	public static com.liferay.calendar.model.CalendarResource getCalendarResourceByUuidAndGroupId(
 		java.lang.String uuid, long groupId)
@@ -294,11 +284,9 @@ public class CalendarResourceLocalServiceUtil {
 	* @param start the lower bound of the range of calendar resources
 	* @param end the upper bound of the range of calendar resources (not inclusive)
 	* @return the range of calendar resources
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarResource> getCalendarResources(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getService().getCalendarResources(start, end);
 	}
 
@@ -306,10 +294,8 @@ public class CalendarResourceLocalServiceUtil {
 	* Returns the number of calendar resources.
 	*
 	* @return the number of calendar resources
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int getCalendarResourcesCount()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getCalendarResourcesCount() {
 		return getService().getCalendarResourcesCount();
 	}
 
@@ -318,11 +304,9 @@ public class CalendarResourceLocalServiceUtil {
 	*
 	* @param calendarResource the calendar resource
 	* @return the calendar resource that was updated
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.calendar.model.CalendarResource updateCalendarResource(
-		com.liferay.calendar.model.CalendarResource calendarResource)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.calendar.model.CalendarResource calendarResource) {
 		return getService().updateCalendarResource(calendarResource);
 	}
 

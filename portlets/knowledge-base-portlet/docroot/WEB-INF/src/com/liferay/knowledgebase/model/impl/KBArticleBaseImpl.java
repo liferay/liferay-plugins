@@ -17,8 +17,6 @@ package com.liferay.knowledgebase.model.impl;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 
-import com.liferay.portal.kernel.exception.SystemException;
-
 /**
  * The extended model base implementation for the KBArticle service. Represents a row in the &quot;KBArticle&quot; database table, with each column mapped to a property of this class.
  *
@@ -39,7 +37,7 @@ public abstract class KBArticleBaseImpl extends KBArticleModelImpl
 	 * Never modify or reference this class directly. All methods that expect a k b article model instance should use the {@link KBArticle} interface instead.
 	 */
 	@Override
-	public void persist() throws SystemException {
+	public void persist() {
 		if (this.isNew()) {
 			KBArticleLocalServiceUtil.addKBArticle(this);
 		}

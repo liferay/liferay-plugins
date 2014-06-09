@@ -73,13 +73,11 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 *
 	 * @param pushNotificationsDevice the push notifications device
 	 * @return the push notifications device that was added
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public PushNotificationsDevice addPushNotificationsDevice(
-		PushNotificationsDevice pushNotificationsDevice)
-		throws SystemException {
+		PushNotificationsDevice pushNotificationsDevice) {
 		pushNotificationsDevice.setNew(true);
 
 		return pushNotificationsDevicePersistence.update(pushNotificationsDevice);
@@ -103,12 +101,11 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 * @param pushNotificationsDeviceId the primary key of the push notifications device
 	 * @return the push notifications device that was removed
 	 * @throws PortalException if a push notifications device with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public PushNotificationsDevice deletePushNotificationsDevice(
-		long pushNotificationsDeviceId) throws PortalException, SystemException {
+		long pushNotificationsDeviceId) throws PortalException {
 		return pushNotificationsDevicePersistence.remove(pushNotificationsDeviceId);
 	}
 
@@ -117,13 +114,11 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 *
 	 * @param pushNotificationsDevice the push notifications device
 	 * @return the push notifications device that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public PushNotificationsDevice deletePushNotificationsDevice(
-		PushNotificationsDevice pushNotificationsDevice)
-		throws SystemException {
+		PushNotificationsDevice pushNotificationsDevice) {
 		return pushNotificationsDevicePersistence.remove(pushNotificationsDevice);
 	}
 
@@ -140,12 +135,10 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery) {
 		return pushNotificationsDevicePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -160,12 +153,10 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 * @param start the lower bound of the range of model instances
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
 		return pushNotificationsDevicePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -182,12 +173,11 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	@SuppressWarnings("rawtypes")
 	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return pushNotificationsDevicePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -197,11 +187,9 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 *
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public long dynamicQueryCount(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return pushNotificationsDevicePersistence.countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -211,18 +199,17 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 * @param dynamicQuery the dynamic query
 	 * @param projection the projection to apply to the query
 	 * @return the number of rows that match the dynamic query
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public long dynamicQueryCount(DynamicQuery dynamicQuery,
-		Projection projection) throws SystemException {
+		Projection projection) {
 		return pushNotificationsDevicePersistence.countWithDynamicQuery(dynamicQuery,
 			projection);
 	}
 
 	@Override
 	public PushNotificationsDevice fetchPushNotificationsDevice(
-		long pushNotificationsDeviceId) throws SystemException {
+		long pushNotificationsDeviceId) {
 		return pushNotificationsDevicePersistence.fetchByPrimaryKey(pushNotificationsDeviceId);
 	}
 
@@ -232,17 +219,15 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 * @param pushNotificationsDeviceId the primary key of the push notifications device
 	 * @return the push notifications device
 	 * @throws PortalException if a push notifications device with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice getPushNotificationsDevice(
-		long pushNotificationsDeviceId) throws PortalException, SystemException {
+		long pushNotificationsDeviceId) throws PortalException {
 		return pushNotificationsDevicePersistence.findByPrimaryKey(pushNotificationsDeviceId);
 	}
 
 	@Override
-	public ActionableDynamicQuery getActionableDynamicQuery()
-		throws SystemException {
+	public ActionableDynamicQuery getActionableDynamicQuery() {
 		ActionableDynamicQuery actionableDynamicQuery = new DefaultActionableDynamicQuery();
 
 		actionableDynamicQuery.setBaseLocalService(com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil.getService());
@@ -256,8 +241,7 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	}
 
 	protected void initActionableDynamicQuery(
-		ActionableDynamicQuery actionableDynamicQuery)
-		throws SystemException {
+		ActionableDynamicQuery actionableDynamicQuery) {
 		actionableDynamicQuery.setBaseLocalService(com.liferay.pushnotifications.service.PushNotificationsDeviceLocalServiceUtil.getService());
 		actionableDynamicQuery.setClass(PushNotificationsDevice.class);
 		actionableDynamicQuery.setClassLoader(getClassLoader());
@@ -266,9 +250,18 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 			"pushNotificationsDeviceId");
 	}
 
+	/**
+	 * @throws PortalException
+	 */
+	@Override
+	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
+		throws PortalException {
+		return deletePushNotificationsDevice((PushNotificationsDevice)persistedModel);
+	}
+
 	@Override
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return pushNotificationsDevicePersistence.findByPrimaryKey(primaryKeyObj);
 	}
 
@@ -282,11 +275,10 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 * @param start the lower bound of the range of push notifications devices
 	 * @param end the upper bound of the range of push notifications devices (not inclusive)
 	 * @return the range of push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<PushNotificationsDevice> getPushNotificationsDevices(
-		int start, int end) throws SystemException {
+		int start, int end) {
 		return pushNotificationsDevicePersistence.findAll(start, end);
 	}
 
@@ -294,10 +286,9 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 * Returns the number of push notifications devices.
 	 *
 	 * @return the number of push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int getPushNotificationsDevicesCount() throws SystemException {
+	public int getPushNotificationsDevicesCount() {
 		return pushNotificationsDevicePersistence.countAll();
 	}
 
@@ -306,13 +297,11 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 *
 	 * @param pushNotificationsDevice the push notifications device
 	 * @return the push notifications device that was updated
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public PushNotificationsDevice updatePushNotificationsDevice(
-		PushNotificationsDevice pushNotificationsDevice)
-		throws SystemException {
+		PushNotificationsDevice pushNotificationsDevice) {
 		return pushNotificationsDevicePersistence.update(pushNotificationsDevice);
 	}
 
@@ -592,7 +581,7 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	 *
 	 * @param sql the sql query
 	 */
-	protected void runSQL(String sql) throws SystemException {
+	protected void runSQL(String sql) {
 		try {
 			DataSource dataSource = pushNotificationsDevicePersistence.getDataSource();
 

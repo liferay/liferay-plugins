@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.dao.orm.Query;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -101,11 +100,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param token the token
 	 * @return the matching push notifications device
 	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a matching push notifications device could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice findByToken(String token)
-		throws NoSuchDeviceException, SystemException {
+		throws NoSuchDeviceException {
 		PushNotificationsDevice pushNotificationsDevice = fetchByToken(token);
 
 		if (pushNotificationsDevice == null) {
@@ -133,11 +131,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param token the token
 	 * @return the matching push notifications device, or <code>null</code> if a matching push notifications device could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public PushNotificationsDevice fetchByToken(String token)
-		throws SystemException {
+	public PushNotificationsDevice fetchByToken(String token) {
 		return fetchByToken(token, true);
 	}
 
@@ -147,11 +143,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param token the token
 	 * @param retrieveFromCache whether to use the finder cache
 	 * @return the matching push notifications device, or <code>null</code> if a matching push notifications device could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice fetchByToken(String token,
-		boolean retrieveFromCache) throws SystemException {
+		boolean retrieveFromCache) {
 		Object[] finderArgs = new Object[] { token };
 
 		Object result = null;
@@ -247,11 +242,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param token the token
 	 * @return the push notifications device that was removed
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice removeByToken(String token)
-		throws NoSuchDeviceException, SystemException {
+		throws NoSuchDeviceException {
 		PushNotificationsDevice pushNotificationsDevice = findByToken(token);
 
 		return remove(pushNotificationsDevice);
@@ -262,10 +256,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param token the token
 	 * @return the number of matching push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByToken(String token) throws SystemException {
+	public int countByToken(String token) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_TOKEN;
 
 		Object[] finderArgs = new Object[] { token };
@@ -355,11 +348,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param userId the user ID
 	 * @param platform the platform
 	 * @return the matching push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<PushNotificationsDevice> findByU_P(long userId, String platform)
-		throws SystemException {
+	public List<PushNotificationsDevice> findByU_P(long userId, String platform) {
 		return findByU_P(userId, platform, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS, null);
 	}
@@ -376,11 +367,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param start the lower bound of the range of push notifications devices
 	 * @param end the upper bound of the range of push notifications devices (not inclusive)
 	 * @return the range of matching push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<PushNotificationsDevice> findByU_P(long userId,
-		String platform, int start, int end) throws SystemException {
+		String platform, int start, int end) {
 		return findByU_P(userId, platform, start, end, null);
 	}
 
@@ -397,12 +387,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param end the upper bound of the range of push notifications devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<PushNotificationsDevice> findByU_P(long userId,
-		String platform, int start, int end, OrderByComparator orderByComparator)
-		throws SystemException {
+		String platform, int start, int end, OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -530,12 +518,11 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching push notifications device
 	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a matching push notifications device could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice findByU_P_First(long userId,
 		String platform, OrderByComparator orderByComparator)
-		throws NoSuchDeviceException, SystemException {
+		throws NoSuchDeviceException {
 		PushNotificationsDevice pushNotificationsDevice = fetchByU_P_First(userId,
 				platform, orderByComparator);
 
@@ -565,12 +552,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param platform the platform
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the first matching push notifications device, or <code>null</code> if a matching push notifications device could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice fetchByU_P_First(long userId,
-		String platform, OrderByComparator orderByComparator)
-		throws SystemException {
+		String platform, OrderByComparator orderByComparator) {
 		List<PushNotificationsDevice> list = findByU_P(userId, platform, 0, 1,
 				orderByComparator);
 
@@ -589,12 +574,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching push notifications device
 	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a matching push notifications device could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice findByU_P_Last(long userId, String platform,
-		OrderByComparator orderByComparator)
-		throws NoSuchDeviceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDeviceException {
 		PushNotificationsDevice pushNotificationsDevice = fetchByU_P_Last(userId,
 				platform, orderByComparator);
 
@@ -624,12 +607,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param platform the platform
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the last matching push notifications device, or <code>null</code> if a matching push notifications device could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice fetchByU_P_Last(long userId,
-		String platform, OrderByComparator orderByComparator)
-		throws SystemException {
+		String platform, OrderByComparator orderByComparator) {
 		int count = countByU_P(userId, platform);
 
 		if (count == 0) {
@@ -655,13 +636,11 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	 * @return the previous, current, and next push notifications device
 	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice[] findByU_P_PrevAndNext(
 		long pushNotificationsDeviceId, long userId, String platform,
-		OrderByComparator orderByComparator)
-		throws NoSuchDeviceException, SystemException {
+		OrderByComparator orderByComparator) throws NoSuchDeviceException {
 		PushNotificationsDevice pushNotificationsDevice = findByPrimaryKey(pushNotificationsDeviceId);
 
 		Session session = null;
@@ -817,11 +796,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param userId the user ID
 	 * @param platform the platform
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeByU_P(long userId, String platform)
-		throws SystemException {
+	public void removeByU_P(long userId, String platform) {
 		for (PushNotificationsDevice pushNotificationsDevice : findByU_P(
 				userId, platform, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 			remove(pushNotificationsDevice);
@@ -834,11 +811,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param userId the user ID
 	 * @param platform the platform
 	 * @return the number of matching push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByU_P(long userId, String platform)
-		throws SystemException {
+	public int countByU_P(long userId, String platform) {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_P;
 
 		Object[] finderArgs = new Object[] { userId, platform };
@@ -1070,11 +1045,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param pushNotificationsDeviceId the primary key of the push notifications device
 	 * @return the push notifications device that was removed
 	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice remove(long pushNotificationsDeviceId)
-		throws NoSuchDeviceException, SystemException {
+		throws NoSuchDeviceException {
 		return remove((Serializable)pushNotificationsDeviceId);
 	}
 
@@ -1084,11 +1058,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param primaryKey the primary key of the push notifications device
 	 * @return the push notifications device that was removed
 	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice remove(Serializable primaryKey)
-		throws NoSuchDeviceException, SystemException {
+		throws NoSuchDeviceException {
 		Session session = null;
 
 		try {
@@ -1121,8 +1094,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 
 	@Override
 	protected PushNotificationsDevice removeImpl(
-		PushNotificationsDevice pushNotificationsDevice)
-		throws SystemException {
+		PushNotificationsDevice pushNotificationsDevice) {
 		pushNotificationsDevice = toUnwrappedModel(pushNotificationsDevice);
 
 		Session session = null;
@@ -1155,8 +1127,7 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 
 	@Override
 	public PushNotificationsDevice updateImpl(
-		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice)
-		throws SystemException {
+		com.liferay.pushnotifications.model.PushNotificationsDevice pushNotificationsDevice) {
 		pushNotificationsDevice = toUnwrappedModel(pushNotificationsDevice);
 
 		boolean isNew = pushNotificationsDevice.isNew();
@@ -1252,11 +1223,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param primaryKey the primary key of the push notifications device
 	 * @return the push notifications device
 	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice findByPrimaryKey(Serializable primaryKey)
-		throws NoSuchDeviceException, SystemException {
+		throws NoSuchDeviceException {
 		PushNotificationsDevice pushNotificationsDevice = fetchByPrimaryKey(primaryKey);
 
 		if (pushNotificationsDevice == null) {
@@ -1277,12 +1247,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param pushNotificationsDeviceId the primary key of the push notifications device
 	 * @return the push notifications device
 	 * @throws com.liferay.pushnotifications.NoSuchDeviceException if a push notifications device with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice findByPrimaryKey(
-		long pushNotificationsDeviceId)
-		throws NoSuchDeviceException, SystemException {
+		long pushNotificationsDeviceId) throws NoSuchDeviceException {
 		return findByPrimaryKey((Serializable)pushNotificationsDeviceId);
 	}
 
@@ -1291,11 +1259,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param primaryKey the primary key of the push notifications device
 	 * @return the push notifications device, or <code>null</code> if a push notifications device with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public PushNotificationsDevice fetchByPrimaryKey(Serializable primaryKey)
-		throws SystemException {
+	public PushNotificationsDevice fetchByPrimaryKey(Serializable primaryKey) {
 		PushNotificationsDevice pushNotificationsDevice = (PushNotificationsDevice)EntityCacheUtil.getResult(PushNotificationsDeviceModelImpl.ENTITY_CACHE_ENABLED,
 				PushNotificationsDeviceImpl.class, primaryKey);
 
@@ -1340,11 +1306,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 *
 	 * @param pushNotificationsDeviceId the primary key of the push notifications device
 	 * @return the push notifications device, or <code>null</code> if a push notifications device with the primary key could not be found
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public PushNotificationsDevice fetchByPrimaryKey(
-		long pushNotificationsDeviceId) throws SystemException {
+		long pushNotificationsDeviceId) {
 		return fetchByPrimaryKey((Serializable)pushNotificationsDeviceId);
 	}
 
@@ -1352,10 +1317,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * Returns all the push notifications devices.
 	 *
 	 * @return the push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<PushNotificationsDevice> findAll() throws SystemException {
+	public List<PushNotificationsDevice> findAll() {
 		return findAll(QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
@@ -1369,11 +1333,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param start the lower bound of the range of push notifications devices
 	 * @param end the upper bound of the range of push notifications devices (not inclusive)
 	 * @return the range of push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public List<PushNotificationsDevice> findAll(int start, int end)
-		throws SystemException {
+	public List<PushNotificationsDevice> findAll(int start, int end) {
 		return findAll(start, end, null);
 	}
 
@@ -1388,11 +1350,10 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * @param end the upper bound of the range of push notifications devices (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
 	public List<PushNotificationsDevice> findAll(int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1474,10 +1435,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	/**
 	 * Removes all the push notifications devices from the database.
 	 *
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public void removeAll() throws SystemException {
+	public void removeAll() {
 		for (PushNotificationsDevice pushNotificationsDevice : findAll()) {
 			remove(pushNotificationsDevice);
 		}
@@ -1487,10 +1447,9 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	 * Returns the number of push notifications devices.
 	 *
 	 * @return the number of push notifications devices
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countAll() throws SystemException {
+	public int countAll() {
 		Long count = (Long)FinderCacheUtil.getResult(FINDER_PATH_COUNT_ALL,
 				FINDER_ARGS_EMPTY, this);
 

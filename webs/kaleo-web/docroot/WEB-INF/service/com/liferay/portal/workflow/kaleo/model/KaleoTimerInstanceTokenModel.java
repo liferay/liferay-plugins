@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.GroupedModel;
@@ -128,10 +127,9 @@ public interface KaleoTimerInstanceTokenModel extends BaseModel<KaleoTimerInstan
 	 * Returns the user uuid of this kaleo timer instance token.
 	 *
 	 * @return the user uuid of this kaleo timer instance token
-	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public String getUserUuid() throws SystemException;
+	public String getUserUuid();
 
 	/**
 	 * Sets the user uuid of this kaleo timer instance token.
@@ -343,9 +341,8 @@ public interface KaleoTimerInstanceTokenModel extends BaseModel<KaleoTimerInstan
 	 * Returns the completion user uuid of this kaleo timer instance token.
 	 *
 	 * @return the completion user uuid of this kaleo timer instance token
-	 * @throws SystemException if a system exception occurred
 	 */
-	public String getCompletionUserUuid() throws SystemException;
+	public String getCompletionUserUuid();
 
 	/**
 	 * Sets the completion user uuid of this kaleo timer instance token.

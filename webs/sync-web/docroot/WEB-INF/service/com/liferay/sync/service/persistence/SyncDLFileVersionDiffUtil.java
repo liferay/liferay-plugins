@@ -16,7 +16,6 @@ package com.liferay.sync.service.persistence;
 
 import com.liferay.portal.kernel.bean.PortletBeanLocatorUtil;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 import com.liferay.portal.service.ServiceContext;
@@ -61,8 +60,7 @@ public class SyncDLFileVersionDiffUtil {
 	/**
 	 * @see com.liferay.portal.service.persistence.BasePersistence#countWithDynamicQuery(DynamicQuery)
 	 */
-	public static long countWithDynamicQuery(DynamicQuery dynamicQuery)
-		throws SystemException {
+	public static long countWithDynamicQuery(DynamicQuery dynamicQuery) {
 		return getPersistence().countWithDynamicQuery(dynamicQuery);
 	}
 
@@ -70,7 +68,7 @@ public class SyncDLFileVersionDiffUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery)
 	 */
 	public static List<SyncDLFileVersionDiff> findWithDynamicQuery(
-		DynamicQuery dynamicQuery) throws SystemException {
+		DynamicQuery dynamicQuery) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -78,8 +76,7 @@ public class SyncDLFileVersionDiffUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#findWithDynamicQuery(DynamicQuery, int, int)
 	 */
 	public static List<SyncDLFileVersionDiff> findWithDynamicQuery(
-		DynamicQuery dynamicQuery, int start, int end)
-		throws SystemException {
+		DynamicQuery dynamicQuery, int start, int end) {
 		return getPersistence().findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -88,7 +85,7 @@ public class SyncDLFileVersionDiffUtil {
 	 */
 	public static List<SyncDLFileVersionDiff> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) throws SystemException {
+		OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -98,7 +95,7 @@ public class SyncDLFileVersionDiffUtil {
 	 * @see com.liferay.portal.service.persistence.BasePersistence#update(com.liferay.portal.model.BaseModel)
 	 */
 	public static SyncDLFileVersionDiff update(
-		SyncDLFileVersionDiff syncDLFileVersionDiff) throws SystemException {
+		SyncDLFileVersionDiff syncDLFileVersionDiff) {
 		return getPersistence().update(syncDLFileVersionDiff);
 	}
 
@@ -107,7 +104,7 @@ public class SyncDLFileVersionDiffUtil {
 	 */
 	public static SyncDLFileVersionDiff update(
 		SyncDLFileVersionDiff syncDLFileVersionDiff,
-		ServiceContext serviceContext) throws SystemException {
+		ServiceContext serviceContext) {
 		return getPersistence().update(syncDLFileVersionDiff, serviceContext);
 	}
 
@@ -116,11 +113,9 @@ public class SyncDLFileVersionDiffUtil {
 	*
 	* @param expirationDate the expiration date
 	* @return the matching sync d l file version diffs
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findByExpirationDate(
-		java.util.Date expirationDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.Date expirationDate) {
 		return getPersistence().findByExpirationDate(expirationDate);
 	}
 
@@ -135,11 +130,9 @@ public class SyncDLFileVersionDiffUtil {
 	* @param start the lower bound of the range of sync d l file version diffs
 	* @param end the upper bound of the range of sync d l file version diffs (not inclusive)
 	* @return the range of matching sync d l file version diffs
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findByExpirationDate(
-		java.util.Date expirationDate, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.util.Date expirationDate, int start, int end) {
 		return getPersistence().findByExpirationDate(expirationDate, start, end);
 	}
 
@@ -155,12 +148,10 @@ public class SyncDLFileVersionDiffUtil {
 	* @param end the upper bound of the range of sync d l file version diffs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of matching sync d l file version diffs
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findByExpirationDate(
 		java.util.Date expirationDate, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .findByExpirationDate(expirationDate, start, end,
 			orderByComparator);
@@ -173,13 +164,11 @@ public class SyncDLFileVersionDiffUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sync d l file version diff
 	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff findByExpirationDate_First(
 		java.util.Date expirationDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLFileVersionDiffException {
+		throws com.liferay.sync.NoSuchDLFileVersionDiffException {
 		return getPersistence()
 				   .findByExpirationDate_First(expirationDate, orderByComparator);
 	}
@@ -190,12 +179,10 @@ public class SyncDLFileVersionDiffUtil {
 	* @param expirationDate the expiration date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the first matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff fetchByExpirationDate_First(
 		java.util.Date expirationDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByExpirationDate_First(expirationDate,
 			orderByComparator);
@@ -208,13 +195,11 @@ public class SyncDLFileVersionDiffUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sync d l file version diff
 	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff findByExpirationDate_Last(
 		java.util.Date expirationDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLFileVersionDiffException {
+		throws com.liferay.sync.NoSuchDLFileVersionDiffException {
 		return getPersistence()
 				   .findByExpirationDate_Last(expirationDate, orderByComparator);
 	}
@@ -225,12 +210,10 @@ public class SyncDLFileVersionDiffUtil {
 	* @param expirationDate the expiration date
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the last matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff fetchByExpirationDate_Last(
 		java.util.Date expirationDate,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence()
 				   .fetchByExpirationDate_Last(expirationDate, orderByComparator);
 	}
@@ -243,13 +226,11 @@ public class SyncDLFileVersionDiffUtil {
 	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
 	* @return the previous, current, and next sync d l file version diff
 	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff[] findByExpirationDate_PrevAndNext(
 		long syncDLFileVersionDiffId, java.util.Date expirationDate,
 		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLFileVersionDiffException {
+		throws com.liferay.sync.NoSuchDLFileVersionDiffException {
 		return getPersistence()
 				   .findByExpirationDate_PrevAndNext(syncDLFileVersionDiffId,
 			expirationDate, orderByComparator);
@@ -259,10 +240,8 @@ public class SyncDLFileVersionDiffUtil {
 	* Removes all the sync d l file version diffs where expirationDate &lt; &#63; from the database.
 	*
 	* @param expirationDate the expiration date
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeByExpirationDate(java.util.Date expirationDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeByExpirationDate(java.util.Date expirationDate) {
 		getPersistence().removeByExpirationDate(expirationDate);
 	}
 
@@ -271,10 +250,8 @@ public class SyncDLFileVersionDiffUtil {
 	*
 	* @param expirationDate the expiration date
 	* @return the number of matching sync d l file version diffs
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countByExpirationDate(java.util.Date expirationDate)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByExpirationDate(java.util.Date expirationDate) {
 		return getPersistence().countByExpirationDate(expirationDate);
 	}
 
@@ -286,12 +263,10 @@ public class SyncDLFileVersionDiffUtil {
 	* @param targetFileVersionId the target file version ID
 	* @return the matching sync d l file version diff
 	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a matching sync d l file version diff could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff findByF_S_T(
 		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLFileVersionDiffException {
+		throws com.liferay.sync.NoSuchDLFileVersionDiffException {
 		return getPersistence()
 				   .findByF_S_T(fileEntryId, sourceFileVersionId,
 			targetFileVersionId);
@@ -304,11 +279,9 @@ public class SyncDLFileVersionDiffUtil {
 	* @param sourceFileVersionId the source file version ID
 	* @param targetFileVersionId the target file version ID
 	* @return the matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff fetchByF_S_T(
-		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long fileEntryId, long sourceFileVersionId, long targetFileVersionId) {
 		return getPersistence()
 				   .fetchByF_S_T(fileEntryId, sourceFileVersionId,
 			targetFileVersionId);
@@ -322,12 +295,10 @@ public class SyncDLFileVersionDiffUtil {
 	* @param targetFileVersionId the target file version ID
 	* @param retrieveFromCache whether to use the finder cache
 	* @return the matching sync d l file version diff, or <code>null</code> if a matching sync d l file version diff could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff fetchByF_S_T(
 		long fileEntryId, long sourceFileVersionId, long targetFileVersionId,
-		boolean retrieveFromCache)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean retrieveFromCache) {
 		return getPersistence()
 				   .fetchByF_S_T(fileEntryId, sourceFileVersionId,
 			targetFileVersionId, retrieveFromCache);
@@ -340,12 +311,10 @@ public class SyncDLFileVersionDiffUtil {
 	* @param sourceFileVersionId the source file version ID
 	* @param targetFileVersionId the target file version ID
 	* @return the sync d l file version diff that was removed
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff removeByF_S_T(
 		long fileEntryId, long sourceFileVersionId, long targetFileVersionId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLFileVersionDiffException {
+		throws com.liferay.sync.NoSuchDLFileVersionDiffException {
 		return getPersistence()
 				   .removeByF_S_T(fileEntryId, sourceFileVersionId,
 			targetFileVersionId);
@@ -358,11 +327,9 @@ public class SyncDLFileVersionDiffUtil {
 	* @param sourceFileVersionId the source file version ID
 	* @param targetFileVersionId the target file version ID
 	* @return the number of matching sync d l file version diffs
-	* @throws SystemException if a system exception occurred
 	*/
 	public static int countByF_S_T(long fileEntryId, long sourceFileVersionId,
-		long targetFileVersionId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long targetFileVersionId) {
 		return getPersistence()
 				   .countByF_S_T(fileEntryId, sourceFileVersionId,
 			targetFileVersionId);
@@ -405,18 +372,15 @@ public class SyncDLFileVersionDiffUtil {
 	* @param syncDLFileVersionDiffId the primary key of the sync d l file version diff
 	* @return the sync d l file version diff that was removed
 	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff remove(
 		long syncDLFileVersionDiffId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLFileVersionDiffException {
+		throws com.liferay.sync.NoSuchDLFileVersionDiffException {
 		return getPersistence().remove(syncDLFileVersionDiffId);
 	}
 
 	public static com.liferay.sync.model.SyncDLFileVersionDiff updateImpl(
-		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.sync.model.SyncDLFileVersionDiff syncDLFileVersionDiff) {
 		return getPersistence().updateImpl(syncDLFileVersionDiff);
 	}
 
@@ -426,12 +390,10 @@ public class SyncDLFileVersionDiffUtil {
 	* @param syncDLFileVersionDiffId the primary key of the sync d l file version diff
 	* @return the sync d l file version diff
 	* @throws com.liferay.sync.NoSuchDLFileVersionDiffException if a sync d l file version diff with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff findByPrimaryKey(
 		long syncDLFileVersionDiffId)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.sync.NoSuchDLFileVersionDiffException {
+		throws com.liferay.sync.NoSuchDLFileVersionDiffException {
 		return getPersistence().findByPrimaryKey(syncDLFileVersionDiffId);
 	}
 
@@ -440,11 +402,9 @@ public class SyncDLFileVersionDiffUtil {
 	*
 	* @param syncDLFileVersionDiffId the primary key of the sync d l file version diff
 	* @return the sync d l file version diff, or <code>null</code> if a sync d l file version diff with the primary key could not be found
-	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.sync.model.SyncDLFileVersionDiff fetchByPrimaryKey(
-		long syncDLFileVersionDiffId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long syncDLFileVersionDiffId) {
 		return getPersistence().fetchByPrimaryKey(syncDLFileVersionDiffId);
 	}
 
@@ -452,10 +412,8 @@ public class SyncDLFileVersionDiffUtil {
 	* Returns all the sync d l file version diffs.
 	*
 	* @return the sync d l file version diffs
-	* @throws SystemException if a system exception occurred
 	*/
-	public static java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findAll() {
 		return getPersistence().findAll();
 	}
 
@@ -469,11 +427,9 @@ public class SyncDLFileVersionDiffUtil {
 	* @param start the lower bound of the range of sync d l file version diffs
 	* @param end the upper bound of the range of sync d l file version diffs (not inclusive)
 	* @return the range of sync d l file version diffs
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findAll(
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		int start, int end) {
 		return getPersistence().findAll(start, end);
 	}
 
@@ -488,22 +444,17 @@ public class SyncDLFileVersionDiffUtil {
 	* @param end the upper bound of the range of sync d l file version diffs (not inclusive)
 	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	* @return the ordered range of sync d l file version diffs
-	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.sync.model.SyncDLFileVersionDiff> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 
 	/**
 	* Removes all the sync d l file version diffs from the database.
-	*
-	* @throws SystemException if a system exception occurred
 	*/
-	public static void removeAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static void removeAll() {
 		getPersistence().removeAll();
 	}
 
@@ -511,10 +462,8 @@ public class SyncDLFileVersionDiffUtil {
 	* Returns the number of sync d l file version diffs.
 	*
 	* @return the number of sync d l file version diffs
-	* @throws SystemException if a system exception occurred
 	*/
-	public static int countAll()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countAll() {
 		return getPersistence().countAll();
 	}
 
