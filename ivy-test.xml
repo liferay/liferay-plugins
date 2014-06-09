@@ -17,6 +17,6 @@
 	</configurations>
 
 	<dependencies defaultconf="test">
-		<dependency name="arquillian-junit-container" org="org.jboss.arquillian.junit" rev="1.1.3.Final" conf="test->default" />
+		<dependency conf="test->default" name="arquillian-junit-container" org="org.jboss.arquillian.junit" rev="1.1.3.Final" />
 	</dependencies>
 </ivy-module>
