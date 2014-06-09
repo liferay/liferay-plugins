@@ -303,9 +303,9 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 						}
 					},
 					data: {
-						<portlet:namespace />end: <portlet:namespace />end,
+						<portlet:namespace />end: end,
 						<portlet:namespace />keywords: inviteUserSearch.get('value'),
-						<portlet:namespace />start: <portlet:namespace />start
+						<portlet:namespace />start: start
 					},
 					dataType: 'json'
 				}
