@@ -17,12 +17,12 @@ $navigationHeight:41px;
 /* ---------- Base styles ---------- */
 
 .aui {
-	#skip-to-content {
+	/*#skip-to-content {
 		color: red;
 		clear: both;
 		margin-top: 150px;
 		text-align: center;
-	}
+	}*/
 
 	#wrapper {
 		margin: 0 auto 20px;
@@ -39,11 +39,12 @@ $navigationHeight:41px;
 	}
 
 	.signed-out #sign-in {
-		background: #FFF;
-		color: red;
+		background: transparent;
+		left: 95%;
 		position: absolute;
-		text-align: right;
-		top: 10px;
+		text-decoration: none;
+		top: -30px;
+		font-weight: bold;
 	}
 
 	/* ---------- Dockbar ---------- */
@@ -95,79 +96,103 @@ $navigationHeight:41px;
 
 	/* ---------- Banner / Navigation ---------- */
 
-	.home-page #banner {
+	.banner-large {
 		background: url(../images/custom/banner.jpg) no-repeat;
 		height: $bannerHeight;
 		position: relative;
-		margin-top: 25px;
+
+		.page-title {
+			color: #FFF;
+			text-align: center;
+			padding: 50px auto;
+
+			span {
+				font-size: 100px;
+			}
+		}
+
+		.link-to-content {
+			margin: 20px auto;
+			text-align: center;
+
+			> a {
+				border: 1px solid #FFF;
+				color: #FFF;
+				font-size: 20px;
+				padding: 5px;
+			}
+		}
 	}
 
-	#banner {
+	.banner-small {
 		background: url(../images/custom/small-banner.jpg) no-repeat;
 		height: $smallBannerHeight;
 		position: relative;
 
+		.page-title {
+			color: #FFF;
+			text-align: center;
+		}
+	}
+
+	#banner {
 		#heading {
 			.logo {
-				float: right;
-				margin: 20px 20px 0 20px;
+				margin: 0 5px 0 20px;
 			}
 
 			.site-name {
-				background: $color;
 				color: #FFF;
 				display: inline-block;
-				margin: 30px 10px;
+				margin: 30px 0;
 				padding: 5px 10px;
 			}
 		}
 
-		.page-title {
-			text-align: center;
-		}
-
 		#navigation {
-			background: url(../images/custom/nav_bg.png) repeat-x 0 -1px;
-			float: left;
-			left: auto;
-			overflow: hidden;
-			position: fixed;
-			right: auto;
-			top: 0;
-			width: auto;
-			z-index: 1;
-
-			a {
-				display: block;
-				padding: 15px 20px;
-				text-decoration: none;
-
-				&:hover {
-					color: #FFF;
-				}
-			}
-
-			li {
+			.navbar-inner {
+				background: url(../images/custom/nav_bg.png) repeat-x 0 -1px;
+				border: 0;
 				float: left;
-				line-height: 14px;
+				left: auto;
+				position: fixed;
+				right: auto;
+				top: 0;
+				width: auto;
+				z-index: 1;
 
-				.child-menu {
-					li {
-						background: url(../images/custom/nav_bg.png) repeat-x;
-						clear: left;
-						overflow: hidden;
+				a {
+					color: #999;
+					text-decoration: none;
+					text-shadow: none;
+
+					&:hover {
+						color: #FFF;
 					}
 				}
-			}
 
-			ul {
-				list-style: none;
-				margin: 0;
+				.dropdown-menu {
+					background: url(../images/custom/nav_bg.png);
+					border-radius: 0;
+					margin: 0 auto;
+
+					&:after,
+					&:before {
+						border: 0;
+						display: none;
+					}
+				}
+
+				.lfr-nav-item,
+				.selected a,
+				.hover a {
+					background: transparent;
+				}
 			}
 		}
 	}
 
-/*	.signed-in #banner #navigation {
+/*	.signed-in #banner-small #navigation {
 		padding-left: $dockbarWidth;
 	}*/
 

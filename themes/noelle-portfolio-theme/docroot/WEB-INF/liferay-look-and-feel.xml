@@ -8,9 +8,8 @@
     </compatibility>
     <theme id="noelle-portfolio" name="Noelle Portfolio">
         <settings>
-            <setting key="header-type" value="detailed" />
 
-            <setting
+<!--             <setting
                     configurable="true"
                     key="slogan"
                     type="textarea"
@@ -21,7 +20,7 @@
                     key="display-slogan-header"
                     type="checkbox"
                     value="true"
-            />
+            /> -->
 
 		    <setting
                     configurable="true"
