@@ -25,13 +25,22 @@
 			<path>
 				<fileset
 					dir="."
-					includes="*/docroot/WEB-INF/service.xml"
+					includes="*/service.xml"
 				/>
 			</path>
 			<sequential>
 				<antelope:stringutil string="@{service.file}" property="service.file.index">
 					<antelope:indexof string="docroot" fromindex="0" />
 				</antelope:stringutil>
+
+				<if>
+					<equals arg1="${service.file.index}" arg2="-1" />
+					<then>
+						<antelope:stringutil string="@{service.file}" property="service.file.index">
+							<antelope:indexof string="service.xml" fromindex="0" />
+						</antelope:stringutil>
+					</then>
+				</if>
 
 				<antelope:stringutil string="@{service.file}" property="portlet.dir">
 					<antelope:substring beginindex="0" endindex="${service.file.index}" />
