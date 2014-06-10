@@ -17,17 +17,11 @@ $navigationHeight:41px;
 /* ---------- Base styles ---------- */
 
 .aui {
-	/*#skip-to-content {
-		color: red;
-		clear: both;
-		margin-top: 150px;
-		text-align: center;
-	}*/
 
 	#wrapper {
 		margin: 0 auto 20px;
 		padding: 0;
-		max-width: 1156px;
+		max-width: 1154px;
 	}
 
 	.signed-in #wrapper {
@@ -56,8 +50,8 @@ $navigationHeight:41px;
 			box-shadow: none;
 
 			ul.nav-add-controls {
-				position: fixed;
-				left: 5px;
+				left: 1%;
+				position: absolute;
 				top: 10%;
 				z-index: 2;
 
@@ -103,11 +97,13 @@ $navigationHeight:41px;
 
 		.page-title {
 			color: #FFF;
-			text-align: center;
 			padding: 50px auto;
+			text-align: center;
+
 
 			span {
 				font-size: 100px;
+				line-height: 100px;
 			}
 		}
 
@@ -142,7 +138,6 @@ $navigationHeight:41px;
 			}
 
 			.site-name {
-				background: url(../images/custom/nav_bg.png);
 				color: #FFF;
 				display: inline-block;
 				margin: 30px 0;
@@ -154,6 +149,7 @@ $navigationHeight:41px;
 			.navbar-inner {
 				background: url(../images/custom/nav_bg.png) repeat-x 0 -1px;
 				border: 0;
+				border-radius: 0;
 				float: left;
 				left: auto;
 				position: fixed;
@@ -197,13 +193,50 @@ $navigationHeight:41px;
 		padding-left: $dockbarWidth;
 	}*/
 
+	/* ---------- Content ---------- */
+
 	#content {
 		background: #FFF;
 		padding: 10px 20px;
 	}
 
+	/* ---------- Footer ---------- */
+
 	#footer {
 		background: #000;
 		padding: 10px 20px;
+
+		h3 {
+			color: #FFF;
+			margin: 5px 0;
+		}
+
+		.powered-by {
+			padding: 20px;
+			text-align: right;
+		}
+
+		ul {
+			list-style: none;
+		}
 	}
+
+	#footer-inner {
+		width: 100%;
+	}
+
+	#footer-left {
+		float: left;
+		width: 33%;
+	}
+
+	#footer-center {
+		margin: 0;
+	}
+
+
+
+	/* ---------- Portlet Styling ---------- */
+
+
 }

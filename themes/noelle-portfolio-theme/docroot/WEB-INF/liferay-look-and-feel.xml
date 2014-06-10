@@ -9,7 +9,7 @@
     <theme id="noelle-portfolio" name="Noelle Portfolio">
         <settings>
 
-<!--             <setting
+            <setting
                     configurable="true"
                     key="slogan"
                     type="textarea"
@@ -17,10 +17,10 @@
 		    />
 		    <setting
                     configurable="true"
-                    key="display-slogan-header"
+                    key="display-slogan-footer"
                     type="checkbox"
                     value="true"
-            /> -->
+            />
 
 		    <setting
                     configurable="true"
