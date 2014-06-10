@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -94,17 +93,6 @@ public class TasksPortlet extends MVCPortlet {
 		}
 
 		if (!callActionMethod(actionRequest, actionResponse)) {
-			return;
-		}
-
-		if (SessionErrors.isEmpty(actionRequest)) {
-			SessionMessages.add(actionRequest, "requestProcessed");
-		}
-
-		String actionName = ParamUtil.getString(
-			actionRequest, ActionRequest.ACTION_NAME);
-
-		if (actionName.equals("updateTasksEntry")) {
 			return;
 		}
 
@@ -213,7 +201,7 @@ public class TasksPortlet extends MVCPortlet {
 				actionRequest, PortletKeys.TASKS, layout.getPlid(),
 				PortletRequest.RENDER_PHASE);
 
-			portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
 			portletURL.setParameter(
@@ -235,6 +223,9 @@ public class TasksPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		long tasksEntryId = ParamUtil.getLong(actionRequest, "tasksEntryId");
 
 		long resolverUserId = ParamUtil.getLong(
@@ -246,6 +237,19 @@ public class TasksPortlet extends MVCPortlet {
 
 		TasksEntryLocalServiceUtil.updateTasksEntryStatus(
 			tasksEntryId, resolverUserId, status, serviceContext);
+
+		Layout layout = themeDisplay.getLayout();
+
+		PortletURL portletURL = PortletURLFactoryUtil.create(
+			actionRequest, PortletKeys.TASKS, layout.getPlid(),
+			PortletRequest.RENDER_PHASE);
+
+		portletURL.setWindowState(LiferayWindowState.POP_UP);
+
+		portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
+		portletURL.setParameter("tasksEntryId", String.valueOf(tasksEntryId));
+
+		actionResponse.sendRedirect(portletURL.toString());
 	}
 
 }
