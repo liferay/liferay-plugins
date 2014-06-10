@@ -14,6 +14,7 @@
 
 package com.liferay.sync.engine.util;
 
+import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -25,6 +26,10 @@ import org.slf4j.LoggerFactory;
  * @author Shinn Lok
  */
 public class PropsUtil {
+
+	public static void addConfiguration(Configuration configuration) {
+		_instance._addConfiguration(configuration);
+	}
 
 	public static String get(String key) {
 		return _instance._get(key);
@@ -40,15 +45,22 @@ public class PropsUtil {
 
 	private PropsUtil() {
 		try {
-			_configuration = new PropertiesConfiguration("sync.properties");
+			Configuration configuration = new PropertiesConfiguration(
+				"sync.properties");
+
+			_compositeConfiguration.addConfiguration(configuration);
 		}
 		catch (ConfigurationException ce) {
 			_logger.error("Unable to initialize", ce);
 		}
 	}
 
+	private void _addConfiguration(Configuration configuration) {
+		_compositeConfiguration.addConfiguration(configuration);
+	}
+
 	private String _get(String key) {
-		String value = _configuration.getString(key);
+		String value = _compositeConfiguration.getString(key);
 
 		if (value == null) {
 			return "";
@@ -58,17 +70,18 @@ public class PropsUtil {
 	}
 
 	private String[] _getArray(String key) {
-		return _configuration.getStringArray(key);
+		return _compositeConfiguration.getStringArray(key);
 	}
 
 	private void _set(String key, String value) {
-		_configuration.setProperty(key, value);
+		_compositeConfiguration.setProperty(key, value);
 	}
 
 	private static Logger _logger = LoggerFactory.getLogger(PropsUtil.class);
 
 	private static PropsUtil _instance = new PropsUtil();
 
-	private Configuration _configuration;
+	private CompositeConfiguration _compositeConfiguration =
+		new CompositeConfiguration();
 
 }
