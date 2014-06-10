@@ -1,7 +1,9 @@
 AUI().use(
 	'aui-base',
 	'aui-io-plugin-deprecated',
+	'aui-modal',
 	'liferay-util-window',
+	'liferay-widget-zindex',
 	function(A) {
 		Liferay.namespace('Tasks');
 
@@ -41,85 +43,33 @@ AUI().use(
 			closePopup: function() {
 				var instance = this;
 
-				instance.getPopup().hide();
+				Liferay.Util.getWindow(instance._namespace + 'Dialog').hide();
 			},
 
 			displayPopup: function(url, title) {
 				var instance = this;
 
-				var viewportRegion = A.getBody().get('viewportRegion');
-
-				var popup = instance.getPopup();
-
-				popup.show();
-
-				popup.titleNode.html(title);
-
-				popup.io.set('uri', url);
-				popup.io.start();
-			},
-
-			getPopup: function() {
-				var instance = this;
-
-				if (!instance._popup) {
-					instance._popup = Liferay.Util.Window.getWindow(
-						{
-							dialog: {
-								align: {
-									node: null,
-									points: ['tc', 'tc']
-								},
-								constrain2view: true,
-								cssClass: 'tasks-dialog',
-								modal: true,
-								resizable: false,
-								width: 600
-							}
-						}
-					).plug(
-						A.Plugin.IO,
-						{autoLoad: false}
-					).render();
-				}
-
-				instance._popup.io.set('form', null);
-				instance._popup.io.set('uri', null);
-
-				return instance._popup;
-			},
-
-			getPopupRefreshPage: function(uri) {
-				var instance = this;
-
-				var popup = this.getPopup();
-
-				if (uri) {
-					if (!instance._uriStack) {
-						var stack = [];
-
-						instance._uriStack = stack;
-					}
-
-					instance._uriStack.push(uri);
-
-					if (!instance._requestOnce) {
-						instance._requestOnce = true;
-
-						setTimeout(
-							function() {
-								popup.io.set('uri', instance._uriStack.pop());
-
-								instance._requestOnce = false;
-
-								instance._uriStack = null;
-
-								popup.io.start();
+				Liferay.Util.openWindow(
+					{
+						dialog: {
+							after: {
+								destroy: function(event) {
+									instance.updateTaskList();
+								}
 							},
-							200
-						);
+							centered: true,
+							constrain: true,
+							cssClass: 'tasks-dialog',
+							destroyOnHide: true,
+							modal: true,
+							plugins: [Liferay.WidgetZIndex],
+							width: 800
+						},
+						id: instance._namespace + 'Dialog',
+						title: title,
+						uri: url
 					}
-				}
+				);
 			},
 
 			openTask: function(href) {
