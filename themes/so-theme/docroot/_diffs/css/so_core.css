@@ -1239,77 +1239,6 @@ html.aui {
 
 /* ---------- Portlet: message boards ---------- */
 
-.portlet-wiki {
-	.taglib-header {
-		border-bottom-width: 0;
-	}
-
-	.top-links-container {
-		margin: -10px -10px 10px;
-
-		.page-search, .category-search {
-			font-size: 0;
-			margin: 0;
-			padding: 0;
-
-			.aui-field-input, .aui-button-submit {
-				font-size: 13px;
-			}
-
-			.aui-field-input {
-				@include border-radius(4px 0 0 4px);
-
-				margin-right: -1px;
-				width: 9em;
-			}
-
-			.aui-button-submit input {
-				@include border-radius(0 4px 4px 0);
-			}
-		}
-
-		.top-links {
-			padding: 0.45em 0.95em;
-		}
-	}
-
-	.top-links-container .top-link {
-		vertical-align: middle;
-	}
-
-	.portlet-msg-success {
-		border-width: 0 0 1px;
-		margin: -10px -10px 10px;
-	}
-
-	.portlet-borderless-container .portlet-body {
-		margin: 10px;
-	}
-}
-
-.portlet-wiki .page-actions a, .portlet-wiki .toc a.toc-trigger {
-	@include border-radius(4px);
-	@include button-default;
-
-	display: inline-block;
-
-	&, .taglib-text {
-		text-decoration: none;
-	}
-
-	&:active {
-		@include button-active;
-	}
-
-	&:hover, &:focus {
-		@include button-focus;
-	}
-
-	img {
-		vertical-align: top;
-	}
-}
-
 /* ---------- Portlet: microblogs ---------- */
 
 .microblogs-portlet {
@@ -1484,6 +1413,75 @@ html.aui {
 	.article-actions, .stats {
 		display: inline-block;
 		vertical-align: baseline;
+	}
+
+	.taglib-header {
+		border-bottom-width: 0;
+	}
+
+	.top-links-container {
+		margin: -10px -10px 10px;
+
+		.page-search, .category-search {
+			font-size: 0;
+			margin: 0;
+			padding: 0;
+
+			.aui-field-input, .aui-button-submit {
+				font-size: 13px;
+			}
+
+			.aui-field-input {
+				@include border-radius(4px 0 0 4px);
+
+				margin-right: -1px;
+				width: 9em;
+			}
+
+			.aui-button-submit input {
+				@include border-radius(0 4px 4px 0);
+			}
+		}
+
+		.top-links {
+			padding: 0.45em 0.95em;
+		}
+	}
+
+	.top-links-container .top-link {
+		vertical-align: middle;
+	}
+
+	.portlet-msg-success {
+		border-width: 0 0 1px;
+		margin: -10px -10px 10px;
+	}
+
+	.portlet-borderless-container .portlet-body {
+		margin: 10px;
+	}
+
+	.page-actions a, .toc a.toc-trigger {
+		@include border-radius(4px);
+		@include button-default;
+
+		display: inline-block;
+
+		&, .taglib-text {
+			text-decoration: none;
+		}
+
+		&:active {
+			@include button-active;
+		}
+
+		&:hover, &:focus {
+			@include button-focus;
+		}
+
+		img {
+			vertical-align: top;
+		}
 	}
 }
 
