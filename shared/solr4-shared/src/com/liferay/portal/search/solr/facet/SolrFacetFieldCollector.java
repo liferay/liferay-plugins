@@ -14,10 +14,10 @@
 
 package com.liferay.portal.search.solr.facet;
 
+import com.liferay.compat.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.search.facet.collector.DefaultTermCollector;
 import com.liferay.portal.kernel.search.facet.collector.FacetCollector;
 import com.liferay.portal.kernel.search.facet.collector.TermCollector;
-import com.liferay.portal.kernel.util.ListUtil;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
