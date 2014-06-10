@@ -28,12 +28,3 @@
 	redirect="<%= currentURL %>"
 	userId="<%= tasksEntry.getUserId() %>"
 />
-
-<aui:script>
-	Liferay.on(
-		'<%= portletDisplay.getId() %>:messagePosted',
-		function(event) {
-			Liferay.Tasks.getPopupRefreshPage('<%= currentURL %>');
-		}
-	);
-</aui:script>
