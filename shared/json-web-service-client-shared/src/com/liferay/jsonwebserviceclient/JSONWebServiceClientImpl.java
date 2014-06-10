@@ -275,13 +275,10 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		RegistryBuilder<ConnectionSocketFactory> registryBuilder =
 			RegistryBuilder.<ConnectionSocketFactory> create();
 
-		registryBuilder.register("https", getSSLConnectionSocketFactory());
 		registryBuilder.register("http", new PlainConnectionSocketFactory());
+		registryBuilder.register("https", getSSLConnectionSocketFactory());
 
-		Registry<ConnectionSocketFactory> socketFactoryRegistry =
-			registryBuilder.build();
-
-		return socketFactoryRegistry;
+		return registryBuilder.build();
 	}
 
 	protected SSLConnectionSocketFactory getSSLConnectionSocketFactory() {
@@ -295,20 +292,15 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			sslContext = sslContextBuilder.build();
 
 			sslContext.init(
-				null, new TrustManager[] { new X509TrustManagerImpl() },
-				null);
+				null, new TrustManager[] {new X509TrustManagerImpl()}, null);
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 
-		SSLConnectionSocketFactory
-			sslConnectionSocketFactory = new SSLConnectionSocketFactory(
-				sslContext, new String[] {"TLSv1"}, null,
-				SSLConnectionSocketFactory.
-					BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
-
-		return sslConnectionSocketFactory;
+		return new SSLConnectionSocketFactory(
+			sslContext, new String[] {"TLSv1"}, null,
+			SSLConnectionSocketFactory.BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 	}
 
 	protected List<NameValuePair> toNameValuePairs(
@@ -346,7 +338,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	private String _password;
 	private String _protocol = "http";
 
-	private static class X509TrustManagerImpl implements X509TrustManager {
+	private class X509TrustManagerImpl implements X509TrustManager {
 
 		public X509TrustManagerImpl() {
 			try {
@@ -373,20 +365,23 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		@Override
 		public void checkClientTrusted(
-				X509Certificate[] x509Certificates, String s)
+				X509Certificate[] x509Certificates, String authType)
 			throws CertificateException {
 
 			if (x509Certificates.length != 1) {
-				_x509TrustManager.checkClientTrusted(x509Certificates, s);
+				_x509TrustManager.checkClientTrusted(
+					x509Certificates, authType);
 			}
 		}
 
 		@Override
-		public void checkServerTrusted(X509Certificate[] chain, String authType)
+		public void checkServerTrusted(
+				X509Certificate[] x509Certificates, String authType)
 			throws CertificateException {
 
-			if (chain.length != 1) {
-				_x509TrustManager.checkServerTrusted(chain, authType);
+			if (x509Certificates.length != 1) {
+				_x509TrustManager.checkServerTrusted(
+					x509Certificates, authType);
 			}
 		}
 
@@ -395,7 +390,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			return _x509TrustManager.getAcceptedIssuers();
 		}
 
-		private X509TrustManager _x509TrustManager = null;
+		private X509TrustManager _x509TrustManager;
 
 	}
 
