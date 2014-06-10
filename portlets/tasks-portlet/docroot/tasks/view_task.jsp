@@ -148,66 +148,52 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 				boolean resolved = (tasksEntry.getStatus() == TasksEntryConstants.STATUS_RESOLVED);
 				%>
 
-				<input class="btn task-action-button" onClick="<portlet:namespace />updateStatus(<%= resolved ? TasksEntryConstants.STATUS_REOPENED : TasksEntryConstants.STATUS_RESOLVED %>)" type="button" value="<liferay-ui:message key='<%= resolved ? "reopen" : "resolve" %>' />" />
+				<portlet:actionURL name="updateTasksEntryStatus" var="updateTasksEntryStatusURL">
+					<portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" />
+					<portlet:param name="resolverUserId" value="<%= String.valueOf(user.getUserId()) %>" />
+					<portlet:param name="status" value="<%= String.valueOf(resolved ? TasksEntryConstants.STATUS_REOPENED : TasksEntryConstants.STATUS_RESOLVED) %>" />
+				</portlet:actionURL>
+
+				<aui:button cssClass="task-action-button" onClick="<%= updateTasksEntryStatusURL %>" value='<%= resolved ? "reopen" : "resolve" %>' />
 
 				<span class="task-action-spacer">
-					<input class="btn" onClick="Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/edit_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', '<liferay-ui:message key="update-task" />');" type="button" value="<liferay-ui:message key="edit" />" />
+					<portlet:renderURL var="editTasksEntryURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+						<portlet:param name="mvcPath" value="/tasks/edit_task.jsp" />
+						<portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" />
+					</portlet:renderURL>
 
-					<input class="btn" onClick="if (confirm('<liferay-ui:message key="are-you-sure-you-want-to-delete-this-entry" />')){<portlet:namespace />deleteTask()}" type="button" value="<liferay-ui:message key="delete" />" />
+					<aui:button onClick="<%= editTasksEntryURL %>" value="edit" />
+
+					<aui:button name="deleteTasksEntry" value="delete" />
 				</span>
 
 				<aui:script use="aui-io-deprecated">
-					Liferay.provide(
-						window,
-						'<portlet:namespace />deleteTask',
-						function() {
-							A.io.request(
-								'<portlet:actionURL name="deleteTasksEntry" />',
-								{
-									after: {
-										success: function() {
-											Liferay.Tasks.updateTaskList();
+					var deleteTasksEntry = A.one('#<portlet:namespace />deleteTasksEntry');
 
-											Liferay.Tasks.closePopup();
+					if (deleteTasksEntry) {
+						deleteTasksEntry.on(
+							'click',
+							function(event) {
+								if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-this-entry") %>')) {
+									A.io.request(
+										'<portlet:actionURL name="deleteTasksEntry" />',
+										{
+											after: {
+												success: function() {
+													Liferay.Tasks.closePopup();
+												}
+											},
+											data: {
+												<portlet:namespace />tasksEntryId: <%= tasksEntry.getTasksEntryId() %>
+											}
 										}
-									},
-									data: {
-										<portlet:namespace />tasksEntryId: <%= tasksEntry.getTasksEntryId() %>
-									}
+									);
 								}
-							);
-						}
-					);
-
-					Liferay.provide(
-						window,
-						'<portlet:namespace />updateStatus',
-						function(status) {
-							A.io.request(
-								'<portlet:actionURL name="updateTasksEntryStatus" />',
-								{
-									after: {
-										success: function() {
-											Liferay.Tasks.updateTaskList();
-
-											Liferay.Tasks.displayPopup('<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/tasks/view_task.jsp" /><portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" /></portlet:renderURL>', '<liferay-ui:message key="update-task" />');
-										}
-									},
-									data: {
-										<portlet:namespace />tasksEntryId: <%= tasksEntry.getTasksEntryId() %>,
-										<portlet:namespace />resolverUserId: <%= user.getUserId() %>,
-										<portlet:namespace />status: status
-									}
-								}
-							);
-						}
-					);
+							}
+						);
+					}
 				</aui:script>
 			</c:if>
-
-			<div class="task-action-right">
-				<input class="btn" onClick="Liferay.Tasks.closePopup();" type="button" value="<liferay-ui:message key="close" />" />
-			</div>
 		</div>
 
 		<liferay-ui:tabs names="comments" />

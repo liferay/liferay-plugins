@@ -88,7 +88,7 @@ taskListURL.setParameter("tabs2", tabs2);
 		if (TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE)) {
 			PortletURL rowURL = renderResponse.createRenderURL();
 
-			rowURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+			rowURL.setWindowState(LiferayWindowState.POP_UP);
 
 			rowURL.setParameter("mvcPath", "/tasks/view_task.jsp");
 			rowURL.setParameter("tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
