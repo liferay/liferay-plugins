@@ -1,0 +1,3 @@
+[submodule "apps/content-targeting"]
+	path = apps/content-targeting
+	url = git@github.com:liferay/liferay-plugins-content-targeting.git
