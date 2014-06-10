@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.kaleo.service.persistence.impl;
 
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenFinder;
+import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery;
 import com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenUtil;
 
 import com.liferay.portal.kernel.dao.orm.QueryPos;
