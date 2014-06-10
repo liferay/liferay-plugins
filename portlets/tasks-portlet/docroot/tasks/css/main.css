@@ -226,7 +226,7 @@
 
 /* ---------- Dialog ---------- */
 
-.tasks-dialog {
+.portal-popup .tasks-portlet {
 	.lfr-table .lfr-label {
 		font-weight: bold;
 		vertical-align: top;
