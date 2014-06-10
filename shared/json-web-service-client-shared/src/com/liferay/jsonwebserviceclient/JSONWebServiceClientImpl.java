@@ -53,6 +53,7 @@ import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
+import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLContextBuilder;
 import org.apache.http.conn.ssl.SSLContexts;
@@ -277,6 +278,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 			RegistryBuilder.<ConnectionSocketFactory> create();
 
 		registryBuilder.register("https", getSSLConnectionSocketFactory());
+		registryBuilder.register("http", new PlainConnectionSocketFactory());
 
 		Registry<ConnectionSocketFactory> socketFactoryRegistry =
 			registryBuilder.build();
