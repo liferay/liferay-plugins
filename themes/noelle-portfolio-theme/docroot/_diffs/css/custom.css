@@ -205,32 +205,35 @@ $navigationHeight:41px;
 	#footer {
 		background: #000;
 		padding: 10px 20px;
+		overflow: hidden;
 
 		h3 {
 			color: #FFF;
 			margin: 5px 0;
 		}
 
-		.powered-by {
-			padding: 20px;
-			text-align: right;
-		}
+
 
 		ul {
 			list-style: none;
 		}
 	}
 
-	#footer-inner {
-		width: 100%;
-	}
-
-	#footer-left,
-	#footer-center {
+	#footer-left {
 		float: left;
-		width: 33%;
+		width: 60%;
 	}
 
+	#footer-right {
+		float: right;
+		width: 30%;
+		padding-left: 5%;
+	}
+
+	.powered-by {
+		clear: both;
+		text-align: right;
+	}
 	/* ---------- Portlet Styling ---------- */
 
 

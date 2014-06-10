@@ -12,7 +12,9 @@
 	$theme.include($top_head_include)
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+<!--
+	<script src=$javascript_folder"/scroll.js"></script>
+ -->
 	<script>
 		$(document).ready(function(){
 			$('a[href^="#"]').on('click',function (e) {
@@ -113,35 +115,33 @@ $theme.include($body_top_include)
 
 	<footer id="footer" role="contentinfo">
 
-		<div id="footer-inner">
-	        <div id="footer-left">
-	        	<h3> $site_name </h3>
+        <div id="footer-left">
+        	<h3> $site_name </h3>
 
-				#if($theme.getSetting("display-slogan-footer") == true)
-				    <p class="footer-slogan">
-				    	$theme.getSetting("slogan")
-					</p>
-				#end
-			</div>
-
-			#if($has_navigation)
-				<div id="footer-center">
-					<h3>Site Pages</h3>
-					<ul>
-						#foreach ($nav_item in $nav_items)
-							<a href=$nav_item.getTarget()>
-								<li class="footer-link"> $nav_item.getName()</li>
-							</a>
-						#end
-					</ul>
-				</div>
+			#if($theme.getSetting("display-slogan-footer") == true)
+			    <p class="footer-slogan">
+			    	$theme.getSetting("slogan")
+				</p>
 			#end
-
-
-			<p class="powered-by">
-	        #language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
-			</p>
 		</div>
+
+		#if($has_navigation)
+			<div id="footer-right">
+				<h3>Site Pages</h3>
+				<ul>
+					#foreach ($nav_item in $nav_items)
+						<a href=$nav_item.getTarget()>
+							<li class="footer-link"> $nav_item.getName()</li>
+						</a>
+					#end
+				</ul>
+			</div>
+		#end
+
+		<p class="powered-by">
+        #language ("powered-by") <a href="http://www.liferay.com" rel="external">Liferay</a>
+		</p>
+
 
 	</footer>
 
