@@ -20,11 +20,9 @@ import java.security.KeyStore;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
@@ -306,7 +304,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		SSLConnectionSocketFactory
 			sslConnectionSocketFactory = new SSLConnectionSocketFactory(
-				sslContext, new String[]{"TLSv1"}, null,
+				sslContext, new String[] {"TLSv1"}, null,
 				SSLConnectionSocketFactory.
 					BROWSER_COMPATIBLE_HOSTNAME_VERIFIER);
 
@@ -318,13 +316,7 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 		List<NameValuePair> nameValuePairs = new LinkedList<NameValuePair>();
 
-		Set<Map.Entry<String, String>> set = parameters.entrySet();
-
-		Iterator<Map.Entry<String, String>> iterator = set.iterator();
-
-		while (iterator.hasNext()) {
-			Map.Entry<String, String> entry = iterator.next();
-
+		for (Map.Entry<String, String> entry : parameters.entrySet()) {
 			String key = entry.getKey();
 
 			String value = entry.getValue();
