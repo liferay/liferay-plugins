@@ -72,8 +72,14 @@ public class SyncSiteWatchEventListener extends BaseWatchEventListener {
 				return;
 			}
 
+			long repositoryId = getRepositoryId(filePath);
+
+			if (repositoryId <= 0) {
+				return;
+			}
+
 			SyncSite syncSite = SyncSiteService.fetchSyncSite(
-				getRepositoryId(filePath), getSyncAccountId());
+				repositoryId, getSyncAccountId());
 
 			Set<Long> activeSyncSiteIds = SyncSiteService.getActiveSyncSiteIds(
 				getSyncAccountId());

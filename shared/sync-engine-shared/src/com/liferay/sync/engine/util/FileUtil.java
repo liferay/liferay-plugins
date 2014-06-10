@@ -97,6 +97,10 @@ public class FileUtil {
 	}
 
 	public static boolean hasFileChanged(SyncFile syncFile) {
+		if (syncFile.getFilePathName() == null) {
+			return true;
+		}
+
 		Path filePath = Paths.get(syncFile.getFilePathName());
 
 		if (filePath == null) {
