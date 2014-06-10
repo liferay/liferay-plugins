@@ -22,14 +22,14 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 public class KaleoTaskInstanceTokenFinderUtil {
 	public static int countKaleoTaskInstanceTokens(
-		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
+		com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .countKaleoTaskInstanceTokens(kaleoTaskInstanceTokenQuery);
 	}
 
 	public static java.util.List<com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> findKaleoTaskInstanceTokens(
-		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
+		com.liferay.portal.workflow.kaleo.service.persistence.KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getFinder()
 				   .findKaleoTaskInstanceTokens(kaleoTaskInstanceTokenQuery);
