@@ -192,7 +192,7 @@ body.so-classic {
 		}
 	}
 
-	.portlet-message-boards .edit-controls a, .portlet-message-boards .thread-controls a, a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
+	a.aui-button, input[type="submit"], input[type="button"], input[type="reset"], button {
 		@include button-default;
 
 		&:hover, &:focus {
