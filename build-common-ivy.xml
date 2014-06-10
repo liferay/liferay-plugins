@@ -80,12 +80,6 @@
 										transitive="${ivy.resolve.transitive.dependencies}"
 									/>
 
-									<ivy:resolve
-										file="${sdk.dir}/ivy-test.xml"
-										log="download-only"
-										transitive="true"
-									/>
-
 									<if>
 										<or>
 											<equals arg1="@{ivy.xml.dir}" arg2="${sdk.dir}" />
