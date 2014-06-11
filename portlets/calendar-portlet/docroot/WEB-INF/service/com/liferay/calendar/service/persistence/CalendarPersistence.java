@@ -925,6 +925,10 @@ public interface CalendarPersistence extends BasePersistence<Calendar> {
 	public com.liferay.calendar.model.Calendar fetchByPrimaryKey(
 		long calendarId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.calendar.model.Calendar> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the calendars.
 	*

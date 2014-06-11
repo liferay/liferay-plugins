@@ -49,7 +49,11 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -2840,6 +2844,100 @@ public class CalendarNotificationTemplatePersistenceImpl
 		return fetchByPrimaryKey((Serializable)calendarNotificationTemplateId);
 	}
 
+	@Override
+	public Map<Serializable, CalendarNotificationTemplate> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, CalendarNotificationTemplate> map = new HashMap<Serializable, CalendarNotificationTemplate>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			CalendarNotificationTemplate calendarNotificationTemplate = fetchByPrimaryKey(primaryKey);
+
+			if (calendarNotificationTemplate != null) {
+				map.put(primaryKey, calendarNotificationTemplate);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			CalendarNotificationTemplate calendarNotificationTemplate = (CalendarNotificationTemplate)EntityCacheUtil.getResult(CalendarNotificationTemplateModelImpl.ENTITY_CACHE_ENABLED,
+					CalendarNotificationTemplateImpl.class, primaryKey);
+
+			if (calendarNotificationTemplate == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, calendarNotificationTemplate);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_CALENDARNOTIFICATIONTEMPLATE_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (CalendarNotificationTemplate calendarNotificationTemplate : (List<CalendarNotificationTemplate>)q.list()) {
+				map.put(calendarNotificationTemplate.getPrimaryKeyObj(),
+					calendarNotificationTemplate);
+
+				cacheResult(calendarNotificationTemplate);
+
+				uncachedPrimaryKeys.remove(calendarNotificationTemplate.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(CalendarNotificationTemplateModelImpl.ENTITY_CACHE_ENABLED,
+					CalendarNotificationTemplateImpl.class, primaryKey,
+					_nullCalendarNotificationTemplate);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the calendar notification templates.
 	 *
@@ -3045,6 +3143,8 @@ public class CalendarNotificationTemplatePersistenceImpl
 	}
 
 	private static final String _SQL_SELECT_CALENDARNOTIFICATIONTEMPLATE = "SELECT calendarNotificationTemplate FROM CalendarNotificationTemplate calendarNotificationTemplate";
+	private static final String _SQL_SELECT_CALENDARNOTIFICATIONTEMPLATE_WHERE_PKS_IN =
+		"SELECT calendarNotificationTemplate FROM CalendarNotificationTemplate calendarNotificationTemplate WHERE calendarNotificationTemplateId IN (";
 	private static final String _SQL_SELECT_CALENDARNOTIFICATIONTEMPLATE_WHERE = "SELECT calendarNotificationTemplate FROM CalendarNotificationTemplate calendarNotificationTemplate WHERE ";
 	private static final String _SQL_COUNT_CALENDARNOTIFICATIONTEMPLATE = "SELECT COUNT(calendarNotificationTemplate) FROM CalendarNotificationTemplate calendarNotificationTemplate";
 	private static final String _SQL_COUNT_CALENDARNOTIFICATIONTEMPLATE_WHERE = "SELECT COUNT(calendarNotificationTemplate) FROM CalendarNotificationTemplate calendarNotificationTemplate WHERE ";

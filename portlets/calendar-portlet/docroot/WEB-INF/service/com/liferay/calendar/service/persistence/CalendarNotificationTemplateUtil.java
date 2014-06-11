@@ -771,6 +771,11 @@ public class CalendarNotificationTemplateUtil {
 		return getPersistence().fetchByPrimaryKey(calendarNotificationTemplateId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.calendar.model.CalendarNotificationTemplate> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the calendar notification templates.
 	*

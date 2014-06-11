@@ -578,6 +578,10 @@ public interface CalendarNotificationTemplatePersistence extends BasePersistence
 	public com.liferay.calendar.model.CalendarNotificationTemplate fetchByPrimaryKey(
 		long calendarNotificationTemplateId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.calendar.model.CalendarNotificationTemplate> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the calendar notification templates.
 	*

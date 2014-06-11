@@ -1233,6 +1233,10 @@ public interface CalendarBookingPersistence extends BasePersistence<CalendarBook
 	public com.liferay.calendar.model.CalendarBooking fetchByPrimaryKey(
 		long calendarBookingId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.calendar.model.CalendarBooking> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the calendar bookings.
 	*

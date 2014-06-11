@@ -1510,6 +1510,10 @@ public interface CalendarResourcePersistence extends BasePersistence<CalendarRes
 	public com.liferay.calendar.model.CalendarResource fetchByPrimaryKey(
 		long calendarResourceId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.calendar.model.CalendarResource> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the calendar resources.
 	*

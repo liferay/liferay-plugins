@@ -1203,6 +1203,11 @@ public class CalendarUtil {
 		return getPersistence().fetchByPrimaryKey(calendarId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.calendar.model.Calendar> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the calendars.
 	*

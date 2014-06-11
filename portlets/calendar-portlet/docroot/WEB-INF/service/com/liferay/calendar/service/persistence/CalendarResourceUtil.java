@@ -1881,6 +1881,11 @@ public class CalendarResourceUtil {
 		return getPersistence().fetchByPrimaryKey(calendarResourceId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.calendar.model.CalendarResource> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the calendar resources.
 	*
