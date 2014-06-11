@@ -1,5 +1,6 @@
 @import url(color_schemes/dark.css);
 @import url(color_schemes/light.css);
+@import "mixins";
 
 /*.nav-menu-style-arrows ul {
 	list-style-image: url(https://cdn.lfrs.sl/www.liferay.com/osb-community-theme/images/navigation/bullet_selected.png);
@@ -8,10 +9,9 @@
 /* ---------- Variables ---------- */
 
 $bannerHeight: 771px;
-$color: #3D7899;
 $navHeight: 46px;
 $smallBannerHeight: 257px;
-$dockbarWidth:57px;
+$dockbarWidth:67px;
 $navigationHeight:41px;
 
 /* ---------- Base styles ---------- */
@@ -24,71 +24,7 @@ $navigationHeight:41px;
 		max-width: 1154px;
 	}
 
-	.signed-in #wrapper {
-		padding-left: $dockbarWidth;
-	}
-
-	.signed-out #wrapper {
-		margin-top: $navigationHeight;
-	}
-
-	.signed-out #sign-in {
-		background: transparent;
-		left: 95%;
-		position: absolute;
-		text-decoration: none;
-		top: -30px;
-		font-weight: bold;
-	}
-
-	/* ---------- Dockbar ---------- */
-
-	.portlet-dockbar {
-		.navbar-inner {
-			background: transparent;
-			border: 0;
-			box-shadow: none;
-
-			ul.nav-add-controls {
-				left: 1%;
-				position: absolute;
-				top: 10%;
-				z-index: 2;
-
-				li {
-					background: #FFF;
-					border-radius: 5px;
-					clear: left;
-					margin: 10px auto;
-					padding: 3px;
-					width: 41px;
-
-					i {
-						height: 100%;
-						width: 100%;
-					}
-
-					.nav-item-label {
-						display: none;
-					}
-				}
-			}
-
-			ul.nav-account-controls {
-				background: #FFF;
-				position: relative;
-				margin: 0;
-				z-index: 2;
-
-				li {
-					background: #FFF;
-					float: left;
-				}
-			}
-		}
-	}
-
-	/* ---------- Banner / Navigation ---------- */
+	/* ---------- Banner ---------- */
 
 	.banner-large {
 		background: url(../images/custom/banner.jpg) no-repeat;
@@ -99,7 +35,6 @@ $navigationHeight:41px;
 			color: #FFF;
 			padding: 50px auto;
 			text-align: center;
-
 
 			span {
 				font-size: 100px;
@@ -128,6 +63,11 @@ $navigationHeight:41px;
 		.page-title {
 			color: #FFF;
 			text-align: center;
+
+			span {
+				font-size: 40px;
+				line-height: 40px;
+			}
 		}
 	}
 
@@ -144,6 +84,301 @@ $navigationHeight:41px;
 				padding: 5px 10px;
 			}
 		}
+	}
+
+	/* ---------- Content ---------- */
+
+	#content {
+		background: #FFF;
+		padding: 10px 20px;
+	}
+
+	/* ---------- Footer ---------- */
+
+	#footer {
+		background: #000;
+		padding: 10px 20px;
+		overflow: hidden;
+
+		h3 {
+			color: #FFF;
+			margin: 5px 0;
+		}
+	}
+
+	#footer-left {
+		float: left;
+		width: 60%;
+	}
+
+	#footer-right {
+		float: right;
+		width: 30%;
+		padding-left: 5%;
+
+		ul {
+			list-style: none;
+		}
+	}
+
+	.powered-by {
+		clear: both;
+		text-align: right;
+	}
+	/* ---------- Portlet Styling ---------- */
+
+
+}
+
+/* ---------- Extras ---------- */
+
+.aui {
+	#wrapper {
+		@include respond-to(phone, tablet) {
+			padding: 0;
+		}
+	}
+
+	/*---------- Up to landscape phone ----------*/
+
+	@media (max-width: 480px) {
+
+		/* Remove padding from default */
+		body {
+			padding: 0;
+		}
+
+		.banner-large {
+			height: 350px;
+
+			.page-title span {
+				font-size: 40px;
+				line-height: 40px;
+			}
+		}
+
+		.site-name {
+			font-size: 25px;
+		}
+	}
+
+	/*---------- Landscape phone to desktop/tablet ----------*/
+
+	@media (min-width: 481px) and (max-width: 767px) {
+
+		/* Remove padding from default */
+		body {
+			padding: 0;
+		}
+
+		.banner-large {
+			height: 550px;
+
+			.page-title span {
+				font-size: 70px;
+				line-height: 70px;
+			}
+		}
+
+		.site-name {
+			font-size: 30px;
+		}
+	}
+
+
+	/*---------- Tablet to desktop ----------*/
+
+	@media (max-width: 979px) {
+
+		/* ---------- Dockbar ---------- */
+
+		.portlet-dockbar {
+			.navbar-inner {
+				background: transparent;
+				border: 0;
+				box-shadow: none;
+
+				.nav-account-controls,
+				.nav-add-controls {
+					background: #e9e9e9;
+					border-radius: 5px;
+					float: right;
+				}
+
+				.nav-collapse.open {
+					position: absolute;
+					top: 50px;
+					z-index: 2;
+				}
+
+				#_145_navAccountControlsNavbarCollapse {
+					right: 55px;
+				}
+
+				#_145_navAddControlsNavbarCollapse {
+					right: 0;
+				}
+			}
+		}
+
+		.signed-out .portlet-dockbar {
+			.navbar-inner {
+				#_145_navAddControlsNavbarBtn {
+					display: none;
+				}
+			}
+		}
+
+		.signed-in .portlet-dockbar {
+			.navbar-inner {
+				#_145_navAccountControlsNavbarBtn {
+					padding: 2px;
+
+					.user-avatar-image {
+						height: 30px;
+						width: 31px;
+					}
+				}
+			}
+		}
+
+		/* ---------- Navigation ---------- */
+
+		#navigation {
+			position: absolute;
+			right: 0;
+			top: 0;
+
+			.navbar-inner {
+				background: url(../images/custom/nav_bg.png) repeat;
+				border: none;
+				box-shadow: none;
+				display: none;
+				padding: 0;
+
+				.nav-collapse {
+					height: auto;
+
+					li {
+						> a {
+							background: transparent;
+							box-shadow: none;
+							color: #FFF;
+							text-shadow: none;
+						}
+
+						:hover {
+							background: #888;
+							color: #00aaff;
+							/*a {
+								color: #00aaff;
+							}*/
+						}
+					}
+				}
+			}
+		}
+
+		#navigation.open {
+			.navbar-inner {
+				display: block;
+			}
+		}
+	}
+
+	/*---------- Desktop and up ----------*/
+
+	@media (min-width: 980px) {
+
+		/* ---------- Base Styles ---------- */
+
+		.signed-in #wrapper {
+			padding: 0 $dockbarWidth;
+		}
+
+		/* ---------- Dockbar ---------- */
+
+		.portlet-dockbar {
+			.navbar-inner {
+				background: transparent;
+				border: 0;
+				box-shadow: none;
+				padding: 0;
+
+				ul.nav-account-controls {
+					background: #FFF;
+					position: relative;
+					margin: 0;
+					z-index: 4;
+
+					li {
+						background: #FFF;
+						float: left;
+					}
+				}
+
+				ul.nav-add-controls {
+					left: 10px;
+					position: absolute;
+					top: 60px;
+					z-index: 1;
+
+					a:hover {
+						.nav-item-label {
+							display: inline;
+						}
+					}
+
+					li {
+						background: #FFF;
+						border-radius: 5px;
+						clear: left;
+						margin: 10px auto;
+						padding: 3px;
+						width: 41px;
+
+						i {
+							height: 100%;
+							width: 100%;
+						}
+
+						> a {
+							background: transparent;
+							text-align: left;
+							white-space: nowrap;
+
+							:hover {
+								background: #F3f3f3;
+
+							}
+
+							.nav-item-label {
+								background: url(../images/custom/nav_bg.png);
+								border-radius: 5px;
+								color: #FFF;
+								display: none;
+								left: 20px;
+								margin-left: 0;
+								margin-top: 0;
+								padding: 10px;
+								position: relative;
+								text-shadow: none;
+							}
+
+							.icon-caret-down {
+								display: none;
+							}
+
+							.toggle-controls-link {
+								background: transparent;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/* ---------- Navigation ---------- */
 
 		#navigation {
 			.navbar-inner {
@@ -151,12 +386,10 @@ $navigationHeight:41px;
 				border: 0;
 				border-radius: 0;
 				float: left;
-				left: auto;
 				position: fixed;
-				right: auto;
 				top: 0;
 				width: auto;
-				z-index: 1;
+				z-index: 3;
 
 				a {
 					color: #999;
@@ -188,53 +421,5 @@ $navigationHeight:41px;
 			}
 		}
 	}
-
-/*	.signed-in #banner-small #navigation {
-		padding-left: $dockbarWidth;
-	}*/
-
-	/* ---------- Content ---------- */
-
-	#content {
-		background: #FFF;
-		padding: 10px 20px;
-	}
-
-	/* ---------- Footer ---------- */
-
-	#footer {
-		background: #000;
-		padding: 10px 20px;
-		overflow: hidden;
-
-		h3 {
-			color: #FFF;
-			margin: 5px 0;
-		}
-
-
-
-		ul {
-			list-style: none;
-		}
-	}
-
-	#footer-left {
-		float: left;
-		width: 60%;
-	}
-
-	#footer-right {
-		float: right;
-		width: 30%;
-		padding-left: 5%;
-	}
-
-	.powered-by {
-		clear: both;
-		text-align: right;
-	}
-	/* ---------- Portlet Styling ---------- */
-
-
 }
+
