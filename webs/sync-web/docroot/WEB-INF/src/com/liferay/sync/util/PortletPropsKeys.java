@@ -22,6 +22,9 @@ public class PortletPropsKeys {
 	public static final String SYNC_AUTH_VERIFIER_PIPELINE =
 		"sync.auth.verifier.pipeline";
 
+	public static final String SYNC_CLIENT_MAX_CONNECTIONS =
+		"sync.client.max.connections";
+
 	public static final String SYNC_CLIENT_POLL_INTERVAL =
 		"sync.client.poll.interval";
 
