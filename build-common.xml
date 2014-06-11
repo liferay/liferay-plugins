@@ -68,7 +68,6 @@
 		<path refid="plugin.classpath" />
 		<path refid="plugin-test-type.classpath" />
 		<fileset dir="${app.server.lib.portal.dir}" excludes="ant.jar" includes="*.jar" />
-		<fileset dir="${sdk.dir}/lib" includes="junit.jar,mockito-all.jar,powermock-*.jar,spring-test.jar" />
 	</path>
 
 	<path id="classpath.aQute.bnd">
@@ -834,12 +833,6 @@ Please find a solution that does not require portal-impl.jar.
 			<if>
 				<available file="@{module.dir}/test/@{test.type}" type="dir" />
 				<then>
-					<ivy:resolve
-						file="${sdk.dir}/ivy-test.xml"
-						log="download-only"
-						transitive="true"
-					/>
-
 					<mkdir dir="@{module.dir}/test-classes/@{test.type}" />
 					<mkdir dir="@{module.dir}/test-results/@{test.type}" />
 
@@ -848,27 +841,23 @@ Please find a solution that does not require portal-impl.jar.
 						<fileset dir="@{module.dir}/test/@{test.type}" includes="**/*.png,**/*.properties,**/*.xml" />
 					</copy>
 
-					<if>
-						<available file="@{module.dir}/ivy.xml" />
-						<then>
-							<ivy:settings file="${ivy.custom.settings.file}" />
+					<ivy:settings file="${ivy.custom.settings.file}" />
 
-							<path id="plugin-test-type.classpath">
-								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+					<ivy:resolve
+						file="${sdk.dir}/ivy-test.xml"
+						log="download-only"
+						transitive="true"
+					/>
 
-								<ivy:resources
-									conf="test"
-									file="@{module.dir}/ivy.xml"
-									transitive="${ivy.resolve.transitive.dependencies}"
-								/> 
-							</path>
-						</then>
-						<else>
-							<path id="plugin-test-type.classpath">
-								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-							</path>
-						</else>
-					</if>
+					<path id="plugin-test-type.classpath">
+						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+
+						<ivy:resources
+							conf="test"
+							file="@{module.dir}/ivy-test.xml"
+							transitive="true"
+						/> 
+					</path>
 
 					<compile-java
 						javac.classpathref="test.classpath"
@@ -2184,25 +2173,15 @@ Please find a solution that does not require portal-impl.jar.
 						test.type="@{test.type}"
 					/>
 
-					<if>
-						<available file="@{module.dir}/ivy.xml" />
-						<then>
-							<path id="plugin-test-type.classpath">
-								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
+					<path id="plugin-test-type.classpath">
+						<pathelement location="@{module.dir}/test-classes/@{test.type}" />
 
-								<ivy:resources
-									conf="test"
-									file="@{module.dir}/ivy.xml"
-									transitive="${ivy.resolve.transitive.dependencies}"
-								/>
-							</path>
-						</then>
-						<else>
-							<path id="plugin-test-type.classpath">
-								<pathelement location="@{module.dir}/test-classes/@{test.type}" />
-							</path>
-						</else>
-					</if>
+						<ivy:resources
+							conf="test"
+							file="@{module.dir}/ivy-test.xml"
+							transitive="true"
+						/>
+					</path>
 
 					<if>
 						<available file="@{module.dir}/test/@{test.type}" type="dir" />
