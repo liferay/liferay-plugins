@@ -141,7 +141,7 @@ portletURL.setParameter("category", category);
 
 					<div class="version">
 						<span>
-							<liferay-ui:message key="version" />
+							<liferay-ui:message key="version" />:
 						<span>
 
 						<%= app.getVersion() %>
