@@ -41,22 +41,24 @@ public class UserListener extends BaseModelListener<User> {
 			ServiceContext serviceContext =
 				ServiceContextThreadLocal.getServiceContext();
 
-			if (serviceContext != null) {
-				Map<String, String> headers = serviceContext.getHeaders();
+			if (serviceContext == null) {
+				return;
+			}
 
-				String refererURL = headers.get(WebKeys.REFERER);
+			Map<String, String> headers = serviceContext.getHeaders();
 
-				String portletId = HttpUtil.getParameter(
-					refererURL, "p_p_id", false);
+			String refererURL = headers.get(WebKeys.REFERER);
 
-				String memberRequestKey = HttpUtil.getParameter(
-					refererURL,
-					PortalUtil.getPortletNamespace(portletId) + "key", false);
+			String portletId = HttpUtil.getParameter(
+				refererURL, "p_p_id", false);
 
-				if (Validator.isNotNull(memberRequestKey)) {
-					MemberRequestLocalServiceUtil.updateMemberRequest(
-						memberRequestKey, user.getUserId());
-				}
+			String key = HttpUtil.getParameter(
+				refererURL,
+				PortalUtil.getPortletNamespace(portletId) + "key", false);
+
+			if (Validator.isNotNull(key)) {
+				MemberRequestLocalServiceUtil.updateMemberRequest(
+					key, user.getUserId());
 			}
 		}
 		catch (Exception e) {
