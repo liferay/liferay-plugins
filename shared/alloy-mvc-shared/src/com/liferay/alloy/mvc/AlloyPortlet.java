@@ -35,9 +35,7 @@ import com.liferay.portal.model.Portlet;
 import java.io.IOException;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -60,9 +58,8 @@ public class AlloyPortlet extends GenericPortlet {
 
 	@Override
 	public void destroy() {
-		for (AlloyController alloyController : _alloyControllers) {
-			BaseAlloyControllerImpl baseAlloyControllerImpl =
-				(BaseAlloyControllerImpl)alloyController;
+		for (BaseAlloyControllerImpl baseAlloyControllerImpl :
+				_alloyControllers.values()) {
 
 			Indexer indexer = baseAlloyControllerImpl.indexer;
 
@@ -204,15 +201,20 @@ public class AlloyPortlet extends GenericPortlet {
 	}
 
 	protected void registerAlloyController(AlloyController alloyController) {
-		if (!_alloyControllers.contains(alloyController)) {
-			_alloyControllers.add(alloyController);
+		BaseAlloyControllerImpl baseAlloyControllerImpl =
+			(BaseAlloyControllerImpl)alloyController;
+
+		String controllerPath = baseAlloyControllerImpl.controllerPath;
+
+		if (!_alloyControllers.containsKey(controllerPath)) {
+			_alloyControllers.put(controllerPath, baseAlloyControllerImpl);
 		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(AlloyPortlet.class);
 
-	private Set<AlloyController> _alloyControllers =
-		new HashSet<AlloyController>();
+	private Map<String, BaseAlloyControllerImpl> _alloyControllers =
+		new HashMap<String, BaseAlloyControllerImpl>();
 	private Map<String, String> _defaultRouteParameters =
 		new HashMap<String, String>();
 
