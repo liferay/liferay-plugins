@@ -19,6 +19,7 @@ _sass_cache_*.css
 /*/*/classes
 /*/*/javadoc
 /*/*/temp
+/*/*/test/integration/arquillian.xml
 /*/*/test-classes
 /*/*/test-results
 /*/*/tmp
