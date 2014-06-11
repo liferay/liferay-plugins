@@ -139,6 +139,10 @@ portletURL.setParameter("category", category);
 						<%= app.getTitle() %>
 					</div>
 
+					<div class="version">
+						<liferay-ui:message key="version" /> <%= app.getVersion() %>
+					</div>
+
 					<div class="description">
 						<%= app.getDescription() %>
 					</div>

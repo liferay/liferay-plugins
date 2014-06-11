@@ -54,6 +54,11 @@
 			font-size: .8em;
 		}
 
+		.version {
+			font-weight: bold;
+			margin-right: 132px;
+		}
+
 		.description {
 			margin-right: 132px;
 		}
