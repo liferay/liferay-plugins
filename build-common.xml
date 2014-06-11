@@ -2048,10 +2048,7 @@ Please find a solution that does not require portal-impl.jar.
 						tofile="${app.server.tomcat.dir}/conf/tomcat-users.xml.orig"
 					/>
 
-					<echo file="${app.server.tomcat.dir}/conf/tomcat-users.xml">
-						<![CDATA[
-							<?xml version="1.0"?>
-
+					<echo file="${app.server.tomcat.dir}/conf/tomcat-users.xml"><![CDATA[<?xml version="1.0"?>
 							<tomcat-users>
 								<role rolename="tomcat" />
 								<role rolename="manager-gui" />
