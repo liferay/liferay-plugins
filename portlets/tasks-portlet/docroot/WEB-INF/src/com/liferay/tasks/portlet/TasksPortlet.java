@@ -201,11 +201,10 @@ public class TasksPortlet extends MVCPortlet {
 				actionRequest, PortletKeys.TASKS, layout.getPlid(),
 				PortletRequest.RENDER_PHASE);
 
-			portletURL.setWindowState(LiferayWindowState.POP_UP);
-
 			portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
 			portletURL.setParameter(
 				"tasksEntryId", String.valueOf(taskEntry.getTasksEntryId()));
+			portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 			actionResponse.sendRedirect(portletURL.toString());
 		}
@@ -244,10 +243,9 @@ public class TasksPortlet extends MVCPortlet {
 			actionRequest, PortletKeys.TASKS, layout.getPlid(),
 			PortletRequest.RENDER_PHASE);
 
-		portletURL.setWindowState(LiferayWindowState.POP_UP);
-
 		portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
 		portletURL.setParameter("tasksEntryId", String.valueOf(tasksEntryId));
+		portletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		actionResponse.sendRedirect(portletURL.toString());
 	}
