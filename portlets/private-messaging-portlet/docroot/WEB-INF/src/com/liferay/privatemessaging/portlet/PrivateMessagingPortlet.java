@@ -467,7 +467,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		HttpServletResponse response = PortalUtil.getHttpServletResponse(
 			actionResponse);
 
-		response.setContentType(ContentTypes.APPLICATION_JSON);
+		response.setContentType(ContentTypes.TEXT_HTML);
 
 		ServletResponseUtil.write(response, json.toString());
 
