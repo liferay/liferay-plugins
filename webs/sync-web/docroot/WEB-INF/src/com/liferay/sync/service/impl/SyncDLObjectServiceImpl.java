@@ -538,14 +538,23 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		PortletPreferences portletPreferences = PrefsPropsUtil.getPreferences(
 			companyId);
 
-		int syncClientPollInterval = PrefsPropsUtil.getInteger(
+		int maxConnections = PrefsPropsUtil.getInteger(
+			portletPreferences, companyId,
+			PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
+			PortletPropsValues.SYNC_CLIENT_MAX_CONNECTIONS);
+
+		portletPreferencesMap.put(
+			PortletPropsKeys.SYNC_CLIENT_MAX_CONNECTIONS,
+			String.valueOf(maxConnections));
+
+		int pollInterval = PrefsPropsUtil.getInteger(
 			portletPreferences, companyId,
 			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
 			PortletPropsValues.SYNC_CLIENT_POLL_INTERVAL);
 
 		portletPreferencesMap.put(
 			PortletPropsKeys.SYNC_CLIENT_POLL_INTERVAL,
-			String.valueOf(syncClientPollInterval));
+			String.valueOf(pollInterval));
 
 		return portletPreferencesMap;
 	}
