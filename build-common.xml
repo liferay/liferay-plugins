@@ -2670,6 +2670,12 @@ for (String path : paths) {
 		</if>
 	</target>
 
+	<target name="setup-tomcat">
+		<setup-tomcat-jmx />
+
+		<setup-tomcat-manager />
+	</target>
+
 	<target name="sort-xml-attributes">
 		<java
 			classname="com.liferay.portal.tools.XMLAttributesSorter"
