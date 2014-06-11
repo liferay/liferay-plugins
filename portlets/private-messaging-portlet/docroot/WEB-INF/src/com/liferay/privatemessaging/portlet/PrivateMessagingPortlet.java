@@ -153,6 +153,34 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 		}
 	}
 
+	@Override
+	public void processAction(
+		ActionRequest actionRequest, ActionResponse actionResponse)
+		throws PortletException {
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		if (!themeDisplay.isSignedIn()) {
+			return;
+		}
+
+		try {
+			String actionName = ParamUtil.getString(
+				actionRequest, ActionRequest.ACTION_NAME);
+
+			if (actionName.equals("sendMessage")) {
+				sendMessage(actionRequest, actionResponse);
+			}
+			else {
+				super.processAction(actionRequest, actionResponse);
+			}
+		}
+		catch (Exception e) {
+			throw new PortletException(e);
+		}
+	}
+
 	public void sendMessage(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
