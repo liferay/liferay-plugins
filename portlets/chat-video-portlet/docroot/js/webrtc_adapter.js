@@ -75,6 +75,13 @@ AUI().use(
 				return sdp;
 			},
 
+			_extractSdp: function(sdpLine, pattern) {
+				var result = sdpLine.match(pattern);
+				var sdp;
+
+				return (result && result[1]) || null;
+			},
+
 			_getChromeWebRtcAdapter: function(browserVersion) {
 				var setStreamAudioTracksEnable =
 					function(stream, en) {
@@ -100,6 +107,12 @@ AUI().use(
 					};
 
 				rtc = {
+					RTCIceCandidate: RTCIceCandidate,
+
+					RTCPeerConnection: webkitRTCPeerConnection,
+
+					RTCSessionDescription: RTCSessionDescription,
+
 					attachMediaStream: function(element, stream) {
 						element.src = webkitURL.createObjectURL(stream);
 					},
@@ -119,15 +132,15 @@ AUI().use(
 								// Chrome < 28: use old TURN format
 								var urlTurnParts = iceCandidate.url.split('turn:');
 								iceServer = {
-									url: 'turn:' + iceCandidate.username + '@' + urlTurnParts[1],
-									credential: iceCandidate.password
+									credential: iceCandidate.password,
+									url: 'turn:' + iceCandidate.username + '@' + urlTurnParts[1]
 								};
 							}
 							else {
 								// Chrome >= 28: use new TURN format
 								iceServer = {
-									url: iceCandidate.url,
 									credential: iceCandidate.password,
+									url: iceCandidate.url,
 									username: iceCandidate.username
 								};
 							}
@@ -149,12 +162,6 @@ AUI().use(
 							}
 						]
 					},
-
-					RTCIceCandidate: RTCIceCandidate,
-
-					RTCPeerConnection: webkitRTCPeerConnection,
-
-					RTCSessionDescription: RTCSessionDescription,
 
 					unmuteStreamAudio: function(stream) {
 						setStreamAudioTracksEnable(stream, true);
@@ -193,6 +200,12 @@ AUI().use(
 					};
 
 				rtc = {
+					RTCIceCandidate: mozRTCIceCandidate,
+
+					RTCPeerConnection: mozRTCPeerConnection,
+
+					RTCSessionDescription: mozRTCSessionDescription,
+
 					attachMediaStream: function(element, stream) {
 						element.mozSrcObject = stream;
 						element.play();
@@ -217,8 +230,8 @@ AUI().use(
 								if (turnUrlParts.length === 1 ||
 										turnUrlParts[1].indexOf('transport=udp') === 0) {
 									iceServer = {
-										url: turn_url_parts[0],
 										credential: password,
+										url: turn_url_parts[0],
 										username: username
 									};
 								}
@@ -226,8 +239,8 @@ AUI().use(
 							else {
 								// FF >= 27 supports transport parameters in TURN URL
 								iceServer = {
-									url: url,
 									credential: password,
+									url: url,
 									username: username
 								};
 							}
@@ -244,25 +257,12 @@ AUI().use(
 
 					peerConnectionConstraints: {},
 
-					RTCIceCandidate: mozRTCIceCandidate,
-
-					RTCPeerConnection: mozRTCPeerConnection,
-
-					RTCSessionDescription: mozRTCSessionDescription,
-
 					unmuteStreamAudio: function(stream) {
 						setStreamAudioTracksEnable(stream, true);
 					}
 				};
 
 				return rtc;
-			},
-
-			_extractSdp: function(sdpLine, pattern) {
-				var result = sdpLine.match(pattern);
-				var sdp;
-
-				return (result && result[1]) || null;
 			},
 
 			_removeCn: function(sdpLines, mLineIndex) {
