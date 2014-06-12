@@ -2667,7 +2667,7 @@ for (String path : paths) {
 		</if>
 	</target>
 
-	<target name="setup-tomcat">
+	<target name="setup-testable-tomcat">
 		<setup-tomcat-jmx />
 
 		<setup-tomcat-manager />
