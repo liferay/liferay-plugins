@@ -76,10 +76,6 @@
 
 	<taskdef classpathref="classpath.aQute.bnd" resource="aQute/bnd/ant/taskdef.properties" />
 
-	<path id="classpath.com.liferay.ant.arquillian">
-		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.arquillian/lib" includes="*.jar" />
-	</path>
-
 	<path id="classpath.com.liferay.ant.bnd">
 		<fileset dir="${sdk.dir}/dependencies/com.liferay.ant.bnd/lib" includes="*.jar" />
 	</path>
