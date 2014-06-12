@@ -98,6 +98,8 @@ public class SyncFileService {
 			parameters.put("serviceContext.addGuestPermissions", true);
 		}
 
+		parameters.put("serviceContext.attributes.overwrite", true);
+
 		parameters.put("sourceFileName", name);
 		parameters.put("syncFile", syncFile);
 		parameters.put("title", name);
@@ -148,6 +150,8 @@ public class SyncFileService {
 		if (syncSite.getType() == SyncSite.TYPE_OPEN) {
 			parameters.put("serviceContext.addGuestPermissions", true);
 		}
+
+		parameters.put("serviceContext.attributes.overwrite", true);
 
 		parameters.put("syncFile", syncFile);
 
