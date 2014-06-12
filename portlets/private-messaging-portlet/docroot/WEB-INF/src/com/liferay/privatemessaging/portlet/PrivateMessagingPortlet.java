@@ -155,7 +155,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 	@Override
 	public void processAction(
-		ActionRequest actionRequest, ActionResponse actionResponse)
+			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
