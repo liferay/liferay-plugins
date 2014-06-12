@@ -67,8 +67,9 @@ public class SyncAccountService {
 	}
 
 	public static SyncAccount addSyncAccount(
-			String filePathName, String login, String name, String password,
-			SyncSite[] syncSites, boolean trustSelfSigned, String url)
+			String filePathName, String login, int maxConnections, String name,
+			String password, int pollInterval, SyncSite[] syncSites,
+			boolean trustSelfSigned, String url)
 		throws Exception {
 
 		// Sync account
@@ -77,8 +78,10 @@ public class SyncAccountService {
 
 		syncAccount.setFilePathName(filePathName);
 		syncAccount.setLogin(login);
+		syncAccount.setMaxConnections(maxConnections);
 		syncAccount.setName(name);
 		syncAccount.setPassword(Encryptor.encrypt(password));
+		syncAccount.setPollInterval(pollInterval);
 		syncAccount.setTrustSelfSigned(trustSelfSigned);
 		syncAccount.setUrl(url);
 

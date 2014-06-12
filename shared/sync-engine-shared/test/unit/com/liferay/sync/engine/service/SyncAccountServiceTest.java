@@ -42,7 +42,7 @@ public class SyncAccountServiceTest extends BaseTestCase {
 	@Test
 	public void testAddAccount() throws Exception {
 		SyncAccount syncAccount = SyncAccountService.addSyncAccount(
-			filePathName, "test@liferay.com", "test", "test", null, false,
+			filePathName, "test@liferay.com", 1, "test", "test", 5, null, false,
 			"http://localhost:8080");
 
 		_syncAccount = SyncAccountService.fetchSyncAccount(
@@ -54,7 +54,7 @@ public class SyncAccountServiceTest extends BaseTestCase {
 	@Test
 	public void testSetFilePathName() throws Exception {
 		_syncAccount = SyncAccountService.addSyncAccount(
-			filePathName, "test@liferay.com", "test", "test", null, false,
+			filePathName, "test@liferay.com", 1, "test", "test", 5, null, false,
 			"http://localhost:8080");
 
 		SyncSite syncSite = SyncSiteTestUtil.addSyncSite(

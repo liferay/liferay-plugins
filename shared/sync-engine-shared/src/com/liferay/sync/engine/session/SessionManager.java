@@ -47,7 +47,8 @@ public class SessionManager {
 			session = new Session(
 				url, syncAccount.getLogin(),
 				Encryptor.decrypt(syncAccount.getPassword()),
-				syncAccount.isTrustSelfSigned());
+				syncAccount.isTrustSelfSigned(),
+				syncAccount.getMaxConnections());
 
 			_sessions.put(syncAccountId, session);
 

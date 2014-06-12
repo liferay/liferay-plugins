@@ -49,7 +49,7 @@ public class UpdateFileEntryEvent extends BaseEvent {
 
 		SyncFileService.update(syncFile);
 
-		super.processRequest();
+		super.processAsynchronousRequest();
 	}
 
 	private static final String _URL_PATH =

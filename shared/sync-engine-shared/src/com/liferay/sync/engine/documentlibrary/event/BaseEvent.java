@@ -39,6 +39,30 @@ public abstract class BaseEvent implements Event {
 		_parameters = parameters;
 	}
 
+	public void executeAsynchronousGet(String urlPath) throws Exception {
+		Session session = SessionManager.getSession(_syncAccountId);
+
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			getSyncAccountId());
+
+		session.executeAsynchronousGet(
+			syncAccount.getUrl() + urlPath, _handler);
+	}
+
+	public void executeAsynchronousPost(
+			String urlPath, Map<String, Object> parameters)
+		throws Exception {
+
+		Session session = SessionManager.getSession(_syncAccountId);
+
+		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
+			getSyncAccountId());
+
+		session.executeAsynchronousPost(
+			syncAccount.getUrl() + "/api/jsonws" + urlPath, parameters,
+			_handler);
+	}
+
 	public <T> T executeGet(String urlPath) throws Exception {
 		Session session = SessionManager.getSession(_syncAccountId);
 
@@ -100,6 +124,10 @@ public abstract class BaseEvent implements Event {
 	}
 
 	protected abstract Handler<?> getHandler();
+
+	protected void processAsynchronousRequest() throws Exception {
+		executeAsynchronousPost(_urlPath, _parameters);
+	}
 
 	protected void processRequest() throws Exception {
 		executePost(_urlPath, _parameters);

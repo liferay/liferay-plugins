@@ -34,6 +34,7 @@ import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.util.EntityUtils;
 
 import org.junit.Assert;
@@ -84,7 +85,10 @@ public class SyncSystemTestUtil {
 		parameters.put("sendEmail", false);
 		parameters.put("suffixId", 0);
 
-		executePost("/user/add-user", parameters, syncAccountId);
+		HttpResponse httpResponse = executePost(
+			"/user/add-user", parameters, syncAccountId);
+
+		HttpClientUtils.closeQuietly(httpResponse);
 	}
 
 	public static void deleteUser(long userId, long syncAccountId)
@@ -94,7 +98,10 @@ public class SyncSystemTestUtil {
 
 		parameters.put("userId", userId);
 
-		executePost("/user/delete-user", parameters, syncAccountId);
+		HttpResponse httpResponse = executePost(
+			"/user/delete-user", parameters, syncAccountId);
+
+		HttpClientUtils.closeQuietly(httpResponse);
 	}
 
 	public static long getGuestGroupId(long syncAccountId) throws Exception {

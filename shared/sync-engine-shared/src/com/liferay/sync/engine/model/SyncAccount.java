@@ -51,6 +51,10 @@ public class SyncAccount extends StateAwareModel {
 		return login;
 	}
 
+	public int getMaxConnections() {
+		return maxConnections;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -107,6 +111,10 @@ public class SyncAccount extends StateAwareModel {
 		this.login = login;
 	}
 
+	public void setMaxConnections(int maxConnections) {
+		this.maxConnections = maxConnections;
+	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -147,6 +155,9 @@ public class SyncAccount extends StateAwareModel {
 
 	@DatabaseField(useGetSet = true, width = 16777216)
 	protected String login;
+
+	@DatabaseField(useGetSet = true)
+	protected int maxConnections;
 
 	@DatabaseField(useGetSet = true)
 	protected String name;

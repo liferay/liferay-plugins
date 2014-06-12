@@ -28,6 +28,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
@@ -68,7 +70,10 @@ import org.springframework.http.MediaType;
 public class Session {
 
 	public Session(
-		URL url, String login, String password, boolean trustSelfSigned) {
+		URL url, String login, String password, boolean trustSelfSigned,
+		int maxConnections) {
+
+		_executorService = Executors.newFixedThreadPool(maxConnections);
 
 		HttpClientBuilder httpClientBuilder = HttpClientBuilder.create();
 
@@ -81,8 +86,8 @@ public class Session {
 
 		httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
 
-		httpClientBuilder.setMaxConnPerRoute(Integer.MAX_VALUE);
-		httpClientBuilder.setMaxConnTotal(Integer.MAX_VALUE);
+		httpClientBuilder.setMaxConnPerRoute(maxConnections);
+		httpClientBuilder.setMaxConnTotal(maxConnections);
 		httpClientBuilder.setRoutePlanner(_getHttpRoutePlanner());
 
 		if (trustSelfSigned) {
@@ -135,6 +140,49 @@ public class Session {
 		throws Exception {
 
 		return _httpClient.execute(_httpHost, httpRequest, httpContext);
+	}
+
+	public void executeAsynchronousGet(
+			final String urlPath, final Handler handler)
+		throws Exception {
+
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					executeGet(urlPath, handler);
+				}
+				catch (Exception e) {
+					handler.handleException(e);
+				}
+			}
+
+		};
+
+		_executorService.execute(runnable);
+	}
+
+	public void executeAsynchronousPost(
+			final String urlPath, final Map<String, Object> parameters,
+			final Handler handler)
+		throws Exception {
+
+		Runnable runnable = new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					executePost(urlPath, parameters, handler);
+				}
+				catch (Exception e) {
+					handler.handleException(e);
+				}
+			}
+
+		};
+
+		_executorService.execute(runnable);
 	}
 
 	public HttpResponse executeGet(String urlPath) throws Exception {
@@ -278,6 +326,7 @@ public class Session {
 
 	private static HttpRoutePlanner _httpRoutePlanner;
 
+	private ExecutorService _executorService;
 	private HttpClient _httpClient;
 	private HttpHost _httpHost;
 	private Set<String> _ignoredParameterKeys = new HashSet<String>(

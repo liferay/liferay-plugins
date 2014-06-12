@@ -79,7 +79,7 @@ public abstract class BaseTestCase {
 			System.getProperty("user.home") + "/liferay-sync-test");
 
 		syncAccount = SyncAccountService.addSyncAccount(
-			filePathName, "test@liferay.com", "test", "test", null, false,
+			filePathName, "test@liferay.com", 1, "test", "test", 5, null, false,
 			"http://localhost:8080");
 
 		syncAccount.setActive(true);
