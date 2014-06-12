@@ -51,11 +51,18 @@ $theme.include($body_top_include)
 						<img alt="$logo_description" height="$site_logo_height" src="$site_logo" width="$site_logo_width" />
 					</a>
 
+					#set ($show_site_name_supported = $getterUtil.getBoolean($theme_settings.getProperty("show-site-name-supported"), true))
+
+					#set ($show_site_name_default = $getterUtil.getBoolean($theme_settings.getProperty("show-site-name-default"), $show_site_name_supported))
+
+					#set ($show_site_name = $getterUtil.getBoolean($layout.layoutSet.getSettingsProperty("showSiteName"), $show_site_name_default))
+
 					#if ($show_site_name)
 						<span class="site-name" title="#language_format ("go-to-x", [$site_name])">
 							$site_name
 						</span>
 					#end
+
 				</h1>
 
 				<h1 class="page-title">
