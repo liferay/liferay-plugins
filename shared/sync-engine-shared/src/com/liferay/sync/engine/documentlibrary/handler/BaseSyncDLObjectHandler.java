@@ -14,9 +14,6 @@
 
 package com.liferay.sync.engine.documentlibrary.handler;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import com.liferay.sync.engine.documentlibrary.event.Event;
 import com.liferay.sync.engine.model.SyncFile;
 import com.liferay.sync.engine.service.SyncFileService;
@@ -29,9 +26,9 @@ import java.nio.file.Paths;
 /**
  * @author Shinn Lok
  */
-public class GetSyncDLObjectHandler extends BaseJSONHandler {
+public class BaseSyncDLObjectHandler extends BaseJSONHandler {
 
-	public GetSyncDLObjectHandler(Event event) {
+	public BaseSyncDLObjectHandler(Event event) {
 		super(event);
 	}
 
@@ -75,24 +72,6 @@ public class GetSyncDLObjectHandler extends BaseJSONHandler {
 				FilePathNameUtil.getFilePathName(targetFilePath));
 			sourceSyncFile.setName(targetSyncFileName);
 		}
-	}
-
-	@Override
-	protected void processResponse(String response) throws Exception {
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		SyncFile remoteSyncFile = objectMapper.readValue(
-			response, new TypeReference<SyncFile>() {});
-
-		SyncFile localSyncFile = (SyncFile)getParameterValue("syncFile");
-
-		processFilePathChange(localSyncFile, remoteSyncFile);
-
-		localSyncFile.setCompanyId(remoteSyncFile.getCompanyId());
-		localSyncFile.setParentFolderId(remoteSyncFile.getParentFolderId());
-		localSyncFile.setTypePK(remoteSyncFile.getTypePK());
-
-		SyncFileService.update(localSyncFile);
 	}
 
 }

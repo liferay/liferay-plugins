@@ -24,7 +24,7 @@ import com.liferay.sync.engine.service.SyncFileService;
 /**
  * @author Shinn Lok
  */
-public class UpdateFolderHandler extends GetSyncDLObjectHandler {
+public class UpdateFolderHandler extends BaseSyncDLObjectHandler {
 
 	public UpdateFolderHandler(Event event) {
 		super(event);

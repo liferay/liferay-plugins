@@ -43,7 +43,7 @@ import java.util.Map;
 /**
  * @author Shinn Lok
  */
-public class GetSyncDLObjectUpdateHandler extends GetSyncDLObjectHandler {
+public class GetSyncDLObjectUpdateHandler extends BaseSyncDLObjectHandler {
 
 	public GetSyncDLObjectUpdateHandler(Event event) {
 		super(event);

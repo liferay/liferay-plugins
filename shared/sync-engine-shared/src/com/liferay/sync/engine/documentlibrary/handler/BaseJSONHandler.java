@@ -112,26 +112,6 @@ public class BaseJSONHandler extends BaseHandler {
 		}
 		else if (exception.equals(
 					"com.liferay.portlet.documentlibrary." +
-						"DuplicateFileException")) {
-
-			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
-
-			SyncFileService.synchronizeSyncFile(getSyncAccountId(), syncFile);
-
-			SyncFileService.updateFileSyncFile(
-				Paths.get(syncFile.getFilePathName()), getSyncAccountId(),
-				syncFile, true);
-		}
-		else if (exception.equals(
-					"com.liferay.portlet.documentlibrary." +
-						"DuplicateFolderNameException")) {
-
-			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
-
-			SyncFileService.synchronizeSyncFile(getSyncAccountId(), syncFile);
-		}
-		else if (exception.equals(
-					"com.liferay.portlet.documentlibrary." +
 						"NoSuchFileEntryException")) {
 
 			SyncFile syncFile = (SyncFile)getParameterValue("syncFile");
