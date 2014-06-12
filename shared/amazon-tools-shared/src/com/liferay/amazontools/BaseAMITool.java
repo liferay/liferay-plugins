@@ -29,6 +29,8 @@ import com.liferay.jsonwebserviceclient.JSONWebServiceClientImpl;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import java.security.KeyStore;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -130,7 +132,8 @@ public class BaseAMITool {
 	}
 
 	protected JSONWebServiceClient getJSONWebServiceClient(
-		String hostName, int hostPort, String login, String password) {
+		String hostName, int hostPort, String keyStorePath,
+		String keyStorePassword, String login, String password) {
 
 		JSONWebServiceClientImpl jsonWebServiceClientImpl =
 			new JSONWebServiceClientImpl();
@@ -140,9 +143,43 @@ public class BaseAMITool {
 		jsonWebServiceClientImpl.setLogin(login);
 		jsonWebServiceClientImpl.setPassword(password);
 
+		if ((keyStorePath != null) && (keyStorePassword != null)) {
+			KeyStore keyStore = getKeyStore(keyStorePath, keyStorePassword);
+
+			jsonWebServiceClientImpl.setKeyStore(keyStore);
+
+			jsonWebServiceClientImpl.setProtocol("https");
+		}
+
 		jsonWebServiceClientImpl.afterPropertiesSet();
 
 		return jsonWebServiceClientImpl;
+	}
+
+	protected KeyStore getKeyStore(String keyStorePath, String password) {
+		InputStream inputStream = null;
+		KeyStore keyStore = null;
+
+		try {
+			keyStore = KeyStore.getInstance("JKS");
+
+			inputStream = new FileInputStream(keyStorePath);
+
+			keyStore.load(inputStream, password.toCharArray());
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		finally {
+			try {
+				inputStream.close();
+			}
+			catch (Exception ignore) {
+			}
+
+		}
+
+		return keyStore;
 	}
 
 	protected Properties getProperties(String propertiesFileName)
