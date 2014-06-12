@@ -112,6 +112,16 @@ public class FileUtil {
 		return !checksum.equals(syncFile.getChecksum());
 	}
 
+	public static boolean hasFileChanged(SyncFile syncFile, Path filePath) {
+		if (filePath == null) {
+			return true;
+		}
+
+		String checksum = getChecksum(filePath);
+
+		return !checksum.equals(syncFile.getChecksum());
+	}
+
 	public static boolean isIgnoredFilePath(Path filePath) throws Exception {
 		String fileName = String.valueOf(filePath.getFileName());
 

@@ -54,14 +54,11 @@ public class GetSyncDLObjectUpdateHandler extends GetSyncDLObjectHandler {
 
 		Path filePath = Paths.get(filePathName);
 
-		if (Files.exists(filePath)) {
-			if (syncFile.isFolder()) {
-				return;
-			}
+		if (Files.exists(filePath) &&
+			(syncFile.isFolder() ||
+			 !FileUtil.hasFileChanged(syncFile, filePath))) {
 
-			if (!FileUtil.hasFileChanged(syncFile)) {
-				return;
-			}
+			return;
 		}
 
 		syncFile.setFilePathName(filePathName);
@@ -274,10 +271,8 @@ public class GetSyncDLObjectUpdateHandler extends GetSyncDLObjectHandler {
 
 		SyncFileService.update(sourceSyncFile);
 
-		if (Files.exists(sourceFilePath) && !targetSyncFile.isFolder()) {
-			if (!FileUtil.hasFileChanged(targetSyncFile)) {
-				return;
-			}
+		if (Files.exists(sourceFilePath) && !targetSyncFile.isFolder() &&
+			FileUtil.hasFileChanged(targetSyncFile, sourceFilePath)) {
 
 			downloadFile(
 				sourceSyncFile, sourceVersion,
