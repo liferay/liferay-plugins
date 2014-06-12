@@ -311,6 +311,11 @@ public class BarUtil {
 		return getPersistence().fetchByPrimaryKey(barId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.testtransaction.model.Bar> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the bars.
 	*

@@ -849,6 +849,11 @@ public class UserThreadUtil {
 		return getPersistence().fetchByPrimaryKey(userThreadId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.privatemessaging.model.UserThread> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the user threads.
 	*

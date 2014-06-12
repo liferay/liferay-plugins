@@ -175,6 +175,11 @@ public class DefinitionUtil {
 		return getPersistence().fetchByPrimaryKey(definitionId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.ams.model.Definition> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the definitions.
 	*

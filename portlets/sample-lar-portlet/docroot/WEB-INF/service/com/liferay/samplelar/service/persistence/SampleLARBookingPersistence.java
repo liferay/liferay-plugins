@@ -513,6 +513,10 @@ public interface SampleLARBookingPersistence extends BasePersistence<SampleLARBo
 	public com.liferay.samplelar.model.SampleLARBooking fetchByPrimaryKey(
 		long sampleLARBookingId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.samplelar.model.SampleLARBooking> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the sample l a r bookings.
 	*

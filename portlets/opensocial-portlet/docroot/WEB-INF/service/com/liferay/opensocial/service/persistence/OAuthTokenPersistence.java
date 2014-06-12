@@ -299,6 +299,10 @@ public interface OAuthTokenPersistence extends BasePersistence<OAuthToken> {
 	public com.liferay.opensocial.model.OAuthToken fetchByPrimaryKey(
 		long oAuthTokenId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.opensocial.model.OAuthToken> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the o auth tokens.
 	*

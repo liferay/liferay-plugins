@@ -668,6 +668,11 @@ public class StatusUtil {
 		return getPersistence().fetchByPrimaryKey(statusId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.chat.model.Status> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the statuses.
 	*

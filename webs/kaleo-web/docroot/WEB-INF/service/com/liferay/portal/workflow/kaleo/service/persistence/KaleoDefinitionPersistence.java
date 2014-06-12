@@ -671,6 +671,10 @@ public interface KaleoDefinitionPersistence extends BasePersistence<KaleoDefinit
 	public com.liferay.portal.workflow.kaleo.model.KaleoDefinition fetchByPrimaryKey(
 		long kaleoDefinitionId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoDefinition> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo definitions.
 	*

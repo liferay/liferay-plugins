@@ -49,7 +49,11 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -979,6 +983,98 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 		return fetchByPrimaryKey((Serializable)testBlobEntryId);
 	}
 
+	@Override
+	public Map<Serializable, TestBlobEntry> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, TestBlobEntry> map = new HashMap<Serializable, TestBlobEntry>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			TestBlobEntry testBlobEntry = fetchByPrimaryKey(primaryKey);
+
+			if (testBlobEntry != null) {
+				map.put(primaryKey, testBlobEntry);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			TestBlobEntry testBlobEntry = (TestBlobEntry)EntityCacheUtil.getResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+					TestBlobEntryImpl.class, primaryKey);
+
+			if (testBlobEntry == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, testBlobEntry);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_TESTBLOBENTRY_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (TestBlobEntry testBlobEntry : (List<TestBlobEntry>)q.list()) {
+				map.put(testBlobEntry.getPrimaryKeyObj(), testBlobEntry);
+
+				cacheResult(testBlobEntry);
+
+				uncachedPrimaryKeys.remove(testBlobEntry.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(TestBlobEntryModelImpl.ENTITY_CACHE_ENABLED,
+					TestBlobEntryImpl.class, primaryKey, _nullTestBlobEntry);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the test blob entries.
 	 *
@@ -1184,6 +1280,7 @@ public class TestBlobEntryPersistenceImpl extends BasePersistenceImpl<TestBlobEn
 	}
 
 	private static final String _SQL_SELECT_TESTBLOBENTRY = "SELECT testBlobEntry FROM TestBlobEntry testBlobEntry";
+	private static final String _SQL_SELECT_TESTBLOBENTRY_WHERE_PKS_IN = "SELECT testBlobEntry FROM TestBlobEntry testBlobEntry WHERE testBlobEntryId IN (";
 	private static final String _SQL_SELECT_TESTBLOBENTRY_WHERE = "SELECT testBlobEntry FROM TestBlobEntry testBlobEntry WHERE ";
 	private static final String _SQL_COUNT_TESTBLOBENTRY = "SELECT COUNT(testBlobEntry) FROM TestBlobEntry testBlobEntry";
 	private static final String _SQL_COUNT_TESTBLOBENTRY_WHERE = "SELECT COUNT(testBlobEntry) FROM TestBlobEntry testBlobEntry WHERE ";

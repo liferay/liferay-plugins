@@ -171,6 +171,11 @@ public class AssetUtil {
 		return getPersistence().fetchByPrimaryKey(assetId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.ams.model.Asset> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the assets.
 	*

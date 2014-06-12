@@ -688,6 +688,11 @@ public class WSRPConsumerPortletUtil {
 		return getPersistence().fetchByPrimaryKey(wsrpConsumerPortletId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.wsrp.model.WSRPConsumerPortlet> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the w s r p consumer portlets.
 	*

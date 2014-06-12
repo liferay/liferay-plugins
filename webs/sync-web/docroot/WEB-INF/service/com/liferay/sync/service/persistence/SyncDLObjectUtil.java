@@ -418,6 +418,11 @@ public class SyncDLObjectUtil {
 		return getPersistence().fetchByPrimaryKey(syncDLObjectId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.sync.model.SyncDLObject> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the sync d l objects.
 	*

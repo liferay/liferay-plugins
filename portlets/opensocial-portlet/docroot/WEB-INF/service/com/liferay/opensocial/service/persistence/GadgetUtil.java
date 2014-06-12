@@ -909,6 +909,11 @@ public class GadgetUtil {
 		return getPersistence().fetchByPrimaryKey(gadgetId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.opensocial.model.Gadget> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the gadgets.
 	*

@@ -494,6 +494,10 @@ public interface ModulePersistence extends BasePersistence<Module> {
 	*/
 	public com.liferay.marketplace.model.Module fetchByPrimaryKey(long moduleId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.marketplace.model.Module> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the modules.
 	*

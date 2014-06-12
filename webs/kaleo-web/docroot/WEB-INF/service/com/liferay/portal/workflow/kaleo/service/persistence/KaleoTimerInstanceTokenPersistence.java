@@ -538,6 +538,10 @@ public interface KaleoTimerInstanceTokenPersistence extends BasePersistence<Kale
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken fetchByPrimaryKey(
 		long kaleoTimerInstanceTokenId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo timer instance tokens.
 	*

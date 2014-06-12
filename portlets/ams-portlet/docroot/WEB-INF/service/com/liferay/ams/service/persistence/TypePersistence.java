@@ -90,6 +90,10 @@ public interface TypePersistence extends BasePersistence<Type> {
 	*/
 	public com.liferay.ams.model.Type fetchByPrimaryKey(long typeId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.ams.model.Type> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the types.
 	*

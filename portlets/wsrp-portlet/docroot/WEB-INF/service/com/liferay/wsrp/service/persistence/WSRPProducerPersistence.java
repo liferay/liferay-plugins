@@ -509,6 +509,10 @@ public interface WSRPProducerPersistence extends BasePersistence<WSRPProducer> {
 	public com.liferay.wsrp.model.WSRPProducer fetchByPrimaryKey(
 		long wsrpProducerId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.wsrp.model.WSRPProducer> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the w s r p producers.
 	*

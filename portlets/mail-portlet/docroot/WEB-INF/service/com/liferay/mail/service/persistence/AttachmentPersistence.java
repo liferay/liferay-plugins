@@ -210,6 +210,10 @@ public interface AttachmentPersistence extends BasePersistence<Attachment> {
 	public com.liferay.mail.model.Attachment fetchByPrimaryKey(
 		long attachmentId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.mail.model.Attachment> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the attachments.
 	*

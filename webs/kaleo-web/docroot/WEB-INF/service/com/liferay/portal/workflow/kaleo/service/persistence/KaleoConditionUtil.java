@@ -533,6 +533,11 @@ public class KaleoConditionUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoConditionId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoCondition> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the kaleo conditions.
 	*

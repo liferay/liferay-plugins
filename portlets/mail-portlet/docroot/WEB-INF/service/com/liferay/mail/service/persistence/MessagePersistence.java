@@ -373,6 +373,10 @@ public interface MessagePersistence extends BasePersistence<Message> {
 	*/
 	public com.liferay.mail.model.Message fetchByPrimaryKey(long messageId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.mail.model.Message> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the messages.
 	*

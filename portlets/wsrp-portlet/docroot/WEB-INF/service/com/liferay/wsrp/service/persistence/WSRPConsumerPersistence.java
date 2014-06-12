@@ -456,6 +456,10 @@ public interface WSRPConsumerPersistence extends BasePersistence<WSRPConsumer> {
 	public com.liferay.wsrp.model.WSRPConsumer fetchByPrimaryKey(
 		long wsrpConsumerId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.wsrp.model.WSRPConsumer> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the w s r p consumers.
 	*

@@ -982,6 +982,11 @@ public class KaleoInstanceTokenUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoInstanceTokenId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the kaleo instance tokens.
 	*

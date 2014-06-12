@@ -853,6 +853,10 @@ public interface KaleoLogPersistence extends BasePersistence<KaleoLog> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoLog fetchByPrimaryKey(
 		long kaleoLogId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoLog> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo logs.
 	*

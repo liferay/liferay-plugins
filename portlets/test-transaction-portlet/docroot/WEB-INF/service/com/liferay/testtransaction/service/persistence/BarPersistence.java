@@ -209,6 +209,10 @@ public interface BarPersistence extends BasePersistence<Bar> {
 	*/
 	public com.liferay.testtransaction.model.Bar fetchByPrimaryKey(long barId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.testtransaction.model.Bar> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the bars.
 	*

@@ -610,6 +610,10 @@ public interface KaleoTaskAssignmentPersistence extends BasePersistence<KaleoTas
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment fetchByPrimaryKey(
 		long kaleoTaskAssignmentId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignment> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo task assignments.
 	*

@@ -380,6 +380,11 @@ public class FolderUtil {
 		return getPersistence().fetchByPrimaryKey(folderId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.mail.model.Folder> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the folders.
 	*

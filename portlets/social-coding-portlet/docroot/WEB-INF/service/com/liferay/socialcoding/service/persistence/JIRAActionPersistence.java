@@ -448,6 +448,10 @@ public interface JIRAActionPersistence extends BasePersistence<JIRAAction> {
 	public com.liferay.socialcoding.model.JIRAAction fetchByPrimaryKey(
 		long jiraActionId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.socialcoding.model.JIRAAction> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the j i r a actions.
 	*

@@ -274,6 +274,10 @@ public interface SyncDLFileVersionDiffPersistence extends BasePersistence<SyncDL
 	public com.liferay.sync.model.SyncDLFileVersionDiff fetchByPrimaryKey(
 		long syncDLFileVersionDiffId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.sync.model.SyncDLFileVersionDiff> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the sync d l file version diffs.
 	*

@@ -387,6 +387,11 @@ public class AkismetDataUtil {
 		return getPersistence().fetchByPrimaryKey(akismetDataId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.akismet.model.AkismetData> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the akismet datas.
 	*

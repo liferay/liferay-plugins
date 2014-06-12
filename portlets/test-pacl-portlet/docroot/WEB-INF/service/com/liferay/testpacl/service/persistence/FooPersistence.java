@@ -204,6 +204,10 @@ public interface FooPersistence extends BasePersistence<Foo> {
 	*/
 	public com.liferay.testpacl.model.Foo fetchByPrimaryKey(long fooId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.testpacl.model.Foo> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the foos.
 	*

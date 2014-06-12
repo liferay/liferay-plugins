@@ -144,6 +144,10 @@ public interface SVNRepositoryPersistence extends BasePersistence<SVNRepository>
 	public com.liferay.socialcoding.model.SVNRepository fetchByPrimaryKey(
 		long svnRepositoryId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.socialcoding.model.SVNRepository> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the s v n repositories.
 	*

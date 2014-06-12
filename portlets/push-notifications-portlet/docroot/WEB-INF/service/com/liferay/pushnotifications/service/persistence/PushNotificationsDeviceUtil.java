@@ -395,6 +395,11 @@ public class PushNotificationsDeviceUtil {
 		return getPersistence().fetchByPrimaryKey(pushNotificationsDeviceId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.pushnotifications.model.PushNotificationsDevice> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the push notifications devices.
 	*

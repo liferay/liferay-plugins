@@ -810,6 +810,11 @@ public class AppUtil {
 		return getPersistence().fetchByPrimaryKey(appId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.marketplace.model.App> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the apps.
 	*

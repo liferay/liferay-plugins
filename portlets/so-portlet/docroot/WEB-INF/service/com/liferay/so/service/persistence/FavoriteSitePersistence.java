@@ -257,6 +257,10 @@ public interface FavoriteSitePersistence extends BasePersistence<FavoriteSite> {
 	public com.liferay.so.model.FavoriteSite fetchByPrimaryKey(
 		long favoriteSiteId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.so.model.FavoriteSite> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the favorite sites.
 	*

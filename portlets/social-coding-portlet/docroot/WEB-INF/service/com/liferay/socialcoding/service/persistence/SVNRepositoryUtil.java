@@ -237,6 +237,11 @@ public class SVNRepositoryUtil {
 		return getPersistence().fetchByPrimaryKey(svnRepositoryId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.socialcoding.model.SVNRepository> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the s v n repositories.
 	*

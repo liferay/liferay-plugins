@@ -286,6 +286,10 @@ public interface SyncDLObjectPersistence extends BasePersistence<SyncDLObject> {
 	public com.liferay.sync.model.SyncDLObject fetchByPrimaryKey(
 		long syncDLObjectId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.sync.model.SyncDLObject> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the sync d l objects.
 	*

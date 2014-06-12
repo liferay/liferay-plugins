@@ -702,6 +702,10 @@ public interface GadgetPersistence extends BasePersistence<Gadget> {
 	*/
 	public com.liferay.opensocial.model.Gadget fetchByPrimaryKey(long gadgetId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.opensocial.model.Gadget> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the gadgets.
 	*

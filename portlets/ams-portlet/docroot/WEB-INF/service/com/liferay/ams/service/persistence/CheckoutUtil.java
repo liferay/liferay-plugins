@@ -174,6 +174,11 @@ public class CheckoutUtil {
 		return getPersistence().fetchByPrimaryKey(checkoutId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.ams.model.Checkout> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the checkouts.
 	*

@@ -46,7 +46,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the favorite site service.
@@ -1202,6 +1207,98 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 		return fetchByPrimaryKey((Serializable)favoriteSiteId);
 	}
 
+	@Override
+	public Map<Serializable, FavoriteSite> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, FavoriteSite> map = new HashMap<Serializable, FavoriteSite>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			FavoriteSite favoriteSite = fetchByPrimaryKey(primaryKey);
+
+			if (favoriteSite != null) {
+				map.put(primaryKey, favoriteSite);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			FavoriteSite favoriteSite = (FavoriteSite)EntityCacheUtil.getResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
+					FavoriteSiteImpl.class, primaryKey);
+
+			if (favoriteSite == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, favoriteSite);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_FAVORITESITE_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (FavoriteSite favoriteSite : (List<FavoriteSite>)q.list()) {
+				map.put(favoriteSite.getPrimaryKeyObj(), favoriteSite);
+
+				cacheResult(favoriteSite);
+
+				uncachedPrimaryKeys.remove(favoriteSite.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(FavoriteSiteModelImpl.ENTITY_CACHE_ENABLED,
+					FavoriteSiteImpl.class, primaryKey, _nullFavoriteSite);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the favorite sites.
 	 *
@@ -1402,6 +1499,7 @@ public class FavoriteSitePersistenceImpl extends BasePersistenceImpl<FavoriteSit
 	}
 
 	private static final String _SQL_SELECT_FAVORITESITE = "SELECT favoriteSite FROM FavoriteSite favoriteSite";
+	private static final String _SQL_SELECT_FAVORITESITE_WHERE_PKS_IN = "SELECT favoriteSite FROM FavoriteSite favoriteSite WHERE favoriteSiteId IN (";
 	private static final String _SQL_SELECT_FAVORITESITE_WHERE = "SELECT favoriteSite FROM FavoriteSite favoriteSite WHERE ";
 	private static final String _SQL_COUNT_FAVORITESITE = "SELECT COUNT(favoriteSite) FROM FavoriteSite favoriteSite";
 	private static final String _SQL_COUNT_FAVORITESITE_WHERE = "SELECT COUNT(favoriteSite) FROM FavoriteSite favoriteSite WHERE ";

@@ -680,6 +680,11 @@ public class WSRPProducerUtil {
 		return getPersistence().fetchByPrimaryKey(wsrpProducerId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.wsrp.model.WSRPProducer> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the w s r p producers.
 	*

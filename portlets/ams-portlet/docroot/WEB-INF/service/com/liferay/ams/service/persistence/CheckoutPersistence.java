@@ -91,6 +91,10 @@ public interface CheckoutPersistence extends BasePersistence<Checkout> {
 	*/
 	public com.liferay.ams.model.Checkout fetchByPrimaryKey(long checkoutId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.ams.model.Checkout> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the checkouts.
 	*

@@ -258,6 +258,10 @@ public interface EntryPersistence extends BasePersistence<Entry> {
 	*/
 	public com.liferay.contacts.model.Entry fetchByPrimaryKey(long entryId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.contacts.model.Entry> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the entries.
 	*

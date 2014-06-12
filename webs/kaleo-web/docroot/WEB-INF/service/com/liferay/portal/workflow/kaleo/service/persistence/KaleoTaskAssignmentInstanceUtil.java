@@ -786,6 +786,11 @@ public class KaleoTaskAssignmentInstanceUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoTaskAssignmentInstanceId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoTaskAssignmentInstance> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the kaleo task assignment instances.
 	*

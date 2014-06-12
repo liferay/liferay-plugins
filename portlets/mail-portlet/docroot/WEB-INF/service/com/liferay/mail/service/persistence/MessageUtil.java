@@ -522,6 +522,11 @@ public class MessageUtil {
 		return getPersistence().fetchByPrimaryKey(messageId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.mail.model.Message> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the messages.
 	*

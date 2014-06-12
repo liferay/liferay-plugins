@@ -459,6 +459,10 @@ public interface SVNRevisionPersistence extends BasePersistence<SVNRevision> {
 	public com.liferay.socialcoding.model.SVNRevision fetchByPrimaryKey(
 		long svnRevisionId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.socialcoding.model.SVNRevision> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the s v n revisions.
 	*

@@ -619,6 +619,10 @@ public interface AppPersistence extends BasePersistence<App> {
 	*/
 	public com.liferay.marketplace.model.App fetchByPrimaryKey(long appId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.marketplace.model.App> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the apps.
 	*

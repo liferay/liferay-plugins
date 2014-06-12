@@ -258,6 +258,10 @@ public interface AccountPersistence extends BasePersistence<Account> {
 	*/
 	public com.liferay.mail.model.Account fetchByPrimaryKey(long accountId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.mail.model.Account> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the accounts.
 	*

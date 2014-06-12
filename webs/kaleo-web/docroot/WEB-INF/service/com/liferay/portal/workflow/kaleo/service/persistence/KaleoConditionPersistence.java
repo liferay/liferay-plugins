@@ -379,6 +379,10 @@ public interface KaleoConditionPersistence extends BasePersistence<KaleoConditio
 	public com.liferay.portal.workflow.kaleo.model.KaleoCondition fetchByPrimaryKey(
 		long kaleoConditionId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoCondition> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo conditions.
 	*

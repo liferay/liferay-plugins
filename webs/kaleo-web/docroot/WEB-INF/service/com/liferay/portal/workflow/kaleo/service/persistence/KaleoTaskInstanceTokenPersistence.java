@@ -502,6 +502,10 @@ public interface KaleoTaskInstanceTokenPersistence extends BasePersistence<Kaleo
 	public com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken fetchByPrimaryKey(
 		long kaleoTaskInstanceTokenId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo task instance tokens.
 	*

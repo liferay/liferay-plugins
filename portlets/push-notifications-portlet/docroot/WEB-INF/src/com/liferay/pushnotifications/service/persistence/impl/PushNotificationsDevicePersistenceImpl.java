@@ -47,7 +47,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the push notifications device service.
@@ -1313,6 +1318,100 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 		return fetchByPrimaryKey((Serializable)pushNotificationsDeviceId);
 	}
 
+	@Override
+	public Map<Serializable, PushNotificationsDevice> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, PushNotificationsDevice> map = new HashMap<Serializable, PushNotificationsDevice>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			PushNotificationsDevice pushNotificationsDevice = fetchByPrimaryKey(primaryKey);
+
+			if (pushNotificationsDevice != null) {
+				map.put(primaryKey, pushNotificationsDevice);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			PushNotificationsDevice pushNotificationsDevice = (PushNotificationsDevice)EntityCacheUtil.getResult(PushNotificationsDeviceModelImpl.ENTITY_CACHE_ENABLED,
+					PushNotificationsDeviceImpl.class, primaryKey);
+
+			if (pushNotificationsDevice == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, pushNotificationsDevice);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_PUSHNOTIFICATIONSDEVICE_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (PushNotificationsDevice pushNotificationsDevice : (List<PushNotificationsDevice>)q.list()) {
+				map.put(pushNotificationsDevice.getPrimaryKeyObj(),
+					pushNotificationsDevice);
+
+				cacheResult(pushNotificationsDevice);
+
+				uncachedPrimaryKeys.remove(pushNotificationsDevice.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(PushNotificationsDeviceModelImpl.ENTITY_CACHE_ENABLED,
+					PushNotificationsDeviceImpl.class, primaryKey,
+					_nullPushNotificationsDevice);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the push notifications devices.
 	 *
@@ -1513,6 +1612,8 @@ public class PushNotificationsDevicePersistenceImpl extends BasePersistenceImpl<
 	}
 
 	private static final String _SQL_SELECT_PUSHNOTIFICATIONSDEVICE = "SELECT pushNotificationsDevice FROM PushNotificationsDevice pushNotificationsDevice";
+	private static final String _SQL_SELECT_PUSHNOTIFICATIONSDEVICE_WHERE_PKS_IN =
+		"SELECT pushNotificationsDevice FROM PushNotificationsDevice pushNotificationsDevice WHERE pushNotificationsDeviceId IN (";
 	private static final String _SQL_SELECT_PUSHNOTIFICATIONSDEVICE_WHERE = "SELECT pushNotificationsDevice FROM PushNotificationsDevice pushNotificationsDevice WHERE ";
 	private static final String _SQL_COUNT_PUSHNOTIFICATIONSDEVICE = "SELECT COUNT(pushNotificationsDevice) FROM PushNotificationsDevice pushNotificationsDevice";
 	private static final String _SQL_COUNT_PUSHNOTIFICATIONSDEVICE_WHERE = "SELECT COUNT(pushNotificationsDevice) FROM PushNotificationsDevice pushNotificationsDevice WHERE ";

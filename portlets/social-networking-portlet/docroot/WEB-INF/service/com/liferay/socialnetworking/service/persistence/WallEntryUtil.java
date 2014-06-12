@@ -616,6 +616,11 @@ public class WallEntryUtil {
 		return getPersistence().fetchByPrimaryKey(wallEntryId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.socialnetworking.model.WallEntry> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the wall entries.
 	*

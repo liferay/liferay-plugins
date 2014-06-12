@@ -876,6 +876,11 @@ public class KaleoDefinitionUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoDefinitionId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoDefinition> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the kaleo definitions.
 	*

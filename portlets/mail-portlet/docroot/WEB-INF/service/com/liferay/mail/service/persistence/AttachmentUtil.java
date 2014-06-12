@@ -320,6 +320,11 @@ public class AttachmentUtil {
 		return getPersistence().fetchByPrimaryKey(attachmentId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.mail.model.Attachment> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the attachments.
 	*

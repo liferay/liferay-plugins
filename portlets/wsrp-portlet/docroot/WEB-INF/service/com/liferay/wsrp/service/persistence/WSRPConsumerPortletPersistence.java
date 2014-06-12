@@ -514,6 +514,10 @@ public interface WSRPConsumerPortletPersistence extends BasePersistence<WSRPCons
 	public com.liferay.wsrp.model.WSRPConsumerPortlet fetchByPrimaryKey(
 		long wsrpConsumerPortletId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.wsrp.model.WSRPConsumerPortlet> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the w s r p consumer portlets.
 	*

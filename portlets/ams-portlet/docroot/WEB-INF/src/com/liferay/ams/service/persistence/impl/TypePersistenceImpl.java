@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
@@ -44,7 +45,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the type service.
@@ -409,6 +415,98 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 		return fetchByPrimaryKey((Serializable)typeId);
 	}
 
+	@Override
+	public Map<Serializable, Type> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, Type> map = new HashMap<Serializable, Type>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			Type type = fetchByPrimaryKey(primaryKey);
+
+			if (type != null) {
+				map.put(primaryKey, type);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			Type type = (Type)EntityCacheUtil.getResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
+					TypeImpl.class, primaryKey);
+
+			if (type == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, type);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_TYPE_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (Type type : (List<Type>)q.list()) {
+				map.put(type.getPrimaryKeyObj(), type);
+
+				cacheResult(type);
+
+				uncachedPrimaryKeys.remove(type.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(TypeModelImpl.ENTITY_CACHE_ENABLED,
+					TypeImpl.class, primaryKey, _nullType);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the types.
 	 *
@@ -609,6 +707,7 @@ public class TypePersistenceImpl extends BasePersistenceImpl<Type>
 	}
 
 	private static final String _SQL_SELECT_TYPE = "SELECT type FROM Type type";
+	private static final String _SQL_SELECT_TYPE_WHERE_PKS_IN = "SELECT type FROM Type type WHERE typeId IN (";
 	private static final String _SQL_COUNT_TYPE = "SELECT COUNT(type) FROM Type type";
 	private static final String _ORDER_BY_ENTITY_ALIAS = "type.";
 	private static final String _NO_SUCH_ENTITY_WITH_PRIMARY_KEY = "No Type exists with the primary key ";

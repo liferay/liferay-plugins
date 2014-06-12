@@ -678,6 +678,11 @@ public class SampleLARBookingUtil {
 		return getPersistence().fetchByPrimaryKey(sampleLARBookingId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.samplelar.model.SampleLARBooking> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the sample l a r bookings.
 	*

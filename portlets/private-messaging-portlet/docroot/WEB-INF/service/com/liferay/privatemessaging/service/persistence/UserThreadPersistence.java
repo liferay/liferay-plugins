@@ -651,6 +651,10 @@ public interface UserThreadPersistence extends BasePersistence<UserThread> {
 	public com.liferay.privatemessaging.model.UserThread fetchByPrimaryKey(
 		long userThreadId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.privatemessaging.model.UserThread> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the user threads.
 	*

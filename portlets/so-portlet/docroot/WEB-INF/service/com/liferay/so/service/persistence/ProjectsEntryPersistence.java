@@ -207,6 +207,10 @@ public interface ProjectsEntryPersistence extends BasePersistence<ProjectsEntry>
 	public com.liferay.so.model.ProjectsEntry fetchByPrimaryKey(
 		long projectsEntryId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.so.model.ProjectsEntry> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the projects entries.
 	*

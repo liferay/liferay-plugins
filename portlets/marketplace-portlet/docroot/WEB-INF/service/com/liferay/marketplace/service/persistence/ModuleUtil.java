@@ -658,6 +658,11 @@ public class ModuleUtil {
 		return getPersistence().fetchByPrimaryKey(moduleId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.marketplace.model.Module> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the modules.
 	*

@@ -1144,6 +1144,11 @@ public class KaleoLogUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoLogId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoLog> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the kaleo logs.
 	*

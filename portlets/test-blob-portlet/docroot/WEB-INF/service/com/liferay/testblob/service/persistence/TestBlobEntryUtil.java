@@ -317,6 +317,11 @@ public class TestBlobEntryUtil {
 		return getPersistence().fetchByPrimaryKey(testBlobEntryId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.testblob.model.TestBlobEntry> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the test blob entries.
 	*

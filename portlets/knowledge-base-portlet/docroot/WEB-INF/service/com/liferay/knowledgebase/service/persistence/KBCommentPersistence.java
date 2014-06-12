@@ -824,6 +824,10 @@ public interface KBCommentPersistence extends BasePersistence<KBComment> {
 	public com.liferay.knowledgebase.model.KBComment fetchByPrimaryKey(
 		long kbCommentId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.knowledgebase.model.KBComment> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the k b comments.
 	*

@@ -459,6 +459,10 @@ public interface KaleoNodePersistence extends BasePersistence<KaleoNode> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoNode fetchByPrimaryKey(
 		long kaleoNodeId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoNode> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo nodes.
 	*

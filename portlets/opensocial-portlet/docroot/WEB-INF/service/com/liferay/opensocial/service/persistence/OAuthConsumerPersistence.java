@@ -269,6 +269,10 @@ public interface OAuthConsumerPersistence extends BasePersistence<OAuthConsumer>
 	public com.liferay.opensocial.model.OAuthConsumer fetchByPrimaryKey(
 		long oAuthConsumerId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.opensocial.model.OAuthConsumer> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the o auth consumers.
 	*

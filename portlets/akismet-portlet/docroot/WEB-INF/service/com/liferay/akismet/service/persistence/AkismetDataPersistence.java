@@ -261,6 +261,10 @@ public interface AkismetDataPersistence extends BasePersistence<AkismetData> {
 	public com.liferay.akismet.model.AkismetData fetchByPrimaryKey(
 		long akismetDataId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.akismet.model.AkismetData> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the akismet datas.
 	*

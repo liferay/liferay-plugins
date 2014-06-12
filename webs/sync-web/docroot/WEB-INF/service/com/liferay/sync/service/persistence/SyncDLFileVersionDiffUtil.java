@@ -408,6 +408,11 @@ public class SyncDLFileVersionDiffUtil {
 		return getPersistence().fetchByPrimaryKey(syncDLFileVersionDiffId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.sync.model.SyncDLFileVersionDiff> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the sync d l file version diffs.
 	*

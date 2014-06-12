@@ -49,7 +49,11 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -2385,6 +2389,99 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 		return fetchByPrimaryKey((Serializable)sampleLARBookingId);
 	}
 
+	@Override
+	public Map<Serializable, SampleLARBooking> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, SampleLARBooking> map = new HashMap<Serializable, SampleLARBooking>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			SampleLARBooking sampleLARBooking = fetchByPrimaryKey(primaryKey);
+
+			if (sampleLARBooking != null) {
+				map.put(primaryKey, sampleLARBooking);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			SampleLARBooking sampleLARBooking = (SampleLARBooking)EntityCacheUtil.getResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+					SampleLARBookingImpl.class, primaryKey);
+
+			if (sampleLARBooking == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, sampleLARBooking);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_SAMPLELARBOOKING_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (SampleLARBooking sampleLARBooking : (List<SampleLARBooking>)q.list()) {
+				map.put(sampleLARBooking.getPrimaryKeyObj(), sampleLARBooking);
+
+				cacheResult(sampleLARBooking);
+
+				uncachedPrimaryKeys.remove(sampleLARBooking.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(SampleLARBookingModelImpl.ENTITY_CACHE_ENABLED,
+					SampleLARBookingImpl.class, primaryKey,
+					_nullSampleLARBooking);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the sample l a r bookings.
 	 *
@@ -2590,6 +2687,7 @@ public class SampleLARBookingPersistenceImpl extends BasePersistenceImpl<SampleL
 	}
 
 	private static final String _SQL_SELECT_SAMPLELARBOOKING = "SELECT sampleLARBooking FROM SampleLARBooking sampleLARBooking";
+	private static final String _SQL_SELECT_SAMPLELARBOOKING_WHERE_PKS_IN = "SELECT sampleLARBooking FROM SampleLARBooking sampleLARBooking WHERE sampleLARBookingId IN (";
 	private static final String _SQL_SELECT_SAMPLELARBOOKING_WHERE = "SELECT sampleLARBooking FROM SampleLARBooking sampleLARBooking WHERE ";
 	private static final String _SQL_COUNT_SAMPLELARBOOKING = "SELECT COUNT(sampleLARBooking) FROM SampleLARBooking sampleLARBooking";
 	private static final String _SQL_COUNT_SAMPLELARBOOKING_WHERE = "SELECT COUNT(sampleLARBooking) FROM SampleLARBooking sampleLARBooking WHERE ";

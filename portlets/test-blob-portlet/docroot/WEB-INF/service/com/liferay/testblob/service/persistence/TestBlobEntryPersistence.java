@@ -211,6 +211,10 @@ public interface TestBlobEntryPersistence extends BasePersistence<TestBlobEntry>
 	public com.liferay.testblob.model.TestBlobEntry fetchByPrimaryKey(
 		long testBlobEntryId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.testblob.model.TestBlobEntry> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the test blob entries.
 	*

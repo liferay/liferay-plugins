@@ -272,6 +272,10 @@ public interface PushNotificationsDevicePersistence extends BasePersistence<Push
 	public com.liferay.pushnotifications.model.PushNotificationsDevice fetchByPrimaryKey(
 		long pushNotificationsDeviceId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.pushnotifications.model.PushNotificationsDevice> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the push notifications devices.
 	*

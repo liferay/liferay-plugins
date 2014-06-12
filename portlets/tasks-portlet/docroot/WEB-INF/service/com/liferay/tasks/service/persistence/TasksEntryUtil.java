@@ -2791,6 +2791,11 @@ public class TasksEntryUtil {
 		return getPersistence().fetchByPrimaryKey(tasksEntryId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.tasks.model.TasksEntry> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the tasks entries.
 	*

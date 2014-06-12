@@ -1058,6 +1058,11 @@ public class KBCommentUtil {
 		return getPersistence().fetchByPrimaryKey(kbCommentId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.knowledgebase.model.KBComment> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the k b comments.
 	*

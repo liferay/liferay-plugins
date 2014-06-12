@@ -1475,6 +1475,10 @@ public interface JIRAIssuePersistence extends BasePersistence<JIRAIssue> {
 	public com.liferay.socialcoding.model.JIRAIssue fetchByPrimaryKey(
 		long jiraIssueId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.socialcoding.model.JIRAIssue> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the j i r a issues.
 	*

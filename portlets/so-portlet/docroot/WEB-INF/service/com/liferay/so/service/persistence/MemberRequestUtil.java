@@ -610,6 +610,11 @@ public class MemberRequestUtil {
 		return getPersistence().fetchByPrimaryKey(memberRequestId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.so.model.MemberRequest> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the member requests.
 	*

@@ -50,7 +50,11 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -1282,6 +1286,100 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 		return fetchByPrimaryKey((Serializable)syncDLFileVersionDiffId);
 	}
 
+	@Override
+	public Map<Serializable, SyncDLFileVersionDiff> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, SyncDLFileVersionDiff> map = new HashMap<Serializable, SyncDLFileVersionDiff>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			SyncDLFileVersionDiff syncDLFileVersionDiff = fetchByPrimaryKey(primaryKey);
+
+			if (syncDLFileVersionDiff != null) {
+				map.put(primaryKey, syncDLFileVersionDiff);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			SyncDLFileVersionDiff syncDLFileVersionDiff = (SyncDLFileVersionDiff)EntityCacheUtil.getResult(SyncDLFileVersionDiffModelImpl.ENTITY_CACHE_ENABLED,
+					SyncDLFileVersionDiffImpl.class, primaryKey);
+
+			if (syncDLFileVersionDiff == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, syncDLFileVersionDiff);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_SYNCDLFILEVERSIONDIFF_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (SyncDLFileVersionDiff syncDLFileVersionDiff : (List<SyncDLFileVersionDiff>)q.list()) {
+				map.put(syncDLFileVersionDiff.getPrimaryKeyObj(),
+					syncDLFileVersionDiff);
+
+				cacheResult(syncDLFileVersionDiff);
+
+				uncachedPrimaryKeys.remove(syncDLFileVersionDiff.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(SyncDLFileVersionDiffModelImpl.ENTITY_CACHE_ENABLED,
+					SyncDLFileVersionDiffImpl.class, primaryKey,
+					_nullSyncDLFileVersionDiff);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the sync d l file version diffs.
 	 *
@@ -1487,6 +1585,7 @@ public class SyncDLFileVersionDiffPersistenceImpl extends BasePersistenceImpl<Sy
 	}
 
 	private static final String _SQL_SELECT_SYNCDLFILEVERSIONDIFF = "SELECT syncDLFileVersionDiff FROM SyncDLFileVersionDiff syncDLFileVersionDiff";
+	private static final String _SQL_SELECT_SYNCDLFILEVERSIONDIFF_WHERE_PKS_IN = "SELECT syncDLFileVersionDiff FROM SyncDLFileVersionDiff syncDLFileVersionDiff WHERE syncDLFileVersionDiffId IN (";
 	private static final String _SQL_SELECT_SYNCDLFILEVERSIONDIFF_WHERE = "SELECT syncDLFileVersionDiff FROM SyncDLFileVersionDiff syncDLFileVersionDiff WHERE ";
 	private static final String _SQL_COUNT_SYNCDLFILEVERSIONDIFF = "SELECT COUNT(syncDLFileVersionDiff) FROM SyncDLFileVersionDiff syncDLFileVersionDiff";
 	private static final String _SQL_COUNT_SYNCDLFILEVERSIONDIFF_WHERE = "SELECT COUNT(syncDLFileVersionDiff) FROM SyncDLFileVersionDiff syncDLFileVersionDiff WHERE ";

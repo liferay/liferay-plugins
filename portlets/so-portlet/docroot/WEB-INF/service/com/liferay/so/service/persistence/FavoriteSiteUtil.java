@@ -378,6 +378,11 @@ public class FavoriteSiteUtil {
 		return getPersistence().fetchByPrimaryKey(favoriteSiteId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.so.model.FavoriteSite> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the favorite sites.
 	*

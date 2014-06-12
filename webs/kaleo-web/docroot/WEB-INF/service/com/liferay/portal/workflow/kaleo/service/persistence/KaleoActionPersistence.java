@@ -609,6 +609,10 @@ public interface KaleoActionPersistence extends BasePersistence<KaleoAction> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoAction fetchByPrimaryKey(
 		long kaleoActionId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoAction> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo actions.
 	*

@@ -2239,6 +2239,10 @@ public interface TasksEntryPersistence extends BasePersistence<TasksEntry> {
 	public com.liferay.tasks.model.TasksEntry fetchByPrimaryKey(
 		long tasksEntryId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.tasks.model.TasksEntry> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the tasks entries.
 	*

@@ -395,6 +395,10 @@ public interface MeetupsRegistrationPersistence extends BasePersistence<MeetupsR
 	public com.liferay.socialnetworking.model.MeetupsRegistration fetchByPrimaryKey(
 		long meetupsRegistrationId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.socialnetworking.model.MeetupsRegistration> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the meetups registrations.
 	*

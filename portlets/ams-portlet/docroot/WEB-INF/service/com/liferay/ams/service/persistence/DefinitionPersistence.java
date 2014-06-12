@@ -91,6 +91,10 @@ public interface DefinitionPersistence extends BasePersistence<Definition> {
 	*/
 	public com.liferay.ams.model.Definition fetchByPrimaryKey(long definitionId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.ams.model.Definition> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the definitions.
 	*

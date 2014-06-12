@@ -7923,6 +7923,11 @@ public class KBArticleUtil {
 		return getPersistence().fetchByPrimaryKey(kbArticleId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.knowledgebase.model.KBArticle> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the k b articles.
 	*

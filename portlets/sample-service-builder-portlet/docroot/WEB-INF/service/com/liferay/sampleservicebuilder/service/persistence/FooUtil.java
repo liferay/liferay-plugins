@@ -670,6 +670,11 @@ public class FooUtil {
 		return getPersistence().fetchByPrimaryKey(fooId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.sampleservicebuilder.model.Foo> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the foos.
 	*

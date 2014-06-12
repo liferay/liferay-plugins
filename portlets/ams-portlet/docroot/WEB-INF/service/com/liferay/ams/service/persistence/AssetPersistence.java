@@ -90,6 +90,10 @@ public interface AssetPersistence extends BasePersistence<Asset> {
 	*/
 	public com.liferay.ams.model.Asset fetchByPrimaryKey(long assetId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.ams.model.Asset> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the assets.
 	*

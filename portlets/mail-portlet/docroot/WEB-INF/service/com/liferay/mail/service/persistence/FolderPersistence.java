@@ -259,6 +259,10 @@ public interface FolderPersistence extends BasePersistence<Folder> {
 	*/
 	public com.liferay.mail.model.Folder fetchByPrimaryKey(long folderId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.mail.model.Folder> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the folders.
 	*

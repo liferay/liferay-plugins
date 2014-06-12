@@ -171,6 +171,11 @@ public class TypeUtil {
 		return getPersistence().fetchByPrimaryKey(typeId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.ams.model.Type> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the types.
 	*

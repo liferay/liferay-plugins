@@ -214,6 +214,10 @@ public interface JIRAChangeItemPersistence extends BasePersistence<JIRAChangeIte
 	public com.liferay.socialcoding.model.JIRAChangeItem fetchByPrimaryKey(
 		long jiraChangeItemId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.socialcoding.model.JIRAChangeItem> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the j i r a change items.
 	*

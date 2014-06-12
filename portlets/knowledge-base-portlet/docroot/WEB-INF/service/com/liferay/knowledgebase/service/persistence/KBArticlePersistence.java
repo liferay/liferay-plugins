@@ -6404,6 +6404,10 @@ public interface KBArticlePersistence extends BasePersistence<KBArticle> {
 	public com.liferay.knowledgebase.model.KBArticle fetchByPrimaryKey(
 		long kbArticleId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.knowledgebase.model.KBArticle> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the k b articles.
 	*

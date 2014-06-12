@@ -458,6 +458,10 @@ public interface WallEntryPersistence extends BasePersistence<WallEntry> {
 	public com.liferay.socialnetworking.model.WallEntry fetchByPrimaryKey(
 		long wallEntryId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.socialnetworking.model.WallEntry> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the wall entries.
 	*

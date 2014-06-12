@@ -574,6 +574,10 @@ public interface KBTemplatePersistence extends BasePersistence<KBTemplate> {
 	public com.liferay.knowledgebase.model.KBTemplate fetchByPrimaryKey(
 		long kbTemplateId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.knowledgebase.model.KBTemplate> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the k b templates.
 	*

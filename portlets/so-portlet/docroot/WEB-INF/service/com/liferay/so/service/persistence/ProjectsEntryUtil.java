@@ -320,6 +320,11 @@ public class ProjectsEntryUtil {
 		return getPersistence().fetchByPrimaryKey(projectsEntryId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.so.model.ProjectsEntry> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the projects entries.
 	*

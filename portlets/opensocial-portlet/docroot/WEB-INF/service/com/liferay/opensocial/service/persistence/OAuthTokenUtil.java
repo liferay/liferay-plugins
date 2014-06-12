@@ -433,6 +433,11 @@ public class OAuthTokenUtil {
 		return getPersistence().fetchByPrimaryKey(oAuthTokenId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.opensocial.model.OAuthToken> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the o auth tokens.
 	*

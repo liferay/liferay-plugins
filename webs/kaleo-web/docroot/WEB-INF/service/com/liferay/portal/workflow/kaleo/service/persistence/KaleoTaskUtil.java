@@ -533,6 +533,11 @@ public class KaleoTaskUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoTaskId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoTask> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the kaleo tasks.
 	*

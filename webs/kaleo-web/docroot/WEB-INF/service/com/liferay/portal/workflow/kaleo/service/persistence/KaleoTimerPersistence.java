@@ -368,6 +368,10 @@ public interface KaleoTimerPersistence extends BasePersistence<KaleoTimer> {
 	public com.liferay.portal.workflow.kaleo.model.KaleoTimer fetchByPrimaryKey(
 		long kaleoTimerId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoTimer> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo timers.
 	*

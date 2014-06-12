@@ -547,6 +547,11 @@ public class MeetupsRegistrationUtil {
 		return getPersistence().fetchByPrimaryKey(meetupsRegistrationId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.socialnetworking.model.MeetupsRegistration> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the meetups registrations.
 	*

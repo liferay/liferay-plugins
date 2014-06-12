@@ -635,6 +635,11 @@ public class KaleoNodeUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoNodeId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoNode> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the kaleo nodes.
 	*

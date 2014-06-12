@@ -449,6 +449,10 @@ public interface KaleoNotificationRecipientPersistence extends BasePersistence<K
 	public com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient fetchByPrimaryKey(
 		long kaleoNotificationRecipientId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoNotificationRecipient> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the kaleo notification recipients.
 	*

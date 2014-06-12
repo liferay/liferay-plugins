@@ -748,6 +748,11 @@ public class KaleoTransitionUtil {
 		return getPersistence().fetchByPrimaryKey(kaleoTransitionId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.portal.workflow.kaleo.model.KaleoTransition> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the kaleo transitions.
 	*

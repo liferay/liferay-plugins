@@ -46,7 +46,12 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * The persistence implementation for the foo service.
@@ -910,6 +915,98 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 		return fetchByPrimaryKey((Serializable)fooId);
 	}
 
+	@Override
+	public Map<Serializable, Foo> fetchByPrimaryKeys(
+		Set<Serializable> primaryKeys) {
+		if (primaryKeys.isEmpty()) {
+			return Collections.emptyMap();
+		}
+
+		Map<Serializable, Foo> map = new HashMap<Serializable, Foo>();
+
+		if (primaryKeys.size() == 1) {
+			Iterator<Serializable> iterator = primaryKeys.iterator();
+
+			Serializable primaryKey = iterator.next();
+
+			Foo foo = fetchByPrimaryKey(primaryKey);
+
+			if (foo != null) {
+				map.put(primaryKey, foo);
+			}
+
+			return map;
+		}
+
+		Set<Serializable> uncachedPrimaryKeys = null;
+
+		for (Serializable primaryKey : primaryKeys) {
+			Foo foo = (Foo)EntityCacheUtil.getResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+					FooImpl.class, primaryKey);
+
+			if (foo == null) {
+				if (uncachedPrimaryKeys == null) {
+					uncachedPrimaryKeys = new HashSet<Serializable>();
+				}
+
+				uncachedPrimaryKeys.add(primaryKey);
+			}
+			else {
+				map.put(primaryKey, foo);
+			}
+		}
+
+		if (uncachedPrimaryKeys == null) {
+			return map;
+		}
+
+		StringBundler query = new StringBundler((uncachedPrimaryKeys.size() * 2) +
+				1);
+
+		query.append(_SQL_SELECT_FOO_WHERE_PKS_IN);
+
+		for (Serializable primaryKey : uncachedPrimaryKeys) {
+			query.append(String.valueOf(primaryKey));
+
+			query.append(StringPool.COMMA);
+		}
+
+		query.setIndex(query.index() - 1);
+
+		query.append(StringPool.CLOSE_PARENTHESIS);
+
+		String sql = query.toString();
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			Query q = session.createQuery(sql);
+
+			for (Foo foo : (List<Foo>)q.list()) {
+				map.put(foo.getPrimaryKeyObj(), foo);
+
+				cacheResult(foo);
+
+				uncachedPrimaryKeys.remove(foo.getPrimaryKeyObj());
+			}
+
+			for (Serializable primaryKey : uncachedPrimaryKeys) {
+				EntityCacheUtil.putResult(FooModelImpl.ENTITY_CACHE_ENABLED,
+					FooImpl.class, primaryKey, _nullFoo);
+			}
+		}
+		catch (Exception e) {
+			throw processException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+
+		return map;
+	}
+
 	/**
 	 * Returns all the foos.
 	 *
@@ -1109,6 +1206,7 @@ public class FooPersistenceImpl extends BasePersistenceImpl<Foo>
 	}
 
 	private static final String _SQL_SELECT_FOO = "SELECT foo FROM Foo foo";
+	private static final String _SQL_SELECT_FOO_WHERE_PKS_IN = "SELECT foo FROM Foo foo WHERE fooId IN (";
 	private static final String _SQL_SELECT_FOO_WHERE = "SELECT foo FROM Foo foo WHERE ";
 	private static final String _SQL_COUNT_FOO = "SELECT COUNT(foo) FROM Foo foo";
 	private static final String _SQL_COUNT_FOO_WHERE = "SELECT COUNT(foo) FROM Foo foo WHERE ";

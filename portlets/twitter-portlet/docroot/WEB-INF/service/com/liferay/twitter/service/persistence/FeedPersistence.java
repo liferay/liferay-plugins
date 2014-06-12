@@ -144,6 +144,10 @@ public interface FeedPersistence extends BasePersistence<Feed> {
 	*/
 	public com.liferay.twitter.model.Feed fetchByPrimaryKey(long feedId);
 
+	@Override
+	public java.util.Map<java.io.Serializable, com.liferay.twitter.model.Feed> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys);
+
 	/**
 	* Returns all the feeds.
 	*

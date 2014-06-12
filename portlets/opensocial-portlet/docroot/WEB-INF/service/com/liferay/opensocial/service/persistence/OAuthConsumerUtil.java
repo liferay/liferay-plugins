@@ -390,6 +390,11 @@ public class OAuthConsumerUtil {
 		return getPersistence().fetchByPrimaryKey(oAuthConsumerId);
 	}
 
+	public static java.util.Map<java.io.Serializable, com.liferay.opensocial.model.OAuthConsumer> fetchByPrimaryKeys(
+		java.util.Set<java.io.Serializable> primaryKeys) {
+		return getPersistence().fetchByPrimaryKeys(primaryKeys);
+	}
+
 	/**
 	* Returns all the o auth consumers.
 	*
