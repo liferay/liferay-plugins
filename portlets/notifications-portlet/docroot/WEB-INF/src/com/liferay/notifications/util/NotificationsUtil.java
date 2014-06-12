@@ -33,8 +33,7 @@ import java.util.List;
  */
 public class NotificationsUtil {
 
-	public static List<UserNotificationEvent>
-		getActionableArchivedUserNotificationEvents(
+	public static List<UserNotificationEvent> getArchivedUserNotificationEvents(
 			long userId, boolean actionable, boolean archived, int start,
 			int end)
 		throws SystemException {
@@ -49,7 +48,7 @@ public class NotificationsUtil {
 			dynamicQuery, start, end);
 	}
 
-	public static int getActionableArchivedUserNotificationEventsCount(
+	public static int getArchivedUserNotificationEventsCount(
 			long userId, boolean actionable, boolean archived)
 		throws SystemException {
 
@@ -75,7 +74,7 @@ public class NotificationsUtil {
 	}
 
 	public static List<UserNotificationEvent>
-		getActionableDeliveredUserNotificationEvents(
+		getDeliveredUserNotificationEvents(
 			long userId, boolean actionable, boolean delivered, int start,
 			int end)
 		throws SystemException {
@@ -90,7 +89,7 @@ public class NotificationsUtil {
 			dynamicQuery, start, end);
 	}
 
-	public static int getActionableDeliveredUserNotificationEventsCount(
+	public static int getDeliveredUserNotificationEventsCount(
 			long userId, boolean actionable, boolean delivered)
 		throws SystemException {
 
