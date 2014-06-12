@@ -25,8 +25,6 @@ import com.amazonaws.services.ec2.model.DescribeVolumesResult;
 import com.amazonaws.services.ec2.model.Filter;
 import com.amazonaws.services.ec2.model.Volume;
 
-import com.liferay.jsonwebserviceclient.JSONWebServiceClient;
-
 import jargs.gnu.CmdLineParser;
 
 import java.util.List;
@@ -57,12 +55,6 @@ public class AMICleaner extends BaseAMITool {
 
 	public AMICleaner(String propertiesFileName) throws Exception {
 		super(propertiesFileName);
-
-		_jsonWebServiceClient = getJSONWebServiceClient(
-			properties.getProperty("asgard.host.name"),
-			Integer.valueOf(properties.getProperty("asgard.host.port")),
-			properties.getProperty("asgard.login"),
-			properties.getProperty("asgard.password"));
 
 		System.out.println("Deleting available Volumes");
 
@@ -131,7 +123,5 @@ public class AMICleaner extends BaseAMITool {
 			}
 		}
 	}
-
-	private JSONWebServiceClient _jsonWebServiceClient;
 
 }
