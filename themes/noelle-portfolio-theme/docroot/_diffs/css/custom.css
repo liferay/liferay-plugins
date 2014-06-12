@@ -33,6 +33,9 @@ $navigationHeight:41px;
 
 		.page-title {
 			span {
+				font-size: 70px;
+				line-height: 70px;
+
 				-moz-animation-name: dropHeader;
 			    -moz-animation-iteration-count: once;
 			    -moz-animation-timing-function: ease-in;
@@ -300,20 +303,6 @@ $navigationHeight:41px;
 			.navbar-inner {
 				display: block;
 			}
-		}
-
-		/* ---------- Banner ----------*/
-		.banner-large {
-			height: 550px;
-
-			.page-title span {
-				font-size: 70px;
-				line-height: 70px;
-			}
-		}
-
-		.site-name {
-			font-size: 30px;
 		}
 	}
 
