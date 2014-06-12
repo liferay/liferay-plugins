@@ -129,14 +129,14 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			return;
 		}
 
-		String elasticIpAddressesProperty = properties.getProperty(
+		String elasticIpAddressesString = properties.getProperty(
 			"elastic.ip.addresses");
 
-		String[] elasticIpAddresses = elasticIpAddressesProperty.split(",");
+		String[] elasticIpAddresses = elasticIpAddressesString.split(",");
 
 		for (int i = 0; i < elasticIpAddresses.length; i++) {
 			System.out.println(
-				"Associating IP Address " + elasticIpAddresses[i] +
+				"Associating IP address " + elasticIpAddresses[i] +
 					" with instance " + instanceIds.get(i));
 
 			AssociateAddressRequest associateAddressRequest =
@@ -157,7 +157,6 @@ public class AsgardAMIDeployer extends BaseAMITool {
 			"asgard.cluster.name");
 		String availabilityZone = properties.getProperty("availability.zone");
 		boolean deployed = false;
-
 		JSONObject loadBalancerJSONObject = null;
 
 		for (int i = 1; i < 30; i++) {
@@ -509,17 +508,19 @@ public class AsgardAMIDeployer extends BaseAMITool {
 	protected void openAsgardURL() throws Exception {
 		Desktop desktop = Desktop.getDesktop();
 
-		String asgardClusterName = properties.getProperty(
-			"asgard.cluster.name");
-		String availabilityZone = properties.getProperty("availability.zone");
+		StringBuilder sb = new StringBuilder();
 
-		String asgardURL =
-			properties.getProperty("asgard.host.protocol") + "://" +
-				properties.getProperty("asgard.host.name") + ":" +
-				properties.getProperty("asgard.host.port") + "/" +
-				availabilityZone + "/cluster/show/" + asgardClusterName;
+		sb.append(properties.getProperty("asgard.host.protocol"));
+		sb.append("://");
+		sb.append(properties.getProperty("asgard.host.name"));
+		sb.append(":");
+		sb.append(properties.getProperty("asgard.host.port"));
+		sb.append("/");
+		sb.append(properties.getProperty("availability.zone"));
+		sb.append("/cluster/show/");
+		sb.append(properties.getProperty("asgard.cluster.name"));
 
-		desktop.browse(URI.create(asgardURL));
+		desktop.browse(URI.create(sb.toString()));
 	}
 
 	private String _baseDirName;
