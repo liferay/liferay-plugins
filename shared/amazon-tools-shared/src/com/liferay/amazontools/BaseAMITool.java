@@ -158,14 +158,15 @@ public class BaseAMITool {
 
 	protected KeyStore getKeyStore(String keyStorePath, String password) {
 		InputStream inputStream = null;
-		KeyStore keyStore = null;
 
 		try {
-			keyStore = KeyStore.getInstance("JKS");
+			KeyStore keyStore = KeyStore.getInstance("JKS");
 
 			inputStream = new FileInputStream(keyStorePath);
 
 			keyStore.load(inputStream, password.toCharArray());
+
+			return keyStore;
 		}
 		catch (Exception e) {
 			throw new RuntimeException(e);
@@ -174,12 +175,9 @@ public class BaseAMITool {
 			try {
 				inputStream.close();
 			}
-			catch (Exception ignore) {
+			catch (Exception e) {
 			}
-
 		}
-
-		return keyStore;
 	}
 
 	protected Properties getProperties(String propertiesFileName)
