@@ -99,7 +99,6 @@ public class SyncFileService {
 		}
 
 		parameters.put("serviceContext.attributes.overwrite", true);
-
 		parameters.put("sourceFileName", name);
 		parameters.put("syncFile", syncFile);
 		parameters.put("title", name);
@@ -152,7 +151,6 @@ public class SyncFileService {
 		}
 
 		parameters.put("serviceContext.attributes.overwrite", true);
-
 		parameters.put("syncFile", syncFile);
 
 		AddFolderEvent addFolderEvent = new AddFolderEvent(
