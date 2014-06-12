@@ -32,13 +32,21 @@ $navigationHeight:41px;
 		position: relative;
 
 		.page-title {
-			color: #FFF;
-			padding: 50px auto;
-			text-align: center;
-
 			span {
-				font-size: 100px;
-				line-height: 100px;
+				-moz-animation-name: dropHeader;
+			    -moz-animation-iteration-count: once;
+			    -moz-animation-timing-function: ease-in;
+			    -moz-animation-duration: 0.3s;
+
+			    -webkit-animation-name: dropHeader;
+			    -webkit-animation-iteration-count: once;
+			    -webkit-animation-timing-function: ease-in;
+			    -webkit-animation-duration: 0.3s;
+
+			    animation-name: dropHeader;
+			    animation-iteration-count: once;
+			    animation-timing-function: ease-in;
+			    animation-duration: 0.3s;
 			}
 		}
 
@@ -48,9 +56,19 @@ $navigationHeight:41px;
 
 			> a {
 				border: 1px solid #FFF;
+				border-radius: 5px;
 				color: #FFF;
 				font-size: 20px;
 				padding: 5px;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+
+			:hover {
+				background: url(../images/custom/nav_bg.png) repeat;
+				opacity: 0.6;
 			}
 		}
 	}
@@ -59,22 +77,21 @@ $navigationHeight:41px;
 		background: url(../images/custom/small-banner.jpg) no-repeat;
 		height: $smallBannerHeight;
 		position: relative;
-
-		.page-title {
-			color: #FFF;
-			text-align: center;
-
-			span {
-				font-size: 40px;
-				line-height: 40px;
-			}
-		}
 	}
 
 	#banner {
 		#heading {
 			.logo {
 				margin: 0 5px 0 20px;
+			}
+
+			.page-title {
+				color: #FFF;
+				text-align: center;
+
+				span {
+					font-family: Megrim, sans-serif;
+				}
 			}
 
 			.site-name {
@@ -130,7 +147,7 @@ $navigationHeight:41px;
 
 }
 
-/* ---------- Extras ---------- */
+/* ---------- Responsiveness ---------- */
 
 .aui {
 	#wrapper {
@@ -284,6 +301,20 @@ $navigationHeight:41px;
 				display: block;
 			}
 		}
+
+		/* ---------- Banner ----------*/
+		.banner-large {
+			height: 550px;
+
+			.page-title span {
+				font-size: 70px;
+				line-height: 70px;
+			}
+		}
+
+		.site-name {
+			font-size: 30px;
+		}
 	}
 
 	/*---------- Desktop and up ----------*/
@@ -420,6 +451,55 @@ $navigationHeight:41px;
 				}
 			}
 		}
+
+		/* ---------- Banner ---------- */
+
+		.banner-large {
+
+			.page-title {
+				padding: 50px auto;
+
+				span {
+					font-size: 100px;
+					line-height: 100px;
+				}
+			}
+		}
+
+		.banner-small {
+			.page-title {
+				span {
+					font-size: 60px;
+					line-height: 60px;
+				}
+			}
+		}
 	}
 }
 
+/* ---------- Extras ---------- */
+
+@-moz-keyframes dropHeader {
+    0% {
+        -moz-transform: translateY(-40px);
+    }
+    100% {
+        -moz-transform: translateY(0);
+    }
+}
+@-webkit-keyframes dropHeader {
+    0% {
+        -webkit-transform: translateY(-40px);
+    }
+    100% {
+        -webkit-transform: translateY(0);
+    }
+}
+@keyframes dropHeader {
+    0% {
+        transform: translateY(-40px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}

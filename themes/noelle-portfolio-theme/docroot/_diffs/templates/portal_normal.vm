@@ -9,6 +9,8 @@
 
 	<meta content="initial-scale=1.0, width=device-width" name="viewport" />
 
+	<link href='http://fonts.googleapis.com/css?family=Megrim' rel='stylesheet' type='text/css'>
+
 	$theme.include($top_head_include)
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
