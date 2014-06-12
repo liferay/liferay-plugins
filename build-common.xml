@@ -2048,20 +2048,19 @@ Please find a solution that does not require portal-impl.jar.
 					/>
 
 					<echo file="${app.server.tomcat.dir}/conf/tomcat-users.xml"><![CDATA[<?xml version="1.0"?>
-							<tomcat-users>
-								<role rolename="tomcat" />
-								<role rolename="manager-gui" />
-								<role rolename="manager-script" />
-								<role rolename="manager-jmx" />
-								<role rolename="manager-status" />
-								<user
-									password="${app.server.tomcat.manager.password}"
-									roles="tomcat,manager-gui,manager-script,manager-jmx,manager-status"
-									username="${app.server.tomcat.manager.user}"
-								/>
-							</tomcat-users>
-						]]>
-					</echo>
+
+<tomcat-users>
+	<role rolename="tomcat" />
+	<role rolename="manager-gui" />
+	<role rolename="manager-script" />
+	<role rolename="manager-jmx" />
+	<role rolename="manager-status" />
+	<user
+		password="${app.server.tomcat.manager.password}"
+		roles="tomcat,manager-gui,manager-script,manager-jmx,manager-status"
+		username="${app.server.tomcat.manager.user}"
+	/>
+</tomcat-users>]]></echo>
 				</then>
 			</if>
 		</sequential>
