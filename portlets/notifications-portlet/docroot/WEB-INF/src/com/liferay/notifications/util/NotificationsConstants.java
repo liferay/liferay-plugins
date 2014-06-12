@@ -19,7 +19,7 @@ package com.liferay.notifications.util;
  */
 public interface NotificationsConstants {
 
-	public static final String[] ACTIONABLE_TYPES = new String[] {
+	public static final String[] ACTIONABLE_TYPES = {
 		PortletKeys.CONTACTS_CENTER, PortletKeys.SO_INVITE_MEMBERS
 	};
 
