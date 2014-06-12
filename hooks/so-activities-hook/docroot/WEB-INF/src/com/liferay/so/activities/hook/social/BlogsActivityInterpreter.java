@@ -210,23 +210,12 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 			return false;
 		}
 
-		SocialActivitySet activitySet =
-			SocialActivitySetLocalServiceUtil.getSocialActivitySet(
-				activity.getActivitySetId());
-
 		Date displayDate = blogsEntry.getDisplayDate();
 
 		long displayTime = displayDate.getTime();
 
 		if (displayTime < System.currentTimeMillis()) {
 			return true;
-		}
-
-		if (displayTime > activitySet.getModifiedDate()) {
-			activitySet.setModifiedDate(displayTime);
-
-			SocialActivitySetLocalServiceUtil.updateSocialActivitySet(
-				activitySet);
 		}
 
 		return false;
