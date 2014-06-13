@@ -262,6 +262,12 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 				throw new CredentialException(
 					"Not authorized to access JSON web service");
 			}
+			else if (statusLine.getStatusCode() ==
+				HttpServletResponse.SC_SERVICE_UNAVAILABLE) {
+
+				throw new JSONWebServiceUnavailableException(
+					"Service unavailable");
+			}
 
 			return EntityUtils.toString(
 				httpResponse.getEntity(), Charsets.UTF_8);
