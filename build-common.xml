@@ -14,6 +14,20 @@
 		<fileset dir="${sdk.dir}/lib" includes="*.jar" />
 	</path>
 
+	<script classpathref="lib.classpath" language="beanshell">
+		String isPortalInvoked = project.getProperty("is.portal.invoked");
+
+		if (isPortalInvoked != null) {
+			import org.apache.tools.ant.ComponentHelper;
+
+			ComponentHelper componentHelper = ComponentHelper.getComponentHelper(project);
+
+			componentHelper.getAntTypeTable().clear();
+
+			componentHelper.initDefaultDefinitions();
+		}
+	</script>
+
 	<taskdef classpathref="lib.classpath" resource="ise/antelope/tasks/antlib.xml" uri="antlib:ise.antelope.tasks" />
 	<taskdef classpathref="lib.classpath" resource="net/sf/antcontrib/antlib.xml" />
 

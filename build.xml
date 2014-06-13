@@ -166,7 +166,7 @@
 			/>
 			<zipfileset
 				dir="."
-				includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar"
+				includes="lib/ant-contrib.jar,lib/antelopetasks.jar,lib/bcpg-jdk16.jar,lib/bcprov-jdk16.jar,lib/bsf.jar,lib/bsh.jar,lib/commons-logging.jar"
 				prefix="liferay-plugins-sdk-${lp.version}"
 			/>
 		</zip>
