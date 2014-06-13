@@ -20,7 +20,6 @@ package com.liferay.so.hook.listeners;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.BaseModelListener;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -47,7 +46,7 @@ public class UserListener extends BaseModelListener<User> {
 
 			Map<String, String> headers = serviceContext.getHeaders();
 
-			String refererURL = headers.get(WebKeys.REFERER);
+			String refererURL = headers.get("referer");
 
 			String portletId = HttpUtil.getParameter(
 				refererURL, "p_p_id", false);
