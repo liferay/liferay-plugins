@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -513,6 +514,16 @@ public class DisplayPortlet extends MVCPortlet {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		String urlTitle = ParamUtil.getString(renderRequest, "urlTitle");
+
+		if (Validator.isNotNull(urlTitle)) {
+			KBArticle kbArticle =
+				KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
+					themeDisplay.getScopeGroupId(), urlTitle);
+
+			return kbArticle.getResourcePrimKey();
+		}
 
 		PortletPreferences preferences = renderRequest.getPreferences();
 

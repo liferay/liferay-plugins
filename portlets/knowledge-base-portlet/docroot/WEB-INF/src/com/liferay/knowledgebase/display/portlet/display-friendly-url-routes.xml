@@ -2,4 +2,7 @@
 <!DOCTYPE routes PUBLIC "-//Liferay//DTD Friendly URL Routes 7.0.0//EN" "http://www.liferay.com/dtd/liferay-friendly-url-routes_7_0_0.dtd">
 
 <routes>
+	<route>
+		<pattern>/{urlTitle}</pattern>
+	</route>
 </routes>
