@@ -121,6 +121,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		initPaths();
 		initIndexer();
 		initMessageListeners();
+		initPortlet();
 	}
 
 	@Override
@@ -682,6 +683,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 	}
 
+	protected void initPortlet() {
+		alloyPortlet.registerAlloyController(this);
+	}
+
 	protected void initPortletVariables() {
 		liferayPortletConfig = (LiferayPortletConfig)request.getAttribute(
 			JavaConstants.JAVAX_PORTLET_CONFIG);
@@ -692,8 +697,6 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		alloyPortlet = (AlloyPortlet)request.getAttribute(
 			JavaConstants.JAVAX_PORTLET_PORTLET);
-
-		alloyPortlet.registerAlloyController(this);
 
 		portletRequest = (PortletRequest)request.getAttribute(
 			JavaConstants.JAVAX_PORTLET_REQUEST);
