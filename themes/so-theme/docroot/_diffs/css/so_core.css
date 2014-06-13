@@ -523,6 +523,18 @@ html.aui {
 	border-left-width: 0;
 }
 
+/* ---------- Modules ---------- */
+
+.accordion-group {
+	.accordion-toggle:before {
+		@include font-awesome("\f0da");
+	}
+
+	.toggler-header-expanded .accordion-toggle:before {
+		content: "\f0d7";
+	}
+}
+
 /* ---------- Portlet base styling ---------- */
 
 .portlet {
@@ -1122,14 +1134,6 @@ html.aui {
 	.accordion-group, .accordion-inner {
 		border-width: 0;
 		margin-bottom: 10px;
-
-		.accordion-toggle:before {
-			@include font-awesome("\f0da");
-		}
-
-		.toggler-header-expanded .accordion-toggle:before {
-			content: "\f0d7";
-		}
 	}
 
 	.field-wrapper .btn {
@@ -1588,15 +1592,6 @@ html.aui {
 		overflow: hidden;
 	}
 
-	.taglib-ratings {
-		margin: 0;
-		padding: 5px;
-
-		&.thumbs .thumbrating .rating-label {
-			display: inline-block;
-		}
-	}
-
 	.lfr-discussion-actions {
 		li {
 			display: inline;
@@ -1617,14 +1612,26 @@ html.aui {
 	position: relative;
 }
 
+.taglib-ratings {
+	margin: 0;
+	padding: 5px;
+
+	&.thumbs .thumbrating .rating-label {
+		display: inline-block;
+	}
+}
+
 /* ---------- Top links component ---------- */
 
 .taglib-header {
+	clear: both;
 	margin: 1em 0;
 
 	.header-back-to, .header-title {
-		display: inline-block;
+		display: inline;
 		vertical-align: middle;
+		word-break: break-word;
+		white-space: normal;
 	}
 
 	.header-back-to a {
