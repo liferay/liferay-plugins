@@ -352,8 +352,8 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 
 						Liferay.CalendarMessageUtil.confirm(
 							content,
-							'<liferay-ui:message key="save-changes" unicode="<%= true %>"/>',
-							'<liferay-ui:message key="do-not-change-the-event" unicode="<%= true %>"/>',
+							'<liferay-ui:message key="save-changes" unicode="<%= true %>" />',
+							'<liferay-ui:message key="do-not-change-the-event" unicode="<%= true %>" />',
 							function() {
 								submitForm(document.<portlet:namespace />fm);
 

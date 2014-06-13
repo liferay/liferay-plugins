@@ -931,14 +931,9 @@ public class CalendarBookingLocalServiceImpl
 					CalendarBookingWorkflowConstants.STATUS_IN_TRASH,
 					serviceContext);
 
-				boolean sendEmail = ParamUtil.getBoolean(
-					serviceContext, "sendEmail", true);
-
-				if (sendEmail) {
-					sendNotification(
-						childCalendarBooking,
-						NotificationTemplateType.MOVED_TO_TRASH);
-				}
+				sendNotification(
+					childCalendarBooking,
+					NotificationTemplateType.MOVED_TO_TRASH, serviceContext);
 			}
 		}
 		else if (oldStatus ==
@@ -957,13 +952,9 @@ public class CalendarBookingLocalServiceImpl
 					CalendarBookingWorkflowConstants.STATUS_PENDING,
 					serviceContext);
 
-				boolean sendEmail = ParamUtil.getBoolean(
-					serviceContext, "sendEmail", true);
-
-				if (sendEmail) {
-					sendNotification(
-						childCalendarBooking, NotificationTemplateType.INVITE);
-				}
+				sendNotification(
+					childCalendarBooking, NotificationTemplateType.INVITE,
+					serviceContext);
 			}
 		}
 
@@ -1039,9 +1030,6 @@ public class CalendarBookingLocalServiceImpl
 		Set<Long> existingCalendarBookingIds = new HashSet<Long>(
 			childCalendarIds.length);
 
-		boolean sendEmail = ParamUtil.getBoolean(
-			serviceContext, "sendEmail", true);
-
 		for (CalendarBooking childCalendarBooking : childCalendarBookings) {
 			if (childCalendarBooking.isMasterBooking() ||
 				childCalendarBooking.isDenied()) {
@@ -1085,10 +1073,8 @@ public class CalendarBookingLocalServiceImpl
 				notificationTemplateType = NotificationTemplateType.UPDATE;
 			}
 
-			if (sendEmail) {
-				sendNotification(
-					childCalendarBooking, notificationTemplateType);
-			}
+			sendNotification(
+				childCalendarBooking, notificationTemplateType, serviceContext);
 		}
 	}
 
@@ -1102,7 +1088,15 @@ public class CalendarBookingLocalServiceImpl
 
 	protected void sendNotification(
 		CalendarBooking calendarBooking,
-		NotificationTemplateType notificationTemplateType) {
+		NotificationTemplateType notificationTemplateType,
+		ServiceContext serviceContext) {
+
+		boolean sendNotification = ParamUtil.getBoolean(
+			serviceContext, "sendNotification", true);
+
+		if (!sendNotification) {
+			return;
+		}
 
 		try {
 			NotificationType notificationType = NotificationType.parse(
