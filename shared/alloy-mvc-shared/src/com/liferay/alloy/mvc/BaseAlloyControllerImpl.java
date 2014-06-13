@@ -121,6 +121,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		initPaths();
 		initIndexer();
 		initMessageListeners();
+
 		registerAlloyController();
 	}
 
