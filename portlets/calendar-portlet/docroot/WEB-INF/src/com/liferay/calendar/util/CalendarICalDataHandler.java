@@ -403,8 +403,8 @@ public class CalendarICalDataHandler implements CalendarDataHandler {
 
 		serviceContext.setAddGroupPermissions(true);
 		serviceContext.setAddGuestPermissions(true);
-		serviceContext.setScopeGroupId(calendar.getGroupId());
 		serviceContext.setAttribute("sendNotification", false);
+		serviceContext.setScopeGroupId(calendar.getGroupId());
 
 		if (calendarBooking == null) {
 			serviceContext.setUuid(uuid);
