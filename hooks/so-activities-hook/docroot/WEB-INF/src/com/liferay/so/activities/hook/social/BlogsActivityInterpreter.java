@@ -249,6 +249,19 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 			return false;
 		}
 
+		if ((activity.getType() ==
+				SocialActivityKeyConstants.BLOGS_ADD_COMMENT) ||
+			(activity.getType() ==
+				SocialActivityKeyConstants.BLOGS_UPDATE_ENTRY) ||
+			(activity.getType() == SocialActivityConstants.TYPE_ADD_COMMENT)) {
+
+			Date displayDate = blogsEntry.getDisplayDate();
+
+			if (activity.getCreateDate() < displayDate.getTime()) {
+				return false;
+			}
+		}
+
 		return true;
 	}
 
