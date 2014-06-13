@@ -909,6 +909,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			kbArticle.setParentResourcePrimKey(
 				oldKBArticle.getParentResourcePrimKey());
 			kbArticle.setVersion(oldVersion + 1);
+			kbArticle.setUrlTitle(oldKBArticle.getUrlTitle());
 			kbArticle.setPriority(oldKBArticle.getPriority());
 			kbArticle.setViewCount(oldKBArticle.getViewCount());
 		}
