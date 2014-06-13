@@ -29,6 +29,12 @@ import java.util.Map;
 	{"portalEELicenseDigest", "socialOfficeEELicenseDigest"})
 public class SyncContext {
 
+	public static final String PREFERENCE_KEY_MAX_CONNECTIONS =
+		"sync.client.max.connections";
+
+	public static final String PREFERENCE_KEY_POLL_INTERVAL =
+		"sync.client.poll.interval";
+
 	public String getPluginVersion() {
 		return _pluginVersion;
 	}

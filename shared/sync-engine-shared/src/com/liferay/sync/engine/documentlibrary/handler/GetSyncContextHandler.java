@@ -52,12 +52,14 @@ public class GetSyncContextHandler extends BaseJSONHandler {
 			syncContext.getPortletPreferencesMap();
 
 		int maxConnections = Integer.parseInt(
-			portletPreferencesMap.get("sync.client.max.connections"));
+			portletPreferencesMap.get(
+				SyncContext.PREFERENCE_KEY_MAX_CONNECTIONS));
 
 		syncAccount.setMaxConnections(maxConnections);
 
 		int pollInterval = Integer.parseInt(
-			portletPreferencesMap.get("sync.client.poll.interval"));
+			portletPreferencesMap.get(
+				SyncContext.PREFERENCE_KEY_POLL_INTERVAL));
 
 		syncAccount.setPollInterval(pollInterval);
 
