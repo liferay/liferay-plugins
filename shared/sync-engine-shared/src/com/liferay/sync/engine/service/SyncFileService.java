@@ -429,6 +429,19 @@ public class SyncFileService {
 		}
 	}
 
+	public static List<SyncFile> findSyncFiles(String filePathName) {
+		try {
+			return _syncFilePersistence.findByF(filePathName);
+		}
+		catch (SQLException sqle) {
+			if (_logger.isDebugEnabled()) {
+				_logger.debug(sqle.getMessage(), sqle);
+			}
+
+			return Collections.emptyList();
+		}
+	}
+
 	public static List<SyncFile> findSyncFiles(
 		String checksum, long syncAccountId) {
 

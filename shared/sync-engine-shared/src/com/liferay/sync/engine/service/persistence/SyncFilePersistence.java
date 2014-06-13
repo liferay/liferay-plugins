@@ -98,6 +98,14 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		return queryForFieldValues(fieldValues);
 	}
 
+	public List<SyncFile> findByF(String filePathName) throws SQLException {
+		Map<String, Object> fieldValues = new HashMap<String, Object>();
+
+		fieldValues.put("filePathName", filePathName);
+
+		return queryForFieldValues(fieldValues);
+	}
+
 	public List<SyncFile> findByF_L_S(
 			String filePathName, long localSyncTime, long syncAccountId)
 		throws SQLException {
