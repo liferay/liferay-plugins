@@ -1243,6 +1243,235 @@ html.aui {
 
 /* ---------- Portlet: message boards ---------- */
 
+.portlet-message-boards {
+	margin: 10px;
+}
+
+.portlet-asset-publisher, .portlet-message-boards {
+	.accordion-heading {
+		background-color: #F6F6F6;
+	}
+
+	.category-title {
+		white-space: normal;
+	}
+
+	.tags {
+		margin-bottom: 0.5em;
+
+		.tag {
+			background-color: #EEE;
+			background-position-x: 7px;
+			
+			@include border-radius(4px);
+
+			color: #2571AD;
+			display: inline-block;
+			padding: 7px 7px 7px 27px;
+		}
+	}
+
+	/* ---------- Thread ---------- */
+
+	.edit-controls li, .thread-actions li, .thread-navigation {
+		line-height: 2em;
+	}
+
+	.thread-message-view {
+		position: relative;
+
+		td, tr {
+			display: block;
+		}
+	}
+
+	.thread-controls {
+		background-color: #F6F6F6;
+	}
+
+	.thread-actions .taglib-icon-list {
+		margin-bottom: 0;
+	}
+
+	.message-container {
+		overflow: visible;
+
+		.thread-message-view {
+			min-width: 0;
+		}
+
+		.lfr-top {
+			box-sizing: border-box;
+			width: 100%;
+
+			&.user-info {
+				border-right-width: 0;
+				padding: 10px;
+				position: absolute;
+				top: 0;
+				width: 75px;
+			}
+
+			.thread-top {
+				border-bottom-width: 0;
+				padding-left: 80px;
+			}
+
+			.edit-controls {
+				clear: both;
+				float: left;
+				margin-bottom: 1em;
+				margin-top: 0.5em;
+			}
+		}
+
+		.user-info {
+			position: relative;
+
+			.user-details {
+				display: none;
+			}
+
+			&:hover .user-details {
+				background-color: #FFF;
+				border: 1px solid $defaultBorderColor;
+
+				@include border-radius(4px);
+				@include box-shadow(-4px 0 15px -7px rgba(0,0,0, 0.6));
+
+				display: block;
+				margin-top: 0;
+				padding: 10px;
+				position: absolute;
+				top: 100%;
+
+				div, span {
+					white-space: nowrap;
+				}
+			}
+		}
+
+		.taglib-user-display {
+			padding: 0;
+
+			.user-name {
+				left: 100%;
+				margin-left: 8px;
+				margin-top: 0.5em;
+				position: absolute;
+				top: 0;
+				white-space: nowrap;
+				word-break: normal;
+			}
+		}
+
+		.user-profile-image {
+			height: 55px;
+
+			.avatar {
+				width: 55px;
+			}
+		}
+
+		.subject {
+			color: #999;
+			margin-top: 2em;
+			word-break: break-word;
+
+			div {
+				color: #333;
+			}
+
+			.tags {
+				float: none;
+			}
+		}
+
+		.answer {
+			background: #FFF;
+			border: 2px solid #2D8308;
+
+			@include border-radius(4px 0 0 4px);
+
+			border-right-width: 0;
+			margin-right: 1px;
+			padding: 4px;
+			position: absolute;
+			right: 100%;
+			text-align: center;
+			top: 10px;
+			width: 80px;
+		}
+
+		.thread-body {
+			padding-left: 80px;
+			word-break: break-word;
+		}
+
+		.message-attachments {
+			margin-bottom: -2em;
+			margin-top: 2em;
+
+			h3 {
+				color: #999;
+				font-size: 1em;
+				margin-bottom: 0;
+			}
+
+			.message-attachment {
+				padding: 0;
+			}
+		}
+
+		.thread-bottom {
+			padding-left: 75px;
+
+			br {
+				display: none;
+			}
+
+			.edit-controls {
+				float: none;
+				margin: 1em 1em 0.5em 16em;
+				overflow: hidden;
+
+				li {
+					float: right;
+				}
+			}
+		}
+
+		.taglib-ratings {
+			bottom: 0;
+			margin-bottom: 0.6em;
+			position: absolute;
+		}
+
+		.taglib-flags {
+			bottom: 1em;
+			margin-left: 10em;
+			position: absolute;
+		}
+
+		.entry-links {
+			clear: both;
+			margin-left: 10px;
+
+			.asset-links-list {
+				margin-left: 25px;
+			}
+		}
+	}
+}
+
+.ios.touch {
+	.portlet-asset-publisher, .portlet-message-boards {
+		.user-info:hover .user-details {
+			display: none;
+		}
+	}
+}
+
 /* ---------- Portlet: microblogs ---------- */
 
 .microblogs-portlet {
@@ -1587,6 +1816,21 @@ html.aui {
 			display: block;
 			width: auto;
 		}
+
+		/* ---------- Portlet: message boards ---------- */
+
+		.portlet-asset-publisher, .portlet-message-boards {
+			.message-container .thread-top .answer {
+				@include border-radius(4px);
+
+				border-width: 2px;
+				display: block;
+				margin-bottom: 0.5em;
+				position: initial;
+				text-align: left;
+				width: auto;
+			}
+		}
 	}
 
 	@include respond-to(phone) {
@@ -1800,6 +2044,141 @@ html.aui {
 		.portlet-document-library .row-fluid {
 			.span2, .span10 {
 				width: auto;
+			}
+		}
+
+		/* ---------- Portlet: message boards ---------- */
+
+		.portlet-asset-publisher, .portlet-message-boards {
+			#toggle_id_message_boards_view_message_thread, #toggle_id_message_boards_view_message_thread_image, .thread-view-controls {
+				display: none;
+			}
+
+			.accordion-inner {
+				padding: 0;
+
+				.lfr-search-container {
+					margin-top: 0;
+				}
+
+				.table {
+					border-width: 0;
+					margin-bottom: 0;
+
+					td, th {
+						&:first-child {
+							border-left-width: 0;
+						}
+					}
+				}
+			}
+
+			#_19_mbCategoriesSearchContainerSearchContainer {
+				tr {
+					td, th {
+						&:nth-child(2), &:nth-child(3), &:nth-child(4) {
+							display: none;
+						}
+					}
+				}
+			}
+
+			#_19_mbThreadsSearchContainerSearchContainer {
+				tr {
+					td, th {
+						&:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+							display: none;
+						}
+					}
+				}
+			}
+
+			.displayStyle-question #_19_mbThreadsSearchContainerSearchContainer {
+				.table {
+					border-top-width: 0;
+				}
+
+				thead {
+					display: none;
+				}
+
+				tr {
+					td, th {
+						&:nth-child(2), &:nth-child(4), &:nth-child(5), &:nth-child(6) {
+							display: table-cell;
+						}
+					}
+				}
+
+				.question-details {
+					float: none;
+
+					.status, .votes {
+						display: block;
+						margin: 5px auto;
+					}
+
+					.status {
+						background-color: transparent;
+
+						&.answered {
+							color: #5BA018;
+						}
+
+						&.unanswered {
+							color: #CF4937;
+						}
+					}
+
+					.views {
+						display: none;
+					}
+				}
+			}
+
+			/* ---------- Thread ---------- */
+
+			.message-container {
+				margin-left: 0 !important;
+
+				.user-name {
+					margin-top: 0.9em;
+				}
+
+				.thread-top {
+					padding-left: 15px;
+
+					.subject {
+						margin-top: 2.6em;
+
+						> a {
+							display: block;
+							margin-bottom: 1.5em;
+							margin-left: 65px;
+						}
+
+						br {
+							display: none;
+						}
+					}
+				}
+
+				.thread-body {
+					padding-left: 15px;
+				}
+
+				.thread-bottom {
+					padding-left: 5px;
+
+					.edit-controls {
+						margin-bottom: 2.5em;
+						margin-left: 0.5em;
+
+						li {
+							float: left;
+						}
+					}
+				}
 			}
 		}
 
