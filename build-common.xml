@@ -147,9 +147,9 @@ Error-Prone was automatically installed. Please rerun your task.
 
 	<macrodef name="baseline-jar-macro">
 		<attribute name="bndRootFile" />
+		<attribute name="classesDir" />
 		<attribute name="file" />
 		<attribute name="outputPath" />
-		<attribute name="rootProjectDir" />
 		<attribute name="sourcePath" />
 
 		<sequential>
@@ -164,7 +164,7 @@ Error-Prone was automatically installed. Please rerun your task.
 				sourcePath="@{sourcePath}"
 			>
 				<classpath>
-					<pathelement location="@{sourcePath}/classes" />
+					<pathelement location="@{classesDir}" />
 				</classpath>
 			</baseline-jar>
 		</sequential>
@@ -1462,9 +1462,9 @@ Please find a solution that does not require portal-impl.jar.
 
 							<baseline-jar-macro
 								bndRootFile="${sdk.dir}/common.bnd"
+								classesDir="${plugin.classes.dir}"
 								file="@{module.dir}/bnd.bnd"
 								outputPath="${plugin.file}"
-								rootProjectDir="${sdk.dir}"
 								sourcePath="@{module.dir}"
 							/>
 						</then>
@@ -1811,14 +1811,22 @@ Please find a solution that does not require portal-impl.jar.
 			</if>
 
 			<if>
-				<or>
-					<antelope:endswith string="${plugin.name}" with="-ext" />
-					<antelope:endswith string="${plugin.name}" with="-hook" />
-					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
-					<antelope:endswith string="${plugin.name}" with="-portlet" />
-					<antelope:endswith string="${plugin.name}" with="-theme" />
-					<antelope:endswith string="${plugin.name}" with="-web" />
-				</or>
+				<and>
+					<or>
+						<antelope:endswith string="${plugin.name}" with="-ext" />
+						<antelope:endswith string="${plugin.name}" with="-hook" />
+						<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+						<antelope:endswith string="${plugin.name}" with="-portlet" />
+						<antelope:endswith string="${plugin.name}" with="-theme" />
+						<antelope:endswith string="${plugin.name}" with="-web" />
+					</or>
+					<not>
+						<resourcecontains
+							resource="${module.dir.unix}/build.xml"
+							substring="/build-common-osgi-plugin.xml&quot;"
+						/>
+					</not>
+				</and>
 				<then>
 					<var name="plugin.packaging" value="war" />
 				</then>
@@ -2339,83 +2347,97 @@ for (String path : paths) {
 			/>
 
 			<if>
-				<or>
-					<antelope:endswith string="${plugin.name}" with="-hook" />
-					<antelope:endswith string="${plugin.name}" with="-layouttpl" />
-					<antelope:endswith string="${plugin.name}" with="-web" />
-				</or>
+				<resourcecontains
+					resource="${module.dir.unix}/build.xml"
+					substring="/build-common-osgi-plugin.xml&quot;"
+				/>
 				<then>
-					<war-web
-						module.dir="@{module.dir}"
-					/>
-				</then>
-				<elseif>
-					<antelope:endswith string="${plugin.name}" with="-portlet" />
-					<then>
-						<loop-macrodef-or-target
-							module.dirs="@{module.dir}"
-							target.name="compile"
-						/>
-
-						<build-css
-							module.dir="@{module.dir}"
-						/>
-
-						<war-web
-							module.dir="@{module.dir}"
-						/>
-
-						<war-alloy-portlet
-							module.dir="@{module.dir}"
-						/>
-					</then>
-				</elseif>
-				<elseif>
-					<antelope:endswith string="${plugin.name}" with="-theme" />
-					<then>
-						<loop-macrodef-or-target
-							module.dirs="@{module.dir}"
-							target.name="compile"
-						/>
-
-						<build-css
-							module.dir="@{module.dir}"
-						/>
-
-						<if>
-							<not>
-								<available file="@{module.dir}/docroot/images/screenshot.png" />
-							</not>
-							<then>
-								<echo>screenshot.png does not exist.</echo>
-							</then>
-						</if>
-
-						<if>
-							<not>
-								<available file="@{module.dir}/docroot/images/thumbnail.png" />
-							</not>
-							<then>
-								<echo>thumbnail.png does not exist.</echo>
-							</then>
-						</if>
-
-						<mkdir dir="${sdk.dir}/dist" />
-
-						<delete file="${plugin.file}" />
-
-						<zip
-							basedir="@{module.dir}/docroot"
-							destfile="${plugin.file}"
-							excludes="_diffs.*,_diffs/**,${plugins.war.excludes}"
-						/>
-					</then>
-				</elseif>
-				<else>
 					<loop-macrodef-or-target
 						module.dirs="@{module.dir}"
 						target.name="jar"
 					/>
+				</then>
+				<else>
+					<if>
+						<or>
+							<antelope:endswith string="${plugin.name}" with="-hook" />
+							<antelope:endswith string="${plugin.name}" with="-layouttpl" />
+							<antelope:endswith string="${plugin.name}" with="-web" />
+						</or>
+						<then>
+							<war-web
+								module.dir="@{module.dir}"
+							/>
+						</then>
+						<elseif>
+							<antelope:endswith string="${plugin.name}" with="-portlet" />
+							<then>
+								<loop-macrodef-or-target
+									module.dirs="@{module.dir}"
+									target.name="compile"
+								/>
+
+								<build-css
+									module.dir="@{module.dir}"
+								/>
+
+								<war-web
+									module.dir="@{module.dir}"
+								/>
+
+								<war-alloy-portlet
+									module.dir="@{module.dir}"
+								/>
+							</then>
+						</elseif>
+						<elseif>
+							<antelope:endswith string="${plugin.name}" with="-theme" />
+							<then>
+								<loop-macrodef-or-target
+									module.dirs="@{module.dir}"
+									target.name="compile"
+								/>
+
+								<build-css
+									module.dir="@{module.dir}"
+								/>
+
+								<if>
+									<not>
+										<available file="@{module.dir}/docroot/images/screenshot.png" />
+									</not>
+									<then>
+										<echo>screenshot.png does not exist.</echo>
+									</then>
+								</if>
+
+								<if>
+									<not>
+										<available file="@{module.dir}/docroot/images/thumbnail.png" />
+									</not>
+									<then>
+										<echo>thumbnail.png does not exist.</echo>
+									</then>
+								</if>
+
+								<mkdir dir="${sdk.dir}/dist" />
+
+								<delete file="${plugin.file}" />
+
+								<zip
+									basedir="@{module.dir}/docroot"
+									destfile="${plugin.file}"
+									excludes="_diffs.*,_diffs/**,${plugins.war.excludes}"
+								/>
+							</then>
+						</elseif>
+						<else>
+							<loop-macrodef-or-target
+								module.dirs="@{module.dir}"
+								target.name="jar"
+							/>
+						</else>
+					</if>
 				</else>
 			</if>
 		</sequential>
