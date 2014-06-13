@@ -190,6 +190,10 @@ public class SyncFile extends StateAwareModel {
 		return version;
 	}
 
+	public boolean isFile() {
+		return type.equals(TYPE_FILE);
+	}
+
 	public boolean isFolder() {
 		return type.equals(TYPE_FOLDER);
 	}
