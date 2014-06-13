@@ -245,19 +245,11 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 		BlogsEntry blogsEntry = BlogsEntryLocalServiceUtil.fetchBlogsEntry(
 			activity.getClassPK());
 
-		if (blogsEntry == null) {
+		if ((blogsEntry == null) || !blogsEntry.isVisible()) {
 			return false;
 		}
 
-		Date displayDate = blogsEntry.getDisplayDate();
-
-		long displayTime = displayDate.getTime();
-
-		if (displayTime < System.currentTimeMillis()) {
-			return true;
-		}
-
-		return false;
+		return true;
 	}
 
 	private static final String[] _CLASS_NAMES = {BlogsEntry.class.getName()};
