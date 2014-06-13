@@ -447,7 +447,7 @@ public abstract class SOSocialActivityInterpreter
 				continue;
 			}
 
-			if (!isAfterDisplayDate(activity)) {
+			if (!isVisible(activity)) {
 				continue;
 			}
 
@@ -504,9 +504,7 @@ public abstract class SOSocialActivityInterpreter
 		return false;
 	}
 
-	protected boolean isAfterDisplayDate(SocialActivity activity)
-		throws Exception {
-
+	protected boolean isVisible(SocialActivity activity) throws Exception {
 		return true;
 	}
 
