@@ -98,7 +98,9 @@ public class SyncFilePersistence extends BasePersistenceImpl<SyncFile, Long> {
 		return queryForFieldValues(fieldValues);
 	}
 
-	public List<SyncFile> findByF(String filePathName) throws SQLException {
+	public List<SyncFile> findByFilePathName(String filePathName)
+		throws SQLException {
+
 		Map<String, Object> fieldValues = new HashMap<String, Object>();
 
 		fieldValues.put("filePathName", filePathName);

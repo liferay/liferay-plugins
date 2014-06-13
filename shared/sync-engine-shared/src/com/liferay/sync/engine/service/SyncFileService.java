@@ -431,7 +431,7 @@ public class SyncFileService {
 
 	public static List<SyncFile> findSyncFiles(String filePathName) {
 		try {
-			return _syncFilePersistence.findByF(filePathName);
+			return _syncFilePersistence.findByFilePathName(filePathName);
 		}
 		catch (SQLException sqle) {
 			if (_logger.isDebugEnabled()) {
