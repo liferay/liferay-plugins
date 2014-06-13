@@ -239,9 +239,7 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 	}
 
 	@Override
-	protected boolean isAfterDisplayDate(SocialActivity activity)
-		throws Exception {
-
+	protected boolean isVisible(SocialActivity activity) throws Exception {
 		BlogsEntry blogsEntry = BlogsEntryLocalServiceUtil.fetchBlogsEntry(
 			activity.getClassPK());
 
