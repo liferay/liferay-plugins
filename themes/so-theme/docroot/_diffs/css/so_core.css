@@ -126,8 +126,8 @@ div#navigation {
 
 				display: block;
 				float: right;
-				padding: 4px;
 				margin-top: 4px;
+				padding: 4px;
 				width: 100%;
 			}
 		}
@@ -173,7 +173,7 @@ div#navigation {
 	}
 
 	.selected a {
-		border-bottom: none;
+		border-bottom-width: 0;
 		border-top: 1px solid #0E50A9;
 
 		@include box-shadow(0 1px 0 #7FBBF4 inset);
@@ -222,7 +222,7 @@ body {
 #main-content {
 	background: #FFF;
 
-	@include box-shadow(-4px 0 15px -7px rgba(0,0,0, 0.6));
+	@include box-shadow(-4px 0 15px -7px rgba(0, 0, 0, 0.6));
 
 	float: left;
 	min-height: 500px;
@@ -1150,7 +1150,7 @@ html.aui {
 
 		.navigation-pane .nav {
 			background: none;
-			border: 0;
+			border-width: 0;
 			padding: 0 15px;
 
 			.app-view-navigation-entry .overlay.entry-action .btn {
@@ -1337,7 +1337,7 @@ html.aui {
 				border: 1px solid $defaultBorderColor;
 
 				@include border-radius(4px);
-				@include box-shadow(-4px 0 15px -7px rgba(0,0,0, 0.6));
+				@include box-shadow(-4px 0 15px -7px rgba(0, 0, 0, 0.6));
 
 				display: block;
 				margin-top: 0;
@@ -1737,11 +1737,11 @@ html.aui {
 	position: relative;
 }
 
-.taglib-ratings {
+.taglib-ratings.thumbs {
 	margin: 0;
 	padding: 5px;
 
-	&.thumbs .thumbrating .rating-label {
+	.thumbrating .rating-label {
 		display: inline-block;
 	}
 }
@@ -1755,8 +1755,8 @@ html.aui {
 	.header-back-to, .header-title {
 		display: inline;
 		vertical-align: middle;
-		word-break: break-word;
 		white-space: normal;
+		word-break: break-word;
 	}
 
 	.header-back-to a {
@@ -1835,7 +1835,7 @@ html.aui {
 
 	@include respond-to(phone) {
 		body #banner {
-			padding: .5em 1em;
+			padding: 0.5em 1em;
 			text-align: center;
 
 			.site-title {
