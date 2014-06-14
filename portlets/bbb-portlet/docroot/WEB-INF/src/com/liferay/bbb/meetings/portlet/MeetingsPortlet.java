@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -117,6 +118,37 @@ public class MeetingsPortlet extends MVCPortlet {
 		}
 
 		writeJSON(actionRequest, actionResponse, jsonObject);
+	}
+
+	public void joinMeetingLiferayUser(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		long bbbMeetingId = ParamUtil.getLong(actionRequest, "bbbMeetingId");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			BBBMeeting.class.getName(), actionRequest);
+
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		BBBParticipant bbbParticipant =
+			BBBParticipantLocalServiceUtil.fetchBBBParticipant(
+				bbbMeetingId, user.getEmailAddress());
+
+		if (bbbParticipant == null) {
+			bbbParticipant = BBBParticipantLocalServiceUtil.addBBBParticipant(
+				user.getUserId(), themeDisplay.getScopeGroupId(), bbbMeetingId,
+				user.getFirstName(), user.getEmailAddress(),
+				BBBParticipantConstants.TYPE_MODERATOR,
+				BBBParticipantConstants.STATUS_INVITED, serviceContext);
+		}
+
+		actionResponse.sendRedirect(
+			BBBUtil.getInvitationURL(
+				bbbParticipant, serviceContext.getRequest()));
 	}
 
 	public void startBBBMeeting(

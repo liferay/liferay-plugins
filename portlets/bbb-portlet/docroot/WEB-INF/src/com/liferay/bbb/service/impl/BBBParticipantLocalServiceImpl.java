@@ -71,6 +71,15 @@ public class BBBParticipantLocalServiceImpl
 	}
 
 	@Override
+	public BBBParticipant fetchBBBParticipant(
+			long bbbMeetingId, String emailAddress)
+		throws SystemException {
+
+		return bbbParticipantPersistence.fetchByBMI_EA(
+			bbbMeetingId, emailAddress);
+	}
+
+	@Override
 	public List<BBBParticipant> getBBBParticipants(long bbbMeetingId)
 		throws SystemException {
 

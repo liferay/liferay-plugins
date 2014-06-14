@@ -84,6 +84,10 @@
 		<finder name="BbbMeetingId" return-type="Collection">
 			<finder-column name="bbbMeetingId" />
 		</finder>
+		<finder name="BMI_EA" return-type="BBBParticipant" unique="true">
+			<finder-column name="bbbMeetingId" />
+			<finder-column name="emailAddress" />
+		</finder>
 	</entity>
 	<entity name="BBBServer" local-service="true" remote-service="false">
 
