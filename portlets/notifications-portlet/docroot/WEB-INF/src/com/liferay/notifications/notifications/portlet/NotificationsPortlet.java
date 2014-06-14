@@ -14,6 +14,7 @@
 
 package com.liferay.notifications.notifications.portlet;
 
+import com.liferay.notifications.util.NotificationsUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -123,7 +124,7 @@ public class NotificationsPortlet extends MVCPortlet {
 		try {
 			String resourceId = resourceRequest.getResourceID();
 
-			if (resourceId.equals("notifcationsCount")) {
+			if (resourceId.equals("notificationsCount")) {
 				getNotificationsCount(resourceRequest, resourceResponse);
 			}
 		}
@@ -208,6 +209,22 @@ public class NotificationsPortlet extends MVCPortlet {
 
 			jsonObject.put(
 				"timestamp", String.valueOf(System.currentTimeMillis()));
+
+			int unreadActionableUserNotificationsCount =
+				NotificationsUtil.getArchivedUserNotificationEventsCount(
+					themeDisplay.getUserId(), true, false);
+
+			jsonObject.put(
+				"unreadActionableUserNotificationsCount",
+				unreadActionableUserNotificationsCount);
+
+			int unreadNonActionableUserNotificationsCount =
+				NotificationsUtil.getArchivedUserNotificationEventsCount(
+					themeDisplay.getUserId(), false, false);
+
+			jsonObject.put(
+				"unreadNonActionableUserNotificationsCount",
+				unreadNonActionableUserNotificationsCount);
 
 			int unreadUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
