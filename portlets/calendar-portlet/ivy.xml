@@ -8,6 +8,6 @@
 	<info module="calendar-portlet" organisation="com.liferay" />
 
 	<dependencies defaultconf="default">
-		<dependency name="google-rfc-2445" org="org.scala-saddle" rev="20110304" />
+		<dependency name="com.google.ical" org="com.liferay" rev="20110304" />
 	</dependencies>
 </ivy-module>
