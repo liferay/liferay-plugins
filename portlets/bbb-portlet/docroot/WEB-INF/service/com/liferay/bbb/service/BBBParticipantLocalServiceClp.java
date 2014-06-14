@@ -122,24 +122,28 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 				"int", "int", "com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName20 = "getBBBParticipants";
+		_methodName20 = "fetchBBBParticipant";
 
-		_methodParameterTypes20 = new String[] { "long" };
+		_methodParameterTypes20 = new String[] { "long", "java.lang.String" };
 
-		_methodName21 = "getBBBParticipantsCount";
+		_methodName21 = "getBBBParticipants";
 
 		_methodParameterTypes21 = new String[] { "long" };
 
-		_methodName22 = "updateBBBParticipant";
+		_methodName22 = "getBBBParticipantsCount";
 
-		_methodParameterTypes22 = new String[] {
+		_methodParameterTypes22 = new String[] { "long" };
+
+		_methodName23 = "updateBBBParticipant";
+
+		_methodParameterTypes23 = new String[] {
 				"long", "long", "java.lang.String", "java.lang.String", "int",
 				"com.liferay.portal.service.ServiceContext"
 			};
 
-		_methodName23 = "updateStatus";
+		_methodName24 = "updateStatus";
 
-		_methodParameterTypes23 = new String[] { "long", "int" };
+		_methodParameterTypes24 = new String[] { "long", "int" };
 	}
 
 	@Override
@@ -746,14 +750,48 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 	}
 
 	@Override
+	public com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
+		long bbbMeetingId, java.lang.String emailAddress)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] {
+						bbbMeetingId,
+						
+					ClpSerializer.translateInput(emailAddress)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (com.liferay.bbb.model.BBBParticipant)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
 	public java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
 		long bbbMeetingId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName20,
-					_methodParameterTypes20, new Object[] { bbbMeetingId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName21,
+					_methodParameterTypes21, new Object[] { bbbMeetingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -780,8 +818,8 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName21,
-					_methodParameterTypes21, new Object[] { bbbMeetingId });
+			returnObj = _invokableLocalService.invokeMethod(_methodName22,
+					_methodParameterTypes22, new Object[] { bbbMeetingId });
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
@@ -812,8 +850,8 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName22,
-					_methodParameterTypes22,
+			returnObj = _invokableLocalService.invokeMethod(_methodName23,
+					_methodParameterTypes23,
 					new Object[] {
 						bbbParticipantId,
 						
@@ -859,8 +897,8 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableLocalService.invokeMethod(_methodName23,
-					_methodParameterTypes23,
+			returnObj = _invokableLocalService.invokeMethod(_methodName24,
+					_methodParameterTypes24,
 					new Object[] { bbbParticipantId, status });
 		}
 		catch (Throwable t) {
@@ -933,4 +971,6 @@ public class BBBParticipantLocalServiceClp implements BBBParticipantLocalService
 	private String[] _methodParameterTypes22;
 	private String _methodName23;
 	private String[] _methodParameterTypes23;
+	private String _methodName24;
+	private String[] _methodParameterTypes24;
 }

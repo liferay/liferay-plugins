@@ -300,6 +300,14 @@ public class BBBParticipantLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
+		long bbbMeetingId, java.lang.String emailAddress)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _bbbParticipantLocalService.fetchBBBParticipant(bbbMeetingId,
+			emailAddress);
+	}
+
+	@Override
 	public java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
 		long bbbMeetingId)
 		throws com.liferay.portal.kernel.exception.SystemException {

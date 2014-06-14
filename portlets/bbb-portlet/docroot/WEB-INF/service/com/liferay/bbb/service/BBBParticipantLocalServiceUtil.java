@@ -286,6 +286,12 @@ public class BBBParticipantLocalServiceUtil {
 			emailAddress, type, status, serviceContext);
 	}
 
+	public static com.liferay.bbb.model.BBBParticipant fetchBBBParticipant(
+		long bbbMeetingId, java.lang.String emailAddress)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().fetchBBBParticipant(bbbMeetingId, emailAddress);
+	}
+
 	public static java.util.List<com.liferay.bbb.model.BBBParticipant> getBBBParticipants(
 		long bbbMeetingId)
 		throws com.liferay.portal.kernel.exception.SystemException {

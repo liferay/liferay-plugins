@@ -40,6 +40,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnmodifiableList;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.ModelListener;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
@@ -587,6 +588,272 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 	}
 
 	private static final String _FINDER_COLUMN_BBBMEETINGID_BBBMEETINGID_2 = "bbbParticipant.bbbMeetingId = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_BMI_EA = new FinderPath(BBBParticipantModelImpl.ENTITY_CACHE_ENABLED,
+			BBBParticipantModelImpl.FINDER_CACHE_ENABLED,
+			BBBParticipantImpl.class, FINDER_CLASS_NAME_ENTITY,
+			"fetchByBMI_EA",
+			new String[] { Long.class.getName(), String.class.getName() },
+			BBBParticipantModelImpl.BBBMEETINGID_COLUMN_BITMASK |
+			BBBParticipantModelImpl.EMAILADDRESS_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_BMI_EA = new FinderPath(BBBParticipantModelImpl.ENTITY_CACHE_ENABLED,
+			BBBParticipantModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByBMI_EA",
+			new String[] { Long.class.getName(), String.class.getName() });
+
+	/**
+	 * Returns the b b b participant where bbbMeetingId = &#63; and emailAddress = &#63; or throws a {@link com.liferay.bbb.NoSuchParticipantException} if it could not be found.
+	 *
+	 * @param bbbMeetingId the bbb meeting ID
+	 * @param emailAddress the email address
+	 * @return the matching b b b participant
+	 * @throws com.liferay.bbb.NoSuchParticipantException if a matching b b b participant could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public BBBParticipant findByBMI_EA(long bbbMeetingId, String emailAddress)
+		throws NoSuchParticipantException, SystemException {
+		BBBParticipant bbbParticipant = fetchByBMI_EA(bbbMeetingId, emailAddress);
+
+		if (bbbParticipant == null) {
+			StringBundler msg = new StringBundler(6);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("bbbMeetingId=");
+			msg.append(bbbMeetingId);
+
+			msg.append(", emailAddress=");
+			msg.append(emailAddress);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchParticipantException(msg.toString());
+		}
+
+		return bbbParticipant;
+	}
+
+	/**
+	 * Returns the b b b participant where bbbMeetingId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param bbbMeetingId the bbb meeting ID
+	 * @param emailAddress the email address
+	 * @return the matching b b b participant, or <code>null</code> if a matching b b b participant could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public BBBParticipant fetchByBMI_EA(long bbbMeetingId, String emailAddress)
+		throws SystemException {
+		return fetchByBMI_EA(bbbMeetingId, emailAddress, true);
+	}
+
+	/**
+	 * Returns the b b b participant where bbbMeetingId = &#63; and emailAddress = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param bbbMeetingId the bbb meeting ID
+	 * @param emailAddress the email address
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching b b b participant, or <code>null</code> if a matching b b b participant could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public BBBParticipant fetchByBMI_EA(long bbbMeetingId, String emailAddress,
+		boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { bbbMeetingId, emailAddress };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_BMI_EA,
+					finderArgs, this);
+		}
+
+		if (result instanceof BBBParticipant) {
+			BBBParticipant bbbParticipant = (BBBParticipant)result;
+
+			if ((bbbMeetingId != bbbParticipant.getBbbMeetingId()) ||
+					!Validator.equals(emailAddress,
+						bbbParticipant.getEmailAddress())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_SELECT_BBBPARTICIPANT_WHERE);
+
+			query.append(_FINDER_COLUMN_BMI_EA_BBBMEETINGID_2);
+
+			boolean bindEmailAddress = false;
+
+			if (emailAddress == null) {
+				query.append(_FINDER_COLUMN_BMI_EA_EMAILADDRESS_1);
+			}
+			else if (emailAddress.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_BMI_EA_EMAILADDRESS_3);
+			}
+			else {
+				bindEmailAddress = true;
+
+				query.append(_FINDER_COLUMN_BMI_EA_EMAILADDRESS_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(bbbMeetingId);
+
+				if (bindEmailAddress) {
+					qPos.add(emailAddress);
+				}
+
+				List<BBBParticipant> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BMI_EA,
+						finderArgs, list);
+				}
+				else {
+					BBBParticipant bbbParticipant = list.get(0);
+
+					result = bbbParticipant;
+
+					cacheResult(bbbParticipant);
+
+					if ((bbbParticipant.getBbbMeetingId() != bbbMeetingId) ||
+							(bbbParticipant.getEmailAddress() == null) ||
+							!bbbParticipant.getEmailAddress()
+											   .equals(emailAddress)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BMI_EA,
+							finderArgs, bbbParticipant);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_BMI_EA,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (BBBParticipant)result;
+		}
+	}
+
+	/**
+	 * Removes the b b b participant where bbbMeetingId = &#63; and emailAddress = &#63; from the database.
+	 *
+	 * @param bbbMeetingId the bbb meeting ID
+	 * @param emailAddress the email address
+	 * @return the b b b participant that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public BBBParticipant removeByBMI_EA(long bbbMeetingId, String emailAddress)
+		throws NoSuchParticipantException, SystemException {
+		BBBParticipant bbbParticipant = findByBMI_EA(bbbMeetingId, emailAddress);
+
+		return remove(bbbParticipant);
+	}
+
+	/**
+	 * Returns the number of b b b participants where bbbMeetingId = &#63; and emailAddress = &#63;.
+	 *
+	 * @param bbbMeetingId the bbb meeting ID
+	 * @param emailAddress the email address
+	 * @return the number of matching b b b participants
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByBMI_EA(long bbbMeetingId, String emailAddress)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_BMI_EA;
+
+		Object[] finderArgs = new Object[] { bbbMeetingId, emailAddress };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(3);
+
+			query.append(_SQL_COUNT_BBBPARTICIPANT_WHERE);
+
+			query.append(_FINDER_COLUMN_BMI_EA_BBBMEETINGID_2);
+
+			boolean bindEmailAddress = false;
+
+			if (emailAddress == null) {
+				query.append(_FINDER_COLUMN_BMI_EA_EMAILADDRESS_1);
+			}
+			else if (emailAddress.equals(StringPool.BLANK)) {
+				query.append(_FINDER_COLUMN_BMI_EA_EMAILADDRESS_3);
+			}
+			else {
+				bindEmailAddress = true;
+
+				query.append(_FINDER_COLUMN_BMI_EA_EMAILADDRESS_2);
+			}
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(bbbMeetingId);
+
+				if (bindEmailAddress) {
+					qPos.add(emailAddress);
+				}
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_BMI_EA_BBBMEETINGID_2 = "bbbParticipant.bbbMeetingId = ? AND ";
+	private static final String _FINDER_COLUMN_BMI_EA_EMAILADDRESS_1 = "bbbParticipant.emailAddress IS NULL";
+	private static final String _FINDER_COLUMN_BMI_EA_EMAILADDRESS_2 = "bbbParticipant.emailAddress = ?";
+	private static final String _FINDER_COLUMN_BMI_EA_EMAILADDRESS_3 = "(bbbParticipant.emailAddress IS NULL OR bbbParticipant.emailAddress = '')";
 
 	public BBBParticipantPersistenceImpl() {
 		setModelClass(BBBParticipant.class);
@@ -602,6 +869,12 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 		EntityCacheUtil.putResult(BBBParticipantModelImpl.ENTITY_CACHE_ENABLED,
 			BBBParticipantImpl.class, bbbParticipant.getPrimaryKey(),
 			bbbParticipant);
+
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BMI_EA,
+			new Object[] {
+				bbbParticipant.getBbbMeetingId(),
+				bbbParticipant.getEmailAddress()
+			}, bbbParticipant);
 
 		bbbParticipant.resetOriginalValues();
 	}
@@ -659,6 +932,8 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		FinderCacheUtil.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
+
+		clearUniqueFindersCache(bbbParticipant);
 	}
 
 	@Override
@@ -669,6 +944,61 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 		for (BBBParticipant bbbParticipant : bbbParticipants) {
 			EntityCacheUtil.removeResult(BBBParticipantModelImpl.ENTITY_CACHE_ENABLED,
 				BBBParticipantImpl.class, bbbParticipant.getPrimaryKey());
+
+			clearUniqueFindersCache(bbbParticipant);
+		}
+	}
+
+	protected void cacheUniqueFindersCache(BBBParticipant bbbParticipant) {
+		if (bbbParticipant.isNew()) {
+			Object[] args = new Object[] {
+					bbbParticipant.getBbbMeetingId(),
+					bbbParticipant.getEmailAddress()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_BMI_EA, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BMI_EA, args,
+				bbbParticipant);
+		}
+		else {
+			BBBParticipantModelImpl bbbParticipantModelImpl = (BBBParticipantModelImpl)bbbParticipant;
+
+			if ((bbbParticipantModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_BMI_EA.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						bbbParticipant.getBbbMeetingId(),
+						bbbParticipant.getEmailAddress()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_BMI_EA, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_BMI_EA, args,
+					bbbParticipant);
+			}
+		}
+	}
+
+	protected void clearUniqueFindersCache(BBBParticipant bbbParticipant) {
+		BBBParticipantModelImpl bbbParticipantModelImpl = (BBBParticipantModelImpl)bbbParticipant;
+
+		Object[] args = new Object[] {
+				bbbParticipant.getBbbMeetingId(),
+				bbbParticipant.getEmailAddress()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_BMI_EA, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_BMI_EA, args);
+
+		if ((bbbParticipantModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_BMI_EA.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					bbbParticipantModelImpl.getOriginalBbbMeetingId(),
+					bbbParticipantModelImpl.getOriginalEmailAddress()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_BMI_EA, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_BMI_EA, args);
 		}
 	}
 
@@ -837,6 +1167,9 @@ public class BBBParticipantPersistenceImpl extends BasePersistenceImpl<BBBPartic
 		EntityCacheUtil.putResult(BBBParticipantModelImpl.ENTITY_CACHE_ENABLED,
 			BBBParticipantImpl.class, bbbParticipant.getPrimaryKey(),
 			bbbParticipant);
+
+		clearUniqueFindersCache(bbbParticipant);
+		cacheUniqueFindersCache(bbbParticipant);
 
 		return bbbParticipant;
 	}
