@@ -28,9 +28,7 @@ public class JSONWebServiceUnavailableException extends IOException {
 		super(message);
 	}
 
-	public JSONWebServiceUnavailableException(
-		String message, Throwable cause) {
-
+	public JSONWebServiceUnavailableException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
