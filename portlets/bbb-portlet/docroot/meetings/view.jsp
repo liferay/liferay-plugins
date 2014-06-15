@@ -128,7 +128,7 @@ else {
 					loadingMask.show();
 
 					var io = A.io.request(
-						'<liferay-portlet:actionURL name="joinMeeting" />',
+						'<liferay-portlet:actionURL name="joinBBBMeeting" />',
 						{
 							on: {
 								complete: function(event, id, obj) {

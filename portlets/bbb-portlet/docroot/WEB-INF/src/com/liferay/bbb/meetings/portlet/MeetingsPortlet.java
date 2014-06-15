@@ -62,7 +62,7 @@ public class MeetingsPortlet extends MVCPortlet {
 		BBBAPIUtil.endMeeting(bbbMeetingId);
 	}
 
-	public void joinMeeting(
+	public void joinBBBMeeting(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
@@ -120,7 +120,7 @@ public class MeetingsPortlet extends MVCPortlet {
 		writeJSON(actionRequest, actionResponse, jsonObject);
 	}
 
-	public void joinMeetingLiferayUser(
+	public void joinBBBMeeting(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
