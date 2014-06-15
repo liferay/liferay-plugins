@@ -29,7 +29,7 @@
 			<mkdir dir="${ivy.home}" />
 
 			<get
-				dest="${ivy.home}"
+				dest="${ivy.home}/ivy-${ivy.version}.jar"
 				src="${ivy.jar.url}"
 			/>
 		</then>
