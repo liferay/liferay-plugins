@@ -66,89 +66,91 @@ public class MeetingsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		long bbbParticipantId = ParamUtil.getLong(
-			actionRequest, "bbbParticipantId");
-		String hash = ParamUtil.getString(actionRequest, "hash");
-		String name = ParamUtil.getString(actionRequest, "name");
-		boolean recordMeeting = ParamUtil.getBoolean(
-			actionRequest, "recordMeeting");
-
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		BBBParticipant bbbParticipant =
-			BBBParticipantLocalServiceUtil.getBBBParticipant(bbbParticipantId);
-
-		if (!hash.equals(BBBUtil.getHash(bbbParticipant))) {
-			jsonObject.put("success", Boolean.FALSE);
-
-			writeJSON(actionRequest, actionResponse, jsonObject);
-
-			return;
-		}
-
-		BBBMeeting bbbMeeting = BBBMeetingLocalServiceUtil.getBBBMeeting(
-			bbbParticipant.getBbbMeetingId());
-
-		try {
-			if ((bbbMeeting.getBbbServerId() ==
-					BBBMeetingConstants.BBB_SERVER_ID_DEFAULT) &&
-				(bbbParticipant.getType() !=
-					BBBParticipantConstants.TYPE_MODERATOR)) {
-
-				jsonObject.put("retry", Boolean.TRUE);
-			}
-			else {
-				if ((bbbParticipant.getType() ==
-						BBBParticipantConstants.TYPE_MODERATOR) &&
-					!BBBAPIUtil.isMeetingRunning(
-						bbbParticipant.getBbbMeetingId())) {
-
-					BBBAPIUtil.startMeeting(
-						bbbParticipant.getBbbMeetingId(), recordMeeting);
-				}
-
-				String joinURL = BBBAPIUtil.getJoinURL(bbbParticipant, name);
-
-				jsonObject.put("joinURL", joinURL);
-				jsonObject.put("success", Boolean.TRUE);
-			}
-		}
-		catch (Exception e) {
-			jsonObject.putException(e);
-		}
-
-		writeJSON(actionRequest, actionResponse, jsonObject);
-	}
-
-	public void joinBBBMeeting(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
 		long bbbMeetingId = ParamUtil.getLong(actionRequest, "bbbMeetingId");
 
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			BBBMeeting.class.getName(), actionRequest);
+		if (bbbMeetingId > 0) {
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
+			User user = themeDisplay.getUser();
 
-		User user = themeDisplay.getUser();
+			BBBParticipant bbbParticipant =
+				BBBParticipantLocalServiceUtil.fetchBBBParticipant(
+					bbbMeetingId, user.getEmailAddress());
 
-		BBBParticipant bbbParticipant =
-			BBBParticipantLocalServiceUtil.fetchBBBParticipant(
-				bbbMeetingId, user.getEmailAddress());
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				BBBMeeting.class.getName(), actionRequest);
 
-		if (bbbParticipant == null) {
-			bbbParticipant = BBBParticipantLocalServiceUtil.addBBBParticipant(
-				user.getUserId(), themeDisplay.getScopeGroupId(), bbbMeetingId,
-				user.getFirstName(), user.getEmailAddress(),
-				BBBParticipantConstants.TYPE_MODERATOR,
-				BBBParticipantConstants.STATUS_INVITED, serviceContext);
+			if (bbbParticipant == null) {
+				bbbParticipant =
+					BBBParticipantLocalServiceUtil.addBBBParticipant(
+						user.getUserId(), themeDisplay.getScopeGroupId(),
+						bbbMeetingId, user.getFirstName(),
+						user.getEmailAddress(),
+						BBBParticipantConstants.TYPE_MODERATOR,
+						BBBParticipantConstants.STATUS_INVITED, serviceContext);
+			}
+
+			actionResponse.sendRedirect(
+				BBBUtil.getInvitationURL(
+					bbbParticipant, serviceContext.getRequest()));
 		}
+		else {
+			long bbbParticipantId = ParamUtil.getLong(
+				actionRequest, "bbbParticipantId");
+			String hash = ParamUtil.getString(actionRequest, "hash");
+			String name = ParamUtil.getString(actionRequest, "name");
+			boolean recordMeeting = ParamUtil.getBoolean(
+				actionRequest, "recordMeeting");
 
-		actionResponse.sendRedirect(
-			BBBUtil.getInvitationURL(
-				bbbParticipant, serviceContext.getRequest()));
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			BBBParticipant bbbParticipant =
+				BBBParticipantLocalServiceUtil.getBBBParticipant(
+					bbbParticipantId);
+
+			if (!hash.equals(BBBUtil.getHash(bbbParticipant))) {
+				jsonObject.put("success", Boolean.FALSE);
+
+				writeJSON(actionRequest, actionResponse, jsonObject);
+
+				return;
+			}
+
+			BBBMeeting bbbMeeting = BBBMeetingLocalServiceUtil.getBBBMeeting(
+				bbbParticipant.getBbbMeetingId());
+
+			try {
+				if ((bbbMeeting.getBbbServerId() ==
+						BBBMeetingConstants.BBB_SERVER_ID_DEFAULT) &&
+					(bbbParticipant.getType() !=
+						BBBParticipantConstants.TYPE_MODERATOR)) {
+
+					jsonObject.put("retry", Boolean.TRUE);
+				}
+				else {
+					if ((bbbParticipant.getType() ==
+							BBBParticipantConstants.TYPE_MODERATOR) &&
+						!BBBAPIUtil.isMeetingRunning(
+							bbbParticipant.getBbbMeetingId())) {
+
+						BBBAPIUtil.startMeeting(
+							bbbParticipant.getBbbMeetingId(), recordMeeting);
+					}
+
+					String joinURL = BBBAPIUtil.getJoinURL(
+						bbbParticipant, name);
+
+					jsonObject.put("joinURL", joinURL);
+					jsonObject.put("success", Boolean.TRUE);
+				}
+			}
+			catch (Exception e) {
+				jsonObject.putException(e);
+			}
+
+			writeJSON(actionRequest, actionResponse, jsonObject);
+		}
 	}
 
 	public void startBBBMeeting(
