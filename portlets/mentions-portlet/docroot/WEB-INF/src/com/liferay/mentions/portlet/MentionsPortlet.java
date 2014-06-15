@@ -97,12 +97,12 @@ public class MentionsPortlet extends MVCPortlet {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		String query = ParamUtil.getString(request, "query");
-
 		SocialInteractionsConfiguration socialInteractionsConfiguration =
 			SocialInteractionsConfigurationUtil.
 				getSocialInteractionsConfiguration(
 					themeDisplay.getCompanyId(), portletDisplay.getId());
+
+		String query = ParamUtil.getString(request, "query");
 
 		List<User> users = MentionsUserFinderUtil.getUsers(
 			themeDisplay.getCompanyId(), themeDisplay.getUserId(), query,
