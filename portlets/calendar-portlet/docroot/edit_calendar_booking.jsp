@@ -48,6 +48,7 @@ int startTimeHour = ParamUtil.getInteger(request, "startTimeHour", startTimeJCal
 int startTimeMinute = ParamUtil.getInteger(request, "startTimeMinute", startTimeJCalendar.get(java.util.Calendar.MINUTE));
 
 startTimeJCalendar = CalendarFactoryUtil.getCalendar(startTimeYear, startTimeMonth, startTimeDay, startTimeHour, startTimeMinute, 0, 0, calendarBookingTimeZone);
+
 startTime = startTimeJCalendar.getTimeInMillis();
 
 java.util.Calendar defaultEndTimeJCalendar = (java.util.Calendar)nowJCalendar.clone();
@@ -65,6 +66,7 @@ int endTimeHour = ParamUtil.getInteger(request, "endTimeHour", endTimeJCalendar.
 int endTimeMinute = ParamUtil.getInteger(request, "endTimeMinute", endTimeJCalendar.get(java.util.Calendar.MINUTE));
 
 endTimeJCalendar = CalendarFactoryUtil.getCalendar(endTimeYear, endTimeMonth, endTimeDay, endTimeHour, endTimeMinute, 0, 0, calendarBookingTimeZone);
+
 endTime = endTimeJCalendar.getTimeInMillis();
 
 long firstReminder = BeanParamUtil.getLong(calendarBooking, request, "firstReminder");
