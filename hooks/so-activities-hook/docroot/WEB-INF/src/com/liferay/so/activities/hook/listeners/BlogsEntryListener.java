@@ -34,25 +34,25 @@ public class BlogsEntryListener extends BaseModelListener<BlogsEntry> {
 		throws ModelListenerException {
 
 		try {
-			SocialActivitySet activitySet =
+			SocialActivitySet socialActivitySet =
 				SocialActivitySetLocalServiceUtil.getClassActivitySet(
 					_BLOGS_ENTRY_CLASS_NAME_ID, blogsEntry.getEntryId(),
 					SocialActivityKeyConstants.BLOGS_ADD_ENTRY);
 
-			if (activitySet == null) {
+			if (socialActivitySet == null) {
 				return;
 			}
 
 			Date displayDate = blogsEntry.getDisplayDate();
 
-			if (activitySet.getModifiedDate() == displayDate.getTime()) {
+			if (socialActivitySet.getModifiedDate() == displayDate.getTime()) {
 				return;
 			}
 
-			activitySet.setModifiedDate(displayDate.getTime());
+			socialActivitySet.setModifiedDate(displayDate.getTime());
 
 			SocialActivitySetLocalServiceUtil.updateSocialActivitySet(
-				activitySet);
+				socialActivitySet);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
