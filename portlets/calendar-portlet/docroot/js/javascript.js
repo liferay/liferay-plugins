@@ -2062,7 +2062,7 @@ AUI.add(
 						data.endTimeMonth = endTime.getMonth();
 						data.endTimeYear = endTime.getFullYear();
 
-						startTime = new Date(data.startTime);
+						var startTime = new Date(data.startTime);
 
 						data.startTimeDay = startTime.getDate();
 						data.startTimeHour = startTime.getHours();
