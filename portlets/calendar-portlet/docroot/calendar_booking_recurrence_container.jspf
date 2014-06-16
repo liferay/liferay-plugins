@@ -199,7 +199,7 @@ if (recurrence != null) {
 	var endsRadioNodes = A.all('[name=<portlet:namespace />ends]');
 	var frequencyNode = A.one('#<portlet:namespace />frequency');
 	var recurrenceContainerNode = A.one('#<portlet:namespace />recurrenceContainer');
-	var repeatCheckboxNode = A.one('#<portlet:namespace />repeatCheckbox');
+	var repeatCheckboxNode = A.one('#<portlet:namespace />repeat');
 	var summaryNode = A.one('#<portlet:namespace />summary');
 
 	var untilDateDatePicker = Liferay.component('<%= renderResponse.getNamespace() + HtmlUtil.getAUICompatibleId("untilDateDatePicker") %>');

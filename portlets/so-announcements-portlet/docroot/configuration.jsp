@@ -273,7 +273,7 @@ if (!roles.isEmpty()) {
 		}
 	}
 
-	var customizeAnnouncementsDisplayedCheckbox = form.one('input[name=<portlet:namespace />preferences--customizeAnnouncementsDisplayed--Checkbox]');
+	var customizeAnnouncementsDisplayedCheckbox = form.one('#<portlet:namespace />customizeAnnouncementsDisplayed');
 
 	customizeAnnouncementsDisplayedCheckbox.on(
 		'change',

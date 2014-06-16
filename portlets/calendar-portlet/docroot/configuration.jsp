@@ -102,7 +102,7 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "user-settings");
 </aui:form>
 
 <aui:script use="aui-base">
-	var usePortalTimeZoneCheckbox = A.one('#<portlet:namespace />usePortalTimeZoneCheckbox');
+	var usePortalTimeZoneCheckbox = A.one('#<portlet:namespace />usePortalTimeZone');
 
 	if (usePortalTimeZoneCheckbox) {
 		usePortalTimeZoneCheckbox.on(
@@ -119,5 +119,5 @@ String tabs2 = ParamUtil.getString(request, "tabs2", "user-settings");
 		submitForm(document.<portlet:namespace />fm);
 	}
 
-	Liferay.Util.toggleBoxes('<portlet:namespace />enableRssCheckbox', '<portlet:namespace />rssTimeIntervalContainer');
+	Liferay.Util.toggleBoxes('<portlet:namespace />enableRss', '<portlet:namespace />rssTimeIntervalContainer');
 </aui:script>

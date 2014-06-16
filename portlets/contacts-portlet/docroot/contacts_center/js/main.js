@@ -163,7 +163,7 @@ AUI.add(
 
 						instance._contactsCheckBox = A.one('.contacts-result');
 
-						instance._checkAll = instance.byId('checkAllCheckbox');
+						instance._checkAll = instance.byId('checkAll');
 
 						instance._checkAll.on('click', instance._onCheckAll, instance);
 

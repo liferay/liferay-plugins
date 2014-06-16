@@ -104,7 +104,7 @@ AUI.add(
 
 										Liferay.Util.checkAllBox(
 											instance._userThreadsContainer,
-											instance.get('namespace') + 'mbThreadCheckbox',
+											instance.get('namespace') + 'mbThread',
 											'.check-all'
 										);
 									},

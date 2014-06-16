@@ -707,7 +707,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 		}
 	);
 
-	var allDayCheckbox = A.one('#<portlet:namespace />allDayCheckbox');
+	var allDayCheckbox = A.one('#<portlet:namespace />allDay');
 
 	allDayCheckbox.after(
 		'click',
