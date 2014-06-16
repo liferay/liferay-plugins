@@ -27,7 +27,7 @@ import java.util.Date;
 /**
  * @author Matthew Kong
  */
-public class BlogsEntryListener extends BaseModelListener<BlogsEntry> {
+public class BlogsEntryModelListener extends BaseModelListener<BlogsEntry> {
 
 	@Override
 	public void onAfterUpdate(BlogsEntry blogsEntry)
