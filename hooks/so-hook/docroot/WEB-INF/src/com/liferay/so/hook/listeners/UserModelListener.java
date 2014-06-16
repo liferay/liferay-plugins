@@ -42,7 +42,7 @@ import com.liferay.so.util.SocialOfficeUtil;
  * @author Jonathan Lee
  * @author Eudaldo Alonso
  */
-public class UserListener extends BaseModelListener<User> {
+public class UserModelListener extends BaseModelListener<User> {
 
 	@Override
 	public void onAfterAddAssociation(

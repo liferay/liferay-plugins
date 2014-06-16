@@ -33,7 +33,7 @@ import java.util.Map;
 /**
  * @author Norbert Kocsis
  */
-public class UserListener extends BaseModelListener<User> {
+public class UserModelListener extends BaseModelListener<User> {
 
 	@Override
 	public void onAfterCreate(User user) throws ModelListenerException {

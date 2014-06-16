@@ -26,7 +26,7 @@ import com.liferay.privatemessaging.service.UserThreadLocalServiceUtil;
 /**
  * @author Scott Lee
  */
-public class UserListener extends BaseModelListener<User> {
+public class UserModelListener extends BaseModelListener<User> {
 
 	@Override
 	public void onAfterUpdate(User user) {
@@ -64,6 +64,6 @@ public class UserListener extends BaseModelListener<User> {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(UserListener.class);
+	private static Log _log = LogFactoryUtil.getLog(UserModelListener.class);
 
 }

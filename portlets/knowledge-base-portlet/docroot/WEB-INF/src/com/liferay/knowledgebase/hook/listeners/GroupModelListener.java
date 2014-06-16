@@ -23,7 +23,7 @@ import com.liferay.portal.model.Group;
 /**
  * @author Brian Wing Shun Chan
  */
-public class GroupListener extends BaseModelListener<Group> {
+public class GroupModelListener extends BaseModelListener<Group> {
 
 	@Override
 	public void onBeforeRemove(Group group) throws ModelListenerException {

@@ -26,7 +26,7 @@ import com.mongodb.DBCollection;
  * @author Raymond Augé
  * @author Brian Wing Shun Chan
  */
-public class ExpandoTableListener extends BaseModelListener<ExpandoTable> {
+public class ExpandoTableModelListener extends BaseModelListener<ExpandoTable> {
 
 	@Override
 	public void onAfterCreate(ExpandoTable expandoTable) {

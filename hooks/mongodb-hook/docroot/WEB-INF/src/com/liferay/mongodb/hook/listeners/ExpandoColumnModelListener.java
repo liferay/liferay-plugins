@@ -30,7 +30,8 @@ import com.mongodb.DBObject;
  * @author Raymond Augé
  * @author Brian Wing Shun Chan
  */
-public class ExpandoColumnListener extends BaseModelListener<ExpandoColumn> {
+public class ExpandoColumnModelListener
+	extends BaseModelListener<ExpandoColumn> {
 
 	@Override
 	public void onAfterRemove(ExpandoColumn expandoColumn)

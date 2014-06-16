@@ -21,7 +21,7 @@ import com.liferay.portlet.wiki.model.WikiPage;
 /**
  * @author Peter Shin
  */
-public class AkismetWikiPageListener extends BaseModelListener<WikiPage> {
+public class AkismetWikiPageModelListener extends BaseModelListener<WikiPage> {
 
 	@Override
 	public void onAfterRemove(WikiPage page) {

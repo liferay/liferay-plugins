@@ -34,7 +34,7 @@ import java.util.Set;
 /**
  * @author Ryan Park
  */
-public class GroupListener extends BaseModelListener<Group> {
+public class GroupModelListener extends BaseModelListener<Group> {
 
 	@Override
 	public void onAfterCreate(Group group) throws ModelListenerException {

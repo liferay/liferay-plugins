@@ -27,7 +27,7 @@ import com.liferay.portal.model.User;
  * @author Scott Lee
  * @author Bruno Farache
  */
-public class UserListener extends BaseModelListener<User> {
+public class UserModelListener extends BaseModelListener<User> {
 
 	@Override
 	public void onAfterRemove(User user) {
@@ -60,6 +60,6 @@ public class UserListener extends BaseModelListener<User> {
 			user.getUserId(), user.getPasswordUnencrypted());
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(UserListener.class);
+	private static Log _log = LogFactoryUtil.getLog(UserModelListener.class);
 
 }

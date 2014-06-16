@@ -40,7 +40,7 @@ import java.util.List;
 /**
  * @author Jonathan Lee
  */
-public class RoleListener extends BaseModelListener<Role> {
+public class RoleModelListener extends BaseModelListener<Role> {
 
 	@Override
 	public void onAfterAddAssociation(
