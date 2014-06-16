@@ -21,7 +21,8 @@ import com.liferay.portlet.messageboards.model.MBMessage;
 /**
  * @author Amos Fong
  */
-public class AkismetMBMessageListener extends BaseModelListener<MBMessage> {
+public class AkismetMBMessageModelListener
+	extends BaseModelListener<MBMessage> {
 
 	@Override
 	public void onAfterRemove(MBMessage message) {
