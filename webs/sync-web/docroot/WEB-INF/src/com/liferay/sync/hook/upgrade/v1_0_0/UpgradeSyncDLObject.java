@@ -70,7 +70,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 				String event = StringPool.BLANK;
 
 				if (dlFileEntry.isInTrash()) {
-					event = SyncConstants.EVENT_MOVE_TO_TRASH;
+					event = SyncConstants.EVENT_TRASH;
 				}
 				else {
 					event = SyncConstants.EVENT_ADD;
@@ -101,7 +101,7 @@ public class UpgradeSyncDLObject extends UpgradeProcess {
 				String event = StringPool.BLANK;
 
 				if (dlFolder.isInTrash()) {
-					event = SyncConstants.EVENT_MOVE_TO_TRASH;
+					event = SyncConstants.EVENT_TRASH;
 				}
 				else {
 					event = SyncConstants.EVENT_ADD;

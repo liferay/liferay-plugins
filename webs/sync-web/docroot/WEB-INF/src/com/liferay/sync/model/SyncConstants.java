@@ -21,6 +21,10 @@ import com.liferay.portlet.documentlibrary.model.DLSyncConstants;
  */
 public class SyncConstants extends DLSyncConstants {
 
+	public static final String EVENT_RESTORE = EVENT_RESTORE_FROM_TRASH;
+
+	public static final String EVENT_TRASH = EVENT_MOVE_TO_TRASH;
+
 	public static final String TYPE_PRIVATE_WORKING_COPY = "privateWorkingCopy";
 
 }

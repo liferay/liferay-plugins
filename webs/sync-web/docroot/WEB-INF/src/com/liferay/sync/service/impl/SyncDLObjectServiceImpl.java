@@ -451,7 +451,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 				fileEntryId);
 
 			return SyncUtil.toSyncDLObject(
-				fileEntry, SyncConstants.EVENT_MOVE_TO_TRASH);
+				fileEntry, SyncConstants.EVENT_TRASH);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(pe.getClass().getName(), pe);
@@ -481,8 +481,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 		try {
 			Folder folder = dlAppService.moveFolderToTrash(folderId);
 
-			return SyncUtil.toSyncDLObject(
-				folder, SyncConstants.EVENT_MOVE_TO_TRASH);
+			return SyncUtil.toSyncDLObject(folder, SyncConstants.EVENT_TRASH);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(pe.getClass().getName(), pe);
@@ -544,7 +543,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 			FileEntry fileEntry = dlAppLocalService.getFileEntry(fileEntryId);
 
 			return SyncUtil.toSyncDLObject(
-				fileEntry, SyncConstants.EVENT_RESTORE_FROM_TRASH);
+				fileEntry, SyncConstants.EVENT_RESTORE);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(pe.getClass().getName(), pe);
@@ -560,8 +559,7 @@ public class SyncDLObjectServiceImpl extends SyncDLObjectServiceBaseImpl {
 
 			Folder folder = dlAppLocalService.getFolder(folderId);
 
-			return SyncUtil.toSyncDLObject(
-				folder, SyncConstants.EVENT_RESTORE_FROM_TRASH);
+			return SyncUtil.toSyncDLObject(folder, SyncConstants.EVENT_RESTORE);
 		}
 		catch (PortalException pe) {
 			throw new PortalException(pe.getClass().getName(), pe);
