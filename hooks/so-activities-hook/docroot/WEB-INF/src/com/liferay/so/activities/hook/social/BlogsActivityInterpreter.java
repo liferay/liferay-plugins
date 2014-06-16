@@ -160,9 +160,9 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append(getPageTitle(className, classPK, serviceContext));
 		sb.append("</div><div class=\"blogs-page-content\">");
 
-		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(classPK);
+		BlogsEntry blogsEntry = BlogsEntryLocalServiceUtil.getEntry(classPK);
 
-		String content = HtmlUtil.extractText(entry.getContent());
+		String content = HtmlUtil.extractText(blogsEntry.getContent());
 
 		sb.append(StringUtil.shorten(content, 200));
 
@@ -179,10 +179,10 @@ public class BlogsActivityInterpreter extends SOSocialActivityInterpreter {
 		String title = getPageTitle(
 			activity.getClassName(), activity.getClassPK(), serviceContext);
 
-		BlogsEntry entry = BlogsEntryLocalServiceUtil.getEntry(
+		BlogsEntry blogsEntry = BlogsEntryLocalServiceUtil.getEntry(
 			activity.getClassPK());
 
-		String content = HtmlUtil.extractText(entry.getContent());
+		String content = HtmlUtil.extractText(blogsEntry.getContent());
 
 		String body = StringUtil.shorten(content, 200);
 
