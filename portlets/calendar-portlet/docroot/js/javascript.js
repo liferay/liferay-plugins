@@ -68,7 +68,7 @@ AUI.add(
 
 				if (milliseconds > 0) {
 					AArray.some(
-						[ Time.WEEK, Time.DAY, Time.HOUR, Time.MINUTE ],
+						[Time.WEEK, Time.DAY, Time.HOUR, Time.MINUTE],
 						function(item, index) {
 							value = milliseconds / item;
 							desc = Time.TIME_DESC[index];
@@ -468,7 +468,7 @@ AUI.add(
 			invokeResourceURL: function(resourceId, parameters, callback) {
 				var instance = this;
 
-				var url = Liferay.PortletURL.createResourceURL()
+				var url = Liferay.PortletURL.createResourceURL();
 
 				url.setParameters(parameters);
 				url.setPortletId('1_WAR_calendarportlet');
@@ -1378,7 +1378,7 @@ AUI.add(
 					_getCalendarBookingDuration: function(schedulerEvent) {
 						var instance = this;
 
-						var duration = schedulerEvent.getSecondsDuration()*Time.SECOND;
+						var duration = schedulerEvent.getSecondsDuration() * Time.SECOND;
 
 						return duration;
 					},
