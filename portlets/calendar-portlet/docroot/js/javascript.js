@@ -76,7 +76,7 @@ AUI.add(
 
 				if (milliseconds > 0) {
 					AArray.some(
-						[ Time.WEEK, Time.DAY, Time.HOUR, Time.MINUTE ],
+						[Time.WEEK, Time.DAY, Time.HOUR, Time.MINUTE],
 						function(item, index) {
 							value = milliseconds / item;
 							desc = Time.TIME_DESC[index];
@@ -1421,7 +1421,7 @@ AUI.add(
 					_getCalendarBookingDuration: function(schedulerEvent) {
 						var instance = this;
 
-						var duration = schedulerEvent.getSecondsDuration()*Time.SECOND;
+						var duration = schedulerEvent.getSecondsDuration() * Time.SECOND;
 
 						return duration;
 					},
