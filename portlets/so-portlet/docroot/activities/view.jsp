@@ -396,6 +396,13 @@ portletURL.setParameter("tabs1", tabs1);
 	);
 
 	Liferay.on(
+		'microblogPosted',
+		function(event) {
+			Liferay.Portlet.refresh('#p_p_id<portlet:namespace />');
+		}
+	);
+
+	Liferay.on(
 		'sessionExpired',
 		function(event) {
 			var reload = function() {
