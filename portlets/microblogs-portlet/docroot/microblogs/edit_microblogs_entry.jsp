@@ -495,6 +495,8 @@ if (comment) {
 
 			Liferay.Microblogs.updateMicroblogs(form, url.get('value'), updateContainer);
 
+			Liferay.fire('microblogPosted');
+
 			<c:if test="<%= repost %>">
 				Liferay.Microblogs.closePopup();
 			</c:if>
