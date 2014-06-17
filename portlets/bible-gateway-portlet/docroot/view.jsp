@@ -269,7 +269,7 @@
 
 	function <portlet:namespace />compare() {
 		var url = 'http://bible.gospelcom.net/cgi-bin/bible?showfn=yes&passage=' + encodeURIComponent(A.one('#<portlet:namespace />passage').val());
-debugger;
+
 		var versionCheckboxes = A.all('input[name=<portlet:namespace />version]');
 
 		A.each(
