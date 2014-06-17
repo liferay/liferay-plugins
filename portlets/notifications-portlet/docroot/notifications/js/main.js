@@ -517,7 +517,7 @@ AUI().use(
 			_updateNotificationsCount: function(timestamp, newUserNotificationsCount, unreadUserNotificationsCount) {
 				var instance = this;
 
-				instance._updateDockbarNotificationsCount(timestamp, newUserNotificationsCount, unreadUserNotificationsCount);
+				instance._updateDockbarNotificationsCount(newUserNotificationsCount, timestamp, unreadUserNotificationsCount);
 				instance._updateFullViewNotificationsCount('unread', unreadUserNotificationsCount);
 			},
 
