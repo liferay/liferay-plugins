@@ -37,6 +37,10 @@
 		<display-name>Microblogs Status Update</display-name>
 		<portlet-class>com.liferay.microblogs.microblogs.portlet.MicroblogsPortlet</portlet-class>
 		<init-param>
+			<name>config-jsp</name>
+			<value>/status_update/configuration.jsp</value>
+		</init-param>
+		<init-param>
 			<name>view-template</name>
 			<value>/status_update/view.jsp</value>
 		</init-param>
