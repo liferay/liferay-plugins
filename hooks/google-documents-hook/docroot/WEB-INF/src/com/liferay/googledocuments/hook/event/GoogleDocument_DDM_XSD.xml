@@ -1,0 +1,77 @@
+<root available-locales="en_US" default-locale="en_US">
+	<dynamic-element dataType="string" indexType="keyword"
+		name="ID" readOnly="false" repeatable="false" required="false"
+		showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+		    <![CDATA[ID]]>
+			</entry>
+			<entry name="predefinedValue">
+		    <![CDATA[]]>
+			</entry>
+			<entry name="tip">
+		    <![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword"
+		name="Name" readOnly="false" repeatable="false" required="false"
+		showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+		    <![CDATA[Name]]>
+			</entry>
+			<entry name="predefinedValue">
+		    <![CDATA[]]>
+			</entry>
+			<entry name="tip">
+		    <![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword"
+		name="Icon_URL" readOnly="false" repeatable="false" required="false"
+		showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+		    <![CDATA[Icon URL]]>
+			</entry>
+			<entry name="predefinedValue">
+		    <![CDATA[]]>
+			</entry>
+			<entry name="tip">
+		    <![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword"
+		name="View_URL" readOnly="false" repeatable="false" required="false"
+		showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+		    <![CDATA[View URL]]>
+			</entry>
+			<entry name="predefinedValue">
+		    <![CDATA[]]>
+			</entry>
+			<entry name="tip">
+		    <![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+	<dynamic-element dataType="string" indexType="keyword"
+		name="Edit_URL" readOnly="false" repeatable="false" required="false"
+		showLabel="true" type="text" width="small">
+		<meta-data locale="en_US">
+			<entry name="label">
+		    <![CDATA[Edit URL]]>
+			</entry>
+			<entry name="predefinedValue">
+		    <![CDATA[]]>
+			</entry>
+			<entry name="tip">
+		    <![CDATA[]]>
+			</entry>
+		</meta-data>
+	</dynamic-element>
+</root>
