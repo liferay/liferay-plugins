@@ -23,18 +23,6 @@
 String redirect = ParamUtil.getString(request, "redirect");
 
 Group group = themeDisplay.getScopeGroup();
-
-long microblogsEntryUserId = themeDisplay.getUserId();
-
-if (group.isUser()) {
-	microblogsEntryUserId = group.getClassPK();
-}
-
-PortletURL portletURL = renderResponse.createRenderURL();
-
-portletURL.setWindowState(WindowState.NORMAL);
-
-portletURL.setParameter("mvcPath", "/status_update/view.jsp");
 %>
 
 <c:if test="<%= MicroblogsPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ENTRY) && (group.isUser() && !layout.isPublicLayout()) %>">
@@ -47,6 +35,12 @@ portletURL.setParameter("mvcPath", "/status_update/view.jsp");
 		<%
 		List<MicroblogsEntry> microblogsEntries = null;
 
+		long microblogsEntryUserId = themeDisplay.getUserId();
+
+		if (group.isUser()) {
+			microblogsEntryUserId = group.getClassPK();
+		}
+
 		if (microblogsEntryUserId == themeDisplay.getUserId()) {
 			microblogsEntries = MicroblogsEntryLocalServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, 0, 0, 1);
 		}
@@ -55,6 +49,13 @@ portletURL.setParameter("mvcPath", "/status_update/view.jsp");
 		}
 
 		request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
+
+		PortletURL portletURL = renderResponse.createRenderURL();
+
+		portletURL.setWindowState(WindowState.NORMAL);
+
+		portletURL.setParameter("mvcPath", "/status_update/view.jsp");
+
 		request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, portletURL);
 		%>
 
