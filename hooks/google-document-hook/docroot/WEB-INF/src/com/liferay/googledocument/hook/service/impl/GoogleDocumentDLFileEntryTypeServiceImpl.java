@@ -1,0 +1,91 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.googledocument.hook.service.impl;
+
+import com.liferay.googledocument.hook.util.GoogleDocumentConstants;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeService;
+import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeServiceWrapper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Iván Zaera
+ */
+public class GoogleDocumentDLFileEntryTypeServiceImpl
+	extends DLFileEntryTypeServiceWrapper {
+
+	public GoogleDocumentDLFileEntryTypeServiceImpl(
+		DLFileEntryTypeService dlFileEntryTypeService) {
+
+		super(dlFileEntryTypeService);
+	}
+
+	@Override
+	public List<DLFileEntryType> search(
+			long companyId, long[] groupIds, String keywords,
+			boolean includeBasicFileEntryType, int start, int end,
+			OrderByComparator orderByComparator)
+		throws SystemException {
+
+		List<DLFileEntryType> dlFileEntryTypes = super.search(
+			companyId, groupIds, keywords, includeBasicFileEntryType, start,
+			end, orderByComparator);
+
+		if (!includeBasicFileEntryType) {
+			List<DLFileEntryType> dlFileEntryTypes2 =
+				new ArrayList<DLFileEntryType>();
+
+			for (int i = 0; i < dlFileEntryTypes.size(); i++) {
+				DLFileEntryType dlFileEntryType = dlFileEntryTypes.get(i);
+
+				String fileEntryTypeKey = dlFileEntryType.getFileEntryTypeKey();
+
+				if (fileEntryTypeKey.equals(
+						GoogleDocumentConstants.
+							GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY)) {
+
+					continue;
+				}
+
+				dlFileEntryTypes2.add(dlFileEntryType);
+			}
+
+			dlFileEntryTypes = dlFileEntryTypes2;
+		}
+
+		return dlFileEntryTypes;
+	}
+
+	@Override
+	public int searchCount(
+			long companyId, long[] groupIds, String keywords,
+			boolean includeBasicFileEntryType)
+		throws SystemException {
+
+		int searchCount = super.searchCount(
+			companyId, groupIds, keywords, includeBasicFileEntryType);
+
+		if (!includeBasicFileEntryType) {
+			searchCount--;
+		}
+
+		return searchCount;
+	}
+
+}

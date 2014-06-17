@@ -3,4 +3,8 @@
 
 <hook>
 	<portal-properties>portal.properties</portal-properties>
+	<service>
+		<service-type>com.liferay.portlet.documentlibrary.service.DLFileEntryTypeService</service-type>
+		<service-impl>com.liferay.googledocument.hook.service.impl.GoogleDocumentDLFileEntryTypeServiceImpl</service-impl>
+	</service>
 </hook>
