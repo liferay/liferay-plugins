@@ -20,8 +20,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String redirect = ParamUtil.getString(request, "redirect");
-
 Group group = themeDisplay.getScopeGroup();
 %>
 
