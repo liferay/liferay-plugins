@@ -226,13 +226,6 @@ if ((checkedOut || pending) && !PropsValues.DL_FILE_ENTRY_DRAFTS_ENABLED) {
 	</c:if>
 
 	<aui:fieldset>
-		<aui:field-wrapper>
-			<c:if test="<%= fileMaxSize != 0 %>">
-				<div class="alert alert-info">
-					<%= LanguageUtil.format(pageContext, "upload-documents-no-larger-than-x-k", String.valueOf(fileMaxSize), false) %>
-				</div>
-			</c:if>
-		</aui:field-wrapper>
 
 		<%
 		String folderName = StringPool.BLANK;
@@ -305,6 +298,12 @@ if ((checkedOut || pending) && !PropsValues.DL_FILE_ENTRY_DRAFTS_ENABLED) {
 				'<%= StringUtil.merge(PrefsPropsUtil.getStringArray(PropsKeys.DL_FILE_EXTENSIONS, StringPool.COMMA)) %>'
 			</aui:validator>
 		</aui:input>
+
+		<aui:field-wrapper label="google-document">
+			<aui:button cssClass="add-google-shortcut" name="pickButton" type="button" value="select" />
+			<img id="pickButtonIcon" src="" style="border: 0px">
+			<span id="pickButtonName"></span>
+		</aui:field-wrapper>
 
 		<aui:input name="title">
 			<aui:validator errorMessage="you-must-specify-a-file-or-a-title" name="custom">
@@ -429,18 +428,6 @@ if ((checkedOut || pending) && !PropsValues.DL_FILE_ENTRY_DRAFTS_ENABLED) {
 			</aui:field-wrapper>
 		</c:if>
 
-		<c:if test="<%= approved %>">
-			<div class="alert alert-info">
-				<liferay-ui:message key="a-new-version-will-be-created-automatically-if-this-content-is-modified" />
-			</div>
-		</c:if>
-
-		<c:if test="<%= pending %>">
-			<div class="alert alert-info">
-				<liferay-ui:message key="there-is-a-publication-workflow-in-process" />
-			</div>
-		</c:if>
-
 		<aui:button-row>
 
 			<%
@@ -468,19 +455,6 @@ if ((checkedOut || pending) && !PropsValues.DL_FILE_ENTRY_DRAFTS_ENABLED) {
 			%>
 
 			<aui:button disabled="<%= checkedOut && !hasLock || (pending && PropsValues.DL_FILE_ENTRY_DRAFTS_ENABLED) %>" name="publishButton" type="submit" value="<%= publishButtonLabel %>" />
-
-			<c:if test="<%= (fileEntry != null) && ((checkedOut && hasLock) || !checkedOut) %>">
-				<c:choose>
-					<c:when test="<%= !hasLock %>">
-						<aui:button onClick='<%= renderResponse.getNamespace() + "checkOut();" %>' value="checkout[document]" />
-					</c:when>
-					<c:otherwise>
-						<aui:button onClick='<%= renderResponse.getNamespace() + "checkIn();" %>' value="save-and-checkin" />
-
-						<aui:button onClick='<%= renderResponse.getNamespace() + "cancelCheckOut();" %>' value="cancel-checkout[document]" />
-					</c:otherwise>
-				</c:choose>
-			</c:if>
 
 			<aui:button href="<%= redirect %>" type="cancel" />
 		</aui:button-row>

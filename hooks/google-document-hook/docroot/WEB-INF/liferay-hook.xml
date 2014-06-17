@@ -3,6 +3,8 @@
 
 <hook>
 	<portal-properties>portal.properties</portal-properties>
+	<language-properties>Language.properties</language-properties>
+	<custom-jsp-dir>/custom_jsps</custom-jsp-dir>
 	<service>
 		<service-type>com.liferay.portlet.documentlibrary.service.DLFileEntryTypeService</service-type>
 		<service-impl>com.liferay.googledocument.hook.service.impl.GoogleDocumentDLFileEntryTypeServiceImpl</service-impl>
