@@ -41,24 +41,26 @@ portletURL.setParameter("mvcPath", "/status_update/view.jsp");
 	<liferay-util:include page="/microblogs/edit_microblogs_entry.jsp" servletContext="<%= application %>" />
 </c:if>
 
-<div class="microblogs-container microblogs-status-container">
+<c:if test="<%= showStatus %>">
+	<div class="microblogs-container microblogs-status-container">
 
-	<%
-	List<MicroblogsEntry> microblogsEntries = null;
+		<%
+		List<MicroblogsEntry> microblogsEntries = null;
 
-	if (microblogsEntryUserId == themeDisplay.getUserId()) {
-		microblogsEntries = MicroblogsEntryLocalServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, 0, 0, 1);
-	}
-	else {
-		microblogsEntries = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, 0, 0, 1);
-	}
+		if (microblogsEntryUserId == themeDisplay.getUserId()) {
+			microblogsEntries = MicroblogsEntryLocalServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, 0, 0, 1);
+		}
+		else {
+			microblogsEntries = MicroblogsEntryServiceUtil.getUserMicroblogsEntries(microblogsEntryUserId, 0, 0, 1);
+		}
 
-	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
-	request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, portletURL);
-	%>
+		request.setAttribute(WebKeys.MICROBLOGS_ENTRIES, microblogsEntries);
+		request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, portletURL);
+		%>
 
-	<liferay-util:include page="/microblogs/view_microblogs_entries.jsp" servletContext="<%= application %>" />
-</div>
+		<liferay-util:include page="/microblogs/view_microblogs_entries.jsp" servletContext="<%= application %>" />
+	</div>
+</c:if>
 
 <aui:script use="aui-base">
 	AUI().ready(
