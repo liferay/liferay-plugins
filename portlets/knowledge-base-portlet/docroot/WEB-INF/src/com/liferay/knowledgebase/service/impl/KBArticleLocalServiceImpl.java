@@ -279,7 +279,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		List<KBArticle> kbArticles = getKBArticles(
 			groupId, KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
 			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new KBArticlePriorityComparator());
+			null);
 
 		for (KBArticle kbArticle : kbArticles) {
 			kbArticleLocalService.deleteKBArticle(kbArticle);
@@ -310,7 +310,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		List<KBArticle> childKBArticles = getKBArticles(
 			kbArticle.getGroupId(), kbArticle.getResourcePrimKey(),
 			WorkflowConstants.STATUS_ANY, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new KBArticlePriorityComparator());
+			null);
 
 		for (KBArticle childrenKBArticle : childKBArticles) {
 			kbArticleLocalService.deleteKBArticle(childrenKBArticle);
