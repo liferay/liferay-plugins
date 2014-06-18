@@ -205,7 +205,7 @@ public class DisplayPortlet extends MVCPortlet {
 				List<KBArticle> kbArticles =
 					KBArticleLocalServiceUtil.getGroupKBArticles(
 						themeDisplay.getScopeGroupId(), status, 0, 1,
-						new KBArticlePriorityComparator());
+						new KBArticlePriorityComparator(true));
 
 				if (!kbArticles.isEmpty()) {
 					kbArticle = kbArticles.get(0);
