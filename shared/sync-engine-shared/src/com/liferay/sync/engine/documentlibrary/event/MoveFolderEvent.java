@@ -29,7 +29,7 @@ public class MoveFolderEvent extends BaseEvent {
 	}
 
 	@Override
-	protected Handler<?> getHandler() {
+	protected Handler<Void> getHandler() {
 		return new MoveFolderHandler(this);
 	}
 

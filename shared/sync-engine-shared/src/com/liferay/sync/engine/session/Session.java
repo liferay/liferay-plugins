@@ -143,7 +143,7 @@ public class Session {
 	}
 
 	public void executeAsynchronousGet(
-			final String urlPath, final Handler handler)
+			final String urlPath, final Handler<Void> handler)
 		throws Exception {
 
 		Runnable runnable = new Runnable() {
@@ -165,7 +165,7 @@ public class Session {
 
 	public void executeAsynchronousPost(
 			final String urlPath, final Map<String, Object> parameters,
-			final Handler handler)
+			final Handler<Void> handler)
 		throws Exception {
 
 		Runnable runnable = new Runnable() {

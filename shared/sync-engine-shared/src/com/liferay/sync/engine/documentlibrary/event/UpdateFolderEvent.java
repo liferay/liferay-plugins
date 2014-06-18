@@ -33,7 +33,7 @@ public class UpdateFolderEvent extends BaseEvent {
 	}
 
 	@Override
-	protected Handler<?> getHandler() {
+	protected Handler<Void> getHandler() {
 		return new UpdateFolderHandler(this);
 	}
 

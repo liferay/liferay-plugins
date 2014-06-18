@@ -63,17 +63,16 @@ public abstract class BaseEvent implements Event {
 			_handler);
 	}
 
-	public <T> T executeGet(String urlPath) throws Exception {
+	public void executeGet(String urlPath) throws Exception {
 		Session session = SessionManager.getSession(_syncAccountId);
 
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			getSyncAccountId());
 
-		return session.executeGet(
-			syncAccount.getUrl() + urlPath, (Handler<? extends T>)_handler);
+		session.executeGet(syncAccount.getUrl() + urlPath, _handler);
 	}
 
-	public <T> T executePost(String urlPath, Map<String, Object> parameters)
+	public void executePost(String urlPath, Map<String, Object> parameters)
 		throws Exception {
 
 		Session session = SessionManager.getSession(_syncAccountId);
@@ -81,9 +80,9 @@ public abstract class BaseEvent implements Event {
 		SyncAccount syncAccount = SyncAccountService.fetchSyncAccount(
 			getSyncAccountId());
 
-		return session.executePost(
+		session.executePost(
 			syncAccount.getUrl() + "/api/jsonws" + urlPath, parameters,
-			(Handler<? extends T>)_handler);
+			_handler);
 	}
 
 	@Override
@@ -123,7 +122,7 @@ public abstract class BaseEvent implements Event {
 		}
 	}
 
-	protected abstract Handler<?> getHandler();
+	protected abstract Handler<Void> getHandler();
 
 	protected void processAsynchronousRequest() throws Exception {
 		executeAsynchronousPost(_urlPath, _parameters);
@@ -135,7 +134,7 @@ public abstract class BaseEvent implements Event {
 
 	private static Logger _logger = LoggerFactory.getLogger(BaseEvent.class);
 
-	private Handler<?> _handler;
+	private Handler<Void> _handler;
 	private Map<String, Object> _parameters;
 	private long _syncAccountId;
 	private String _urlPath;

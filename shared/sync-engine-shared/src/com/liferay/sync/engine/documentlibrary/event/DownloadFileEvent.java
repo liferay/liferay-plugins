@@ -33,7 +33,7 @@ public class DownloadFileEvent extends BaseEvent {
 	}
 
 	@Override
-	protected Handler<?> getHandler() {
+	protected Handler<Void> getHandler() {
 		return new DownloadFileHandler(this);
 	}
 

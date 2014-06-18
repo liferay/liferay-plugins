@@ -31,7 +31,7 @@ public class MoveFolderToTrashEvent extends BaseEvent {
 	}
 
 	@Override
-	protected Handler<?> getHandler() {
+	protected Handler<Void> getHandler() {
 		return new BaseJSONHandler(this);
 	}
 

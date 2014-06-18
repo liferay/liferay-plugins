@@ -33,7 +33,7 @@ public class AddFileEntryEvent extends BaseEvent {
 	}
 
 	@Override
-	protected Handler<?> getHandler() {
+	protected Handler<Void> getHandler() {
 		return new AddFileFolderHandler(this);
 	}
 
