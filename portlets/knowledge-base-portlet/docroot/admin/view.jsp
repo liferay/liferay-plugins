@@ -149,9 +149,7 @@ String exceptionArgs = ParamUtil.getString(request, "exceptionArgs");
 				<aui:button-row cssClass="float-container">
 					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
 						<liferay-util:include page="/admin/common/add_article_button.jsp" servletContext="<%= application %>" />
-					</c:if>
 
-					<c:if test="<%= AdminPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_KB_ARTICLE) %>">
 						<liferay-util:include page="/admin/import_articles_button.jsp" servletContext="<%= application %>" />
 					</c:if>
 
