@@ -3,7 +3,7 @@
 <portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
 	<portlet>
 		<portlet-name>1</portlet-name>
-		<display-name>Admin</display-name>
+		<display-name>WSRP Admin</display-name>
 		<portlet-class>com.liferay.wsrp.admin.portlet.AdminPortlet</portlet-class>
 		<init-param>
 			<name>copy-request-parameters</name>
@@ -29,7 +29,7 @@
 	</portlet>
 	<portlet>
 		<portlet-name>2</portlet-name>
-		<display-name>Consumer</display-name>
+		<display-name>WSRP Consumer</display-name>
 		<portlet-class>com.liferay.wsrp.consumer.portlet.ConsumerPortlet</portlet-class>
 		<expiration-cache>0</expiration-cache>
 		<supports>
