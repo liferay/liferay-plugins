@@ -280,6 +280,7 @@
 		<exception>KBArticleContent</exception>
 		<exception>KBArticlePriority</exception>
 		<exception>KBArticleTitle</exception>
+		<exception>KBArticleImport</exception>
 		<exception>KBCommentContent</exception>
 		<exception>KBTemplateContent</exception>
 		<exception>KBTemplateTitle</exception>
