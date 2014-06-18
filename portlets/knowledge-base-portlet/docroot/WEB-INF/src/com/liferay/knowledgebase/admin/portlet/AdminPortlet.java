@@ -161,10 +161,8 @@ public class AdminPortlet extends MVCPortlet {
 			importer.processZipFile(file, importerContext);
 		}
 		catch (KBArticleImportException kbaie) {
-			actionResponse.setRenderParameter(
-				"exceptionArgs", kbaie.getLocalizedMessage());
-
-			throw kbaie;
+			SessionErrors.add(
+				actionRequest, kbaie.getClass(), kbaie);
 		}
 	}
 

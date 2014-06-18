@@ -18,10 +18,16 @@
 
 <%
 long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey", KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
-String exceptionArgs = ParamUtil.getString(request, "exceptionArgs");
 %>
 
-<liferay-ui:error exception="<%= KBArticleImportException.class %>" message="<%= exceptionArgs %>" />
+<liferay-ui:error exception="<%= KBArticleImportException.class %>">
+
+	<%
+	KBArticleImportException kbaie = (KBArticleImportException)errorException;
+	%>
+
+	<%= LanguageUtil.format(locale, "an-unexpected-error-occurred-while-importing-articles-x", kbaie.getLocalizedMessage()) %>
+</liferay-ui:error>
 
 <liferay-util:include page="/admin/top_tabs.jsp" servletContext="<%= application %>" />
 
