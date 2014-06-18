@@ -50,17 +50,6 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 				<c:if test="<%= enableKBArticleKBComments && themeDisplay.isSignedIn() %>">
 					<liferay-ui:panel-container extended="<%= false %>" id='<%= renderResponse.getNamespace() + "Article" + kbArticle.getResourcePrimKey() + "CommentsPanelContainer" %>' persistState="<%= true %>">
 						<liferay-ui:panel collapsible="<%= true %>" defaultState="closed" extended="<%= true %>" id='<%= renderResponse.getNamespace() + "Article" + kbArticle.getResourcePrimKey() + "CommentsPanel" %>' persistState="<%= true %>" title="comments">
-							<c:if test="<%= kbComment != null %>">
-
-								<%
-								request.setAttribute("article_comment.jsp-kb_comment", kbComment);
-								%>
-
-								<liferay-util:include page="/admin/article_comment.jsp" servletContext="<%= application %>" />
-							</c:if>
-
-							<aui:input label="" name="content" />
-
 							<div class="kb-helpful-inputs">
 								<span class="kb-helpful-text"><liferay-ui:message key="was-this-information-helpful" /></span>
 
@@ -68,6 +57,8 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 
 								<aui:input checked="<%= !helpful %>" inlineField="<%= true %>" label="no" name="helpful" type="radio" value="0" />
 							</div>
+
+							<aui:input label="" name="content" value="<%= HtmlUtil.escape(kbComment.getContent()) %>"/>
 
 							<aui:button-row cssClass="kb-submit-buttons">
 								<aui:button type="submit" value="post" />
