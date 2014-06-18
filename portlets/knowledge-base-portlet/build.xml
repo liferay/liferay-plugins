@@ -2,6 +2,8 @@
 <!DOCTYPE project>
 
 <project name="knowledge-base-portlet" basedir="." default="deploy">
+	<property name="ivy.resolve.transitive.dependencies" value="true" />
+
 	<import file="../build-common-portlet.xml" />
 
 	<property name="import.shared" value="knowledge-base-shared" />

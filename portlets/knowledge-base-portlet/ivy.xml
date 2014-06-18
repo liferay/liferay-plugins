@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<ivy-module
+	version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+>
+	<info module="knowledge-base-portlet" organisation="com.liferay" />
+
+	<dependencies defaultconf="default">
+		<dependency org="com.liferay" name="com.liferay.markdown.converter" rev="1.0.0-SNAPSHOT" />
+	</dependencies>
+</ivy-module>
