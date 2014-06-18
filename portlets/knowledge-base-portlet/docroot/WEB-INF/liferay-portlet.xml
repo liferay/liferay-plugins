@@ -31,6 +31,7 @@
 		<workflow-handler>com.liferay.knowledgebase.admin.workflow.KBArticleWorkflowHandler</workflow-handler>
 		<preferences-unique-per-layout>false</preferences-unique-per-layout>
 		<show-portlet-access-denied>false</show-portlet-access-denied>
+		<scopeable>true</scopeable>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
 		<header-portlet-css>/admin/css/main.css</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-admin</css-class-wrapper>
@@ -43,6 +44,7 @@
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>knowledge_base</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/display/portlet/display-friendly-url-routes.xml</friendly-url-routes>
+		<scopeable>true</scopeable>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
 		<header-portlet-css>/display/css/main.css</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-display</css-class-wrapper>
@@ -55,6 +57,7 @@
 		<friendly-url-mapping>knowledge_base_article</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/article/portlet/article-friendly-url-routes.xml</friendly-url-routes>
 		<instanceable>true</instanceable>
+		<scopeable>true</scopeable>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
 		<header-portlet-css>/article/css/main.css</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-article</css-class-wrapper>
@@ -68,6 +71,7 @@
 		<friendly-url-mapping>knowledge_base_section</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/section/portlet/section-friendly-url-routes.xml</friendly-url-routes>
 		<instanceable>true</instanceable>
+		<scopeable>true</scopeable>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
 		<header-portlet-css>/section/css/main.css</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-section</css-class-wrapper>
@@ -79,6 +83,7 @@
 		<friendly-url-mapper-class>com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper</friendly-url-mapper-class>
 		<friendly-url-mapping>knowledge_base_search</friendly-url-mapping>
 		<friendly-url-routes>com/liferay/knowledgebase/search/portlet/search-friendly-url-routes.xml</friendly-url-routes>
+		<scopeable>true</scopeable>
 		<header-portlet-css>/admin/css/common.css</header-portlet-css>
 		<css-class-wrapper>knowledge-base-portlet knowledge-base-portlet-search</css-class-wrapper>
 	</portlet>
