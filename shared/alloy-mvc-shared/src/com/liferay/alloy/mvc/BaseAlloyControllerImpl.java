@@ -153,9 +153,23 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			Method executeActionMethod = superClass.getDeclaredMethod(
 				"executeAction", new Class<?>[] {Method.class});
 
-			ServiceBeanMethodInvocationFactoryUtil.proceed(
-				this, BaseAlloyControllerImpl.class, executeActionMethod,
-				new Object[] {method}, new String[] {"transactionAdvice"});
+			try {
+				ServiceBeanMethodInvocationFactoryUtil.proceed(
+					this, BaseAlloyControllerImpl.class, executeActionMethod,
+					new Object[] {method}, new String[] {"transactionAdvice"});
+			}
+			catch (Exception e) {
+				log.error(e, e);
+
+				actionRequest.setAttribute(
+					CALLED_PROCESS_ACTION, Boolean.TRUE.toString());
+
+				renderError("an-unexpected-system-error-occurred");
+
+				actionRequest.setAttribute(VIEW_PATH, viewPath);
+
+				PortalUtil.copyRequestParameters(actionRequest, actionResponse);
+			}
 		}
 		else if (lifecycle.equals(PortletRequest.RENDER_PHASE)) {
 			executeRender(method);
@@ -260,16 +274,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		setModel(baseModel, properties);
 
-		try {
-			persistModel(baseModel);
-		}
-		catch (Exception e) {
-			log.error(e, e);
-
-			renderError("an-unexpected-system-error-occurred");
-
-			return;
-		}
+		persistModel(baseModel);
 
 		indexModel(baseModel);
 	}
