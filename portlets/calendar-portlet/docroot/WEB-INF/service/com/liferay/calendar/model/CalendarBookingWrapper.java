@@ -1405,6 +1405,11 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	}
 
 	@Override
+	public int getInstanceIndex() {
+		return _calendarBooking.getInstanceIndex();
+	}
+
+	@Override
 	public com.liferay.calendar.model.CalendarBooking getParentCalendarBooking()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1436,6 +1441,11 @@ public class CalendarBookingWrapper implements CalendarBooking,
 	@Override
 	public boolean isRecurring() {
 		return _calendarBooking.isRecurring();
+	}
+
+	@Override
+	public void setInstanceIndex(int instanceIndex) {
+		_calendarBooking.setInstanceIndex(instanceIndex);
 	}
 
 	@Override

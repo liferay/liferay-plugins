@@ -46,6 +46,9 @@ public interface CalendarBooking extends CalendarBookingModel, PermissionedModel
 
 	public com.liferay.calendar.notification.NotificationType getFirstReminderNotificationType();
 
+	@com.liferay.portal.kernel.json.JSON()
+	public int getInstanceIndex();
+
 	public com.liferay.calendar.model.CalendarBooking getParentCalendarBooking()
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -61,4 +64,7 @@ public interface CalendarBooking extends CalendarBookingModel, PermissionedModel
 	public boolean isMasterBooking();
 
 	public boolean isRecurring();
+
+	@com.liferay.portal.kernel.json.JSON()
+	public void setInstanceIndex(int instanceIndex);
 }

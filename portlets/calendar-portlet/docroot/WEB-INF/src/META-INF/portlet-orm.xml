@@ -162,7 +162,9 @@
 	</entity>
 	<entity class="com.liferay.calendar.model.impl.CalendarBookingImpl" name="CalendarBooking">
 		<table name="CalendarBooking" />
-		<attributes />
+		<attributes>
+			<transient name="instanceIndex" />
+		</attributes>
 	</entity>
 	<entity class="com.liferay.calendar.model.impl.CalendarNotificationTemplateImpl" name="CalendarNotificationTemplate">
 		<table name="CalendarNotificationTemplate" />
