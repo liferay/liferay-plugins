@@ -267,39 +267,43 @@ AUI().use(
 					userNotifications.on(
 						'click',
 						function(event) {
+							var target = event.target;
+
+							if (target.ancestor('.dockbar-user-notifications-container')) {
+								return;
+							}
+
 							instance._setDelivered();
 
 							var currentTarget = event.currentTarget;
 
-							var target = event.target;
+							var container = currentTarget.one('.dockbar-user-notifications-container');
 
-							if (!target.hasClass('user-notification') && !target.ancestor('.user-notification')) {
-								currentTarget.toggleClass('open');
+							container.toggleClass('open');
 
-								var menuOpen = currentTarget.hasClass('open');
+							var menuOpen = container.hasClass('open');
 
-								if (menuOpen) {
-									currentTarget.on(
-										'clickoutside',
-										function(event) {
-											currentTarget.removeClass('open');
-										}
-									);
-
-									instance.renderNotificationsList(instance._getDockbarNotificationsList(), unreadURL);
-
-									if (instance._allNotifications) {
-										instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp'));
+							if (menuOpen) {
+								currentTarget.on(
+									'clickoutside',
+									function(event) {
+										container.removeClass('open');
 									}
-									else if (instance._unread || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unread) == 'undefined'))) {
-										instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread'));
-									}
+								);
 
-									var dockbarUserNotificationsCount = A.one('.dockbar-user-notifications .user-notifications-count');
+								instance.renderNotificationsList(instance._getDockbarNotificationsList(), unreadURL);
 
-									if (dockbarUserNotificationsCount) {
-										dockbarUserNotificationsCount.removeClass('alert');
-									}
+								if (instance._allNotifications) {
+									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp'));
+								}
+								else if (instance._unread || ((typeof(instance._allNotifications) == 'undefined') && (typeof(instance._unread) == 'undefined'))) {
+									instance.renderNotificationsList(instance._getFullViewNotificationsList(), instance._getRenderURL('/notifications/view_entries.jsp', 'unread'));
+								}
+
+								var dockbarUserNotificationsCount = A.one('.dockbar-user-notifications .user-notifications-count');
+
+								if (dockbarUserNotificationsCount) {
+									dockbarUserNotificationsCount.removeClass('alert');
 								}
 							}
 						}
@@ -330,7 +334,7 @@ AUI().use(
 					return instance._dockbarNotificationsList;
 				}
 
-				instance._dockbarNotificationsList = A.one('.dockbar-user-notifications .user-notifications-list');
+				instance._dockbarNotificationsList = A.one('.dockbar-user-notifications .dockbar-user-notifications-container .user-notifications-list');
 
 				return instance._dockbarNotificationsList ;
 			},

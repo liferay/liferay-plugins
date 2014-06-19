@@ -32,7 +32,9 @@ boolean menuOpen = ParamUtil.getBoolean(request, "menuOpen");
 			<span class='user-notifications-count <%= (newUserNotificationsCount > 0) ? "alert" : StringPool.BLANK %>' id="<portlet:namespace />userNotificationsCount"><%= unreadUserNotificationsCount %></span>
 		</a>
 
-		<ul class="dropdown-menu pull-right user-notifications-list"></ul>
+		<div class="dockbar-user-notifications-container">
+			<ul class="dropdown-menu pull-right user-notifications-list"></ul>
+		</div>
 
 		<aui:script use="aui-base">
 			Liferay.Notifications.initDockbarNotifications(
