@@ -1355,8 +1355,8 @@ html.aui {
 			padding: 0;
 
 			.user-name {
-				left: 100%;
-				margin-left: 8px;
+				left: 75px;
+				margin-left: 6px;
 				margin-top: 0.5em;
 				position: absolute;
 				top: 0;
@@ -1367,6 +1367,7 @@ html.aui {
 
 		.user-profile-image {
 			height: 55px;
+			max-width: 55px;
 
 			.avatar {
 				width: 55px;
