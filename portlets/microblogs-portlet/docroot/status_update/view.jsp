@@ -50,9 +50,8 @@ Group group = themeDisplay.getScopeGroup();
 
 		PortletURL portletURL = renderResponse.createRenderURL();
 
-		portletURL.setWindowState(WindowState.NORMAL);
-
 		portletURL.setParameter("mvcPath", "/status_update/view.jsp");
+		portletURL.setWindowState(WindowState.NORMAL);
 
 		request.setAttribute(WebKeys.MICROBLOGS_ENTRIES_URL, portletURL);
 		%>
