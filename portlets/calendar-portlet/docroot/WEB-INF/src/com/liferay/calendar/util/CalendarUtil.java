@@ -237,6 +237,7 @@ public class CalendarUtil {
 		jsonObject.put("firstReminder", calendarBooking.getFirstReminder());
 		jsonObject.put(
 			"firstReminderType", calendarBooking.getFirstReminderType());
+		jsonObject.put("instanceIndex", calendarBooking.getInstanceIndex());
 		jsonObject.put("location", calendarBooking.getLocation());
 		jsonObject.put(
 			"parentCalendarBookingId",
