@@ -180,7 +180,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 										{
 											after: {
 												success: function() {
-													Liferay.Tasks.closePopup();
+													Liferay.Util.getWindow('<portlet:namespace />Dialog').hide();
 												}
 											},
 											data: {

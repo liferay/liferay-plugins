@@ -40,12 +40,6 @@ AUI().use(
 				instance.updateTaskList();
 			},
 
-			closePopup: function() {
-				var instance = this;
-
-				Liferay.Util.getWindow(instance._namespace + 'Dialog').hide();
-			},
-
 			displayPopup: function(url, title) {
 				var instance = this;
 
