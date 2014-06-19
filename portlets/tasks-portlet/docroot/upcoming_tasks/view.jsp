@@ -29,14 +29,14 @@
 			String taskHREF = null;
 
 			if (TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE)) {
-				PortletURL portletURL = renderResponse.createRenderURL();
+				LiferayPortletURL liferayPortletURL = liferayPortletResponse.createLiferayPortletURL(PortletKeys.TASKS, PortletRequest.RENDER_PHASE);
 
-				portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+				liferayPortletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
+				liferayPortletURL.setParameter("tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
 
-				portletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
-				portletURL.setParameter("tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
+				liferayPortletURL.setWindowState(LiferayWindowState.POP_UP);
 
-				taskHREF = portletURL.toString();
+				taskHREF = liferayPortletURL.toString();
 			}
 
 			String cssClass = "tasks-title";
