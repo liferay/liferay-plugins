@@ -472,6 +472,88 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 	@Override
 	public CalendarBooking updateCalendarBookingInstance(
+			long calendarBookingId, int instanceIndex, long calendarId,
+			long[] childCalendarIds, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, String location, long startTime,
+			long endTime, boolean allDay, String recurrence,
+			boolean allFollowing, long firstReminder, String firstReminderType,
+			long secondReminder, String secondReminderType, int status,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
+
+		return calendarBookingLocalService.updateCalendarBookingInstance(
+			getUserId(), calendarBookingId, instanceIndex, calendarId,
+			childCalendarIds, titleMap, descriptionMap, location, startTime,
+			endTime, allDay, recurrence, allFollowing, firstReminder,
+			firstReminderType, secondReminder, secondReminderType, status,
+			serviceContext);
+	}
+
+	@Override
+	public CalendarBooking updateCalendarBookingInstance(
+			long calendarBookingId, int instanceIndex, long calendarId,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, int startTimeYear, int startTimeMonth,
+			int startTimeDay, int startTimeHour, int startTimeMinute,
+			int endTimeYear, int endTimeMonth, int endTimeDay, int endTimeHour,
+			int endTimeMinute, String timeZoneId, boolean allDay,
+			String recurrence, boolean allFollowing, long firstReminder,
+			String firstReminderType, long secondReminder,
+			String secondReminderType, int status,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		TimeZone timeZone = TimeZoneUtil.getTimeZone(timeZoneId);
+
+		if (allDay) {
+			timeZone = TimeZone.getTimeZone(StringPool.UTC);
+		}
+
+		java.util.Calendar startTimeJCalendar = JCalendarUtil.getJCalendar(
+			startTimeYear, startTimeMonth, startTimeDay, startTimeHour,
+			startTimeMinute, 0, 0, timeZone);
+		java.util.Calendar endTimeJCalendar = JCalendarUtil.getJCalendar(
+			endTimeYear, endTimeMonth, endTimeDay, endTimeHour, endTimeMinute,
+			0, 0, timeZone);
+
+		return calendarBookingService.updateCalendarBookingInstance(
+			calendarBookingId, instanceIndex, calendarId, titleMap,
+			descriptionMap, location, startTimeJCalendar.getTimeInMillis(),
+			endTimeJCalendar.getTimeInMillis(), allDay, recurrence,
+			allFollowing, firstReminder, firstReminderType, secondReminder,
+			secondReminderType, status, serviceContext);
+	}
+
+	@Override
+	public CalendarBooking updateCalendarBookingInstance(
+			long calendarBookingId, int instanceIndex, long calendarId,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, long startTime, long endTime, boolean allDay,
+			String recurrence, boolean allFollowing, long firstReminder,
+			String firstReminderType, long secondReminder,
+			String secondReminderType, int status,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		CalendarPermission.check(
+			getPermissionChecker(), calendarId, ActionKeys.MANAGE_BOOKINGS);
+
+		return calendarBookingLocalService.updateCalendarBookingInstance(
+			getUserId(), calendarBookingId, instanceIndex, calendarId, titleMap,
+			descriptionMap, location, startTime, endTime, allDay, recurrence,
+			allFollowing, firstReminder, firstReminderType, secondReminder,
+			secondReminderType, status, serviceContext);
+	}
+
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link CalendarBookingService#updateCalendarBookingInstance(long, int, long, long[], Map, Map, String, long, long, boolean, String, boolean, long, String, long, String, int, ServiceContext)}
+	 */
+	@Deprecated
+	@Override
+	public CalendarBooking updateCalendarBookingInstance(
 			long calendarBookingId, long calendarId, long[] childCalendarIds,
 			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
 			String location, long startTime, long endTime, boolean allDay,
@@ -491,6 +573,10 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			secondReminder, secondReminderType, status, serviceContext);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link CalendarBookingService#updateCalendarBookingInstance(long, int, long, Map, Map, String, int, int, int, int, int, int, int, int, int, int, String, boolean, String, boolean, long, String, long, String, int, ServiceContext)
+	 */
+	@Deprecated
 	@Override
 	public CalendarBooking updateCalendarBookingInstance(
 			long calendarBookingId, long calendarId,
@@ -526,6 +612,10 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 			secondReminderType, status, serviceContext);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link CalendarBookingService#updateCalendarBookingInstance(long, int, long, Map, Map, String, long, long, boolean, String, boolean, long, String, long, String, int, ServiceContext)
+	 */
+	@Deprecated
 	@Override
 	public CalendarBooking updateCalendarBookingInstance(
 			long calendarBookingId, long calendarId,

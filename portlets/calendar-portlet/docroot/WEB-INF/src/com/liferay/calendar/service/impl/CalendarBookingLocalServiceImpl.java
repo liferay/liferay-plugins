@@ -815,22 +815,20 @@ public class CalendarBookingLocalServiceImpl
 
 	@Override
 	public CalendarBooking updateCalendarBookingInstance(
-			long userId, long calendarBookingId, long calendarId,
-			long[] childCalendarIds, Map<Locale, String> titleMap,
-			Map<Locale, String> descriptionMap, String location, long startTime,
-			long endTime, boolean allDay, String recurrence,
-			boolean allFollowing, long firstReminder, String firstReminderType,
-			long secondReminder, String secondReminderType, int status,
+			long userId, long calendarBookingId, int instanceIndex,
+			long calendarId, long[] childCalendarIds,
+			Map<Locale, String> titleMap, Map<Locale, String> descriptionMap,
+			String location, long startTime, long endTime, boolean allDay,
+			String recurrence, boolean allFollowing, long firstReminder,
+			String firstReminderType, long secondReminder,
+			String secondReminderType, int status,
 			ServiceContext serviceContext)
 		throws PortalException {
 
 		CalendarBooking calendarBooking =
 			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 
-		int index = RecurrenceUtil.getIndexOfInstance(
-			recurrence, calendarBooking.getStartTime(), startTime);
-
-		if ((index == 0) && allFollowing) {
+		if ((instanceIndex == 0) && allFollowing) {
 			return updateCalendarBooking(
 				userId, calendarBookingId, calendarId, childCalendarIds,
 				titleMap, descriptionMap, location, startTime, endTime, allDay,
@@ -840,7 +838,8 @@ public class CalendarBookingLocalServiceImpl
 
 		String oldRecurrence = calendarBooking.getRecurrence();
 
-		deleteCalendarBookingInstance(calendarBooking, startTime, allFollowing);
+		deleteCalendarBookingInstance(
+			calendarBooking, instanceIndex, allFollowing);
 
 		if (allFollowing) {
 			Recurrence recurrenceObj = RecurrenceSerializer.deserialize(
@@ -849,7 +848,8 @@ public class CalendarBookingLocalServiceImpl
 			if (oldRecurrence.equals(recurrence) &&
 				(recurrenceObj.getCount() > 0)) {
 
-				recurrenceObj.setCount(recurrenceObj.getCount() - index);
+				recurrenceObj.setCount(
+					recurrenceObj.getCount() - instanceIndex);
 
 				recurrence = RecurrenceSerializer.serialize(recurrenceObj);
 			}
@@ -866,6 +866,61 @@ public class CalendarBookingLocalServiceImpl
 			secondReminderType, serviceContext);
 	}
 
+	@Override
+	public CalendarBooking updateCalendarBookingInstance(
+			long userId, long calendarBookingId, int instanceIndex,
+			long calendarId, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, String location, long startTime,
+			long endTime, boolean allDay, String recurrence,
+			boolean allFollowing, long firstReminder, String firstReminderType,
+			long secondReminder, String secondReminderType, int status,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		long[] childCalendarIds = getChildCalendarIds(
+			calendarBookingId, calendarId);
+
+		return updateCalendarBookingInstance(
+			userId, calendarBookingId, instanceIndex, calendarId,
+			childCalendarIds, titleMap, descriptionMap, location, startTime,
+			endTime, allDay, recurrence, allFollowing, firstReminder,
+			firstReminderType, secondReminder, secondReminderType, status,
+			serviceContext);
+	}
+
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link CalendarBookingLocalService#updateCalendarBookingInstance(long, long, int, long, long[], Map, Map, String, long, long, boolean, String, boolean, long, String, long, String, int, ServiceContext)}
+	 */
+	@Deprecated
+	@Override
+	public CalendarBooking updateCalendarBookingInstance(
+			long userId, long calendarBookingId, long calendarId,
+			long[] childCalendarIds, Map<Locale, String> titleMap,
+			Map<Locale, String> descriptionMap, String location, long startTime,
+			long endTime, boolean allDay, String recurrence,
+			boolean allFollowing, long firstReminder, String firstReminderType,
+			long secondReminder, String secondReminderType, int status,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		CalendarBooking calendarBooking =
+			calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
+
+		int instanceIndex = RecurrenceUtil.getIndexOfInstance(
+			recurrence, calendarBooking.getStartTime(), startTime);
+
+		return updateCalendarBookingInstance(
+			userId, calendarBookingId, instanceIndex, calendarId,
+			childCalendarIds, titleMap, descriptionMap, location, startTime,
+			endTime, allDay, recurrence, allFollowing, firstReminder,
+			firstReminderType, secondReminder, secondReminderType, status,
+			serviceContext);
+	}
+
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link CalendarBookingLocalService#updateCalendarBookingInstance(long, long, long, Map, Map, String, long, long, boolean, String, boolean, long, String, long, String, int, ServiceContext)}
+	 */
+	@Deprecated
 	@Override
 	public CalendarBooking updateCalendarBookingInstance(
 			long userId, long calendarBookingId, long calendarId,
