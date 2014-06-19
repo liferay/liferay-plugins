@@ -61,10 +61,13 @@ public class RecurrenceUtil {
 					_toDateValue(calendarBooking.getStartTime()),
 					TimeUtils.utcTimezone());
 
+			int count = 0;
+
 			while (recurrenceIterator.hasNext()) {
 				DateValue dateValue = recurrenceIterator.next();
 
 				if (dateValue.compareTo(startDateValue) < 0) {
+					count++;
 					continue;
 				}
 
@@ -74,6 +77,9 @@ public class RecurrenceUtil {
 
 				CalendarBooking newCalendarBooking = _copyCalendarBooking(
 					calendarBooking, dateValue);
+
+				newCalendarBooking.setInstanceIndex(count);
+				count++;
 
 				expandedCalendarBookings.add(newCalendarBooking);
 
