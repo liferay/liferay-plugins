@@ -255,6 +255,7 @@ AUI.add(
 						endDate: endDate.getTime(),
 						firstReminder: calendarBooking.firstReminder,
 						firstReminderType: calendarBooking.firstReminderType,
+						instanceIndex: calendarBooking.instanceIndex,
 						location: calendarBooking.location,
 						parentCalendarBookingId: calendarBooking.parentCalendarBookingId,
 						recurrence: calendarBooking.recurrence,
@@ -850,6 +851,11 @@ AUI.add(
 						setter: String,
 						validator: isValue,
 						value: CalendarUtil.NOTIFICATION_DEFAULT_TYPE
+					},
+
+					instanceIndex: {
+						setter: toInt,
+						value: 0
 					},
 
 					loading: {
