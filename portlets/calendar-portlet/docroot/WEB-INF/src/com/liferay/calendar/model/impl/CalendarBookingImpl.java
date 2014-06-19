@@ -25,6 +25,7 @@ import com.liferay.calendar.service.CalendarLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.List;
@@ -67,6 +68,12 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 	@Override
 	public NotificationType getFirstReminderNotificationType() {
 		return NotificationType.parse(getFirstReminderType());
+	}
+
+	@JSON
+	@Override
+	public int getInstanceIndex() {
+		return _instanceIndex;
 	}
 
 	@Override
@@ -118,6 +125,13 @@ public class CalendarBookingImpl extends CalendarBookingBaseImpl {
 		return false;
 	}
 
+	@JSON
+	@Override
+	public void setInstanceIndex(int instanceIndex) {
+		_instanceIndex = instanceIndex;
+	}
+
+	private int _instanceIndex;
 	private Recurrence _recurrenceObj;
 
 }
