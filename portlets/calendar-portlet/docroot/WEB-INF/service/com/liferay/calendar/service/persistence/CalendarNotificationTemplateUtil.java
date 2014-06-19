@@ -86,7 +86,7 @@ public class CalendarNotificationTemplateUtil {
 	 */
 	public static List<CalendarNotificationTemplate> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -153,7 +153,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -167,7 +167,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator)
 		throws com.liferay.calendar.NoSuchNotificationTemplateException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -181,7 +181,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -195,7 +195,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator)
 		throws com.liferay.calendar.NoSuchNotificationTemplateException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -209,7 +209,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -224,7 +224,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate[] findByUuid_PrevAndNext(
 		long calendarNotificationTemplateId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator)
 		throws com.liferay.calendar.NoSuchNotificationTemplateException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(calendarNotificationTemplateId,
@@ -359,7 +359,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -375,7 +375,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator)
 		throws com.liferay.calendar.NoSuchNotificationTemplateException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -391,7 +391,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -407,7 +407,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator)
 		throws com.liferay.calendar.NoSuchNotificationTemplateException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -423,7 +423,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -441,7 +441,7 @@ public class CalendarNotificationTemplateUtil {
 	public static com.liferay.calendar.model.CalendarNotificationTemplate[] findByUuid_C_PrevAndNext(
 		long calendarNotificationTemplateId, java.lang.String uuid,
 		long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator)
 		throws com.liferay.calendar.NoSuchNotificationTemplateException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(calendarNotificationTemplateId,
@@ -512,7 +512,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> findByCalendarId(
 		long calendarId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence()
 				   .findByCalendarId(calendarId, start, end, orderByComparator);
 	}
@@ -527,7 +527,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate findByCalendarId_First(
 		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator)
 		throws com.liferay.calendar.NoSuchNotificationTemplateException {
 		return getPersistence()
 				   .findByCalendarId_First(calendarId, orderByComparator);
@@ -542,7 +542,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate fetchByCalendarId_First(
 		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence()
 				   .fetchByCalendarId_First(calendarId, orderByComparator);
 	}
@@ -557,7 +557,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate findByCalendarId_Last(
 		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator)
 		throws com.liferay.calendar.NoSuchNotificationTemplateException {
 		return getPersistence()
 				   .findByCalendarId_Last(calendarId, orderByComparator);
@@ -572,7 +572,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate fetchByCalendarId_Last(
 		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence()
 				   .fetchByCalendarId_Last(calendarId, orderByComparator);
 	}
@@ -588,7 +588,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarNotificationTemplate[] findByCalendarId_PrevAndNext(
 		long calendarNotificationTemplateId, long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator)
 		throws com.liferay.calendar.NoSuchNotificationTemplateException {
 		return getPersistence()
 				   .findByCalendarId_PrevAndNext(calendarNotificationTemplateId,
@@ -815,7 +815,7 @@ public class CalendarNotificationTemplateUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarNotificationTemplate> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarNotificationTemplate> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

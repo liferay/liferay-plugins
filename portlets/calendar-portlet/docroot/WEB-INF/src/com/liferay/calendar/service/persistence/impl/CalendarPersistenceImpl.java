@@ -157,7 +157,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public List<Calendar> findByResourceBlockId(long resourceBlockId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Calendar> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -267,7 +267,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByResourceBlockId_First(long resourceBlockId,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = fetchByResourceBlockId_First(resourceBlockId,
 				orderByComparator);
 
@@ -296,7 +297,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByResourceBlockId_First(long resourceBlockId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		List<Calendar> list = findByResourceBlockId(resourceBlockId, 0, 1,
 				orderByComparator);
 
@@ -317,7 +318,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByResourceBlockId_Last(long resourceBlockId,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = fetchByResourceBlockId_Last(resourceBlockId,
 				orderByComparator);
 
@@ -346,7 +348,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByResourceBlockId_Last(long resourceBlockId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		int count = countByResourceBlockId(resourceBlockId);
 
 		if (count == 0) {
@@ -374,7 +376,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar[] findByResourceBlockId_PrevAndNext(long calendarId,
-		long resourceBlockId, OrderByComparator orderByComparator)
+		long resourceBlockId, OrderByComparator<Calendar> orderByComparator)
 		throws NoSuchCalendarException {
 		Calendar calendar = findByPrimaryKey(calendarId);
 
@@ -405,7 +407,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 	protected Calendar getByResourceBlockId_PrevAndNext(Session session,
 		Calendar calendar, long resourceBlockId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Calendar> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -638,7 +640,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public List<Calendar> findByUuid(String uuid, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -758,7 +760,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByUuid_First(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = fetchByUuid_First(uuid, orderByComparator);
 
 		if (calendar != null) {
@@ -786,7 +789,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByUuid_First(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		List<Calendar> list = findByUuid(uuid, 0, 1, orderByComparator);
 
 		if (!list.isEmpty()) {
@@ -806,7 +809,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = fetchByUuid_Last(uuid, orderByComparator);
 
 		if (calendar != null) {
@@ -834,7 +838,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByUuid_Last(String uuid,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		int count = countByUuid(uuid);
 
 		if (count == 0) {
@@ -862,7 +866,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar[] findByUuid_PrevAndNext(long calendarId, String uuid,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = findByPrimaryKey(calendarId);
 
 		Session session = null;
@@ -891,8 +896,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	}
 
 	protected Calendar getByUuid_PrevAndNext(Session session,
-		Calendar calendar, String uuid, OrderByComparator orderByComparator,
-		boolean previous) {
+		Calendar calendar, String uuid,
+		OrderByComparator<Calendar> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1417,7 +1422,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public List<Calendar> findByUuid_C(String uuid, long companyId, int start,
-		int end, OrderByComparator orderByComparator) {
+		int end, OrderByComparator<Calendar> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -1547,7 +1552,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = fetchByUuid_C_First(uuid, companyId,
 				orderByComparator);
 
@@ -1580,7 +1586,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByUuid_C_First(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		List<Calendar> list = findByUuid_C(uuid, companyId, 0, 1,
 				orderByComparator);
 
@@ -1602,7 +1608,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = fetchByUuid_C_Last(uuid, companyId,
 				orderByComparator);
 
@@ -1635,7 +1642,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByUuid_C_Last(String uuid, long companyId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		int count = countByUuid_C(uuid, companyId);
 
 		if (count == 0) {
@@ -1664,7 +1671,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar[] findByUuid_C_PrevAndNext(long calendarId, String uuid,
-		long companyId, OrderByComparator orderByComparator)
+		long companyId, OrderByComparator<Calendar> orderByComparator)
 		throws NoSuchCalendarException {
 		Calendar calendar = findByPrimaryKey(calendarId);
 
@@ -1695,7 +1702,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 	protected Calendar getByUuid_C_PrevAndNext(Session session,
 		Calendar calendar, String uuid, long companyId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Calendar> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -1974,7 +1981,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public List<Calendar> findByG_C(long groupId, long calendarResourceId,
-		int start, int end, OrderByComparator orderByComparator) {
+		int start, int end, OrderByComparator<Calendar> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2090,7 +2097,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByG_C_First(long groupId, long calendarResourceId,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = fetchByG_C_First(groupId, calendarResourceId,
 				orderByComparator);
 
@@ -2123,7 +2131,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByG_C_First(long groupId, long calendarResourceId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		List<Calendar> list = findByG_C(groupId, calendarResourceId, 0, 1,
 				orderByComparator);
 
@@ -2145,7 +2153,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByG_C_Last(long groupId, long calendarResourceId,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = fetchByG_C_Last(groupId, calendarResourceId,
 				orderByComparator);
 
@@ -2178,7 +2187,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByG_C_Last(long groupId, long calendarResourceId,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		int count = countByG_C(groupId, calendarResourceId);
 
 		if (count == 0) {
@@ -2207,7 +2216,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar[] findByG_C_PrevAndNext(long calendarId, long groupId,
-		long calendarResourceId, OrderByComparator orderByComparator)
+		long calendarResourceId, OrderByComparator<Calendar> orderByComparator)
 		throws NoSuchCalendarException {
 		Calendar calendar = findByPrimaryKey(calendarId);
 
@@ -2238,7 +2247,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 	protected Calendar getByG_C_PrevAndNext(Session session, Calendar calendar,
 		long groupId, long calendarResourceId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Calendar> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2394,7 +2403,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	@Override
 	public List<Calendar> filterFindByG_C(long groupId,
 		long calendarResourceId, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_C(groupId, calendarResourceId, start, end,
 				orderByComparator);
@@ -2465,7 +2474,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	@Override
 	public Calendar[] filterFindByG_C_PrevAndNext(long calendarId,
 		long groupId, long calendarResourceId,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_C_PrevAndNext(calendarId, groupId,
 				calendarResourceId, orderByComparator);
@@ -2500,7 +2510,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 	protected Calendar filterGetByG_C_PrevAndNext(Session session,
 		Calendar calendar, long groupId, long calendarResourceId,
-		OrderByComparator orderByComparator, boolean previous) {
+		OrderByComparator<Calendar> orderByComparator, boolean previous) {
 		StringBundler query = null;
 
 		if (orderByComparator != null) {
@@ -2817,7 +2827,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	@Override
 	public List<Calendar> findByG_C_D(long groupId, long calendarResourceId,
 		boolean defaultCalendar, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;
@@ -2941,7 +2951,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByG_C_D_First(long groupId, long calendarResourceId,
-		boolean defaultCalendar, OrderByComparator orderByComparator)
+		boolean defaultCalendar, OrderByComparator<Calendar> orderByComparator)
 		throws NoSuchCalendarException {
 		Calendar calendar = fetchByG_C_D_First(groupId, calendarResourceId,
 				defaultCalendar, orderByComparator);
@@ -2979,7 +2989,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByG_C_D_First(long groupId, long calendarResourceId,
-		boolean defaultCalendar, OrderByComparator orderByComparator) {
+		boolean defaultCalendar, OrderByComparator<Calendar> orderByComparator) {
 		List<Calendar> list = findByG_C_D(groupId, calendarResourceId,
 				defaultCalendar, 0, 1, orderByComparator);
 
@@ -3002,7 +3012,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar findByG_C_D_Last(long groupId, long calendarResourceId,
-		boolean defaultCalendar, OrderByComparator orderByComparator)
+		boolean defaultCalendar, OrderByComparator<Calendar> orderByComparator)
 		throws NoSuchCalendarException {
 		Calendar calendar = fetchByG_C_D_Last(groupId, calendarResourceId,
 				defaultCalendar, orderByComparator);
@@ -3040,7 +3050,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public Calendar fetchByG_C_D_Last(long groupId, long calendarResourceId,
-		boolean defaultCalendar, OrderByComparator orderByComparator) {
+		boolean defaultCalendar, OrderByComparator<Calendar> orderByComparator) {
 		int count = countByG_C_D(groupId, calendarResourceId, defaultCalendar);
 
 		if (count == 0) {
@@ -3071,7 +3081,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	@Override
 	public Calendar[] findByG_C_D_PrevAndNext(long calendarId, long groupId,
 		long calendarResourceId, boolean defaultCalendar,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		Calendar calendar = findByPrimaryKey(calendarId);
 
 		Session session = null;
@@ -3102,7 +3113,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 	protected Calendar getByG_C_D_PrevAndNext(Session session,
 		Calendar calendar, long groupId, long calendarResourceId,
-		boolean defaultCalendar, OrderByComparator orderByComparator,
+		boolean defaultCalendar, OrderByComparator<Calendar> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -3268,7 +3279,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	@Override
 	public List<Calendar> filterFindByG_C_D(long groupId,
 		long calendarResourceId, boolean defaultCalendar, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_C_D(groupId, calendarResourceId, defaultCalendar,
 				start, end, orderByComparator);
@@ -3344,7 +3355,8 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	@Override
 	public Calendar[] filterFindByG_C_D_PrevAndNext(long calendarId,
 		long groupId, long calendarResourceId, boolean defaultCalendar,
-		OrderByComparator orderByComparator) throws NoSuchCalendarException {
+		OrderByComparator<Calendar> orderByComparator)
+		throws NoSuchCalendarException {
 		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
 			return findByG_C_D_PrevAndNext(calendarId, groupId,
 				calendarResourceId, defaultCalendar, orderByComparator);
@@ -3380,7 +3392,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 
 	protected Calendar filterGetByG_C_D_PrevAndNext(Session session,
 		Calendar calendar, long groupId, long calendarResourceId,
-		boolean defaultCalendar, OrderByComparator orderByComparator,
+		boolean defaultCalendar, OrderByComparator<Calendar> orderByComparator,
 		boolean previous) {
 		StringBundler query = null;
 
@@ -4287,7 +4299,7 @@ public class CalendarPersistenceImpl extends BasePersistenceImpl<Calendar>
 	 */
 	@Override
 	public List<Calendar> findAll(int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<Calendar> orderByComparator) {
 		boolean pagination = true;
 		FinderPath finderPath = null;
 		Object[] finderArgs = null;

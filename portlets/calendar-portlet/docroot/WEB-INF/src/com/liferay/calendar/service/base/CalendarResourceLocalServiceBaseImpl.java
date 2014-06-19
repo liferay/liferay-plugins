@@ -116,12 +116,11 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @param calendarResourceId the primary key of the calendar resource
 	 * @return the calendar resource that was removed
 	 * @throws PortalException if a calendar resource with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public CalendarResource deleteCalendarResource(long calendarResourceId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return calendarResourcePersistence.remove(calendarResourceId);
 	}
 
@@ -131,13 +130,11 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @param calendarResource the calendar resource
 	 * @return the calendar resource that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public CalendarResource deleteCalendarResource(
-		CalendarResource calendarResource)
-		throws PortalException, SystemException {
+		CalendarResource calendarResource) throws PortalException {
 		return calendarResourcePersistence.remove(calendarResource);
 	}
 
@@ -156,8 +153,7 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return calendarResourcePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -174,8 +170,8 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return calendarResourcePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -194,9 +190,8 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return calendarResourcePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -264,11 +259,10 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @param calendarResourceId the primary key of the calendar resource
 	 * @return the calendar resource
 	 * @throws PortalException if a calendar resource with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public CalendarResource getCalendarResource(long calendarResourceId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return calendarResourcePersistence.findByPrimaryKey(calendarResourceId);
 	}
 
@@ -381,11 +375,10 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @param  companyId the primary key of the company
 	 * @return the matching calendar resource
 	 * @throws PortalException if a matching calendar resource could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public CalendarResource getCalendarResourceByUuidAndCompanyId(String uuid,
-		long companyId) throws PortalException, SystemException {
+		long companyId) throws PortalException {
 		return calendarResourcePersistence.findByUuid_C_First(uuid, companyId,
 			null);
 	}
@@ -397,11 +390,10 @@ public abstract class CalendarResourceLocalServiceBaseImpl
 	 * @param groupId the primary key of the group
 	 * @return the matching calendar resource
 	 * @throws PortalException if a matching calendar resource could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public CalendarResource getCalendarResourceByUuidAndGroupId(String uuid,
-		long groupId) throws PortalException, SystemException {
+		long groupId) throws PortalException {
 		return calendarResourcePersistence.findByUUID_G(uuid, groupId);
 	}
 

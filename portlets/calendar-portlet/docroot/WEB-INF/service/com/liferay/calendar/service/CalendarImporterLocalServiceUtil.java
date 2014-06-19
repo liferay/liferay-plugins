@@ -65,14 +65,12 @@ public class CalendarImporterLocalServiceUtil {
 
 	public static void importCalEvent(
 		com.liferay.portlet.calendar.model.CalEvent calEvent)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().importCalEvent(calEvent);
 	}
 
 	public static void importCalEvents()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().importCalEvents();
 	}
 

@@ -19,70 +19,58 @@ package com.liferay.calendar.service.persistence;
  */
 public interface CalendarFinder {
 	public int countByKeywords(long companyId, long[] groupIds,
-		long[] calendarResourceIds, java.lang.String keywords)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long[] calendarResourceIds, java.lang.String keywords);
 
 	public int countByC_G_C_N_D(long companyId, long[] groupIds,
 		long[] calendarResourceIds, java.lang.String name,
-		java.lang.String description, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String description, boolean andOperator);
 
 	public int countByC_G_C_N_D(long companyId, long[] groupIds,
 		long[] calendarResourceIds, java.lang.String[] names,
-		java.lang.String[] descriptions, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String[] descriptions, boolean andOperator);
 
 	public int filterCountByKeywords(long companyId, long[] groupIds,
-		long[] calendarResourceIds, java.lang.String keywords)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long[] calendarResourceIds, java.lang.String keywords);
 
 	public int filterCountByC_G_C_N_D(long companyId, long[] groupIds,
 		long[] calendarResourceIds, java.lang.String name,
-		java.lang.String description, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String description, boolean andOperator);
 
 	public int filterCountByC_G_C_N_D(long companyId, long[] groupIds,
 		long[] calendarResourceIds, java.lang.String[] names,
-		java.lang.String[] descriptions, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		java.lang.String[] descriptions, boolean andOperator);
 
 	public java.util.List<com.liferay.calendar.model.Calendar> filterFindByKeywords(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String keywords, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	public java.util.List<com.liferay.calendar.model.Calendar> filterFindByC_G_C_N_D(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String name, java.lang.String description,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	public java.util.List<com.liferay.calendar.model.Calendar> filterFindByC_G_C_N_D(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String[] names, java.lang.String[] descriptions,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	public java.util.List<com.liferay.calendar.model.Calendar> findByKeywords(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String keywords, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	public java.util.List<com.liferay.calendar.model.Calendar> findByC_G_C_N_D(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String name, java.lang.String description,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 
 	public java.util.List<com.liferay.calendar.model.Calendar> findByC_G_C_N_D(
 		long companyId, long[] groupIds, long[] calendarResourceIds,
 		java.lang.String[] names, java.lang.String[] descriptions,
 		boolean andOperator, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator);
 }

@@ -22,8 +22,7 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 public class CalendarResourceFinderUtil {
 	public static int countByKeywords(long companyId, long[] groupIds,
-		long[] classNameIds, java.lang.String keywords, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long[] classNameIds, java.lang.String keywords, boolean active) {
 		return getFinder()
 				   .countByKeywords(companyId, groupIds, classNameIds,
 			keywords, active);
@@ -31,8 +30,7 @@ public class CalendarResourceFinderUtil {
 
 	public static int countByC_G_C_C_N_D_A(long companyId, long[] groupIds,
 		long[] classNameIds, java.lang.String code, java.lang.String name,
-		java.lang.String description, boolean active, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String description, boolean active, boolean andOperator) {
 		return getFinder()
 				   .countByC_G_C_C_N_D_A(companyId, groupIds, classNameIds,
 			code, name, description, active, andOperator);
@@ -41,16 +39,14 @@ public class CalendarResourceFinderUtil {
 	public static int countByC_G_C_C_N_D_A(long companyId, long[] groupIds,
 		long[] classNameIds, java.lang.String[] codes,
 		java.lang.String[] names, java.lang.String[] descriptions,
-		boolean active, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean active, boolean andOperator) {
 		return getFinder()
 				   .countByC_G_C_C_N_D_A(companyId, groupIds, classNameIds,
 			codes, names, descriptions, active, andOperator);
 	}
 
 	public static int filterCountByKeywords(long companyId, long[] groupIds,
-		long[] classNameIds, java.lang.String keywords, boolean active)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long[] classNameIds, java.lang.String keywords, boolean active) {
 		return getFinder()
 				   .filterCountByKeywords(companyId, groupIds, classNameIds,
 			keywords, active);
@@ -59,8 +55,7 @@ public class CalendarResourceFinderUtil {
 	public static int filterCountByC_G_C_C_N_D_A(long companyId,
 		long[] groupIds, long[] classNameIds, java.lang.String code,
 		java.lang.String name, java.lang.String description, boolean active,
-		boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean andOperator) {
 		return getFinder()
 				   .filterCountByC_G_C_C_N_D_A(companyId, groupIds,
 			classNameIds, code, name, description, active, andOperator);
@@ -69,8 +64,7 @@ public class CalendarResourceFinderUtil {
 	public static int filterCountByC_G_C_C_N_D_A(long companyId,
 		long[] groupIds, long[] classNameIds, java.lang.String[] codes,
 		java.lang.String[] names, java.lang.String[] descriptions,
-		boolean active, boolean andOperator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		boolean active, boolean andOperator) {
 		return getFinder()
 				   .filterCountByC_G_C_C_N_D_A(companyId, groupIds,
 			classNameIds, codes, names, descriptions, active, andOperator);
@@ -79,8 +73,7 @@ public class CalendarResourceFinderUtil {
 	public static java.util.List<com.liferay.calendar.model.CalendarResource> filterFindByKeywords(
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String keywords, boolean active, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getFinder()
 				   .filterFindByKeywords(companyId, groupIds, classNameIds,
 			keywords, active, start, end, orderByComparator);
@@ -91,8 +84,7 @@ public class CalendarResourceFinderUtil {
 		java.lang.String code, java.lang.String name,
 		java.lang.String description, boolean active, boolean andOperator,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getFinder()
 				   .filterFindByC_G_C_C_N_D_A(companyId, groupIds,
 			classNameIds, code, name, description, active, andOperator, start,
@@ -104,8 +96,7 @@ public class CalendarResourceFinderUtil {
 		java.lang.String[] codes, java.lang.String[] names,
 		java.lang.String[] descriptions, boolean active, boolean andOperator,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getFinder()
 				   .filterFindByC_G_C_C_N_D_A(companyId, groupIds,
 			classNameIds, codes, names, descriptions, active, andOperator,
@@ -115,8 +106,7 @@ public class CalendarResourceFinderUtil {
 	public static java.util.List<com.liferay.calendar.model.CalendarResource> findByKeywords(
 		long companyId, long[] groupIds, long[] classNameIds,
 		java.lang.String keywords, boolean active, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getFinder()
 				   .findByKeywords(companyId, groupIds, classNameIds, keywords,
 			active, start, end, orderByComparator);
@@ -127,8 +117,7 @@ public class CalendarResourceFinderUtil {
 		java.lang.String code, java.lang.String name,
 		java.lang.String description, boolean active, boolean andOperator,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getFinder()
 				   .findByC_G_C_C_N_D_A(companyId, groupIds, classNameIds,
 			code, name, description, active, andOperator, start, end,
@@ -140,8 +129,7 @@ public class CalendarResourceFinderUtil {
 		java.lang.String[] codes, java.lang.String[] names,
 		java.lang.String[] descriptions, boolean active, boolean andOperator,
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
 		return getFinder()
 				   .findByC_G_C_C_N_D_A(companyId, groupIds, classNameIds,
 			codes, names, descriptions, active, andOperator, start, end,

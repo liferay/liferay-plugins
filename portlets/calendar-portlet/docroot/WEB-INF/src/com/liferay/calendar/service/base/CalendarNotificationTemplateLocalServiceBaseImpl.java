@@ -126,13 +126,11 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 *
 	 * @param calendarNotificationTemplate the calendar notification template
 	 * @return the calendar notification template that was removed
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public CalendarNotificationTemplate deleteCalendarNotificationTemplate(
-		CalendarNotificationTemplate calendarNotificationTemplate)
-		throws SystemException {
+		CalendarNotificationTemplate calendarNotificationTemplate) {
 		return calendarNotificationTemplatePersistence.remove(calendarNotificationTemplate);
 	}
 
@@ -151,8 +149,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return calendarNotificationTemplatePersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -169,8 +166,8 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return calendarNotificationTemplatePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -189,9 +186,8 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return calendarNotificationTemplatePersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}

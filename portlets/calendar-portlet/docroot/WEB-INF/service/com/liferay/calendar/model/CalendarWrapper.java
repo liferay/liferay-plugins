@@ -929,15 +929,13 @@ public class CalendarWrapper implements Calendar, ModelWrapper<Calendar> {
 
 	@Override
 	public com.liferay.calendar.model.CalendarResource getCalendarResource()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendar.getCalendarResource();
 	}
 
 	@Override
 	public java.util.TimeZone getTimeZone()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendar.getTimeZone();
 	}
 

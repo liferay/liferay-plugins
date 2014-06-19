@@ -110,12 +110,10 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param calendarId the primary key of the calendar
 	 * @return the calendar that was removed
 	 * @throws PortalException if a calendar with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Calendar deleteCalendar(long calendarId)
-		throws PortalException, SystemException {
+	public Calendar deleteCalendar(long calendarId) throws PortalException {
 		return calendarPersistence.remove(calendarId);
 	}
 
@@ -125,12 +123,10 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param calendar the calendar
 	 * @return the calendar that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
-	public Calendar deleteCalendar(Calendar calendar)
-		throws PortalException, SystemException {
+	public Calendar deleteCalendar(Calendar calendar) throws PortalException {
 		return calendarPersistence.remove(calendar);
 	}
 
@@ -149,8 +145,7 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return calendarPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -167,8 +162,8 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return calendarPersistence.findWithDynamicQuery(dynamicQuery, start, end);
 	}
 
@@ -186,9 +181,8 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return calendarPersistence.findWithDynamicQuery(dynamicQuery, start,
 			end, orderByComparator);
 	}
@@ -219,7 +213,7 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@Override
-	public Calendar fetchCalendar(long calendarId) throws SystemException {
+	public Calendar fetchCalendar(long calendarId) {
 		return calendarPersistence.fetchByPrimaryKey(calendarId);
 	}
 
@@ -229,11 +223,9 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param uuid the calendar's UUID
 	 * @param  companyId the primary key of the company
 	 * @return the matching calendar, or <code>null</code> if a matching calendar could not be found
-	 * @throws SystemException
 	 */
 	@Override
-	public Calendar fetchCalendarByUuidAndCompanyId(String uuid, long companyId)
-		throws SystemException {
+	public Calendar fetchCalendarByUuidAndCompanyId(String uuid, long companyId) {
 		return calendarPersistence.fetchByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -243,11 +235,9 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param uuid the calendar's UUID
 	 * @param groupId the primary key of the group
 	 * @return the matching calendar, or <code>null</code> if a matching calendar could not be found
-	 * @throws SystemException
 	 */
 	@Override
-	public Calendar fetchCalendarByUuidAndGroupId(String uuid, long groupId)
-		throws SystemException {
+	public Calendar fetchCalendarByUuidAndGroupId(String uuid, long groupId) {
 		return calendarPersistence.fetchByUUID_G(uuid, groupId);
 	}
 
@@ -257,11 +247,9 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param calendarId the primary key of the calendar
 	 * @return the calendar
 	 * @throws PortalException if a calendar with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
-	public Calendar getCalendar(long calendarId)
-		throws PortalException, SystemException {
+	public Calendar getCalendar(long calendarId) throws PortalException {
 		return calendarPersistence.findByPrimaryKey(calendarId);
 	}
 
@@ -364,11 +352,10 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param  companyId the primary key of the company
 	 * @return the matching calendar
 	 * @throws PortalException if a matching calendar could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public Calendar getCalendarByUuidAndCompanyId(String uuid, long companyId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return calendarPersistence.findByUuid_C_First(uuid, companyId, null);
 	}
 
@@ -379,11 +366,10 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param groupId the primary key of the group
 	 * @return the matching calendar
 	 * @throws PortalException if a matching calendar could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public Calendar getCalendarByUuidAndGroupId(String uuid, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return calendarPersistence.findByUUID_G(uuid, groupId);
 	}
 

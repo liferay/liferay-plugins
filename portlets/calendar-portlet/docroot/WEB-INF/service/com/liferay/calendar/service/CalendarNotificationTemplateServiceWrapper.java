@@ -67,8 +67,7 @@ public class CalendarNotificationTemplateServiceWrapper
 		com.liferay.calendar.notification.NotificationTemplateType notificationTemplateType,
 		java.lang.String subject, java.lang.String body,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarNotificationTemplateService.addCalendarNotificationTemplate(calendarId,
 			notificationType, notificationTypeSettings,
 			notificationTemplateType, subject, body, serviceContext);
@@ -80,8 +79,7 @@ public class CalendarNotificationTemplateServiceWrapper
 		java.lang.String notificationTypeSettings, java.lang.String subject,
 		java.lang.String body,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _calendarNotificationTemplateService.updateCalendarNotificationTemplate(calendarNotificationTemplateId,
 			notificationTypeSettings, subject, body, serviceContext);
 	}

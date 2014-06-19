@@ -85,7 +85,7 @@ public class CalendarBookingUtil {
 	 */
 	public static List<CalendarBooking> findWithDynamicQuery(
 		DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+		OrderByComparator<CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .findWithDynamicQuery(dynamicQuery, start, end,
 			orderByComparator);
@@ -150,7 +150,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByResourceBlockId(
 		long resourceBlockId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .findByResourceBlockId(resourceBlockId, start, end,
 			orderByComparator);
@@ -166,7 +166,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByResourceBlockId_First(
 		long resourceBlockId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByResourceBlockId_First(resourceBlockId,
@@ -182,7 +182,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByResourceBlockId_First(
 		long resourceBlockId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByResourceBlockId_First(resourceBlockId,
 			orderByComparator);
@@ -198,7 +198,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByResourceBlockId_Last(
 		long resourceBlockId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByResourceBlockId_Last(resourceBlockId,
@@ -214,7 +214,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByResourceBlockId_Last(
 		long resourceBlockId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByResourceBlockId_Last(resourceBlockId,
 			orderByComparator);
@@ -231,7 +231,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking[] findByResourceBlockId_PrevAndNext(
 		long calendarBookingId, long resourceBlockId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByResourceBlockId_PrevAndNext(calendarBookingId,
@@ -300,7 +300,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByUuid(
 		java.lang.String uuid, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence().findByUuid(uuid, start, end, orderByComparator);
 	}
 
@@ -314,7 +314,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence().findByUuid_First(uuid, orderByComparator);
 	}
@@ -328,7 +328,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByUuid_First(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence().fetchByUuid_First(uuid, orderByComparator);
 	}
 
@@ -342,7 +342,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence().findByUuid_Last(uuid, orderByComparator);
 	}
@@ -356,7 +356,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByUuid_Last(
 		java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence().fetchByUuid_Last(uuid, orderByComparator);
 	}
 
@@ -371,7 +371,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking[] findByUuid_PrevAndNext(
 		long calendarBookingId, java.lang.String uuid,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByUuid_PrevAndNext(calendarBookingId, uuid,
@@ -506,7 +506,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByUuid_C(
 		java.lang.String uuid, long companyId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .findByUuid_C(uuid, companyId, start, end, orderByComparator);
 	}
@@ -522,7 +522,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByUuid_C_First(uuid, companyId, orderByComparator);
@@ -538,7 +538,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByUuid_C_First(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_First(uuid, companyId, orderByComparator);
 	}
@@ -554,7 +554,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByUuid_C_Last(uuid, companyId, orderByComparator);
@@ -570,7 +570,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByUuid_C_Last(
 		java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByUuid_C_Last(uuid, companyId, orderByComparator);
 	}
@@ -587,7 +587,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking[] findByUuid_C_PrevAndNext(
 		long calendarBookingId, java.lang.String uuid, long companyId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByUuid_C_PrevAndNext(calendarBookingId, uuid,
@@ -658,7 +658,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarId(
 		long calendarId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .findByCalendarId(calendarId, start, end, orderByComparator);
 	}
@@ -673,7 +673,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByCalendarId_First(
 		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByCalendarId_First(calendarId, orderByComparator);
@@ -688,7 +688,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByCalendarId_First(
 		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByCalendarId_First(calendarId, orderByComparator);
 	}
@@ -703,7 +703,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByCalendarId_Last(
 		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByCalendarId_Last(calendarId, orderByComparator);
@@ -718,7 +718,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByCalendarId_Last(
 		long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByCalendarId_Last(calendarId, orderByComparator);
 	}
@@ -734,7 +734,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking[] findByCalendarId_PrevAndNext(
 		long calendarBookingId, long calendarId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByCalendarId_PrevAndNext(calendarBookingId, calendarId,
@@ -804,7 +804,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByCalendarResourceId(
 		long calendarResourceId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .findByCalendarResourceId(calendarResourceId, start, end,
 			orderByComparator);
@@ -820,7 +820,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByCalendarResourceId_First(
 		long calendarResourceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByCalendarResourceId_First(calendarResourceId,
@@ -836,7 +836,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByCalendarResourceId_First(
 		long calendarResourceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByCalendarResourceId_First(calendarResourceId,
 			orderByComparator);
@@ -852,7 +852,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByCalendarResourceId_Last(
 		long calendarResourceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByCalendarResourceId_Last(calendarResourceId,
@@ -868,7 +868,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByCalendarResourceId_Last(
 		long calendarResourceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByCalendarResourceId_Last(calendarResourceId,
 			orderByComparator);
@@ -885,7 +885,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking[] findByCalendarResourceId_PrevAndNext(
 		long calendarBookingId, long calendarResourceId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByCalendarResourceId_PrevAndNext(calendarBookingId,
@@ -957,7 +957,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByParentCalendarBookingId(
 		long parentCalendarBookingId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .findByParentCalendarBookingId(parentCalendarBookingId,
 			start, end, orderByComparator);
@@ -973,7 +973,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByParentCalendarBookingId_First(
 		long parentCalendarBookingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByParentCalendarBookingId_First(parentCalendarBookingId,
@@ -989,7 +989,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByParentCalendarBookingId_First(
 		long parentCalendarBookingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByParentCalendarBookingId_First(parentCalendarBookingId,
 			orderByComparator);
@@ -1005,7 +1005,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByParentCalendarBookingId_Last(
 		long parentCalendarBookingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByParentCalendarBookingId_Last(parentCalendarBookingId,
@@ -1021,7 +1021,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByParentCalendarBookingId_Last(
 		long parentCalendarBookingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByParentCalendarBookingId_Last(parentCalendarBookingId,
 			orderByComparator);
@@ -1038,7 +1038,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking[] findByParentCalendarBookingId_PrevAndNext(
 		long calendarBookingId, long parentCalendarBookingId,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByParentCalendarBookingId_PrevAndNext(calendarBookingId,
@@ -1178,7 +1178,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByC_S(
 		long calendarId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .findByC_S(calendarId, status, start, end, orderByComparator);
 	}
@@ -1194,7 +1194,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByC_S_First(
 		long calendarId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByC_S_First(calendarId, status, orderByComparator);
@@ -1210,7 +1210,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByC_S_First(
 		long calendarId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_S_First(calendarId, status, orderByComparator);
 	}
@@ -1226,7 +1226,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByC_S_Last(
 		long calendarId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByC_S_Last(calendarId, status, orderByComparator);
@@ -1242,7 +1242,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByC_S_Last(
 		long calendarId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByC_S_Last(calendarId, status, orderByComparator);
 	}
@@ -1259,7 +1259,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking[] findByC_S_PrevAndNext(
 		long calendarBookingId, long calendarId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByC_S_PrevAndNext(calendarBookingId, calendarId,
@@ -1316,7 +1316,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByC_S(
 		long calendarId, int[] statuses, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .findByC_S(calendarId, statuses, start, end,
 			orderByComparator);
@@ -1401,7 +1401,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findByP_S(
 		long parentCalendarBookingId, int status, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .findByP_S(parentCalendarBookingId, status, start, end,
 			orderByComparator);
@@ -1418,7 +1418,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByP_S_First(
 		long parentCalendarBookingId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByP_S_First(parentCalendarBookingId, status,
@@ -1435,7 +1435,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByP_S_First(
 		long parentCalendarBookingId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByP_S_First(parentCalendarBookingId, status,
 			orderByComparator);
@@ -1452,7 +1452,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking findByP_S_Last(
 		long parentCalendarBookingId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByP_S_Last(parentCalendarBookingId, status,
@@ -1469,7 +1469,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking fetchByP_S_Last(
 		long parentCalendarBookingId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence()
 				   .fetchByP_S_Last(parentCalendarBookingId, status,
 			orderByComparator);
@@ -1487,7 +1487,7 @@ public class CalendarBookingUtil {
 	*/
 	public static com.liferay.calendar.model.CalendarBooking[] findByP_S_PrevAndNext(
 		long calendarBookingId, long parentCalendarBookingId, int status,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator)
 		throws com.liferay.calendar.NoSuchBookingException {
 		return getPersistence()
 				   .findByP_S_PrevAndNext(calendarBookingId,
@@ -1632,7 +1632,7 @@ public class CalendarBookingUtil {
 	*/
 	public static java.util.List<com.liferay.calendar.model.CalendarBooking> findAll(
 		int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator orderByComparator) {
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.calendar.model.CalendarBooking> orderByComparator) {
 		return getPersistence().findAll(start, end, orderByComparator);
 	}
 

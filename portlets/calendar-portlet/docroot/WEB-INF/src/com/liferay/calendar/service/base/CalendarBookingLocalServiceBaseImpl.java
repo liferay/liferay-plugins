@@ -125,12 +125,11 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @param calendarBookingId the primary key of the calendar booking
 	 * @return the calendar booking that was removed
 	 * @throws PortalException if a calendar booking with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public CalendarBooking deleteCalendarBooking(long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return calendarBookingPersistence.remove(calendarBookingId);
 	}
 
@@ -140,13 +139,11 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @param calendarBooking the calendar booking
 	 * @return the calendar booking that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public CalendarBooking deleteCalendarBooking(
-		CalendarBooking calendarBooking)
-		throws PortalException, SystemException {
+		CalendarBooking calendarBooking) throws PortalException {
 		return calendarBookingPersistence.remove(calendarBooking);
 	}
 
@@ -165,8 +162,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @return the matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return calendarBookingPersistence.findWithDynamicQuery(dynamicQuery);
 	}
 
@@ -183,8 +179,8 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @return the range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end) {
 		return calendarBookingPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end);
 	}
@@ -203,9 +199,8 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @return the ordered range of matching rows
 	 */
 	@Override
-	@SuppressWarnings("rawtypes")
-	public List dynamicQuery(DynamicQuery dynamicQuery, int start, int end,
-		OrderByComparator orderByComparator) {
+	public <T> List<T> dynamicQuery(DynamicQuery dynamicQuery, int start,
+		int end, OrderByComparator<T> orderByComparator) {
 		return calendarBookingPersistence.findWithDynamicQuery(dynamicQuery,
 			start, end, orderByComparator);
 	}
@@ -273,11 +268,10 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @param calendarBookingId the primary key of the calendar booking
 	 * @return the calendar booking
 	 * @throws PortalException if a calendar booking with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public CalendarBooking getCalendarBooking(long calendarBookingId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return calendarBookingPersistence.findByPrimaryKey(calendarBookingId);
 	}
 
@@ -388,11 +382,10 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @param  companyId the primary key of the company
 	 * @return the matching calendar booking
 	 * @throws PortalException if a matching calendar booking could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public CalendarBooking getCalendarBookingByUuidAndCompanyId(String uuid,
-		long companyId) throws PortalException, SystemException {
+		long companyId) throws PortalException {
 		return calendarBookingPersistence.findByUuid_C_First(uuid, companyId,
 			null);
 	}
@@ -404,11 +397,10 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	 * @param groupId the primary key of the group
 	 * @return the matching calendar booking
 	 * @throws PortalException if a matching calendar booking could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public CalendarBooking getCalendarBookingByUuidAndGroupId(String uuid,
-		long groupId) throws PortalException, SystemException {
+		long groupId) throws PortalException {
 		return calendarBookingPersistence.findByUUID_G(uuid, groupId);
 	}
 

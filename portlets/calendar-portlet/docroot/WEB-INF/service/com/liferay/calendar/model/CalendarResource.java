@@ -32,14 +32,11 @@ public interface CalendarResource extends CalendarResourceModel,
 	 *
 	 * Never modify this interface directly. Add methods to {@link com.liferay.calendar.model.impl.CalendarResourceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
-	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars();
 
-	public com.liferay.calendar.model.Calendar getDefaultCalendar()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public com.liferay.calendar.model.Calendar getDefaultCalendar();
 
-	public long getDefaultCalendarId()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public long getDefaultCalendarId();
 
 	public boolean isGroup();
 

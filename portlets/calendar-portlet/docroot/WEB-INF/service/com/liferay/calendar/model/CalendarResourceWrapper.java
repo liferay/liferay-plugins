@@ -925,20 +925,17 @@ public class CalendarResourceWrapper implements CalendarResource,
 	}
 
 	@Override
-	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public java.util.List<com.liferay.calendar.model.Calendar> getCalendars() {
 		return _calendarResource.getCalendars();
 	}
 
 	@Override
-	public com.liferay.calendar.model.Calendar getDefaultCalendar()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public com.liferay.calendar.model.Calendar getDefaultCalendar() {
 		return _calendarResource.getDefaultCalendar();
 	}
 
 	@Override
-	public long getDefaultCalendarId()
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public long getDefaultCalendarId() {
 		return _calendarResource.getDefaultCalendarId();
 	}
 

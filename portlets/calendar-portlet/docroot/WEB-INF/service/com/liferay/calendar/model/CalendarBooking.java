@@ -32,33 +32,34 @@ public interface CalendarBooking extends CalendarBookingModel, PermissionedModel
 	 * Never modify this interface directly. Add methods to {@link com.liferay.calendar.model.impl.CalendarBookingImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
 	public com.liferay.calendar.model.Calendar getCalendar()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.calendar.model.CalendarResource getCalendarResource()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings()
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public java.util.List<com.liferay.calendar.model.CalendarBooking> getChildCalendarBookings();
 
 	public long getDuration();
 
 	public com.liferay.calendar.notification.NotificationType getFirstReminderNotificationType();
 
+	@com.liferay.portal.kernel.json.JSON()
+	public int getInstanceIndex();
+
 	public com.liferay.calendar.model.CalendarBooking getParentCalendarBooking()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.calendar.recurrence.Recurrence getRecurrenceObj();
 
 	public com.liferay.calendar.notification.NotificationType getSecondReminderNotificationType();
 
 	public java.util.TimeZone getTimeZone()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public boolean isMasterBooking();
 
 	public boolean isRecurring();
+
+	@com.liferay.portal.kernel.json.JSON()
+	public void setInstanceIndex(int instanceIndex);
 }
