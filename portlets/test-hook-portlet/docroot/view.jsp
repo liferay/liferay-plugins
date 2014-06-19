@@ -35,7 +35,7 @@
 <h3>language-properties</h3>
 
 <p>
-	javax.portlet.title.33=<%= _assertEquals("Blogger", LanguageUtil.get(pageContext, "javax.portlet.title.33")) %>
+	javax.portlet.title.33=<%= _assertEquals("Blogger", LanguageUtil.get(request, "javax.portlet.title.33")) %>
 </p>
 
 <h3>custom-jsp-dir</h3>

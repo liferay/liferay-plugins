@@ -126,7 +126,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 						href="<%= rowURL %>"
 						name="status"
 						orderable="<%= true %>"
-						value='<%= curKBArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(curKBArticle.getStatus())) + ")" %>'
+						value='<%= curKBArticle.getStatus() + " (" + LanguageUtil.get(request, WorkflowConstants.getStatusLabel(curKBArticle.getStatus())) + ")" %>'
 					/>
 				</c:if>
 

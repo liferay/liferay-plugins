@@ -58,7 +58,7 @@ AssetRenderer assetRenderer = MySubscriptionsUtil.getAssetRenderer(subscription.
 			sb.append("displayPopup('");
 			sb.append(displayPopupURL.toString());
 			sb.append("', '");
-			sb.append(UnicodeLanguageUtil.get(pageContext, "my-subscription"));
+			sb.append(UnicodeLanguageUtil.get(request, "my-subscription"));
 			sb.append("');");
 
 			displayPopupHREF = sb.toString();

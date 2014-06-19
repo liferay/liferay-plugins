@@ -42,11 +42,11 @@ double priority = BeanParamUtil.getDouble(kbArticle, request, "priority");
 	<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
 	<aui:input name="status" type="hidden" value="<%= String.valueOf(status) %>" />
 
-	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(pageContext, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
+	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
 
 	<aui:fieldset>
 		<div class="control-group">
-			<aui:input name="currentParent" type="resource" value='<%= !kbArticle.isRoot() ? BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(kbArticle.getParentResourcePrimKey(), status), "title") : "(" + LanguageUtil.get(pageContext, "none") + ")" %>' />
+			<aui:input name="currentParent" type="resource" value='<%= !kbArticle.isRoot() ? BeanPropertiesUtil.getString(KBArticleServiceUtil.getLatestKBArticle(kbArticle.getParentResourcePrimKey(), status), "title") : "(" + LanguageUtil.get(request, "none") + ")" %>' />
 
 			<aui:input cssClass="input-mini" label="" name="priority" type="resource" value="<%= BigDecimal.valueOf(priority).toPlainString() %>" />
 		</div>

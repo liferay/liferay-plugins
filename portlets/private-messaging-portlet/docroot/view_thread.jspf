@@ -317,7 +317,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 			function(event) {
 				var loadingMask = new A.LoadingMask(
 					{
-						'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "sending-message") %>',
+						'strings.loading': '<%= UnicodeLanguageUtil.get(request, "sending-message") %>',
 						target: A.one('.private-messaging-portlet .private-messaging-container')
 					}
 				);

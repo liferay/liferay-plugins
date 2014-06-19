@@ -86,7 +86,7 @@ RowChecker organizationRoleChecker = (RowChecker)InstanceFactory.newInstance(Por
 		<liferay-ui:search-container-column-text
 			name="type"
 			orderable="<%= true %>"
-			value="<%= LanguageUtil.get(pageContext, organization.getType()) %>"
+			value="<%= LanguageUtil.get(request, organization.getType()) %>"
 		/>
 	</liferay-ui:search-container-row>
 

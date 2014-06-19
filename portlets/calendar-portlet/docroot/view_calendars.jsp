@@ -24,7 +24,7 @@ CalendarResource calendarResource = (CalendarResource)request.getAttribute(WebKe
 
 <liferay-ui:header
 	backURL="<%= redirect %>"
-	title='<%= LanguageUtil.format(pageContext, "x-calendars", calendarResource.getName(locale), false) %>'
+	title='<%= LanguageUtil.format(request, "x-calendars", calendarResource.getName(locale), false) %>'
 />
 
 <c:if test="<%= CalendarResourcePermission.contains(permissionChecker, calendarResource, ActionKeys.ADD_CALENDAR) %>">

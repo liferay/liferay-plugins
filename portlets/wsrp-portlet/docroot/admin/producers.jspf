@@ -75,5 +75,5 @@
 </liferay-ui:search-container>
 
 <%
-PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "producers"), currentURL);
+PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "producers"), currentURL);
 %>

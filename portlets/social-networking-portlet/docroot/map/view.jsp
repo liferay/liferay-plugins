@@ -36,13 +36,13 @@ else {
 }
 
 if (organizationProfileMap || siteProfileMap) {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-the-x-members", group.getDescriptiveName(locale), false));
+	renderResponse.setTitle(LanguageUtil.format(request, "where-are-the-x-members", group.getDescriptiveName(locale), false));
 }
 else if (friendsProfileMap) {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-are-x's-friends", user2.getFirstName(), false));
+	renderResponse.setTitle(LanguageUtil.format(request, "where-are-x's-friends", user2.getFirstName(), false));
 }
 else {
-	renderResponse.setTitle(LanguageUtil.format(pageContext, "where-is-x", user2.getFirstName(), false));
+	renderResponse.setTitle(LanguageUtil.format(request, "where-is-x", user2.getFirstName(), false));
 }
 %>
 
@@ -164,7 +164,7 @@ boolean ipGeocoderConfigured = ipGeocoderInstalled && (IPGeocoderUtil.getIPInfo(
 								<c:when test="<%= windowState.equals(WindowState.MAXIMIZED) %>">
 									var infoWindow = new google.maps.InfoWindow(
 										{
-											content: '<center><img alt="<%= HtmlUtil.escapeJS(LanguageUtil.get(pageContext, "user-portrait")) %>" src="<%= mapUser.getPortraitURL(themeDisplay) %>" width="65" /><br /><%= HtmlUtil.escapeJS(mapUser.getFullName()) %></center>'
+											content: '<center><img alt="<%= HtmlUtil.escapeJS(LanguageUtil.get(request, "user-portrait")) %>" src="<%= mapUser.getPortraitURL(themeDisplay) %>" width="65" /><br /><%= HtmlUtil.escapeJS(mapUser.getFullName()) %></center>'
 										}
 									);
 

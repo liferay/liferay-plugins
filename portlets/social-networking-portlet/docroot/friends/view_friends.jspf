@@ -47,10 +47,10 @@ for (int i = 0; i < results.size(); i++) {
 <div>
 	<c:choose>
 		<c:when test="<%= user2.getUserId() == themeDisplay.getUserId() %>">
-			<%= LanguageUtil.format(pageContext, "you-have-x-friends", String.valueOf(total), false) %>
+			<%= LanguageUtil.format(request, "you-have-x-friends", String.valueOf(total), false) %>
 		</c:when>
 		<c:otherwise>
-			<%= LanguageUtil.format(pageContext, "x-has-x-friends", new Object[] {HtmlUtil.escape(user2.getFullName()), String.valueOf(total)}, false) %>
+			<%= LanguageUtil.format(request, "x-has-x-friends", new Object[] {HtmlUtil.escape(user2.getFullName()), String.valueOf(total)}, false) %>
 		</c:otherwise>
 	</c:choose>
 </div>

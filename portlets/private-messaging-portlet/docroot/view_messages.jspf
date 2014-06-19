@@ -19,7 +19,7 @@
 
 <aui:button-row cssClass="controls">
 	<c:if test="<%= UserThreadLocalServiceUtil.getUserUserThreadCount(themeDisplay.getUserId(), false) > 0 %>">
-		<aui:input cssClass="check-all" inline="<%= true %>" label="" name="checkAllMessages" title='<%= LanguageUtil.get(pageContext, "check-all-messages") %>' type="checkbox" />
+		<aui:input cssClass="check-all" inline="<%= true %>" label="" name="checkAllMessages" title='<%= LanguageUtil.get(request, "check-all-messages") %>' type="checkbox" />
 	</c:if>
 
 	<aui:button cssClass="hide" name="markMessagesAsUnread" value="mark-as-unread" />

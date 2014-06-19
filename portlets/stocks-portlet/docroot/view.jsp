@@ -35,24 +35,24 @@
 								<a href="<portlet:renderURL windowState="<%= WindowState.MAXIMIZED.toString() %>"><portlet:param name="struts_action" value="/stocks/view" /><portlet:param name="symbol" value="<%= stocks.getSymbol() %>" /></portlet:renderURL>" style="font-size: xx-small; font-weight: bold;"><%= stocks.getSymbol() %></a>
 							</td>
 							<td align="right">
-								<%= stocks.isLastTradeAvailable() ? decimalFormat.format(stocks.getLastTrade()) : LanguageUtil.get(pageContext, "not-available") %>
+								<%= stocks.isLastTradeAvailable() ? decimalFormat.format(stocks.getLastTrade()) : LanguageUtil.get(request, "not-available") %>
 							</td>
 							<td align="right">
 								<c:if test="<%= stocks.getChange() < 0 %>">
 									<span class="alert alert-error">
-										<%= stocks.isChangeAvailable() ? decimalFormat.format(stocks.getChange()) : LanguageUtil.get(pageContext, "not-available") %>
+										<%= stocks.isChangeAvailable() ? decimalFormat.format(stocks.getChange()) : LanguageUtil.get(request, "not-available") %>
 									</span>
 								</c:if>
 
 								<c:if test="<%= stocks.getChange() > 0 %>">
 									<span class="alert alert-success">
-										+<%= stocks.isChangeAvailable() ? decimalFormat.format(stocks.getChange()) : LanguageUtil.get(pageContext, "not-available") %>
+										+<%= stocks.isChangeAvailable() ? decimalFormat.format(stocks.getChange()) : LanguageUtil.get(request, "not-available") %>
 									</span>
 								</c:if>
 
 								<c:if test="<%= stocks.getChange() == 0 %>">
 									<span style="font-size: xx-small;">
-										<%= stocks.isChangeAvailable() ? decimalFormat.format(stocks.getChange()) : LanguageUtil.get(pageContext, "not-available") %>
+										<%= stocks.isChangeAvailable() ? decimalFormat.format(stocks.getChange()) : LanguageUtil.get(request, "not-available") %>
 									</span>
 								</c:if>
 							</td>
@@ -168,23 +168,23 @@
 							</td>
 							<td align="center">
 								<liferay-ui:message key="day-high" /><br />
-								<strong><%= stocks.isDayHighAvailable() ? decimalFormat.format(stocks.getDayHigh()) : LanguageUtil.get(pageContext, "not-available") %></strong>
+								<strong><%= stocks.isDayHighAvailable() ? decimalFormat.format(stocks.getDayHigh()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 							<td align="center">
 								<liferay-ui:message key="day-low" /><br />
-								<strong><%= stocks.isDayLowAvailable() ? decimalFormat.format(stocks.getDayLow()) : LanguageUtil.get(pageContext, "not-available") %></strong>
+								<strong><%= stocks.isDayLowAvailable() ? decimalFormat.format(stocks.getDayLow()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 							<td align="center">
 								<liferay-ui:message key="open" /><br />
-								<strong><%= stocks.isOpenAvailable() ? decimalFormat.format(stocks.getOpen()) : LanguageUtil.get(pageContext, "not-available") %></strong>
+								<strong><%= stocks.isOpenAvailable() ? decimalFormat.format(stocks.getOpen()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 							<td align="center">
 								<liferay-ui:message key="previous-close" /><br />
-								<strong><%= stocks.isPreviousCloseAvailable() ? decimalFormat.format(stocks.getPreviousClose()) : LanguageUtil.get(pageContext, "not-available") %></strong>
+								<strong><%= stocks.isPreviousCloseAvailable() ? decimalFormat.format(stocks.getPreviousClose()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 							<td align="center">
 								<liferay-ui:message key="volume" /><br />
-								<strong><%= stocks.isVolumeAvailable() ? numberFormat.format(stocks.getVolume()) : LanguageUtil.get(pageContext, "not-available") %></strong>
+								<strong><%= stocks.isVolumeAvailable() ? numberFormat.format(stocks.getVolume()) : LanguageUtil.get(request, "not-available") %></strong>
 							</td>
 						</tr>
 					</table>
@@ -196,7 +196,7 @@
 					</div>
 				</c:when>
 				<c:otherwise>
-					<%= LanguageUtil.format(pageContext, "no-information-was-found-associated-with-the-symbol-x", symbol, false) %>
+					<%= LanguageUtil.format(request, "no-information-was-found-associated-with-the-symbol-x", symbol, false) %>
 				</c:otherwise>
 			</c:choose>
 		</c:otherwise>

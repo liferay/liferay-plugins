@@ -43,26 +43,26 @@ String colorText = portletPreferences.getValue("colorText", StringPool.BLANK);
 String colorUrl = portletPreferences.getValue("colorUrl", StringPool.BLANK);
 
 String[][] adFormats = {
-	{"0", "0", "0", "(0 x 0) - " + LanguageUtil.get(pageContext, "no-banner")},
-	{"1", "728", "90", "(728 x 90) - " + LanguageUtil.get(pageContext, "leaderboard")},
-	{"2", "468", "60", "(468 x 60) - " + LanguageUtil.get(pageContext, "banner")},
-	{"3", "336", "280", "(336 x 280) - " + LanguageUtil.get(pageContext, "large-rectangle")},
-	{"4", "300", "250", "(300 x 250) - " + LanguageUtil.get(pageContext, "medium-rectangle")},
-	{"5", "250", "250", "(250 x 250) - " + LanguageUtil.get(pageContext, "square")},
-	{"6", "234", "60", "(234 x 60) - " + LanguageUtil.get(pageContext, "half-banner")},
-	{"7", "200", "200", "(200 x 200) - " + LanguageUtil.get(pageContext, "small-square")},
-	{"8", "180", "150", "(180 x 150) - " + LanguageUtil.get(pageContext, "small-rectangle")},
-	{"9", "160", "600", "(160 x 600) - " + LanguageUtil.get(pageContext, "wide-skyscraper")},
-	{"10", "125", "125", "(125 x 125) - " + LanguageUtil.get(pageContext, "button")},
-	{"11", "120", "600", "(120 x 600) - " + LanguageUtil.get(pageContext, "skyscraper")},
-	{"12", "120", "240", "(120 x 240) - " + LanguageUtil.get(pageContext, "vertical-banner")}
+	{"0", "0", "0", "(0 x 0) - " + LanguageUtil.get(request, "no-banner")},
+	{"1", "728", "90", "(728 x 90) - " + LanguageUtil.get(request, "leaderboard")},
+	{"2", "468", "60", "(468 x 60) - " + LanguageUtil.get(request, "banner")},
+	{"3", "336", "280", "(336 x 280) - " + LanguageUtil.get(request, "large-rectangle")},
+	{"4", "300", "250", "(300 x 250) - " + LanguageUtil.get(request, "medium-rectangle")},
+	{"5", "250", "250", "(250 x 250) - " + LanguageUtil.get(request, "square")},
+	{"6", "234", "60", "(234 x 60) - " + LanguageUtil.get(request, "half-banner")},
+	{"7", "200", "200", "(200 x 200) - " + LanguageUtil.get(request, "small-square")},
+	{"8", "180", "150", "(180 x 150) - " + LanguageUtil.get(request, "small-rectangle")},
+	{"9", "160", "600", "(160 x 600) - " + LanguageUtil.get(request, "wide-skyscraper")},
+	{"10", "125", "125", "(125 x 125) - " + LanguageUtil.get(request, "button")},
+	{"11", "120", "600", "(120 x 600) - " + LanguageUtil.get(request, "skyscraper")},
+	{"12", "120", "240", "(120 x 240) - " + LanguageUtil.get(request, "vertical-banner")}
 };
 
 String[][] adTypes = {
-	{"0", LanguageUtil.get(pageContext, "none"), "none"},
-	{"1", LanguageUtil.get(pageContext, "text"), "text"},
-	{"2", LanguageUtil.get(pageContext, "image"), "image"},
-	{"3", LanguageUtil.get(pageContext, "text-and-image"), "text_image"}
+	{"0", LanguageUtil.get(request, "none"), "none"},
+	{"1", LanguageUtil.get(request, "text"), "text"},
+	{"2", LanguageUtil.get(request, "image"), "image"},
+	{"3", LanguageUtil.get(request, "text-and-image"), "text_image"}
 };
 
 String adTypeValue = adTypes[adType][2];

@@ -30,7 +30,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
 	<aui:input name="resourcePrimKeys" type="hidden" />
 
-	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(pageContext, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
+	<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
 
 	<aui:fieldset>
 		<liferay-portlet:renderURL varImpl="iteratorURL">
@@ -123,7 +123,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 					href="<%= rowURL %>"
 					name="status"
 					orderable="<%= true %>"
-					value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(kbArticle.getStatus())) + ")" %>'
+					value='<%= kbArticle.getStatus() + " (" + LanguageUtil.get(request, WorkflowConstants.getStatusLabel(kbArticle.getStatus())) + ")" %>'
 				/>
 
 				<liferay-ui:search-container-column-text
@@ -217,10 +217,10 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 
 					<c:choose>
 						<c:when test="<%= total > 0 %>">
-							<%= LanguageUtil.format(pageContext, "child-articles-for-x", sb.toString(), false) %>
+							<%= LanguageUtil.format(request, "child-articles-for-x", sb.toString(), false) %>
 						</c:when>
 						<c:otherwise>
-							<%= LanguageUtil.format(pageContext, "there-are-no-child-articles-for-x", sb.toString(), false) %>
+							<%= LanguageUtil.format(request, "there-are-no-child-articles-for-x", sb.toString(), false) %>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -253,7 +253,7 @@ long parentResourcePrimKey = ParamUtil.getLong(request, "parentResourcePrimKey",
 		window,
 		'<portlet:namespace />deleteKBArticles',
 		function() {
-			if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-the-selected-articles") %>')) {
+			if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-the-selected-articles") %>')) {
 				document.<portlet:namespace />fm.method = 'post';
 				document.<portlet:namespace />fm.<portlet:namespace />resourcePrimKeys.value = Liferay.Util.listCheckedExcept(document.<portlet:namespace />fm, '<portlet:namespace />allRowIds');
 				submitForm(document.<portlet:namespace />fm, '<liferay-portlet:actionURL name="deleteKBArticles"><portlet:param name="mvcPath" value="/admin/view.jsp" /><portlet:param name="redirect" value="<%= redirect %>" /></liferay-portlet:actionURL>');

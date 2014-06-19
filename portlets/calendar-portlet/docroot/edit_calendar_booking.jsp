@@ -458,7 +458,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 	var calendarsMenu = {
 		items: [
 			{
-				caption: '<%= UnicodeLanguageUtil.get(pageContext, "check-availability") %>',
+				caption: '<%= UnicodeLanguageUtil.get(request, "check-availability") %>',
 				fn: function(event) {
 					var instance = this;
 
@@ -483,7 +483,7 @@ List<Calendar> manageableCalendars = CalendarServiceUtil.search(themeDisplay.get
 			}
 			<c:if test="<%= invitable %>">
 				,{
-					caption: '<%= UnicodeLanguageUtil.get(pageContext, "remove") %>',
+					caption: '<%= UnicodeLanguageUtil.get(request, "remove") %>',
 					fn: function(event) {
 						var instance = this;
 

@@ -41,7 +41,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 	</div>
 
 	<div class="section-container">
-		<div class="section site-information" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new String[] {"1", "2"}, false) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-information") %>'>
+		<div class="section site-information" data-step='<%= LanguageUtil.format(request, "step-x-of-x", new String[] {"1", "2"}, false) %>' data-title='<%= LanguageUtil.get(request, "add-site-information") %>'>
 			<aui:fieldset>
 				<aui:input name="name" />
 
@@ -53,7 +53,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 		LayoutSetPrototype defaultLayoutSetPrototype = null;
 		%>
 
-		<div class="hide section site-settings" data-step='<%= LanguageUtil.format(pageContext, "step-x-of-x", new String[] {"2", "2"}, false) %>' data-title='<%= LanguageUtil.get(pageContext, "add-site-settings") %>'>
+		<div class="hide section site-settings" data-step='<%= LanguageUtil.format(request, "step-x-of-x", new String[] {"2", "2"}, false) %>' data-title='<%= LanguageUtil.get(request, "add-site-settings") %>'>
 			<div class="site-options">
 
 				<%
@@ -216,7 +216,7 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 
 			var loadingMask = new A.LoadingMask(
 				{
-					'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "creating-a-new-site") %>',
+					'strings.loading': '<%= UnicodeLanguageUtil.get(request, "creating-a-new-site") %>',
 					target: A.one('.so-portlet-sites-dialog')
 				}
 			);
@@ -412,16 +412,16 @@ portletURL.setParameter("mvcPath", "/sites/edit_site.jsp");
 			var message = '';
 
 			if (type == <%= GroupConstants.TYPE_SITE_OPEN %>) {
-				message = '<%= UnicodeLanguageUtil.get(pageContext, "open-sites-are-listed-pages-are-public-and-users-are-free-to-join-and-collaborate") %>';
+				message = '<%= UnicodeLanguageUtil.get(request, "open-sites-are-listed-pages-are-public-and-users-are-free-to-join-and-collaborate") %>';
 			}
 			else if (type == <%= GroupConstants.TYPE_SITE_PUBLIC_RESTRICTED %>) {
-				message = '<%= UnicodeLanguageUtil.get(pageContext, "public-restricted-sites-are-listed-pages-are-public-and-users-must-request-to-join-and-collaborate") %>';
+				message = '<%= UnicodeLanguageUtil.get(request, "public-restricted-sites-are-listed-pages-are-public-and-users-must-request-to-join-and-collaborate") %>';
 			}
 			else if (type == <%= GroupConstants.TYPE_SITE_PRIVATE_RESTRICTED %>) {
-				message = '<%= UnicodeLanguageUtil.get(pageContext, "private-restricted-sites-are-listed-pages-are-private-and-users-must-request-to-join-and-collaborate") %>';
+				message = '<%= UnicodeLanguageUtil.get(request, "private-restricted-sites-are-listed-pages-are-private-and-users-must-request-to-join-and-collaborate") %>';
 			}
 			else if (type == <%= GroupConstants.TYPE_SITE_PRIVATE %>) {
-				message = '<%= UnicodeLanguageUtil.get(pageContext, "private-sites-are-not-listed-pages-are-private-and-users-must-be-invited-to-collaborate") %>';
+				message = '<%= UnicodeLanguageUtil.get(request, "private-sites-are-not-listed-pages-are-private-and-users-must-be-invited-to-collaborate") %>';
 			}
 
 			A.one('.so-portlet-sites-dialog .type-details .message').html(message);

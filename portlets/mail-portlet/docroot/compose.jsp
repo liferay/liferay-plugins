@@ -53,21 +53,21 @@ else {
 
 	if (messageType.equals("reply")) {
 		to = replyMessage.getSender();
-		subject = LanguageUtil.format(pageContext, "re-x", replyMessage.getSubject(), false);
+		subject = LanguageUtil.format(request, "re-x", replyMessage.getSubject(), false);
 	}
 	else if (messageType.equals("reply-all")) {
 		to = replyMessage.getSender() + ", " + replyMessage.getTo();
 		cc = replyMessage.getCc();
-		subject = LanguageUtil.format(pageContext, "re-x", replyMessage.getSubject(), false);
+		subject = LanguageUtil.format(request, "re-x", replyMessage.getSubject(), false);
 	}
 	else if (messageType.equals("forward")) {
-		subject = LanguageUtil.format(pageContext, "fwd-x", replyMessage.getSubject(), false);
+		subject = LanguageUtil.format(request, "fwd-x", replyMessage.getSubject(), false);
 	}
 
 	StringBundler sb = new StringBundler(4);
 
 	sb.append("<br /><br />");
-	sb.append(LanguageUtil.format(pageContext, "on-x-x-wrote", new Object[] {dateFormatDateTime.format(replyMessage.getSentDate()), replyMessage.getSender()}, false));
+	sb.append(LanguageUtil.format(request, "on-x-x-wrote", new Object[] {dateFormatDateTime.format(replyMessage.getSentDate()), replyMessage.getSender()}, false));
 	sb.append("<br />");
 	sb.append(replyMessage.getBody());
 

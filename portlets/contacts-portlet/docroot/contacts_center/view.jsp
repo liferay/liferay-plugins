@@ -162,7 +162,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 								String lastName = user2.getLastName();
 
-								String curLastNameAnchor = LanguageUtil.get(pageContext, "no-last-name");
+								String curLastNameAnchor = LanguageUtil.get(request, "no-last-name");
 
 								if (Validator.isNotNull(lastName)) {
 									curLastNameAnchor = StringUtil.upperCase(lastName.substring(0, 1));
@@ -223,7 +223,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 
 								String fullName = entry.getFullName();
 
-								String curLastNameAnchor = LanguageUtil.get(pageContext, "no-last-name");
+								String curLastNameAnchor = LanguageUtil.get(request, "no-last-name");
 
 								if (Validator.isNotNull(fullName)) {
 									curLastNameAnchor = StringUtil.upperCase(fullName.substring(0, 1));
@@ -573,7 +573,7 @@ portletURL.setWindowState(WindowState.NORMAL);
 						addContact.on(
 							'click',
 							function(event) {
-								contactsCenter.showPopup('<%= LanguageUtil.get(pageContext, "add-contact") %>', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
+								contactsCenter.showPopup('<%= LanguageUtil.get(request, "add-contact") %>', '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/contacts_center/edit_entry.jsp" /><portlet:param name="redirect" value="<%= currentURL %>" /></portlet:renderURL>');
 							}
 						);
 					}

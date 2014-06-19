@@ -196,7 +196,7 @@ MailManager mailManager = MailManager.getInstance(request);
 								</td>
 								<td>
 									<div class="<%= messageCssClass + (Validator.isNull(message.getSubject()) ? " no-subject" : StringPool.BLANK) %>" data-folderId="<%= folderId %>" data-keywords="<%= keywords %>" data-messageId="<%= message.getMessageId() %>" data-messageNumber="<%= messageNumber %>" data-orderByField="<%= orderByField %>" data-orderByType="<%= orderByType %>">
-										<%= Validator.isNull(message.getSubject()) ? LanguageUtil.get(pageContext, "no-subject") : HtmlUtil.escape(message.getSubject()) %>
+										<%= Validator.isNull(message.getSubject()) ? LanguageUtil.get(request, "no-subject") : HtmlUtil.escape(message.getSubject()) %>
 									</div>
 								</td>
 								<td class="attachments">

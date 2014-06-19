@@ -97,7 +97,7 @@ to = sb.toString() + to;
 		<aui:field-wrapper>
 			<c:if test="<%= fileMaxSize != 0 %>">
 				<div class="portlet-msg-info">
-					<%= LanguageUtil.format(pageContext, "upload-documents-no-larger-than-x-k", String.valueOf(fileMaxSize), false) %>
+					<%= LanguageUtil.format(request, "upload-documents-no-larger-than-x-k", String.valueOf(fileMaxSize), false) %>
 				</div>
 			</c:if>
 		</aui:field-wrapper>
@@ -142,7 +142,7 @@ to = sb.toString() + to;
 
 			var loadingMask = new A.LoadingMask(
 				{
-					'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "sending-message") %>',
+					'strings.loading': '<%= UnicodeLanguageUtil.get(request, "sending-message") %>',
 					target: A.one('.private-messaging-portlet .message-body-container')
 				}
 			);

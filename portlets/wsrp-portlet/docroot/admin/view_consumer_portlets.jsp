@@ -88,5 +88,5 @@ portletURL.setParameter("wsrpConsumerId", String.valueOf(wsrpConsumerId));
 </liferay-ui:search-container>
 
 <%
-PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "manage-portlets"), currentURL);
+PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "manage-portlets"), currentURL);
 %>

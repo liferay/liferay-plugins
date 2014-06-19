@@ -56,7 +56,7 @@ for (int i = 0; i < results.size(); i++) {
 %>
 
 <div>
-	<%= LanguageUtil.format(pageContext, (organization != null) ? "this-organization-has-x-members" : "this-site-has-x-members", String.valueOf(total), false) %>
+	<%= LanguageUtil.format(request, (organization != null) ? "this-organization-has-x-members" : "this-site-has-x-members", String.valueOf(total), false) %>
 </div>
 
 <c:if test="<%= total > 0 %>">

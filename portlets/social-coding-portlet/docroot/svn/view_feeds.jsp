@@ -40,10 +40,10 @@
 	String title = null;
 
 	if (all) {
-		title = LanguageUtil.format(pageContext, "all-commits-on-x", svnURL, false);
+		title = LanguageUtil.format(request, "all-commits-on-x", svnURL, false);
 	}
 	else {
-		title = LanguageUtil.format(pageContext, "x's-commits-on-x", new Object[] {HtmlUtil.escape(user2.getFullName()), svnURL}, false);
+		title = LanguageUtil.format(request, "x's-commits-on-x", new Object[] {HtmlUtil.escape(user2.getFullName()), svnURL}, false);
 	}
 
 	SyndFeed syndFeed = new SyndFeedImpl();
@@ -63,7 +63,7 @@
 		SyndEntry syndEntry = new SyndEntryImpl();
 
 		syndEntry.setAuthor(HtmlUtil.escape(user2.getFullName()));
-		syndEntry.setTitle(LanguageUtil.get(pageContext, "revision") + StringPool.SPACE + svnRevision.getRevisionNumber());
+		syndEntry.setTitle(LanguageUtil.get(request, "revision") + StringPool.SPACE + svnRevision.getRevisionNumber());
 		syndEntry.setLink(link);
 		syndEntry.setPublishedDate(svnRevision.getCreateDate());
 

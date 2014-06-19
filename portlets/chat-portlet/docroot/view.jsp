@@ -60,7 +60,7 @@
 			<div class="chat-status">
 				<div class="status-message">
 					<c:if test="<%= Validator.isNotNull(statusMessage) %>">
-						<%= LanguageUtil.format(pageContext, "you-are-x", "<strong>" + statusMessage + "</strong>", false) %>
+						<%= LanguageUtil.format(request, "you-are-x", "<strong>" + statusMessage + "</strong>", false) %>
 					</c:if>
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 				<ul class="chat-tabs">
 					<li class="buddy-list loading <%= openPanelId.equals("buddylist") ? "selected" : "" %>">
 						<div class="panel-trigger" panelId="buddylist">
-							<span class="trigger-name"><%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %></span>
+							<span class="trigger-name"><%= LanguageUtil.format(request, "online-friends-x", "(" + buddiesCount + ")", false) %></span>
 						</div>
 
 						<div class="chat-panel">
@@ -77,7 +77,7 @@
 								<div class="panel-button minimize"></div>
 
 								<div class="panel-title">
-									<%= LanguageUtil.format(pageContext, "online-friends-x", "(" + buddiesCount + ")", false) %>
+									<%= LanguageUtil.format(request, "online-friends-x", "(" + buddiesCount + ")", false) %>
 								</div>
 
 								<aui:input cssClass="search-buddies" label="" name="searchBuddies" placeholder="search" />
@@ -126,7 +126,7 @@
 
 								<ul class="lfr-component settings">
 									<li>
-										<label for="statusMessage"><%= LanguageUtil.format(pageContext, "x-is", HtmlUtil.escape(user.getFullName()), false) %></label>
+										<label for="statusMessage"><%= LanguageUtil.format(request, "x-is", HtmlUtil.escape(user.getFullName()), false) %></label>
 
 										<input id="statusMessage" type="text" value="<%= statusMessage %>" />
 									</li>

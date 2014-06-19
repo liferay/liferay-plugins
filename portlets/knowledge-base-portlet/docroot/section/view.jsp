@@ -36,7 +36,7 @@
 				List<String> titles = new ArrayList<String>();
 
 				for (String kbArticlesSection : kbArticlesSections) {
-					titles.add(LanguageUtil.get(pageContext, kbArticlesSection));
+					titles.add(LanguageUtil.get(request, kbArticlesSection));
 				}
 
 				Collections.sort(titles);
@@ -106,7 +106,7 @@
 		%>
 
 		<div class="alert alert-info">
-			<%= LanguageUtil.format(pageContext, "please-input-a-list-of-comma-delimited-words-for-portlet-property-x-to-enable-this-portlet", "admin.kb.article.sections", false) %>
+			<%= LanguageUtil.format(request, "please-input-a-list-of-comma-delimited-words-for-portlet-property-x-to-enable-this-portlet", "admin.kb.article.sections", false) %>
 		</div>
 	</c:otherwise>
 </c:choose>

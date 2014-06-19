@@ -43,11 +43,11 @@ if (user2 != null) {
 			endDate = dateFormatDate.format(projectsEntry.getEndDate());
 		}
 		else {
-			endDate = LanguageUtil.get(pageContext, "current");
+			endDate = LanguageUtil.get(request, "current");
 		}
 	%>
 
-		<div class="field-group projects section" data-extension="true" data-sectionId="projects" data-title="<%= LanguageUtil.get(pageContext, "projects") %>">
+		<div class="field-group projects section" data-extension="true" data-sectionId="projects" data-title="<%= LanguageUtil.get(request, "projects") %>">
 			<h3><%= HtmlUtil.escape(projectsEntry.getTitle()) %>:</h3>
 
 			<div class="project-date property-list">
@@ -71,7 +71,7 @@ if (user2 != null) {
 
 		<div class="field-actions-toolbar">
 			<ul class="settings-actions">
-				<li class="action-field component lfr-token settings-field" data-extension="true" data-sectionId="projects" data-title="<%= LanguageUtil.get(pageContext, "projects") %>">
+				<li class="action-field component lfr-token settings-field" data-extension="true" data-sectionId="projects" data-title="<%= LanguageUtil.get(request, "projects") %>">
 					<div class="settings-field-content">
 						<i class="icon-plus-sign"></i>
 

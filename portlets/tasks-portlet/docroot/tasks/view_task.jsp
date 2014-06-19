@@ -46,7 +46,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 
 						<%
 						String assigneeDisplayURL = StringPool.BLANK;
-						String taglibAssigneeDisplayURL = LanguageUtil.get(pageContext, "unknown-user");
+						String taglibAssigneeDisplayURL = LanguageUtil.get(request, "unknown-user");
 
 						User assigneeUser = UserLocalServiceUtil.fetchUser(tasksEntry.getAssigneeUserId());
 
@@ -69,7 +69,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 
 				<%
 				String reporterDisplayURL = StringPool.BLANK;
-				String taglibReporterDisplayURL = LanguageUtil.get(pageContext, "unknown-user");
+				String taglibReporterDisplayURL = LanguageUtil.get(request, "unknown-user");
 
 				User reporterUser = UserLocalServiceUtil.fetchUser(tasksEntry.getUserId());
 
@@ -174,7 +174,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 						deleteTasksEntry.on(
 							'click',
 							function(event) {
-								if (confirm('<%= UnicodeLanguageUtil.get(pageContext, "are-you-sure-you-want-to-delete-this-entry") %>')) {
+								if (confirm('<%= UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-delete-this-entry") %>')) {
 									A.io.request(
 										'<portlet:actionURL name="deleteTasksEntry" />',
 										{

@@ -55,7 +55,7 @@ KBComment kbComment = (KBComment)request.getAttribute("article_comment.jsp-kb_co
 			<br />
 
 			<div>
-				<%= LanguageUtil.format(pageContext, "posted-on-x", dateFormatDateTime.format(kbComment.getModifiedDate()), false) %>
+				<%= LanguageUtil.format(request, "posted-on-x", dateFormatDateTime.format(kbComment.getModifiedDate()), false) %>
 			</div>
 
 			<c:if test="<%= KBCommentPermission.contains(permissionChecker, kbComment, ActionKeys.DELETE) %>">

@@ -162,5 +162,5 @@ int oAuthServiceCount = 0;
 </aui:script>
 
 <%
-PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "manage-oauth"), currentURL);
+PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "manage-oauth"), currentURL);
 %>

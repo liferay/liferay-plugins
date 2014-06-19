@@ -120,7 +120,7 @@ else {
 
 					var loadingMask = new A.LoadingMask(
 						{
-							'strings.loading': '<%= UnicodeLanguageUtil.get(pageContext, "the-meeting-has-not-yet-started.-you-will-be-automatically-connected-once-the-host-arrives.-please-wait") %>',
+							'strings.loading': '<%= UnicodeLanguageUtil.get(request, "the-meeting-has-not-yet-started.-you-will-be-automatically-connected-once-the-host-arrives.-please-wait") %>',
 							target: A.one('.bbb-portlet')
 						}
 					);

@@ -39,7 +39,7 @@
 				</span>
 			</div>
 
-			<aui:input cssClass="comment-form" label="" name="body" placeholder='<%= LanguageUtil.get(pageContext, "leave-a-comment") %>'/>
+			<aui:input cssClass="comment-form" label="" name="body" placeholder='<%= LanguageUtil.get(request, "leave-a-comment") %>'/>
 
 			<aui:input name="submit" type="hidden" value="post" />
 		</div>
@@ -92,7 +92,7 @@
 
 									viewComments.html(
 										messagesCount +
-										(messagesCount > 1 ? ' <%= UnicodeLanguageUtil.get(pageContext, "comments") %>' : ' <%= UnicodeLanguageUtil.get(pageContext, "comment") %>')
+										(messagesCount > 1 ? ' <%= UnicodeLanguageUtil.get(request, "comments") %>' : ' <%= UnicodeLanguageUtil.get(request, "comment") %>')
 									);
 
 									var textInput = commentsContainer.one('.comment-form');

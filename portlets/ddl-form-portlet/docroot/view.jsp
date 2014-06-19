@@ -126,7 +126,7 @@ catch (NoSuchRecordSetException nsrse) {
 %>
 
 	<div class="alert alert-error">
-		<%= LanguageUtil.get(pageContext, "the-selected-list-no-longer-exists") %>
+		<%= LanguageUtil.get(request, "the-selected-list-no-longer-exists") %>
 	</div>
 
 <%

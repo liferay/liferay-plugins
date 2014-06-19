@@ -53,7 +53,7 @@
 
 		<liferay-ui:search-container-column-text
 			name="type"
-			value='<%= LanguageUtil.get(pageContext, "user") %>'
+			value='<%= LanguageUtil.get(request, "user") %>'
 		/>
 
 		<liferay-ui:search-container-column-text name="active">

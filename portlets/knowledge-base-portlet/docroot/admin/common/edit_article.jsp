@@ -105,7 +105,7 @@ String dirName = ParamUtil.getString(request, "dirName");
 				Map<String, String> sectionsMap = new TreeMap<String, String>();
 
 				for (String section : PortletPropsValues.ADMIN_KB_ARTICLE_SECTIONS) {
-					sectionsMap.put(LanguageUtil.get(pageContext, section), section);
+					sectionsMap.put(LanguageUtil.get(request, section), section);
 				}
 
 				for (Map.Entry<String, String> entry : sectionsMap.entrySet()) {

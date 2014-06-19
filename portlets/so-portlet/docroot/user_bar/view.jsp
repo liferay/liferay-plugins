@@ -104,7 +104,7 @@ catch (NoSuchRoleException nsre) {
 					resizable: false,
 					width: 650
 				},
-				title: '<%= UnicodeLanguageUtil.get(pageContext, "sites-directory") %>',
+				title: '<%= UnicodeLanguageUtil.get(request, "sites-directory") %>',
 
 				<liferay-portlet:renderURL portletName="<%= PortletKeys.SO_SITES %>" var="viewSitesURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value="/sites/view_sites.jsp" />

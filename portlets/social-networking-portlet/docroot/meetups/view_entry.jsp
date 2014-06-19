@@ -88,7 +88,7 @@ int yesTotal = MeetupsRegistrationLocalServiceUtil.getMeetupsRegistrationsCount(
 
 <c:if test="<%= yesTotal > 1 %>">
 	<div>
-		<%= LanguageUtil.format(pageContext, "x-people-are-planning-to-attend-this-meetup", String.valueOf(yesTotal), false) %>
+		<%= LanguageUtil.format(request, "x-people-are-planning-to-attend-this-meetup", String.valueOf(yesTotal), false) %>
 	</div>
 
 	<br />

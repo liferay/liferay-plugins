@@ -61,7 +61,7 @@ if (entry.getPriority() > 0) {
 
 	<div class="entry-header">
 		<div class="entry-action">
-			<%= LanguageUtil.format(pageContext, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(entryUser.getFullName()) + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}, false) %>
+			<%= LanguageUtil.format(request, "x-to-x", new Object[] {"<a href=\"" + entryUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(entryUser.getFullName()) + "</a>", "<span class=\"scope\">" + scopeName + "</span>"}, false) %>
 		</div>
 
 		<div class="entry-time">

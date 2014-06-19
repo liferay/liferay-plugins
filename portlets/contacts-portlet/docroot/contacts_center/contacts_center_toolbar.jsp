@@ -89,7 +89,7 @@ if (user2 != null) {
 				},
 				icon: 'icon-plus-sign',
 				id: '<portlet:namespace />addConnectionButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "connect") %>',
+				label: '<%= UnicodeLanguageUtil.get(request, "connect") %>',
 				render: true,
 				visible: <%= showAddAsConnectionButton %>
 			}
@@ -106,7 +106,7 @@ if (user2 != null) {
 				},
 				icon: 'icon-minus-sign',
 				id: '<portlet:namespace />removeConnectionButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "disconnect") %>',
+				label: '<%= UnicodeLanguageUtil.get(request, "disconnect") %>',
 				render: true,
 				visible: <%= showRemoveAsConnectionButton %>
 			}
@@ -124,7 +124,7 @@ if (user2 != null) {
 				},
 				icon: 'icon-plus-sign',
 				id: '<portlet:namespace />followButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "follow") %>',
+				label: '<%= UnicodeLanguageUtil.get(request, "follow") %>',
 				render: true,
 				visible: <%= showFollowButton %>
 			}
@@ -142,7 +142,7 @@ if (user2 != null) {
 				},
 				icon: 'icon-minus-sign',
 				id: '<portlet:namespace />unfollowButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "unfollow") %>',
+				label: '<%= UnicodeLanguageUtil.get(request, "unfollow") %>',
 				render: true,
 				visible: <%= showUnFollowButton %>
 			}
@@ -160,7 +160,7 @@ if (user2 != null) {
 				},
 				icon: 'icon-ban-circle',
 				id: '<portlet:namespace />blockButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "block") %>',
+				label: '<%= UnicodeLanguageUtil.get(request, "block") %>',
 				render: true,
 				visible: <%= showBlockButton %>
 			}
@@ -178,7 +178,7 @@ if (user2 != null) {
 				},
 				icon: 'icon-ok',
 				id: '<portlet:namespace />unblockButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "unblock") %>',
+				label: '<%= UnicodeLanguageUtil.get(request, "unblock") %>',
 				render: true,
 				visible: <%= showUnBlockButton %>
 			}
@@ -194,7 +194,7 @@ if (user2 != null) {
 			{
 				icon: 'icon-envelope',
 				id: '<portlet:namespace />sendMessageButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "message") %>',
+				label: '<%= UnicodeLanguageUtil.get(request, "message") %>',
 				on: {
 					click: function(event) {
 						<portlet:renderURL var="redirectURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />
@@ -225,7 +225,7 @@ if (user2 != null) {
 									width: 600
 								},
 								id: '<%= PortalUtil.getPortletNamespace(PortletKeys.PRIVATE_MESSAGING) %>Dialog',
-								title: '<%= UnicodeLanguageUtil.get(pageContext, "new-message") %>',
+								title: '<%= UnicodeLanguageUtil.get(request, "new-message") %>',
 								uri: uri
 							}
 						);
@@ -241,7 +241,7 @@ if (user2 != null) {
 				cssClass: 'more',
 				icon: 'icon-save',
 				id: '<portlet:namespace />exportButton',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "vcard") %>',
+				label: '<%= UnicodeLanguageUtil.get(request, "vcard") %>',
 				on: {
 					click: function(event) {
 						<c:choose>

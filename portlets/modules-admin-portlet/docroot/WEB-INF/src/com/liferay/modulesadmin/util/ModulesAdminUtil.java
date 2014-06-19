@@ -130,13 +130,13 @@ public class ModulesAdminUtil {
 
 			if (!satisfied) {
 				sb.append(" <strong class=\"resolved\">");
-				sb.append(LanguageUtil.get(pageContext, "un-resolved"));
+				sb.append(LanguageUtil.get(request, "un-resolved"));
 				sb.append("</strong>");
 			}
 
 			if (resolution.equals("optional")) {
 				sb.append(" <strong class=\"resolution\">");
-				sb.append(LanguageUtil.get(pageContext, resolution));
+				sb.append(LanguageUtil.get(request, resolution));
 				sb.append("</strong>");
 			}
 

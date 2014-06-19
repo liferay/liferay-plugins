@@ -38,7 +38,7 @@ if (status == WorkflowConstants.STATUS_DENIED) {
 		if (message.getUserId() == themeDisplay.getUserId()) {
 			displayMessage = true;
 
-			String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(status));
+			String deniedMessage = LanguageUtil.get(request, WorkflowConstants.getStatusLabel(status));
 
 			int pos = html.indexOf(deniedMessage);
 
@@ -46,7 +46,7 @@ if (status == WorkflowConstants.STATUS_DENIED) {
 
 			sb.append(html.substring(0, pos + deniedMessage.length()));
 			sb.append(". ");
-			sb.append(LanguageUtil.get(pageContext, "your-message-has-been-flagged-as-spam.-an-administrator-will-review-your-message-as-soon-as-possible"));
+			sb.append(LanguageUtil.get(request, "your-message-has-been-flagged-as-spam.-an-administrator-will-review-your-message-as-soon-as-possible"));
 			sb.append(html.substring(pos + deniedMessage.length()));
 
 			html = sb.toString();
@@ -60,7 +60,7 @@ if (bean instanceof WikiPage) {
 	if ((wikiPage.getUserId() == themeDisplay.getUserId()) && (_isSpam(wikiPage) || _isPendingApproval(wikiPage))) {
 		displayMessage = true;
 
-		String deniedMessage = LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(status));
+		String deniedMessage = LanguageUtil.get(request, WorkflowConstants.getStatusLabel(status));
 
 		int pos = html.indexOf(deniedMessage);
 
@@ -68,7 +68,7 @@ if (bean instanceof WikiPage) {
 
 		sb.append(html.substring(0, pos + deniedMessage.length()));
 		sb.append("<br />");
-		sb.append(LanguageUtil.get(pageContext, "this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible"));
+		sb.append(LanguageUtil.get(request, "this-version-has-been-flagged-as-spam.-an-administrator-will-review-your-version-as-soon-as-possible"));
 		sb.append(html.substring(pos + deniedMessage.length()));
 
 		html = sb.toString();

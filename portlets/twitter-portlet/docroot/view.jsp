@@ -52,7 +52,7 @@ String twitterSn = contact.getTwitterSn();
 	<c:otherwise>
 
 		<%
-		String configureHREF = "javascript:Liferay.Util.openWindow({id: '" + renderResponse.getNamespace() + "configureTwitter', title: '" + HtmlUtil.escapeJS(LanguageUtil.get(pageContext, "my-account")) + "', uri: '" + HtmlUtil.escapeJS(themeDisplay.getURLMyAccount() + "#_" + PortletKeys.MY_ACCOUNT + "_tab=_" + PortletKeys.MY_ACCOUNT + "_socialNetwork") + "'});";
+		String configureHREF = "javascript:Liferay.Util.openWindow({id: '" + renderResponse.getNamespace() + "configureTwitter', title: '" + HtmlUtil.escapeJS(LanguageUtil.get(request, "my-account")) + "', uri: '" + HtmlUtil.escapeJS(themeDisplay.getURLMyAccount() + "#_" + PortletKeys.MY_ACCOUNT + "_tab=_" + PortletKeys.MY_ACCOUNT + "_socialNetwork") + "'});";
 		%>
 
 		<div class="alert alert-info">

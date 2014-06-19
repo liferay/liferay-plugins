@@ -58,7 +58,7 @@
 		}
 		%>
 
-		<%= LanguageUtil.format(pageContext, "you-are-signed-in-as-x", signedInAs, false) %>
+		<%= LanguageUtil.format(request, "you-are-signed-in-as-x", signedInAs, false) %>
 	</c:when>
 	<c:otherwise>
 

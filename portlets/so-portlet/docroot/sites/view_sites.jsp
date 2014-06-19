@@ -78,7 +78,7 @@ else {
 	<aui:button-row>
 		<div class="buttons-left directory-navigation">
 			<span class="page-indicator">
-				<%= LanguageUtil.format(pageContext, "page-x-of-x", new String[] {"<span class=\"current\">1</span>", "<span class=\"total\">" + String.valueOf((int)Math.ceil(groupsCount / (float)maxResultSize)) + "</span>"}, false) %>
+				<%= LanguageUtil.format(request, "page-x-of-x", new String[] {"<span class=\"current\">1</span>", "<span class=\"total\">" + String.valueOf((int)Math.ceil(groupsCount / (float)maxResultSize)) + "</span>"}, false) %>
 			</span>
 		</div>
 	</aui:button-row>
@@ -369,20 +369,20 @@ else {
 				var unescapedSiteName = Liferay.Util.unescapeHTML(siteName.getContent());
 
 				if (currentTargetClass == 'leave-site') {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-leave-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.format(pageContext, "you-left-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = '<%= LanguageUtil.format(request, "are-you-sure-you-want-to-leave-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= LanguageUtil.format(request, "you-left-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
 				else if (currentTargetClass == 'join-site') {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-join-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.format(pageContext, "you-joined-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = '<%= LanguageUtil.format(request, "are-you-sure-you-want-to-join-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= LanguageUtil.format(request, "you-joined-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
 				else if (currentTargetClass == 'request-site') {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.get(pageContext, "your-membership-request-has-been-sent") %>';
+					confirmMessage = '<%= LanguageUtil.format(request, "this-is-a-restricted-site-do-you-want-to-send-a-membership-request-to-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= LanguageUtil.get(request, "your-membership-request-has-been-sent") %>';
 				}
 				else {
-					confirmMessage = '<%= LanguageUtil.format(pageContext, "are-you-sure-you-want-to-delete-x", "' + unescapedSiteName + '", false) %>';
-					siteAction = '<%= LanguageUtil.format(pageContext, "you-deleted-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
+					confirmMessage = '<%= LanguageUtil.format(request, "are-you-sure-you-want-to-delete-x", "' + unescapedSiteName + '", false) %>';
+					siteAction = '<%= LanguageUtil.format(request, "you-deleted-x", new String[] {"' + unescapedSiteName + '"}, false) %>';
 				}
 
 				if (confirm(confirmMessage)) {
