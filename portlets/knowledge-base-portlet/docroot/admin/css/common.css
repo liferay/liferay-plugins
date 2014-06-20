@@ -194,7 +194,7 @@
 		}
 
 		.kb-article-comments, .kb-template-comments {
-			margin: 15px -7px 0;
+			margin-top: 15px;
 
 			.field-content {
 				margin: 0;
@@ -206,8 +206,20 @@
 				margin: 0 10px 10px;
 			}
 
+			.kb-helpful-container {
+				margin-top: 25px;
+				margin-left: 5px;
+				margin-bottom: 25px;
+
+				.kb-feedback-title {
+					font-size: 1.2em;
+					font-weight: bold;
+					padding: 0 0 0 0;
+				}
+			}
+
 			.kb-helpful-inputs {
-				margin: 4px 0 0;
+				margin: 4px 5px 0;
 
 				label {
 					font-weight: normal;
