@@ -1,5 +1,6 @@
 /lib/json-web-service-client-shared.jar
 /lib/commons-codec.jar
+/lib/flexjson.jar
 /lib/httpclient.jar
 /lib/httpcore.jar
 /lib/portal-compat-shared.jar
