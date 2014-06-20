@@ -145,7 +145,7 @@ if (entry == null) {
 				%>
 
 				<a href="<%= currentUser.getDisplayURL(themeDisplay) %>">
-					<img alt="<%= currentUser.getFullName() %>" src="<%= currentUser.getPortraitURL(themeDisplay) %>" />
+					<img alt="<%= HtmlUtil.escapeAttribute(currentUser.getFullName()) %>" src="<%= currentUser.getPortraitURL(themeDisplay) %>" />
 				</a>
 			</span>
 		</div>

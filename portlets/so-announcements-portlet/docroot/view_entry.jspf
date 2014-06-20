@@ -54,7 +54,7 @@ if (entry.getPriority() > 0) {
 			%>
 
 			<a href="<%= entryUser.getDisplayURL(themeDisplay) %>">
-				<img alt="<%= HtmlUtil.escape(entryUser.getFullName()) %>" src="<%= entryUser.getPortraitURL(themeDisplay) %>" />
+				<img alt="<%= HtmlUtil.escapeAttribute(entryUser.getFullName()) %>" src="<%= entryUser.getPortraitURL(themeDisplay) %>" />
 			</a>
 		</span>
 	</div>
