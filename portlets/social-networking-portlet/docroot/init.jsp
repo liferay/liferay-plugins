@@ -27,7 +27,7 @@
 <%@ page import="com.liferay.ipgeocoder.model.IPInfo" %><%@
 page import="com.liferay.ipgeocoder.util.IPGeocoderUtil" %><%@
 page import="com.liferay.portal.NoSuchUserException" %><%@
-page import="com.liferay.portal.kernel.dao.search.ResultRow" %><%@
+page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.messaging.DestinationNames" %><%@
