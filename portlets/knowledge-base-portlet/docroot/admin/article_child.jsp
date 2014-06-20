@@ -34,9 +34,8 @@ List<KBArticle> childKBArticles = KBArticleServiceUtil.getKBArticles(scopeGroupI
 
 				<div class="kb-element-header">
 					<liferay-portlet:renderURL var="viewKBArticleURL">
-						<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
+						<portlet:param name="urlTitle" value="<%= childrenKBArticle.getUrlTitle() %>" />
 						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(childrenKBArticle.getResourcePrimKey()) %>" />
-						<portlet:param name="status" value="<%= String.valueOf(status) %>" />
 					</liferay-portlet:renderURL>
 
 					<liferay-ui:icon
