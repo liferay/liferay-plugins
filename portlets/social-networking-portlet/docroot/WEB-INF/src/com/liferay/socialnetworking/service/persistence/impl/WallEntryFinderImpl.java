@@ -14,9 +14,6 @@
 
 package com.liferay.socialnetworking.service.persistence.impl;
 
-import com.liferay.socialnetworking.service.persistence.WallEntryFinder;
-import com.liferay.socialnetworking.service.persistence.WallEntryUtil;
-
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -26,6 +23,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.socialnetworking.model.WallEntry;
 import com.liferay.socialnetworking.model.impl.WallEntryImpl;
+import com.liferay.socialnetworking.service.persistence.WallEntryFinder;
 import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.Iterator;
