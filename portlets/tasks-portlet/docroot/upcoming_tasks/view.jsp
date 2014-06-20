@@ -33,7 +33,6 @@
 
 				liferayPortletURL.setParameter("mvcPath", "/tasks/view_task.jsp");
 				liferayPortletURL.setParameter("tasksEntryId", String.valueOf(tasksEntry.getTasksEntryId()));
-
 				liferayPortletURL.setWindowState(LiferayWindowState.POP_UP);
 
 				taskHREF = liferayPortletURL.toString();
