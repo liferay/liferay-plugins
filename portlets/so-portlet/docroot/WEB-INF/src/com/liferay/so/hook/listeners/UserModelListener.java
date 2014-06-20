@@ -53,8 +53,8 @@ public class UserModelListener extends BaseModelListener<User> {
 				refererURL, "p_p_id", false);
 
 			String key = HttpUtil.getParameter(
-				refererURL,
-				PortalUtil.getPortletNamespace(portletId) + "key", false);
+				refererURL, PortalUtil.getPortletNamespace(portletId) + "key",
+				false);
 
 			if (Validator.isNotNull(key)) {
 				MemberRequestLocalServiceUtil.updateMemberRequest(
