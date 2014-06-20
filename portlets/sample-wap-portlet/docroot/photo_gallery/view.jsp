@@ -23,7 +23,7 @@ if (windowState.equals(WindowState.MAXIMIZED)) {
 	int cur = ParamUtil.getInteger(request, "cur", 1);
 %>
 
-	<img alt="large" src="<%= PortalUtil.getPathContext(request) %>/photo_gallery/photo_<%= cur %>_large.jpg" /><br />
+	<img alt="<%= HtmlUtil.escapeAttribute("large") %>" src="<%= PortalUtil.getPathContext(request) %>/photo_gallery/photo_<%= cur %>_large.jpg" /><br />
 
 	<%
 	if (cur == 1) {
