@@ -68,7 +68,7 @@ for (SocialActivity activity : results) {
 
 		<div class="user-portrait">
 			<span class="avatar">
-				<img alt="<%= HtmlUtil.escape(curUser.getFullName()) %>" src="<%= curUser.getPortraitURL(themeDisplay) %>" />
+				<img alt="<%= HtmlUtil.escapeAttribute(curUser.getFullName()) %>" src="<%= curUser.getPortraitURL(themeDisplay) %>" />
 			</span>
 
 			<span class="icon">

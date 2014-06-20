@@ -56,7 +56,7 @@ catch (NoSuchRoleException nsre) {
 			</liferay-portlet:actionURL>
 
 			<a class="so-logo" href="<%= dashboardURL %>">
-				<img alt="<liferay-ui:message key="social-office" /> <liferay-ui:message key="logo" />" height="32" src="<%= PortalUtil.getPathContext(request) + "/user_bar/images/so_logo.png" %>" width="32" />
+				<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="social-office" /> <liferay-ui:message key="logo" />" height="32" src="<%= PortalUtil.getPathContext(request) + "/user_bar/images/so_logo.png" %>" width="32" />
 			</a>
 
 			<nav>

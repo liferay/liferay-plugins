@@ -47,7 +47,7 @@ for (SocialActivitySet activitySet : results) {
 		<div class="user-portrait">
 			<span class="avatar">
 				<a href="<%= userDisplayURL %>">
-					<img alt="<%= HtmlUtil.escape(userFullName) %>" src="<%= userPortraitURL %>" />
+					<img alt="<%= HtmlUtil.escapeAttribute(userFullName) %>" src="<%= userPortraitURL %>" />
 				</a>
 			</span>
 		</div>

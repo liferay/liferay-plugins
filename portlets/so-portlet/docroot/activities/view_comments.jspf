@@ -34,7 +34,7 @@
 			<div class="user-portrait">
 				<span class="avatar">
 					<a href="<%= user.getDisplayURL(themeDisplay) %>">
-						<img alt="<%= HtmlUtil.escape(user.getFullName()) %>" src="<%= user.getPortraitURL(themeDisplay) %>" />
+						<img alt="<%= HtmlUtil.escapeAttribute(user.getFullName()) %>" src="<%= user.getPortraitURL(themeDisplay) %>" />
 					</a>
 				</span>
 			</div>

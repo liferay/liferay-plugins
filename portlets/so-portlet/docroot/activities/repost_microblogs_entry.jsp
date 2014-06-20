@@ -45,7 +45,7 @@ MicroblogsEntry microblogsEntry = MicroblogsEntryLocalServiceUtil.fetchMicroblog
 
 				<div class="user-portrait">
 					<span class="avatar">
-						<a href="<%= receiverUser.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escape(receiverUser.getFullName()) %>" src="<%= receiverUser.getPortraitURL(themeDisplay) %>" /></a>
+						<a href="<%= receiverUser.getDisplayURL(themeDisplay) %>"><img alt="<%= HtmlUtil.escapeAttribute(receiverUser.getFullName()) %>" src="<%= receiverUser.getPortraitURL(themeDisplay) %>" /></a>
 					</span>
 				</div>
 
