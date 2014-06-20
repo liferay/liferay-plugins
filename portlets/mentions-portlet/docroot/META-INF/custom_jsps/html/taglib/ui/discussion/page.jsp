@@ -24,25 +24,52 @@
 	<liferay-portlet:resourceURL portletName="1_WAR_mentionsportlet" var="autoCompleteUserURL" />
 
 	<aui:script use="liferay-autocomplete-textarea">
+		var autocompleteConfig = {
+			requestTemplate: function(query) {
+				return 'query=' + query;
+			},
+			trigger: [
+				{
+					resultFilters: function(query, results) {
+						return results;
+					},
+					resultTextLocator: 'screenName',
+					term: '@',
+					tplResults: '<div class="taglib-user-display display-style-3"><span><span class="user-profile-image" style="background-image: url(\'{portraitURL}\'); background-size: 32px 32px; height: 32px; width: 32px;"></span><span class="user-name">{fullName}</span><span class="user-details">@{screenName}</span></span></div>',
+					source: '<%= autoCompleteUserURL.toString() + "&" + PortalUtil.getPortletNamespace("1_WAR_mentionsportlet") %>'
+				}
+			]
+		};
+
 		new Liferay.AutoCompleteTextarea(
-			{
-				inputNode: '#<portlet:namespace /><%= randomNamespace + "postReplyBody" + "0" %>',
-				requestTemplate: function(query) {
-					return 'query=' + query;
-				},
-				trigger: [
-					{
-						resultFilters: function(query, results) {
-							return results;
-						},
-						resultTextLocator: 'screenName',
-						term: '@',
-						tplResults: '<div class="taglib-user-display display-style-3"><span><span class="user-profile-image" style="background-image: url(\'{portraitURL}\'); background-size: 32px 32px; height: 32px; width: 32px;"></span><span class="user-name">{fullName}</span><span class="user-details">@{screenName}</span></span></div>',
-						source: '<%= autoCompleteUserURL.toString() + "&" + PortalUtil.getPortletNamespace("1_WAR_mentionsportlet") %>'
-					}
-				]
-			}
+			A.merge(
+				autocompleteConfig,
+				{
+					inputNode: '#<portlet:namespace /><%= randomNamespace + "postReplyBody" + "0" %>',
+				}
+			)
 		).render();
+
+		A.one('#<portlet:namespace />discussion-container').delegate(
+			'click',
+			function(event) {
+				var currentTarget = event.currentTarget;
+
+				var discussionNode = currentTarget.ancestor('.lfr-discussion');
+
+				var actionClass = currentTarget.hasClass('lfr-discussion-reply-to') ? '.lfr-discussion-form-reply' : '.lfr-discussion-form-edit';
+
+				new Liferay.AutoCompleteTextarea(
+					A.merge(
+						autocompleteConfig,
+						{
+							inputNode: discussionNode.one(actionClass + ' textarea'),
+						}
+					)
+				).render();
+			},
+			'.lfr-discussion-reply-to, .lfr-discussion-edit'
+		);
 	</aui:script>
 </c:if>
 
