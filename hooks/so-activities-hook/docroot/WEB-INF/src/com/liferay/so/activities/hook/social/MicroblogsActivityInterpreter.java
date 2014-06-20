@@ -154,7 +154,7 @@ public class MicroblogsActivityInterpreter extends SOSocialActivityInterpreter {
 		sb.append("\"><img alt=\"");
 
 		if (user != null) {
-			sb.append(HtmlUtil.escape(user.getFullName()));
+			sb.append(HtmlUtil.escapeAttribute(user.getFullName()));
 		}
 
 		sb.append("\" src=");

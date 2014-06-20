@@ -17,7 +17,7 @@
 <%@ include file="/html/taglib/ui/social_bookmark/init.jsp" %>
 
 <a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=300&amp;pubid=xa-50994fd636c849d6">
-	<img alt="Bookmark and Share" height="16" src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" style="border:0" width="125" />
+	<img alt="<%= HtmlUtil.escapeAttribute("Bookmark and Share") %>" height="16" src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" style="border:0" width="125" />
 </a>
 
 <liferay-util:html-bottom outputKey="addthis">
