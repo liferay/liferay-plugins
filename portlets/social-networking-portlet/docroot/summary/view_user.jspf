@@ -21,7 +21,7 @@
 		</h2>
 
 		<aui:col cssClass="user-container">
-			<img alt="<liferay-ui:message key="user-portrait" />" class="user-profile-image" src="<%= user2.getPortraitURL(themeDisplay) %>" />
+			<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="user-portrait" />" class="user-profile-image" src="<%= user2.getPortraitURL(themeDisplay) %>" />
 
 			<c:if test="<%= UserPermissionUtil.contains(permissionChecker, user2.getUserId(), ActionKeys.UPDATE) %>">
 

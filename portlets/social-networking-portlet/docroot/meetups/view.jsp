@@ -87,7 +87,7 @@ for (int i = 0; i < meetupsEntries.size(); i++) {
 			}
 			%>
 
-			<a href="<%= viewMeetupsEntryURL %>"><img alt="<liferay-ui:message key="view-meetup" />" src="<%= thumbnailURL %>" /></a>
+			<a href="<%= viewMeetupsEntryURL %>"><img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="view-meetup" />" src="<%= thumbnailURL %>" /></a>
 		</td>
 		<td valign="top" width="80%">
 			<div>
