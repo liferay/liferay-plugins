@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.PageContext;
 
 import org.osgi.framework.Bundle;
@@ -127,6 +128,9 @@ public class ModulesAdminUtil {
 
 				sb.append("]}");
 			}
+
+			HttpServletRequest request =
+				(HttpServletRequest)pageContext.getRequest();
 
 			if (!satisfied) {
 				sb.append(" <strong class=\"resolved\">");
