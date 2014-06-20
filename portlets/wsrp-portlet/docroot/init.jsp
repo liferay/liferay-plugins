@@ -23,7 +23,6 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
-page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.servlet.ServletContextPool" %><%@
@@ -39,6 +38,7 @@ page import="com.liferay.portal.model.Portlet" %><%@
 page import="com.liferay.portal.model.PortletConstants" %><%@
 page import="com.liferay.portal.service.PortletLocalServiceUtil" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
+page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.wsrp.NoSuchConsumerPortletException" %><%@
 page import="com.liferay.wsrp.NoSuchProducerException" %><%@
 page import="com.liferay.wsrp.WSRPConsumerNameException" %><%@

@@ -38,7 +38,6 @@ page import="com.liferay.bbb.service.permission.BBBMeetingPermission" %><%@
 page import="com.liferay.bbb.service.permission.MeetingsPermission" %><%@
 page import="com.liferay.bbb.util.ActionKeys" %><%@
 page import="com.liferay.bbb.util.BBBAPIUtil" %><%@
-page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.language.UnicodeLanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
@@ -48,7 +47,8 @@ page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.model.User" %><%@
 page import="com.liferay.portal.service.UserLocalServiceUtil" %><%@
-page import="com.liferay.portal.util.PortalUtil" %>
+page import="com.liferay.portal.util.PortalUtil" %><%@
+page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.Collections" %><%@

@@ -22,13 +22,13 @@
 <%@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.taglib.search.ResultRow" %><%@
-page import="com.liferay.portal.kernel.util.Constants" %><%@
+<%@ page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.sampleservicebuilder.model.Foo" %><%@
 page import="com.liferay.sampleservicebuilder.service.FooLocalServiceUtil" %><%@
-page import="com.liferay.sampleservicebuilder.util.comparator.FooField4Comparator" %>
+page import="com.liferay.sampleservicebuilder.util.comparator.FooField4Comparator" %><%@
+page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
 

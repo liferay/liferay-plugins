@@ -59,7 +59,6 @@ page import="com.liferay.portal.NoSuchSubscriptionException" %><%@
 page import="com.liferay.portal.kernel.bean.BeanParamUtil" %><%@
 page import="com.liferay.portal.kernel.bean.BeanPropertiesUtil" %><%@
 page import="com.liferay.portal.kernel.dao.orm.QueryUtil" %><%@
-page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.RowChecker" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
@@ -123,6 +122,7 @@ page import="com.liferay.portlet.documentlibrary.store.DLStoreUtil" %><%@
 page import="com.liferay.portlet.journal.model.JournalArticle" %><%@
 page import="com.liferay.portlet.messageboards.model.MBMessage" %><%@
 page import="com.liferay.portlet.wiki.model.WikiPage" %><%@
+page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="java.math.BigDecimal" %>

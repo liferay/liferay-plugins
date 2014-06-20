@@ -40,7 +40,6 @@ page import="com.liferay.opensocial.shindig.util.ShindigUtil" %><%@
 page import="com.liferay.opensocial.util.ActionKeys" %><%@
 page import="com.liferay.opensocial.util.PortletPropsValues" %><%@
 page import="com.liferay.opensocial.util.WebKeys" %><%@
-page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.json.JSONObject" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
@@ -60,7 +59,8 @@ page import="com.liferay.portal.util.PortalUtil" %><%@
 page import="com.liferay.portal.util.PortletLister" %><%@
 page import="com.liferay.portal.util.PortletListerFactoryUtil" %><%@
 page import="com.liferay.portlet.PortletURLFactoryUtil" %><%@
-page import="com.liferay.portlet.expando.service.ExpandoValueServiceUtil" %>
+page import="com.liferay.portlet.expando.service.ExpandoValueServiceUtil" %><%@
+page import="com.liferay.taglib.search.ResultRow" %>
 
 <%@ page import="java.util.Locale" %><%@
 page import="java.util.Map" %>

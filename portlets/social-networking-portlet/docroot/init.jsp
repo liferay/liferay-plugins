@@ -27,7 +27,6 @@
 <%@ page import="com.liferay.ipgeocoder.model.IPInfo" %><%@
 page import="com.liferay.ipgeocoder.util.IPGeocoderUtil" %><%@
 page import="com.liferay.portal.NoSuchUserException" %><%@
-page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.messaging.DestinationNames" %><%@
@@ -78,6 +77,7 @@ page import="com.liferay.socialnetworking.service.MeetupsRegistrationLocalServic
 page import="com.liferay.socialnetworking.service.WallEntryLocalServiceUtil" %><%@
 page import="com.liferay.socialnetworking.util.PortletKeys" %><%@
 page import="com.liferay.socialnetworking.util.WallUtil" %><%@
+page import="com.liferay.taglib.search.ResultRow" %><%@
 page import="com.liferay.util.RSSUtil" %><%@
 page import="com.liferay.util.portlet.PortletProps" %>
 
