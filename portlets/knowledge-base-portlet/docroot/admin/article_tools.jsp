@@ -36,7 +36,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 		/>
 	</c:if>
 
-	<c:if test="<%= (kbArticle.isApproved() || !kbArticle.isFirstVersion()) && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.SUBSCRIBE) %>">
+	<c:if test="<%= enableKBArticleSubscriptions && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) && KBArticlePermission.contains(permissionChecker, kbArticle, ActionKeys.SUBSCRIBE) %>">
 		<c:choose>
 			<c:when test="<%= SubscriptionLocalServiceUtil.isSubscribed(user.getCompanyId(), user.getUserId(), KBArticle.class.getName(), kbArticle.getResourcePrimKey()) %>">
 				<liferay-portlet:actionURL name="unsubscribeKBArticle" var="unsubscribeKBArticleURL">
@@ -65,7 +65,7 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 		</c:choose>
 	</c:if>
 
-	<c:if test="<%= kbArticle.isApproved() || !kbArticle.isFirstVersion() %>">
+	<c:if test="<%= enableKBArticleHistory && (kbArticle.isApproved() || !kbArticle.isFirstVersion()) %>">
 		<liferay-portlet:renderURL var="historyURL">
 			<portlet:param name="mvcPath" value='<%= templatePath + "history.jsp" %>' />
 			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
@@ -81,20 +81,22 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 		/>
 	</c:if>
 
-	<liferay-portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-		<portlet:param name="mvcPath" value='<%= templatePath + "print_article.jsp" %>' />
-		<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
-		<portlet:param name="status" value="<%= String.valueOf(status) %>" />
-	</liferay-portlet:renderURL>
+	<c:if test="<%= enableKBArticlePrint %>">
+		<liferay-portlet:renderURL var="printURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+			<portlet:param name="mvcPath" value='<%= templatePath + "print_article.jsp" %>' />
+			<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
+			<portlet:param name="status" value="<%= String.valueOf(status) %>" />
+		</liferay-portlet:renderURL>
 
-	<%
-	String taglibURL = "javascript:var printKBArticleWindow = window.open('" + printURL + "', 'printKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); printKBArticleWindow.focus();";
-	%>
+		<%
+		String taglibURL = "javascript:var printKBArticleWindow = window.open('" + printURL + "', 'printKBArticle', 'directories=no,height=640,location=no,menubar=no,resizable=yes,scrollbars=yes,status=no,toolbar=no,width=680'); void(''); printKBArticleWindow.focus();";
+		%>
 
-	<liferay-ui:icon
-		image="print"
-		label="<%= true %>"
-		method="get"
-		url="<%= taglibURL %>"
-	/>
+		<liferay-ui:icon
+			image="print"
+			label="<%= true %>"
+			method="get"
+			url="<%= taglibURL %>"
+		/>
+	</c:if>
 </div>
