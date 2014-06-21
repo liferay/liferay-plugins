@@ -15,7 +15,6 @@
 package com.liferay.socialnetworking.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ImageLocalServiceUtil;
@@ -41,7 +40,7 @@ public class MeetupsEntryLocalServiceImpl
 			int endDateYear, int endDateHour, int endDateMinute,
 			int totalAttendees, int maxAttendees, double price,
 			byte[] thumbnail)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userLocalService.getUserById(userId);
 
@@ -90,7 +89,7 @@ public class MeetupsEntryLocalServiceImpl
 
 	@Override
 	public MeetupsEntry deleteMeetupsEntry(long meetupsEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MeetupsEntry meetupsEntry = meetupsEntryPersistence.findByPrimaryKey(
 			meetupsEntryId);
@@ -104,15 +103,11 @@ public class MeetupsEntryLocalServiceImpl
 		return meetupsEntry;
 	}
 
-	public List<MeetupsEntry> getMeetupsEntriesByCompany(long companyId)
-		throws SystemException {
-
+	public List<MeetupsEntry> getMeetupsEntriesByCompany(long companyId) {
 		return meetupsEntryPersistence.findByCompanyId(companyId);
 	}
 
-	public List<MeetupsEntry> getMeetupsEntriesByUser(long userId)
-		throws SystemException {
-
+	public List<MeetupsEntry> getMeetupsEntriesByUser(long userId) {
 		return meetupsEntryPersistence.findByUserId(userId);
 	}
 
@@ -123,7 +118,7 @@ public class MeetupsEntryLocalServiceImpl
 			int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
 			int totalAttendees, int maxAttendees, double price,
 			byte[] thumbnail)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userLocalService.getUserById(userId);
 

@@ -46,7 +46,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 	public WallEntry addWallEntry(
 			long groupId, long userId, String comments,
 			ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Wall entry
 
@@ -93,9 +93,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		return wallEntry;
 	}
 
-	public void deleteWallEntries(long groupId)
-		throws PortalException, SystemException {
-
+	public void deleteWallEntries(long groupId) throws PortalException {
 		List<WallEntry> wallEntries = wallEntryPersistence.findByGroupId(
 			groupId);
 
@@ -105,9 +103,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 	}
 
 	@Override
-	public WallEntry deleteWallEntry(long wallEntryId)
-		throws PortalException, SystemException {
-
+	public WallEntry deleteWallEntry(long wallEntryId) throws PortalException {
 		WallEntry wallEntry = wallEntryPersistence.findByPrimaryKey(
 			wallEntryId);
 
@@ -116,7 +112,7 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 
 	@Override
 	public WallEntry deleteWallEntry(WallEntry wallEntry)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Entry
 
@@ -130,42 +126,36 @@ public class WallEntryLocalServiceImpl extends WallEntryLocalServiceBaseImpl {
 		return wallEntry;
 	}
 
-	public List<WallEntry> getWallEntries(long groupId, int start, int end)
-		throws SystemException {
-
+	public List<WallEntry> getWallEntries(long groupId, int start, int end) {
 		return wallEntryPersistence.findByGroupId(groupId, start, end);
 	}
 
-	public int getWallEntriesCount(long groupId) throws SystemException {
+	public int getWallEntriesCount(long groupId) {
 		return wallEntryPersistence.countByGroupId(groupId);
 	}
 
 	@Override
-	public WallEntry getWallEntry(long wallEntryId)
-		throws PortalException, SystemException {
-
+	public WallEntry getWallEntry(long wallEntryId) throws PortalException {
 		return wallEntryPersistence.findByPrimaryKey(wallEntryId);
 	}
 
 	public List<WallEntry> getWallToWallEntries(
-			long groupId1, long groupId2, long userId1, long userId2, int start,
-			int end)
-		throws SystemException {
+		long groupId1, long groupId2, long userId1, long userId2, int start,
+		int end) {
 
 		return wallEntryFinder.findByG1_G2_U1_U2(
 			groupId1, groupId2, userId1, userId2, start, end);
 	}
 
 	public int getWallToWallEntriesCount(
-			long groupId1, long groupId2, long userId1, long userId2)
-		throws SystemException {
+		long groupId1, long groupId2, long userId1, long userId2) {
 
 		return wallEntryFinder.countByG1_G2_U1_U2(
 			groupId1, groupId2, userId1, userId2);
 	}
 
 	public WallEntry updateWallEntry(long wallEntryId, String comments)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		WallEntry wallEntry = wallEntryPersistence.findByPrimaryKey(
 			wallEntryId);

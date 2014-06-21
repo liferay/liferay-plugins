@@ -42,8 +42,7 @@ public class WallEntryFinderImpl
 		WallEntryFinder.class.getName() + ".findByG1_G2_U1_U2";
 
 	public int countByG1_G2_U1_U2(
-			long groupId1, long groupId2, long userId1, long userId2)
-		throws SystemException {
+		long groupId1, long groupId2, long userId1, long userId2) {
 
 		Session session = null;
 
@@ -84,9 +83,8 @@ public class WallEntryFinderImpl
 	}
 
 	public List<WallEntry> findByG1_G2_U1_U2(
-			long groupId1, long groupId2, long userId1, long userId2, int start,
-			int end)
-		throws SystemException {
+		long groupId1, long groupId2, long userId1, long userId2, int start,
+		int end) {
 
 		Session session = null;
 

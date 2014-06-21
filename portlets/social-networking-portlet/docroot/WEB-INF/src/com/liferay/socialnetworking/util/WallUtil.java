@@ -15,7 +15,6 @@
 package com.liferay.socialnetworking.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -32,7 +31,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 public class WallUtil {
 
 	public static String getWallLayoutFriendlyURL(User user)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String wallLayoutFriendlyURL =
 			PortletPropsValues.WALL_LAYOUT_FRIENDLY_URL;
