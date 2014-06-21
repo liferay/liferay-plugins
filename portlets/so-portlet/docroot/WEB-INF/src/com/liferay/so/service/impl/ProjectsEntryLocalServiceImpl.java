@@ -18,7 +18,6 @@
 package com.liferay.so.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.so.ProjectsEntryEndDateException;
@@ -39,7 +38,7 @@ public class ProjectsEntryLocalServiceImpl
 			long userId, String title, String description, int startDateMonth,
 			int startDateDay, int startDateYear, int endDateMonth,
 			int endDateDay, int endDateYear, boolean current, String data)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userLocalService.getUserById(userId);
 
@@ -78,13 +77,11 @@ public class ProjectsEntryLocalServiceImpl
 		return projectsEntry;
 	}
 
-	public List<ProjectsEntry> getUserProjectsEntries(long userId)
-		throws SystemException {
-
+	public List<ProjectsEntry> getUserProjectsEntries(long userId) {
 		return projectsEntryPersistence.findByUserId(userId);
 	}
 
-	public int getUserProjectsEntriesCount(long userId) throws SystemException {
+	public int getUserProjectsEntriesCount(long userId) {
 		return projectsEntryPersistence.countByUserId(userId);
 	}
 
@@ -93,7 +90,7 @@ public class ProjectsEntryLocalServiceImpl
 			int startDateMonth, int startDateDay, int startDateYear,
 			int endDateMonth, int endDateDay, int endDateYear, boolean current,
 			String data)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ProjectsEntry projectsEntry = projectsEntryPersistence.findByPrimaryKey(
 			projectsEntryId);

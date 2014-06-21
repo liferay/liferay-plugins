@@ -19,7 +19,6 @@ package com.liferay.so.util;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ClassResolverUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -50,7 +49,7 @@ public class LayoutSetPrototypeUtil {
 
 	public static LayoutSetPrototype fetchLayoutSetPrototype(
 			long companyId, String layoutSetPrototypeKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<ExpandoValue> expandoValues =
 			ExpandoValueLocalServiceUtil.getColumnValues(
@@ -73,7 +72,7 @@ public class LayoutSetPrototypeUtil {
 
 	public static void removeLayoutSetPrototype(
 			Group group, boolean privateLayout, String layoutSetPrototypeKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		LayoutSet layoutSet = LayoutSetLocalServiceUtil.getLayoutSet(
 			group.getGroupId(), privateLayout);

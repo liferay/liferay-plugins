@@ -18,7 +18,6 @@
 package com.liferay.so.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -38,7 +37,7 @@ public class FavoriteSiteLocalServiceImpl
 	extends FavoriteSiteLocalServiceBaseImpl {
 
 	public FavoriteSite addFavoriteSite(long userId, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		validate(groupId);
 
@@ -60,26 +59,23 @@ public class FavoriteSiteLocalServiceImpl
 
 	@Override
 	public FavoriteSite deleteFavoriteSite(long favoriteSiteId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return favoriteSitePersistence.remove(favoriteSiteId);
 	}
 
 	public void deleteFavoriteSites(long userId, long groupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		favoriteSitePersistence.removeByG_U(groupId, userId);
 	}
 
-	public List<FavoriteSite> getFavoriteSites(long userId, int start, int end)
-		throws SystemException {
-
+	public List<FavoriteSite> getFavoriteSites(long userId, int start, int end) {
 		return favoriteSitePersistence.findByUserId(userId, start, end);
 	}
 
 	public List<Object[]> getFavoriteSites(
-			long userId, String name, int start, int end)
-		throws SystemException {
+		long userId, String name, int start, int end) {
 
 		User user = userLocalService.fetchUser(userId);
 
@@ -89,13 +85,11 @@ public class FavoriteSiteLocalServiceImpl
 			userId, name, groupRealName, start, end);
 	}
 
-	public int getFavoriteSitesCount(long userId) throws SystemException {
+	public int getFavoriteSitesCount(long userId) {
 		return favoriteSitePersistence.countByUserId(userId);
 	}
 
-	public int getFavoriteSitesCount(long userId, String name)
-		throws SystemException {
-
+	public int getFavoriteSitesCount(long userId, String name) {
 		User user = userLocalService.fetchUser(userId);
 
 		String groupRealName = getGroupRealName(user.getCompanyId(), name);
@@ -103,7 +97,7 @@ public class FavoriteSiteLocalServiceImpl
 		return favoriteSiteFinder.countByU_N(userId, name, groupRealName);
 	}
 
-	public boolean isFavoriteSite(long favoriteSiteId) throws SystemException {
+	public boolean isFavoriteSite(long favoriteSiteId) {
 		FavoriteSite favoriteSite = favoriteSitePersistence.fetchByPrimaryKey(
 			favoriteSiteId);
 
@@ -114,9 +108,7 @@ public class FavoriteSiteLocalServiceImpl
 		return false;
 	}
 
-	public boolean isFavoriteSite(long userId, long groupId)
-		throws SystemException {
-
+	public boolean isFavoriteSite(long userId, long groupId) {
 		int count = favoriteSitePersistence.countByG_U(groupId, userId);
 
 		if (count > 0) {
@@ -126,9 +118,7 @@ public class FavoriteSiteLocalServiceImpl
 		return false;
 	}
 
-	protected String getGroupRealName(long companyId, String name)
-		throws SystemException {
-
+	protected String getGroupRealName(long companyId, String name) {
 		if (Validator.isNull(name)) {
 			return name;
 		}
@@ -156,9 +146,7 @@ public class FavoriteSiteLocalServiceImpl
 		return groupRealName;
 	}
 
-	protected void validate(long groupId)
-		throws PortalException, SystemException {
-
+	protected void validate(long groupId) throws PortalException {
 		groupPersistence.findByPrimaryKey(groupId);
 	}
 

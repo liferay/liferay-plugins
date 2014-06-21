@@ -44,9 +44,7 @@ public class FavoriteSiteFinderImpl
 	public static final String FIND_BY_U_N =
 		FavoriteSiteFinder.class.getName() + ".findByU_N";
 
-	public int countByU_N(long userId, String name, String groupRealName)
-		throws SystemException {
-
+	public int countByU_N(long userId, String name, String groupRealName) {
 		name = CustomSQLUtil.keywords(name)[0];
 
 		Session session = null;
@@ -88,8 +86,7 @@ public class FavoriteSiteFinderImpl
 	}
 
 	public List<Object[]> findByU_N(
-			long userId, String name, String groupRealName, int start, int end)
-		throws SystemException {
+		long userId, String name, String groupRealName, int start, int end) {
 
 		name = CustomSQLUtil.keywords(name)[0];
 
