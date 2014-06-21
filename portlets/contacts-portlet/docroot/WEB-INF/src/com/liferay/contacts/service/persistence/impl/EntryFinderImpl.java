@@ -53,9 +53,7 @@ public class EntryFinderImpl
 		EntryFinder.class.getName() + ".findByU_FN_EA";
 
 	@Override
-	public int countByKeywords(long companyId, long userId, String keywords)
-		throws SystemException {
-
+	public int countByKeywords(long companyId, long userId, String keywords) {
 		if (Validator.isNotNull(keywords)) {
 			String[] fullNames = CustomSQLUtil.keywords(keywords);
 			String[] emailAddresses = CustomSQLUtil.keywords(keywords);
@@ -77,9 +75,7 @@ public class EntryFinderImpl
 	}
 
 	@Override
-	public int countByKeywords(long userId, String keywords)
-		throws SystemException {
-
+	public int countByKeywords(long userId, String keywords) {
 		if (Validator.isNotNull(keywords)) {
 			String[] fullNames = CustomSQLUtil.keywords(keywords);
 			String[] emailAddresses = CustomSQLUtil.keywords(keywords);
@@ -92,8 +88,7 @@ public class EntryFinderImpl
 
 	@Override
 	public List<BaseModel<?>> findByKeywords(
-			long companyId, long userId, String keywords, int start, int end)
-		throws SystemException {
+		long companyId, long userId, String keywords, int start, int end) {
 
 		List<BaseModel<?>> models = new ArrayList<BaseModel<?>>();
 
@@ -141,8 +136,7 @@ public class EntryFinderImpl
 
 	@Override
 	public List<Entry> findByKeywords(
-			long userId, String keywords, int start, int end)
-		throws SystemException {
+		long userId, String keywords, int start, int end) {
 
 		if (Validator.isNotNull(keywords)) {
 			String[] fullNames = CustomSQLUtil.keywords(keywords);
@@ -155,8 +149,7 @@ public class EntryFinderImpl
 	}
 
 	protected int countByU_FN_EA(
-			long userId, String[] fullNames, String[] emailAddresses)
-		throws SystemException {
+		long userId, String[] fullNames, String[] emailAddresses) {
 
 		fullNames = CustomSQLUtil.keywords(fullNames, true);
 		emailAddresses = CustomSQLUtil.keywords(emailAddresses, true);
@@ -206,9 +199,8 @@ public class EntryFinderImpl
 	}
 
 	protected List<Entry> findByU_FN_EA(
-			long userId, String[] fullNames, String[] emailAddresses, int start,
-			int end)
-		throws SystemException {
+		long userId, String[] fullNames, String[] emailAddresses, int start,
+		int end) {
 
 		fullNames = CustomSQLUtil.keywords(fullNames, true);
 		emailAddresses = CustomSQLUtil.keywords(emailAddresses, true);

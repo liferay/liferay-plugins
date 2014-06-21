@@ -19,7 +19,6 @@ package com.liferay.contacts.util;
 
 import com.liferay.contacts.model.Entry;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -103,7 +102,7 @@ public class ContactsUtil {
 	}
 
 	public static JSONObject getUserJSONObject(long userId, User user)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 

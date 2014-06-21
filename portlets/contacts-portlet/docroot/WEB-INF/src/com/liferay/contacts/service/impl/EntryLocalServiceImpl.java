@@ -24,7 +24,6 @@ import com.liferay.contacts.model.Entry;
 import com.liferay.contacts.service.base.EntryLocalServiceBaseImpl;
 import com.liferay.portal.ContactFullNameException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.BaseModel;
@@ -40,7 +39,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 	public Entry addEntry(
 			long userId, String fullName, String emailAddress, String comments)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
@@ -65,46 +64,38 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		return entry;
 	}
 
-	public List<Entry> getEntries(long userId, int start, int end)
-		throws SystemException {
-
+	public List<Entry> getEntries(long userId, int start, int end) {
 		return entryPersistence.findByUserId(userId);
 	}
 
-	public int getEntriesCount(long userId) throws SystemException {
+	public int getEntriesCount(long userId) {
 		return entryPersistence.countByUserId(userId);
 	}
 
-	public List<Entry> search(long userId, String keywords, int start, int end)
-		throws SystemException {
-
+	public List<Entry> search(long userId, String keywords, int start, int end) {
 		return entryFinder.findByKeywords(userId, keywords, start, end);
 	}
 
-	public int searchCount(long userId, String keywords)
-		throws SystemException {
-
+	public int searchCount(long userId, String keywords) {
 		return entryFinder.countByKeywords(userId, keywords);
 	}
 
 	public List<BaseModel<?>> searchUsersAndContacts(
-			long companyId, long userId, String keywords, int start, int end)
-		throws SystemException {
+		long companyId, long userId, String keywords, int start, int end) {
 
 		return entryFinder.findByKeywords(
 			companyId, userId, keywords, start, end);
 	}
 
 	public int searchUsersAndContactsCount(
-			long companyId, long userId, String keywords)
-		throws SystemException {
+		long companyId, long userId, String keywords) {
 
 		return entryFinder.countByKeywords(companyId, userId, keywords);
 	}
 
 	public Entry updateEntry(
 			long entryId, String fullName, String emailAddress, String comments)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Entry entry = entryPersistence.findByPrimaryKey(entryId);
 
@@ -122,7 +113,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 	protected void validate(
 			long entryId, long userId, String fullName, String emailAddress)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (Validator.isNull(fullName)) {
 			throw new ContactFullNameException();
@@ -151,7 +142,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	}
 
 	protected void validateEmailAddress(long userId, String emailAddress)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Entry entry = entryPersistence.fetchByU_EA(userId, emailAddress);
 
