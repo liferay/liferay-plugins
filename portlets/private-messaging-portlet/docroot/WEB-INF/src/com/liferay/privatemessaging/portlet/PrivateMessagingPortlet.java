@@ -20,7 +20,6 @@ package com.liferay.privatemessaging.portlet;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.UserScreenNameException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.ByteArrayFileInputStream;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -80,7 +79,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 	public void deleteMessages(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -123,7 +122,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 	public void markMessagesAsRead(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -139,7 +138,7 @@ public class PrivateMessagingPortlet extends MVCPortlet {
 
 	public void markMessagesAsUnread(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

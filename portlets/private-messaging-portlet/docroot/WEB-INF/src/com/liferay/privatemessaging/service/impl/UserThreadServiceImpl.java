@@ -19,7 +19,6 @@ package com.liferay.privatemessaging.service.impl;
 
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -38,7 +37,7 @@ import java.util.List;
 public class UserThreadServiceImpl extends UserThreadServiceBaseImpl {
 
 	public MBMessage getLastThreadMessage(long mbThreadId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<MBMessage> mbMessages = getThreadMessages(
 			mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, false);
@@ -50,7 +49,7 @@ public class UserThreadServiceImpl extends UserThreadServiceBaseImpl {
 
 	public List<MBMessage> getThreadMessages(
 			long mbThreadId, int start, int end, boolean ascending)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		UserThread userThread = userThreadLocalService.getUserThread(
 			getUserId(), mbThreadId);
@@ -87,9 +86,7 @@ public class UserThreadServiceImpl extends UserThreadServiceBaseImpl {
 		return filteredMBMessages.subList(start, end);
 	}
 
-	public int getThreadMessagesCount(long mbThreadId)
-		throws PortalException, SystemException {
-
+	public int getThreadMessagesCount(long mbThreadId) throws PortalException {
 		List<MBMessage> mbMessages = getThreadMessages(
 			mbThreadId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, true);
 
@@ -97,7 +94,7 @@ public class UserThreadServiceImpl extends UserThreadServiceBaseImpl {
 	}
 
 	public List<UserThread> getUserUserThreads(boolean deleted)
-		throws PrincipalException, SystemException {
+		throws PrincipalException {
 
 		return userThreadLocalService.getUserUserThreads(getUserId(), deleted);
 	}

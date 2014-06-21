@@ -20,7 +20,6 @@ package com.liferay.privatemessaging.util;
 import com.liferay.portal.NoSuchRoleException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -56,7 +55,7 @@ public class PrivateMessagingUtil {
 
 	public static JSONObject getJSONRecipients(
 			long userId, String type, String keywords, int start, int end)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -144,8 +143,7 @@ public class PrivateMessagingUtil {
 	 * only person to have posted on the thread, then he will the represenative.
 	 */
 	public static long getThreadRepresentativeUserId(
-			long userId, long mbThreadId)
-		throws SystemException {
+		long userId, long mbThreadId) {
 
 		List<MBMessage> mbMessages =
 			MBMessageLocalServiceUtil.getThreadMessages(
@@ -170,9 +168,7 @@ public class PrivateMessagingUtil {
 		return userId;
 	}
 
-	public static String getThreadSubject(long mbThreadId)
-		throws SystemException {
-
+	public static String getThreadSubject(long mbThreadId) {
 		List<MBMessage> mbMessages =
 			MBMessageLocalServiceUtil.getThreadMessages(
 				mbThreadId, WorkflowConstants.STATUS_ANY, 0, 1);
@@ -181,7 +177,7 @@ public class PrivateMessagingUtil {
 	}
 
 	public static List<User> getThreadUsers(long userId, long mbThreadId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<User> users = new ArrayList<User>();
 
@@ -237,7 +233,7 @@ public class PrivateMessagingUtil {
 	}
 
 	public static boolean isUserPartOfThread(long userId, long mbThreadId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		try {
 			UserThreadLocalServiceUtil.getUserThread(userId, mbThreadId);

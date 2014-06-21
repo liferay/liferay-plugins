@@ -80,7 +80,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			String body,
 			List<ObjectValuePair<String, InputStream>> inputStreamOVPs,
 			ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long parentMBMessageId = MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID;
 
@@ -113,7 +113,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			long userId, long parentMBMessageId, String body,
 			List<ObjectValuePair<String, InputStream>> inputStreamOVPs,
 			ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long mbThreadId = 0;
 
@@ -132,7 +132,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	public void addUserThread(
 			long userId, long mbThreadId, long topMBMessageId, boolean read,
 			boolean deleted)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long userThreadId = counterLocalService.increment();
 
@@ -153,9 +153,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		userThreadPersistence.update(userThread);
 	}
 
-	public void deleteUser(long userId)
-		throws PortalException, SystemException {
-
+	public void deleteUser(long userId) throws PortalException {
 		List<UserThread> userThreads = userThreadPersistence.findByUserId(
 			userId);
 
@@ -167,7 +165,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	}
 
 	public void deleteUserThread(long userId, long mbThreadId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		UserThread userThread = userThreadPersistence.findByU_M(
 			userId, mbThreadId);
@@ -178,58 +176,49 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	}
 
 	public UserThread fetchUserThread(long userId, long mbThreadId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return userThreadPersistence.fetchByU_M(userId, mbThreadId);
 	}
 
-	public List<UserThread> getMBThreadUserThreads(long mbThreadId)
-		throws SystemException {
-
+	public List<UserThread> getMBThreadUserThreads(long mbThreadId) {
 		return userThreadPersistence.findByMBThreadId(mbThreadId);
 	}
 
 	public UserThread getUserThread(long userId, long mbThreadId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return userThreadPersistence.findByU_M(userId, mbThreadId);
 	}
 
-	public int getUserUserThreadCount(long userId, boolean deleted)
-		throws SystemException {
-
+	public int getUserUserThreadCount(long userId, boolean deleted) {
 		return userThreadPersistence.countByU_D(userId, deleted);
 	}
 
 	public int getUserUserThreadCount(
-			long userId, boolean read, boolean deleted)
-		throws SystemException {
+		long userId, boolean read, boolean deleted) {
 
 		return userThreadPersistence.countByU_R_D(userId, read, deleted);
 	}
 
-	public List<UserThread> getUserUserThreads(long userId, boolean deleted)
-		throws SystemException {
-
+	public List<UserThread> getUserUserThreads(long userId, boolean deleted) {
 		return userThreadPersistence.findByU_D(userId, deleted);
 	}
 
 	public List<UserThread> getUserUserThreads(
-			long userId, boolean read, boolean deleted)
-		throws SystemException {
+		long userId, boolean read, boolean deleted) {
 
 		return userThreadPersistence.findByU_R_D(userId, read, deleted);
 	}
 
 	public List<UserThread> getUserUserThreads(
-			long userId, boolean deleted, int start, int end)
-		throws SystemException {
+		long userId, boolean deleted, int start, int end) {
 
 		return userThreadPersistence.findByU_D(userId, deleted, start, end);
 	}
 
 	public void markUserThreadAsRead(long userId, long mbThreadId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		UserThread userThread = userThreadPersistence.findByU_M(
 			userId, mbThreadId);
@@ -240,7 +229,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	}
 
 	public void markUserThreadAsUnread(long userId, long mbThreadId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		UserThread userThread = userThreadPersistence.findByU_M(
 			userId, mbThreadId);
@@ -250,7 +239,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 		userThreadPersistence.update(userThread);
 	}
 
-	public void updateUserName(User user) throws SystemException {
+	public void updateUserName(User user) {
 		String userName = user.getFullName();
 
 		List<UserThread> userThreads = userThreadPersistence.findByUserId(
@@ -270,7 +259,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 			List<User> recipients, String subject, String body,
 			List<ObjectValuePair<String, InputStream>> inputStreamOVPs,
 			ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 		Group group = GroupLocalServiceUtil.getCompanyGroup(
@@ -366,7 +355,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	}
 
 	protected List<User> parseRecipients(long userId, String to)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
@@ -499,7 +488,7 @@ public class UserThreadLocalServiceImpl extends UserThreadLocalServiceBaseImpl {
 	}
 
 	protected void sendNotificationEvent(MBMessage mbMessage)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();
