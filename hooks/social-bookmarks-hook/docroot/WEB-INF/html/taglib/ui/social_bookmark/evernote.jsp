@@ -18,4 +18,4 @@
 
 <script src="<%= HttpUtil.getProtocol(request) %>://static.evernote.com/noteit.js" type="text/javascript"></script>
 
-<a href="#" onClick="Evernote.doClip({contentId:'<%= namespace + contentId %>', title:'<%= title %>'}); return false;"><img alt="Clip to Evernote" src="<%= HttpUtil.getProtocol(request) %>://static.evernote.com/article-clipper.png" /></a>
+<a href="#" onClick="Evernote.doClip({contentId:'<%= namespace + contentId %>', title:'<%= title %>'}); return false;"><img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="clip-to-evernote" />" src="<%= HttpUtil.getProtocol(request) %>://static.evernote.com/article-clipper.png" /></a>
