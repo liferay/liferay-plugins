@@ -67,7 +67,7 @@ public class MicroblogsEntryFinderImpl
 	public static final String FIND_BY_U_T_MU =
 		MicroblogsEntryFinder.class.getName() + ".findByU_T_MU";
 
-	public int countByUserId(long userId) throws SystemException {
+	public int countByUserId(long userId) {
 		Session session = null;
 
 		try {
@@ -108,9 +108,7 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	public int countByU_MU(long userId, long microblogsEntryUserId)
-		throws SystemException {
-
+	public int countByU_MU(long userId, long microblogsEntryUserId) {
 		Session session = null;
 
 		try {
@@ -149,9 +147,7 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	public int countByU_ATN(long userId, String assetTagName)
-		throws SystemException {
-
+	public int countByU_ATN(long userId, String assetTagName) {
 		Session session = null;
 
 		try {
@@ -191,9 +187,7 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	public int countByU_T_MU(long userId, int type, long microblogsEntryUserId)
-		throws SystemException {
-
+	public int countByU_T_MU(long userId, int type, long microblogsEntryUserId) {
 		Session session = null;
 
 		try {
@@ -232,9 +226,7 @@ public class MicroblogsEntryFinderImpl
 		}
 	}
 
-	public List<MicroblogsEntry> findByUserId(long userId, int start, int end)
-		throws SystemException {
-
+	public List<MicroblogsEntry> findByUserId(long userId, int start, int end) {
 		Session session = null;
 
 		try {
@@ -278,8 +270,7 @@ public class MicroblogsEntryFinderImpl
 	}
 
 	public List<MicroblogsEntry> findByU_MU(
-			long userId, long microblogsEntryUserId, int start, int end)
-		throws SystemException {
+		long userId, long microblogsEntryUserId, int start, int end) {
 
 		Session session = null;
 
@@ -311,8 +302,7 @@ public class MicroblogsEntryFinderImpl
 	}
 
 	public List<MicroblogsEntry> findByU_ATN(
-			long userId, String assetTagName, int start, int end)
-		throws SystemException {
+		long userId, String assetTagName, int start, int end) {
 
 		Session session = null;
 
@@ -345,9 +335,7 @@ public class MicroblogsEntryFinderImpl
 	}
 
 	public List<MicroblogsEntry> findByU_T_MU(
-			long userId, int type, long microblogsEntryUserId, int start,
-			int end)
-		throws SystemException {
+		long userId, int type, long microblogsEntryUserId, int start, int end) {
 
 		Session session = null;
 

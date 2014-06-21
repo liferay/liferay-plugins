@@ -21,7 +21,6 @@ import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -57,7 +56,7 @@ public class MicroblogsUtil {
 
 	public static JSONArray getJSONRecipients(
 			long userId, ThemeDisplay themeDisplay)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
@@ -89,7 +88,7 @@ public class MicroblogsUtil {
 
 	public static String getTaggedContent(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		String content = HtmlUtil.escape(microblogsEntry.getContent());
 

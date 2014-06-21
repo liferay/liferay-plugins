@@ -20,7 +20,6 @@ package com.liferay.microblogs.service.permission;
 import com.liferay.microblogs.model.MicroblogsEntry;
 import com.liferay.microblogs.service.MicroblogsEntryLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
@@ -34,7 +33,7 @@ public class MicroblogsEntryPermission {
 	public static void check(
 			PermissionChecker permissionChecker, long microblogsEntryId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, microblogsEntryId, actionId)) {
 			throw new PrincipalException();
@@ -44,7 +43,7 @@ public class MicroblogsEntryPermission {
 	public static void check(
 			PermissionChecker permissionChecker,
 			MicroblogsEntry microblogsEntry, String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, microblogsEntry, actionId)) {
 			throw new PrincipalException();
@@ -54,7 +53,7 @@ public class MicroblogsEntryPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, long microblogsEntryId,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MicroblogsEntry microblogsEntry =
 			MicroblogsEntryLocalServiceUtil.getMicroblogsEntry(
@@ -64,9 +63,8 @@ public class MicroblogsEntryPermission {
 	}
 
 	public static boolean contains(
-			PermissionChecker permissionChecker,
-			MicroblogsEntry microblogsEntry, String actionId)
-		throws SystemException {
+		PermissionChecker permissionChecker, MicroblogsEntry microblogsEntry,
+		String actionId) {
 
 		if (actionId.equals(ActionKeys.DELETE) ||
 			actionId.equals(ActionKeys.UPDATE)) {

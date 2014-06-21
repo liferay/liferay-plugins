@@ -25,7 +25,6 @@ import com.liferay.microblogs.service.base.MicroblogsEntryLocalServiceBaseImpl;
 import com.liferay.microblogs.util.PortletKeys;
 import com.liferay.microblogs.util.comparator.EntryCreateDateComparator;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.UserNotificationManagerUtil;
@@ -56,7 +55,7 @@ public class MicroblogsEntryLocalServiceImpl
 			long userId, String content, int type, long receiverUserId,
 			long receiverMicroblogsEntryId, int socialRelationType,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Microblogs entry
 
@@ -130,7 +129,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 	@Override
 	public MicroblogsEntry deleteMicroblogsEntry(long microblogsEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MicroblogsEntry microblogsEntry =
 			microblogsEntryPersistence.findByPrimaryKey(microblogsEntryId);
@@ -141,7 +140,7 @@ public class MicroblogsEntryLocalServiceImpl
 	@Override
 	public MicroblogsEntry deleteMicroblogsEntry(
 			MicroblogsEntry microblogsEntry)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Microblogs entry
 
@@ -163,7 +162,7 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	public void deleteUserMicroblogsEntries(long userId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<MicroblogsEntry> microblogsEntries =
 			microblogsEntryPersistence.findByUserId(userId);
@@ -174,29 +173,25 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	public List<MicroblogsEntry> getCompanyMicroblogsEntries(
-			long companyId, int start, int end)
-		throws SystemException {
+		long companyId, int start, int end) {
 
 		return microblogsEntryPersistence.findByCompanyId(
 			companyId, start, end);
 	}
 
-	public int getCompanyMicroblogsEntriesCount(long companyId)
-		throws SystemException {
-
+	public int getCompanyMicroblogsEntriesCount(long companyId) {
 		return microblogsEntryPersistence.countByCompanyId(companyId);
 	}
 
 	@Override
 	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		return microblogsEntryPersistence.findByPrimaryKey(microblogsEntryId);
 	}
 
 	public List<MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
-			int type, long receiverMicroblogsEntryId, int start, int end)
-		throws SystemException {
+		int type, long receiverMicroblogsEntryId, int start, int end) {
 
 		return microblogsEntryPersistence.findByT_RMEI(
 			type, receiverMicroblogsEntryId, start, end,
@@ -204,67 +199,57 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	public List<MicroblogsEntry> getReceiverMicroblogsEntryMicroblogsEntries(
-			int type, long receiverMicroblogsEntryId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		int type, long receiverMicroblogsEntryId, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		return microblogsEntryPersistence.findByT_RMEI(
 			type, receiverMicroblogsEntryId, start, end, orderByComparator);
 	}
 
 	public int getReceiverMicroblogsEntryMicroblogsEntriesCount(
-			int type, long receiverMicroblogsEntryId)
-		throws SystemException {
+		int type, long receiverMicroblogsEntryId) {
 
 		return microblogsEntryPersistence.countByT_RMEI(
 			type, receiverMicroblogsEntryId);
 	}
 
 	public List<MicroblogsEntry> getReceiverUserMicroblogsEntries(
-			int type, long receiverUserId, int start, int end)
-		throws SystemException {
+		int type, long receiverUserId, int start, int end) {
 
 		return microblogsEntryPersistence.findByT_R(
 			type, receiverUserId, start, end);
 	}
 
 	public int getReceiverUserMicroblogsEntriesCount(
-			int type, long receiverUserId)
-		throws SystemException {
+		int type, long receiverUserId) {
 
 		return microblogsEntryPersistence.countByT_R(type, receiverUserId);
 	}
 
 	public List<MicroblogsEntry> getUserMicroblogsEntries(
-			long userId, int start, int end)
-		throws SystemException {
+		long userId, int start, int end) {
 
 		return microblogsEntryPersistence.findByUserId(userId, start, end);
 	}
 
 	public List<MicroblogsEntry> getUserMicroblogsEntries(
-			long userId, int type, int start, int end)
-		throws SystemException {
+		long userId, int type, int start, int end) {
 
 		return microblogsEntryPersistence.findByU_T(userId, type, start, end);
 	}
 
-	public int getUserMicroblogsEntriesCount(long userId)
-		throws SystemException {
-
+	public int getUserMicroblogsEntriesCount(long userId) {
 		return microblogsEntryPersistence.countByUserId(userId);
 	}
 
-	public int getUserMicroblogsEntriesCount(long userId, int type)
-		throws SystemException {
-
+	public int getUserMicroblogsEntriesCount(long userId, int type) {
 		return microblogsEntryPersistence.countByU_T(userId, type);
 	}
 
 	public void updateAsset(
 			MicroblogsEntry microblogsEntry, long[] assetCategoryIds,
 			String[] assetTagNames)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Group group = GroupLocalServiceUtil.getCompanyGroup(
 			microblogsEntry.getCompanyId());
@@ -279,7 +264,7 @@ public class MicroblogsEntryLocalServiceImpl
 	public MicroblogsEntry updateMicroblogsEntry(
 			long microblogsEntryId, String content, int socialRelationType,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// Microblogs entry
 
@@ -303,7 +288,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 	protected void sendNotificationEvent(
 			MicroblogsEntry microblogsEntry, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		JSONObject notificationEventJSONObject =
 			JSONFactoryUtil.createJSONObject();
@@ -361,7 +346,7 @@ public class MicroblogsEntryLocalServiceImpl
 	}
 
 	protected void validate(int type, long receiverMicroblogsEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (receiverMicroblogsEntryId == 0) {
 			return;
