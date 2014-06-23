@@ -52,15 +52,7 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 						<liferay-ui:message key="did-you-like-this-article" /> <a href="javascript:<portlet:namespace />showFeedbackControls();"><liferay-ui:message key="help-us-improve-it" /></a>
 					</c:if>
 
-					<%
-					String feedbackControlsDisplayStyle = "none";
-
-					if (kbComment != null) {
-						feedbackControlsDisplayStyle = "block";
-					}
-					%>
-
-					<div class="kb-helpful-container" id="<portlet:namespace />feedbackControls" style="display: <%= feedbackControlsDisplayStyle %>">
+					<div class="kb-helpful-container" id="<portlet:namespace />feedbackControls" style="display: <%= (kbComment != null) ? "block" : "none" %>">
 						<c:if test="<%= kbComment != null %>">
 							<div class="kb-feedback-title"><liferay-ui:message key="your-feedback-for-this-article" /></div>
 						</c:if>
@@ -68,20 +60,12 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 						<div class="kb-helpful-inputs">
 							<span class="kb-helpful-text"><liferay-ui:message key="was-this-information-helpful" /></span>
 
-							<aui:input checked="<%= helpful %>" inlineField="<%= true %>"  label="yes" name="helpful" type="radio" value="1" />
+							<aui:input checked="<%= helpful %>" inlineField="<%= true %>" label="yes" name="helpful" type="radio" value="1" />
 
 							<aui:input checked="<%= !helpful %>" inlineField="<%= true %>" label="no" name="helpful" type="radio" value="0" />
 						</div>
 
-						<%
-						String commentBody = "";
-
-						if (kbComment != null) {
-							commentBody = kbComment.getContent();
-						}
-						%>
-
-						<aui:input id="content" label="" name="content" value="<%= HtmlUtil.escape(commentBody) %>" />
+						<aui:input id="content" label="" name="content" value="<%= (kbComment != null) ? HtmlUtil.escape(kbComment.getContent()) : StringPool.BLANK %>" />
 
 						<aui:button-row cssClass="kb-submit-buttons">
 							<aui:button type="submit" value="submit" />
@@ -89,7 +73,7 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 							<c:if test="<%= kbComment != null %>">
 
 								<%
-									String deleteURL = "javascript:" + renderResponse.getNamespace() + "deleteKBComment(" + kbComment.getKbCommentId() + ");";
+								String deleteURL = "javascript:" + renderResponse.getNamespace() + "deleteKBComment(" + kbComment.getKbCommentId() + ");";
 								%>
 
 								<aui:button onClick="<%= deleteURL %>" type="button" value="delete-feedback" />
