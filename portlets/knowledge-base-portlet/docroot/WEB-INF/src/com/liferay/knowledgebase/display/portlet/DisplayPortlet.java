@@ -21,6 +21,7 @@ import com.liferay.knowledgebase.KBCommentContentException;
 import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.model.KBArticle;
+import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBArticleServiceUtil;
@@ -197,11 +198,17 @@ public class DisplayPortlet extends MVCPortlet {
 
 			long resourcePrimKey = getResourcePrimKey(renderRequest);
 
+			long parentResourcePrimKey = ParamUtil.getLong(
+				renderRequest, "parentResourcePrimKey",
+				KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY);
+
 			if (resourcePrimKey > 0) {
 				kbArticle = KBArticleServiceUtil.getLatestKBArticle(
 					resourcePrimKey, status);
 			}
-			else {
+			else if (parentResourcePrimKey ==
+						KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY) {
+
 				List<KBArticle> kbArticles =
 					KBArticleLocalServiceUtil.getGroupKBArticles(
 						themeDisplay.getScopeGroupId(), status, 0, 1,
