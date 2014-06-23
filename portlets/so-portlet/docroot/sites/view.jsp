@@ -25,17 +25,17 @@ String name = ParamUtil.getString(request, "name");
 int favoriteSitesGroupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), name);
 int mySitesGroupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), name, true);
 
-String defaultTab = "my-favorites";
+String defaultTabs1Name = "my-favorites";
 
 if (favoriteSitesGroupsCount == 0) {
-	defaultTab = "my-sites";
+	defaultTabs1Name = "my-sites";
 
 	if (mySitesGroupsCount == 0) {
-		defaultTab = "all-sites";
+		defaultTabs1Name = "all-sites";
 	}
 }
 
-String tabs1 = ParamUtil.getString(request, "tabs1", defaultTab);
+String tabs1 = ParamUtil.getString(request, "tabs1", defaultTabs1Name);
 
 List<Group> groups = null;
 int groupsCount = 0;
