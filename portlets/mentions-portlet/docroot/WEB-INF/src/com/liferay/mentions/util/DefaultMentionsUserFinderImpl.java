@@ -17,7 +17,6 @@ package com.liferay.mentions.util;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.WildcardMode;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -37,7 +36,7 @@ public class DefaultMentionsUserFinderImpl implements MentionsUserFinder {
 	public List<User> getUsers(
 			long companyId, long userId, String query,
 			SocialInteractionsConfiguration socialInteractionsConfiguration)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (socialInteractionsConfiguration.
 				isSocialInteractionsAnyUserEnabled()) {

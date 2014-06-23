@@ -15,7 +15,6 @@
 package com.liferay.mentions.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.model.Group;
@@ -29,7 +28,7 @@ import javax.portlet.PortletPreferences;
 public class MentionsUtil {
 
 	public static boolean isMentionsEnabled(long siteGroupId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		Group group = GroupLocalServiceUtil.getGroup(siteGroupId);
 

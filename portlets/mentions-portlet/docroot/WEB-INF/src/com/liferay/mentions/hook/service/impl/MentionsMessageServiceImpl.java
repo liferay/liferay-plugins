@@ -19,7 +19,6 @@ import com.liferay.mentions.util.MentionsUtil;
 import com.liferay.mentions.util.PortletKeys;
 import com.liferay.mentions.util.PortletPropsValues;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -56,7 +55,7 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			long userId, String userName, long groupId, String className,
 			long classPK, long threadId, long parentMessageId, String subject,
 			String body, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MBMessage message = super.addDiscussionMessage(
 			userId, userName, groupId, className, classPK, threadId,
@@ -77,7 +76,7 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 	public MBMessage updateDiscussionMessage(
 			long userId, long messageId, String className, long classPK,
 			String subject, String body, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		MBMessage message = super.updateDiscussionMessage(
 			userId, messageId, className, classPK, subject, body,
@@ -109,8 +108,8 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 			new String[mentionedUsersScreenNames.size()]);
 	}
 
-	protected void notifyUsers(MBMessage message, ServiceContext serviceContext)
-		throws SystemException {
+	protected void notifyUsers(
+		MBMessage message, ServiceContext serviceContext) {
 
 		if (!message.isDiscussion()) {
 			return;
