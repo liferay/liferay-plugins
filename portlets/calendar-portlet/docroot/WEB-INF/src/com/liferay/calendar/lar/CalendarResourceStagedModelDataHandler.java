@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.model.Group;
@@ -126,6 +127,8 @@ public class CalendarResourceStagedModelDataHandler
 			PortletDataContext portletDataContext,
 			CalendarResource calendarResource)
 		throws Exception {
+
+		prepareLanguagesForImport(calendarResource);
 
 		long userId = portletDataContext.getUserId(
 			calendarResource.getUserUuid());
@@ -241,6 +244,22 @@ public class CalendarResourceStagedModelDataHandler
 		}
 
 		return classPK;
+	}
+
+	protected void prepareLanguagesForImport(CalendarResource calendarResource)
+		throws PortalException {
+
+		Locale defaultLocale = LocaleUtil.fromLanguageId(
+			calendarResource.getDefaultLanguageId());
+
+		Locale[] availableLocales = LocaleUtil.fromLanguageIds(
+			calendarResource.getAvailableLanguageIds());
+
+		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(
+			CalendarResource.class.getName(), calendarResource.getPrimaryKey(),
+			defaultLocale, availableLocales);
+
+		calendarResource.prepareLocalizedFieldsForImport(defaultImportLocale);
 	}
 
 	protected void updateCalendars(
