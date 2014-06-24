@@ -53,8 +53,6 @@ public class MentionsUserNotificationHandler
 		JSONObject jsonObject, AssetRenderer assetRenderer,
 		ServiceContext serviceContext) {
 
-		String message = "x-mentioned-you-in-a-comment-in-a-x";
-
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				assetRenderer.getClassName());
@@ -63,7 +61,8 @@ public class MentionsUserNotificationHandler
 			serviceContext.getLocale());
 
 		return serviceContext.translate(
-			message, HtmlUtil.escape(assetRenderer.getUserName()),
+			"x-mentioned-you-in-a-comment-in-a-x",
+			HtmlUtil.escape(assetRenderer.getUserName()),
 			StringUtil.toLowerCase(HtmlUtil.escape(typeName)));
 	}
 
