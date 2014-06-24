@@ -103,7 +103,7 @@ public class MentionsMessageServiceImpl extends MBMessageLocalServiceWrapper {
 		SocialInteractionsConfiguration socialInteractionsConfiguration =
 			SocialInteractionsConfigurationUtil.
 				getSocialInteractionsConfiguration(
-					message.getCompanyId(), "1_WAR_mentionsportlet");
+					message.getCompanyId(), PortletKeys.MENTIONS);
 
 		Matcher matcher = _pattern.matcher(message.getBody());
 
