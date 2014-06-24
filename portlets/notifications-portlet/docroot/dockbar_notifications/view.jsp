@@ -42,7 +42,6 @@ boolean menuOpen = ParamUtil.getBoolean(request, "menuOpen");
 					baseActionURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.ACTION_PHASE) %>',
 					baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',
 					menuOpen: <%= menuOpen %>,
-					namespace: '<portlet:namespace />',
 					portletKey: '<%= PortletKeys.DOCKBAR_NOTIFICATIONS %>'
 				}
 			);
