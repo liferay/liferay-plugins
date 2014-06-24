@@ -54,35 +54,35 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 			long userId, long groupId)
 		throws PortalException, SystemException {
 
-		Locale defaultLocale = LocaleUtil.getDefault();
-
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
+		Locale locale = LocaleUtil.getDefault();
+
 		nameMap.put(
-			defaultLocale,
+			locale,
 			GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME);
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
 		descriptionMap.put(
-			defaultLocale,
+			locale,
 			GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME);
 
-		long[] ddmStructureIds = new long[] {};
-
 		ServiceContext serviceContext = new ServiceContext();
+		
+		Class<?> clazz = getClass();
 
 		String xsd = ContentUtil.get(
-			getClass().getClassLoader(),
-			"com/liferay/googledocument/hook/event/" +
-				"google-document-file-entry-type-xsd.xml");
+			clazz.getClassLoader(),
+			"com/liferay/googledocument/hook/event/dependencies" +
+				"/google-document-file-entry-type-xsd.xml");
 
 		serviceContext.setAttribute("xsd", xsd);
 
 		DLFileEntryTypeLocalServiceUtil.addFileEntryType(
 			userId, groupId,
 			GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY,
-			nameMap, descriptionMap, ddmStructureIds, serviceContext);
+			nameMap, descriptionMap, new long[0], serviceContext);
 	}
 
 	protected void doRun(long companyId)
@@ -110,8 +110,9 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 		for (DLFileEntryType fileEntryType : fileEntryTypes) {
 			String fileEntryTypeKey = fileEntryType.getFileEntryTypeKey();
 
-			if (GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY.
-					equals(fileEntryTypeKey)) {
+			if (fileEntryTypeKey.equals(
+					GoogleDocumentConstants.
+						GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY)) {
 
 				return true;
 			}
