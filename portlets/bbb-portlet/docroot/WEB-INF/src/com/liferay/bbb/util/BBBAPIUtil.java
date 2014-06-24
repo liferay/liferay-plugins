@@ -260,7 +260,8 @@ public class BBBAPIUtil {
 		sb.append(StringPool.EQUAL);
 
 		String welcomeMessage = ContentUtil.get(
-			"dependencies/meeting_welcome_message.tmpl");
+			"com/liferay/bbb/dependencies/" +
+			"meeting_welcome_message.tmpl");
 
 		sb.append(HtmlUtil.escapeURL(welcomeMessage));
 
