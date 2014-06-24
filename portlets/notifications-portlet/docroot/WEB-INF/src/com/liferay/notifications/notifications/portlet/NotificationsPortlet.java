@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.model.UserNotificationDeliveryConstants;
 import com.liferay.portal.model.UserNotificationEvent;
 import com.liferay.portal.service.UserNotificationDeliveryLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
@@ -201,7 +202,8 @@ public class NotificationsPortlet extends MVCPortlet {
 			int newUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
 					getDeliveredUserNotificationEventsCount(
-						themeDisplay.getUserId(), false);
+						themeDisplay.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
 
 			jsonObject.put(
 				"newUserNotificationsCount", newUserNotificationsCount);
@@ -212,7 +214,8 @@ public class NotificationsPortlet extends MVCPortlet {
 			int unreadUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
 					getArchivedUserNotificationEventsCount(
-						themeDisplay.getUserId(), false);
+						themeDisplay.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, false);
 
 			jsonObject.put(
 				"unreadUserNotificationsCount", unreadUserNotificationsCount);
