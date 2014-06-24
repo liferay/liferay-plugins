@@ -69,7 +69,7 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 			GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME);
 
 		ServiceContext serviceContext = new ServiceContext();
-		
+
 		Class<?> clazz = getClass();
 
 		String xsd = ContentUtil.get(
