@@ -99,7 +99,6 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 			httpClientBuilder.setDefaultCredentialsProvider(
 				credentialsProvider);
-
 			httpClientBuilder.setRetryHandler(
 				new HttpRequestRetryHandlerImpl());
 		}
@@ -362,46 +361,42 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 		implements HttpRequestRetryHandler {
 
 		public boolean retryRequest(
-			IOException exception, int executionCount,
-			HttpContext httpContext) {
+			IOException ioe, int retryCount, HttpContext httpContext) {
 
-			if (executionCount >= 5) {
+			if (retryCount >= 5) {
 				return false;
 			}
 
-			if (exception instanceof ConnectTimeoutException) {
+			if (ioe instanceof ConnectTimeoutException) {
 				return false;
 			}
 
-			if (exception instanceof InterruptedIOException) {
+			if (ioe instanceof InterruptedIOException) {
 				return false;
 			}
 
-			if (exception instanceof SocketException) {
+			if (ioe instanceof SocketException) {
 				return true;
 			}
 
-			if (exception instanceof SSLException) {
+			if (ioe instanceof SSLException) {
 				return false;
 			}
 
-			if (exception instanceof UnknownHostException) {
+			if (ioe instanceof UnknownHostException) {
 				return false;
 			}
 
-			HttpClientContext clientContext = HttpClientContext.adapt(
+			HttpClientContext httpClientContext = HttpClientContext.adapt(
 				httpContext);
 
-			HttpRequest httpRequest = clientContext.getRequest();
+			HttpRequest httpRequest = httpClientContext.getRequest();
 
-			boolean idempotent = !(
-				httpRequest instanceof HttpEntityEnclosingRequest);
-
-			if (idempotent) {
-				return true;
+			if (httpRequest instanceof HttpEntityEnclosingRequest) {
+				return false;
 			}
 
-			return false;
+			return true;
 		}
 
 	};
