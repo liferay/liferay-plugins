@@ -15,6 +15,10 @@
 package com.liferay.jsonwebserviceclient;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
+
+import java.net.SocketException;
+import java.net.UnknownHostException;
 
 import java.security.KeyStore;
 import java.security.cert.CertificateException;
@@ -26,6 +30,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLException;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
@@ -36,20 +41,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.Charsets;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpHost;
+import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.StatusLine;
 import org.apache.http.auth.AuthScope;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.CredentialsProvider;
+import org.apache.http.client.HttpRequestRetryHandler;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
+import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
@@ -61,6 +71,7 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 
 import org.slf4j.Logger;
@@ -88,6 +99,9 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 
 			httpClientBuilder.setDefaultCredentialsProvider(
 				credentialsProvider);
+
+			httpClientBuilder.setRetryHandler(
+				new HttpRequestRetryHandlerImpl());
 		}
 		else {
 			if (_logger.isWarnEnabled()) {
@@ -343,6 +357,54 @@ public class JSONWebServiceClientImpl implements JSONWebServiceClient {
 	private String _login;
 	private String _password;
 	private String _protocol = "http";
+
+	private class HttpRequestRetryHandlerImpl
+		implements HttpRequestRetryHandler {
+
+		public boolean retryRequest(
+			IOException exception, int executionCount,
+			HttpContext httpContext) {
+
+			if (executionCount >= 5) {
+				return false;
+			}
+
+			if (exception instanceof ConnectTimeoutException) {
+				return false;
+			}
+
+			if (exception instanceof InterruptedIOException) {
+				return false;
+			}
+
+			if (exception instanceof SocketException) {
+				return true;
+			}
+
+			if (exception instanceof SSLException) {
+				return false;
+			}
+
+			if (exception instanceof UnknownHostException) {
+				return false;
+			}
+
+			HttpClientContext clientContext = HttpClientContext.adapt(
+				httpContext);
+
+			HttpRequest httpRequest = clientContext.getRequest();
+
+			boolean idempotent = !(
+				httpRequest instanceof HttpEntityEnclosingRequest);
+
+			if (idempotent) {
+				return true;
+			}
+
+			return false;
+		}
+
+	};
 
 	private class X509TrustManagerImpl implements X509TrustManager {
 
