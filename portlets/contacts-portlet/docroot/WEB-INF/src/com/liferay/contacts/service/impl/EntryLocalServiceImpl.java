@@ -150,9 +150,13 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 		Entry entry = entryPersistence.fetchByU_EA(userId, emailAddress);
 
+		if (entry != null) {
+			throw new DuplicateEntryEmailAddressException();
+		}
+
 		User user = userPersistence.fetchByC_EA(companyId, emailAddress);
 
-		if ((entry != null) || (user != null)) {
+		if (user != null) {
 			throw new DuplicateEntryEmailAddressException();
 		}
 	}
