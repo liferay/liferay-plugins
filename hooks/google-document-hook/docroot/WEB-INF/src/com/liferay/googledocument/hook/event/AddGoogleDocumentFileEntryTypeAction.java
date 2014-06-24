@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.googledocuments.hook.event;
+package com.liferay.googledocument.hook.event;
 
-import com.liferay.googledocuments.hook.util.GoogleDocumentsConstants;
+import com.liferay.googledocument.hook.util.GoogleDocumentConstants;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -55,7 +55,7 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 
 		Company company = CompanyLocalServiceUtil.getCompanyById(companyId);
 
-		if (!_existsGoogleDriveDocumentFileEntryType(company.getGroupId())) {
+		if (!_hasGoogleDriveDocumentFileEntryType(company.getGroupId())) {
 			long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
 				companyId);
 
@@ -74,13 +74,13 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 
 		nameMap.put(
 			defaultLocale,
-			GoogleDocumentsConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME);
+			GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME);
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
 		descriptionMap.put(
 			defaultLocale,
-			GoogleDocumentsConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME);
+			GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME);
 
 		long[] ddmStructureIds = new long[] {};
 
@@ -88,18 +88,18 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 
 		String xsd = ContentUtil.get(
 			getClass().getClassLoader(),
-			"com/liferay/googledocuments/hook/event/" +
+			"com/liferay/googledocument/hook/event/" +
 				"google-document-file-entry-type-xsd.xml");
 
 		serviceContext.setAttribute("xsd", xsd);
 
 		DLFileEntryTypeLocalServiceUtil.addFileEntryType(
 			userId, groupId,
-			GoogleDocumentsConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY,
+			GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY,
 			nameMap, descriptionMap, ddmStructureIds, serviceContext);
 	}
 
-	private boolean _existsGoogleDriveDocumentFileEntryType(long groupId)
+	private boolean _hasGoogleDriveDocumentFileEntryType(long groupId)
 		throws SystemException {
 
 		long[] groupIds = new long[] {groupId};
@@ -110,7 +110,7 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 		for (DLFileEntryType fileEntryType : fileEntryTypes) {
 			String fileEntryTypeKey = fileEntryType.getFileEntryTypeKey();
 
-			if (GoogleDocumentsConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY.
+			if (GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY.
 					equals(fileEntryTypeKey)) {
 
 				return true;

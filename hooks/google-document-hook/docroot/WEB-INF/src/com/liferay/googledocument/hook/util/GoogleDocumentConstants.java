@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.googledocuments.hook.util;
+package com.liferay.googledocument.hook.util;
 
 /**
  * @author Iván Zaera
  */
-public class GoogleDocumentsConstants {
+public class GoogleDocumentConstants {
 
 	public static final String GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY =
 		"GOOGLE-DOCUMENT";
