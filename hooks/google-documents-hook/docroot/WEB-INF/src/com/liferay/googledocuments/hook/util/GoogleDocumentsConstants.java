@@ -17,11 +17,12 @@ package com.liferay.googledocuments.hook.util;
 /**
  * @author Iván Zaera
  */
-public class Constants {
+public class GoogleDocumentsConstants {
 
 	public static final String GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY =
 		"GOOGLE-DOCUMENT";
 
-	public static final String GOOGLE_DOCUMENT_NAME = "Google Document";
+	public static final String GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME =
+		"Google Document";
 
 }

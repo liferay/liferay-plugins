@@ -14,7 +14,7 @@
 
 package com.liferay.googledocuments.hook.event;
 
-import com.liferay.googledocuments.hook.util.Constants;
+import com.liferay.googledocuments.hook.util.GoogleDocumentsConstants;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -79,11 +79,15 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 
 		Map<Locale, String> nameMap = new HashMap<Locale, String>();
 
-		nameMap.put(defaultLocale, Constants.GOOGLE_DOCUMENT_NAME);
+		nameMap.put(
+			defaultLocale,
+			GoogleDocumentsConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME);
 
 		Map<Locale, String> descriptionMap = new HashMap<Locale, String>();
 
-		descriptionMap.put(defaultLocale, Constants.GOOGLE_DOCUMENT_NAME);
+		descriptionMap.put(
+			defaultLocale,
+			GoogleDocumentsConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_NAME);
 
 		long[] ddmStructureIds = new long[] {};
 
@@ -97,7 +101,8 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 		serviceContext.setAttribute("xsd", xsd);
 
 		DLFileEntryTypeLocalServiceUtil.addFileEntryType(
-			userId, groupId, Constants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY,
+			userId, groupId,
+			GoogleDocumentsConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY,
 			nameMap, descriptionMap, ddmStructureIds, serviceContext);
 	}
 
@@ -110,8 +115,10 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 			DLFileEntryTypeServiceUtil.getFileEntryTypes(groupIds);
 
 		for (DLFileEntryType fileEntryType : fileEntryTypes) {
-			if (fileEntryType.getFileEntryTypeKey().equals(
-					Constants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY)) {
+			String fileEntryTypeKey = fileEntryType.getFileEntryTypeKey();
+
+			if (GoogleDocumentsConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY.
+					equals(fileEntryTypeKey)) {
 
 				return true;
 			}
