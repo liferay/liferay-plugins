@@ -72,7 +72,9 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		return entryPersistence.countByUserId(userId);
 	}
 
-	public List<Entry> search(long userId, String keywords, int start, int end) {
+	public List<Entry> search(
+		long userId, String keywords, int start, int end) {
+
 		return entryFinder.findByKeywords(userId, keywords, start, end);
 	}
 
