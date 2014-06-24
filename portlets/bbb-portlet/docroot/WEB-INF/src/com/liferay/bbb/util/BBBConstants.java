@@ -48,6 +48,8 @@ public class BBBConstants {
 
 	public static final String API_PARAMETER_RECORD = "record";
 
+	public static final String API_PARAMETER_WELCOME = "welcome";
+
 	public static final String API_RESPONSE_FAILED = "FAILED";
 
 	public static final String API_RESPONSE_FORMAT = "format";

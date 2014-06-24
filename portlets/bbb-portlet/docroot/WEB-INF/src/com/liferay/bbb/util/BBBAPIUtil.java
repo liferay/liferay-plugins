@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.xml.DocumentException;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.util.ContentUtil;
 
 import java.io.IOException;
 
@@ -245,18 +246,23 @@ public class BBBAPIUtil {
 			return bbbMeeting;
 		}
 
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(14);
 
 		sb.append(BBBConstants.API_PARAMETER_MEETING_ID);
 		sb.append(StringPool.EQUAL);
-		bbbMeeting.setBbbServerId(getBbbServerId());
-
 		sb.append(bbbMeeting.getBbbMeetingId());
-
 		sb.append(StringPool.AMPERSAND);
 		sb.append(BBBConstants.API_PARAMETER_NAME);
 		sb.append(StringPool.EQUAL);
 		sb.append(HtmlUtil.escapeURL(bbbMeeting.getName()));
+		sb.append(StringPool.AMPERSAND);
+		sb.append(BBBConstants.API_PARAMETER_WELCOME);
+		sb.append(StringPool.EQUAL);
+
+		String welcomeMessage = ContentUtil.get(
+			"dependencies/meeting_welcome_message.tmpl");
+
+		sb.append(HtmlUtil.escapeURL(welcomeMessage));
 
 		if (recordMeeting) {
 			sb.append(StringPool.AMPERSAND);
@@ -264,6 +270,8 @@ public class BBBAPIUtil {
 			sb.append(StringPool.EQUAL);
 			sb.append(StringPool.TRUE);
 		}
+
+		bbbMeeting.setBbbServerId(getBbbServerId());
 
 		Document document = execute(
 			bbbMeeting, BBBConstants.API_METHOD_CREATE, sb.toString());
