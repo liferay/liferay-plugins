@@ -44,7 +44,7 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
 
-		validate(0, userId, fullName, emailAddress);
+		validate(user.getCompanyId(), 0, userId, fullName, emailAddress);
 
 		long contactId = counterLocalService.increment();
 
@@ -107,7 +107,9 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 		Entry entry = entryPersistence.findByPrimaryKey(entryId);
 
-		validate(entryId, entry.getUserId(), fullName, emailAddress);
+		validate(
+			entry.getCompanyId(), entryId, entry.getUserId(), fullName,
+			emailAddress);
 
 		entry.setModifiedDate(new Date());
 		entry.setFullName(fullName);
@@ -120,7 +122,8 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 	}
 
 	protected void validate(
-			long entryId, long userId, String fullName, String emailAddress)
+			long companyId, long entryId, long userId, String fullName,
+			String emailAddress)
 		throws PortalException, SystemException {
 
 		if (Validator.isNull(fullName)) {
@@ -139,20 +142,27 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 			Entry entry = entryPersistence.findByPrimaryKey(entryId);
 
 			if (!emailAddress.equalsIgnoreCase(entry.getEmailAddress())) {
-				validateEmailAddress(userId, emailAddress);
+				validateEmailAddress(companyId, userId, emailAddress);
 			}
 		}
 		else {
-			validateEmailAddress(userId, emailAddress);
+			validateEmailAddress(companyId, userId, emailAddress);
 		}
 	}
 
-	protected void validateEmailAddress(long userId, String emailAddress)
+	protected void validateEmailAddress(
+			long companyId, long userId, String emailAddress)
 		throws PortalException, SystemException {
 
 		Entry entry = entryPersistence.fetchByU_EA(userId, emailAddress);
 
 		if (entry != null) {
+			throw new DuplicateEntryEmailAddressException();
+		}
+
+		User user = userPersistence.fetchByC_EA(companyId, emailAddress);
+
+		if (user != null) {
 			throw new DuplicateEntryEmailAddressException();
 		}
 	}
