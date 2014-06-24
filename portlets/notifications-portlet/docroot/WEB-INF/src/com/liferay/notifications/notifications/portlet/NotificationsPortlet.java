@@ -98,7 +98,10 @@ public class NotificationsPortlet extends MVCPortlet {
 			String actionName = ParamUtil.getString(
 				actionRequest, ActionRequest.ACTION_NAME);
 
-			if (actionName.equals("markAsRead")) {
+			if (actionName.equals("markAllAsRead")) {
+				markAllAsRead(actionRequest, actionResponse);
+			}
+			else if (actionName.equals("markAsRead")) {
 				markAsRead(actionRequest, actionResponse);
 			}
 			else if (actionName.equals("setDelivered")) {
