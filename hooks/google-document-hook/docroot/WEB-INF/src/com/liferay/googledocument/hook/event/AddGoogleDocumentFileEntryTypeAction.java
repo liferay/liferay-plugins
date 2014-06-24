@@ -50,20 +50,6 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 		}
 	}
 
-	protected void doRun(long companyId)
-		throws PortalException, SystemException {
-
-		Company company = CompanyLocalServiceUtil.getCompanyById(companyId);
-
-		if (!hasGoogleDriveDocumentFileEntryType(company.getGroupId())) {
-			long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
-				companyId);
-
-			addGoogleDriveDocumentFileEntryType(
-				defaultUserId, company.getGroupId());
-		}
-	}
-
 	protected void addGoogleDriveDocumentFileEntryType(
 			long userId, long groupId)
 		throws PortalException, SystemException {
@@ -97,6 +83,20 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 			userId, groupId,
 			GoogleDocumentConstants.GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY,
 			nameMap, descriptionMap, ddmStructureIds, serviceContext);
+	}
+
+	protected void doRun(long companyId)
+		throws PortalException, SystemException {
+
+		Company company = CompanyLocalServiceUtil.getCompanyById(companyId);
+
+		if (!hasGoogleDriveDocumentFileEntryType(company.getGroupId())) {
+			long defaultUserId = UserLocalServiceUtil.getDefaultUserId(
+				companyId);
+
+			addGoogleDriveDocumentFileEntryType(
+				defaultUserId, company.getGroupId());
+		}
 	}
 
 	protected boolean hasGoogleDriveDocumentFileEntryType(long groupId)
