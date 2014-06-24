@@ -15,7 +15,16 @@
 package com.liferay.mentions.portlet.notifications;
 
 import com.liferay.mentions.util.PortletKeys;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.notifications.BaseModelUserNotificationHandler;
+import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
+import com.liferay.portlet.asset.model.AssetRenderer;
+import com.liferay.portlet.asset.model.AssetRendererFactory;
+import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 
 /**
  * @author Iván Zaera
@@ -25,6 +34,37 @@ public class MentionsUserNotificationHandler
 
 	public MentionsUserNotificationHandler() {
 		setPortletId(PortletKeys.MENTIONS);
+	}
+
+	@Override
+	protected AssetRenderer getAssetRenderer(JSONObject jsonObject) {
+		MBMessage mbMessage = MBMessageLocalServiceUtil.fetchMBMessage(
+			jsonObject.getLong("classPK"));
+
+		if (mbMessage != null) {
+			return getAssetRenderer(
+				mbMessage.getClassName(), mbMessage.getClassPK());
+		}
+
+		return null;
+	}
+
+	protected String getTitle(
+		JSONObject jsonObject, AssetRenderer assetRenderer,
+		ServiceContext serviceContext) {
+
+		String message = "x-mentioned-you-in-a-comment-in-a-x";
+
+		AssetRendererFactory assetRendererFactory =
+			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
+				assetRenderer.getClassName());
+
+		String typeName = assetRendererFactory.getTypeName(
+			serviceContext.getLocale());
+
+		return serviceContext.translate(
+			message, HtmlUtil.escape(assetRenderer.getUserName()),
+			StringUtil.toLowerCase(HtmlUtil.escape(typeName)));
 	}
 
 }
