@@ -47,6 +47,10 @@ public class UserListener extends BaseModelListener<User> {
 
 			Map<String, String> headers = serviceContext.getHeaders();
 
+			if (headers == null) {
+				return;
+			}
+
 			String refererURL = headers.get(WebKeys.REFERER);
 
 			String portletId = HttpUtil.getParameter(
