@@ -92,7 +92,7 @@ public class AddGoogleDocumentFileEntryTypeAction extends SimpleAction {
 		String xsd = ContentUtil.get(
 			getClass().getClassLoader(),
 			"com/liferay/googledocuments/hook/event/" +
-			"GoogleDocument_DDM_XSD.xml");
+				"google-document-file-entry-type-xsd.xml");
 
 		serviceContext.setAttribute("xsd", xsd);
 
