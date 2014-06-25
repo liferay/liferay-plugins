@@ -40,42 +40,51 @@ boolean read = userNotificationEvent.isArchived();
 
 <li class="user-notification<%= read ? "" : " unread" %>">
 	<c:choose>
-		<c:when test="<%= read %>">
-			<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-openDialog="<%= String.valueOf(userNotificationFeedEntry.isOpenDialog()) %>">
+		<c:when test="<%= userNotificationFeedEntry.isActionable() %>">
+			<liferay-portlet:actionURL name="deleteUserNotificationEvent" var="deleteUserNotificationEventURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
+
+			<div class="clearfix user-notification-delete" data-deleteURL="<%= deleteUserNotificationEventURL %>">
 		</c:when>
 		<c:otherwise>
+			<c:choose>
+				<c:when test="<%= read %>">
+					<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>">
+				</c:when>
+				<c:otherwise>
+					<liferay-portlet:actionURL name="markAsRead" var="markAsReadURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
 
-			<liferay-portlet:actionURL name="markAsRead" var="markAsReadURL"><portlet:param name="userNotificationEventId" value="<%= String.valueOf(userNotificationEvent.getUserNotificationEventId()) %>" /></liferay-portlet:actionURL>
-
-			<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-markAsReadURL="<%= markAsReadURL %>" data-openDialog="<%= String.valueOf(userNotificationFeedEntry.isOpenDialog()) %>">
+					<div class="clearfix user-notification-link" data-href="<%= userNotificationFeedEntry.getLink() %>" data-markAsReadURL="<%= markAsReadURL %>">
+				</c:otherwise>
+			</c:choose>
 		</c:otherwise>
 	</c:choose>
 
-	<div class="sender">
-		<span class="user-thumbnail">
-			<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
-		</span>
-	</div>
-
-	<div class="content">
-		<div class="body">
-			<%= userNotificationFeedEntry.getBody() %>
-		</div>
-
-		<div class="timestamp">
-			<span class="portlet-icon">
-				<liferay-portlet:icon-portlet
-					portlet="<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), userNotificationEvent.getType()) %>"
-				/>
+		<div class="sender">
+			<span class="user-thumbnail">
+				<img alt="<%= userFullName %>" src="<%= userPortaitURL %>" />
 			</span>
-
-			<%= simpleDateFormat.format(userNotificationEvent.getTimestamp()) %>
 		</div>
 
-		<c:if test="<%= Validator.isNull(filter) %>">
-			<div class="read">
-				<liferay-ui:message key='<%= read ? "read" : "unread" %>' />
+		<div class="content">
+			<div class="body">
+				<%= userNotificationFeedEntry.getBody() %>
 			</div>
-		</c:if>
+
+			<div class="timestamp">
+				<span class="portlet-icon">
+					<liferay-portlet:icon-portlet
+						portlet="<%= PortletLocalServiceUtil.getPortletById(company.getCompanyId(), userNotificationEvent.getType()) %>"
+					/>
+				</span>
+
+				<%= simpleDateFormat.format(userNotificationEvent.getTimestamp()) %>
+			</div>
+
+			<c:if test="<%= Validator.isNull(filter) %>">
+				<div class="read">
+					<liferay-ui:message key='<%= read ? "read" : "unread" %>' />
+				</div>
+			</c:if>
+		</div>
 	</div>
 </li>
