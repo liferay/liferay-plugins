@@ -22,10 +22,14 @@
 
 <%
 int index = html.indexOf("<portlet:renderURL var=\"viewHistoryURL\">");
+
+JournalArticle article = (JournalArticle)request.getAttribute(WebKeys.JOURNAL_ARTICLE);
+
+String structureId = BeanParamUtil.getString(article, request, "structureId");
 %>
 
 <c:choose>
-	<c:when test="<%= index > 0 %>">
+	<c:when test="<%= (index > 0) && (article != null) && Validator.isNotNull(structureId) %>">
 		<style type="text/css">
 			.portlet-journal .article-toolbar .icon-download {
 				background-image: none;
@@ -34,36 +38,28 @@ int index = html.indexOf("<portlet:renderURL var=\"viewHistoryURL\">");
 
 		<%= html.substring(0, x) %>
 
-		<%
-		JournalArticle article = (JournalArticle)request.getAttribute(WebKeys.JOURNAL_ARTICLE);
+		toolbarButtonGroup.push(
+			{
+				icon: 'icon-download',
+				label: '<%= UnicodeLanguageUtil.get(pageContext, "download") %>',
+				on: {
+					click: function(event) {
+						event.domEvent.preventDefault();
 
-		String structureId = BeanParamUtil.getString(article, request, "structureId");
-		%>
-
-		<c:if test="<%= (article != null) && Validator.isNotNull(structureId) %>">
-			toolbarButtonGroup.push(
-				{
-					icon: 'icon-download',
-					label: '<%= UnicodeLanguageUtil.get(pageContext, "download") %>',
-					on: {
-						click: function(event) {
-							event.domEvent.preventDefault();
-
-							var downloadArticleContent = Liferay.Util.openWindow(
-								{
-									dialog: {
-										bodyContent: '<pre><%= HtmlUtil.escapeJS(HtmlUtil.escape(article.getContent())) %></pre>',
-										modal: true
-									},
-									id: '<portlet:namespace />articleDownload',
-									title: '<%= article.getTitle(locale) %>'
-								}
-							);
-						}
+						var downloadArticleContent = Liferay.Util.openWindow(
+							{
+								dialog: {
+									bodyContent: '<pre><%= HtmlUtil.escapeJS(HtmlUtil.escape(article.getContent())) %></pre>',
+									modal: true
+								},
+								id: '<portlet:namespace />articleDownload',
+								title: '<%= article.getTitle(locale) %>'
+							}
+						);
 					}
 				}
-			);
-		</c:if>
+			}
+		);
 
 		<%= html.substring(x) %>
 	</c:when>
