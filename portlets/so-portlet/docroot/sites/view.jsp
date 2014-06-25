@@ -21,32 +21,18 @@
 
 <%
 String name = ParamUtil.getString(request, "name");
-
-int favoriteSitesGroupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), name);
-int mySitesGroupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), name, true);
-
-String defaultTabs1Name = "my-favorites";
-
-if (favoriteSitesGroupsCount == 0) {
-	defaultTabs1Name = "my-sites";
-
-	if (mySitesGroupsCount == 0) {
-		defaultTabs1Name = "all-sites";
-	}
-}
-
-String tabs1 = ParamUtil.getString(request, "tabs1", defaultTabs1Name);
+String tabs1 = ParamUtil.getString(request, "tabs1", userPortletPreferences.getValue("defaultSearchTab", "my-favorites"));
 
 List<Group> groups = null;
 int groupsCount = 0;
 
 if (tabs1.equals("my-favorites")) {
 	groups = SitesUtil.getFavoriteSitesGroups(themeDisplay.getUserId(), name, 0, maxResultSize);
-	groupsCount = favoriteSitesGroupsCount;
+	groupsCount = SitesUtil.getFavoriteSitesGroupsCount(themeDisplay.getUserId(), name);
 }
 else if (tabs1.equals("my-sites")) {
 	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), name, true, 0, maxResultSize);
-	groupsCount = mySitesGroupsCount;
+	groupsCount = SitesUtil.getVisibleSitesCount(themeDisplay.getCompanyId(), themeDisplay.getUserId(), name, true);
 }
 else {
 	groups = SitesUtil.getVisibleSites(themeDisplay.getCompanyId(), themeDisplay.getUserId(), name, false, 0, maxResultSize);

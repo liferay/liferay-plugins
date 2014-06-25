@@ -32,4 +32,6 @@ boolean enableOpenSites = GetterUtil.getBoolean(portletPreferences.getValue("ena
 boolean enablePublicRestrictedSites = GetterUtil.getBoolean(portletPreferences.getValue("enablePublicRestrictedSites", null), true);
 boolean enablePrivateRestrictedSites = GetterUtil.getBoolean(portletPreferences.getValue("enablePrivateRestrictedSites", null), true);
 boolean enablePrivateSites = GetterUtil.getBoolean(portletPreferences.getValue("enablePrivateSites", null), true);
+
+PortletPreferences userPortletPreferences = PortletPreferencesLocalServiceUtil.getPreferences(themeDisplay.getCompanyId(), themeDisplay.getUserId(), PortletKeys.PREFS_OWNER_TYPE_USER, LayoutConstants.DEFAULT_PLID, PortletKeys.SO_SITES);
 %>
