@@ -14,8 +14,6 @@
  */
 --%>
 
-<%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
-
 <%@ include file="/html/portlet/document_library/init.jsp" %>
 
 <%
