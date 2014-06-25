@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Layout;
+import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.MembershipRequestConstants;
@@ -60,11 +61,11 @@ import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.permission.GroupPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortletKeys;
 import com.liferay.so.service.FavoriteSiteLocalServiceUtil;
 import com.liferay.so.service.SocialOfficeServiceUtil;
 import com.liferay.so.sites.util.SitesUtil;
 import com.liferay.so.util.GroupConstants;
+import com.liferay.so.util.PortletKeys;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.util.ArrayList;
@@ -199,6 +200,8 @@ public class SitesPortlet extends MVCPortlet {
 			resourceRequest, "maxResultSize", 10);
 		String searchTab = ParamUtil.getString(resourceRequest, "searchTab");
 		int start = ParamUtil.getInteger(resourceRequest, "start");
+
+		updateUserPreferences(themeDisplay, searchTab);
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
@@ -666,6 +669,21 @@ public class SitesPortlet extends MVCPortlet {
 
 		GroupLocalServiceUtil.updateGroup(
 			group.getGroupId(), typeSettingsProperties.toString());
+	}
+
+	protected void updateUserPreferences(
+			ThemeDisplay themeDisplay, String searchTab)
+		throws Exception {
+
+		PortletPreferences portletPreferences =
+			PortletPreferencesLocalServiceUtil.getPreferences(
+				themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+				PortletKeys.PREFS_OWNER_TYPE_USER, LayoutConstants.DEFAULT_PLID,
+				PortletKeys.SO_SITES);
+
+		portletPreferences.setValue("defaultSearchTab", searchTab);
+
+		portletPreferences.store();
 	}
 
 	private static final String _CLASS_NAME =
