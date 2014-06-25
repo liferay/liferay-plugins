@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE user-notification-definitions PUBLIC "-//Liferay//DTD User Notification Definitions 7.0.0//EN" "http://www.liferay.com/dtd/liferay-user-notification-definitions_7_0_0.dtd">
+
+<user-notification-definitions>
+	<definition>
+		<notification-type>${com.liferay.portal.kernel.notifications.UserNotificationDefinition.NOTIFICATION_TYPE_ADD_ENTRY}</notification-type>
+		<description>receive-a-notification-when-someone-adds-a-new-blog-entry-you-are-subscribed-to</description>
+		<delivery-type>
+			<name>email</name>
+			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_EMAIL}</type>
+			<default>true</default>
+			<modifiable>true</modifiable>
+		</delivery-type>
+		<delivery-type>
+			<name>website</name>
+			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
+			<default>true</default>
+			<modifiable>true</modifiable>
+		</delivery-type>
+	</definition>
+	<definition>
+		<notification-type>${com.liferay.portal.kernel.notifications.UserNotificationDefinition.NOTIFICATION_TYPE_UPDATE_ENTRY}</notification-type>
+		<description>receive-a-notification-when-someone-updates-a-blog-entry-you-are-subscribed-to</description>
+		<delivery-type>
+			<name>email</name>
+			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_EMAIL}</type>
+			<default>true</default>
+			<modifiable>true</modifiable>
+		</delivery-type>
+		<delivery-type>
+			<name>website</name>
+			<type>${com.liferay.portal.model.UserNotificationDeliveryConstants.TYPE_WEBSITE}</type>
+			<default>true</default>
+			<modifiable>true</modifiable>
+		</delivery-type>
+	</definition>
+</user-notification-definitions>
