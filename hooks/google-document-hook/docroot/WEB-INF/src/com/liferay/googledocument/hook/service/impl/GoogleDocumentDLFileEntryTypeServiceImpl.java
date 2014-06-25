@@ -47,29 +47,11 @@ public class GoogleDocumentDLFileEntryTypeServiceImpl
 			companyId, groupIds, keywords, includeBasicFileEntryType, start,
 			end, orderByComparator);
 
-		if (!includeBasicFileEntryType) {
-			List<DLFileEntryType> dlFileEntryTypes2 =
-				new ArrayList<DLFileEntryType>();
-
-			for (int i = 0; i < dlFileEntryTypes.size(); i++) {
-				DLFileEntryType dlFileEntryType = dlFileEntryTypes.get(i);
-
-				String fileEntryTypeKey = dlFileEntryType.getFileEntryTypeKey();
-
-				if (fileEntryTypeKey.equals(
-						GoogleDocumentConstants.
-							GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY)) {
-
-					continue;
-				}
-
-				dlFileEntryTypes2.add(dlFileEntryType);
-			}
-
-			dlFileEntryTypes = dlFileEntryTypes2;
+		if (includeBasicFileEntryType) {
+			return dlFileEntryTypes;
 		}
 
-		return dlFileEntryTypes;
+		return filterGoogleDocumentFileEntryType(dlFileEntryTypes);
 	}
 
 	@Override
@@ -86,6 +68,28 @@ public class GoogleDocumentDLFileEntryTypeServiceImpl
 		}
 
 		return searchCount;
+	}
+
+	protected List<DLFileEntryType> filterGoogleDocumentFileEntryType(
+		List<DLFileEntryType> dlFileEntryTypes) {
+
+		List<DLFileEntryType> filteredDLFileEntryTypes =
+			new ArrayList<DLFileEntryType>();
+
+		for (DLFileEntryType dlFileEntryType : dlFileEntryTypes) {
+			String fileEntryTypeKey = dlFileEntryType.getFileEntryTypeKey();
+
+			if (fileEntryTypeKey.equals(
+					GoogleDocumentConstants.
+						GOOGLE_DOCUMENT_FILE_ENTRY_TYPE_KEY)) {
+
+				continue;
+			}
+
+			filteredDLFileEntryTypes.add(dlFileEntryType);
+		}
+
+		return filteredDLFileEntryTypes;
 	}
 
 }
