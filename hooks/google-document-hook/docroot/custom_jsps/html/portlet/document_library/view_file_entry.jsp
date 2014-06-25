@@ -17,28 +17,51 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ include file="/html/portlet/document_library/init.jsp" %>
-<%@ include file="/html/portlet/document_library/detect_google_document.jspf" %>
 
-<% if (googleDocument) { %>
+<%
+FileEntry fileEntry = (FileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
 
-	<style>
-		.download-document, .webdav-url, .lfr-asset-panels {
-			display: none;
-		}
-	</style>
+FileVersion fileVersion = (FileVersion)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_VERSION);
 
-	<liferay-util:buffer var="html">
+if (fileVersion == null) {
+	if ((user.getUserId() == fileEntry.getUserId()) || permissionChecker.isContentReviewer(user.getCompanyId(), scopeGroupId) || DLFileEntryPermission.contains(permissionChecker, fileEntry, ActionKeys.UPDATE)) {
+		fileVersion = fileEntry.getLatestFileVersion();
+	}
+	else {
+		fileVersion = fileEntry.getFileVersion();
+	}
+}
+
+long fileEntryTypeId = 0;
+
+if (fileVersion.getModel() instanceof DLFileVersion) {
+	DLFileVersion dlFileVersion = (DLFileVersion)fileVersion.getModel();
+
+	fileEntryTypeId = dlFileVersion.getFileEntryTypeId();
+}
+
+boolean isGoogleDocument = false;
+
+if (fileEntryTypeId > 0) {
+	DLFileEntryType dlfileEntryType = DLFileEntryTypeLocalServiceUtil.getFileEntryType(fileEntryTypeId);
+
+	if (dlfileEntryType.getFileEntryTypeKey().equals("GOOGLE-DOCUMENT")) {
+		isGoogleDocument = true;
+	}
+}
+%>
+
+<c:choose>
+	<c:when test="<%= isGoogleDocument %>">
+		<style>
+			.download-document, .webdav-url, .lfr-asset-panels {
+				display: none;
+			}
+		</style>
+
 		<liferay-util:include page="/html/portlet/document_library/view_file_entry_google_document.jsp" />
-	</liferay-util:buffer>
-
-	<%= html %>
-
-<% } else { %>
-
-	<liferay-util:buffer var="html2">
+	</c:when>
+	<c:otherwise>
 		<liferay-util:include page="/html/portlet/document_library/view_file_entry.portal.jsp" />
-	</liferay-util:buffer>
-
-	<%= html2 %>
-
-<% } %>
+	</c:otherwise>
+</c:choose>

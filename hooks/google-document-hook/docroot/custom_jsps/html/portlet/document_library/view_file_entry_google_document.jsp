@@ -100,7 +100,7 @@ request.setAttribute(WebKeys.LAYOUT_ASSET_ENTRY, layoutAssetEntry);
 request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 %>
 
-<%@ include file="/html/portlet/document_library/load_ddm_fields.jspf" %>
+<%@ include file="/html/portlet/document_library/google_document_url.jspf" %>
 
 <portlet:actionURL var="editFileEntry">
 	<portlet:param name="struts_action" value="/document_library/edit_file_entry" />
@@ -253,7 +253,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 				<aui:model-context bean="<%= fileVersion %>" model="<%= DLFileVersion.class %>" />
 
-				<c:if test="<%= PropsValues.DL_FILE_ENTRY_PREVIEW_ENABLED && (googleDocumentViewURL.length() != 0) %>">
+				<c:if test="<%= PropsValues.DL_FILE_ENTRY_PREVIEW_ENABLED && Validator.isNotNull(googleDocumentViewURL) %>">
 					<div style="height: 300px">
 						<iframe src="<%= googleDocumentViewURL %>" style="width: 100%; height: 100%; border: none;"></iframe>
 					</div>

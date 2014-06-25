@@ -1,0 +1,39 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<%
+String googleDocumentViewURL = StringPool.BLANK;
+String googleDocumentEditURL = StringPool.BLANK;
+
+DLFileEntryType fileEntryType = DLFileEntryTypeServiceUtil.getFileEntryType(fileEntryTypeId);
+
+List<DDMStructure> ddmStructures = fileEntryType.getDDMStructures();
+
+for (DDMStructure ddmStructure : ddmStructures) {
+	DLFileEntryMetadata fileEntryMetadata = DLFileEntryMetadataLocalServiceUtil.getFileEntryMetadata(ddmStructure.getStructureId(), fileVersionId);
+
+	Fields fields = StorageEngineUtil.getFields(fileEntryMetadata.getDDMStorageId());
+
+	for (com.liferay.portlet.dynamicdatamapping.storage.Field field : fields) {
+		if (field.getName().equals("View_URL")) {
+			googleDocumentViewURL = field.getValue().toString();
+		}
+		else if (field.getName().equals("Edit_URL")) {
+			googleDocumentEditURL = field.getValue().toString();
+		}
+	}
+}
+%>

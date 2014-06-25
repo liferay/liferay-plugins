@@ -23,91 +23,96 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 
 <script type="text/javascript">
 
-// The API developer key obtained from the Google Developers Console.
-var developerKey = '<%= googleApiKey %>';
+	// The API developer key obtained from the Google Developers Console.
+	var developerKey = '<%= googleApiKey %>';
 
-// The Client ID obtained from the Google Developers Console.
-var clientId = '<%= googleClientId %>';
+	// The Client ID obtained from the Google Developers Console.
+	var clientId = '<%= googleClientId %>';
 
-// Scope to use to access user's photos.
-var scope = [
-	'https://www.googleapis.com/auth/drive.readonly',
-	'https://www.googleapis.com/auth/drive',
-	'https://www.googleapis.com/auth/photos',
-	'https://www.googleapis.com/auth/photos.upload',
-	'https://www.googleapis.com/auth/youtube'
-];
+	// Scope to use to access user's photos.
+	var scope = [
+		'https://www.googleapis.com/auth/drive.readonly',
+		'https://www.googleapis.com/auth/drive',
+		'https://www.googleapis.com/auth/photos',
+		'https://www.googleapis.com/auth/photos.upload',
+		'https://www.googleapis.com/auth/youtube'
+	];
 
-var googleApiLoaded = false;
-var authApiLoaded = false;
-var pickerApiLoaded = false;
+	var googleApiLoaded = false;
+	var authApiLoaded = false;
+	var pickerApiLoaded = false;
 
-var oauthToken;
-var openPickerWhenGoogleApiLoaded = false;
+	var oauthToken;
+	var openPickerWhenGoogleApiLoaded = false;
 
-// Use the API Loader script to load google.picker and gapi.auth.
-function onGoogleApiLoad() {
-	googleApiLoaded = true;
-	if (openPickerWhenGoogleApiLoaded) {
-		openPicker();
-	}
-}
+	// Use the API Loader script to load google.picker and gapi.auth.
+	function onGoogleApiLoad() {
+		googleApiLoaded = true;
 
-function openPicker() {
-	if (googleApiLoaded) {
-		gapi.load('auth', {'callback': onAuthApiLoad});
-		gapi.load('picker', {'callback': onPickerApiLoad});
-	} else {
-		openPickerWhenGoogleApiLoaded = true;
-	}
-}
-
-function onAuthApiLoad() {
-	window.gapi.auth.authorize(
-		{
-			'client_id': clientId,
-			'scope': scope,
-			'immediate': false
-		},
-		function(authResult) {
-			if (authResult && !authResult.error) {
-				oauthToken = authResult.access_token;
-				authApiLoaded = true;
-				createPicker();
-			}
+		if (openPickerWhenGoogleApiLoaded) {
+			openPicker();
 		}
-	);
-}
-
-function onPickerApiLoad() {
-	pickerApiLoaded = true;
-	createPicker();
-}
-
-// Create and render a Picker object for picking user Photos.
-function createPicker() {
-	if (pickerApiLoaded && authApiLoaded) {
-		var groupDocuments = new google.picker.ViewGroup(google.picker.ViewId.DOCS);
-		groupDocuments.addView(google.picker.ViewId.DOCUMENTS);
-		groupDocuments.addView(google.picker.ViewId.SPREADSHEETS);
-		groupDocuments.addView(google.picker.ViewId.PRESENTATIONS);
-
-		var groupPhotos = new google.picker.ViewGroup(google.picker.ViewId.PHOTOS);
-		groupPhotos.addView(google.picker.ViewId.PHOTO_UPLOAD);
-		groupPhotos.addView(google.picker.ViewId.WEBCAM);
-
-		var picker = new google.picker.PickerBuilder();
-		picker.addViewGroup(groupDocuments);
-		picker.addViewGroup(groupPhotos);
-		picker.addView(google.picker.ViewId.RECENTLY_PICKED);
-
-		picker.setOAuthToken(oauthToken);
-		picker.setDeveloperKey(developerKey);
-		picker.setCallback(<portlet:namespace />pickerCallback);
-
-		picker.build().setVisible(true);
 	}
-}
+
+	function openPicker() {
+		if (googleApiLoaded) {
+			gapi.load('auth', {'callback': onAuthApiLoad});
+			gapi.load('picker', {'callback': onPickerApiLoad});
+		}
+		else {
+			openPickerWhenGoogleApiLoaded = true;
+		}
+	}
+
+	function onAuthApiLoad() {
+		window.gapi.auth.authorize(
+			{
+				'client_id': clientId,
+				'scope': scope,
+				'immediate': false
+			},
+			function(authResult) {
+				if (authResult && !authResult.error) {
+					oauthToken = authResult.access_token;
+
+					authApiLoaded = true;
+
+					createPicker();
+				}
+			}
+		);
+	}
+
+	function onPickerApiLoad() {
+		pickerApiLoaded = true;
+
+		createPicker();
+	}
+
+	// Create and render a Picker object for picking user Photos.
+	function createPicker() {
+		if (pickerApiLoaded && authApiLoaded) {
+			var groupDocuments = new google.picker.ViewGroup(google.picker.ViewId.DOCS);
+			groupDocuments.addView(google.picker.ViewId.DOCUMENTS);
+			groupDocuments.addView(google.picker.ViewId.SPREADSHEETS);
+			groupDocuments.addView(google.picker.ViewId.PRESENTATIONS);
+
+			var groupPhotos = new google.picker.ViewGroup(google.picker.ViewId.PHOTOS);
+			groupPhotos.addView(google.picker.ViewId.PHOTO_UPLOAD);
+			groupPhotos.addView(google.picker.ViewId.WEBCAM);
+
+			var picker = new google.picker.PickerBuilder();
+			picker.addViewGroup(groupDocuments);
+			picker.addViewGroup(groupPhotos);
+			picker.addView(google.picker.ViewId.RECENTLY_PICKED);
+
+			picker.setOAuthToken(oauthToken);
+			picker.setDeveloperKey(developerKey);
+			picker.setCallback(<portlet:namespace />pickerCallback);
+
+			picker.build().setVisible(true);
+		}
+	}
 </script>
 
 <aui:script use="aui-base">

@@ -17,18 +17,35 @@
 <%@ taglib uri="http://liferay.com/tld/util" prefix="liferay-util" %>
 
 <%@ include file="/html/portlet/document_library/init.jsp" %>
-<%@ include file="/html/portlet/document_library/detect_google_document.jspf" %>
+
+<%
+FileEntry fileEntry = (FileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
+
+long fileEntryTypeId = ParamUtil.getLong(request, "fileEntryTypeId", -1);
+
+if (fileEntry != null) {
+	FileVersion fileVersion = fileEntry.getLatestFileVersion();
+
+	if ((fileEntryTypeId == -1) && (fileVersion.getModel() instanceof DLFileVersion)) {
+		DLFileVersion dlFileVersion = (DLFileVersion)fileVersion.getModel();
+
+		fileEntryTypeId = dlFileVersion.getFileEntryTypeId();
+	}
+}
+
+boolean isGoogleDocument = false;
+
+if (fileEntryTypeId != -1) {
+	DLFileEntryType dlfileEntryType = DLFileEntryTypeLocalServiceUtil.getFileEntryType(fileEntryTypeId);
+
+	if (dlfileEntryType.getFileEntryTypeKey().equals("GOOGLE-DOCUMENT")) {
+		isGoogleDocument = true;
+	}
+}
+%>
 
 <c:choose>
-
-	<c:when test="<%= googleDocument %>">
-		<liferay-util:buffer var="html">
-			<liferay-util:include page="/html/portlet/document_library/edit_file_entry_google_document.jsp" />
-		</liferay-util:buffer>
-		<liferay-util:buffer var="js">
-			<liferay-util:include page="/html/portlet/document_library/add_google_shortcut_js.jsp" />
-		</liferay-util:buffer>
-
+	<c:when test="<%= isGoogleDocument %>">
 		<style>
 			#<portlet:namespace />file, label[for=<portlet:namespace />file],
 			#<portlet:namespace />title, label[for=<portlet:namespace />title],
@@ -39,16 +56,12 @@
 			}
 		</style>
 
-		<%= html %>
-		<%= js %>
+		<liferay-util:include page="/html/portlet/document_library/edit_file_entry_google_document.jsp" />
+
+		<liferay-util:include page="/html/portlet/document_library/google_picker_js.jsp" />
 	</c:when>
 
 	<c:otherwise>
-		<liferay-util:buffer var="html2">
-			<liferay-util:include page="/html/portlet/document_library/edit_file_entry.portal.jsp" />
-		</liferay-util:buffer>
-
-		<%= html2 %>
+		<liferay-util:include page="/html/portlet/document_library/edit_file_entry.portal.jsp" />
 	</c:otherwise>
-
 </c:choose>
