@@ -32,10 +32,7 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 	// Scope to use to access user's photos.
 	var scope = [
 		'https://www.googleapis.com/auth/drive.readonly',
-		'https://www.googleapis.com/auth/drive',
-		'https://www.googleapis.com/auth/photos',
-		'https://www.googleapis.com/auth/photos.upload',
-		'https://www.googleapis.com/auth/youtube'
+		'https://www.googleapis.com/auth/photos.upload'
 	];
 
 	var googleApiLoaded = false;
