@@ -60,7 +60,7 @@ public class AkismetWikiPageLocalServiceImpl
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
 			return super.addPage(
-				userId, nodeId, redirectTitle, content, summary, minorEdit,
+				userId, nodeId, title, content, summary, minorEdit,
 				serviceContext);
 		}
 
