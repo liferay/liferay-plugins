@@ -26,52 +26,48 @@
 	<liferay-util:include page="/html/portlet/journal/article_toolbar.portal.jsp" />
 </liferay-util:buffer>
 
-<liferay-util:buffer var="customHTML">
-
-	<%
-	JournalArticle article = (JournalArticle)request.getAttribute(WebKeys.JOURNAL_ARTICLE);
-
-	String structureId = BeanParamUtil.getString(article, request, "structureId");
-	%>
-
-	<c:if test="<%= (article != null) && Validator.isNotNull(structureId) %>">
-		toolbarButtonGroup.push(
-			{
-				icon: 'icon-download',
-				label: '<%= UnicodeLanguageUtil.get(pageContext, "download") %>',
-				on: {
-					click: function(event) {
-						event.domEvent.preventDefault();
-
-						var downloadArticleContent = Liferay.Util.openWindow(
-							{
-								dialog: {
-									bodyContent: '<pre><%= HtmlUtil.escapeJS(HtmlUtil.escape(article.getContent())) %></pre>',
-									modal: true
-								},
-								id: '<portlet:namespace />articleDownload',
-								title: '<%= article.getTitle(locale) %>'
-							}
-						);
-					}
-				}
-			}
-		);
-	</c:if>
-</liferay-util:buffer>
-
 <%
-int x = html.indexOf("<portlet:renderURL var=\"viewHistoryURL\">");
-
-if (x > 0) {
-	StringBundler sb = new StringBundler(3);
-
-	sb.append(html.substring(0, x));
-	sb.append(customHTML);
-	sb.append(html.substring(x));
-
-	html = sb.toString();
-}
+int index = html.indexOf("<portlet:renderURL var=\"viewHistoryURL\">");
 %>
 
-<%= html %>
+<c:choose>
+	<c:when test="<%= index > 0 %>">
+		<%= html.substring(0, x) %>
+
+		<%
+		JournalArticle article = (JournalArticle)request.getAttribute(WebKeys.JOURNAL_ARTICLE);
+
+		String structureId = BeanParamUtil.getString(article, request, "structureId");
+		%>
+
+		<c:if test="<%= (article != null) && Validator.isNotNull(structureId) %>">
+			toolbarButtonGroup.push(
+				{
+					icon: 'icon-download',
+					label: '<%= UnicodeLanguageUtil.get(pageContext, "download") %>',
+					on: {
+						click: function(event) {
+							event.domEvent.preventDefault();
+
+							var downloadArticleContent = Liferay.Util.openWindow(
+								{
+									dialog: {
+										bodyContent: '<pre><%= HtmlUtil.escapeJS(HtmlUtil.escape(article.getContent())) %></pre>',
+										modal: true
+									},
+									id: '<portlet:namespace />articleDownload',
+									title: '<%= article.getTitle(locale) %>'
+								}
+							);
+						}
+					}
+				}
+			);
+		</c:if>
+
+		<%= html.substring(x) %>
+	</c:when>
+	<c:otherwise>
+		<%= html %>
+	</c:otherwise>
+</c:choose>
