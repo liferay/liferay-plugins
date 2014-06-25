@@ -16,12 +16,6 @@
 
 <%@ include file="/html/portlet/journal/init.jsp" %>
 
-<style type="text/css">
-	.portlet-journal .article-toolbar .icon-download {
-		background-image: none;
-	}
-</style>
-
 <liferay-util:buffer var="html">
 	<liferay-util:include page="/html/portlet/journal/article_toolbar.portal.jsp" />
 </liferay-util:buffer>
@@ -32,6 +26,12 @@ int index = html.indexOf("<portlet:renderURL var=\"viewHistoryURL\">");
 
 <c:choose>
 	<c:when test="<%= index > 0 %>">
+		<style type="text/css">
+			.portlet-journal .article-toolbar .icon-download {
+				background-image: none;
+			}
+		</style>
+
 		<%= html.substring(0, x) %>
 
 		<%
