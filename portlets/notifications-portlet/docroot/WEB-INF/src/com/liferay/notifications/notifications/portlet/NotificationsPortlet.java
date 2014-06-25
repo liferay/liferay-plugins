@@ -211,6 +211,28 @@ public class NotificationsPortlet extends MVCPortlet {
 			jsonObject.put(
 				"timestamp", String.valueOf(System.currentTimeMillis()));
 
+			int unreadActionableUserNotificationsCount =
+				UserNotificationEventLocalServiceUtil.
+					getArchivedUserNotificationEventsCount(
+						themeDisplay.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, true,
+						false);
+
+			jsonObject.put(
+				"unreadActionableUserNotificationsCount",
+				unreadActionableUserNotificationsCount);
+
+			int unreadNonActionableUserNotificationsCount =
+				UserNotificationEventLocalServiceUtil.
+					getArchivedUserNotificationEventsCount(
+						themeDisplay.getUserId(),
+						UserNotificationDeliveryConstants.TYPE_WEBSITE, false,
+						false);
+
+			jsonObject.put(
+				"unreadNonActionableUserNotificationsCount",
+				unreadNonActionableUserNotificationsCount);
+
 			int unreadUserNotificationsCount =
 				UserNotificationEventLocalServiceUtil.
 					getArchivedUserNotificationEventsCount(
