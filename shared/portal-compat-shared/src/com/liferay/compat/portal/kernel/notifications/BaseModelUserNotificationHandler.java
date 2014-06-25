@@ -14,15 +14,16 @@
 
 package com.liferay.compat.portal.kernel.notifications;
 
-import aQute.bnd.annotation.ProviderType;
-
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserNotificationEvent;
+import com.liferay.portal.security.permission.ResourceActionsUtil;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.service.UserNotificationEventLocalServiceUtil;
 import com.liferay.portlet.asset.AssetRendererFactoryRegistryUtil;
 import com.liferay.portlet.asset.model.AssetRenderer;
@@ -32,7 +33,6 @@ import com.liferay.portlet.asset.model.AssetRendererFactory;
  * @author Brian Wing Shun Chan
  * @author Sergio González
  */
-@ProviderType
 public abstract class BaseModelUserNotificationHandler
 	extends BaseUserNotificationHandler {
 
@@ -104,17 +104,14 @@ public abstract class BaseModelUserNotificationHandler
 	}
 
 	protected String getTitle(
-		JSONObject jsonObject, AssetRenderer assetRenderer,
-		ServiceContext serviceContext) {
+			JSONObject jsonObject, AssetRenderer assetRenderer,
+			ServiceContext serviceContext)
+		throws Exception {
 
 		String message = StringPool.BLANK;
 
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				assetRenderer.getClassName());
-
-		String typeName = assetRendererFactory.getTypeName(
-			serviceContext.getLocale());
+		String typeName = ResourceActionsUtil.getModelResource(
+			serviceContext.getLocale(), assetRenderer.getClassName());
 
 		int notificationType = jsonObject.getInt("notificationType");
 
@@ -130,8 +127,17 @@ public abstract class BaseModelUserNotificationHandler
 			message = "x-updated-a-x";
 		}
 
+		String userName = assetRenderer.getUserName();
+
+		long userId = jsonObject.getLong("userId");
+
+		if (userId > 0) {
+			User user = UserLocalServiceUtil.getUser(userId);
+			userName = user.getFullName();
+		}
+
 		return serviceContext.translate(
-			message, HtmlUtil.escape(assetRenderer.getUserName()),
+			message, HtmlUtil.escape(userName),
 			StringUtil.toLowerCase(HtmlUtil.escape(typeName)));
 	}
 
