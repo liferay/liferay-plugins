@@ -14,26 +14,6 @@
  */
 --%>
 
-<%
-boolean isGoogleDocument = false;
-
-if (fileEntry != null) {
-	FileVersion fileVersion = fileEntry.getLatestFileVersion();
-
-	if (fileVersion.getModel() instanceof DLFileVersion) {
-		DLFileVersion dlFileVersion = (DLFileVersion)fileVersion.getModel();
-
-		long fileEntryTypeId = dlFileVersion.getFileEntryTypeId();
-
-		DLFileEntryType dlfileEntryType = DLFileEntryTypeLocalServiceUtil.getFileEntryType(fileEntryTypeId);
-
-		if (dlfileEntryType.getFileEntryTypeKey().equals("GOOGLE-DOCUMENT")) {
-			isGoogleDocument = true;
-		}
-	}
-}
-%>
-
 <c:if test="<%= !isGoogleDocument %>">
 	<%@ include file="/html/portlet/document_library/action/lock.portal.jspf" %>
 </c:if>
