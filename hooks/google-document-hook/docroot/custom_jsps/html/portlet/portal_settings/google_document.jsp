@@ -25,5 +25,8 @@ String googleApiKey = PrefsParamUtil.getString(companyPortletPreferences, reques
 String googleClientId = PrefsParamUtil.getString(companyPortletPreferences, request, "googleClientId");
 %>
 
-<aui:input label="google-api-key" name="settings--googleApiKey--" type="text" value="<%= googleApiKey %>" />
-<aui:input label="client-id" name="settings--googleClientId--" type="text" value="<%= googleClientId %>" />
+<aui:fieldset>
+	<aui:input label="google-client-id" name="settings--googleClientId--" type="text" value="<%= googleClientId %>" />
+
+	<aui:input label="google-api-key" name="settings--googleApiKey--" type="text" value="<%= googleApiKey %>" />
+</aui:fieldset>
