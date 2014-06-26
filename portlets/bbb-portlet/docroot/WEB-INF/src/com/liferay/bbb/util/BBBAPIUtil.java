@@ -255,6 +255,14 @@ public class BBBAPIUtil {
 		sb.append(BBBConstants.API_PARAMETER_NAME);
 		sb.append(StringPool.EQUAL);
 		sb.append(HtmlUtil.escapeURL(bbbMeeting.getName()));
+
+		if (recordMeeting) {
+			sb.append(StringPool.AMPERSAND);
+			sb.append(BBBConstants.API_PARAMETER_RECORD);
+			sb.append(StringPool.EQUAL);
+			sb.append(StringPool.TRUE);
+		}
+
 		sb.append(StringPool.AMPERSAND);
 		sb.append(BBBConstants.API_PARAMETER_WELCOME);
 		sb.append(StringPool.EQUAL);
@@ -263,13 +271,6 @@ public class BBBAPIUtil {
 			"com/liferay/bbb/dependencies/meeting_welcome_message.tmpl");
 
 		sb.append(HtmlUtil.escapeURL(welcomeMessage));
-
-		if (recordMeeting) {
-			sb.append(StringPool.AMPERSAND);
-			sb.append(BBBConstants.API_PARAMETER_RECORD);
-			sb.append(StringPool.EQUAL);
-			sb.append(StringPool.TRUE);
-		}
 
 		bbbMeeting.setBbbServerId(getBbbServerId());
 
