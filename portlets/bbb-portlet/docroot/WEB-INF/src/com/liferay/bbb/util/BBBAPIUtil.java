@@ -246,7 +246,7 @@ public class BBBAPIUtil {
 			return bbbMeeting;
 		}
 
-		StringBundler sb = new StringBundler(14);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append(BBBConstants.API_PARAMETER_MEETING_ID);
 		sb.append(StringPool.EQUAL);
@@ -260,8 +260,7 @@ public class BBBAPIUtil {
 		sb.append(StringPool.EQUAL);
 
 		String welcomeMessage = ContentUtil.get(
-			"com/liferay/bbb/dependencies/" +
-			"meeting_welcome_message.tmpl");
+			"com/liferay/bbb/dependencies/meeting_welcome_message.tmpl");
 
 		sb.append(HtmlUtil.escapeURL(welcomeMessage));
 
