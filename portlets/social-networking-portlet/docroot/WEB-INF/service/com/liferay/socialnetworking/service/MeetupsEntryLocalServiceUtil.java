@@ -67,12 +67,10 @@ public class MeetupsEntryLocalServiceUtil {
 	* @param meetupsEntryId the primary key of the meetups entry
 	* @return the meetups entry that was removed
 	* @throws PortalException if a meetups entry with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
 		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteMeetupsEntry(meetupsEntryId);
 	}
 
@@ -271,8 +269,7 @@ public class MeetupsEntryLocalServiceUtil {
 		int startDateHour, int startDateMinute, int endDateMonth,
 		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
 		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .addMeetupsEntry(userId, title, description, startDateMonth,
 			startDateDay, startDateYear, startDateHour, startDateMinute,
@@ -281,13 +278,12 @@ public class MeetupsEntryLocalServiceUtil {
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompany(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return getService().getMeetupsEntriesByCompany(companyId);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUser(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return getService().getMeetupsEntriesByUser(userId);
 	}
 
@@ -298,8 +294,7 @@ public class MeetupsEntryLocalServiceUtil {
 		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 		int endDateMinute, int totalAttendees, int maxAttendees, double price,
 		byte[] thumbnail)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateMeetupsEntry(userId, meetupsEntryId, title,
 			description, startDateMonth, startDateDay, startDateYear,

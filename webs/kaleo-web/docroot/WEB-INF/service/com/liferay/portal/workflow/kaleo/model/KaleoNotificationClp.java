@@ -756,6 +756,10 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -914,6 +918,7 @@ public class KaleoNotificationClp extends BaseModelImpl<KaleoNotification>
 	private String _templateLanguage;
 	private String _notificationTypes;
 	private BaseModel<?> _kaleoNotificationRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

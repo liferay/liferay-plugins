@@ -250,7 +250,7 @@ public abstract class UserThreadLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteUserThread((UserThread)persistedModel);
+		return userThreadLocalService.deleteUserThread((UserThread)persistedModel);
 	}
 
 	@Override

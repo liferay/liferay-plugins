@@ -22,15 +22,14 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 public class WallEntryFinderUtil {
 	public static int countByG1_G2_U1_U2(long groupId1, long groupId2,
-		long userId1, long userId2)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId1, long userId2) {
 		return getFinder()
 				   .countByG1_G2_U1_U2(groupId1, groupId2, userId1, userId2);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG1_G2_U1_U2(
 		long groupId1, long groupId2, long userId1, long userId2, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getFinder()
 				   .findByG1_G2_U1_U2(groupId1, groupId2, userId1, userId2,
 			start, end);

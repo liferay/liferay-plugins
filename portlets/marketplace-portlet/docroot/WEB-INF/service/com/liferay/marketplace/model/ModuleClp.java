@@ -319,6 +319,10 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -386,6 +390,7 @@ public class ModuleClp extends BaseModelImpl<Module> implements Module {
 	private long _appId;
 	private String _contextName;
 	private BaseModel<?> _moduleRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.marketplace.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

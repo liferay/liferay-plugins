@@ -250,7 +250,7 @@ public abstract class AkismetDataLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteAkismetData((AkismetData)persistedModel);
+		return akismetDataLocalService.deleteAkismetData((AkismetData)persistedModel);
 	}
 
 	@Override

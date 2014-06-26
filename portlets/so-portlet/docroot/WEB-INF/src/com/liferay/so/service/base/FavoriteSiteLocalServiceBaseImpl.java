@@ -104,12 +104,11 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	 * @param favoriteSiteId the primary key of the favorite site
 	 * @return the favorite site that was removed
 	 * @throws PortalException if a favorite site with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public FavoriteSite deleteFavoriteSite(long favoriteSiteId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return favoriteSitePersistence.remove(favoriteSiteId);
 	}
 
@@ -256,7 +255,7 @@ public abstract class FavoriteSiteLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteFavoriteSite((FavoriteSite)persistedModel);
+		return favoriteSiteLocalService.deleteFavoriteSite((FavoriteSite)persistedModel);
 	}
 
 	@Override

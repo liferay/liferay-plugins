@@ -505,6 +505,10 @@ public class SampleLARBookingClp extends BaseModelImpl<SampleLARBooking>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -607,6 +611,7 @@ public class SampleLARBookingClp extends BaseModelImpl<SampleLARBooking>
 	private Date _modifiedDate;
 	private String _bookingNumber;
 	private BaseModel<?> _sampleLARBookingRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.samplelar.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -601,6 +601,10 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -724,6 +728,7 @@ public class KaleoConditionClp extends BaseModelImpl<KaleoCondition>
 	private String _scriptLanguage;
 	private String _scriptRequiredContexts;
 	private BaseModel<?> _kaleoConditionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

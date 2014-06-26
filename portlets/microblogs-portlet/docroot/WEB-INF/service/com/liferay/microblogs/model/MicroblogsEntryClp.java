@@ -585,6 +585,10 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -701,6 +705,7 @@ public class MicroblogsEntryClp extends BaseModelImpl<MicroblogsEntry>
 	private long _receiverMicroblogsEntryId;
 	private int _socialRelationType;
 	private BaseModel<?> _microblogsEntryRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.microblogs.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

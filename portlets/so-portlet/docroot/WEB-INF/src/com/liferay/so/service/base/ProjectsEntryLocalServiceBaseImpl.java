@@ -253,7 +253,7 @@ public abstract class ProjectsEntryLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteProjectsEntry((ProjectsEntry)persistedModel);
+		return projectsEntryLocalService.deleteProjectsEntry((ProjectsEntry)persistedModel);
 	}
 
 	@Override

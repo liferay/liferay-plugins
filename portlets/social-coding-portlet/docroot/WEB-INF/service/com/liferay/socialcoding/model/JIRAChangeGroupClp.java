@@ -326,6 +326,10 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -393,6 +397,7 @@ public class JIRAChangeGroupClp extends BaseModelImpl<JIRAChangeGroup>
 	private Date _createDate;
 	private long _jiraIssueId;
 	private BaseModel<?> _jiraChangeGroupRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

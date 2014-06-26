@@ -465,6 +465,10 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -560,6 +564,7 @@ public class WallEntryClp extends BaseModelImpl<WallEntry> implements WallEntry 
 	private Date _modifiedDate;
 	private String _comments;
 	private BaseModel<?> _wallEntryRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.socialnetworking.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

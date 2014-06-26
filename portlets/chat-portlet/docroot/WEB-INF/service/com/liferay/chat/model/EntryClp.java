@@ -425,6 +425,10 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -506,6 +510,7 @@ public class EntryClp extends BaseModelImpl<Entry> implements Entry {
 	private String _content;
 	private int _flag;
 	private BaseModel<?> _entryRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.chat.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

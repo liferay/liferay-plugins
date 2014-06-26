@@ -695,6 +695,10 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -825,6 +829,7 @@ public class WSRPConsumerClp extends BaseModelImpl<WSRPConsumer>
 	private String _forwardHeaders;
 	private String _markupCharacterSets;
 	private BaseModel<?> _wsrpConsumerRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.wsrp.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

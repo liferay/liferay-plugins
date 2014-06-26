@@ -267,7 +267,7 @@ public abstract class KaleoNotificationLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteKaleoNotification((KaleoNotification)persistedModel);
+		return kaleoNotificationLocalService.deleteKaleoNotification((KaleoNotification)persistedModel);
 	}
 
 	@Override

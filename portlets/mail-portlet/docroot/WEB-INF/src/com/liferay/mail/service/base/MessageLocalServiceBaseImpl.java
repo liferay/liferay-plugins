@@ -253,7 +253,7 @@ public abstract class MessageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteMessage((Message)persistedModel);
+		return messageLocalService.deleteMessage((Message)persistedModel);
 	}
 
 	@Override

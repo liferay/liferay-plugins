@@ -240,22 +240,19 @@ public interface ProjectsEntryLocalService extends BaseLocalService,
 		int startDateMonth, int startDateDay, int startDateYear,
 		int endDateMonth, int endDateDay, int endDateYear, boolean current,
 		java.lang.String data)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException;
+		long userId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getUserProjectsEntriesCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException;
+	public int getUserProjectsEntriesCount(long userId);
 
 	public com.liferay.so.model.ProjectsEntry updateProjectsEntry(
 		long projectsEntryId, java.lang.String title,
 		java.lang.String description, int startDateMonth, int startDateDay,
 		int startDateYear, int endDateMonth, int endDateDay, int endDateYear,
 		boolean current, java.lang.String data)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

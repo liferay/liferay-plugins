@@ -259,7 +259,7 @@ public abstract class JIRAActionLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteJIRAAction((JIRAAction)persistedModel);
+		return jiraActionLocalService.deleteJIRAAction((JIRAAction)persistedModel);
 	}
 
 	@Override

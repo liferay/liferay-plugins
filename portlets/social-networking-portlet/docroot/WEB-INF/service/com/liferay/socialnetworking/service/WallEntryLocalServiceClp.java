@@ -210,8 +210,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	@Override
 	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
 		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -223,10 +222,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -244,8 +239,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	@Override
 	public com.liferay.socialnetworking.model.WallEntry deleteWallEntry(
 		com.liferay.socialnetworking.model.WallEntry wallEntry)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -258,10 +252,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -476,8 +466,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	@Override
 	public com.liferay.socialnetworking.model.WallEntry getWallEntry(
 		long wallEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -489,10 +478,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -716,8 +701,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	public com.liferay.socialnetworking.model.WallEntry addWallEntry(
 		long groupId, long userId, java.lang.String comments,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -740,10 +724,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -758,8 +738,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 	@Override
 	public void deleteWallEntries(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22, new Object[] { groupId });
@@ -769,10 +748,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -787,8 +762,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 	@Override
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallEntries(
-		long groupId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long groupId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -798,10 +772,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -816,8 +786,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	}
 
 	@Override
-	public int getWallEntriesCount(long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getWallEntriesCount(long groupId) {
 		Object returnObj = null;
 
 		try {
@@ -826,10 +795,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -846,7 +811,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	@Override
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> getWallToWallEntries(
 		long groupId1, long groupId2, long userId1, long userId2, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		Object returnObj = null;
 
 		try {
@@ -869,10 +834,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -887,8 +848,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 	@Override
 	public int getWallToWallEntriesCount(long groupId1, long groupId2,
-		long userId1, long userId2)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId1, long userId2) {
 		Object returnObj = null;
 
 		try {
@@ -898,10 +858,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -918,8 +874,7 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 	@Override
 	public com.liferay.socialnetworking.model.WallEntry updateWallEntry(
 		long wallEntryId, java.lang.String comments)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -936,10 +891,6 @@ public class WallEntryLocalServiceClp implements WallEntryLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

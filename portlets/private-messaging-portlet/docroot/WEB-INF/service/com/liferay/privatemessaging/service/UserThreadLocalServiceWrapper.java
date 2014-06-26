@@ -283,8 +283,7 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 		java.lang.String subject, java.lang.String body,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadLocalService.addPrivateMessage(userId, mbThreadId,
 			to, subject, body, inputStreamOVPs, themeDisplay);
 	}
@@ -294,8 +293,7 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 		long userId, long parentMBMessageId, java.lang.String body,
 		java.util.List<com.liferay.portal.kernel.util.ObjectValuePair<java.lang.String, java.io.InputStream>> inputStreamOVPs,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadLocalService.addPrivateMessageBranch(userId,
 			parentMBMessageId, body, inputStreamOVPs, themeDisplay);
 	}
@@ -303,101 +301,87 @@ public class UserThreadLocalServiceWrapper implements UserThreadLocalService,
 	@Override
 	public void addUserThread(long userId, long mbThreadId,
 		long topMBMessageId, boolean read, boolean deleted)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_userThreadLocalService.addUserThread(userId, mbThreadId,
 			topMBMessageId, read, deleted);
 	}
 
 	@Override
 	public void deleteUser(long userId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_userThreadLocalService.deleteUser(userId);
 	}
 
 	@Override
 	public void deleteUserThread(long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_userThreadLocalService.deleteUserThread(userId, mbThreadId);
 	}
 
 	@Override
 	public com.liferay.privatemessaging.model.UserThread fetchUserThread(
 		long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadLocalService.fetchUserThread(userId, mbThreadId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getMBThreadUserThreads(
-		long mbThreadId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long mbThreadId) {
 		return _userThreadLocalService.getMBThreadUserThreads(mbThreadId);
 	}
 
 	@Override
 	public com.liferay.privatemessaging.model.UserThread getUserThread(
 		long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadLocalService.getUserThread(userId, mbThreadId);
 	}
 
 	@Override
-	public int getUserUserThreadCount(long userId, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getUserUserThreadCount(long userId, boolean deleted) {
 		return _userThreadLocalService.getUserUserThreadCount(userId, deleted);
 	}
 
 	@Override
-	public int getUserUserThreadCount(long userId, boolean read, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getUserUserThreadCount(long userId, boolean read, boolean deleted) {
 		return _userThreadLocalService.getUserUserThreadCount(userId, read,
 			deleted);
 	}
 
 	@Override
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
-		long userId, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, boolean deleted) {
 		return _userThreadLocalService.getUserUserThreads(userId, deleted);
 	}
 
 	@Override
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
-		long userId, boolean read, boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, boolean read, boolean deleted) {
 		return _userThreadLocalService.getUserUserThreads(userId, read, deleted);
 	}
 
 	@Override
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
-		long userId, boolean deleted, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, boolean deleted, int start, int end) {
 		return _userThreadLocalService.getUserUserThreads(userId, deleted,
 			start, end);
 	}
 
 	@Override
 	public void markUserThreadAsRead(long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_userThreadLocalService.markUserThreadAsRead(userId, mbThreadId);
 	}
 
 	@Override
 	public void markUserThreadAsUnread(long userId, long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		_userThreadLocalService.markUserThreadAsUnread(userId, mbThreadId);
 	}
 
 	@Override
-	public void updateUserName(com.liferay.portal.model.User user)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public void updateUserName(com.liferay.portal.model.User user) {
 		_userThreadLocalService.updateUserName(user);
 	}
 

@@ -259,7 +259,7 @@ public abstract class MeetupsRegistrationLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteMeetupsRegistration((MeetupsRegistration)persistedModel);
+		return meetupsRegistrationLocalService.deleteMeetupsRegistration((MeetupsRegistration)persistedModel);
 	}
 
 	@Override

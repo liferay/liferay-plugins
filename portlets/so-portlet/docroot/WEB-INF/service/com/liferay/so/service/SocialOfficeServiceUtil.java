@@ -64,14 +64,12 @@ public class SocialOfficeServiceUtil {
 	}
 
 	public static long[] getUserSocialOfficeGroupIds()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getUserSocialOfficeGroupIds();
 	}
 
 	public static boolean isSocialOfficeGroup(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().isSocialOfficeGroup(groupId);
 	}
 

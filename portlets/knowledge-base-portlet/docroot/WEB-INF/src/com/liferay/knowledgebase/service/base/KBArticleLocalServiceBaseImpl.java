@@ -370,7 +370,7 @@ public abstract class KBArticleLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteKBArticle((KBArticle)persistedModel);
+		return kbArticleLocalService.deleteKBArticle((KBArticle)persistedModel);
 	}
 
 	@Override

@@ -448,6 +448,10 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -529,6 +533,7 @@ public class SVNRevisionClp extends BaseModelImpl<SVNRevision>
 	private long _revisionNumber;
 	private String _comments;
 	private BaseModel<?> _svnRevisionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

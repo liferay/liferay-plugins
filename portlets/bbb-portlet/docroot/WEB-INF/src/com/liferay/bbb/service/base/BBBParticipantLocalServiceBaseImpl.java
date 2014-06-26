@@ -254,7 +254,7 @@ public abstract class BBBParticipantLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteBBBParticipant((BBBParticipant)persistedModel);
+		return bbbParticipantLocalService.deleteBBBParticipant((BBBParticipant)persistedModel);
 	}
 
 	@Override

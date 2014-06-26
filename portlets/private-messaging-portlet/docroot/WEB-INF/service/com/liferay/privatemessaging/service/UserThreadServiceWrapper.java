@@ -59,32 +59,28 @@ public class UserThreadServiceWrapper implements UserThreadService,
 	@Override
 	public com.liferay.portlet.messageboards.model.MBMessage getLastThreadMessage(
 		long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadService.getLastThreadMessage(mbThreadId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.portlet.messageboards.model.MBMessage> getThreadMessages(
 		long mbThreadId, int start, int end, boolean ascending)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadService.getThreadMessages(mbThreadId, start, end,
 			ascending);
 	}
 
 	@Override
 	public int getThreadMessagesCount(long mbThreadId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _userThreadService.getThreadMessagesCount(mbThreadId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.privatemessaging.model.UserThread> getUserUserThreads(
 		boolean deleted)
-		throws com.liferay.portal.kernel.exception.SystemException,
-			com.liferay.portal.security.auth.PrincipalException {
+		throws com.liferay.portal.security.auth.PrincipalException {
 		return _userThreadService.getUserUserThreads(deleted);
 	}
 

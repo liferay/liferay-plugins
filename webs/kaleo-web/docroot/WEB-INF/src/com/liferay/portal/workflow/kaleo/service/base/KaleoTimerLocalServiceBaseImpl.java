@@ -265,7 +265,7 @@ public abstract class KaleoTimerLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteKaleoTimer((KaleoTimer)persistedModel);
+		return kaleoTimerLocalService.deleteKaleoTimer((KaleoTimer)persistedModel);
 	}
 
 	@Override

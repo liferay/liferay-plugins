@@ -512,6 +512,10 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -614,6 +618,7 @@ public class FeedClp extends BaseModelImpl<Feed> implements Feed {
 	private String _twitterScreenName;
 	private long _lastStatusId;
 	private BaseModel<?> _feedRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.twitter.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -246,7 +246,7 @@ public abstract class BarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteBar((Bar)persistedModel);
+		return barLocalService.deleteBar((Bar)persistedModel);
 	}
 
 	@Override

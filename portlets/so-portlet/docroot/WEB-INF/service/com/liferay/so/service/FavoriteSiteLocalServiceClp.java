@@ -212,8 +212,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	@Override
 	public com.liferay.so.model.FavoriteSite deleteFavoriteSite(
 		long favoriteSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -225,10 +224,6 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -702,8 +697,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	@Override
 	public com.liferay.so.model.FavoriteSite addFavoriteSite(long userId,
 		long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -715,10 +709,6 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -735,8 +725,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 
 	@Override
 	public void deleteFavoriteSites(long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22, new Object[] { userId, groupId });
@@ -746,10 +735,6 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -764,8 +749,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 
 	@Override
 	public java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -774,10 +758,6 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -793,8 +773,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 
 	@Override
 	public java.util.List<java.lang.Object[]> getFavoriteSites(long userId,
-		java.lang.String name, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String name, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -813,10 +792,6 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -830,8 +805,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	}
 
 	@Override
-	public int getFavoriteSitesCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getFavoriteSitesCount(long userId) {
 		Object returnObj = null;
 
 		try {
@@ -840,10 +814,6 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -858,8 +828,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	}
 
 	@Override
-	public int getFavoriteSitesCount(long userId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getFavoriteSitesCount(long userId, java.lang.String name) {
 		Object returnObj = null;
 
 		try {
@@ -870,10 +839,6 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -887,8 +852,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	}
 
 	@Override
-	public boolean isFavoriteSite(long favoriteSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean isFavoriteSite(long favoriteSiteId) {
 		Object returnObj = null;
 
 		try {
@@ -897,10 +861,6 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -915,8 +875,7 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 	}
 
 	@Override
-	public boolean isFavoriteSite(long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean isFavoriteSite(long userId, long groupId) {
 		Object returnObj = null;
 
 		try {
@@ -925,10 +884,6 @@ public class FavoriteSiteLocalServiceClp implements FavoriteSiteLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;

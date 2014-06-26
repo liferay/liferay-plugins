@@ -348,7 +348,7 @@ public abstract class CalendarLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteCalendar((Calendar)persistedModel);
+		return calendarLocalService.deleteCalendar((Calendar)persistedModel);
 	}
 
 	@Override

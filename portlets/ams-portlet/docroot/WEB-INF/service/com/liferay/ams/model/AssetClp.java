@@ -531,6 +531,10 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -640,6 +644,7 @@ public class AssetClp extends BaseModelImpl<Asset> implements Asset {
 	private Date _inactiveDate;
 	private boolean _active;
 	private BaseModel<?> _assetRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.ams.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

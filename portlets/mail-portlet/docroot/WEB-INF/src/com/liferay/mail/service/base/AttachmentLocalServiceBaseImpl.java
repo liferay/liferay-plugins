@@ -254,7 +254,7 @@ public abstract class AttachmentLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteAttachment((Attachment)persistedModel);
+		return attachmentLocalService.deleteAttachment((Attachment)persistedModel);
 	}
 
 	@Override

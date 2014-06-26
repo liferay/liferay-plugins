@@ -785,6 +785,10 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -950,6 +954,7 @@ public class KaleoActionClp extends BaseModelImpl<KaleoAction>
 	private String _scriptRequiredContexts;
 	private int _priority;
 	private BaseModel<?> _kaleoActionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

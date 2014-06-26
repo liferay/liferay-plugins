@@ -60,13 +60,11 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 	* @param meetupsEntryId the primary key of the meetups entry
 	* @return the meetups entry that was removed
 	* @throws PortalException if a meetups entry with the primary key could not be found
-	* @throws SystemException
 	*/
 	@Override
 	public com.liferay.socialnetworking.model.MeetupsEntry deleteMeetupsEntry(
 		long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _meetupsEntryLocalService.deleteMeetupsEntry(meetupsEntryId);
 	}
 
@@ -286,8 +284,7 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		int startDateHour, int startDateMinute, int endDateMonth,
 		int endDateDay, int endDateYear, int endDateHour, int endDateMinute,
 		int totalAttendees, int maxAttendees, double price, byte[] thumbnail)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _meetupsEntryLocalService.addMeetupsEntry(userId, title,
 			description, startDateMonth, startDateDay, startDateYear,
 			startDateHour, startDateMinute, endDateMonth, endDateDay,
@@ -297,14 +294,13 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 
 	@Override
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByCompany(
-		long companyId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long companyId) {
 		return _meetupsEntryLocalService.getMeetupsEntriesByCompany(companyId);
 	}
 
 	@Override
 	public java.util.List<com.liferay.socialnetworking.model.MeetupsEntry> getMeetupsEntriesByUser(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return _meetupsEntryLocalService.getMeetupsEntriesByUser(userId);
 	}
 
@@ -316,8 +312,7 @@ public class MeetupsEntryLocalServiceWrapper implements MeetupsEntryLocalService
 		int endDateMonth, int endDateDay, int endDateYear, int endDateHour,
 		int endDateMinute, int totalAttendees, int maxAttendees, double price,
 		byte[] thumbnail)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _meetupsEntryLocalService.updateMeetupsEntry(userId,
 			meetupsEntryId, title, description, startDateMonth, startDateDay,
 			startDateYear, startDateHour, startDateMinute, endDateMonth,

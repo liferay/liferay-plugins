@@ -284,8 +284,7 @@ public class ProjectsEntryLocalServiceWrapper
 		int startDateMonth, int startDateDay, int startDateYear,
 		int endDateMonth, int endDateDay, int endDateYear, boolean current,
 		java.lang.String data)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _projectsEntryLocalService.addProjectsEntry(userId, title,
 			description, startDateMonth, startDateDay, startDateYear,
 			endDateMonth, endDateDay, endDateYear, current, data);
@@ -293,13 +292,12 @@ public class ProjectsEntryLocalServiceWrapper
 
 	@Override
 	public java.util.List<com.liferay.so.model.ProjectsEntry> getUserProjectsEntries(
-		long userId) throws com.liferay.portal.kernel.exception.SystemException {
+		long userId) {
 		return _projectsEntryLocalService.getUserProjectsEntries(userId);
 	}
 
 	@Override
-	public int getUserProjectsEntriesCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getUserProjectsEntriesCount(long userId) {
 		return _projectsEntryLocalService.getUserProjectsEntriesCount(userId);
 	}
 
@@ -309,8 +307,7 @@ public class ProjectsEntryLocalServiceWrapper
 		java.lang.String description, int startDateMonth, int startDateDay,
 		int startDateYear, int endDateMonth, int endDateDay, int endDateYear,
 		boolean current, java.lang.String data)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _projectsEntryLocalService.updateProjectsEntry(projectsEntryId,
 			title, description, startDateMonth, startDateDay, startDateYear,
 			endDateMonth, endDateDay, endDateYear, current, data);

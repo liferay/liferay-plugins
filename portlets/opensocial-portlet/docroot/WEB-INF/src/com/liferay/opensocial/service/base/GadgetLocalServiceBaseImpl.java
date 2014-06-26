@@ -321,7 +321,7 @@ public abstract class GadgetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteGadget((Gadget)persistedModel);
+		return gadgetLocalService.deleteGadget((Gadget)persistedModel);
 	}
 
 	@Override

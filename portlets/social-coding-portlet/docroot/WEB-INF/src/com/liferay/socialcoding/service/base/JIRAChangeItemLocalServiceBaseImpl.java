@@ -259,7 +259,7 @@ public abstract class JIRAChangeItemLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteJIRAChangeItem((JIRAChangeItem)persistedModel);
+		return jiraChangeItemLocalService.deleteJIRAChangeItem((JIRAChangeItem)persistedModel);
 	}
 
 	@Override

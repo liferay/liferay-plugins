@@ -257,7 +257,7 @@ public abstract class SyncDLObjectLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSyncDLObject((SyncDLObject)persistedModel);
+		return syncDLObjectLocalService.deleteSyncDLObject((SyncDLObject)persistedModel);
 	}
 
 	@Override

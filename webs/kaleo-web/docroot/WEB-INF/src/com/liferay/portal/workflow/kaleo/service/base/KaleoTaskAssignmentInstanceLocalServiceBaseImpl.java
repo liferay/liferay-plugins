@@ -271,7 +271,7 @@ public abstract class KaleoTaskAssignmentInstanceLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteKaleoTaskAssignmentInstance((KaleoTaskAssignmentInstance)persistedModel);
+		return kaleoTaskAssignmentInstanceLocalService.deleteKaleoTaskAssignmentInstance((KaleoTaskAssignmentInstance)persistedModel);
 	}
 
 	@Override

@@ -252,7 +252,7 @@ public abstract class TestBlobEntryLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteTestBlobEntry((TestBlobEntry)persistedModel);
+		return testBlobEntryLocalService.deleteTestBlobEntry((TestBlobEntry)persistedModel);
 	}
 
 	@Override

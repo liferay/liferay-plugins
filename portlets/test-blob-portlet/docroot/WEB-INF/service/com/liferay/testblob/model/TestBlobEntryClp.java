@@ -292,6 +292,10 @@ public class TestBlobEntryClp extends BaseModelImpl<TestBlobEntry>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -352,6 +356,7 @@ public class TestBlobEntryClp extends BaseModelImpl<TestBlobEntry>
 	private long _testBlobEntryId;
 	private Blob _blobField;
 	private BaseModel<?> _testBlobEntryRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.testblob.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

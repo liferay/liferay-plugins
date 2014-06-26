@@ -558,6 +558,10 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -674,6 +678,7 @@ public class ProjectsEntryClp extends BaseModelImpl<ProjectsEntry>
 	private Date _endDate;
 	private String _data;
 	private BaseModel<?> _projectsEntryRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.so.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

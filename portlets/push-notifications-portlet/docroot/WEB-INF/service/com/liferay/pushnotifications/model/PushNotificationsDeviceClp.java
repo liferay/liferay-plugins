@@ -378,6 +378,10 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -452,6 +456,7 @@ public class PushNotificationsDeviceClp extends BaseModelImpl<PushNotificationsD
 	private String _platform;
 	private String _token;
 	private BaseModel<?> _pushNotificationsDeviceRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.pushnotifications.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

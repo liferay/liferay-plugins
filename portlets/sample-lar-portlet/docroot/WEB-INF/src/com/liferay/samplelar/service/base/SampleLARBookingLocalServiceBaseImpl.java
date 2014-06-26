@@ -342,7 +342,7 @@ public abstract class SampleLARBookingLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSampleLARBooking((SampleLARBooking)persistedModel);
+		return sampleLARBookingLocalService.deleteSampleLARBooking((SampleLARBooking)persistedModel);
 	}
 
 	@Override

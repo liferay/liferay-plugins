@@ -354,7 +354,7 @@ public abstract class CalendarNotificationTemplateLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteCalendarNotificationTemplate((CalendarNotificationTemplate)persistedModel);
+		return calendarNotificationTemplateLocalService.deleteCalendarNotificationTemplate((CalendarNotificationTemplate)persistedModel);
 	}
 
 	@Override

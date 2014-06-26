@@ -452,6 +452,10 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -547,6 +551,7 @@ public class GadgetClp extends BaseModelImpl<Gadget> implements Gadget {
 	private String _url;
 	private String _portletCategoryNames;
 	private BaseModel<?> _gadgetRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.opensocial.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

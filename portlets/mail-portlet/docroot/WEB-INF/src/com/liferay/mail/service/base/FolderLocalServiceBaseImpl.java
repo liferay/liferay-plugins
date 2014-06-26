@@ -253,7 +253,7 @@ public abstract class FolderLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteFolder((Folder)persistedModel);
+		return folderLocalService.deleteFolder((Folder)persistedModel);
 	}
 
 	@Override

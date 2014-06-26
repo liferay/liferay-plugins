@@ -21,48 +21,40 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  * @author Brian Wing Shun Chan
  */
 public class MicroblogsEntryFinderUtil {
-	public static int countByUserId(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByUserId(long userId) {
 		return getFinder().countByUserId(userId);
 	}
 
-	public static int countByU_MU(long userId, long microblogsEntryUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByU_MU(long userId, long microblogsEntryUserId) {
 		return getFinder().countByU_MU(userId, microblogsEntryUserId);
 	}
 
-	public static int countByU_ATN(long userId, java.lang.String assetTagName)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByU_ATN(long userId, java.lang.String assetTagName) {
 		return getFinder().countByU_ATN(userId, assetTagName);
 	}
 
 	public static int countByU_T_MU(long userId, int type,
-		long microblogsEntryUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long microblogsEntryUserId) {
 		return getFinder().countByU_T_MU(userId, type, microblogsEntryUserId);
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByUserId(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		return getFinder().findByUserId(userId, start, end);
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_MU(
-		long userId, long microblogsEntryUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, long microblogsEntryUserId, int start, int end) {
 		return getFinder().findByU_MU(userId, microblogsEntryUserId, start, end);
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_ATN(
-		long userId, java.lang.String assetTagName, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, java.lang.String assetTagName, int start, int end) {
 		return getFinder().findByU_ATN(userId, assetTagName, start, end);
 	}
 
 	public static java.util.List<com.liferay.microblogs.model.MicroblogsEntry> findByU_T_MU(
-		long userId, int type, long microblogsEntryUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int type, long microblogsEntryUserId, int start, int end) {
 		return getFinder()
 				   .findByU_T_MU(userId, type, microblogsEntryUserId, start, end);
 	}

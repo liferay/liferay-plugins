@@ -866,6 +866,10 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -1004,6 +1008,7 @@ public class KaleoDefinitionClp extends BaseModelImpl<KaleoDefinition>
 	private boolean _active;
 	private long _startKaleoNodeId;
 	private BaseModel<?> _kaleoDefinitionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

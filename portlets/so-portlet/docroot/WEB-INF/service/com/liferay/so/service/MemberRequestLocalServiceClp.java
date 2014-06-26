@@ -719,8 +719,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		java.lang.String receiverEmailAddress, long invitedRoleId,
 		long invitedTeamId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -749,10 +748,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -769,8 +764,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	public void addMemberRequests(long userId, long groupId,
 		long[] receiverUserIds, long invitedRoleId, long invitedTeamId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName22,
 				_methodParameterTypes22,
@@ -795,10 +789,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -814,8 +804,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		java.lang.String[] emailAddresses, long invitedRoleId,
 		long invitedTeamId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		try {
 			_invokableLocalService.invokeMethod(_methodName23,
 				_methodParameterTypes23,
@@ -840,10 +829,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
 			}
 
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
 			}
@@ -857,8 +842,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	@Override
 	public com.liferay.so.model.MemberRequest getMemberRequest(long groupId,
 		long receiverUserId, int status)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -871,10 +855,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -891,8 +871,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	@Override
 	public java.util.List<com.liferay.so.model.MemberRequest> getReceiverMemberRequest(
-		long receiverUserId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long receiverUserId, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -902,10 +881,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -920,8 +895,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	@Override
-	public int getReceiverMemberRequestCount(long receiverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public int getReceiverMemberRequestCount(long receiverUserId) {
 		Object returnObj = null;
 
 		try {
@@ -930,10 +904,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -949,8 +919,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	@Override
 	public java.util.List<com.liferay.so.model.MemberRequest> getReceiverStatusMemberRequest(
-		long receiverUserId, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long receiverUserId, int status, int start, int end) {
 		Object returnObj = null;
 
 		try {
@@ -960,10 +929,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -979,7 +944,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 	@Override
 	public int getReceiverStatusMemberRequestCount(long receiverUserId,
-		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		int status) {
 		Object returnObj = null;
 
 		try {
@@ -989,10 +954,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1007,8 +968,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	}
 
 	@Override
-	public boolean hasPendingMemberRequest(long groupId, long receiverUserId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public boolean hasPendingMemberRequest(long groupId, long receiverUserId) {
 		Object returnObj = null;
 
 		try {
@@ -1018,10 +978,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 		}
 		catch (Throwable t) {
 			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
 
 			if (t instanceof RuntimeException) {
 				throw (RuntimeException)t;
@@ -1067,8 +1023,7 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 	@Override
 	public com.liferay.so.model.MemberRequest updateMemberRequest(
 		java.lang.String key, long receiverUserId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		Object returnObj = null;
 
 		try {
@@ -1085,10 +1040,6 @@ public class MemberRequestLocalServiceClp implements MemberRequestLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.PortalException) {
 				throw (com.liferay.portal.kernel.exception.PortalException)t;
-			}
-
-			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
-				throw (com.liferay.portal.kernel.exception.SystemException)t;
 			}
 
 			if (t instanceof RuntimeException) {

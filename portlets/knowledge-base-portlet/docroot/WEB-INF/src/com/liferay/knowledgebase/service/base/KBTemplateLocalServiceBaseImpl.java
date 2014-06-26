@@ -345,7 +345,7 @@ public abstract class KBTemplateLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteKBTemplate((KBTemplate)persistedModel);
+		return kbTemplateLocalService.deleteKBTemplate((KBTemplate)persistedModel);
 	}
 
 	@Override

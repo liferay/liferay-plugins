@@ -258,7 +258,7 @@ public abstract class SyncDLFileVersionDiffLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSyncDLFileVersionDiff((SyncDLFileVersionDiff)persistedModel);
+		return syncDLFileVersionDiffLocalService.deleteSyncDLFileVersionDiff((SyncDLFileVersionDiff)persistedModel);
 	}
 
 	@Override

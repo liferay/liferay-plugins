@@ -253,7 +253,7 @@ public abstract class DefinitionLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteDefinition((Definition)persistedModel);
+		return definitionLocalService.deleteDefinition((Definition)persistedModel);
 	}
 
 	@Override

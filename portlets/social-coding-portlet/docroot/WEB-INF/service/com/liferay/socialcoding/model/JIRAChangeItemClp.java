@@ -417,6 +417,10 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -505,6 +509,7 @@ public class JIRAChangeItemClp extends BaseModelImpl<JIRAChangeItem>
 	private String _newValue;
 	private String _newString;
 	private BaseModel<?> _jiraChangeItemRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

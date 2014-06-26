@@ -253,7 +253,7 @@ public abstract class BBBServerLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteBBBServer((BBBServer)persistedModel);
+		return bbbServerLocalService.deleteBBBServer((BBBServer)persistedModel);
 	}
 
 	@Override

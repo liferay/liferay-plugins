@@ -354,7 +354,7 @@ public abstract class KBCommentLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteKBComment((KBComment)persistedModel);
+		return kbCommentLocalService.deleteKBComment((KBComment)persistedModel);
 	}
 
 	@Override

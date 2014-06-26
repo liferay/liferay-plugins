@@ -67,12 +67,10 @@ public class FavoriteSiteLocalServiceUtil {
 	* @param favoriteSiteId the primary key of the favorite site
 	* @return the favorite site that was removed
 	* @throws PortalException if a favorite site with the primary key could not be found
-	* @throws SystemException
 	*/
 	public static com.liferay.so.model.FavoriteSite deleteFavoriteSite(
 		long favoriteSiteId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteFavoriteSite(favoriteSiteId);
 	}
 
@@ -267,46 +265,38 @@ public class FavoriteSiteLocalServiceUtil {
 
 	public static com.liferay.so.model.FavoriteSite addFavoriteSite(
 		long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().addFavoriteSite(userId, groupId);
 	}
 
 	public static void deleteFavoriteSites(long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteFavoriteSites(userId, groupId);
 	}
 
 	public static java.util.List<com.liferay.so.model.FavoriteSite> getFavoriteSites(
-		long userId, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, int start, int end) {
 		return getService().getFavoriteSites(userId, start, end);
 	}
 
 	public static java.util.List<java.lang.Object[]> getFavoriteSites(
-		long userId, java.lang.String name, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, java.lang.String name, int start, int end) {
 		return getService().getFavoriteSites(userId, name, start, end);
 	}
 
-	public static int getFavoriteSitesCount(long userId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getFavoriteSitesCount(long userId) {
 		return getService().getFavoriteSitesCount(userId);
 	}
 
-	public static int getFavoriteSitesCount(long userId, java.lang.String name)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int getFavoriteSitesCount(long userId, java.lang.String name) {
 		return getService().getFavoriteSitesCount(userId, name);
 	}
 
-	public static boolean isFavoriteSite(long favoriteSiteId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static boolean isFavoriteSite(long favoriteSiteId) {
 		return getService().isFavoriteSite(favoriteSiteId);
 	}
 
-	public static boolean isFavoriteSite(long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static boolean isFavoriteSite(long userId, long groupId) {
 		return getService().isFavoriteSite(userId, groupId);
 	}
 

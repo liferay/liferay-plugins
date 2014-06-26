@@ -529,6 +529,10 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -638,6 +642,7 @@ public class BBBServerClp extends BaseModelImpl<BBBServer> implements BBBServer 
 	private String _secret;
 	private boolean _active;
 	private BaseModel<?> _bbbServerRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.bbb.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

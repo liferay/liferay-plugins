@@ -1060,6 +1060,10 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -1213,6 +1217,7 @@ public class CalendarClp extends BaseModelImpl<Calendar> implements Calendar {
 	private boolean _enableComments;
 	private boolean _enableRatings;
 	private BaseModel<?> _calendarRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.calendar.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

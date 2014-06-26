@@ -249,7 +249,7 @@ public abstract class CheckoutLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteCheckout((Checkout)persistedModel);
+		return checkoutLocalService.deleteCheckout((Checkout)persistedModel);
 	}
 
 	@Override

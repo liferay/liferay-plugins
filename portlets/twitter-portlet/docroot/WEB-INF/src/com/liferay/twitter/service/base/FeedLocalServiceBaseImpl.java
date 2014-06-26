@@ -245,7 +245,7 @@ public abstract class FeedLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteFeed((Feed)persistedModel);
+		return feedLocalService.deleteFeed((Feed)persistedModel);
 	}
 
 	@Override

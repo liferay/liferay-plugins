@@ -59,8 +59,7 @@ public class EntryServiceWrapper implements EntryService,
 	@Override
 	public com.liferay.portal.kernel.json.JSONArray searchUsersAndContacts(
 		long companyId, java.lang.String keywords, int start, int end)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _entryService.searchUsersAndContacts(companyId, keywords, start,
 			end);
 	}

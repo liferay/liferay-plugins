@@ -335,7 +335,7 @@ public abstract class FooLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteFoo((Foo)persistedModel);
+		return fooLocalService.deleteFoo((Foo)persistedModel);
 	}
 
 	@Override

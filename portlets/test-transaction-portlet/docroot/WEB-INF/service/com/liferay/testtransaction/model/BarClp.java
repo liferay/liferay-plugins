@@ -255,6 +255,10 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -308,6 +312,7 @@ public class BarClp extends BaseModelImpl<Bar> implements Bar {
 	private long _barId;
 	private String _text;
 	private BaseModel<?> _barRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.testtransaction.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -265,7 +265,7 @@ public abstract class KaleoActionLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteKaleoAction((KaleoAction)persistedModel);
+		return kaleoActionLocalService.deleteKaleoAction((KaleoAction)persistedModel);
 	}
 
 	@Override

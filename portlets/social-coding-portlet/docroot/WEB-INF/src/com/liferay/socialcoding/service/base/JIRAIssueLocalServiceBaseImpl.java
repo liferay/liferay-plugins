@@ -258,7 +258,7 @@ public abstract class JIRAIssueLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteJIRAIssue((JIRAIssue)persistedModel);
+		return jiraIssueLocalService.deleteJIRAIssue((JIRAIssue)persistedModel);
 	}
 
 	@Override

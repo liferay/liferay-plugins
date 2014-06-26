@@ -22,26 +22,23 @@ import com.liferay.portal.kernel.util.ReferenceRegistry;
  */
 public class EntryFinderUtil {
 	public static int countByKeywords(long companyId, long userId,
-		java.lang.String keywords)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		java.lang.String keywords) {
 		return getFinder().countByKeywords(companyId, userId, keywords);
 	}
 
-	public static int countByKeywords(long userId, java.lang.String keywords)
-		throws com.liferay.portal.kernel.exception.SystemException {
+	public static int countByKeywords(long userId, java.lang.String keywords) {
 		return getFinder().countByKeywords(userId, keywords);
 	}
 
 	public static java.util.List<com.liferay.portal.model.BaseModel<?>> findByKeywords(
 		long companyId, long userId, java.lang.String keywords, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException {
+		int end) {
 		return getFinder()
 				   .findByKeywords(companyId, userId, keywords, start, end);
 	}
 
 	public static java.util.List<com.liferay.contacts.model.Entry> findByKeywords(
-		long userId, java.lang.String keywords, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long userId, java.lang.String keywords, int start, int end) {
 		return getFinder().findByKeywords(userId, keywords, start, end);
 	}
 

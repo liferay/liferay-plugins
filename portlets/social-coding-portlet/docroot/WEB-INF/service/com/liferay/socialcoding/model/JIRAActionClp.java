@@ -447,6 +447,10 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -542,6 +546,7 @@ public class JIRAActionClp extends BaseModelImpl<JIRAAction>
 	private String _body;
 	private String _jiraGroupName;
 	private BaseModel<?> _jiraActionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.socialcoding.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

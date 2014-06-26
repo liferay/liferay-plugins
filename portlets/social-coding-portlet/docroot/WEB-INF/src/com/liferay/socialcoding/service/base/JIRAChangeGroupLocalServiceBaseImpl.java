@@ -260,7 +260,7 @@ public abstract class JIRAChangeGroupLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteJIRAChangeGroup((JIRAChangeGroup)persistedModel);
+		return jiraChangeGroupLocalService.deleteJIRAChangeGroup((JIRAChangeGroup)persistedModel);
 	}
 
 	@Override

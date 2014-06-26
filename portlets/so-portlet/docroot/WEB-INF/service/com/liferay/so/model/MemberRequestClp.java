@@ -608,6 +608,10 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -731,6 +735,7 @@ public class MemberRequestClp extends BaseModelImpl<MemberRequest>
 	private long _invitedTeamId;
 	private int _status;
 	private BaseModel<?> _memberRequestRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.so.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

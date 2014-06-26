@@ -528,6 +528,10 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -637,6 +641,7 @@ public class CheckoutClp extends BaseModelImpl<Checkout> implements Checkout {
 	private Date _expectedCheckInDate;
 	private Date _actualCheckInDate;
 	private BaseModel<?> _checkoutRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.ams.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

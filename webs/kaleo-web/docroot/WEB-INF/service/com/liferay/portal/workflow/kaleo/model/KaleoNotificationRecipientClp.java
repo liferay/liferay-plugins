@@ -643,6 +643,10 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -774,6 +778,7 @@ public class KaleoNotificationRecipientClp extends BaseModelImpl<KaleoNotificati
 	private int _recipientRoleType;
 	private String _address;
 	private BaseModel<?> _kaleoNotificationRecipientRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

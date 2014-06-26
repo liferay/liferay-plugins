@@ -259,7 +259,7 @@ public abstract class SVNRepositoryLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteSVNRepository((SVNRepository)persistedModel);
+		return svnRepositoryLocalService.deleteSVNRepository((SVNRepository)persistedModel);
 	}
 
 	@Override

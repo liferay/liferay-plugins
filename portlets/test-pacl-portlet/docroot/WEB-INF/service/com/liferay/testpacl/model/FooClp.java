@@ -591,6 +591,10 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -714,6 +718,7 @@ public class FooClp extends BaseModelImpl<Foo> implements Foo {
 	private Date _field4;
 	private String _field5;
 	private BaseModel<?> _fooRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.testpacl.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

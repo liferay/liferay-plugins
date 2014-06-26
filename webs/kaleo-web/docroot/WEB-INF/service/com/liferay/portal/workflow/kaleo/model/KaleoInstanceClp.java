@@ -802,6 +802,10 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -953,6 +957,7 @@ public class KaleoInstanceClp extends BaseModelImpl<KaleoInstance>
 	private Date _completionDate;
 	private String _workflowContext;
 	private BaseModel<?> _kaleoInstanceRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.portal.workflow.kaleo.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -503,6 +503,10 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -605,6 +609,7 @@ public class MeetupsRegistrationClp extends BaseModelImpl<MeetupsRegistration>
 	private int _status;
 	private String _comments;
 	private BaseModel<?> _meetupsRegistrationRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.socialnetworking.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

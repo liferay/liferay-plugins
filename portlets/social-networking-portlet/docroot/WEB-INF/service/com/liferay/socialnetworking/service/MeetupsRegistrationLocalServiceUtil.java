@@ -265,27 +265,24 @@ public class MeetupsRegistrationLocalServiceUtil {
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration getMeetupsRegistration(
 		long userId, long meetupsEntryId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().getMeetupsRegistration(userId, meetupsEntryId);
 	}
 
 	public static java.util.List<com.liferay.socialnetworking.model.MeetupsRegistration> getMeetupsRegistrations(
-		long meetupsEntryId, int status, int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
+		long meetupsEntryId, int status, int start, int end) {
 		return getService()
 				   .getMeetupsRegistrations(meetupsEntryId, status, start, end);
 	}
 
 	public static int getMeetupsRegistrationsCount(long meetupsEntryId,
-		int status) throws com.liferay.portal.kernel.exception.SystemException {
+		int status) {
 		return getService().getMeetupsRegistrationsCount(meetupsEntryId, status);
 	}
 
 	public static com.liferay.socialnetworking.model.MeetupsRegistration updateMeetupsRegistration(
 		long userId, long meetupsEntryId, int status, java.lang.String comments)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService()
 				   .updateMeetupsRegistration(userId, meetupsEntryId, status,
 			comments);

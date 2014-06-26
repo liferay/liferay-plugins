@@ -372,7 +372,7 @@ public abstract class CalendarBookingLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteCalendarBooking((CalendarBooking)persistedModel);
+		return calendarBookingLocalService.deleteCalendarBooking((CalendarBooking)persistedModel);
 	}
 
 	@Override

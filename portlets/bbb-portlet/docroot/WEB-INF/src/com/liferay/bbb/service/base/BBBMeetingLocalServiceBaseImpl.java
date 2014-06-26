@@ -257,7 +257,7 @@ public abstract class BBBMeetingLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteBBBMeeting((BBBMeeting)persistedModel);
+		return bbbMeetingLocalService.deleteBBBMeeting((BBBMeeting)persistedModel);
 	}
 
 	@Override

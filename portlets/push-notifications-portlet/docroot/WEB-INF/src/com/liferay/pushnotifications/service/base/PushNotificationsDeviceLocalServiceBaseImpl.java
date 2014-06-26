@@ -256,7 +256,7 @@ public abstract class PushNotificationsDeviceLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deletePushNotificationsDevice((PushNotificationsDevice)persistedModel);
+		return pushNotificationsDeviceLocalService.deletePushNotificationsDevice((PushNotificationsDevice)persistedModel);
 	}
 
 	@Override

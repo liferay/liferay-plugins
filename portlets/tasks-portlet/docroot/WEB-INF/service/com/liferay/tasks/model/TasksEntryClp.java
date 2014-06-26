@@ -778,6 +778,10 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -915,6 +919,7 @@ public class TasksEntryClp extends BaseModelImpl<TasksEntry>
 	private Date _finishDate;
 	private int _status;
 	private BaseModel<?> _tasksEntryRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.tasks.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

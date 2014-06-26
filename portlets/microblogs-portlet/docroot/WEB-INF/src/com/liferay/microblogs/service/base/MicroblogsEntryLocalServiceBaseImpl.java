@@ -100,12 +100,11 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @param microblogsEntryId the primary key of the microblogs entry
 	 * @return the microblogs entry that was removed
 	 * @throws PortalException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public MicroblogsEntry deleteMicroblogsEntry(long microblogsEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return microblogsEntryPersistence.remove(microblogsEntryId);
 	}
 
@@ -115,13 +114,11 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @param microblogsEntry the microblogs entry
 	 * @return the microblogs entry that was removed
 	 * @throws PortalException
-	 * @throws SystemException
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public MicroblogsEntry deleteMicroblogsEntry(
-		MicroblogsEntry microblogsEntry)
-		throws PortalException, SystemException {
+		MicroblogsEntry microblogsEntry) throws PortalException {
 		return microblogsEntryPersistence.remove(microblogsEntry);
 	}
 
@@ -221,11 +218,10 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	 * @param microblogsEntryId the primary key of the microblogs entry
 	 * @return the microblogs entry
 	 * @throws PortalException if a microblogs entry with the primary key could not be found
-	 * @throws SystemException
 	 */
 	@Override
 	public MicroblogsEntry getMicroblogsEntry(long microblogsEntryId)
-		throws PortalException, SystemException {
+		throws PortalException {
 		return microblogsEntryPersistence.findByPrimaryKey(microblogsEntryId);
 	}
 
@@ -257,7 +253,7 @@ public abstract class MicroblogsEntryLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteMicroblogsEntry((MicroblogsEntry)persistedModel);
+		return microblogsEntryLocalService.deleteMicroblogsEntry((MicroblogsEntry)persistedModel);
 	}
 
 	@Override

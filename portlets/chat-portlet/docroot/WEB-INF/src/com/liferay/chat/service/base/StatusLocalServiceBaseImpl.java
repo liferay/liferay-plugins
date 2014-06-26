@@ -248,7 +248,7 @@ public abstract class StatusLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteStatus((Status)persistedModel);
+		return statusLocalService.deleteStatus((Status)persistedModel);
 	}
 
 	@Override

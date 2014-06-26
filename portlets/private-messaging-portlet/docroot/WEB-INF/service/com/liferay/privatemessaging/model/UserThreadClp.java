@@ -539,6 +539,10 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -648,6 +652,7 @@ public class UserThreadClp extends BaseModelImpl<UserThread>
 	private boolean _read;
 	private boolean _deleted;
 	private BaseModel<?> _userThreadRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.privatemessaging.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

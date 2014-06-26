@@ -501,6 +501,10 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -603,6 +607,7 @@ public class WSRPProducerClp extends BaseModelImpl<WSRPProducer>
 	private String _version;
 	private String _portletIds;
 	private BaseModel<?> _wsrpProducerRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.wsrp.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

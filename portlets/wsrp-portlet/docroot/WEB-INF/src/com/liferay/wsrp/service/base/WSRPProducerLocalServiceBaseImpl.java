@@ -343,7 +343,7 @@ public abstract class WSRPProducerLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteWSRPProducer((WSRPProducer)persistedModel);
+		return wsrpProducerLocalService.deleteWSRPProducer((WSRPProducer)persistedModel);
 	}
 
 	@Override

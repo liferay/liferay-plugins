@@ -58,15 +58,13 @@ public class SocialOfficeServiceWrapper implements SocialOfficeService,
 
 	@Override
 	public long[] getUserSocialOfficeGroupIds()
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _socialOfficeService.getUserSocialOfficeGroupIds();
 	}
 
 	@Override
 	public boolean isSocialOfficeGroup(long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _socialOfficeService.isSocialOfficeGroup(groupId);
 	}
 

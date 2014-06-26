@@ -623,6 +623,10 @@ public class BBBMeetingClp extends BaseModelImpl<BBBMeeting>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -753,6 +757,7 @@ public class BBBMeetingClp extends BaseModelImpl<BBBMeeting>
 	private String _moderatorPassword;
 	private int _status;
 	private BaseModel<?> _bbbMeetingRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.bbb.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

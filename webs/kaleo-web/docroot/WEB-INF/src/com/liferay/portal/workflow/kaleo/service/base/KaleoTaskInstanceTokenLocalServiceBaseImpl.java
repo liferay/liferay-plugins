@@ -271,7 +271,7 @@ public abstract class KaleoTaskInstanceTokenLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteKaleoTaskInstanceToken((KaleoTaskInstanceToken)persistedModel);
+		return kaleoTaskInstanceTokenLocalService.deleteKaleoTaskInstanceToken((KaleoTaskInstanceToken)persistedModel);
 	}
 
 	@Override

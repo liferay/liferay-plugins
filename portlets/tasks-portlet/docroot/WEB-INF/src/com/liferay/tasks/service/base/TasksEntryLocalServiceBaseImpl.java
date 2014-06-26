@@ -256,7 +256,7 @@ public abstract class TasksEntryLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteTasksEntry((TasksEntry)persistedModel);
+		return tasksEntryLocalService.deleteTasksEntry((TasksEntry)persistedModel);
 	}
 
 	@Override

@@ -252,7 +252,7 @@ public abstract class OAuthTokenLocalServiceBaseImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteOAuthToken((OAuthToken)persistedModel);
+		return oAuthTokenLocalService.deleteOAuthToken((OAuthToken)persistedModel);
 	}
 
 	@Override

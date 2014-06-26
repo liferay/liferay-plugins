@@ -620,6 +620,10 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -750,6 +754,7 @@ public class DefinitionClp extends BaseModelImpl<Definition>
 	private int _quantity;
 	private double _price;
 	private BaseModel<?> _definitionRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.ams.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

@@ -479,6 +479,10 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 		}
 	}
 
+	public Class<?> getClpSerializerClass() {
+		return _clpSerializerClass;
+	}
+
 	@Override
 	public int hashCode() {
 		return (int)getPrimaryKey();
@@ -574,6 +578,7 @@ public class StatusClp extends BaseModelImpl<Status> implements Status {
 	private String _message;
 	private boolean _playSound;
 	private BaseModel<?> _statusRemoteModel;
+	private Class<?> _clpSerializerClass = com.liferay.chat.service.ClpSerializer.class;
 	private boolean _entityCacheEnabled;
 	private boolean _finderCacheEnabled;
 }

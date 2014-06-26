@@ -19,10 +19,9 @@ package com.liferay.socialnetworking.service.persistence;
  */
 public interface WallEntryFinder {
 	public int countByG1_G2_U1_U2(long groupId1, long groupId2, long userId1,
-		long userId2)
-		throws com.liferay.portal.kernel.exception.SystemException;
+		long userId2);
 
 	public java.util.List<com.liferay.socialnetworking.model.WallEntry> findByG1_G2_U1_U2(
 		long groupId1, long groupId2, long userId1, long userId2, int start,
-		int end) throws com.liferay.portal.kernel.exception.SystemException;
+		int end);
 }

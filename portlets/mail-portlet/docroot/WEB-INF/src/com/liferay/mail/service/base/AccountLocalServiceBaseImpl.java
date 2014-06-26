@@ -253,7 +253,7 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException {
-		return deleteAccount((Account)persistedModel);
+		return accountLocalService.deleteAccount((Account)persistedModel);
 	}
 
 	@Override
