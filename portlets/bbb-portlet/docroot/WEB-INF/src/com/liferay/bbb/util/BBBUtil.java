@@ -183,7 +183,7 @@ public class BBBUtil {
 
 		String subject = ContentUtil.get(
 			"com/liferay/bbb/dependencies/" +
-			"meeting_scheduled_notification_subject.tmpl");
+				"meeting_scheduled_notification_subject.tmpl");
 
 		subject = StringUtil.replace(
 			subject,
@@ -196,7 +196,7 @@ public class BBBUtil {
 
 		String body = ContentUtil.get(
 			"com/liferay/bbb/dependencies/" +
-			"meeting_scheduled_notification_body.tmpl");
+				"meeting_scheduled_notification_body.tmpl");
 
 		body = StringUtil.replace(
 			body,
