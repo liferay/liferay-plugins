@@ -43,8 +43,14 @@ KBArticle kbArticle = (KBArticle)request.getAttribute(WebKeys.KNOWLEDGE_BASE_KB_
 		%>
 
 			<liferay-portlet:renderURL var="viewKBArticleURL">
-				<portlet:param name="mvcPath" value='<%= templatePath + "view_article.jsp" %>' />
-				<portlet:param name="resourcePrimKey" value="<%= String.valueOf(selKBArticle.getResourcePrimKey()) %>" />
+				<c:choose>
+					<c:when test="<%= Validator.isNotNull(selKBArticle.getUrlTitle()) %>">
+						<portlet:param name="urlTitle" value="<%= selKBArticle.getUrlTitle() %>" />
+					</c:when>
+					<c:otherwise>
+						<portlet:param name="resourcePrimKey" value="<%= String.valueOf(selKBArticle.getResourcePrimKey()) %>" />
+					</c:otherwise>
+				</c:choose>
 			</liferay-portlet:renderURL>
 
 			<c:choose>
