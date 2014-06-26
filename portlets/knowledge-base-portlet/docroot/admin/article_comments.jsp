@@ -49,10 +49,10 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 			<aui:fieldset>
 				<c:if test="<%= enableKBArticleKBComments && themeDisplay.isSignedIn() %>">
 					<c:if test="<%= kbComment == null %>">
-						<liferay-ui:message key="did-you-like-this-article" /> <a href="javascript:<portlet:namespace />showFeedbackControls();"><liferay-ui:message key="help-us-improve-it" /></a>
+						<liferay-ui:message key="did-you-like-this-article" /> <a id="<portlet:namespace />showFeedbackControl" href="javascript:;"><liferay-ui:message key="help-us-improve-it" /></a>
 					</c:if>
 
-					<div class="kb-helpful-container" id="<portlet:namespace />feedbackControls" style="display: <%= (kbComment != null) ? "block" : "none" %>">
+					<div class="kb-helpful-container <%= (kbComment != null) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />feedbackControls">
 						<c:if test="<%= kbComment != null %>">
 							<div class="kb-feedback-title"><liferay-ui:message key="your-feedback-for-this-article" /></div>
 						</c:if>
@@ -130,14 +130,21 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 		</aui:form>
 	</div>
 
-	<aui:script>
-		function <portlet:namespace />showFeedbackControls() {
-			var div = document.getElementById('<portlet:namespace />feedbackControls');
-			div.style.display = 'block';
+	<aui:script use="aui-base">
+		var showFeedbackControlNode = A.one('#<portlet:namespace />showFeedbackControl');
 
-			var content = document.getElementById('<portlet:namespace />content');
-			content.focus();
-		}
+		showFeedbackControlNode.on(
+			'click',
+			function <portlet:namespace />showFeedbackControls() {
+				var feedbackControlsNode = A.one('#<portlet:namespace />feedbackControls');
+
+				feedbackControlsNode.show();
+
+				var contentNode = A.one('#<portlet:namespace />content');
+
+				contentNode.focus();
+			}
+		);
 
 		function <portlet:namespace />deleteKBComment(kbCommentId) {
 			document.<portlet:namespace />fm.<portlet:namespace />kbCommentId.value = kbCommentId;
