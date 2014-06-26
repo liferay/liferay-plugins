@@ -23,7 +23,6 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.knowledgebase.service.base.KBCommentLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
@@ -47,7 +46,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	public KBComment addKBComment(
 			long userId, long classNameId, long classPK, String content,
 			boolean helpful, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// KB comment
 
@@ -92,7 +91,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public KBComment deleteKBComment(KBComment kbComment)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// KB comment
 
@@ -107,9 +106,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	@Override
-	public KBComment deleteKBComment(long kbCommentId)
-		throws PortalException, SystemException {
-
+	public KBComment deleteKBComment(long kbCommentId) throws PortalException {
 		KBComment kbComment = kbCommentPersistence.findByPrimaryKey(
 			kbCommentId);
 
@@ -117,7 +114,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	public void deleteKBComments(String className, long classPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 
@@ -130,7 +127,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	public KBComment getKBComment(long userId, String className, long classPK)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 
@@ -138,9 +135,8 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	}
 
 	public List<KBComment> getKBComments(
-			String className, long classPK, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		String className, long classPK, int start, int end,
+		OrderByComparator orderByComparator) {
 
 		long classNameId = classNameLocalService.getClassNameId(className);
 
@@ -148,9 +144,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 			classNameId, classPK, start, end, orderByComparator);
 	}
 
-	public int getKBCommentsCount(String className, long classPK)
-		throws SystemException {
-
+	public int getKBCommentsCount(String className, long classPK) {
 		long classNameId = classNameLocalService.getClassNameId(className);
 
 		return kbCommentPersistence.countByC_C(classNameId, classPK);
@@ -159,7 +153,7 @@ public class KBCommentLocalServiceImpl extends KBCommentLocalServiceBaseImpl {
 	public KBComment updateKBComment(
 			long kbCommentId, long classNameId, long classPK, String content,
 			boolean helpful, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// KB comment
 

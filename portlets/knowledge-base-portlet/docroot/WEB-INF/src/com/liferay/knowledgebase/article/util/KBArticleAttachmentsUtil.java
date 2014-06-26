@@ -16,7 +16,6 @@ package com.liferay.knowledgebase.article.util;
 
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.model.Repository;
 import com.liferay.portal.portletfilerepository.PortletFileRepositoryUtil;
@@ -30,7 +29,7 @@ public class KBArticleAttachmentsUtil {
 
 	public static long getFolderId(
 			long groupId, long userId, long resourcePrimKey)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		ServiceContext serviceContext = new ServiceContext();
 

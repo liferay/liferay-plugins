@@ -20,7 +20,6 @@ import com.liferay.knowledgebase.model.KBTemplate;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledgebase.service.KBTemplateLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
@@ -34,7 +33,7 @@ public class KBCommentPermission {
 	public static void check(
 			PermissionChecker permissionChecker, KBComment kbComment,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (!contains(permissionChecker, kbComment, actionId)) {
 			throw new PrincipalException();
@@ -44,7 +43,7 @@ public class KBCommentPermission {
 	public static boolean contains(
 			PermissionChecker permissionChecker, KBComment kbComment,
 			String actionId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (permissionChecker.getUserId() == kbComment.getUserId()) {
 			return true;

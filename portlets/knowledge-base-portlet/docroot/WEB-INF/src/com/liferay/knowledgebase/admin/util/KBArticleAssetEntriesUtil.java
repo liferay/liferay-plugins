@@ -17,7 +17,6 @@ package com.liferay.knowledgebase.admin.util;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UniqueList;
@@ -58,7 +57,7 @@ public class KBArticleAssetEntriesUtil {
 	public static List<AssetEntry> getAssetEntries(
 			long[] groupIds, long[] classNameIds, long[] assetTagIds,
 			long resourcePrimKey, int start, int end, String orderByColumn)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
 
@@ -86,7 +85,7 @@ public class KBArticleAssetEntriesUtil {
 	}
 
 	public static long[] getAssetTagIds(long[] groupIds, KBArticle kbArticle)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		List<AssetTag> assetTags = AssetTagServiceUtil.getTags(
 			KBArticle.class.getName(), kbArticle.getClassPK());

@@ -25,7 +25,6 @@ import com.liferay.knowledgebase.util.ActionKeys;
 import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.service.ServiceContext;
@@ -43,7 +42,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 	public KBTemplate addKBTemplate(
 			String portletId, String title, String content,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		if (portletId.equals(PortletKeys.KNOWLEDGE_BASE_ADMIN)) {
 			AdminPermission.check(
@@ -61,7 +60,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 	}
 
 	public KBTemplate deleteKBTemplate(long kbTemplateId)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBTemplatePermission.check(
 			getPermissionChecker(), kbTemplateId, ActionKeys.DELETE);
@@ -70,7 +69,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 	}
 
 	public void deleteKBTemplates(long groupId, long[] kbTemplateIds)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		AdminPermission.check(
 			getPermissionChecker(), groupId, ActionKeys.DELETE_KB_TEMPLATES);
@@ -79,21 +78,17 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 	}
 
 	public List<KBTemplate> getGroupKBTemplates(
-			long groupId, int start, int end,
-			OrderByComparator orderByComparator)
-		throws SystemException {
+		long groupId, int start, int end, OrderByComparator orderByComparator) {
 
 		return kbTemplatePersistence.filterFindByGroupId(
 			groupId, start, end, orderByComparator);
 	}
 
-	public int getGroupKBTemplatesCount(long groupId) throws SystemException {
+	public int getGroupKBTemplatesCount(long groupId) {
 		return kbTemplatePersistence.filterCountByGroupId(groupId);
 	}
 
-	public KBTemplate getKBTemplate(long kbTemplateId)
-		throws PortalException, SystemException {
-
+	public KBTemplate getKBTemplate(long kbTemplateId) throws PortalException {
 		KBTemplatePermission.check(
 			getPermissionChecker(), kbTemplateId, ActionKeys.VIEW);
 
@@ -104,7 +99,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 			long groupId, String title, String content, Date startDate,
 			Date endDate, boolean andOperator, int[] curStartValues, int cur,
 			int delta, OrderByComparator orderByComparator)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		// See LPS-9546
 
@@ -175,7 +170,7 @@ public class KBTemplateServiceImpl extends KBTemplateServiceBaseImpl {
 	public KBTemplate updateKBTemplate(
 			long kbTemplateId, String title, String content,
 			ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBTemplatePermission.check(
 			getPermissionChecker(), kbTemplateId, ActionKeys.UPDATE);
