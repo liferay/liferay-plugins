@@ -8,4 +8,8 @@
 		<service-type>com.liferay.portlet.expando.service.ExpandoValueLocalService</service-type>
 		<service-impl>com.liferay.compat.hook.service.impl.CompatExpandoValueLocalServiceImpl</service-impl>
 	</service>
+	<service>
+		<service-type>com.liferay.portlet.social.service.SocialActivityLocalService</service-type>
+		<service-impl>com.liferay.compat.hook.service.impl.CompatSocialActivityLocalServiceImpl</service-impl>
+	</service>
 </hook>
