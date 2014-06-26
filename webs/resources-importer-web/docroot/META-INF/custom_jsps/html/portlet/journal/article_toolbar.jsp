@@ -36,7 +36,7 @@ String structureId = BeanParamUtil.getString(article, request, "structureId");
 			}
 		</style>
 
-		<%= html.substring(0, x) %>
+		<%= html.substring(0, index) %>
 
 		toolbarButtonGroup.push(
 			{
@@ -61,7 +61,7 @@ String structureId = BeanParamUtil.getString(article, request, "structureId");
 			}
 		);
 
-		<%= html.substring(x) %>
+		<%= html.substring(index) %>
 	</c:when>
 	<c:otherwise>
 		<%= html %>
