@@ -1,0 +1,16 @@
+Export-Package: \
+	com.germinus.easyconf,\
+	com.liferay.portal.apache.bridges.struts,\
+	com.liferay.portal.json,\
+	com.liferay.portal.security.auth,\
+	com.liferay.portal.security.permission,\
+	com.liferay.portal.servlet.filters.aggregate,\
+	com.liferay.portal.servlet.filters.dynamiccss,\
+	com.liferay.portal.jsonwebservice,\
+	com.liferay.portal.spring.context,\
+	com.liferay.portal.struts,\
+	com.liferay.util,\
+	com.liferay.util.bean,\
+	com.liferay.util.portlet.PortletProps,\
+	com.liferay.util.service
+Fragment-Host: system.bundle;extension:=framework
