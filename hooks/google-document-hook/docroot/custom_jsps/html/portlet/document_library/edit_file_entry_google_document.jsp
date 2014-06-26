@@ -300,9 +300,11 @@ if ((checkedOut || pending) && !PropsValues.DL_FILE_ENTRY_DRAFTS_ENABLED) {
 		</aui:input>
 
 		<aui:field-wrapper label="google-document">
-			<aui:button cssClass="add-google-shortcut" name="pickButton" type="button" value="select" />
-			<img id="pickButtonIcon" src="" style="border: 0px">
-			<span id="pickButtonName"></span>
+			<aui:button cssClass="add-google-shortcut" name="pickButton" value="select" />
+
+			<img id="<portlet:namespace />pickButtonIcon" src="" style="border: 0px">
+
+			<span id="<portlet:namespace />pickButtonName"></span>
 		</aui:field-wrapper>
 
 		<aui:input name="title">

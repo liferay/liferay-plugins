@@ -17,14 +17,24 @@
 <%@ include file="/html/portlet/document_library/init.jsp" %>
 
 <%
-String googleApiKey = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "googleApiKey");
+String googleAPIKey = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "googleAPIKey");
 String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "googleClientId");
 %>
 
-<script type="text/javascript">
+<aui:script>
+	Liferay.provide(
+		window,
+		'onGoogleAPILoad',
+		function() {
+			Liferay.fire('googleAPILoad');
+		},
+		['aui-base']
+	);
+
+	Liferay.on('googleAPILoad', <portlet:namespace />onGoogleAPILoad);
 
 	// The API developer key obtained from the Google Developers Console.
-	var developerKey = '<%= googleApiKey %>';
+	var developerKey = '<%= googleAPIKey %>';
 
 	// The Client ID obtained from the Google Developers Console.
 	var clientId = '<%= googleClientId %>';
@@ -35,33 +45,34 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 		'https://www.googleapis.com/auth/photos.upload'
 	];
 
-	var googleApiLoaded = false;
+	var googleAPILoaded = false;
 	var authApiLoaded = false;
 	var pickerApiLoaded = false;
 
 	var oauthToken;
 	var openPickerWhenGoogleApiLoaded = false;
 
-	// Use the API Loader script to load google.picker and gapi.auth.
-	function onGoogleApiLoad() {
-		googleApiLoaded = true;
+	// Use the API Loader script to load google.picker and gapi.auth
+	function <portlet:namespace />onGoogleAPILoad() {
+		debugger;
+		googleAPILoaded = true;
 
 		if (openPickerWhenGoogleApiLoaded) {
-			openPicker();
+			<portlet:namespace />openPicker();
 		}
 	}
 
-	function openPicker() {
-		if (googleApiLoaded) {
-			gapi.load('auth', {'callback': onAuthApiLoad});
-			gapi.load('picker', {'callback': onPickerApiLoad});
+	function <portlet:namespace />openPicker() {
+		if (googleAPILoaded) {
+			gapi.load('auth', {'callback': <portlet:namespace />onAuthApiLoad});
+			gapi.load('picker', {'callback': <portlet:namespace />onPickerApiLoad});
 		}
 		else {
 			openPickerWhenGoogleApiLoaded = true;
 		}
 	}
 
-	function onAuthApiLoad() {
+	function <portlet:namespace />onAuthApiLoad() {
 		window.gapi.auth.authorize(
 			{
 				'client_id': clientId,
@@ -74,20 +85,20 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 
 					authApiLoaded = true;
 
-					createPicker();
+					<portlet:namespace />createPicker();
 				}
 			}
 		);
 	}
 
-	function onPickerApiLoad() {
+	function <portlet:namespace />onPickerApiLoad() {
 		pickerApiLoaded = true;
 
-		createPicker();
+		<portlet:namespace />createPicker();
 	}
 
 	// Create and render a Picker object for picking user Photos.
-	function createPicker() {
+	function <portlet:namespace />createPicker() {
 		if (pickerApiLoaded && authApiLoaded) {
 			var groupDocuments = new google.picker.ViewGroup(google.picker.ViewId.DOCS);
 			groupDocuments.addView(google.picker.ViewId.DOCUMENTS);
@@ -110,13 +121,13 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 			picker.build().setVisible(true);
 		}
 	}
-</script>
+</aui:script>
 
 <aui:script use="aui-base">
 	A.one('#<portlet:namespace />fm').delegate(
 		'click',
 		function(event) {
-			openPicker();
+			<portlet:namespace />openPicker();
 		},
 		'.add-google-shortcut'
 	);
@@ -133,7 +144,7 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 			var googleDocumentEditURL = doc[google.picker.Document.URL];
 
 			// Pick button's icon and text
-			var pickButtonIcon = A.one('#pickButtonIcon').getDOM();
+			var pickButtonIcon = A.one('#<portlet:namespace />pickButtonIcon').getDOM();
 
 			if (googleDocumentIconURL) {
 				pickButtonIcon.src = googleDocumentIconURL;
@@ -142,7 +153,7 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 				pickButtonIcon.src = "";
 			}
 
-			var pickButtonName = A.one('#pickButtonName').getDOM();
+			var pickButtonName = A.one('#<portlet:namespace />pickButtonName').getDOM();
 
 			pickButtonName.innerText = googleDocumentName;
 
@@ -159,7 +170,7 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 			}
 
 			// DDM fields
-			var ddmInputs = A.all('.lfr-ddm-container input').getDOMNodes();
+			var ddmInputs = A.all('#<portlet:namespace />fm .lfr-ddm-container input').getDOMNodes();
 
 			ddmInputs[0].value = googleDocumentId;
 			ddmInputs[1].value = googleDocumentName;
@@ -188,4 +199,14 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 	}
 </aui:script>
 
-<script src="https://apis.google.com/js/api.js?onload=onGoogleApiLoad" type="text/javascript"></script>
+<script>
+	if (!window.gapi && !document.getElementById('googleAPILoader')) {
+		var scriptNode = document.createElement('script');
+
+		scriptNode.id = 'googleAPILoader';
+
+		scriptNode.src = 'https://apis.google.com/js/api.js?onload=onGoogleAPILoad';
+
+		document.body.appendChild(scriptNode);
+	}
+</script>

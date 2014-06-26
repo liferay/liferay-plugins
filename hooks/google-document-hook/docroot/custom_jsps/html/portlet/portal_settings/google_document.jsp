@@ -21,12 +21,12 @@
 <%
 PortletPreferences companyPortletPreferences = PrefsPropsUtil.getPreferences(company.getCompanyId(), true);
 
-String googleApiKey = PrefsParamUtil.getString(companyPortletPreferences, request, "googleApiKey");
+String googleAPIKey = PrefsParamUtil.getString(companyPortletPreferences, request, "googleAPIKey");
 String googleClientId = PrefsParamUtil.getString(companyPortletPreferences, request, "googleClientId");
 %>
 
 <aui:fieldset>
 	<aui:input label="google-client-id" name="settings--googleClientId--" type="text" value="<%= googleClientId %>" />
 
-	<aui:input label="google-api-key" name="settings--googleApiKey--" type="text" value="<%= googleApiKey %>" />
+	<aui:input label="google-api-key" name="settings--googleAPIKey--" type="text" value="<%= googleAPIKey %>" />
 </aui:fieldset>
