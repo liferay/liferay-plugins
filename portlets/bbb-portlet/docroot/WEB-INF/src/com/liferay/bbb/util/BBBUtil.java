@@ -182,8 +182,8 @@ public class BBBUtil {
 			bbbParticipant.getEmailAddress(), bbbParticipant.getName());
 
 		String subject = ContentUtil.get(
-			"com/liferay/bbb/dependencies/" +
-				"meeting_scheduled_notification_subject.tmpl");
+			"com/liferay/bbb/dependencies" +
+				"/meeting_scheduled_notification_subject.tmpl");
 
 		subject = StringUtil.replace(
 			subject,
@@ -195,8 +195,8 @@ public class BBBUtil {
 			});
 
 		String body = ContentUtil.get(
-			"com/liferay/bbb/dependencies/" +
-				"meeting_scheduled_notification_body.tmpl");
+			"com/liferay/bbb/dependencies" +
+				"/meeting_scheduled_notification_body.tmpl");
 
 		body = StringUtil.replace(
 			body,
