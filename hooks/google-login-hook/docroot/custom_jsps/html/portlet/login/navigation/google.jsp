@@ -29,8 +29,8 @@ boolean googleAuthEnabled = PrefsPropsUtil.getBoolean(themeDisplay.getCompanyId(
 	%>
 
 	<liferay-ui:icon
+		iconCssClass="icon-google-plus-sign"
 		message="google"
-		src="/html/portlet/login/navigation/google.png"
 		url="<%= taglibOpenGoogleLoginWindow %>"
 	/>
 </c:if>
