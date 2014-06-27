@@ -50,6 +50,7 @@ import com.liferay.portal.workflow.kaleo.util.WorkflowModelUtil;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -150,6 +151,10 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			KaleoTaskInstanceToken kaleoTaskInstanceToken =
 				KaleoTaskInstanceTokenLocalServiceUtil.
 					getKaleoTaskInstanceToken(workflowTaskInstanceId);
+
+			if (kaleoTaskInstanceToken.isCompleted()) {
+				return Collections.emptyList();
+			}
 
 			KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 			KaleoNode kaleoNode = kaleoTask.getKaleoNode();
