@@ -71,6 +71,8 @@ if (PortalUtil.isRSSFeedsEnabled()) {
 				<aui:input label="enable-history" name="preferences--enableKBArticleHistory--" type="checkbox" value="<%= enableKBArticleHistory %>" />
 
 				<aui:input label="enable-print" name="preferences--enableKBArticlePrint--" type="checkbox" value="<%= enableKBArticlePrint %>" />
+
+				<aui:input label="enable-social-bookmarks" name="preferences--enableSocialBookmarks--" type="checkbox" value="<%= enableSocialBookmarks %>" />
 			</c:when>
 			<c:when test='<%= tabs2.equals("rss") %>'>
 				<liferay-ui:rss-settings
