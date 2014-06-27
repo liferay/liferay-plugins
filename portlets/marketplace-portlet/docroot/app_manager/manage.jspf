@@ -195,14 +195,15 @@ portletURL.setParameter("category", category);
 
 				<c:if test="<%= displayActions %>">
 					<div class="app-actions">
-						<liferay-ui:icon-menu>
+						<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 							<liferay-portlet:actionURL name="updatePluginSettings" var="activateURL">
 								<portlet:param name="contextNames" value="<%= StringUtil.merge(app.getContextNames()) %>" />
 								<portlet:param name="active" value="<%= String.valueOf(true) %>" />
 							</liferay-portlet:actionURL>
 
 							<liferay-ui:icon
-								image="activate"
+								iconCssClass="icon-ok-sign"
+								message="activate"
 								url="<%= activateURL %>"
 							/>
 
@@ -212,7 +213,8 @@ portletURL.setParameter("category", category);
 							</liferay-portlet:actionURL>
 
 							<liferay-ui:icon
-								image="deactivate"
+								iconCssClass="icon-remove-sign"
+								message="deactivate"
 								url="<%= deactivateURL %>"
 							/>
 
