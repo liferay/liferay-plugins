@@ -14,13 +14,13 @@
 
 package com.liferay.knowledgebase.admin.importer;
 
-import com.liferay.documentation.markdown.MarkdownConverter;
-import com.liferay.documentation.pegdown.LiferayPegDownConverter;
 import com.liferay.knowledgebase.KBArticleImportException;
 import com.liferay.knowledgebase.admin.importer.util.KBArticleImporterUtil;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBArticleConstants;
 import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
+import com.liferay.markdown.converter.MarkdownConverter;
+import com.liferay.markdown.converter.factory.MarkdownConverterFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -35,7 +35,7 @@ import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
 
-import java.io.File;
+import java.io.InputStream;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -61,18 +61,24 @@ public class KBArticleHierarchyImporter {
 	 * Processes the ZIP file's content and pictures, importing them as kb
 	 * articles and document library files respectively.
 	 *
-	 * @param zipFile a ZIP file containing a folder of image files to add to
-	 *        the document library and folders of Markdown files to be processed
-	 *        into a hierarchy of kb articles
+	 * @param inputStream a inputStream containing a folder of image files to
+	 *        add to the document library and folders of Markdown files to be
+	 *        processed into a hierarchy of kb articles
 	 * @param importerContext the importer context
 	 */
 	public void processZipFile(
-			File zipFile, KBArticleImporterContext importerContext)
-		throws KBArticleImportException {
+			InputStream inputStream, KBArticleImporterContext importerContext)
+		throws KBArticleImportException, IOException {
 
-		KBArticleImporterUtil.processImageFiles(zipFile, importerContext);
+		if (inputStream == null) {
+			throw new KBArticleImportException("Null import file");
+		}
 
-		processArticleFiles(zipFile, importerContext);
+		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(inputStream);
+
+		KBArticleImporterUtil.processImageFiles(zipReader, importerContext);
+
+		processArticleFiles(zipReader, importerContext);
 	}
 
 	protected KBArticle applyContentToKBArticle(
@@ -125,7 +131,7 @@ public class KBArticleHierarchyImporter {
 		String html;
 
 		try {
-			html = _converter.markdownToHtml(markdown);
+			html = _markdownConverter.convert(markdown);
 		}
 		catch (IOException ioe) {
 			StringBuffer sb =
@@ -249,10 +255,8 @@ public class KBArticleHierarchyImporter {
 	}
 
 	protected void processArticleFiles(
-			File zipFile, KBArticleImporterContext importerContext)
-		throws KBArticleImportException {
-
-		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(zipFile);
+			ZipReader zipReader, KBArticleImporterContext importerContext)
+		throws KBArticleImportException, IOException {
 
 		// Create map of the ZIP files folders to Markdown files, extracting the
 		// root home page Markdown file along the way.
@@ -500,7 +504,8 @@ public class KBArticleHierarchyImporter {
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleHierarchyImporter.class);
 
-	private MarkdownConverter _converter = new LiferayPegDownConverter();
+	private MarkdownConverter _markdownConverter =
+		MarkdownConverterFactoryUtil.create();
 	private Map<String, List<String>> _folderFileEntryMap =
 		new TreeMap<String, List<String>>();
 	private Pattern _headerTagPattern = Pattern.compile(
