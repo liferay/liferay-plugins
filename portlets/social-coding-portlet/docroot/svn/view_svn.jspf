@@ -82,7 +82,8 @@ String svnUserId = user2.getScreenName();
 								<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
 									<td>
 										<liferay-ui:icon
-											image="rss"
+											iconCssClass="icon-rss"
+											message="rss"
 											url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/user" + svnRepository.getShortURL() %>'
 										/>
 									</td>
@@ -104,7 +105,8 @@ String svnUserId = user2.getScreenName();
 								<c:if test="<%= PortalUtil.isRSSFeedsEnabled() %>">
 									<td>
 										<liferay-ui:icon
-											image="rss"
+											iconCssClass="icon-rss"
+											message="rss"
 											url='<%= PortalUtil.getPathFriendlyURLPublic() + StringPool.SLASH + user2.getScreenName() + "/profile/-/svn/rss/all" + svnRepository.getShortURL() %>'
 										/>
 									</td>
