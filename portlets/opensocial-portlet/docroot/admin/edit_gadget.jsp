@@ -183,7 +183,7 @@ if (Validator.isNotNull(editorGadgetURL)) {
 				checked: checked,
 				category: category,
 				id: '<%= treeNodeView.getId() %>',
-				label: '<%= UnicodeFormatter.toString(LanguageUtil.get(user.getLocale(), treeNodeView.getName())) %>',
+				label: '<%= UnicodeFormatter.toString(LanguageUtil.get(request, treeNodeView.getName())) %>',
 				leaf: false
 			}
 		);
