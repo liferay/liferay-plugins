@@ -29,7 +29,7 @@ else {
 }
 %>
 
-<liferay-ui:icon-menu showExpanded="<%= row == null %>" showWhenSingleIcon="<%= row == null %>">
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>" showExpanded="<%= row == null %>" showWhenSingleIcon="<%= row == null %>">
 	<portlet:renderURL var="editURL">
 		<portlet:param name="mvcPath" value="/edit_foo.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -37,7 +37,8 @@ else {
 	</portlet:renderURL>
 
 	<liferay-ui:icon
-		image="edit"
+		iconCssClass="icon-edit"
+		message="edit"
 		url="<%= editURL %>"
 	/>
 
