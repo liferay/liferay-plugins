@@ -137,13 +137,7 @@ taskListURL.setParameter("tabs2", tabs2);
 				<c:if test="<%= group.isUser() %>">
 
 					<%
-					Group curGroup = null;
-
-					try {
-						curGroup = GroupLocalServiceUtil.getGroup(tasksEntry.getGroupId());
-					}
-					catch (NoSuchGroupException nsge) {
-					}
+					Group curGroup = GroupLocalServiceUtil.fetchGroup(tasksEntry.getGroupId());
 					%>
 
 					<c:if test="<%= (curGroup != null) && curGroup.isRegularSite() %>">

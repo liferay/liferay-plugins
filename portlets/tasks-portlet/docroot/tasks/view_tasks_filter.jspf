@@ -29,28 +29,21 @@
 	if (group.isRegularSite()) {
 		for (AssetTagStats assetTagStats : assetTagStatsList) {
 			if (assetTagStats.getAssetCount() > 0) {
-				try {
-					AssetTag assetTag = AssetTagLocalServiceUtil.getTag(assetTagStats.getTagId());
+				AssetTag assetTag = AssetTagLocalServiceUtil.fetchAssetTag(assetTagStats.getTagId());
 
-					if (assetTag.getGroupId() == group.getGroupId()) {
-						assetTags.add(assetTag);
-					}
+				if ((assetTag != null) && (assetTag.getGroupId() == group.getGroupId())) {
+					assetTags.add(assetTag);
 				}
-				catch (NoSuchTagException nste) {
-				}
-
 			}
 		}
 	}
 	else {
 		for (AssetTagStats assetTagStats : assetTagStatsList) {
 			if (assetTagStats.getAssetCount() > 0) {
-				try {
-					AssetTag assetTag = AssetTagLocalServiceUtil.getTag(assetTagStats.getTagId());
+				AssetTag assetTag = AssetTagLocalServiceUtil.getTag(assetTagStats.getTagId());
 
+				if (assetTag != null) {
 					assetTags.add(assetTag);
-				}
-				catch (NoSuchTagException nste) {
 				}
 			}
 		}
