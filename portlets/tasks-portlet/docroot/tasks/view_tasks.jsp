@@ -167,7 +167,6 @@ taskListURL.setParameter("tabs2", tabs2);
 		<liferay-ui:search-container-column-text
 			name="due"
 		>
-
 			<c:choose>
 				<c:when test="<%= (TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE)) %>">
 
