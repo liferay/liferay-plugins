@@ -26,7 +26,7 @@ WikiPage wikiPage = (WikiPage)row.getObject();
 long wikiPlid = PortalUtil.getPlidFromPortletId(wikiPage.getGroupId(), PortletKeys.WIKI);
 %>
 
-<liferay-ui:icon-menu>
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>">
 	<liferay-portlet:renderURL plid="<%= wikiPlid %>" portletName="<%= PortletKeys.WIKI %>" var="viewURL">
 		<portlet:param name="struts_action" value="/wiki/view" />
 		<portlet:param name="nodeName" value="<%= wikiPage.getNode().getName() %>" />
@@ -34,14 +34,14 @@ long wikiPlid = PortalUtil.getPlidFromPortletId(wikiPage.getGroupId(), PortletKe
 		<portlet:param name="version" value="<%= String.valueOf(wikiPage.getVersion()) %>" />
 	</liferay-portlet:renderURL>
 
-	<liferay-ui:icon image="page" message="view-in-context" target="_blank" url="<%= viewURL %>" />
+	<liferay-ui:icon iconCssClass="icon-search" message="view-in-context" target="_blank" url="<%= viewURL %>" />
 
 	<portlet:actionURL name="markNotSpamWikiPages" var="markAsHamURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 		<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 		<portlet:param name="notSpamWikiPageIds" value="<%= String.valueOf(wikiPage.getPageId()) %>" />
 	</portlet:actionURL>
 
-	<liferay-ui:icon image="../mail/compose" message="not-spam" url="<%= markAsHamURL %>" />
+	<liferay-ui:icon iconCssClass="icon-envelope-alt" message="not-spam" url="<%= markAsHamURL %>" />
 
 	<portlet:actionURL name="spamWikiPages" var="spamURL" windowState="<%= WindowState.MAXIMIZED.toString() %>">
 		<portlet:param name="redirect" value="<%= portletURL.toString() %>" />

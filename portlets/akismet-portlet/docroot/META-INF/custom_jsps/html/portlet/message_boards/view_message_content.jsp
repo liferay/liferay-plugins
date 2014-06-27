@@ -67,7 +67,7 @@
 							</portlet:actionURL>
 
 							<liferay-ui:icon
-								image="../mail/compose"
+								iconCssClass="icon-envelope-alt"
 								label="<%= true %>"
 								message="not-spam"
 								url="<%= notSpamURL %>"
@@ -85,7 +85,7 @@
 							</portlet:actionURL>
 
 							<liferay-ui:icon
-								image="../mail/delete"
+								iconCssClass="icon-remove"
 								label="<%= true %>"
 								message="mark-as-spam"
 								url="<%= markAsSpamURL %>"
