@@ -59,6 +59,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.asset.AssetCategoryException;
 import com.liferay.portlet.asset.AssetTagException;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
@@ -78,6 +79,7 @@ import java.util.Map;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletException;
+import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
@@ -495,23 +497,20 @@ public class AdminPortlet extends MVCPortlet {
 		}
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
-			String namespace = actionResponse.getNamespace();
-			String redirect = getRedirect(actionRequest, actionResponse);
+			PortletURL portletURL = PortletURLFactoryUtil.create(
+				actionRequest, PortletKeys.KNOWLEDGE_BASE_ADMIN,
+				themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
 
-			String editURL = PortalUtil.getLayoutFullURL(themeDisplay);
+			portletURL.setParameter(
+				"mvcPath", templatePath + "edit_article.jsp");
+			portletURL.setParameter(
+				"redirect", getRedirect(actionRequest, actionResponse));
+			portletURL.setParameter(
+				"resourcePrimKey",
+				String.valueOf(kbArticle.getResourcePrimKey()));
+			portletURL.setWindowState(actionRequest.getWindowState());
 
-			editURL = HttpUtil.setParameter(
-				editURL, "p_p_id", PortletKeys.KNOWLEDGE_BASE_ADMIN);
-			editURL = HttpUtil.setParameter(
-				editURL, namespace + "mvcPath",
-				templatePath + "edit_article.jsp");
-			editURL = HttpUtil.setParameter(
-				editURL, namespace + "redirect", redirect);
-			editURL = HttpUtil.setParameter(
-				editURL, namespace + "resourcePrimKey",
-				kbArticle.getResourcePrimKey());
-
-			actionRequest.setAttribute(WebKeys.REDIRECT, editURL);
+			actionRequest.setAttribute(WebKeys.REDIRECT, portletURL.toString());
 		}
 	}
 
