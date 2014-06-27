@@ -58,7 +58,7 @@
 
 					<p class="remove-friend">
 						<liferay-ui:icon
-							image="join"
+							iconCssClass="icon-group"
 							label="<%= true %>"
 							message="remove-friend"
 							url="<%= removeFriendHREF %>"
@@ -165,7 +165,7 @@
 								<c:when test="<%= mbPlid != LayoutConstants.DEFAULT_PLID %>">
 									<span class="view-icon">
 										<liferay-ui:icon
-											image="view"
+											iconCssClass="icon-search"
 											label="<%= true %>"
 											message='<%= LanguageUtil.format(request, "x-forum-posts", "<strong>" + mbMessagesCount + "</strong>", false) %>'
 											url='<%= mbFriendlyURL + "/-/message_boards/recent-posts?_19_groupThreadsUserId=" + user2.getUserId() %>'
@@ -204,7 +204,7 @@
 								<c:when test="<%= blogsPlid != LayoutConstants.DEFAULT_PLID %>">
 									<span class="view-icon">
 										<liferay-ui:icon
-											image="view"
+											iconCssClass="icon-search"
 											label="<%= true %>"
 											message='<%= LanguageUtil.format(request, "x-blog-entries", "<strong>" + blogsEntriesCount + "</strong>", false) %>'
 											url="<%= blogsFriendlyURL %>"

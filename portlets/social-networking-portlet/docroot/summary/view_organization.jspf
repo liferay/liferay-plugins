@@ -41,7 +41,7 @@
 
 				<p class="leave-organization">
 					<liferay-ui:icon
-						image="leave"
+						iconCssClass="icon-external-link-sign"
 						label="<%= true %>"
 						message="leave-organization"
 						url="<%= leaveOrganizationHREF %>"
@@ -59,7 +59,7 @@
 
 				<p class="join-organization">
 					<liferay-ui:icon
-						image="join"
+						iconCssClass="icon-group"
 						label="<%= true %>"
 						message="join-organization"
 						url="<%= joinOrganizationURL.toString() %>"

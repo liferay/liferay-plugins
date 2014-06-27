@@ -147,7 +147,7 @@
 
 							<c:if test="<%= Validator.isNotNull(wallToWallHREF) && wallToWallUser == null %>">
 								<liferay-ui:icon
-									image="all_pages"
+									iconCssClass="icon-copy"
 									label="<%= true %>"
 									message="wall-to-wall"
 									url="<%= wallToWallHREF %>"
@@ -175,7 +175,7 @@
 							%>
 
 							<liferay-ui:icon
-								image="post"
+								iconCssClass="icon-comments"
 								label="<%= true %>"
 								message="<%= postMessage %>"
 								url="<%= postHREF %>"
