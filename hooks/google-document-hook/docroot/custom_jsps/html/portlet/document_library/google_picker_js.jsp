@@ -21,7 +21,16 @@ String googleAPIKey = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "goo
 String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "googleClientId");
 %>
 
-<aui:script>
+<aui:script use="aui-base">
+	var clientId = '<%= googleClientId %>';
+
+	var developerKey = '<%= googleAPIKey %>';
+
+	var scope = [
+		'https://www.googleapis.com/auth/drive.readonly',
+		'https://www.googleapis.com/auth/photos.upload'
+	];
+
 	Liferay.provide(
 		window,
 		'onGoogleAPILoad',
@@ -31,175 +40,135 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 		['aui-base']
 	);
 
-	Liferay.on('googleAPILoad', <portlet:namespace />onGoogleAPILoad);
-
-	// The API developer key obtained from the Google Developers Console.
-	var developerKey = '<%= googleAPIKey %>';
-
-	// The Client ID obtained from the Google Developers Console.
-	var clientId = '<%= googleClientId %>';
-
-	// Scope to use to access user's photos.
-	var scope = [
-		'https://www.googleapis.com/auth/drive.readonly',
-		'https://www.googleapis.com/auth/photos.upload'
-	];
-
+	var authAPILoaded = false;
 	var googleAPILoaded = false;
-	var authApiLoaded = false;
-	var pickerApiLoaded = false;
+	var pickerAPILoaded = false;
 
 	var oauthToken;
-	var openPickerWhenGoogleApiLoaded = false;
+	var openPickerOnGAPILoaded = false;
 
-	// Use the API Loader script to load google.picker and gapi.auth
-	function <portlet:namespace />onGoogleAPILoad() {
-		debugger;
-		googleAPILoaded = true;
+	Liferay.on(
+		'googleAPILoad',
+		function() {
+			googleAPILoaded = true;
 
-		if (openPickerWhenGoogleApiLoaded) {
-			<portlet:namespace />openPicker();
+			if (openPickerOnGAPILoaded) {
+				openPicker();
+			}
 		}
-	}
+	);
 
-	function <portlet:namespace />openPicker() {
+	A.one('#<portlet:namespace />fm').delegate(
+		'click',
+		function(event) {
+			openPicker();
+		},
+		'.add-google-shortcut'
+	);
+
+	var openPicker = function() {
 		if (googleAPILoaded) {
-			gapi.load('auth', {'callback': <portlet:namespace />onAuthApiLoad});
-			gapi.load('picker', {'callback': <portlet:namespace />onPickerApiLoad});
+			gapi.load(
+				'auth',
+				{
+					'callback': onAuthAPILoad
+				}
+			);
+			gapi.load(
+				'picker',
+				{
+					'callback': onPickerAPILoad
+				}
+			);
 		}
 		else {
-			openPickerWhenGoogleApiLoaded = true;
+			openPickerOnGAPILoaded = true;
 		}
-	}
+	};
 
-	function <portlet:namespace />onAuthApiLoad() {
+	var onAuthAPILoad = function() {
 		window.gapi.auth.authorize(
 			{
 				'client_id': clientId,
-				'scope': scope,
-				'immediate': false
+				'immediate': false,
+				'scope': scope
 			},
 			function(authResult) {
 				if (authResult && !authResult.error) {
 					oauthToken = authResult.access_token;
 
-					authApiLoaded = true;
+					authAPILoaded = true;
 
-					<portlet:namespace />createPicker();
+					createPicker();
 				}
 			}
 		);
-	}
+	};
 
-	function <portlet:namespace />onPickerApiLoad() {
-		pickerApiLoaded = true;
+	var onPickerAPILoad = function() {
+		pickerAPILoaded = true;
 
-		<portlet:namespace />createPicker();
-	}
+		createPicker();
+	};
 
-	// Create and render a Picker object for picking user Photos.
-	function <portlet:namespace />createPicker() {
-		if (pickerApiLoaded && authApiLoaded) {
-			var groupDocuments = new google.picker.ViewGroup(google.picker.ViewId.DOCS);
-			groupDocuments.addView(google.picker.ViewId.DOCUMENTS);
-			groupDocuments.addView(google.picker.ViewId.SPREADSHEETS);
-			groupDocuments.addView(google.picker.ViewId.PRESENTATIONS);
+	// Create the picker UI
+	var createPicker = function() {
+		if (pickerAPILoaded && authAPILoaded) {
+			var ViewId = google.picker.ViewId;
 
-			var groupPhotos = new google.picker.ViewGroup(google.picker.ViewId.PHOTOS);
-			groupPhotos.addView(google.picker.ViewId.PHOTO_UPLOAD);
-			groupPhotos.addView(google.picker.ViewId.WEBCAM);
+			var groupDocuments = new google.picker.ViewGroup(ViewId.DOCS);
+
+			groupDocuments.addView(ViewId.DOCUMENTS);
+			groupDocuments.addView(ViewId.SPREADSHEETS);
+			groupDocuments.addView(ViewId.PRESENTATIONS);
+
+			var groupPhotos = new google.picker.ViewGroup(ViewId.PHOTOS);
+
+			groupPhotos.addView(ViewId.PHOTO_UPLOAD);
+			groupPhotos.addView(ViewId.WEBCAM);
 
 			var picker = new google.picker.PickerBuilder();
+
 			picker.addViewGroup(groupDocuments);
 			picker.addViewGroup(groupPhotos);
-			picker.addView(google.picker.ViewId.RECENTLY_PICKED);
+			picker.addView(ViewId.RECENTLY_PICKED);
 
 			picker.setOAuthToken(oauthToken);
 			picker.setDeveloperKey(developerKey);
-			picker.setCallback(<portlet:namespace />pickerCallback);
+			picker.setCallback(pickerCallback);
 
 			picker.build().setVisible(true);
 		}
-	}
-</aui:script>
+	};
 
-<aui:script use="aui-base">
-	A.one('#<portlet:namespace />fm').delegate(
-		'click',
-		function(event) {
-			<portlet:namespace />openPicker();
-		},
-		'.add-google-shortcut'
-	);
-
-	window['<portlet:namespace />pickerCallback'] = function(data) {
-		if (data[google.picker.Response.ACTION] == google.picker.Action.PICKED) {
+	var pickerCallback = function(data) {
+		if (data[google.picker.Response.ACTION] === google.picker.Action.PICKED) {
 			var doc = data[google.picker.Response.DOCUMENTS][0];
+			var googlePickerDoc = google.picker.Document;
 
-			var googleDocumentId = doc[google.picker.Document.ID];
-			var googleDocumentName = doc[google.picker.Document.NAME];
-			var googleDocumentDescription = doc[google.picker.Document.DESCRIPTION];
-			var googleDocumentIconURL = doc[google.picker.Document.ICON_URL];
-			var googleDocumentViewURL = doc[google.picker.Document.EMBEDDABLE_URL];
-			var googleDocumentEditURL = doc[google.picker.Document.URL];
+ 			var documentId = doc[googlePickerDoc.ID];
+			var documentName = doc[googlePickerDoc.NAME];
+			var documentDescription = doc[googlePickerDoc.DESCRIPTION];
+			var documentIconURL = doc[googlePickerDoc.ICON_URL];
+			var documentViewURL = doc[googlePickerDoc.EMBEDDABLE_URL];
+			var documentEditURL = doc[googlePickerDoc.URL];
 
-			// Pick button's icon and text
-			var pickButtonIcon = A.one('#<portlet:namespace />pickButtonIcon').getDOM();
+			A.one('#<portlet:namespace />pickButtonIcon').attr('src', documentIconURL || '');
+			A.one('#<portlet:namespace />pickButtonName').html(documentName);
 
-			if (googleDocumentIconURL) {
-				pickButtonIcon.src = googleDocumentIconURL;
-			}
-			else {
-				pickButtonIcon.src = "";
-			}
+			A.one('#<portlet:namespace />title').val(documentName);
+			A.one('#<portlet:namespace />description').val(documentDescription || '');
 
-			var pickButtonName = A.one('#<portlet:namespace />pickButtonName').getDOM();
+			var ddmInputs = A.all('#<portlet:namespace />fm .lfr-ddm-container input');
 
-			pickButtonName.innerText = googleDocumentName;
-
-			// Title field
-			var titleInput = A.one('#<portlet:namespace />title').getDOM();
-
-			titleInput.value = googleDocumentName;
-
-			// Description field
-			if (googleDocumentDescription) {
-				var descriptionInput = A.one('#<portlet:namespace />description').getDOM();
-
-				descriptionInput.value = googleDocumentDescription;
-			}
-
-			// DDM fields
-			var ddmInputs = A.all('#<portlet:namespace />fm .lfr-ddm-container input').getDOMNodes();
-
-			ddmInputs[0].value = googleDocumentId;
-			ddmInputs[1].value = googleDocumentName;
-
-			if (googleDocumentIconURL) {
-				ddmInputs[2].value = googleDocumentIconURL;
-			}
-			else {
-				ddmInputs[2].value = "";
-			}
-
-			if (googleDocumentViewURL) {
-				ddmInputs[3].value = googleDocumentViewURL;
-			}
-			else {
-				ddmInputs[3].value = "";
-			}
-
-			if (googleDocumentEditURL) {
-				ddmInputs[4].value = googleDocumentEditURL;
-			}
-			else {
-				ddmInputs[4].value = "";
-			}
+			ddmInputs.item(0).val(documentId);
+			ddmInputs.item(1).val(documentName);
+			ddmInputs.item(2).val(documentIconURL || '');
+			ddmInputs.item(3).val(documentViewURL || '');
+			ddmInputs.item(4).val(documentEditURL || '');
 		}
-	}
-</aui:script>
+	};
 
-<script>
 	if (!window.gapi && !document.getElementById('googleAPILoader')) {
 		var scriptNode = document.createElement('script');
 
@@ -209,4 +178,7 @@ String googleClientId = PrefsPropsUtil.getString(themeDisplay.getCompanyId(), "g
 
 		document.body.appendChild(scriptNode);
 	}
-</script>
+	else if (window.gapi) {
+		Liferay.fire('googleAPILoad');
+	}
+</aui:script>
