@@ -54,4 +54,7 @@ public class PortletPropsKeys {
 	public static final String KNOWLEDGE_BASE_SOCIAL_BOOKMARKS_DISPLAY_STYLE =
 		"knowledge.base.social.bookmarks.display.style";
 
+	public static final String MARKDOWN_IMPORTER_IMAGE_FILE_EXTENSIONS =
+		"markdown.importer.image.file.extensions";
+
 }
