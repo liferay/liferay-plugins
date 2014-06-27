@@ -93,32 +93,18 @@ public class KBArticleHierarchyImporter {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		KBArticle article = null;
+		KBArticle article = KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+			groupId, urlTitle);
 
-		try {
-			article = KBArticleLocalServiceUtil.getKBArticleByUrlTitle(
-				groupId, urlTitle);
-		}
-		catch (PortalException pe) {
-			if (_log.isDebugEnabled()) {
-				_log.debug(pe.getLocalizedMessage());
-			}
-		}
-
-		String description = null;
-		String[] sections = null;
-		String attachmentDirName = null;
-
-		if (Validator.isNotNull(article)) {
+		if (article != null) {
 			article = KBArticleLocalServiceUtil.updateKBArticle(
 				userId, article.getResourcePrimKey(), title, html,
-				article.getDescription(), sections, attachmentDirName,
-				serviceContext);
+				article.getDescription(), null, null, serviceContext);
 		}
 		else {
 			article = KBArticleLocalServiceUtil.addKBArticle(
-				userId, parentResourcePrimaryKey, title, urlTitle, html,
-				description, sections, attachmentDirName, serviceContext);
+				userId, parentResourcePrimaryKey, title, urlTitle, html, null,
+				null, null, serviceContext);
 		}
 
 		return article;
@@ -136,16 +122,15 @@ public class KBArticleHierarchyImporter {
 				"Null or empty Markdown in file entry: " + fileEntry);
 		}
 
-		String html;
+		String html = null;
 
 		try {
 			html = _markdownConverter.convert(markdown);
 		}
 		catch (IOException ioe) {
-			StringBuffer sb =
-				new StringBuffer(
-					"Unable to convert Markdown to HTML for file entry: ");
+			StringBuilder sb = new StringBuilder(4);
 
+			sb.append("Unable to convert Markdown to HTML for file entry: ");
 			sb.append(fileEntry);
 			sb.append(". ");
 			sb.append(ioe.getLocalizedMessage());
@@ -156,9 +141,10 @@ public class KBArticleHierarchyImporter {
 		String heading = getTitleLineFromHtml(html);
 
 		if (Validator.isNull(heading)) {
-			StringBuffer sb = new StringBuffer(
-				"Unable to extract heading from HTML of converted file entry:");
+			StringBuilder sb = new StringBuilder(5);
 
+			sb.append(
+				"Unable to extract heading from HTML of converted file entry:");
 			sb.append(StringPool.SPACE);
 			sb.append(fileEntry);
 			sb.append(", HTML: ");
@@ -176,15 +162,16 @@ public class KBArticleHierarchyImporter {
 		html = referToImageFileInDocLibrary(html, fileEntriesMap);
 
 		KBArticle article;
+
 		try {
 			article = applyContentToKBArticle(
-				userId, groupId, parentResourcePrimaryKey, title, urlTitle, html,
-				serviceContext);
+				userId, groupId, parentResourcePrimaryKey, title, urlTitle,
+				html,serviceContext);
 		}
 		catch (Exception e) {
-			StringBuffer sb = new StringBuffer(
-				"Unable to create KBArticle for file entry: ");
+			StringBuilder sb = new StringBuilder(4);
 
+			sb.append("Unable to create KBArticle for file entry: ");
 			sb.append(fileEntry);
 			sb.append(". ");
 			sb.append(e.getLocalizedMessage());
