@@ -24,8 +24,6 @@
 <%@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
-page import="com.liferay.portal.kernel.dao.search.SearchEntry" %><%@
-page import="com.liferay.portal.kernel.dao.search.TextSearchEntry" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.log.Log" %><%@
 page import="com.liferay.portal.kernel.log.LogFactoryUtil" %><%@
@@ -57,6 +55,8 @@ page import="com.liferay.socialcoding.service.SVNRevisionLocalServiceUtil" %><%@
 page import="com.liferay.socialcoding.svn.util.SVNConstants" %><%@
 page import="com.liferay.socialcoding.util.PortletPropsValues" %><%@
 page import="com.liferay.taglib.search.ResultRow" %><%@
+page import="com.liferay.taglib.search.SearchEntry" %><%@
+page import="com.liferay.taglib.search.TextSearchEntry" %><%@
 page import="com.liferay.util.RSSUtil" %>
 
 <%@ page import="com.sun.syndication.feed.synd.SyndContent" %><%@
