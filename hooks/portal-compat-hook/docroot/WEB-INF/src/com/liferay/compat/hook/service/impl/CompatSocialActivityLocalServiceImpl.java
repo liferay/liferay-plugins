@@ -31,8 +31,6 @@ import com.liferay.portlet.social.service.SocialActivityLocalService;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceUtil;
 import com.liferay.portlet.social.service.SocialActivityLocalServiceWrapper;
 import com.liferay.portlet.social.service.persistence.SocialActivityUtil;
-import com.liferay.portlet.social.util.SocialActivityHierarchyEntry;
-import com.liferay.portlet.social.util.SocialActivityHierarchyEntryThreadLocal;
 
 import java.util.Date;
 
@@ -81,16 +79,6 @@ public class CompatSocialActivityLocalServiceImpl
 		activity.setMirrorActivityId(0);
 		activity.setClassNameId(classNameId);
 		activity.setClassPK(classPK);
-
-		SocialActivityHierarchyEntry activityHierarchyEntry =
-			SocialActivityHierarchyEntryThreadLocal.peek();
-
-		if (activityHierarchyEntry != null) {
-			activity.setParentClassNameId(
-				activityHierarchyEntry.getClassNameId());
-			activity.setParentClassPK(activityHierarchyEntry.getClassPK());
-		}
-
 		activity.setType(type);
 		activity.setExtraData(extraData);
 		activity.setReceiverUserId(receiverUserId);
@@ -110,14 +98,6 @@ public class CompatSocialActivityLocalServiceImpl
 			mirrorActivity.setCreateDate(createDate.getTime());
 			mirrorActivity.setClassNameId(classNameId);
 			mirrorActivity.setClassPK(classPK);
-
-			if (activityHierarchyEntry != null) {
-				mirrorActivity.setParentClassNameId(
-					activityHierarchyEntry.getClassNameId());
-				mirrorActivity.setParentClassPK(
-					activityHierarchyEntry.getClassPK());
-			}
-
 			mirrorActivity.setType(type);
 			mirrorActivity.setExtraData(extraData);
 			mirrorActivity.setReceiverUserId(user.getUserId());
