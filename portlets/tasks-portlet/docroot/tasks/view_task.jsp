@@ -157,7 +157,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 		</tr>
 		</table>
 
-		<div class="task-action">
+		<aui:button-row>
 			<c:if test="<%= TasksEntryPermission.contains(permissionChecker, tasksEntry, ActionKeys.UPDATE) %>">
 
 				<%
@@ -170,18 +170,16 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 					<portlet:param name="status" value="<%= String.valueOf(resolved ? TasksEntryConstants.STATUS_REOPENED : TasksEntryConstants.STATUS_RESOLVED) %>" />
 				</portlet:actionURL>
 
-				<aui:button cssClass="task-action-button" onClick="<%= updateTasksEntryStatusURL %>" value='<%= resolved ? "reopen" : "resolve" %>' />
+				<aui:button cssClass="btn-primary" onClick="<%= updateTasksEntryStatusURL %>" value='<%= resolved ? "reopen" : "resolve" %>' />
 
-				<span class="task-action-spacer">
-					<portlet:renderURL var="editTasksEntryURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-						<portlet:param name="mvcPath" value="/tasks/edit_task.jsp" />
-						<portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" />
-					</portlet:renderURL>
+				<portlet:renderURL var="editTasksEntryURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
+					<portlet:param name="mvcPath" value="/tasks/edit_task.jsp" />
+					<portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" />
+				</portlet:renderURL>
 
-					<aui:button onClick="<%= editTasksEntryURL %>" value="edit" />
+				<aui:button onClick="<%= editTasksEntryURL %>" value="edit" />
 
-					<aui:button name="deleteTasksEntry" value="delete" />
-				</span>
+				<aui:button name="deleteTasksEntry" value="delete" />
 
 				<aui:script use="aui-io-deprecated">
 					var deleteTasksEntry = A.one('#<portlet:namespace />deleteTasksEntry');
@@ -210,7 +208,7 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 					}
 				</aui:script>
 			</c:if>
-		</div>
+		</aui:button-row>
 
 		<liferay-ui:tabs names="comments" />
 

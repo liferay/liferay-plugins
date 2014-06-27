@@ -148,7 +148,7 @@ if ((tasksEntry != null) && (tasksEntry.getDueDate() != null)) {
 
 				<aui:input name="tags" type="assetTags" />
 
-				<aui:button-row cssClass="task-action">
+				<aui:button-row>
 					<aui:button type="submit" />
 
 					<c:if test="<%= tasksEntryId > 0 %>">
