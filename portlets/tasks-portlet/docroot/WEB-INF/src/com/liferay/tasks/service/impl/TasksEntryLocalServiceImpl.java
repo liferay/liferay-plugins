@@ -251,7 +251,9 @@ public class TasksEntryLocalServiceImpl extends TasksEntryLocalServiceBaseImpl {
 		return tasksEntryPersistence.findByPrimaryKey(tasksEntryId);
 	}
 
-	public List<TasksEntry> getUserTasksEntries(long userId, int start, int end) {
+	public List<TasksEntry> getUserTasksEntries(
+		long userId, int start, int end) {
+
 		return tasksEntryPersistence.findByUserId(userId, start, end);
 	}
 
