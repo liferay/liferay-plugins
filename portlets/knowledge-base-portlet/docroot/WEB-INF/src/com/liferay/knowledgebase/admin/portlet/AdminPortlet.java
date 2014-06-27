@@ -25,7 +25,6 @@ import com.liferay.knowledgebase.NoSuchArticleException;
 import com.liferay.knowledgebase.NoSuchCommentException;
 import com.liferay.knowledgebase.NoSuchTemplateException;
 import com.liferay.knowledgebase.admin.importer.KBArticleHierarchyImporter;
-import com.liferay.knowledgebase.admin.importer.KBArticleImporterContext;
 import com.liferay.knowledgebase.model.KBArticle;
 import com.liferay.knowledgebase.model.KBComment;
 import com.liferay.knowledgebase.model.KBTemplate;
@@ -37,7 +36,6 @@ import com.liferay.knowledgebase.util.PortletKeys;
 import com.liferay.knowledgebase.util.WebKeys;
 import com.liferay.portal.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -128,47 +126,6 @@ public class AdminPortlet extends MVCPortlet {
 		}
 	}
 
-	public void importFile(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws Exception {
-
-		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(actionRequest);
-
-		String fileName = uploadPortletRequest.getFileName("file");
-
-		if (Validator.isNull(fileName)) {
-			throw new KBArticleImportException("No import filename");
-		}
-
-		InputStream inputStream = null;
-
-		try {
-			inputStream = uploadPortletRequest.getFileAsStream("file");
-
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				AdminPortlet.class.getName(), actionRequest);
-
-			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
-
-			KBArticleImporterContext kbArticleImporterContext =
-				new KBArticleImporterContext(fileName, serviceContext);
-
-			KBArticleHierarchyImporter kbArticleHierarchyImporter =
-				new KBArticleHierarchyImporter();
-
-			kbArticleHierarchyImporter.processZipFile(
-				inputStream, kbArticleImporterContext);
-		}
-		catch (KBArticleImportException kbaie) {
-			SessionErrors.add(
-				actionRequest, kbaie.getClass(), kbaie);
-		}
-		finally {
-			StreamUtil.cleanUp(inputStream);
-		}
-	}
-
 	public void deleteAttachment(
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
@@ -249,6 +206,44 @@ public class AdminPortlet extends MVCPortlet {
 
 		KBTemplateServiceUtil.deleteKBTemplates(
 			themeDisplay.getScopeGroupId(), kbTemplateIds);
+	}
+
+	public void importFile(
+			ActionRequest actionRequest, ActionResponse actionResponse)
+		throws Exception {
+
+		UploadPortletRequest uploadPortletRequest =
+			PortalUtil.getUploadPortletRequest(actionRequest);
+
+		String fileName = uploadPortletRequest.getFileName("file");
+
+		if (Validator.isNull(fileName)) {
+			throw new KBArticleImportException("No import filename");
+		}
+
+		InputStream inputStream = null;
+
+		try {
+			inputStream = uploadPortletRequest.getFileAsStream("file");
+
+			ServiceContext serviceContext = ServiceContextFactory.getInstance(
+				AdminPortlet.class.getName(), actionRequest);
+
+			serviceContext.setGuestPermissions(new String[] {ActionKeys.VIEW});
+
+			KBArticleHierarchyImporter kbArticleHierarchyImporter =
+				new KBArticleHierarchyImporter();
+
+			kbArticleHierarchyImporter.processZipFile(
+				fileName, inputStream, new HashMap<String, FileEntry>(),
+				serviceContext);
+		}
+		catch (KBArticleImportException kbaie) {
+			SessionErrors.add(actionRequest, kbaie.getClass(), kbaie);
+		}
+		finally {
+			StreamUtil.cleanUp(inputStream);
+		}
 	}
 
 	public void moveKBArticle(

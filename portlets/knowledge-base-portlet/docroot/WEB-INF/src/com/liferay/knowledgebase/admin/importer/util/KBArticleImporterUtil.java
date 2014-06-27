@@ -15,7 +15,6 @@
 package com.liferay.knowledgebase.admin.importer.util;
 
 import com.liferay.knowledgebase.KBArticleImportException;
-import com.liferay.knowledgebase.admin.importer.KBArticleImporterContext;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -30,6 +29,8 @@ import com.liferay.portal.service.ServiceContext;
 
 import java.io.File;
 import java.io.IOException;
+
+import java.util.Map;
 
 /**
  * @author James Hinkey
@@ -46,12 +47,11 @@ public class KBArticleImporterUtil {
 	 * </p>
 	 *
 	 * @param  html the HTML text from which to extract an image file entry
-	 * @param  importerContext the importer context
 	 * @return a file entry for the first <code>img</code> tag parsed from the
 	 *         specified HTML text
 	 */
 	public static FileEntry extractImageFileEntry(
-		String html, KBArticleImporterContext importerContext) {
+		String html, Map<String, FileEntry> fileEntriesMap) {
 
 		String imageSource = null;
 
@@ -88,21 +88,23 @@ public class KBArticleImporterUtil {
 
 		String name = paths[paths.length - 1];
 
-		return importerContext.getFileEntry(name);
+		return fileEntriesMap.get(name);
 	}
 
 	/**
 	 * Processes the ZIP file's image files, adding them to the document
 	 * library.
 	 *
+	 * @param fileName
 	 * @param zipReader a zip reader containing a folder of image files
-	 * @param importerContext the importer context
+	 * @param fileEntriesMap
+	 * @param serviceContext
 	 */
 	public static void processImageFiles(
-			ZipReader zipReader, KBArticleImporterContext importerContext)
-		throws KBArticleImportException, IOException {
-
-		String fileName = importerContext.getFileName();
+			String fileName, ZipReader zipReader,
+			Map<String, FileEntry> fileEntriesMap,
+			ServiceContext serviceContext)
+		throws IOException, KBArticleImportException {
 
 		if (fileName.contains(StringPool.PERIOD)) {
 			fileName = fileName.substring(
@@ -123,15 +125,13 @@ public class KBArticleImporterUtil {
 
 		String namespaceFolderName = StringUtil.toLowerCase(fileName);
 
-		ServiceContext serviceContext = importerContext.getServiceContext();
-
 		Folder imagesFolder = null;
 
 		try {
 			KBArticleDLUtil.deleteFolder(namespaceFolderName, serviceContext);
 
 			imagesFolder = KBArticleDLUtil.addFolder(
-				namespaceFolderName, importerContext);
+				namespaceFolderName, serviceContext);
 		}
 		catch (Exception e) {
 			throw new KBArticleImportException(e);
@@ -170,7 +170,7 @@ public class KBArticleImporterUtil {
 					picturesFile, zipReader.getEntryAsInputStream(zipEntry));
 
 				KBArticleDLUtil.addFile(
-					imagesFolder, picturesFile, importerContext);
+					imagesFolder, picturesFile, fileEntriesMap, serviceContext);
 			}
 			catch (Exception e) {
 				StringBuffer sb = new StringBuffer(
