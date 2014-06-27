@@ -26,7 +26,7 @@ if (row != null) {
 }
 %>
 
-<liferay-ui:icon-menu showExpanded="<%= row == null %>">
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>" showExpanded="<%= row == null %>">
 	<portlet:renderURL var="editURL">
 		<portlet:param name="mvcPath" value="/admin/edit_server.jsp" />
 		<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -34,7 +34,8 @@ if (row != null) {
 	</portlet:renderURL>
 
 	<liferay-ui:icon
-		image="edit"
+		iconCssClass="icon-edit"
+		message="edit"
 		url="<%= editURL %>"
 	/>
 

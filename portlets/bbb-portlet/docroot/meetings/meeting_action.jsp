@@ -26,7 +26,7 @@ if (row != null) {
 }
 %>
 
-<liferay-ui:icon-menu showExpanded="<%= row == null %>">
+<liferay-ui:icon-menu icon="<%= StringPool.BLANK %>" message="<%= StringPool.BLANK %>" showExpanded="<%= row == null %>">
 	<c:if test="<%= BBBMeetingPermission.contains(permissionChecker, bbbMeeting, ActionKeys.UPDATE) %>">
 		<portlet:renderURL var="editURL">
 			<portlet:param name="mvcPath" value="/meetings/edit_meeting.jsp" />
@@ -35,7 +35,8 @@ if (row != null) {
 		</portlet:renderURL>
 
 		<liferay-ui:icon
-			image="edit"
+			iconCssClass="icon-edit"
+			message="edit"
 			url="<%= editURL %>"
 		/>
 	</c:if>
@@ -50,21 +51,11 @@ if (row != null) {
 		/>
 
 		<liferay-ui:icon
-			image="permissions"
+			iconCssClass="icon-lock"
+			message="permissions"
 			method="get"
 			url="<%= permissionsURL %>"
 			useDialog="<%= true %>"
-		/>
-	</c:if>
-
-	<c:if test="<%= BBBMeetingPermission.contains(permissionChecker, bbbMeeting, ActionKeys.DELETE) %>">
-		<portlet:actionURL name="deleteBBBMeeting" var="deleteURL">
-			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="bbbMeetingId" value="<%= String.valueOf(bbbMeeting.getBbbMeetingId()) %>" />
-		</portlet:actionURL>
-
-		<liferay-ui:icon-delete
-			url="<%= deleteURL %>"
 		/>
 	</c:if>
 
@@ -76,7 +67,7 @@ if (row != null) {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="unlink"
+				image="icon-unlink"
 				message="end-meeting"
 				url="<%= endMeetingURL %>"
 			/>
@@ -89,7 +80,7 @@ if (row != null) {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="conversation"
+				iconCssClass="icon-comments"
 				message="start-meeting"
 				url="<%= startMeetingURL %>"
 			/>
@@ -101,7 +92,7 @@ if (row != null) {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="desktop"
+				iconCssClass="icon-desktop"
 				message="start-meeting-with-recording"
 				url="<%= startMeetingWithRecordingURL %>"
 			/>
@@ -113,10 +104,21 @@ if (row != null) {
 			</portlet:actionURL>
 
 			<liferay-ui:icon
-				image="conversation"
+				iconCssClass="icon-comments"
 				message="join-meeting"
 				url="<%= joinMeetingURL %>"
 			/>
 		</c:if>
+	</c:if>
+
+	<c:if test="<%= BBBMeetingPermission.contains(permissionChecker, bbbMeeting, ActionKeys.DELETE) %>">
+		<portlet:actionURL name="deleteBBBMeeting" var="deleteURL">
+			<portlet:param name="redirect" value="<%= currentURL %>" />
+			<portlet:param name="bbbMeetingId" value="<%= String.valueOf(bbbMeeting.getBbbMeetingId()) %>" />
+		</portlet:actionURL>
+
+		<liferay-ui:icon-delete
+			url="<%= deleteURL %>"
+		/>
 	</c:if>
 </liferay-ui:icon-menu>
