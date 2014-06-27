@@ -22,7 +22,6 @@ import com.liferay.knowledgebase.service.KBArticleLocalServiceUtil;
 import com.liferay.markdown.converter.MarkdownConverter;
 import com.liferay.markdown.converter.factory.MarkdownConverterFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -35,8 +34,8 @@ import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
 
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,14 +60,17 @@ public class KBArticleHierarchyImporter {
 	 * Processes the ZIP file's content and pictures, importing them as kb
 	 * articles and document library files respectively.
 	 *
+	 * @param fileName
 	 * @param inputStream a inputStream containing a folder of image files to
-	 *        add to the document library and folders of Markdown files to be
-	 *        processed into a hierarchy of kb articles
-	 * @param importerContext the importer context
+ *        add to the document library and folders of Markdown files to be
+ *        processed into a hierarchy of kb articles
+	 * @param serviceContext
 	 */
 	public void processZipFile(
-			InputStream inputStream, KBArticleImporterContext importerContext)
-		throws KBArticleImportException, IOException {
+			String fileName, InputStream inputStream,
+			Map<String, FileEntry> fileEntriesMap,
+			ServiceContext serviceContext)
+		throws IOException, KBArticleImportException {
 
 		if (inputStream == null) {
 			throw new KBArticleImportException("Null import file");
@@ -76,15 +78,16 @@ public class KBArticleHierarchyImporter {
 
 		ZipReader zipReader = ZipReaderFactoryUtil.getZipReader(inputStream);
 
-		KBArticleImporterUtil.processImageFiles(zipReader, importerContext);
+		KBArticleImporterUtil.processImageFiles(
+			fileName, zipReader, fileEntriesMap, serviceContext);
 
-		processArticleFiles(zipReader, importerContext);
+		processArticleFiles(zipReader, fileEntriesMap, serviceContext);
 	}
 
 	protected KBArticle applyContentToKBArticle(
 			long parentResourcePimaryKey, String title, String urlTitle,
 			String html, ServiceContext serviceContext)
-		throws PortalException, SystemException {
+		throws PortalException {
 
 		KBArticle article = null;
 
@@ -119,8 +122,9 @@ public class KBArticleHierarchyImporter {
 	}
 
 	protected KBArticle createKBArticleFromMarkdown(
-			long parentResourcePrimaryKey, String markdown,
-			KBArticleImporterContext importerContext, String fileEntry)
+			long parentResourcePrimaryKey, String markdown, String fileEntry,
+			Map<String, FileEntry> fileEntriesMap,
+			ServiceContext serviceContext)
 		throws KBArticleImportException {
 
 		if (Validator.isNull(markdown)) {
@@ -145,8 +149,6 @@ public class KBArticleHierarchyImporter {
 			throw new KBArticleImportException(sb.toString(), ioe);
 		}
 
-		ServiceContext serviceContext = importerContext.getServiceContext();
-
 		String heading = getTitleLineFromHtml(html);
 
 		if (Validator.isNull(heading)) {
@@ -167,7 +169,7 @@ public class KBArticleHierarchyImporter {
 
 		html = stripIds(html);
 
-		html = referToImageFileInDocLibrary(html, importerContext);
+		html = referToImageFileInDocLibrary(html, fileEntriesMap);
 
 		KBArticle article;
 		try {
@@ -190,7 +192,6 @@ public class KBArticleHierarchyImporter {
 	}
 
 	protected String getTitleLineFromHtml(String html) {
-
 		int beginHeaderTag = html.indexOf("<h1>");
 		int endHeaderTag = html.indexOf("</h1>");
 
@@ -255,8 +256,9 @@ public class KBArticleHierarchyImporter {
 	}
 
 	protected void processArticleFiles(
-			ZipReader zipReader, KBArticleImporterContext importerContext)
-		throws KBArticleImportException, IOException {
+			ZipReader zipReader, Map<String, FileEntry> fileEntriesMap,
+			ServiceContext serviceContext)
+		throws IOException, KBArticleImportException {
 
 		// Create map of the ZIP files folders to Markdown files, extracting the
 		// root home page Markdown file along the way.
@@ -297,7 +299,7 @@ public class KBArticleHierarchyImporter {
 
 		KBArticle rootHomeKBArticle = createKBArticleFromMarkdown(
 			KBArticleConstants.DEFAULT_PARENT_RESOURCE_PRIM_KEY,
-			rootHomeMarkdown, importerContext, _HOME_MARKDOWN);
+			rootHomeMarkdown, _HOME_MARKDOWN, fileEntriesMap, serviceContext);
 
 		// Create kb articles for each chapter home Markdown file and each
 		// chapter's tutorial Markdown files.
@@ -326,7 +328,6 @@ public class KBArticleHierarchyImporter {
 			}
 
 			if (Validator.isNull(chapterHomeFileEntry)) {
-
 				throw new KBArticleImportException(
 					"Missing intro file entry in folder: " + folder);
 			}
@@ -336,7 +337,7 @@ public class KBArticleHierarchyImporter {
 
 			KBArticle chapterIntroKBArticle = createKBArticleFromMarkdown(
 				rootHomeKBArticle.getResourcePrimKey(), chapterIntroMarkdown,
-				importerContext, chapterHomeFileEntry);
+				chapterHomeFileEntry, fileEntriesMap, serviceContext);
 
 			for (String tutorialFileEntry : chapterMarkdownFileEntries) {
 				String tutorialMarkdown = zipReader.getEntryAsString(
@@ -345,13 +346,14 @@ public class KBArticleHierarchyImporter {
 				if (Validator.isNotNull(tutorialMarkdown)) {
 					createKBArticleFromMarkdown(
 						chapterIntroKBArticle.getResourcePrimKey(),
-						tutorialMarkdown, importerContext, tutorialFileEntry);
+						tutorialMarkdown, tutorialFileEntry, fileEntriesMap,
+						serviceContext);
 				}
 				else {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
 							"Missing Markdown in file entry: " +
-									tutorialFileEntry);
+								tutorialFileEntry);
 					}
 				}
 			}
@@ -359,7 +361,7 @@ public class KBArticleHierarchyImporter {
 	}
 
 	protected String referToImageFileInDocLibrary(
-		String html, KBArticleImporterContext importerContext) {
+		String html, Map<String, FileEntry> fileEntriesMap) {
 
 		Set<Integer> indexes = new TreeSet<Integer>();
 
@@ -417,7 +419,7 @@ public class KBArticleHierarchyImporter {
 			String text = html.substring(currentIndex, pos);
 
 			FileEntry fileEntry = KBArticleImporterUtil.extractImageFileEntry(
-				text, importerContext);
+				text, fileEntriesMap);
 
 			if (fileEntry == null) {
 				if (_log.isWarnEnabled()) {
@@ -498,17 +500,19 @@ public class KBArticleHierarchyImporter {
 	}
 
 	private static final String _HOME_MARKDOWN = "home.markdown";
+
 	private static final String _INTRO_MARKDOWN = "intro.markdown";
+
 	private static final String _INTRODUCTION_MARKDOWN = "introduction.markdown";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		KBArticleHierarchyImporter.class);
 
-	private MarkdownConverter _markdownConverter =
-		MarkdownConverterFactoryUtil.create();
 	private Map<String, List<String>> _folderFileEntryMap =
 		new TreeMap<String, List<String>>();
 	private Pattern _headerTagPattern = Pattern.compile(
 		"^(<h\\d>.*)(.*</h\\d>).*");
+	private MarkdownConverter _markdownConverter =
+		MarkdownConverterFactoryUtil.create();
 
 }

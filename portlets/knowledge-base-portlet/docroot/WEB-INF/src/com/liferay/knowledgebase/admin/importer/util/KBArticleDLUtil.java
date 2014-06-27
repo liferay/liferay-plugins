@@ -14,9 +14,7 @@
 
 package com.liferay.knowledgebase.admin.importer.util;
 
-import com.liferay.knowledgebase.admin.importer.KBArticleImporterContext;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.util.StringPool;
@@ -31,14 +29,17 @@ import java.io.File;
 
 import java.rmi.RemoteException;
 
+import java.util.Map;
+
 /**
  * @author James Hinkey
  */
 public class KBArticleDLUtil {
 
 	public static FileEntry addFile(
-			Folder folder, File file, KBArticleImporterContext importerContext)
-		throws PortalException, SystemException {
+			Folder folder, File file, Map<String, FileEntry> fileEntriesMap,
+			ServiceContext serviceContext)
+		throws PortalException {
 
 		String name = file.getName();
 		String fileName = file.getName();
@@ -47,24 +48,20 @@ public class KBArticleDLUtil {
 			name = fileName;
 		}
 
-		ServiceContext serviceContext = importerContext.getServiceContext();
-
 		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
 			folder.getRepositoryId(), folder.getFolderId(), name, fileName,
 			name, StringPool.BLANK, StringPool.BLANK, file, serviceContext);
 
-		importerContext.addFileEntry(name, fileEntry);
+		fileEntriesMap.put(name, fileEntry);
 
 		return fileEntry;
 	}
 
-	public static Folder addFolder(
-			String name, KBArticleImporterContext importerContext)
-		throws PortalException, SystemException {
-
-		ServiceContext serviceContext = importerContext.getServiceContext();
+	public static Folder addFolder(String name, ServiceContext serviceContext)
+		throws PortalException {
 
 		Folder folder = null;
+
 		try {
 			folder = DLAppServiceUtil.addFolder(
 				serviceContext.getScopeGroupId(),
@@ -79,7 +76,7 @@ public class KBArticleDLUtil {
 	}
 
 	public static void deleteFolder(String name, ServiceContext serviceContext)
-		throws PortalException, RemoteException, SystemException {
+		throws PortalException, RemoteException {
 
 		try {
 			Folder imageFolder = DLAppServiceUtil.getFolder(
