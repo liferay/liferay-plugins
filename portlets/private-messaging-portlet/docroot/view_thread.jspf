@@ -255,7 +255,7 @@ iteratorURL.setParameter("mbThreadId", String.valueOf(mbThreadId));
 									</liferay-portlet:resourceURL>
 
 									<liferay-ui:icon
-										image='<%= "../file_system/small/" + DLUtil.getFileIcon(fileEntry.getExtension()) %>'
+										iconCssClass="<%= DLUtil.getFileIconCssClass(fileEntry.getExtension()) %>"
 										label="<%= true %>"
 										message="<%= sb.toString() %>"
 										url="<%= attachmentURL %>"
