@@ -51,22 +51,21 @@ public class KBArticleDLUtil {
 		return fileEntry;
 	}
 
-	public static Folder addFolder(String name, ServiceContext serviceContext)
+	public static Folder addFolder(
+			long groupId, String name, ServiceContext serviceContext)
 		throws PortalException {
 
 		return DLAppServiceUtil.addFolder(
-			serviceContext.getScopeGroupId(),
-			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, name, StringPool.BLANK,
-			serviceContext);
+			groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, name,
+			StringPool.BLANK, serviceContext);
 	}
 
-	public static void deleteFolder(String name, ServiceContext serviceContext)
+	public static void deleteFolder(long groupId, String name)
 		throws PortalException {
 
 		try {
 			Folder imageFolder = DLAppServiceUtil.getFolder(
-				serviceContext.getScopeGroupId(),
-				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, name);
+				groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID, name);
 
 			DLAppServiceUtil.deleteFolder(imageFolder.getFolderId());
 		}

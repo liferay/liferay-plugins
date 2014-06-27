@@ -100,7 +100,7 @@ public class KBArticleImporterUtil {
 	 * @param serviceContext
 	 */
 	public static void processImageFiles(
-			String fileName, ZipReader zipReader,
+			long groupId, String fileName, ZipReader zipReader,
 			Map<String, FileEntry> fileEntriesMap,
 			ServiceContext serviceContext)
 		throws IOException, KBArticleImportException {
@@ -112,10 +112,10 @@ public class KBArticleImporterUtil {
 		Folder imagesFolder = null;
 
 		try {
-			KBArticleDLUtil.deleteFolder(folderName, serviceContext);
+			KBArticleDLUtil.deleteFolder(groupId, folderName);
 
 			imagesFolder = KBArticleDLUtil.addFolder(
-				folderName, serviceContext);
+				groupId, folderName, serviceContext);
 		}
 		catch (Exception e) {
 			throw new KBArticleImportException(e);

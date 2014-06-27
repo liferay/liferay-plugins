@@ -214,6 +214,9 @@ public class AdminPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
 		UploadPortletRequest uploadPortletRequest =
 			PortalUtil.getUploadPortletRequest(actionRequest);
 
@@ -237,6 +240,7 @@ public class AdminPortlet extends MVCPortlet {
 				new KBArticleHierarchyImporter();
 
 			kbArticleHierarchyImporter.processZipFile(
+				themeDisplay.getUserId(), themeDisplay.getScopeGroupId(),
 				fileName, inputStream, new HashMap<String, FileEntry>(),
 				serviceContext);
 		}
