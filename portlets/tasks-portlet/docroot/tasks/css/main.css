@@ -37,23 +37,9 @@
 		margin: 0.5em 0;
 		padding: 6px;
 
-		a {
-			background: no-repeat 0% 50%;
-			padding: 1px 10px 1px 20px;
-		}
-
-		.add-task {
-			background-image: url(@theme_image_path@/common/add.png);
-		}
-
 		.filter-tasks {
-			background-image: url(@theme_image_path@/common/tag.png);
 			float: right;
 			padding-right: 0;
-		}
-
-		.permission-tasks {
-			background-image: url(@theme_image_path@/common/permissions.png);
 		}
 	}
 
@@ -91,17 +77,6 @@
 		text-align: right;
 	}
 
-	.asset-tag-filter .asset-tag {
-		background: url(../images/unselected.png) no-repeat 0% 50%;
-		margin-right: 0.5em;
-		padding-left: 16px;
-
-		&.selected {
-			background-image: url(../images/selected.png);
-			font-weight: bold;
-		}
-	}
-
 	.group-filter select {
 		min-width: 175px;
 	}
@@ -109,7 +84,7 @@
 	/* ---------- Priority ---------- */
 
 	.tasks-title {
-		padding: 1px 0 1px 20px;
+		padding: 1px 0 1px 0;
 	}
 
 	/* ---------- Progress ---------- */
@@ -200,17 +175,6 @@
 
 	/* ---------- Tags ---------- */
 
-	.tags-wrapper {
-		position: relative;
-		width: 16px;
-
-		.icon {
-			background: url(@theme_image_path@/common/tag.png) no-repeat;
-			height: 16px;
-			width: 16px;
-		}
-	}
-
 	.tags {
 		background: #E5F6FF;
 		border: 1px solid #B5D7E5;
@@ -244,19 +208,10 @@
 			border-right: 1px solid #777;
 			display: inline;
 			margin-right: 0.5em;
-			padding: 1px 0.5em 1px 20px;
+			padding: 1px 0.5em 1px 0;
 		}
 
-		.reporter {
-			background: url(@theme_image_path@/common/add_user.png) no-repeat 0 50%;
-		}
-
-		.assignee {
-			background: url(@theme_image_path@/common/assign.png) no-repeat 0 50%;
-		}
-
-		.modified-date {
-			background: url(@theme_image_path@/common/calendar.png) no-repeat 0 50%;
+		.last {
 			border-right-width: 0;
 		}
 	}
@@ -267,7 +222,7 @@
 
 	.task-data-table .task-data {
 		display: block;
-		padding: 1px 0 1px 20px;
+		padding: 1px 0 1px 0;
 	}
 
 	.fieldset {
@@ -343,24 +298,29 @@
 
 	.tasks-title a {
 		display: block;
-		padding: 1px 0 1px 20px;
+		padding: 1px 0 1px 0;
 	}
 }
 
 .tasks-portlet .task-data-table .high, .tasks-portlet .tasks-title.high, .upcoming-tasks-portlet .tasks-entries-container .high a {
-	background: url(../images/priority_high.png) no-repeat 0 50%;
+	.icon-circle {
+		color: #FF0000;
+		text-decoration: none;
+	}
 }
 
 .tasks-portlet .task-data-table .normal, .tasks-portlet .tasks-title.normal, .upcoming-tasks-portlet .tasks-entries-container .normal a {
-	background: url(../images/priority_normal.png) no-repeat 0 50%;
+	.icon-circle {
+		color: #89C435;
+		text-decoration: none;
+	}
 }
 
 .tasks-portlet .task-data-table .low, .tasks-portlet .tasks-title.low, .upcoming-tasks-portlet .tasks-entries-container .low a {
-	background: url(../images/priority_low.png) no-repeat 0 50%;
-}
-
-.tasks-portlet .task-data-table .due-date, .upcoming-tasks-portlet .tasks-entries-container .due-date a {
-	background: url(@theme_image_path@/common/date.png) no-repeat 0 50%;
+	.icon-circle {
+		color: #CCC;
+		text-decoration: none;
+	}
 }
 
 .ie6 .tasks-portlet .tags {

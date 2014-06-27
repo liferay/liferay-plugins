@@ -54,10 +54,18 @@
 			<li class="<%= cssClass %>">
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(taskHREF) %>">
-						<a href="javascript:;" onClick="Liferay.Tasks.openTask('<%= taskHREF %>');"><%= HtmlUtil.escape(tasksEntry.getTitle()) %></a>
+						<a href="javascript:;" onClick="Liferay.Tasks.openTask('<%= taskHREF %>');">
+							<i class="icon-circle"></i>
+
+							<%= HtmlUtil.escape(tasksEntry.getTitle()) %>
+						</a>
 					</c:when>
 					<c:otherwise>
-						<span><%= HtmlUtil.escape(tasksEntry.getTitle()) %></span>
+						<span>
+							<i class="icon-circle"></i>
+
+							<%= HtmlUtil.escape(tasksEntry.getTitle()) %>
+						</span>
 					</c:otherwise>
 				</c:choose>
 			</li>

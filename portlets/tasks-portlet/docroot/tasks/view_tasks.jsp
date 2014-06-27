@@ -118,10 +118,18 @@ taskListURL.setParameter("tabs2", tabs2);
 			<div class="result-title">
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(rowHREF) %>">
-						<a class="<%= cssClass %>" href="javascript:;" onClick="Liferay.Tasks.openTask('<%= rowHREF %>');"><%= tasksEntry.getTitle() %></a>
+						<a class="<%= cssClass %>" href="javascript:;" onClick="Liferay.Tasks.openTask('<%= rowHREF %>');">
+							<i class="icon-circle"></i>
+
+							<%= tasksEntry.getTitle() %>
+						</a>
 					</c:when>
 					<c:otherwise>
-						<span class="<%= cssClass %>"><%= tasksEntry.getTitle() %></span>
+						<span class="<%= cssClass %>">
+							<i class="icon-circle"></i>
+
+							<%= tasksEntry.getTitle() %>
+						</span>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -209,7 +217,6 @@ taskListURL.setParameter("tabs2", tabs2);
 							<div class="progress-indicator"></div>
 							<div class="progress-selector">
 
-
 								<%
 								for (int i = TasksEntryConstants.STATUS_PERCENT_TWENTY; i <= TasksEntryConstants.STATUS_RESOLVED; i++) {
 								%>
@@ -247,7 +254,7 @@ taskListURL.setParameter("tabs2", tabs2);
 
 			<c:if test="<%= !assetTags.isEmpty() %>">
 				<div class="tags-wrapper">
-					<div class="icon"><!-- --></div>
+					<i class="icon-tag"></i>
 
 					<div class="tags hide">
 						<%= ListUtil.toString(assetTags, AssetTag.NAME_ACCESSOR) %>

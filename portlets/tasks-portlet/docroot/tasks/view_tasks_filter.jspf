@@ -60,9 +60,7 @@
 		for (AssetTag assetTag : assetTags) {
 	%>
 
-			<span class="asset-tag" data-assetTagId="<%= assetTag.getTagId() %>">
-				<a href="javascript:;"><%= assetTag.getName() %></a>
-			</span>
+			<a class="asset-tag icon-check-empty" data-assetTagId="<%= assetTag.getTagId() %>" href="javascript:;"><%= assetTag.getName() %></a>
 
 	<%
 		}

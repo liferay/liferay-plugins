@@ -156,6 +156,15 @@ AUI().use(
 					function(event) {
 						var assetTag = event.currentTarget;
 
+						if (assetTag.hasClass('icon-check')) {
+							assetTag.removeClass('icon-check');
+							assetTag.addClass('icon-check-empty');
+						}
+						else {
+							assetTag.removeClass('icon-check-empty');
+							assetTag.addClass('icon-check');
+						}
+
 						assetTag.toggleClass('selected');
 
 						instance.updateTaskList();

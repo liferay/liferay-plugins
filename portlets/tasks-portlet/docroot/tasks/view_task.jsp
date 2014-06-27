@@ -40,51 +40,61 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 		<liferay-ui:header title="<%= HtmlUtil.unescape(tasksEntry.getTitle()) %>" />
 
 		<div class="task-data-container">
-			<div class="task-data assignee">
+			<div class="task-data">
 				<c:choose>
 					<c:when test="<%= tasksEntry.getAssigneeUserId() > 0 %>">
 
 						<%
-						String assigneeDisplayURL = StringPool.BLANK;
 						String taglibAssigneeDisplayURL = LanguageUtil.get(request, "unknown-user");
 
 						User assigneeUser = UserLocalServiceUtil.fetchUser(tasksEntry.getAssigneeUserId());
 
 						if (assigneeUser != null) {
-							assigneeDisplayURL = assigneeUser.getDisplayURL(themeDisplay);
-
-							taglibAssigneeDisplayURL = "<a href=\"" + assigneeDisplayURL + "\">" + HtmlUtil.escape(tasksEntry.getAssigneeFullName()) + "</a>";
+							taglibAssigneeDisplayURL = "<a href=\"" + assigneeUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(tasksEntry.getAssigneeFullName()) + "</a>";
 						}
 						%>
 
-						<liferay-ui:message arguments="<%= taglibAssigneeDisplayURL %>" key="assigned-to-x" translateArguments="<%= false %>" />
+						<liferay-ui:icon
+							iconCssClass="icon-user"
+							label="<%= true %>"
+							message='<%= LanguageUtil.format(request, "assigned-to-x", taglibAssigneeDisplayURL, false) %>'
+						/>
 					</c:when>
 					<c:otherwise>
-						<liferay-ui:message key="unassigned" />
+						<liferay-ui:icon
+							iconCssClass="icon-signin"
+							label="<%= true %>"
+							message="unassigned"
+						/>
 					</c:otherwise>
 				</c:choose>
 			</div>
 
-			<div class="task-data reporter">
+			<div class="task-data">
 
 				<%
-				String reporterDisplayURL = StringPool.BLANK;
 				String taglibReporterDisplayURL = LanguageUtil.get(request, "unknown-user");
 
 				User reporterUser = UserLocalServiceUtil.fetchUser(tasksEntry.getUserId());
 
 				if (reporterUser != null) {
-					reporterDisplayURL = reporterUser.getDisplayURL(themeDisplay);
-
-					taglibReporterDisplayURL = "<a href=\"" + reporterDisplayURL + "\">" + HtmlUtil.escape(tasksEntry.getReporterFullName()) + "</a>";
+					taglibReporterDisplayURL = "<a href=\"" + reporterUser.getDisplayURL(themeDisplay) + "\">" + HtmlUtil.escape(tasksEntry.getReporterFullName()) + "</a>";
 				}
 				%>
 
-				<liferay-ui:message arguments="<%= taglibReporterDisplayURL %>" key="created-by-x" translateArguments="<%= false %>" />
+				<liferay-ui:icon
+					iconCssClass="icon-user"
+					label="<%= true %>"
+					message='<%= LanguageUtil.format(request, "created-by-x", taglibReporterDisplayURL, false) %>'
+				/>
 			</div>
 
-			<div class="task-data last modified-date">
-				<liferay-ui:message arguments="<%= dateFormatDateTime.format(tasksEntry.getModifiedDate()) %>" key="modified-on-x" translateArguments="<%= false %>" />
+			<div class="task-data last">
+				<liferay-ui:icon
+					iconCssClass="icon-calendar"
+					label="<%= true %>"
+					message='<%= LanguageUtil.format(request, "modified-on-x", dateFormatDateTime.format(tasksEntry.getModifiedDate()), false) %>'
+				/>
 			</div>
 		</div>
 
@@ -105,6 +115,8 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 			</td>
 			<td>
 				<div class="task-data <%= tasksEntry.getPriorityLabel() %>">
+					<i class="icon-circle"></i>
+
 					<liferay-ui:message key="<%= tasksEntry.getPriorityLabel() %>" />
 				</div>
 			</td>
@@ -117,7 +129,11 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 				</td>
 				<td>
 					<div class="task-data due-date">
-						<%= dateFormatDateTime.format(tasksEntry.getDueDate()) %>
+						<liferay-ui:icon
+							iconCssClass="icon-calendar"
+							label="<%= true %>"
+							message="<%= dateFormatDateTime.format(tasksEntry.getDueDate()) %>"
+						/>
 					</div>
 				</td>
 			</tr>
